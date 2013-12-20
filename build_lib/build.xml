@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ======================================================================= -->
+<!-- See README file for requirements                                        -->
+<!-- ======================================================================= -->
+<project basedir="../" default="generate-src" name="adsapi_php">
+
+  <property name="classpath" value="" />
+  <property name="out.dir" value="${project.basedir}/src" />
+  <property name="product" value="${lib.product}" />
+  <property name="wsdl2php.classpath" value="build_lib" />
+
+  <property name="author" value="${lib.author}" />
+  <property name="package" value="${lib.package}" />
+
+  <taskdef name="wsdl2php" classname="Wsdl2PhpTask"
+      classpath="${wsdl2php.classpath}" />
+
+  <!-- =================================================================== -->
+  <!-- Target: generate php from wsdls                                     -->
+  <!-- =================================================================== -->
+  <target name="generate-src">
+    <foreach list="${api.versions}" param="version" target="generate-version"/>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Target: generate version                                            -->
+  <!-- =================================================================== -->
+  <target name="generate-version">
+    <property name="version.dir"
+        value="${out.dir}/Google/Api/Ads/${product}/${version}"/>
+    <delete quiet="true" includeemptydirs="true">
+      <fileset dir="${version.dir}">
+        <exclude name="**/.svn/**"/>
+      </fileset>
+    </delete>
+    <mkdir dir="${version.dir}"/>
+    <foreach list="${api.versions.${version}.services}" param="service"
+        target="generate-service"/>
+  </target>
+
+  <!-- =================================================================== -->
+  <!-- Target: generate service                                            -->
+  <!-- =================================================================== -->
+  <target name="generate-service">
+    <property name="service.wsdl"
+        value="${api.versions.${version}.services.${service}.wsdl}"/>
+    <wsdl2php
+        url="${service.wsdl}"
+        serviceName="${service}"
+        version="${version}"
+        author="${author}"
+        package="${package}"
+        outputDir="${version.dir}"
+        classmap="${wsdl2php.classmap}"
+        conflictClassmap="${wsdl2php.conflictClassmap}"
+        skipClassNameCheckTypes="${wsdl2php.skipClassNameCheckTypes}"
+        soapClientClassName="${product}SoapClient"
+        soapClientClassPath="Google/Api/Ads/${product}/Lib/${product}SoapClient.php"
+        proxy="${wsdl2php.proxy}"
+        enablePseudoNamespaces="${wsdl2php.enablePseudoNamespaces}"/>
+  </target>
+
+</project>
+
