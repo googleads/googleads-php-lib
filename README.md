@@ -102,7 +102,7 @@ products.
 // $path = '/path/to/pda_api_php_lib/src';
 $path = dirname(__FILE__) . '/../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
-require_once 'Google/Api/Ads/AdWordsUser/Lib/AdWordsUser.php';
+require_once 'Google/Api/Ads/AdWords/Lib/AdWordsUser.php';
 
 // Create an AdWordsUser instance using the default constructor, which will load
 // information from the auth.ini file as described above.
