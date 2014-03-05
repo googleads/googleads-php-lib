@@ -60,7 +60,7 @@ try {
 
   $lica = new LineItemCreativeAssociation();
   $lica->lineItemId = $lineItemId;
-  $lica->creativeSetId = $creativeSetId;
+  $lica->creativeId = $creativeSetId;
 
   // Create the LICA on the server.
   $licas = $licaService->createLineItemCreativeAssociations(array($lica));
