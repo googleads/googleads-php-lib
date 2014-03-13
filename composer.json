@@ -1,0 +1,17 @@
+{
+    "name": "google/googleads-php-lib",
+    "type": "library",
+    "description": "Client library for Google Adwords APIs",
+    "keywords": ["google","adwords","api"],
+    "homepage": "https://developers.google.com/adwords/api/docs/",
+    "license": "Apache-2.0",
+    "require": {
+        "php": ">=5.2.1"
+    },
+    "autoload": {
+        "classmap": [
+            "src/"
+        ]
+    },
+    "include-path": ["src/"]
+}
