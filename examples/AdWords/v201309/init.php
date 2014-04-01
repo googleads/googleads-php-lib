@@ -30,7 +30,7 @@
 error_reporting(E_STRICT | E_ALL);
 
 $depth = '/../../../';
-define('SRC_PATH', dirname(__FILE__) . $depth . 'src/');
+define('SRC_PATH', dirname(__FILE__) . $depth . 'lib/');
 define('LIB_PATH', 'Google/Api/Ads/AdWords/Lib');
 define('UTIL_PATH', 'Google/Api/Ads/Common/Util');
 define('ADWORDS_UTIL_PATH', 'Google/Api/Ads/AdWords/Util');

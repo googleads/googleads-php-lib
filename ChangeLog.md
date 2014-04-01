@@ -2,14 +2,15 @@
 
 AdWords:
   - Fixed [issue #21](https://github.com/googleads/googleads-php-lib/issues/21).
+  - Fixed [issue #19](https://github.com/googleads/googleads-php-lib/issues/19).
 
 DFP:
-  - Fixed [pull request #18](https://github.com/googleads/googleads-php-lib/pull/18 "googleads-php-lib pull request #18").
+  - Fixed [pull request #18](https://github.com/googleads/googleads-php-lib/pull/18).
 
 Common:
-  - Fixed [issue #24](https://github.com/googleads/googleads-php-lib/issues/24 "googleads-php-lib issue #24").
+  - Fixed [issue #24](https://github.com/googleads/googleads-php-lib/issues/24).
   - Fixed [issue #10](https://github.com/googleads/googleads-php-lib/issues/10).
-  - Fixed [pull request #11](https://github.com/googleads/googleads-php-lib/pull/11 "googleads-php-lib pull request #11").
+  - Fixed [pull request #11](https://github.com/googleads/googleads-php-lib/pull/11).
 
 ### 5.2.1
 
@@ -46,7 +47,7 @@ Common:
 ### 5.1.0
 
 AdWords:
-  - Fixed [issue #9](https://github.com/googleads/googleads-php-lib/issues/9 "googleads-php-lib issue #9") - removing unused criteria object in example.
+  - Fixed [issue #9](https://github.com/googleads/googleads-php-lib/issues/9).
   - Added support for AdWords Express for v201309 (invite-only feature).
 
 DFP:
