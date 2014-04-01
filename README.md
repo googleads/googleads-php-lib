@@ -10,6 +10,8 @@ This project hosts the PHP client library for the various SOAP-based Ads APIs
 * Automatic handling of SOAP headers.
 * Easy management of credentials, authentication, and session information.
 * Examples to that show how to access API services.
+* PHPDoc - [AdWords](http://googleads.github.io/googleads-php-lib/AdWords/),
+  [DFP](http://googleads.github.io/googleads-php-lib/Dfp/)
 
 
 ### Requirements
@@ -37,6 +39,13 @@ For API and client library updates and news, please follow our [Google+ Ads
 Developers page](https://plus.google.com/+GoogleAdsDevelopers/posts) and our
 [Google Ads Developers blog](http://googleadsdeveloper.blogspot.com).
 
+
+### Support forum
+
+If you have questions about the client library or the APIs, you can ask them on our forums:
+  * [AdWords API Forum](https://groups.google.com/group/adwords-api)
+  * [DoubleClick for Publishers API Forum](https://groups.google.com/forum/#!forum/google-doubleclick-for-publishers-api)
+  * [DoubleClick Ad Exchange Buyer API Forum](https://groups.google.com/forum/#!forum/google-doubleclick-ad-exchange-buyer-api)
 
 ### Getting started
 
@@ -102,7 +111,7 @@ products.
 // $path = '/path/to/pda_api_php_lib/src';
 $path = dirname(__FILE__) . '/../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
-require_once 'Google/Api/Ads/AdWordsUser/Lib/AdWordsUser.php';
+require_once 'Google/Api/Ads/AdWords/Lib/AdWordsUser.php';
 
 // Create an AdWordsUser instance using the default constructor, which will load
 // information from the auth.ini file as described above.

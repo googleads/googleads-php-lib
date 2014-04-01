@@ -86,9 +86,9 @@ try {
 
   foreach ($customCreatives as $customCreative) {
     printf("A custom creative with ID '%s', name '%s', and size '%sx%s' was "
-        . "created and can be previewed at: %s\n", $templateCreative->id,
-        $templateCreative->name, $templateCreative->size->width,
-        $templateCreative->size->height, $templateCreative->previewUrl);
+        . "created and can be previewed at: %s\n", $customCreative->id,
+        $customCreative->name, $customCreative->size->width,
+        $customCreative->size->height, $customCreative->previewUrl);
   }
 } catch (OAuth2Exception $e) {
   ExampleUtils::CheckForOAuth2Errors($e);

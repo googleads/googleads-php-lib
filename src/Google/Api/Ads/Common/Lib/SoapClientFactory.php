@@ -37,6 +37,13 @@ require_once 'Google/Api/Ads/Common/Lib/AdsUser.php';
  */
 abstract class SoapClientFactory {
 
+  /**
+   * The minimum PHP version that can properly decode HTTP 1.1 chunked
+   * responses. We use 5.4.0 because some versions of 5.3.x work and some do
+   * not.
+   */
+  const MIN_VER_CHUNKED_HTTP11 = '5.4.0';
+
   private $user;
   private $version;
   private $server;
@@ -103,6 +110,7 @@ abstract class SoapClientFactory {
         'connection_timeout' => 0,
         'features' => SOAP_SINGLE_ELEMENT_ARRAYS);
     $contextOptions = array();
+    $httpHeaders = array();
 
     // Compression settings.
     if ($this->GetAdsUser()->IsSoapCompressionEnabled()) {
@@ -115,6 +123,16 @@ abstract class SoapClientFactory {
 
     // WSDL caching settings.
     $options['cache_wsdl'] = $this->GetAdsUser()->GetWsdlCacheType();
+
+    // Check to see if the default version of the HTTP protocol to use should be
+    // overriden depending on the user's environment.
+    if ($this->GetAdsUser()->GetForceHttpVersion() !== null) {
+      $contextOptions['http']['protocol_version'] =
+          $this->GetAdsUser()->GetForceHttpVersion();
+    } else if (version_compare(PHP_VERSION, self::MIN_VER_CHUNKED_HTTP11) <
+        '<') {
+      $contextOptions['http']['protocol_version'] = 1.0;
+    }
 
     // Proxy settings.
     if (defined('HTTP_PROXY_HOST') && HTTP_PROXY_HOST != '') {
@@ -144,6 +162,13 @@ abstract class SoapClientFactory {
       $contextOptions['ssl']['cafile'] = SSL_CA_FILE;
     }
 
+
+    if (!empty($httpHeaders)) {
+      $contextOptions['http']['header'] = implode("\r\n",
+          array_map('self::implodeHttpHeaders', array_keys($httpHeaders),
+              $httpHeaders));
+    }
+
     $options['stream_context'] = stream_context_create($contextOptions);
 
     $soapClient = new $serviceName($wsdl, $options, $this->GetAdsUser());
@@ -163,6 +188,10 @@ abstract class SoapClientFactory {
     }
 
     return $soapClient;
+  }
+
+  private static function implodeHttpHeaders($headerName, $headerValue) {
+    return sprintf("%s: %s", $headerName, $headerValue);
   }
 
   /**

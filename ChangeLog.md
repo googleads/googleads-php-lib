@@ -1,4 +1,18 @@
+### 5.2.2
+
+AdWords:
+  - Fixed [issue #21](https://github.com/googleads/googleads-php-lib/issues/21).
+
+DFP:
+  - Fixed [pull request #18](https://github.com/googleads/googleads-php-lib/pull/18 "googleads-php-lib pull request #18").
+
+Common:
+  - Fixed [issue #24](https://github.com/googleads/googleads-php-lib/issues/24 "googleads-php-lib issue #24").
+  - Fixed [issue #10](https://github.com/googleads/googleads-php-lib/issues/10).
+  - Fixed [pull request #11](https://github.com/googleads/googleads-php-lib/pull/11 "googleads-php-lib pull request #11").
+
 ### 5.2.1
+
 AdWords:
   - Added support and examples for v201402.
   - Added exception being thrown if a service is requested with ClientLogin as
@@ -32,7 +46,7 @@ Common:
 ### 5.1.0
 
 AdWords:
-  - Fixing [issue #9](https://github.com/googleads/googleads-php-lib/issues/9 "googleads-php-lib issues #9") - removing unused criteria object in example.
+  - Fixed [issue #9](https://github.com/googleads/googleads-php-lib/issues/9 "googleads-php-lib issue #9") - removing unused criteria object in example.
   - Added support for AdWords Express for v201309 (invite-only feature).
 
 DFP:

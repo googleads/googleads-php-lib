@@ -437,5 +437,6 @@ class TestAdsUser extends AdsUser {
     $className = !empty($className) ? $className : self::HANDLER_CLASS;
     return new $className($this->GetAuthServer(), self::OAUTH2_SCOPE);
   }
+
 }
 

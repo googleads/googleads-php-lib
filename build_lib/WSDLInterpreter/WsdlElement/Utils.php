@@ -234,7 +234,7 @@ class WsdlElement_Utils
   public function padDocs($docs, $pad = 2) {
     $paddedDocs = array();
     foreach ($docs as $line) {
-      $paddedDocs[] = str_pad('', $pad) . $line;
+      $paddedDocs[] = str_pad(' ', $pad) . $line;
     }
     return $paddedDocs;
   }

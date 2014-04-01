@@ -67,6 +67,7 @@ class DfpUser extends AdsUser {
   private $password;
   private $applicationName;
 
+
   /**
    * The DfpUser constructor.
    * <p>The DfpUser class can be configured in one of two ways:
@@ -108,6 +109,7 @@ class DfpUser extends AdsUser {
       $password = NULL, $applicationName = NULL, $networkCode = NULL,
       $settingsIniPath = NULL, $authToken = NULL, $oauth2Info = NULL) {
     parent::__construct();
+
 
     $buildIniDfp = parse_ini_file(dirname(__FILE__) . '/build.ini',
         false);
@@ -317,6 +319,7 @@ class DfpUser extends AdsUser {
     return new $className($this->GetAuthServer(), self::OAUTH2_SCOPE);
   }
 
+
   /**
    * Validates the user and throws a validation error if there are any errors.
    * @throws ValidationException if there are any validation errors
@@ -347,6 +350,7 @@ class DfpUser extends AdsUser {
               . "NULL, the empty string, or the default [%s]",
               self::DEFAULT_APPLICATION_NAME));
     }
+
   }
 
   /**

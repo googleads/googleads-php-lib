@@ -344,7 +344,7 @@ class WSDLInterpreter
       $opts = array(
           'http' => array(
               'proxy' => $proxy,
-              'request_fulluri' => TRUE
+              'request_fulluri' => true
           )
       );
       $context = stream_context_get_default($opts);
@@ -514,7 +514,7 @@ class WSDLInterpreter
    * @return string the php source code for the message type class
    */
   private function generateClassPHP(WsdlElement_Class $class) {
-    $paddedDocs = implode("\n", $this->utils->padDocs($class->getDocs(), 0));
+    $paddedDocs = implode("\n", $this->utils->padDocs($class->getDocs(), 2));
     $extends = "";
     $ext = $class->getExtends();
     if ($extendsClass = $class->getExtends()) {
@@ -525,35 +525,36 @@ class WSDLInterpreter
     $constructor = $this->generateConstructorPHP($class);
 
     return <<<EOF
-if (!class_exists("{$class->getName()}", FALSE)) {
-/**
+if (!class_exists("{$class->getName()}", false)) {
+  /**
 {$paddedDocs}
- * @package {$this->package}
- * @subpackage {$this->version}
- */
-class {$class->getName()}{$extends} {
+   * @package {$this->package}
+   * @subpackage {$this->version}
+   */
+  class {$class->getName()}{$extends} {
 
-  const WSDL_NAMESPACE = "{$class->getWsdlNamespace()}";
-  const XSI_TYPE = "{$class->getXsiTypeName()}";
+    const WSDL_NAMESPACE = "{$class->getWsdlNamespace()}";
+    const XSI_TYPE = "{$class->getXsiTypeName()}";
 {$properties}
-  /**
-   * Gets the namesapce of this class
-   * @return the namespace of this class
-   */
-  public function getNamespace() {
-    return self::WSDL_NAMESPACE;
-  }
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
 
-  /**
-   * Gets the xsi:type name of this class
-   * @return the xsi:type name of this class
-   */
-  public function getXsiTypeName() {
-    return self::XSI_TYPE;
-  }
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
 
 {$constructor}
-}}
+  }
+}
 EOF;
   }
 
@@ -578,42 +579,42 @@ EOF;
     if (!count($changedProperties)) {
       return $return;
     }
-    $return .= "  private \$_parameterMap = array(\n";
+    $return .= "    private \$_parameterMap = array(\n";
     foreach ($changedProperties as $property) {
-      $return .= sprintf("    \"%s\" => \"%s\",\n", $property->getRawName(),
+      $return .= sprintf("      \"%s\" => \"%s\",\n", $property->getRawName(),
           $property->getName());
     }
     return $return . <<<EOF
-  );
+    );
 
-  /**
-   * Provided for setting non-php-standard named variables
-   * @param \$var Variable name to set
-   * @param \$value Value to set
-   */
-  public function __set(\$var, \$value) {
-    \$this->{\$this->_parameterMap[\$var]} = \$value;
-  }
-
-  /**
-   * Provided for getting non-php-standard named variables
-   * @param \$var Variable name to get
-   * @return mixed Variable value
-   */
-  public function __get(\$var) {
-    if (!isset(\$this->_parameterMap[\$var])) {
-      return null;
+    /**
+     * Provided for setting non-php-standard named variables
+     * @param \$var Variable name to set
+     * @param \$value Value to set
+     */
+    public function __set(\$var, \$value) {
+      \$this->{\$this->_parameterMap[\$var]} = \$value;
     }
-    return \$this->{\$this->_parameterMap[\$var]};
-  }
 
-  /**
-   * Provided for getting non-php-standard named variables
-   * @return array parameter map
-   */
-  protected function getParameterMap() {
-    return \$this->_parameterMap;
-  }
+    /**
+     * Provided for getting non-php-standard named variables
+     * @param \$var Variable name to get
+     * @return mixed Variable value
+     */
+    public function __get(\$var) {
+      if (!isset(\$this->_parameterMap[\$var])) {
+        return null;
+      }
+      return \$this->{\$this->_parameterMap[\$var]};
+    }
+
+    /**
+     * Provided for getting non-php-standard named variables
+     * @return array parameter map
+     */
+    protected function getParameterMap() {
+      return \$this->_parameterMap;
+    }
 
 EOF;
   }
@@ -632,16 +633,16 @@ EOF;
       $argNames[] = "{$property->getVarName()} = null";
     }
     $args = implode(", ", $argNames);
-    $constructor = "  public function __construct($args) {\n";
+    $constructor = "    public function __construct($args) {\n";
 
     if ($class->hasParent()) {
-      $constructor .= "    parent::__construct();\n";
+      $constructor .= "      parent::__construct();\n";
     }
     foreach ($class->getAllProperties() as $property) {
-      $constructor .= "    \$this->{$property->getName()} = "
+      $constructor .= "      \$this->{$property->getName()} = "
           . "{$property->getVarName()};\n";
     }
-    return $constructor . "  }\n";
+    return $constructor . "    }\n";
   }
 
   /**
@@ -653,11 +654,11 @@ EOF;
   private function generatePropertyPHP(WsdlElement_Property $property) {
     return <<<EOF
 
-  /**
-   * @access public
-   * @var {$property->getType()}
-   */
-  public {$property->getVarName()};
+    /**
+     * @access public
+     * @var {$property->getType()}
+     */
+    public {$property->getVarName()};
 
 EOF;
   }
@@ -674,46 +675,46 @@ EOF;
    */
   private function generateServicePHP(WsdlElement_Service $service) {
     $return = <<<EOF
-if (!class_exists("{$service->getName()}", FALSE)) {
-/**
- * {$service->getName()}
- * @package {$this->package}
- * @subpackage {$this->version}
- */
-class {$service->getName()} extends {$this->soapClientClassName} {
-
-  const SERVICE_NAME = "{$service->getRawName()}";
-  const WSDL_NAMESPACE = "{$this->serviceNamespace}";
-  const ENDPOINT = "{$service->getEndpoint()}";
-
+if (!class_exists("{$service->getName()}", false)) {
   /**
-   * The endpoint of the service
-   * @var string
+   * {$service->getName()}
+   * @package {$this->package}
+   * @subpackage {$this->version}
    */
-  public static \$endpoint = "{$service->getEndpoint()}";
+  class {$service->getName()} extends {$this->soapClientClassName} {
+
+    const SERVICE_NAME = "{$service->getRawName()}";
+    const WSDL_NAMESPACE = "{$this->serviceNamespace}";
+    const ENDPOINT = "{$service->getEndpoint()}";
+
+    /**
+     * The endpoint of the service
+     * @var string
+     */
+    public static \$endpoint = "{$service->getEndpoint()}";
 
 EOF;
     $return .= $this->generateServiceClassmapPHP($service);
 
     $return .= <<<EOF
 
-  /**
-   * Constructor using wsdl location and options array
-   * @param string \$wsdl WSDL location for this service
-   * @param array \$options Options for the SoapClient
-   */
-  public function __construct(\$wsdl=null, \$options, \$user) {
-    \$options["classmap"] = self::\$classmap;
-    parent::__construct(\$wsdl, \$options, \$user, self::SERVICE_NAME,
-        self::WSDL_NAMESPACE);
-  }
+    /**
+     * Constructor using wsdl location and options array
+     * @param string \$wsdl WSDL location for this service
+     * @param array \$options Options for the SoapClient
+     */
+    public function __construct(\$wsdl, \$options, \$user) {
+      \$options["classmap"] = self::\$classmap;
+      parent::__construct(\$wsdl, \$options, \$user, self::SERVICE_NAME,
+          self::WSDL_NAMESPACE);
+    }
 
 EOF;
 
     foreach ($service->getFunctions() as $wsdlFunction) {
       $return .= $this->generateServiceFunctionPHP($wsdlFunction);
     }
-    $return .= "}}";
+    $return .= "  }\n}";
     return $return;
   }
 
@@ -729,19 +730,19 @@ EOF;
       return $return;
     }
     $return .= <<<EOF
-  /**
-   * Default class map for wsdl=>php
-   * @access private
-   * @var array
-   */
-  public static \$classmap = array(
+    /**
+     * Default class map for wsdl=>php
+     * @access private
+     * @var array
+     */
+    public static \$classmap = array(
 
 EOF;
     foreach ($this->wsdlClasses as $wsdlClass) {
-      $return .= sprintf("    \"%s\" => \"%s\",\n", $wsdlClass->getRawName(),
+      $return .= sprintf("      \"%s\" => \"%s\",\n", $wsdlClass->getRawName(),
           $wsdlClass->getName());
     }
-    $return .= "  );\n\n";
+    $return .= "    );\n\n";
 
     return $return;
   }
@@ -759,7 +760,7 @@ EOF;
   private function generateServiceFunctionPHP(
       WsdlElement_Function $wsdlFunction) {
     $funcDocs = implode("\n", $this->utils->padDocs(
-        $wsdlFunction->getDocs(), 2));
+        $wsdlFunction->getDocs(), 4));
 
     $functionArgs = array();
     foreach ($wsdlFunction->getProperties() as $property) {
@@ -769,14 +770,14 @@ EOF;
 
     $rawName = $wsdlFunction->getRawName();
     return <<<EOF
-  /**
+    /**
 {$funcDocs}
-   */
-  public function {$rawName}({$functionArgString}) {
-    \$args = new {$wsdlFunction->getName()}({$functionArgString});
-    \$result = \$this->__soapCall("{$rawName}", array(\$args));
-    return \$result->rval;
-  }
+     */
+    public function {$rawName}({$functionArgString}) {
+      \$args = new {$wsdlFunction->getName()}({$functionArgString});
+      \$result = \$this->__soapCall("{$rawName}", array(\$args));
+      return \$result->rval;
+    }
 
 EOF;
   }

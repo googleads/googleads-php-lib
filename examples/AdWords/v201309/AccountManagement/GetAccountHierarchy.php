@@ -97,7 +97,7 @@ function GetAccountHierarchyExample(AdWordsUser $user) {
 function DisplayAccountTree($account, $link, $accounts, $links, $depth) {
   print str_repeat('-', $depth * 2);
   printf("%s, %s\n", $account->customerId,
-      !empty($link->descriptiveName) ? $link->descriptiveName :$account->login);
+      !empty($link->name) ? $link->name :$account->login);
   if (array_key_exists($account->customerId, $links)) {
     foreach ($links[$account->customerId] as $childLink) {
       $childAccount = $accounts[$childLink->clientCustomerId];

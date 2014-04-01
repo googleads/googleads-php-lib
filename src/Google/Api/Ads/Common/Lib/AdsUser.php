@@ -50,6 +50,7 @@ abstract class AdsUser {
   private $soapCompression;
   private $soapCompressionLevel;
   private $wsdlCache;
+  private $forceHttpVersion;
   private $authServer;
   private $oauth2Info;
   private $oauth2Handler;
@@ -230,6 +231,10 @@ abstract class AdsUser {
     if ($this->wsdlCache < 0 || $this->wsdlCache > 3) {
       $this->wsdlCache = WSDL_CACHE_NONE;
     }
+    $forceHttpVersion = $this->GetSetting($settingsIni, 'SOAP',
+        'FORCE_HTTP_VERSION');
+    $this->forceHttpVersion = $forceHttpVersion === null ? null :
+        (float) $forceHttpVersion;
 
     // Proxy settings.
     $proxyHost = $this->GetSetting($settingsIni, 'PROXY', 'HOST');
@@ -372,6 +377,14 @@ abstract class AdsUser {
   }
 
   /**
+   * Gets the version of the HTTP protocol to use regardless of PHP version.
+   * @return float the HTTP version that should be used
+   */
+  public function GetForceHttpVersion() {
+    return $this->forceHttpVersion;
+  }
+
+  /**
    * Gets the server used for authentication.
    * @return string the server used for authentiation
    */
@@ -424,6 +437,7 @@ abstract class AdsUser {
    *     library, e.g.: ['DfpApi-PHP', '2.13.0'].
    */
   abstract protected function GetClientLibraryNameAndVersion();
+
 
   /**
    * Gets common PHP user agent parts for ads client libraries such as PHP
