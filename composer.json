@@ -4,6 +4,9 @@
     "require": {
         "php": ">=5.2.0"
     },
+    "autoload": {
+        "classmap": ["src/Google/Api/Ads/AdWords/Lib"]
+    },
     "type": "library",
     "homepage": "https://github.com/googleads/googleads-php-lib",
     "license": "Apache-2.0",
