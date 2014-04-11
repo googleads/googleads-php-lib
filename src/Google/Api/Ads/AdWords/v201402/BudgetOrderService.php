@@ -1074,6 +1074,52 @@ if (!class_exists("NotEmptyError", false)) {
   }
 }
 
+if (!class_exists("NotWhitelistedError", false)) {
+  /**
+   * Indicates that the customer is not whitelisted for accessing the API.
+   * 
+   * 
+   * 
+   * The API error base class that provides details about an error that occurred
+   * while processing a service request.
+   * 
+   * <p>The OGNL field path is provided for parsers to identify the request data
+   * element that may have caused the error.</p>
+   * @package Google_Api_Ads_AdWords_v201402
+   * @subpackage v201402
+   */
+  class NotWhitelistedError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201402";
+    const XSI_TYPE = "NotWhitelistedError";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("NullError", false)) {
   /**
    * Errors associated with violation of a NOT NULL check.
@@ -4749,6 +4795,7 @@ if (!class_exists("BudgetOrderService", false)) {
       "Money" => "Money",
       "NewEntityCreationError" => "NewEntityCreationError",
       "NotEmptyError" => "NotEmptyError",
+      "NotWhitelistedError" => "NotWhitelistedError",
       "NullError" => "NullError",
       "NumberValue" => "NumberValue",
       "Operation" => "Operation",

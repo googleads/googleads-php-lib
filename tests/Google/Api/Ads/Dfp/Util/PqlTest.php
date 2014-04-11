@@ -25,7 +25,7 @@
 error_reporting(E_STRICT | E_ALL);
 
 require_once 'Google/Api/Ads/Dfp/Util/Pql.php';
-require_once 'Google/Api/Ads/Dfp/v201308/PublisherQueryLanguageService.php';
+require_once 'Google/Api/Ads/Dfp/v201403/PublisherQueryLanguageService.php';
 
 /**
  * Tests for {@link Pql}.
@@ -39,6 +39,7 @@ class PqlTest extends PHPUnit_Framework_TestCase {
   private $column1;
   private $column2;
   private $column3;
+
   private $textValue1;
   private $textValue2;
   private $textValue3;
@@ -50,6 +51,9 @@ class PqlTest extends PHPUnit_Framework_TestCase {
   private $numberValue3;
   private $dateValue1;
   private $dateTimeValue1;
+
+  private $dateTime1;
+  private $date1;
 
   protected function setUp() {
     $this->column1 = new ColumnType('Id');
@@ -64,10 +68,44 @@ class PqlTest extends PHPUnit_Framework_TestCase {
     $this->numberValue1 = new NumberValue('2');
     $this->numberValue2 = new NumberValue('7.999');
     $this->numberValue3 = new NumberValue('-8');
-    $date1 = new Date(2012, 12, 2);
-    $dateTime1 = new DfpDateTime($date1, 12, 45, 0, PqlTest::TIME_ZONE_ID1);
-    $this->dateValue1 = new DateValue($date1);
-    $this->dateTimeValue1 = new DateTimeValue($dateTime1);
+    $this->date1 = new Date(2012, 12, 2);
+    $this->dateTime1 =
+        new DfpDateTime($this->date1, 12, 45, 0, PqlTest::TIME_ZONE_ID1);
+    $this->dateValue1 = new DateValue($this->date1);
+    $this->dateTimeValue1 = new DateTimeValue($this->dateTime1);
+  }
+
+  /**
+   * @covers Pql::CreateValue
+   */
+  public function testCreateValue() {
+    $this->assertEquals('hello',
+        Pql::CreateValue(new TextValue('hello'))->value);
+    $this->assertEquals('value1', Pql::CreateValue('value1')->value);
+    $this->assertEquals(false, Pql::CreateValue(false)->value);
+    $this->assertEquals('1', Pql::CreateValue(1)->value);
+    $this->assertEquals('1.02', Pql::CreateValue(1.02)->value);
+    $this->assertEquals('2012-12-02T12:45:00+08:00',
+        DateTimeUtils::ToStringWithTimeZone(
+            Pql::CreateValue($this->dateTime1)->value));
+    $this->assertEquals('2012-12-02',
+        DateTimeUtils::ToString(
+            Pql::CreateValue($this->dateTime1->date)->value));
+  }
+
+  /**
+   * @covers Pql::CreateValue
+   * @expectedException InvalidArgumentException
+   */
+  public function testCreateValueWithInvalidTypeThrowsException() {
+    Pql::CreateValue(new MyObject());
+  }
+
+  /**
+   * @covers Pql::CreateValue
+   */
+  public function testCreateValueWithNullReturnsTextValue() {
+    $this->assertEquals(null, Pql::CreateValue(null)->value);
   }
 
   /**
@@ -164,3 +202,4 @@ class PqlTest extends PHPUnit_Framework_TestCase {
 }
 
 class MyValue extends Value {}
+class MyObject {}

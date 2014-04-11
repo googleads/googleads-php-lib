@@ -80,7 +80,9 @@ class DateTimeUtils {
    */
   public static function ToDfpDateTime(DateTime $dateTime) {
     $result = new DfpDateTime();
-    $result->date = new Date();
+    if (class_exists('Date', false)) {
+      $result->date = new Date();
+    }
     $result->date->year = (int) $dateTime->format('Y');
     $result->date->month = (int) $dateTime->format('m');
     $result->date->day = (int) $dateTime->format('d');

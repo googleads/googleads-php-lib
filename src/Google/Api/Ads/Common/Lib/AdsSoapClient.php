@@ -405,7 +405,7 @@ abstract class AdsSoapClient extends SoapClient {
    */
   protected function PrepareRequest($request, array $arguments,
       array $headers) {
-    $addXsiTypes = FALSE;
+    $addXsiTypes = $this->user->GetForceAddXsiTypes();
     $removeEmptyElements = FALSE;
     $replaceReferences = FALSE;
 
@@ -413,9 +413,17 @@ abstract class AdsSoapClient extends SoapClient {
       trigger_error('The minimum required version of this client library'
           . ' is 5.2.0.', E_USER_ERROR);
     }
-    if (version_compare(PHP_VERSION, '5.2.6', '<') ||
-        (PHP_OS == 'Darwin' && version_compare(PHP_VERSION, '5.3.0', '<'))) {
-      $addXsiTypes = TRUE;
+
+    // If FORCE_ADD_XSI_TYPES was unset, then set it based on PHP version
+    if ($addXsiTypes === null) {
+      if (version_compare(PHP_VERSION, '5.2.6', '<') ||
+         (PHP_OS == 'Darwin' && version_compare(PHP_VERSION, '5.3.0', '<'))) {
+        $addXsiTypes = TRUE;
+      } else {
+        // If FORCE_ADD_XSI_TYPES was not set, and we didn't find an applicable
+        // version, then set it to FALSE by default.
+        $addXsiTypes = FALSE;
+      }
     }
 
     $removeEmptyElements = version_compare(PHP_VERSION, '5.2.3', '<');

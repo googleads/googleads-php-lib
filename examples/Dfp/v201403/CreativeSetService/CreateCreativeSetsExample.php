@@ -66,7 +66,7 @@ try {
   // Create the creative set on the server.
   $creativeSets = $creativeSetService->createCreativeSets(array($creativeSet));
 
-  foreach ($creativeSets as $creativeSet)
+  foreach ($creativeSets as $creativeSet) {
     printf ("A creative set with ID '%s', name '%s', master creative ID '%s' "
         . ", and companion creativeID(s) {%s} was created.\n",
         $creativeSet->id, $creativeSet->name, $creativeSet->masterCreativeId,

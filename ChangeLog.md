@@ -1,3 +1,12 @@
+### 5.2.3
+
+AdWords:
+  - Added support for new AdWords Express ProductServiceService.
+  - Fixed [issue #2](https://github.com/googleads/googleads-php-lib/issues/2).
+
+DFP:
+  - Fixed [issue #32](https://github.com/googleads/googleads-php-lib/issues/32).
+
 ### 5.2.2
 
 AdWords:

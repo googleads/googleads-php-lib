@@ -51,6 +51,7 @@ abstract class AdsUser {
   private $soapCompressionLevel;
   private $wsdlCache;
   private $forceHttpVersion;
+  private $forceAddXsiTypes;
   private $authServer;
   private $oauth2Info;
   private $oauth2Handler;
@@ -235,6 +236,11 @@ abstract class AdsUser {
         'FORCE_HTTP_VERSION');
     $this->forceHttpVersion = $forceHttpVersion === null ? null :
         (float) $forceHttpVersion;
+    $forceAddXsiTypes = $this->GetSetting($settingsIni, 'SOAP',
+        'FORCE_ADD_XSI_TYPES');
+    $this->forceAddXsiTypes = $forceAddXsiTypes === null ? null :
+        (bool) $forceAddXsiTypes;
+
 
     // Proxy settings.
     $proxyHost = $this->GetSetting($settingsIni, 'PROXY', 'HOST');
@@ -382,6 +388,14 @@ abstract class AdsUser {
    */
   public function GetForceHttpVersion() {
     return $this->forceHttpVersion;
+  }
+
+  /**
+   * Gets the setting of whether or not to add XSI types in the SOAP payload.
+   * @return bool whether or not to add XSI types in the SOAP payload
+   */
+  public function GetForceAddXsiTypes() {
+    return $this->forceAddXsiTypes;
   }
 
   /**

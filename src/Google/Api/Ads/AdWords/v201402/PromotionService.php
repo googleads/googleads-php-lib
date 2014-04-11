@@ -4538,6 +4538,12 @@ if (!class_exists("ProductService", false)) {
     public $text;
 
     /**
+     * @access public
+     * @var string
+     */
+    public $locale;
+
+    /**
      * Gets the namesapce of this class
      * @return the namespace of this class
      */
@@ -4553,9 +4559,10 @@ if (!class_exists("ProductService", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($text = null, $id = null, $type = null, $CriterionType = null) {
+    public function __construct($text = null, $locale = null, $id = null, $type = null, $CriterionType = null) {
       parent::__construct();
       $this->text = $text;
+      $this->locale = $locale;
       $this->id = $id;
       $this->type = $type;
       $this->CriterionType = $CriterionType;

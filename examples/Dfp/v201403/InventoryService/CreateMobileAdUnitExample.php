@@ -80,7 +80,7 @@ try {
   // Create the ad unit on the server.
   $adUnits = $inventoryService->createAdUnits(array($adUnit));
 
-  foreach ($adUnits as $adUnit)
+  foreach ($adUnits as $adUnit) {
     printf("An ad unit with ID '%s' was created under parent with ID '%s'.\n",
         $adUnit->id, $adUnit->parentId);
   }

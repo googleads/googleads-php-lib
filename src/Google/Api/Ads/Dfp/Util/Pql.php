@@ -27,6 +27,7 @@
  * @author     Vincent Tsao
  */
 require_once 'Google/Api/Ads/Dfp/Util/DateTimeUtils.php';
+require_once 'Google/Api/Ads/Dfp/v201403/PublisherQueryLanguageService.php';
 
 /**
  * A utility class for handling PQL objects.
@@ -40,6 +41,42 @@ class Pql {
    * {@link Pql} is meant to be used statically.
    */
   private function __construct() {}
+
+  /**
+   * Creates a {@link Value} from the value i.e. a {@link TextValue} for a
+   * value of type {@code String}, {@link BooleanValue} for type
+   * {@code Boolean}, {@link NumberValue} for type {@code Double},
+   * {@code Long}, or {@code Integer}, {@link DateTimeValue} for type
+   * {@link DateTime}, and {@link DateValue} for type
+   * {@link Date}. If the value is a {@code Value}, the value is returned.
+   * If the value is {@code null}, an empty {@link TextValue} is returned.
+   *
+   * @param mixed $value the value to convert
+   * @return Value the constructed value of the appropriate type
+   * @throws InvalidArgumentException if value cannot be converted
+   */
+  public static function CreateValue($value) {
+    if ($value instanceof Value) {
+      return $value;
+    } else if ($value === null) {
+      return new TextValue();
+    } else {
+      if (is_bool($value)) {
+        return new BooleanValue($value);
+      } else if (is_float($value) || is_int($value)) {
+        return new NumberValue($value);
+      } else if (is_string($value)) {
+        return new TextValue($value);
+      } else if ($value instanceof DfpDateTime) {
+        return new DateTimeValue($value);
+      } else if (class_exists('Date', false) && $value instanceof Date) {
+        return new DateValue($value);
+      } else {
+        throw new InvalidArgumentException(sprintf("Unsupported value type "
+            . "[%s]", get_class($value)));
+      }
+    }
+  }
 
  /**
    * Creates a String from the Value.
