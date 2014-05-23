@@ -1,11 +1,15 @@
 {
-    "name": "googleads/googleads-php-lib",
+    "name": "sidecar/googleads-php-lib",
     "description": "Google Ads APIs Client Library for PHP (AdWords, Adx, and DFP)",
     "require": {
         "php": ">=5.2.0"
     },
+    "autoload": {
+        "classmap": ["src/Google/Api/Ads/AdWords/Lib"]
+    },
+    "include-path": ["src/"],
     "type": "library",
-    "homepage": "https://github.com/googleads/googleads-php-lib",
+    "homepage": "https://github.com/Getsidecar/googleads-php-lib",
     "license": "Apache-2.0",
     "include-path": ["src/"],
     "authors": [
