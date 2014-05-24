@@ -5,13 +5,12 @@
         "php": ">=5.2.0"
     },
     "autoload": {
-        "classmap": ["src/Google/Api/Ads/AdWords/Lib"]
+        "classmap": ["src/"]
     },
     "include-path": ["src/"],
     "type": "library",
     "homepage": "https://github.com/Getsidecar/googleads-php-lib",
     "license": "Apache-2.0",
-    "include-path": ["src/"],
     "authors": [
       {
         "name": "Paul Matthews",
