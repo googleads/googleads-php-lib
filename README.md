@@ -12,6 +12,7 @@ This project hosts the PHP client library for the various SOAP-based Ads APIs
 * Examples to that show how to access API services.
 * PHPDoc - [AdWords](http://googleads.github.io/googleads-php-lib/AdWords/),
   [DFP](http://googleads.github.io/googleads-php-lib/Dfp/)
+* Use library as a submodule
 
 
 ### Requirements
@@ -62,11 +63,23 @@ The client library source can be found with the example distributions in the
 this GitHub project. Download the examples for the product you are working with
 and untar it.
 
+This project can also be imported to an existing git project as a submodule.
+
+```
+git submodule add https://github.com/smleimberg/googleads-php-lib.git googleads-php-lib
+git submodule init
+git submodule sync
+git submodule update
+```
+
 3\. Enter your OAuth 2 and account credentials.
 
 In the distribution you will find a lib folder. Under
-lib/Google/Api/Ads/[PRODUCT]/ you will find an auth.ini file. Open the auth.ini
-file and enter your OAuth 2 client ID and secret that you generated in step 1.
+lib/Google/Api/Ads/[PRODUCT]/ you will find an auth-dist.ini file. Copy the auth-dist.ini file to auth.ini.
+```
+cp auth-dist.ini auth.ini
+```
+Open the auth.ini file and enter your OAuth 2 client ID and secret that you generated in step 1.
 Also enter the required product specific credentials, such as network code for
 DFP and developer token for AdWords.
 
