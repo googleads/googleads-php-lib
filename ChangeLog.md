@@ -1,3 +1,16 @@
+### 5.3.0
+
+AdWords:
+  - Fixed [pull request #40](https://github.com/googleads/googleads-php-lib/pull/40).
+  - Fixed [pull request #39](https://github.com/googleads/googleads-php-lib/pull/39).
+
+DFP:
+  - Deprecated ServiceUtils.php.
+  - Added support and examples for v201405.
+
+Common:
+  - OAuth2 credentials are now passed via HTTP headers.
+
 ### 5.2.3
 
 AdWords:

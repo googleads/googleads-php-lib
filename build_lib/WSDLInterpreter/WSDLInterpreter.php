@@ -174,11 +174,11 @@ class WSDLInterpreter
   private $package = null;
 
   /**
-   * Whether or not to enable psuedo namespaces in the generated class names.
+   * Whether or not to enable namespaces in the generated class names.
    * @var string
    * @access private
    */
-  private $enablePseudoNamespaces = null;
+  private $enableNamespaces = null;
 
   /**
    * The class path of the SOAP client to require in the PHP file.
@@ -241,14 +241,14 @@ class WSDLInterpreter
    * @param string $soapClientClassPath the class path to require for the
    *     SOAP client
    * @param string $proxy the proxy URL to use when downloading WSDLs
-   * @param boolean $enablePseudoNamespaces to enable the namespaces
+   * @param boolean $enableNamespaces to enable the namespaces
    * @param array $skipClassNameCheckTypes ignore class name checking list
    * @throws WSDLInterpreterException container for all WSDL interpretation
    *     problems
    */
   public function __construct($wsdlUri, $soapClientClassName, $classmap,
       $conflictClassmap, $serviceName, $version, $package, $soapClientClassPath,
-      $proxy, $enablePseudoNamespaces, $skipClassNameCheckTypes)
+      $proxy, $enableNamespaces, $skipClassNameCheckTypes)
   {
     // Configure the interpreter
     $this->wsdlUri = $wsdlUri;
@@ -258,7 +258,7 @@ class WSDLInterpreter
     $this->version = $version;
     $this->package = $package;
     $this->classmap = $classmap ?: $this->classmap;
-    $this->enablePseudoNamespaces = $enablePseudoNamespaces ?: false;
+    $this->enableNamespaces = $enableNamespaces ?: false;
 
     $conflictClassmap = $conflictClassmap ?: array();
     $this->classmap = array_merge($this->classmap, $conflictClassmap);
@@ -292,7 +292,7 @@ class WSDLInterpreter
     // Prepare wsdl utility with the loaded settings
     $this->utils->setRenameClassMap($this->classmap);
     $this->utils->setSkipClassNameCheck($this->skipClassNameCheckTypes);
-    if ($this->enablePseudoNamespaces) {
+    if ($this->enableNamespaces) {
       $this->utils->setPhpNamespace($this->package);
     }
     $this->utils->setWsdlNamespaceMap($this->namespaceMap);
@@ -525,7 +525,7 @@ class WSDLInterpreter
     $constructor = $this->generateConstructorPHP($class);
 
     return <<<EOF
-if (!class_exists("{$class->getName()}", false)) {
+if (!class_exists("{$class->getQuotedFqn()}", false)) {
   /**
 {$paddedDocs}
    * @package {$this->package}
@@ -681,7 +681,7 @@ if (!class_exists("{$service->getName()}", false)) {
    * @package {$this->package}
    * @subpackage {$this->version}
    */
-  class {$service->getName()} extends {$this->soapClientClassName} {
+  class {$service->getName()} extends {$this->utils->namespaceName($this->soapClientClassName)} {
 
     const SERVICE_NAME = "{$service->getRawName()}";
     const WSDL_NAMESPACE = "{$this->serviceNamespace}";
@@ -740,7 +740,7 @@ EOF;
 EOF;
     foreach ($this->wsdlClasses as $wsdlClass) {
       $return .= sprintf("      \"%s\" => \"%s\",\n", $wsdlClass->getRawName(),
-          $wsdlClass->getName());
+          addslashes($wsdlClass->getFqn()));
     }
     $return .= "    );\n\n";
 
@@ -793,23 +793,20 @@ EOF;
    * @return array array of source code files that were written out
    * @throws WSDLInterpreterException problem in writing out service sources
    */
-  public function savePHP($outputDirectory)
-  {
+  public function savePHP($outputDirectory) {
     if (!count($this->servicePHPSources)) {
       throw new WSDLInterpreterException("No services loaded");
     }
-    $require = sprintf(
-        "/** Required classes. **/\nrequire_once \"%s\";\n\n",
-        $this->soapClientClassPath
-    );
+    $namespace = $this->enableNamespaces ? sprintf("namespace %s;\n\n",
+        $this->utils->getNamespace()) : '';
+    $require = sprintf("require_once \"%s\";\n\n", $this->soapClientClassPath);
     $classSource = join("\n\n", $this->classPHPSources);
     $outputFiles = array();
     foreach ($this->servicePHPSources as $serviceName => $serviceCode) {
       $filename = sprintf('%s/%s.php', $outputDirectory, $serviceName);
       $success = file_put_contents($filename, sprintf(
-          "<?php\n%s\n%s%s\n\n%s",
-          $this->getFileHeader(), $require, $classSource, $serviceCode
-      ));
+          "<?php\n%s%s%s%s\n\n%s\n\n", $this->getFileHeader(), $namespace,
+              $require, $classSource, $serviceCode));
       if ($success) {
         $outputFiles[] = $filename;
       }

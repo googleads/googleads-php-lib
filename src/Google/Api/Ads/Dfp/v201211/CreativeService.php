@@ -26,8 +26,6 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-
-/** Required classes. **/
 require_once "Google/Api/Ads/Dfp/Lib/DfpSoapClient.php";
 
 if (!class_exists("BaseCreativeTemplateVariableValue", false)) {
@@ -1925,6 +1923,51 @@ if (!class_exists("InternalRedirectCreative", false)) {
       $this->lastModifiedDateTime = $lastModifiedDateTime;
       $this->customFieldValues = $customFieldValues;
       $this->CreativeType = $CreativeType;
+    }
+
+  }
+}
+
+if (!class_exists("InvalidPhoneNumberError", false)) {
+  /**
+   * Lists all errors associated with phone numbers.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201211
+   */
+  class InvalidPhoneNumberError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201211";
+    const XSI_TYPE = "InvalidPhoneNumberError";
+
+    /**
+     * @access public
+     * @var tnsInvalidPhoneNumberErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
     }
 
   }
@@ -4654,6 +4697,39 @@ if (!class_exists("InternalApiErrorReason", false)) {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201211";
     const XSI_TYPE = "InternalApiError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("InvalidPhoneNumberErrorReason", false)) {
+  /**
+   * The phone number is invalid.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201211
+   */
+  class InvalidPhoneNumberErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201211";
+    const XSI_TYPE = "InvalidPhoneNumberError.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -8298,6 +8374,7 @@ if (!class_exists("CreativeService", false)) {
       "ImageRedirectOverlayCreative" => "ImageRedirectOverlayCreative",
       "InternalApiError" => "InternalApiError",
       "InternalRedirectCreative" => "InternalRedirectCreative",
+      "InvalidPhoneNumberError" => "InvalidPhoneNumberError",
       "InvalidUrlError" => "InvalidUrlError",
       "LabelEntityAssociationError" => "LabelEntityAssociationError",
       "LegacyDfpCreative" => "LegacyDfpCreative",
@@ -8362,6 +8439,7 @@ if (!class_exists("CreativeService", false)) {
       "FlashExpandableCreative.ExpandDirection" => "FlashExpandableCreativeExpandDirection",
       "ImageError.Reason" => "ImageErrorReason",
       "InternalApiError.Reason" => "InternalApiErrorReason",
+      "InvalidPhoneNumberError.Reason" => "InvalidPhoneNumberErrorReason",
       "InvalidUrlError.Reason" => "InvalidUrlErrorReason",
       "LabelEntityAssociationError.Reason" => "LabelEntityAssociationErrorReason",
       "LineItemCreativeAssociationError.Reason" => "LineItemCreativeAssociationErrorReason",
@@ -8522,3 +8600,4 @@ if (!class_exists("CreativeService", false)) {
     }
   }
 }
+

@@ -87,14 +87,30 @@ abstract class DeprecationUtils {
   }
 
   /**
+   * Logs an error message indicating that the specified method is deprecated.
+   *
+   * @param string $methodName the name of the deprecated method
+   * @param string $moreInfoLink an optional link to a URL with more information
+   */
+  public static function LogDeprecatedMethodUsage($methodName,
+      $moreInfoLink = NULL) {
+    $message = sprintf("The method '%s' is deprecated.", $methodName);
+    if (isset($moreInfoLink)) {
+      $message .= sprintf(" For more information, please see '%s'",
+          $moreInfoLink);
+    }
+    self::Log($message, Logger::$ERROR);
+  }
+
+  /**
    * Log messages to the relevant message sources.
    *
    * @param string $message is the message to log
    * @param string $level is the message level to log
    */
   protected static function Log($message, $level = NULL) {
-      Logger::log(Logger::$SOAP_XML_LOG, $message, $level);
-      Logger::log(Logger::$REQUEST_INFO_LOG, $message, $level);
+    Logger::log(Logger::$SOAP_XML_LOG, $message, $level);
+    Logger::log(Logger::$REQUEST_INFO_LOG, $message, $level);
   }
 }
 

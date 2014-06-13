@@ -29,6 +29,7 @@
  *             Version 2.0
  * @author     Eric Koleda
  * @author     Paul Rashidi
+ * @author     Vincent Tsao
  */
 error_reporting(E_STRICT | E_ALL);
 
@@ -38,10 +39,9 @@ error_reporting(E_STRICT | E_ALL);
 $path = dirname(__FILE__) . '/../../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
+require_once 'Google/Api/Ads/Common/Util/MapUtils.php';
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
-require_once 'Google/Api/Ads/Dfp/Util/ServiceUtils.php';
-require_once 'Google/Api/Ads/Common/Util/MapUtils.php';
 
 try {
   // Get DfpUser from credentials in "../auth.ini"
@@ -55,30 +55,50 @@ try {
   $suggestedAdUnitService =
       $user->GetService('SuggestedAdUnitService', 'v201302');
 
-  // Set the number of requests to 50 or more.
-  define('NUMBER_OF_REQUESTS', 50);
+  // Set the number of requests for suggested ad units greater than which to
+  // approve.
+  $numRequests = 'INSERT_NUMBER_OF_REQUESTS_HERE';
 
-  // Create statement text to select all suggested ad units
-  // that have been requested 50 times or more.
-  $filterStatementText = 'WHERE numRequests >= ' . NUMBER_OF_REQUESTS;
+  // Create bind variables.
+  $vars = MapUtils::GetMapEntries(
+      array('numRequests' => new NumberValue($numRequests)));
 
-  // Get all suggested ad units.
-  $allSuggestedAdUnits = ServiceUtils::GetAllObjects($suggestedAdUnitService,
-      'getSuggestedAdUnitsByStatement', $filterStatementText);
+  // Statement parts to help build a statement to select suggested ad units that
+  // are highly requested.
+  $pqlTemplate = "WHERE numRequests >= :numRequests ORDER BY id LIMIT %d "
+      . "OFFSET %d";
+  $SUGGESTED_PAGE_LIMIT = 500;
+  $offset = 0;
 
-  $numSuggestedAdUnits = 0;
-  foreach ($allSuggestedAdUnits as $suggestedAdUnit) {
-    $numSuggestedAdUnits++;
-    printf("%d) Suggested ad unit with ID '%s' and number of requests '%d' "
-        . "will be approved.\n", $numSuggestedAdUnits, $suggestedAdUnit->id,
-        $suggestedAdUnit->numRequests);
-  }
+  $page = null;
+  $suggestedAdUnitIds = array();
+
+  do {
+    // Get suggested ad units by statement.
+    $page = $suggestedAdUnitService->getSuggestedAdUnitsByStatement(
+        new Statement(sprintf($pqlTemplate, $SUGGESTED_PAGE_LIMIT, $offset),
+            $vars));
+
+    // Display results.
+    if (isset($page->results)) {
+      $i = $page->startIndex;
+      foreach ($page->results as $suggestedAdUnit) {
+        printf("%d) Suggested ad unit with ID '%s' and number of requests '%d' "
+            . "will be approved.\n", $i++, $suggestedAdUnit->id);
+        $suggestedAdUnitIds[] = $suggestedAdUnitId->id;
+      }
+    }
+
+    $offset += $SUGGESTED_PAGE_LIMIT;
+  } while ($offset < $page->totalResultSetSize);
 
   printf("Number of suggested ad units to be approved: %d\n",
-      $numSuggestedAdUnits);
+      count($suggestedAdUnitIds));
 
-  if ($numSuggestedAdUnits > 0) {
+  if (count($suggestedAdUnitIds) > 0) {
     // Create action statement.
+    $filterStatementText = sprintf('WHERE id IN (%s)',
+        implode(',', $suggestedAdUnitIds));
     $filterStatement = new Statement($filterStatementText);
 
     // Create action.
@@ -86,7 +106,7 @@ try {
 
     // Perform action.
     $result = $suggestedAdUnitService->performSuggestedAdUnitAction($action,
-        $filterStatementText);
+        $filterStatement);
 
     // Display results.
     if (isset($result) && $result->numChanges > 0) {

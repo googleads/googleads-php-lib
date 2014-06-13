@@ -110,7 +110,6 @@ abstract class SoapClientFactory {
         'connection_timeout' => 0,
         'features' => SOAP_SINGLE_ELEMENT_ARRAYS);
     $contextOptions = array();
-    $httpHeaders = array();
 
     // Compression settings.
     if ($this->GetAdsUser()->IsSoapCompressionEnabled()) {
@@ -162,13 +161,6 @@ abstract class SoapClientFactory {
       $contextOptions['ssl']['cafile'] = SSL_CA_FILE;
     }
 
-
-    if (!empty($httpHeaders)) {
-      $contextOptions['http']['header'] = implode("\r\n",
-          array_map('self::implodeHttpHeaders', array_keys($httpHeaders),
-              $httpHeaders));
-    }
-
     $options['stream_context'] = stream_context_create($contextOptions);
 
     $soapClient = new $serviceName($wsdl, $options, $this->GetAdsUser());
@@ -188,10 +180,6 @@ abstract class SoapClientFactory {
     }
 
     return $soapClient;
-  }
-
-  private static function implodeHttpHeaders($headerName, $headerValue) {
-    return sprintf("%s: %s", $headerName, $headerValue);
   }
 
   /**

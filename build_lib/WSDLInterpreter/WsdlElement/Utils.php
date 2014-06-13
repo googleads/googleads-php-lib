@@ -130,7 +130,6 @@ class WsdlElement_Utils
       $filteredName = $this->renameMap[$name];
     }
     $filteredName = ucfirst($this->getSafePhpName($filteredName));
-    $filteredName = $this->namespaceName($filteredName);
 
     if (!in_array($filteredName, $this->skipClassList)
         && class_exists($filteredName, false)) {
@@ -148,9 +147,16 @@ class WsdlElement_Utils
    */
   public function namespaceName($name) {
     if ($this->namespace) {
-      return sprintf('%s_%s', $this->namespace, $name);
+      return sprintf('%s\\%s', $this->namespace, $name);
     }
     return $name;
+  }
+
+  /**
+   * Get the current namespace) {
+   */
+  public function getNamespace() {
+    return $this->namespace;
   }
 
   public function getWsdlNamespace($name) {

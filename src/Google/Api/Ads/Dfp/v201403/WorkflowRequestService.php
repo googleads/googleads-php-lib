@@ -26,8 +26,6 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-
-/** Required classes. **/
 require_once "Google/Api/Ads/Dfp/Lib/DfpSoapClient.php";
 
 if (!class_exists("ApiError", false)) {
@@ -953,6 +951,51 @@ if (!class_exists("PermissionError", false)) {
   }
 }
 
+if (!class_exists("ProposalActionError", false)) {
+  /**
+   * Lists all errors associated with performing actions on {@link Proposal} objects.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201403
+   */
+  class ProposalActionError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
+    const XSI_TYPE = "ProposalActionError";
+
+    /**
+     * @access public
+     * @var tnsProposalActionErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("PublisherQueryLanguageContextError", false)) {
   /**
    * An error that occurs while executing a PQL query contained in
@@ -1517,6 +1560,51 @@ if (!class_exists("Value", false)) {
   }
 }
 
+if (!class_exists("WorkflowActionError", false)) {
+  /**
+   * Lists all errors associated with performing actions within {@link WorkflowAction}.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201403
+   */
+  class WorkflowActionError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
+    const XSI_TYPE = "WorkflowActionError";
+
+    /**
+     * @access public
+     * @var tnsWorkflowActionErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("WorkflowApprovalRequest", false)) {
   /**
    * A {@code WorkflowApprovalRequest} represents a workflow action unit that requires user approval.
@@ -2023,6 +2111,39 @@ if (!class_exists("PermissionErrorReason", false)) {
   }
 }
 
+if (!class_exists("ProposalActionErrorReason", false)) {
+  /**
+   * The reasons for the target error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201403
+   */
+  class ProposalActionErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
+    const XSI_TYPE = "ProposalActionError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("PublisherQueryLanguageContextErrorReason", false)) {
   /**
    * The reasons for the target error.
@@ -2197,6 +2318,39 @@ if (!class_exists("StatementErrorReason", false)) {
   }
 }
 
+if (!class_exists("WorkflowActionErrorReason", false)) {
+  /**
+   * The reasons for the target error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201403
+   */
+  class WorkflowActionErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
+    const XSI_TYPE = "WorkflowActionError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("WorkflowEntityType", false)) {
   /**
    * The entity types that workflows can be applied to.
@@ -2249,10 +2403,6 @@ if (!class_exists("GetWorkflowRequestsByStatement", false)) {
    * <td>{@link WorkflowRequest#workflowRuleName}</td>
    * </tr>
    * <tr>
-   * <td>{@code status}</td>
-   * <td>{@link WorkflowApprovalRequest#status}</td>
-   * </tr>
-   * <tr>
    * <td>{@code entityType}</td>
    * <td>{@link WorkflowRequest#entityType}</td>
    * </tr>
@@ -2260,8 +2410,20 @@ if (!class_exists("GetWorkflowRequestsByStatement", false)) {
    * <td>{@code entityId}</td>
    * <td>{@link WorkflowRequest#entityId}</td>
    * </tr>
+   * <tr>
+   * <td>{@code approvalStatus}</td>
+   * <td>{@link WorkflowApprovalRequest#status}</td>
+   * </tr>
+   * <tr>
+   * <td>{@code conditionStatus}</td>
+   * <td>{@link WorkflowExternalConditionRequest#status}</td>
+   * </tr>
+   * <tr>
+   * <td>{@code type}</td>
+   * <td>{@link WorkflowRequest#type}</td>
+   * </tr>
    * </table>
-   * 
+   * <p>Starting in V201405 a {@code type} filter must be used</p>
    * @param filterStatement a Publisher Query Language statement used to filter a set of proposals
    * @return the workflow requests that match the given filter
    * @package GoogleApiAdsDfp
@@ -2844,6 +3006,7 @@ if (!class_exists("WorkflowRequestService", false)) {
       "NumberValue" => "NumberValue",
       "OAuth" => "DfpOAuth",
       "PermissionError" => "PermissionError",
+      "ProposalActionError" => "ProposalActionError",
       "PublisherQueryLanguageContextError" => "PublisherQueryLanguageContextError",
       "PublisherQueryLanguageSyntaxError" => "PublisherQueryLanguageSyntaxError",
       "QuotaError" => "QuotaError",
@@ -2858,6 +3021,7 @@ if (!class_exists("WorkflowRequestService", false)) {
       "TextValue" => "TextValue",
       "UpdateResult" => "UpdateResult",
       "Value" => "Value",
+      "WorkflowActionError" => "WorkflowActionError",
       "WorkflowApprovalRequest" => "WorkflowApprovalRequest",
       "WorkflowRequestAction" => "WorkflowRequestAction",
       "WorkflowRequestPage" => "WorkflowRequestPage",
@@ -2871,11 +3035,13 @@ if (!class_exists("WorkflowRequestService", false)) {
       "LineItemOperationError.Reason" => "LineItemOperationErrorReason",
       "NotNullError.Reason" => "NotNullErrorReason",
       "PermissionError.Reason" => "PermissionErrorReason",
+      "ProposalActionError.Reason" => "ProposalActionErrorReason",
       "PublisherQueryLanguageContextError.Reason" => "PublisherQueryLanguageContextErrorReason",
       "PublisherQueryLanguageSyntaxError.Reason" => "PublisherQueryLanguageSyntaxErrorReason",
       "QuotaError.Reason" => "QuotaErrorReason",
       "ServerError.Reason" => "ServerErrorReason",
       "StatementError.Reason" => "StatementErrorReason",
+      "WorkflowActionError.Reason" => "WorkflowActionErrorReason",
       "WorkflowEntityType" => "WorkflowEntityType",
       "getWorkflowRequestsByStatement" => "GetWorkflowRequestsByStatement",
       "getWorkflowRequestsByStatementResponse" => "GetWorkflowRequestsByStatementResponse",
@@ -2912,10 +3078,6 @@ if (!class_exists("WorkflowRequestService", false)) {
      * <td>{@link WorkflowRequest#workflowRuleName}</td>
      * </tr>
      * <tr>
-     * <td>{@code status}</td>
-     * <td>{@link WorkflowApprovalRequest#status}</td>
-     * </tr>
-     * <tr>
      * <td>{@code entityType}</td>
      * <td>{@link WorkflowRequest#entityType}</td>
      * </tr>
@@ -2923,8 +3085,20 @@ if (!class_exists("WorkflowRequestService", false)) {
      * <td>{@code entityId}</td>
      * <td>{@link WorkflowRequest#entityId}</td>
      * </tr>
+     * <tr>
+     * <td>{@code approvalStatus}</td>
+     * <td>{@link WorkflowApprovalRequest#status}</td>
+     * </tr>
+     * <tr>
+     * <td>{@code conditionStatus}</td>
+     * <td>{@link WorkflowExternalConditionRequest#status}</td>
+     * </tr>
+     * <tr>
+     * <td>{@code type}</td>
+     * <td>{@link WorkflowRequest#type}</td>
+     * </tr>
      * </table>
-     * 
+     * <p>Starting in V201405 a {@code type} filter must be used</p>
      * @param filterStatement a Publisher Query Language statement used to filter a set of proposals
      * @return the workflow requests that match the given filter
      */
@@ -2949,3 +3123,4 @@ if (!class_exists("WorkflowRequestService", false)) {
     }
   }
 }
+

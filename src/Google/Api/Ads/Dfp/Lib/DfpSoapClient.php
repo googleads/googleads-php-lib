@@ -58,33 +58,18 @@ class DfpSoapClient extends AdsSoapClient {
   }
 
   /**
-   * Generates the SOAP header for the client.
-   * @return SoapHeader the instantiated SoapHeader ready to set
-   * @access protected
+   * @see AdsSoapClient::GenerateSoapHeader()
    */
   protected function GenerateSoapHeader() {
     $headerObject = $this->Create('SoapRequestHeader');
     foreach (get_object_vars($headerObject) as $var => $value) {
-      switch ($var) {
-        case 'authentication':
-          $oAuth2Info = $this->user->GetOAuth2Info();
-          $oAuth2Handler = $this->user->GetOAuth2Handler();
-          if (!empty($oAuth2Info)) {
-            $oAuth2Info = $oAuth2Handler->GetOrRefreshAccessToken($oAuth2Info);
-            $this->user->SetOAuth2Info($oAuth2Info);
-            if ($oAuth2Handler->IsAccessTokenValid($oAuth2Info)) {
-              $authentication = $this->Create('OAuth');
-              $authentication->parameters =
-                  $oAuth2Handler->FormatCredentialsForHeader($oAuth2Info);
-            }
-          } else {
-            $authentication = $this->Create('ClientLogin');
-            $authentication->token = $this->GetHeaderValue('authToken');
-          }
-          $headerObject->$var = $authentication;
-          break;
-        default:
-          $headerObject->$var = $this->GetHeaderValue($var);
+      if ($var === 'authentication' &&
+          !empty($this->GetHeaderValue('authToken'))) {
+        $authentication = $this->Create('ClientLogin');
+        $authentication->token = $this->GetHeaderValue('authToken');
+        $headerObject->$var = $authentication;
+      } else {
+        $headerObject->$var = $this->GetHeaderValue($var);
       }
     }
     return new SoapHeader($this->serviceNamespace, 'RequestHeader',
@@ -92,11 +77,7 @@ class DfpSoapClient extends AdsSoapClient {
   }
 
   /**
-   * Removes the authentication information from the request before being
-   * logged.
-   * @param string $request the request with sensitive data to remove
-   * @return string the request with the authentication token removed
-   * @access protected
+   * @see AdsSoapClient::RemoveSensitiveInfo()
    */
   protected function RemoveSensitiveInfo($request) {
     $tags = array('authToken', 'authentication');
@@ -110,19 +91,7 @@ class DfpSoapClient extends AdsSoapClient {
   }
 
   /**
-   * Generates the request info message containing:
-   * <ul>
-   * <li>email</li>
-   * <li>service</li>
-   * <li>method</li>
-   * <li>responseTime</li>
-   * <li>requestId</li>
-   * <li>server</li>
-   * <li>isFault</li>
-   * <li>faultMessage</li>
-   * </ul>
-   * @return string the request info message to log
-   * @access protected
+   * @see AdsSoapClient::GenerateRequestInfoMessage()
    */
   protected function GenerateRequestInfoMessage() {
     return 'email=' . $this->GetEmail() . ' service=' . $this->GetServiceName()

@@ -26,8 +26,6 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-
-/** Required classes. **/
 require_once "Google/Api/Ads/Dfp/Lib/DfpSoapClient.php";
 
 if (!class_exists("ApiError", false)) {
@@ -1950,7 +1948,7 @@ if (!class_exists("InternalApiErrorReason", false)) {
 
 if (!class_exists("LiveStreamEventDateTimeErrorReason", false)) {
   /**
-   * Describes reasons for {@code LiveStreamEventDateTimeError}s.
+   * Describes reasons for {@code LiveStreamEventDateTimeError}.
    * @package GoogleApiAdsDfp
    * @subpackage v201403
    */
@@ -3257,3 +3255,4 @@ if (!class_exists("LiveStreamEventService", false)) {
     }
   }
 }
+

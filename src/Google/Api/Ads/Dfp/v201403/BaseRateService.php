@@ -26,8 +26,6 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-
-/** Required classes. **/
 require_once "Google/Api/Ads/Dfp/Lib/DfpSoapClient.php";
 
 if (!class_exists("ApiError", false)) {
@@ -2707,10 +2705,6 @@ if (!class_exists("GetBaseRatesByStatement", false)) {
    * <td>{@link BaseRate#id}</td>
    * </tr>
    * <tr>
-   * <td>{@code status}</td>
-   * <td>{@link BaseRate#status}</td>
-   * </tr>
-   * <tr>
    * <td>{@code productTemplateId}</td>
    * <td>{@link ProductTemplateBaseRate#id}<br><b>Note:</b>&nbsp;Cannot be
    * combined with {@code productId}.
@@ -3444,10 +3438,6 @@ if (!class_exists("BaseRateService", false)) {
      * <td>{@link BaseRate#id}</td>
      * </tr>
      * <tr>
-     * <td>{@code status}</td>
-     * <td>{@link BaseRate#status}</td>
-     * </tr>
-     * <tr>
      * <td>{@code productTemplateId}</td>
      * <td>{@link ProductTemplateBaseRate#id}<br><b>Note:</b>&nbsp;Cannot be
      * combined with {@code productId}.
@@ -3493,3 +3483,4 @@ if (!class_exists("BaseRateService", false)) {
     }
   }
 }
+

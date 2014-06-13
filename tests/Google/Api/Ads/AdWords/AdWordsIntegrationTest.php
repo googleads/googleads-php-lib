@@ -25,7 +25,6 @@
  */
 error_reporting(E_STRICT | E_ALL);
 
-
 require_once 'Google/Api/Ads/Common/Testing/AssetHelper.php';
 require_once 'Google/Api/Ads/AdWords/Lib/AdWordsUser.php';
 
@@ -80,7 +79,7 @@ class AdWordsIntegrationTest extends PHPUnit_Framework_TestCase {
     // Create selector.
     $selector = new Selector();
     // Specify the fields to retrieve.
-    $selector->fields = array('Login', 'CustomerId',  'Name');
+    $selector->fields = array('Login', 'CustomerId', 'Name');
 
     // Make the get request.
     $graph = $campaignService->get($selector);
@@ -89,93 +88,54 @@ class AdWordsIntegrationTest extends PHPUnit_Framework_TestCase {
   }
 
   /**
-   * Tests that the user access_token is properly set in the URL for this client
-   * library.
+   * Tests that the OAuth2 access token is properly set in the HTTP headers.
    */
-  public function testIntegrationCheckSoapHeaders() {
+  public function testIntegrationCheckHttpHeaders() {
     $campaignService = $this->adWordsUser->getService(self::SERVICE);
-
-    $oauth2AccessToken = '';
-    $oAuth2Info = $this->adWordsUser->GetOAuth2Info();
-    if (is_array($oAuth2Info) && isset($oAuth2Info['access_token'])) {
-      $oauth2AccessToken = $oAuth2Info['access_token'];
-    }
-    $oauth2Url = http_build_query(array('access_token' => $oauth2AccessToken));
-
-    // Setup the test.
-    $soapClientMock = $this->getMockBuilder('SoapClient')
-                           ->setMethods(array('__doRequest'))
-                           ->disableOriginalConstructor()
-                           ->getMock();
-
-    // Checking for the URL param for the auth token
-    // (passed in the second function param)
-    $soapClientMock->expects($this->any())
-                   ->method('__doRequest')
-                   ->with($this->anything(), $this->stringContains($oauth2Url))
-                   ->will($this->returnValue($this->xmlResponse));
-
-    // Set the transport layer on the soap client to be the mocked soap client.
-    $campaignService->__SetTransportLayer($soapClientMock);
-
-    // Create selector.
     $selector = new Selector();
-    // Specify the fields to retrieve.
-    $selector->fields = array('Login', 'CustomerId',  'Name');
+    $selector->fields = array('Login', 'CustomerId', 'Name');
 
-    // Make the get request.
-    $campaignService->get($selector);
-
-    $this->assertFalse(empty($oauth2AccessToken));
+    try {
+      $campaignService->get($selector);
+      // We expect this exception since we're using a dummy access token, but
+      // we need to make the request in order for the last request headers to
+      // be filled in by the soap client.
+    } catch (Exception $e) {
+      $this->assertRegExp('/Authorization: Bearer TestAccessToken/',
+          $campaignService->__getLastRequestHeaders());
+    }
   }
 
   /**
-   * Tests that access_token is properly converted into a URL parameter for this
-   * client library when it's valid.
+   * Tests that an overriden access token is set in the HTTP headers.
    */
   public function testIntegrationOAuth2Handler_ValidAccessToken() {
     $credentialsOverride = array(
       'access_token' => sprintf('TEST_ACCESS_TOKEN_%s', uniqid())
     );
-
-    $campaignService = $this->adWordsUser->getService(self::SERVICE);
-
     $oAuth2Info = $this->adWordsUser->GetOAuth2Info();
     $this->adWordsUser->SetOAuth2Info(array_merge($oAuth2Info,
         $credentialsOverride));
 
-    // Get the expected auth param for the URL.
-    $oauth2Url = http_build_query(
-        array('access_token' => $credentialsOverride['access_token']));
-
-    // Setup the test.
-    $soapClientMock = $this->getMockBuilder('SoapClient')
-                           ->setMethods(array('__doRequest'))
-                           ->disableOriginalConstructor()
-                           ->getMock();
-
-    // Checking for the URL param for the auth token
-    // (passed in the second function param)
-    $soapClientMock->expects($this->any())
-                   ->method('__doRequest')
-                   ->with($this->anything(), $this->stringContains($oauth2Url))
-                   ->will($this->returnValue($this->xmlResponse));
-
-    // Set the transport layer on the soap client to be the mocked soap client.
-    $campaignService->__SetTransportLayer($soapClientMock);
-
-    // Create selector.
+    $campaignService = $this->adWordsUser->getService(self::SERVICE);
     $selector = new Selector();
-    // Specify the fields to retrieve.
-    $selector->fields = array('Login', 'CustomerId',  'Name');
+    $selector->fields = array('Login', 'CustomerId', 'Name');
 
-    // Make the get request.
-    $campaignService->get($selector);
+    try {
+      $campaignService->get($selector);
+      // We expect this exception since we're using a dummy access token, but
+      // we need to make the request in order for the last request headers to
+      // be filled in by the soap client.
+    } catch (Exception $e) {
+      $this->assertRegExp(sprintf("/Authorization: Bearer %s/",
+          $credentialsOverride['access_token']),
+          $campaignService->__getLastRequestHeaders());
+    }
   }
 
   /**
-   * Tests that the access_token is refreshed correctly and set on the URL
-   * params for this client library.
+   * Tests that the OAuth2 access token is refreshed correctly and set in the
+   * HTTP headers.
    */
   public function testIntegrationOAuth2Handler_InvalidAccessToken() {
     $credentialsOverride = array(
@@ -192,47 +152,32 @@ class AdWordsIntegrationTest extends PHPUnit_Framework_TestCase {
       'Foo' => 'bar',
     );
 
-    $campaignService = $this->adWordsUser->getService(self::SERVICE);
-
     $oAuth2Info = $this->adWordsUser->GetOAuth2Info();
     $newOAuth2Info = array_merge($oAuth2Info, $credentialsOverride);
     $this->adWordsUser->SetOAuth2Info($newOAuth2Info);
 
-    // Get the expected auth param for the URL.
-    $oauth2Url = http_build_query(
-        array('access_token' => $credentialsRefreshed['access_token']));
-
     // Setup the mocked OAuth2Handler class.
     $oAuth2Handler = $this->getMock('SimpleOAuth2Handler',
         array('RefreshAccessToken'));
-
     $oAuth2Handler->expects($this->any())
                   ->method('RefreshAccessToken')
                   ->will($this->returnValue($credentialsRefreshed));
     $this->adWordsUser->SetOAuth2Handler($oAuth2Handler);
 
-    // Setup the test.
-    $soapClientMock = $this->getMockBuilder('SoapClient')
-                           ->setMethods(array('__doRequest'))
-                           ->disableOriginalConstructor()
-                           ->getMock();
-
-    // Checking for the URL param for the auth token (passed in the second
-    // function param).
-    $soapClientMock->expects($this->any())
-                   ->method('__doRequest')
-                   ->with($this->anything(), $this->stringContains($oauth2Url))
-                   ->will($this->returnValue($this->xmlResponse));
-
-    // Set the transport layer on the soap client to be the mocked soap client.
-    $campaignService->__SetTransportLayer($soapClientMock);
-
-    // Create selector.
+    $campaignService = $this->adWordsUser->getService(self::SERVICE);
     $selector = new Selector();
-    // Specify the fields to retrieve.
-    $selector->fields = array('Login', 'CustomerId',  'Name');
+    $selector->fields = array('Login', 'CustomerId', 'Name');
 
-    // Make the get request.
-    $campaignService->get($selector);
+    try {
+      $campaignService->get($selector);
+      // We expect this exception since we're using a dummy access token, but
+      // we need to make the request in order for the last request headers to
+      // be filled in by the soap client.
+    } catch (Exception $e) {
+      $this->assertRegExp(sprintf("/Authorization: Bearer %s/",
+          $credentialsRefreshed['access_token']),
+          $campaignService->__getLastRequestHeaders());
+    }
   }
 }
+
