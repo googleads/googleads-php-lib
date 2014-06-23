@@ -27,6 +27,7 @@
  * @author     Eric Koleda
  * @author     Vincent Tsao
  */
+require_once 'Google/Api/Ads/Common/Util/DeprecationUtils.php';
 
 /**
  * A utility class to simplify the use of API services.
@@ -75,6 +76,8 @@ class ServiceUtils {
    */
   public static function GetAllObjects(DfpSoapClient $service,
       $methodName, $filterText = NULL) {
+    DeprecationUtils::LogDeprecatedMethodUsage('GetAllObjects',
+        'https://github.com/googleads/googleads-php-lib/wiki/Migrating-off-of-DFP-ServiceUtils-functions');
     if (!isset($filterText)) {
       $filterText = '';
     }
@@ -122,6 +125,8 @@ class ServiceUtils {
    */
   public static function GetSomeObjects(DfpSoapClient $service,
       $methodName, $filterText) {
+    DeprecationUtils::LogDeprecatedMethodUsage('GetSomeObjects',
+        'https://github.com/googleads/googleads-php-lib/wiki/Migrating-off-of-DFP-ServiceUtils-functions');
     if (!preg_match(self::GET_BY_STATEMENT_METHOD_NAME_REGEX, $methodName)) {
       throw new InvalidArgumentException(
           'The method name must be in the format a "get*ByStatement".');

@@ -136,7 +136,7 @@ $user->LogDefaults();
 
 // Instantiate the desired service class by calling the get***Service method on
 // the AdWordsUser instance.
-$campaignService = $user->GetService('CampaignService', 'v201309')
+$campaignService = $user->GetService('CampaignService', 'v201309');
 
 // Create data objects and invoke methods on the service class instance. The
 // data objects and methods map directly to the data objects and requests for

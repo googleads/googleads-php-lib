@@ -401,7 +401,6 @@ class AdWordsUser extends AdsUser {
     return array($this->libName, $this->libVersion);
   }
 
-
   /**
    * Gets the email address of the user login.
    * @return string the user login email
