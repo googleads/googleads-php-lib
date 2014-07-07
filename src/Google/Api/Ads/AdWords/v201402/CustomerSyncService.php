@@ -26,11 +26,11 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
+namespace Google_Api_Ads_AdWords_v201402;
 
-/** Required classes. **/
 require_once "Google/Api/Ads/AdWords/Lib/AdWordsSoapClient.php";
 
-if (!class_exists("DateTimeRange", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\DateTimeRange", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -79,7 +79,7 @@ if (!class_exists("DateTimeRange", false)) {
   }
 }
 
-if (!class_exists("SoapRequestHeader", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\SoapRequestHeader", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -149,7 +149,7 @@ if (!class_exists("SoapRequestHeader", false)) {
   }
 }
 
-if (!class_exists("SoapResponseHeader", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\SoapResponseHeader", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -219,7 +219,7 @@ if (!class_exists("SoapResponseHeader", false)) {
   }
 }
 
-if (!class_exists("ApiError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\ApiError", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -320,7 +320,7 @@ if (!class_exists("ApiError", false)) {
   }
 }
 
-if (!class_exists("ApplicationException", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\ApplicationException", false)) {
   /**
    * Indicates that this instance is a subtype of ApplicationException.
    * Although this field is returned in the response, it is ignored on input
@@ -407,7 +407,7 @@ if (!class_exists("ApplicationException", false)) {
   }
 }
 
-if (!class_exists("AuthenticationErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\AuthenticationErrorReason", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -442,7 +442,7 @@ if (!class_exists("AuthenticationErrorReason", false)) {
   }
 }
 
-if (!class_exists("AuthorizationErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\AuthorizationErrorReason", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -477,7 +477,7 @@ if (!class_exists("AuthorizationErrorReason", false)) {
   }
 }
 
-if (!class_exists("ClientTermsErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\ClientTermsErrorReason", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -512,7 +512,7 @@ if (!class_exists("ClientTermsErrorReason", false)) {
   }
 }
 
-if (!class_exists("DatabaseErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\DatabaseErrorReason", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -547,7 +547,7 @@ if (!class_exists("DatabaseErrorReason", false)) {
   }
 }
 
-if (!class_exists("DateErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\DateErrorReason", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -582,7 +582,7 @@ if (!class_exists("DateErrorReason", false)) {
   }
 }
 
-if (!class_exists("DistinctErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\DistinctErrorReason", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -617,7 +617,7 @@ if (!class_exists("DistinctErrorReason", false)) {
   }
 }
 
-if (!class_exists("IdErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\IdErrorReason", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -652,7 +652,7 @@ if (!class_exists("IdErrorReason", false)) {
   }
 }
 
-if (!class_exists("InternalApiErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\InternalApiErrorReason", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -687,7 +687,7 @@ if (!class_exists("InternalApiErrorReason", false)) {
   }
 }
 
-if (!class_exists("NotEmptyErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\NotEmptyErrorReason", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -722,7 +722,7 @@ if (!class_exists("NotEmptyErrorReason", false)) {
   }
 }
 
-if (!class_exists("QuotaCheckErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\QuotaCheckErrorReason", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -757,7 +757,7 @@ if (!class_exists("QuotaCheckErrorReason", false)) {
   }
 }
 
-if (!class_exists("RangeErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\RangeErrorReason", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -792,7 +792,7 @@ if (!class_exists("RangeErrorReason", false)) {
   }
 }
 
-if (!class_exists("RateExceededErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\RateExceededErrorReason", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -827,7 +827,7 @@ if (!class_exists("RateExceededErrorReason", false)) {
   }
 }
 
-if (!class_exists("ReadOnlyErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\ReadOnlyErrorReason", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -862,7 +862,7 @@ if (!class_exists("ReadOnlyErrorReason", false)) {
   }
 }
 
-if (!class_exists("RejectedErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\RejectedErrorReason", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -897,7 +897,7 @@ if (!class_exists("RejectedErrorReason", false)) {
   }
 }
 
-if (!class_exists("RequestErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\RequestErrorReason", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -932,7 +932,7 @@ if (!class_exists("RequestErrorReason", false)) {
   }
 }
 
-if (!class_exists("RequiredErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\RequiredErrorReason", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -967,7 +967,7 @@ if (!class_exists("RequiredErrorReason", false)) {
   }
 }
 
-if (!class_exists("SizeLimitErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\SizeLimitErrorReason", false)) {
   /**
    * <span class="constraint Rejected">Used for return value only. An enumeration could not be processed, typically due to incompatibility with your WSDL version.</span>
    * 
@@ -1006,7 +1006,7 @@ if (!class_exists("SizeLimitErrorReason", false)) {
   }
 }
 
-if (!class_exists("StringLengthErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\StringLengthErrorReason", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -1041,7 +1041,7 @@ if (!class_exists("StringLengthErrorReason", false)) {
   }
 }
 
-if (!class_exists("AdGroupChangeData", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\AdGroupChangeData", false)) {
   /**
    * Holds information about a changed adgroup
    * @package Google_Api_Ads_AdWords_v201402
@@ -1137,7 +1137,7 @@ if (!class_exists("AdGroupChangeData", false)) {
   }
 }
 
-if (!class_exists("CampaignChangeData", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\CampaignChangeData", false)) {
   /**
    * Holds information about a changed campaign and any ad groups under
    * that have changed.
@@ -1241,7 +1241,7 @@ if (!class_exists("CampaignChangeData", false)) {
   }
 }
 
-if (!class_exists("CustomerSyncError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\CustomerSyncError", false)) {
   /**
    * Represents CustomerSyncService specific errors
    * @package Google_Api_Ads_AdWords_v201402
@@ -1293,7 +1293,7 @@ if (!class_exists("CustomerSyncError", false)) {
   }
 }
 
-if (!class_exists("FeedChangeData", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\FeedChangeData", false)) {
   /**
    * Holds information about a changed feed and any feeds items within the feed.
    * @package Google_Api_Ads_AdWords_v201402
@@ -1354,7 +1354,7 @@ if (!class_exists("FeedChangeData", false)) {
   }
 }
 
-if (!class_exists("CustomerChangeData", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\CustomerChangeData", false)) {
   /**
    * Holds information about changes to a customer
    * @package Google_Api_Ads_AdWords_v201402
@@ -1408,7 +1408,7 @@ if (!class_exists("CustomerChangeData", false)) {
   }
 }
 
-if (!class_exists("CustomerSyncSelector", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\CustomerSyncSelector", false)) {
   /**
    * A filter for selecting change history data for a customer.
    * @package Google_Api_Ads_AdWords_v201402
@@ -1462,7 +1462,7 @@ if (!class_exists("CustomerSyncSelector", false)) {
   }
 }
 
-if (!class_exists("ChangeStatus", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\ChangeStatus", false)) {
   /**
    * An enum used to classify the types of changes that have been made to
    * an adgroup/campaign during a specified date range.  This only refers
@@ -1501,7 +1501,7 @@ if (!class_exists("ChangeStatus", false)) {
   }
 }
 
-if (!class_exists("CustomerSyncErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\CustomerSyncErrorReason", false)) {
   /**
    * The request attempted to access a campaign that either does not
    * exist or belongs to a different account.
@@ -1535,7 +1535,7 @@ if (!class_exists("CustomerSyncErrorReason", false)) {
   }
 }
 
-if (!class_exists("CustomerSyncServiceGet", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\CustomerSyncServiceGet", false)) {
   /**
    * <span class="constraint Required">This field is required and should not be {@code null}.</span>
    * 
@@ -1584,7 +1584,7 @@ if (!class_exists("CustomerSyncServiceGet", false)) {
   }
 }
 
-if (!class_exists("CustomerSyncServiceGetResponse", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\CustomerSyncServiceGetResponse", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201402
@@ -1624,7 +1624,7 @@ if (!class_exists("CustomerSyncServiceGetResponse", false)) {
   }
 }
 
-if (!class_exists("AuthenticationError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\AuthenticationError", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -1671,7 +1671,7 @@ if (!class_exists("AuthenticationError", false)) {
   }
 }
 
-if (!class_exists("AuthorizationError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\AuthorizationError", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -1718,7 +1718,7 @@ if (!class_exists("AuthorizationError", false)) {
   }
 }
 
-if (!class_exists("ClientTermsError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\ClientTermsError", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -1765,7 +1765,7 @@ if (!class_exists("ClientTermsError", false)) {
   }
 }
 
-if (!class_exists("DateError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\DateError", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -1812,7 +1812,7 @@ if (!class_exists("DateError", false)) {
   }
 }
 
-if (!class_exists("DistinctError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\DistinctError", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -1859,7 +1859,7 @@ if (!class_exists("DistinctError", false)) {
   }
 }
 
-if (!class_exists("IdError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\IdError", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -1906,7 +1906,7 @@ if (!class_exists("IdError", false)) {
   }
 }
 
-if (!class_exists("InternalApiError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\InternalApiError", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -1953,7 +1953,7 @@ if (!class_exists("InternalApiError", false)) {
   }
 }
 
-if (!class_exists("NotEmptyError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\NotEmptyError", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -2000,7 +2000,7 @@ if (!class_exists("NotEmptyError", false)) {
   }
 }
 
-if (!class_exists("QuotaCheckError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\QuotaCheckError", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -2047,7 +2047,7 @@ if (!class_exists("QuotaCheckError", false)) {
   }
 }
 
-if (!class_exists("RangeError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\RangeError", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -2094,7 +2094,7 @@ if (!class_exists("RangeError", false)) {
   }
 }
 
-if (!class_exists("RateExceededError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\RateExceededError", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -2162,7 +2162,7 @@ if (!class_exists("RateExceededError", false)) {
   }
 }
 
-if (!class_exists("ReadOnlyError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\ReadOnlyError", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -2209,7 +2209,7 @@ if (!class_exists("ReadOnlyError", false)) {
   }
 }
 
-if (!class_exists("RejectedError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\RejectedError", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -2256,7 +2256,7 @@ if (!class_exists("RejectedError", false)) {
   }
 }
 
-if (!class_exists("RequestError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\RequestError", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -2303,7 +2303,7 @@ if (!class_exists("RequestError", false)) {
   }
 }
 
-if (!class_exists("RequiredError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\RequiredError", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -2350,7 +2350,7 @@ if (!class_exists("RequiredError", false)) {
   }
 }
 
-if (!class_exists("SizeLimitError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\SizeLimitError", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -2397,7 +2397,7 @@ if (!class_exists("SizeLimitError", false)) {
   }
 }
 
-if (!class_exists("StringLengthError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\StringLengthError", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -2444,7 +2444,7 @@ if (!class_exists("StringLengthError", false)) {
   }
 }
 
-if (!class_exists("DatabaseError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\DatabaseError", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -2491,7 +2491,7 @@ if (!class_exists("DatabaseError", false)) {
   }
 }
 
-if (!class_exists("ApiException", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201402\\ApiException", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -2542,7 +2542,7 @@ if (!class_exists("CustomerSyncService", false)) {
    * @package Google_Api_Ads_AdWords_v201402
    * @subpackage v201402
    */
-  class CustomerSyncService extends AdWordsSoapClient {
+  class CustomerSyncService extends Google_Api_Ads_AdWords_v201402\Google_Api_Ads_AdWords_Lib_AdWordsSoapClient {
 
     const SERVICE_NAME = "CustomerSyncService";
     const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/ch/v201402";
@@ -2559,58 +2559,58 @@ if (!class_exists("CustomerSyncService", false)) {
      * @var array
      */
     public static $classmap = array(
-      "AuthenticationError" => "AuthenticationError",
-      "AuthorizationError" => "AuthorizationError",
-      "ClientTermsError" => "ClientTermsError",
-      "DateError" => "DateError",
-      "DateTimeRange" => "DateTimeRange",
-      "DistinctError" => "DistinctError",
-      "IdError" => "IdError",
-      "InternalApiError" => "InternalApiError",
-      "NotEmptyError" => "NotEmptyError",
-      "QuotaCheckError" => "QuotaCheckError",
-      "RangeError" => "RangeError",
-      "RateExceededError" => "RateExceededError",
-      "ReadOnlyError" => "ReadOnlyError",
-      "RejectedError" => "RejectedError",
-      "RequestError" => "RequestError",
-      "RequiredError" => "RequiredError",
-      "SizeLimitError" => "SizeLimitError",
-      "SoapHeader" => "SoapRequestHeader",
-      "SoapResponseHeader" => "SoapResponseHeader",
-      "StringLengthError" => "StringLengthError",
-      "DatabaseError" => "DatabaseError",
-      "ApiError" => "ApiError",
-      "ApiException" => "ApiException",
-      "ApplicationException" => "ApplicationException",
-      "AuthenticationError.Reason" => "AuthenticationErrorReason",
-      "AuthorizationError.Reason" => "AuthorizationErrorReason",
-      "ClientTermsError.Reason" => "ClientTermsErrorReason",
-      "DatabaseError.Reason" => "DatabaseErrorReason",
-      "DateError.Reason" => "DateErrorReason",
-      "DistinctError.Reason" => "DistinctErrorReason",
-      "IdError.Reason" => "IdErrorReason",
-      "InternalApiError.Reason" => "InternalApiErrorReason",
-      "NotEmptyError.Reason" => "NotEmptyErrorReason",
-      "QuotaCheckError.Reason" => "QuotaCheckErrorReason",
-      "RangeError.Reason" => "RangeErrorReason",
-      "RateExceededError.Reason" => "RateExceededErrorReason",
-      "ReadOnlyError.Reason" => "ReadOnlyErrorReason",
-      "RejectedError.Reason" => "RejectedErrorReason",
-      "RequestError.Reason" => "RequestErrorReason",
-      "RequiredError.Reason" => "RequiredErrorReason",
-      "SizeLimitError.Reason" => "SizeLimitErrorReason",
-      "StringLengthError.Reason" => "StringLengthErrorReason",
-      "AdGroupChangeData" => "AdGroupChangeData",
-      "CampaignChangeData" => "CampaignChangeData",
-      "CustomerSyncError" => "CustomerSyncError",
-      "FeedChangeData" => "FeedChangeData",
-      "CustomerChangeData" => "CustomerChangeData",
-      "CustomerSyncSelector" => "CustomerSyncSelector",
-      "ChangeStatus" => "ChangeStatus",
-      "CustomerSyncError.Reason" => "CustomerSyncErrorReason",
-      "get" => "CustomerSyncServiceGet",
-      "getResponse" => "CustomerSyncServiceGetResponse",
+      "AuthenticationError" => "Google_Api_Ads_AdWords_v201402\\AuthenticationError",
+      "AuthorizationError" => "Google_Api_Ads_AdWords_v201402\\AuthorizationError",
+      "ClientTermsError" => "Google_Api_Ads_AdWords_v201402\\ClientTermsError",
+      "DateError" => "Google_Api_Ads_AdWords_v201402\\DateError",
+      "DateTimeRange" => "Google_Api_Ads_AdWords_v201402\\DateTimeRange",
+      "DistinctError" => "Google_Api_Ads_AdWords_v201402\\DistinctError",
+      "IdError" => "Google_Api_Ads_AdWords_v201402\\IdError",
+      "InternalApiError" => "Google_Api_Ads_AdWords_v201402\\InternalApiError",
+      "NotEmptyError" => "Google_Api_Ads_AdWords_v201402\\NotEmptyError",
+      "QuotaCheckError" => "Google_Api_Ads_AdWords_v201402\\QuotaCheckError",
+      "RangeError" => "Google_Api_Ads_AdWords_v201402\\RangeError",
+      "RateExceededError" => "Google_Api_Ads_AdWords_v201402\\RateExceededError",
+      "ReadOnlyError" => "Google_Api_Ads_AdWords_v201402\\ReadOnlyError",
+      "RejectedError" => "Google_Api_Ads_AdWords_v201402\\RejectedError",
+      "RequestError" => "Google_Api_Ads_AdWords_v201402\\RequestError",
+      "RequiredError" => "Google_Api_Ads_AdWords_v201402\\RequiredError",
+      "SizeLimitError" => "Google_Api_Ads_AdWords_v201402\\SizeLimitError",
+      "SoapHeader" => "Google_Api_Ads_AdWords_v201402\\SoapRequestHeader",
+      "SoapResponseHeader" => "Google_Api_Ads_AdWords_v201402\\SoapResponseHeader",
+      "StringLengthError" => "Google_Api_Ads_AdWords_v201402\\StringLengthError",
+      "DatabaseError" => "Google_Api_Ads_AdWords_v201402\\DatabaseError",
+      "ApiError" => "Google_Api_Ads_AdWords_v201402\\ApiError",
+      "ApiException" => "Google_Api_Ads_AdWords_v201402\\ApiException",
+      "ApplicationException" => "Google_Api_Ads_AdWords_v201402\\ApplicationException",
+      "AuthenticationError.Reason" => "Google_Api_Ads_AdWords_v201402\\AuthenticationErrorReason",
+      "AuthorizationError.Reason" => "Google_Api_Ads_AdWords_v201402\\AuthorizationErrorReason",
+      "ClientTermsError.Reason" => "Google_Api_Ads_AdWords_v201402\\ClientTermsErrorReason",
+      "DatabaseError.Reason" => "Google_Api_Ads_AdWords_v201402\\DatabaseErrorReason",
+      "DateError.Reason" => "Google_Api_Ads_AdWords_v201402\\DateErrorReason",
+      "DistinctError.Reason" => "Google_Api_Ads_AdWords_v201402\\DistinctErrorReason",
+      "IdError.Reason" => "Google_Api_Ads_AdWords_v201402\\IdErrorReason",
+      "InternalApiError.Reason" => "Google_Api_Ads_AdWords_v201402\\InternalApiErrorReason",
+      "NotEmptyError.Reason" => "Google_Api_Ads_AdWords_v201402\\NotEmptyErrorReason",
+      "QuotaCheckError.Reason" => "Google_Api_Ads_AdWords_v201402\\QuotaCheckErrorReason",
+      "RangeError.Reason" => "Google_Api_Ads_AdWords_v201402\\RangeErrorReason",
+      "RateExceededError.Reason" => "Google_Api_Ads_AdWords_v201402\\RateExceededErrorReason",
+      "ReadOnlyError.Reason" => "Google_Api_Ads_AdWords_v201402\\ReadOnlyErrorReason",
+      "RejectedError.Reason" => "Google_Api_Ads_AdWords_v201402\\RejectedErrorReason",
+      "RequestError.Reason" => "Google_Api_Ads_AdWords_v201402\\RequestErrorReason",
+      "RequiredError.Reason" => "Google_Api_Ads_AdWords_v201402\\RequiredErrorReason",
+      "SizeLimitError.Reason" => "Google_Api_Ads_AdWords_v201402\\SizeLimitErrorReason",
+      "StringLengthError.Reason" => "Google_Api_Ads_AdWords_v201402\\StringLengthErrorReason",
+      "AdGroupChangeData" => "Google_Api_Ads_AdWords_v201402\\AdGroupChangeData",
+      "CampaignChangeData" => "Google_Api_Ads_AdWords_v201402\\CampaignChangeData",
+      "CustomerSyncError" => "Google_Api_Ads_AdWords_v201402\\CustomerSyncError",
+      "FeedChangeData" => "Google_Api_Ads_AdWords_v201402\\FeedChangeData",
+      "CustomerChangeData" => "Google_Api_Ads_AdWords_v201402\\CustomerChangeData",
+      "CustomerSyncSelector" => "Google_Api_Ads_AdWords_v201402\\CustomerSyncSelector",
+      "ChangeStatus" => "Google_Api_Ads_AdWords_v201402\\ChangeStatus",
+      "CustomerSyncError.Reason" => "Google_Api_Ads_AdWords_v201402\\CustomerSyncErrorReason",
+      "get" => "Google_Api_Ads_AdWords_v201402\\CustomerSyncServiceGet",
+      "getResponse" => "Google_Api_Ads_AdWords_v201402\\CustomerSyncServiceGetResponse",
     );
 
 
@@ -2643,3 +2643,4 @@ if (!class_exists("CustomerSyncService", false)) {
     }
   }
 }
+

@@ -4,6 +4,9 @@
 <!-- ======================================================================= -->
 <project basedir="../" default="generate-src" name="adsapi_php">
 
+  <property file="src/Google/Api/Ads/AdWords/Lib/api.properties" />
+  <property file="src/Google/Api/Ads/Dfp/Lib/api.properties" />
+
   <property name="classpath" value="" />
   <property name="out.dir" value="${project.basedir}/src" />
   <property name="product" value="${lib.product}" />

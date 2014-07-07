@@ -26,11 +26,11 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
+namespace Google_Api_Ads_AdWords_v201309;
 
-/** Required classes. **/
 require_once "Google/Api/Ads/AdWords/Lib/AdWordsSoapClient.php";
 
-if (!class_exists("EnumValuePair", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\EnumValuePair", false)) {
   /**
    * Represents information about enum values.
    * @package Google_Api_Ads_AdWords_v201309
@@ -77,7 +77,7 @@ if (!class_exists("EnumValuePair", false)) {
   }
 }
 
-if (!class_exists("ReportDefinitionField", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ReportDefinitionField", false)) {
   /**
    * Represents the fields that can be used to create a ReportDefinition.
    * This class allows the user to query the list of fields applicable to a
@@ -184,7 +184,7 @@ if (!class_exists("ReportDefinitionField", false)) {
   }
 }
 
-if (!class_exists("SoapRequestHeader", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\SoapRequestHeader", false)) {
   /**
    * Defines the required and optional elements within the header of a SOAP request.
    * @package Google_Api_Ads_AdWords_v201309
@@ -259,7 +259,7 @@ if (!class_exists("SoapRequestHeader", false)) {
   }
 }
 
-if (!class_exists("SoapResponseHeader", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\SoapResponseHeader", false)) {
   /**
    * Defines the elements within the header of a SOAP response.
    * @package Google_Api_Ads_AdWords_v201309
@@ -327,7 +327,7 @@ if (!class_exists("SoapResponseHeader", false)) {
   }
 }
 
-if (!class_exists("ApiError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ApiError", false)) {
   /**
    * The API error base class that provides details about an error that occurred
    * while processing a service request.
@@ -424,7 +424,7 @@ if (!class_exists("ApiError", false)) {
   }
 }
 
-if (!class_exists("ApplicationException", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ApplicationException", false)) {
   /**
    * Base class for exceptions.
    * @package Google_Api_Ads_AdWords_v201309
@@ -503,7 +503,7 @@ if (!class_exists("ApplicationException", false)) {
   }
 }
 
-if (!class_exists("AuthenticationErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\AuthenticationErrorReason", false)) {
   /**
    * The single reason for the authentication failure.
    * @package Google_Api_Ads_AdWords_v201309
@@ -536,7 +536,7 @@ if (!class_exists("AuthenticationErrorReason", false)) {
   }
 }
 
-if (!class_exists("AuthorizationErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\AuthorizationErrorReason", false)) {
   /**
    * The reasons for the database error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -569,7 +569,7 @@ if (!class_exists("AuthorizationErrorReason", false)) {
   }
 }
 
-if (!class_exists("BetaErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\BetaErrorReason", false)) {
   /**
    * The reasons for the beta error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -602,7 +602,7 @@ if (!class_exists("BetaErrorReason", false)) {
   }
 }
 
-if (!class_exists("ClientTermsErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ClientTermsErrorReason", false)) {
   /**
    * Enums for the various reasons an error can be thrown as a result of
    * ClientTerms violation.
@@ -636,7 +636,7 @@ if (!class_exists("ClientTermsErrorReason", false)) {
   }
 }
 
-if (!class_exists("CollectionSizeErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\CollectionSizeErrorReason", false)) {
   /**
    * The reasons for the target error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -669,7 +669,7 @@ if (!class_exists("CollectionSizeErrorReason", false)) {
   }
 }
 
-if (!class_exists("DatabaseErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\DatabaseErrorReason", false)) {
   /**
    * The reasons for the database error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -702,7 +702,7 @@ if (!class_exists("DatabaseErrorReason", false)) {
   }
 }
 
-if (!class_exists("DateErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\DateErrorReason", false)) {
   /**
    * The reasons for the target error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -735,7 +735,7 @@ if (!class_exists("DateErrorReason", false)) {
   }
 }
 
-if (!class_exists("DistinctErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\DistinctErrorReason", false)) {
   /**
    * The reasons for the validation error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -768,7 +768,7 @@ if (!class_exists("DistinctErrorReason", false)) {
   }
 }
 
-if (!class_exists("IdErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\IdErrorReason", false)) {
   /**
    * The reasons for the target error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -801,7 +801,7 @@ if (!class_exists("IdErrorReason", false)) {
   }
 }
 
-if (!class_exists("InternalApiErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\InternalApiErrorReason", false)) {
   /**
    * The single reason for the internal API error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -834,7 +834,7 @@ if (!class_exists("InternalApiErrorReason", false)) {
   }
 }
 
-if (!class_exists("NotEmptyErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\NotEmptyErrorReason", false)) {
   /**
    * The reasons for the validation error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -867,7 +867,7 @@ if (!class_exists("NotEmptyErrorReason", false)) {
   }
 }
 
-if (!class_exists("NotWhitelistedErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\NotWhitelistedErrorReason", false)) {
   /**
    * The single reason for the whitelist error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -900,7 +900,7 @@ if (!class_exists("NotWhitelistedErrorReason", false)) {
   }
 }
 
-if (!class_exists("NullErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\NullErrorReason", false)) {
   /**
    * The reasons for the validation error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -933,7 +933,7 @@ if (!class_exists("NullErrorReason", false)) {
   }
 }
 
-if (!class_exists("OperatorErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\OperatorErrorReason", false)) {
   /**
    * The reasons for the validation error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -966,7 +966,7 @@ if (!class_exists("OperatorErrorReason", false)) {
   }
 }
 
-if (!class_exists("QuotaCheckErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\QuotaCheckErrorReason", false)) {
   /**
    * Enums for all the reasons an error can be thrown to the user during
    * billing quota checks.
@@ -1000,7 +1000,7 @@ if (!class_exists("QuotaCheckErrorReason", false)) {
   }
 }
 
-if (!class_exists("RangeErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\RangeErrorReason", false)) {
   /**
    * The reasons for the target error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -1033,7 +1033,7 @@ if (!class_exists("RangeErrorReason", false)) {
   }
 }
 
-if (!class_exists("RateExceededErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\RateExceededErrorReason", false)) {
   /**
    * The reason for the rate exceeded error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -1066,7 +1066,7 @@ if (!class_exists("RateExceededErrorReason", false)) {
   }
 }
 
-if (!class_exists("ReadOnlyErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ReadOnlyErrorReason", false)) {
   /**
    * The reasons for the target error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -1099,7 +1099,7 @@ if (!class_exists("ReadOnlyErrorReason", false)) {
   }
 }
 
-if (!class_exists("RejectedErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\RejectedErrorReason", false)) {
   /**
    * The reasons for the target error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -1132,7 +1132,7 @@ if (!class_exists("RejectedErrorReason", false)) {
   }
 }
 
-if (!class_exists("ReportDefinitionReportType", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ReportDefinitionReportType", false)) {
   /**
    * Enums for report types.
    * @package Google_Api_Ads_AdWords_v201309
@@ -1165,7 +1165,7 @@ if (!class_exists("ReportDefinitionReportType", false)) {
   }
 }
 
-if (!class_exists("ReportDefinitionErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ReportDefinitionErrorReason", false)) {
   /**
    * Enums for all the reasons an error can be thrown to the user during
    * a {@link ReportDefinitionService#mutate(java.util.List)} operation.
@@ -1199,7 +1199,7 @@ if (!class_exists("ReportDefinitionErrorReason", false)) {
   }
 }
 
-if (!class_exists("RequestErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\RequestErrorReason", false)) {
   /**
    * Error reason is unknown.
    * @package Google_Api_Ads_AdWords_v201309
@@ -1232,7 +1232,7 @@ if (!class_exists("RequestErrorReason", false)) {
   }
 }
 
-if (!class_exists("RequiredErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\RequiredErrorReason", false)) {
   /**
    * The reasons for the target error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -1265,7 +1265,7 @@ if (!class_exists("RequiredErrorReason", false)) {
   }
 }
 
-if (!class_exists("SizeLimitErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\SizeLimitErrorReason", false)) {
   /**
    * The reasons for Ad Scheduling errors.
    * @package Google_Api_Ads_AdWords_v201309
@@ -1298,7 +1298,7 @@ if (!class_exists("SizeLimitErrorReason", false)) {
   }
 }
 
-if (!class_exists("StringLengthErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\StringLengthErrorReason", false)) {
   /**
    * The reasons for the target error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -1331,7 +1331,7 @@ if (!class_exists("StringLengthErrorReason", false)) {
   }
 }
 
-if (!class_exists("GetReportFields", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\GetReportFields", false)) {
   /**
    * <span class="constraint Required">This field is required and should not be {@code null}.</span>
    * 
@@ -1383,7 +1383,7 @@ if (!class_exists("GetReportFields", false)) {
   }
 }
 
-if (!class_exists("GetReportFieldsResponse", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\GetReportFieldsResponse", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -1423,7 +1423,7 @@ if (!class_exists("GetReportFieldsResponse", false)) {
   }
 }
 
-if (!class_exists("AuthenticationError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\AuthenticationError", false)) {
   /**
    * Errors returned when Authentication failed.
    * @package Google_Api_Ads_AdWords_v201309
@@ -1468,7 +1468,7 @@ if (!class_exists("AuthenticationError", false)) {
   }
 }
 
-if (!class_exists("AuthorizationError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\AuthorizationError", false)) {
   /**
    * Errors encountered when trying to authorize a user.
    * @package Google_Api_Ads_AdWords_v201309
@@ -1513,7 +1513,7 @@ if (!class_exists("AuthorizationError", false)) {
   }
 }
 
-if (!class_exists("BetaError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\BetaError", false)) {
   /**
    * Errors that are thrown when a Beta feature is accessed incorrectly.
    * @package Google_Api_Ads_AdWords_v201309
@@ -1558,7 +1558,7 @@ if (!class_exists("BetaError", false)) {
   }
 }
 
-if (!class_exists("ClientTermsError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ClientTermsError", false)) {
   /**
    * Error due to user not accepting the AdWords terms of service.
    * @package Google_Api_Ads_AdWords_v201309
@@ -1603,7 +1603,7 @@ if (!class_exists("ClientTermsError", false)) {
   }
 }
 
-if (!class_exists("CollectionSizeError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\CollectionSizeError", false)) {
   /**
    * Errors associated with the size of the given collection being
    * out of bounds.
@@ -1649,7 +1649,7 @@ if (!class_exists("CollectionSizeError", false)) {
   }
 }
 
-if (!class_exists("DateError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\DateError", false)) {
   /**
    * Errors associated with invalid dates and date ranges.
    * @package Google_Api_Ads_AdWords_v201309
@@ -1694,7 +1694,7 @@ if (!class_exists("DateError", false)) {
   }
 }
 
-if (!class_exists("DistinctError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\DistinctError", false)) {
   /**
    * Errors related to distinct ids or content.
    * @package Google_Api_Ads_AdWords_v201309
@@ -1739,7 +1739,7 @@ if (!class_exists("DistinctError", false)) {
   }
 }
 
-if (!class_exists("IdError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\IdError", false)) {
   /**
    * Errors associated with the ids.
    * @package Google_Api_Ads_AdWords_v201309
@@ -1784,7 +1784,7 @@ if (!class_exists("IdError", false)) {
   }
 }
 
-if (!class_exists("InternalApiError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\InternalApiError", false)) {
   /**
    * Indicates that a server-side error has occured. {@code InternalApiError}s
    * are generally not the result of an invalid request or message sent by the
@@ -1831,7 +1831,7 @@ if (!class_exists("InternalApiError", false)) {
   }
 }
 
-if (!class_exists("NotEmptyError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\NotEmptyError", false)) {
   /**
    * Errors corresponding with violation of a NOT EMPTY check.
    * @package Google_Api_Ads_AdWords_v201309
@@ -1876,7 +1876,7 @@ if (!class_exists("NotEmptyError", false)) {
   }
 }
 
-if (!class_exists("NotWhitelistedError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\NotWhitelistedError", false)) {
   /**
    * Indicates that the customer is not whitelisted for accessing the API.
    * @package Google_Api_Ads_AdWords_v201309
@@ -1921,7 +1921,7 @@ if (!class_exists("NotWhitelistedError", false)) {
   }
 }
 
-if (!class_exists("NullError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\NullError", false)) {
   /**
    * Errors associated with violation of a NOT NULL check.
    * @package Google_Api_Ads_AdWords_v201309
@@ -1966,7 +1966,7 @@ if (!class_exists("NullError", false)) {
   }
 }
 
-if (!class_exists("OperatorError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\OperatorError", false)) {
   /**
    * Errors due to the use of unsupported operations.
    * @package Google_Api_Ads_AdWords_v201309
@@ -2011,7 +2011,7 @@ if (!class_exists("OperatorError", false)) {
   }
 }
 
-if (!class_exists("QuotaCheckError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\QuotaCheckError", false)) {
   /**
    * Encapsulates the errors thrown during developer quota checks.
    * @package Google_Api_Ads_AdWords_v201309
@@ -2056,7 +2056,7 @@ if (!class_exists("QuotaCheckError", false)) {
   }
 }
 
-if (!class_exists("RangeError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\RangeError", false)) {
   /**
    * A list of all errors associated with the Range constraint.
    * @package Google_Api_Ads_AdWords_v201309
@@ -2101,7 +2101,7 @@ if (!class_exists("RangeError", false)) {
   }
 }
 
-if (!class_exists("RateExceededError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\RateExceededError", false)) {
   /**
    * Signals that a call failed because a measured rate exceeded.
    * @package Google_Api_Ads_AdWords_v201309
@@ -2167,7 +2167,7 @@ if (!class_exists("RateExceededError", false)) {
   }
 }
 
-if (!class_exists("ReadOnlyError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ReadOnlyError", false)) {
   /**
    * Errors from attempting to write to read-only fields.
    * @package Google_Api_Ads_AdWords_v201309
@@ -2212,7 +2212,7 @@ if (!class_exists("ReadOnlyError", false)) {
   }
 }
 
-if (!class_exists("RejectedError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\RejectedError", false)) {
   /**
    * Indicates that a field was rejected due to compatibility issues.
    * @package Google_Api_Ads_AdWords_v201309
@@ -2257,7 +2257,7 @@ if (!class_exists("RejectedError", false)) {
   }
 }
 
-if (!class_exists("ReportDefinitionError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ReportDefinitionError", false)) {
   /**
    * Encapsulates the errors that can be thrown during {@link ReportDefinition}
    * mutate operation.
@@ -2303,7 +2303,7 @@ if (!class_exists("ReportDefinitionError", false)) {
   }
 }
 
-if (!class_exists("RequestError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\RequestError", false)) {
   /**
    * Encapsulates the generic errors thrown when there's an error with user
    * request.
@@ -2349,7 +2349,7 @@ if (!class_exists("RequestError", false)) {
   }
 }
 
-if (!class_exists("RequiredError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\RequiredError", false)) {
   /**
    * Errors due to missing required field.
    * @package Google_Api_Ads_AdWords_v201309
@@ -2394,7 +2394,7 @@ if (!class_exists("RequiredError", false)) {
   }
 }
 
-if (!class_exists("SizeLimitError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\SizeLimitError", false)) {
   /**
    * Indicates that the number of entries in the request or response exceeds the system limit.
    * @package Google_Api_Ads_AdWords_v201309
@@ -2439,7 +2439,7 @@ if (!class_exists("SizeLimitError", false)) {
   }
 }
 
-if (!class_exists("StringLengthError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\StringLengthError", false)) {
   /**
    * Errors associated with the length of the given string being
    * out of bounds.
@@ -2485,7 +2485,7 @@ if (!class_exists("StringLengthError", false)) {
   }
 }
 
-if (!class_exists("DatabaseError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\DatabaseError", false)) {
   /**
    * Errors that are thrown due to a database access problem.
    * @package Google_Api_Ads_AdWords_v201309
@@ -2530,7 +2530,7 @@ if (!class_exists("DatabaseError", false)) {
   }
 }
 
-if (!class_exists("ApiException", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ApiException", false)) {
   /**
    * Exception class for holding a list of service errors.
    * @package Google_Api_Ads_AdWords_v201309
@@ -2579,7 +2579,7 @@ if (!class_exists("ReportDefinitionService", false)) {
    * @package Google_Api_Ads_AdWords_v201309
    * @subpackage v201309
    */
-  class ReportDefinitionService extends AdWordsSoapClient {
+  class ReportDefinitionService extends Google_Api_Ads_AdWords_v201309\Google_Api_Ads_AdWords_Lib_AdWordsSoapClient {
 
     const SERVICE_NAME = "ReportDefinitionService";
     const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201309";
@@ -2596,64 +2596,64 @@ if (!class_exists("ReportDefinitionService", false)) {
      * @var array
      */
     public static $classmap = array(
-      "AuthenticationError" => "AuthenticationError",
-      "AuthorizationError" => "AuthorizationError",
-      "BetaError" => "BetaError",
-      "ClientTermsError" => "ClientTermsError",
-      "CollectionSizeError" => "CollectionSizeError",
-      "DateError" => "DateError",
-      "DistinctError" => "DistinctError",
-      "EnumValuePair" => "EnumValuePair",
-      "IdError" => "IdError",
-      "InternalApiError" => "InternalApiError",
-      "NotEmptyError" => "NotEmptyError",
-      "NotWhitelistedError" => "NotWhitelistedError",
-      "NullError" => "NullError",
-      "OperatorError" => "OperatorError",
-      "QuotaCheckError" => "QuotaCheckError",
-      "RangeError" => "RangeError",
-      "RateExceededError" => "RateExceededError",
-      "ReadOnlyError" => "ReadOnlyError",
-      "RejectedError" => "RejectedError",
-      "ReportDefinitionError" => "ReportDefinitionError",
-      "ReportDefinitionField" => "ReportDefinitionField",
-      "RequestError" => "RequestError",
-      "RequiredError" => "RequiredError",
-      "SizeLimitError" => "SizeLimitError",
-      "SoapHeader" => "SoapRequestHeader",
-      "SoapResponseHeader" => "SoapResponseHeader",
-      "StringLengthError" => "StringLengthError",
-      "DatabaseError" => "DatabaseError",
-      "ApiError" => "ApiError",
-      "ApiException" => "ApiException",
-      "ApplicationException" => "ApplicationException",
-      "AuthenticationError.Reason" => "AuthenticationErrorReason",
-      "AuthorizationError.Reason" => "AuthorizationErrorReason",
-      "BetaError.Reason" => "BetaErrorReason",
-      "ClientTermsError.Reason" => "ClientTermsErrorReason",
-      "CollectionSizeError.Reason" => "CollectionSizeErrorReason",
-      "DatabaseError.Reason" => "DatabaseErrorReason",
-      "DateError.Reason" => "DateErrorReason",
-      "DistinctError.Reason" => "DistinctErrorReason",
-      "IdError.Reason" => "IdErrorReason",
-      "InternalApiError.Reason" => "InternalApiErrorReason",
-      "NotEmptyError.Reason" => "NotEmptyErrorReason",
-      "NotWhitelistedError.Reason" => "NotWhitelistedErrorReason",
-      "NullError.Reason" => "NullErrorReason",
-      "OperatorError.Reason" => "OperatorErrorReason",
-      "QuotaCheckError.Reason" => "QuotaCheckErrorReason",
-      "RangeError.Reason" => "RangeErrorReason",
-      "RateExceededError.Reason" => "RateExceededErrorReason",
-      "ReadOnlyError.Reason" => "ReadOnlyErrorReason",
-      "RejectedError.Reason" => "RejectedErrorReason",
-      "ReportDefinition.ReportType" => "ReportDefinitionReportType",
-      "ReportDefinitionError.Reason" => "ReportDefinitionErrorReason",
-      "RequestError.Reason" => "RequestErrorReason",
-      "RequiredError.Reason" => "RequiredErrorReason",
-      "SizeLimitError.Reason" => "SizeLimitErrorReason",
-      "StringLengthError.Reason" => "StringLengthErrorReason",
-      "getReportFields" => "GetReportFields",
-      "getReportFieldsResponse" => "GetReportFieldsResponse",
+      "AuthenticationError" => "Google_Api_Ads_AdWords_v201309\\AuthenticationError",
+      "AuthorizationError" => "Google_Api_Ads_AdWords_v201309\\AuthorizationError",
+      "BetaError" => "Google_Api_Ads_AdWords_v201309\\BetaError",
+      "ClientTermsError" => "Google_Api_Ads_AdWords_v201309\\ClientTermsError",
+      "CollectionSizeError" => "Google_Api_Ads_AdWords_v201309\\CollectionSizeError",
+      "DateError" => "Google_Api_Ads_AdWords_v201309\\DateError",
+      "DistinctError" => "Google_Api_Ads_AdWords_v201309\\DistinctError",
+      "EnumValuePair" => "Google_Api_Ads_AdWords_v201309\\EnumValuePair",
+      "IdError" => "Google_Api_Ads_AdWords_v201309\\IdError",
+      "InternalApiError" => "Google_Api_Ads_AdWords_v201309\\InternalApiError",
+      "NotEmptyError" => "Google_Api_Ads_AdWords_v201309\\NotEmptyError",
+      "NotWhitelistedError" => "Google_Api_Ads_AdWords_v201309\\NotWhitelistedError",
+      "NullError" => "Google_Api_Ads_AdWords_v201309\\NullError",
+      "OperatorError" => "Google_Api_Ads_AdWords_v201309\\OperatorError",
+      "QuotaCheckError" => "Google_Api_Ads_AdWords_v201309\\QuotaCheckError",
+      "RangeError" => "Google_Api_Ads_AdWords_v201309\\RangeError",
+      "RateExceededError" => "Google_Api_Ads_AdWords_v201309\\RateExceededError",
+      "ReadOnlyError" => "Google_Api_Ads_AdWords_v201309\\ReadOnlyError",
+      "RejectedError" => "Google_Api_Ads_AdWords_v201309\\RejectedError",
+      "ReportDefinitionError" => "Google_Api_Ads_AdWords_v201309\\ReportDefinitionError",
+      "ReportDefinitionField" => "Google_Api_Ads_AdWords_v201309\\ReportDefinitionField",
+      "RequestError" => "Google_Api_Ads_AdWords_v201309\\RequestError",
+      "RequiredError" => "Google_Api_Ads_AdWords_v201309\\RequiredError",
+      "SizeLimitError" => "Google_Api_Ads_AdWords_v201309\\SizeLimitError",
+      "SoapHeader" => "Google_Api_Ads_AdWords_v201309\\SoapRequestHeader",
+      "SoapResponseHeader" => "Google_Api_Ads_AdWords_v201309\\SoapResponseHeader",
+      "StringLengthError" => "Google_Api_Ads_AdWords_v201309\\StringLengthError",
+      "DatabaseError" => "Google_Api_Ads_AdWords_v201309\\DatabaseError",
+      "ApiError" => "Google_Api_Ads_AdWords_v201309\\ApiError",
+      "ApiException" => "Google_Api_Ads_AdWords_v201309\\ApiException",
+      "ApplicationException" => "Google_Api_Ads_AdWords_v201309\\ApplicationException",
+      "AuthenticationError.Reason" => "Google_Api_Ads_AdWords_v201309\\AuthenticationErrorReason",
+      "AuthorizationError.Reason" => "Google_Api_Ads_AdWords_v201309\\AuthorizationErrorReason",
+      "BetaError.Reason" => "Google_Api_Ads_AdWords_v201309\\BetaErrorReason",
+      "ClientTermsError.Reason" => "Google_Api_Ads_AdWords_v201309\\ClientTermsErrorReason",
+      "CollectionSizeError.Reason" => "Google_Api_Ads_AdWords_v201309\\CollectionSizeErrorReason",
+      "DatabaseError.Reason" => "Google_Api_Ads_AdWords_v201309\\DatabaseErrorReason",
+      "DateError.Reason" => "Google_Api_Ads_AdWords_v201309\\DateErrorReason",
+      "DistinctError.Reason" => "Google_Api_Ads_AdWords_v201309\\DistinctErrorReason",
+      "IdError.Reason" => "Google_Api_Ads_AdWords_v201309\\IdErrorReason",
+      "InternalApiError.Reason" => "Google_Api_Ads_AdWords_v201309\\InternalApiErrorReason",
+      "NotEmptyError.Reason" => "Google_Api_Ads_AdWords_v201309\\NotEmptyErrorReason",
+      "NotWhitelistedError.Reason" => "Google_Api_Ads_AdWords_v201309\\NotWhitelistedErrorReason",
+      "NullError.Reason" => "Google_Api_Ads_AdWords_v201309\\NullErrorReason",
+      "OperatorError.Reason" => "Google_Api_Ads_AdWords_v201309\\OperatorErrorReason",
+      "QuotaCheckError.Reason" => "Google_Api_Ads_AdWords_v201309\\QuotaCheckErrorReason",
+      "RangeError.Reason" => "Google_Api_Ads_AdWords_v201309\\RangeErrorReason",
+      "RateExceededError.Reason" => "Google_Api_Ads_AdWords_v201309\\RateExceededErrorReason",
+      "ReadOnlyError.Reason" => "Google_Api_Ads_AdWords_v201309\\ReadOnlyErrorReason",
+      "RejectedError.Reason" => "Google_Api_Ads_AdWords_v201309\\RejectedErrorReason",
+      "ReportDefinition.ReportType" => "Google_Api_Ads_AdWords_v201309\\ReportDefinitionReportType",
+      "ReportDefinitionError.Reason" => "Google_Api_Ads_AdWords_v201309\\ReportDefinitionErrorReason",
+      "RequestError.Reason" => "Google_Api_Ads_AdWords_v201309\\RequestErrorReason",
+      "RequiredError.Reason" => "Google_Api_Ads_AdWords_v201309\\RequiredErrorReason",
+      "SizeLimitError.Reason" => "Google_Api_Ads_AdWords_v201309\\SizeLimitErrorReason",
+      "StringLengthError.Reason" => "Google_Api_Ads_AdWords_v201309\\StringLengthErrorReason",
+      "getReportFields" => "Google_Api_Ads_AdWords_v201309\\GetReportFields",
+      "getReportFieldsResponse" => "Google_Api_Ads_AdWords_v201309\\GetReportFieldsResponse",
     );
 
 
@@ -2689,3 +2689,4 @@ if (!class_exists("ReportDefinitionService", false)) {
     }
   }
 }
+

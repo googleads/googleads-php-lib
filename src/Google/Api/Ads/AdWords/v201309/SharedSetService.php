@@ -26,11 +26,11 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
+namespace Google_Api_Ads_AdWords_v201309;
 
-/** Required classes. **/
 require_once "Google/Api/Ads/AdWords/Lib/AdWordsSoapClient.php";
 
-if (!class_exists("DateRange", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\DateRange", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -77,7 +77,7 @@ if (!class_exists("DateRange", false)) {
   }
 }
 
-if (!class_exists("OrderBy", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\OrderBy", false)) {
   /**
    * <span class="constraint Required">This field is required and should not be {@code null}.</span>
    * @package Google_Api_Ads_AdWords_v201309
@@ -124,7 +124,7 @@ if (!class_exists("OrderBy", false)) {
   }
 }
 
-if (!class_exists("Paging", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\Paging", false)) {
   /**
    * <span class="constraint InRange">This field must be greater than or equal to 0.</span>
    * @package Google_Api_Ads_AdWords_v201309
@@ -171,7 +171,7 @@ if (!class_exists("Paging", false)) {
   }
 }
 
-if (!class_exists("Predicate", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\Predicate", false)) {
   /**
    * <span class="constraint Required">This field is required and should not be {@code null}.</span>
    * @package Google_Api_Ads_AdWords_v201309
@@ -225,7 +225,7 @@ if (!class_exists("Predicate", false)) {
   }
 }
 
-if (!class_exists("SharedSet", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\SharedSet", false)) {
   /**
    * <span class="constraint Selectable">This field can be selected using the value "SharedSetId".</span><span class="constraint Filterable">This field can be filtered on.</span>
    * <span class="constraint Required">This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET, REMOVE.</span>
@@ -301,7 +301,7 @@ if (!class_exists("SharedSet", false)) {
   }
 }
 
-if (!class_exists("SoapRequestHeader", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\SoapRequestHeader", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -376,7 +376,7 @@ if (!class_exists("SoapRequestHeader", false)) {
   }
 }
 
-if (!class_exists("SoapResponseHeader", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\SoapResponseHeader", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -444,7 +444,7 @@ if (!class_exists("SoapResponseHeader", false)) {
   }
 }
 
-if (!class_exists("ListReturnValue", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ListReturnValue", false)) {
   /**
    * Indicates that this instance is a subtype of ListReturnValue.
    * Although this field is returned in the response, it is ignored on input
@@ -518,7 +518,7 @@ if (!class_exists("ListReturnValue", false)) {
   }
 }
 
-if (!class_exists("Operation", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\Operation", false)) {
   /**
    * <span class="constraint Required">This field is required and should not be {@code null}.</span>
    * @package Google_Api_Ads_AdWords_v201309
@@ -597,7 +597,7 @@ if (!class_exists("Operation", false)) {
   }
 }
 
-if (!class_exists("Page", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\Page", false)) {
   /**
    * Indicates that this instance is a subtype of Page.
    * Although this field is returned in the response, it is ignored on input
@@ -678,7 +678,7 @@ if (!class_exists("Page", false)) {
   }
 }
 
-if (!class_exists("ApiError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ApiError", false)) {
   /**
    * Indicates that this instance is a subtype of ApiError.
    * Although this field is returned in the response, it is ignored on input
@@ -773,7 +773,7 @@ if (!class_exists("ApiError", false)) {
   }
 }
 
-if (!class_exists("ApplicationException", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ApplicationException", false)) {
   /**
    * Indicates that this instance is a subtype of ApplicationException.
    * Although this field is returned in the response, it is ignored on input
@@ -854,7 +854,7 @@ if (!class_exists("ApplicationException", false)) {
   }
 }
 
-if (!class_exists("Selector", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\Selector", false)) {
   /**
    * <span class="constraint ContentsDistinct">This field must contain distinct elements.</span>
    * <span class="constraint ContentsNotNull">This field must not contain {@code null} elements.</span>
@@ -924,7 +924,7 @@ if (!class_exists("Selector", false)) {
   }
 }
 
-if (!class_exists("AuthenticationErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\AuthenticationErrorReason", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -957,7 +957,7 @@ if (!class_exists("AuthenticationErrorReason", false)) {
   }
 }
 
-if (!class_exists("AuthorizationErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\AuthorizationErrorReason", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -990,7 +990,7 @@ if (!class_exists("AuthorizationErrorReason", false)) {
   }
 }
 
-if (!class_exists("BetaErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\BetaErrorReason", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -1023,7 +1023,7 @@ if (!class_exists("BetaErrorReason", false)) {
   }
 }
 
-if (!class_exists("ClientTermsErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ClientTermsErrorReason", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -1056,7 +1056,7 @@ if (!class_exists("ClientTermsErrorReason", false)) {
   }
 }
 
-if (!class_exists("DatabaseErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\DatabaseErrorReason", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -1089,7 +1089,7 @@ if (!class_exists("DatabaseErrorReason", false)) {
   }
 }
 
-if (!class_exists("DistinctErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\DistinctErrorReason", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -1122,7 +1122,7 @@ if (!class_exists("DistinctErrorReason", false)) {
   }
 }
 
-if (!class_exists("EntityCountLimitExceededReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\EntityCountLimitExceededReason", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -1155,7 +1155,7 @@ if (!class_exists("EntityCountLimitExceededReason", false)) {
   }
 }
 
-if (!class_exists("EntityNotFoundReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\EntityNotFoundReason", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -1188,7 +1188,7 @@ if (!class_exists("EntityNotFoundReason", false)) {
   }
 }
 
-if (!class_exists("IdErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\IdErrorReason", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -1221,7 +1221,7 @@ if (!class_exists("IdErrorReason", false)) {
   }
 }
 
-if (!class_exists("InternalApiErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\InternalApiErrorReason", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -1254,7 +1254,7 @@ if (!class_exists("InternalApiErrorReason", false)) {
   }
 }
 
-if (!class_exists("NewEntityCreationErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\NewEntityCreationErrorReason", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -1287,7 +1287,7 @@ if (!class_exists("NewEntityCreationErrorReason", false)) {
   }
 }
 
-if (!class_exists("NotEmptyErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\NotEmptyErrorReason", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -1320,7 +1320,7 @@ if (!class_exists("NotEmptyErrorReason", false)) {
   }
 }
 
-if (!class_exists("NotWhitelistedErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\NotWhitelistedErrorReason", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -1353,7 +1353,7 @@ if (!class_exists("NotWhitelistedErrorReason", false)) {
   }
 }
 
-if (!class_exists("NullErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\NullErrorReason", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -1386,7 +1386,7 @@ if (!class_exists("NullErrorReason", false)) {
   }
 }
 
-if (!class_exists("OperationAccessDeniedReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\OperationAccessDeniedReason", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -1419,7 +1419,7 @@ if (!class_exists("OperationAccessDeniedReason", false)) {
   }
 }
 
-if (!class_exists("Operator", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\Operator", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -1452,7 +1452,7 @@ if (!class_exists("Operator", false)) {
   }
 }
 
-if (!class_exists("OperatorErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\OperatorErrorReason", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -1485,7 +1485,7 @@ if (!class_exists("OperatorErrorReason", false)) {
   }
 }
 
-if (!class_exists("PagingErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\PagingErrorReason", false)) {
   /**
    * <span class="constraint Rejected">Used for return value only. An enumeration could not be processed, typically due to incompatibility with your WSDL version.</span>
    * @package Google_Api_Ads_AdWords_v201309
@@ -1518,7 +1518,7 @@ if (!class_exists("PagingErrorReason", false)) {
   }
 }
 
-if (!class_exists("PredicateOperator", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\PredicateOperator", false)) {
   /**
    * <span class="constraint Rejected">Used for return value only. An enumeration could not be processed, typically due to incompatibility with your WSDL version.</span>
    * @package Google_Api_Ads_AdWords_v201309
@@ -1551,7 +1551,7 @@ if (!class_exists("PredicateOperator", false)) {
   }
 }
 
-if (!class_exists("QuotaCheckErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\QuotaCheckErrorReason", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -1584,7 +1584,7 @@ if (!class_exists("QuotaCheckErrorReason", false)) {
   }
 }
 
-if (!class_exists("RangeErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\RangeErrorReason", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -1617,7 +1617,7 @@ if (!class_exists("RangeErrorReason", false)) {
   }
 }
 
-if (!class_exists("RateExceededErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\RateExceededErrorReason", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -1650,7 +1650,7 @@ if (!class_exists("RateExceededErrorReason", false)) {
   }
 }
 
-if (!class_exists("ReadOnlyErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ReadOnlyErrorReason", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -1683,7 +1683,7 @@ if (!class_exists("ReadOnlyErrorReason", false)) {
   }
 }
 
-if (!class_exists("RejectedErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\RejectedErrorReason", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -1716,7 +1716,7 @@ if (!class_exists("RejectedErrorReason", false)) {
   }
 }
 
-if (!class_exists("RequestErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\RequestErrorReason", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -1749,7 +1749,7 @@ if (!class_exists("RequestErrorReason", false)) {
   }
 }
 
-if (!class_exists("RequiredErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\RequiredErrorReason", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -1782,7 +1782,7 @@ if (!class_exists("RequiredErrorReason", false)) {
   }
 }
 
-if (!class_exists("SharedSetStatus", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\SharedSetStatus", false)) {
   /**
    * <span class="constraint Rejected">Used for return value only. An enumeration could not be processed, typically due to incompatibility with your WSDL version.</span>
    * @package Google_Api_Ads_AdWords_v201309
@@ -1815,7 +1815,7 @@ if (!class_exists("SharedSetStatus", false)) {
   }
 }
 
-if (!class_exists("SharedSetErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\SharedSetErrorReason", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -1848,7 +1848,7 @@ if (!class_exists("SharedSetErrorReason", false)) {
   }
 }
 
-if (!class_exists("SharedSetType", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\SharedSetType", false)) {
   /**
    * <span class="constraint Rejected">Used for return value only. An enumeration could not be processed, typically due to incompatibility with your WSDL version.</span>
    * @package Google_Api_Ads_AdWords_v201309
@@ -1881,7 +1881,7 @@ if (!class_exists("SharedSetType", false)) {
   }
 }
 
-if (!class_exists("SizeLimitErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\SizeLimitErrorReason", false)) {
   /**
    * <span class="constraint Rejected">Used for return value only. An enumeration could not be processed, typically due to incompatibility with your WSDL version.</span>
    * @package Google_Api_Ads_AdWords_v201309
@@ -1914,7 +1914,7 @@ if (!class_exists("SizeLimitErrorReason", false)) {
   }
 }
 
-if (!class_exists("SortOrder", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\SortOrder", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -1947,7 +1947,7 @@ if (!class_exists("SortOrder", false)) {
   }
 }
 
-if (!class_exists("StringLengthErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\StringLengthErrorReason", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -1980,7 +1980,7 @@ if (!class_exists("StringLengthErrorReason", false)) {
   }
 }
 
-if (!class_exists("SharedSetServiceGet", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\SharedSetServiceGet", false)) {
   /**
    * <span class="constraint Required">This field is required and should not be {@code null}.</span>
    * 
@@ -2028,7 +2028,7 @@ if (!class_exists("SharedSetServiceGet", false)) {
   }
 }
 
-if (!class_exists("SharedSetServiceGetResponse", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\SharedSetServiceGetResponse", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -2068,7 +2068,7 @@ if (!class_exists("SharedSetServiceGetResponse", false)) {
   }
 }
 
-if (!class_exists("SharedSetServiceMutate", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\SharedSetServiceMutate", false)) {
   /**
    * <span class="constraint ContentsNotNull">This field must not contain {@code null} elements.</span>
    * <span class="constraint NotEmpty">This field must contain at least one element.</span>
@@ -2117,7 +2117,7 @@ if (!class_exists("SharedSetServiceMutate", false)) {
   }
 }
 
-if (!class_exists("SharedSetServiceMutateResponse", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\SharedSetServiceMutateResponse", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -2157,7 +2157,7 @@ if (!class_exists("SharedSetServiceMutateResponse", false)) {
   }
 }
 
-if (!class_exists("AuthenticationError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\AuthenticationError", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -2202,7 +2202,7 @@ if (!class_exists("AuthenticationError", false)) {
   }
 }
 
-if (!class_exists("AuthorizationError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\AuthorizationError", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -2247,7 +2247,7 @@ if (!class_exists("AuthorizationError", false)) {
   }
 }
 
-if (!class_exists("BetaError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\BetaError", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -2292,7 +2292,7 @@ if (!class_exists("BetaError", false)) {
   }
 }
 
-if (!class_exists("ClientTermsError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ClientTermsError", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -2337,7 +2337,7 @@ if (!class_exists("ClientTermsError", false)) {
   }
 }
 
-if (!class_exists("DistinctError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\DistinctError", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -2382,7 +2382,7 @@ if (!class_exists("DistinctError", false)) {
   }
 }
 
-if (!class_exists("EntityCountLimitExceeded", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\EntityCountLimitExceeded", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -2455,7 +2455,7 @@ if (!class_exists("EntityCountLimitExceeded", false)) {
   }
 }
 
-if (!class_exists("EntityNotFound", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\EntityNotFound", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -2500,7 +2500,7 @@ if (!class_exists("EntityNotFound", false)) {
   }
 }
 
-if (!class_exists("IdError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\IdError", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -2545,7 +2545,7 @@ if (!class_exists("IdError", false)) {
   }
 }
 
-if (!class_exists("InternalApiError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\InternalApiError", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -2590,7 +2590,7 @@ if (!class_exists("InternalApiError", false)) {
   }
 }
 
-if (!class_exists("NewEntityCreationError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\NewEntityCreationError", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -2635,7 +2635,7 @@ if (!class_exists("NewEntityCreationError", false)) {
   }
 }
 
-if (!class_exists("NotEmptyError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\NotEmptyError", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -2680,7 +2680,7 @@ if (!class_exists("NotEmptyError", false)) {
   }
 }
 
-if (!class_exists("NotWhitelistedError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\NotWhitelistedError", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -2725,7 +2725,7 @@ if (!class_exists("NotWhitelistedError", false)) {
   }
 }
 
-if (!class_exists("NullError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\NullError", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -2770,7 +2770,7 @@ if (!class_exists("NullError", false)) {
   }
 }
 
-if (!class_exists("OperationAccessDenied", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\OperationAccessDenied", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -2815,7 +2815,7 @@ if (!class_exists("OperationAccessDenied", false)) {
   }
 }
 
-if (!class_exists("OperatorError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\OperatorError", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -2860,7 +2860,7 @@ if (!class_exists("OperatorError", false)) {
   }
 }
 
-if (!class_exists("PagingError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\PagingError", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -2905,7 +2905,7 @@ if (!class_exists("PagingError", false)) {
   }
 }
 
-if (!class_exists("QuotaCheckError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\QuotaCheckError", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -2950,7 +2950,7 @@ if (!class_exists("QuotaCheckError", false)) {
   }
 }
 
-if (!class_exists("RangeError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\RangeError", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -2995,7 +2995,7 @@ if (!class_exists("RangeError", false)) {
   }
 }
 
-if (!class_exists("RateExceededError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\RateExceededError", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -3061,7 +3061,7 @@ if (!class_exists("RateExceededError", false)) {
   }
 }
 
-if (!class_exists("ReadOnlyError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ReadOnlyError", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -3106,7 +3106,7 @@ if (!class_exists("ReadOnlyError", false)) {
   }
 }
 
-if (!class_exists("RejectedError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\RejectedError", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -3151,7 +3151,7 @@ if (!class_exists("RejectedError", false)) {
   }
 }
 
-if (!class_exists("RequestError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\RequestError", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -3196,7 +3196,7 @@ if (!class_exists("RequestError", false)) {
   }
 }
 
-if (!class_exists("RequiredError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\RequiredError", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -3241,7 +3241,7 @@ if (!class_exists("RequiredError", false)) {
   }
 }
 
-if (!class_exists("SharedSetError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\SharedSetError", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -3286,7 +3286,7 @@ if (!class_exists("SharedSetError", false)) {
   }
 }
 
-if (!class_exists("SharedSetOperation", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\SharedSetOperation", false)) {
   /**
    * <span class="constraint Required">This field is required and should not be {@code null}.</span>
    * @package Google_Api_Ads_AdWords_v201309
@@ -3329,7 +3329,7 @@ if (!class_exists("SharedSetOperation", false)) {
   }
 }
 
-if (!class_exists("SharedSetReturnValue", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\SharedSetReturnValue", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -3371,7 +3371,7 @@ if (!class_exists("SharedSetReturnValue", false)) {
   }
 }
 
-if (!class_exists("SizeLimitError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\SizeLimitError", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -3416,7 +3416,7 @@ if (!class_exists("SizeLimitError", false)) {
   }
 }
 
-if (!class_exists("StringLengthError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\StringLengthError", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -3461,7 +3461,7 @@ if (!class_exists("StringLengthError", false)) {
   }
 }
 
-if (!class_exists("DatabaseError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\DatabaseError", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -3506,7 +3506,7 @@ if (!class_exists("DatabaseError", false)) {
   }
 }
 
-if (!class_exists("NullStatsPage", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\NullStatsPage", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -3542,7 +3542,7 @@ if (!class_exists("NullStatsPage", false)) {
   }
 }
 
-if (!class_exists("ApiException", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ApiException", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -3585,7 +3585,7 @@ if (!class_exists("ApiException", false)) {
   }
 }
 
-if (!class_exists("SharedSetPage", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\SharedSetPage", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -3632,7 +3632,7 @@ if (!class_exists("SharedSetService", false)) {
    * @package Google_Api_Ads_AdWords_v201309
    * @subpackage v201309
    */
-  class SharedSetService extends AdWordsSoapClient {
+  class SharedSetService extends Google_Api_Ads_AdWords_v201309\Google_Api_Ads_AdWords_Lib_AdWordsSoapClient {
 
     const SERVICE_NAME = "SharedSetService";
     const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201309";
@@ -3649,87 +3649,87 @@ if (!class_exists("SharedSetService", false)) {
      * @var array
      */
     public static $classmap = array(
-      "AuthenticationError" => "AuthenticationError",
-      "AuthorizationError" => "AuthorizationError",
-      "BetaError" => "BetaError",
-      "ClientTermsError" => "ClientTermsError",
-      "DateRange" => "DateRange",
-      "DistinctError" => "DistinctError",
-      "EntityCountLimitExceeded" => "EntityCountLimitExceeded",
-      "EntityNotFound" => "EntityNotFound",
-      "IdError" => "IdError",
-      "InternalApiError" => "InternalApiError",
-      "NewEntityCreationError" => "NewEntityCreationError",
-      "NotEmptyError" => "NotEmptyError",
-      "NotWhitelistedError" => "NotWhitelistedError",
-      "NullError" => "NullError",
-      "OperationAccessDenied" => "OperationAccessDenied",
-      "OperatorError" => "OperatorError",
-      "OrderBy" => "OrderBy",
-      "Paging" => "Paging",
-      "PagingError" => "PagingError",
-      "Predicate" => "Predicate",
-      "QuotaCheckError" => "QuotaCheckError",
-      "RangeError" => "RangeError",
-      "RateExceededError" => "RateExceededError",
-      "ReadOnlyError" => "ReadOnlyError",
-      "RejectedError" => "RejectedError",
-      "RequestError" => "RequestError",
-      "RequiredError" => "RequiredError",
-      "SharedSet" => "SharedSet",
-      "SharedSetError" => "SharedSetError",
-      "SharedSetOperation" => "SharedSetOperation",
-      "SharedSetPage" => "SharedSetPage",
-      "SharedSetReturnValue" => "SharedSetReturnValue",
-      "SizeLimitError" => "SizeLimitError",
-      "SoapHeader" => "SoapRequestHeader",
-      "SoapResponseHeader" => "SoapResponseHeader",
-      "StringLengthError" => "StringLengthError",
-      "DatabaseError" => "DatabaseError",
-      "ListReturnValue" => "ListReturnValue",
-      "NullStatsPage" => "NullStatsPage",
-      "Operation" => "Operation",
-      "Page" => "Page",
-      "ApiError" => "ApiError",
-      "ApiException" => "ApiException",
-      "ApplicationException" => "ApplicationException",
-      "Selector" => "Selector",
-      "AuthenticationError.Reason" => "AuthenticationErrorReason",
-      "AuthorizationError.Reason" => "AuthorizationErrorReason",
-      "BetaError.Reason" => "BetaErrorReason",
-      "ClientTermsError.Reason" => "ClientTermsErrorReason",
-      "DatabaseError.Reason" => "DatabaseErrorReason",
-      "DistinctError.Reason" => "DistinctErrorReason",
-      "EntityCountLimitExceeded.Reason" => "EntityCountLimitExceededReason",
-      "EntityNotFound.Reason" => "EntityNotFoundReason",
-      "IdError.Reason" => "IdErrorReason",
-      "InternalApiError.Reason" => "InternalApiErrorReason",
-      "NewEntityCreationError.Reason" => "NewEntityCreationErrorReason",
-      "NotEmptyError.Reason" => "NotEmptyErrorReason",
-      "NotWhitelistedError.Reason" => "NotWhitelistedErrorReason",
-      "NullError.Reason" => "NullErrorReason",
-      "OperationAccessDenied.Reason" => "OperationAccessDeniedReason",
-      "Operator" => "Operator",
-      "OperatorError.Reason" => "OperatorErrorReason",
-      "PagingError.Reason" => "PagingErrorReason",
-      "Predicate.Operator" => "PredicateOperator",
-      "QuotaCheckError.Reason" => "QuotaCheckErrorReason",
-      "RangeError.Reason" => "RangeErrorReason",
-      "RateExceededError.Reason" => "RateExceededErrorReason",
-      "ReadOnlyError.Reason" => "ReadOnlyErrorReason",
-      "RejectedError.Reason" => "RejectedErrorReason",
-      "RequestError.Reason" => "RequestErrorReason",
-      "RequiredError.Reason" => "RequiredErrorReason",
-      "SharedSet.Status" => "SharedSetStatus",
-      "SharedSetError.Reason" => "SharedSetErrorReason",
-      "SharedSetType" => "SharedSetType",
-      "SizeLimitError.Reason" => "SizeLimitErrorReason",
-      "SortOrder" => "SortOrder",
-      "StringLengthError.Reason" => "StringLengthErrorReason",
-      "get" => "SharedSetServiceGet",
-      "getResponse" => "SharedSetServiceGetResponse",
-      "mutate" => "SharedSetServiceMutate",
-      "mutateResponse" => "SharedSetServiceMutateResponse",
+      "AuthenticationError" => "Google_Api_Ads_AdWords_v201309\\AuthenticationError",
+      "AuthorizationError" => "Google_Api_Ads_AdWords_v201309\\AuthorizationError",
+      "BetaError" => "Google_Api_Ads_AdWords_v201309\\BetaError",
+      "ClientTermsError" => "Google_Api_Ads_AdWords_v201309\\ClientTermsError",
+      "DateRange" => "Google_Api_Ads_AdWords_v201309\\DateRange",
+      "DistinctError" => "Google_Api_Ads_AdWords_v201309\\DistinctError",
+      "EntityCountLimitExceeded" => "Google_Api_Ads_AdWords_v201309\\EntityCountLimitExceeded",
+      "EntityNotFound" => "Google_Api_Ads_AdWords_v201309\\EntityNotFound",
+      "IdError" => "Google_Api_Ads_AdWords_v201309\\IdError",
+      "InternalApiError" => "Google_Api_Ads_AdWords_v201309\\InternalApiError",
+      "NewEntityCreationError" => "Google_Api_Ads_AdWords_v201309\\NewEntityCreationError",
+      "NotEmptyError" => "Google_Api_Ads_AdWords_v201309\\NotEmptyError",
+      "NotWhitelistedError" => "Google_Api_Ads_AdWords_v201309\\NotWhitelistedError",
+      "NullError" => "Google_Api_Ads_AdWords_v201309\\NullError",
+      "OperationAccessDenied" => "Google_Api_Ads_AdWords_v201309\\OperationAccessDenied",
+      "OperatorError" => "Google_Api_Ads_AdWords_v201309\\OperatorError",
+      "OrderBy" => "Google_Api_Ads_AdWords_v201309\\OrderBy",
+      "Paging" => "Google_Api_Ads_AdWords_v201309\\Paging",
+      "PagingError" => "Google_Api_Ads_AdWords_v201309\\PagingError",
+      "Predicate" => "Google_Api_Ads_AdWords_v201309\\Predicate",
+      "QuotaCheckError" => "Google_Api_Ads_AdWords_v201309\\QuotaCheckError",
+      "RangeError" => "Google_Api_Ads_AdWords_v201309\\RangeError",
+      "RateExceededError" => "Google_Api_Ads_AdWords_v201309\\RateExceededError",
+      "ReadOnlyError" => "Google_Api_Ads_AdWords_v201309\\ReadOnlyError",
+      "RejectedError" => "Google_Api_Ads_AdWords_v201309\\RejectedError",
+      "RequestError" => "Google_Api_Ads_AdWords_v201309\\RequestError",
+      "RequiredError" => "Google_Api_Ads_AdWords_v201309\\RequiredError",
+      "SharedSet" => "Google_Api_Ads_AdWords_v201309\\SharedSet",
+      "SharedSetError" => "Google_Api_Ads_AdWords_v201309\\SharedSetError",
+      "SharedSetOperation" => "Google_Api_Ads_AdWords_v201309\\SharedSetOperation",
+      "SharedSetPage" => "Google_Api_Ads_AdWords_v201309\\SharedSetPage",
+      "SharedSetReturnValue" => "Google_Api_Ads_AdWords_v201309\\SharedSetReturnValue",
+      "SizeLimitError" => "Google_Api_Ads_AdWords_v201309\\SizeLimitError",
+      "SoapHeader" => "Google_Api_Ads_AdWords_v201309\\SoapRequestHeader",
+      "SoapResponseHeader" => "Google_Api_Ads_AdWords_v201309\\SoapResponseHeader",
+      "StringLengthError" => "Google_Api_Ads_AdWords_v201309\\StringLengthError",
+      "DatabaseError" => "Google_Api_Ads_AdWords_v201309\\DatabaseError",
+      "ListReturnValue" => "Google_Api_Ads_AdWords_v201309\\ListReturnValue",
+      "NullStatsPage" => "Google_Api_Ads_AdWords_v201309\\NullStatsPage",
+      "Operation" => "Google_Api_Ads_AdWords_v201309\\Operation",
+      "Page" => "Google_Api_Ads_AdWords_v201309\\Page",
+      "ApiError" => "Google_Api_Ads_AdWords_v201309\\ApiError",
+      "ApiException" => "Google_Api_Ads_AdWords_v201309\\ApiException",
+      "ApplicationException" => "Google_Api_Ads_AdWords_v201309\\ApplicationException",
+      "Selector" => "Google_Api_Ads_AdWords_v201309\\Selector",
+      "AuthenticationError.Reason" => "Google_Api_Ads_AdWords_v201309\\AuthenticationErrorReason",
+      "AuthorizationError.Reason" => "Google_Api_Ads_AdWords_v201309\\AuthorizationErrorReason",
+      "BetaError.Reason" => "Google_Api_Ads_AdWords_v201309\\BetaErrorReason",
+      "ClientTermsError.Reason" => "Google_Api_Ads_AdWords_v201309\\ClientTermsErrorReason",
+      "DatabaseError.Reason" => "Google_Api_Ads_AdWords_v201309\\DatabaseErrorReason",
+      "DistinctError.Reason" => "Google_Api_Ads_AdWords_v201309\\DistinctErrorReason",
+      "EntityCountLimitExceeded.Reason" => "Google_Api_Ads_AdWords_v201309\\EntityCountLimitExceededReason",
+      "EntityNotFound.Reason" => "Google_Api_Ads_AdWords_v201309\\EntityNotFoundReason",
+      "IdError.Reason" => "Google_Api_Ads_AdWords_v201309\\IdErrorReason",
+      "InternalApiError.Reason" => "Google_Api_Ads_AdWords_v201309\\InternalApiErrorReason",
+      "NewEntityCreationError.Reason" => "Google_Api_Ads_AdWords_v201309\\NewEntityCreationErrorReason",
+      "NotEmptyError.Reason" => "Google_Api_Ads_AdWords_v201309\\NotEmptyErrorReason",
+      "NotWhitelistedError.Reason" => "Google_Api_Ads_AdWords_v201309\\NotWhitelistedErrorReason",
+      "NullError.Reason" => "Google_Api_Ads_AdWords_v201309\\NullErrorReason",
+      "OperationAccessDenied.Reason" => "Google_Api_Ads_AdWords_v201309\\OperationAccessDeniedReason",
+      "Operator" => "Google_Api_Ads_AdWords_v201309\\Operator",
+      "OperatorError.Reason" => "Google_Api_Ads_AdWords_v201309\\OperatorErrorReason",
+      "PagingError.Reason" => "Google_Api_Ads_AdWords_v201309\\PagingErrorReason",
+      "Predicate.Operator" => "Google_Api_Ads_AdWords_v201309\\PredicateOperator",
+      "QuotaCheckError.Reason" => "Google_Api_Ads_AdWords_v201309\\QuotaCheckErrorReason",
+      "RangeError.Reason" => "Google_Api_Ads_AdWords_v201309\\RangeErrorReason",
+      "RateExceededError.Reason" => "Google_Api_Ads_AdWords_v201309\\RateExceededErrorReason",
+      "ReadOnlyError.Reason" => "Google_Api_Ads_AdWords_v201309\\ReadOnlyErrorReason",
+      "RejectedError.Reason" => "Google_Api_Ads_AdWords_v201309\\RejectedErrorReason",
+      "RequestError.Reason" => "Google_Api_Ads_AdWords_v201309\\RequestErrorReason",
+      "RequiredError.Reason" => "Google_Api_Ads_AdWords_v201309\\RequiredErrorReason",
+      "SharedSet.Status" => "Google_Api_Ads_AdWords_v201309\\SharedSetStatus",
+      "SharedSetError.Reason" => "Google_Api_Ads_AdWords_v201309\\SharedSetErrorReason",
+      "SharedSetType" => "Google_Api_Ads_AdWords_v201309\\SharedSetType",
+      "SizeLimitError.Reason" => "Google_Api_Ads_AdWords_v201309\\SizeLimitErrorReason",
+      "SortOrder" => "Google_Api_Ads_AdWords_v201309\\SortOrder",
+      "StringLengthError.Reason" => "Google_Api_Ads_AdWords_v201309\\StringLengthErrorReason",
+      "get" => "Google_Api_Ads_AdWords_v201309\\SharedSetServiceGet",
+      "getResponse" => "Google_Api_Ads_AdWords_v201309\\SharedSetServiceGetResponse",
+      "mutate" => "Google_Api_Ads_AdWords_v201309\\SharedSetServiceMutate",
+      "mutateResponse" => "Google_Api_Ads_AdWords_v201309\\SharedSetServiceMutateResponse",
     );
 
 
@@ -3778,3 +3778,4 @@ if (!class_exists("SharedSetService", false)) {
     }
   }
 }
+

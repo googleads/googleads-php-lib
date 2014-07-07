@@ -26,11 +26,11 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
+namespace Google_Api_Ads_AdWords_v201309;
 
-/** Required classes. **/
 require_once "Google/Api/Ads/AdWords/Lib/AdWordsSoapClient.php";
 
-if (!class_exists("AdGroupCriterion", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\AdGroupCriterion", false)) {
   /**
    * Represents a criterion in an ad group, used with AdGroupCriterionService.
    * @package Google_Api_Ads_AdWords_v201309
@@ -130,7 +130,7 @@ if (!class_exists("AdGroupCriterion", false)) {
   }
 }
 
-if (!class_exists("AdGroupCriterionExperimentBidMultiplier", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\AdGroupCriterionExperimentBidMultiplier", false)) {
   /**
    * Bid multiplier used to modify the bid of a criterion while running
    * an experiment.
@@ -204,7 +204,7 @@ if (!class_exists("AdGroupCriterionExperimentBidMultiplier", false)) {
   }
 }
 
-if (!class_exists("ApiError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ApiError", false)) {
   /**
    * The API error base class that provides details about an error that occurred
    * while processing a service request.
@@ -301,7 +301,7 @@ if (!class_exists("ApiError", false)) {
   }
 }
 
-if (!class_exists("ApplicationException", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ApplicationException", false)) {
   /**
    * Base class for exceptions.
    * @package Google_Api_Ads_AdWords_v201309
@@ -380,7 +380,7 @@ if (!class_exists("ApplicationException", false)) {
   }
 }
 
-if (!class_exists("AuthenticationError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\AuthenticationError", false)) {
   /**
    * Errors returned when Authentication failed.
    * @package Google_Api_Ads_AdWords_v201309
@@ -425,7 +425,7 @@ if (!class_exists("AuthenticationError", false)) {
   }
 }
 
-if (!class_exists("AuthorizationError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\AuthorizationError", false)) {
   /**
    * Errors encountered when trying to authorize a user.
    * @package Google_Api_Ads_AdWords_v201309
@@ -470,7 +470,7 @@ if (!class_exists("AuthorizationError", false)) {
   }
 }
 
-if (!class_exists("BetaError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\BetaError", false)) {
   /**
    * Errors that are thrown when a Beta feature is accessed incorrectly.
    * @package Google_Api_Ads_AdWords_v201309
@@ -515,7 +515,7 @@ if (!class_exists("BetaError", false)) {
   }
 }
 
-if (!class_exists("Bid", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\Bid", false)) {
   /**
    * Represents a bid of a certain amount.
    * @package Google_Api_Ads_AdWords_v201309
@@ -555,7 +555,7 @@ if (!class_exists("Bid", false)) {
   }
 }
 
-if (!class_exists("BidMultiplier", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\BidMultiplier", false)) {
   /**
    * Represents a multiplier to modify a bid. The final value after
    * modification is represented by the multiplied bid value.
@@ -603,7 +603,7 @@ if (!class_exists("BidMultiplier", false)) {
   }
 }
 
-if (!class_exists("BiddableAdGroupCriterion", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\BiddableAdGroupCriterion", false)) {
   /**
    * A biddable (positive) criterion in an adgroup.
    * @package Google_Api_Ads_AdWords_v201309
@@ -719,7 +719,7 @@ if (!class_exists("BiddableAdGroupCriterion", false)) {
   }
 }
 
-if (!class_exists("BiddableAdGroupCriterionExperimentData", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\BiddableAdGroupCriterionExperimentData", false)) {
   /**
    * Data associated with an advertiser experiment for this {@link BiddableAdGroupCriterion}.
    * @package Google_Api_Ads_AdWords_v201309
@@ -780,7 +780,7 @@ if (!class_exists("BiddableAdGroupCriterionExperimentData", false)) {
   }
 }
 
-if (!class_exists("BiddingError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\BiddingError", false)) {
   /**
    * Represents bidding errors.
    * @package Google_Api_Ads_AdWords_v201309
@@ -825,7 +825,7 @@ if (!class_exists("BiddingError", false)) {
   }
 }
 
-if (!class_exists("BiddingErrors", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\BiddingErrors", false)) {
   /**
    * Represents error codes for bidding strategy entities.
    * @package Google_Api_Ads_AdWords_v201309
@@ -870,7 +870,7 @@ if (!class_exists("BiddingErrors", false)) {
   }
 }
 
-if (!class_exists("BiddingScheme", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\BiddingScheme", false)) {
   /**
    * Base class for all bidding schemes.
    * <span class="constraint AdxEnabled">This is disabled for AdX.</span>
@@ -943,7 +943,7 @@ if (!class_exists("BiddingScheme", false)) {
   }
 }
 
-if (!class_exists("BiddingStrategyConfiguration", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\BiddingStrategyConfiguration", false)) {
   /**
    * Encapsulates the information about bids and bidding strategies.
    * 
@@ -1035,7 +1035,7 @@ if (!class_exists("BiddingStrategyConfiguration", false)) {
   }
 }
 
-if (!class_exists("Bids", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\Bids", false)) {
   /**
    * Base class for all bids.
    * @package Google_Api_Ads_AdWords_v201309
@@ -1107,7 +1107,7 @@ if (!class_exists("Bids", false)) {
   }
 }
 
-if (!class_exists("BudgetOptimizerBiddingScheme", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\BudgetOptimizerBiddingScheme", false)) {
   /**
    * In budget optimizer, Google automatically places bids for the user based on
    * their daily/monthly budget.
@@ -1158,7 +1158,7 @@ if (!class_exists("BudgetOptimizerBiddingScheme", false)) {
   }
 }
 
-if (!class_exists("ClientTermsError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ClientTermsError", false)) {
   /**
    * Error due to user not accepting the AdWords terms of service.
    * @package Google_Api_Ads_AdWords_v201309
@@ -1203,7 +1203,7 @@ if (!class_exists("ClientTermsError", false)) {
   }
 }
 
-if (!class_exists("ComparableValue", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ComparableValue", false)) {
   /**
    * Comparable types for constructing ranges with.
    * @package Google_Api_Ads_AdWords_v201309
@@ -1275,7 +1275,7 @@ if (!class_exists("ComparableValue", false)) {
   }
 }
 
-if (!class_exists("ConversionOptimizerBiddingScheme", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ConversionOptimizerBiddingScheme", false)) {
   /**
    * Conversion optimizer bidding strategy helps you maximize your return on investment
    * (ROI) by automatically getting you the most possible conversions for your budget.
@@ -1338,7 +1338,7 @@ if (!class_exists("ConversionOptimizerBiddingScheme", false)) {
   }
 }
 
-if (!class_exists("CpaBid", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\CpaBid", false)) {
   /**
    * CPA Bids.
    * @package Google_Api_Ads_AdWords_v201309
@@ -1380,7 +1380,7 @@ if (!class_exists("CpaBid", false)) {
   }
 }
 
-if (!class_exists("CpcBid", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\CpcBid", false)) {
   /**
    * Manual click based bids.
    * @package Google_Api_Ads_AdWords_v201309
@@ -1436,7 +1436,7 @@ if (!class_exists("CpcBid", false)) {
   }
 }
 
-if (!class_exists("CpmBid", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\CpmBid", false)) {
   /**
    * Manual impression based bids.
    * @package Google_Api_Ads_AdWords_v201309
@@ -1485,7 +1485,7 @@ if (!class_exists("CpmBid", false)) {
   }
 }
 
-if (!class_exists("Criterion", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\Criterion", false)) {
   /**
    * Represents a criterion (such as a keyword, placement, or vertical).
    * <span class="constraint AdxEnabled">This is disabled for AdX when it is contained within Operators: ADD, SET.</span>
@@ -1572,7 +1572,7 @@ if (!class_exists("Criterion", false)) {
   }
 }
 
-if (!class_exists("CriterionError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\CriterionError", false)) {
   /**
    * Error class used for reporting criteria related errors.
    * @package Google_Api_Ads_AdWords_v201309
@@ -1617,7 +1617,7 @@ if (!class_exists("CriterionError", false)) {
   }
 }
 
-if (!class_exists("CriterionParameter", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\CriterionParameter", false)) {
   /**
    * Base type of criterion parameters.
    * @package Google_Api_Ads_AdWords_v201309
@@ -1689,7 +1689,7 @@ if (!class_exists("CriterionParameter", false)) {
   }
 }
 
-if (!class_exists("DatabaseError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\DatabaseError", false)) {
   /**
    * Errors that are thrown due to a database access problem.
    * @package Google_Api_Ads_AdWords_v201309
@@ -1734,7 +1734,7 @@ if (!class_exists("DatabaseError", false)) {
   }
 }
 
-if (!class_exists("DateError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\DateError", false)) {
   /**
    * Errors associated with invalid dates and date ranges.
    * @package Google_Api_Ads_AdWords_v201309
@@ -1779,7 +1779,7 @@ if (!class_exists("DateError", false)) {
   }
 }
 
-if (!class_exists("DateRange", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\DateRange", false)) {
   /**
    * Represents a range of dates that has either an upper or a lower bound.
    * The format for the date is YYYYMMDD.
@@ -1827,7 +1827,7 @@ if (!class_exists("DateRange", false)) {
   }
 }
 
-if (!class_exists("DistinctError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\DistinctError", false)) {
   /**
    * Errors related to distinct ids or content.
    * @package Google_Api_Ads_AdWords_v201309
@@ -1872,7 +1872,7 @@ if (!class_exists("DistinctError", false)) {
   }
 }
 
-if (!class_exists("EnhancedCpcBiddingScheme", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\EnhancedCpcBiddingScheme", false)) {
   /**
    * Enhanced CPC is a bidding strategy that raises your bids for clicks that seem more likely to
    * lead to a conversion and lowers them for clicks where they seem less likely.
@@ -1911,7 +1911,7 @@ if (!class_exists("EnhancedCpcBiddingScheme", false)) {
   }
 }
 
-if (!class_exists("EntityAccessDenied", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\EntityAccessDenied", false)) {
   /**
    * Reports permission problems trying to access an entity.
    * @package Google_Api_Ads_AdWords_v201309
@@ -1956,7 +1956,7 @@ if (!class_exists("EntityAccessDenied", false)) {
   }
 }
 
-if (!class_exists("EntityCountLimitExceeded", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\EntityCountLimitExceeded", false)) {
   /**
    * Signals that an entity count limit was exceeded for some level.
    * For example, too many criteria for a campaign.
@@ -2030,7 +2030,7 @@ if (!class_exists("EntityCountLimitExceeded", false)) {
   }
 }
 
-if (!class_exists("EntityNotFound", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\EntityNotFound", false)) {
   /**
    * An id did not correspond to an entity, or it referred to an entity which does not belong to the
    * customer.
@@ -2076,7 +2076,7 @@ if (!class_exists("EntityNotFound", false)) {
   }
 }
 
-if (!class_exists("ExemptionRequest", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ExemptionRequest", false)) {
   /**
    * A request to be exempted from a {@link PolicyViolationError}.
    * @package Google_Api_Ads_AdWords_v201309
@@ -2116,7 +2116,7 @@ if (!class_exists("ExemptionRequest", false)) {
   }
 }
 
-if (!class_exists("ForwardCompatibilityError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ForwardCompatibilityError", false)) {
   /**
    * A ForwardComptibilityError represents possible errors when using the forwardCompatibilityMap
    * in some of the common services.
@@ -2162,10 +2162,10 @@ if (!class_exists("ForwardCompatibilityError", false)) {
   }
 }
 
-if (!class_exists("Gender", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\Gender", false)) {
   /**
    * Represents a Gender criterion.
-   * <p>A criterion of this type can only be created using an ID. A criterion of this type is only excludable.
+   * <p>A criterion of this type can only be created using an ID. A criterion of this type can be either targeted or excluded.
    * <span class="constraint AdxEnabled">This is disabled for AdX when it is contained within Operators: ADD, SET.</span>
    * @package Google_Api_Ads_AdWords_v201309
    * @subpackage v201309
@@ -2208,7 +2208,7 @@ if (!class_exists("Gender", false)) {
   }
 }
 
-if (!class_exists("IdError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\IdError", false)) {
   /**
    * Errors associated with the ids.
    * @package Google_Api_Ads_AdWords_v201309
@@ -2253,7 +2253,7 @@ if (!class_exists("IdError", false)) {
   }
 }
 
-if (!class_exists("InternalApiError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\InternalApiError", false)) {
   /**
    * Indicates that a server-side error has occured. {@code InternalApiError}s
    * are generally not the result of an invalid request or message sent by the
@@ -2300,7 +2300,7 @@ if (!class_exists("InternalApiError", false)) {
   }
 }
 
-if (!class_exists("Keyword", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\Keyword", false)) {
   /**
    * Represents a keyword.
    * <span class="constraint AdxEnabled">This is disabled for AdX when it is contained within Operators: ADD, SET.</span>
@@ -2352,7 +2352,7 @@ if (!class_exists("Keyword", false)) {
   }
 }
 
-if (!class_exists("ListReturnValue", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ListReturnValue", false)) {
   /**
    * Base list return value type.
    * @package Google_Api_Ads_AdWords_v201309
@@ -2424,7 +2424,7 @@ if (!class_exists("ListReturnValue", false)) {
   }
 }
 
-if (!class_exists("ManualCPCAdGroupCriterionExperimentBidMultiplier", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ManualCPCAdGroupCriterionExperimentBidMultiplier", false)) {
   /**
    * AdGroupCriterion level bid multiplier used in manual CPC bidding strategies.
    * <span class="constraint AdxEnabled">This is disabled for AdX.</span>
@@ -2474,7 +2474,7 @@ if (!class_exists("ManualCPCAdGroupCriterionExperimentBidMultiplier", false)) {
   }
 }
 
-if (!class_exists("ManualCpcBiddingScheme", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ManualCpcBiddingScheme", false)) {
   /**
    * Manual click based bidding where user pays per click.
    * <span class="constraint AdxEnabled">This is disabled for AdX.</span>
@@ -2517,7 +2517,7 @@ if (!class_exists("ManualCpcBiddingScheme", false)) {
   }
 }
 
-if (!class_exists("ManualCpmBiddingScheme", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ManualCpmBiddingScheme", false)) {
   /**
    * Manual impression based bidding where user pays per thousand impressions.
    * <span class="constraint AdxEnabled">This is enabled for AdX.</span>
@@ -2553,7 +2553,7 @@ if (!class_exists("ManualCpmBiddingScheme", false)) {
   }
 }
 
-if (!class_exists("MobileAppCategory", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\MobileAppCategory", false)) {
   /**
    * Represents the mobile app category to be targeted.
    * <a href="/adwords/api/docs/appendix/mobileappcategories">View the complete list of
@@ -2607,7 +2607,7 @@ if (!class_exists("MobileAppCategory", false)) {
   }
 }
 
-if (!class_exists("MobileApplication", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\MobileApplication", false)) {
   /**
    * Represents the mobile application to be targeted.
    * <span class="constraint AdxEnabled">This is enabled for AdX.</span>
@@ -2659,7 +2659,7 @@ if (!class_exists("MobileApplication", false)) {
   }
 }
 
-if (!class_exists("Money", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\Money", false)) {
   /**
    * Represents a money amount.
    * @package Google_Api_Ads_AdWords_v201309
@@ -2701,7 +2701,7 @@ if (!class_exists("Money", false)) {
   }
 }
 
-if (!class_exists("NegativeAdGroupCriterion", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\NegativeAdGroupCriterion", false)) {
   /**
    * A negative criterion in an adgroup.
    * @package Google_Api_Ads_AdWords_v201309
@@ -2740,7 +2740,7 @@ if (!class_exists("NegativeAdGroupCriterion", false)) {
   }
 }
 
-if (!class_exists("NewEntityCreationError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\NewEntityCreationError", false)) {
   /**
    * Error associated with creation of new entities.
    * @package Google_Api_Ads_AdWords_v201309
@@ -2785,7 +2785,7 @@ if (!class_exists("NewEntityCreationError", false)) {
   }
 }
 
-if (!class_exists("NotEmptyError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\NotEmptyError", false)) {
   /**
    * Errors corresponding with violation of a NOT EMPTY check.
    * @package Google_Api_Ads_AdWords_v201309
@@ -2830,7 +2830,7 @@ if (!class_exists("NotEmptyError", false)) {
   }
 }
 
-if (!class_exists("NotWhitelistedError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\NotWhitelistedError", false)) {
   /**
    * Indicates that the customer is not whitelisted for accessing the API.
    * @package Google_Api_Ads_AdWords_v201309
@@ -2875,7 +2875,7 @@ if (!class_exists("NotWhitelistedError", false)) {
   }
 }
 
-if (!class_exists("NullError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\NullError", false)) {
   /**
    * Errors associated with violation of a NOT NULL check.
    * @package Google_Api_Ads_AdWords_v201309
@@ -2920,7 +2920,7 @@ if (!class_exists("NullError", false)) {
   }
 }
 
-if (!class_exists("NumberValue", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\NumberValue", false)) {
   /**
    * Number value types for constructing number valued ranges.
    * @package Google_Api_Ads_AdWords_v201309
@@ -2955,7 +2955,7 @@ if (!class_exists("NumberValue", false)) {
   }
 }
 
-if (!class_exists("Operation", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\Operation", false)) {
   /**
    * This represents an operation that includes an operator and an operand
    * specified type.
@@ -3035,7 +3035,7 @@ if (!class_exists("Operation", false)) {
   }
 }
 
-if (!class_exists("OperationAccessDenied", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\OperationAccessDenied", false)) {
   /**
    * Operation not permitted due to the invoked service's access policy.
    * @package Google_Api_Ads_AdWords_v201309
@@ -3080,7 +3080,7 @@ if (!class_exists("OperationAccessDenied", false)) {
   }
 }
 
-if (!class_exists("OrderBy", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\OrderBy", false)) {
   /**
    * Specifies how the resulting information should be sorted.
    * @package Google_Api_Ads_AdWords_v201309
@@ -3127,7 +3127,7 @@ if (!class_exists("OrderBy", false)) {
   }
 }
 
-if (!class_exists("Page", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\Page", false)) {
   /**
    * Contains the results from a get call.
    * @package Google_Api_Ads_AdWords_v201309
@@ -3206,7 +3206,7 @@ if (!class_exists("Page", false)) {
   }
 }
 
-if (!class_exists("PageOnePromotedBiddingScheme", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\PageOnePromotedBiddingScheme", false)) {
   /**
    * Page-One Promoted bidding scheme, which sets max cpc bids to
    * target impressions on page one or page one promoted slots on google.com.
@@ -3285,7 +3285,7 @@ if (!class_exists("PageOnePromotedBiddingScheme", false)) {
   }
 }
 
-if (!class_exists("Paging", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\Paging", false)) {
   /**
    * Specifies the page of results to return in the response. A page is specified
    * by the result position to start at and the maximum number of results to
@@ -3334,7 +3334,7 @@ if (!class_exists("Paging", false)) {
   }
 }
 
-if (!class_exists("PagingError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\PagingError", false)) {
   /**
    * Error codes for pagination.
    * See {@link com.google.ads.api.services.common.pagination.Paging}.
@@ -3380,7 +3380,7 @@ if (!class_exists("PagingError", false)) {
   }
 }
 
-if (!class_exists("PercentCpaBid", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\PercentCpaBid", false)) {
   /**
    * Percentage CPA based bidding where user pays a percent of conversions.
    * @package Google_Api_Ads_AdWords_v201309
@@ -3429,7 +3429,7 @@ if (!class_exists("PercentCpaBid", false)) {
   }
 }
 
-if (!class_exists("PercentCpaBiddingScheme", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\PercentCpaBiddingScheme", false)) {
   /**
    * Percentage CPA based bidding scheme attributes where user pays a percent of conversions.
    * This bidding strategy is available only to some advertisers.
@@ -3470,7 +3470,7 @@ if (!class_exists("PercentCpaBiddingScheme", false)) {
   }
 }
 
-if (!class_exists("Placement", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\Placement", false)) {
   /**
    * A placement used for modifying bids for sites when targeting the content
    * network.
@@ -3516,7 +3516,7 @@ if (!class_exists("Placement", false)) {
   }
 }
 
-if (!class_exists("PolicyViolationError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\PolicyViolationError", false)) {
   /**
    * Represents violations of a single policy by some text in a field.
    * 
@@ -3607,7 +3607,7 @@ if (!class_exists("PolicyViolationError", false)) {
   }
 }
 
-if (!class_exists("PolicyViolationErrorPart", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\PolicyViolationErrorPart", false)) {
   /**
    * Points to a substring within an ad field or criterion.
    * @package Google_Api_Ads_AdWords_v201309
@@ -3654,7 +3654,7 @@ if (!class_exists("PolicyViolationErrorPart", false)) {
   }
 }
 
-if (!class_exists("PolicyViolationKey", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\PolicyViolationKey", false)) {
   /**
    * Key of the violation. The key is used for referring to a violation when
    * filing an exemption request.
@@ -3702,7 +3702,7 @@ if (!class_exists("PolicyViolationKey", false)) {
   }
 }
 
-if (!class_exists("Predicate", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\Predicate", false)) {
   /**
    * Specifies how an entity (eg. adgroup, campaign, criterion, ad) should be filtered.
    * @package Google_Api_Ads_AdWords_v201309
@@ -3756,7 +3756,7 @@ if (!class_exists("Predicate", false)) {
   }
 }
 
-if (!class_exists("Product", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\Product", false)) {
   /**
    * Product targeting criteria, represents a filter for products in the
    * product feed that is defined by the advertiser. The criteria is used to
@@ -3811,7 +3811,7 @@ if (!class_exists("Product", false)) {
   }
 }
 
-if (!class_exists("ProductCondition", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ProductCondition", false)) {
   /**
    * Conditions to filter the products defined in product feed for targeting.
    * The condition is defined as operand=argument.
@@ -3859,7 +3859,7 @@ if (!class_exists("ProductCondition", false)) {
   }
 }
 
-if (!class_exists("ProductConditionOperand", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ProductConditionOperand", false)) {
   /**
    * Attribute for the product condition.
    * @package Google_Api_Ads_AdWords_v201309
@@ -3899,7 +3899,7 @@ if (!class_exists("ProductConditionOperand", false)) {
   }
 }
 
-if (!class_exists("QualityInfo", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\QualityInfo", false)) {
   /**
    * Container for criterion quality information.
    * @package Google_Api_Ads_AdWords_v201309
@@ -3960,7 +3960,7 @@ if (!class_exists("QualityInfo", false)) {
   }
 }
 
-if (!class_exists("QueryError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\QueryError", false)) {
   /**
    * A QueryError represents possible errors for query parsing and execution.
    * @package Google_Api_Ads_AdWords_v201309
@@ -4012,7 +4012,7 @@ if (!class_exists("QueryError", false)) {
   }
 }
 
-if (!class_exists("QuotaCheckError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\QuotaCheckError", false)) {
   /**
    * Encapsulates the errors thrown during developer quota checks.
    * @package Google_Api_Ads_AdWords_v201309
@@ -4057,7 +4057,7 @@ if (!class_exists("QuotaCheckError", false)) {
   }
 }
 
-if (!class_exists("RangeError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\RangeError", false)) {
   /**
    * A list of all errors associated with the Range constraint.
    * @package Google_Api_Ads_AdWords_v201309
@@ -4102,7 +4102,7 @@ if (!class_exists("RangeError", false)) {
   }
 }
 
-if (!class_exists("RateExceededError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\RateExceededError", false)) {
   /**
    * Signals that a call failed because a measured rate exceeded.
    * @package Google_Api_Ads_AdWords_v201309
@@ -4168,7 +4168,7 @@ if (!class_exists("RateExceededError", false)) {
   }
 }
 
-if (!class_exists("ReadOnlyError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ReadOnlyError", false)) {
   /**
    * Errors from attempting to write to read-only fields.
    * @package Google_Api_Ads_AdWords_v201309
@@ -4213,7 +4213,7 @@ if (!class_exists("ReadOnlyError", false)) {
   }
 }
 
-if (!class_exists("RejectedError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\RejectedError", false)) {
   /**
    * Indicates that a field was rejected due to compatibility issues.
    * @package Google_Api_Ads_AdWords_v201309
@@ -4258,7 +4258,7 @@ if (!class_exists("RejectedError", false)) {
   }
 }
 
-if (!class_exists("RequestError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\RequestError", false)) {
   /**
    * Encapsulates the generic errors thrown when there's an error with user
    * request.
@@ -4304,7 +4304,7 @@ if (!class_exists("RequestError", false)) {
   }
 }
 
-if (!class_exists("RequiredError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\RequiredError", false)) {
   /**
    * Errors due to missing required field.
    * @package Google_Api_Ads_AdWords_v201309
@@ -4349,7 +4349,7 @@ if (!class_exists("RequiredError", false)) {
   }
 }
 
-if (!class_exists("Selector", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\Selector", false)) {
   /**
    * A generic selector to specify the type of information to return.
    * @package Google_Api_Ads_AdWords_v201309
@@ -4417,7 +4417,7 @@ if (!class_exists("Selector", false)) {
   }
 }
 
-if (!class_exists("SelectorError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\SelectorError", false)) {
   /**
    * Represents possible error codes for {@link Selector}.
    * @package Google_Api_Ads_AdWords_v201309
@@ -4462,7 +4462,7 @@ if (!class_exists("SelectorError", false)) {
   }
 }
 
-if (!class_exists("SizeLimitError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\SizeLimitError", false)) {
   /**
    * Indicates that the number of entries in the request or response exceeds the system limit.
    * @package Google_Api_Ads_AdWords_v201309
@@ -4507,7 +4507,7 @@ if (!class_exists("SizeLimitError", false)) {
   }
 }
 
-if (!class_exists("SoapRequestHeader", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\SoapRequestHeader", false)) {
   /**
    * Defines the required and optional elements within the header of a SOAP request.
    * @package Google_Api_Ads_AdWords_v201309
@@ -4582,7 +4582,7 @@ if (!class_exists("SoapRequestHeader", false)) {
   }
 }
 
-if (!class_exists("SoapResponseHeader", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\SoapResponseHeader", false)) {
   /**
    * Defines the elements within the header of a SOAP response.
    * @package Google_Api_Ads_AdWords_v201309
@@ -4650,7 +4650,7 @@ if (!class_exists("SoapResponseHeader", false)) {
   }
 }
 
-if (!class_exists("StatsQueryError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\StatsQueryError", false)) {
   /**
    * Represents possible error codes when querying for stats.
    * @package Google_Api_Ads_AdWords_v201309
@@ -4695,7 +4695,7 @@ if (!class_exists("StatsQueryError", false)) {
   }
 }
 
-if (!class_exists("StringLengthError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\StringLengthError", false)) {
   /**
    * Errors associated with the length of the given string being
    * out of bounds.
@@ -4741,7 +4741,7 @@ if (!class_exists("StringLengthError", false)) {
   }
 }
 
-if (!class_exists("String_StringMapEntry", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\String_StringMapEntry", false)) {
   /**
    * This represents an entry in a map with a key of type String
    * and value of type String.
@@ -4789,7 +4789,7 @@ if (!class_exists("String_StringMapEntry", false)) {
   }
 }
 
-if (!class_exists("TargetCpaBiddingScheme", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\TargetCpaBiddingScheme", false)) {
   /**
    * Target Cpa bidding strategy helps you maximize your return on investment
    * (ROI) by automatically getting you the most possible conversions for your budget.
@@ -4842,7 +4842,7 @@ if (!class_exists("TargetCpaBiddingScheme", false)) {
   }
 }
 
-if (!class_exists("TargetSpendBiddingScheme", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\TargetSpendBiddingScheme", false)) {
   /**
    * Target Spend bidding scheme, in which Google automatically places
    * bids for the user based on their daily/monthly budget or optional
@@ -4894,7 +4894,7 @@ if (!class_exists("TargetSpendBiddingScheme", false)) {
   }
 }
 
-if (!class_exists("CriterionUserInterest", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\CriterionUserInterest", false)) {
   /**
    * User Interest represents a particular interest-based vertical to be targeted.
    * <span class="constraint AdxEnabled">This is enabled for AdX.</span>
@@ -4946,7 +4946,7 @@ if (!class_exists("CriterionUserInterest", false)) {
   }
 }
 
-if (!class_exists("CriterionUserList", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\CriterionUserList", false)) {
   /**
    * UserList - represents a user list that is defined by the advertiser to be targeted.
    * <span class="constraint AdxEnabled">This is enabled for AdX.</span>
@@ -5005,7 +5005,7 @@ if (!class_exists("CriterionUserList", false)) {
   }
 }
 
-if (!class_exists("Vertical", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\Vertical", false)) {
   /**
    * Use verticals to target or exclude placements in the Google Display Network
    * based on the category into which the placement falls (for example, "Pets &amp;
@@ -5068,7 +5068,7 @@ if (!class_exists("Vertical", false)) {
   }
 }
 
-if (!class_exists("Webpage", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\Webpage", false)) {
   /**
    * Criterion for targeting webpages of an advertiser's website. The
    * website domain name is specified at the campaign level.
@@ -5128,7 +5128,7 @@ if (!class_exists("Webpage", false)) {
   }
 }
 
-if (!class_exists("WebpageCondition", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\WebpageCondition", false)) {
   /**
    * Logical expression for targeting webpages of an advertiser's website.
    * 
@@ -5180,7 +5180,7 @@ if (!class_exists("WebpageCondition", false)) {
   }
 }
 
-if (!class_exists("WebpageParameter", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\WebpageParameter", false)) {
   /**
    * Parameter of Webpage criterion, expressed as a list of conditions, or
    * logical expressions, for targeting webpages of an advertiser's website.
@@ -5230,7 +5230,7 @@ if (!class_exists("WebpageParameter", false)) {
   }
 }
 
-if (!class_exists("AdGroupCriterionErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\AdGroupCriterionErrorReason", false)) {
   /**
    * The reasons for the target error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -5263,7 +5263,7 @@ if (!class_exists("AdGroupCriterionErrorReason", false)) {
   }
 }
 
-if (!class_exists("AdGroupCriterionLimitExceededCriteriaLimitType", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\AdGroupCriterionLimitExceededCriteriaLimitType", false)) {
   /**
    * The entity type that exceeded the limit.
    * @package Google_Api_Ads_AdWords_v201309
@@ -5296,7 +5296,7 @@ if (!class_exists("AdGroupCriterionLimitExceededCriteriaLimitType", false)) {
   }
 }
 
-if (!class_exists("AdxErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\AdxErrorReason", false)) {
   /**
    * The reasons for the AdX error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -5329,7 +5329,7 @@ if (!class_exists("AdxErrorReason", false)) {
   }
 }
 
-if (!class_exists("AgeRangeAgeRangeType", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\AgeRangeAgeRangeType", false)) {
   /**
    * <span class="constraint Rejected">Used for return value only. An enumeration could not be processed, typically due to incompatibility with your WSDL version.</span>
    * @package Google_Api_Ads_AdWords_v201309
@@ -5362,7 +5362,7 @@ if (!class_exists("AgeRangeAgeRangeType", false)) {
   }
 }
 
-if (!class_exists("ApprovalStatus", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ApprovalStatus", false)) {
   /**
    * Approval status for the criterion.
    * Note: there are more states involved but we only expose two to users.
@@ -5396,7 +5396,7 @@ if (!class_exists("ApprovalStatus", false)) {
   }
 }
 
-if (!class_exists("AuthenticationErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\AuthenticationErrorReason", false)) {
   /**
    * The single reason for the authentication failure.
    * @package Google_Api_Ads_AdWords_v201309
@@ -5429,7 +5429,7 @@ if (!class_exists("AuthenticationErrorReason", false)) {
   }
 }
 
-if (!class_exists("AuthorizationErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\AuthorizationErrorReason", false)) {
   /**
    * The reasons for the database error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -5462,7 +5462,7 @@ if (!class_exists("AuthorizationErrorReason", false)) {
   }
 }
 
-if (!class_exists("BetaErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\BetaErrorReason", false)) {
   /**
    * The reasons for the beta error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -5495,7 +5495,7 @@ if (!class_exists("BetaErrorReason", false)) {
   }
 }
 
-if (!class_exists("BidSource", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\BidSource", false)) {
   /**
    * Indicate where a criterion's bid came from: criterion or the adgroup it
    * belongs to.
@@ -5529,7 +5529,7 @@ if (!class_exists("BidSource", false)) {
   }
 }
 
-if (!class_exists("BiddingErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\BiddingErrorReason", false)) {
   /**
    * Reason for bidding error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -5562,7 +5562,7 @@ if (!class_exists("BiddingErrorReason", false)) {
   }
 }
 
-if (!class_exists("BiddingErrorsReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\BiddingErrorsReason", false)) {
   /**
    * Bidding strategy cannot override ad group or campaign bidding strategy.
    * @package Google_Api_Ads_AdWords_v201309
@@ -5595,7 +5595,7 @@ if (!class_exists("BiddingErrorsReason", false)) {
   }
 }
 
-if (!class_exists("BiddingStrategySource", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\BiddingStrategySource", false)) {
   /**
    * Indicates where bidding strategy came from: campaign, adgroup or criterion.
    * @package Google_Api_Ads_AdWords_v201309
@@ -5628,7 +5628,7 @@ if (!class_exists("BiddingStrategySource", false)) {
   }
 }
 
-if (!class_exists("BiddingStrategyType", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\BiddingStrategyType", false)) {
   /**
    * The bidding strategy type.
    * @package Google_Api_Ads_AdWords_v201309
@@ -5661,7 +5661,7 @@ if (!class_exists("BiddingStrategyType", false)) {
   }
 }
 
-if (!class_exists("ClientTermsErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ClientTermsErrorReason", false)) {
   /**
    * Enums for the various reasons an error can be thrown as a result of
    * ClientTerms violation.
@@ -5695,7 +5695,7 @@ if (!class_exists("ClientTermsErrorReason", false)) {
   }
 }
 
-if (!class_exists("ConversionOptimizerBiddingSchemeBidType", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ConversionOptimizerBiddingSchemeBidType", false)) {
   /**
    * Average cost-per-acquisition (targetCPA) bid type.
    * @package Google_Api_Ads_AdWords_v201309
@@ -5728,7 +5728,7 @@ if (!class_exists("ConversionOptimizerBiddingSchemeBidType", false)) {
   }
 }
 
-if (!class_exists("ConversionOptimizerBiddingSchemePricingMode", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ConversionOptimizerBiddingSchemePricingMode", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -5761,7 +5761,7 @@ if (!class_exists("ConversionOptimizerBiddingSchemePricingMode", false)) {
   }
 }
 
-if (!class_exists("CriterionType", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\CriterionType", false)) {
   /**
    * The types of criteria.
    * @package Google_Api_Ads_AdWords_v201309
@@ -5794,7 +5794,7 @@ if (!class_exists("CriterionType", false)) {
   }
 }
 
-if (!class_exists("CriterionErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\CriterionErrorReason", false)) {
   /**
    * Concrete type of criterion is required for ADD and SET operations.
    * @package Google_Api_Ads_AdWords_v201309
@@ -5827,7 +5827,7 @@ if (!class_exists("CriterionErrorReason", false)) {
   }
 }
 
-if (!class_exists("CriterionUse", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\CriterionUse", false)) {
   /**
    * The way a criterion is used - biddable or negative.
    * @package Google_Api_Ads_AdWords_v201309
@@ -5860,7 +5860,7 @@ if (!class_exists("CriterionUse", false)) {
   }
 }
 
-if (!class_exists("DatabaseErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\DatabaseErrorReason", false)) {
   /**
    * The reasons for the database error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -5893,7 +5893,7 @@ if (!class_exists("DatabaseErrorReason", false)) {
   }
 }
 
-if (!class_exists("DateErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\DateErrorReason", false)) {
   /**
    * The reasons for the target error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -5926,7 +5926,7 @@ if (!class_exists("DateErrorReason", false)) {
   }
 }
 
-if (!class_exists("DistinctErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\DistinctErrorReason", false)) {
   /**
    * The reasons for the validation error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -5959,7 +5959,7 @@ if (!class_exists("DistinctErrorReason", false)) {
   }
 }
 
-if (!class_exists("EntityAccessDeniedReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\EntityAccessDeniedReason", false)) {
   /**
    * User did not have read access.
    * @package Google_Api_Ads_AdWords_v201309
@@ -5992,7 +5992,7 @@ if (!class_exists("EntityAccessDeniedReason", false)) {
   }
 }
 
-if (!class_exists("EntityCountLimitExceededReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\EntityCountLimitExceededReason", false)) {
   /**
    * Limits at various levels of the account.
    * @package Google_Api_Ads_AdWords_v201309
@@ -6025,7 +6025,7 @@ if (!class_exists("EntityCountLimitExceededReason", false)) {
   }
 }
 
-if (!class_exists("EntityNotFoundReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\EntityNotFoundReason", false)) {
   /**
    * The specified id refered to an entity which either doesn't exist or is not accessible to the
    * customer. e.g. campaign belongs to another customer.
@@ -6059,7 +6059,7 @@ if (!class_exists("EntityNotFoundReason", false)) {
   }
 }
 
-if (!class_exists("ExperimentDataStatus", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ExperimentDataStatus", false)) {
   /**
    * Status of the experimental change associated with an entity.
    * @package Google_Api_Ads_AdWords_v201309
@@ -6092,7 +6092,7 @@ if (!class_exists("ExperimentDataStatus", false)) {
   }
 }
 
-if (!class_exists("ExperimentDeltaStatus", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ExperimentDeltaStatus", false)) {
   /**
    * Status of an entity denoting its type of experimental change in a campaign.
    * @package Google_Api_Ads_AdWords_v201309
@@ -6125,7 +6125,7 @@ if (!class_exists("ExperimentDeltaStatus", false)) {
   }
 }
 
-if (!class_exists("ForwardCompatibilityErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ForwardCompatibilityErrorReason", false)) {
   /**
    * The reason for the error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -6158,7 +6158,7 @@ if (!class_exists("ForwardCompatibilityErrorReason", false)) {
   }
 }
 
-if (!class_exists("GenderGenderType", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\GenderGenderType", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -6191,7 +6191,7 @@ if (!class_exists("GenderGenderType", false)) {
   }
 }
 
-if (!class_exists("IdErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\IdErrorReason", false)) {
   /**
    * The reasons for the target error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -6224,7 +6224,7 @@ if (!class_exists("IdErrorReason", false)) {
   }
 }
 
-if (!class_exists("InternalApiErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\InternalApiErrorReason", false)) {
   /**
    * The single reason for the internal API error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -6257,7 +6257,7 @@ if (!class_exists("InternalApiErrorReason", false)) {
   }
 }
 
-if (!class_exists("KeywordMatchType", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\KeywordMatchType", false)) {
   /**
    * Match type of a keyword. i.e. the way we match a keyword string with
    * search queries.
@@ -6291,7 +6291,7 @@ if (!class_exists("KeywordMatchType", false)) {
   }
 }
 
-if (!class_exists("MultiplierSource", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\MultiplierSource", false)) {
   /**
    * Denotes whether the bid multiplier is derived from the adgroup
    * or the criterion
@@ -6325,7 +6325,7 @@ if (!class_exists("MultiplierSource", false)) {
   }
 }
 
-if (!class_exists("NewEntityCreationErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\NewEntityCreationErrorReason", false)) {
   /**
    * Do not set the id field while creating new entities.
    * @package Google_Api_Ads_AdWords_v201309
@@ -6358,7 +6358,7 @@ if (!class_exists("NewEntityCreationErrorReason", false)) {
   }
 }
 
-if (!class_exists("NotEmptyErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\NotEmptyErrorReason", false)) {
   /**
    * The reasons for the validation error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -6391,7 +6391,7 @@ if (!class_exists("NotEmptyErrorReason", false)) {
   }
 }
 
-if (!class_exists("NotWhitelistedErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\NotWhitelistedErrorReason", false)) {
   /**
    * The single reason for the whitelist error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -6424,7 +6424,7 @@ if (!class_exists("NotWhitelistedErrorReason", false)) {
   }
 }
 
-if (!class_exists("NullErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\NullErrorReason", false)) {
   /**
    * The reasons for the validation error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -6457,7 +6457,7 @@ if (!class_exists("NullErrorReason", false)) {
   }
 }
 
-if (!class_exists("OperationAccessDeniedReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\OperationAccessDeniedReason", false)) {
   /**
    * The reasons for the operation access error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -6490,7 +6490,7 @@ if (!class_exists("OperationAccessDeniedReason", false)) {
   }
 }
 
-if (!class_exists("Operator", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\Operator", false)) {
   /**
    * This represents an operator that may be presented to an adsapi service.
    * @package Google_Api_Ads_AdWords_v201309
@@ -6523,9 +6523,9 @@ if (!class_exists("Operator", false)) {
   }
 }
 
-if (!class_exists("PageOnePromotedBiddingSchemeStrategyGoal", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\PageOnePromotedBiddingSchemeStrategyGoal", false)) {
   /**
-   * 
+   * First page on google.com.
    * @package Google_Api_Ads_AdWords_v201309
    * @subpackage v201309
    */
@@ -6556,7 +6556,7 @@ if (!class_exists("PageOnePromotedBiddingSchemeStrategyGoal", false)) {
   }
 }
 
-if (!class_exists("PagingErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\PagingErrorReason", false)) {
   /**
    * The reasons for errors when using pagination.
    * @package Google_Api_Ads_AdWords_v201309
@@ -6589,7 +6589,7 @@ if (!class_exists("PagingErrorReason", false)) {
   }
 }
 
-if (!class_exists("PredicateOperator", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\PredicateOperator", false)) {
   /**
    * Defines the valid set of operators.
    * @package Google_Api_Ads_AdWords_v201309
@@ -6622,7 +6622,7 @@ if (!class_exists("PredicateOperator", false)) {
   }
 }
 
-if (!class_exists("QueryErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\QueryErrorReason", false)) {
   /**
    * The reason for the query error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -6655,7 +6655,7 @@ if (!class_exists("QueryErrorReason", false)) {
   }
 }
 
-if (!class_exists("QuotaCheckErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\QuotaCheckErrorReason", false)) {
   /**
    * Enums for all the reasons an error can be thrown to the user during
    * billing quota checks.
@@ -6689,7 +6689,7 @@ if (!class_exists("QuotaCheckErrorReason", false)) {
   }
 }
 
-if (!class_exists("RangeErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\RangeErrorReason", false)) {
   /**
    * The reasons for the target error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -6722,7 +6722,7 @@ if (!class_exists("RangeErrorReason", false)) {
   }
 }
 
-if (!class_exists("RateExceededErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\RateExceededErrorReason", false)) {
   /**
    * The reason for the rate exceeded error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -6755,7 +6755,7 @@ if (!class_exists("RateExceededErrorReason", false)) {
   }
 }
 
-if (!class_exists("ReadOnlyErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ReadOnlyErrorReason", false)) {
   /**
    * The reasons for the target error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -6788,7 +6788,7 @@ if (!class_exists("ReadOnlyErrorReason", false)) {
   }
 }
 
-if (!class_exists("RejectedErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\RejectedErrorReason", false)) {
   /**
    * The reasons for the target error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -6821,7 +6821,7 @@ if (!class_exists("RejectedErrorReason", false)) {
   }
 }
 
-if (!class_exists("RequestErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\RequestErrorReason", false)) {
   /**
    * Error reason is unknown.
    * @package Google_Api_Ads_AdWords_v201309
@@ -6854,7 +6854,7 @@ if (!class_exists("RequestErrorReason", false)) {
   }
 }
 
-if (!class_exists("RequiredErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\RequiredErrorReason", false)) {
   /**
    * The reasons for the target error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -6887,7 +6887,7 @@ if (!class_exists("RequiredErrorReason", false)) {
   }
 }
 
-if (!class_exists("SelectorErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\SelectorErrorReason", false)) {
   /**
    * The reasons for the target error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -6920,7 +6920,7 @@ if (!class_exists("SelectorErrorReason", false)) {
   }
 }
 
-if (!class_exists("SizeLimitErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\SizeLimitErrorReason", false)) {
   /**
    * The reasons for Ad Scheduling errors.
    * @package Google_Api_Ads_AdWords_v201309
@@ -6953,7 +6953,7 @@ if (!class_exists("SizeLimitErrorReason", false)) {
   }
 }
 
-if (!class_exists("SortOrder", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\SortOrder", false)) {
   /**
    * Possible orders of sorting.
    * @package Google_Api_Ads_AdWords_v201309
@@ -6986,7 +6986,7 @@ if (!class_exists("SortOrder", false)) {
   }
 }
 
-if (!class_exists("StatsQueryErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\StatsQueryErrorReason", false)) {
   /**
    * The reasons for errors when querying for stats.
    * @package Google_Api_Ads_AdWords_v201309
@@ -7019,7 +7019,7 @@ if (!class_exists("StatsQueryErrorReason", false)) {
   }
 }
 
-if (!class_exists("StringLengthErrorReason", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\StringLengthErrorReason", false)) {
   /**
    * The reasons for the target error.
    * @package Google_Api_Ads_AdWords_v201309
@@ -7052,7 +7052,7 @@ if (!class_exists("StringLengthErrorReason", false)) {
   }
 }
 
-if (!class_exists("SystemServingStatus", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\SystemServingStatus", false)) {
   /**
    * Reported by system to reflect the criterion's serving status.
    * @package Google_Api_Ads_AdWords_v201309
@@ -7085,7 +7085,7 @@ if (!class_exists("SystemServingStatus", false)) {
   }
 }
 
-if (!class_exists("CriterionUserListMembershipStatus", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\CriterionUserListMembershipStatus", false)) {
   /**
    * Membership status of the user list.
    * @package Google_Api_Ads_AdWords_v201309
@@ -7118,7 +7118,7 @@ if (!class_exists("CriterionUserListMembershipStatus", false)) {
   }
 }
 
-if (!class_exists("UserStatus", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\UserStatus", false)) {
   /**
    * Specified by user to pause or unpause a criterion.
    * @package Google_Api_Ads_AdWords_v201309
@@ -7151,7 +7151,7 @@ if (!class_exists("UserStatus", false)) {
   }
 }
 
-if (!class_exists("WebpageConditionOperand", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\WebpageConditionOperand", false)) {
   /**
    * Operand value of {@link WebpageCondition}.
    * @package Google_Api_Ads_AdWords_v201309
@@ -7184,7 +7184,7 @@ if (!class_exists("WebpageConditionOperand", false)) {
   }
 }
 
-if (!class_exists("AdGroupCriterionServiceGet", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\AdGroupCriterionServiceGet", false)) {
   /**
    * <span class="constraint Required">This field is required and should not be {@code null}.</span>
    * 
@@ -7232,7 +7232,7 @@ if (!class_exists("AdGroupCriterionServiceGet", false)) {
   }
 }
 
-if (!class_exists("AdGroupCriterionServiceGetResponse", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\AdGroupCriterionServiceGetResponse", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -7272,7 +7272,7 @@ if (!class_exists("AdGroupCriterionServiceGetResponse", false)) {
   }
 }
 
-if (!class_exists("AdGroupCriterionServiceMutate", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\AdGroupCriterionServiceMutate", false)) {
   /**
    * <span class="constraint ContentsNotNull">This field must not contain {@code null} elements.</span>
    * <span class="constraint DistinctIds">Elements in this field must have distinct IDs for following {@link Operator}s : SET, REMOVE.</span>
@@ -7325,7 +7325,7 @@ if (!class_exists("AdGroupCriterionServiceMutate", false)) {
   }
 }
 
-if (!class_exists("AdGroupCriterionServiceMutateResponse", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\AdGroupCriterionServiceMutateResponse", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -7365,7 +7365,7 @@ if (!class_exists("AdGroupCriterionServiceMutateResponse", false)) {
   }
 }
 
-if (!class_exists("Query", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\Query", false)) {
   /**
    * <span class="constraint Required">This field is required and should not be {@code null}.</span>
    * 
@@ -7413,7 +7413,7 @@ if (!class_exists("Query", false)) {
   }
 }
 
-if (!class_exists("QueryResponse", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\QueryResponse", false)) {
   /**
    * 
    * @package Google_Api_Ads_AdWords_v201309
@@ -7453,7 +7453,7 @@ if (!class_exists("QueryResponse", false)) {
   }
 }
 
-if (!class_exists("AdGroupCriterionError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\AdGroupCriterionError", false)) {
   /**
    * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201309
@@ -7498,7 +7498,7 @@ if (!class_exists("AdGroupCriterionError", false)) {
   }
 }
 
-if (!class_exists("AdGroupCriterionLimitExceeded", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\AdGroupCriterionLimitExceeded", false)) {
   /**
    * Signals that too many criteria were added to some ad group.
    * @package Google_Api_Ads_AdWords_v201309
@@ -7544,7 +7544,7 @@ if (!class_exists("AdGroupCriterionLimitExceeded", false)) {
   }
 }
 
-if (!class_exists("AdGroupCriterionOperation", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\AdGroupCriterionOperation", false)) {
   /**
    * Operation (add, remove and set) on adgroup criteria.
    * @package Google_Api_Ads_AdWords_v201309
@@ -7594,7 +7594,7 @@ if (!class_exists("AdGroupCriterionOperation", false)) {
   }
 }
 
-if (!class_exists("AdGroupCriterionPage", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\AdGroupCriterionPage", false)) {
   /**
    * Contains a subset of adgroup criteria resulting from a
    * {@link AdGroupCriterionService#get} call.
@@ -7638,7 +7638,7 @@ if (!class_exists("AdGroupCriterionPage", false)) {
   }
 }
 
-if (!class_exists("AdGroupCriterionReturnValue", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\AdGroupCriterionReturnValue", false)) {
   /**
    * A container for return values from the AdGroupCriterionService.
    * @package Google_Api_Ads_AdWords_v201309
@@ -7687,7 +7687,7 @@ if (!class_exists("AdGroupCriterionReturnValue", false)) {
   }
 }
 
-if (!class_exists("AdxError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\AdxError", false)) {
   /**
    * Errors that are thrown when a non-AdX feature is accessed by an AdX customer.
    * @package Google_Api_Ads_AdWords_v201309
@@ -7732,10 +7732,10 @@ if (!class_exists("AdxError", false)) {
   }
 }
 
-if (!class_exists("AgeRange", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\AgeRange", false)) {
   /**
    * Represents an Age Range criterion.
-   * <p>A criterion of this type can only be created using an ID. A criterion of this type is only excludable.
+   * <p>A criterion of this type can only be created using an ID. A criterion of this type can be either targeted or excluded.
    * <span class="constraint AdxEnabled">This is disabled for AdX when it is contained within Operators: ADD, SET.</span>
    * @package Google_Api_Ads_AdWords_v201309
    * @subpackage v201309
@@ -7778,7 +7778,7 @@ if (!class_exists("AgeRange", false)) {
   }
 }
 
-if (!class_exists("ApiException", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\ApiException", false)) {
   /**
    * Exception class for holding a list of service errors.
    * @package Google_Api_Ads_AdWords_v201309
@@ -7821,7 +7821,7 @@ if (!class_exists("ApiException", false)) {
   }
 }
 
-if (!class_exists("CriterionPolicyError", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\CriterionPolicyError", false)) {
   /**
    * Contains the policy violations for a single BiddableAdGroupCriterion.
    * @package Google_Api_Ads_AdWords_v201309
@@ -7861,7 +7861,7 @@ if (!class_exists("CriterionPolicyError", false)) {
   }
 }
 
-if (!class_exists("DoubleValue", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\DoubleValue", false)) {
   /**
    * Number value type for constructing double valued ranges.
    * @package Google_Api_Ads_AdWords_v201309
@@ -7902,7 +7902,7 @@ if (!class_exists("DoubleValue", false)) {
   }
 }
 
-if (!class_exists("LongValue", false)) {
+if (!class_exists("Google_Api_Ads_AdWords_v201309\\LongValue", false)) {
   /**
    * Number value type for constructing long valued ranges.
    * @package Google_Api_Ads_AdWords_v201309
@@ -7949,7 +7949,7 @@ if (!class_exists("AdGroupCriterionService", false)) {
    * @package Google_Api_Ads_AdWords_v201309
    * @subpackage v201309
    */
-  class AdGroupCriterionService extends AdWordsSoapClient {
+  class AdGroupCriterionService extends Google_Api_Ads_AdWords_v201309\Google_Api_Ads_AdWords_Lib_AdWordsSoapClient {
 
     const SERVICE_NAME = "AdGroupCriterionService";
     const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201309";
@@ -7966,177 +7966,177 @@ if (!class_exists("AdGroupCriterionService", false)) {
      * @var array
      */
     public static $classmap = array(
-      "AdGroupCriterion" => "AdGroupCriterion",
-      "AdGroupCriterionError" => "AdGroupCriterionError",
-      "AdGroupCriterionExperimentBidMultiplier" => "AdGroupCriterionExperimentBidMultiplier",
-      "AdGroupCriterionLimitExceeded" => "AdGroupCriterionLimitExceeded",
-      "AdGroupCriterionOperation" => "AdGroupCriterionOperation",
-      "AdGroupCriterionPage" => "AdGroupCriterionPage",
-      "AdGroupCriterionReturnValue" => "AdGroupCriterionReturnValue",
-      "AdxError" => "AdxError",
-      "AgeRange" => "AgeRange",
-      "ApiError" => "ApiError",
-      "ApiException" => "ApiException",
-      "ApplicationException" => "ApplicationException",
-      "AuthenticationError" => "AuthenticationError",
-      "AuthorizationError" => "AuthorizationError",
-      "BetaError" => "BetaError",
-      "Bid" => "Bid",
-      "BidMultiplier" => "BidMultiplier",
-      "BiddableAdGroupCriterion" => "BiddableAdGroupCriterion",
-      "BiddableAdGroupCriterionExperimentData" => "BiddableAdGroupCriterionExperimentData",
-      "BiddingError" => "BiddingError",
-      "BiddingErrors" => "BiddingErrors",
-      "BiddingScheme" => "BiddingScheme",
-      "BiddingStrategyConfiguration" => "BiddingStrategyConfiguration",
-      "Bids" => "Bids",
-      "BudgetOptimizerBiddingScheme" => "BudgetOptimizerBiddingScheme",
-      "ClientTermsError" => "ClientTermsError",
-      "ComparableValue" => "ComparableValue",
-      "ConversionOptimizerBiddingScheme" => "ConversionOptimizerBiddingScheme",
-      "CpaBid" => "CpaBid",
-      "CpcBid" => "CpcBid",
-      "CpmBid" => "CpmBid",
-      "Criterion" => "Criterion",
-      "CriterionError" => "CriterionError",
-      "CriterionParameter" => "CriterionParameter",
-      "CriterionPolicyError" => "CriterionPolicyError",
-      "DatabaseError" => "DatabaseError",
-      "DateError" => "DateError",
-      "DateRange" => "DateRange",
-      "DistinctError" => "DistinctError",
-      "DoubleValue" => "DoubleValue",
-      "EnhancedCpcBiddingScheme" => "EnhancedCpcBiddingScheme",
-      "EntityAccessDenied" => "EntityAccessDenied",
-      "EntityCountLimitExceeded" => "EntityCountLimitExceeded",
-      "EntityNotFound" => "EntityNotFound",
-      "ExemptionRequest" => "ExemptionRequest",
-      "ForwardCompatibilityError" => "ForwardCompatibilityError",
-      "Gender" => "Gender",
-      "IdError" => "IdError",
-      "InternalApiError" => "InternalApiError",
-      "Keyword" => "Keyword",
-      "ListReturnValue" => "ListReturnValue",
-      "LongValue" => "LongValue",
-      "ManualCPCAdGroupCriterionExperimentBidMultiplier" => "ManualCPCAdGroupCriterionExperimentBidMultiplier",
-      "ManualCpcBiddingScheme" => "ManualCpcBiddingScheme",
-      "ManualCpmBiddingScheme" => "ManualCpmBiddingScheme",
-      "MobileAppCategory" => "MobileAppCategory",
-      "MobileApplication" => "MobileApplication",
-      "Money" => "Money",
-      "NegativeAdGroupCriterion" => "NegativeAdGroupCriterion",
-      "NewEntityCreationError" => "NewEntityCreationError",
-      "NotEmptyError" => "NotEmptyError",
-      "NotWhitelistedError" => "NotWhitelistedError",
-      "NullError" => "NullError",
-      "NumberValue" => "NumberValue",
-      "Operation" => "Operation",
-      "OperationAccessDenied" => "OperationAccessDenied",
-      "OrderBy" => "OrderBy",
-      "Page" => "Page",
-      "PageOnePromotedBiddingScheme" => "PageOnePromotedBiddingScheme",
-      "Paging" => "Paging",
-      "PagingError" => "PagingError",
-      "PercentCpaBid" => "PercentCpaBid",
-      "PercentCpaBiddingScheme" => "PercentCpaBiddingScheme",
-      "Placement" => "Placement",
-      "PolicyViolationError" => "PolicyViolationError",
-      "PolicyViolationError.Part" => "PolicyViolationErrorPart",
-      "PolicyViolationKey" => "PolicyViolationKey",
-      "Predicate" => "Predicate",
-      "Product" => "Product",
-      "ProductCondition" => "ProductCondition",
-      "ProductConditionOperand" => "ProductConditionOperand",
-      "QualityInfo" => "QualityInfo",
-      "QueryError" => "QueryError",
-      "QuotaCheckError" => "QuotaCheckError",
-      "RangeError" => "RangeError",
-      "RateExceededError" => "RateExceededError",
-      "ReadOnlyError" => "ReadOnlyError",
-      "RejectedError" => "RejectedError",
-      "RequestError" => "RequestError",
-      "RequiredError" => "RequiredError",
-      "Selector" => "Selector",
-      "SelectorError" => "SelectorError",
-      "SizeLimitError" => "SizeLimitError",
-      "SoapHeader" => "SoapRequestHeader",
-      "SoapResponseHeader" => "SoapResponseHeader",
-      "StatsQueryError" => "StatsQueryError",
-      "StringLengthError" => "StringLengthError",
-      "String_StringMapEntry" => "String_StringMapEntry",
-      "TargetCpaBiddingScheme" => "TargetCpaBiddingScheme",
-      "TargetSpendBiddingScheme" => "TargetSpendBiddingScheme",
-      "CriterionUserInterest" => "CriterionUserInterest",
-      "CriterionUserList" => "CriterionUserList",
-      "Vertical" => "Vertical",
-      "Webpage" => "Webpage",
-      "WebpageCondition" => "WebpageCondition",
-      "WebpageParameter" => "WebpageParameter",
-      "AdGroupCriterionError.Reason" => "AdGroupCriterionErrorReason",
-      "AdGroupCriterionLimitExceeded.CriteriaLimitType" => "AdGroupCriterionLimitExceededCriteriaLimitType",
-      "AdxError.Reason" => "AdxErrorReason",
-      "AgeRange.AgeRangeType" => "AgeRangeAgeRangeType",
-      "ApprovalStatus" => "ApprovalStatus",
-      "AuthenticationError.Reason" => "AuthenticationErrorReason",
-      "AuthorizationError.Reason" => "AuthorizationErrorReason",
-      "BetaError.Reason" => "BetaErrorReason",
-      "BidSource" => "BidSource",
-      "BiddingError.Reason" => "BiddingErrorReason",
-      "BiddingErrors.Reason" => "BiddingErrorsReason",
-      "BiddingStrategySource" => "BiddingStrategySource",
-      "BiddingStrategyType" => "BiddingStrategyType",
-      "ClientTermsError.Reason" => "ClientTermsErrorReason",
-      "ConversionOptimizerBiddingScheme.BidType" => "ConversionOptimizerBiddingSchemeBidType",
-      "ConversionOptimizerBiddingScheme.PricingMode" => "ConversionOptimizerBiddingSchemePricingMode",
-      "Criterion.Type" => "CriterionType",
-      "CriterionError.Reason" => "CriterionErrorReason",
-      "CriterionUse" => "CriterionUse",
-      "DatabaseError.Reason" => "DatabaseErrorReason",
-      "DateError.Reason" => "DateErrorReason",
-      "DistinctError.Reason" => "DistinctErrorReason",
-      "EntityAccessDenied.Reason" => "EntityAccessDeniedReason",
-      "EntityCountLimitExceeded.Reason" => "EntityCountLimitExceededReason",
-      "EntityNotFound.Reason" => "EntityNotFoundReason",
-      "ExperimentDataStatus" => "ExperimentDataStatus",
-      "ExperimentDeltaStatus" => "ExperimentDeltaStatus",
-      "ForwardCompatibilityError.Reason" => "ForwardCompatibilityErrorReason",
-      "Gender.GenderType" => "GenderGenderType",
-      "IdError.Reason" => "IdErrorReason",
-      "InternalApiError.Reason" => "InternalApiErrorReason",
-      "KeywordMatchType" => "KeywordMatchType",
-      "MultiplierSource" => "MultiplierSource",
-      "NewEntityCreationError.Reason" => "NewEntityCreationErrorReason",
-      "NotEmptyError.Reason" => "NotEmptyErrorReason",
-      "NotWhitelistedError.Reason" => "NotWhitelistedErrorReason",
-      "NullError.Reason" => "NullErrorReason",
-      "OperationAccessDenied.Reason" => "OperationAccessDeniedReason",
-      "Operator" => "Operator",
-      "PageOnePromotedBiddingScheme.StrategyGoal" => "PageOnePromotedBiddingSchemeStrategyGoal",
-      "PagingError.Reason" => "PagingErrorReason",
-      "Predicate.Operator" => "PredicateOperator",
-      "QueryError.Reason" => "QueryErrorReason",
-      "QuotaCheckError.Reason" => "QuotaCheckErrorReason",
-      "RangeError.Reason" => "RangeErrorReason",
-      "RateExceededError.Reason" => "RateExceededErrorReason",
-      "ReadOnlyError.Reason" => "ReadOnlyErrorReason",
-      "RejectedError.Reason" => "RejectedErrorReason",
-      "RequestError.Reason" => "RequestErrorReason",
-      "RequiredError.Reason" => "RequiredErrorReason",
-      "SelectorError.Reason" => "SelectorErrorReason",
-      "SizeLimitError.Reason" => "SizeLimitErrorReason",
-      "SortOrder" => "SortOrder",
-      "StatsQueryError.Reason" => "StatsQueryErrorReason",
-      "StringLengthError.Reason" => "StringLengthErrorReason",
-      "SystemServingStatus" => "SystemServingStatus",
-      "CriterionUserList.MembershipStatus" => "CriterionUserListMembershipStatus",
-      "UserStatus" => "UserStatus",
-      "WebpageConditionOperand" => "WebpageConditionOperand",
-      "get" => "AdGroupCriterionServiceGet",
-      "getResponse" => "AdGroupCriterionServiceGetResponse",
-      "mutate" => "AdGroupCriterionServiceMutate",
-      "mutateResponse" => "AdGroupCriterionServiceMutateResponse",
-      "query" => "Query",
-      "queryResponse" => "QueryResponse",
+      "AdGroupCriterion" => "Google_Api_Ads_AdWords_v201309\\AdGroupCriterion",
+      "AdGroupCriterionError" => "Google_Api_Ads_AdWords_v201309\\AdGroupCriterionError",
+      "AdGroupCriterionExperimentBidMultiplier" => "Google_Api_Ads_AdWords_v201309\\AdGroupCriterionExperimentBidMultiplier",
+      "AdGroupCriterionLimitExceeded" => "Google_Api_Ads_AdWords_v201309\\AdGroupCriterionLimitExceeded",
+      "AdGroupCriterionOperation" => "Google_Api_Ads_AdWords_v201309\\AdGroupCriterionOperation",
+      "AdGroupCriterionPage" => "Google_Api_Ads_AdWords_v201309\\AdGroupCriterionPage",
+      "AdGroupCriterionReturnValue" => "Google_Api_Ads_AdWords_v201309\\AdGroupCriterionReturnValue",
+      "AdxError" => "Google_Api_Ads_AdWords_v201309\\AdxError",
+      "AgeRange" => "Google_Api_Ads_AdWords_v201309\\AgeRange",
+      "ApiError" => "Google_Api_Ads_AdWords_v201309\\ApiError",
+      "ApiException" => "Google_Api_Ads_AdWords_v201309\\ApiException",
+      "ApplicationException" => "Google_Api_Ads_AdWords_v201309\\ApplicationException",
+      "AuthenticationError" => "Google_Api_Ads_AdWords_v201309\\AuthenticationError",
+      "AuthorizationError" => "Google_Api_Ads_AdWords_v201309\\AuthorizationError",
+      "BetaError" => "Google_Api_Ads_AdWords_v201309\\BetaError",
+      "Bid" => "Google_Api_Ads_AdWords_v201309\\Bid",
+      "BidMultiplier" => "Google_Api_Ads_AdWords_v201309\\BidMultiplier",
+      "BiddableAdGroupCriterion" => "Google_Api_Ads_AdWords_v201309\\BiddableAdGroupCriterion",
+      "BiddableAdGroupCriterionExperimentData" => "Google_Api_Ads_AdWords_v201309\\BiddableAdGroupCriterionExperimentData",
+      "BiddingError" => "Google_Api_Ads_AdWords_v201309\\BiddingError",
+      "BiddingErrors" => "Google_Api_Ads_AdWords_v201309\\BiddingErrors",
+      "BiddingScheme" => "Google_Api_Ads_AdWords_v201309\\BiddingScheme",
+      "BiddingStrategyConfiguration" => "Google_Api_Ads_AdWords_v201309\\BiddingStrategyConfiguration",
+      "Bids" => "Google_Api_Ads_AdWords_v201309\\Bids",
+      "BudgetOptimizerBiddingScheme" => "Google_Api_Ads_AdWords_v201309\\BudgetOptimizerBiddingScheme",
+      "ClientTermsError" => "Google_Api_Ads_AdWords_v201309\\ClientTermsError",
+      "ComparableValue" => "Google_Api_Ads_AdWords_v201309\\ComparableValue",
+      "ConversionOptimizerBiddingScheme" => "Google_Api_Ads_AdWords_v201309\\ConversionOptimizerBiddingScheme",
+      "CpaBid" => "Google_Api_Ads_AdWords_v201309\\CpaBid",
+      "CpcBid" => "Google_Api_Ads_AdWords_v201309\\CpcBid",
+      "CpmBid" => "Google_Api_Ads_AdWords_v201309\\CpmBid",
+      "Criterion" => "Google_Api_Ads_AdWords_v201309\\Criterion",
+      "CriterionError" => "Google_Api_Ads_AdWords_v201309\\CriterionError",
+      "CriterionParameter" => "Google_Api_Ads_AdWords_v201309\\CriterionParameter",
+      "CriterionPolicyError" => "Google_Api_Ads_AdWords_v201309\\CriterionPolicyError",
+      "DatabaseError" => "Google_Api_Ads_AdWords_v201309\\DatabaseError",
+      "DateError" => "Google_Api_Ads_AdWords_v201309\\DateError",
+      "DateRange" => "Google_Api_Ads_AdWords_v201309\\DateRange",
+      "DistinctError" => "Google_Api_Ads_AdWords_v201309\\DistinctError",
+      "DoubleValue" => "Google_Api_Ads_AdWords_v201309\\DoubleValue",
+      "EnhancedCpcBiddingScheme" => "Google_Api_Ads_AdWords_v201309\\EnhancedCpcBiddingScheme",
+      "EntityAccessDenied" => "Google_Api_Ads_AdWords_v201309\\EntityAccessDenied",
+      "EntityCountLimitExceeded" => "Google_Api_Ads_AdWords_v201309\\EntityCountLimitExceeded",
+      "EntityNotFound" => "Google_Api_Ads_AdWords_v201309\\EntityNotFound",
+      "ExemptionRequest" => "Google_Api_Ads_AdWords_v201309\\ExemptionRequest",
+      "ForwardCompatibilityError" => "Google_Api_Ads_AdWords_v201309\\ForwardCompatibilityError",
+      "Gender" => "Google_Api_Ads_AdWords_v201309\\Gender",
+      "IdError" => "Google_Api_Ads_AdWords_v201309\\IdError",
+      "InternalApiError" => "Google_Api_Ads_AdWords_v201309\\InternalApiError",
+      "Keyword" => "Google_Api_Ads_AdWords_v201309\\Keyword",
+      "ListReturnValue" => "Google_Api_Ads_AdWords_v201309\\ListReturnValue",
+      "LongValue" => "Google_Api_Ads_AdWords_v201309\\LongValue",
+      "ManualCPCAdGroupCriterionExperimentBidMultiplier" => "Google_Api_Ads_AdWords_v201309\\ManualCPCAdGroupCriterionExperimentBidMultiplier",
+      "ManualCpcBiddingScheme" => "Google_Api_Ads_AdWords_v201309\\ManualCpcBiddingScheme",
+      "ManualCpmBiddingScheme" => "Google_Api_Ads_AdWords_v201309\\ManualCpmBiddingScheme",
+      "MobileAppCategory" => "Google_Api_Ads_AdWords_v201309\\MobileAppCategory",
+      "MobileApplication" => "Google_Api_Ads_AdWords_v201309\\MobileApplication",
+      "Money" => "Google_Api_Ads_AdWords_v201309\\Money",
+      "NegativeAdGroupCriterion" => "Google_Api_Ads_AdWords_v201309\\NegativeAdGroupCriterion",
+      "NewEntityCreationError" => "Google_Api_Ads_AdWords_v201309\\NewEntityCreationError",
+      "NotEmptyError" => "Google_Api_Ads_AdWords_v201309\\NotEmptyError",
+      "NotWhitelistedError" => "Google_Api_Ads_AdWords_v201309\\NotWhitelistedError",
+      "NullError" => "Google_Api_Ads_AdWords_v201309\\NullError",
+      "NumberValue" => "Google_Api_Ads_AdWords_v201309\\NumberValue",
+      "Operation" => "Google_Api_Ads_AdWords_v201309\\Operation",
+      "OperationAccessDenied" => "Google_Api_Ads_AdWords_v201309\\OperationAccessDenied",
+      "OrderBy" => "Google_Api_Ads_AdWords_v201309\\OrderBy",
+      "Page" => "Google_Api_Ads_AdWords_v201309\\Page",
+      "PageOnePromotedBiddingScheme" => "Google_Api_Ads_AdWords_v201309\\PageOnePromotedBiddingScheme",
+      "Paging" => "Google_Api_Ads_AdWords_v201309\\Paging",
+      "PagingError" => "Google_Api_Ads_AdWords_v201309\\PagingError",
+      "PercentCpaBid" => "Google_Api_Ads_AdWords_v201309\\PercentCpaBid",
+      "PercentCpaBiddingScheme" => "Google_Api_Ads_AdWords_v201309\\PercentCpaBiddingScheme",
+      "Placement" => "Google_Api_Ads_AdWords_v201309\\Placement",
+      "PolicyViolationError" => "Google_Api_Ads_AdWords_v201309\\PolicyViolationError",
+      "PolicyViolationError.Part" => "Google_Api_Ads_AdWords_v201309\\PolicyViolationErrorPart",
+      "PolicyViolationKey" => "Google_Api_Ads_AdWords_v201309\\PolicyViolationKey",
+      "Predicate" => "Google_Api_Ads_AdWords_v201309\\Predicate",
+      "Product" => "Google_Api_Ads_AdWords_v201309\\Product",
+      "ProductCondition" => "Google_Api_Ads_AdWords_v201309\\ProductCondition",
+      "ProductConditionOperand" => "Google_Api_Ads_AdWords_v201309\\ProductConditionOperand",
+      "QualityInfo" => "Google_Api_Ads_AdWords_v201309\\QualityInfo",
+      "QueryError" => "Google_Api_Ads_AdWords_v201309\\QueryError",
+      "QuotaCheckError" => "Google_Api_Ads_AdWords_v201309\\QuotaCheckError",
+      "RangeError" => "Google_Api_Ads_AdWords_v201309\\RangeError",
+      "RateExceededError" => "Google_Api_Ads_AdWords_v201309\\RateExceededError",
+      "ReadOnlyError" => "Google_Api_Ads_AdWords_v201309\\ReadOnlyError",
+      "RejectedError" => "Google_Api_Ads_AdWords_v201309\\RejectedError",
+      "RequestError" => "Google_Api_Ads_AdWords_v201309\\RequestError",
+      "RequiredError" => "Google_Api_Ads_AdWords_v201309\\RequiredError",
+      "Selector" => "Google_Api_Ads_AdWords_v201309\\Selector",
+      "SelectorError" => "Google_Api_Ads_AdWords_v201309\\SelectorError",
+      "SizeLimitError" => "Google_Api_Ads_AdWords_v201309\\SizeLimitError",
+      "SoapHeader" => "Google_Api_Ads_AdWords_v201309\\SoapRequestHeader",
+      "SoapResponseHeader" => "Google_Api_Ads_AdWords_v201309\\SoapResponseHeader",
+      "StatsQueryError" => "Google_Api_Ads_AdWords_v201309\\StatsQueryError",
+      "StringLengthError" => "Google_Api_Ads_AdWords_v201309\\StringLengthError",
+      "String_StringMapEntry" => "Google_Api_Ads_AdWords_v201309\\String_StringMapEntry",
+      "TargetCpaBiddingScheme" => "Google_Api_Ads_AdWords_v201309\\TargetCpaBiddingScheme",
+      "TargetSpendBiddingScheme" => "Google_Api_Ads_AdWords_v201309\\TargetSpendBiddingScheme",
+      "CriterionUserInterest" => "Google_Api_Ads_AdWords_v201309\\CriterionUserInterest",
+      "CriterionUserList" => "Google_Api_Ads_AdWords_v201309\\CriterionUserList",
+      "Vertical" => "Google_Api_Ads_AdWords_v201309\\Vertical",
+      "Webpage" => "Google_Api_Ads_AdWords_v201309\\Webpage",
+      "WebpageCondition" => "Google_Api_Ads_AdWords_v201309\\WebpageCondition",
+      "WebpageParameter" => "Google_Api_Ads_AdWords_v201309\\WebpageParameter",
+      "AdGroupCriterionError.Reason" => "Google_Api_Ads_AdWords_v201309\\AdGroupCriterionErrorReason",
+      "AdGroupCriterionLimitExceeded.CriteriaLimitType" => "Google_Api_Ads_AdWords_v201309\\AdGroupCriterionLimitExceededCriteriaLimitType",
+      "AdxError.Reason" => "Google_Api_Ads_AdWords_v201309\\AdxErrorReason",
+      "AgeRange.AgeRangeType" => "Google_Api_Ads_AdWords_v201309\\AgeRangeAgeRangeType",
+      "ApprovalStatus" => "Google_Api_Ads_AdWords_v201309\\ApprovalStatus",
+      "AuthenticationError.Reason" => "Google_Api_Ads_AdWords_v201309\\AuthenticationErrorReason",
+      "AuthorizationError.Reason" => "Google_Api_Ads_AdWords_v201309\\AuthorizationErrorReason",
+      "BetaError.Reason" => "Google_Api_Ads_AdWords_v201309\\BetaErrorReason",
+      "BidSource" => "Google_Api_Ads_AdWords_v201309\\BidSource",
+      "BiddingError.Reason" => "Google_Api_Ads_AdWords_v201309\\BiddingErrorReason",
+      "BiddingErrors.Reason" => "Google_Api_Ads_AdWords_v201309\\BiddingErrorsReason",
+      "BiddingStrategySource" => "Google_Api_Ads_AdWords_v201309\\BiddingStrategySource",
+      "BiddingStrategyType" => "Google_Api_Ads_AdWords_v201309\\BiddingStrategyType",
+      "ClientTermsError.Reason" => "Google_Api_Ads_AdWords_v201309\\ClientTermsErrorReason",
+      "ConversionOptimizerBiddingScheme.BidType" => "Google_Api_Ads_AdWords_v201309\\ConversionOptimizerBiddingSchemeBidType",
+      "ConversionOptimizerBiddingScheme.PricingMode" => "Google_Api_Ads_AdWords_v201309\\ConversionOptimizerBiddingSchemePricingMode",
+      "Criterion.Type" => "Google_Api_Ads_AdWords_v201309\\CriterionType",
+      "CriterionError.Reason" => "Google_Api_Ads_AdWords_v201309\\CriterionErrorReason",
+      "CriterionUse" => "Google_Api_Ads_AdWords_v201309\\CriterionUse",
+      "DatabaseError.Reason" => "Google_Api_Ads_AdWords_v201309\\DatabaseErrorReason",
+      "DateError.Reason" => "Google_Api_Ads_AdWords_v201309\\DateErrorReason",
+      "DistinctError.Reason" => "Google_Api_Ads_AdWords_v201309\\DistinctErrorReason",
+      "EntityAccessDenied.Reason" => "Google_Api_Ads_AdWords_v201309\\EntityAccessDeniedReason",
+      "EntityCountLimitExceeded.Reason" => "Google_Api_Ads_AdWords_v201309\\EntityCountLimitExceededReason",
+      "EntityNotFound.Reason" => "Google_Api_Ads_AdWords_v201309\\EntityNotFoundReason",
+      "ExperimentDataStatus" => "Google_Api_Ads_AdWords_v201309\\ExperimentDataStatus",
+      "ExperimentDeltaStatus" => "Google_Api_Ads_AdWords_v201309\\ExperimentDeltaStatus",
+      "ForwardCompatibilityError.Reason" => "Google_Api_Ads_AdWords_v201309\\ForwardCompatibilityErrorReason",
+      "Gender.GenderType" => "Google_Api_Ads_AdWords_v201309\\GenderGenderType",
+      "IdError.Reason" => "Google_Api_Ads_AdWords_v201309\\IdErrorReason",
+      "InternalApiError.Reason" => "Google_Api_Ads_AdWords_v201309\\InternalApiErrorReason",
+      "KeywordMatchType" => "Google_Api_Ads_AdWords_v201309\\KeywordMatchType",
+      "MultiplierSource" => "Google_Api_Ads_AdWords_v201309\\MultiplierSource",
+      "NewEntityCreationError.Reason" => "Google_Api_Ads_AdWords_v201309\\NewEntityCreationErrorReason",
+      "NotEmptyError.Reason" => "Google_Api_Ads_AdWords_v201309\\NotEmptyErrorReason",
+      "NotWhitelistedError.Reason" => "Google_Api_Ads_AdWords_v201309\\NotWhitelistedErrorReason",
+      "NullError.Reason" => "Google_Api_Ads_AdWords_v201309\\NullErrorReason",
+      "OperationAccessDenied.Reason" => "Google_Api_Ads_AdWords_v201309\\OperationAccessDeniedReason",
+      "Operator" => "Google_Api_Ads_AdWords_v201309\\Operator",
+      "PageOnePromotedBiddingScheme.StrategyGoal" => "Google_Api_Ads_AdWords_v201309\\PageOnePromotedBiddingSchemeStrategyGoal",
+      "PagingError.Reason" => "Google_Api_Ads_AdWords_v201309\\PagingErrorReason",
+      "Predicate.Operator" => "Google_Api_Ads_AdWords_v201309\\PredicateOperator",
+      "QueryError.Reason" => "Google_Api_Ads_AdWords_v201309\\QueryErrorReason",
+      "QuotaCheckError.Reason" => "Google_Api_Ads_AdWords_v201309\\QuotaCheckErrorReason",
+      "RangeError.Reason" => "Google_Api_Ads_AdWords_v201309\\RangeErrorReason",
+      "RateExceededError.Reason" => "Google_Api_Ads_AdWords_v201309\\RateExceededErrorReason",
+      "ReadOnlyError.Reason" => "Google_Api_Ads_AdWords_v201309\\ReadOnlyErrorReason",
+      "RejectedError.Reason" => "Google_Api_Ads_AdWords_v201309\\RejectedErrorReason",
+      "RequestError.Reason" => "Google_Api_Ads_AdWords_v201309\\RequestErrorReason",
+      "RequiredError.Reason" => "Google_Api_Ads_AdWords_v201309\\RequiredErrorReason",
+      "SelectorError.Reason" => "Google_Api_Ads_AdWords_v201309\\SelectorErrorReason",
+      "SizeLimitError.Reason" => "Google_Api_Ads_AdWords_v201309\\SizeLimitErrorReason",
+      "SortOrder" => "Google_Api_Ads_AdWords_v201309\\SortOrder",
+      "StatsQueryError.Reason" => "Google_Api_Ads_AdWords_v201309\\StatsQueryErrorReason",
+      "StringLengthError.Reason" => "Google_Api_Ads_AdWords_v201309\\StringLengthErrorReason",
+      "SystemServingStatus" => "Google_Api_Ads_AdWords_v201309\\SystemServingStatus",
+      "CriterionUserList.MembershipStatus" => "Google_Api_Ads_AdWords_v201309\\CriterionUserListMembershipStatus",
+      "UserStatus" => "Google_Api_Ads_AdWords_v201309\\UserStatus",
+      "WebpageConditionOperand" => "Google_Api_Ads_AdWords_v201309\\WebpageConditionOperand",
+      "get" => "Google_Api_Ads_AdWords_v201309\\AdGroupCriterionServiceGet",
+      "getResponse" => "Google_Api_Ads_AdWords_v201309\\AdGroupCriterionServiceGetResponse",
+      "mutate" => "Google_Api_Ads_AdWords_v201309\\AdGroupCriterionServiceMutate",
+      "mutateResponse" => "Google_Api_Ads_AdWords_v201309\\AdGroupCriterionServiceMutateResponse",
+      "query" => "Google_Api_Ads_AdWords_v201309\\Query",
+      "queryResponse" => "Google_Api_Ads_AdWords_v201309\\QueryResponse",
     );
 
 
@@ -8205,3 +8205,4 @@ if (!class_exists("AdGroupCriterionService", false)) {
     }
   }
 }
+
