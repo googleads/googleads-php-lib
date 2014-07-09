@@ -26,8 +26,6 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-
-/** Required classes. **/
 require_once "Google/Api/Ads/AdWords/Lib/AdWordsSoapClient.php";
 
 if (!class_exists("DateRange", false)) {
@@ -3864,7 +3862,7 @@ if (!class_exists("ApiException", false)) {
 if (!class_exists("ExternalRemarketingUserList", false)) {
   /**
    * User lists created in the DoubleClick platform that are mapped
-   * from DoubleClick to AdWords.
+   * from DoubleClick to AdWords. These lists are readonly.
    * @package Google_Api_Ads_AdWords_v201309
    * @subpackage v201309
    */
@@ -4178,3 +4176,4 @@ if (!class_exists("AdwordsUserListService", false)) {
     }
   }
 }
+

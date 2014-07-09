@@ -26,8 +26,6 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-
-/** Required classes. **/
 require_once "Google/Api/Ads/AdWords/Lib/AdWordsSoapClient.php";
 
 if (!class_exists("Address", false)) {
@@ -3708,7 +3706,7 @@ if (!class_exists("SelectorError", false)) {
 if (!class_exists("LocationGroups", false)) {
   /**
    * Represents a criterion containing a function that when evaluated specifies how to target
-   * based on the type of the location. These ???location groups??? are custom, dynamic bundles of
+   * based on the type of the location. These "location groups" are custom, dynamic bundles of
    * locations (for instance "High income areas in California" or "Airports in France").
    * 
    * <p>Examples:</p>
@@ -7271,3 +7269,4 @@ if (!class_exists("CampaignCriterionService", false)) {
     }
   }
 }
+

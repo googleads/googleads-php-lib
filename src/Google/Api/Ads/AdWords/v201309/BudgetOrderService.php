@@ -26,8 +26,6 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-
-/** Required classes. **/
 require_once "Google/Api/Ads/AdWords/Lib/AdWordsSoapClient.php";
 
 if (!class_exists("ApiError", false)) {
@@ -4895,3 +4893,4 @@ if (!class_exists("BudgetOrderService", false)) {
     }
   }
 }
+

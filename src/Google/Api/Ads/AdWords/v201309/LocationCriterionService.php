@@ -26,8 +26,6 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-
-/** Required classes. **/
 require_once "Google/Api/Ads/AdWords/Lib/AdWordsSoapClient.php";
 
 if (!class_exists("ApiError", false)) {
@@ -884,7 +882,7 @@ if (!class_exists("Keyword", false)) {
 if (!class_exists("Location", false)) {
   /**
    * Represents Location criterion.
-   * <p>A criterion of this type can only be created using an ID. A criterion of this type can be either targeted or excluded.
+   * <p>A criterion of this type can only be created using an ID.
    * <span class="constraint AdxEnabled">This is enabled for AdX.</span>
    * @package Google_Api_Ads_AdWords_v201309
    * @subpackage v201309
@@ -4054,3 +4052,4 @@ if (!class_exists("LocationCriterionService", false)) {
     }
   }
 }
+

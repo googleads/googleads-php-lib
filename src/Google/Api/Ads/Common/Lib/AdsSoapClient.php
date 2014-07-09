@@ -222,7 +222,7 @@ abstract class AdsSoapClient extends SoapClient {
         // Override the existing HTTP headers each time since they may have
         // changed.
         $existingStreamContextOptions['http']['header'] = implode("\r\n",
-            array_map('self::implodeHttpHeaders', array_keys($httpHeaders),
+            array_map('AdsSoapClient::implodeHttpHeaders', array_keys($httpHeaders),
                 $httpHeaders));
         stream_context_set_option($existingStreamContext,
           $existingStreamContextOptions);

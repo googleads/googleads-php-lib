@@ -47,7 +47,7 @@ require_once 'AdWordsConstants.php';
  */
 class AdWordsUser extends AdsUser {
 
-  const OAUTH2_SCOPE = 'https://adwords.google.com/api/adwords/';
+  const OAUTH2_SCOPE = 'https://www.googleapis.com/auth/adwords';
   const OAUTH2_HANDLER_CLASS = 'SimpleOAuth2Handler';
   const FINAL_CLIENT_LOGIN_VERSION = "v201309";
 

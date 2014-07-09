@@ -26,8 +26,6 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-
-/** Required classes. **/
 require_once "Google/Api/Ads/AdWords/Lib/AdWordsSoapClient.php";
 
 if (!class_exists("Address", false)) {
@@ -3019,7 +3017,6 @@ if (!class_exists("DistinctError", false)) {
 if (!class_exists("DomainInfoExtension", false)) {
   /**
    * Domain extension, which adds domain info to ads.
-   * <span class="constraint Beta">This is a beta feature.</span>
    * @package Google_Api_Ads_AdWords_v201309
    * @subpackage v201309
    */
@@ -3244,7 +3241,6 @@ if (!class_exists("InAppLinkExtension", false)) {
    * Only the extension for a given {@code AppStore} will render on the device
    * relevant to that {@code AppStore} (e.g. iPhones for {@code AppStore.ITUNES}
    * and Android phones for {@code AppStore.GOOGLE_PLAY}).
-   * <span class="constraint Beta">This is a beta feature.</span>
    * @package Google_Api_Ads_AdWords_v201309
    * @subpackage v201309
    */
@@ -4867,3 +4863,4 @@ if (!class_exists("CampaignAdExtensionService", false)) {
     }
   }
 }
+

@@ -681,7 +681,7 @@ if (!class_exists("{$service->getName()}", false)) {
    * @package {$this->package}
    * @subpackage {$this->version}
    */
-  class {$service->getName()} extends {$this->utils->namespaceName($this->soapClientClassName)} {
+  class {$service->getName()} extends {$this->soapClientClassName} {
 
     const SERVICE_NAME = "{$service->getRawName()}";
     const WSDL_NAMESPACE = "{$this->serviceNamespace}";

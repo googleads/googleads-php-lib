@@ -1,3 +1,13 @@
+### 5.3.1
+
+AdWords:
+  - Added support for v201406.
+  - Added whitelist-only shared set services to v201402 and v201406.
+  - Updated OAuth 2.0 scope. See [documentation](https://developers.google.com/adwords/api/docs/guides/authentication#scope).
+
+DFP:
+  - Fixed [issue #39](https://github.com/googleads/googleads-php-lib/issues/39).
+
 ### 5.3.0
 
 AdWords:

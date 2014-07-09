@@ -26,8 +26,6 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-
-/** Required classes. **/
 require_once "Google/Api/Ads/AdWords/Lib/AdWordsSoapClient.php";
 
 if (!class_exists("AdGroupCriterion", false)) {
@@ -2165,7 +2163,7 @@ if (!class_exists("ForwardCompatibilityError", false)) {
 if (!class_exists("Gender", false)) {
   /**
    * Represents a Gender criterion.
-   * <p>A criterion of this type can only be created using an ID. A criterion of this type is only excludable.
+   * <p>A criterion of this type can only be created using an ID. A criterion of this type can be either targeted or excluded.
    * <span class="constraint AdxEnabled">This is disabled for AdX when it is contained within Operators: ADD, SET.</span>
    * @package Google_Api_Ads_AdWords_v201309
    * @subpackage v201309
@@ -6525,7 +6523,7 @@ if (!class_exists("Operator", false)) {
 
 if (!class_exists("PageOnePromotedBiddingSchemeStrategyGoal", false)) {
   /**
-   * 
+   * First page on google.com.
    * @package Google_Api_Ads_AdWords_v201309
    * @subpackage v201309
    */
@@ -7735,7 +7733,7 @@ if (!class_exists("AdxError", false)) {
 if (!class_exists("AgeRange", false)) {
   /**
    * Represents an Age Range criterion.
-   * <p>A criterion of this type can only be created using an ID. A criterion of this type is only excludable.
+   * <p>A criterion of this type can only be created using an ID. A criterion of this type can be either targeted or excluded.
    * <span class="constraint AdxEnabled">This is disabled for AdX when it is contained within Operators: ADD, SET.</span>
    * @package Google_Api_Ads_AdWords_v201309
    * @subpackage v201309
@@ -8205,3 +8203,4 @@ if (!class_exists("AdGroupCriterionService", false)) {
     }
   }
 }
+

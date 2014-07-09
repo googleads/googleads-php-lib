@@ -26,8 +26,6 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-
-/** Required classes. **/
 require_once "Google/Api/Ads/AdWords/Lib/AdWordsSoapClient.php";
 
 if (!class_exists("DateRange", false)) {
@@ -1332,7 +1330,7 @@ if (!class_exists("ClientTermsErrorReason", false)) {
 
 if (!class_exists("CriterionType", false)) {
   /**
-   * <span class="constraint Beta">This is a beta feature.</span>
+   * <span class="constraint Rejected">Used for return value only. An enumeration could not be processed, typically due to incompatibility with your WSDL version.</span>
    * @package Google_Api_Ads_AdWords_v201309
    * @subpackage v201309
    */
@@ -4389,3 +4387,4 @@ if (!class_exists("SharedCriterionService", false)) {
     }
   }
 }
+

@@ -26,8 +26,6 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-
-/** Required classes. **/
 require_once "Google/Api/Ads/AdWords/Lib/AdWordsSoapClient.php";
 
 if (!class_exists("DateRange", false)) {
@@ -2712,7 +2710,7 @@ if (!class_exists("OperatorErrorReason", false)) {
 
 if (!class_exists("PageOnePromotedBiddingSchemeStrategyGoal", false)) {
   /**
-   * 
+   * First page on google.com.
    * @package Google_Api_Ads_AdWords_v201309
    * @subpackage v201309
    */
@@ -3371,10 +3369,10 @@ if (!class_exists("AdGroupServiceMutate", false)) {
    * 
    * 
    * 
-   * Adds, updates, or deletes ad groups.
+   * Adds, updates, or removes ad groups.
    * <p class="note"><b>Note:</b> {@link AdGroupOperation} does not support the
-   * {@code REMOVE} operator. To delete an ad group, set its
-   * {@link AdGroup#status status} to {@code DELETED}.</p>
+   * {@code REMOVE} operator. To remove an ad group, set its
+   * {@link AdGroup#status status} to {@code REMOVED}.</p>
    * 
    * @param operations List of unique operations. The same ad group cannot be
    * specified in more than one operation.
@@ -6612,10 +6610,10 @@ if (!class_exists("AdGroupService", false)) {
      * 
      * 
      * 
-     * Adds, updates, or deletes ad groups.
+     * Adds, updates, or removes ad groups.
      * <p class="note"><b>Note:</b> {@link AdGroupOperation} does not support the
-     * {@code REMOVE} operator. To delete an ad group, set its
-     * {@link AdGroup#status status} to {@code DELETED}.</p>
+     * {@code REMOVE} operator. To remove an ad group, set its
+     * {@link AdGroup#status status} to {@code REMOVED}.</p>
      * 
      * @param operations List of unique operations. The same ad group cannot be
      * specified in more than one operation.
@@ -6644,3 +6642,4 @@ if (!class_exists("AdGroupService", false)) {
     }
   }
 }
+

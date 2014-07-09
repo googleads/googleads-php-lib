@@ -26,8 +26,6 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-
-/** Required classes. **/
 require_once "Google/Api/Ads/AdWords/Lib/AdWordsSoapClient.php";
 
 if (!class_exists("ApiError", false)) {
@@ -556,6 +554,12 @@ if (!class_exists("CollectionSizeError", false)) {
     const XSI_TYPE = "CollectionSizeError";
 
     /**
+     * @access public
+     * @var tnsCollectionSizeErrorReason
+     */
+    public $reason;
+
+    /**
      * Gets the namesapce of this class
      * @return the namespace of this class
      */
@@ -571,8 +575,9 @@ if (!class_exists("CollectionSizeError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
       parent::__construct();
+      $this->reason = $reason;
       $this->fieldPath = $fieldPath;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
@@ -1232,7 +1237,7 @@ if (!class_exists("Keyword", false)) {
 if (!class_exists("Language", false)) {
   /**
    * Represents a Language criterion.
-   * <p>A criterion of this type can only be created using an ID. A criterion of this type is only targetable.
+   * <p>A criterion of this type can only be created using an ID.
    * <span class="constraint AdxEnabled">This is enabled for AdX.</span>
    * 
    * 
@@ -1289,7 +1294,7 @@ if (!class_exists("Language", false)) {
 if (!class_exists("Location", false)) {
   /**
    * Represents Location criterion.
-   * <p>A criterion of this type can only be created using an ID. A criterion of this type can be either targeted or excluded.
+   * <p>A criterion of this type can only be created using an ID.
    * <span class="constraint AdxEnabled">This is enabled for AdX.</span>
    * 
    * 
@@ -1874,7 +1879,7 @@ if (!class_exists("Placement", false)) {
 if (!class_exists("Platform", false)) {
   /**
    * Represents Platform criterion.
-   * <p>A criterion of this type can only be created using an ID. A criterion of this type is only targetable.
+   * <p>A criterion of this type can only be created using an ID.
    * <span class="constraint AdxEnabled">This is enabled for AdX.</span>
    * 
    * 
@@ -3625,6 +3630,43 @@ if (!class_exists("ClientTermsErrorReason", false)) {
   }
 }
 
+if (!class_exists("CollectionSizeErrorReason", false)) {
+  /**
+   * The reasons for the target error.
+   * 
+   * 
+   * 
+   * Represents data about a bidlandscape for an adgroup.
+   * @package Google_Api_Ads_AdWords_v201402
+   * @subpackage v201402
+   */
+  class CollectionSizeErrorReason {
+
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201402";
+    const XSI_TYPE = "CollectionSizeError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("CriterionType", false)) {
   /**
    * The types of criteria.
@@ -5188,57 +5230,6 @@ if (!class_exists("DoubleAttribute", false)) {
   }
 }
 
-if (!class_exists("DoubleComparisonOperation", false)) {
-  /**
-   * Object representing double comparison operations. This is usually used within
-   * a particular
-   * {@link com.google.ads.api.services.targetingideas.search.SearchParameter} to
-   * specify the valid values requested for the specific
-   * {@link com.google.ads.api.services.common.optimization.attributes.Attribute}.
-   * @package Google_Api_Ads_AdWords_v201402
-   * @subpackage v201402
-   */
-  class DoubleComparisonOperation {
-
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/o/v201402";
-    const XSI_TYPE = "DoubleComparisonOperation";
-
-    /**
-     * @access public
-     * @var double
-     */
-    public $minimum;
-
-    /**
-     * @access public
-     * @var double
-     */
-    public $maximum;
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($minimum = null, $maximum = null) {
-      $this->minimum = $minimum;
-      $this->maximum = $maximum;
-    }
-
-  }
-}
-
 if (!class_exists("FlashDisplayType", false)) {
   /**
    * {@link DisplayType} implementation for Flash display ads.
@@ -6206,7 +6197,10 @@ if (!class_exists("SearchParameter", false)) {
    * related information (eg. {@link CompetitionSearchParameter}, etc.).</li>
    * </ul><p>
    * 
-   * A request should only contain one instance of each {@link SearchParameter}
+   * A request should only contain one instance of each {@link SearchParameter}.
+   * 
+   * NOTICE: Starting with version v201406, requests containing multiple
+   * instances of the same search parameter will be rejected.
    * <p>One or more of the following {@link SearchParameter}s are required:<br/>
    * <ul><li>{@link CategoryProductsAndServicesSearchParameter}</li>
    * <li>{@link LocationSearchParameter}</li>
@@ -6226,7 +6220,6 @@ if (!class_exists("SearchParameter", false)) {
    * <li>{@link NetworkSearchParameter}</li>
    * <li>{@link RelatedToQuerySearchParameter}</li>
    * <li>{@link RelatedToUrlSearchParameter}</li>
-   * <li>{@link SearchVolumeDeltaSearchParameter}</li>
    * <li>{@link SearchVolumeSearchParameter}</li>
    * <li>{@link SeedAdGroupIdSearchParameter}</li>
    * </ul><p>
@@ -6302,62 +6295,6 @@ if (!class_exists("SearchParameter", false)) {
     }
 
     public function __construct($SearchParameterType = null) {
-      $this->SearchParameterType = $SearchParameterType;
-    }
-
-  }
-}
-
-if (!class_exists("SearchVolumeDeltaSearchParameter", false)) {
-  /**
-   * A {@link SearchParameter} that specifies the level of search volume delta expected in results,
-   * and it is directly related to
-   * {@link com.google.ads.api.services.targetingideas.external.AttributeType#SEARCH_VOLUME_DELTA}.
-   * Absence of a {@link SearchVolumeDeltaSearchParameter} in a
-   * {@link com.google.ads.api.services.targetingideas.TargetingIdeaSelector} is
-   * equivalent to having no constraint on search volume delta specified.
-   * <p>This element is supported by following {@link IdeaType}s: KEYWORD.
-   * <p>This element is supported by following {@link RequestType}s: STATS, IDEAS.
-   * @package Google_Api_Ads_AdWords_v201402
-   * @subpackage v201402
-   */
-  class SearchVolumeDeltaSearchParameter extends SearchParameter {
-
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/o/v201402";
-    const XSI_TYPE = "SearchVolumeDeltaSearchParameter";
-
-    /**
-     * @access public
-     * @var DoubleComparisonOperation
-     */
-    public $relative;
-
-    /**
-     * @access public
-     * @var LongComparisonOperation
-     */
-    public $absolute;
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($relative = null, $absolute = null, $SearchParameterType = null) {
-      parent::__construct();
-      $this->relative = $relative;
-      $this->absolute = $absolute;
       $this->SearchParameterType = $SearchParameterType;
     }
 
@@ -6722,8 +6659,7 @@ if (!class_exists("TargetingIdeaSelector", false)) {
 
 if (!class_exists("TextAdSpec", false)) {
   /**
-   * Specification for a text ad. Currently there are no customizable
-   * options on text ads, but the presence of a {@code TextAdSpec} in a
+   * Specification for a text ad. The presence of a {@code TextAdSpec} in a
    * request indicates that text ads are a desired result, and the presence
    * of a {@code TextAdSpec} in a response indicates that there are text
    * ads available in the requested inventory.
@@ -8971,6 +8907,7 @@ if (!class_exists("TargetingIdeaService", false)) {
       "BiddingError.Reason" => "BiddingErrorReason",
       "BudgetError.Reason" => "BudgetErrorReason",
       "ClientTermsError.Reason" => "ClientTermsErrorReason",
+      "CollectionSizeError.Reason" => "CollectionSizeErrorReason",
       "Criterion.Type" => "CriterionType",
       "CriterionError.Reason" => "CriterionErrorReason",
       "DatabaseError.Reason" => "DatabaseErrorReason",
@@ -9014,7 +8951,6 @@ if (!class_exists("TargetingIdeaService", false)) {
       "DisplayAdSpec.AdSizeSpec" => "DisplayAdSpecAdSizeSpec",
       "DisplayType" => "DisplayType",
       "DoubleAttribute" => "DoubleAttribute",
-      "DoubleComparisonOperation" => "DoubleComparisonOperation",
       "ExcludedKeywordSearchParameter" => "ExcludedKeywordSearchParameter",
       "FlashDisplayType" => "FlashDisplayType",
       "HtmlDisplayType" => "HtmlDisplayType",
@@ -9046,7 +8982,6 @@ if (!class_exists("TargetingIdeaService", false)) {
       "RelatedToQuerySearchParameter" => "RelatedToQuerySearchParameter",
       "RelatedToUrlSearchParameter" => "RelatedToUrlSearchParameter",
       "SearchParameter" => "SearchParameter",
-      "SearchVolumeDeltaSearchParameter" => "SearchVolumeDeltaSearchParameter",
       "SearchVolumeSearchParameter" => "SearchVolumeSearchParameter",
       "SeedAdGroupIdSearchParameter" => "SeedAdGroupIdSearchParameter",
       "StringAttribute" => "StringAttribute",
@@ -9162,3 +9097,4 @@ if (!class_exists("TargetingIdeaService", false)) {
     }
   }
 }
+

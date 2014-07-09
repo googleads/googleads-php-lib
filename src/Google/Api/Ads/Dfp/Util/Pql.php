@@ -27,7 +27,6 @@
  * @author     Vincent Tsao
  */
 require_once 'Google/Api/Ads/Dfp/Util/DateTimeUtils.php';
-require_once 'Google/Api/Ads/Dfp/v201403/PublisherQueryLanguageService.php';
 
 /**
  * A utility class for handling PQL objects.

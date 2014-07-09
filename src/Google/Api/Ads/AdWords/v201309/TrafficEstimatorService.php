@@ -26,8 +26,6 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-
-/** Required classes. **/
 require_once "Google/Api/Ads/AdWords/Lib/AdWordsSoapClient.php";
 
 if (!class_exists("ApiError", false)) {
@@ -378,6 +376,12 @@ if (!class_exists("CollectionSizeError", false)) {
     const XSI_TYPE = "CollectionSizeError";
 
     /**
+     * @access public
+     * @var tnsCollectionSizeErrorReason
+     */
+    public $reason;
+
+    /**
      * Gets the namesapce of this class
      * @return the namespace of this class
      */
@@ -393,8 +397,9 @@ if (!class_exists("CollectionSizeError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
       parent::__construct();
+      $this->reason = $reason;
       $this->fieldPath = $fieldPath;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
@@ -1052,7 +1057,7 @@ if (!class_exists("Keyword", false)) {
 if (!class_exists("Language", false)) {
   /**
    * Represents a Language criterion.
-   * <p>A criterion of this type can only be created using an ID. A criterion of this type is only targetable.
+   * <p>A criterion of this type can only be created using an ID.
    * <span class="constraint AdxEnabled">This is enabled for AdX.</span>
    * 
    * 
@@ -1109,7 +1114,7 @@ if (!class_exists("Language", false)) {
 if (!class_exists("Location", false)) {
   /**
    * Represents Location criterion.
-   * <p>A criterion of this type can only be created using an ID. A criterion of this type can be either targeted or excluded.
+   * <p>A criterion of this type can only be created using an ID.
    * <span class="constraint AdxEnabled">This is enabled for AdX.</span>
    * 
    * 
@@ -3113,6 +3118,43 @@ if (!class_exists("ClientTermsErrorReason", false)) {
   }
 }
 
+if (!class_exists("CollectionSizeErrorReason", false)) {
+  /**
+   * The reasons for the target error.
+   * 
+   * 
+   * 
+   * Errors that are thrown when a non-AdX feature is accessed by an AdX customer.
+   * @package Google_Api_Ads_AdWords_v201309
+   * @subpackage v201309
+   */
+  class CollectionSizeErrorReason {
+
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201309";
+    const XSI_TYPE = "CollectionSizeError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("CriterionType", false)) {
   /**
    * The types of criteria.
@@ -4501,7 +4543,10 @@ if (!class_exists("MatchesRegexError", false)) {
 
 if (!class_exists("StatsEstimate", false)) {
   /**
-   * Represents a set of stats for a traffic estimate.
+   * Represents a set of stats for a daily traffic estimate.
+   * As of v201406 {@code averageCpc}, {@code averagePosition} and {@code clickThroughRate} will be
+   * {@code null} when not defined (respectively, if {@code clicksPerDay} or
+   * {@code impressionsPerDay} are 0).
    * @package Google_Api_Ads_AdWords_v201309
    * @subpackage v201309
    */
@@ -4526,6 +4571,12 @@ if (!class_exists("StatsEstimate", false)) {
      * @access public
      * @var double
      */
+    public $clickThroughRate;
+
+    /**
+     * @access public
+     * @var double
+     */
     public $clicksPerDay;
 
     /**
@@ -4533,12 +4584,6 @@ if (!class_exists("StatsEstimate", false)) {
      * @var double
      */
     public $impressionsPerDay;
-
-    /**
-     * @access public
-     * @var double
-     */
-    public $clickThroughRate;
 
     /**
      * @access public
@@ -4562,12 +4607,12 @@ if (!class_exists("StatsEstimate", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($averageCpc = null, $averagePosition = null, $clicksPerDay = null, $impressionsPerDay = null, $clickThroughRate = null, $totalCost = null) {
+    public function __construct($averageCpc = null, $averagePosition = null, $clickThroughRate = null, $clicksPerDay = null, $impressionsPerDay = null, $totalCost = null) {
       $this->averageCpc = $averageCpc;
       $this->averagePosition = $averagePosition;
+      $this->clickThroughRate = $clickThroughRate;
       $this->clicksPerDay = $clicksPerDay;
       $this->impressionsPerDay = $impressionsPerDay;
-      $this->clickThroughRate = $clickThroughRate;
       $this->totalCost = $totalCost;
     }
 
@@ -5410,6 +5455,7 @@ if (!class_exists("TrafficEstimatorService", false)) {
       "AuthenticationError.Reason" => "AuthenticationErrorReason",
       "AuthorizationError.Reason" => "AuthorizationErrorReason",
       "ClientTermsError.Reason" => "ClientTermsErrorReason",
+      "CollectionSizeError.Reason" => "CollectionSizeErrorReason",
       "Criterion.Type" => "CriterionType",
       "DatabaseError.Reason" => "DatabaseErrorReason",
       "DateError.Reason" => "DateErrorReason",
@@ -5489,3 +5535,4 @@ if (!class_exists("TrafficEstimatorService", false)) {
     }
   }
 }
+

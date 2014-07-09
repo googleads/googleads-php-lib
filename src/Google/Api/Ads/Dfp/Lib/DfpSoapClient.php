@@ -63,8 +63,8 @@ class DfpSoapClient extends AdsSoapClient {
   protected function GenerateSoapHeader() {
     $headerObject = $this->Create('SoapRequestHeader');
     foreach (get_object_vars($headerObject) as $var => $value) {
-      if ($var === 'authentication' &&
-          !empty($this->GetHeaderValue('authToken'))) {
+      $authToken = $this->GetHeaderValue('authToken');
+      if ($var === 'authentication' && !empty($authToken)) {
         $authentication = $this->Create('ClientLogin');
         $authentication->token = $this->GetHeaderValue('authToken');
         $headerObject->$var = $authentication;

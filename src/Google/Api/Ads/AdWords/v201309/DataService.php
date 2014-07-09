@@ -26,8 +26,6 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-
-/** Required classes. **/
 require_once "Google/Api/Ads/AdWords/Lib/AdWordsSoapClient.php";
 
 if (!class_exists("DateRange", false)) {
@@ -1813,7 +1811,10 @@ if (!class_exists("GetAdGroupBidLandscape", false)) {
    * 
    * 
    * 
-   * Returns a list of bid landscapes for the ad groups specified in the selector.
+   * Returns a list of {@link AdGroupBidLandscape}s for the ad groups specified in the selector.
+   * In the result, the returned {@link LandscapePoint}s are grouped into
+   * {@link AdGroupBidLandscape}s by their ad groups, and numberResults of paging limits the total
+   * number of {@link LandscapePoint}s instead of number of {@link AdGroupBidLandscape}s.
    * 
    * @param serviceSelector Selects the entities to return bid landscapes for.
    * @return A list of bid landscapes.
@@ -1901,7 +1902,10 @@ if (!class_exists("GetCriterionBidLandscape", false)) {
    * 
    * 
    * 
-   * Returns a list of bid landscapes for the criteria specified in the selector.
+   * Returns a list of {@link CriterionBidLandscape}s for the criteria specified in the selector.
+   * In the result, the returned {@link LandscapePoint}s are grouped into
+   * {@link CriterionBidLandscape}s by their criteria, and numberResults of paging limits the total
+   * number of {@link LandscapePoint}s instead of number of {@link CriterionBidLandscape}s.
    * 
    * @param serviceSelector Selects the entities to return bid landscapes for.
    * @return A list of bid landscapes.
@@ -3280,7 +3284,7 @@ if (!class_exists("BidLandscape", false)) {
 
 if (!class_exists("NoStatsPage", false)) {
   /**
-   * Base class for Get results for a page of entities that do not use statistics.
+   * 
    * @package Google_Api_Ads_AdWords_v201309
    * @subpackage v201309
    */
@@ -3704,7 +3708,10 @@ if (!class_exists("DataService", false)) {
      * 
      * 
      * 
-     * Returns a list of bid landscapes for the ad groups specified in the selector.
+     * Returns a list of {@link AdGroupBidLandscape}s for the ad groups specified in the selector.
+     * In the result, the returned {@link LandscapePoint}s are grouped into
+     * {@link AdGroupBidLandscape}s by their ad groups, and numberResults of paging limits the total
+     * number of {@link LandscapePoint}s instead of number of {@link AdGroupBidLandscape}s.
      * 
      * @param serviceSelector Selects the entities to return bid landscapes for.
      * @return A list of bid landscapes.
@@ -3720,7 +3727,10 @@ if (!class_exists("DataService", false)) {
      * 
      * 
      * 
-     * Returns a list of bid landscapes for the criteria specified in the selector.
+     * Returns a list of {@link CriterionBidLandscape}s for the criteria specified in the selector.
+     * In the result, the returned {@link LandscapePoint}s are grouped into
+     * {@link CriterionBidLandscape}s by their criteria, and numberResults of paging limits the total
+     * number of {@link LandscapePoint}s instead of number of {@link CriterionBidLandscape}s.
      * 
      * @param serviceSelector Selects the entities to return bid landscapes for.
      * @return A list of bid landscapes.
@@ -3733,3 +3743,4 @@ if (!class_exists("DataService", false)) {
     }
   }
 }
+

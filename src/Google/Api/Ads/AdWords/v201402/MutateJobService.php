@@ -26,8 +26,6 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-
-/** Required classes. **/
 require_once "Google/Api/Ads/AdWords/Lib/AdWordsSoapClient.php";
 
 if (!class_exists("Ad", false)) {
@@ -1360,6 +1358,12 @@ if (!class_exists("ApiErrorReason", false)) {
 
     /**
      * @access public
+     * @var tnsFunctionParsingErrorReason
+     */
+    public $FunctionParsingErrorReason;
+
+    /**
+     * @access public
      * @var tnsIdErrorReason
      */
     public $IdErrorReason;
@@ -1542,7 +1546,7 @@ if (!class_exists("ApiErrorReason", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($AdErrorReason = null, $AdExtensionErrorReason = null, $AdExtensionOverrideErrorReason = null, $AdGroupAdErrorReason = null, $AdGroupCriterionErrorReason = null, $AdGroupServiceErrorReason = null, $AdxErrorReason = null, $AuthenticationErrorReason = null, $AuthorizationErrorReason = null, $BetaErrorReason = null, $BiddingErrorReason = null, $BiddingErrorsReason = null, $BiddingTransitionErrorReason = null, $BudgetErrorReason = null, $BulkMutateJobErrorReason = null, $CampaignAdExtensionErrorReason = null, $CampaignCriterionErrorReason = null, $CampaignErrorReason = null, $ClientTermsErrorReason = null, $CriterionErrorReason = null, $DatabaseErrorReason = null, $DateErrorReason = null, $DistinctErrorReason = null, $EntityAccessDeniedReason = null, $EntityCountLimitExceededReason = null, $EntityNotFoundReason = null, $ExperimentErrorReason = null, $FeedItemErrorReason = null, $ForwardCompatibilityErrorReason = null, $FunctionErrorReason = null, $IdErrorReason = null, $ImageErrorReason = null, $InternalApiErrorReason = null, $JobErrorReason = null, $MediaErrorReason = null, $NewEntityCreationErrorReason = null, $NotEmptyErrorReason = null, $NullErrorReason = null, $OperationAccessDeniedReason = null, $OperatorErrorReason = null, $PagingErrorReason = null, $PolicyViolationErrorReason = null, $QueryErrorReason = null, $QuotaCheckErrorReason = null, $QuotaErrorReason = null, $RangeErrorReason = null, $RateExceededErrorReason = null, $ReadOnlyErrorReason = null, $RegionCodeErrorReason = null, $RejectedErrorReason = null, $RequestErrorReason = null, $RequiredErrorReason = null, $SelectorErrorReason = null, $SettingErrorReason = null, $SizeLimitErrorReason = null, $StatsQueryErrorReason = null, $StringLengthErrorReason = null, $TargetErrorReason = null) {
+    public function __construct($AdErrorReason = null, $AdExtensionErrorReason = null, $AdExtensionOverrideErrorReason = null, $AdGroupAdErrorReason = null, $AdGroupCriterionErrorReason = null, $AdGroupServiceErrorReason = null, $AdxErrorReason = null, $AuthenticationErrorReason = null, $AuthorizationErrorReason = null, $BetaErrorReason = null, $BiddingErrorReason = null, $BiddingErrorsReason = null, $BiddingTransitionErrorReason = null, $BudgetErrorReason = null, $BulkMutateJobErrorReason = null, $CampaignAdExtensionErrorReason = null, $CampaignCriterionErrorReason = null, $CampaignErrorReason = null, $ClientTermsErrorReason = null, $CriterionErrorReason = null, $DatabaseErrorReason = null, $DateErrorReason = null, $DistinctErrorReason = null, $EntityAccessDeniedReason = null, $EntityCountLimitExceededReason = null, $EntityNotFoundReason = null, $ExperimentErrorReason = null, $FeedItemErrorReason = null, $ForwardCompatibilityErrorReason = null, $FunctionErrorReason = null, $FunctionParsingErrorReason = null, $IdErrorReason = null, $ImageErrorReason = null, $InternalApiErrorReason = null, $JobErrorReason = null, $MediaErrorReason = null, $NewEntityCreationErrorReason = null, $NotEmptyErrorReason = null, $NullErrorReason = null, $OperationAccessDeniedReason = null, $OperatorErrorReason = null, $PagingErrorReason = null, $PolicyViolationErrorReason = null, $QueryErrorReason = null, $QuotaCheckErrorReason = null, $QuotaErrorReason = null, $RangeErrorReason = null, $RateExceededErrorReason = null, $ReadOnlyErrorReason = null, $RegionCodeErrorReason = null, $RejectedErrorReason = null, $RequestErrorReason = null, $RequiredErrorReason = null, $SelectorErrorReason = null, $SettingErrorReason = null, $SizeLimitErrorReason = null, $StatsQueryErrorReason = null, $StringLengthErrorReason = null, $TargetErrorReason = null) {
       $this->AdErrorReason = $AdErrorReason;
       $this->AdExtensionErrorReason = $AdExtensionErrorReason;
       $this->AdExtensionOverrideErrorReason = $AdExtensionOverrideErrorReason;
@@ -1573,6 +1577,7 @@ if (!class_exists("ApiErrorReason", false)) {
       $this->FeedItemErrorReason = $FeedItemErrorReason;
       $this->ForwardCompatibilityErrorReason = $ForwardCompatibilityErrorReason;
       $this->FunctionErrorReason = $FunctionErrorReason;
+      $this->FunctionParsingErrorReason = $FunctionParsingErrorReason;
       $this->IdErrorReason = $IdErrorReason;
       $this->ImageErrorReason = $ImageErrorReason;
       $this->InternalApiErrorReason = $InternalApiErrorReason;
@@ -4990,7 +4995,7 @@ if (!class_exists("FunctionError", false)) {
 if (!class_exists("Gender", false)) {
   /**
    * Represents a Gender criterion.
-   * <p>A criterion of this type can only be created using an ID. A criterion of this type is only excludable.
+   * <p>A criterion of this type can only be created using an ID.
    * <span class="constraint AdxEnabled">This is disabled for AdX when it is contained within Operators: ADD, SET.</span>
    * @package Google_Api_Ads_AdWords_v201402
    * @subpackage v201402
@@ -5824,7 +5829,7 @@ if (!class_exists("Keyword", false)) {
 if (!class_exists("Language", false)) {
   /**
    * Represents a Language criterion.
-   * <p>A criterion of this type can only be created using an ID. A criterion of this type is only targetable.
+   * <p>A criterion of this type can only be created using an ID.
    * <span class="constraint AdxEnabled">This is enabled for AdX.</span>
    * @package Google_Api_Ads_AdWords_v201402
    * @subpackage v201402
@@ -5877,7 +5882,7 @@ if (!class_exists("Language", false)) {
 if (!class_exists("Location", false)) {
   /**
    * Represents Location criterion.
-   * <p>A criterion of this type can only be created using an ID. A criterion of this type can be either targeted or excluded.
+   * <p>A criterion of this type can only be created using an ID.
    * <span class="constraint AdxEnabled">This is enabled for AdX.</span>
    * @package Google_Api_Ads_AdWords_v201402
    * @subpackage v201402
@@ -6903,7 +6908,7 @@ if (!class_exists("MobileApplication", false)) {
 if (!class_exists("MobileDevice", false)) {
   /**
    * Represents a Mobile Device Criterion.
-   * <p>A criterion of this type can only be created using an ID. A criterion of this type is only targetable.
+   * <p>A criterion of this type can only be created using an ID.
    * <span class="constraint AdxEnabled">This is enabled for AdX.</span>
    * @package Google_Api_Ads_AdWords_v201402
    * @subpackage v201402
@@ -7661,7 +7666,7 @@ if (!class_exists("Operand", false)) {
 if (!class_exists("OperatingSystemVersion", false)) {
   /**
    * Represents a Operating System Version Criterion.
-   * <p>A criterion of this type can only be created using an ID. A criterion of this type is only targetable.
+   * <p>A criterion of this type can only be created using an ID.
    * <span class="constraint AdxEnabled">This is enabled for AdX.</span>
    * @package Google_Api_Ads_AdWords_v201402
    * @subpackage v201402
@@ -8275,7 +8280,7 @@ if (!class_exists("PlacesOfInterestOperand", false)) {
 if (!class_exists("Platform", false)) {
   /**
    * Represents Platform criterion.
-   * <p>A criterion of this type can only be created using an ID. A criterion of this type is only targetable.
+   * <p>A criterion of this type can only be created using an ID.
    * <span class="constraint AdxEnabled">This is enabled for AdX.</span>
    * @package Google_Api_Ads_AdWords_v201402
    * @subpackage v201402
@@ -9088,7 +9093,7 @@ if (!class_exists("Proximity", false)) {
    * by a lat/long pair. The caller may also alternatively provide address fields which will be
    * geocoded into a lat/long pair. Note: If a geoPoint value is provided, the address is not
    * used for calculating the lat/long to target.
-   * <p> A criterion of this type is only targetable.
+   * <p>
    * <span class="constraint AdxEnabled">This is enabled for AdX.</span>
    * @package Google_Api_Ads_AdWords_v201402
    * @subpackage v201402
@@ -9850,7 +9855,7 @@ if (!class_exists("SelectorError", false)) {
 if (!class_exists("LocationGroups", false)) {
   /**
    * Represents a criterion containing a function that when evaluated specifies how to target
-   * based on the type of the location. These ???location groups??? are custom, dynamic bundles of
+   * based on the type of the location. These "location groups" are custom, dynamic bundles of
    * locations (for instance "High income areas in California" or "Airports in France").
    * 
    * <p>Examples:</p>
@@ -14114,6 +14119,39 @@ if (!class_exists("FunctionErrorReason", false)) {
   }
 }
 
+if (!class_exists("FunctionParsingErrorReason", false)) {
+  /**
+   * Function parsing error reason.
+   * @package Google_Api_Ads_AdWords_v201402
+   * @subpackage v201402
+   */
+  class FunctionParsingErrorReason {
+
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201402";
+    const XSI_TYPE = "FunctionParsingError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("GenderGenderType", false)) {
   /**
    * 
@@ -15044,7 +15082,7 @@ if (!class_exists("OperatorErrorReason", false)) {
 
 if (!class_exists("PageOnePromotedBiddingSchemeStrategyGoal", false)) {
   /**
-   * 
+   * First page on google.com.
    * @package Google_Api_Ads_AdWords_v201402
    * @subpackage v201402
    */
@@ -17308,7 +17346,7 @@ if (!class_exists("AdxError", false)) {
 if (!class_exists("AgeRange", false)) {
   /**
    * Represents an Age Range criterion.
-   * <p>A criterion of this type can only be created using an ID. A criterion of this type is only excludable.
+   * <p>A criterion of this type can only be created using an ID.
    * <span class="constraint AdxEnabled">This is disabled for AdX when it is contained within Operators: ADD, SET.</span>
    * @package Google_Api_Ads_AdWords_v201402
    * @subpackage v201402
@@ -17734,7 +17772,7 @@ if (!class_exists("CampaignTargetOperation", false)) {
 if (!class_exists("Carrier", false)) {
   /**
    * Represents a Carrier Criterion.
-   * <p>A criterion of this type can only be created using an ID. A criterion of this type is only targetable.
+   * <p>A criterion of this type can only be created using an ID.
    * <span class="constraint AdxEnabled">This is enabled for AdX.</span>
    * @package Google_Api_Ads_AdWords_v201402
    * @subpackage v201402
@@ -19037,6 +19075,7 @@ if (!class_exists("MutateJobService", false)) {
       "ForwardCompatibilityError.Reason" => "ForwardCompatibilityErrorReason",
       "Function.Operator" => "FunctionOperator",
       "FunctionError.Reason" => "FunctionErrorReason",
+      "FunctionParsingError.Reason" => "FunctionParsingErrorReason",
       "Gender.GenderType" => "GenderGenderType",
       "GeoTargetTypeSetting.NegativeGeoTargetType" => "GeoTargetTypeSettingNegativeGeoTargetType",
       "GeoTargetTypeSetting.PositiveGeoTargetType" => "GeoTargetTypeSettingPositiveGeoTargetType",
@@ -19171,3 +19210,4 @@ if (!class_exists("MutateJobService", false)) {
     }
   }
 }
+
