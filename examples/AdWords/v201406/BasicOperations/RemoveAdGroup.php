@@ -46,8 +46,6 @@ function RemoveAdGroupExample(AdWordsUser $user, $adGroupId) {
   $adGroup = new AdGroup();
   $adGroup->id = $adGroupId;
   $adGroup->status = 'REMOVED';
-  // Rename the ad group as you remove it, to avoid future name conflicts.
-  $adGroup->name = 'Removed ' . date('Ymd his');
 
   // Create operations.
   $operation = new AdGroupOperation();

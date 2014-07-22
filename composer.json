@@ -8,6 +8,12 @@
     "homepage": "https://github.com/googleads/googleads-php-lib",
     "license": "Apache-2.0",
     "include-path": ["src/"],
+    "autoload": {
+      "classmap": [
+        "src/Google/Api/Ads/AdWords/Lib",
+        "src/Google/Api/Ads/Dfp/Lib"
+      ]
+    }
     "authors": [
       {
         "name": "Paul Matthews",

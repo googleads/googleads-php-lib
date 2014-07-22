@@ -41,6 +41,7 @@ require_once dirname(__FILE__) . '/../../Common/Util/XmlUtils.php';
 class ReportUtils {
 
   const CLIENT_LOGIN_FORMAT = 'GoogleLogin auth=%s';
+  const FINAL_RETURN_MONEY_IN_MICROS_VERSION = "v201402";
 
   /**
    * The log name to use when logging requests.
@@ -336,6 +337,8 @@ class ReportUtils {
     }
     // Flags.
     if (isset($options['returnMoneyInMicros'])) {
+      DeprecationUtils::CheckUsingReturnMoneyInMicrosWithUnsupportedVersion(
+          self::FINAL_RETURN_MONEY_IN_MICROS_VERSION, $version);
       $headers['returnMoneyInMicros'] =
           $options['returnMoneyInMicros'] ? 'true' : 'false';
     }

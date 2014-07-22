@@ -1,3 +1,11 @@
+### 5.4.0
+
+AdWords:
+  - Removed v201309 support.
+
+Common:
+  - Added AdWords/Lib and Dfp/Lib to composer's autoload classmap. Fixed [pull request #44](https://github.com/googleads/googleads-php-lib/pull/44).
+
 ### 5.3.1
 
 AdWords:

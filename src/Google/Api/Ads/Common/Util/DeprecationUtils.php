@@ -87,6 +87,24 @@ abstract class DeprecationUtils {
   }
 
   /**
+   * Checks to see if returnMoneyInMicros can be used.  Throws an error if it
+   * cannot be used.
+   *
+   * @param string $finalVersion the final API version that supports
+   *    returnMoneyInMicros
+   * @param string $requestedVersion the API version being used
+   * @throws ServiceException if the requested version does not support
+   *     returnMoneyInMicros
+   */
+  public static function CheckUsingReturnMoneyInMicrosWithUnsupportedVersion(
+      $finalVersion, $requestedVersion) {
+    if ($requestedVersion > $finalVersion) {
+      throw new ServiceException(sprintf("returnMoneyInMicros is not supported "
+          . "in version %s.", $requestedVersion));
+    }
+  }
+
+  /**
    * Logs an error message indicating that the specified method is deprecated.
    *
    * @param string $methodName the name of the deprecated method

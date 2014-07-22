@@ -47,8 +47,6 @@ function RemoveCampaignExample(AdWordsUser $user, $campaignId) {
   $campaign = new Campaign();
   $campaign->id = $campaignId;
   $campaign->status = 'REMOVED';
-  // Rename the campaign as you remove it, to avoid future name conflicts.
-  $campaign->name = 'Removed ' . date('Ymd his');
 
   // Create operations.
   $operation = new CampaignOperation();
