@@ -13,7 +13,7 @@
         "src/Google/Api/Ads/AdWords/Lib",
         "src/Google/Api/Ads/Dfp/Lib"
       ]
-    }
+    },
     "authors": [
       {
         "name": "Paul Matthews",
