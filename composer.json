@@ -35,5 +35,10 @@
         "name": "Ray Tsang",
         "role": "Developer"
       }
-    ]
+    ],
+    "extra": {
+        "branch-alias": {
+            "dev-master": "5.4.x-dev"
+        }
+    }
 }
