@@ -1,14 +1,13 @@
 ## The Google Ads APIs PHP Client Library (EXPERIMENTAL)
 
-**Experimental!**  
+This project hosts the PHP client library for the various SOAP-based Ads APIs
+(AdWords, AdExchange Buyer, and DFP) at Google.
+
+### Experimental
 This branch of the ads PHP client library is an experimental, innovative, and
 rapidly changing client library. This means that we may make backwards-
 incompatible changes. Feedback from the community is welcome while we are
 actively developing this branch.
-
-This project hosts the PHP client library for the various SOAP-based Ads APIs
-(AdWords, AdExchange Buyer, and DFP) at Google.
-
 
 ### Features
 
@@ -23,7 +22,7 @@ This project hosts the PHP client library for the various SOAP-based Ads APIs
 ### Requirements
 
 PHP
-  - [PHP 5.2.x - 5.4.x](http://php.net)
+  - At least [PHP 5.3.x](http://php.net)
   - Required PHP extensions:
     - [SoapClient](http://us3.php.net/manual/en/book.soap.php) (--enable-soap)
     - [OpenSSL](http://php.net/manual/en/book.openssl.php) (--with-ssl)

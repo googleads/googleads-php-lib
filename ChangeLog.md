@@ -7,6 +7,7 @@ DFP:
   - Deprecated ServiceUtils.php.
 
 Common:
+  - Enabled PSR-4 autoloading in composer.
   - All PHP classes are now namespaced.
 
 ### 5.2.3
