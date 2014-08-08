@@ -72,7 +72,7 @@ class DfpUser extends AdsUser {
    * The DfpUser constructor.
    * <p>The DfpUser class can be configured in one of two ways:
    * <ol>
-   * <li>Using an authenitcation INI file</li>
+   * <li>Using an authentication INI file</li>
    * <li>Using supplied credentials</li>
    * </ol></p>
    * <p>If an authentication INI file is provided and successfully loaded, those
