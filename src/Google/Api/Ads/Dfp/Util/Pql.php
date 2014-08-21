@@ -42,13 +42,13 @@ class Pql {
   private function __construct() {}
 
   /**
-   * Creates a {@link Value} from the value i.e. a {@link TextValue} for a
-   * value of type {@code String}, {@link BooleanValue} for type
-   * {@code Boolean}, {@link NumberValue} for type {@code Double},
-   * {@code Long}, or {@code Integer}, {@link DateTimeValue} for type
-   * {@link DateTime}, and {@link DateValue} for type
-   * {@link Date}. If the value is a {@code Value}, the value is returned.
-   * If the value is {@code null}, an empty {@link TextValue} is returned.
+   * Creates a {@link Value} from the value i.e., a {@link TextValue} for a
+   * value of type {@code string}, {@link BooleanValue} for type {@code bool},
+   * {@link NumberValue} for type {@code float}, or {@code int},
+   * {@link DateTimeValue} for type {@link DfpDateTime}, {@link DateValue} for
+   * type {@link Date}, and {@link SetValue} for type {@code array}. If the
+   * value is a {@code Value}, the value is returned. If the value is
+   * {@code null}, an empty {@link TextValue} is returned.
    *
    * @param mixed $value the value to convert
    * @return Value the constructed value of the appropriate type
@@ -70,6 +70,14 @@ class Pql {
         return new DateTimeValue($value);
       } else if (class_exists('Date', false) && $value instanceof Date) {
         return new DateValue($value);
+      } else if (is_array($value)) {
+        $setValue = new SetValue();
+        $values = array();
+        foreach ($value as $pqlValue) {
+          $values[] = self::CreateValue($pqlValue);
+        }
+        $setValue->values = $values;
+        return $setValue;
       } else {
         throw new InvalidArgumentException(sprintf("Unsupported value type "
             . "[%s]", get_class($value)));
@@ -94,6 +102,17 @@ class Pql {
           ? DateTimeUtils::ToStringWithTimeZone($value->value) : '';
     } else if ($value instanceof DateValue) {
       return DateTimeUtils::ToString($value->value);
+    } else if ($value instanceof SetValue) {
+      $pqlValues = $value->values;
+      if (!isset($pqlValues)) {
+        return '';
+      } else {
+        $valuesAsStrings = array();
+        foreach ($pqlValues as $pqlValue) {
+          $valuesAsStrings[] = self::ToString($pqlValue);
+        }
+        return implode(',', $valuesAsStrings);
+      }
     } else {
       throw new InvalidArgumentException(sprintf("Unsupported Value type [%s]",
           get_class($value)));

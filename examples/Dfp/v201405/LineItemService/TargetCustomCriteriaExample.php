@@ -10,7 +10,7 @@
  *
  * PHP version 5
  *
- * Copyright 2013, Google Inc. All Rights Reserved.
+ * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,11 +27,10 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201405
  * @category   WebServices
- * @copyright  2013, Google Inc. All Rights Reserved.
+ * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Adam Rogal
- * @author     Eric Koleda
+ * @author     Vincent Tsao
  */
 error_reporting(E_STRICT | E_ALL);
 
@@ -94,14 +93,16 @@ try {
       array($customCriteria1, $subCustomCriteriaSet);
 
   // Create a statement to select a single line item by ID.
-  $vars =
-      MapUtils::GetMapEntries(array('id' => new NumberValue($lineItemId)));
-  $filterStatement = new Statement("WHERE id = :id ORDER BY id ASC LIMIT 1",
-      $vars);
+  $statementBuilder = new StatementBuilder();
+  $statementBuilder->Where('id = :id')
+      ->OrderBy('id ASC')
+      ->Limit(1)
+      ->WithBindVariableValue($lineItemId);
 
   // Get the line item.
-  $page = $lineItemService->getLineItemsByStatement($filterStatement);
-  $lineItem = $page->results[0];
+  $results = $lineItemService->getLineItemsByStatement(
+      $statementBuilder->ToStatement())->results;
+  $lineItem = $results[0];
 
   // Set the custom criteria targeting on the line item.
   $lineItem->targeting->customTargeting = $topCustomCriteriaSet;
@@ -110,7 +111,7 @@ try {
   $lineItems = $lineItemService->updateLineItems(array($lineItem));
 
   foreach ($lineItems as $lineItem) {
-    printf("Line item with ID '%s' was updated.\n", $lineItem->id);
+    printf("Line item with ID %d was updated.\n", $lineItem->id);
   }
 } catch (OAuth2Exception $e) {
   ExampleUtils::CheckForOAuth2Errors($e);

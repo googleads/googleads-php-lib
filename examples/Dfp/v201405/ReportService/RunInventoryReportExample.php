@@ -61,12 +61,12 @@ try {
       $networkService->getCurrentNetwork()->effectiveRootAdUnitId;
 
   // Create bind variables.
-  $vars = MapUtils::GetMapEntries(array('ancestorAdUnitId' =>
+  $vars = MapUtils::GetMapEntries(array('parentAdUnitId' =>
       new NumberValue($rootAdUnitId)));
 
-  // Create statement text to filter based on an order id.
+  // Create statement text to filter based on a parent ad unit id.
   $filterStatementText =
-      'WHERE AD_UNIT_ANCESTOR_AD_UNIT_ID = :ancestorAdUnitId';
+      'WHERE PARENT_AD_UNIT_ID = :parentAdUnitId';
 
   // Create statement object from text.
   $filterStatement = new Statement($filterStatementText, $vars);

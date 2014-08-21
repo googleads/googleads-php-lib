@@ -1,3 +1,22 @@
+### 5.5.0
+
+DFP:
+  - Added support for v201408.
+  - Updated API server endpoint base to default to https://ads.google.com in the settings.ini file.
+  - Updated OAuth 2.0 scope. See [documentation](https://developers.google.com/doubleclick-publishers/docs/authentication#scope).
+  - Fixed [issue #61](https://github.com/googleads/googleads-php-lib/issues/61).
+  - Updated v201405 line item service examples to use statement builder to
+    construct PQL queries.
+  - Removed some obsolete line item examples from v201405 and v201408 examples.
+  - Removed the suffix "Example" on all v201408 examples' filenames.
+  - Removed examples for versions that are currently soft deprecated (<= v201308). See the [deprecation schedule](https://developers.google.com/doubleclick-publishers/docs/deprecation) for more information.
+  - Fixed RunInventoryReport examples in v201405 and v201408 to use PARENT_AD_UNIT_ID instead of AD_UNIT_ANCESTOR_AD_UNIT_ID as it was renamed in v201405.
+  - Updated create line item and get forecast examples in v201408 to show how to set Goal.goalType.
+  - Refactored v201408 report examples to now download and save the report once it has finished running.
+  - Added new utility ReportDownloader.php to replace ReportUtils.php that works better with allowing report examples to download and save the report once it has finished running.
+  - Deprecated ReportUtils.php.
+  - Added PQL SetValue support to Pql.php util.
+
 ### 5.4.0
 
 AdWords:

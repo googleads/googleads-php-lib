@@ -2,7 +2,7 @@
 /**
  * This example gets all teams ordered by name. The statement
  * retrieves up to the maximum page size limit of 500. To create teams, run
- * CreateTeamssExample.php.
+ * CreateTeamsExample.php.
  *
  * Tags: TeamService.getTeamsByStatement
  * Tags: UserService.getCurrentUser

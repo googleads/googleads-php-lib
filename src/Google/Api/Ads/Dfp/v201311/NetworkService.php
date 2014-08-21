@@ -966,6 +966,51 @@ if (!class_exists("PermissionError", false)) {
   }
 }
 
+if (!class_exists("PrecisionError", false)) {
+  /**
+   * List all errors associated with number precisions.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201311
+   */
+  class PrecisionError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201311";
+    const XSI_TYPE = "PrecisionError";
+
+    /**
+     * @access public
+     * @var tnsPrecisionErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("PublisherQueryLanguageContextError", false)) {
   /**
    * An error that occurs while executing a PQL query contained in
@@ -1073,6 +1118,51 @@ if (!class_exists("QuotaError", false)) {
     /**
      * @access public
      * @var tnsQuotaErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
+if (!class_exists("RequiredCollectionError", false)) {
+  /**
+   * A list of all errors to be used for validating sizes of collections.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201311
+   */
+  class RequiredCollectionError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201311";
+    const XSI_TYPE = "RequiredCollectionError";
+
+    /**
+     * @access public
+     * @var tnsRequiredCollectionErrorReason
      */
     public $reason;
 
@@ -1469,6 +1559,44 @@ if (!class_exists("TypeError", false)) {
   }
 }
 
+if (!class_exists("UniqueError", false)) {
+  /**
+   * An error for a field which must satisfy a uniqueness constraint
+   * @package GoogleApiAdsDfp
+   * @subpackage v201311
+   */
+  class UniqueError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201311";
+    const XSI_TYPE = "UniqueError";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("ApiVersionErrorReason", false)) {
   /**
    * Indicates that the operation is not allowed in the version the request
@@ -1836,6 +1964,39 @@ if (!class_exists("PermissionErrorReason", false)) {
   }
 }
 
+if (!class_exists("PrecisionErrorReason", false)) {
+  /**
+   * Describes reasons for precision errors.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201311
+   */
+  class PrecisionErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201311";
+    const XSI_TYPE = "PrecisionError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("PublisherQueryLanguageContextErrorReason", false)) {
   /**
    * The reasons for the target error.
@@ -1910,9 +2071,10 @@ if (!class_exists("QuotaErrorReason", false)) {
    * guarantee the request will succeed. If it fails again, try increasing the
    * wait time.
    * <p>
-   * Another way to mitigate this error is to limit requests to 2 per second.
-   * Once again this does not guarantee that every request will succeed, but
-   * may help reduce the number of times you receive this error.
+   * Another way to mitigate this error is to limit requests to 2 per second for
+   * Small Business networks, or 8 per second for Premium networks. Once again
+   * this does not guarantee that every request will succeed, but may help
+   * reduce the number of times you receive this error.
    * </p>
    * @package GoogleApiAdsDfp
    * @subpackage v201311
@@ -1921,6 +2083,39 @@ if (!class_exists("QuotaErrorReason", false)) {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201311";
     const XSI_TYPE = "QuotaError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("RequiredCollectionErrorReason", false)) {
+  /**
+   * A required collection is missing.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201311
+   */
+  class RequiredCollectionErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201311";
+    const XSI_TYPE = "RequiredCollectionError.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -2494,13 +2689,13 @@ if (!class_exists("NetworkService", false)) {
 
     const SERVICE_NAME = "NetworkService";
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201311";
-    const ENDPOINT = "https://www.google.com/apis/ads/publisher/v201311/NetworkService";
+    const ENDPOINT = "https://ads.google.com/apis/ads/publisher/v201311/NetworkService";
 
     /**
      * The endpoint of the service
      * @var string
      */
-    public static $endpoint = "https://www.google.com/apis/ads/publisher/v201311/NetworkService";
+    public static $endpoint = "https://ads.google.com/apis/ads/publisher/v201311/NetworkService";
     /**
      * Default class map for wsdl=>php
      * @access private
@@ -2525,9 +2720,11 @@ if (!class_exists("NetworkService", false)) {
       "OAuth" => "DfpOAuth",
       "ParseError" => "ParseError",
       "PermissionError" => "PermissionError",
+      "PrecisionError" => "PrecisionError",
       "PublisherQueryLanguageContextError" => "PublisherQueryLanguageContextError",
       "PublisherQueryLanguageSyntaxError" => "PublisherQueryLanguageSyntaxError",
       "QuotaError" => "QuotaError",
+      "RequiredCollectionError" => "RequiredCollectionError",
       "RequiredError" => "RequiredError",
       "RequiredNumberError" => "RequiredNumberError",
       "ServerError" => "ServerError",
@@ -2536,6 +2733,7 @@ if (!class_exists("NetworkService", false)) {
       "StatementError" => "StatementError",
       "StringLengthError" => "StringLengthError",
       "TypeError" => "TypeError",
+      "UniqueError" => "UniqueError",
       "ApiVersionError.Reason" => "ApiVersionErrorReason",
       "AuthenticationError.Reason" => "AuthenticationErrorReason",
       "CommonError.Reason" => "CommonErrorReason",
@@ -2547,9 +2745,11 @@ if (!class_exists("NetworkService", false)) {
       "NotNullError.Reason" => "NotNullErrorReason",
       "ParseError.Reason" => "ParseErrorReason",
       "PermissionError.Reason" => "PermissionErrorReason",
+      "PrecisionError.Reason" => "PrecisionErrorReason",
       "PublisherQueryLanguageContextError.Reason" => "PublisherQueryLanguageContextErrorReason",
       "PublisherQueryLanguageSyntaxError.Reason" => "PublisherQueryLanguageSyntaxErrorReason",
       "QuotaError.Reason" => "QuotaErrorReason",
+      "RequiredCollectionError.Reason" => "RequiredCollectionErrorReason",
       "RequiredError.Reason" => "RequiredErrorReason",
       "RequiredNumberError.Reason" => "RequiredNumberErrorReason",
       "ServerError.Reason" => "ServerErrorReason",

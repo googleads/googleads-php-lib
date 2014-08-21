@@ -2270,22 +2270,18 @@ if (!class_exists("Forecast", false)) {
    * <p>Inventory has three threshold values along a line of possible inventory.
    * From least to most, these are:
    * 
-   * <ul>
-   * <li>Available units -- How many units can be booked without affecting any
-   * other line items. Booking more than this number can overbook lower or equal
-   * priority line items.
-   * <li>Possible units -- How many units can be booked without affecting any
-   * higher priority line items. Booking more than this number can overbook
-   * higher priority line items.
+   * <dl>
+   * <li>Available units -- How many units can be booked without affecting any other line items.
+   * Booking more than this number can cause lower- and same-priority line items to underdeliver.
+   * <li>Possible units -- How many units can be booked without affecting any higher priority line
+   * items. Booking more than this number can cause the line item to underdeliver.
    * <li>Matched (forecast) units -- How many units satisfy all specified
    * criteria.
-   * </ul>
+   * </dl>
    * 
-   * <p>The term "<em>can</em> overbook" is used, because if more impressions are
-   * served than are predicted, the extra available inventory might enable all
-   * inventory guarantees to be met without overbooking.
-   * 
-   * <p><img src="http://chart.apis.google.com/chart?chxl=0:|Available|Possible|Matched (forecast)&chxp=0,20,60,100&chxs=0,000000,11.5,0,t,676767&chxtc=0,10&chxt=x&chs=440x75&cht=bhs&chco=D4F8AD,FFF15C,FC5D5D&chd=t:20|40|40&chp=0,0.05&chm=tNo+overbooking,000000,0,0,10,1,:-75|tOverbook+lower+priority,000000,0,0,10,1,:20|tOverbook+higher+priority,000000,0,0,10,1,:175"/>
+   * <p>Underdelivery is caused by overbooking. However, if more impressions are served than are
+   * predicted, the extra available inventory might enable all inventory guarantees to be met without
+   * overbooking.
    * @package GoogleApiAdsDfp
    * @subpackage v201405
    */
@@ -7661,7 +7657,7 @@ if (!class_exists("CreativePersistenceType", false)) {
 
 if (!class_exists("ProgrammaticErrorReason", false)) {
   /**
-   * Audience extension is not supported by programmatic line items
+   * Audience extension is not supported by programmatic line items.
    * @package GoogleApiAdsDfp
    * @subpackage v201405
    */
@@ -7766,9 +7762,10 @@ if (!class_exists("QuotaErrorReason", false)) {
    * guarantee the request will succeed. If it fails again, try increasing the
    * wait time.
    * <p>
-   * Another way to mitigate this error is to limit requests to 2 per second.
-   * Once again this does not guarantee that every request will succeed, but
-   * may help reduce the number of times you receive this error.
+   * Another way to mitigate this error is to limit requests to 2 per second for
+   * Small Business networks, or 8 per second for Premium networks. Once again
+   * this does not guarantee that every request will succeed, but may help
+   * reduce the number of times you receive this error.
    * </p>
    * @package GoogleApiAdsDfp
    * @subpackage v201405
@@ -9796,13 +9793,13 @@ if (!class_exists("ForecastService", false)) {
 
     const SERVICE_NAME = "ForecastService";
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
-    const ENDPOINT = "https://www.google.com/apis/ads/publisher/v201405/ForecastService";
+    const ENDPOINT = "https://ads.google.com/apis/ads/publisher/v201405/ForecastService";
 
     /**
      * The endpoint of the service
      * @var string
      */
-    public static $endpoint = "https://www.google.com/apis/ads/publisher/v201405/ForecastService";
+    public static $endpoint = "https://ads.google.com/apis/ads/publisher/v201405/ForecastService";
     /**
      * Default class map for wsdl=>php
      * @access private

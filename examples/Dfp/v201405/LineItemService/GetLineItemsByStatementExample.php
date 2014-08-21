@@ -1,15 +1,13 @@
 <?php
 /**
  * This example gets all line items that need creatives for the given order.
- * The statement retrieves up to the maximum page size limit of 500. To
- * create line items run CreateLineItemsExample.php. To determine which
- * orders exist run GetAllOrdersExample.java.
+ * To create line items run CreateLineItemsExample.php.
  *
  * Tags: LineItemService.getLineItemsByStatment
  *
  * PHP version 5
  *
- * Copyright 2013, Google Inc. All Rights Reserved.
+ * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,12 +24,10 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201405
  * @category   WebServices
- * @copyright  2013, Google Inc. All Rights Reserved.
+ * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Adam Rogal
- * @author     Eric Koleda
- * @author     Paul Rashidi
+ * @author     Vincent Tsao
  */
 error_reporting(E_STRICT | E_ALL);
 
@@ -42,8 +38,8 @@ $path = dirname(__FILE__) . '/../../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
+require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
-require_once 'Google/Api/Ads/Common/Util/MapUtils.php';
 
 try {
   // Get DfpUser from credentials in "../auth.ini"
@@ -56,39 +52,39 @@ try {
   // Get the LineItemService.
   $lineItemService = $user->GetService('LineItemService', 'v201405');
 
-  // Set the ID of the order to get line items from.
-  $orderId = 'INSERT_ORDER_ID_HERE';
+  // Create a statement to only select line items that need creatives.
+  $statementBuilder = new StatementBuilder();
+  $statementBuilder->Where('status = :status')
+      ->OrderBy('id ASC')
+      ->Limit(StatementBuilder::SUGGESTED_PAGE_LIMIT)
+      ->WithBindVariableValue('status', 'NEEDS_CREATIVES');
 
-  // Create bind variables.
-  $vars =
-      MapUtils::GetMapEntries(array('orderId' => new NumberValue($orderId)));
+  // Default for total result set size.
+  $totalResultSetSize = 0;
 
-  // Create a statement to only select line items that need creatives
-  // from a given order.
-  $filterStatement = new Statement("WHERE orderId = :orderId "
-      . " AND status = 'NEEDS_CREATIVES' LIMIT 500", $vars);
+  do {
+    // Get line items by statement.
+    $page = $lineItemService->getLineItemsByStatement(
+        $statementBuilder.ToStatement());
 
-  // Get line items by statement.
-  $page = $lineItemService->getLineItemsByStatement($filterStatement);
-
-  // Display results.
-  if (isset($page->results)) {
-    $i = $page->startIndex;
-    foreach ($page->results as $lineItem) {
-      print $i . ') Line item with ID "'
-          . $lineItem->id . '", belonging to order ID "'
-          . $lineItem->orderId . '", and name "' . $lineItem->name
-          . "\" was found.\n";
-      $i++;
+    // Display results.
+    if (isset($page->results)) {
+      $totalResultSetSize = $page->totalResultSetSize;
+      $i = $page->startIndex;
+      foreach ($page->results as $lineItem) {
+        printf("%d) Line item with ID %d, belonging to order ID %d, and name "
+            ."%s was found.\n", $i++, $lineItem->id, $lineItem->orderId,
+            $lineItem->name);
+      }
     }
-  }
-
-  print 'Number of results found: ' . $page->totalResultSetSize . "\n";
+    $statementBuilder->IncreaseOffsetBy(StatementBuilder::SUGGESTED_PAGE_LIMIT);
+  } while ($statementBuilder->GetOffset() < $totalResultSetSize);
+  printf("Number of results found: %d\n", $totalResultSetSize);
 } catch (OAuth2Exception $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (ValidationException $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (Exception $e) {
-  print $e->getMessage() . "\n";
+  printf("%s\n", $e->getMessage());
 }
 

@@ -2276,9 +2276,10 @@ if (!class_exists("QuotaErrorReason", false)) {
    * guarantee the request will succeed. If it fails again, try increasing the
    * wait time.
    * <p>
-   * Another way to mitigate this error is to limit requests to 2 per second.
-   * Once again this does not guarantee that every request will succeed, but
-   * may help reduce the number of times you receive this error.
+   * Another way to mitigate this error is to limit requests to 2 per second for
+   * Small Business networks, or 8 per second for Premium networks. Once again
+   * this does not guarantee that every request will succeed, but may help
+   * reduce the number of times you receive this error.
    * </p>
    * @package GoogleApiAdsDfp
    * @subpackage v201308
@@ -2751,7 +2752,7 @@ if (!class_exists("RunReportJob", false)) {
   /**
    * Initiates the execution of a {@link ReportQuery} on the server.
    * 
-   * The following fields are required:
+   * <p>The following fields are required:
    * <ul>
    * <li>{@link ReportJob#reportQuery}</li>
    * </ul>
@@ -3098,13 +3099,13 @@ if (!class_exists("ReportService", false)) {
 
     const SERVICE_NAME = "ReportService";
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201308";
-    const ENDPOINT = "https://www.google.com/apis/ads/publisher/v201308/ReportService";
+    const ENDPOINT = "https://ads.google.com/apis/ads/publisher/v201308/ReportService";
 
     /**
      * The endpoint of the service
      * @var string
      */
-    public static $endpoint = "https://www.google.com/apis/ads/publisher/v201308/ReportService";
+    public static $endpoint = "https://ads.google.com/apis/ads/publisher/v201308/ReportService";
     /**
      * Default class map for wsdl=>php
      * @access private
@@ -3235,7 +3236,7 @@ if (!class_exists("ReportService", false)) {
     /**
      * Initiates the execution of a {@link ReportQuery} on the server.
      * 
-     * The following fields are required:
+     * <p>The following fields are required:
      * <ul>
      * <li>{@link ReportJob#reportQuery}</li>
      * </ul>

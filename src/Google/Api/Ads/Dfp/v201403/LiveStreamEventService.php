@@ -626,6 +626,51 @@ if (!class_exists("InternalApiError", false)) {
   }
 }
 
+if (!class_exists("InvalidUrlError", false)) {
+  /**
+   * Lists all errors associated with URLs.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201403
+   */
+  class InvalidUrlError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
+    const XSI_TYPE = "InvalidUrlError";
+
+    /**
+     * @access public
+     * @var tnsInvalidUrlErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("LiveStreamEventAction", false)) {
   /**
    * Represents the actions that can be performed on {@link LiveStreamEvent}
@@ -954,6 +999,51 @@ if (!class_exists("NotNullError", false)) {
   }
 }
 
+if (!class_exists("NullError", false)) {
+  /**
+   * Errors associated with violation of a NOT NULL check.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201403
+   */
+  class NullError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
+    const XSI_TYPE = "NullError";
+
+    /**
+     * @access public
+     * @var tnsNullErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("DfpOAuth", false)) {
   /**
    * The credentials for the {@code OAuth} authentication protocol.
@@ -993,6 +1083,51 @@ if (!class_exists("DfpOAuth", false)) {
       parent::__construct();
       $this->parameters = $parameters;
       $this->AuthenticationType = $AuthenticationType;
+    }
+
+  }
+}
+
+if (!class_exists("ParseError", false)) {
+  /**
+   * Lists errors related to parsing.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201403
+   */
+  class ParseError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
+    const XSI_TYPE = "ParseError";
+
+    /**
+     * @access public
+     * @var tnsParseErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
     }
 
   }
@@ -1946,6 +2081,39 @@ if (!class_exists("InternalApiErrorReason", false)) {
   }
 }
 
+if (!class_exists("InvalidUrlErrorReason", false)) {
+  /**
+   * The URL contains invalid characters.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201403
+   */
+  class InvalidUrlErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
+    const XSI_TYPE = "InvalidUrlError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("LiveStreamEventDateTimeErrorReason", false)) {
   /**
    * Describes reasons for {@code LiveStreamEventDateTimeError}.
@@ -2022,6 +2190,72 @@ if (!class_exists("NotNullErrorReason", false)) {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
     const XSI_TYPE = "NotNullError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("NullErrorReason", false)) {
+  /**
+   * The reasons for the validation error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201403
+   */
+  class NullErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
+    const XSI_TYPE = "NullError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("ParseErrorReason", false)) {
+  /**
+   * The reasons for the target error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201403
+   */
+  class ParseErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
+    const XSI_TYPE = "ParseError.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -2152,9 +2386,10 @@ if (!class_exists("QuotaErrorReason", false)) {
    * guarantee the request will succeed. If it fails again, try increasing the
    * wait time.
    * <p>
-   * Another way to mitigate this error is to limit requests to 2 per second.
-   * Once again this does not guarantee that every request will succeed, but
-   * may help reduce the number of times you receive this error.
+   * Another way to mitigate this error is to limit requests to 2 per second for
+   * Small Business networks, or 8 per second for Premium networks. Once again
+   * this does not guarantee that every request will succeed, but may help
+   * reduce the number of times you receive this error.
    * </p>
    * @package GoogleApiAdsDfp
    * @subpackage v201403
@@ -3091,13 +3326,13 @@ if (!class_exists("LiveStreamEventService", false)) {
 
     const SERVICE_NAME = "LiveStreamEventService";
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
-    const ENDPOINT = "https://www.google.com/apis/ads/publisher/v201403/LiveStreamEventService";
+    const ENDPOINT = "https://ads.google.com/apis/ads/publisher/v201403/LiveStreamEventService";
 
     /**
      * The endpoint of the service
      * @var string
      */
-    public static $endpoint = "https://www.google.com/apis/ads/publisher/v201403/LiveStreamEventService";
+    public static $endpoint = "https://ads.google.com/apis/ads/publisher/v201403/LiveStreamEventService";
     /**
      * Default class map for wsdl=>php
      * @access private
@@ -3120,13 +3355,16 @@ if (!class_exists("LiveStreamEventService", false)) {
       "DateValue" => "DateValue",
       "FeatureError" => "FeatureError",
       "InternalApiError" => "InternalApiError",
+      "InvalidUrlError" => "InvalidUrlError",
       "LiveStreamEventAction" => "LiveStreamEventAction",
       "LiveStreamEventDateTimeError" => "LiveStreamEventDateTimeError",
       "LiveStreamEvent" => "LiveStreamEvent",
       "LiveStreamEventPage" => "LiveStreamEventPage",
       "NotNullError" => "NotNullError",
+      "NullError" => "NullError",
       "NumberValue" => "NumberValue",
       "OAuth" => "DfpOAuth",
+      "ParseError" => "ParseError",
       "PauseLiveStreamEvents" => "PauseLiveStreamEvents",
       "PermissionError" => "PermissionError",
       "PublisherQueryLanguageContextError" => "PublisherQueryLanguageContextError",
@@ -3150,9 +3388,12 @@ if (!class_exists("LiveStreamEventService", false)) {
       "CommonError.Reason" => "CommonErrorReason",
       "FeatureError.Reason" => "FeatureErrorReason",
       "InternalApiError.Reason" => "InternalApiErrorReason",
+      "InvalidUrlError.Reason" => "InvalidUrlErrorReason",
       "LiveStreamEventDateTimeError.Reason" => "LiveStreamEventDateTimeErrorReason",
       "LiveStreamEventStatus" => "LiveStreamEventStatus",
       "NotNullError.Reason" => "NotNullErrorReason",
+      "NullError.Reason" => "NullErrorReason",
+      "ParseError.Reason" => "ParseErrorReason",
       "PermissionError.Reason" => "PermissionErrorReason",
       "PublisherQueryLanguageContextError.Reason" => "PublisherQueryLanguageContextErrorReason",
       "PublisherQueryLanguageSyntaxError.Reason" => "PublisherQueryLanguageSyntaxErrorReason",

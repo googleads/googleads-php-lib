@@ -2180,7 +2180,7 @@ if (!class_exists("Product", false)) {
 
     /**
      * @access public
-     * @var string
+     * @var integer
      */
     public $id;
 
@@ -4388,9 +4388,10 @@ if (!class_exists("QuotaErrorReason", false)) {
    * guarantee the request will succeed. If it fails again, try increasing the
    * wait time.
    * <p>
-   * Another way to mitigate this error is to limit requests to 2 per second.
-   * Once again this does not guarantee that every request will succeed, but
-   * may help reduce the number of times you receive this error.
+   * Another way to mitigate this error is to limit requests to 2 per second for
+   * Small Business networks, or 8 per second for Premium networks. Once again
+   * this does not guarantee that every request will succeed, but may help
+   * reduce the number of times you receive this error.
    * </p>
    * @package GoogleApiAdsDfp
    * @subpackage v201405
@@ -4816,7 +4817,7 @@ if (!class_exists("GetProductsByStatement", false)) {
    * <td>{@code id}</td>
    * <td>{@link Product#id}</td>
    * <td>Yes</td>
-   * <td>No</td>
+   * <td>Yes</td>
    * </tr>
    * <tr>
    * <td>{@code lastModifiedDateTime}</td>
@@ -6150,13 +6151,13 @@ if (!class_exists("ProductService", false)) {
 
     const SERVICE_NAME = "ProductService";
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
-    const ENDPOINT = "https://www.google.com/apis/ads/publisher/v201405/ProductService";
+    const ENDPOINT = "https://ads.google.com/apis/ads/publisher/v201405/ProductService";
 
     /**
      * The endpoint of the service
      * @var string
      */
-    public static $endpoint = "https://www.google.com/apis/ads/publisher/v201405/ProductService";
+    public static $endpoint = "https://ads.google.com/apis/ads/publisher/v201405/ProductService";
     /**
      * Default class map for wsdl=>php
      * @access private
@@ -6364,7 +6365,7 @@ if (!class_exists("ProductService", false)) {
      * <td>{@code id}</td>
      * <td>{@link Product#id}</td>
      * <td>Yes</td>
-     * <td>No</td>
+     * <td>Yes</td>
      * </tr>
      * <tr>
      * <td>{@code lastModifiedDateTime}</td>

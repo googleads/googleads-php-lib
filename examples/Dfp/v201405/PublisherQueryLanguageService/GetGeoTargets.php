@@ -9,7 +9,7 @@
  *       memory_limit may need to be raised for this example to work properly.
  *
  * A full list of available PQL tables can be found at:
- * https://developers.google.com/doubleclick-publishers/docs/reference/v201306/PublisherQueryLanguageService
+ * https://developers.google.com/doubleclick-publishers/docs/reference/v201405/PublisherQueryLanguageService
  *
  * Tags: PublisherQueryLanguageService.select
  *

@@ -1,14 +1,14 @@
 <?php
 /**
- * This example updates the delivery rate of all line items up to the first
- * 500. To determine which line items exist, run GetAllLineItemsExample.php.
+ * This example updates a standard line item's priority to high. To determine
+ * which line items exist, run GetAllLineItemsExample.php.
  *
  * Tags: LineItemService.getLineItemsByStatement
  * Tags: LineItemService.updateLineItems
  *
  * PHP version 5
  *
- * Copyright 2013, Google Inc. All Rights Reserved.
+ * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,11 +25,10 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201405
  * @category   WebServices
- * @copyright  2013, Google Inc. All Rights Reserved.
+ * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Adam Rogal
- * @author     Eric Koleda
+ * @author     Vincent Tsao
  */
 error_reporting(E_STRICT | E_ALL);
 
@@ -53,52 +52,40 @@ try {
   // Get the LineItemService.
   $lineItemService = $user->GetService('LineItemService', 'v201405');
 
-  // Set the ID of the order to get line items from.
-  $orderId = 'INSERT_ORDER_ID_HERE';
+  // Set the ID of the line item to update.
+  $lineItemId = 'INSERT_LINE_ITEM_ID_HERE';
 
-  // Create a statement to get line items with even delivery rates.
-  $filterStatement =
-      new Statement("WHERE deliveryRateType = 'EVENLY' and orderId = "
-          . $orderId . ' LIMIT 500');
+  // Create a statement to select a single line item by ID.
+  $statementBuilder = new StatementBuilder();
+  $statementBuilder->Where('id = :id')
+      ->OrderBy('id ASC')
+      ->Limit(1)
+      ->WithBindVariableValue('id', $lineItemId);
 
-  // Get line items by statement.
-  $page = $lineItemService->getLineItemsByStatement($filterStatement);
+  // Get the line item.
+  $results = $lineItemService->getLineItemsByStatement(
+      $statementBuilder->ToStatement())->results;
+  $lineItem = $results[0];
 
-  if (isset($page->results)) {
-    $lineItems = $page->results;
+  // Update the line item's priority to High if possible.
+  if ($lineItem->lineItemType == 'STANDARD') {
+    $lineItem->priority = 6;
 
-    // Remove archived line items.
-    array_filter($lineItems,
-        create_function('$lineItem', 'return !$lineItem->isArchived;'));
+    // Update the line item on the server.
+    $lineItems = $lineItemService->updateLineItems(array($lineItem));
 
-    // Update each local line item object by changing its delivery rate.
-    foreach ($lineItems as $lineItem) {
-      $lineItem->deliveryRateType = 'AS_FAST_AS_POSSIBLE';
-    }
-
-    // Update the line items on the server.
-    $lineItems = $lineItemService->updateLineItems($lineItems);
-
-    // Display results.
-    if (isset($lineItems)) {
-      foreach ($lineItems as $lineItem) {
-        print 'A line item with ID "'
-            . $lineItem->id . '", belonging to order ID "'
-            . $lineItem->orderId . '", name "' . $lineItem->name
-            . '", and delivery rate "' . $lineItem->deliveryRateType
-            . "\" was updated.\n";
-      }
-    } else {
-      print "No line items updated.\n";
+    foreach ($updatedLineItem as $lineItems) {
+      printf("Line item with ID %d and name %s was updated.\n", $lineItem->id,
+          $lineItem->name);
     }
   } else {
-    print "No line items found to update.\n";
+    printf("No line items were updated.\n");
   }
 } catch (OAuth2Exception $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (ValidationException $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (Exception $e) {
-  print $e->getMessage() . "\n";
+  printf("%s\n", $e->getMessage());
 }
 

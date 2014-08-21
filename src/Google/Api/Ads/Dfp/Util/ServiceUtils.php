@@ -1,5 +1,9 @@
 <?php
 /**
+ * This class is now deprecated, please see this wiki article for more
+ * information:
+ * https://github.com/googleads/googleads-php-lib/wiki/Migrating-off-of-DFP-ServiceUtils-functions
+ *
  * A utility class to simplify the use of API services.
  *
  * PHP version 5
@@ -33,6 +37,9 @@ require_once 'Google/Api/Ads/Common/Util/DeprecationUtils.php';
  * A utility class to simplify the use of API services.
  * @package GoogleApiAdsDfp
  * @subpackage Util
+ * @deprecated please see
+ *     https://github.com/googleads/googleads-php-lib/wiki/Migrating-off-of-DFP-ServiceUtils-functions
+ *     for more information
  */
 class ServiceUtils {
 

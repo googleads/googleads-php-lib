@@ -1354,9 +1354,9 @@ if (!class_exists("WorkflowAction", false)) {
 
     /**
      * @access public
-     * @var integer[]
+     * @var WorkflowActionPerformer[]
      */
-    public $userIds;
+    public $performers;
 
     /**
      * @access public
@@ -1380,10 +1380,10 @@ if (!class_exists("WorkflowAction", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($id = null, $name = null, $userIds = null, $type = null) {
+    public function __construct($id = null, $name = null, $performers = null, $type = null) {
       $this->id = $id;
       $this->name = $name;
-      $this->userIds = $userIds;
+      $this->performers = $performers;
       $this->type = $type;
     }
 
@@ -1439,6 +1439,68 @@ if (!class_exists("WorkflowActionPage", false)) {
       $this->results = $results;
       $this->startIndex = $startIndex;
       $this->totalResultSetSize = $totalResultSetSize;
+    }
+
+  }
+}
+
+if (!class_exists("WorkflowActionPerformer", false)) {
+  /**
+   * A {@code WorkflowActionPerformer} represents a workflow action performer. The performer is either
+   * an individual user or a team.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201306
+   */
+  class WorkflowActionPerformer {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201306";
+    const XSI_TYPE = "WorkflowActionPerformer";
+
+    /**
+     * @access public
+     * @var integer
+     */
+    public $id;
+
+    /**
+     * @access public
+     * @var tnsWorkflowRoundActionPerformerType
+     */
+    public $type;
+
+    /**
+     * @access public
+     * @var integer
+     */
+    public $userId;
+
+    /**
+     * @access public
+     * @var integer
+     */
+    public $teamId;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($id = null, $type = null, $userId = null, $teamId = null) {
+      $this->id = $id;
+      $this->type = $type;
+      $this->userId = $userId;
+      $this->teamId = $teamId;
     }
 
   }
@@ -1753,9 +1815,10 @@ if (!class_exists("QuotaErrorReason", false)) {
    * guarantee the request will succeed. If it fails again, try increasing the
    * wait time.
    * <p>
-   * Another way to mitigate this error is to limit requests to 2 per second.
-   * Once again this does not guarantee that every request will succeed, but
-   * may help reduce the number of times you receive this error.
+   * Another way to mitigate this error is to limit requests to 2 per second for
+   * Small Business networks, or 8 per second for Premium networks. Once again
+   * this does not guarantee that every request will succeed, but may help
+   * reduce the number of times you receive this error.
    * </p>
    * @package GoogleApiAdsDfp
    * @subpackage v201306
@@ -1863,6 +1926,39 @@ if (!class_exists("WorkflowActionType", false)) {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201306";
     const XSI_TYPE = "WorkflowActionType";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("WorkflowRoundActionPerformerType", false)) {
+  /**
+   * The type of WorkflowRoundActionPerformer.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201306
+   */
+  class WorkflowRoundActionPerformerType {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201306";
+    const XSI_TYPE = "WorkflowRoundActionPerformerType";
 
     /**
      * Gets the namesapce of this class
@@ -2332,13 +2428,13 @@ if (!class_exists("WorkflowActionService", false)) {
 
     const SERVICE_NAME = "WorkflowActionService";
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201306";
-    const ENDPOINT = "https://www.google.com/apis/ads/publisher/v201306/WorkflowActionService";
+    const ENDPOINT = "https://ads.google.com/apis/ads/publisher/v201306/WorkflowActionService";
 
     /**
      * The endpoint of the service
      * @var string
      */
-    public static $endpoint = "https://www.google.com/apis/ads/publisher/v201306/WorkflowActionService";
+    public static $endpoint = "https://ads.google.com/apis/ads/publisher/v201306/WorkflowActionService";
     /**
      * Default class map for wsdl=>php
      * @access private
@@ -2377,6 +2473,7 @@ if (!class_exists("WorkflowActionService", false)) {
       "Value" => "Value",
       "WorkflowAction" => "WorkflowAction",
       "WorkflowActionPage" => "WorkflowActionPage",
+      "WorkflowActionPerformer" => "WorkflowActionPerformer",
       "ApiVersionError.Reason" => "ApiVersionErrorReason",
       "AuthenticationError.Reason" => "AuthenticationErrorReason",
       "CommonError.Reason" => "CommonErrorReason",
@@ -2390,6 +2487,7 @@ if (!class_exists("WorkflowActionService", false)) {
       "ServerError.Reason" => "ServerErrorReason",
       "StatementError.Reason" => "StatementErrorReason",
       "WorkflowActionType" => "WorkflowActionType",
+      "WorkflowRoundActionPerformerType" => "WorkflowRoundActionPerformerType",
       "getWorkflowAction" => "GetWorkflowAction",
       "getWorkflowActionResponse" => "GetWorkflowActionResponse",
       "getWorkflowActionsByStatement" => "GetWorkflowActionsByStatement",
