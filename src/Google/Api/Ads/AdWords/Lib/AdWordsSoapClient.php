@@ -190,7 +190,6 @@ class AdWordsSoapClient extends AdsSoapClient {
   /**
    * Generates the request info message containing:
    * <ul>
-   * <li>email</li>
    * <li>effectiveUser</li>
    * <li>service</li>
    * <li>method</li>
@@ -207,8 +206,8 @@ class AdWordsSoapClient extends AdsSoapClient {
    * @access protected
    */
   protected function GenerateRequestInfoMessage() {
-    return 'email=' . $this->GetEmail() . ' effectiveUser='
-        . $this->GetEffectiveUser() . ' service=' . $this->GetServiceName()
+    return 'effectiveUser=' . $this->GetEffectiveUser()
+        . ' service=' . $this->GetServiceName()
         . ' method=' . $this->GetLastMethodName() . ' operators='
         . $this->GetLastOperators() . ' responseTime='
         . $this->GetLastResponseTime() . ' requestId='

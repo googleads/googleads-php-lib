@@ -314,26 +314,19 @@ class ReportUtils {
       $user->SetOAuth2Info($oAuth2Info);
       $authHeader = $oAuth2Handler->FormatCredentialsForHeader($oAuth2Info);
     } else {
-      DeprecationUtils::CheckUsingClientLoginWithUnsupportedVersion($user,
-        AdWordsUser::FINAL_CLIENT_LOGIN_VERSION, $version);
-      $authHeader = sprintf(self::CLIENT_LOGIN_FORMAT, $user->GetAuthToken());
+      throw new ServiceException('OAuth 2.0 authentication is required.');
     }
     $headers['Authorization'] = $authHeader;
 
     // Developer token.
     $headers['developerToken'] = $user->GetDeveloperToken();
     // Target client.
-    $email = $user->GetEmail();
     $clientCustomerId = $user->GetClientCustomerId();
     if (isset($clientCustomerId)) {
       $headers['clientCustomerId'] = $clientCustomerId;
     } else {
-      if ($version < 'v201109' && isset($email)) {
-        $headers['clientEmail'] = $email;
-      } else {
-          throw new ReportDownloadException('The client customer ID must be '
+      throw new ReportDownloadException('The client customer ID must be '
           . 'specified for report downloads.');
-      }
     }
     // Flags.
     if (isset($options['returnMoneyInMicros'])) {

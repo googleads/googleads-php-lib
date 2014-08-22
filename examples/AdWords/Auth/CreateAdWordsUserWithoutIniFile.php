@@ -61,8 +61,8 @@ try {
   );
 
   // See AdWordsUser constructor
-  $user = new AdWordsUser(NULL, NULL, NULL, DEVELOPER_TOKEN, NULL, USER_AGENT,
-      NULL, NULL, NULL, $oauth2Info);
+  $user = new AdWordsUser(NULL, DEVELOPER_TOKEN, NULL, USER_AGENT, NULL, NULL,
+      $oauth2Info);
 
   $user->LogAll();
 

@@ -49,7 +49,6 @@ class AdWordsUser extends AdsUser {
 
   const OAUTH2_SCOPE = 'https://www.googleapis.com/auth/adwords';
   const OAUTH2_HANDLER_CLASS = 'SimpleOAuth2Handler';
-  const FINAL_CLIENT_LOGIN_VERSION = "v201309";
 
   /**
    * The name of the SOAP header that represents the user agent making API
@@ -66,8 +65,6 @@ class AdWordsUser extends AdsUser {
   private $defaultVersion;
   private $defaultServer;
 
-  private $email;
-  private $password;
   private $userAgent;
 
   /**
@@ -89,10 +86,6 @@ class AdWordsUser extends AdsUser {
    *     authentication INI or relative to the current directory (cwd). If
    *     <var>NULL</var>, the default authentication INI file will attempt to be
    *     loaded
-   * @param string $email the email of the user (required header). Will
-   *     overwrite the email entry loaded from any INI file
-   * @param string $password the password of the user (required header). Will
-   *     overwrite the password entry loaded from any INI file
    * @param string $developerToken the developer token (required header). Will
    *     overwrite the developer token entry loaded from any INI file
    * @param string $applicationToken the application token (required header).
@@ -105,13 +98,12 @@ class AdWordsUser extends AdsUser {
    *     loaded from any INI file
    * @param string $settingsIniPath the path to the settings INI file. If
    *     <var>NULL</var>, the default settings INI file will be loaded
-   * @param string $authToken the authToken to use for requests
    * @param array $oauth2Info the OAuth 2.0 information to use for requests
    */
-  public function __construct($authenticationIniPath = NULL, $email = NULL,
-      $password = NULL, $developerToken = NULL, $applicationToken = NULL,
+  public function __construct($authenticationIniPath = NULL,
+      $developerToken = NULL, $applicationToken = NULL,
       $userAgent = NULL, $clientCustomerId = NULL, $settingsIniPath = NULL,
-      $authToken = NULL, $oauth2Info = NULL) {
+      $oauth2Info = NULL) {
     parent::__construct();
 
     $buildIniAw = parse_ini_file(dirname(__FILE__) . '/build.ini',
@@ -135,9 +127,6 @@ class AdWordsUser extends AdsUser {
           parse_ini_file(dirname(__FILE__) . '/../auth.ini', TRUE);
     }
 
-    $email = $this->GetAuthVarValue($email, 'email', $authenticationIni);
-    $password = $this->GetAuthVarValue($password, 'password',
-        $authenticationIni);
     $developerToken = $this->GetAuthVarValue($developerToken, 'developerToken',
         $authenticationIni);
     $applicationToken = $this->GetAuthVarValue($applicationToken,
@@ -146,8 +135,6 @@ class AdWordsUser extends AdsUser {
         self::USER_AGENT_HEADER_NAME, $authenticationIni);
     $clientCustomerId = $this->GetAuthVarValue($clientCustomerId,
         'clientCustomerId', $authenticationIni);
-    $authToken = $this->GetAuthVarValue($authToken, 'authToken',
-        $authenticationIni);
     $oauth2Info = $this->GetAuthVarValue($oauth2Info, 'OAUTH2',
         $authenticationIni);
 
@@ -158,9 +145,6 @@ class AdWordsUser extends AdsUser {
           . ' "clientCustomerId", please use that instead.');
     }
 
-    $this->SetEmail($email);
-    $this->SetPassword($password);
-    $this->SetAuthToken($authToken);
     $this->SetOAuth2Info($oauth2Info);
     $this->SetUserAgent($userAgent);
     $this->SetClientLibraryUserAgent($userAgent);
@@ -249,9 +233,6 @@ class AdWordsUser extends AdsUser {
         $validateOnly, $partialFailure);
     }
 
-    DeprecationUtils::CheckUsingClientLoginWithUnsupportedVersion($this,
-        self::FINAL_CLIENT_LOGIN_VERSION, $version);
-
     return parent::GetServiceSoapClient($serviceName, $serviceFactory);
   }
 
@@ -269,42 +250,6 @@ class AdWordsUser extends AdsUser {
     $serviceFactory = new AdWordsSoapClientFactory($this, $version, NULL, NULL,
         NULL);
     $serviceFactory->DoRequireOnce($serviceName);
-  }
-
-  /**
-   * Regenerates the authentication token and sets it for this user.
-   * @param string $server the server to retrieve the token from
-   * @return string the newly generated auth token
-   */
-  public function RegenerateAuthToken($server = NULL) {
-    if (!isset($server)) {
-      $server = $this->GetAuthServer();
-    }
-    $authTokenClient = new AuthToken($this->email, $this->password, 'adwords',
-        $this->GetClientLibraryUserAgent(), 'GOOGLE', $server);
-    $authToken = $authTokenClient->GetAuthToken();
-    $this->SetAuthToken($authToken);
-    return $authToken;
-  }
-
-  /**
-   * Gets the authentication token.
-   * @return string the auth token
-   */
-  public function GetAuthToken() {
-    $authToken = $this->GetHeaderValue('authToken');
-    if (!isset($authToken) && isset($this->email) && isset($this->password)) {
-      $authToken = $this->RegenerateAuthToken();
-    }
-    return $authToken;
-  }
-
-  /**
-   * Sets the authentication token.
-   * @param string $authToken the auth token to set
-   */
-  public function SetAuthToken($authToken) {
-    $this->SetHeaderValue('authToken', $authToken);
   }
 
   /**
@@ -402,56 +347,15 @@ class AdWordsUser extends AdsUser {
   }
 
   /**
-   * Gets the email address of the user login.
-   * @return string the user login email
-   */
-  public function GetEmail() {
-    return $this->email;
-  }
-
-  /**
-   * Sets the email address of the user login.
-   * @param string $email the user login email
-   */
-  public function SetEmail($email) {
-    $this->email = $email;
-  }
-
-  /**
-   * Gets the password for this user.
-   * @return string the password for this user
-   */
-  public function GetPassword() {
-    return $this->password;
-  }
-
-  /**
-   * Sets the password for this user.
-   * @param string $password the password for this user
-   */
-  public function SetPassword($password) {
-    $this->password = $password;
-  }
-
-  /**
    * Validates the user and throws a validation error if there are any errors.
    * @throws ValidationException if there are any validation errors
    */
   public function ValidateUser() {
     if ($this->GetOAuth2Info() !== NULL) {
       parent::ValidateOAuth2Info();
-    } else if ($this->GetAuthToken() === NULL) {
-      if (!isset($this->email)) {
-        throw new ValidationException('email', NULL,
-            'email is required and cannot be NULL.');
-      }
-
-      if (!isset($this->password)) {
-        throw new ValidationException('password', NULL,
-            'password is required and cannot be NULL.');
-      }
-      // Generate an authToken.
-      $this->RegenerateAuthToken();
+    } else {
+      throw new ValidationException('OAuth2Info', NULL,
+          'OAuth 2.0 configuration is required.');
     }
 
     if ($this->GetUserAgent() === NULL

@@ -1,3 +1,9 @@
+### 5.5.1
+
+AdWords:
+  - Removed ClientLogin support.
+  - Added example for using ad customizers.
+
 ### 5.5.0
 
 DFP:
