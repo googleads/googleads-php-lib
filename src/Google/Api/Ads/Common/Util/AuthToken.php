@@ -34,6 +34,10 @@ require_once 'Google/Api/Ads/Common/Util/CurlUtils.php';
 
 /**
  * Client used to retrieve authentication tokens from the Client Login API.
+ * 
+ * This login method is deprecated since 2012, please use OAuth2
+ * http://googledevelopers.blogspot.com/2012/04/changes-to-deprecation-policies-and-api.html
+ * 
  * @link http://code.google.com/apis/accounts/docs/AuthForInstalledApps.html
  * @package GoogleApiAdsCommon
  * @subpackage Util
