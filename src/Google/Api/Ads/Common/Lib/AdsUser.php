@@ -33,6 +33,7 @@ require_once 'Google/Api/Ads/Common/Util/SimpleOAuth2Handler.php';
 require_once 'Google/Api/Ads/Common/Lib/SoapClientFactory.php';
 require_once 'Google/Api/Ads/Common/Lib/ValidationException.php';
 
+use GoogleAdsLogs\Logger as Logger;
 /**
  * User class for all API modules using the Ads API.
  * @package GoogleApiAdsCommon

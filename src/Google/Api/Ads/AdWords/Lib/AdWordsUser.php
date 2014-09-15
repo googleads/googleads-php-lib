@@ -39,6 +39,7 @@ require_once dirname(__FILE__) . '/../Util/ReportUtils.php';
 require_once 'AdWordsSoapClientFactory.php';
 require_once 'AdWordsConstants.php';
 
+use GoogleAdsLogs\Logger as Logger;
 /**
  * User class for the AdWords API to create SOAP clients to the available API
  * services.
