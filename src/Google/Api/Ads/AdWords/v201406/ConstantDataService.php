@@ -3649,7 +3649,10 @@ if (!class_exists("NullError", false)) {
 
 if (!class_exists("OperatingSystemVersion", false)) {
   /**
-   * Represents a Operating System Version Criterion.
+   * Represents an Operating System Version Criterion.
+   * <a href="/adwords/api/docs/appendix/mobileplatforms">View the complete
+   * list of available mobile platforms</a>. You can also get the list from
+   * {@link ConstantDataService#getOperatingSystemVersionCriterion ConstantDataService}.
    * <p>A criterion of this type can only be created using an ID.
    * <span class="constraint AdxEnabled">This is enabled for AdX.</span>
    * @package Google_Api_Ads_AdWords_v201406

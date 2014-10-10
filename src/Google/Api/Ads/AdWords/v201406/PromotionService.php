@@ -4309,6 +4309,12 @@ if (!class_exists("ExpressSoapHeader", false)) {
     public $expressBusinessId;
 
     /**
+     * @access public
+     * @var string
+     */
+    public $pageId;
+
+    /**
      * Gets the namesapce of this class
      * @return the namespace of this class
      */
@@ -4324,9 +4330,10 @@ if (!class_exists("ExpressSoapHeader", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($expressBusinessId = null, $clientCustomerId = null, $developerToken = null, $userAgent = null, $validateOnly = null, $partialFailure = null) {
+    public function __construct($expressBusinessId = null, $pageId = null, $clientCustomerId = null, $developerToken = null, $userAgent = null, $validateOnly = null, $partialFailure = null) {
       parent::__construct();
       $this->expressBusinessId = $expressBusinessId;
+      $this->pageId = $pageId;
       $this->clientCustomerId = $clientCustomerId;
       $this->developerToken = $developerToken;
       $this->userAgent = $userAgent;

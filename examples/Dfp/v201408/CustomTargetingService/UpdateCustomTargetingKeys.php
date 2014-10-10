@@ -1,15 +1,15 @@
 <?php
 /**
- * This example updates the display name of each custom targeting key up to the
- * first 500. To determine which custom targeting keys exist, run
+ * This example updates a custom targeting key's display name. To determine
+ * which custom targeting keys and values exist, run
  * GetAllCustomTargetingKeysAndValues.php.
  *
- * Tags: CustomTargetingService.getCustomTargetingValuesByStatement
+ * Tags: CustomTargetingService.getCustomTargetingKeysByStatement
  * Tags: CustomTargetingService.updateCustomTargetingKeys
  *
  * PHP version 5
  *
- * Copyright 2013, Google Inc. All Rights Reserved.
+ * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,11 +26,10 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201408
  * @category   WebServices
- * @copyright  2013, Google Inc. All Rights Reserved.
+ * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Adam Rogal
- * @author     Eric Koleda
+ * @author     Vincent Tsao
  */
 error_reporting(E_STRICT | E_ALL);
 
@@ -41,7 +40,11 @@ $path = dirname(__FILE__) . '/../../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
+require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
+
+// Set the ID of the custom targeting key to update.
+$customTargetingKeyId = 'INSERT_CUSTOM_TARGETING_KEY_ID_HERE';
 
 try {
   // Get DfpUser from credentials in "../auth.ini"
@@ -55,46 +58,40 @@ try {
   $customTargetingService =
       $user->GetService('CustomTargetingService', 'v201408');
 
-  // Create a statement to get all custom targeting keys.
-  $filterStatement = new Statement('LIMIT 500');
+  // Create a statement to select a single custom targeting key by ID.
+  $statementBuilder = new StatementBuilder();
+  $statementBuilder->Where('id = :id')
+      ->OrderBy('id ASC')
+      ->Limit(1)
+      ->WithBindVariableValue('id', $customTargetingKeyId);
 
-  // Get custom targeting keys by statement.
+  // Default for total result set size.
+  $totalResultSetSize = 0;
+
+  // Get the custom targeting key.
   $page = $customTargetingService->getCustomTargetingKeysByStatement(
-      $filterStatement);
+      $statementBuilder->ToStatement());
+  $customTargetingKey = $page->results[0];
 
-  if (isset($page->results)) {
-    $keys = $page->results;
+  // Update the custom targeting key's display name.
+  $customTargetingKey->displayName = 'New custom targeting key display name.';
 
-    // Update each local custom targeting key object by changing its display
-    // name.
-    foreach ($keys as $key) {
-      if (empty($key->displayName)) {
-        $key->displayName = $key->name;
-      }
-      $key->displayName .= ' (Deprecated)';
-    }
+  // Update the custom targeting key on the server.
+  $customTargetingKeys =
+      $customTargetingService->
+          updateCustomTargetingKeys(array($customTargetingKey));
 
-    // Update the custom targeting keys on the server.
-    $keys = $customTargetingService->updateCustomTargetingKeys($keys);
-
-    // Display results.
-    if (isset($keys)) {
-      foreach ($page->results as $key) {
-        printf("Custom targeting key with ID '%s', name '%s', and display " .
-            "name '%s' was updated.\n", $key->id, $key->name,
-            $key->displayName);
-      }
-    } else {
-      print "No custom targeting keys updated.\n";
-    }
-  } else {
-    print "No custom targeting keys found to update.\n";
+  foreach ($customTargetingKeys as $updatedCustomTargetingKey) {
+    printf("Custom targeting key with ID %d, name '%s', and display name '%s' "
+        . "was updated.\n", $updatedCustomTargetingKey->id,
+        $updatedCustomTargetingKey->name,
+        $updatedCustomTargetingKey->displayName);
   }
 } catch (OAuth2Exception $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (ValidationException $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (Exception $e) {
-  print $e->getMessage() . "\n";
+  printf("%s\n", $e->getMessage());
 }
 

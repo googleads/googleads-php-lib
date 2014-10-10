@@ -1,13 +1,13 @@
 <?php
 /**
- * This code example gets all active creative wrappers. To create creative
- * wrappers, run CreateCreativeWrappers.php
+ * This example gets all active creative wrappers. To create creative wrappers,
+ * run CreateCreativeWrappers.php.
  *
  * Tags: CreativeWrapperService.getCreativeWrappersByStatement
  *
  * PHP version 5
  *
- * Copyright 2013, Google Inc. All Rights Reserved.
+ * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201408
  * @category   WebServices
- * @copyright  2013, Google Inc. All Rights Reserved.
+ * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  * @author     Vincent Tsao
@@ -38,6 +38,7 @@ $path = dirname(__FILE__) . '/../../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
+require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
 
 try {
@@ -49,33 +50,44 @@ try {
   $user->LogDefaults();
 
   // Get the CreativeWrapperService.
-  $creativeWrapperService = $user->GetCreativeWrapperService('v201408');
+  $creativeWrapperService = $user->GetService('CreativeWrapperService',
+      'v201408');
 
   // Create a statement to select only active creative wrappers.
-  $vars = MapUtils::GetMapEntries(array('status' => new TextValue('ACTIVE')));
-  $filterStatement =
-      new Statement('WHERE status = :status', $vars);
+  $statementBuilder = new StatementBuilder();
+  $statementBuilder->Where('status = :status')
+      ->OrderBy('id ASC')
+      ->Limit(StatementBuilder::SUGGESTED_PAGE_LIMIT)
+      ->WithBindVariableValue('status', 'ACTIVE');
 
-  // Get creative wrappers by statement.
-  $page =
-      $creativeWrapperService->getCreativeWrappersByStatement($filterStatement);
+  // Default for total result set size.
+  $totalResultSetSize = 0;
 
-  // Display results.
-  if (isset($page->results)) {
-    foreach ($page->results as $creativeWrapper) {
-      printf("Creative wrapper with ID '%s' applying to label '%s' with" .
-          " status '%s' was found.\n", $creativeWrapper->id,
-          $creativeWrapper->labelId, $creativeWrapper->status);
+  do {
+    // Get creative wrappers by statement.
+    $page = $creativeWrapperService->getCreativeWrappersByStatement(
+        $statementBuilder->ToStatement());
+
+    // Display results.
+    if (isset($page->results)) {
+      $totalResultSetSize = $page->totalResultSetSize;
+      $i = $page->startIndex;
+      foreach ($page->results as $creativeWrapper) {
+        printf("%d) Creative wrapper with ID %d, applying to label %d, and "
+            . "status %s was found.\n", $i++, $creativeWrapper->id,
+            $creativeWrapper->labelId, $creativeWrapper->status);
+      }
     }
-  }
 
-  printf("Number of results found: %s\n", $page->totalResultSetSize);
+    $statementBuilder->IncreaseOffsetBy(StatementBuilder::SUGGESTED_PAGE_LIMIT);
+  } while ($statementBuilder->GetOffset() < $totalResultSetSize);
+
+  printf("Number of results found: %d\n", $totalResultSetSize);
 } catch (OAuth2Exception $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (ValidationException $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (Exception $e) {
-  print $e->getMessage() . "\n";
+  printf("%s\n", $e->getMessage());
 }
-
 

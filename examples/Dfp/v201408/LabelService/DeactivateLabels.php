@@ -1,15 +1,14 @@
 <?php
 /**
- * This example deactivates all active labels. To determine which labels exist,
- * run GetAllLabels.php. This feature is only available to DFP premium
- * solution networks.
+ * This example deactivates a label. To determine which labels exist, run
+ * GetAllLabels.php.
  *
  * Tags: LabelService.getLabelsByStatement
  * Tags: LabelService.performLabelAction
  *
  * PHP version 5
  *
- * Copyright 2013, Google Inc. All Rights Reserved.
+ * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,11 +25,10 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201408
  * @category   WebServices
- * @copyright  2013, Google Inc. All Rights Reserved.
+ * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Eric Koleda
- * @author     Paul Rashidi
+ * @author     Vincent Tsao
  */
 error_reporting(E_STRICT | E_ALL);
 
@@ -41,7 +39,11 @@ $path = dirname(__FILE__) . '/../../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
+require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
+
+// Set the ID of the label to deactivate.
+$labelId = 'INSERT_LABEL_ID_HERE';
 
 try {
   // Get DfpUser from credentials in "../auth.ini"
@@ -54,51 +56,52 @@ try {
   // Get the LabelService.
   $labelService = $user->GetService('LabelService', 'v201408');
 
-  // Create statement text to get all active labels.
-  $filterStatementText = "WHERE isActive = true";
+  // Create a statement to select a single label by ID.
+  $statementBuilder = new StatementBuilder();
+  $statementBuilder->Where('id = :id')
+      ->OrderBy('id ASC')
+      ->Limit(1)
+      ->WithBindVariableValue('id', $labelId);
 
-  $offset = 0;
+  // Default for total result set size.
+  $totalResultSetSize = 0;
 
   do {
-    // Create statement to page through results.
-    $filterStatement =
-        new Statement($filterStatementText . " LIMIT 500 OFFSET " . $offset);
-
     // Get labels by statement.
-    $page = $labelService->getLabelsByStatement($filterStatement);
+    $page = $labelService->getLabelsByStatement(
+        $statementBuilder->ToStatement());
 
     // Display results.
-    $labelIds = array();
     if (isset($page->results)) {
+      $totalResultSetSize = $page->totalResultSetSize;
+      $i = $page->startIndex;
       foreach ($page->results as $label) {
-      printf("A label with ID '%s' and name '%s' will be deactivated.\n",
-          $label->id, $label->name);
-        $labelIds[] = $label->id;
+        printf("%d) Label with ID %d, and name '%s' will be deactivated.\n",
+            $i++, $label->id, $label->name);
       }
     }
 
-    $offset += 500;
-  } while ($offset < $page->totalResultSetSize);
+    $statementBuilder->IncreaseOffsetBy(StatementBuilder::SUGGESTED_PAGE_LIMIT);
+  } while ($statementBuilder->GetOffset() < $totalResultSetSize);
 
-  print 'Number of labels to be deactivated: ' . sizeof($labelIds) . "\n";
+  printf("Number of labels to be deactivated: %d\n", $totalResultSetSize);
 
-  if (sizeof($labelIds) > 0) {
-    // Create action statement.
-    $filterStatementText =
-        sprintf('WHERE id IN (%s)', implode(',', $labelIds));
-    $filterStatement = new Statement($filterStatementText);
+  if ($totalResultSetSize > 0) {
+    // Remove limit and offset from statement.
+    $statementBuilder->RemoveLimitAndOffset();
 
     // Create action.
     $action = new DeactivateLabels();
 
     // Perform action.
-    $result = $labelService->performLabelAction($action, $filterStatement);
+    $result = $labelService->performLabelAction($action,
+        $statementBuilder->ToStatement());
 
     // Display results.
     if (isset($result) && $result->numChanges > 0) {
-      print 'Number of labels deactivated: ' . $result->numChanges . "\n";
+      printf("Number of labels deactivated: %d\n", $result->numChanges);
     } else {
-      print "No labels were deactivated.\n";
+      printf("No labels were deactivated.\n");
     }
   }
 } catch (OAuth2Exception $e) {
@@ -106,6 +109,6 @@ try {
 } catch (ValidationException $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (Exception $e) {
-  print $e->getMessage() . "\n";
+  printf("%s\n", $e->getMessage());
 }
 

@@ -1,14 +1,14 @@
 <?php
 /**
- * This example approves and overbooks all eligible and pending orders.
- * To determine which orders exist, run GetAllOrders.php.
+ * This example approves an order. To determine which orders exist,
+ * run GetAllOrders.php.
  *
  * Tags: OrderService.getOrdersByStatement
  * Tags: OrderService.performOrderAction
  *
  * PHP version 5
  *
- * Copyright 2013, Google Inc. All Rights Reserved.
+ * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,11 +25,10 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201408
  * @category   WebServices
- * @copyright  2013, Google Inc. All Rights Reserved.
+ * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Eric Koleda
- * @author     Paul Rashidi
+ * @author     Vincent Tsao
  */
 error_reporting(E_STRICT | E_ALL);
 
@@ -40,8 +39,11 @@ $path = dirname(__FILE__) . '/../../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
+require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
-require_once 'Google/Api/Ads/Dfp/Util/DateTimeUtils.php';
+
+// Set the ID of the order to approve.
+$orderId = 'INSERT_ORDER_ID_HERE';
 
 try {
   // Get DfpUser from credentials in "../auth.ini"
@@ -54,68 +56,53 @@ try {
   // Get the OrderService.
   $orderService = $user->GetService('OrderService', 'v201408');
 
-  // Create a datetime representing today.
-  $today = date(DateTimeUtils::$DFP_DATE_TIME_STRING_FORMAT, strtotime('now'));
+  // Create a statement to select a single order by ID.
+  $statementBuilder = new StatementBuilder();
+  $statementBuilder->Where('id = :id')
+      ->OrderBy('id ASC')
+      ->Limit(1)
+      ->WithBindVariableValue('id', $orderId);
 
-  // Create bind variables.
-  $vars = MapUtils::GetMapEntries(array('today' => new TextValue($today)));
-
-  // Create statement text to get all draft and pending approval orders that
-  // haven't ended and aren't archived.
-  $filterStatementText = "WHERE status IN ('DRAFT', 'PENDING_APPROVAL') "
-      . "AND endDateTime >= :today "
-      . "AND isArchived = FALSE ";
-
-  $offset = 0;
+  // Default for total result set size.
+  $totalResultSetSize = 0;
 
   do {
-    // Create statement to page through results.
-    $filterStatement =
-        new Statement($filterStatementText . " LIMIT 500 OFFSET "
-        . $offset, $vars);
-
     // Get orders by statement.
-    $page = $orderService->getOrdersByStatement($filterStatement);
+    $page = $orderService->getOrdersByStatement(
+        $statementBuilder->ToStatement());
 
     // Display results.
-    $orderIds = array();
     if (isset($page->results)) {
+      $totalResultSetSize = $page->totalResultSetSize;
       $i = $page->startIndex;
       foreach ($page->results as $order) {
-        // Archived orders cannot be approved.
-        if (!$order->isArchived) {
-          print $i . ') Order with ID "' . $order->id
-              . '", name "' . $order->name
-              . '", and status "' . $order->status
-              . "\" will be approved.\n";
-          $i++;
-          $orderIds[] = $order->id;
-        }
+        printf("%d) Order with ID %d, name '%s', and advertiser ID %d will be "
+            . "approved.\n", $i++, $order->id, $order->name,
+            $order->advertiserId);
       }
     }
 
-    $offset += 500;
-  } while ($offset < $page->totalResultSetSize);
+    $statementBuilder->IncreaseOffsetBy(StatementBuilder::SUGGESTED_PAGE_LIMIT);
+  } while ($statementBuilder->GetOffset() < $totalResultSetSize);
 
-  print 'Number of orders to be approved: ' . sizeof($orderIds) . "\n";
+  printf("Number of orders to be approved: %d\n", $totalResultSetSize);
 
-  if (sizeof($orderIds) > 0) {
-    // Create action statement.
-    $filterStatementText =
-        sprintf('WHERE id IN (%s)', implode(',', $orderIds));
-    $filterStatement = new Statement($filterStatementText);
+  if ($totalResultSetSize > 0) {
+    // Remove limit and offset from statement.
+    $statementBuilder->RemoveLimitAndOffset();
 
     // Create action.
-    $action = new ApproveAndOverbookOrders();
+    $action = new ApproveOrders();
 
     // Perform action.
-    $result = $orderService->performOrderAction($action, $filterStatement);
+    $result = $orderService->performOrderAction($action,
+        $statementBuilder->ToStatement());
 
     // Display results.
     if (isset($result) && $result->numChanges > 0) {
-      print 'Number of orders approved: ' . $result->numChanges . "\n";
+      printf("Number of orders approved: %d\n", $result->numChanges);
     } else {
-      print "No orders were approved.\n";
+      printf("No orders were approved.\n");
     }
   }
 } catch (OAuth2Exception $e) {
@@ -123,6 +110,6 @@ try {
 } catch (ValidationException $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (Exception $e) {
-  print $e->getMessage() . "\n";
+  printf("%s\n", $e->getMessage());
 }
 

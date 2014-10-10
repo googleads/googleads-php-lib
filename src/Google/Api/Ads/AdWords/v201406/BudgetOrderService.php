@@ -4288,7 +4288,8 @@ if (!class_exists("CustomerOrderLineError", false)) {
 
 if (!class_exists("BudgetOrderErrorReason", false)) {
   /**
-   * Customer is not whitelisted for new billing.
+   * The request contains a field that is only available if the manager account
+   * is whitelisted for new billing backend.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */

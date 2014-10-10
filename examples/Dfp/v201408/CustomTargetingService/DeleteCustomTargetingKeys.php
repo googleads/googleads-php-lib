@@ -1,15 +1,14 @@
 <?php
 /**
- * This example deletes a custom targeting key by its name. To determine which
- * custom targeting keys exist, run
- * GetAllCustomTargetingKeysAndValues.php.
+ * This example deletes a custom targeting key. To determine which custom
+ * targeting keys exist, run GetAllCustomTargetingKeysAndValues.php.
  *
  * Tags: CustomTargetingService.getCustomTargetingKeysByStatement
  * Tags: CustomTargetingService.performCustomTargetingKeyAction
  *
  * PHP version 5
  *
- * Copyright 2013, Google Inc. All Rights Reserved.
+ * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,11 +25,10 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201408
  * @category   WebServices
- * @copyright  2013, Google Inc. All Rights Reserved.
+ * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Adam Rogal
- * @author     Eric Koleda
+ * @author     Vincent Tsao
  */
 error_reporting(E_STRICT | E_ALL);
 
@@ -41,8 +39,11 @@ $path = dirname(__FILE__) . '/../../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
+require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
-require_once 'Google/Api/Ads/Common/Util/MapUtils.php';
+
+// Set the ID of the custom targeting key to delete.
+$customTargetingKeyId = 'INSERT_CUSTOM_TARGETING_KEY_ID_HERE';
 
 try {
   // Get DfpUser from credentials in "../auth.ini"
@@ -53,61 +54,58 @@ try {
   $user->LogDefaults();
 
   // Get the CustomTargetingService.
-  $customTargetingService =
-      $user->GetService('CustomTargetingService', 'v201408');
+  $customTargetingService = $user->GetService('CustomTargetingService',
+      'v201408');
 
-  // Set the name of the custom targeting key to delete.
-  $keyName = 'INSERT_CUSTOM_TARGETING_KEY_NAME_HERE';
+  // Create a statement to select a single custom targeting key by ID.
+  $statementBuilder = new StatementBuilder();
+  $statementBuilder->Where('id = :id')
+      ->OrderBy('id ASC')
+      ->Limit(1)
+      ->WithBindVariableValue('id', $customTargetingKeyId);
 
-  // Create statement text to only select custom targeting key by the given
-  // name.
-  $filterStatementText = 'WHERE name = :name';
-
-  // Create bind variables.
-  $vars = MapUtils::GetMapEntries(array('name' => new TextValue($keyName)));
-
-  $offset = 0;
-  $keyIds = array();
+  // Default for total result set size.
+  $totalResultSetSize = 0;
 
   do {
-    // Create statement to page through results.
-    $filterStatement = new Statement($filterStatementText .
-        ' LIMIT 500 OFFSET ' . $offset, $vars);
-
     // Get custom targeting keys by statement.
     $page = $customTargetingService->getCustomTargetingKeysByStatement(
-        $filterStatement);
+        $statementBuilder->ToStatement());
 
+    // Display results.
     if (isset($page->results)) {
+      $totalResultSetSize = $page->totalResultSetSize;
+      $i = $page->startIndex;
       foreach ($page->results as $customTargetingKey) {
-        $keyIds[] = $customTargetingKey->id;
+        printf("%d) Custom targeting key with ID %d, name '%s', and display "
+            . "name '%s' will be deleted.\n", $i++, $customTargetingKey->id,
+            $customTargetingKey->name, $customTargetingKey->displayName);
       }
     }
 
-    $offset += 500;
-  } while ($offset < $page->totalResultSetSize);
+    $statementBuilder->IncreaseOffsetBy(StatementBuilder::SUGGESTED_PAGE_LIMIT);
+  } while ($statementBuilder->GetOffset() < $totalResultSetSize);
 
   printf("Number of custom targeting keys to be deleted: %d\n",
-      sizeof($keyIds));
+      $totalResultSetSize);
 
-  if (sizeof($keyIds) > 0) {
-    // Create action statement.
-    $filterStatementText = sprintf('WHERE id IN (%s)', implode(',', $keyIds));
-    $filterStatement = new Statement($filterStatementText);
+  if ($totalResultSetSize > 0) {
+    // Remove limit and offset from statement.
+    $statementBuilder->RemoveLimitAndOffset();
 
     // Create action.
     $action = new DeleteCustomTargetingKeys();
 
     // Perform action.
-    $result = $customTargetingService->performCustomTargetingKeyAction(
-        $action, $filterStatement);
+    $result = $customTargetingService->performCustomTargetingKeyAction($action,
+        $statementBuilder->ToStatement());
 
     // Display results.
     if (isset($result) && $result->numChanges > 0) {
       printf("Number of custom targeting keys deleted: %d\n",
           $result->numChanges);
     } else {
-      print "No custom targeting keys were deleted.\n";
+      printf("No custom targeting keys were deleted.\n");
     }
   }
 } catch (OAuth2Exception $e) {
@@ -115,6 +113,6 @@ try {
 } catch (ValidationException $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (Exception $e) {
-  print $e->getMessage() . "\n";
+  printf("%s\n", $e->getMessage());
 }
 

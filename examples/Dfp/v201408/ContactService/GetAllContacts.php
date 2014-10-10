@@ -6,7 +6,7 @@
  *
  * PHP version 5
  *
- * Copyright 2013, Google Inc. All Rights Reserved.
+ * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201408
  * @category   WebServices
- * @copyright  2013, Google Inc. All Rights Reserved.
+ * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  * @author     Vincent Tsao
@@ -37,6 +37,7 @@ $path = dirname(__FILE__) . '/../../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
+require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
 
 try {
@@ -50,31 +51,33 @@ try {
   // Get the ContactService.
   $contactService = $user->GetService('ContactService', 'v201408');
 
-  // Statement parts to help build a statement to select all contacts.
-  $pqlTemplate = 'ORDER BY id LIMIT %d OFFSET %d';
-  $SUGGESTED_PAGE_LIMIT = 500;
-  $offset = 0;
+  // Create a statement to select all contacts.
+  $statementBuilder = new StatementBuilder();
+  $statementBuilder->OrderBy('id ASC')
+      ->Limit(StatementBuilder::SUGGESTED_PAGE_LIMIT);
 
-  $page = new ContactPage();
+  // Default for total result set size.
+  $totalResultSetSize = 0;
 
   do {
     // Get contacts by statement.
-    $page = $contactService->getContactsByStatement(new Statement(
-        sprintf($pqlTemplate, $SUGGESTED_PAGE_LIMIT, $offset)));
+    $page = $contactService->getContactsByStatement(
+        $statementBuilder->ToStatement());
 
     // Display results.
     if (isset($page->results)) {
+      $totalResultSetSize = $page->totalResultSetSize;
       $i = $page->startIndex;
       foreach ($page->results as $contact) {
-        printf("%d) Contact with ID \"%d\" and name \"%s\" was found.\n", $i++,
+        printf("%d) Contact with ID %d, and name '%s' was found.\n", $i++,
             $contact->id, $contact->name);
       }
     }
 
-    $offset += $SUGGESTED_PAGE_LIMIT;
-  } while ($offset < $page->totalResultSetSize);
+    $statementBuilder->IncreaseOffsetBy(StatementBuilder::SUGGESTED_PAGE_LIMIT);
+  } while ($statementBuilder->GetOffset() < $totalResultSetSize);
 
-  printf("Number of results found: %d\n", $page->totalResultSetSize);
+  printf("Number of results found: %d\n", $totalResultSetSize);
 } catch (OAuth2Exception $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (ValidationException $e) {

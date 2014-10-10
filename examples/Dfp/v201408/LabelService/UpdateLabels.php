@@ -1,16 +1,14 @@
 <?php
 /**
- * This example updates the descriptions of all active labels by updating
- * its description up to the first 500. To determine which labels exist, run
- * GetAllLabels.php. This feature is only available to DFP premium
- * solution networks.
+ * This example updates a label's description. To determine which labels exist,
+ * run GetAllLabels.php.
  *
  * Tags: LabelService.getLabelsByStatement
  * Tags: LabelService.updateLabels
  *
  * PHP version 5
  *
- * Copyright 2013, Google Inc. All Rights Reserved.
+ * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,11 +25,10 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201408
  * @category   WebServices
- * @copyright  2013, Google Inc. All Rights Reserved.
+ * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Eric Koleda
- * @author     Paul Rashidi
+ * @author     Vincent Tsao
  */
 error_reporting(E_STRICT | E_ALL);
 
@@ -42,7 +39,11 @@ $path = dirname(__FILE__) . '/../../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
+require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
+
+// Set the ID of the label to update.
+$labelId = 'INSERT_LABEL_ID_HERE';
 
 try {
   // Get DfpUser from credentials in "../auth.ini"
@@ -55,41 +56,32 @@ try {
   // Get the LabelService.
   $labelService = $user->GetService('LabelService', 'v201408');
 
-  // Create a statement to only select labels that are active.
-  $filterStatement = new Statement(
-      "WHERE isActive = true LIMIT 500");
+  // Create a statement to select a single label by ID.
+  $statementBuilder = new StatementBuilder();
+  $statementBuilder->Where('id = :id')
+      ->OrderBy('id ASC')
+      ->Limit(1)
+      ->WithBindVariableValue('id', $labelId);
 
-  // Get labels by statement.
-  $page = $labelService->getLabelsByStatement($filterStatement);
+  // Get the label.
+  $page = $labelService->getLabelsByStatement($statementBuilder->ToStatement());
+  $label = $page->results[0];
 
-  if (isset($page->results)) {
-    $labels = $page->results;
+  // Update the label description.
+  $label->description = 'New label description.';
 
-    // Update each local label object's description.
-    foreach ($labels as $label) {
-      $label->description = 'Last updated on ' . date('Ymd');
-    }
+  // Update the label on the server.
+  $labels = $labelService->updateLabels(array($label));
 
-    // Update the labels on the server.
-    $labels = $labelService->updateLabels($labels);
-
-    // Display results.
-    if (isset($labels)) {
-      foreach ($labels as $label) {
-        printf("A label with ID '%s', name '%s', and description '%s' was "
-            . "updated.\n", $label->id, $label->name, $label->description);
-      }
-    } else {
-      print "No labels updated.\n";
-    }
-  } else {
-    print "No labels found to update.\n";
+  foreach ($labels as $updatedLabel) {
+    printf("Label with ID %d, name '%s' was updated.\n", $updatedLabel->id,
+        $updatedLabel->name);
   }
 } catch (OAuth2Exception $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (ValidationException $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (Exception $e) {
-  print $e->getMessage() . "\n";
+  printf("%s\n", $e->getMessage());
 }
 

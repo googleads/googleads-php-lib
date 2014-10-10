@@ -1,15 +1,15 @@
 <?php
 /**
- * This example updates the display name of each custom targeting value up to
- * the first 500. To determine which custom targeting keys exist, run
+ * This example updates a custom targeting value's display name. To determine
+ * which custom targeting keys and values exist, run
  * GetAllCustomTargetingKeysAndValues.php.
  *
- * Tags: CustomTargetingService.customTargetingValuesByStatement
+ * Tags: CustomTargetingService.getCustomTargetingValuesByStatement
  * Tags: CustomTargetingService.updateCustomTargetingValues
  *
  * PHP version 5
  *
- * Copyright 2013, Google Inc. All Rights Reserved.
+ * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,11 +26,10 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201408
  * @category   WebServices
- * @copyright  2013, Google Inc. All Rights Reserved.
+ * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Adam Rogal
- * @author     Eric Koleda
+ * @author     Vincent Tsao
  */
 error_reporting(E_STRICT | E_ALL);
 
@@ -41,8 +40,11 @@ $path = dirname(__FILE__) . '/../../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
+require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
-require_once 'Google/Api/Ads/Common/Util/MapUtils.php';
+
+// Set the ID of the custom targeting value to update.
+$customTargetingValueId = 'INSERT_CUSTOM_TARGETING_VALUE_ID_HERE';
 
 try {
   // Get DfpUser from credentials in "../auth.ini"
@@ -56,51 +58,38 @@ try {
   $customTargetingService =
       $user->GetService('CustomTargetingService', 'v201408');
 
-  // Set the ID of the custom targeting key to get custom targeting values for.
-  $valueId = 'INSERT_CUSTOM_TARGETING_KEY_ID_HERE';
+  // Create a statement to select a single custom targeting value by ID.
+  $statementBuilder = new StatementBuilder();
+  $statementBuilder->Where('id = :id')
+      ->OrderBy('id ASC')
+      ->Limit(1)
+      ->WithBindVariableValue('id', $customTargetingValueId);
 
-  // Create a statement to only select custom targeting values for a given key.
-  $filterStatement = new Statement(
-      'WHERE customTargetingKeyId = :keyId LIMIT 500',
-      MapUtils::GetMapEntries(array('keyId' => new NumberValue($valueId))));
-
-  // Get custom targeting keys by statement.
+  // Get the custom targeting value.
   $page = $customTargetingService->getCustomTargetingValuesByStatement(
-      $filterStatement);
+      $statementBuilder->ToStatement());
+  $customTargetingValue = $page->results[0];
 
-  if (isset($page->results)) {
-    $values = $page->results;
+  // Update the custom targeting value's display name.
+  $customTargetingValue->displayName =
+      'New custom targeting value display name.';
 
-    // Update each local custom targeting value object by changing its display
-    // name.
-    foreach ($values as $value) {
-      if (empty($value->displayName)) {
-        $value->displayName = $value->name;
-      }
-      $value->displayName .= ' (Deprecated)';
-    }
+  // Update the custom targeting value on the server.
+  $customTargetingValues =
+      $customTargetingService->updateCustomTargetingValues(
+          array($customTargetingValue));
 
-    // Update the custom targeting values on the server.
-    $values = $customTargetingService->updateCustomTargetingValues($values);
-
-    // Display results.
-    if (isset($values)) {
-      foreach ($page->results as $value) {
-        printf("Custom targeting value with ID '%s', name '%s', and " .
-            "display name '%s' was updated.\n", $value->id, $value->name,
-            $value->displayName);
-      }
-    } else {
-      print "No custom targeting values updated.\n";
-    }
-  } else {
-    print "No custom targeting values found to update.\n";
+  foreach ($customTargetingValues as $updatedCustomTargetingValue) {
+    printf("Custom targeting value with ID %d, name '%s', and display name "
+        . "'%s' was updated.\n", $updatedCustomTargetingValue->id,
+        $updatedCustomTargetingValue->name,
+        $updatedCustomTargetingValue->displayName);
   }
 } catch (OAuth2Exception $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (ValidationException $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (Exception $e) {
-  print $e->getMessage() . "\n";
+  printf("%s\n", $e->getMessage());
 }
 

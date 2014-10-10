@@ -1,7 +1,7 @@
 <?php
 /**
  * This example gets all content metadata key hierarchies. To create content
- * metadata key hierarchies, run CreateContentMetadataKeyHierarchy.php.
+ * metadata key hierarchies, run CreateContentMetadataKeyHierarchies.php.
  *
  * Tags: ContentMetadataKeyHierarchyService.getContentMetadataKeyHierarchiesByStatement
  *
@@ -38,6 +38,7 @@ $path = dirname(__FILE__) . '/../../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
+require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
 
 try {
@@ -52,34 +53,35 @@ try {
   $contentMetadataKeyHierarchyService =
       $user->GetService('ContentMetadataKeyHierarchyService', 'v201408');
 
-  // Statement parts to help build a statement to select all content metadata
-  // key hierarchies.
-  $pqlTemplate = 'ORDER BY id ASC LIMIT %d OFFSET %d';
-  $SUGGESTED_PAGE_LIMIT = 500;
-  $offset = 0;
+  // Create a statement to select all content metadata key hierarchies.
+  $statementBuilder = new StatementBuilder();
+  $statementBuilder->OrderBy('id ASC')
+      ->Limit(StatementBuilder::SUGGESTED_PAGE_LIMIT);
 
-  $page = new ContentMetadataKeyHierarchyPage();
+  // Default for total result set size.
+  $totalResultSetSize = 0;
 
   do {
     // Get content metadata key hierarchies by statement.
-    $page = $contentMetadataKeyHierarchyService->
-        getContentMetadataKeyHierarchiesByStatement(new Statement(
-            sprintf($pqlTemplate, $SUGGESTED_PAGE_LIMIT, $offset)));
+    $page =
+        $contentMetadataKeyHierarchyService->getContentMetadataKeyHierarchiesByStatement(
+            $statementBuilder->ToStatement());
 
     // Display results.
     if (isset($page->results)) {
+      $totalResultSetSize = $page->totalResultSetSize;
       $i = $page->startIndex;
       foreach ($page->results as $contentMetadataKeyHierarchy) {
-        printf("%d) Content metadata key hierarchy with ID '%d' and name '%s' "
+        printf("%d) Content metadata key hierarchy with ID %d, and name '%s' "
             . "was found.\n", $i++, $contentMetadataKeyHierarchy->id,
             $contentMetadataKeyHierarchy->name);
       }
     }
 
-    $offset += $SUGGESTED_PAGE_LIMIT;
-  } while ($offset < $page->totalResultSetSize);
+    $statementBuilder->IncreaseOffsetBy(StatementBuilder::SUGGESTED_PAGE_LIMIT);
+  } while ($statementBuilder->GetOffset() < $totalResultSetSize);
 
-  printf("Number of results found: %d\n", $page->totalResultSetSize);
+  printf("Number of results found: %d\n", $totalResultSetSize);
 } catch (OAuth2Exception $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (ValidationException $e) {

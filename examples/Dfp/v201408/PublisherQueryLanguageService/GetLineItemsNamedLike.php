@@ -3,6 +3,9 @@
  * This example gets all line items which have a name beginning with "line
  * item". This example may take a while to run.
  *
+ * NOTE: Since this example loads all results into memory, your PHP memory_limit
+ *       may need to be raised for this example to work properly.*
+ *
  * The Line_Item PQL table schema can be found here:
  * https://developers.google.com/doubleclick-publishers/docs/reference/v201408/PublisherQueryLanguageService#Line_Item
  *
@@ -10,7 +13,7 @@
  *
  * PHP version 5
  *
- * Copyright 2013, Google Inc. All Rights Reserved.
+ * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +30,7 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201408
  * @category   WebServices
- * @copyright  2013, Google Inc. All Rights Reserved.
+ * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  * @author     Vincent Tsao
@@ -42,6 +45,7 @@ set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
 require_once 'Google/Api/Ads/Dfp/Util/Pql.php';
+require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
 
 try {
@@ -55,18 +59,22 @@ try {
   // Get the PublisherQueryLanguageService.
   $pqlService = $user->GetService('PublisherQueryLanguageService', 'v201408');
 
-  // Statement parts to help build a statement to select all cities that start
-  // with "Santa".
-  $pqlTemplate = "SELECT Id, Name, Status FROM Line_Item WHERE Name LIKE 'line "
-      . "item%%' ORDER BY Id ASC LIMIT %d OFFSET %d";
-  $SUGGESTED_PAGE_LIMIT = 500;
-  $offset = 0;
+  // Create statement to select line items whose names begin with "line item".
+  $statementBuilder = new StatementBuilder();
+  $statementBuilder->Select('Id, Name, Status')
+      ->From('Line_Item')
+      ->Where('Name LIKE \'line item%\'')
+      ->OrderBy('Id ASC')
+      ->Limit(StatementBuilder::SUGGESTED_PAGE_LIMIT);
+
+  // Default for result sets.
+  $combinedResultSet = null;
+  $resultSet = null;
   $i = 0;
 
   do {
     // Get line items like 'line item%'.
-    $resultSet = $pqlService->select(new Statement(sprintf($pqlTemplate,
-        $SUGGESTED_PAGE_LIMIT, $offset)));
+    $resultSet = $pqlService->select($statementBuilder->ToStatement());
 
     // Combine result sets with previous ones.
     $combinedResultSet = (!isset($combinedResultSet))
@@ -74,9 +82,10 @@ try {
         : Pql::CombineResultSets($combinedResultSet, $resultSet);
 
     printf("%d) %d line items beginning at offset %d were found.\n", $i++,
-        count($resultSet->rows), $offset);
+        isset($resultSet->rows) ? count($resultSet->rows) : 0,
+        $statementBuilder->GetOffset());
 
-    $offset += $SUGGESTED_PAGE_LIMIT;
+    $statementBuilder->IncreaseOffsetBy(StatementBuilder::SUGGESTED_PAGE_LIMIT);
   } while (isset($resultSet->rows) && count($resultSet->rows) > 0);
 
   // Change to your file location.

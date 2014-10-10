@@ -311,9 +311,27 @@ class AdWordsUser extends AdsUser {
   /**
    * Sets the AdWords Express business ID required for AdWords Express
    * PromotionService
+   * @param string AdWords Express business ID
    */
   public function SetExpressBusinessId($businessId) {
     $this->SetHeaderValue('expressBusinessId', $businessId);
+  }
+
+  /**
+   * Gets the Google My Business page ID used by AdWords Express
+   * PromotionService
+   */
+  public function GetExpressPlusPageId() {
+    return $this->GetHeaderValue('pageId');
+  }
+
+  /**
+   * Sets the Google My Business page ID used by AdWords Express
+   * PromotionService
+   * @param string Google My Business page ID
+   */
+  public function SetExpressPlusPageId($pageId) {
+    $this->SetHeaderValue('pageId', $pageId);
   }
 
   /**

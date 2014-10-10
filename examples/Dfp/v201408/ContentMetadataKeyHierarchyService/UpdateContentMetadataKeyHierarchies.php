@@ -40,7 +40,15 @@ $path = dirname(__FILE__) . '/../../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
+require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
+
+// Set the ID of the content metadata key hierarchy to update.
+$contentMetadataKeyHierarchyId =
+    'INSERT_CONTENT_METADATA_KEY_HIERARCHY_ID_HERE';
+
+// Set the ID of the custom targeting key to be added as a hierarchy level.
+$customTargetingKeyId = 'INSERT_CUSTOM_TARGETING_KEY_ID_HERE';
 
 try {
   // Get DfpUser from credentials in "../auth.ini"
@@ -54,40 +62,39 @@ try {
   $contentMetadataKeyHierarchyService =
       $user->GetService('ContentMetadataKeyHierarchyService', 'v201408');
 
-  // Set the ID of the content metadata key hierarchy to update.
-  $contentMetadataKeyHierarchyId =
-      "INSERT_CONTENT_METADATA_KEY_HIERARCHY_ID_HERE";
-
-  // Set the ID of the custom targeting key to be added as a hierarchy level.
-  $customTargetingKeyId = "INSERT_CUSTOM_TARGETING_KEY_ID_HERE";
-
   // Create a statement to select a single content metadata key hierarchy by ID.
-  $vars = MapUtils::GetMapEntries(array('id' =>
-      new NumberValue($contentMetadataKeyHierarchyId)));
-  $filterStatement = new Statement("WHERE id = :id ORDER BY id ASC LIMIT 1",
-      $vars);
+  $statementBuilder = new StatementBuilder();
+  $statementBuilder->Where('id = :id')
+      ->OrderBy('id ASC')
+      ->Limit(1)
+      ->WithBindVariableValue('id', $contentMetadataKeyHierarchyId);
 
   // Get the content metadata key hierarchy.
-  $page = $contentMetadataKeyHierarchyService->
-      getContentMetadataKeyHierarchiesByStatement($filterStatement);
+  $page =
+      $contentMetadataKeyHierarchyService->
+          getContentMetadataKeyHierarchiesByStatement(
+              $statementBuilder->ToStatement());
   $contentMetadataKeyHierarchy = $page->results[0];
 
   // Update the content metadata key hierarchy by adding a hierarchy level.
   $hierarchyLevels = $contentMetadataKeyHierarchy->hierarchyLevels;
+
   $hierarchyLevel = new ContentMetadataKeyHierarchyLevel();
   $hierarchyLevel->customTargetingKeyId = $customTargetingKeyId;
   $hierarchyLevel->hierarchyLevel = count($hierarchyLevels) + 1;
-  $hierarchyLevels[] = $hierarchyLevel;
-  $contentMetadataKeyHierarchy->hierarchyLevels = $hierarchyLevels;
+
+  $contentMetadataKeyHierarchy->hierarchyLevels[] = $hierarchyLevel;
 
   // Update the content metadata key hierarchy on the server.
-  $contentMetadataKeyHierarchies = $contentMetadataKeyHierarchyService->
-      updateContentMetadataKeyHierarchies(array($contentMetadataKeyHierarchy));
+  $contentMetadataKeyHierarchies =
+      $contentMetadataKeyHierarchyService->updateContentMetadataKeyHierarchies(
+          array($contentMetadataKeyHierarchy));
 
-  foreach ($contentMetadataKeyHierarchies as $contentMetadataKeyHierarchy) {
-    printf("Content metadata key hierarchy with ID '%d' and name '%s' was " .
-        "updated.\n", $contentMetadataKeyHierarchy->id,
-        $contentMetadataKeyHierarchy->name);
+  foreach (
+      $contentMetadataKeyHierarchies as $updatedContentMetadataKeyHierarchy) {
+    printf("Content metadata key hierarchy with ID %d, and name '%s' was "
+        . "updated.\n", $updatedContentMetadataKeyHierarchy->id,
+        $updatedContentMetadataKeyHierarchy->name);
   }
 } catch (OAuth2Exception $e) {
   ExampleUtils::CheckForOAuth2Errors($e);

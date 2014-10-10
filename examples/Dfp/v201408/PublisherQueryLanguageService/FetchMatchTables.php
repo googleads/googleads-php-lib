@@ -13,7 +13,7 @@
  *
  * PHP version 5
  *
- * Copyright 2013, Google Inc. All Rights Reserved.
+ * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201408
  * @category   WebServices
- * @copyright  2013, Google Inc. All Rights Reserved.
+ * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  * @author     Vincent Tsao
@@ -45,6 +45,7 @@ set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
 require_once 'Google/Api/Ads/Dfp/Util/Pql.php';
+require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
 
 try {
@@ -58,16 +59,23 @@ try {
   // Get the PublisherQueryLanguageService.
   $pqlService = $user->GetService('PublisherQueryLanguageService', 'v201408');
 
-  // Statement parts to help build a statement to select all line items.
-  $lineItemPqlTemplate = 'SELECT Id, Name, Status FROM Line_Item ORDER BY Id '
-      . 'ASC LIMIT %d OFFSET %d';
-  // Statement parts to help build a statement to select all ad units.
-  $adUnitPqlTemplate = 'SELECT Id, Name FROM Ad_Unit ORDER BY Id ASC LIMIT '
-      . '%d OFFSET %d';
+  // Create statement to select all line items.
+  $lineItemStatementBuilder = new StatementBuilder();
+  $lineItemStatementBuilder->Select('Id, Name, Status')
+      ->From('Line_Item')
+      ->OrderBy('Id ASC')
+      ->Limit(StatementBuilder::SUGGESTED_PAGE_LIMIT);
 
-  $lineItemFilePath = fetchMatchTable($lineItemPqlTemplate, $pqlService,
+  // Create statement to select all ad units.
+  $adUnitStatementBuilder = new StatementBuilder();
+  $adUnitStatementBuilder->Select('Id, Name')
+      ->From('Ad_Unit')
+      ->OrderBy('Id ASC')
+      ->Limit(StatementBuilder::SUGGESTED_PAGE_LIMIT);
+
+  $lineItemFilePath = fetchMatchTable($lineItemStatementBuilder, $pqlService,
       "Line-Item-Matchtable");
-  $adUnitFilePath = fetchMatchTable($adUnitPqlTemplate, $pqlService,
+  $adUnitFilePath = fetchMatchTable($adUnitStatementBuilder, $pqlService,
       "Ad-Unit-Matchtable");
 
   printf("Line items saved to %s\n", $lineItemFilePath);
@@ -83,21 +91,19 @@ try {
 /**
  * Fetches a match table from a PQL statement and writes it to a file.
  */
-function fetchMatchTable($pqlTemplate, $pqlService, $fileName) {
-  $SUGGESTED_PAGE_LIMIT = 500;
-  $offset = 0;
-  $i = 0;
+function fetchMatchTable($statementBuilder, $pqlService, $fileName) {
+  $resultSet = null;
+  $combinedResultSet = null;
 
   do {
-    $resultSet = $pqlService->select(new Statement(sprintf($pqlTemplate,
-        $SUGGESTED_PAGE_LIMIT, $offset)));
+    $resultSet = $pqlService->select($statementBuilder->ToStatement());
 
     // Combine result sets with previous ones.
     $combinedResultSet = (!isset($combinedResultSet))
         ? $resultSet
         : Pql::CombineResultSets($combinedResultSet, $resultSet);
 
-    $offset += $SUGGESTED_PAGE_LIMIT;
+    $statementBuilder->IncreaseOffsetBy(StatementBuilder::SUGGESTED_PAGE_LIMIT);
   } while (isset($resultSet->rows) && count($resultSet->rows) > 0);
 
   // Change to your file location.

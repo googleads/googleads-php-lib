@@ -1,6 +1,6 @@
 <?php
 /**
- * This example gets all custom targeting keys and the values. To create custom
+ * This example gets all custom targeting keys and values. To create custom
  * targeting keys and values, run CreateCustomTargetingKeysAndValues.php.
  *
  * Tags: CustomTargetingService.getCustomTargetingKeysByStatement
@@ -8,7 +8,7 @@
  *
  * PHP version 5
  *
- * Copyright 2013, Google Inc. All Rights Reserved.
+ * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,11 +25,10 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201408
  * @category   WebServices
- * @copyright  2013, Google Inc. All Rights Reserved.
+ * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Adam Rogal
- * @author     Eric Koleda
+ * @author     Vincent Tsao
  */
 error_reporting(E_STRICT | E_ALL);
 
@@ -40,8 +39,8 @@ $path = dirname(__FILE__) . '/../../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
+require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
-require_once 'Google/Api/Ads/Common/Util/MapUtils.php';
 
 try {
   // Get DfpUser from credentials in "../auth.ini"
@@ -55,83 +54,98 @@ try {
   $customTargetingService =
       $user->GetService('CustomTargetingService', 'v201408');
 
-  $keys = array();
-  $offset = 0;
+  // Get all custom targeting keys.
+  $customTargetingKeys = getAllCustomTargetingKeyIds($user);
 
-  do {
-    // Create statement to page through all custom targeting keys.
-    $filterStatement = new Statement('LIMIT 500 OFFSET ' . $offset);
+  // Create a statement to get all custom targeting values for a custom
+  // targeting key.
+  $statementBuilder = new StatementBuilder();
+  $statementBuilder->Where('customTargetingKeyId = :customTargetingKeyId')
+      ->OrderBy('id ASC')
+      ->Limit(StatementBuilder::SUGGESTED_PAGE_LIMIT);
 
-    // Get custom targeting keys by statement.
-    $page = $customTargetingService->getCustomTargetingKeysByStatement(
-        $filterStatement);
+  $totalResultsCounter = 0;
 
-    if (isset($page->results)) {
-      $keys = array_merge($keys, $page->results);
-    }
+  foreach ($customTargetingKeys as $customTargetingKey) {
+    // Set the custom targeting key ID to select from.
+    $statementBuilder->WithBindVariableValue('customTargetingKeyId',
+        $customTargetingKey);
 
-    $offset += 500;
-  } while ($offset < $page->totalResultSetSize);
-
-
-  $values = array();
-
-  if (sizeof($keys) > 0) {
-    $keyIds = array_map(create_function('$key', 'return $key->id;'), $keys);
-
-    // Create statement text to all custom targeting values for all custom
-    // targeting keys.
-    $filterStatementText = sprintf('WHERE customTargetingKeyId IN (%s)',
-          implode(',', $keyIds));
-    $offset = 0;
+    // Default for total result set size.
+    $totalResultSetSize = 0;
 
     do {
-      // Create statement to page through all custom targeting values.
-      $filterStatement = new Statement($filterStatementText .
-          ' LIMIT 500 OFFSET ' . $offset);
-
       // Get custom targeting values by statement.
       $page = $customTargetingService->getCustomTargetingValuesByStatement(
-          $filterStatement);
+          $statementBuilder->ToStatement());
 
+      // Display results.
       if (isset($page->results)) {
-        $values = array_merge($values, $page->results);
+        $totalResultSetSize = $page->totalResultSetSize;
+        $i = $page->startIndex;
+        foreach ($page->results as $customTargetingValue) {
+          printf("%d) Custom targeting value with ID %d, name '%s', display "
+              . "name '%s', and belonging to key with ID %d was found.\n",
+              $totalResultSetSize++,
+              $customTargetingValue->id,
+              $customTargetingValue->name,
+              $customTargetingValue->displayName,
+              $customTargetingValue->customTargetingKeyId);
+        }
       }
 
-      $offset += 500;
-    } while ($offset < $page->totalResultSetSize);
+     $statementBuilder->IncreaseOffsetBy(
+         StatementBuilder::SUGGESTED_PAGE_LIMIT);
+    } while ($statementBuilder->GetOffset() < $totalResultSetSize);
   }
 
-  // Create map of custom targeting key id to custom targeting values.
-  $keyIdToValueMap = array();
-  foreach ($values as $value) {
-    $keyIdToValueMap[$value->customTargetingKeyId][] = $value;
-  }
-
-  // Display keys and values.
-  $keyCount = 0;
-  foreach ($keys as $key) {
-    printf("%d) Custom targeting key with ID '%s', name '%s', display " .
-        "name '%s', and type '%s' was found.\n", $keyCount, $key->id,
-        $key->name, $key->displayName, $key->type);
-    if (array_key_exists($key->id, $keyIdToValueMap)) {
-      $valueCount = 0;
-      foreach ($keyIdToValueMap[$key->id] as $value) {
-        printf("\t%d) Custom targeting value with ID '%s', name '%s', and " .
-            "display name '%s' was found.\n", $valueCount, $value->id,
-            $value->name, $value->displayName);
-        $valueCount++;
-      }
-    }
-    $keyCount++;
-  }
-
-  printf("Found %d keys and %d values.\n", sizeof($keys), sizeof($values));
+  printf("Number of results found: %d\n", $totalResultSetSize);
 } catch (OAuth2Exception $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (ValidationException $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (Exception $e) {
-  print $e->getMessage() . "\n";
+  printf("%s\n", $e->getMessage());
+}
+
+/**
+ * Gets all custom targeting key IDs.
+ */
+function getAllCustomTargetingKeyIds($user) {
+  $customTargetingKeyIds = array();
+
+  // Get the CustomTargetingService.
+  $customTargetingService =
+      $user->GetService('CustomTargetingService', 'v201408');
+
+  // Create a statement to get all custom targeting keys.
+  $statementBuilder = new StatementBuilder();
+  $statementBuilder->OrderBy('id ASC')
+      ->Limit(StatementBuilder::SUGGESTED_PAGE_LIMIT);
+
+  // Default for total result set size.
+  $totalResultSetSize = 0;
+
+  do {
+    // Get custom targeting keys by statement.
+    $page = $customTargetingService->getCustomTargetingKeysByStatement(
+        $statementBuilder->ToStatement());
+
+    // Display results.
+    if (isset($page->results)) {
+      $totalResultSetSize = $page->totalResultSetSize;
+      $i = $page->startIndex;
+      foreach ($page->results as $customTargetingKey) {
+        printf("%d) Custom targeting key with ID %d, name '%s', and display "
+            . "name '%s' was found.\n", $i++, $customTargetingKey->id,
+            $customTargetingKey->name, $customTargetingKey->displayName);
+        $customTargetingKeyIds[] = $customTargetingKey->id;
+      }
+    }
+
+    $statementBuilder->IncreaseOffsetBy(StatementBuilder::SUGGESTED_PAGE_LIMIT);
+  } while ($statementBuilder->GetOffset() < $totalResultSetSize);
+
+  return $customTargetingKeyIds;
 }
 

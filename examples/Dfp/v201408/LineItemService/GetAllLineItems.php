@@ -70,8 +70,8 @@ try {
       $totalResultSetSize = $page->totalResultSetSize;
       $i = $page->startIndex;
       foreach ($page->results as $lineItem) {
-        printf("%d) Line item with ID %d, belonging to order ID %s, and name "
-            . "%s was found.\n", $i++, $lineItem->id, $lineItem->orderId,
+        printf("%d) Line item with ID %d, belonging to order %d, and name '%s' "
+            . "was found.\n", $i++, $lineItem->id, $lineItem->orderId,
             $lineItem->name);
       }
     }

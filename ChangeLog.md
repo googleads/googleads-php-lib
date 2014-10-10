@@ -1,3 +1,8 @@
+### 5.5.2
+
+AdWords:
+  - Added v201409 support.
+
 ### 5.5.1
 
 AdWords:

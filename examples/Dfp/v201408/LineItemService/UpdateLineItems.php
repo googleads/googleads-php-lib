@@ -1,7 +1,7 @@
 <?php
 /**
- * This example updates a standard line item's priority to high. To determine
- * which line items exist, run GetAllLineItems.php.
+ * This example updates a standard line item's priority to high. To
+ * determine which line items exist, run GetAllLineItems.php.
  *
  * Tags: LineItemService.getLineItemsByStatement
  * Tags: LineItemService.updateLineItems
@@ -39,7 +39,11 @@ $path = dirname(__FILE__) . '/../../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
+require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
+
+// Set the ID of the line item to update.
+$lineItemId = 'INSERT_LINE_ITEM_ID_HERE';
 
 try {
   // Get DfpUser from credentials in "../auth.ini"
@@ -52,9 +56,6 @@ try {
   // Get the LineItemService.
   $lineItemService = $user->GetService('LineItemService', 'v201408');
 
-  // Set the ID of the line item to update.
-  $lineItemId = 'INSERT_LINE_ITEM_ID_HERE';
-
   // Create a statement to select a single line item by ID.
   $statementBuilder = new StatementBuilder();
   $statementBuilder->Where('id = :id')
@@ -63,23 +64,23 @@ try {
       ->WithBindVariableValue('id', $lineItemId);
 
   // Get the line item.
-  $results = $lineItemService->getLineItemsByStatement(
-      $statementBuilder->ToStatement())->results;
-  $lineItem = $results[0];
+  $page = $lineItemService->getLineItemsByStatement(
+      $statementBuilder->ToStatement());
+  $lineItem = $page->results[0];
 
-  // Update the line item's priority to High if possible.
-  if ($lineItem->lineItemType == 'STANDARD') {
+  // Update the line item's priority to high if possible.
+  if ($lineItem->lineItemType === 'STANDARD') {
     $lineItem->priority = 6;
 
     // Update the line item on the server.
     $lineItems = $lineItemService->updateLineItems(array($lineItem));
 
-    foreach ($updatedLineItem as $lineItems) {
-      printf("Line item with ID %d and name %s was updated.\n", $lineItem->id,
-          $lineItem->name);
+    foreach ($lineItems as $updatedLineItem) {
+      printf("Line item with ID %d, name '%s' was updated.\n",
+          $updatedLineItem->id, $updatedLineItem->name);
     }
   } else {
-    printf("No line items were updated.\n");
+    printf('No line items were updated.');
   }
 } catch (OAuth2Exception $e) {
   ExampleUtils::CheckForOAuth2Errors($e);

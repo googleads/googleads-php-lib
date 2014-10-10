@@ -1,13 +1,13 @@
 <?php
 /**
- * This example gets all first party audience segments. To create first party
- * audience segments, run CreateAudienceSegments.php
+ * This example gets all first party audience segments. To create audience
+ * segments, run CreateAudienceSegments.php.
  *
  * Tags: AudienceSegmentService.getAudienceSegmentsByStatement
  *
  * PHP version 5
  *
- * Copyright 2013, Google Inc. All Rights Reserved.
+ * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201408
  * @category   WebServices
- * @copyright  2013, Google Inc. All Rights Reserved.
+ * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  * @author     Vincent Tsao
@@ -38,6 +38,7 @@ $path = dirname(__FILE__) . '/../../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
+require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
 
 try {
@@ -52,39 +53,36 @@ try {
   $audienceSegmentService = $user->GetService('AudienceSegmentService',
       'v201408');
 
-  // Create bind variables.
-  $vars = MapUtils::GetMapEntries(
-      array('type' => new TextValue('FIRST_PARTY')));
+  // Create a statement to select only first party audience segments.
+  $statementBuilder = new StatementBuilder();
+  $statementBuilder->Where('type = :type')
+      ->OrderBy('id ASC')
+      ->Limit(StatementBuilder::SUGGESTED_PAGE_LIMIT)
+      ->WithBindVariableValue('type', 'FIRST_PARTY');
 
-  // Statement parts to help build a statement to select all first party
-  // audience segments.
-  $pqlTemplate = "WHERE type = :type ORDER BY id LIMIT %d OFFSET %d";
-  $SUGGESTED_PAGE_LIMIT = 500;
-  $offset = 0;
-
-  $page = new AudienceSegmentPage();
+  // Default for total result set size.
+  $totalResultSetSize = 0;
 
   do {
     // Get audience segments by statement.
     $page = $audienceSegmentService->getAudienceSegmentsByStatement(
-        new Statement(sprintf($pqlTemplate, $SUGGESTED_PAGE_LIMIT, $offset),
-            $vars));
+        $statementBuilder->ToStatement());
 
     // Display results.
     if (isset($page->results)) {
+      $totalResultSetSize = $page->totalResultSetSize;
       $i = $page->startIndex;
       foreach ($page->results as $audienceSegment) {
-        printf("%d) First party audience segment with ID \"%d\", name "
-            . "\"%s\", and size \"%d\" was found.\n", $i++,
-            $audienceSegment->id, $audienceSegment->name,
+        printf("%d) Audience segment with ID %d, name '%s', and size %s was "
+            . "found.\n", $i++, $audienceSegment->id, $audienceSegment->name,
             $audienceSegment->size);
       }
     }
 
-    $offset += $SUGGESTED_PAGE_LIMIT;
-  } while ($offset < $page->totalResultSetSize);
+    $statementBuilder->IncreaseOffsetBy(StatementBuilder::SUGGESTED_PAGE_LIMIT);
+  } while ($statementBuilder->GetOffset() < $totalResultSetSize);
 
-  printf("Number of results found: %d\n", $page->totalResultSetSize);
+  printf("Number of results found: %d\n", $totalResultSetSize);
 } catch (OAuth2Exception $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (ValidationException $e) {

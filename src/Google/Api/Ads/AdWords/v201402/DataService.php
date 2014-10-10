@@ -3475,53 +3475,6 @@ if (!class_exists("AdGroupBidLandscape", false)) {
   }
 }
 
-if (!class_exists("CriterionBidLandscape", false)) {
-  /**
-   * The bid landscape for a criterion.  A bid landscape estimates how a
-   * a criterion will perform based on different bid amounts.
-   * @package Google_Api_Ads_AdWords_v201402
-   * @subpackage v201402
-   */
-  class CriterionBidLandscape extends BidLandscape {
-
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201402";
-    const XSI_TYPE = "CriterionBidLandscape";
-
-    /**
-     * @access public
-     * @var integer
-     */
-    public $criterionId;
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($criterionId = null, $campaignId = null, $adGroupId = null, $startDate = null, $endDate = null, $landscapePoints = null) {
-      parent::__construct();
-      $this->criterionId = $criterionId;
-      $this->campaignId = $campaignId;
-      $this->adGroupId = $adGroupId;
-      $this->startDate = $startDate;
-      $this->endDate = $endDate;
-      $this->landscapePoints = $landscapePoints;
-    }
-
-  }
-}
-
 if (!class_exists("DoubleValue", false)) {
   /**
    * Number value type for constructing double valued ranges.
@@ -3599,6 +3552,53 @@ if (!class_exists("LongValue", false)) {
     public function __construct($number = null) {
       parent::__construct();
       $this->number = $number;
+    }
+
+  }
+}
+
+if (!class_exists("CriterionBidLandscape", false)) {
+  /**
+   * The bid landscape for a criterion.  A bid landscape estimates how a
+   * a criterion will perform based on different bid amounts.
+   * @package Google_Api_Ads_AdWords_v201402
+   * @subpackage v201402
+   */
+  class CriterionBidLandscape extends BidLandscape {
+
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201402";
+    const XSI_TYPE = "CriterionBidLandscape";
+
+    /**
+     * @access public
+     * @var integer
+     */
+    public $criterionId;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($criterionId = null, $campaignId = null, $adGroupId = null, $startDate = null, $endDate = null, $landscapePoints = null) {
+      parent::__construct();
+      $this->criterionId = $criterionId;
+      $this->campaignId = $campaignId;
+      $this->adGroupId = $adGroupId;
+      $this->startDate = $startDate;
+      $this->endDate = $endDate;
+      $this->landscapePoints = $landscapePoints;
     }
 
   }
@@ -3720,7 +3720,6 @@ if (!class_exists("DataService", false)) {
       "AuthenticationError" => "AuthenticationError",
       "AuthorizationError" => "AuthorizationError",
       "ClientTermsError" => "ClientTermsError",
-      "CriterionBidLandscape" => "CriterionBidLandscape",
       "DateError" => "DateError",
       "DateRange" => "DateRange",
       "DistinctError" => "DistinctError",
@@ -3750,6 +3749,7 @@ if (!class_exists("DataService", false)) {
       "StringLengthError" => "StringLengthError",
       "DataError" => "DataError",
       "ComparableValue" => "ComparableValue",
+      "CriterionBidLandscape" => "CriterionBidLandscape",
       "DatabaseError" => "DatabaseError",
       "ApiError" => "ApiError",
       "ApiException" => "ApiException",

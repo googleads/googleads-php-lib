@@ -1,15 +1,14 @@
 <?php
 /**
- * This example updates all users by adding "Sr." to the end of each
- * name (after a very large baby boom and lack of creativity). To
- * determine which users exist, run GetAllUsers.php.
+ * This example updates the role of a user to a salesperson. To determine which
+ * users exist, run GetAllUsers.php.
  *
  * Tags: UserService.getUsersByStatement
  * Tags: UserService.updateUsers
  *
  * PHP version 5
  *
- * Copyright 2013, Google Inc. All Rights Reserved.
+ * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,11 +25,10 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201408
  * @category   WebServices
- * @copyright  2013, Google Inc. All Rights Reserved.
+ * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Adam Rogal
- * @author     Eric Koleda
+ * @author     Vincent Tsao
  */
 error_reporting(E_STRICT | E_ALL);
 
@@ -41,7 +39,11 @@ $path = dirname(__FILE__) . '/../../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
+require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
+
+// Set the ID of the user to update.
+$userId = 'INSERT_USER_ID_HERE';
 
 try {
   // Get DfpUser from credentials in "../auth.ini"
@@ -54,41 +56,33 @@ try {
   // Get the UserService.
   $userService = $user->GetService('UserService', 'v201408');
 
-  // Create a statement to get all users.
-  $filterStatement = new Statement('LIMIT 500');
+  // Create a statement to select a single user by ID.
+  $statementBuilder = new StatementBuilder();
+  $statementBuilder->Where('id = :id')
+      ->OrderBy('id ASC')
+      ->Limit(1)
+      ->WithBindVariableValue('id', $userId);
 
-  // Get users by statement.
-  $page = $userService->getUsersByStatement($filterStatement);
+  // Get the user.
+  $page = $userService->getUsersByStatement($statementBuilder->ToStatement());
+  $user = $page->results[0];
 
-  if (isset($page->results)) {
-    $users = $page->results;
+  // Set the role of the user to a salesperson.
+  // To determine what other roles exist, run GetAllRoles.php.
+  $user->roleId = -5;
 
-    // Update each local user object by changing its name.
-    foreach ($users as $usr) {
-      $usr->name .= ' Sr.';
-    }
+  // Update the user on the server.
+  $users = $userService->updateUsers(array($user));
 
-    // Update the users on the server.
-    $users = $userService->updateUsers($users);
-
-    // Display results.
-    if (isset($users)) {
-      foreach ($users as $usr) {
-        print 'A user with ID "' . $usr->id
-            . '", name "' . $usr->name
-            . '", and role "' . $usr->roleName . "\" was updated.\n";
-      }
-    } else {
-      print "No users updated.\n";
-    }
-  } else {
-    print "No users found to update.\n";
+  foreach ($users as $updatedUser) {
+    printf("User with ID %d, name '%s' was updated.\n", $updatedUser->id,
+        $updatedUser->name);
   }
 } catch (OAuth2Exception $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (ValidationException $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (Exception $e) {
-  print $e->getMessage() . "\n";
+  printf("%s\n", $e->getMessage());
 }
 

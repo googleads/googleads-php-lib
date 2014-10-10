@@ -1,7 +1,8 @@
 <?php
 /**
- * This example shows how to get recently updated line items. To create
- * line items, run CreateLineItems.php.
+ * This example gets all recently updated line items instead of fetching all
+ * line items. This is the suggested way to daily sync any line items in your
+ * network. To create line items, run CreateLineItems.php.
  *
  * Tags: LineItemService.getLineItemsByStatement
  *
@@ -38,7 +39,6 @@ $path = dirname(__FILE__) . '/../../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
-require_once 'Google/Api/Ads/Dfp/Util/DateTimeUtils.php';
 require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
 
@@ -53,15 +53,16 @@ try {
   // Get the LineItemService.
   $lineItemService = $user->GetService('LineItemService', 'v201408');
 
-  // Create a statement to only select line items updated or created since
-  // yesterday.
+  // Create a statement to select only recently updated line items.
   $statementBuilder = new StatementBuilder();
   $statementBuilder->Where('lastModifiedDateTime >= :lastModifiedDateTime')
       ->OrderBy('id ASC')
       ->Limit(StatementBuilder::SUGGESTED_PAGE_LIMIT)
-      ->WithBindVariableValue('lastModifiedDateTime',
+      ->WithBindVariableValue(
+          'lastModifiedDateTime',
           date(DateTimeUtils::$DFP_DATE_TIME_STRING_FORMAT,
-              strtotime('-1 day')));
+              strtotime('-1 day'))
+      );
 
   // Default for total result set size.
   $totalResultSetSize = 0;
@@ -76,19 +77,16 @@ try {
       $totalResultSetSize = $page->totalResultSetSize;
       $i = $page->startIndex;
       foreach ($page->results as $lineItem) {
-        // Format lastModifiedDateTime for printing.
-        $lastModifiedDateTime =
-            DateTimeUtils::GetDateTime($lineItem->lastModifiedDateTime);
-        $lastModifiedDateTimeText = $lastModifiedDateTime
-            ->format(DateTimeUtils::$DFP_DATE_TIME_STRING_FORMAT);
-
-        printf("%d) Line item with ID %d, belonging to order ID %d, with name "
-            . "%s, and last modified %s was found.\n", $i++, $lineItem->id,
-            $lineItem->orderId, $lineItem->name, $lastModifiedDateTimeText);
+        printf("%d) Line item with ID %d, belonging to order %d, and name '%s' "
+            . "was found.\n", $i++, $lineItem->id, $lineItem->orderId,
+            $lineItem->name
+        );
       }
     }
+
     $statementBuilder->IncreaseOffsetBy(StatementBuilder::SUGGESTED_PAGE_LIMIT);
   } while ($statementBuilder->GetOffset() < $totalResultSetSize);
+
   printf("Number of results found: %d\n", $totalResultSetSize);
 } catch (OAuth2Exception $e) {
   ExampleUtils::CheckForOAuth2Errors($e);

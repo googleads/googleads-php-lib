@@ -1,14 +1,14 @@
 <?php
 /**
- * This example updates teams by adding an ad unit to the first 5.
- * To determine which teams exist, run GetAllTeamsExample.java.
+ * This example updates a team by adding an ad unit to it. To determine which
+ * teams exist, run GetAllTeams.php.
  *
  * Tags: TeamService.getTeamsByStatement
  * Tags: TeamService.updateTeams
  *
  * PHP version 5
  *
- * Copyright 2013, Google Inc. All Rights Reserved.
+ * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,10 +25,10 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201408
  * @category   WebServices
- * @copyright  2013, Google Inc. All Rights Reserved.
+ * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Paul Rashidi
+ * @author     Vincent Tsao
  */
 error_reporting(E_STRICT | E_ALL);
 
@@ -39,7 +39,14 @@ $path = dirname(__FILE__) . '/../../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
+require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
+
+// Set the ID of the team to update.
+$teamId = 'INSERT_TEAM_ID_HERE';
+
+// Set the ID of the ad unit to add to the team.
+$adUnitId = 'INSERT_AD_UNIT_ID_HERE';
 
 try {
   // Get DfpUser from credentials in "../auth.ini"
@@ -52,55 +59,38 @@ try {
   // Get the TeamService.
   $teamService = $user->GetService('TeamService', 'v201408');
 
-  // Set the ID of the ad unit to add to the teams.
-  $adUnitID = "INSERT_AD_UNIT_ID_HERE";
+  // Create a statement to select a single team by ID.
+  $statementBuilder = new StatementBuilder();
+  $statementBuilder->Where('id = :id')
+      ->OrderBy('id ASC')
+      ->Limit(1)
+      ->WithBindVariableValue('id', $teamId);
 
-  // Create a statement to select first 5 teams that aren't
-  // built-in.
-  $filterStatement = new Statement("WHERE id > 0 LIMIT 5");
+  // Get the team.
+  $page = $teamService->getTeamsByStatement(
+      $statementBuilder->ToStatement());
+  $team = $page->results[0];
 
-  // Get teams by statement.
-  $page = $teamService->getTeamsByStatement($filterStatement);
+  // Don't add ad unit if the team has all inventory already.
+  if (!$team->hasAllInventory) {
+    // Update the team's ad units.
+    $team->adUnitIds[] = $adUnitId;
 
-  if (isset($page->results)) {
-    $teams = $page->results;
+    // Update the team on the server.
+    $teams = $teamService->updateTeams(array($team));
 
-    $i = 0;
-    // Update each local team object by appending the ad unit to it.
-    foreach ($teams as $team) {
-      if (!$team->hasAllInventory) {
-        if (!isset($team->adUnitIds)) {
-          // Empty team inventory.
-          $team->adUnitIds = array();
-        }
-        $team->adUnitIds[] = $adUnitID;
-        $i++;
-      }
-    }
-
-    // Reorganize the $teams array.
-    $teams = array_values($teams);
-
-    // Update the teams on the server.
-    $teams = $teamService->updateTeams($teams);
-
-    // Display results.
-    if (isset($teams)) {
-      foreach ($teams as $team) {
-        print 'A team with ID "' . $team->id
-            . '" and name "' . $team->name . "\" was updated.\n";
-      }
-    } else {
-      print "No teams updated.\n";
+    foreach ($teams as $updatedTeam) {
+      printf("Team with ID %d, name '%s' was updated.\n", $updatedTeam->id,
+          $updatedTeam->name);
     }
   } else {
-    print "No teams found to update.\n";
+    printf('No teams were updated.');
   }
 } catch (OAuth2Exception $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (ValidationException $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (Exception $e) {
-  print $e->getMessage() . "\n";
+  printf("%s\n", $e->getMessage());
 }
 

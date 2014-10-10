@@ -1,15 +1,14 @@
 <?php
 /**
- * This example updates an ad unit by enabling AdSense on the first 500. To
- * determine which ad units exist, run GetAllAdUnits.php or
- * GetInventoryTree.php.
+ * This example updates an ad unit's sizes by adding a banner size. To
+ * determine which ad units exist, run GetAllAdUnits.php.
  *
  * Tags: InventoryService.getAdUnitsByStatement
  * Tags: InventoryService.updateAdUnits
  *
  * PHP version 5
  *
- * Copyright 2013, Google Inc. All Rights Reserved.
+ * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,11 +25,10 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201408
  * @category   WebServices
- * @copyright  2013, Google Inc. All Rights Reserved.
+ * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Adam Rogal
- * @author     Eric Koleda
+ * @author     Vincent Tsao
  */
 error_reporting(E_STRICT | E_ALL);
 
@@ -41,7 +39,11 @@ $path = dirname(__FILE__) . '/../../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
+require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
+
+// Set the ID of the ad unit to update.
+$adUnitId = 'INSERT_AD_UNIT_ID_HERE';
 
 try {
   // Get DfpUser from credentials in "../auth.ini"
@@ -54,41 +56,48 @@ try {
   // Get the InventoryService.
   $inventoryService = $user->GetService('InventoryService', 'v201408');
 
-  // Create a statement to get all ad units.
-  $filterStatement = new Statement("LIMIT 500");
+  // Create a statement to select a single ad unit by ID.
+  $statementBuilder = new StatementBuilder();
+  $statementBuilder->Where('id = :id')
+      ->OrderBy('id ASC')
+      ->Limit(1)
+      ->WithBindVariableValue('id', $adUnitId);
 
-  // Get ad units by statement.
-  $page = $inventoryService->getAdUnitsByStatement($filterStatement);
+  // Get the ad unit.
+  $page = $inventoryService->getAdUnitsByStatement(
+      $statementBuilder->ToStatement());
+  $adUnit = $page->results[0];
 
-  if (isset($page->results)) {
-    $adUnits = $page->results;
+  // Create a 480x60 ad unit size.
+  $size = new Size();
+  $size->width = 480;
+  $size->height = 60;
 
-    // Update each local ad unit object by enabling AdSense.
-    foreach ($adUnits as $adUnit) {
-      $adUnit->inheritedAdSenseSettings->value->adSenseEnabled = TRUE;
+  $adUnitSize = new AdUnitSize();
+  $adUnitSize->size = size;
+  $adUnitSize->environmentType = 'BROWSER';
+
+  // Update the ad unit sizes.
+  $adUnit->adUnitSizes[] = $adUnitSize;
+
+  // Update the ad unit on the server.
+  $adUnits = $inventoryService->updateAdUnits(array($adUnit));
+
+  foreach ($adUnits as $updatedAdUnit) {
+    $adUnitSizesStrings = array();
+    foreach ($updatedAdUnit->adUnitSizes as $updatedAdUnitSize) {
+      $adUnitSizesStrings[] = sprintf('%dx%d', $updatedAdUnitSize->size->width,
+          $updatedAdUnitSize->size->height);
     }
-
-    // Update the ad units on the server.
-    $adUnits = $inventoryService->updateAdUnits($adUnits);
-
-    // Display results.
-    if (isset($adUnits)) {
-      foreach ($adUnits as $adUnit) {
-        print 'Ad unit with ID "' . $adUnit->id . '", name "' . $adUnit->name
-            . '", and AdSense enabled "'
-            . ($adUnit->inheritedAdSenseSettings->value->adSenseEnabled
-                ? 'TRUE' : 'FALSE')
-            . "\" was updated.\n";
-      }
-    }
-  } else {
-    print "No ad units updated.\n";
+    printf("Ad unit with ID %d, name '%s', and sizes [%s] was updated.\n",
+        $updatedAdUnit->id, $updatedAdUnit->name,
+        implode(',', $adUnitSizesStrings));
   }
 } catch (OAuth2Exception $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (ValidationException $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (Exception $e) {
-  print $e->getMessage() . "\n";
+  printf("%s\n", $e->getMessage());
 }
 

@@ -1,13 +1,16 @@
 <?php
 /**
- * This example removes the user from all its teams. To determine which
- * users exist, run GetAllUsers.php.
+ * This example deletes all user team associations for a given user (i.e.,
+ * removes the user from all teams). To determine which user team associations
+ * exist, run GetAllUserTeamAssociations.php. To determine which users exist,
+ * run GetAllUsers.php.
  *
+ * Tags: UserTeamAssociationService.getUserTeamAssociationsByStatement
  * Tags: UserTeamAssociationService.performUserTeamAssociationAction
  *
  * PHP version 5
  *
- * Copyright 2013, Google Inc. All Rights Reserved.
+ * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,10 +27,10 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201408
  * @category   WebServices
- * @copyright  2013, Google Inc. All Rights Reserved.
+ * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Paul Rashidi
+ * @author     Vincent Tsao
  */
 error_reporting(E_STRICT | E_ALL);
 
@@ -38,8 +41,11 @@ $path = dirname(__FILE__) . '/../../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
+require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
-require_once 'Google/Api/Ads/Common/Util/MapUtils.php';
+
+// Set the ID of the user to delete user team associations for.
+$userId = 'INSERT_USER_ID_HERE';
 
 try {
   // Get DfpUser from credentials in "../auth.ini"
@@ -50,64 +56,58 @@ try {
   $user->LogDefaults();
 
   // Get the UserTeamAssociationService.
-  $userTeamAssociationService =
-      $user->GetService('UserTeamAssociationService', 'v201408');
+  $userTeamAssociationService = $user->GetService('UserTeamAssociationService',
+      'v201408');
 
-  // Set the user to remove from its teams.
-  $userId = 'INSERT_USER_ID_HERE';
+  // Create a statement to get all user team associations for a user.
+  $statementBuilder = new StatementBuilder();
+  $statementBuilder->Where('userId = :userId')
+      ->OrderBy('userId ASC, teamid ASC')
+      ->Limit(StatementBuilder::SUGGESTED_PAGE_LIMIT)
+      ->WithBindVariableValue('userId', $userId);
 
-  // Create bind variables.
-  $vars = MapUtils::GetMapEntries(
-      array('userId' => new NumberValue($userId)));
-
-  // Create statement text to select user team associations by the user ID.
-  $filterStatementText = "WHERE userId = :userId ";
-
-  $offset = 0;
+  // Default for total result set size.
+  $totalResultSetSize = 0;
 
   do {
-    // Create statement to page through results.
-    $filterStatement = new Statement($filterStatementText
-        . " LIMIT 500 OFFSET " . $offset, $vars);
-
     // Get user team associations by statement.
     $page = $userTeamAssociationService->getUserTeamAssociationsByStatement(
-        $filterStatement);
+        $statementBuilder->ToStatement());
 
     // Display results.
     if (isset($page->results)) {
+      $totalResultSetSize = $page->totalResultSetSize;
       $i = $page->startIndex;
-      foreach ($page->results as $uta) {
-        print $i . ') User team association between user with ID "'
-            . $uta->userId . '" and team with ID "' . $uta->teamId
-            . "\" will be deleted.\n";
-        $i++;
+      foreach ($page->results as $userTeamAssociation) {
+        printf("%d) User team association with user ID %d, and team ID %d will "
+            . "be deleted.\n", $i++, $userTeamAssociation->userId,
+            $userTeamAssociation->teamId);
       }
     }
 
-    $offset += 500;
-  } while ($offset < $page->totalResultSetSize);
+    $statementBuilder->IncreaseOffsetBy(StatementBuilder::SUGGESTED_PAGE_LIMIT);
+  } while ($statementBuilder->GetOffset() < $totalResultSetSize);
 
-  print 'Number of user team associations to be deleted: ' . $i . "\n";
+  printf("Number of user team associations to be deleted: %d\n",
+      $totalResultSetSize);
 
-  if ($i > 0) {
-    // Create action statement.
-    $filterStatementText = 'WHERE userId = :userId ';
-    $filterStatement = new Statement($filterStatementText, $vars);
+  if ($totalResultSetSize > 0) {
+    // Remove limit and offset from statement.
+    $statementBuilder->RemoveLimitAndOffset();
 
     // Create action.
     $action = new DeleteUserTeamAssociations();
 
     // Perform action.
     $result = $userTeamAssociationService->performUserTeamAssociationAction(
-        $action, $filterStatement);
+        $action, $statementBuilder->ToStatement());
 
     // Display results.
     if (isset($result) && $result->numChanges > 0) {
-      print 'Number of user team associations deleted: '
-          . $result->numChanges . "\n";
+      printf("Number of user team associations deleted: %d\n",
+          $result->numChanges);
     } else {
-      print "No user team associations were deleted.\n";
+      printf("No user team associations were deleted.\n");
     }
   }
 } catch (OAuth2Exception $e) {
@@ -115,6 +115,6 @@ try {
 } catch (ValidationException $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (Exception $e) {
-  print $e->getMessage() . "\n";
+  printf("%s\n", $e->getMessage());
 }
 

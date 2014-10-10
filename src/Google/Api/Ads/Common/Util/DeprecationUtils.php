@@ -105,6 +105,25 @@ abstract class DeprecationUtils {
   }
 
   /**
+   * Checks to see if skipReportHeader or skipReportSummary can be used.
+   * Throws an error if it cannot be used.
+   *
+   * @param string $header skipReportHeader or skipReportSummary
+   * @param string $minimumVersion the minimum API version that supports
+   *    skipReportHeader or skipReportSummary
+   * @param string $requestedVersion the API version being used
+   * @throws ServiceException if the requested version does not support
+   *     skipReportHeader or skipReportSummary
+   */
+  public static function CheckUsingSkipReportHeaderWithUnsupportedVersion(
+      $header, $minimumVersion, $requestedVersion) {
+    if ($requestedVersion < $minimumVersion) {
+      throw new ServiceException(sprintf("%s is not supported "
+          . "in version %s.", $header, $requestedVersion));
+    }
+  }
+
+  /**
    * Logs an error message indicating that the specified method is deprecated.
    *
    * @param string $methodName the name of the deprecated method

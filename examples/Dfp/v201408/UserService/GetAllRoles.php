@@ -1,13 +1,12 @@
 <?php
 /**
- * This example gets all roles. This example can be used to determine which
- * role ID is needed when getting and creating users.
+ * This example gets all roles.
  *
  * Tags: UserService.getAllRoles
  *
  * PHP version 5
  *
- * Copyright 2013, Google Inc. All Rights Reserved.
+ * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,11 +23,10 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201408
  * @category   WebServices
- * @copyright  2013, Google Inc. All Rights Reserved.
+ * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Adam Rogal
- * @author     Eric Koleda
+ * @author     Vincent Tsao
  */
 error_reporting(E_STRICT | E_ALL);
 
@@ -55,18 +53,18 @@ try {
   // Get all roles.
   $roles = $userService->getAllRoles();
 
-  if (isset($roles)) {
-    foreach ($roles as $role) {
-      print 'Role with ID "' . $role->id . '" and name "' . $role->name
-          . "\" was found.\n";
-    }
+  $i = 0;
+  foreach ($roles as $role) {
+    printf("%d) Role with ID %d and name '%s' was found.\n", $i++, $role->id,
+        $role->name);
   }
-  print 'Number of results found: ' . sizeof($roles) . "\n";
+
+  printf("Number of results found: %d\n", count($roles));
 } catch (OAuth2Exception $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (ValidationException $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (Exception $e) {
-  print $e->getMessage() . "\n";
+  printf("%s\n", $e->getMessage());
 }
 

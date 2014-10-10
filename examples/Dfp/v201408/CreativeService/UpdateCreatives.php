@@ -1,15 +1,14 @@
 <?php
 /**
- * This example updates the destination URL of all image creatives up to
- * the first 500. To determine which image creatives exist, run
- * GetAllCreatives.php.
+ * This example updates a creative's destination URL. To determine which
+ * creatives exist, run GetAllCreatives.php.
  *
  * Tags: CreativeService.getCreativesByStatement
  * Tags: CreativeService.updateCreatives
  *
  * PHP version 5
  *
- * Copyright 2013, Google Inc. All Rights Reserved.
+ * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,11 +25,10 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201408
  * @category   WebServices
- * @copyright  2013, Google Inc. All Rights Reserved.
+ * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Adam Rogal
- * @author     Eric Koleda
+ * @author     Vincent Tsao
  */
 error_reporting(E_STRICT | E_ALL);
 
@@ -41,7 +39,11 @@ $path = dirname(__FILE__) . '/../../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
+require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
+
+// Set the ID of the creative to update.
+$creativeId = 'INSERT_CREATIVE_ID_HERE';
 
 try {
   // Get DfpUser from credentials in "../auth.ini"
@@ -54,42 +56,38 @@ try {
   // Get the CreativeService.
   $creativeService = $user->GetService('CreativeService', 'v201408');
 
-  // Create a statement to get all image creatives.
-  $filterStatement =
-      new Statement("WHERE creativeType = 'ImageCreative' LIMIT 500");
+  // Create a statement to select a single creative by ID.
+  $statementBuilder = new StatementBuilder();
+  $statementBuilder->Where('id = :id')
+      ->OrderBy('id ASC')
+      ->Limit(1)
+      ->WithBindVariableValue('id', $creativeId);
 
-  // Get creatives by statement.
-  $page = $creativeService->getCreativesByStatement($filterStatement);
+  // Get the creative.
+  $page = $creativeService->getCreativesByStatement(
+      $statementBuilder->ToStatement());
+  $creative = $page->results[0];
 
-  if (isset($page->results)) {
-    $creatives = $page->results;
+  // Only update the destination URL if it has one.
+  if ($creative instanceof HasDestinationUrlCreative) {
+    // Update the destination URL of the creative.
+    $creative->destinationUrl = 'https://news.google.com';
 
-    // Update each local creative object by changing its destination URL.
-    foreach ($creatives as $creative) {
-      $creative->destinationUrl = 'http://news.google.com';
-    }
+    // Update the creative on the server.
+    $creatives = $creativeService->updateCreatives(array($creative));
 
-    // Update the creatives on the server.
-    $creatives = $creativeService->updateCreatives($creatives);
-
-    // Display results.
-    if (isset($creatives)) {
-      foreach ($creatives as $creative) {
-        print 'An image creative with ID "' . $creative->id
-            . '" and destination URL "' . $creative->destinationUrl
-            . "\" was updated.\n";
-      }
-    } else {
-      print "No creatives updated.\n";
+    foreach ($creatives as $updatedCreative) {
+      printf("Creative with ID %d, and name '%s' was updated.\n",
+          $updatedCreative->id, $updatedCreative->name);
     }
   } else {
-    print "No creatives found to update.\n";
+    printf("No creatives were updated.\n");
   }
 } catch (OAuth2Exception $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (ValidationException $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (Exception $e) {
-  print $e->getMessage() . "\n";
+  printf("%s\n", $e->getMessage());
 }
 

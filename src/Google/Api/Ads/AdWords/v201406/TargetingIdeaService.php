@@ -8041,7 +8041,14 @@ if (!class_exists("DimensionProperties", false)) {
 
 if (!class_exists("DomainCategory", false)) {
   /**
-   * Represents domain category information.
+   * Represents categories that AdWords finds automatically for your website.
+   * 
+   * <p>
+   * No categories available means that AdWords couldn't automatically find categories for your
+   * website. To control how categories are assigned, manually add breadcrumbs to your webpages.
+   * 
+   * <p>
+   * Categories can be filtered by domain name or by a set of campaign IDs.
    * 
    * 
    * 
@@ -8603,16 +8610,16 @@ if (!class_exists("IncludeAdultContentSearchParameter", false)) {
 
 if (!class_exists("LanguageSearchParameter", false)) {
   /**
-   * A {@link SearchParameter} for both {@code PLACEMENT} and {@code KEYWORD}
-   * {@link IdeaType}s used to indicate multiple language being targeted. This can
-   * be used, for example, to search for {@code KEYWORD} {@link IdeaType}s that
-   * are best for Japanese language.
+   * A {@link SearchParameter} used to indicate multiple language being targeted.
+   * This can be used, for example, to search for {@code KEYWORD}
+   * {@link IdeaType}s that are best for Japanese language.
    * 
-   * <p>The service allows at most one language to be targeted for KEYWORD requests and 10 languages
-   * for PLACEMENT requests.
-   * <p>In the {@code KEYWORD} {@link IdeaType} {@code STATS} {@link RequestType} requests, those
-   * keywords that are from different language than specified in {@code LanguageSearchParameter} or
-   * have unknown language will be filtered out in the response. To avoid filtering, do not include
+   * <p>The service allows at most one language to be targeted for
+   * {@code KEYWORD} requests.
+   * <p>In the {@code KEYWORD} {@link IdeaType} {@code STATS} {@link RequestType}
+   * requests, those keywords that are from different language than specified in
+   * {@code LanguageSearchParameter} or have unknown language will be filtered
+   * out in the response. To avoid filtering, do not include
    * {@code LanguageSearchParameter} in the request.
    * <p>This search parameter can be used in bulk keyword requests through the {@link com.google.ads.api.services.targetingideas.TargetingIdeaService#getBulkKeywordIdeas(TargetingIdeaSelector)} method. It must be single-valued when used in a call to that method.
    * <p>This element is supported by following {@link IdeaType}s: KEYWORD, PLACEMENT.
@@ -8658,10 +8665,9 @@ if (!class_exists("LanguageSearchParameter", false)) {
 
 if (!class_exists("LocationSearchParameter", false)) {
   /**
-   * A {@link SearchParameter} for both {@code PLACEMENT} and {@code KEYWORD}
-   * {@link IdeaType}s used to indicate the locations being targeted. This can
-   * be used, for example, to search for {@code KEYWORD} {@link IdeaType}s that
-   * are best for Japan and Los Angeles.
+   * A {@link SearchParameter} used to indicate the locations being targeted.
+   * This can be used, for example, to search for {@code KEYWORD}
+   * {@link IdeaType}s that are best for Japan and Los Angeles.
    * 
    * <p>This parameter replaces the {@code CountryTargetSearchParameter}.
    * 
@@ -8855,8 +8861,7 @@ if (!class_exists("RelatedToQuerySearchParameter", false)) {
 
 if (!class_exists("RelatedToUrlSearchParameter", false)) {
   /**
-   * A {@link SearchParameter} for {@code KEYWORD} and {@code PLACEMENT}
-   * {@link IdeaType}s that specifies a set of URLs that results should
+   * A {@link SearchParameter} that specifies a set of URLs that results should
    * in some way be related too. For example, keyword results would be
    * similar to content keywords found on the related URLs.
    * <p>This search parameter can be used in bulk keyword requests through the {@link com.google.ads.api.services.targetingideas.TargetingIdeaService#getBulkKeywordIdeas(TargetingIdeaSelector)} method. It must be single-valued when used in a call to that method.

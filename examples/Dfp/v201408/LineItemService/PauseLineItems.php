@@ -1,8 +1,7 @@
 <?php
 /**
- * This example pauses all line items for the given order. Line items must be
- * paused before they can be updated. To determine which line items exist, run
- * GetAllLineItems.php.
+ * This example pauses a line item. To determine which line items exist,
+ * run GetAllLineItems.php.
  *
  * Tags: LineItemService.getLineItemsByStatement
  * Tags: LineItemService.performLineItemAction
@@ -43,6 +42,9 @@ require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
 require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
 
+// Set the ID of the line item to pause.
+$lineItemId = 'INSERT_LINE_ITEM_ID_HERE';
+
 try {
   // Get DfpUser from credentials in "../auth.ini"
   // relative to the DfpUser.php file's directory.
@@ -54,15 +56,12 @@ try {
   // Get the LineItemService.
   $lineItemService = $user->GetService('LineItemService', 'v201408');
 
-  // Set the ID of the order to get line items from.
-  $orderId = 'INSERT_ORDER_ID_HERE';
-
-  // Create a statement to select approved line items from a given order.
+  // Create a statement to select a single line item by ID.
   $statementBuilder = new StatementBuilder();
-  $statementBuilder->Where('orderId = :orderId')
+  $statementBuilder->Where('id = :id')
       ->OrderBy('id ASC')
-      ->Limit(StatementBuilder::SUGGESTED_PAGE_LIMIT)
-      ->WithBindVariableValue('orderId', $orderId);
+      ->Limit(1)
+      ->WithBindVariableValue('id', $lineItemId);
 
   // Default for total result set size.
   $totalResultSetSize = 0;
@@ -77,17 +76,18 @@ try {
       $totalResultSetSize = $page->totalResultSetSize;
       $i = $page->startIndex;
       foreach ($page->results as $lineItem) {
-        printf("%d) Line item with ID %d will be paused.\n", $i++,
-            $lineItem->id);
+        printf("%d) Line item with ID %d, belonging to order %d, and name '%s' "
+            . "will be paused.\n", $i++, $lineItem->id, $lineItem->orderId,
+            $lineItem->name);
       }
     }
 
     $statementBuilder->IncreaseOffsetBy(StatementBuilder::SUGGESTED_PAGE_LIMIT);
   } while ($statementBuilder->GetOffset() < $totalResultSetSize);
 
-  printf("Number of line items to be paused: %d\n", sizeof($lineItemIds));
+  printf("Number of line items to be paused: %d\n", $totalResultSetSize);
 
-  if (sizeof($lineItemIds) > 0) {
+  if ($totalResultSetSize > 0) {
     // Remove limit and offset from statement.
     $statementBuilder->RemoveLimitAndOffset();
 
@@ -96,7 +96,7 @@ try {
 
     // Perform action.
     $result = $lineItemService->performLineItemAction($action,
-        $statement->ToStatement());
+        $statementBuilder->ToStatement());
 
     // Display results.
     if (isset($result) && $result->numChanges > 0) {

@@ -1,7 +1,7 @@
 <?php
 /**
- * This example deletes a content metadata key hierarchy. To determine
- * which content metadata key hierarchies exist, run
+ * This example deletes a content metadata key hierarchy. To determine which
+ * content metadata key hierarchies exist, run
  * GetAllContentMetadataKeyHierarchies.php.
  *
  * Tags: ContentMetadataKeyHierarchyService.getContentMetadataKeyHierarchiesByStatement
@@ -40,7 +40,12 @@ $path = dirname(__FILE__) . '/../../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
+require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
+
+// Set the ID of the content metadata key hierarchy to delete.
+$contentMetadataKeyHierarchyId =
+    'INSERT_CONTENT_METADATA_KEY_HIERARCHY_ID_HERE';
 
 try {
   // Get DfpUser from credentials in "../auth.ini"
@@ -51,35 +56,62 @@ try {
   $user->LogDefaults();
 
   // Get the ContentMetadataKeyHierarchyService.
-  $contentMetadataKeyHierarchyService =
-      $user->GetService('ContentMetadataKeyHierarchyService', 'v201408');
-
-  // Set the ID of the content metadata key hierarchy to delete.
-  $contentMetadataKeyHierarchyId =
-      "INSERT_CONTENT_METADATA_KEY_HIERARCHY_ID_HERE";
+  $contentMetadataKeyHierarchyService = $user->GetService(
+      'ContentMetadataKeyHierarchyService', 'v201408');
 
   // Create a statement to select a single content metadata key hierarchy by ID.
-  $vars = MapUtils::GetMapEntries(array('id' =>
-      new NumberValue($contentMetadataKeyHierarchyId)));
-  $filterStatement = new Statement("WHERE id = :id ORDER BY id ASC LIMIT 1",
-      $vars);
+  $statementBuilder = new StatementBuilder();
+  $statementBuilder->Where('id = :id')
+      ->OrderBy('id ASC')
+      ->Limit(1)
+      ->WithBindVariableValue('id', $contentMetadataKeyHierarchyId);
 
-  // Get the content metadata key hierarchy.
-  $page = $contentMetadataKeyHierarchyService->
-      getContentMetadataKeyHierarchiesByStatement($filterStatement);
-  $contentMetadataKeyHierarchy = $page->results[0];
+  // Default for total result set size.
+  $totalResultSetSize = 0;
 
-  printf("Content metadata key hierarchy with ID '%d' will be deleted.\n",
-      $contentMetadataKeyHierarchy->id);
+  do {
+    // Get content metadata key hierarchies by statement.
+    $page = $contentMetadataKeyHierarchyService->
+        getContentMetadataKeyHierarchiesByStatement(
+            $statementBuilder->ToStatement());
 
-  // Create and perform the delete action.
-  $filterStatement = new Statement("WHERE id = :id", $vars);
-  $deleteAction = new DeleteContentMetadataKeyHierarchies();
-  $result = $contentMetadataKeyHierarchyService->
-      performContentMetadataKeyHierarchyAction($deleteAction, $filterStatement);
+    // Display results.
+    if (isset($page->results)) {
+      $totalResultSetSize = $page->totalResultSetSize;
+      $i = $page->startIndex;
+      foreach ($page->results as $contentMetadataKeyHierarchy) {
+        printf("%d) Content metadata key hierarchy with ID %d, and name '%s' "
+            . "will be deleted.\n", $i++, $contentMetadataKeyHierarchy->id,
+            $contentMetadataKeyHierarchy->name);
+      }
+    }
 
-  printf("Number of content metadata key hierarchies deleted: %d.\n",
-      $result->numChanges);
+    $statementBuilder->IncreaseOffsetBy(StatementBuilder::SUGGESTED_PAGE_LIMIT);
+  } while ($statementBuilder->GetOffset() < $totalResultSetSize);
+
+  printf("Number of content metadata key hierarchies to be deleted: %d\n", 
+      totalResultSetSize);
+
+  if ($totalResultSetSize > 0) {
+    // Remove limit and offset from statement.
+    $statementBuilder->RemoveLimitAndOffset();
+
+    // Create action.
+    $action = new DeleteContentMetadataKeyHierarchies();
+
+    // Perform action.
+    $result = $contentMetadataKeyHierarchyService->
+        performContentMetadataKeyHierarchyAction($action,
+            $statementBuilder->ToStatement());
+
+    // Display results.
+    if (isset($result) && $result->numChanges > 0) {
+      printf("Number of content metadata key hierarchies deleted: %d\n",
+          $result->numChanges);
+    } else {
+      printf("No content metadata key hierarchies were deleted.\n");
+    }
+  }
 } catch (OAuth2Exception $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (ValidationException $e) {

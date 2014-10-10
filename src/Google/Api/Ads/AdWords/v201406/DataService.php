@@ -3778,56 +3778,16 @@ if (!class_exists("AdGroupBidLandscape", false)) {
   }
 }
 
-if (!class_exists("CriterionBidLandscape", false)) {
-  /**
-   * The bid landscape for a criterion.  A bid landscape estimates how a
-   * a criterion will perform based on different bid amounts.
-   * @package Google_Api_Ads_AdWords_v201406
-   * @subpackage v201406
-   */
-  class CriterionBidLandscape extends BidLandscape {
-
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201406";
-    const XSI_TYPE = "CriterionBidLandscape";
-
-    /**
-     * @access public
-     * @var integer
-     */
-    public $criterionId;
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($criterionId = null, $campaignId = null, $adGroupId = null, $startDate = null, $endDate = null, $landscapePoints = null) {
-      parent::__construct();
-      $this->criterionId = $criterionId;
-      $this->campaignId = $campaignId;
-      $this->adGroupId = $adGroupId;
-      $this->startDate = $startDate;
-      $this->endDate = $endDate;
-      $this->landscapePoints = $landscapePoints;
-    }
-
-  }
-}
-
 if (!class_exists("DomainCategory", false)) {
   /**
-   * Represents domain category information.
+   * Represents categories that AdWords finds automatically for your website.
+   * 
+   * <p>
+   * No categories available means that AdWords couldn't automatically find categories for your
+   * website. To control how categories are assigned, manually add breadcrumbs to your webpages.
+   * 
+   * <p>
+   * Categories can be filtered by domain name or by a set of campaign IDs.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -3970,6 +3930,53 @@ if (!class_exists("LongValue", false)) {
   }
 }
 
+if (!class_exists("CriterionBidLandscape", false)) {
+  /**
+   * The bid landscape for a criterion.  A bid landscape estimates how a
+   * a criterion will perform based on different bid amounts.
+   * @package Google_Api_Ads_AdWords_v201406
+   * @subpackage v201406
+   */
+  class CriterionBidLandscape extends BidLandscape {
+
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201406";
+    const XSI_TYPE = "CriterionBidLandscape";
+
+    /**
+     * @access public
+     * @var integer
+     */
+    public $criterionId;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($criterionId = null, $campaignId = null, $adGroupId = null, $startDate = null, $endDate = null, $landscapePoints = null) {
+      parent::__construct();
+      $this->criterionId = $criterionId;
+      $this->campaignId = $campaignId;
+      $this->adGroupId = $adGroupId;
+      $this->startDate = $startDate;
+      $this->endDate = $endDate;
+      $this->landscapePoints = $landscapePoints;
+    }
+
+  }
+}
+
 if (!class_exists("AdGroupBidLandscapePage", false)) {
   /**
    * Contains a subset of {@link AdGroupBidLandscape} objects resulting from the
@@ -4086,7 +4093,6 @@ if (!class_exists("DataService", false)) {
       "AuthenticationError" => "AuthenticationError",
       "AuthorizationError" => "AuthorizationError",
       "ClientTermsError" => "ClientTermsError",
-      "CriterionBidLandscape" => "CriterionBidLandscape",
       "DateError" => "DateError",
       "DateRange" => "DateRange",
       "DistinctError" => "DistinctError",
@@ -4118,6 +4124,7 @@ if (!class_exists("DataService", false)) {
       "StringLengthError" => "StringLengthError",
       "DataError" => "DataError",
       "ComparableValue" => "ComparableValue",
+      "CriterionBidLandscape" => "CriterionBidLandscape",
       "DatabaseError" => "DatabaseError",
       "ApiError" => "ApiError",
       "ApiException" => "ApiException",

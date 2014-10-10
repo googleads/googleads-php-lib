@@ -42,6 +42,7 @@ class ReportUtils {
 
   const CLIENT_LOGIN_FORMAT = 'GoogleLogin auth=%s';
   const FINAL_RETURN_MONEY_IN_MICROS_VERSION = "v201402";
+  const MINIMUM_SKIP_HEADER_VERSION = "v201409";
 
   /**
    * The log name to use when logging requests.
@@ -85,6 +86,10 @@ class ReportUtils {
    * @param array $options the option to use when downloading the report:
    *     {boolean} returnMoneyInMicros: if the money values in the report
    *         should be returned in micros
+   *     {boolean} skipReportHeader: if report responses should skip the header
+   *         row containing the report name and date range
+   *     {boolean} skipReportSummary: if report responses should skip the
+   *         summary row containing totals
    *     {string} server: the server to make the request to. If <var>NULL</var>,
    *         then the default server will be used
    *     {string} version: the version to make the request against. If
@@ -335,6 +340,19 @@ class ReportUtils {
       $headers['returnMoneyInMicros'] =
           $options['returnMoneyInMicros'] ? 'true' : 'false';
     }
+    if (isset($options['skipReportHeader'])) {
+      DeprecationUtils::CheckUsingSkipReportHeaderWithUnsupportedVersion(
+          'skipReportHeader', self::MINIMUM_SKIP_HEADER_VERSION, $version);
+      $headers['skipReportHeader'] =
+          $options['skipReportHeader'] ? 'true' : 'false';
+    }
+    if (isset($options['skipReportSummary'])) {
+      DeprecationUtils::CheckUsingSkipReportHeaderWithUnsupportedVersion(
+          'skipReportSummary', self::MINIMUM_SKIP_HEADER_VERSION, $version);
+      $headers['skipReportSummary'] =
+          $options['skipReportSummary'] ? 'true' : 'false';
+    }
+
     return $headers;
   }
 

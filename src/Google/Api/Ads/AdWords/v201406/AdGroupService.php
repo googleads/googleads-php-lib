@@ -5110,10 +5110,7 @@ if (!class_exists("Money", false)) {
 
 if (!class_exists("MultiplierError", false)) {
   /**
-   * Represents errors in bid multipliers
-   * 
-   * TODO(user): Calling this BidMultiplierError results in grubby proto
-   * conflicts. There may be a better way to do this.
+   * Represents errors in bid multipliers.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */

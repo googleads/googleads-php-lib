@@ -1,14 +1,14 @@
 <?php
 /**
- * This example updates activity expected URLs. To determine which activities
- * exist, run GetAllActivities.php.
+ * This example updates an activity's expected URL. To determine which
+ * activities exist, run GetAllActivities.php.
  *
  * Tags: ActivityService.getActivitiesByStatement
  * Tags: ActivityService.updateActivities
  *
  * PHP version 5
  *
- * Copyright 2013, Google Inc. All Rights Reserved.
+ * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201408
  * @category   WebServices
- * @copyright  2013, Google Inc. All Rights Reserved.
+ * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  * @author     Vincent Tsao
@@ -39,7 +39,11 @@ $path = dirname(__FILE__) . '/../../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
+require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
+
+// Set the ID of the activity to update.
+$activityId = 'INSERT_ACTIVITY_ID_HERE';
 
 try {
   // Get DfpUser from credentials in "../auth.ini"
@@ -52,27 +56,26 @@ try {
   // Get the ActivityService.
   $activityService = $user->GetService('ActivityService', 'v201408');
 
-  // Set the ID of the activity to update.
-  $activityId = 'INSERT_ACTIVITY_ID_HERE';
-
   // Create a statement to select a single activity by ID.
-  $vars =
-      MapUtils::GetMapEntries(array('id' => new NumberValue($activityId)));
-  $filterStatement = new Statement("WHERE id = :id ORDER BY id ASC LIMIT 1",
-      $vars);
+  $statementBuilder = new StatementBuilder();
+  $statementBuilder->Where('id = :id')
+      ->OrderBy('id ASC')
+      ->Limit(1)
+      ->WithBindVariableValue('id', $activityId);
 
   // Get the activity.
-  $page = $activityService->getActivitiesByStatement($filterStatement);
+  $page = $activityService->getActivitiesByStatement(
+      $statementBuilder->ToStatement());
   $activity = $page->results[0];
 
   // Update the expected URL.
-  $activity->expectedURL = 'https://google.com';
+  $activity->expectedUrl = 'https://www.google.com';
 
   // Update the activity on the server.
   $activities = $activityService->updateActivities(array($activity));
 
   foreach ($activities as $updatedActivity) {
-    printf("Activity with ID '%d' and name '%s' was updated.\n",
+    printf("Activity with ID %d, and name '%s' was updated.\n",
         $updatedActivity->id, $updatedActivity->name);
   }
 } catch (OAuth2Exception $e) {

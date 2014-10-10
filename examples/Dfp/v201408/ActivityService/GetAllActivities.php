@@ -7,7 +7,7 @@
  *
  * PHP version 5
  *
- * Copyright 2013, Google Inc. All Rights Reserved.
+ * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201408
  * @category   WebServices
- * @copyright  2013, Google Inc. All Rights Reserved.
+ * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  * @author     Vincent Tsao
@@ -37,8 +37,8 @@ error_reporting(E_STRICT | E_ALL);
 $path = dirname(__FILE__) . '/../../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
-require_once 'Google/Api/Ads/Common/Util/MapUtils.php';
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
+require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
 
 try {
@@ -52,32 +52,33 @@ try {
   // Get the ActivityService.
   $activityService = $user->GetService('ActivityService', 'v201408');
 
-  // Statement parts to help build a statement that selects all activities.
-  $pqlTemplate = 'ORDER BY id LIMIT %d OFFSET %d';
-  $SUGGESTED_PAGE_LIMIT = 500;
-  $offset = 0;
+  // Create a statement to select all activities.
+  $statementBuilder = new StatementBuilder();
+  $statementBuilder->OrderBy('id ASC')
+      ->Limit(StatementBuilder::SUGGESTED_PAGE_LIMIT);
 
-  $page = new ActivityPage();
+  // Default for total result set size.
+  $totalResultSetSize = 0;
 
   do {
     // Get activities by statement.
-    $page = $activityService->getActivitiesByStatement(new Statement(
-      sprintf($pqlTemplate, $SUGGESTED_PAGE_LIMIT, $offset)));
+    $page = $activityService->getActivitiesByStatement(
+        $statementBuilder->ToStatement());
 
     // Display results.
     if (isset($page->results)) {
+      $totalResultSetSize = $page->totalResultSetSize;
       $i = $page->startIndex;
       foreach ($page->results as $activity) {
-        printf("%d) Activity with ID \"%d\", name \"%s\", and type \"%s\" " .
-            "was found.\n", $i++, $activity->id, $activity->name,
-            $activity->type);
+        printf("%d) Activity with ID %d, name '%s', and type %s was found.\n",
+            $i++, $activity->id, $activity->name, $activity->type);
       }
     }
 
-    $offset += $SUGGESTED_PAGE_LIMIT;
-  } while ($offset < $page->totalResultSetSize);
+    $statementBuilder->IncreaseOffsetBy(StatementBuilder::SUGGESTED_PAGE_LIMIT);
+  } while ($statementBuilder->GetOffset() < $totalResultSetSize);
 
-  printf("Number of results found: %d\n", $page->totalResultSetSize);
+  printf("Number of results found: %d\n", $totalResultSetSize);
 } catch (OAuth2Exception $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (ValidationException $e) {

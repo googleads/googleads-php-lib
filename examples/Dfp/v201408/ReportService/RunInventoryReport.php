@@ -1,14 +1,12 @@
 <?php
 /**
- * This example runs a report equal to the "Whole network report" on the DFP
- * website. To download the report see DownloadReport.php.
+ * This example runs a typical daily inventory report.
  *
  * Tags: ReportService.runReportJob
- * Tags: ReportService.getReportJob
  *
  * PHP version 5
  *
- * Copyright 2013, Google Inc. All Rights Reserved.
+ * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,11 +23,10 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201408
  * @category   WebServices
- * @copyright  2013, Google Inc. All Rights Reserved.
+ * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Eric Koleda
- * @author     Paul Rashidi
+ * @author     Vincent Tsao
  */
 error_reporting(E_STRICT | E_ALL);
 
@@ -40,6 +37,8 @@ $path = dirname(__FILE__) . '/../../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
+require_once 'Google/Api/Ads/Dfp/Util/ReportDownloader.php';
+require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
 
 try {
@@ -60,54 +59,58 @@ try {
   $rootAdUnitId =
       $networkService->getCurrentNetwork()->effectiveRootAdUnitId;
 
-  // Create bind variables.
-  $vars = MapUtils::GetMapEntries(array('parentAdUnitId' =>
-      new NumberValue($rootAdUnitId)));
-
-  // Create statement text to filter based on a parent ad unit id.
-  $filterStatementText =
-      'WHERE PARENT_AD_UNIT_ID = :parentAdUnitId';
-
-  // Create statement object from text.
-  $filterStatement = new Statement($filterStatementText, $vars);
-
-  // Create report job.
-  $reportJob = new ReportJob();
+  // Create statement to filter on a parent ad unit with the root ad unit ID to
+  // include all ad units in the network.
+  $statementBuilder = new StatementBuilder();
+  $statementBuilder->Where('PARENT_AD_UNIT_ID =
+      :parentAdUnitId')->WithBindVariableValue('parentAdUnitId', $rootAdUnitId);
 
   // Create report query.
   $reportQuery = new ReportQuery();
-  $reportQuery->dateRangeType = 'YESTERDAY';
   $reportQuery->dimensions = array('AD_UNIT_ID', 'AD_UNIT_NAME');
   $reportQuery->columns = array('AD_SERVER_IMPRESSIONS', 'AD_SERVER_CLICKS',
       'DYNAMIC_ALLOCATION_INVENTORY_LEVEL_IMPRESSIONS',
       'DYNAMIC_ALLOCATION_INVENTORY_LEVEL_CLICKS',
       'TOTAL_INVENTORY_LEVEL_IMPRESSIONS',
       'TOTAL_INVENTORY_LEVEL_CPM_AND_CPC_REVENUE');
-  $reportQuery->statement = $filterStatement;
+
+  // Set the filter statement.
+  $reportQuery->statement = $statementBuilder->ToStatement();
+
+  // Set the ad unit view to hierarchical.
   $reportQuery->adUnitView = 'HIERARCHICAL';
+
+  // Set the start and end dates or choose a dynamic date range type.
+  $reportQuery->dateRangeType = 'YESTERDAY';
+
+  // Create report job.
+  $reportJob = new ReportJob();
   $reportJob->reportQuery = $reportQuery;
 
   // Run report job.
   $reportJob = $reportService->runReportJob($reportJob);
 
-  do {
-    printf("Report with ID '%s' is running.\n", $reportJob->id);
-    sleep(30);
-    // Get report job.
-    $reportJob = $reportService->getReportJob($reportJob->id);
-  } while ($reportJob->reportJobStatus == 'IN_PROGRESS');
+  // Create report downloader.
+  $reportDownloader = new ReportDownloader($reportService, $reportJob->id);
 
-  if ($reportJob->reportJobStatus == 'FAILED') {
-    printf("Report job with ID '%s' failed to finish successfully.\n",
-        $reportJob->id);
-  } else {
-    printf("Report job with ID '%s' completed successfully.\n", $reportJob->id);
-  }
+  // Wait for the report to be ready.
+  $reportDownloader->waitForReportReady();
+
+  // Change to your file location.
+  $filePath = sprintf('%s.csv.gz', tempnam(sys_get_temp_dir(),
+      'inventory-report-'));
+
+  printf("Downloading report to %s ...\n", $filePath);
+
+  // Download the report.
+  $reportDownloader->downloadReport('CSV_DUMP', $filePath);
+
+  printf("done.\n");
 } catch (OAuth2Exception $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (ValidationException $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (Exception $e) {
-  print $e->getMessage() . "\n";
+  printf("%s\n", $e->getMessage());
 }
 

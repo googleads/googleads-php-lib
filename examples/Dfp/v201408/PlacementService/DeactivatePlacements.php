@@ -1,14 +1,14 @@
 <?php
 /**
- * This example deactivates all active placements. To determine which placements
- * exist, run GetAllPlacements.php.
+ * This example deactivates a placement. To determine which placements exist,
+ * run GetAllPlacements.php.
  *
  * Tags: PlacementService.getPlacementsByStatement
- * Tags: PlacementService.performLineItemAction
+ * Tags: PlacementService.performPlacementAction
  *
  * PHP version 5
  *
- * Copyright 2013, Google Inc. All Rights Reserved.
+ * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,10 +25,10 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201408
  * @category   WebServices
- * @copyright  2013, Google Inc. All Rights Reserved.
+ * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Eric Koleda
+ * @author     Vincent Tsao
  */
 error_reporting(E_STRICT | E_ALL);
 
@@ -39,7 +39,11 @@ $path = dirname(__FILE__) . '/../../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
+require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
+
+// Set the ID of the placement to deactivate.
+$placementId = 'INSERT_PLACEMENT_ID_HERE';
 
 try {
   // Get DfpUser from credentials in "../auth.ini"
@@ -52,57 +56,52 @@ try {
   // Get the PlacementService.
   $placementService = $user->GetService('PlacementService', 'v201408');
 
-  // Create statement text to select active placements.
-  $filterStatementText = "WHERE status = 'ACTIVE'";
+  // Create a statement to select a single placement by ID.
+  $statementBuilder = new StatementBuilder();
+  $statementBuilder->Where('id = :id')
+      ->OrderBy('id ASC')
+      ->Limit(1)
+      ->WithBindVariableValue('id', $placementId);
 
-  $offset = 0;
+  // Default for total result set size.
+  $totalResultSetSize = 0;
 
   do {
-    // Create statement to page through results.
-    $filterStatement =
-        new Statement($filterStatementText . " LIMIT 500 OFFSET " . $offset);
-
     // Get placements by statement.
-    $page = $placementService->getPlacementsByStatement($filterStatement);
+    $page = $placementService->getPlacementsByStatement(
+        $statementBuilder->ToStatement());
 
     // Display results.
-    $placementIds = array();
     if (isset($page->results)) {
+      $totalResultSetSize = $page->totalResultSetSize;
       $i = $page->startIndex;
       foreach ($page->results as $placement) {
-        print $i . ') Placement with ID "' . $placement->id
-            . '", name "' . $placement->name
-            . '", and status "' . $placement->status
-            . "\" will be deactivated.\n";
-        $i++;
-        $placementIds[] = $placement->id;
+        printf("%d) Placement with ID %d, and name '%s' will be deactivated.\n",
+            $i++, $placement->id, $placement->name);
       }
     }
 
-    $offset += 500;
-  } while ($offset < $page->totalResultSetSize);
+    $statementBuilder->IncreaseOffsetBy(StatementBuilder::SUGGESTED_PAGE_LIMIT);
+  } while ($statementBuilder->GetOffset() < $totalResultSetSize);
 
-  print 'Number of placements to be deactivated: ' . sizeof($placementIds)
-      . "\n";
+  printf("Number of placements to be deactivated: %d\n", $totalResultSetSize);
 
-  if (sizeof($placementIds) > 0) {
-    // Create action statement.
-    $filterStatementText =
-        sprintf('WHERE id IN (%s)', implode(',', $placementIds));
-    $filterStatement = new Statement($filterStatementText);
+  if ($totalResultSetSize > 0) {
+    // Remove limit and offset from statement.
+    $statementBuilder->RemoveLimitAndOffset();
 
     // Create action.
     $action = new DeactivatePlacements();
 
     // Perform action.
-    $result =
-        $placementService->performPlacementAction($action, $filterStatement);
+    $result = $placementService->performPlacementAction($action,
+        $statementBuilder->ToStatement());
 
     // Display results.
     if (isset($result) && $result->numChanges > 0) {
-      print 'Number of placements deactivated: ' . $result->numChanges . "\n";
+      printf("Number of placements deactivated: %d\n", $result->numChanges);
     } else {
-      print "No placements were deactivated.\n";
+      printf("No placements were deactivated.\n");
     }
   }
 } catch (OAuth2Exception $e) {
@@ -110,6 +109,6 @@ try {
 } catch (ValidationException $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (Exception $e) {
-  print $e->getMessage() . "\n";
+  printf("%s\n", $e->getMessage());
 }
 
