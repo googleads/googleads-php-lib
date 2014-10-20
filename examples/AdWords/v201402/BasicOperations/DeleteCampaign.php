@@ -24,7 +24,7 @@
  * @copyright  2012, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Adam Rogal <api.arogal@gmail.com>
+ * @author     Adam Rogal
  * @author     Eric Koleda
  */
 
@@ -47,8 +47,6 @@ function DeleteCampaignExample(AdWordsUser $user, $campaignId) {
   $campaign = new Campaign();
   $campaign->id = $campaignId;
   $campaign->status = 'DELETED';
-  // Rename the campaign as you delete it, to avoid future name conflicts.
-  $campaign->name = 'Deleted ' . date('Ymd his');
 
   // Create operations.
   $operation = new CampaignOperation();

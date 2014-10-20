@@ -25,6 +25,7 @@
 error_reporting(E_STRICT | E_ALL);
 
 require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
+require_once 'Google/Api/Ads/Dfp/v201405/PublisherQueryLanguageService.php';
 
 /**
  * Tests for {@link StatementBuilder}.
@@ -132,6 +133,43 @@ class StatementBuilderTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals($expectedQueryBefore,
         $statementBuilder->ToStatement()->query);
     $statementBuilder->RemoveLimitAndOffset();
+    $this->assertEquals($expectedQueryAfter,
+        $statementBuilder->ToStatement()->query);
+  }
+
+  /**
+   * @covers StatementBuilder::ToStatement
+   * @covers StatementBuilder::IncreaseOffsetBy
+   */
+  public function testToStatementIncreaseOffsetNoInitialOffset() {
+    $expectedQueryBefore = 'WHERE a = b ORDER BY a LIMIT 500';
+    $expectedQueryAfter = 'WHERE a = b ORDER BY a LIMIT 500 OFFSET 120';
+    $statementBuilder = new StatementBuilder();
+    $statementBuilder->Limit(500)
+        ->Where('a = b')
+        ->OrderBy('a');
+    $this->assertEquals($expectedQueryBefore,
+        $statementBuilder->ToStatement()->query);
+    $statementBuilder->IncreaseOffsetBy(120);
+    $this->assertEquals($expectedQueryAfter,
+        $statementBuilder->ToStatement()->query);
+  }
+
+  /**
+   * @covers StatementBuilder::ToStatement
+   * @covers StatementBuilder::IncreaseOffsetBy
+   */
+  public function testToStatementIncreaseOffsetWithInitialOffset() {
+    $expectedQueryBefore = 'WHERE a = b ORDER BY a LIMIT 500 OFFSET 10';
+    $expectedQueryAfter = 'WHERE a = b ORDER BY a LIMIT 500 OFFSET 40';
+    $statementBuilder = new StatementBuilder();
+    $statementBuilder->Limit(500)
+        ->Offset(10)
+        ->Where('a = b')
+        ->OrderBy('a');
+    $this->assertEquals($expectedQueryBefore,
+        $statementBuilder->ToStatement()->query);
+    $statementBuilder->IncreaseOffsetBy(30);
     $this->assertEquals($expectedQueryAfter,
         $statementBuilder->ToStatement()->query);
   }

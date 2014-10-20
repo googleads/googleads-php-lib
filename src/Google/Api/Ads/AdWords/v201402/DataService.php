@@ -26,8 +26,6 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-
-/** Required classes. **/
 require_once "Google/Api/Ads/AdWords/Lib/AdWordsSoapClient.php";
 
 if (!class_exists("DateRange", false)) {
@@ -1773,7 +1771,10 @@ if (!class_exists("GetAdGroupBidLandscape", false)) {
    * 
    * 
    * 
-   * Returns a list of bid landscapes for the ad groups specified in the selector.
+   * Returns a list of {@link AdGroupBidLandscape}s for the ad groups specified in the selector.
+   * In the result, the returned {@link LandscapePoint}s are grouped into
+   * {@link AdGroupBidLandscape}s by their ad groups, and numberResults of paging limits the total
+   * number of {@link LandscapePoint}s instead of number of {@link AdGroupBidLandscape}s.
    * 
    * @param serviceSelector Selects the entities to return bid landscapes for.
    * @return A list of bid landscapes.
@@ -1861,7 +1862,10 @@ if (!class_exists("GetCriterionBidLandscape", false)) {
    * 
    * 
    * 
-   * Returns a list of bid landscapes for the criteria specified in the selector.
+   * Returns a list of {@link CriterionBidLandscape}s for the criteria specified in the selector.
+   * In the result, the returned {@link LandscapePoint}s are grouped into
+   * {@link CriterionBidLandscape}s by their criteria, and numberResults of paging limits the total
+   * number of {@link LandscapePoint}s instead of number of {@link CriterionBidLandscape}s.
    * 
    * @param serviceSelector Selects the entities to return bid landscapes for.
    * @return A list of bid landscapes.
@@ -1949,7 +1953,10 @@ if (!class_exists("QueryAdGroupBidLandscape", false)) {
    * 
    * 
    * 
-   * Returns a list of bid landscapes for the ad groups that match the query.
+   * Returns a list of {@link AdGroupBidLandscape}s for the ad groups that match the query. In the
+   * result, the returned {@link LandscapePoint}s are grouped into {@link AdGroupBidLandscape}s
+   * by their ad groups, and numberResults of paging limits the total number of
+   * {@link LandscapePoint}s instead of number of {@link AdGroupBidLandscape}s.
    * 
    * @param query The SQL-like AWQL query string.
    * @return A list of bid landscapes.
@@ -2037,7 +2044,10 @@ if (!class_exists("QueryCriterionBidLandscape", false)) {
    * 
    * 
    * 
-   * Returns a list of bid landscapes for the criteria that match the query.
+   * Returns a list of {@link CriterionBidLandscape}s for the criteria that match the query. In the
+   * result, the returned {@link LandscapePoint}s are grouped into {@link CriterionBidLandscape}s
+   * by their criteria, and numberResults of paging limits the total number of
+   * {@link LandscapePoint}s instead of number of {@link CriterionBidLandscape}s.
    * 
    * @param query The SQL-like AWQL query string.
    * @return A list of bid landscapes.
@@ -3378,7 +3388,7 @@ if (!class_exists("BidLandscape", false)) {
 
 if (!class_exists("NoStatsPage", false)) {
   /**
-   * Base class for Get results for a page of entities that do not use statistics.
+   * 
    * @package Google_Api_Ads_AdWords_v201402
    * @subpackage v201402
    */
@@ -3455,53 +3465,6 @@ if (!class_exists("AdGroupBidLandscape", false)) {
       parent::__construct();
       $this->type = $type;
       $this->landscapeCurrent = $landscapeCurrent;
-      $this->campaignId = $campaignId;
-      $this->adGroupId = $adGroupId;
-      $this->startDate = $startDate;
-      $this->endDate = $endDate;
-      $this->landscapePoints = $landscapePoints;
-    }
-
-  }
-}
-
-if (!class_exists("CriterionBidLandscape", false)) {
-  /**
-   * The bid landscape for a criterion.  A bid landscape estimates how a
-   * a criterion will perform based on different bid amounts.
-   * @package Google_Api_Ads_AdWords_v201402
-   * @subpackage v201402
-   */
-  class CriterionBidLandscape extends BidLandscape {
-
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201402";
-    const XSI_TYPE = "CriterionBidLandscape";
-
-    /**
-     * @access public
-     * @var integer
-     */
-    public $criterionId;
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($criterionId = null, $campaignId = null, $adGroupId = null, $startDate = null, $endDate = null, $landscapePoints = null) {
-      parent::__construct();
-      $this->criterionId = $criterionId;
       $this->campaignId = $campaignId;
       $this->adGroupId = $adGroupId;
       $this->startDate = $startDate;
@@ -3589,6 +3552,53 @@ if (!class_exists("LongValue", false)) {
     public function __construct($number = null) {
       parent::__construct();
       $this->number = $number;
+    }
+
+  }
+}
+
+if (!class_exists("CriterionBidLandscape", false)) {
+  /**
+   * The bid landscape for a criterion.  A bid landscape estimates how a
+   * a criterion will perform based on different bid amounts.
+   * @package Google_Api_Ads_AdWords_v201402
+   * @subpackage v201402
+   */
+  class CriterionBidLandscape extends BidLandscape {
+
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201402";
+    const XSI_TYPE = "CriterionBidLandscape";
+
+    /**
+     * @access public
+     * @var integer
+     */
+    public $criterionId;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($criterionId = null, $campaignId = null, $adGroupId = null, $startDate = null, $endDate = null, $landscapePoints = null) {
+      parent::__construct();
+      $this->criterionId = $criterionId;
+      $this->campaignId = $campaignId;
+      $this->adGroupId = $adGroupId;
+      $this->startDate = $startDate;
+      $this->endDate = $endDate;
+      $this->landscapePoints = $landscapePoints;
     }
 
   }
@@ -3710,7 +3720,6 @@ if (!class_exists("DataService", false)) {
       "AuthenticationError" => "AuthenticationError",
       "AuthorizationError" => "AuthorizationError",
       "ClientTermsError" => "ClientTermsError",
-      "CriterionBidLandscape" => "CriterionBidLandscape",
       "DateError" => "DateError",
       "DateRange" => "DateRange",
       "DistinctError" => "DistinctError",
@@ -3740,6 +3749,7 @@ if (!class_exists("DataService", false)) {
       "StringLengthError" => "StringLengthError",
       "DataError" => "DataError",
       "ComparableValue" => "ComparableValue",
+      "CriterionBidLandscape" => "CriterionBidLandscape",
       "DatabaseError" => "DatabaseError",
       "ApiError" => "ApiError",
       "ApiException" => "ApiException",
@@ -3804,7 +3814,10 @@ if (!class_exists("DataService", false)) {
      * 
      * 
      * 
-     * Returns a list of bid landscapes for the ad groups specified in the selector.
+     * Returns a list of {@link AdGroupBidLandscape}s for the ad groups specified in the selector.
+     * In the result, the returned {@link LandscapePoint}s are grouped into
+     * {@link AdGroupBidLandscape}s by their ad groups, and numberResults of paging limits the total
+     * number of {@link LandscapePoint}s instead of number of {@link AdGroupBidLandscape}s.
      * 
      * @param serviceSelector Selects the entities to return bid landscapes for.
      * @return A list of bid landscapes.
@@ -3820,7 +3833,10 @@ if (!class_exists("DataService", false)) {
      * 
      * 
      * 
-     * Returns a list of bid landscapes for the criteria specified in the selector.
+     * Returns a list of {@link CriterionBidLandscape}s for the criteria specified in the selector.
+     * In the result, the returned {@link LandscapePoint}s are grouped into
+     * {@link CriterionBidLandscape}s by their criteria, and numberResults of paging limits the total
+     * number of {@link LandscapePoint}s instead of number of {@link CriterionBidLandscape}s.
      * 
      * @param serviceSelector Selects the entities to return bid landscapes for.
      * @return A list of bid landscapes.
@@ -3836,7 +3852,10 @@ if (!class_exists("DataService", false)) {
      * 
      * 
      * 
-     * Returns a list of bid landscapes for the ad groups that match the query.
+     * Returns a list of {@link AdGroupBidLandscape}s for the ad groups that match the query. In the
+     * result, the returned {@link LandscapePoint}s are grouped into {@link AdGroupBidLandscape}s
+     * by their ad groups, and numberResults of paging limits the total number of
+     * {@link LandscapePoint}s instead of number of {@link AdGroupBidLandscape}s.
      * 
      * @param query The SQL-like AWQL query string.
      * @return A list of bid landscapes.
@@ -3852,7 +3871,10 @@ if (!class_exists("DataService", false)) {
      * 
      * 
      * 
-     * Returns a list of bid landscapes for the criteria that match the query.
+     * Returns a list of {@link CriterionBidLandscape}s for the criteria that match the query. In the
+     * result, the returned {@link LandscapePoint}s are grouped into {@link CriterionBidLandscape}s
+     * by their criteria, and numberResults of paging limits the total number of
+     * {@link LandscapePoint}s instead of number of {@link CriterionBidLandscape}s.
      * 
      * @param query The SQL-like AWQL query string.
      * @return A list of bid landscapes.
@@ -3865,3 +3887,4 @@ if (!class_exists("DataService", false)) {
     }
   }
 }
+

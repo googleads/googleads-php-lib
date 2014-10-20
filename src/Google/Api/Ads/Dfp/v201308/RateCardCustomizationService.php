@@ -26,8 +26,6 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-
-/** Required classes. **/
 require_once "Google/Api/Ads/Dfp/Lib/DfpSoapClient.php";
 
 if (!class_exists("ApiError", false)) {
@@ -1111,6 +1109,8 @@ if (!class_exists("RateCardCustomization", false)) {
   /**
    * A customization of a {@link RateCard} which could be applied to the line item
    * and charges extra premiums.
+   * 
+   * <p>Rate card customizations are referred to as premiums in the UI.
    * @package GoogleApiAdsDfp
    * @subpackage v201308
    */
@@ -2278,9 +2278,10 @@ if (!class_exists("QuotaErrorReason", false)) {
    * guarantee the request will succeed. If it fails again, try increasing the
    * wait time.
    * <p>
-   * Another way to mitigate this error is to limit requests to 2 per second.
-   * Once again this does not guarantee that every request will succeed, but
-   * may help reduce the number of times you receive this error.
+   * Another way to mitigate this error is to limit requests to 2 per second for
+   * Small Business networks, or 8 per second for Premium networks. Once again
+   * this does not guarantee that every request will succeed, but may help
+   * reduce the number of times you receive this error.
    * </p>
    * @package GoogleApiAdsDfp
    * @subpackage v201308
@@ -2818,10 +2819,6 @@ if (!class_exists("GetRateCardCustomizationsByStatement", false)) {
    * <tr>
    * <td>{@code id}</td>
    * <td>{@link RateCardCustomization#id}</td>
-   * </tr>
-   * <tr>
-   * <td>{@code status}</td>
-   * <td>{@link RateCardCustomization#status}</td>
    * </tr>
    * </table>
    * 
@@ -3826,13 +3823,13 @@ if (!class_exists("RateCardCustomizationService", false)) {
 
     const SERVICE_NAME = "RateCardCustomizationService";
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201308";
-    const ENDPOINT = "https://www.google.com/apis/ads/publisher/v201308/RateCardCustomizationService";
+    const ENDPOINT = "https://ads.google.com/apis/ads/publisher/v201308/RateCardCustomizationService";
 
     /**
      * The endpoint of the service
      * @var string
      */
-    public static $endpoint = "https://www.google.com/apis/ads/publisher/v201308/RateCardCustomizationService";
+    public static $endpoint = "https://ads.google.com/apis/ads/publisher/v201308/RateCardCustomizationService";
     /**
      * Default class map for wsdl=>php
      * @access private
@@ -3995,10 +3992,6 @@ if (!class_exists("RateCardCustomizationService", false)) {
      * <td>{@code id}</td>
      * <td>{@link RateCardCustomization#id}</td>
      * </tr>
-     * <tr>
-     * <td>{@code status}</td>
-     * <td>{@link RateCardCustomization#status}</td>
-     * </tr>
      * </table>
      * 
      * @param filterStatement a Publisher Query Language statement used to filter
@@ -4048,3 +4041,4 @@ if (!class_exists("RateCardCustomizationService", false)) {
     }
   }
 }
+

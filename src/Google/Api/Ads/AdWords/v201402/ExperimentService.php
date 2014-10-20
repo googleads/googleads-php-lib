@@ -26,8 +26,6 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-
-/** Required classes. **/
 require_once "Google/Api/Ads/AdWords/Lib/AdWordsSoapClient.php";
 
 if (!class_exists("DateRange", false)) {
@@ -2196,7 +2194,7 @@ if (!class_exists("ExperimentServiceMutate", false)) {
    * 
    * 
    * Mutates (add, update or remove) experiments.
-   * <b>Note:</b> To REMOVE use SET and mark status to DELETED.
+   * <b>Note:</b> To REMOVE use SET and mark status to REMOVED.
    * @param operations A list of unique operations.
    * The same experiment cannot be specified in more than one operation.
    * @return The updated experiments. The list of experiments is returned in
@@ -3575,7 +3573,7 @@ if (!class_exists("DatabaseError", false)) {
 if (!class_exists("ExperimentOperation", false)) {
   /**
    * Operation for adding, updating or removing operations. For removing,
-   * use SET and mark status as DELETED.
+   * use SET and mark status as REMOVED.
    * @package Google_Api_Ads_AdWords_v201402
    * @subpackage v201402
    */
@@ -3891,7 +3889,7 @@ if (!class_exists("ExperimentService", false)) {
      * 
      * 
      * Mutates (add, update or remove) experiments.
-     * <b>Note:</b> To REMOVE use SET and mark status to DELETED.
+     * <b>Note:</b> To REMOVE use SET and mark status to REMOVED.
      * @param operations A list of unique operations.
      * The same experiment cannot be specified in more than one operation.
      * @return The updated experiments. The list of experiments is returned in
@@ -3905,3 +3903,4 @@ if (!class_exists("ExperimentService", false)) {
     }
   }
 }
+

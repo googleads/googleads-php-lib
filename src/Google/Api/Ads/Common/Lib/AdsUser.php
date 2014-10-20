@@ -452,7 +452,6 @@ abstract class AdsUser {
    */
   abstract protected function GetClientLibraryNameAndVersion();
 
-
   /**
    * Gets common PHP user agent parts for ads client libraries such as PHP
    * version, operating system, browser, or if compression is being used or not.

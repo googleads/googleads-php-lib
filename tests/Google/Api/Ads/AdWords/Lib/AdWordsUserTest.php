@@ -53,8 +53,8 @@ class AdWordsUserTest extends PHPUnit_Framework_TestCase {
     $COMMON_NAME = 'Common-PHP';
     $VERSION_REGEX = '\d{1,2}\.\d{1,2}\.\d{1,2}';
 
-    $user = new AdWordsUser($this->authIniFilePath, null, null, 'devToken',
-        null, $USER_AGENT, null, null, null, $this->mockOAuth2Credential);
+    $user = new AdWordsUser($this->authIniFilePath, 'devToken', null,
+        $USER_AGENT, null, null, $this->mockOAuth2Credential);
 
     // Example: "AdWordsApiPhpClient-test (AwApi-PHP/4.1.1, Common-PHP/5.0.0,
     // PHP/5.4.8)"
@@ -77,8 +77,8 @@ class AdWordsUserTest extends PHPUnit_Framework_TestCase {
    */
   public function
       testValidateUserWithNullUserAgentFailsWithValidationException() {
-    $user = new AdWordsUser($this->authIniFilePath, null, null, 'devToken',
-        null, null, null, null, null, $this->mockOAuth2Credential);
+    $user = new AdWordsUser($this->authIniFilePath, 'devToken', null, null,
+        null, null, $this->mockOAuth2Credential);
     $user->validateUser();
   }
 
@@ -88,8 +88,8 @@ class AdWordsUserTest extends PHPUnit_Framework_TestCase {
    */
   public function
       testValidateUserWithEmptyUserAgentFailsWithValidationException() {
-    $user = new AdWordsUser($this->authIniFilePath, null, null, 'devToken',
-        null, '', null, null, null, $this->mockOAuth2Credential);
+    $user = new AdWordsUser($this->authIniFilePath, 'devToken', null, '', null,
+        null, $this->mockOAuth2Credential);
     $user->validateUser();
   }
 
@@ -99,8 +99,8 @@ class AdWordsUserTest extends PHPUnit_Framework_TestCase {
    */
   public function
       testValidateUserWithDefaultUserAgentFailsWithValidationException() {
-    $user = new AdWordsUser($this->authIniFilePath, null, null, 'devToken',
-        null, 'INSERT_COMPANY_NAME_HERE', null, null, null,
+    $user = new AdWordsUser($this->authIniFilePath, 'devToken',
+        null, 'INSERT_COMPANY_NAME_HERE', null, null,
         $this->mockOAuth2Credential);
     $user->validateUser();
   }
@@ -118,8 +118,7 @@ class AdWordsUserTest extends PHPUnit_Framework_TestCase {
     fwrite($authIniFile, 'clientId = "12345678"');
     fclose($authIniFile);
 
-    new AdWordsUser($this->authIniFilePath, null, null, null, null, null, null,
-        null);
+    new AdWordsUser($this->authIniFilePath, null, null, null, null);
   }
 }
 

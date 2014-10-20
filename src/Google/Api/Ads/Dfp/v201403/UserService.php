@@ -26,8 +26,6 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-
-/** Required classes. **/
 require_once "Google/Api/Ads/Dfp/Lib/DfpSoapClient.php";
 
 if (!class_exists("ApiError", false)) {
@@ -1662,6 +1660,51 @@ if (!class_exists("TeamError", false)) {
   }
 }
 
+if (!class_exists("TokenError", false)) {
+  /**
+   * An error for an exception that occurred when using a token.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201403
+   */
+  class TokenError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
+    const XSI_TYPE = "TokenError";
+
+    /**
+     * @access public
+     * @var tnsTokenErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("TypeError", false)) {
   /**
    * An error for a field which is an invalid type.
@@ -2499,9 +2542,10 @@ if (!class_exists("QuotaErrorReason", false)) {
    * guarantee the request will succeed. If it fails again, try increasing the
    * wait time.
    * <p>
-   * Another way to mitigate this error is to limit requests to 2 per second.
-   * Once again this does not guarantee that every request will succeed, but
-   * may help reduce the number of times you receive this error.
+   * Another way to mitigate this error is to limit requests to 2 per second for
+   * Small Business networks, or 8 per second for Premium networks. Once again
+   * this does not guarantee that every request will succeed, but may help
+   * reduce the number of times you receive this error.
    * </p>
    * @package GoogleApiAdsDfp
    * @subpackage v201403
@@ -2642,6 +2686,39 @@ if (!class_exists("TeamErrorReason", false)) {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
     const XSI_TYPE = "TeamError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("TokenErrorReason", false)) {
+  /**
+   * The value returned if the actual value is not exposed by the requested API version.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201403
+   */
+  class TokenErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
+    const XSI_TYPE = "TokenError.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -3647,13 +3724,13 @@ if (!class_exists("UserService", false)) {
 
     const SERVICE_NAME = "UserService";
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
-    const ENDPOINT = "https://www.google.com/apis/ads/publisher/v201403/UserService";
+    const ENDPOINT = "https://ads.google.com/apis/ads/publisher/v201403/UserService";
 
     /**
      * The endpoint of the service
      * @var string
      */
-    public static $endpoint = "https://www.google.com/apis/ads/publisher/v201403/UserService";
+    public static $endpoint = "https://ads.google.com/apis/ads/publisher/v201403/UserService";
     /**
      * Default class map for wsdl=>php
      * @access private
@@ -3700,6 +3777,7 @@ if (!class_exists("UserService", false)) {
       "String_ValueMapEntry" => "String_ValueMapEntry",
       "TeamError" => "TeamError",
       "TextValue" => "TextValue",
+      "TokenError" => "TokenError",
       "TypeError" => "TypeError",
       "UniqueError" => "UniqueError",
       "UpdateResult" => "UpdateResult",
@@ -3725,6 +3803,7 @@ if (!class_exists("UserService", false)) {
       "ServerError.Reason" => "ServerErrorReason",
       "StatementError.Reason" => "StatementErrorReason",
       "TeamError.Reason" => "TeamErrorReason",
+      "TokenError.Reason" => "TokenErrorReason",
       "createUsers" => "CreateUsers",
       "createUsersResponse" => "CreateUsersResponse",
       "getAllRoles" => "GetAllRoles",
@@ -3853,3 +3932,4 @@ if (!class_exists("UserService", false)) {
     }
   }
 }
+

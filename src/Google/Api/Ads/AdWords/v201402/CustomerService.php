@@ -26,8 +26,6 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-
-/** Required classes. **/
 require_once "Google/Api/Ads/AdWords/Lib/AdWordsSoapClient.php";
 
 if (!class_exists("SoapRequestHeader", false)) {
@@ -1266,9 +1264,11 @@ if (!class_exists("CustomerServiceGetResponse", false)) {
 
 if (!class_exists("CustomerServiceMutate", false)) {
   /**
-   * Update an authorized customer. The only update currently provided is to enable or disable <a
-   * href="https://support.google.com/analytics/answer/1033981?hl=en"> auto-tagging </a>; see that
-   * link for special cases affecting the use of auto-tagging.
+   * Update the authorized customer.
+   * 
+   * <p>While there are a limited set of properties available to update, please read this
+   * <a href="https://support.google.com/analytics/answer/1033981">help center article
+   * on auto-tagging</a> before updating {@code customer.autoTaggingEnabled}.
    * 
    * @param customer the requested updated value for the customer.
    * @throws ApiException
@@ -2498,9 +2498,11 @@ if (!class_exists("CustomerService", false)) {
       return $result->rval;
     }
     /**
-     * Update an authorized customer. The only update currently provided is to enable or disable <a
-     * href="https://support.google.com/analytics/answer/1033981?hl=en"> auto-tagging </a>; see that
-     * link for special cases affecting the use of auto-tagging.
+     * Update the authorized customer.
+     * 
+     * <p>While there are a limited set of properties available to update, please read this
+     * <a href="https://support.google.com/analytics/answer/1033981">help center article
+     * on auto-tagging</a> before updating {@code customer.autoTaggingEnabled}.
      * 
      * @param customer the requested updated value for the customer.
      * @throws ApiException
@@ -2512,3 +2514,4 @@ if (!class_exists("CustomerService", false)) {
     }
   }
 }
+

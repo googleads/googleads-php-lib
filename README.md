@@ -18,6 +18,7 @@ This project hosts the PHP client library for the various SOAP-based Ads APIs
 
 PHP
   - [PHP 5.2.x - 5.4.x](http://php.net)
+    - [PHP 5.2 support will be deprecated](http://googleadsdeveloper.blogspot.com/2014/07/deprecating-php-52-support-for-ads-php.html) on January 1st, 2015.
   - Required PHP extensions:
     - [SoapClient](http://us3.php.net/manual/en/book.soap.php) (--enable-soap)
     - [OpenSSL](http://php.net/manual/en/book.openssl.php) (--with-ssl)
@@ -123,7 +124,7 @@ $user->LogDefaults();
 
 // Instantiate the desired service class by calling the get***Service method on
 // the AdWordsUser instance.
-$campaignService = $user->GetService('CampaignService', 'v201309')
+$campaignService = $user->GetService('CampaignService', 'v201309');
 
 // Create data objects and invoke methods on the service class instance. The
 // data objects and methods map directly to the data objects and requests for

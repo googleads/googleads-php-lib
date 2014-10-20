@@ -26,8 +26,6 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-
-/** Required classes. **/
 require_once "Google/Api/Ads/Dfp/Lib/DfpSoapClient.php";
 
 if (!class_exists("ApiError", false)) {
@@ -1117,6 +1115,51 @@ if (!class_exists("InternalApiError", false)) {
     /**
      * @access public
      * @var tnsInternalApiErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
+if (!class_exists("InvalidPhoneNumberError", false)) {
+  /**
+   * Lists all errors associated with phone numbers.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201306
+   */
+  class InvalidPhoneNumberError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201306";
+    const XSI_TYPE = "InvalidPhoneNumberError";
+
+    /**
+     * @access public
+     * @var tnsInvalidPhoneNumberErrorReason
      */
     public $reason;
 
@@ -2868,6 +2911,39 @@ if (!class_exists("InternalApiErrorReason", false)) {
   }
 }
 
+if (!class_exists("InvalidPhoneNumberErrorReason", false)) {
+  /**
+   * The phone number is invalid.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201306
+   */
+  class InvalidPhoneNumberErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201306";
+    const XSI_TYPE = "InvalidPhoneNumberError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("InvalidUrlErrorReason", false)) {
   /**
    * The URL contains invalid characters.
@@ -3140,9 +3216,10 @@ if (!class_exists("QuotaErrorReason", false)) {
    * guarantee the request will succeed. If it fails again, try increasing the
    * wait time.
    * <p>
-   * Another way to mitigate this error is to limit requests to 2 per second.
-   * Once again this does not guarantee that every request will succeed, but
-   * may help reduce the number of times you receive this error.
+   * Another way to mitigate this error is to limit requests to 2 per second for
+   * Small Business networks, or 8 per second for Premium networks. Once again
+   * this does not guarantee that every request will succeed, but may help
+   * reduce the number of times you receive this error.
    * </p>
    * @package GoogleApiAdsDfp
    * @subpackage v201306
@@ -4158,13 +4235,13 @@ if (!class_exists("CreativeSetService", false)) {
 
     const SERVICE_NAME = "CreativeSetService";
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201306";
-    const ENDPOINT = "https://www.google.com/apis/ads/publisher/v201306/CreativeSetService";
+    const ENDPOINT = "https://ads.google.com/apis/ads/publisher/v201306/CreativeSetService";
 
     /**
      * The endpoint of the service
      * @var string
      */
-    public static $endpoint = "https://www.google.com/apis/ads/publisher/v201306/CreativeSetService";
+    public static $endpoint = "https://ads.google.com/apis/ads/publisher/v201306/CreativeSetService";
     /**
      * Default class map for wsdl=>php
      * @access private
@@ -4196,6 +4273,7 @@ if (!class_exists("CreativeSetService", false)) {
       "FileError" => "FileError",
       "ImageError" => "ImageError",
       "InternalApiError" => "InternalApiError",
+      "InvalidPhoneNumberError" => "InvalidPhoneNumberError",
       "InvalidUrlError" => "InvalidUrlError",
       "LabelEntityAssociationError" => "LabelEntityAssociationError",
       "NotNullError" => "NotNullError",
@@ -4238,6 +4316,7 @@ if (!class_exists("CreativeSetService", false)) {
       "FileError.Reason" => "FileErrorReason",
       "ImageError.Reason" => "ImageErrorReason",
       "InternalApiError.Reason" => "InternalApiErrorReason",
+      "InvalidPhoneNumberError.Reason" => "InvalidPhoneNumberErrorReason",
       "InvalidUrlError.Reason" => "InvalidUrlErrorReason",
       "LabelEntityAssociationError.Reason" => "LabelEntityAssociationErrorReason",
       "NotNullError.Reason" => "NotNullErrorReason",
@@ -4350,3 +4429,4 @@ if (!class_exists("CreativeSetService", false)) {
     }
   }
 }
+

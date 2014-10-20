@@ -26,8 +26,6 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-
-/** Required classes. **/
 require_once "Google/Api/Ads/Dfp/Lib/DfpSoapClient.php";
 
 if (!class_exists("ApiError", false)) {
@@ -4241,9 +4239,10 @@ if (!class_exists("QuotaErrorReason", false)) {
    * guarantee the request will succeed. If it fails again, try increasing the
    * wait time.
    * <p>
-   * Another way to mitigate this error is to limit requests to 2 per second.
-   * Once again this does not guarantee that every request will succeed, but
-   * may help reduce the number of times you receive this error.
+   * Another way to mitigate this error is to limit requests to 2 per second for
+   * Small Business networks, or 8 per second for Premium networks. Once again
+   * this does not guarantee that every request will succeed, but may help
+   * reduce the number of times you receive this error.
    * </p>
    * @package GoogleApiAdsDfp
    * @subpackage v201403
@@ -5140,13 +5139,13 @@ if (!class_exists("LineItemTemplateService", false)) {
 
     const SERVICE_NAME = "LineItemTemplateService";
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
-    const ENDPOINT = "https://www.google.com/apis/ads/publisher/v201403/LineItemTemplateService";
+    const ENDPOINT = "https://ads.google.com/apis/ads/publisher/v201403/LineItemTemplateService";
 
     /**
      * The endpoint of the service
      * @var string
      */
-    public static $endpoint = "https://www.google.com/apis/ads/publisher/v201403/LineItemTemplateService";
+    public static $endpoint = "https://ads.google.com/apis/ads/publisher/v201403/LineItemTemplateService";
     /**
      * Default class map for wsdl=>php
      * @access private
@@ -5313,3 +5312,4 @@ if (!class_exists("LineItemTemplateService", false)) {
     }
   }
 }
+
