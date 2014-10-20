@@ -25,7 +25,7 @@
 error_reporting(E_STRICT | E_ALL);
 
 require_once 'Google/Api/Ads/Dfp/Util/Pql.php';
-require_once 'Google/Api/Ads/Dfp/v201403/PublisherQueryLanguageService.php';
+require_once 'Google/Api/Ads/Dfp/v201408/PublisherQueryLanguageService.php';
 
 /**
  * Tests for {@link Pql}.
@@ -55,6 +55,8 @@ class PqlTest extends PHPUnit_Framework_TestCase {
   private $dateTime1;
   private $date1;
 
+  private $setValue1;
+
   protected function setUp() {
     $this->column1 = new ColumnType('Id');
     $this->column2 = new ColumnType('Name');
@@ -73,6 +75,10 @@ class PqlTest extends PHPUnit_Framework_TestCase {
         new DfpDateTime($this->date1, 12, 45, 0, PqlTest::TIME_ZONE_ID1);
     $this->dateValue1 = new DateValue($this->date1);
     $this->dateTimeValue1 = new DateTimeValue($this->dateTime1);
+
+    $values = [new NumberValue('23'), new NumberValue('42'),
+        new NumberValue('5'), new NumberValue('10'), new NumberValue('1')];
+    $this->setValue1 = new SetValue($values);
   }
 
   /**
@@ -91,6 +97,14 @@ class PqlTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals('2012-12-02',
         DateTimeUtils::ToString(
             Pql::CreateValue($this->dateTime1->date)->value));
+
+    $values = Pql::CreateValue([23, 42, 5, 10, 1])->values;
+    $this->assertEquals(5, count($values));
+    $this->assertEquals(23, $values[0]->value);
+    $this->assertEquals(42, $values[1]->value);
+    $this->assertEquals(5, $values[2]->value);
+    $this->assertEquals(10, $values[3]->value);
+    $this->assertEquals(1, $values[4]->value);
   }
 
   /**
@@ -118,6 +132,7 @@ class PqlTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals('2012-12-02', Pql::ToString($this->dateValue1));
     $this->assertEquals('2012-12-02T12:45:00+08:00',
         Pql::ToString($this->dateTimeValue1));
+    $this->assertEquals('23,42,5,10,1', Pql::ToString($this->setValue1));
   }
 
   /**

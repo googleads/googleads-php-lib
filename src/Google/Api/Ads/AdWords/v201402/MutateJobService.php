@@ -26,8 +26,6 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-
-/** Required classes. **/
 require_once "Google/Api/Ads/AdWords/Lib/AdWordsSoapClient.php";
 
 if (!class_exists("Ad", false)) {
@@ -1360,6 +1358,12 @@ if (!class_exists("ApiErrorReason", false)) {
 
     /**
      * @access public
+     * @var tnsFunctionParsingErrorReason
+     */
+    public $FunctionParsingErrorReason;
+
+    /**
+     * @access public
      * @var tnsIdErrorReason
      */
     public $IdErrorReason;
@@ -1542,7 +1546,7 @@ if (!class_exists("ApiErrorReason", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($AdErrorReason = null, $AdExtensionErrorReason = null, $AdExtensionOverrideErrorReason = null, $AdGroupAdErrorReason = null, $AdGroupCriterionErrorReason = null, $AdGroupServiceErrorReason = null, $AdxErrorReason = null, $AuthenticationErrorReason = null, $AuthorizationErrorReason = null, $BetaErrorReason = null, $BiddingErrorReason = null, $BiddingErrorsReason = null, $BiddingTransitionErrorReason = null, $BudgetErrorReason = null, $BulkMutateJobErrorReason = null, $CampaignAdExtensionErrorReason = null, $CampaignCriterionErrorReason = null, $CampaignErrorReason = null, $ClientTermsErrorReason = null, $CriterionErrorReason = null, $DatabaseErrorReason = null, $DateErrorReason = null, $DistinctErrorReason = null, $EntityAccessDeniedReason = null, $EntityCountLimitExceededReason = null, $EntityNotFoundReason = null, $ExperimentErrorReason = null, $FeedItemErrorReason = null, $ForwardCompatibilityErrorReason = null, $FunctionErrorReason = null, $IdErrorReason = null, $ImageErrorReason = null, $InternalApiErrorReason = null, $JobErrorReason = null, $MediaErrorReason = null, $NewEntityCreationErrorReason = null, $NotEmptyErrorReason = null, $NullErrorReason = null, $OperationAccessDeniedReason = null, $OperatorErrorReason = null, $PagingErrorReason = null, $PolicyViolationErrorReason = null, $QueryErrorReason = null, $QuotaCheckErrorReason = null, $QuotaErrorReason = null, $RangeErrorReason = null, $RateExceededErrorReason = null, $ReadOnlyErrorReason = null, $RegionCodeErrorReason = null, $RejectedErrorReason = null, $RequestErrorReason = null, $RequiredErrorReason = null, $SelectorErrorReason = null, $SettingErrorReason = null, $SizeLimitErrorReason = null, $StatsQueryErrorReason = null, $StringLengthErrorReason = null, $TargetErrorReason = null) {
+    public function __construct($AdErrorReason = null, $AdExtensionErrorReason = null, $AdExtensionOverrideErrorReason = null, $AdGroupAdErrorReason = null, $AdGroupCriterionErrorReason = null, $AdGroupServiceErrorReason = null, $AdxErrorReason = null, $AuthenticationErrorReason = null, $AuthorizationErrorReason = null, $BetaErrorReason = null, $BiddingErrorReason = null, $BiddingErrorsReason = null, $BiddingTransitionErrorReason = null, $BudgetErrorReason = null, $BulkMutateJobErrorReason = null, $CampaignAdExtensionErrorReason = null, $CampaignCriterionErrorReason = null, $CampaignErrorReason = null, $ClientTermsErrorReason = null, $CriterionErrorReason = null, $DatabaseErrorReason = null, $DateErrorReason = null, $DistinctErrorReason = null, $EntityAccessDeniedReason = null, $EntityCountLimitExceededReason = null, $EntityNotFoundReason = null, $ExperimentErrorReason = null, $FeedItemErrorReason = null, $ForwardCompatibilityErrorReason = null, $FunctionErrorReason = null, $FunctionParsingErrorReason = null, $IdErrorReason = null, $ImageErrorReason = null, $InternalApiErrorReason = null, $JobErrorReason = null, $MediaErrorReason = null, $NewEntityCreationErrorReason = null, $NotEmptyErrorReason = null, $NullErrorReason = null, $OperationAccessDeniedReason = null, $OperatorErrorReason = null, $PagingErrorReason = null, $PolicyViolationErrorReason = null, $QueryErrorReason = null, $QuotaCheckErrorReason = null, $QuotaErrorReason = null, $RangeErrorReason = null, $RateExceededErrorReason = null, $ReadOnlyErrorReason = null, $RegionCodeErrorReason = null, $RejectedErrorReason = null, $RequestErrorReason = null, $RequiredErrorReason = null, $SelectorErrorReason = null, $SettingErrorReason = null, $SizeLimitErrorReason = null, $StatsQueryErrorReason = null, $StringLengthErrorReason = null, $TargetErrorReason = null) {
       $this->AdErrorReason = $AdErrorReason;
       $this->AdExtensionErrorReason = $AdExtensionErrorReason;
       $this->AdExtensionOverrideErrorReason = $AdExtensionOverrideErrorReason;
@@ -1573,6 +1577,7 @@ if (!class_exists("ApiErrorReason", false)) {
       $this->FeedItemErrorReason = $FeedItemErrorReason;
       $this->ForwardCompatibilityErrorReason = $ForwardCompatibilityErrorReason;
       $this->FunctionErrorReason = $FunctionErrorReason;
+      $this->FunctionParsingErrorReason = $FunctionParsingErrorReason;
       $this->IdErrorReason = $IdErrorReason;
       $this->ImageErrorReason = $ImageErrorReason;
       $this->InternalApiErrorReason = $InternalApiErrorReason;
@@ -4990,7 +4995,7 @@ if (!class_exists("FunctionError", false)) {
 if (!class_exists("Gender", false)) {
   /**
    * Represents a Gender criterion.
-   * <p>A criterion of this type can only be created using an ID. A criterion of this type is only excludable.
+   * <p>A criterion of this type can only be created using an ID.
    * <span class="constraint AdxEnabled">This is disabled for AdX when it is contained within Operators: ADD, SET.</span>
    * @package Google_Api_Ads_AdWords_v201402
    * @subpackage v201402
@@ -5824,7 +5829,7 @@ if (!class_exists("Keyword", false)) {
 if (!class_exists("Language", false)) {
   /**
    * Represents a Language criterion.
-   * <p>A criterion of this type can only be created using an ID. A criterion of this type is only targetable.
+   * <p>A criterion of this type can only be created using an ID.
    * <span class="constraint AdxEnabled">This is enabled for AdX.</span>
    * @package Google_Api_Ads_AdWords_v201402
    * @subpackage v201402
@@ -5877,7 +5882,7 @@ if (!class_exists("Language", false)) {
 if (!class_exists("Location", false)) {
   /**
    * Represents Location criterion.
-   * <p>A criterion of this type can only be created using an ID. A criterion of this type can be either targeted or excluded.
+   * <p>A criterion of this type can only be created using an ID.
    * <span class="constraint AdxEnabled">This is enabled for AdX.</span>
    * @package Google_Api_Ads_AdWords_v201402
    * @subpackage v201402
@@ -6903,7 +6908,7 @@ if (!class_exists("MobileApplication", false)) {
 if (!class_exists("MobileDevice", false)) {
   /**
    * Represents a Mobile Device Criterion.
-   * <p>A criterion of this type can only be created using an ID. A criterion of this type is only targetable.
+   * <p>A criterion of this type can only be created using an ID.
    * <span class="constraint AdxEnabled">This is enabled for AdX.</span>
    * @package Google_Api_Ads_AdWords_v201402
    * @subpackage v201402
@@ -7660,8 +7665,11 @@ if (!class_exists("Operand", false)) {
 
 if (!class_exists("OperatingSystemVersion", false)) {
   /**
-   * Represents a Operating System Version Criterion.
-   * <p>A criterion of this type can only be created using an ID. A criterion of this type is only targetable.
+   * Represents an Operating System Version Criterion.
+   * <a href="/adwords/api/docs/appendix/mobileplatforms">View the complete
+   * list of available mobile platforms</a>. You can also get the list from
+   * {@link ConstantDataService#getOperatingSystemVersionCriterion ConstantDataService}.
+   * <p>A criterion of this type can only be created using an ID.
    * <span class="constraint AdxEnabled">This is enabled for AdX.</span>
    * @package Google_Api_Ads_AdWords_v201402
    * @subpackage v201402
@@ -8275,7 +8283,7 @@ if (!class_exists("PlacesOfInterestOperand", false)) {
 if (!class_exists("Platform", false)) {
   /**
    * Represents Platform criterion.
-   * <p>A criterion of this type can only be created using an ID. A criterion of this type is only targetable.
+   * <p>A criterion of this type can only be created using an ID.
    * <span class="constraint AdxEnabled">This is enabled for AdX.</span>
    * @package Google_Api_Ads_AdWords_v201402
    * @subpackage v201402
@@ -8566,10 +8574,7 @@ if (!class_exists("ProductAd", false)) {
    * listing ad</a> in the AdWords user interface). A product ad displays
    * product data (managed using the Google Merchant Center) that is
    * pulled from the Google base product feed specified in the parent campaign's
-   * {@linkplain ProductExtension product extension}.
-   * 
-   * <p>Product ads are only available to a limited set of advertisers. If you
-   * are not eligible to use product ads, they will not serve.</p>
+   * {@linkplain ShoppingSetting shopping setting}.
    * 
    * <p class="caution"><b>Caution:</b> Product ads do not use {@link #url url} or
    * {@link #displayUrl displayUrl}; setting these fields on a product ad will
@@ -9088,7 +9093,7 @@ if (!class_exists("Proximity", false)) {
    * by a lat/long pair. The caller may also alternatively provide address fields which will be
    * geocoded into a lat/long pair. Note: If a geoPoint value is provided, the address is not
    * used for calculating the lat/long to target.
-   * <p> A criterion of this type is only targetable.
+   * <p>
    * <span class="constraint AdxEnabled">This is enabled for AdX.</span>
    * @package Google_Api_Ads_AdWords_v201402
    * @subpackage v201402
@@ -9850,7 +9855,7 @@ if (!class_exists("SelectorError", false)) {
 if (!class_exists("LocationGroups", false)) {
   /**
    * Represents a criterion containing a function that when evaluated specifies how to target
-   * based on the type of the location. These ???location groups??? are custom, dynamic bundles of
+   * based on the type of the location. These "location groups" are custom, dynamic bundles of
    * locations (for instance "High income areas in California" or "Airports in France").
    * 
    * <p>Examples:</p>
@@ -11854,31 +11859,51 @@ if (!class_exists("DynamicSearchAd", false)) {
    * campaign level.
    * 
    * <p>Auto-generated fields: headline and destination URL (may contain an optional
-   * tracking URL)</p>
+   * tracking URL).</p>
    * 
-   * <p>Required fields: description1, description2, displayUrl</p>
+   * <p><b>Required fields:</b> {@code description1}, {@code description2},
+   * {@code displayUrl}.</p>
    * 
    * <p>The URL field must contain at least one of the following placeholder tags
-   * (URL parameters): {unescapedlpurl}, {escapedlpurl}, {lpurlpath}. If no URL is
-   * specified, {unescapedlpurl} will be used as default.</p>
+   * (URL parameters):</p>
+   * <ul>
+   * <li>{unescapedlpurl}</li>
+   * <li>{escapedlpurl}</li>
+   * <li>{lpurlpath}</li>
+   * <li>{lpurl}</li>
+   * </ul>
    * 
-   * <p>{unescapedlpurl} can only be used at the beginning of the URL field. It
+   * <p>If no URL is specified, {unescapedlpurl} will be used as default.</p>
+   * 
+   * <ul>
+   * <li>{unescapedlpurl} can only be used at the beginning of the URL field. It
    * will be replaced with the full landing page URL of the displayed ad. Extra query
-   * parameters can be added to the end, e.g. "{unescapedlpurl}?lang=en".</p>
+   * parameters can be added to the end, e.g.: "{unescapedlpurl}?lang=en".</li>
    * 
-   * <p>{escapedlpurl} will be replaced with the URL-encoded version of the full
+   * <li>{escapedlpurl} will be replaced with the URL-encoded version of the full
    * landing page URL. This makes it suitable for use as a query parameter
-   * value (e.g. "http://www.3rdpartytracker.com/?lp={escapedlpurl}") but
-   * not at the beginning of the url field.</p>
+   * value (e.g.: "http://www.3rdpartytracker.com/?lp={escapedlpurl}") but
+   * not at the beginning of the URL field.</li>
    * 
-   * <p>{lpurlpath} will be replaced with the path and query part of the landing
-   * page URL and can be added to a different URL, e.g.
-   * "http://www.mygoodbusiness.com/tracking/{lpurlpath}".</p>
+   * <li>{lpurlpath} will be replaced with the path and query part of the landing
+   * page URL and can be added to a different URL, e.g.:
+   * "http://www.mygoodbusiness.com/tracking/{lpurlpath}".</li>
+   * 
+   * <li>{lpurl} encodes the "?" and "=" of the landing page URL making it suitable
+   * for use as a query parameter. If found at the beginning of the URL field, it is
+   * replaced by the {unescapedlpurl} value.
+   * E.g.: "http://tracking.com/redir.php?tracking=xyz&url={lpurl}".</li>
+   * </ul>
    * 
    * <p>There are also special rules that come into play depending on whether the
-   * destination URL uses local click tracking or third-party click tracking.<p>
+   * destination URL uses local click tracking or third-party click tracking.</p>
    * 
-   * <p>For more information, see the article <a href="//support.google.com/adwords/bin/answer.py?answer=2549100">Using dynamic tracking URLs</a>.
+   * <p class="note">Note that {@code finalUrls} and {@code finalMobileUrls}
+   * cannot be set for dynamic search ads.</p>
+   * 
+   * <p>For more information, see the article
+   * <a href="//support.google.com/adwords/answer/2549100">Using dynamic tracking URLs</a>.
+   * </p>
    * <span class="constraint AdxEnabled">This is disabled for AdX when it is contained within Operators: ADD, SET.</span>
    * @package Google_Api_Ads_AdWords_v201402
    * @subpackage v201402
@@ -12826,8 +12851,7 @@ if (!class_exists("BiddingStrategyType", false)) {
 if (!class_exists("BiddingTransitionErrorReason", false)) {
   /**
    * Reason for bidding transition error.
-   * It is used by capability service as denial reasons, for bidding transition
-   * capability.
+   * Used by the bidding transition capability service as the denial reason.
    * @package Google_Api_Ads_AdWords_v201402
    * @subpackage v201402
    */
@@ -14114,6 +14138,39 @@ if (!class_exists("FunctionErrorReason", false)) {
   }
 }
 
+if (!class_exists("FunctionParsingErrorReason", false)) {
+  /**
+   * Function parsing error reason.
+   * @package Google_Api_Ads_AdWords_v201402
+   * @subpackage v201402
+   */
+  class FunctionParsingErrorReason {
+
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201402";
+    const XSI_TYPE = "FunctionParsingError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("GenderGenderType", false)) {
   /**
    * 
@@ -15044,7 +15101,7 @@ if (!class_exists("OperatorErrorReason", false)) {
 
 if (!class_exists("PageOnePromotedBiddingSchemeStrategyGoal", false)) {
   /**
-   * 
+   * First page on google.com.
    * @package Google_Api_Ads_AdWords_v201402
    * @subpackage v201402
    */
@@ -17308,7 +17365,7 @@ if (!class_exists("AdxError", false)) {
 if (!class_exists("AgeRange", false)) {
   /**
    * Represents an Age Range criterion.
-   * <p>A criterion of this type can only be created using an ID. A criterion of this type is only excludable.
+   * <p>A criterion of this type can only be created using an ID.
    * <span class="constraint AdxEnabled">This is disabled for AdX when it is contained within Operators: ADD, SET.</span>
    * @package Google_Api_Ads_AdWords_v201402
    * @subpackage v201402
@@ -17646,7 +17703,7 @@ if (!class_exists("CampaignOperation", false)) {
    * An operation on an AdWords campaign.
    * <p class="note"><b>Note:</b> The <code>REMOVE</code> operator is not
    * supported. To remove a campaign, set its {@link Campaign#status status}
-   * to <code>DELETED</code>.</p>
+   * to {@code REMOVED}.</p>
    * @package Google_Api_Ads_AdWords_v201402
    * @subpackage v201402
    */
@@ -17734,7 +17791,7 @@ if (!class_exists("CampaignTargetOperation", false)) {
 if (!class_exists("Carrier", false)) {
   /**
    * Represents a Carrier Criterion.
-   * <p>A criterion of this type can only be created using an ID. A criterion of this type is only targetable.
+   * <p>A criterion of this type can only be created using an ID.
    * <span class="constraint AdxEnabled">This is enabled for AdX.</span>
    * @package Google_Api_Ads_AdWords_v201402
    * @subpackage v201402
@@ -19037,6 +19094,7 @@ if (!class_exists("MutateJobService", false)) {
       "ForwardCompatibilityError.Reason" => "ForwardCompatibilityErrorReason",
       "Function.Operator" => "FunctionOperator",
       "FunctionError.Reason" => "FunctionErrorReason",
+      "FunctionParsingError.Reason" => "FunctionParsingErrorReason",
       "Gender.GenderType" => "GenderGenderType",
       "GeoTargetTypeSetting.NegativeGeoTargetType" => "GeoTargetTypeSettingNegativeGeoTargetType",
       "GeoTargetTypeSetting.PositiveGeoTargetType" => "GeoTargetTypeSettingPositiveGeoTargetType",
@@ -19171,3 +19229,4 @@ if (!class_exists("MutateJobService", false)) {
     }
   }
 }
+

@@ -56,7 +56,7 @@
     <if>
       <and>
         <isset property="api.soapClientClassNamespace"/>
-        <not><isfalse value="${wsdl2php.enablePseudoNamespaces}" /></not>
+        <not><isfalse value="${wsdl2php.enableNamespaces}"/></not>
       </and>
       <then>
         <property name="soapClientClassName"
@@ -79,7 +79,7 @@
         soapClientClassName="${soapClientClassName}"
         soapClientClassPath="Google/Api/Ads/${product}/Lib/${product}SoapClient.php"
         proxy="${wsdl2php.proxy}"
-        enablePseudoNamespaces="${wsdl2php.enablePseudoNamespaces}"/>
+        enableNamespaces="${wsdl2php.enableNamespaces}"/>
   </target>
 
 </project>

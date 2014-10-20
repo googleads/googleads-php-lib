@@ -1,5 +1,7 @@
 <?php
 /**
+ * This class is now deprecated. Please use ReportDownloader.php instead.
+ *
  * A utility class for working with reports.
  *
  * PHP version 5
@@ -28,11 +30,13 @@
  * @author     Vincent Tsao
  */
 require_once 'Google/Api/Ads/Common/Util/CurlUtils.php';
+require_once 'Google/Api/Ads/Common/Util/DeprecationUtils.php';
 
 /**
  * A collection of utility methods for working with reports.
  * @package GoogleApiAdsDfp
  * @subpackage Util
+ * @deprecated please use ReportDownloader.php instead
  */
 class ReportUtils {
 
@@ -52,6 +56,9 @@ class ReportUtils {
    *     the report, otherwise the size in bytes of the downloaded report
    */
   public static function DownloadReport($downloadUrl, $filePath = NULL) {
+    DeprecationUtils::LogDeprecatedMethodUsage('ReportUtils::DownloadReport',
+        'Please use ReportDownloader.php instead.');
+
     // TODO(vtsao): This method should not be static and instantiation of this
     // class should be allowed so we can "inject" CurlUtils, but would break too
     // many things that rely on this method being static.

@@ -26,8 +26,6 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-
-/** Required classes. **/
 require_once "Google/Api/Ads/AdWords/Lib/AdWordsSoapClient.php";
 
 if (!class_exists("Ad", false)) {
@@ -2688,10 +2686,7 @@ if (!class_exists("ProductAd", false)) {
    * listing ad</a> in the AdWords user interface). A product ad displays
    * product data (managed using the Google Merchant Center) that is
    * pulled from the Google base product feed specified in the parent campaign's
-   * {@linkplain ProductExtension product extension}.
-   * 
-   * <p>Product ads are only available to a limited set of advertisers. If you
-   * are not eligible to use product ads, they will not serve.</p>
+   * {@linkplain ShoppingSetting shopping setting}.
    * 
    * <p class="caution"><b>Caution:</b> Product ads do not use {@link #url url} or
    * {@link #displayUrl displayUrl}; setting these fields on a product ad will
@@ -4147,31 +4142,51 @@ if (!class_exists("DynamicSearchAd", false)) {
    * campaign level.
    * 
    * <p>Auto-generated fields: headline and destination URL (may contain an optional
-   * tracking URL)</p>
+   * tracking URL).</p>
    * 
-   * <p>Required fields: description1, description2, displayUrl</p>
+   * <p><b>Required fields:</b> {@code description1}, {@code description2},
+   * {@code displayUrl}.</p>
    * 
    * <p>The URL field must contain at least one of the following placeholder tags
-   * (URL parameters): {unescapedlpurl}, {escapedlpurl}, {lpurlpath}. If no URL is
-   * specified, {unescapedlpurl} will be used as default.</p>
+   * (URL parameters):</p>
+   * <ul>
+   * <li>{unescapedlpurl}</li>
+   * <li>{escapedlpurl}</li>
+   * <li>{lpurlpath}</li>
+   * <li>{lpurl}</li>
+   * </ul>
    * 
-   * <p>{unescapedlpurl} can only be used at the beginning of the URL field. It
+   * <p>If no URL is specified, {unescapedlpurl} will be used as default.</p>
+   * 
+   * <ul>
+   * <li>{unescapedlpurl} can only be used at the beginning of the URL field. It
    * will be replaced with the full landing page URL of the displayed ad. Extra query
-   * parameters can be added to the end, e.g. "{unescapedlpurl}?lang=en".</p>
+   * parameters can be added to the end, e.g.: "{unescapedlpurl}?lang=en".</li>
    * 
-   * <p>{escapedlpurl} will be replaced with the URL-encoded version of the full
+   * <li>{escapedlpurl} will be replaced with the URL-encoded version of the full
    * landing page URL. This makes it suitable for use as a query parameter
-   * value (e.g. "http://www.3rdpartytracker.com/?lp={escapedlpurl}") but
-   * not at the beginning of the url field.</p>
+   * value (e.g.: "http://www.3rdpartytracker.com/?lp={escapedlpurl}") but
+   * not at the beginning of the URL field.</li>
    * 
-   * <p>{lpurlpath} will be replaced with the path and query part of the landing
-   * page URL and can be added to a different URL, e.g.
-   * "http://www.mygoodbusiness.com/tracking/{lpurlpath}".</p>
+   * <li>{lpurlpath} will be replaced with the path and query part of the landing
+   * page URL and can be added to a different URL, e.g.:
+   * "http://www.mygoodbusiness.com/tracking/{lpurlpath}".</li>
+   * 
+   * <li>{lpurl} encodes the "?" and "=" of the landing page URL making it suitable
+   * for use as a query parameter. If found at the beginning of the URL field, it is
+   * replaced by the {unescapedlpurl} value.
+   * E.g.: "http://tracking.com/redir.php?tracking=xyz&url={lpurl}".</li>
+   * </ul>
    * 
    * <p>There are also special rules that come into play depending on whether the
-   * destination URL uses local click tracking or third-party click tracking.<p>
+   * destination URL uses local click tracking or third-party click tracking.</p>
    * 
-   * <p>For more information, see the article <a href="//support.google.com/adwords/bin/answer.py?answer=2549100">Using dynamic tracking URLs</a>.
+   * <p class="note">Note that {@code finalUrls} and {@code finalMobileUrls}
+   * cannot be set for dynamic search ads.</p>
+   * 
+   * <p>For more information, see the article
+   * <a href="//support.google.com/adwords/answer/2549100">Using dynamic tracking URLs</a>.
+   * </p>
    * <span class="constraint AdxEnabled">This is disabled for AdX when it is contained within Operators: ADD, SET.</span>
    * @package Google_Api_Ads_AdWords_v201402
    * @subpackage v201402
@@ -5917,7 +5932,7 @@ if (!class_exists("AdGroupAdServiceGet", false)) {
    * 
    * 
    * Returns a list of AdGroupAds.
-   * Deleted AdGroupAds are not returned by default.
+   * AdGroupAds that had been removed are not returned by default.
    * 
    * @param serviceSelector The selector specifying the {@link AdGroupAd}s to return.
    * @return The page containing the AdGroupAds that meet the criteria specified by the selector.
@@ -6019,7 +6034,7 @@ if (!class_exists("AdGroupAdServiceMutate", false)) {
    * straightforward - the status of the ad group ad is updated as
    * specified. If any other field has changed, it will be ignored. If
    * you want to change any of the fields other than status, you must
-   * make a new ad and then delete the old one.</p>
+   * make a new ad and then remove the old one.</p>
    * <p>Remove - Removes the link between the specified AdGroup and
    * Ad.</p>
    * @param operations The operations to apply.
@@ -6027,7 +6042,7 @@ if (!class_exists("AdGroupAdServiceMutate", false)) {
    * applying the operation in the input list with the same index. For an
    * add/set operation, the return AdGroupAd will be what is saved to the db.
    * In the case of the remove operation, the return AdGroupAd will simply be
-   * an AdGroupAd containing an Ad with the id set to the Ad being deleted from
+   * an AdGroupAd containing an Ad with the id set to the Ad being removed from
    * the AdGroup.
    * @package Google_Api_Ads_AdWords_v201402
    * @subpackage v201402
@@ -6852,7 +6867,7 @@ if (!class_exists("AdGroupAdService", false)) {
      * 
      * 
      * Returns a list of AdGroupAds.
-     * Deleted AdGroupAds are not returned by default.
+     * AdGroupAds that had been removed are not returned by default.
      * 
      * @param serviceSelector The selector specifying the {@link AdGroupAd}s to return.
      * @return The page containing the AdGroupAds that meet the criteria specified by the selector.
@@ -6882,7 +6897,7 @@ if (!class_exists("AdGroupAdService", false)) {
      * straightforward - the status of the ad group ad is updated as
      * specified. If any other field has changed, it will be ignored. If
      * you want to change any of the fields other than status, you must
-     * make a new ad and then delete the old one.</p>
+     * make a new ad and then remove the old one.</p>
      * <p>Remove - Removes the link between the specified AdGroup and
      * Ad.</p>
      * @param operations The operations to apply.
@@ -6890,7 +6905,7 @@ if (!class_exists("AdGroupAdService", false)) {
      * applying the operation in the input list with the same index. For an
      * add/set operation, the return AdGroupAd will be what is saved to the db.
      * In the case of the remove operation, the return AdGroupAd will simply be
-     * an AdGroupAd containing an Ad with the id set to the Ad being deleted from
+     * an AdGroupAd containing an Ad with the id set to the Ad being removed from
      * the AdGroup.
      */
     public function mutate($operations) {
@@ -6916,3 +6931,4 @@ if (!class_exists("AdGroupAdService", false)) {
     }
   }
 }
+

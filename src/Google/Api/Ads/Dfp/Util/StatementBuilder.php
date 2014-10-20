@@ -68,6 +68,7 @@ class StatementBuilder {
   private $from;
   private $where;
   private $limit;
+  private $offset;
   private $orderBy;
 
   private $valueMap;
@@ -201,6 +202,9 @@ class StatementBuilder {
    * @return StatementBuilder a reference to this object
    */
   public function IncreaseOffsetBy($amount) {
+    if (!isset($this->offset)) {
+      $this->offset = 0;
+    }
     $this->offset += $amount;
     return $this;
   }

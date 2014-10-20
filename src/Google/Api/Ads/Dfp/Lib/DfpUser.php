@@ -44,7 +44,7 @@ require_once 'Google/Api/Ads/Dfp/Lib/DfpSoapClientFactory.php';
  */
 class DfpUser extends AdsUser {
 
-  const OAUTH2_SCOPE = 'https://www.google.com/apis/ads/publisher/';
+  const OAUTH2_SCOPE = 'https://www.googleapis.com/auth/dfp';
   const OAUTH2_HANDLER_CLASS = 'SimpleOAuth2Handler';
   const FINAL_CLIENT_LOGIN_VERSION = "v201311";
 
@@ -72,7 +72,7 @@ class DfpUser extends AdsUser {
    * The DfpUser constructor.
    * <p>The DfpUser class can be configured in one of two ways:
    * <ol>
-   * <li>Using an authenitcation INI file</li>
+   * <li>Using an authentication INI file</li>
    * <li>Using supplied credentials</li>
    * </ol></p>
    * <p>If an authentication INI file is provided and successfully loaded, those

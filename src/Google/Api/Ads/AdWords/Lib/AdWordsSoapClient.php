@@ -64,13 +64,18 @@ class AdWordsSoapClient extends AdsSoapClient {
    */
   function __doRequest($request , $location , $action , $version,
       $one_way = 0) {
-    $oAuth2Info = $this->user->GetOAuth2Info();
-    $oAuth2Handler = $this->user->GetOAuth2Handler();
-    if (!empty($oAuth2Info)) {
-      $oAuth2Info = $oAuth2Handler->GetOrRefreshAccessToken($oAuth2Info);
-      $this->user->SetOAuth2Info($oAuth2Info);
-      $oauth2Parameters = $oAuth2Handler->FormatCredentialsForUrl($oAuth2Info);
-      $location .= '?' . $oauth2Parameters;
+    // PHP version < 5.3.3 does not properly append HTTP headers to requests.
+
+    if (version_compare(PHP_VERSION, '5.3.3', '<')) {
+      $oAuth2Info = $this->user->GetOAuth2Info();
+      $oAuth2Handler = $this->user->GetOAuth2Handler();
+      if (!empty($oAuth2Info)) {
+        $oAuth2Info = $oAuth2Handler->GetOrRefreshAccessToken($oAuth2Info);
+        $this->user->SetOAuth2Info($oAuth2Info);
+        $oauth2Parameters =
+            $oAuth2Handler->FormatCredentialsForUrl($oAuth2Info);
+        $location .= '?' . $oauth2Parameters;
+      }
     }
     return parent::__doRequest($request, $location, $action, $version);
   }
@@ -185,7 +190,6 @@ class AdWordsSoapClient extends AdsSoapClient {
   /**
    * Generates the request info message containing:
    * <ul>
-   * <li>email</li>
    * <li>effectiveUser</li>
    * <li>service</li>
    * <li>method</li>
@@ -202,8 +206,8 @@ class AdWordsSoapClient extends AdsSoapClient {
    * @access protected
    */
   protected function GenerateRequestInfoMessage() {
-    return 'email=' . $this->GetEmail() . ' effectiveUser='
-        . $this->GetEffectiveUser() . ' service=' . $this->GetServiceName()
+    return 'effectiveUser=' . $this->GetEffectiveUser()
+        . ' service=' . $this->GetServiceName()
         . ' method=' . $this->GetLastMethodName() . ' operators='
         . $this->GetLastOperators() . ' responseTime='
         . $this->GetLastResponseTime() . ' requestId='

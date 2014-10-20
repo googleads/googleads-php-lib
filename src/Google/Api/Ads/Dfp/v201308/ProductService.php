@@ -26,8 +26,6 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-
-/** Required classes. **/
 require_once "Google/Api/Ads/Dfp/Lib/DfpSoapClient.php";
 
 if (!class_exists("AdUnitTargeting", false)) {
@@ -1999,7 +1997,7 @@ if (!class_exists("Product", false)) {
 
     /**
      * @access public
-     * @var string
+     * @var integer
      */
     public $id;
 
@@ -4073,9 +4071,10 @@ if (!class_exists("QuotaErrorReason", false)) {
    * guarantee the request will succeed. If it fails again, try increasing the
    * wait time.
    * <p>
-   * Another way to mitigate this error is to limit requests to 2 per second.
-   * Once again this does not guarantee that every request will succeed, but
-   * may help reduce the number of times you receive this error.
+   * Another way to mitigate this error is to limit requests to 2 per second for
+   * Small Business networks, or 8 per second for Premium networks. Once again
+   * this does not guarantee that every request will succeed, but may help
+   * reduce the number of times you receive this error.
    * </p>
    * @package GoogleApiAdsDfp
    * @subpackage v201308
@@ -4438,89 +4437,6 @@ if (!class_exists("TimeUnit", false)) {
   }
 }
 
-if (!class_exists("GetProduct", false)) {
-  /**
-   * Returns the {@link Product} uniquely identified by the given ID.
-   * 
-   * @param productId the ID of the product, which must already exist
-   * @return the {@code Product} uniquely identified by ID
-   * @package GoogleApiAdsDfp
-   * @subpackage v201308
-   */
-  class GetProduct {
-
-    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201308";
-    const XSI_TYPE = "";
-
-    /**
-     * @access public
-     * @var string
-     */
-    public $productId;
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($productId = null) {
-      $this->productId = $productId;
-    }
-
-  }
-}
-
-if (!class_exists("GetProductResponse", false)) {
-  /**
-   * 
-   * @package GoogleApiAdsDfp
-   * @subpackage v201308
-   */
-  class GetProductResponse {
-
-    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201308";
-    const XSI_TYPE = "";
-
-    /**
-     * @access public
-     * @var Product
-     */
-    public $rval;
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($rval = null) {
-      $this->rval = $rval;
-    }
-
-  }
-}
-
 if (!class_exists("GetProductsByStatement", false)) {
   /**
    * Gets a {@link ProductPage} of {@link Product} objects that satisfy the criteria specified by
@@ -4584,7 +4500,7 @@ if (!class_exists("GetProductsByStatement", false)) {
    * <td>{@code id}</td>
    * <td>{@link Product#id}</td>
    * <td>Yes</td>
-   * <td>No</td>
+   * <td>Yes</td>
    * </tr>
    * <tr>
    * <td>{@code lastModifiedDateTime}</td>
@@ -5876,13 +5792,13 @@ if (!class_exists("ProductService", false)) {
 
     const SERVICE_NAME = "ProductService";
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201308";
-    const ENDPOINT = "https://www.google.com/apis/ads/publisher/v201308/ProductService";
+    const ENDPOINT = "https://ads.google.com/apis/ads/publisher/v201308/ProductService";
 
     /**
      * The endpoint of the service
      * @var string
      */
-    public static $endpoint = "https://www.google.com/apis/ads/publisher/v201308/ProductService";
+    public static $endpoint = "https://ads.google.com/apis/ads/publisher/v201308/ProductService";
     /**
      * Default class map for wsdl=>php
      * @access private
@@ -6001,8 +5917,6 @@ if (!class_exists("ProductService", false)) {
       "StatementError.Reason" => "StatementErrorReason",
       "StringLengthError.Reason" => "StringLengthErrorReason",
       "TimeUnit" => "TimeUnit",
-      "getProduct" => "GetProduct",
-      "getProductResponse" => "GetProductResponse",
       "getProductsByStatement" => "GetProductsByStatement",
       "getProductsByStatementResponse" => "GetProductsByStatementResponse",
       "performProductAction" => "PerformProductAction",
@@ -6023,17 +5937,6 @@ if (!class_exists("ProductService", false)) {
       $options["classmap"] = self::$classmap;
       parent::__construct($wsdl, $options, $user, self::SERVICE_NAME,
           self::WSDL_NAMESPACE);
-    }
-    /**
-     * Returns the {@link Product} uniquely identified by the given ID.
-     * 
-     * @param productId the ID of the product, which must already exist
-     * @return the {@code Product} uniquely identified by ID
-     */
-    public function getProduct($productId) {
-      $args = new GetProduct($productId);
-      $result = $this->__soapCall("getProduct", array($args));
-      return $result->rval;
     }
     /**
      * Gets a {@link ProductPage} of {@link Product} objects that satisfy the criteria specified by
@@ -6097,7 +6000,7 @@ if (!class_exists("ProductService", false)) {
      * <td>{@code id}</td>
      * <td>{@link Product#id}</td>
      * <td>Yes</td>
-     * <td>No</td>
+     * <td>Yes</td>
      * </tr>
      * <tr>
      * <td>{@code lastModifiedDateTime}</td>
@@ -6154,3 +6057,4 @@ if (!class_exists("ProductService", false)) {
     }
   }
 }
+

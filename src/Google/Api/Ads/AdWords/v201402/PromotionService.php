@@ -26,8 +26,6 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-
-/** Required classes. **/
 require_once "Google/Api/Ads/AdWords/Lib/AdWordsSoapClient.php";
 
 if (!class_exists("Address", false)) {
@@ -1081,7 +1079,7 @@ if (!class_exists("Keyword", false)) {
 if (!class_exists("Language", false)) {
   /**
    * Represents a Language criterion.
-   * <p>A criterion of this type can only be created using an ID. A criterion of this type is only targetable.
+   * <p>A criterion of this type can only be created using an ID.
    * <span class="constraint AdxEnabled">This is enabled for AdX.</span>
    * 
    * 
@@ -1138,7 +1136,7 @@ if (!class_exists("Language", false)) {
 if (!class_exists("Location", false)) {
   /**
    * Represents Location criterion.
-   * <p>A criterion of this type can only be created using an ID. A criterion of this type can be either targeted or excluded.
+   * <p>A criterion of this type can only be created using an ID.
    * <span class="constraint AdxEnabled">This is enabled for AdX.</span>
    * 
    * 
@@ -2143,7 +2141,7 @@ if (!class_exists("Proximity", false)) {
    * by a lat/long pair. The caller may also alternatively provide address fields which will be
    * geocoded into a lat/long pair. Note: If a geoPoint value is provided, the address is not
    * used for calculating the lat/long to target.
-   * <p> A criterion of this type is only targetable.
+   * <p>
    * <span class="constraint AdxEnabled">This is enabled for AdX.</span>
    * 
    * 
@@ -4311,6 +4309,12 @@ if (!class_exists("ExpressSoapHeader", false)) {
     public $expressBusinessId;
 
     /**
+     * @access public
+     * @var string
+     */
+    public $pageId;
+
+    /**
      * Gets the namesapce of this class
      * @return the namespace of this class
      */
@@ -4326,9 +4330,10 @@ if (!class_exists("ExpressSoapHeader", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($expressBusinessId = null, $clientCustomerId = null, $developerToken = null, $userAgent = null, $validateOnly = null, $partialFailure = null) {
+    public function __construct($expressBusinessId = null, $pageId = null, $clientCustomerId = null, $developerToken = null, $userAgent = null, $validateOnly = null, $partialFailure = null) {
       parent::__construct();
       $this->expressBusinessId = $expressBusinessId;
+      $this->pageId = $pageId;
       $this->clientCustomerId = $clientCustomerId;
       $this->developerToken = $developerToken;
       $this->userAgent = $userAgent;
@@ -4484,7 +4489,7 @@ if (!class_exists("NegativeKeyword", false)) {
 
 if (!class_exists("NoStatsPage", false)) {
   /**
-   * Base class for Get results for a page of entities that do not use statistics.
+   * 
    * @package Google_Api_Ads_AdWords_v201402
    * @subpackage v201402
    */
@@ -4513,6 +4518,54 @@ if (!class_exists("NoStatsPage", false)) {
       parent::__construct();
       $this->totalNumEntries = $totalNumEntries;
       $this->PageType = $PageType;
+    }
+
+  }
+}
+
+if (!class_exists("PhoneNumber", false)) {
+  /**
+   * Phone number which contains the phone number string plus the region that the number is to be
+   * from.
+   * @package Google_Api_Ads_AdWords_v201402
+   * @subpackage v201402
+   */
+  class PhoneNumber {
+
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/express/v201402";
+    const XSI_TYPE = "PhoneNumber";
+
+    /**
+     * @access public
+     * @var tnsRegionCode
+     */
+    public $regionCode;
+
+    /**
+     * @access public
+     * @var string
+     */
+    public $number;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($regionCode = null, $number = null) {
+      $this->regionCode = $regionCode;
+      $this->number = $number;
     }
 
   }
@@ -4615,6 +4668,12 @@ if (!class_exists("Promotion", false)) {
 
     /**
      * @access public
+     * @var PhoneNumber
+     */
+    public $phoneNumber;
+
+    /**
+     * @access public
      * @var boolean
      */
     public $streetAddressVisible;
@@ -4665,12 +4724,13 @@ if (!class_exists("Promotion", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($id = null, $name = null, $status = null, $creatives = null, $destinationUrl = null, $streetAddressVisible = null, $callTrackingEnabled = null, $budget = null, $criteria = null, $campaignIds = null, $remainingBudget = null) {
+    public function __construct($id = null, $name = null, $status = null, $creatives = null, $destinationUrl = null, $phoneNumber = null, $streetAddressVisible = null, $callTrackingEnabled = null, $budget = null, $criteria = null, $campaignIds = null, $remainingBudget = null) {
       $this->id = $id;
       $this->name = $name;
       $this->status = $status;
       $this->creatives = $creatives;
       $this->destinationUrl = $destinationUrl;
+      $this->phoneNumber = $phoneNumber;
       $this->streetAddressVisible = $streetAddressVisible;
       $this->callTrackingEnabled = $callTrackingEnabled;
       $this->budget = $budget;
@@ -4818,6 +4878,12 @@ if (!class_exists("PromotionPage", false)) {
 if (!class_exists("PromotionStatus", false)) {
   /**
    * Statuses of a promotion.
+   * 
+   * <p>When a promotion status is set to UPGRADED_TO_ADWORDS, the corresponding campaigns will be
+   * migrated to AdWords. Adwords Express will no longer manage the campaigns. Instead, advertisers
+   * need to use the AdWords API and/or UI to manage the campaigns.
+   * <p>Please note: it is one way migration from Adwords Express to AdWords. There is no way to
+   * undo the migration currently.
    * @package Google_Api_Ads_AdWords_v201402
    * @subpackage v201402
    */
@@ -4858,6 +4924,105 @@ if (!class_exists("PromotionErrorReason", false)) {
 
     const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/express/v201402";
     const XSI_TYPE = "PromotionError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("RegionCode", false)) {
+  /**
+   * A region (country, territory, continent, etc), as defined by Unicode's
+   * "CLDR", itself based on ISO 3166 (UN country codes).
+   * 
+   * <p>See:
+   * 
+   * http://unicode.org/cldr/charts/supplemental/territory_containment_un_m_49.html
+   * 
+   * <p>It contains no behavior, but is the authoritative definition of Region
+   * <em>identity</em> in java Google code.
+   * 
+   * <p>Do:
+   * <ul>
+   * <li>use it everywhere you need to compare regions</li>
+   * <li>use it in all APIs that take/return a region (such as a country),
+   * particularly all public APIs</li>
+   * <li>get the instance corresponding to an CLDR code using {@link #forString}
+   * </li>
+   * <li>get the String CLDR code with {@link #toString}</li>
+   * <li>use the String CLDR code in your DB as a key to currencies</li>
+   * <li>if your API supports only a subset of these codes, make sure to
+   * validate (e.g. by creating an EnumSet and using Precondition)
+   * <li>put your project-specific region-related information in a class under
+   * your project root, using an EnumMap or BiMap to map these Regions to your
+   * objects.
+   * </li>
+   * </ul>
+   * 
+   * Do <em>not</em>:
+   * <ul>
+   * <li>depend on the ordinal of a region, for example using {@link #ordinal()}
+   * or depending on the index of a particular region in the {@link #values}
+   * array.
+   * <li>depend on the comparison order of regions, via
+   * {@link Enum#compareTo(Enum)}), or via the iteration order of an
+   * EnumSet, etc.
+   * <li>use {@link #valueOf} or {@link #name()}. The CLDR numeric codes aren't
+   * valid for java, so they were prepended by "UN" (as in "UN001" for the
+   * CLDR code "001").
+   * <li>assume that these are the same as the two-letter ISO codes. Oftentimes
+   * they will be, but CLDR guarantees stability, so ISO codes that change
+   * will be different from the entries in this enum.
+   * </ul>
+   * 
+   * This enum does not:
+   * <ul>
+   * <li>have i18n features</li>
+   * <li>have application-specific data</li>
+   * </ul>
+   * 
+   * These concerns will be addressed by other classes, some in
+   * application-specific packages, others in common.base.i18n. The latter ones
+   * will be listed with "see" tags in this class.
+   * This class does not supply methods for getting information about regions.
+   * For those methods, see {@link RegionInfo}.
+   * 
+   * <p>Note that not all regions have a "two-letter" country code. Instead, some
+   * have a three digit number -- the UN M.49 (United Nations) area code.
+   * These are the enum items prepended with "UN". See:
+   * 
+   * <ul>
+   * <li>http://unstats.un.org/unsd/methods/m49/m49alpha.htm
+   * <li>http://unstats.un.org/unsd/methods/m49/m49.htm
+   * </ul>
+   * 
+   * <p>Also note that CLDR -- contrary to ISO -- <em>guarantees</em> non-reuse of
+   * country codes. Thus, though most times CLDR codes are the same as the ISO
+   * codes, sometimes they are not.
+   * @package Google_Api_Ads_AdWords_v201402
+   * @subpackage v201402
+   */
+  class RegionCode {
+
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/express/v201402";
+    const XSI_TYPE = "RegionCode";
 
     /**
      * Gets the namesapce of this class
@@ -5307,6 +5472,7 @@ if (!class_exists("PromotionService", false)) {
       "NegativeCriterion" => "NegativeCriterion",
       "NegativeKeyword" => "NegativeKeyword",
       "NoStatsPage" => "NoStatsPage",
+      "PhoneNumber" => "PhoneNumber",
       "ProductService" => "ProductService",
       "Promotion" => "Promotion",
       "PromotionError" => "PromotionError",
@@ -5314,6 +5480,7 @@ if (!class_exists("PromotionService", false)) {
       "PromotionPage" => "PromotionPage",
       "Promotion.Status" => "PromotionStatus",
       "PromotionError.Reason" => "PromotionErrorReason",
+      "RegionCode" => "RegionCode",
       "get" => "PromotionServiceGet",
       "getResponse" => "PromotionServiceGetResponse",
       "mutate" => "PromotionServiceMutate",
@@ -5363,3 +5530,4 @@ if (!class_exists("PromotionService", false)) {
     }
   }
 }
+

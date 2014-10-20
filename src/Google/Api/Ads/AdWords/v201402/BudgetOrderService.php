@@ -26,8 +26,6 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-
-/** Required classes. **/
 require_once "Google/Api/Ads/AdWords/Lib/AdWordsSoapClient.php";
 
 if (!class_exists("ApiError", false)) {
@@ -1094,6 +1092,12 @@ if (!class_exists("NotWhitelistedError", false)) {
     const XSI_TYPE = "NotWhitelistedError";
 
     /**
+     * @access public
+     * @var tnsNotWhitelistedErrorReason
+     */
+    public $reason;
+
+    /**
      * Gets the namesapce of this class
      * @return the namespace of this class
      */
@@ -1109,8 +1113,9 @@ if (!class_exists("NotWhitelistedError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
       parent::__construct();
+      $this->reason = $reason;
       $this->fieldPath = $fieldPath;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
@@ -3012,6 +3017,47 @@ if (!class_exists("NotEmptyErrorReason", false)) {
   }
 }
 
+if (!class_exists("NotWhitelistedErrorReason", false)) {
+  /**
+   * The single reason for the whitelist error.
+   * 
+   * 
+   * 
+   * The API error base class that provides details about an error that occurred
+   * while processing a service request.
+   * 
+   * <p>The OGNL field path is provided for parsers to identify the request data
+   * element that may have caused the error.</p>
+   * @package Google_Api_Ads_AdWords_v201402
+   * @subpackage v201402
+   */
+  class NotWhitelistedErrorReason {
+
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201402";
+    const XSI_TYPE = "NotWhitelistedError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("NullErrorReason", false)) {
   /**
    * The reasons for the validation error.
@@ -4242,7 +4288,8 @@ if (!class_exists("CustomerOrderLineError", false)) {
 
 if (!class_exists("BudgetOrderErrorReason", false)) {
   /**
-   * Customer is not whitelisted for new billing.
+   * The request contains a field that is only available if the manager account
+   * is whitelisted for new billing backend.
    * @package Google_Api_Ads_AdWords_v201402
    * @subpackage v201402
    */
@@ -4831,6 +4878,7 @@ if (!class_exists("BudgetOrderService", false)) {
       "InternalApiError.Reason" => "InternalApiErrorReason",
       "NewEntityCreationError.Reason" => "NewEntityCreationErrorReason",
       "NotEmptyError.Reason" => "NotEmptyErrorReason",
+      "NotWhitelistedError.Reason" => "NotWhitelistedErrorReason",
       "NullError.Reason" => "NullErrorReason",
       "OperationAccessDenied.Reason" => "OperationAccessDeniedReason",
       "Operator" => "Operator",
@@ -4935,3 +4983,4 @@ if (!class_exists("BudgetOrderService", false)) {
     }
   }
 }
+

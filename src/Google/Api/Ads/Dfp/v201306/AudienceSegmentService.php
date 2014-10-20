@@ -26,8 +26,6 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-
-/** Required classes. **/
 require_once "Google/Api/Ads/Dfp/Lib/DfpSoapClient.php";
 
 if (!class_exists("ApiError", false)) {
@@ -810,6 +808,51 @@ if (!class_exists("DfpOAuth", false)) {
       parent::__construct();
       $this->parameters = $parameters;
       $this->AuthenticationType = $AuthenticationType;
+    }
+
+  }
+}
+
+if (!class_exists("ParseError", false)) {
+  /**
+   * Lists errors related to parsing.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201306
+   */
+  class ParseError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201306";
+    const XSI_TYPE = "ParseError";
+
+    /**
+     * @access public
+     * @var tnsParseErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
     }
 
   }
@@ -1738,6 +1781,39 @@ if (!class_exists("NotNullErrorReason", false)) {
   }
 }
 
+if (!class_exists("ParseErrorReason", false)) {
+  /**
+   * The reasons for the target error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201306
+   */
+  class ParseErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201306";
+    const XSI_TYPE = "ParseError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("PermissionErrorReason", false)) {
   /**
    * Describes reasons for permission errors.
@@ -1845,9 +1921,10 @@ if (!class_exists("QuotaErrorReason", false)) {
    * guarantee the request will succeed. If it fails again, try increasing the
    * wait time.
    * <p>
-   * Another way to mitigate this error is to limit requests to 2 per second.
-   * Once again this does not guarantee that every request will succeed, but
-   * may help reduce the number of times you receive this error.
+   * Another way to mitigate this error is to limit requests to 2 per second for
+   * Small Business networks, or 8 per second for Premium networks. Once again
+   * this does not guarantee that every request will succeed, but may help
+   * reduce the number of times you receive this error.
    * </p>
    * @package GoogleApiAdsDfp
    * @subpackage v201306
@@ -2406,13 +2483,13 @@ if (!class_exists("AudienceSegmentService", false)) {
 
     const SERVICE_NAME = "AudienceSegmentService";
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201306";
-    const ENDPOINT = "https://www.google.com/apis/ads/publisher/v201306/AudienceSegmentService";
+    const ENDPOINT = "https://ads.google.com/apis/ads/publisher/v201306/AudienceSegmentService";
 
     /**
      * The endpoint of the service
      * @var string
      */
-    public static $endpoint = "https://www.google.com/apis/ads/publisher/v201306/AudienceSegmentService";
+    public static $endpoint = "https://ads.google.com/apis/ads/publisher/v201306/AudienceSegmentService";
     /**
      * Default class map for wsdl=>php
      * @access private
@@ -2438,6 +2515,7 @@ if (!class_exists("AudienceSegmentService", false)) {
       "NotNullError" => "NotNullError",
       "NumberValue" => "NumberValue",
       "OAuth" => "DfpOAuth",
+      "ParseError" => "ParseError",
       "PermissionError" => "PermissionError",
       "PublisherQueryLanguageContextError" => "PublisherQueryLanguageContextError",
       "PublisherQueryLanguageSyntaxError" => "PublisherQueryLanguageSyntaxError",
@@ -2458,6 +2536,7 @@ if (!class_exists("AudienceSegmentService", false)) {
       "FeatureError.Reason" => "FeatureErrorReason",
       "InternalApiError.Reason" => "InternalApiErrorReason",
       "NotNullError.Reason" => "NotNullErrorReason",
+      "ParseError.Reason" => "ParseErrorReason",
       "PermissionError.Reason" => "PermissionErrorReason",
       "PublisherQueryLanguageContextError.Reason" => "PublisherQueryLanguageContextErrorReason",
       "PublisherQueryLanguageSyntaxError.Reason" => "PublisherQueryLanguageSyntaxErrorReason",
@@ -2543,3 +2622,4 @@ if (!class_exists("AudienceSegmentService", false)) {
     }
   }
 }
+

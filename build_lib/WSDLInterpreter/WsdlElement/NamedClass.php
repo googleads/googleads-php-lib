@@ -45,6 +45,23 @@ abstract class WsdlElement_NamedClass extends WsdlElement_Named {
   protected $name;
 
   /**
+   * Store the fully qualified name with namespace
+   */
+  protected $fqn;
+
+  /**
+   * Store the fully qualified name with namespace, wrapped w/ addslashes.
+   * e.g., Google\Ads\MyClass => Google\\Ads\\MyClass
+   */
+  protected $quotedFqn;
+
+
+  /**
+   * Store the PHP namespace, aka package
+   */
+  protected $package;
+
+  /**
    * An overridden constructor.
    *
    * Calls the parent constructor.
@@ -70,6 +87,33 @@ abstract class WsdlElement_NamedClass extends WsdlElement_Named {
   }
 
   /**
+   * Returns the fully qualified class name with namespace.
+   *
+   * @return string the fully qualified name of the element
+   */
+  public function getFqn() {
+    return $this->fqn;
+  }
+
+  /**
+   * Returns the fully qualified class name with namespace.
+   *
+   * @return string the fully qualified name of the element
+   */
+  public function getQuotedFqn() {
+    return $this->quotedFqn;
+  }
+
+  /**
+   * Returns the PHP namespace.
+   *
+   * @return string the PHP namespace
+   */
+  public function getPackage() {
+    return $this->name;
+  }
+
+  /**
    * Get the array of doc lines.
    *
    * @return array the doc lines
@@ -88,6 +132,9 @@ abstract class WsdlElement_NamedClass extends WsdlElement_Named {
   protected function initName() {
     $name = $this->getRawName();
     $this->name = $this->utils->filterClassName($name);
+    $this->fqn = $this->utils->namespaceName($this->name);
+    $this->package = $this->utils->getNamespace();
+    $this->quotedFqn = addslashes($this->fqn);
 
     return $this;
   }

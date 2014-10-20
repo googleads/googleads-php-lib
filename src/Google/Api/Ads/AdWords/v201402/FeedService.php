@@ -26,8 +26,6 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-
-/** Required classes. **/
 require_once "Google/Api/Ads/AdWords/Lib/AdWordsSoapClient.php";
 
 if (!class_exists("DateRange", false)) {
@@ -3546,7 +3544,7 @@ if (!class_exists("StringLengthError", false)) {
 if (!class_exists("PlacesLocationFeedData", false)) {
   /**
    * Data used to configure a location feed populated from
-   * Google Places.
+   * Google My Business Locations.
    * @package Google_Api_Ads_AdWords_v201402
    * @subpackage v201402
    */
@@ -4031,3 +4029,4 @@ if (!class_exists("FeedService", false)) {
     }
   }
 }
+
