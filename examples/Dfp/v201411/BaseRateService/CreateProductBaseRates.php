@@ -1,10 +1,9 @@
 <?php
 /**
- * This example updates an exchange rate's exchange rate. To determine which
- * exchange rates exist, run GetAllExchangeRates.php.
+ * This example creates a new product base rate. To determine which base rates
+ * exist, run GetAllBaseRates.php.
  *
- * Tags: ExchangeRateService.getExchangeRatesByStatement
- * Tags: ExchangeRateService.updateExchangeRates
+ * Tags: BaseRateService.createBaseRates
  *
  * PHP version 5
  *
@@ -39,11 +38,13 @@ $path = dirname(__FILE__) . '/../../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
-require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
 
-// Set the ID of the exchange rate to update.
-$exchangeRateId = 'INSERT_EXCHANGE_RATE_ID_HERE';
+// Set the rate card ID to add the base rate to.
+$rateCardId = 'INSERT_RATE_CARD_ID_HERE';
+
+// Set the product to apply this base rate to.
+$productId = 'INSERT_PRODUCT_ID_HERE';
 
 try {
   // Get DfpUser from credentials in "../auth.ini"
@@ -53,36 +54,32 @@ try {
   // Log SOAP XML request and response.
   $user->LogDefaults();
 
-  // Get the ExchangeRateService.
-  $exchangeRateService = $user->GetService('ExchangeRateService', 'v201411');
+  // Get the BaseRateService.
+  $baseRateService = $user->GetService('BaseRateService', 'v201411');
 
-  // Create a statement to select a single exchange rate by ID.
-  $statementBuilder = new StatementBuilder();
-  $statementBuilder->Where('id = :id and refreshRate = :refreshRate')
-      ->OrderBy('id ASC')
-      ->Limit(1)
-      ->WithBindVariableValue('id', $exchangeRateId)
-      ->WithBindVariableValue('refreshRate', 'FIXED');
+  // Create a base rate for a product.
+  $productBaseRate = new ProductBaseRate();
 
-  // Get the exchange rate.
-  $page = $exchangeRateService->getExchangeRatesByStatement(
-      $statementBuilder->ToStatement());
-  $exchangeRate = $page->results[0];
+  // Set the rate card ID that the product base rate belongs to.
+  $productBaseRate->rateCardId = $rateCardId;
 
-  // Update the exchange rate value to 1.5.
-  $exchangeRate->exchangeRate = 15000000000;
+  // Set the product the base rate will be applied to.
+  $productBaseRate->productId = $productId;
 
-  // Update the exchange rate on the server.
-  $exchangeRates =
-      $exchangeRateService->updateExchangeRates(array($exchangeRate));
+  // Create a rate worth $2 and set that on the product base rate.
+  $rate = new Money();
+  $rate->currencyCode = 'USD';
+  $rate->microAmount = 2000000;
+  $productBaseRate->rate = $rate;
 
-  foreach ($exchangeRates as $updatedExchangeRate) {
-    printf("Exchange rate with ID %d, currency code '%s', direction '%s', and "
-        . "exchange rate %.2f was updated.\n",
-        $updatedExchangeRate->id,
-        $updatedExchangeRate->currencyCode,
-        $updatedExchangeRate->direction,
-        $updatedExchangeRate->exchangeRate / 10000000000
+  // Create the product base rate on the server.
+  $baseRates = $baseRateService->createBaseRates(array($productBaseRate));
+
+  foreach ($baseRates as $createdBaseRate) {
+    printf("A product base rate with ID %d and rate %.2f %s was created.\n",
+        $createdBaseRate->id,
+        $createdBaseRate->rate->microAmount / 1000000,
+        $createdBaseRate->rate->currencyCode
     );
   }
 } catch (OAuth2Exception $e) {

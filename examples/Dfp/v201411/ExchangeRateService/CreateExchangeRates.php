@@ -1,10 +1,9 @@
 <?php
 /**
- * This example updates an exchange rate's exchange rate. To determine which
- * exchange rates exist, run GetAllExchangeRates.php.
+ * This example creates a new exchange rate. To determine which exchange rates
+ * exist, run GetAllExchangeRates.php.
  *
- * Tags: ExchangeRateService.getExchangeRatesByStatement
- * Tags: ExchangeRateService.updateExchangeRates
+ * Tags: ExchangeRateService.createExchangeRates
  *
  * PHP version 5
  *
@@ -39,11 +38,7 @@ $path = dirname(__FILE__) . '/../../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
-require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
-
-// Set the ID of the exchange rate to update.
-$exchangeRateId = 'INSERT_EXCHANGE_RATE_ID_HERE';
 
 try {
   // Get DfpUser from credentials in "../auth.ini"
@@ -56,33 +51,33 @@ try {
   // Get the ExchangeRateService.
   $exchangeRateService = $user->GetService('ExchangeRateService', 'v201411');
 
-  // Create a statement to select a single exchange rate by ID.
-  $statementBuilder = new StatementBuilder();
-  $statementBuilder->Where('id = :id and refreshRate = :refreshRate')
-      ->OrderBy('id ASC')
-      ->Limit(1)
-      ->WithBindVariableValue('id', $exchangeRateId)
-      ->WithBindVariableValue('refreshRate', 'FIXED');
+  // Create an exchange rate.
+  $exchangeRate = new ExchangeRate();
 
-  // Get the exchange rate.
-  $page = $exchangeRateService->getExchangeRatesByStatement(
-      $statementBuilder->ToStatement());
-  $exchangeRate = $page->results[0];
+  // Set the currency code.
+  $exchangeRate->currencyCode = 'AUD';
 
-  // Update the exchange rate value to 1.5.
+  // Set the direction of the conversion (from the network currency).
+  $exchangeRate->direction = 'FROM_NETWORK';
+
+  // Set the conversion value as 1.5 (this value is multiplied by
+  // 10,000,000,000)
   $exchangeRate->exchangeRate = 15000000000;
 
-  // Update the exchange rate on the server.
-  $exchangeRates =
-      $exchangeRateService->updateExchangeRates(array($exchangeRate));
+  // Do not refresh exchange rate from Google data. Update manually only.
+  $exchangeRate->refreshRate = 'FIXED';
 
-  foreach ($exchangeRates as $updatedExchangeRate) {
-    printf("Exchange rate with ID %d, currency code '%s', direction '%s', and "
-        . "exchange rate %.2f was updated.\n",
-        $updatedExchangeRate->id,
-        $updatedExchangeRate->currencyCode,
-        $updatedExchangeRate->direction,
-        $updatedExchangeRate->exchangeRate / 10000000000
+  // Create the exchange rate on the server.
+  $exchangeRates =
+      $exchangeRateService->createExchangeRates(array($exchangeRate));
+
+  foreach ($exchangeRates as $createdExchangeRate) {
+    printf("An exchange rate with ID %d, currency code '%s', direction '%s', "
+        . "and exchange rate %.2f was created.\n",
+        $createdExchangeRate->id,
+        $createdExchangeRate->currencyCode,
+        $createdExchangeRate->direction,
+        $createdExchangeRate->exchangeRate / 10000000000
     );
   }
 } catch (OAuth2Exception $e) {
