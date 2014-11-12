@@ -1375,6 +1375,51 @@ if (!class_exists("CreativePlaceholder", false)) {
   }
 }
 
+if (!class_exists("CrossSellError", false)) {
+  /**
+   * Lists all errors associated with cross selling.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201311
+   */
+  class CrossSellError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201311";
+    const XSI_TYPE = "CrossSellError";
+
+    /**
+     * @access public
+     * @var tnsCrossSellErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("CustomFieldValue", false)) {
   /**
    * The value of a {@link CustomField} that does not have a {@link CustomField#dataType}
@@ -2270,12 +2315,14 @@ if (!class_exists("Forecast", false)) {
    * From least to most, these are:
    * 
    * <dl>
-   * <li>Available units -- How many units can be booked without affecting any other line items.
-   * Booking more than this number can cause lower- and same-priority line items to underdeliver.
-   * <li>Possible units -- How many units can be booked without affecting any higher priority line
-   * items. Booking more than this number can cause the line item to underdeliver.
-   * <li>Matched (forecast) units -- How many units satisfy all specified
-   * criteria.
+   * <dt>Available units
+   * <dd>How many units can be booked without affecting any other line items. Booking more than this
+   * number can cause lower- and same-priority line items to underdeliver.
+   * <dt>Possible units
+   * <dd>How many units can be booked without affecting any higher priority line items. Booking more
+   * than this number can cause the line item to underdeliver.
+   * <dt>Matched (forecast) units
+   * <dd>How many units satisfy all specified criteria.
    * </dl>
    * 
    * <p>Underdelivery is caused by overbooking. However, if more impressions are served than are
@@ -4729,7 +4776,7 @@ if (!class_exists("Size", false)) {
   /**
    * Represents the dimensions of an {@link AdUnit}, {@link LineItem} or {@link Creative}.
    * <p>
-   * For interstitial size (out-of-page), {@code Size} must be 1x1.
+   * For interstitial size (out-of-page) and native size, {@code Size} must be 1x1.
    * @package GoogleApiAdsDfp
    * @subpackage v201311
    */
@@ -6259,6 +6306,39 @@ if (!class_exists("CreativeSizeType", false)) {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201311";
     const XSI_TYPE = "CreativeSizeType";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("CrossSellErrorReason", false)) {
+  /**
+   * The reason of the error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201311
+   */
+  class CrossSellErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201311";
+    const XSI_TYPE = "CrossSellError.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -9635,6 +9715,7 @@ if (!class_exists("ForecastService", false)) {
       "ContentTargeting" => "ContentTargeting",
       "CreativeError" => "CreativeError",
       "CreativePlaceholder" => "CreativePlaceholder",
+      "CrossSellError" => "CrossSellError",
       "CustomCriteria" => "CustomCriteria",
       "CustomCriteriaSet" => "CustomCriteriaSet",
       "CustomFieldValue" => "CustomFieldValue",
@@ -9748,6 +9829,7 @@ if (!class_exists("ForecastService", false)) {
       "CreativeError.Reason" => "CreativeErrorReason",
       "CreativeRotationType" => "CreativeRotationType",
       "CreativeSizeType" => "CreativeSizeType",
+      "CrossSellError.Reason" => "CrossSellErrorReason",
       "CustomCriteria.ComparisonOperator" => "CustomCriteriaComparisonOperator",
       "CustomCriteriaSet.LogicalOperator" => "CustomCriteriaSetLogicalOperator",
       "CustomFieldValueError.Reason" => "CustomFieldValueErrorReason",

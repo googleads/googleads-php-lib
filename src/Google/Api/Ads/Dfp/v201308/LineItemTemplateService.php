@@ -636,6 +636,51 @@ if (!class_exists("CreativeError", false)) {
   }
 }
 
+if (!class_exists("CrossSellError", false)) {
+  /**
+   * Lists all errors associated with cross selling.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201308
+   */
+  class CrossSellError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201308";
+    const XSI_TYPE = "CrossSellError";
+
+    /**
+     * @access public
+     * @var tnsCrossSellErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("CustomFieldValueError", false)) {
   /**
    * Errors specific to editing custom field values
@@ -3337,6 +3382,39 @@ if (!class_exists("CreativeRotationType", false)) {
   }
 }
 
+if (!class_exists("CrossSellErrorReason", false)) {
+  /**
+   * The reason of the error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201308
+   */
+  class CrossSellErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201308";
+    const XSI_TYPE = "CrossSellError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("CustomFieldValueErrorReason", false)) {
   /**
    * The reasons for the target error.
@@ -5089,6 +5167,7 @@ if (!class_exists("LineItemTemplateService", false)) {
       "CommonError" => "CommonError",
       "CompanyCreditStatusError" => "CompanyCreditStatusError",
       "CreativeError" => "CreativeError",
+      "CrossSellError" => "CrossSellError",
       "CustomFieldValueError" => "CustomFieldValueError",
       "CustomTargetingError" => "CustomTargetingError",
       "Date" => "Date",
@@ -5151,6 +5230,7 @@ if (!class_exists("LineItemTemplateService", false)) {
       "CompanyCreditStatusError.Reason" => "CompanyCreditStatusErrorReason",
       "CreativeError.Reason" => "CreativeErrorReason",
       "CreativeRotationType" => "CreativeRotationType",
+      "CrossSellError.Reason" => "CrossSellErrorReason",
       "CustomFieldValueError.Reason" => "CustomFieldValueErrorReason",
       "CustomTargetingError.Reason" => "CustomTargetingErrorReason",
       "DateTimeRangeTargetingError.Reason" => "DateTimeRangeTargetingErrorReason",

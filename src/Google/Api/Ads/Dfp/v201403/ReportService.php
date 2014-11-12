@@ -1763,7 +1763,8 @@ if (!class_exists("Column", false)) {
    * information available for the chosen {@link Dimension} objects.
    * <p>
    * Columns with {@code INVENTORY_LEVEL} should not be used with dimensions
-   * relating to line items, orders, companies and creatives, such as {@link Dimension#LINE_ITEM}.
+   * relating to line items, orders, companies and creatives,
+   * such as {@link Dimension#LINE_ITEM_NAME}.
    * Columns with {@code LINE_ITEM_LEVEL} can only be used if you have line item-level
    * dynamic allocation enabled on your network.
    * @package GoogleApiAdsDfp

@@ -3216,7 +3216,7 @@ if (!class_exists("ProposalLineItem", false)) {
 
     /**
      * @access public
-     * @var string
+     * @var integer
      */
     public $productId;
 
@@ -4027,7 +4027,7 @@ if (!class_exists("Size", false)) {
   /**
    * Represents the dimensions of an {@link AdUnit}, {@link LineItem} or {@link Creative}.
    * <p>
-   * For interstitial size (out-of-page), {@code Size} must be 1x1.
+   * For interstitial size (out-of-page) and native size, {@code Size} must be 1x1.
    * @package GoogleApiAdsDfp
    * @subpackage v201308
    */

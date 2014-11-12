@@ -501,78 +501,6 @@ if (!class_exists("AudienceExtensionError", false)) {
   }
 }
 
-if (!class_exists("Authentication", false)) {
-  /**
-   * A representation of the authentication protocols that can be used.
-   * @package GoogleApiAdsDfp
-   * @subpackage v201405
-   */
-  class Authentication {
-
-    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
-    const XSI_TYPE = "Authentication";
-
-    /**
-     * @access public
-     * @var string
-     */
-    public $AuthenticationType;
-    private $_parameterMap = array(
-      "Authentication.Type" => "AuthenticationType",
-    );
-
-    /**
-     * Provided for setting non-php-standard named variables
-     * @param $var Variable name to set
-     * @param $value Value to set
-     */
-    public function __set($var, $value) {
-      $this->{$this->_parameterMap[$var]} = $value;
-    }
-
-    /**
-     * Provided for getting non-php-standard named variables
-     * @param $var Variable name to get
-     * @return mixed Variable value
-     */
-    public function __get($var) {
-      if (!isset($this->_parameterMap[$var])) {
-        return null;
-      }
-      return $this->{$this->_parameterMap[$var]};
-    }
-
-    /**
-     * Provided for getting non-php-standard named variables
-     * @return array parameter map
-     */
-    protected function getParameterMap() {
-      return $this->_parameterMap;
-    }
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($AuthenticationType = null) {
-      $this->AuthenticationType = $AuthenticationType;
-    }
-
-  }
-}
-
 if (!class_exists("AuthenticationError", false)) {
   /**
    * An error for an exception that occurred when authenticating.
@@ -1279,6 +1207,51 @@ if (!class_exists("CreativePlaceholder", false)) {
       $this->id = $id;
       $this->expectedCreativeCount = $expectedCreativeCount;
       $this->creativeSizeType = $creativeSizeType;
+    }
+
+  }
+}
+
+if (!class_exists("CrossSellError", false)) {
+  /**
+   * Lists all errors associated with cross selling.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201405
+   */
+  class CrossSellError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
+    const XSI_TYPE = "CrossSellError";
+
+    /**
+     * @access public
+     * @var tnsCrossSellErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
     }
 
   }
@@ -4863,7 +4836,7 @@ if (!class_exists("Size", false)) {
   /**
    * Represents the dimensions of an {@link AdUnit}, {@link LineItem} or {@link Creative}.
    * <p>
-   * For interstitial size (out-of-page), {@code Size} must be 1x1.
+   * For interstitial size (out-of-page) and native size, {@code Size} must be 1x1.
    * @package GoogleApiAdsDfp
    * @subpackage v201405
    */
@@ -4939,12 +4912,6 @@ if (!class_exists("SoapRequestHeader", false)) {
     public $applicationName;
 
     /**
-     * @access public
-     * @var Authentication
-     */
-    public $authentication;
-
-    /**
      * Gets the namesapce of this class
      * @return the namespace of this class
      */
@@ -4960,10 +4927,9 @@ if (!class_exists("SoapRequestHeader", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($networkCode = null, $applicationName = null, $authentication = null) {
+    public function __construct($networkCode = null, $applicationName = null) {
       $this->networkCode = $networkCode;
       $this->applicationName = $applicationName;
-      $this->authentication = $authentication;
     }
 
   }
@@ -6522,6 +6488,39 @@ if (!class_exists("CreativeSizeType", false)) {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
     const XSI_TYPE = "CreativeSizeType";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("CrossSellErrorReason", false)) {
+  /**
+   * The reason of the error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201405
+   */
+  class CrossSellErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
+    const XSI_TYPE = "CrossSellError.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -8648,55 +8647,22 @@ if (!class_exists("GetLineItemsByStatement", false)) {
    * filtering:
    * 
    * <table>
-   * <tr>
-   * <th scope="col">PQL Property</th> <th scope="col">Object Property</th>
-   * </tr>
-   * <tr>
-   * <td>{@code costType}</td>
-   * <td>{@link LineItem#costType}</td>
-   * </tr>
-   * <tr>
-   * <td>{@code id}</td>
-   * <td>{@link LineItem#id}</td>
-   * </tr>
-   * <tr>
-   * <td>{@code lineItemType}</td>
-   * <td>{@link LineItem#lineItemType}</td>
-   * </tr>
-   * <tr>
-   * <td>{@code name}</td>
-   * <td>{@link LineItem#name}</td>
-   * </tr>
-   * <tr>
-   * <td>{@code orderId}</td>
-   * <td>{@link LineItem#orderId}</td>
-   * </tr>
-   * <tr>
-   * <td>{@code status}</td>
-   * <td>{@link LineItem#status}</td>
-   * </tr>
-   * <tr>
-   * <td>{@code unitsBought}</td>
-   * <td>{@link LineItem#unitsBought}</td>
-   * </tr>
-   * <tr>
-   * <td>{@code deliveryRateType}</td>
-   * <td>{@link LineItem#deliveryRateType}</td>
-   * </tr>
-   * <tr>
-   * <td>{@code lastModifiedDateTime}</td>
-   * <td>{@link LineItem#lastModifiedDateTime}</td>
-   * </tr>
-   * <tr>
-   * <td>{@code creationDateTime}</td>
-   * <td>{@link LineItem#creationDateTime}</td>
-   * </tr>
-   * <tr>
-   * <td>{@code isMissingCreatives}</td>
-   * <td>{@link LineItem#isMissingCreatives}</td>
-   * </tr>
+   * <tr><th scope="col">PQL property</th><th scope="col">Entity property</th> </tr>
+   * <tr><td><code>CostType</code></td><td>{@link LineItem#costType}</td></tr>
+   * <tr><td><code>CreationDateTime</code></td><td>{@link LineItem#creationDateTime}</td></tr>
+   * <tr><td><code>DeliveryRateType</code></td><td>{@link LineItem#deliveryRateType}</td></tr>
+   * <tr><td><code>EndDateTime</code></td><td>{@link LineItem#endDateTime}</td></tr>
+   * <tr><td><code>ExternalId</code></td><td>{@link LineItem#externalId}</td></tr>
+   * <tr><td><code>Id</code></td><td>{@link LineItem#id}</td></tr>
+   * <tr><td><code>IsMissingCreatives</code></td><td>{@link LineItem#isMissingCreatives}</td></tr>
+   * <tr><td><code>LastModifiedDateTime</code></td><td>{@link LineItem#lastModifiedDateTime}</td></tr>
+   * <tr><td><code>LineItemType</code></td><td>{@link LineItem#lineItemType}</td></tr>
+   * <tr><td><code>Name</code></td><td>{@link LineItem#name}</td></tr>
+   * <tr><td><code>OrderId</code></td><td>{@link LineItem#orderId}</td></tr>
+   * <tr><td><code>StartDateTime</code></td><td>{@link LineItem#startDateTime}</td></tr>
+   * <tr><td><code>Status</code></td><td>{@link LineItem#status}</td></tr>
+   * <tr><td><code>UnitsBought</code></td><td>{@link LineItem#unitsBought}</td></tr>
    * </table>
-   * 
    * @param filterStatement a Publisher Query Language statement used to filter
    * a set of line items.
    * @return the line items that match the given filter
@@ -10210,7 +10176,6 @@ if (!class_exists("LineItemService", false)) {
       "AppliedLabel" => "AppliedLabel",
       "ArchiveLineItems" => "ArchiveLineItems",
       "AudienceExtensionError" => "AudienceExtensionError",
-      "Authentication" => "Authentication",
       "AuthenticationError" => "AuthenticationError",
       "BandwidthGroup" => "BandwidthGroup",
       "BandwidthGroupTargeting" => "BandwidthGroupTargeting",
@@ -10228,6 +10193,7 @@ if (!class_exists("LineItemService", false)) {
       "ContentTargeting" => "ContentTargeting",
       "CreativeError" => "CreativeError",
       "CreativePlaceholder" => "CreativePlaceholder",
+      "CrossSellError" => "CrossSellError",
       "CustomCriteria" => "CustomCriteria",
       "CustomCriteriaSet" => "CustomCriteriaSet",
       "CustomFieldValue" => "CustomFieldValue",
@@ -10352,6 +10318,7 @@ if (!class_exists("LineItemService", false)) {
       "CreativeError.Reason" => "CreativeErrorReason",
       "CreativeRotationType" => "CreativeRotationType",
       "CreativeSizeType" => "CreativeSizeType",
+      "CrossSellError.Reason" => "CrossSellErrorReason",
       "CustomCriteria.ComparisonOperator" => "CustomCriteriaComparisonOperator",
       "CustomCriteriaSet.LogicalOperator" => "CustomCriteriaSetLogicalOperator",
       "CustomFieldValueError.Reason" => "CustomFieldValueErrorReason",
@@ -10450,55 +10417,22 @@ if (!class_exists("LineItemService", false)) {
      * filtering:
      * 
      * <table>
-     * <tr>
-     * <th scope="col">PQL Property</th> <th scope="col">Object Property</th>
-     * </tr>
-     * <tr>
-     * <td>{@code costType}</td>
-     * <td>{@link LineItem#costType}</td>
-     * </tr>
-     * <tr>
-     * <td>{@code id}</td>
-     * <td>{@link LineItem#id}</td>
-     * </tr>
-     * <tr>
-     * <td>{@code lineItemType}</td>
-     * <td>{@link LineItem#lineItemType}</td>
-     * </tr>
-     * <tr>
-     * <td>{@code name}</td>
-     * <td>{@link LineItem#name}</td>
-     * </tr>
-     * <tr>
-     * <td>{@code orderId}</td>
-     * <td>{@link LineItem#orderId}</td>
-     * </tr>
-     * <tr>
-     * <td>{@code status}</td>
-     * <td>{@link LineItem#status}</td>
-     * </tr>
-     * <tr>
-     * <td>{@code unitsBought}</td>
-     * <td>{@link LineItem#unitsBought}</td>
-     * </tr>
-     * <tr>
-     * <td>{@code deliveryRateType}</td>
-     * <td>{@link LineItem#deliveryRateType}</td>
-     * </tr>
-     * <tr>
-     * <td>{@code lastModifiedDateTime}</td>
-     * <td>{@link LineItem#lastModifiedDateTime}</td>
-     * </tr>
-     * <tr>
-     * <td>{@code creationDateTime}</td>
-     * <td>{@link LineItem#creationDateTime}</td>
-     * </tr>
-     * <tr>
-     * <td>{@code isMissingCreatives}</td>
-     * <td>{@link LineItem#isMissingCreatives}</td>
-     * </tr>
+     * <tr><th scope="col">PQL property</th><th scope="col">Entity property</th> </tr>
+     * <tr><td><code>CostType</code></td><td>{@link LineItem#costType}</td></tr>
+     * <tr><td><code>CreationDateTime</code></td><td>{@link LineItem#creationDateTime}</td></tr>
+     * <tr><td><code>DeliveryRateType</code></td><td>{@link LineItem#deliveryRateType}</td></tr>
+     * <tr><td><code>EndDateTime</code></td><td>{@link LineItem#endDateTime}</td></tr>
+     * <tr><td><code>ExternalId</code></td><td>{@link LineItem#externalId}</td></tr>
+     * <tr><td><code>Id</code></td><td>{@link LineItem#id}</td></tr>
+     * <tr><td><code>IsMissingCreatives</code></td><td>{@link LineItem#isMissingCreatives}</td></tr>
+     * <tr><td><code>LastModifiedDateTime</code></td><td>{@link LineItem#lastModifiedDateTime}</td></tr>
+     * <tr><td><code>LineItemType</code></td><td>{@link LineItem#lineItemType}</td></tr>
+     * <tr><td><code>Name</code></td><td>{@link LineItem#name}</td></tr>
+     * <tr><td><code>OrderId</code></td><td>{@link LineItem#orderId}</td></tr>
+     * <tr><td><code>StartDateTime</code></td><td>{@link LineItem#startDateTime}</td></tr>
+     * <tr><td><code>Status</code></td><td>{@link LineItem#status}</td></tr>
+     * <tr><td><code>UnitsBought</code></td><td>{@link LineItem#unitsBought}</td></tr>
      * </table>
-     * 
      * @param filterStatement a Publisher Query Language statement used to filter
      * a set of line items.
      * @return the line items that match the given filter

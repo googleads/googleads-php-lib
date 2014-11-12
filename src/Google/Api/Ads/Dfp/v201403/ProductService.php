@@ -1941,7 +1941,7 @@ if (!class_exists("Product", false)) {
 
     /**
      * @access public
-     * @var string
+     * @var integer
      */
     public $id;
 
@@ -2677,7 +2677,7 @@ if (!class_exists("Size", false)) {
   /**
    * Represents the dimensions of an {@link AdUnit}, {@link LineItem} or {@link Creative}.
    * <p>
-   * For interstitial size (out-of-page), {@code Size} must be 1x1.
+   * For interstitial size (out-of-page) and native size, {@code Size} must be 1x1.
    * @package GoogleApiAdsDfp
    * @subpackage v201403
    */
@@ -4501,12 +4501,12 @@ if (!class_exists("GetProductsByStatement", false)) {
    * <td>{@code id}</td>
    * <td>{@link Product#id}</td>
    * <td>Yes</td>
-   * <td>No</td>
+   * <td>Yes</td>
    * </tr>
    * <tr>
    * <td>{@code lastModifiedDateTime}</td>
    * <td>{@link Product#lastModifiedDateTime}</td>
-   * <td>No</td>
+   * <td>Yes</td>
    * <td>Yes</td>
    * </tr>
    * </table>
@@ -6044,12 +6044,12 @@ if (!class_exists("ProductService", false)) {
      * <td>{@code id}</td>
      * <td>{@link Product#id}</td>
      * <td>Yes</td>
-     * <td>No</td>
+     * <td>Yes</td>
      * </tr>
      * <tr>
      * <td>{@code lastModifiedDateTime}</td>
      * <td>{@link Product#lastModifiedDateTime}</td>
-     * <td>No</td>
+     * <td>Yes</td>
      * <td>Yes</td>
      * </tr>
      * </table>

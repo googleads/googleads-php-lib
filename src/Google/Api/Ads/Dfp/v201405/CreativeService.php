@@ -551,78 +551,6 @@ if (!class_exists("AssetError", false)) {
   }
 }
 
-if (!class_exists("Authentication", false)) {
-  /**
-   * A representation of the authentication protocols that can be used.
-   * @package GoogleApiAdsDfp
-   * @subpackage v201405
-   */
-  class Authentication {
-
-    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
-    const XSI_TYPE = "Authentication";
-
-    /**
-     * @access public
-     * @var string
-     */
-    public $AuthenticationType;
-    private $_parameterMap = array(
-      "Authentication.Type" => "AuthenticationType",
-    );
-
-    /**
-     * Provided for setting non-php-standard named variables
-     * @param $var Variable name to set
-     * @param $value Value to set
-     */
-    public function __set($var, $value) {
-      $this->{$this->_parameterMap[$var]} = $value;
-    }
-
-    /**
-     * Provided for getting non-php-standard named variables
-     * @param $var Variable name to get
-     * @return mixed Variable value
-     */
-    public function __get($var) {
-      if (!isset($this->_parameterMap[$var])) {
-        return null;
-      }
-      return $this->{$this->_parameterMap[$var]};
-    }
-
-    /**
-     * Provided for getting non-php-standard named variables
-     * @return array parameter map
-     */
-    protected function getParameterMap() {
-      return $this->_parameterMap;
-    }
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($AuthenticationType = null) {
-      $this->AuthenticationType = $AuthenticationType;
-    }
-
-  }
-}
-
 if (!class_exists("AuthenticationError", false)) {
   /**
    * An error for an exception that occurred when authenticating.
@@ -1393,6 +1321,51 @@ if (!class_exists("CustomFieldValue", false)) {
       $this->value = $value;
       $this->customFieldId = $customFieldId;
       $this->BaseCustomFieldValueType = $BaseCustomFieldValueType;
+    }
+
+  }
+}
+
+if (!class_exists("CustomFieldValueError", false)) {
+  /**
+   * Errors specific to editing custom field values
+   * @package GoogleApiAdsDfp
+   * @subpackage v201405
+   */
+  class CustomFieldValueError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
+    const XSI_TYPE = "CustomFieldValueError";
+
+    /**
+     * @access public
+     * @var tnsCustomFieldValueErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
     }
 
   }
@@ -2986,7 +2959,7 @@ if (!class_exists("Size", false)) {
   /**
    * Represents the dimensions of an {@link AdUnit}, {@link LineItem} or {@link Creative}.
    * <p>
-   * For interstitial size (out-of-page), {@code Size} must be 1x1.
+   * For interstitial size (out-of-page) and native size, {@code Size} must be 1x1.
    * @package GoogleApiAdsDfp
    * @subpackage v201405
    */
@@ -3062,12 +3035,6 @@ if (!class_exists("SoapRequestHeader", false)) {
     public $applicationName;
 
     /**
-     * @access public
-     * @var Authentication
-     */
-    public $authentication;
-
-    /**
      * Gets the namesapce of this class
      * @return the namespace of this class
      */
@@ -3083,10 +3050,9 @@ if (!class_exists("SoapRequestHeader", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($networkCode = null, $applicationName = null, $authentication = null) {
+    public function __construct($networkCode = null, $applicationName = null) {
       $this->networkCode = $networkCode;
       $this->applicationName = $applicationName;
-      $this->authentication = $authentication;
     }
 
   }
@@ -4584,6 +4550,39 @@ if (!class_exists("CustomCreativeErrorReason", false)) {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
     const XSI_TYPE = "CustomCreativeError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("CustomFieldValueErrorReason", false)) {
+  /**
+   * The reasons for the target error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201405
+   */
+  class CustomFieldValueErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
+    const XSI_TYPE = "CustomFieldValueError.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -7976,7 +7975,6 @@ if (!class_exists("CreativeService", false)) {
       "AssetCreativeTemplateVariableValue" => "AssetCreativeTemplateVariableValue",
       "Asset" => "Asset",
       "AssetError" => "AssetError",
-      "Authentication" => "Authentication",
       "AuthenticationError" => "AuthenticationError",
       "BaseCustomFieldValue" => "BaseCustomFieldValue",
       "BaseFlashCreative" => "BaseFlashCreative",
@@ -7999,6 +7997,7 @@ if (!class_exists("CreativeService", false)) {
       "CustomCreative" => "CustomCreative",
       "CustomCreativeError" => "CustomCreativeError",
       "CustomFieldValue" => "CustomFieldValue",
+      "CustomFieldValueError" => "CustomFieldValueError",
       "Date" => "Date",
       "DateTime" => "DfpDateTime",
       "DateTimeValue" => "DateTimeValue",
@@ -8083,6 +8082,7 @@ if (!class_exists("CreativeService", false)) {
       "CreativeError.Reason" => "CreativeErrorReason",
       "CreativeSetError.Reason" => "CreativeSetErrorReason",
       "CustomCreativeError.Reason" => "CustomCreativeErrorReason",
+      "CustomFieldValueError.Reason" => "CustomFieldValueErrorReason",
       "FeatureError.Reason" => "FeatureErrorReason",
       "FileError.Reason" => "FileErrorReason",
       "Html5Feature" => "Html5Feature",

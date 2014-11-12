@@ -25,7 +25,7 @@
 error_reporting(E_STRICT | E_ALL);
 
 require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
-require_once 'Google/Api/Ads/Dfp/v201405/PublisherQueryLanguageService.php';
+require_once 'Google/Api/Ads/Dfp/v201411/PublisherQueryLanguageService.php';
 
 /**
  * Tests for {@link StatementBuilder}.

@@ -809,6 +809,51 @@ if (!class_exists("CreativeError", false)) {
   }
 }
 
+if (!class_exists("CrossSellError", false)) {
+  /**
+   * Lists all errors associated with cross selling.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201311
+   */
+  class CrossSellError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201311";
+    const XSI_TYPE = "CrossSellError";
+
+    /**
+     * @access public
+     * @var tnsCrossSellErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("CustomFieldValue", false)) {
   /**
    * The value of a {@link CustomField} that does not have a {@link CustomField#dataType}
@@ -3047,8 +3092,8 @@ if (!class_exists("ReservationDetailsError", false)) {
 
 if (!class_exists("ResumeOrders", false)) {
   /**
-   * The action used for resuming {@link Order} objects. All {@link LineItem}
-   * objects within the order will resume as well.
+   * The action used for resuming {@link Order} objects. {@link LineItem} objects within
+   * the order that are eligble to resume will resume as well.
    * @package GoogleApiAdsDfp
    * @subpackage v201311
    */
@@ -4281,6 +4326,39 @@ if (!class_exists("CreativeErrorReason", false)) {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201311";
     const XSI_TYPE = "CreativeError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("CrossSellErrorReason", false)) {
+  /**
+   * The reason of the error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201311
+   */
+  class CrossSellErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201311";
+    const XSI_TYPE = "CrossSellError.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -6949,6 +7027,7 @@ if (!class_exists("OrderService", false)) {
       "CompanyCreditStatusError" => "CompanyCreditStatusError",
       "ContentMetadataTargetingError" => "ContentMetadataTargetingError",
       "CreativeError" => "CreativeError",
+      "CrossSellError" => "CrossSellError",
       "CustomFieldValue" => "CustomFieldValue",
       "CustomFieldValueError" => "CustomFieldValueError",
       "CustomTargetingError" => "CustomTargetingError",
@@ -7032,6 +7111,7 @@ if (!class_exists("OrderService", false)) {
       "CompanyCreditStatusError.Reason" => "CompanyCreditStatusErrorReason",
       "ContentMetadataTargetingError.Reason" => "ContentMetadataTargetingErrorReason",
       "CreativeError.Reason" => "CreativeErrorReason",
+      "CrossSellError.Reason" => "CrossSellErrorReason",
       "CustomFieldValueError.Reason" => "CustomFieldValueErrorReason",
       "CustomTargetingError.Reason" => "CustomTargetingErrorReason",
       "DateTimeRangeTargetingError.Reason" => "DateTimeRangeTargetingErrorReason",

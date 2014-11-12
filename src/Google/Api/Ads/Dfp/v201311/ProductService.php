@@ -1910,7 +1910,7 @@ if (!class_exists("Product", false)) {
 
     /**
      * @access public
-     * @var string
+     * @var integer
      */
     public $id;
 
@@ -2639,7 +2639,7 @@ if (!class_exists("Size", false)) {
   /**
    * Represents the dimensions of an {@link AdUnit}, {@link LineItem} or {@link Creative}.
    * <p>
-   * For interstitial size (out-of-page), {@code Size} must be 1x1.
+   * For interstitial size (out-of-page) and native size, {@code Size} must be 1x1.
    * @package GoogleApiAdsDfp
    * @subpackage v201311
    */
@@ -4301,89 +4301,6 @@ if (!class_exists("TimeUnit", false)) {
   }
 }
 
-if (!class_exists("GetProduct", false)) {
-  /**
-   * Returns the {@link Product} uniquely identified by the given ID.
-   * 
-   * @param productId the ID of the product, which must already exist
-   * @return the {@code Product} uniquely identified by ID
-   * @package GoogleApiAdsDfp
-   * @subpackage v201311
-   */
-  class GetProduct {
-
-    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201311";
-    const XSI_TYPE = "";
-
-    /**
-     * @access public
-     * @var string
-     */
-    public $productId;
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($productId = null) {
-      $this->productId = $productId;
-    }
-
-  }
-}
-
-if (!class_exists("GetProductResponse", false)) {
-  /**
-   * 
-   * @package GoogleApiAdsDfp
-   * @subpackage v201311
-   */
-  class GetProductResponse {
-
-    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201311";
-    const XSI_TYPE = "";
-
-    /**
-     * @access public
-     * @var Product
-     */
-    public $rval;
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($rval = null) {
-      $this->rval = $rval;
-    }
-
-  }
-}
-
 if (!class_exists("GetProductsByStatement", false)) {
   /**
    * Gets a {@link ProductPage} of {@link Product} objects that satisfy the criteria specified by
@@ -4447,12 +4364,12 @@ if (!class_exists("GetProductsByStatement", false)) {
    * <td>{@code id}</td>
    * <td>{@link Product#id}</td>
    * <td>Yes</td>
-   * <td>No</td>
+   * <td>Yes</td>
    * </tr>
    * <tr>
    * <td>{@code lastModifiedDateTime}</td>
    * <td>{@link Product#lastModifiedDateTime}</td>
-   * <td>No</td>
+   * <td>Yes</td>
    * <td>Yes</td>
    * </tr>
    * </table>
@@ -5792,8 +5709,6 @@ if (!class_exists("ProductService", false)) {
       "StatementError.Reason" => "StatementErrorReason",
       "StringLengthError.Reason" => "StringLengthErrorReason",
       "TimeUnit" => "TimeUnit",
-      "getProduct" => "GetProduct",
-      "getProductResponse" => "GetProductResponse",
       "getProductsByStatement" => "GetProductsByStatement",
       "getProductsByStatementResponse" => "GetProductsByStatementResponse",
       "performProductAction" => "PerformProductAction",
@@ -5814,17 +5729,6 @@ if (!class_exists("ProductService", false)) {
       $options["classmap"] = self::$classmap;
       parent::__construct($wsdl, $options, $user, self::SERVICE_NAME,
           self::WSDL_NAMESPACE);
-    }
-    /**
-     * Returns the {@link Product} uniquely identified by the given ID.
-     * 
-     * @param productId the ID of the product, which must already exist
-     * @return the {@code Product} uniquely identified by ID
-     */
-    public function getProduct($productId) {
-      $args = new GetProduct($productId);
-      $result = $this->__soapCall("getProduct", array($args));
-      return $result->rval;
     }
     /**
      * Gets a {@link ProductPage} of {@link Product} objects that satisfy the criteria specified by
@@ -5888,12 +5792,12 @@ if (!class_exists("ProductService", false)) {
      * <td>{@code id}</td>
      * <td>{@link Product#id}</td>
      * <td>Yes</td>
-     * <td>No</td>
+     * <td>Yes</td>
      * </tr>
      * <tr>
      * <td>{@code lastModifiedDateTime}</td>
      * <td>{@link Product#lastModifiedDateTime}</td>
-     * <td>No</td>
+     * <td>Yes</td>
      * <td>Yes</td>
      * </tr>
      * </table>

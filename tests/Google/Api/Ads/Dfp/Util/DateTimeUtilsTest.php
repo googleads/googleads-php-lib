@@ -26,7 +26,7 @@
 error_reporting(E_STRICT | E_ALL);
 
 require_once 'Google/Api/Ads/Dfp/Util/DateTimeUtils.php';
-require_once 'Google/Api/Ads/Dfp/v201403/PublisherQueryLanguageService.php';
+require_once 'Google/Api/Ads/Dfp/v201411/PublisherQueryLanguageService.php';
 
 /**
  * Unit tests for {@link DateTimeUtils}.

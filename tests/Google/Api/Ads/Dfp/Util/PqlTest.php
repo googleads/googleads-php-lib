@@ -25,7 +25,7 @@
 error_reporting(E_STRICT | E_ALL);
 
 require_once 'Google/Api/Ads/Dfp/Util/Pql.php';
-require_once 'Google/Api/Ads/Dfp/v201408/PublisherQueryLanguageService.php';
+require_once 'Google/Api/Ads/Dfp/v201411/PublisherQueryLanguageService.php';
 
 /**
  * Tests for {@link Pql}.
@@ -57,6 +57,8 @@ class PqlTest extends PHPUnit_Framework_TestCase {
 
   private $setValue1;
 
+  private $targeting1;
+
   protected function setUp() {
     $this->column1 = new ColumnType('Id');
     $this->column2 = new ColumnType('Name');
@@ -79,6 +81,13 @@ class PqlTest extends PHPUnit_Framework_TestCase {
     $values = [new NumberValue('23'), new NumberValue('42'),
         new NumberValue('5'), new NumberValue('10'), new NumberValue('1')];
     $this->setValue1 = new SetValue($values);
+
+    $adUnitTargeting = new AdUnitTargeting();
+    $adUnitTargeting->adUnitId = '100';
+    $inventoryTargeting = new InventoryTargeting();
+    $inventoryTargeting->targetedAdUnits = array($adUnitTargeting);
+    $this->targeting1 = new Targeting();
+    $this->targeting1->inventoryTargeting = $inventoryTargeting;
   }
 
   /**
@@ -105,6 +114,9 @@ class PqlTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals(5, $values[2]->value);
     $this->assertEquals(10, $values[3]->value);
     $this->assertEquals(1, $values[4]->value);
+
+    $this->assertEquals('100', Pql::CreateValue($this->targeting1)
+        ->value->inventoryTargeting->targetedAdUnits[0]->adUnitId);
   }
 
   /**
@@ -141,6 +153,14 @@ class PqlTest extends PHPUnit_Framework_TestCase {
    */
   public function testToStringWithUnsupportedValueTypeThrowsException() {
     Pql::ToString(new MyValue());
+  }
+
+  /**
+   * @covers Pql::ToString
+   * @expectedException InvalidArgumentException
+   */
+  public function testToStringWithTargetingValueTypeThrowsException() {
+    Pql::ToString(new TargetingValue());
   }
 
   /**

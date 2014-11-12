@@ -2775,7 +2775,7 @@ if (!class_exists("Size", false)) {
   /**
    * Represents the dimensions of an {@link AdUnit}, {@link LineItem} or {@link Creative}.
    * <p>
-   * For interstitial size (out-of-page), {@code Size} must be 1x1.
+   * For interstitial size (out-of-page) and native size, {@code Size} must be 1x1.
    * @package GoogleApiAdsDfp
    * @subpackage v201306
    */
@@ -4505,7 +4505,7 @@ if (!class_exists("GetProductsByStatement", false)) {
    * <tr>
    * <td>{@code lastModifiedDateTime}</td>
    * <td>{@link Product#lastModifiedDateTime}</td>
-   * <td>No</td>
+   * <td>Yes</td>
    * <td>Yes</td>
    * </tr>
    * </table>
@@ -6005,7 +6005,7 @@ if (!class_exists("ProductService", false)) {
      * <tr>
      * <td>{@code lastModifiedDateTime}</td>
      * <td>{@link Product#lastModifiedDateTime}</td>
-     * <td>No</td>
+     * <td>Yes</td>
      * <td>Yes</td>
      * </tr>
      * </table>

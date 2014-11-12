@@ -68,7 +68,7 @@ class Pql {
         return new TextValue($value);
       } else if ($value instanceof DfpDateTime) {
         return new DateTimeValue($value);
-      } else if (class_exists('Date', false) && $value instanceof Date) {
+      } else if ($value instanceof Date) {
         return new DateValue($value);
       } else if (is_array($value)) {
         $setValue = new SetValue();
@@ -78,6 +78,9 @@ class Pql {
         }
         $setValue->values = $values;
         return $setValue;
+      } else if (class_exists('TargetingValue', false) &&
+          $value instanceof Targeting) {
+        return new TargetingValue($value);
       } else {
         throw new InvalidArgumentException(sprintf("Unsupported value type "
             . "[%s]", get_class($value)));

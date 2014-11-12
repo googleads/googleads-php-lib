@@ -1254,7 +1254,7 @@ if (!class_exists("ProductBaseRate", false)) {
 
     /**
      * @access public
-     * @var string
+     * @var integer
      */
     public $productId;
 

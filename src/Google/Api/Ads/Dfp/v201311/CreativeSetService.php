@@ -802,6 +802,51 @@ if (!class_exists("CustomCreativeError", false)) {
   }
 }
 
+if (!class_exists("CustomFieldValueError", false)) {
+  /**
+   * Errors specific to editing custom field values
+   * @package GoogleApiAdsDfp
+   * @subpackage v201311
+   */
+  class CustomFieldValueError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201311";
+    const XSI_TYPE = "CustomFieldValueError";
+
+    /**
+     * @access public
+     * @var tnsCustomFieldValueErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("Date", false)) {
   /**
    * Represents a date.
@@ -2779,6 +2824,39 @@ if (!class_exists("CustomCreativeErrorReason", false)) {
   }
 }
 
+if (!class_exists("CustomFieldValueErrorReason", false)) {
+  /**
+   * The reasons for the target error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201311
+   */
+  class CustomFieldValueErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201311";
+    const XSI_TYPE = "CustomFieldValueError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("FeatureErrorReason", false)) {
   /**
    * A feature is being used that is not enabled on the current network.
@@ -4306,6 +4384,7 @@ if (!class_exists("CreativeSetService", false)) {
       "CreativeSetError" => "CreativeSetError",
       "CreativeSetPage" => "CreativeSetPage",
       "CustomCreativeError" => "CustomCreativeError",
+      "CustomFieldValueError" => "CustomFieldValueError",
       "Date" => "Date",
       "DateTime" => "DfpDateTime",
       "DateTimeValue" => "DateTimeValue",
@@ -4355,6 +4434,7 @@ if (!class_exists("CreativeSetService", false)) {
       "CreativeError.Reason" => "CreativeErrorReason",
       "CreativeSetError.Reason" => "CreativeSetErrorReason",
       "CustomCreativeError.Reason" => "CustomCreativeErrorReason",
+      "CustomFieldValueError.Reason" => "CustomFieldValueErrorReason",
       "FeatureError.Reason" => "FeatureErrorReason",
       "FileError.Reason" => "FileErrorReason",
       "ImageError.Reason" => "ImageErrorReason",

@@ -750,6 +750,51 @@ if (!class_exists("CompanyPage", false)) {
   }
 }
 
+if (!class_exists("CrossSellError", false)) {
+  /**
+   * Lists all errors associated with cross selling.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201403
+   */
+  class CrossSellError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
+    const XSI_TYPE = "CrossSellError";
+
+    /**
+     * @access public
+     * @var tnsCrossSellErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("Date", false)) {
   /**
    * Represents a date.
@@ -2215,6 +2260,39 @@ if (!class_exists("CompanyErrorReason", false)) {
   }
 }
 
+if (!class_exists("CrossSellErrorReason", false)) {
+  /**
+   * The reason of the error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201403
+   */
+  class CrossSellErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
+    const XSI_TYPE = "CrossSellError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("FeatureErrorReason", false)) {
   /**
    * A feature is being used that is not enabled on the current network.
@@ -3325,6 +3403,7 @@ if (!class_exists("CompanyService", false)) {
       "Company" => "Company",
       "CompanyError" => "CompanyError",
       "CompanyPage" => "CompanyPage",
+      "CrossSellError" => "CrossSellError",
       "Date" => "Date",
       "DateTime" => "DfpDateTime",
       "DateTimeValue" => "DateTimeValue",
@@ -3362,6 +3441,7 @@ if (!class_exists("CompanyService", false)) {
       "Company.CreditStatus" => "CompanyCreditStatus",
       "Company.Type" => "CompanyType",
       "CompanyError.Reason" => "CompanyErrorReason",
+      "CrossSellError.Reason" => "CrossSellErrorReason",
       "FeatureError.Reason" => "FeatureErrorReason",
       "InternalApiError.Reason" => "InternalApiErrorReason",
       "InvalidEmailError.Reason" => "InvalidEmailErrorReason",

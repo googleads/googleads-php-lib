@@ -1,3 +1,10 @@
+### 5.6.0
+
+DFP:
+  - Removed examples for v201311 since it is deprecated. See the [deprecation schedule](https://developers.google.com/doubleclick-publishers/docs/deprecation) for more information.
+  - Added support for v201411.
+  - Added examples for [Sales Manager services](https://developers.google.com/doubleclick-publishers/docs/sales/index).
+
 ### 5.5.2
 
 AdWords:
