@@ -60,9 +60,6 @@ class DfpUser extends AdsUser {
   private $libVersion;
   private $libName;
 
-  private $defaultVersion;
-  private $defaultServer;
-
   private $email;
   private $password;
   private $applicationName;
@@ -121,8 +118,8 @@ class DfpUser extends AdsUser {
     $apiProps = ApiPropertiesUtils::ParseApiPropertiesFile(dirname(__FILE__) .
         '/api.properties');
     $versions = explode(',', $apiProps['api.versions']);
-    $this->defaultVersion = $versions[count($versions) - 1];
-    $this->defaultServer = $apiProps['api.server'];
+    $defaultVersion = $versions[count($versions) - 1];
+    $defaultServer = $apiProps['api.server'];
 
     if (isset($authenticationIniPath)) {
       $authenticationIni =
@@ -157,8 +154,8 @@ class DfpUser extends AdsUser {
     }
 
     $this->loadSettings($settingsIniPath,
-        $this->defaultVersion,
-        $this->defaultServer,
+        $defaultVersion,
+        $defaultServer,
         getcwd(), dirname(__FILE__));
   }
 

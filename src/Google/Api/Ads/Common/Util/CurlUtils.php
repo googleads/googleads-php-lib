@@ -24,19 +24,28 @@
  * @copyright  2011, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Eric Koleda
  * @author     Vincent Tsao
  */
 
 /**
  * A collection of utility methods for working with cURL.
+ *
  * @package GoogleApiAdsCommon
  * @subpackage Util
  */
 class CurlUtils {
 
   /**
-   * Creates a new cURL session with the default options applied.
+   * Creates a new cURL session with the following default options applied. Use
+   * {@link #SetOpt} to change them. Proxy and SSL options should be set in the
+   * settings.ini file since they are more commonly configured options.
+   *
+   * CURLOPT_FOLLOWLOCATION - true, unless open_basedir is set.
+   * CURLOPT_HEADER - false.
+   * CURLOPT_RETURNTRANSFER - true.
+   * CURLOPT_ENCODING - 'gzip'.
+   * CURLOPT_USERAGENT - 'curl, gzip'.
+   *
    * @param string $url the URL of the resource to connect to
    * @return the cURL handle for the new session
    */
@@ -44,9 +53,9 @@ class CurlUtils {
     $ch = $this->Init($url);
 
     // Default options.
-    $this->SetOpt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
-    $this->SetOpt($ch, CURLOPT_HEADER, FALSE);
-    $this->SetOpt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+    $this->SetOpt($ch, CURLOPT_FOLLOWLOCATION, empty(ini_get('open_basedir')));
+    $this->SetOpt($ch, CURLOPT_HEADER, false);
+    $this->SetOpt($ch, CURLOPT_RETURNTRANSFER, true);
     $this->SetOpt($ch, CURLOPT_ENCODING, 'gzip');
     $this->SetOpt($ch, CURLOPT_USERAGENT, 'curl, gzip');
 
@@ -68,7 +77,7 @@ class CurlUtils {
       $this->SetOpt($ch, CURLOPT_SSL_VERIFYPEER, SSL_VERIFY_PEER);
     } else {
       // Default to disabled, for backwards compatibility.
-      $this->SetOpt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+      $this->SetOpt($ch, CURLOPT_SSL_VERIFYPEER, false);
     }
     if (defined('SSL_VERIFY_HOST') && SSL_VERIFY_HOST != '') {
       if (SSL_VERIFY_HOST) {
@@ -76,10 +85,10 @@ class CurlUtils {
         // host in the request.
         $this->SetOpt($ch, CURLOPT_SSL_VERIFYHOST, 2);
       } else {
-        $this->SetOpt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+        $this->SetOpt($ch, CURLOPT_SSL_VERIFYHOST, false);
       }
     } else {
-      $this->SetOpt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+      $this->SetOpt($ch, CURLOPT_SSL_VERIFYHOST, false);
     }
     if (defined('SSL_CA_PATH') && SSL_CA_PATH != '') {
       $this->SetOpt($ch, CURLOPT_CAPATH, SSL_CA_PATH);
@@ -95,7 +104,7 @@ class CurlUtils {
    * Wraps the global curl function
    * {@link http://php.net/manual/en/function.curl-init.php}.
    */
-  public function Init($url = NULL) {
+  public function Init($url = null) {
     return curl_init($url);
   }
 

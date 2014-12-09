@@ -40,8 +40,6 @@ require_once dirname(__FILE__) . '/../../Common/Util/XmlUtils.php';
  */
 class ReportUtils {
 
-  const CLIENT_LOGIN_FORMAT = 'GoogleLogin auth=%s';
-  const FINAL_RETURN_MONEY_IN_MICROS_VERSION = "v201402";
   const MINIMUM_SKIP_HEADER_VERSION = "v201409";
 
   /**
@@ -84,8 +82,6 @@ class ReportUtils {
    * @param string $path an optional path of the file to download the report to
    * @param AdWordsUser $user the user that created the ReportDefinition
    * @param array $options the option to use when downloading the report:
-   *     {boolean} returnMoneyInMicros: if the money values in the report
-   *         should be returned in micros
    *     {boolean} skipReportHeader: if report responses should skip the header
    *         row containing the report name and date range
    *     {boolean} skipReportSummary: if report responses should skip the
@@ -334,12 +330,6 @@ class ReportUtils {
           . 'specified for report downloads.');
     }
     // Flags.
-    if (isset($options['returnMoneyInMicros'])) {
-      DeprecationUtils::CheckUsingReturnMoneyInMicrosWithUnsupportedVersion(
-          self::FINAL_RETURN_MONEY_IN_MICROS_VERSION, $version);
-      $headers['returnMoneyInMicros'] =
-          $options['returnMoneyInMicros'] ? 'true' : 'false';
-    }
     if (isset($options['skipReportHeader'])) {
       DeprecationUtils::CheckUsingSkipReportHeaderWithUnsupportedVersion(
           'skipReportHeader', self::MINIMUM_SKIP_HEADER_VERSION, $version);

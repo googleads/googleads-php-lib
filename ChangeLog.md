@@ -1,3 +1,12 @@
+### 5.7.0
+
+AdWords:
+  - Fixed [issue #58](https://github.com/googleads/googleads-php-lib/issues/58).
+  - Removed support for v201402 as it is now sunset.
+
+DFP:
+  - Fixed [issue #1](https://github.com/googleads/googleads-php-lib/issues/1).
+
 ### 5.6.0
 
 DFP:

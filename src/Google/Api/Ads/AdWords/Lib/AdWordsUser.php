@@ -62,9 +62,6 @@ class AdWordsUser extends AdsUser {
   private $libVersion;
   private $libName;
 
-  private $defaultVersion;
-  private $defaultServer;
-
   private $userAgent;
 
   /**
@@ -116,8 +113,8 @@ class AdWordsUser extends AdsUser {
     $apiProps = ApiPropertiesUtils::ParseApiPropertiesFile(dirname(__FILE__) .
         '/api.properties');
     $versions = explode(',', $apiProps['api.versions']);
-    $this->defaultVersion = $versions[count($versions) - 1];
-    $this->defaultServer = $apiProps['api.server'];
+    $defaultVersion = $versions[count($versions) - 1];
+    $defaultServer = $apiProps['api.server'];
 
     if (isset($authenticationIniPath)) {
       $authenticationIni =
@@ -157,8 +154,8 @@ class AdWordsUser extends AdsUser {
     }
 
     $this->LoadSettings($settingsIniPath,
-        $this->defaultVersion,
-        $this->defaultServer,
+        $defaultVersion,
+        $defaultServer,
         getcwd(), dirname(__FILE__));
   }
 

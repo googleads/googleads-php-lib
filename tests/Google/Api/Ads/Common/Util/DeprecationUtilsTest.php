@@ -104,21 +104,6 @@ class DeprecationUtilsTest extends PHPUnit_Framework_TestCase {
    * @expectedException ServiceException
    */
   public function
-      testCheckUsingReturnMoneyInMicrosWithUnsupportedVersion_UsingUnsupportedVersion() {
-    DeprecationUtils::CheckUsingReturnMoneyInMicrosWithUnsupportedVersion('v201402', 'v201406');
-  }
-
-  public function
-      testCheckUsingReturnMoneyInMicrosWithUnsupportedVersion_UsingWithAnyVersion() {
-
-    DeprecationUtils::CheckUsingReturnMoneyInMicrosWithUnsupportedVersion('v201402', 'v201402');
-    DeprecationUtils::CheckUsingReturnMoneyInMicrosWithUnsupportedVersion('v201402', 'v201309');
-  }
-
-  /**
-   * @expectedException ServiceException
-   */
-  public function
       testCheckUsingSkipReportHeaderWithUnsupportedVersion_UsingUnsupportedVersion() {
     DeprecationUtils::CheckUsingSkipReportHeaderWithUnsupportedVersion('skipReportHeader', 'v201409', 'v201402');
   }
