@@ -53,7 +53,8 @@ class CurlUtils {
     $ch = $this->Init($url);
 
     // Default options.
-    $this->SetOpt($ch, CURLOPT_FOLLOWLOCATION, empty(ini_get('open_basedir')));
+    $openBasedir = ini_get('open_basedir');
+    $this->SetOpt($ch, CURLOPT_FOLLOWLOCATION, empty($openBasedir));
     $this->SetOpt($ch, CURLOPT_HEADER, false);
     $this->SetOpt($ch, CURLOPT_RETURNTRANSFER, true);
     $this->SetOpt($ch, CURLOPT_ENCODING, 'gzip');

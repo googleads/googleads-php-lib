@@ -1,3 +1,11 @@
+### 5.7.1
+
+AdWords:
+  - Refactored Google Places examples to use Google My Business (GMB) instead.
+
+Common:
+  - Fixed [issue #74](https://github.com/googleads/googleads-php-lib/issues/74).
+
 ### 5.7.0
 
 AdWords:
