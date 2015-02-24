@@ -1,6 +1,6 @@
 <?php
 /**
- * This example updates the destination URL of a keyword. To get keywords, run
+ * This example updates the final URL of a keyword. To get keywords, run
  * GetKeywords.php.
  *
  * Tags: AdGroupCriterionService.mutate
@@ -54,8 +54,8 @@ function UpdateKeywordExample(AdWordsUser $user, $adGroupId, $criterionId) {
   // instead of Keyword to avoid having to set keyword-specific fields.
   $adGroupCriterion->criterion = new Criterion($criterionId);
 
-  // Update destination URL.
-  $adGroupCriterion->destinationUrl = 'http://www.example.com/new';
+  // Update final URL.
+  $adGroupCriterion->finalUrls = array('http://www.example.com/new');
 
   // Create operation.
   $operation = new AdGroupCriterionOperation();

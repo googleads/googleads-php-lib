@@ -1,3 +1,16 @@
+### 5.8.0
+
+AdWords:
+  - Improved targetAll comments in the AddAdGroups.php examples.
+  - Added code examples for upgraded URLs.
+
+DFP:
+  - Added support for v201502.
+  - Removed support for v201311, v201308, and v201306.
+  - Removed examples for v201403.
+  - Updated ForecastService examples.
+  - Removed support for ClientLogin with the removal of v201311 and earlier.
+
 ### 5.7.1
 
 AdWords:

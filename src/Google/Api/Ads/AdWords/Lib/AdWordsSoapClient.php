@@ -99,15 +99,11 @@ class AdWordsSoapClient extends AdsSoapClient {
   }
 
   /**
-   * Removes the authentication token from the request before being logged.
-   * @param string $request the request with sensitive data to remove
-   * @return string the request with the authentication token removed
-   * @access protected
+   * @see AdsSoapClient::RemoveSensitiveInfo()
    */
   protected function RemoveSensitiveInfo($request) {
-    $result = preg_replace(
-        '/(.*authToken>)(.*)(<\/.*authToken>.*)/sU', '\1*****\3', $request);
-    return isset($result) ? $result : $request;
+    // No-op, there is no sensitive information to remove from AdWords requests.
+    return $request;
   }
 
   /**

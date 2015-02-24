@@ -304,7 +304,7 @@ function CreateAdsWithCustomizations(AdWordsUser $user, $adGroupIds) {
   $textAd->headline = 'Luxury Cruise to {=CustomizerFeed.Name}';
   $textAd->description1 = 'Only {=CustomizerFeed.Price}';
   $textAd->description2 = 'Offer ends in {=countdown(CustomizerFeed.Date)}!';
-  $textAd->url = 'http://www.example.com';
+  $textAd->finalUrls = array('http://www.example.com');
   $textAd->displayUrl = 'www.example.com';
 
   // We add the same ad to both ad groups. When they serve, they will show

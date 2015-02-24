@@ -368,8 +368,7 @@ if (!class_exists("AuthenticationError", false)) {
 
 if (!class_exists("CollectionSizeError", false)) {
   /**
-   * Errors associated with the size of the given collection being
-   * out of bounds.
+   * Error for the size of the collection being too large
    * @package GoogleApiAdsDfp
    * @subpackage v201403
    */
@@ -1079,6 +1078,45 @@ if (!class_exists("DeleteCustomTargetingValues", false)) {
     public function __construct($CustomTargetingValueActionType = null) {
       parent::__construct();
       $this->CustomTargetingValueActionType = $CustomTargetingValueActionType;
+    }
+
+  }
+}
+
+if (!class_exists("EntityLimitReachedError", false)) {
+  /**
+   * An error that occurs when creating an entity if the limit on the number of allowed entities for
+   * a network has already been reached.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201403
+   */
+  class EntityLimitReachedError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
+    const XSI_TYPE = "EntityLimitReachedError";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
     }
 
   }
@@ -2158,7 +2196,7 @@ if (!class_exists("AuthenticationErrorReason", false)) {
 
 if (!class_exists("CollectionSizeErrorReason", false)) {
   /**
-   * The reasons for the target error.
+   * The value returned if the actual value is not exposed by the requested API version.
    * @package GoogleApiAdsDfp
    * @subpackage v201403
    */
@@ -3839,6 +3877,7 @@ if (!class_exists("CustomTargetingService", false)) {
       "DateValue" => "DateValue",
       "DeleteCustomTargetingKeys" => "DeleteCustomTargetingKeys",
       "DeleteCustomTargetingValues" => "DeleteCustomTargetingValues",
+      "EntityLimitReachedError" => "EntityLimitReachedError",
       "FeatureError" => "FeatureError",
       "InternalApiError" => "InternalApiError",
       "NotNullError" => "NotNullError",

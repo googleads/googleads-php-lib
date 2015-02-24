@@ -658,6 +658,51 @@ if (!class_exists("BrowserTargeting", false)) {
   }
 }
 
+if (!class_exists("CollectionSizeError", false)) {
+  /**
+   * Error for the size of the collection being too large
+   * @package GoogleApiAdsDfp
+   * @subpackage v201405
+   */
+  class CollectionSizeError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
+    const XSI_TYPE = "CollectionSizeError";
+
+    /**
+     * @access public
+     * @var tnsCollectionSizeErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("CommonError", false)) {
   /**
    * A place for common errors that can be used across services.
@@ -1303,6 +1348,90 @@ if (!class_exists("DropDownCustomFieldValue", false)) {
       $this->customFieldOptionId = $customFieldOptionId;
       $this->customFieldId = $customFieldId;
       $this->BaseCustomFieldValueType = $BaseCustomFieldValueType;
+    }
+
+  }
+}
+
+if (!class_exists("EntityChildrenLimitReachedError", false)) {
+  /**
+   * Lists errors relating to having too many children on an entity.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201405
+   */
+  class EntityChildrenLimitReachedError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
+    const XSI_TYPE = "EntityChildrenLimitReachedError";
+
+    /**
+     * @access public
+     * @var tnsEntityChildrenLimitReachedErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
+if (!class_exists("EntityLimitReachedError", false)) {
+  /**
+   * An error that occurs when creating an entity if the limit on the number of allowed entities for
+   * a network has already been reached.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201405
+   */
+  class EntityLimitReachedError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
+    const XSI_TYPE = "EntityLimitReachedError";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
     }
 
   }
@@ -4179,6 +4308,39 @@ if (!class_exists("BaseRateErrorReason", false)) {
   }
 }
 
+if (!class_exists("CollectionSizeErrorReason", false)) {
+  /**
+   * The value returned if the actual value is not exposed by the requested API version.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201405
+   */
+  class CollectionSizeErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
+    const XSI_TYPE = "CollectionSizeError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("CommonErrorReason", false)) {
   /**
    * Describes reasons for common errors
@@ -4388,6 +4550,39 @@ if (!class_exists("AudienceSegmentCriteriaComparisonOperator", false)) {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
     const XSI_TYPE = "AudienceSegmentCriteria.ComparisonOperator";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("EntityChildrenLimitReachedErrorReason", false)) {
+  /**
+   * The reasons for the entity children limit reached error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201405
+   */
+  class EntityChildrenLimitReachedErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
+    const XSI_TYPE = "EntityChildrenLimitReachedError.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -6834,6 +7029,7 @@ if (!class_exists("ProductTemplateService", false)) {
       "BrowserLanguage" => "BrowserLanguage",
       "BrowserLanguageTargeting" => "BrowserLanguageTargeting",
       "BrowserTargeting" => "BrowserTargeting",
+      "CollectionSizeError" => "CollectionSizeError",
       "CommonError" => "CommonError",
       "CreativePlaceholder" => "CreativePlaceholder",
       "CustomCriteria" => "CustomCriteria",
@@ -6856,6 +7052,8 @@ if (!class_exists("ProductTemplateService", false)) {
       "DeviceManufacturer" => "DeviceManufacturer",
       "DeviceManufacturerTargeting" => "DeviceManufacturerTargeting",
       "DropDownCustomFieldValue" => "DropDownCustomFieldValue",
+      "EntityChildrenLimitReachedError" => "EntityChildrenLimitReachedError",
+      "EntityLimitReachedError" => "EntityLimitReachedError",
       "FeatureError" => "FeatureError",
       "FrequencyCap" => "FrequencyCap",
       "FrequencyCapError" => "FrequencyCapError",
@@ -6914,6 +7112,7 @@ if (!class_exists("ProductTemplateService", false)) {
       "ApiVersionError.Reason" => "ApiVersionErrorReason",
       "AuthenticationError.Reason" => "AuthenticationErrorReason",
       "BaseRateError.Reason" => "BaseRateErrorReason",
+      "CollectionSizeError.Reason" => "CollectionSizeErrorReason",
       "CommonError.Reason" => "CommonErrorReason",
       "CreativeSizeType" => "CreativeSizeType",
       "CustomCriteria.ComparisonOperator" => "CustomCriteriaComparisonOperator",
@@ -6921,6 +7120,7 @@ if (!class_exists("ProductTemplateService", false)) {
       "CustomFieldValueError.Reason" => "CustomFieldValueErrorReason",
       "CustomTargetingError.Reason" => "CustomTargetingErrorReason",
       "AudienceSegmentCriteria.ComparisonOperator" => "AudienceSegmentCriteriaComparisonOperator",
+      "EntityChildrenLimitReachedError.Reason" => "EntityChildrenLimitReachedErrorReason",
       "FeatureError.Reason" => "FeatureErrorReason",
       "FrequencyCapError.Reason" => "FrequencyCapErrorReason",
       "GenericTargetingError.Reason" => "GenericTargetingErrorReason",

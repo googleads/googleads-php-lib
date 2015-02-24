@@ -50,8 +50,8 @@ function AddClickToDownloadAd(AdWordsUser $user, $adGroupId) {
 
   $clickToDownloadAppAd->name = 'Ad for demo game';
   $clickToDownloadAppAd->templateId = 353;
-  $clickToDownloadAppAd->url =
-      'http://play.google.com/store/apps/details?id=com.example.demogame';
+  $clickToDownloadAppAd->finalUrls = array(
+      'http://play.google.com/store/apps/details?id=com.example.demogame');
   $clickToDownloadAppAd->displayUrl = 'play.google.com';
 
   // Create the template elements for the ad. You can refer to
@@ -109,7 +109,7 @@ function AddClickToDownloadAd(AdWordsUser $user, $adGroupId) {
 
   foreach ($result->value as $adGroupAd) {
     printf('New click-to-download ad with ID = %d and URL = "%s" ' .
-        "was created.\n", $adGroupAd->ad->id, $adGroupAd->ad->url);
+        "was created.\n", $adGroupAd->ad->id, $adGroupAd->ad->finalUrls[0]);
   }
 }
 

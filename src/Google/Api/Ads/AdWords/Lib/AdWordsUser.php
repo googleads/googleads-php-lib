@@ -33,7 +33,6 @@
  */
 require_once dirname(__FILE__) . '/../../Common/Lib/AdsUser.php';
 require_once dirname(__FILE__) . '/../../Common/Util/ApiPropertiesUtils.php';
-require_once dirname(__FILE__) . '/../../Common/Util/AuthToken.php';
 require_once dirname(__FILE__) . '/../../Common/Util/DeprecationUtils.php';
 require_once dirname(__FILE__) . '/../Util/ReportUtils.php';
 require_once 'AdWordsSoapClientFactory.php';

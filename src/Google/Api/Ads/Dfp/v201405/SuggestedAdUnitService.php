@@ -348,6 +348,51 @@ if (!class_exists("AuthenticationError", false)) {
   }
 }
 
+if (!class_exists("CollectionSizeError", false)) {
+  /**
+   * Error for the size of the collection being too large
+   * @package GoogleApiAdsDfp
+   * @subpackage v201405
+   */
+  class CollectionSizeError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
+    const XSI_TYPE = "CollectionSizeError";
+
+    /**
+     * @access public
+     * @var tnsCollectionSizeErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("CommonError", false)) {
   /**
    * A place for common errors that can be used across services.
@@ -667,6 +712,51 @@ if (!class_exists("AdUnitSize", false)) {
       $this->environmentType = $environmentType;
       $this->companions = $companions;
       $this->fullDisplayString = $fullDisplayString;
+    }
+
+  }
+}
+
+if (!class_exists("InventoryUnitSizesError", false)) {
+  /**
+   * An error specifically for InventoryUnitSizes.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201405
+   */
+  class InventoryUnitSizesError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
+    const XSI_TYPE = "InventoryUnitSizesError";
+
+    /**
+     * @access public
+     * @var tnsInventoryUnitSizesErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
     }
 
   }
@@ -1906,6 +1996,39 @@ if (!class_exists("AuthenticationErrorReason", false)) {
   }
 }
 
+if (!class_exists("CollectionSizeErrorReason", false)) {
+  /**
+   * The value returned if the actual value is not exposed by the requested API version.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201405
+   */
+  class CollectionSizeErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
+    const XSI_TYPE = "CollectionSizeError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("CommonErrorReason", false)) {
   /**
    * Describes reasons for common errors
@@ -2015,6 +2138,39 @@ if (!class_exists("InternalApiErrorReason", false)) {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
     const XSI_TYPE = "InternalApiError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("InventoryUnitSizesErrorReason", false)) {
+  /**
+   * All possible reasons the error can be thrown.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201405
+   */
+  class InventoryUnitSizesErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
+    const XSI_TYPE = "InventoryUnitSizesError.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -2982,6 +3138,7 @@ if (!class_exists("SuggestedAdUnitService", false)) {
       "ApproveSuggestedAdUnit" => "ApproveSuggestedAdUnit",
       "AuthenticationError" => "AuthenticationError",
       "BooleanValue" => "BooleanValue",
+      "CollectionSizeError" => "CollectionSizeError",
       "CommonError" => "CommonError",
       "Date" => "Date",
       "DateTime" => "DfpDateTime",
@@ -2990,6 +3147,7 @@ if (!class_exists("SuggestedAdUnitService", false)) {
       "FeatureError" => "FeatureError",
       "InternalApiError" => "InternalApiError",
       "AdUnitSize" => "AdUnitSize",
+      "InventoryUnitSizesError" => "InventoryUnitSizesError",
       "LabelEntityAssociationError" => "LabelEntityAssociationError",
       "NotNullError" => "NotNullError",
       "NumberValue" => "NumberValue",
@@ -3018,10 +3176,12 @@ if (!class_exists("SuggestedAdUnitService", false)) {
       "AdUnit.TargetWindow" => "AdUnitTargetWindow",
       "ApiVersionError.Reason" => "ApiVersionErrorReason",
       "AuthenticationError.Reason" => "AuthenticationErrorReason",
+      "CollectionSizeError.Reason" => "CollectionSizeErrorReason",
       "CommonError.Reason" => "CommonErrorReason",
       "EnvironmentType" => "EnvironmentType",
       "FeatureError.Reason" => "FeatureErrorReason",
       "InternalApiError.Reason" => "InternalApiErrorReason",
+      "InventoryUnitSizesError.Reason" => "InventoryUnitSizesErrorReason",
       "LabelEntityAssociationError.Reason" => "LabelEntityAssociationErrorReason",
       "NotNullError.Reason" => "NotNullErrorReason",
       "ParseError.Reason" => "ParseErrorReason",

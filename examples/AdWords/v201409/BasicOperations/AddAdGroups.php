@@ -61,15 +61,17 @@ function AddAdGroupsExample(AdWordsUser $user, $campaignId) {
     // Set additional settings (optional).
     $adGroup->status = 'ENABLED';
 
-    // Targetting restriction settings - these setting only affect serving
+    // Targeting restriction settings - these settings only affect serving
     // for the Display Network.
     $targetingSetting = new TargetingSetting();
     // Restricting to serve ads that match your ad group placements.
+    // This is equivalent to choosing "Target and bid" in the UI.
     $targetingSetting->details[] =
-        new TargetingSettingDetail('PLACEMENT', TRUE);
-    // Using your ad group verticals only for bidding.
+        new TargetingSettingDetail('PLACEMENT', FALSE);
+    // Using your ad group verticals only for bidding. This is equivalent
+    // to choosing "Bid only" in the UI.
     $targetingSetting->details[] =
-        new TargetingSettingDetail('VERTICAL', FALSE);
+        new TargetingSettingDetail('VERTICAL', TRUE);
     $adGroup->settings[] = $targetingSetting;
 
     // Create operation.

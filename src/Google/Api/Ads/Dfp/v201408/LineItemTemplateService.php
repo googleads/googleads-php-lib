@@ -385,6 +385,51 @@ if (!class_exists("ClickTrackingLineItemError", false)) {
   }
 }
 
+if (!class_exists("CollectionSizeError", false)) {
+  /**
+   * Error for the size of the collection being too large
+   * @package GoogleApiAdsDfp
+   * @subpackage v201408
+   */
+  class CollectionSizeError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201408";
+    const XSI_TYPE = "CollectionSizeError";
+
+    /**
+     * @access public
+     * @var tnsCollectionSizeErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("CommonError", false)) {
   /**
    * A place for common errors that can be used across services.
@@ -1194,6 +1239,96 @@ if (!class_exists("GeoTargetingError", false)) {
     /**
      * @access public
      * @var tnsGeoTargetingErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
+if (!class_exists("GrpSettingsError", false)) {
+  /**
+   * Errors associated with line items with GRP settings.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201408
+   */
+  class GrpSettingsError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201408";
+    const XSI_TYPE = "GrpSettingsError";
+
+    /**
+     * @access public
+     * @var tnsGrpSettingsErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
+if (!class_exists("ImageError", false)) {
+  /**
+   * Lists all errors associated with images.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201408
+   */
+  class ImageError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201408";
+    const XSI_TYPE = "ImageError";
+
+    /**
+     * @access public
+     * @var tnsImageErrorReason
      */
     public $reason;
 
@@ -2446,6 +2581,51 @@ if (!class_exists("ReservationDetailsError", false)) {
   }
 }
 
+if (!class_exists("AudienceSegmentError", false)) {
+  /**
+   * Errors that could occur on audience segment related requests.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201408
+   */
+  class AudienceSegmentError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201408";
+    const XSI_TYPE = "AudienceSegmentError";
+
+    /**
+     * @access public
+     * @var tnsAudienceSegmentErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("ServerError", false)) {
   /**
    * Errors related to the server.
@@ -3217,6 +3397,39 @@ if (!class_exists("ClickTrackingLineItemErrorReason", false)) {
   }
 }
 
+if (!class_exists("CollectionSizeErrorReason", false)) {
+  /**
+   * The value returned if the actual value is not exposed by the requested API version.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201408
+   */
+  class CollectionSizeErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201408";
+    const XSI_TYPE = "CollectionSizeError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("CommonErrorReason", false)) {
   /**
    * Describes reasons for common errors
@@ -3757,6 +3970,72 @@ if (!class_exists("GeoTargetingErrorReason", false)) {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201408";
     const XSI_TYPE = "GeoTargetingError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("GrpSettingsErrorReason", false)) {
+  /**
+   * Reason for GRP settings error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201408
+   */
+  class GrpSettingsErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201408";
+    const XSI_TYPE = "GrpSettingsError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("ImageErrorReason", false)) {
+  /**
+   * The reasons for the target error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201408
+   */
+  class ImageErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201408";
+    const XSI_TYPE = "ImageError.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -4617,6 +4896,39 @@ if (!class_exists("RoadblockingType", false)) {
   }
 }
 
+if (!class_exists("AudienceSegmentErrorReason", false)) {
+  /**
+   * Reason of the given {@link AudienceSegmentError}.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201408
+   */
+  class AudienceSegmentErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201408";
+    const XSI_TYPE = "AudienceSegmentError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("ServerErrorReason", false)) {
   /**
    * Describes reasons for server errors
@@ -5271,6 +5583,7 @@ if (!class_exists("LineItemTemplateService", false)) {
       "AuthenticationError" => "AuthenticationError",
       "BooleanValue" => "BooleanValue",
       "ClickTrackingLineItemError" => "ClickTrackingLineItemError",
+      "CollectionSizeError" => "CollectionSizeError",
       "CommonError" => "CommonError",
       "CompanyCreditStatusError" => "CompanyCreditStatusError",
       "ContentMetadataTargetingError" => "ContentMetadataTargetingError",
@@ -5291,6 +5604,8 @@ if (!class_exists("LineItemTemplateService", false)) {
       "FrequencyCapError" => "FrequencyCapError",
       "GenericTargetingError" => "GenericTargetingError",
       "GeoTargetingError" => "GeoTargetingError",
+      "GrpSettingsError" => "GrpSettingsError",
+      "ImageError" => "ImageError",
       "InternalApiError" => "InternalApiError",
       "InvalidUrlError" => "InvalidUrlError",
       "InventoryTargetingError" => "InventoryTargetingError",
@@ -5317,6 +5632,7 @@ if (!class_exists("LineItemTemplateService", false)) {
       "RequiredNumberError" => "RequiredNumberError",
       "RequiredSizeError" => "RequiredSizeError",
       "ReservationDetailsError" => "ReservationDetailsError",
+      "AudienceSegmentError" => "AudienceSegmentError",
       "ServerError" => "ServerError",
       "SetValue" => "SetValue",
       "SoapRequestHeader" => "SoapRequestHeader",
@@ -5336,6 +5652,7 @@ if (!class_exists("LineItemTemplateService", false)) {
       "AudienceExtensionError.Reason" => "AudienceExtensionErrorReason",
       "AuthenticationError.Reason" => "AuthenticationErrorReason",
       "ClickTrackingLineItemError.Reason" => "ClickTrackingLineItemErrorReason",
+      "CollectionSizeError.Reason" => "CollectionSizeErrorReason",
       "CommonError.Reason" => "CommonErrorReason",
       "CompanyCreditStatusError.Reason" => "CompanyCreditStatusErrorReason",
       "ContentMetadataTargetingError.Reason" => "ContentMetadataTargetingErrorReason",
@@ -5353,6 +5670,8 @@ if (!class_exists("LineItemTemplateService", false)) {
       "FrequencyCapError.Reason" => "FrequencyCapErrorReason",
       "GenericTargetingError.Reason" => "GenericTargetingErrorReason",
       "GeoTargetingError.Reason" => "GeoTargetingErrorReason",
+      "GrpSettingsError.Reason" => "GrpSettingsErrorReason",
+      "ImageError.Reason" => "ImageErrorReason",
       "InternalApiError.Reason" => "InternalApiErrorReason",
       "InvalidUrlError.Reason" => "InvalidUrlErrorReason",
       "InventoryTargetingError.Reason" => "InventoryTargetingErrorReason",
@@ -5378,6 +5697,7 @@ if (!class_exists("LineItemTemplateService", false)) {
       "RequiredSizeError.Reason" => "RequiredSizeErrorReason",
       "ReservationDetailsError.Reason" => "ReservationDetailsErrorReason",
       "RoadblockingType" => "RoadblockingType",
+      "AudienceSegmentError.Reason" => "AudienceSegmentErrorReason",
       "ServerError.Reason" => "ServerErrorReason",
       "StatementError.Reason" => "StatementErrorReason",
       "StringLengthError.Reason" => "StringLengthErrorReason",

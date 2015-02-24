@@ -294,6 +294,51 @@ if (!class_exists("AuthenticationError", false)) {
   }
 }
 
+if (!class_exists("CollectionSizeError", false)) {
+  /**
+   * Error for the size of the collection being too large
+   * @package GoogleApiAdsDfp
+   * @subpackage v201408
+   */
+  class CollectionSizeError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201408";
+    const XSI_TYPE = "CollectionSizeError";
+
+    /**
+     * @access public
+     * @var tnsCollectionSizeErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("CommonError", false)) {
   /**
    * A place for common errors that can be used across services.
@@ -1571,6 +1616,39 @@ if (!class_exists("AuthenticationErrorReason", false)) {
   }
 }
 
+if (!class_exists("CollectionSizeErrorReason", false)) {
+  /**
+   * The value returned if the actual value is not exposed by the requested API version.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201408
+   */
+  class CollectionSizeErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201408";
+    const XSI_TYPE = "CollectionSizeError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("CommonErrorReason", false)) {
   /**
    * Describes reasons for common errors
@@ -2620,6 +2698,7 @@ if (!class_exists("ReconciliationReportService", false)) {
       "ApplicationException" => "ApplicationException",
       "AuthenticationError" => "AuthenticationError",
       "BooleanValue" => "BooleanValue",
+      "CollectionSizeError" => "CollectionSizeError",
       "CommonError" => "CommonError",
       "Date" => "Date",
       "DateTime" => "DfpDateTime",
@@ -2651,6 +2730,7 @@ if (!class_exists("ReconciliationReportService", false)) {
       "Value" => "Value",
       "ApiVersionError.Reason" => "ApiVersionErrorReason",
       "AuthenticationError.Reason" => "AuthenticationErrorReason",
+      "CollectionSizeError.Reason" => "CollectionSizeErrorReason",
       "CommonError.Reason" => "CommonErrorReason",
       "FeatureError.Reason" => "FeatureErrorReason",
       "InternalApiError.Reason" => "InternalApiErrorReason",
