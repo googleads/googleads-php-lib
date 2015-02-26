@@ -1,3 +1,8 @@
+### 5.8.1
+
+DFP:
+  - Removed ClientLogin related parameters from the DfpUser constructor. See the Auth/CreateDfpUserWithoutIniFile.php example for updated usage.
+
 ### 5.8.0
 
 AdWords:
