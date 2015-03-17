@@ -2332,6 +2332,7 @@ if (!class_exists("BiddingStrategyServiceGetResponse", false)) {
 if (!class_exists("BiddingStrategyServiceMutate", false)) {
   /**
    * <span class="constraint ContentsNotNull">This field must not contain {@code null} elements.</span>
+   * <span class="constraint DistinctIds">Elements in this field must have distinct IDs for following {@link Operator}s : ADD, SET, REMOVE.</span>
    * <span class="constraint NotEmpty">This field must contain at least one element.</span>
    * <span class="constraint Required">This field is required and should not be {@code null}.</span>
    * 
@@ -4438,6 +4439,13 @@ if (!class_exists("BudgetOptimizerBiddingScheme", false)) {
   /**
    * In budget optimizer, Google automatically places bids for the user based on
    * their daily/monthly budget.
+   * 
+   * <p><b>Note:</b>
+   * This bidding strategy has been deprecated and replaced with
+   * {@linkplain TargetSpendBiddingScheme TargetSpend}. We no longer allow
+   * advertisers to opt into this strategy--{@code BudgetOptimizerBiddingScheme}
+   * solely exists so that advertisers can access campaigns that had specified
+   * this strategy.</p>
    * <span class="constraint AdxEnabled">This is disabled for AdX.</span>
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
@@ -4853,6 +4861,7 @@ if (!class_exists("BiddingStrategyService", false)) {
     }
     /**
      * <span class="constraint ContentsNotNull">This field must not contain {@code null} elements.</span>
+     * <span class="constraint DistinctIds">Elements in this field must have distinct IDs for following {@link Operator}s : ADD, SET, REMOVE.</span>
      * <span class="constraint NotEmpty">This field must contain at least one element.</span>
      * <span class="constraint Required">This field is required and should not be {@code null}.</span>
      * 

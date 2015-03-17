@@ -1,3 +1,8 @@
+### 5.8.2
+
+AdWords:
+  - Added v201502 support.
+
 ### 5.8.1
 
 DFP:

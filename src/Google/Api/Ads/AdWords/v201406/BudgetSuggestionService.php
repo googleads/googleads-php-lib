@@ -3251,6 +3251,12 @@ if (!class_exists("BudgetSuggestion", false)) {
     public $impressions;
 
     /**
+     * @access public
+     * @var tnsCurrencyCode
+     */
+    public $currencyCode;
+
+    /**
      * Gets the namesapce of this class
      * @return the namespace of this class
      */
@@ -3266,7 +3272,7 @@ if (!class_exists("BudgetSuggestion", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($cpc = null, $minCpc = null, $maxCpc = null, $cpm = null, $suggestedBudget = null, $minBudget = null, $maxBudget = null, $budgetQuantiles = null, $impressions = null) {
+    public function __construct($cpc = null, $minCpc = null, $maxCpc = null, $cpm = null, $suggestedBudget = null, $minBudget = null, $maxBudget = null, $budgetQuantiles = null, $impressions = null, $currencyCode = null) {
       $this->cpc = $cpc;
       $this->minCpc = $minCpc;
       $this->maxCpc = $maxCpc;
@@ -3276,6 +3282,7 @@ if (!class_exists("BudgetSuggestion", false)) {
       $this->maxBudget = $maxBudget;
       $this->budgetQuantiles = $budgetQuantiles;
       $this->impressions = $impressions;
+      $this->currencyCode = $currencyCode;
     }
 
   }
@@ -3376,6 +3383,51 @@ if (!class_exists("ExpressSoapHeader", false)) {
       $this->userAgent = $userAgent;
       $this->validateOnly = $validateOnly;
       $this->partialFailure = $partialFailure;
+    }
+
+  }
+}
+
+if (!class_exists("KeywordGroup", false)) {
+  /**
+   * A {@link Criterion} for keyword groups.
+   * <span class="constraint AdxEnabled">This is disabled for AdX when it is contained within Operators: ADD, SET.</span>
+   * @package Google_Api_Ads_AdWords_v201406
+   * @subpackage v201406
+   */
+  class KeywordGroup extends Criterion {
+
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/express/v201406";
+    const XSI_TYPE = "KeywordGroup";
+
+    /**
+     * @access public
+     * @var string
+     */
+    public $name;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($name = null, $id = null, $type = null, $CriterionType = null) {
+      parent::__construct();
+      $this->name = $name;
+      $this->id = $id;
+      $this->type = $type;
+      $this->CriterionType = $CriterionType;
     }
 
   }
@@ -3925,6 +3977,7 @@ if (!class_exists("BudgetSuggestionService", false)) {
       "BudgetSuggestion" => "BudgetSuggestion",
       "BudgetSuggestionSelector" => "BudgetSuggestionSelector",
       "ExpressSoapHeader" => "ExpressSoapHeader",
+      "KeywordGroup" => "KeywordGroup",
       "KeywordSet" => "KeywordSet",
       "NegativeCriterion" => "NegativeCriterion",
       "NegativeKeyword" => "NegativeKeyword",

@@ -2519,21 +2519,23 @@ if (!class_exists("BiddingStrategyConfiguration", false)) {
   /**
    * Encapsulates the information about bids and bidding strategies.
    * 
-   * Bidding Strategy can be set on campaigns, ad groups or ad group criteria.
-   * A bidding strategy can be set using one of the following:
+   * <p>Bidding Strategy can be set on campaigns, ad groups or ad group criteria.
+   * <p>A bidding strategy can be set using one of the following:
    * <ul>
    * <li>{@linkplain BiddingStrategyConfiguration#biddingScheme bidding scheme}</li>
    * <li>{@linkplain BiddingStrategyConfiguration#biddingStrategyType bidding strategy type}</li>
    * <li>{@linkplain BiddingStrategyConfiguration#biddingStrategyId bidding strategy ID} for
    * flexible bid strategies.</li>
    * </ul>
-   * If the bidding strategy type is used, then schemes are created using default values.
+   * <p>If the bidding strategy type is used, then schemes are created using default values.
    * 
-   * Bids can be set only on ad groups and ad group criteria. They cannot be set on campaigns.
-   * Multiple bids can be set at the same time. Only the bids that apply to the campaign's
-   * {@linkplain Campaign#biddingStrategyConfiguration bidding strategy} will be used.
+   * <p>Bids can be set only on ad groups and ad group criteria. They cannot be set on campaigns.
+   * Multiple bids can be set at the same time. Only the bids that apply to the effective
+   * bidding strategy will be used. Effective bidding strategy is considered to be the directly
+   * attached strategy or inherited strategy from above level(s) when there?s no directly attached
+   * strategy.
    * 
-   * For more information on flexible bidding, visit the
+   * <p>For more information on flexible bidding, visit the
    * <a href="https://support.google.com/adwords/answer/2979071">Help Center</a>.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
@@ -2867,6 +2869,13 @@ if (!class_exists("BudgetOptimizerBiddingScheme", false)) {
   /**
    * In budget optimizer, Google automatically places bids for the user based on
    * their daily/monthly budget.
+   * 
+   * <p><b>Note:</b>
+   * This bidding strategy has been deprecated and replaced with
+   * {@linkplain TargetSpendBiddingScheme TargetSpend}. We no longer allow
+   * advertisers to opt into this strategy--{@code BudgetOptimizerBiddingScheme}
+   * solely exists so that advertisers can access campaigns that had specified
+   * this strategy.</p>
    * <span class="constraint AdxEnabled">This is disabled for AdX.</span>
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
@@ -13234,8 +13243,7 @@ if (!class_exists("AdServingOptimizationStatus", false)) {
 
 if (!class_exists("AdvertisingChannelSubType", false)) {
   /**
-   * A non-mutable specialization of a Advertising Channel. Only used when additional
-   * validations must be enforced.
+   * A non-mutable specialization of an Advertising Channel.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -18674,6 +18682,8 @@ if (!class_exists("ApiException", false)) {
 if (!class_exists("AppPaymentModel", false)) {
   /**
    * Represents a criterion for targeting paid apps.
+   * 
+   * <p>Possible IDs: {@code 30} ({@code APP_PAYMENT_MODEL_PAID}).</p>
    * <p>A criterion of this type can only be created using an ID.
    * <span class="constraint AdxEnabled">This is disabled for AdX when it is contained within Operators: ADD, SET.</span>
    * @package Google_Api_Ads_AdWords_v201409
@@ -19443,7 +19453,9 @@ if (!class_exists("DynamicSearchAdsSetting", false)) {
 
 if (!class_exists("ExplorerAutoOptimizerSetting", false)) {
   /**
-   * Settings for Explorer (GDN Auto Optimizer).
+   * Settings for the
+   * <a href="//support.google.com/adwords/answer/190596">Display Campaign Optimizer</a>,
+   * initially termed "Explorer".
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -20398,8 +20410,8 @@ if (!class_exists("MutateJobService", false)) {
       "ProductBiddingCategory" => "ProductBiddingCategory",
       "ProductBrand" => "ProductBrand",
       "ProductCanonicalCondition" => "ProductCanonicalCondition",
-      "ProductLegacyCondition" => "ProductLegacyCondition",
       "ProductCondition" => "ProductCondition",
+      "ProductLegacyCondition" => "ProductLegacyCondition",
       "ProductConditionOperand" => "ProductConditionOperand",
       "ProductCustomAttribute" => "ProductCustomAttribute",
       "ProductDimension" => "ProductDimension",

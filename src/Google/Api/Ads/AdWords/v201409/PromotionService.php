@@ -4344,6 +4344,51 @@ if (!class_exists("ExpressSoapHeader", false)) {
   }
 }
 
+if (!class_exists("KeywordGroup", false)) {
+  /**
+   * A {@link Criterion} for keyword groups.
+   * <span class="constraint AdxEnabled">This is disabled for AdX when it is contained within Operators: ADD, SET.</span>
+   * @package Google_Api_Ads_AdWords_v201409
+   * @subpackage v201409
+   */
+  class KeywordGroup extends Criterion {
+
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/express/v201409";
+    const XSI_TYPE = "KeywordGroup";
+
+    /**
+     * @access public
+     * @var string
+     */
+    public $name;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($name = null, $id = null, $type = null, $CriterionType = null) {
+      parent::__construct();
+      $this->name = $name;
+      $this->id = $id;
+      $this->type = $type;
+      $this->CriterionType = $CriterionType;
+    }
+
+  }
+}
+
 if (!class_exists("KeywordSet", false)) {
   /**
    * A keyword set based {@link Criterion}.
@@ -4566,6 +4611,192 @@ if (!class_exists("PhoneNumber", false)) {
     public function __construct($regionCode = null, $number = null) {
       $this->regionCode = $regionCode;
       $this->number = $number;
+    }
+
+  }
+}
+
+if (!class_exists("PolicyViolationError", false)) {
+  /**
+   * Represents violations of a single policy by some text in a field.
+   * 
+   * Violations of a single policy by the same string in multiple places
+   * within a field is reported in one instance of this class and only one
+   * exemption needs to be filed.
+   * Violations of a single policy by two different strings is reported
+   * as two separate instances of this class.
+   * 
+   * e.g. If 'ACME' violates 'capitalization' and occurs twice in a text ad it
+   * would be represented by one instance. If the ad also contains 'INC' which
+   * also violates 'capitalization' it would be represented in a separate
+   * instance.
+   * @package Google_Api_Ads_AdWords_v201409
+   * @subpackage v201409
+   */
+  class PolicyViolationError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/express/v201409";
+    const XSI_TYPE = "PolicyViolationError";
+
+    /**
+     * @access public
+     * @var PolicyViolationKey
+     */
+    public $key;
+
+    /**
+     * @access public
+     * @var string
+     */
+    public $externalPolicyName;
+
+    /**
+     * @access public
+     * @var string
+     */
+    public $externalPolicyUrl;
+
+    /**
+     * @access public
+     * @var string
+     */
+    public $externalPolicyDescription;
+
+    /**
+     * @access public
+     * @var boolean
+     */
+    public $isExemptable;
+
+    /**
+     * @access public
+     * @var PolicyViolationErrorPart[]
+     */
+    public $violatingParts;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($key = null, $externalPolicyName = null, $externalPolicyUrl = null, $externalPolicyDescription = null, $isExemptable = null, $violatingParts = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->key = $key;
+      $this->externalPolicyName = $externalPolicyName;
+      $this->externalPolicyUrl = $externalPolicyUrl;
+      $this->externalPolicyDescription = $externalPolicyDescription;
+      $this->isExemptable = $isExemptable;
+      $this->violatingParts = $violatingParts;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
+if (!class_exists("PolicyViolationErrorPart", false)) {
+  /**
+   * Points to a substring within an ad field or criterion.
+   * @package Google_Api_Ads_AdWords_v201409
+   * @subpackage v201409
+   */
+  class PolicyViolationErrorPart {
+
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/express/v201409";
+    const XSI_TYPE = "PolicyViolationError.Part";
+
+    /**
+     * @access public
+     * @var integer
+     */
+    public $index;
+
+    /**
+     * @access public
+     * @var integer
+     */
+    public $length;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($index = null, $length = null) {
+      $this->index = $index;
+      $this->length = $length;
+    }
+
+  }
+}
+
+if (!class_exists("PolicyViolationKey", false)) {
+  /**
+   * Key of the violation. The key is used for referring to a violation when
+   * filing an exemption request.
+   * @package Google_Api_Ads_AdWords_v201409
+   * @subpackage v201409
+   */
+  class PolicyViolationKey {
+
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/express/v201409";
+    const XSI_TYPE = "PolicyViolationKey";
+
+    /**
+     * @access public
+     * @var string
+     */
+    public $policyName;
+
+    /**
+     * @access public
+     * @var string
+     */
+    public $violatingText;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($policyName = null, $violatingText = null) {
+      $this->policyName = $policyName;
+      $this->violatingText = $violatingText;
     }
 
   }
@@ -5468,11 +5699,15 @@ if (!class_exists("PromotionService", false)) {
       "CriterionUserList.MembershipStatus" => "CriterionUserListMembershipStatus",
       "Creative" => "Creative",
       "ExpressSoapHeader" => "ExpressSoapHeader",
+      "KeywordGroup" => "KeywordGroup",
       "KeywordSet" => "KeywordSet",
       "NegativeCriterion" => "NegativeCriterion",
       "NegativeKeyword" => "NegativeKeyword",
       "NoStatsPage" => "NoStatsPage",
       "PhoneNumber" => "PhoneNumber",
+      "PolicyViolationError" => "PolicyViolationError",
+      "PolicyViolationError.Part" => "PolicyViolationErrorPart",
+      "PolicyViolationKey" => "PolicyViolationKey",
       "ProductService" => "ProductService",
       "Promotion" => "Promotion",
       "PromotionError" => "PromotionError",

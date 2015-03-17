@@ -3778,76 +3778,6 @@ if (!class_exists("AdGroupBidLandscape", false)) {
   }
 }
 
-if (!class_exists("DomainCategory", false)) {
-  /**
-   * Represents categories that AdWords finds automatically for your website.
-   * 
-   * <p>
-   * No categories available means that AdWords couldn't automatically find categories for your
-   * website. To control how categories are assigned, manually add breadcrumbs to your webpages.
-   * 
-   * <p>
-   * Categories can be filtered by domain name or by a set of campaign IDs.
-   * @package Google_Api_Ads_AdWords_v201406
-   * @subpackage v201406
-   */
-  class DomainCategory extends DimensionProperties {
-
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201406";
-    const XSI_TYPE = "DomainCategory";
-
-    /**
-     * @access public
-     * @var string
-     */
-    public $category;
-
-    /**
-     * @access public
-     * @var double
-     */
-    public $coverage;
-
-    /**
-     * @access public
-     * @var string
-     */
-    public $domainName;
-
-    /**
-     * @access public
-     * @var string
-     */
-    public $isoLanguage;
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($category = null, $coverage = null, $domainName = null, $isoLanguage = null, $levelOfDetail = null) {
-      parent::__construct();
-      $this->category = $category;
-      $this->coverage = $coverage;
-      $this->domainName = $domainName;
-      $this->isoLanguage = $isoLanguage;
-      $this->levelOfDetail = $levelOfDetail;
-    }
-
-  }
-}
-
 if (!class_exists("DoubleValue", false)) {
   /**
    * Number value type for constructing double valued ranges.
@@ -3977,6 +3907,76 @@ if (!class_exists("CriterionBidLandscape", false)) {
   }
 }
 
+if (!class_exists("DomainCategory", false)) {
+  /**
+   * Represents categories that AdWords finds automatically for your website.
+   * 
+   * <p>
+   * No categories available means that AdWords couldn't automatically find categories for your
+   * website. To control how categories are assigned, manually add breadcrumbs to your webpages.
+   * 
+   * <p>
+   * Categories can be filtered by domain name or by a set of campaign IDs.
+   * @package Google_Api_Ads_AdWords_v201406
+   * @subpackage v201406
+   */
+  class DomainCategory extends DimensionProperties {
+
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201406";
+    const XSI_TYPE = "DomainCategory";
+
+    /**
+     * @access public
+     * @var string
+     */
+    public $category;
+
+    /**
+     * @access public
+     * @var double
+     */
+    public $coverage;
+
+    /**
+     * @access public
+     * @var string
+     */
+    public $domainName;
+
+    /**
+     * @access public
+     * @var string
+     */
+    public $isoLanguage;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($category = null, $coverage = null, $domainName = null, $isoLanguage = null, $levelOfDetail = null) {
+      parent::__construct();
+      $this->category = $category;
+      $this->coverage = $coverage;
+      $this->domainName = $domainName;
+      $this->isoLanguage = $isoLanguage;
+      $this->levelOfDetail = $levelOfDetail;
+    }
+
+  }
+}
+
 if (!class_exists("AdGroupBidLandscapePage", false)) {
   /**
    * Contains a subset of {@link AdGroupBidLandscape} objects resulting from the
@@ -4096,7 +4096,6 @@ if (!class_exists("DataService", false)) {
       "DateError" => "DateError",
       "DateRange" => "DateRange",
       "DistinctError" => "DistinctError",
-      "DomainCategory" => "DomainCategory",
       "DoubleValue" => "DoubleValue",
       "IdError" => "IdError",
       "InternalApiError" => "InternalApiError",
@@ -4126,6 +4125,7 @@ if (!class_exists("DataService", false)) {
       "ComparableValue" => "ComparableValue",
       "CriterionBidLandscape" => "CriterionBidLandscape",
       "DatabaseError" => "DatabaseError",
+      "DomainCategory" => "DomainCategory",
       "ApiError" => "ApiError",
       "ApiException" => "ApiException",
       "ApplicationException" => "ApplicationException",

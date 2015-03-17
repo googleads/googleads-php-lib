@@ -38,7 +38,7 @@ if (!class_exists("ApiError", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -135,7 +135,7 @@ if (!class_exists("ApplicationException", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -218,7 +218,7 @@ if (!class_exists("AuthenticationError", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -267,7 +267,7 @@ if (!class_exists("AuthorizationError", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -310,93 +310,13 @@ if (!class_exists("AuthorizationError", false)) {
   }
 }
 
-if (!class_exists("BidLandscapeLandscapePoint", false)) {
-  /**
-   * A set of estimates for a criterion's performance for a specific bid
-   * amount.
-   * 
-   * 
-   * 
-   * Represents data about a bidlandscape for an adgroup.
-   * @package Google_Api_Ads_AdWords_v201406
-   * @subpackage v201406
-   */
-  class BidLandscapeLandscapePoint {
-
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201406";
-    const XSI_TYPE = "BidLandscape.LandscapePoint";
-
-    /**
-     * @access public
-     * @var Money
-     */
-    public $bid;
-
-    /**
-     * @access public
-     * @var integer
-     */
-    public $clicks;
-
-    /**
-     * @access public
-     * @var Money
-     */
-    public $cost;
-
-    /**
-     * @access public
-     * @var Money
-     */
-    public $marginalCpc;
-
-    /**
-     * @access public
-     * @var integer
-     */
-    public $impressions;
-
-    /**
-     * @access public
-     * @var integer
-     */
-    public $promotedImpressions;
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($bid = null, $clicks = null, $cost = null, $marginalCpc = null, $impressions = null, $promotedImpressions = null) {
-      $this->bid = $bid;
-      $this->clicks = $clicks;
-      $this->cost = $cost;
-      $this->marginalCpc = $marginalCpc;
-      $this->impressions = $impressions;
-      $this->promotedImpressions = $promotedImpressions;
-    }
-
-  }
-}
-
 if (!class_exists("BiddingError", false)) {
   /**
    * Represents bidding errors.
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -445,7 +365,7 @@ if (!class_exists("BudgetError", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -494,7 +414,7 @@ if (!class_exists("ClientTermsError", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -544,7 +464,7 @@ if (!class_exists("CollectionSizeError", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -593,7 +513,7 @@ if (!class_exists("ComparableValue", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -670,7 +590,7 @@ if (!class_exists("Criterion", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -760,7 +680,7 @@ if (!class_exists("CriterionError", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -809,7 +729,7 @@ if (!class_exists("DatabaseError", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -858,7 +778,7 @@ if (!class_exists("DateError", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -907,7 +827,7 @@ if (!class_exists("DistinctError", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -957,7 +877,7 @@ if (!class_exists("EntityCountLimitExceeded", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -1035,7 +955,7 @@ if (!class_exists("EntityNotFound", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -1084,7 +1004,7 @@ if (!class_exists("IdError", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -1135,7 +1055,7 @@ if (!class_exists("InternalApiError", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -1185,7 +1105,7 @@ if (!class_exists("Keyword", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -1242,7 +1162,7 @@ if (!class_exists("Language", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -1291,50 +1211,6 @@ if (!class_exists("Language", false)) {
   }
 }
 
-if (!class_exists("LevelOfDetail", false)) {
-  /**
-   * Properties of the level of detail of the report being viewed.
-   * 
-   * 
-   * 
-   * Represents data about a bidlandscape for an adgroup.
-   * @package Google_Api_Ads_AdWords_v201406
-   * @subpackage v201406
-   */
-  class LevelOfDetail {
-
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201406";
-    const XSI_TYPE = "LevelOfDetail";
-
-    /**
-     * @access public
-     * @var integer
-     */
-    public $campaignId;
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($campaignId = null) {
-      $this->campaignId = $campaignId;
-    }
-
-  }
-}
-
 if (!class_exists("Location", false)) {
   /**
    * Represents Location criterion.
@@ -1343,7 +1219,7 @@ if (!class_exists("Location", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -1415,7 +1291,7 @@ if (!class_exists("MobileAppCategory", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -1471,7 +1347,7 @@ if (!class_exists("MobileApplication", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -1526,7 +1402,7 @@ if (!class_exists("Money", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -1572,7 +1448,7 @@ if (!class_exists("NetworkSetting", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -1637,7 +1513,7 @@ if (!class_exists("NotEmptyError", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -1686,7 +1562,7 @@ if (!class_exists("NullError", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -1735,7 +1611,7 @@ if (!class_exists("NumberValue", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -1774,7 +1650,7 @@ if (!class_exists("OperationAccessDenied", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -1825,7 +1701,7 @@ if (!class_exists("Paging", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -1878,7 +1754,7 @@ if (!class_exists("Placement", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -1928,7 +1804,7 @@ if (!class_exists("Platform", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -1987,7 +1863,7 @@ if (!class_exists("PolicyViolationError", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -2071,7 +1947,7 @@ if (!class_exists("PolicyViolationErrorPart", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -2123,7 +1999,7 @@ if (!class_exists("PolicyViolationKey", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -2178,7 +2054,7 @@ if (!class_exists("Product", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -2234,7 +2110,7 @@ if (!class_exists("ProductCondition", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -2285,7 +2161,7 @@ if (!class_exists("ProductConditionOperand", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -2329,7 +2205,7 @@ if (!class_exists("QuotaCheckError", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -2378,7 +2254,7 @@ if (!class_exists("RangeError", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -2427,7 +2303,7 @@ if (!class_exists("RateExceededError", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -2497,7 +2373,7 @@ if (!class_exists("ReadOnlyError", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -2546,7 +2422,7 @@ if (!class_exists("RegionCodeError", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -2595,7 +2471,7 @@ if (!class_exists("RejectedError", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -2645,7 +2521,7 @@ if (!class_exists("RequestError", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -2694,7 +2570,7 @@ if (!class_exists("RequiredError", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -2743,7 +2619,7 @@ if (!class_exists("SizeLimitError", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -2792,7 +2668,7 @@ if (!class_exists("SoapRequestHeader", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -2864,7 +2740,7 @@ if (!class_exists("SoapResponseHeader", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -2936,7 +2812,7 @@ if (!class_exists("StatsQueryError", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -2986,7 +2862,7 @@ if (!class_exists("StringLengthError", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -3029,89 +2905,13 @@ if (!class_exists("StringLengthError", false)) {
   }
 }
 
-if (!class_exists("DataEntry", false)) {
-  /**
-   * The base class of all return types of the table service.
-   * 
-   * 
-   * 
-   * Represents data about a bidlandscape for an adgroup.
-   * @package Google_Api_Ads_AdWords_v201406
-   * @subpackage v201406
-   */
-  class DataEntry {
-
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201406";
-    const XSI_TYPE = "DataEntry";
-
-    /**
-     * @access public
-     * @var string
-     */
-    public $DataEntryType;
-    private $_parameterMap = array(
-      "DataEntry.Type" => "DataEntryType",
-    );
-
-    /**
-     * Provided for setting non-php-standard named variables
-     * @param $var Variable name to set
-     * @param $value Value to set
-     */
-    public function __set($var, $value) {
-      $this->{$this->_parameterMap[$var]} = $value;
-    }
-
-    /**
-     * Provided for getting non-php-standard named variables
-     * @param $var Variable name to get
-     * @return mixed Variable value
-     */
-    public function __get($var) {
-      if (!isset($this->_parameterMap[$var])) {
-        return null;
-      }
-      return $this->{$this->_parameterMap[$var]};
-    }
-
-    /**
-     * Provided for getting non-php-standard named variables
-     * @return array parameter map
-     */
-    protected function getParameterMap() {
-      return $this->_parameterMap;
-    }
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($DataEntryType = null) {
-      $this->DataEntryType = $DataEntryType;
-    }
-
-  }
-}
-
 if (!class_exists("TargetError", false)) {
   /**
    * A list of all the error codes being used by the common targeting package.
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -3161,7 +2961,7 @@ if (!class_exists("CriterionUserInterest", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -3217,7 +3017,7 @@ if (!class_exists("CriterionUserList", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -3284,7 +3084,7 @@ if (!class_exists("Vertical", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -3340,50 +3140,13 @@ if (!class_exists("Vertical", false)) {
   }
 }
 
-if (!class_exists("AdGroupBidLandscapeType", false)) {
-  /**
-   * Used to specify the type of {@code AdGroupLandscape}
-   * 
-   * 
-   * 
-   * Represents data about a bidlandscape for an adgroup.
-   * @package Google_Api_Ads_AdWords_v201406
-   * @subpackage v201406
-   */
-  class AdGroupBidLandscapeType {
-
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201406";
-    const XSI_TYPE = "AdGroupBidLandscape.Type";
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct() {
-    }
-
-  }
-}
-
 if (!class_exists("AdGroupCriterionErrorReason", false)) {
   /**
    * The reasons for the target error.
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -3420,7 +3183,7 @@ if (!class_exists("AdGroupCriterionLimitExceededCriteriaLimitType", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -3457,7 +3220,7 @@ if (!class_exists("AdxErrorReason", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -3494,7 +3257,7 @@ if (!class_exists("AuthenticationErrorReason", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -3531,7 +3294,7 @@ if (!class_exists("AuthorizationErrorReason", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -3568,7 +3331,7 @@ if (!class_exists("BiddingErrorReason", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -3605,7 +3368,7 @@ if (!class_exists("BudgetErrorReason", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -3643,7 +3406,7 @@ if (!class_exists("ClientTermsErrorReason", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -3680,7 +3443,7 @@ if (!class_exists("CollectionSizeErrorReason", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -3717,7 +3480,7 @@ if (!class_exists("CriterionType", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -3754,7 +3517,7 @@ if (!class_exists("CriterionErrorReason", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -3791,7 +3554,7 @@ if (!class_exists("DatabaseErrorReason", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -3828,7 +3591,7 @@ if (!class_exists("DateErrorReason", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -3865,7 +3628,7 @@ if (!class_exists("DistinctErrorReason", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -3902,7 +3665,7 @@ if (!class_exists("EntityCountLimitExceededReason", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -3940,7 +3703,7 @@ if (!class_exists("EntityNotFoundReason", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -3977,7 +3740,7 @@ if (!class_exists("IdErrorReason", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -4014,7 +3777,7 @@ if (!class_exists("InternalApiErrorReason", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -4052,7 +3815,7 @@ if (!class_exists("KeywordMatchType", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -4089,7 +3852,7 @@ if (!class_exists("LocationTargetingStatus", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -4126,7 +3889,7 @@ if (!class_exists("NotEmptyErrorReason", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -4163,7 +3926,7 @@ if (!class_exists("NullErrorReason", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -4200,7 +3963,7 @@ if (!class_exists("OperationAccessDeniedReason", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -4238,7 +4001,7 @@ if (!class_exists("QuotaCheckErrorReason", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -4275,7 +4038,7 @@ if (!class_exists("RangeErrorReason", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -4312,7 +4075,7 @@ if (!class_exists("RateExceededErrorReason", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -4349,7 +4112,7 @@ if (!class_exists("ReadOnlyErrorReason", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -4386,7 +4149,7 @@ if (!class_exists("RegionCodeErrorReason", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -4423,7 +4186,7 @@ if (!class_exists("RejectedErrorReason", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -4460,7 +4223,7 @@ if (!class_exists("RequestErrorReason", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -4497,7 +4260,7 @@ if (!class_exists("RequiredErrorReason", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -4534,7 +4297,7 @@ if (!class_exists("SizeLimitErrorReason", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -4571,7 +4334,7 @@ if (!class_exists("StatsQueryErrorReason", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -4608,7 +4371,7 @@ if (!class_exists("StringLengthErrorReason", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -4645,7 +4408,7 @@ if (!class_exists("TargetErrorReason", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -4682,7 +4445,7 @@ if (!class_exists("CriterionUserListMembershipStatus", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -4883,48 +4646,6 @@ if (!class_exists("Attribute", false)) {
     }
 
     public function __construct($AttributeType = null) {
-      $this->AttributeType = $AttributeType;
-    }
-
-  }
-}
-
-if (!class_exists("BidLandscapeAttribute", false)) {
-  /**
-   * {@link Attribute} type that contains a {@link BidLandscape} value.
-   * @package Google_Api_Ads_AdWords_v201406
-   * @subpackage v201406
-   */
-  class BidLandscapeAttribute extends Attribute {
-
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/o/v201406";
-    const XSI_TYPE = "BidLandscapeAttribute";
-
-    /**
-     * @access public
-     * @var BidLandscape
-     */
-    public $value;
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($value = null, $AttributeType = null) {
-      parent::__construct();
-      $this->value = $value;
       $this->AttributeType = $AttributeType;
     }
 
@@ -6044,52 +5765,6 @@ if (!class_exists("MonthlySearchVolumeAttribute", false)) {
   }
 }
 
-if (!class_exists("OpportunityIdeaTypeAttribute", false)) {
-  /**
-   * {@link Attribute} type that contains an {@link OpportunityIdeaType} value.
-   * For example, if a
-   * {@link com.google.ads.api.services.optimization.bulkopportunity.OpportunityIdea}
-   * represents a keyword idea, its {@link OpportunityIdeaTypeAttribute} would
-   * contain a {@code KEYWORD} {@link OpportunityIdeaType}.
-   * @package Google_Api_Ads_AdWords_v201406
-   * @subpackage v201406
-   */
-  class OpportunityIdeaTypeAttribute extends Attribute {
-
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/o/v201406";
-    const XSI_TYPE = "OpportunityIdeaTypeAttribute";
-
-    /**
-     * @access public
-     * @var tnsOpportunityIdeaType
-     */
-    public $value;
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($value = null, $AttributeType = null) {
-      parent::__construct();
-      $this->value = $value;
-      $this->AttributeType = $AttributeType;
-    }
-
-  }
-}
-
 if (!class_exists("PlacementAttribute", false)) {
   /**
    * {@link Attribute} type that contains a {@link Placement} value.
@@ -6227,7 +5902,7 @@ if (!class_exists("SearchParameter", false)) {
    * {@link com.google.ads.api.services.targetingideas.TargetingIdeaSelector}
    * to specify how the user wants to filter the set of all possible
    * {@link com.google.ads.api.services.targetingideas.TargetingIdea}s.
-   * 
+   * <p>
    * There is a {@link SearchParameter} for all types of inputs.
    * {@link SearchParameter}s can conceptually be broken down into two types.
    * <ul>
@@ -6239,10 +5914,10 @@ if (!class_exists("SearchParameter", false)) {
    * <li>Filter {@link SearchParameter}s are used to trim down the results based
    * on {@link com.google.ads.api.services.targetingideas.attributes.Attribute}
    * related information (eg. {@link CompetitionSearchParameter}, etc.).</li>
-   * </ul><p>
-   * 
+   * </ul>
+   * <p>
    * A request should only contain one instance of each {@link SearchParameter}.
-   * 
+   * <p>
    * NOTICE: Starting with version v201406, requests containing multiple
    * instances of the same search parameter will be rejected.
    * <p>One or more of the following {@link SearchParameter}s are required:<br/>
@@ -7210,39 +6885,6 @@ if (!class_exists("MatchesRegexErrorReason", false)) {
   }
 }
 
-if (!class_exists("OpportunityIdeaType", false)) {
-  /**
-   * Represents the type of opportunity.
-   * @package Google_Api_Ads_AdWords_v201406
-   * @subpackage v201406
-   */
-  class OpportunityIdeaType {
-
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/o/v201406";
-    const XSI_TYPE = "OpportunityIdeaType";
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct() {
-    }
-
-  }
-}
-
 if (!class_exists("RequestType", false)) {
   /**
    * Represents the type of the request.
@@ -7426,12 +7068,7 @@ if (!class_exists("TargetingIdeaServiceGet", false)) {
    * 
    * <p>The selector must specify a {@code paging} value, with {@code numberResults} set to 800 or
    * less.  Large result sets must be composed through multiple calls to this method, advancing the
-   * paging {@code startIndex} value by {@code numberResults} with each call.
-   * 
-   * <p>Only a relatively small total number of results will be available through this method.
-   * Much larger result sets may be available using
-   * {@link #getBulkKeywordIdeas(TargetingIdeaSelector)} at the price of reduced flexibility in
-   * selector options.
+   * paging {@code startIndex} value by {@code numberResults} with each call.</p>
    * 
    * @param selector Query describing the types of results to return when
    * finding matches (similar keyword ideas/placement ideas).
@@ -7635,7 +7272,7 @@ if (!class_exists("AdGroupCriterionError", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -7684,7 +7321,7 @@ if (!class_exists("AdGroupCriterionLimitExceeded", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -7734,7 +7371,7 @@ if (!class_exists("AdxError", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -7783,7 +7420,7 @@ if (!class_exists("ApiException", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -7824,138 +7461,13 @@ if (!class_exists("ApiException", false)) {
   }
 }
 
-if (!class_exists("BidLandscape", false)) {
-  /**
-   * Represents data about a bid landscape for an ad group or criterion.
-   * 
-   * 
-   * 
-   * Represents data about a bidlandscape for an adgroup.
-   * @package Google_Api_Ads_AdWords_v201406
-   * @subpackage v201406
-   */
-  class BidLandscape extends DataEntry {
-
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201406";
-    const XSI_TYPE = "BidLandscape";
-
-    /**
-     * @access public
-     * @var integer
-     */
-    public $campaignId;
-
-    /**
-     * @access public
-     * @var integer
-     */
-    public $adGroupId;
-
-    /**
-     * @access public
-     * @var string
-     */
-    public $startDate;
-
-    /**
-     * @access public
-     * @var string
-     */
-    public $endDate;
-
-    /**
-     * @access public
-     * @var BidLandscapeLandscapePoint[]
-     */
-    public $landscapePoints;
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($campaignId = null, $adGroupId = null, $startDate = null, $endDate = null, $landscapePoints = null, $DataEntryType = null) {
-      parent::__construct();
-      $this->campaignId = $campaignId;
-      $this->adGroupId = $adGroupId;
-      $this->startDate = $startDate;
-      $this->endDate = $endDate;
-      $this->landscapePoints = $landscapePoints;
-      $this->DataEntryType = $DataEntryType;
-    }
-
-  }
-}
-
-if (!class_exists("CriterionBidLandscape", false)) {
-  /**
-   * The bid landscape for a criterion.  A bid landscape estimates how a
-   * a criterion will perform based on different bid amounts.
-   * 
-   * 
-   * 
-   * Represents data about a bidlandscape for an adgroup.
-   * @package Google_Api_Ads_AdWords_v201406
-   * @subpackage v201406
-   */
-  class CriterionBidLandscape extends BidLandscape {
-
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201406";
-    const XSI_TYPE = "CriterionBidLandscape";
-
-    /**
-     * @access public
-     * @var integer
-     */
-    public $criterionId;
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($criterionId = null, $campaignId = null, $adGroupId = null, $startDate = null, $endDate = null, $landscapePoints = null) {
-      parent::__construct();
-      $this->criterionId = $criterionId;
-      $this->campaignId = $campaignId;
-      $this->adGroupId = $adGroupId;
-      $this->startDate = $startDate;
-      $this->endDate = $endDate;
-      $this->landscapePoints = $landscapePoints;
-    }
-
-  }
-}
-
 if (!class_exists("CriterionPolicyError", false)) {
   /**
    * Contains the policy violations for a single BiddableAdGroupCriterion.
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -7993,133 +7505,13 @@ if (!class_exists("CriterionPolicyError", false)) {
   }
 }
 
-if (!class_exists("DimensionProperties", false)) {
-  /**
-   * Top level class for Dimensions.
-   * 
-   * 
-   * 
-   * Represents data about a bidlandscape for an adgroup.
-   * @package Google_Api_Ads_AdWords_v201406
-   * @subpackage v201406
-   */
-  class DimensionProperties extends DataEntry {
-
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201406";
-    const XSI_TYPE = "DimensionProperties";
-
-    /**
-     * @access public
-     * @var LevelOfDetail
-     */
-    public $levelOfDetail;
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($levelOfDetail = null, $DataEntryType = null) {
-      parent::__construct();
-      $this->levelOfDetail = $levelOfDetail;
-      $this->DataEntryType = $DataEntryType;
-    }
-
-  }
-}
-
-if (!class_exists("DomainCategory", false)) {
-  /**
-   * Represents categories that AdWords finds automatically for your website.
-   * 
-   * <p>
-   * No categories available means that AdWords couldn't automatically find categories for your
-   * website. To control how categories are assigned, manually add breadcrumbs to your webpages.
-   * 
-   * <p>
-   * Categories can be filtered by domain name or by a set of campaign IDs.
-   * 
-   * 
-   * 
-   * Represents data about a bidlandscape for an adgroup.
-   * @package Google_Api_Ads_AdWords_v201406
-   * @subpackage v201406
-   */
-  class DomainCategory extends DimensionProperties {
-
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201406";
-    const XSI_TYPE = "DomainCategory";
-
-    /**
-     * @access public
-     * @var string
-     */
-    public $category;
-
-    /**
-     * @access public
-     * @var double
-     */
-    public $coverage;
-
-    /**
-     * @access public
-     * @var string
-     */
-    public $domainName;
-
-    /**
-     * @access public
-     * @var string
-     */
-    public $isoLanguage;
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($category = null, $coverage = null, $domainName = null, $isoLanguage = null, $levelOfDetail = null) {
-      parent::__construct();
-      $this->category = $category;
-      $this->coverage = $coverage;
-      $this->domainName = $domainName;
-      $this->isoLanguage = $isoLanguage;
-      $this->levelOfDetail = $levelOfDetail;
-    }
-
-  }
-}
-
 if (!class_exists("DoubleValue", false)) {
   /**
    * Number value type for constructing double valued ranges.
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -8164,7 +7556,7 @@ if (!class_exists("LongValue", false)) {
    * 
    * 
    * 
-   * Represents data about a bidlandscape for an adgroup.
+   * Base error class for Ad Group Criterion Service.
    * @package Google_Api_Ads_AdWords_v201406
    * @subpackage v201406
    */
@@ -8913,63 +8305,6 @@ if (!class_exists("RelatedToUrlSearchParameter", false)) {
   }
 }
 
-if (!class_exists("AdGroupBidLandscape", false)) {
-  /**
-   * Represents data about a bidlandscape for an adgroup.
-   * 
-   * 
-   * 
-   * Represents data about a bidlandscape for an adgroup.
-   * @package Google_Api_Ads_AdWords_v201406
-   * @subpackage v201406
-   */
-  class AdGroupBidLandscape extends BidLandscape {
-
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201406";
-    const XSI_TYPE = "AdGroupBidLandscape";
-
-    /**
-     * @access public
-     * @var tnsAdGroupBidLandscapeType
-     */
-    public $type;
-
-    /**
-     * @access public
-     * @var boolean
-     */
-    public $landscapeCurrent;
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($type = null, $landscapeCurrent = null, $campaignId = null, $adGroupId = null, $startDate = null, $endDate = null, $landscapePoints = null) {
-      parent::__construct();
-      $this->type = $type;
-      $this->landscapeCurrent = $landscapeCurrent;
-      $this->campaignId = $campaignId;
-      $this->adGroupId = $adGroupId;
-      $this->startDate = $startDate;
-      $this->endDate = $endDate;
-      $this->landscapePoints = $landscapePoints;
-    }
-
-  }
-}
-
 if (!class_exists("TargetingIdeaService", false)) {
   /**
    * TargetingIdeaService
@@ -8993,7 +8328,6 @@ if (!class_exists("TargetingIdeaService", false)) {
      * @var array
      */
     public static $classmap = array(
-      "AdGroupBidLandscape" => "AdGroupBidLandscape",
       "AdGroupCriterionError" => "AdGroupCriterionError",
       "AdGroupCriterionLimitExceeded" => "AdGroupCriterionLimitExceeded",
       "AdxError" => "AdxError",
@@ -9002,22 +8336,17 @@ if (!class_exists("TargetingIdeaService", false)) {
       "ApplicationException" => "ApplicationException",
       "AuthenticationError" => "AuthenticationError",
       "AuthorizationError" => "AuthorizationError",
-      "BidLandscape" => "BidLandscape",
-      "BidLandscape.LandscapePoint" => "BidLandscapeLandscapePoint",
       "BiddingError" => "BiddingError",
       "BudgetError" => "BudgetError",
       "ClientTermsError" => "ClientTermsError",
       "CollectionSizeError" => "CollectionSizeError",
       "ComparableValue" => "ComparableValue",
       "Criterion" => "Criterion",
-      "CriterionBidLandscape" => "CriterionBidLandscape",
       "CriterionError" => "CriterionError",
       "CriterionPolicyError" => "CriterionPolicyError",
       "DatabaseError" => "DatabaseError",
       "DateError" => "DateError",
-      "DimensionProperties" => "DimensionProperties",
       "DistinctError" => "DistinctError",
-      "DomainCategory" => "DomainCategory",
       "DoubleValue" => "DoubleValue",
       "EntityCountLimitExceeded" => "EntityCountLimitExceeded",
       "EntityNotFound" => "EntityNotFound",
@@ -9025,7 +8354,6 @@ if (!class_exists("TargetingIdeaService", false)) {
       "InternalApiError" => "InternalApiError",
       "Keyword" => "Keyword",
       "Language" => "Language",
-      "LevelOfDetail" => "LevelOfDetail",
       "Location" => "Location",
       "LongValue" => "LongValue",
       "MobileAppCategory" => "MobileAppCategory",
@@ -9058,12 +8386,10 @@ if (!class_exists("TargetingIdeaService", false)) {
       "SoapResponseHeader" => "SoapResponseHeader",
       "StatsQueryError" => "StatsQueryError",
       "StringLengthError" => "StringLengthError",
-      "DataEntry" => "DataEntry",
       "TargetError" => "TargetError",
       "CriterionUserInterest" => "CriterionUserInterest",
       "CriterionUserList" => "CriterionUserList",
       "Vertical" => "Vertical",
-      "AdGroupBidLandscape.Type" => "AdGroupBidLandscapeType",
       "AdGroupCriterionError.Reason" => "AdGroupCriterionErrorReason",
       "AdGroupCriterionLimitExceeded.CriteriaLimitType" => "AdGroupCriterionLimitExceededCriteriaLimitType",
       "AdxError.Reason" => "AdxErrorReason",
@@ -9106,7 +8432,6 @@ if (!class_exists("TargetingIdeaService", false)) {
       "AdSpecListAttribute" => "AdSpecListAttribute",
       "AdSpecListSearchParameter" => "AdSpecListSearchParameter",
       "Attribute" => "Attribute",
-      "BidLandscapeAttribute" => "BidLandscapeAttribute",
       "BooleanAttribute" => "BooleanAttribute",
       "CategoryProductsAndServicesSearchParameter" => "CategoryProductsAndServicesSearchParameter",
       "CompetitionSearchParameter" => "CompetitionSearchParameter",
@@ -9139,7 +8464,6 @@ if (!class_exists("TargetingIdeaService", false)) {
       "MonthlySearchVolume" => "MonthlySearchVolume",
       "MonthlySearchVolumeAttribute" => "MonthlySearchVolumeAttribute",
       "NetworkSearchParameter" => "NetworkSearchParameter",
-      "OpportunityIdeaTypeAttribute" => "OpportunityIdeaTypeAttribute",
       "PlacementAttribute" => "PlacementAttribute",
       "PlacementTypeAttribute" => "PlacementTypeAttribute",
       "PlacementTypeSearchParameter" => "PlacementTypeSearchParameter",
@@ -9167,7 +8491,6 @@ if (!class_exists("TargetingIdeaService", false)) {
       "IdeaType" => "IdeaType",
       "InStreamAdSpec.InStreamType" => "InStreamAdSpecInStreamType",
       "MatchesRegexError.Reason" => "MatchesRegexErrorReason",
-      "OpportunityIdeaType" => "OpportunityIdeaType",
       "RequestType" => "RequestType",
       "SiteConstants.AdFormat" => "SiteConstantsAdFormat",
       "SiteConstants.PlacementType" => "SiteConstantsPlacementType",
@@ -9200,12 +8523,7 @@ if (!class_exists("TargetingIdeaService", false)) {
      * 
      * <p>The selector must specify a {@code paging} value, with {@code numberResults} set to 800 or
      * less.  Large result sets must be composed through multiple calls to this method, advancing the
-     * paging {@code startIndex} value by {@code numberResults} with each call.
-     * 
-     * <p>Only a relatively small total number of results will be available through this method.
-     * Much larger result sets may be available using
-     * {@link #getBulkKeywordIdeas(TargetingIdeaSelector)} at the price of reduced flexibility in
-     * selector options.
+     * paging {@code startIndex} value by {@code numberResults} with each call.</p>
      * 
      * @param selector Query describing the types of results to return when
      * finding matches (similar keyword ideas/placement ideas).
