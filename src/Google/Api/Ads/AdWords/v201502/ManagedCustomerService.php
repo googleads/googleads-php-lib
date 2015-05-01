@@ -1786,6 +1786,8 @@ if (!class_exists("ManagedCustomerLabel", false)) {
 if (!class_exists("ManagedCustomerLabelOperation", false)) {
   /**
    * An operation to apply or remove an account label from a managed customer.
+   * 
+   * <p class="note"><b>Note:</b> The {@code SET} operator is not supported.</p>
    * @package Google_Api_Ads_AdWords_v201502
    * @subpackage v201502
    */
@@ -2793,7 +2795,7 @@ if (!class_exists("ManagedCustomerServiceMutate", false)) {
    * Adds managed customers.
    * 
    * <p class="note"><b>Note:</b> {@link ManagedCustomerOperation} only supports
-   * {@code ADD} operator. </p>
+   * {@code ADD} operator.</p>
    * 
    * @param operations List of unique operations.
    * @return The list of updated managed customers, returned in the same order as the
@@ -2882,20 +2884,20 @@ if (!class_exists("MutateLabel", false)) {
    * 
    * 
    * 
-   * Adds {@link com.google.ads.api.services.mcm.common.labels.Label}s to, and removes
-   * {@linkplain Label}s from, {@link ManagedCustomer}s.
+   * Adds {@linkplain AccountLabel}s to, and removes
+   * {@linkplain AccountLabel}s from, {@linkplain ManagedCustomer}s.
    * 
-   * <p>To add a {@linkplain Label} to a {@linkplain ManagedCustomer}, use
-   * {@link Operator#ADD}.
-   * To remove a {@linkplain Label} from a {@linkplain ManagedCustomer}, use
-   * {@link Operator#REMOVE}.
-   * <p>The label must already exist (see
-   * {@link com.google.ads.api.services.mcm.labels.AccountLabelService.mutate} for how to
-   * create them) and be owned by the authenticated user.
-   * <p>The {@linkplain ManagedCustomer} must already exist and be managed by the customer
-   * making the request (either directly or indirectly).
-   * <p>A label may be applied to at most 1000 customers.
-   * <p>This method does not support partial failures, and will fail if any operation is invalid.
+   * <p>To add an {@linkplain AccountLabel} to a {@linkplain ManagedCustomer},
+   * use {@link Operator#ADD}.
+   * To remove an {@linkplain AccountLabel} from a {@linkplain ManagedCustomer},
+   * use {@link Operator#REMOVE}.</p>
+   * <p>The label must already exist (see {@link AccountLabelService#mutate} for
+   * how to create them) and be owned by the authenticated user.</p>
+   * <p>The {@linkplain ManagedCustomer} must already exist and be managed by
+   * the customer making the request (either directly or indirectly).</p>
+   * <p>An AccountLabel may be applied to at most 1000 customers.</p>
+   * <p>This method does not support partial failures, and will fail if any
+   * operation is invalid.</p>
    * @package Google_Api_Ads_AdWords_v201502
    * @subpackage v201502
    */
@@ -2984,11 +2986,11 @@ if (!class_exists("MutateLink", false)) {
    * Operator + Link Status):
    * 
    * <ul>
-   * <li>ADD + PENDING:   manager extends invitations
-   * <li>SET + CANCELLED: manager rescinds invitations
-   * <li>SET + INACTIVE:  manager/client terminates links
-   * <li>SET + ACTIVE:    client accepts invitations
-   * <li>SET + REFUSED:   client declines invitations
+   * <li>ADD + PENDING:   manager extends invitations</li>
+   * <li>SET + CANCELLED: manager rescinds invitations</li>
+   * <li>SET + INACTIVE:  manager/client terminates links</li>
+   * <li>SET + ACTIVE:    client accepts invitations</li>
+   * <li>SET + REFUSED:   client declines invitations</li>
    * </ul>
    * 
    * @param operations the list of operations
@@ -3084,7 +3086,7 @@ if (!class_exists("MutateManager", false)) {
    * 
    * <ul>
    * <li>SET + ACTIVE: manager moves client customers to new managers within the same MCC
-   * hierarchy
+   * hierarchy</li>
    * </ul>
    * 
    * @param operations List of unique operations.
@@ -4483,7 +4485,7 @@ if (!class_exists("ManagedCustomerService", false)) {
      * Adds managed customers.
      * 
      * <p class="note"><b>Note:</b> {@link ManagedCustomerOperation} only supports
-     * {@code ADD} operator. </p>
+     * {@code ADD} operator.</p>
      * 
      * @param operations List of unique operations.
      * @return The list of updated managed customers, returned in the same order as the
@@ -4500,20 +4502,20 @@ if (!class_exists("ManagedCustomerService", false)) {
      * 
      * 
      * 
-     * Adds {@link com.google.ads.api.services.mcm.common.labels.Label}s to, and removes
-     * {@linkplain Label}s from, {@link ManagedCustomer}s.
+     * Adds {@linkplain AccountLabel}s to, and removes
+     * {@linkplain AccountLabel}s from, {@linkplain ManagedCustomer}s.
      * 
-     * <p>To add a {@linkplain Label} to a {@linkplain ManagedCustomer}, use
-     * {@link Operator#ADD}.
-     * To remove a {@linkplain Label} from a {@linkplain ManagedCustomer}, use
-     * {@link Operator#REMOVE}.
-     * <p>The label must already exist (see
-     * {@link com.google.ads.api.services.mcm.labels.AccountLabelService.mutate} for how to
-     * create them) and be owned by the authenticated user.
-     * <p>The {@linkplain ManagedCustomer} must already exist and be managed by the customer
-     * making the request (either directly or indirectly).
-     * <p>A label may be applied to at most 1000 customers.
-     * <p>This method does not support partial failures, and will fail if any operation is invalid.
+     * <p>To add an {@linkplain AccountLabel} to a {@linkplain ManagedCustomer},
+     * use {@link Operator#ADD}.
+     * To remove an {@linkplain AccountLabel} from a {@linkplain ManagedCustomer},
+     * use {@link Operator#REMOVE}.</p>
+     * <p>The label must already exist (see {@link AccountLabelService#mutate} for
+     * how to create them) and be owned by the authenticated user.</p>
+     * <p>The {@linkplain ManagedCustomer} must already exist and be managed by
+     * the customer making the request (either directly or indirectly).</p>
+     * <p>An AccountLabel may be applied to at most 1000 customers.</p>
+     * <p>This method does not support partial failures, and will fail if any
+     * operation is invalid.</p>
      */
     public function mutateLabel($operations) {
       $args = new MutateLabel($operations);
@@ -4530,11 +4532,11 @@ if (!class_exists("ManagedCustomerService", false)) {
      * Operator + Link Status):
      * 
      * <ul>
-     * <li>ADD + PENDING:   manager extends invitations
-     * <li>SET + CANCELLED: manager rescinds invitations
-     * <li>SET + INACTIVE:  manager/client terminates links
-     * <li>SET + ACTIVE:    client accepts invitations
-     * <li>SET + REFUSED:   client declines invitations
+     * <li>ADD + PENDING:   manager extends invitations</li>
+     * <li>SET + CANCELLED: manager rescinds invitations</li>
+     * <li>SET + INACTIVE:  manager/client terminates links</li>
+     * <li>SET + ACTIVE:    client accepts invitations</li>
+     * <li>SET + REFUSED:   client declines invitations</li>
      * </ul>
      * 
      * @param operations the list of operations
@@ -4558,7 +4560,7 @@ if (!class_exists("ManagedCustomerService", false)) {
      * 
      * <ul>
      * <li>SET + ACTIVE: manager moves client customers to new managers within the same MCC
-     * hierarchy
+     * hierarchy</li>
      * </ul>
      * 
      * @param operations List of unique operations.

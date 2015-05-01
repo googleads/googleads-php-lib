@@ -61,9 +61,10 @@ function DownloadCriteriaReportExample(AdWordsUser $user, $filePath) {
   // Set additional options.
   $options = array('version' => ADWORDS_VERSION);
 
-  // Optional: Set skipReportHeader or skipReportSummary to suppress header or
-  // summary rows in the report output.
+  // Optional: Set skipReportHeader, skipColumnHeader or skipReportSummary to
+  // suppress header or summary rows in the report output.
   // $options['skipReportHeader'] = true;
+  // $options['skipColumnHeader'] = true;
   // $options['skipReportSummary'] = true;
 
   // Download report.

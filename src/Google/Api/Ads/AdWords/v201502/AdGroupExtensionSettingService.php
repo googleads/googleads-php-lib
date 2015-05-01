@@ -1119,8 +1119,8 @@ if (!class_exists("Selector", false)) {
 
 if (!class_exists("AdGroupExtensionSetting", false)) {
   /**
-   * An AdGroupExtensionSetting is used add or modify extensions being served for the specified
-   * adgroup.
+   * An AdGroupExtensionSetting is used to add or modify extensions being served for the specified
+   * ad group.
    * @package Google_Api_Ads_AdWords_v201502
    * @subpackage v201502
    */

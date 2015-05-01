@@ -3,10 +3,8 @@
  * This example adds an ad customizer feed and associates it with the customer.
  * Then it adds an ad that uses the feed to populate dynamic data.
  *
- * Tags: CustomerFeedService.mutate
+ * Tags: AdCustomizerFeedService.mutate
  * Tags: FeedItemService.mutate
- * Tags: FeedMappingService.mutate
- * Tags: FeedService.mutate
  * Tags: AdGroupAdService.mutate
  * Restriction: adwords-only
  *
@@ -38,146 +36,71 @@ require_once dirname(dirname(__FILE__)) . '/init.php';
 
 // Enter parameters required by the code example.
 $adGroupIds = array('INSERT_AD_GROUP_ID_HERE', 'INSERT_AD_GROUP_ID_HERE');
-
-// See the Placeholder reference page for a list of all the placeholder types
-// and fields.
-// https://developers.google.com/adwords/api/docs/appendix/placeholders.html
-define('PLACEHOLDER_AD_CUSTOMIZER', 10);
-define('PLACEHOLDER_FIELD_PRICE', 3);
-define('PLACEHOLDER_FIELD_DATE', 4);
-define('PLACEHOLDER_FIELD_STRING', 5);
+$feedName = 'INSERT_FEED_NAME_HERE';
 
 /**
  * Runs the example.
  *
  * @param AdWordsUser $user the user to run the example with
  * @param array $adGroupIds the IDs of the ad groups to target with the FeedItem
+ * @param string $feedName the name of the new AdCustomizerFeed
  */
-function AddAdCustomizerExample(AdWordsUser $user, $adGroupIds) {
+function AddAdCustomizerExample(AdWordsUser $user, $adGroupIds, $feedName) {
   // Create a customizer feed. One feed per account can be used for all ads.
-  $dataHolder = CreateCustomizerFeed($user);
-
-  // Create a feed mapping to map the fields with customizer IDs.
-  CreateFeedMapping($user, $dataHolder);
+  $adCustomizerFeed = CreateCustomizerFeed($user, $feedName);
 
   // Add feed items containing the values we'd like to place in ads.
-  CreateCustomizerFeedItems($user, $adGroupIds, $dataHolder);
-
-  // Create a customer (account-level) feed with a matching function that
-  // determines when to use this feed. For this case we use the "IDENTITY"
-  // matching function that is always true just to associate this feed with the
-  // customer. The targeting is done within the feed items using the
-  // campaignTargeting, adGroupTargeting, or keywordTargeting attributes.
-  CreateCustomerFeed($user, $dataHolder);
+  CreateCustomizerFeedItems($user, $adGroupIds, $adCustomizerFeed);
 
   // All set! We can now create ads with customizations.
-  CreateAdsWithCustomizations($user, $adGroupIds);
+  CreateAdsWithCustomizations($user, $adGroupIds, $feedName);
 }
 
 /**
- * Creates a new Feed for ad customizers.
+ * Creates a new Feed for AdCustomizerFeed.
  *
  * @param AdWordsUser $user the user to run the example with
+ * @param string $feedName the name of the new AdCustomizerFeed
  */
-function CreateCustomizerFeed(AdWordsUser $user) {
+function CreateCustomizerFeed(AdWordsUser $user, $feedName) {
   // Map that holds IDs associated to the feeds metadata.
   $dataHolder = array();
 
-  // Get the FeedService, which loads the required classes.
-  $feedService = $user->GetService('FeedService', ADWORDS_VERSION);
-
-  // Create attributes.
-  $nameAttribute = new FeedAttribute();
-  $nameAttribute->type = 'STRING';
-  $nameAttribute->name = 'Name';
-  $priceAttribute = new FeedAttribute();
-  $priceAttribute->type = 'STRING';
-  $priceAttribute->name = 'Price';
-  $dateAttribute = new FeedAttribute();
-  $dateAttribute->type = 'DATE_TIME';
-  $dateAttribute->name = 'Date';
-
-  // Create the feed.
-  $customizerFeed = new Feed();
-  $customizerFeed->name = 'CustomizerFeed';
-  $customizerFeed->attributes = array($nameAttribute, $priceAttribute,
-      $dateAttribute);
-  $customizerFeed->origin = 'USER';
-
-  // Create operation.
-  $operation = new FeedOperation();
-  $operation->operator = 'ADD';
-  $operation->operand = $customizerFeed;
-
-  $operations = array($operation);
-
-  // Add the feed.
-  $result = $feedService->mutate($operations);
-
-  $savedFeed = $result->value[0];
-  $dataHolder['feedId'] = $savedFeed->id;
-  $savedAttributes = $savedFeed->attributes;
-  $dataHolder['nameFeedAttributeId'] = $savedAttributes[0]->id;
-  $dataHolder['priceFeedAttributeId'] = $savedAttributes[1]->id;
-  $dataHolder['dateFeedAttributeId'] = $savedAttributes[2]->id;
-
-  printf('Feed with name "%s" and ID %d with nameAttributeId %d'
-      . ", priceAttributeId %d, and dateAttribute %d were created.\n",
-      $savedFeed->name,
-      $savedFeed->id,
-      $savedAttributes[0]->id,
-      $savedAttributes[1]->id,
-      $savedAttributes[2]->id);
-
-  return $dataHolder;
-}
-
-/**
- * Creates a new FeedMapping that indicates how the data holder's feed should
- * be interpreted in the context of ad customizers.
- *
- * @param AdWordsUser $user the user to run the example with
- * @param array $dataHolder IDs associated to created customizer feed metadata
- */
-function CreateFeedMapping($user, $dataHolder) {
-  // Get the FeedMappingService, which loads the required classes.
-  $feedMappingService = $user->GetService('FeedMappingService',
+  // Get the AdCustomizerFeedService, which loads the required classes.
+  $adCustomizerFeedService = $user->GetService('AdCustomizerFeedService',
       ADWORDS_VERSION);
 
-  // Map the FeedAttributeIds to the fieldId constants.
-  $nameFieldMapping = new AttributeFieldMapping();
-  $nameFieldMapping->feedAttributeId =
-      $dataHolder['nameFeedAttributeId'];
-  $nameFieldMapping->fieldId = PLACEHOLDER_FIELD_STRING;
-  $priceFieldMapping = new AttributeFieldMapping();
-  $priceFieldMapping->feedAttributeId =
-      $dataHolder['priceFeedAttributeId'];
-  $priceFieldMapping->fieldId = PLACEHOLDER_FIELD_PRICE;
-  $dateFieldMapping = new AttributeFieldMapping();
-  $dateFieldMapping->feedAttributeId = $dataHolder['dateFeedAttributeId'];
-  $dateFieldMapping->fieldId = PLACEHOLDER_FIELD_DATE;
+  $nameAttribute = new AdCustomizerFeedAttribute();
+  $nameAttribute->name = 'Name';
+  $nameAttribute->type = 'STRING';
 
-  // Create the FieldMapping and operation.
-  $feedMapping = new FeedMapping();
-  $feedMapping->placeholderType = PLACEHOLDER_AD_CUSTOMIZER;
-  $feedMapping->feedId = $dataHolder['feedId'];
-  $feedMapping->attributeFieldMappings =
-      array($nameFieldMapping, $priceFieldMapping, $dateFieldMapping);
-  $operation = new FeedMappingOperation();
-  $operation->operand = $feedMapping;
-  $operation->operator = 'ADD';
+  $priceAttribute = new AdCustomizerFeedAttribute();
+  $priceAttribute->name = 'Price';
+  $priceAttribute->type = 'STRING';
 
-  $operations = array($operation);
+  $dateAttribute = new AdCustomizerFeedAttribute();
+  $dateAttribute->name = 'Date';
+  $dateAttribute->type = 'DATE_TIME';
 
-  // Save the field mapping.
-  $result = $feedMappingService->mutate($operations);
-  foreach ($result->value as $feedMapping) {
-    printf('Feed mapping with ID %d and placeholderType %d was saved for ' .
-        "feed with ID %d.\n",
-        $feedMapping->feedMappingId,
-        $feedMapping->placeholderType,
-        $feedMapping->feedId);
-  }
+  $customizerFeed = new AdCustomizerFeed();
+  $customizerFeed->feedName = $feedName;
+  $customizerFeed->feedAttributes = array($nameAttribute, $priceAttribute,
+      $dateAttribute);
+
+  $feedOperation = new AdCustomizerFeedOperation();
+  $feedOperation->operand = $customizerFeed;
+  $feedOperation->operator = 'ADD';
+
+  $operations = array($feedOperation);
+
+  // Add the feed.
+  $result = $adCustomizerFeedService->mutate($operations);
+  $addedFeed = $result->value[0];
+
+  printf("Created ad customizer feed with ID %d and name '%s'.\n",
+      $addedFeed->feedId, $addedFeed->feedName);
+
+  return $addedFeed;
 }
 
 /**
@@ -186,20 +109,22 @@ function CreateFeedMapping($user, $dataHolder) {
  *
  * @param AdWordsUser $user the user to run the example with
  * @param array $adGroupIds the IDs of the ad groups to target with the FeedItem
- * @param array $dataHolder IDs associated to created customizer feed metadata
+ * @param AdCustomizerFeed $adCustomizerFeed the customizer feed
  */
 function CreateCustomizerFeedItems(AdWordsUser $user, $adGroupIds,
-    $dataHolder) {
+    $adCustomizerFeed) {
   // Get the FeedItemService, which loads the required classes.
   $feedItemService = $user->GetService('FeedItemService', ADWORDS_VERSION);
 
   $operations = array();
 
+  $marsDate = mktime(0, 0, 0, date('m'), 1, date('Y'));
+  $venusDate = mktime(0, 0, 0, date('m'), 15, date('Y'));
   // Create operations to add FeedItems.
   $operations[] = CreateFeedItemAddOperation('Mars', '$1234.56',
-      '20140601 000000', $adGroupIds[0], $dataHolder);
+      date('Ymd His', $marsDate), $adGroupIds[0], $adCustomizerFeed);
   $operations[] = CreateFeedItemAddOperation('Venus', '$1450.00',
-      '20140615 120000', $adGroupIds[1], $dataHolder);
+      date('Ymd His', $venusDate), $adGroupIds[1], $adCustomizerFeed);
 
   $result = $feedItemService->mutate($operations);
 
@@ -207,7 +132,7 @@ function CreateCustomizerFeedItems(AdWordsUser $user, $adGroupIds,
     printf("FeedItem with feedItemId %d was added.\n", $feedItem->feedItemId);
   }
 
-  return $dataHolder;
+  return $adCustomizerFeed;
 }
 
 /**
@@ -218,26 +143,27 @@ function CreateCustomizerFeedItems(AdWordsUser $user, $adGroupIds,
  * @param string $price the value for the price attribute of the FeedItem
  * @param string $date the value for the date attribute of the FeedItem
  * @param string $adGroupId the ID of the ad group to target with the FeedItem
- * @param array $dataHolder IDs associated to created customizer feed metadata
+ * @param AdCustomizerFeed $adCustomizerFeed the customizer feed
  */
 function CreateFeedItemAddOperation($name, $price, $date, $adGroupId,
-    $dataHolder) {
+    $adCustomizerFeed) {
   // Create the FeedItemAttributeValues for our text values.
   $nameAttributeValue = new FeedItemAttributeValue();
   $nameAttributeValue->feedAttributeId =
-      $dataHolder['nameFeedAttributeId'];
+      $adCustomizerFeed->feedAttributes[0]->id;
   $nameAttributeValue->stringValue = $name;
   $priceAttributeValue = new FeedItemAttributeValue();
   $priceAttributeValue->feedAttributeId =
-      $dataHolder['priceFeedAttributeId'];
+      $adCustomizerFeed->feedAttributes[1]->id;
   $priceAttributeValue->stringValue = $price;
   $dateAttributeValue = new FeedItemAttributeValue();
-  $dateAttributeValue->feedAttributeId = $dataHolder['dateFeedAttributeId'];
+  $dateAttributeValue->feedAttributeId =
+      $adCustomizerFeed->feedAttributes[2]->id;
   $dateAttributeValue->stringValue = $date;
 
   // Create the feed item and operation.
   $item = new FeedItem();
-  $item->feedId = $dataHolder['feedId'];
+  $item->feedId = $adCustomizerFeed->feedId;
   $item->attributeValues =
       array($nameAttributeValue, $priceAttributeValue, $dateAttributeValue);
 
@@ -252,58 +178,22 @@ function CreateFeedItemAddOperation($name, $price, $date, $adGroupId,
 }
 
 /**
- * Creates a CustomerFeed that will associate the Feed with the ad customizers
- * placeholder type.
- *
- * @param AdWordsUser $user the user to run the example with
- * @param map $dataHolder IDs associated to created customizer feed metadata
- */
-function CreateCustomerFeed($user, $dataHolder) {
-  // Get the CustomerFeedService, which loads the required classes.
-  $customerFeedService = $user->GetService('CustomerFeedService',
-      ADWORDS_VERSION);
-
-  $customerFeed = new CustomerFeed();
-  $customerFeed->feedId = $dataHolder['feedId'];
-  $customerFeed->placeholderTypes = array(PLACEHOLDER_AD_CUSTOMIZER);
-
-  // Create a matching function that will always evaluate to true.
-  $customerMatchingFunction = new FeedFunction();
-  $constOperand = new ConstantOperand();
-  $constOperand->type = 'BOOLEAN';
-  $constOperand->booleanValue = 'TRUE';
-  $customerMatchingFunction->lhsOperand = array($constOperand);
-  $customerMatchingFunction->operator = 'IDENTITY';
-  $customerFeed->matchingFunction = $customerMatchingFunction;
-
-  // Create an operation to add the customer feed.
-  $customerFeedOperation = new CustomerFeedOperation();
-  $customerFeedOperation->operand = $customerFeed;
-  $customerFeedOperation->operator = 'ADD';
-
-  $operations = array($customerFeedOperation);
-
-  $result = $customerFeedService->mutate($operations);
-  foreach ($result->value as $savedCustomerFeed) {
-    printf("Created a new CustomerFeed that's associated with feed ID %d.\n",
-        $savedCustomerFeed->feedId);
-  }
-}
-
-/**
  * Creates text ads that use ad customizations for the specified ad group IDs.
  *
  * @param AdWordsUser $user the user to run the example with
  * @param array $adGroupIds the IDs of the ad groups to target with the FeedItem
+ * @param string $feedName the name of the new AdCustomizerFeed
  */
-function CreateAdsWithCustomizations(AdWordsUser $user, $adGroupIds) {
+function CreateAdsWithCustomizations(AdWordsUser $user, $adGroupIds,
+    $feedName) {
   // Get the service, which loads the required classes.
   $adGroupAdService = $user->GetService('AdGroupAdService', ADWORDS_VERSION);
 
   $textAd = new TextAd();
-  $textAd->headline = 'Luxury Cruise to {=CustomizerFeed.Name}';
-  $textAd->description1 = 'Only {=CustomizerFeed.Price}';
-  $textAd->description2 = 'Offer ends in {=countdown(CustomizerFeed.Date)}!';
+  $textAd->headline = sprintf('Luxury Cruise to {=%s.Name}', $feedName);
+  $textAd->description1 = sprintf('Only {=%s.Price}', $feedName);
+  $textAd->description2 = sprintf('Offer ends in {=countdown(%s.Date)}!',
+      $feedName);
   $textAd->finalUrls = array('http://www.example.com');
   $textAd->displayUrl = 'www.example.com';
 
@@ -348,7 +238,7 @@ try {
   $user->LogAll();
 
   // Run the example.
-  AddAdCustomizerExample($user, $adGroupIds);
+  AddAdCustomizerExample($user, $adGroupIds, $feedName);
 } catch (Exception $e) {
   printf("An error has occurred: %s\n", $e->getMessage());
 }

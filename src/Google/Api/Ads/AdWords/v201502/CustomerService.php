@@ -1457,6 +1457,10 @@ if (!class_exists("CustomerServiceGetResponse", false)) {
 
 if (!class_exists("CustomerServiceMutate", false)) {
   /**
+   * <span class="constraint Required">This field is required and should not be {@code null}.</span>
+   * 
+   * 
+   * 
    * Update the authorized customer.
    * 
    * <p>While there are a limited set of properties available to update, please read this
@@ -2745,6 +2749,10 @@ if (!class_exists("CustomerService", false)) {
       return $result->rval;
     }
     /**
+     * <span class="constraint Required">This field is required and should not be {@code null}.</span>
+     * 
+     * 
+     * 
      * Update the authorized customer.
      * 
      * <p>While there are a limited set of properties available to update, please read this

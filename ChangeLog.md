@@ -1,3 +1,12 @@
+### 5.9.0
+
+AdWords:
+  - Removed support and examples for v201406.
+  - Added support for the [skipColumnHeader option](https://developers.google.com/adwords/api/docs/guides/reporting#optional-headers)
+    introduced in v201502.
+  - Updated MigrateToExtensionSettings.php to account for platform restrictions.
+  - Reworked AddSitelinks examples to use final URLs and function strings.
+
 ### 5.8.2
 
 AdWords:

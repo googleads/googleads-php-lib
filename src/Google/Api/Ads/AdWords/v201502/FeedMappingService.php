@@ -2409,6 +2409,8 @@ if (!class_exists("FeedMappingError", false)) {
 if (!class_exists("FeedMappingOperation", false)) {
   /**
    * Operation used to create a FeedMapping.
+   * 
+   * <p>The following {@link Operator}s are supported: ADD, REMOVE.
    * @package Google_Api_Ads_AdWords_v201502
    * @subpackage v201502
    */

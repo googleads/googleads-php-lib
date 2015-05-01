@@ -95,6 +95,8 @@ function MigrateToExtensionSettingsExample(AdWordsUser $user) {
       foreach ($campaignFeeds as $campaignFeed) {
         // Retrieve the sitelinks that have been associated with this campaign.
         $feedItemIds = GetFeedItemsForCampaign($campaignFeed);
+        $platformRestrictions =
+            GetPlatformRestrictionsForCampaign($campaignFeed);
 
         if(empty($feedItemIds)) {
           printf("Skipping feed ID %d for campaign %d -- matching function is "
@@ -113,7 +115,8 @@ function MigrateToExtensionSettingsExample(AdWordsUser $user) {
 
         // Create extension settings instead of sitelinks.
         CreateExtensionSetting(
-            $user, $feedItems, $campaignFeed->campaignId, $feedItemIds);
+            $user, $feedItems, $campaignFeed->campaignId, $feedItemIds,
+            $platformRestrictions);
       }
       // Delete all the sitelinks from the feed.
       $allFeedItemsToDelete = array_unique($allFeedItemsToDelete);
@@ -232,22 +235,68 @@ function GetSiteLinksFromFeed($user, $feedId) {
   return $siteLinks;
 }
 
+function GetPlatformRestrictionsForCampaign($campaignFeed) {
+  $platformRestrictions = 'NONE';
+  if ($campaignFeed->matchingFunction->operator == 'AND') {
+    foreach ($campaignFeed->matchingFunction->lhsOperand as $argument) {
+      if (get_class($argument) == 'FunctionOperand') {
+        if ($argument->value->operator == 'EQUALS' &&
+            get_class($argument->value->lhsOperand[0]) ==
+            'RequestContextOperand') {
+          $requestContextOperand = $argument->value->lhsOperand[0];
+          if ($requestContextOperand->contextType == 'DEVICE_PLATFORM') {
+            $platformRestrictions =
+                strtoupper($argument->value->rhsOperand[0]->stringValue);
+          }
+        }
+      }
+    }
+  }
+  return $platformRestrictions;
+}
+
 function GetFeedItemsForCampaign($campaignFeed) {
   $feedItems = array();
-  if (count($campaignFeed->matchingFunction->lhsOperand) == 1 &&
-      get_class($campaignFeed->matchingFunction->lhsOperand[0]) ==
-          'RequestContextOperand' &&
-      $campaignFeed->matchingFunction->lhsOperand[0]->contextType ==
-          'FEED_ITEM_ID' &&
-      $campaignFeed->matchingFunction->operator == 'IN') {
-    foreach ($campaignFeed->matchingFunction->rhsOperand as $argument) {
+
+  if ($campaignFeed->matchingFunction->operator == 'IN') {
+    // Check if matchingFunction is of the form IN(FEED_ITEM_ID,{xxx,xxx}).
+    // Extract feed items if applicable.
+    $feedItems = array_merge($feedItems,
+        GetFeedItemsFromArgument($campaignFeed->matchingFunction));
+  } else if ($campaignFeed->matchingFunction->operator == 'AND') {
+    foreach ($campaignFeed->matchingFunction->lhsOperand as $argument) {
+      // Check if matchingFunction is of the form IN(FEED_ITEM_ID,{xxx,xxx}).
+      // Extract feed items if applicable.
+      if (get_class($argument) == 'FunctionOperand') {
+        if ($argument->value->operator == 'IN') {
+          $feedItems = array_merge($feedItems,
+              GetFeedItemsFromArgument($argument->value));
+        }
+      }
+    }
+  }
+  // There are no other matching functions involving feed item IDs.
+  return $feedItems;
+}
+
+function GetFeedItemsFromArgument($function) {
+  $feedItems = array();
+
+  if (count($function->lhsOperand) == 1 &&
+      get_class($function->lhsOperand[0]) ==
+      'RequestContextOperand' &&
+      $function->lhsOperand[0]->contextType ==
+      'FEED_ITEM_ID' &&
+      $function->operator == 'IN') {
+    foreach ($function->rhsOperand as $argument) {
       $feedItems[] = $argument->longValue;
     }
   }
   return $feedItems;
 }
 
-function CreateExtensionSetting($user, $feedItems, $campaignId, $feedItemIds) {
+function CreateExtensionSetting($user, $feedItems, $campaignId, $feedItemIds,
+    $platformRestrictions) {
   $campaignExtensionSettingService =
       $user->GetService('CampaignExtensionSettingService', ADWORDS_VERSION);
 
@@ -261,12 +310,14 @@ function CreateExtensionSetting($user, $feedItems, $campaignId, $feedItemIds) {
     $feedItem = $feedItems[$feedItemId];
     $newFeedItem = new SitelinkFeedItem($feedItem->text, $feedItem->url,
         $feedItem->line2, $feedItem->line3, $feedItem->finalUrls,
-        $feedItem->finalMobileUrls, $feedItem->trackingUrlTemplate, NULL, NULL,
-        NULL, NULL, NULL, NULL, NULL, $feedItem->scheduling);
+        $feedItem->finalMobileUrls, $feedItem->trackingUrlTemplate, null, null,
+        null, null, null, null, null, $feedItem->scheduling);
     $extensionFeedItems[] = $newFeedItem;
   }
   $extensionSetting->extensionSetting->extensions = $extensionFeedItems;
-  $extensionSetting->extensionType = "SITELINK";
+  $extensionSetting->extensionSetting->platformRestrictions =
+      $platformRestrictions;
+  $extensionSetting->extensionType = 'SITELINK';
 
   $operation = new CampaignExtensionSettingOperation($extensionSetting, 'ADD');
 
@@ -315,7 +366,7 @@ if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
 }
 
 try {
-  // Get AdWordsUser from credentials in "../auth.ini"
+  // Get AdWordsUser from credentials in '../auth.ini'
   // relative to the AdWordsUser.php file's directory.
   $user = new AdWordsUser();
 

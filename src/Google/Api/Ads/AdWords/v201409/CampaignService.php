@@ -4324,51 +4324,6 @@ if (!class_exists("TargetCpaBiddingScheme", false)) {
   }
 }
 
-if (!class_exists("TargetError", false)) {
-  /**
-   * A list of all the error codes being used by the common targeting package.
-   * @package Google_Api_Ads_AdWords_v201409
-   * @subpackage v201409
-   */
-  class TargetError extends ApiError {
-
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201409";
-    const XSI_TYPE = "TargetError";
-
-    /**
-     * @access public
-     * @var tnsTargetErrorReason
-     */
-    public $reason;
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
-      parent::__construct();
-      $this->reason = $reason;
-      $this->fieldPath = $fieldPath;
-      $this->trigger = $trigger;
-      $this->errorString = $errorString;
-      $this->ApiErrorType = $ApiErrorType;
-    }
-
-  }
-}
-
 if (!class_exists("TargetRoasBiddingScheme", false)) {
   /**
    * Target Roas bidding strategy helps you maximize revenue while averaging a specific target
@@ -6558,39 +6513,6 @@ if (!class_exists("StringLengthErrorReason", false)) {
   }
 }
 
-if (!class_exists("TargetErrorReason", false)) {
-  /**
-   * The reasons for the target error.
-   * @package Google_Api_Ads_AdWords_v201409
-   * @subpackage v201409
-   */
-  class TargetErrorReason {
-
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201409";
-    const XSI_TYPE = "TargetError.Reason";
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct() {
-    }
-
-  }
-}
-
 if (!class_exists("TimeUnit", false)) {
   /**
    * Unit of time the cap is defined at.
@@ -7752,7 +7674,6 @@ if (!class_exists("CampaignService", false)) {
       "StringLengthError" => "StringLengthError",
       "String_StringMapEntry" => "String_StringMapEntry",
       "TargetCpaBiddingScheme" => "TargetCpaBiddingScheme",
-      "TargetError" => "TargetError",
       "TargetRoasBiddingScheme" => "TargetRoasBiddingScheme",
       "TargetSpendBiddingScheme" => "TargetSpendBiddingScheme",
       "TrackingSetting" => "TrackingSetting",
@@ -7817,7 +7738,6 @@ if (!class_exists("CampaignService", false)) {
       "StatsQueryError.Reason" => "StatsQueryErrorReason",
       "StringFormatError.Reason" => "StringFormatErrorReason",
       "StringLengthError.Reason" => "StringLengthErrorReason",
-      "TargetError.Reason" => "TargetErrorReason",
       "TimeUnit" => "TimeUnit",
       "UrlError.Reason" => "UrlErrorReason",
       "get" => "CampaignServiceGet",

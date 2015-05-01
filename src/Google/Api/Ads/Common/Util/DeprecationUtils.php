@@ -40,15 +40,17 @@ require_once 'Google/Api/Ads/Common/Lib/ServiceException.php';
 abstract class DeprecationUtils {
 
   /**
-   * Checks to see if skipReportHeader or skipReportSummary can be used.
+   * Checks to see if skipReportHeader, skipColumnHeader or skipReportSummary 
+   * can be used.
    * Throws an error if it cannot be used.
    *
-   * @param string $header skipReportHeader or skipReportSummary
+   * @param string $header skipReportHeader, skipColumnHeader or 
+   *    skipReportSummary
    * @param string $minimumVersion the minimum API version that supports
-   *    skipReportHeader or skipReportSummary
+   *    skipReportHeader, skipColumnHeader or skipReportSummary
    * @param string $requestedVersion the API version being used
    * @throws ServiceException if the requested version does not support
-   *     skipReportHeader or skipReportSummary
+   *     skipReportHeader, skipColumnHeader or skipReportSummary
    */
   public static function CheckUsingSkipReportHeaderWithUnsupportedVersion(
       $header, $minimumVersion, $requestedVersion) {

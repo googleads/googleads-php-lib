@@ -44,6 +44,8 @@ function AddSitelinksExample(AdWordsUser $user, $campaignId) {
   // Get the services and load the required classes.
   $campaignExtensionSettingService =
       $user->GetService('CampaignExtensionSettingService', ADWORDS_VERSION);
+  $customerService = $user->GetService('CustomerService', ADWORDS_VERSION);
+  $customer = $customerService->get();
 
   // Create the sitelinks:
 
@@ -58,8 +60,8 @@ function AddSitelinksExample(AdWordsUser $user, $campaignId) {
   $sitelink2->sitelinkText = 'Thanksgiving Specials';
   $sitelink2->sitelinkFinalUrls =
       new UrlList(array('http://www.example.com/thanksgiving'));
-  $sitelink2->startTime = date('Y') . '1120 000000 EST';
-  $sitelink2->endTime = date('Y') . '1127 235959 EST';
+  $sitelink2->startTime = date('Y') . '1120 000000 ' . $customer->dateTimeZone;
+  $sitelink2->endTime = date('Y') . '1127 235959 ' . $customer->dateTimeZone;
 
   // Sitelink targetted on high end mobile.
   $sitelink3 = new SitelinkFeedItem();

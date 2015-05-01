@@ -2954,55 +2954,6 @@ if (!class_exists("StringLengthError", false)) {
   }
 }
 
-if (!class_exists("TargetError", false)) {
-  /**
-   * A list of all the error codes being used by the common targeting package.
-   * 
-   * 
-   * 
-   * Base error class for Ad Group Criterion Service.
-   * @package Google_Api_Ads_AdWords_v201409
-   * @subpackage v201409
-   */
-  class TargetError extends ApiError {
-
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201409";
-    const XSI_TYPE = "TargetError";
-
-    /**
-     * @access public
-     * @var tnsTargetErrorReason
-     */
-    public $reason;
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
-      parent::__construct();
-      $this->reason = $reason;
-      $this->fieldPath = $fieldPath;
-      $this->trigger = $trigger;
-      $this->errorString = $errorString;
-      $this->ApiErrorType = $ApiErrorType;
-    }
-
-  }
-}
-
 if (!class_exists("CriterionUserInterest", false)) {
   /**
    * User Interest represents a particular interest-based vertical to be targeted.
@@ -4488,43 +4439,6 @@ if (!class_exists("StringLengthErrorReason", false)) {
   }
 }
 
-if (!class_exists("TargetErrorReason", false)) {
-  /**
-   * The reasons for the target error.
-   * 
-   * 
-   * 
-   * Base error class for Ad Group Criterion Service.
-   * @package Google_Api_Ads_AdWords_v201409
-   * @subpackage v201409
-   */
-  class TargetErrorReason {
-
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201409";
-    const XSI_TYPE = "TargetError.Reason";
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct() {
-    }
-
-  }
-}
-
 if (!class_exists("CriterionUserListMembershipStatus", false)) {
   /**
    * Membership status of the user list.
@@ -5938,28 +5852,28 @@ if (!class_exists("Range", false)) {
 
 if (!class_exists("SearchParameter", false)) {
   /**
-   * A set of {@link SearchParameter}s are supplied to the
+   * A set of {@link SearchParameter}s is supplied to the
    * {@link com.google.ads.api.services.targetingideas.TargetingIdeaSelector}
    * to specify how the user wants to filter the set of all possible
    * {@link com.google.ads.api.services.targetingideas.TargetingIdea}s.
-   * <p>
-   * There is a {@link SearchParameter} for all types of inputs.
-   * {@link SearchParameter}s can conceptually be broken down into two types.
+   * 
+   * <p>There is a {@link SearchParameter} for each type of input.
+   * {@link SearchParameter}s can conceptually be broken down into two types.</p>
+   * 
    * <ul>
    * <li>Input {@link SearchParameter}s provide the seed information from which
-   * ideas should be generated or statistic information is desired
-   * (e.g. {@link RelatedToQuerySearchParameter},
-   * {@link RelatedToUrlSearchParameter}, etc).
-   * Such {@link SearchParameters} are required for valid requests.</li>
-   * <li>Filter {@link SearchParameter}s are used to trim down the results based
-   * on {@link com.google.ads.api.services.targetingideas.attributes.Attribute}
-   * related information (eg. {@link CompetitionSearchParameter}, etc.).</li>
+   * ideas or stats are to be generated (e.g., {@link RelatedToQuerySearchParameter},
+   * {@link RelatedToUrlSearchParameter}, etc.). This type of {@link SearchParameters}
+   * is required in requests.</li>
+   * <li>Filter {@link SearchParameter}s (e.g., {@link CompetitionSearchParameter}, etc.)
+   * are used to trim down the results based on
+   * {@link com.google.ads.api.services.targetingideas.attributes.Attribute}-related
+   * information.</li>
    * </ul>
-   * <p>
-   * A request should only contain one instance of each {@link SearchParameter}.
-   * <p>
-   * NOTICE: Starting with version v201406, requests containing multiple
-   * instances of the same search parameter will be rejected.
+   * 
+   * <p>A request should only contain one instance of each {@link SearchParameter}.
+   * Requests containing multiple instances of the same search parameter will be
+   * rejected.</p>
    * <p>One or more of the following {@link SearchParameter}s are required:<br/>
    * <ul><li>{@link CategoryProductsAndServicesSearchParameter}</li>
    * <li>{@link LocationSearchParameter}</li>
@@ -8185,7 +8099,6 @@ if (!class_exists("TargetingIdeaService", false)) {
       "StatsQueryError" => "StatsQueryError",
       "StringFormatError" => "StringFormatError",
       "StringLengthError" => "StringLengthError",
-      "TargetError" => "TargetError",
       "CriterionUserInterest" => "CriterionUserInterest",
       "CriterionUserList" => "CriterionUserList",
       "Vertical" => "Vertical",
@@ -8224,7 +8137,6 @@ if (!class_exists("TargetingIdeaService", false)) {
       "StatsQueryError.Reason" => "StatsQueryErrorReason",
       "StringFormatError.Reason" => "StringFormatErrorReason",
       "StringLengthError.Reason" => "StringLengthErrorReason",
-      "TargetError.Reason" => "TargetErrorReason",
       "CriterionUserList.MembershipStatus" => "CriterionUserListMembershipStatus",
       "AdFormatSpec" => "AdFormatSpec",
       "AdFormatSpecListAttribute" => "AdFormatSpecListAttribute",

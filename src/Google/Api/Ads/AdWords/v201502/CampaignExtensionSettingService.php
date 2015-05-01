@@ -1119,7 +1119,7 @@ if (!class_exists("Selector", false)) {
 
 if (!class_exists("CampaignExtensionSetting", false)) {
   /**
-   * A CampaignExtensionSetting is used add or modify extensions being served for the specified
+   * A CampaignExtensionSetting is used to add or modify extensions being served for the specified
    * campaign.
    * @package Google_Api_Ads_AdWords_v201502
    * @subpackage v201502

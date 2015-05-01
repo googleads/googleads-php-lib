@@ -1712,12 +1712,6 @@ if (!class_exists("ApiErrorReason", false)) {
 
     /**
      * @access public
-     * @var tnsTargetErrorReason
-     */
-    public $TargetErrorReason;
-
-    /**
-     * @access public
      * @var tnsUrlErrorReason
      */
     public $UrlErrorReason;
@@ -1738,7 +1732,7 @@ if (!class_exists("ApiErrorReason", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($AdCustomizerErrorReason = null, $AdErrorReason = null, $AdExtensionErrorReason = null, $AdGroupAdErrorReason = null, $AdGroupCriterionErrorReason = null, $AdGroupServiceErrorReason = null, $AdxErrorReason = null, $AuthenticationErrorReason = null, $AuthorizationErrorReason = null, $BetaErrorReason = null, $BiddingErrorReason = null, $BiddingErrorsReason = null, $BiddingTransitionErrorReason = null, $BudgetErrorReason = null, $BulkMutateJobErrorReason = null, $CampaignAdExtensionErrorReason = null, $CampaignCriterionErrorReason = null, $CampaignErrorReason = null, $ClientTermsErrorReason = null, $CollectionSizeErrorReason = null, $CriterionErrorReason = null, $DatabaseErrorReason = null, $DateErrorReason = null, $DateRangeErrorReason = null, $DistinctErrorReason = null, $EntityAccessDeniedReason = null, $EntityCountLimitExceededReason = null, $EntityNotFoundReason = null, $ExperimentErrorReason = null, $FeedAttributeReferenceErrorReason = null, $FeedItemErrorReason = null, $ForwardCompatibilityErrorReason = null, $FunctionErrorReason = null, $FunctionParsingErrorReason = null, $IdErrorReason = null, $ImageErrorReason = null, $InternalApiErrorReason = null, $JobErrorReason = null, $MediaErrorReason = null, $MultiplierErrorReason = null, $NewEntityCreationErrorReason = null, $NotEmptyErrorReason = null, $NullErrorReason = null, $OperationAccessDeniedReason = null, $OperatorErrorReason = null, $PagingErrorReason = null, $PolicyViolationErrorReason = null, $QueryErrorReason = null, $QuotaCheckErrorReason = null, $RangeErrorReason = null, $RateExceededErrorReason = null, $ReadOnlyErrorReason = null, $RegionCodeErrorReason = null, $RejectedErrorReason = null, $RequestErrorReason = null, $RequiredErrorReason = null, $SelectorErrorReason = null, $SettingErrorReason = null, $SizeLimitErrorReason = null, $StatsQueryErrorReason = null, $StringFormatErrorReason = null, $StringLengthErrorReason = null, $TargetErrorReason = null, $UrlErrorReason = null) {
+    public function __construct($AdCustomizerErrorReason = null, $AdErrorReason = null, $AdExtensionErrorReason = null, $AdGroupAdErrorReason = null, $AdGroupCriterionErrorReason = null, $AdGroupServiceErrorReason = null, $AdxErrorReason = null, $AuthenticationErrorReason = null, $AuthorizationErrorReason = null, $BetaErrorReason = null, $BiddingErrorReason = null, $BiddingErrorsReason = null, $BiddingTransitionErrorReason = null, $BudgetErrorReason = null, $BulkMutateJobErrorReason = null, $CampaignAdExtensionErrorReason = null, $CampaignCriterionErrorReason = null, $CampaignErrorReason = null, $ClientTermsErrorReason = null, $CollectionSizeErrorReason = null, $CriterionErrorReason = null, $DatabaseErrorReason = null, $DateErrorReason = null, $DateRangeErrorReason = null, $DistinctErrorReason = null, $EntityAccessDeniedReason = null, $EntityCountLimitExceededReason = null, $EntityNotFoundReason = null, $ExperimentErrorReason = null, $FeedAttributeReferenceErrorReason = null, $FeedItemErrorReason = null, $ForwardCompatibilityErrorReason = null, $FunctionErrorReason = null, $FunctionParsingErrorReason = null, $IdErrorReason = null, $ImageErrorReason = null, $InternalApiErrorReason = null, $JobErrorReason = null, $MediaErrorReason = null, $MultiplierErrorReason = null, $NewEntityCreationErrorReason = null, $NotEmptyErrorReason = null, $NullErrorReason = null, $OperationAccessDeniedReason = null, $OperatorErrorReason = null, $PagingErrorReason = null, $PolicyViolationErrorReason = null, $QueryErrorReason = null, $QuotaCheckErrorReason = null, $RangeErrorReason = null, $RateExceededErrorReason = null, $ReadOnlyErrorReason = null, $RegionCodeErrorReason = null, $RejectedErrorReason = null, $RequestErrorReason = null, $RequiredErrorReason = null, $SelectorErrorReason = null, $SettingErrorReason = null, $SizeLimitErrorReason = null, $StatsQueryErrorReason = null, $StringFormatErrorReason = null, $StringLengthErrorReason = null, $UrlErrorReason = null) {
       $this->AdCustomizerErrorReason = $AdCustomizerErrorReason;
       $this->AdErrorReason = $AdErrorReason;
       $this->AdExtensionErrorReason = $AdExtensionErrorReason;
@@ -1801,7 +1795,6 @@ if (!class_exists("ApiErrorReason", false)) {
       $this->StatsQueryErrorReason = $StatsQueryErrorReason;
       $this->StringFormatErrorReason = $StringFormatErrorReason;
       $this->StringLengthErrorReason = $StringLengthErrorReason;
-      $this->TargetErrorReason = $TargetErrorReason;
       $this->UrlErrorReason = $UrlErrorReason;
     }
 
@@ -8650,18 +8643,6 @@ if (!class_exists("Operand", false)) {
     public $PlaceHolder;
 
     /**
-     * @access public
-     * @var TargetList
-     */
-    public $TargetList;
-
-    /**
-     * @access public
-     * @var Target
-     */
-    public $Target;
-
-    /**
      * Gets the namesapce of this class
      * @return the namespace of this class
      */
@@ -8677,7 +8658,7 @@ if (!class_exists("Operand", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($AdGroupAdLabel = null, $AdGroupAd = null, $AdGroupBidModifier = null, $AdGroupCriterionLabel = null, $AdGroupCriterion = null, $AdGroupLabel = null, $AdGroup = null, $Ad = null, $Budget = null, $CampaignAdExtension = null, $CampaignCriterion = null, $CampaignLabel = null, $Campaign = null, $FeedItem = null, $Job = null, $Label = null, $Media = null, $PlaceHolder = null, $TargetList = null, $Target = null) {
+    public function __construct($AdGroupAdLabel = null, $AdGroupAd = null, $AdGroupBidModifier = null, $AdGroupCriterionLabel = null, $AdGroupCriterion = null, $AdGroupLabel = null, $AdGroup = null, $Ad = null, $Budget = null, $CampaignAdExtension = null, $CampaignCriterion = null, $CampaignLabel = null, $Campaign = null, $FeedItem = null, $Job = null, $Label = null, $Media = null, $PlaceHolder = null) {
       $this->AdGroupAdLabel = $AdGroupAdLabel;
       $this->AdGroupAd = $AdGroupAd;
       $this->AdGroupBidModifier = $AdGroupBidModifier;
@@ -8696,8 +8677,6 @@ if (!class_exists("Operand", false)) {
       $this->Label = $Label;
       $this->Media = $Media;
       $this->PlaceHolder = $PlaceHolder;
-      $this->TargetList = $TargetList;
-      $this->Target = $Target;
     }
 
   }
@@ -11336,78 +11315,6 @@ if (!class_exists("String_StringMapEntry", false)) {
   }
 }
 
-if (!class_exists("Target", false)) {
-  /**
-   * Target abstract class.
-   * @package Google_Api_Ads_AdWords_v201502
-   * @subpackage v201502
-   */
-  class Target {
-
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201502";
-    const XSI_TYPE = "Target";
-
-    /**
-     * @access public
-     * @var string
-     */
-    public $TargetType;
-    private $_parameterMap = array(
-      "Target.Type" => "TargetType",
-    );
-
-    /**
-     * Provided for setting non-php-standard named variables
-     * @param $var Variable name to set
-     * @param $value Value to set
-     */
-    public function __set($var, $value) {
-      $this->{$this->_parameterMap[$var]} = $value;
-    }
-
-    /**
-     * Provided for getting non-php-standard named variables
-     * @param $var Variable name to get
-     * @return mixed Variable value
-     */
-    public function __get($var) {
-      if (!isset($this->_parameterMap[$var])) {
-        return null;
-      }
-      return $this->{$this->_parameterMap[$var]};
-    }
-
-    /**
-     * Provided for getting non-php-standard named variables
-     * @return array parameter map
-     */
-    protected function getParameterMap() {
-      return $this->_parameterMap;
-    }
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($TargetType = null) {
-      $this->TargetType = $TargetType;
-    }
-
-  }
-}
-
 if (!class_exists("TargetCpaBiddingScheme", false)) {
   /**
    * Target Cpa bidding strategy helps you maximize your return on investment
@@ -11470,130 +11377,6 @@ if (!class_exists("TargetCpaBiddingScheme", false)) {
       $this->maxCpcBidCeiling = $maxCpcBidCeiling;
       $this->maxCpcBidFloor = $maxCpcBidFloor;
       $this->BiddingSchemeType = $BiddingSchemeType;
-    }
-
-  }
-}
-
-if (!class_exists("TargetError", false)) {
-  /**
-   * A list of all the error codes being used by the common targeting package.
-   * @package Google_Api_Ads_AdWords_v201502
-   * @subpackage v201502
-   */
-  class TargetError extends ApiError {
-
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201502";
-    const XSI_TYPE = "TargetError";
-
-    /**
-     * @access public
-     * @var tnsTargetErrorReason
-     */
-    public $reason;
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
-      parent::__construct();
-      $this->reason = $reason;
-      $this->fieldPath = $fieldPath;
-      $this->trigger = $trigger;
-      $this->errorString = $errorString;
-      $this->ApiErrorType = $ApiErrorType;
-    }
-
-  }
-}
-
-if (!class_exists("TargetList", false)) {
-  /**
-   * Targets list abstract class (a list of a given type of targets along with their campaign ID).
-   * @package Google_Api_Ads_AdWords_v201502
-   * @subpackage v201502
-   */
-  class TargetList {
-
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201502";
-    const XSI_TYPE = "TargetList";
-
-    /**
-     * @access public
-     * @var integer
-     */
-    public $campaignId;
-
-    /**
-     * @access public
-     * @var string
-     */
-    public $TargetListType;
-    private $_parameterMap = array(
-      "TargetList.Type" => "TargetListType",
-    );
-
-    /**
-     * Provided for setting non-php-standard named variables
-     * @param $var Variable name to set
-     * @param $value Value to set
-     */
-    public function __set($var, $value) {
-      $this->{$this->_parameterMap[$var]} = $value;
-    }
-
-    /**
-     * Provided for getting non-php-standard named variables
-     * @param $var Variable name to get
-     * @return mixed Variable value
-     */
-    public function __get($var) {
-      if (!isset($this->_parameterMap[$var])) {
-        return null;
-      }
-      return $this->{$this->_parameterMap[$var]};
-    }
-
-    /**
-     * Provided for getting non-php-standard named variables
-     * @return array parameter map
-     */
-    protected function getParameterMap() {
-      return $this->_parameterMap;
-    }
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($campaignId = null, $TargetListType = null) {
-      $this->campaignId = $campaignId;
-      $this->TargetListType = $TargetListType;
     }
 
   }
@@ -17379,39 +17162,6 @@ if (!class_exists("SystemServingStatus", false)) {
   }
 }
 
-if (!class_exists("TargetErrorReason", false)) {
-  /**
-   * The reasons for the target error.
-   * @package Google_Api_Ads_AdWords_v201502
-   * @subpackage v201502
-   */
-  class TargetErrorReason {
-
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201502";
-    const XSI_TYPE = "TargetError.Reason";
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct() {
-    }
-
-  }
-}
-
 if (!class_exists("TemplateElementFieldType", false)) {
   /**
    * Possible field types of template element fields.
@@ -18725,126 +18475,6 @@ if (!class_exists("AdSchedule", false)) {
   }
 }
 
-if (!class_exists("AdScheduleTarget", false)) {
-  /**
-   * Immutable structure to hold an ad schedule target.
-   * @package Google_Api_Ads_AdWords_v201502
-   * @subpackage v201502
-   */
-  class AdScheduleTarget extends Target {
-
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201502";
-    const XSI_TYPE = "AdScheduleTarget";
-
-    /**
-     * @access public
-     * @var tnsDayOfWeek
-     */
-    public $dayOfWeek;
-
-    /**
-     * @access public
-     * @var integer
-     */
-    public $startHour;
-
-    /**
-     * @access public
-     * @var tnsMinuteOfHour
-     */
-    public $startMinute;
-
-    /**
-     * @access public
-     * @var integer
-     */
-    public $endHour;
-
-    /**
-     * @access public
-     * @var tnsMinuteOfHour
-     */
-    public $endMinute;
-
-    /**
-     * @access public
-     * @var double
-     */
-    public $bidMultiplier;
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($dayOfWeek = null, $startHour = null, $startMinute = null, $endHour = null, $endMinute = null, $bidMultiplier = null, $TargetType = null) {
-      parent::__construct();
-      $this->dayOfWeek = $dayOfWeek;
-      $this->startHour = $startHour;
-      $this->startMinute = $startMinute;
-      $this->endHour = $endHour;
-      $this->endMinute = $endMinute;
-      $this->bidMultiplier = $bidMultiplier;
-      $this->TargetType = $TargetType;
-    }
-
-  }
-}
-
-if (!class_exists("AdScheduleTargetList", false)) {
-  /**
-   * List of ad schedule targets.
-   * @package Google_Api_Ads_AdWords_v201502
-   * @subpackage v201502
-   */
-  class AdScheduleTargetList extends TargetList {
-
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201502";
-    const XSI_TYPE = "AdScheduleTargetList";
-
-    /**
-     * @access public
-     * @var AdScheduleTarget[]
-     */
-    public $targets;
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($targets = null, $campaignId = null, $TargetListType = null) {
-      parent::__construct();
-      $this->targets = $targets;
-      $this->campaignId = $campaignId;
-      $this->TargetListType = $TargetListType;
-    }
-
-  }
-}
-
 if (!class_exists("AdxError", false)) {
   /**
    * Errors that are thrown when a non-AdX feature is accessed by an AdX customer.
@@ -19372,50 +19002,6 @@ if (!class_exists("CampaignOperation", false)) {
     /**
      * @access public
      * @var Campaign
-     */
-    public $operand;
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($operand = null, $operator = null, $OperationType = null) {
-      parent::__construct();
-      $this->operand = $operand;
-      $this->operator = $operator;
-      $this->OperationType = $OperationType;
-    }
-
-  }
-}
-
-if (!class_exists("CampaignTargetOperation", false)) {
-  /**
-   * Sets a list of targets on a specified campaign.
-   * <p class="note"><b>Note:</b> Only the <code>SET</code> operator is supported.</p>
-   * @package Google_Api_Ads_AdWords_v201502
-   * @subpackage v201502
-   */
-  class CampaignTargetOperation extends Operation {
-
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201502";
-    const XSI_TYPE = "CampaignTargetOperation";
-
-    /**
-     * @access public
-     * @var TargetList
      */
     public $operand;
 
@@ -20705,8 +20291,6 @@ if (!class_exists("MutateJobService", false)) {
       "AdGroupOperation" => "AdGroupOperation",
       "AdGroupServiceError" => "AdGroupServiceError",
       "AdSchedule" => "AdSchedule",
-      "AdScheduleTarget" => "AdScheduleTarget",
-      "AdScheduleTargetList" => "AdScheduleTargetList",
       "AdUnionId" => "AdUnionId",
       "Address" => "Address",
       "AdxError" => "AdxError",
@@ -20751,7 +20335,6 @@ if (!class_exists("MutateJobService", false)) {
       "CampaignLabelOperation" => "CampaignLabelOperation",
       "TextLabel" => "TextLabel",
       "CampaignOperation" => "CampaignOperation",
-      "CampaignTargetOperation" => "CampaignTargetOperation",
       "Carrier" => "Carrier",
       "ClientTermsError" => "ClientTermsError",
       "CollectionSizeError" => "CollectionSizeError",
@@ -20910,10 +20493,7 @@ if (!class_exists("MutateJobService", false)) {
       "StringFormatError" => "StringFormatError",
       "StringLengthError" => "StringLengthError",
       "String_StringMapEntry" => "String_StringMapEntry",
-      "Target" => "Target",
       "TargetCpaBiddingScheme" => "TargetCpaBiddingScheme",
-      "TargetError" => "TargetError",
-      "TargetList" => "TargetList",
       "TargetOutrankShareBiddingScheme" => "TargetOutrankShareBiddingScheme",
       "TargetingSettingDetail" => "TargetingSettingDetail",
       "TargetRoasBiddingScheme" => "TargetRoasBiddingScheme",
@@ -21069,7 +20649,6 @@ if (!class_exists("MutateJobService", false)) {
       "StringFormatError.Reason" => "StringFormatErrorReason",
       "StringLengthError.Reason" => "StringLengthErrorReason",
       "SystemServingStatus" => "SystemServingStatus",
-      "TargetError.Reason" => "TargetErrorReason",
       "TemplateElementField.Type" => "TemplateElementFieldType",
       "ThirdPartyRedirectAd.ExpandingDirection" => "ThirdPartyRedirectAdExpandingDirection",
       "TimeUnit" => "TimeUnit",

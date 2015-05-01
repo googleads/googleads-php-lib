@@ -1119,7 +1119,7 @@ if (!class_exists("Selector", false)) {
 
 if (!class_exists("CustomerExtensionSetting", false)) {
   /**
-   * A CustomerExtensionSetting is used add or modify extensions being served for the customer.
+   * A CustomerExtensionSetting is used to add or modify extensions being served for the customer.
    * @package Google_Api_Ads_AdWords_v201502
    * @subpackage v201502
    */
