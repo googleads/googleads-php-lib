@@ -796,6 +796,45 @@ if (!class_exists("DfpDateTime", false)) {
   }
 }
 
+if (!class_exists("EntityLimitReachedError", false)) {
+  /**
+   * An error that occurs when creating an entity if the limit on the number of allowed entities for
+   * a network has already been reached.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201403
+   */
+  class EntityLimitReachedError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
+    const XSI_TYPE = "EntityLimitReachedError";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("FeatureError", false)) {
   /**
    * Errors related to feature management.  If you attempt using a feature that is not available to
@@ -4201,6 +4240,7 @@ if (!class_exists("AudienceSegmentService", false)) {
       "DateTimeValue" => "DateTimeValue",
       "DateValue" => "DateValue",
       "DeactivateAudienceSegments" => "DeactivateAudienceSegments",
+      "EntityLimitReachedError" => "EntityLimitReachedError",
       "ThirdPartyAudienceSegment" => "ThirdPartyAudienceSegment",
       "FeatureError" => "FeatureError",
       "InternalApiError" => "InternalApiError",

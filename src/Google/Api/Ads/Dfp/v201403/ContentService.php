@@ -2492,7 +2492,7 @@ if (!class_exists("GetContentByStatement", false)) {
    * </tr>
    * <tr>
    * <td>{@code lastModifiedDateTime}</td>
-   * <td>{@link Content#lastModifiedDateTime}: Requires indexed content search to be enabled.</td>
+   * <td>{@link Content#lastModifiedDateTime}</td>
    * </tr>
    * </table>
    * 
@@ -2601,7 +2601,7 @@ if (!class_exists("GetContentByStatementAndCustomTargetingValue", false)) {
    * </tr>
    * <tr>
    * <td>{@code lastModifiedDateTime}</td>
-   * <td>{@link Content#lastModifiedDateTime>}: Requires indexed content search to be enabled.</td>
+   * <td>{@link Content#lastModifiedDateTime>}</td>
    * </tr>
    * </table>
    * 
@@ -3111,7 +3111,7 @@ if (!class_exists("ContentService", false)) {
      * </tr>
      * <tr>
      * <td>{@code lastModifiedDateTime}</td>
-     * <td>{@link Content#lastModifiedDateTime}: Requires indexed content search to be enabled.</td>
+     * <td>{@link Content#lastModifiedDateTime}</td>
      * </tr>
      * </table>
      * 
@@ -3148,7 +3148,7 @@ if (!class_exists("ContentService", false)) {
      * </tr>
      * <tr>
      * <td>{@code lastModifiedDateTime}</td>
-     * <td>{@link Content#lastModifiedDateTime>}: Requires indexed content search to be enabled.</td>
+     * <td>{@link Content#lastModifiedDateTime>}</td>
      * </tr>
      * </table>
      * 

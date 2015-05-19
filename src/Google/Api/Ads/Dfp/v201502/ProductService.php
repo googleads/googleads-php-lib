@@ -5269,7 +5269,7 @@ if (!class_exists("ApiException", false)) {
 
 if (!class_exists("ArchiveProducts", false)) {
   /**
-   * The action used to archive products.
+   * This action is deprecated and is a no-op, use {@link ArchiveProductTemplates} instead.
    * @package GoogleApiAdsDfp
    * @subpackage v201502
    */

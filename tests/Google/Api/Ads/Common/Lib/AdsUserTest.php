@@ -351,8 +351,8 @@ class AdsUserTest extends PHPUnit_Framework_TestCase {
    * @covers AdsUser::LoadSettings
    */
   public function testLoadSettings_Ssl() {
-    $verifyPeer = 1;
-    $verifyHost = 1;
+    $verifyPeer = 0;
+    $verifyHost = 0;
     $caPath = '/etc/ssl/certs';
     $caFile = '/etc/ssl/cafile';
     $settings = array(

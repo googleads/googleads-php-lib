@@ -102,6 +102,16 @@ function AddCampaignTargetingCriteriaExample(AdWordsUser $user, $campaignId) {
     $operations[] = new CampaignCriterionOperation($campaignCriterion, 'ADD');
   }
 
+  // Add a negative campaign criterion.
+  $negativeKeyword = new Keyword();
+  $negativeKeyword->text = 'jupiter cruise';
+  $negativeKeyword->matchType = 'BROAD';
+  $negativeCriterion = new NegativeCampaignCriterion();
+  $negativeCriterion->campaignId = $campaignId;
+  $negativeCriterion->criterion = $negativeKeyword;
+
+  $operations[] = new CampaignCriterionOperation($negativeCriterion, 'ADD');
+
   // Make the mutate request.
   $result = $campaignCriterionService->mutate($operations);
 

@@ -37,8 +37,8 @@ $path = dirname(__FILE__) . '/../../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
-require_once 'Google/Api/Ads/Dfp/Util/ReportDownloader.php';
-require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
+require_once 'Google/Api/Ads/Dfp/Util/v201502/ReportDownloader.php';
+require_once 'Google/Api/Ads/Dfp/Util/v201502/StatementBuilder.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
 
 try {
@@ -62,8 +62,8 @@ try {
   // Create statement to filter on a parent ad unit with the root ad unit ID to
   // include all ad units in the network.
   $statementBuilder = new StatementBuilder();
-  $statementBuilder->Where('PARENT_AD_UNIT_ID =
-      :parentAdUnitId')->WithBindVariableValue('parentAdUnitId', $rootAdUnitId);
+  $statementBuilder->Where('PARENT_AD_UNIT_ID = :parentAdUnitId')
+      ->WithBindVariableValue('parentAdUnitId', intval($rootAdUnitId));
 
   // Create report query.
   $reportQuery = new ReportQuery();

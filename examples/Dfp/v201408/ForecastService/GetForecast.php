@@ -40,7 +40,7 @@ set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
-require_once 'Google/Api/Ads/Dfp/Util/DateTimeUtils.php';
+require_once 'Google/Api/Ads/Dfp/Util/v201408/DateTimeUtils.php';
 
 try {
   // Get DfpUser from credentials in "../auth.ini"

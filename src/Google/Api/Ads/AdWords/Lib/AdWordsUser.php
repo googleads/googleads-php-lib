@@ -25,10 +25,7 @@
  * @copyright  2011, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Adam Rogal
- * @author     Eric Koleda
  * @author     Vincent Tsao
- * @author     Paul Matthews
  * @see        AdsUser
  */
 require_once dirname(__FILE__) . '/../../Common/Lib/AdsUser.php';
@@ -84,8 +81,6 @@ class AdWordsUser extends AdsUser {
    *     loaded
    * @param string $developerToken the developer token (required header). Will
    *     overwrite the developer token entry loaded from any INI file
-   * @param string $applicationToken the application token (required header).
-   *     Will overwrite the application token entry loaded from any INI file
    * @param string $userAgent the user agent name (required header). Will
    *     be prepended with the library name and version. Will overwrite the
    *     userAgent entry loaded from any INI file
@@ -97,9 +92,8 @@ class AdWordsUser extends AdsUser {
    * @param array $oauth2Info the OAuth 2.0 information to use for requests
    */
   public function __construct($authenticationIniPath = NULL,
-      $developerToken = NULL, $applicationToken = NULL,
-      $userAgent = NULL, $clientCustomerId = NULL, $settingsIniPath = NULL,
-      $oauth2Info = NULL) {
+      $developerToken = NULL, $userAgent = NULL, $clientCustomerId = NULL,
+      $settingsIniPath = NULL, $oauth2Info = NULL) {
     parent::__construct();
 
     $buildIniAw = parse_ini_file(dirname(__FILE__) . '/build.ini',
@@ -125,8 +119,6 @@ class AdWordsUser extends AdsUser {
 
     $developerToken = $this->GetAuthVarValue($developerToken, 'developerToken',
         $authenticationIni);
-    $applicationToken = $this->GetAuthVarValue($applicationToken,
-        'applicationToken', $authenticationIni);
     $userAgent = $this->GetAuthVarValue($userAgent,
         self::USER_AGENT_HEADER_NAME, $authenticationIni);
     $clientCustomerId = $this->GetAuthVarValue($clientCustomerId,
@@ -146,7 +138,6 @@ class AdWordsUser extends AdsUser {
     $this->SetClientLibraryUserAgent($userAgent);
     $this->SetClientCustomerId($clientCustomerId);
     $this->SetDeveloperToken($developerToken);
-    $this->SetApplicationToken($applicationToken);
 
     if (!isset($settingsIniPath)) {
       $settingsIniPath = dirname(__FILE__) . '/../settings.ini';
@@ -262,22 +253,6 @@ class AdWordsUser extends AdsUser {
    */
   public function SetDeveloperToken($developerToken) {
     $this->SetHeaderValue('developerToken', $developerToken);
-  }
-
-  /**
-   * Gets the application token that this user.
-   * @return string the application token
-   */
-  public function GetApplicationToken() {
-    return $this->GetHeaderValue('applicationToken');
-  }
-
-  /**
-   * Sets the application token for this user.
-   * @param string $applicationToken the application token
-   */
-  public function SetApplicationToken($applicationToken) {
-    $this->SetHeaderValue('applicationToken', $applicationToken);
   }
 
   /**

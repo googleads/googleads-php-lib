@@ -1,3 +1,16 @@
+### 6.0.0
+
+AdWords:
+  - Removed the applicationToken parameter from the AdWordsUser.php constructor, as applicationToken is no longer required and ignored. Please see the [CreateAdWordsUserWithoutIniFile.php](https://github.com/googleads/googleads-php-lib/blob/master/examples/AdWords/Auth/CreateAdWordsUserWithoutIniFile.php) auth example for updated usage.
+
+DFP:
+  - Added support for v201505.
+  - Refactored utility classes so they are now version specific.
+  - Removed ServiceUtils.php from all versions. Please see the [migration guide](https://github.com/googleads/googleads-php-lib/wiki/Migrating-off-of-DFP-ServiceUtils-functions) for more information.
+  - Removed ReportUtils.php from v201505 as it is deprecated. Please use ReportDownloader.php instead.
+  - Updated v201505 examples that deal with date time to ensure timezones are passed in anywhere date times are used.
+  - Removed deprecated functions from DateTimeUtils.php.
+
 ### 5.9.0
 
 AdWords:

@@ -40,7 +40,7 @@ $path = dirname(__FILE__) . '/../../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
-require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
+require_once 'Google/Api/Ads/Dfp/Util/v201408/StatementBuilder.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
 
 // Set the ID of the premium rate to update.

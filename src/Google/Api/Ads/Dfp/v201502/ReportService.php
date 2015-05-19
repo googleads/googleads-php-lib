@@ -2456,6 +2456,8 @@ if (!class_exists("GetReportJob", false)) {
    * Returns the {@link ReportJob} uniquely identified by the given ID with only the
    * {@link ReportJob#reportJobStatus} and {@link ReportJob#id} fields filled in.
    * 
+   * <p>Replaced with {@code ReportService.getReportJobStatus} beginning in V201505.
+   * 
    * @param reportJobId the Id of the report job which must already exist
    * @return the {@code ReportJob} uniquely identified by the given ID with the ID and status
    * fields filled in.
@@ -3090,6 +3092,8 @@ if (!class_exists("ReportService", false)) {
     /**
      * Returns the {@link ReportJob} uniquely identified by the given ID with only the
      * {@link ReportJob#reportJobStatus} and {@link ReportJob#id} fields filled in.
+     * 
+     * <p>Replaced with {@code ReportService.getReportJobStatus} beginning in V201505.
      * 
      * @param reportJobId the Id of the report job which must already exist
      * @return the {@code ReportJob} uniquely identified by the given ID with the ID and status

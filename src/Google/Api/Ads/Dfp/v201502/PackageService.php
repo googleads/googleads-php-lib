@@ -3800,7 +3800,7 @@ if (!class_exists("CreatePackages", false)) {
    * <li>{@link Package#name}</li>
    * </ul>
    * 
-   * @param packageDtos the packages to create
+   * @param packages the packages to create
    * @return the created packages with their IDs filled in
    * @package GoogleApiAdsDfp
    * @subpackage v201502
@@ -3814,7 +3814,7 @@ if (!class_exists("CreatePackages", false)) {
      * @access public
      * @var Package[]
      */
-    public $packageDtos;
+    public $packages;
 
     /**
      * Gets the namesapce of this class
@@ -3832,8 +3832,8 @@ if (!class_exists("CreatePackages", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($packageDtos = null) {
-      $this->packageDtos = $packageDtos;
+    public function __construct($packages = null) {
+      $this->packages = $packages;
     }
 
   }
@@ -4090,7 +4090,7 @@ if (!class_exists("UpdatePackages", false)) {
   /**
    * Updates the specified {@link Package} objects.
    * 
-   * @param packageDtos the packages to update
+   * @param packages the packages to update
    * @return the updated packages
    * @package GoogleApiAdsDfp
    * @subpackage v201502
@@ -4104,7 +4104,7 @@ if (!class_exists("UpdatePackages", false)) {
      * @access public
      * @var Package[]
      */
-    public $packageDtos;
+    public $packages;
 
     /**
      * Gets the namesapce of this class
@@ -4122,8 +4122,8 @@ if (!class_exists("UpdatePackages", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($packageDtos = null) {
-      $this->packageDtos = $packageDtos;
+    public function __construct($packages = null) {
+      $this->packages = $packages;
     }
 
   }
@@ -4688,11 +4688,11 @@ if (!class_exists("PackageService", false)) {
      * <li>{@link Package#name}</li>
      * </ul>
      * 
-     * @param packageDtos the packages to create
+     * @param packages the packages to create
      * @return the created packages with their IDs filled in
      */
-    public function createPackages($packageDtos) {
-      $args = new CreatePackages($packageDtos);
+    public function createPackages($packages) {
+      $args = new CreatePackages($packages);
       $result = $this->__soapCall("createPackages", array($args));
       return $result->rval;
     }
@@ -4755,11 +4755,11 @@ if (!class_exists("PackageService", false)) {
     /**
      * Updates the specified {@link Package} objects.
      * 
-     * @param packageDtos the packages to update
+     * @param packages the packages to update
      * @return the updated packages
      */
-    public function updatePackages($packageDtos) {
-      $args = new UpdatePackages($packageDtos);
+    public function updatePackages($packages) {
+      $args = new UpdatePackages($packages);
       $result = $this->__soapCall("updatePackages", array($args));
       return $result->rval;
     }

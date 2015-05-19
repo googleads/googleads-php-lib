@@ -682,6 +682,88 @@ if (!class_exists("DeactivateAdExclusionRules", false)) {
   }
 }
 
+if (!class_exists("EntityChildrenLimitReachedError", false)) {
+  /**
+   * Lists errors relating to having too many children on an entity.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201502
+   */
+  class EntityChildrenLimitReachedError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201502";
+    const XSI_TYPE = "EntityChildrenLimitReachedError";
+
+    /**
+     * @access public
+     * @var tnsEntityChildrenLimitReachedErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+    }
+
+  }
+}
+
+if (!class_exists("EntityLimitReachedError", false)) {
+  /**
+   * An error that occurs when creating an entity if the limit on the number of allowed entities for
+   * a network has already been reached.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201502
+   */
+  class EntityLimitReachedError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201502";
+    const XSI_TYPE = "EntityLimitReachedError";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($fieldPath = null, $trigger = null, $errorString = null) {
+      parent::__construct();
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+    }
+
+  }
+}
+
 if (!class_exists("FeatureError", false)) {
   /**
    * Errors related to feature management.  If you attempt using a feature that is not available to
@@ -1777,6 +1859,39 @@ if (!class_exists("CommonErrorReason", false)) {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201502";
     const XSI_TYPE = "CommonError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("EntityChildrenLimitReachedErrorReason", false)) {
+  /**
+   * The reasons for the entity children limit reached error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201502
+   */
+  class EntityChildrenLimitReachedErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201502";
+    const XSI_TYPE = "EntityChildrenLimitReachedError.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -3018,6 +3133,8 @@ if (!class_exists("AdExclusionRuleService", false)) {
       "DateTimeValue" => "DateTimeValue",
       "DateValue" => "DateValue",
       "DeactivateAdExclusionRules" => "DeactivateAdExclusionRules",
+      "EntityChildrenLimitReachedError" => "EntityChildrenLimitReachedError",
+      "EntityLimitReachedError" => "EntityLimitReachedError",
       "FeatureError" => "FeatureError",
       "InternalApiError" => "InternalApiError",
       "InventoryTargeting" => "InventoryTargeting",
@@ -3047,6 +3164,7 @@ if (!class_exists("AdExclusionRuleService", false)) {
       "AuthenticationError.Reason" => "AuthenticationErrorReason",
       "CollectionSizeError.Reason" => "CollectionSizeErrorReason",
       "CommonError.Reason" => "CommonErrorReason",
+      "EntityChildrenLimitReachedError.Reason" => "EntityChildrenLimitReachedErrorReason",
       "FeatureError.Reason" => "FeatureErrorReason",
       "InternalApiError.Reason" => "InternalApiErrorReason",
       "NotNullError.Reason" => "NotNullErrorReason",

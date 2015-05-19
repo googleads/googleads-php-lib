@@ -3309,9 +3309,9 @@ if (!class_exists("ListStringCreativeTemplateVariable", false)) {
    * Represents a list variable defined in a creative template. This is similar to
    * {@link StringCreativeTemplateVariable}, except that there are possible choices to
    * choose from.
-   * <p>
-   * Use {@link StringCreativeTemplateVariableValue} to specify the value
-   * for this variable when creating {@link TemplateCreative} from the {@link TemplateCreative}.
+   * 
+   * <p>Use {@link StringCreativeTemplateVariableValue} to specify the value
+   * for this variable when creating a {@link TemplateCreative} from a {@link CreativeTemplate}.
    * @package GoogleApiAdsDfp
    * @subpackage v201405
    */

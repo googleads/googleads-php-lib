@@ -3026,6 +3026,50 @@ if (!class_exists("TechnologyTargetingError", false)) {
   }
 }
 
+if (!class_exists("TimeZoneError", false)) {
+  /**
+   * Errors related to timezones.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201502
+   */
+  class TimeZoneError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201502";
+    const XSI_TYPE = "TimeZoneError";
+
+    /**
+     * @access public
+     * @var tnsTimeZoneErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+    }
+
+  }
+}
+
 if (!class_exists("TypeError", false)) {
   /**
    * An error for a field which is an invalid type.
@@ -5109,6 +5153,39 @@ if (!class_exists("TechnologyTargetingErrorReason", false)) {
   }
 }
 
+if (!class_exists("TimeZoneErrorReason", false)) {
+  /**
+   * Describes reasons for invalid timezone.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201502
+   */
+  class TimeZoneErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201502";
+    const XSI_TYPE = "TimeZoneError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("UserDomainTargetingErrorReason", false)) {
   /**
    * {@link ApiErrorReason} enum for user domain targeting error.
@@ -5663,6 +5740,7 @@ if (!class_exists("LineItemTemplateService", false)) {
       "TeamError" => "TeamError",
       "TechnologyTargetingError" => "TechnologyTargetingError",
       "TextValue" => "TextValue",
+      "TimeZoneError" => "TimeZoneError",
       "TypeError" => "TypeError",
       "UniqueError" => "UniqueError",
       "UserDomainTargetingError" => "UserDomainTargetingError",
@@ -5725,6 +5803,7 @@ if (!class_exists("LineItemTemplateService", false)) {
       "TargetPlatform" => "TargetPlatform",
       "TeamError.Reason" => "TeamErrorReason",
       "TechnologyTargetingError.Reason" => "TechnologyTargetingErrorReason",
+      "TimeZoneError.Reason" => "TimeZoneErrorReason",
       "UserDomainTargetingError.Reason" => "UserDomainTargetingErrorReason",
       "getLineItemTemplatesByStatement" => "GetLineItemTemplatesByStatement",
       "getLineItemTemplatesByStatementResponse" => "GetLineItemTemplatesByStatementResponse",
