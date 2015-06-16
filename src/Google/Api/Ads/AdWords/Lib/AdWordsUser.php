@@ -139,7 +139,7 @@ class AdWordsUser extends AdsUser {
     $this->SetClientCustomerId($clientCustomerId);
     $this->SetDeveloperToken($developerToken);
 
-    if (!isset($settingsIniPath)) {
+    if (!$settingsIniPath) {
       $settingsIniPath = dirname(__FILE__) . '/../settings.ini';
     }
 
