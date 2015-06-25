@@ -1,3 +1,72 @@
+### 6.0.0
+
+AdWords:
+  - Removed the applicationToken parameter from the AdWordsUser.php constructor, as applicationToken is no longer required and ignored. Please see the [CreateAdWordsUserWithoutIniFile.php](https://github.com/googleads/googleads-php-lib/blob/master/examples/AdWords/Auth/CreateAdWordsUserWithoutIniFile.php) auth example for updated usage.
+
+DFP:
+  - Added support for v201505.
+  - Refactored utility classes so they are now version specific.
+  - Removed ServiceUtils.php from all versions. Please see the [migration guide](https://github.com/googleads/googleads-php-lib/wiki/Migrating-off-of-DFP-ServiceUtils-functions) for more information.
+  - Removed ReportUtils.php from v201505 as it is deprecated. Please use ReportDownloader.php instead.
+  - Updated v201505 examples that deal with date time to ensure timezones are passed in anywhere date times are used.
+  - Removed deprecated functions from DateTimeUtils.php.
+
+### 5.9.0
+
+AdWords:
+  - Removed support and examples for v201406.
+  - Added support for the [skipColumnHeader option](https://developers.google.com/adwords/api/docs/guides/reporting#optional-headers)
+    introduced in v201502.
+  - Updated MigrateToExtensionSettings.php to account for platform restrictions.
+  - Reworked AddSitelinks examples to use final URLs and function strings.
+
+### 5.8.2
+
+AdWords:
+  - Added v201502 support.
+
+### 5.8.1
+
+DFP:
+  - Removed ClientLogin related parameters from the DfpUser constructor. See the Auth/CreateDfpUserWithoutIniFile.php example for updated usage.
+
+### 5.8.0
+
+AdWords:
+  - Improved targetAll comments in the AddAdGroups.php examples.
+  - Added code examples for upgraded URLs.
+
+DFP:
+  - Added support for v201502.
+  - Removed support for v201311, v201308, and v201306.
+  - Removed examples for v201403.
+  - Updated ForecastService examples.
+  - Removed support for ClientLogin with the removal of v201311 and earlier.
+
+### 5.7.1
+
+AdWords:
+  - Refactored Google Places examples to use Google My Business (GMB) instead.
+
+Common:
+  - Fixed [issue #74](https://github.com/googleads/googleads-php-lib/issues/74).
+
+### 5.7.0
+
+AdWords:
+  - Fixed [issue #58](https://github.com/googleads/googleads-php-lib/issues/58).
+  - Removed support for v201402 as it is now sunset.
+
+DFP:
+  - Fixed [issue #1](https://github.com/googleads/googleads-php-lib/issues/1).
+
+### 5.6.0
+
+DFP:
+  - Removed examples for v201311 since it is deprecated. See the [deprecation schedule](https://developers.google.com/doubleclick-publishers/docs/deprecation) for more information.
+  - Added support for v201411.
+  - Added examples for [Sales Manager services](https://developers.google.com/doubleclick-publishers/docs/sales/index).
+
 ### 5.5.2
 
 AdWords:

@@ -298,78 +298,6 @@ if (!class_exists("AppliedLabel", false)) {
   }
 }
 
-if (!class_exists("Authentication", false)) {
-  /**
-   * A representation of the authentication protocols that can be used.
-   * @package GoogleApiAdsDfp
-   * @subpackage v201405
-   */
-  class Authentication {
-
-    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
-    const XSI_TYPE = "Authentication";
-
-    /**
-     * @access public
-     * @var string
-     */
-    public $AuthenticationType;
-    private $_parameterMap = array(
-      "Authentication.Type" => "AuthenticationType",
-    );
-
-    /**
-     * Provided for setting non-php-standard named variables
-     * @param $var Variable name to set
-     * @param $value Value to set
-     */
-    public function __set($var, $value) {
-      $this->{$this->_parameterMap[$var]} = $value;
-    }
-
-    /**
-     * Provided for getting non-php-standard named variables
-     * @param $var Variable name to get
-     * @return mixed Variable value
-     */
-    public function __get($var) {
-      if (!isset($this->_parameterMap[$var])) {
-        return null;
-      }
-      return $this->{$this->_parameterMap[$var]};
-    }
-
-    /**
-     * Provided for getting non-php-standard named variables
-     * @return array parameter map
-     */
-    protected function getParameterMap() {
-      return $this->_parameterMap;
-    }
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($AuthenticationType = null) {
-      $this->AuthenticationType = $AuthenticationType;
-    }
-
-  }
-}
-
 if (!class_exists("AuthenticationError", false)) {
   /**
    * An error for an exception that occurred when authenticating.
@@ -554,6 +482,51 @@ if (!class_exists("BillingError", false)) {
     /**
      * @access public
      * @var tnsBillingErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
+if (!class_exists("CollectionSizeError", false)) {
+  /**
+   * Error for the size of the collection being too large
+   * @package GoogleApiAdsDfp
+   * @subpackage v201405
+   */
+  class CollectionSizeError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
+    const XSI_TYPE = "CollectionSizeError";
+
+    /**
+     * @access public
+     * @var tnsCollectionSizeErrorReason
      */
     public $reason;
 
@@ -880,6 +853,135 @@ if (!class_exists("DropDownCustomFieldValue", false)) {
       $this->customFieldOptionId = $customFieldOptionId;
       $this->customFieldId = $customFieldId;
       $this->BaseCustomFieldValueType = $BaseCustomFieldValueType;
+    }
+
+  }
+}
+
+if (!class_exists("EntityChildrenLimitReachedError", false)) {
+  /**
+   * Lists errors relating to having too many children on an entity.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201405
+   */
+  class EntityChildrenLimitReachedError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
+    const XSI_TYPE = "EntityChildrenLimitReachedError";
+
+    /**
+     * @access public
+     * @var tnsEntityChildrenLimitReachedErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
+if (!class_exists("EntityLimitReachedError", false)) {
+  /**
+   * An error that occurs when creating an entity if the limit on the number of allowed entities for
+   * a network has already been reached.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201405
+   */
+  class EntityLimitReachedError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
+    const XSI_TYPE = "EntityLimitReachedError";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
+if (!class_exists("ExchangeRateError", false)) {
+  /**
+   * Lists all errors associated with {@link ExchangeRate} objects.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201405
+   */
+  class ExchangeRateError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
+    const XSI_TYPE = "ExchangeRateError";
+
+    /**
+     * @access public
+     * @var tnsExchangeRateErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
     }
 
   }
@@ -1219,6 +1321,96 @@ if (!class_exists("NotNullError", false)) {
     /**
      * @access public
      * @var tnsNotNullErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
+if (!class_exists("PackageActionError", false)) {
+  /**
+   * Lists all errors for executing actions on {@link Package} objects.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201405
+   */
+  class PackageActionError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
+    const XSI_TYPE = "PackageActionError";
+
+    /**
+     * @access public
+     * @var tnsPackageActionErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
+if (!class_exists("PackageError", false)) {
+  /**
+   * Lists all errors associated with {@link Package} objects.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201405
+   */
+  class PackageError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
+    const XSI_TYPE = "PackageError";
+
+    /**
+     * @access public
+     * @var tnsPackageErrorReason
      */
     public $reason;
 
@@ -2479,12 +2671,6 @@ if (!class_exists("SoapRequestHeader", false)) {
     public $applicationName;
 
     /**
-     * @access public
-     * @var Authentication
-     */
-    public $authentication;
-
-    /**
      * Gets the namesapce of this class
      * @return the namespace of this class
      */
@@ -2500,10 +2686,9 @@ if (!class_exists("SoapRequestHeader", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($networkCode = null, $applicationName = null, $authentication = null) {
+    public function __construct($networkCode = null, $applicationName = null) {
       $this->networkCode = $networkCode;
       $this->applicationName = $applicationName;
-      $this->authentication = $authentication;
     }
 
   }
@@ -3117,6 +3302,58 @@ if (!class_exists("WorkflowActionError", false)) {
   }
 }
 
+if (!class_exists("WorkflowValidationError", false)) {
+  /**
+   * Lists all errors associated with workflow validation.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201405
+   */
+  class WorkflowValidationError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
+    const XSI_TYPE = "WorkflowValidationError";
+
+    /**
+     * @access public
+     * @var tnsWorkflowValidationErrorReason
+     */
+    public $reason;
+
+    /**
+     * @access public
+     * @var string
+     */
+    public $workflowErrorMessage;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $workflowErrorMessage = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->workflowErrorMessage = $workflowErrorMessage;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("ApiVersionErrorReason", false)) {
   /**
    * Indicates that the operation is not allowed in the version the request
@@ -3356,6 +3593,39 @@ if (!class_exists("BillingSource", false)) {
   }
 }
 
+if (!class_exists("CollectionSizeErrorReason", false)) {
+  /**
+   * The value returned if the actual value is not exposed by the requested API version.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201405
+   */
+  class CollectionSizeErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
+    const XSI_TYPE = "CollectionSizeError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("CommonErrorReason", false)) {
   /**
    * Describes reasons for common errors
@@ -3399,6 +3669,72 @@ if (!class_exists("CustomFieldValueErrorReason", false)) {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
     const XSI_TYPE = "CustomFieldValueError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("EntityChildrenLimitReachedErrorReason", false)) {
+  /**
+   * The reasons for the entity children limit reached error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201405
+   */
+  class EntityChildrenLimitReachedErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
+    const XSI_TYPE = "EntityChildrenLimitReachedError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("ExchangeRateErrorReason", false)) {
+  /**
+   * The reasons for the target error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201405
+   */
+  class ExchangeRateErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
+    const XSI_TYPE = "ExchangeRateError.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -3663,6 +3999,72 @@ if (!class_exists("NotNullErrorReason", false)) {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
     const XSI_TYPE = "NotNullError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("PackageActionErrorReason", false)) {
+  /**
+   * The reasons for the target error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201405
+   */
+  class PackageActionErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
+    const XSI_TYPE = "PackageActionError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("PackageErrorReason", false)) {
+  /**
+   * The reasons for the {@link PackageError}.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201405
+   */
+  class PackageErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
+    const XSI_TYPE = "PackageError.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -4389,6 +4791,39 @@ if (!class_exists("WorkflowActionErrorReason", false)) {
   }
 }
 
+if (!class_exists("WorkflowValidationErrorReason", false)) {
+  /**
+   * The reasons for the target error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201405
+   */
+  class WorkflowValidationErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
+    const XSI_TYPE = "WorkflowValidationError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("CreateProposals", false)) {
   /**
    * Creates new {@link Proposal} objects.
@@ -4490,6 +4925,10 @@ if (!class_exists("GetProposalsByStatement", false)) {
    * <tr>
    * <td>{@code id}</td>
    * <td>{@link Proposal#id}</td>
+   * </tr>
+   * <tr>
+   * <td>{@code dfpOrderId}</td>
+   * <td>{@link Proposal#dfpOrderId}</td>
    * </tr>
    * <tr>
    * <td>{@code name}</td>
@@ -5141,12 +5580,12 @@ if (!class_exists("ProposalService", false)) {
       "ApplicationException" => "ApplicationException",
       "AppliedLabel" => "AppliedLabel",
       "ArchiveProposals" => "ArchiveProposals",
-      "Authentication" => "Authentication",
       "AuthenticationError" => "AuthenticationError",
       "AvailableBillingError" => "AvailableBillingError",
       "BaseCustomFieldValue" => "BaseCustomFieldValue",
       "BillingError" => "BillingError",
       "BooleanValue" => "BooleanValue",
+      "CollectionSizeError" => "CollectionSizeError",
       "CommonError" => "CommonError",
       "CustomFieldValue" => "CustomFieldValue",
       "CustomFieldValueError" => "CustomFieldValueError",
@@ -5155,6 +5594,9 @@ if (!class_exists("ProposalService", false)) {
       "DateTimeValue" => "DateTimeValue",
       "DateValue" => "DateValue",
       "DropDownCustomFieldValue" => "DropDownCustomFieldValue",
+      "EntityChildrenLimitReachedError" => "EntityChildrenLimitReachedError",
+      "EntityLimitReachedError" => "EntityLimitReachedError",
+      "ExchangeRateError" => "ExchangeRateError",
       "FeatureError" => "FeatureError",
       "ForecastError" => "ForecastError",
       "InternalApiError" => "InternalApiError",
@@ -5164,6 +5606,8 @@ if (!class_exists("ProposalService", false)) {
       "Money" => "Money",
       "NotNullError" => "NotNullError",
       "NumberValue" => "NumberValue",
+      "PackageActionError" => "PackageActionError",
+      "PackageError" => "PackageError",
       "PermissionError" => "PermissionError",
       "PrecisionError" => "PrecisionError",
       "ProductError" => "ProductError",
@@ -5200,6 +5644,7 @@ if (!class_exists("ProposalService", false)) {
       "UpdateResult" => "UpdateResult",
       "Value" => "Value",
       "WorkflowActionError" => "WorkflowActionError",
+      "WorkflowValidationError" => "WorkflowValidationError",
       "ApiVersionError.Reason" => "ApiVersionErrorReason",
       "AuthenticationError.Reason" => "AuthenticationErrorReason",
       "AvailableBillingError.Reason" => "AvailableBillingErrorReason",
@@ -5207,8 +5652,11 @@ if (!class_exists("ProposalService", false)) {
       "BillingError.Reason" => "BillingErrorReason",
       "BillingSchedule" => "BillingSchedule",
       "BillingSource" => "BillingSource",
+      "CollectionSizeError.Reason" => "CollectionSizeErrorReason",
       "CommonError.Reason" => "CommonErrorReason",
       "CustomFieldValueError.Reason" => "CustomFieldValueErrorReason",
+      "EntityChildrenLimitReachedError.Reason" => "EntityChildrenLimitReachedErrorReason",
+      "ExchangeRateError.Reason" => "ExchangeRateErrorReason",
       "FeatureError.Reason" => "FeatureErrorReason",
       "ForecastError.Reason" => "ForecastErrorReason",
       "InternalApiError.Reason" => "InternalApiErrorReason",
@@ -5217,6 +5665,8 @@ if (!class_exists("ProposalService", false)) {
       "LineItemOperationError.Reason" => "LineItemOperationErrorReason",
       "ProposalApprovalStatus" => "ProposalApprovalStatus",
       "NotNullError.Reason" => "NotNullErrorReason",
+      "PackageActionError.Reason" => "PackageActionErrorReason",
+      "PackageError.Reason" => "PackageErrorReason",
       "PermissionError.Reason" => "PermissionErrorReason",
       "PrecisionError.Reason" => "PrecisionErrorReason",
       "PricingModel" => "PricingModel",
@@ -5238,6 +5688,7 @@ if (!class_exists("ProposalService", false)) {
       "StringLengthError.Reason" => "StringLengthErrorReason",
       "TeamError.Reason" => "TeamErrorReason",
       "WorkflowActionError.Reason" => "WorkflowActionErrorReason",
+      "WorkflowValidationError.Reason" => "WorkflowValidationErrorReason",
       "createProposals" => "CreateProposals",
       "createProposalsResponse" => "CreateProposalsResponse",
       "getProposalsByStatement" => "GetProposalsByStatement",
@@ -5287,6 +5738,10 @@ if (!class_exists("ProposalService", false)) {
      * <tr>
      * <td>{@code id}</td>
      * <td>{@link Proposal#id}</td>
+     * </tr>
+     * <tr>
+     * <td>{@code dfpOrderId}</td>
+     * <td>{@link Proposal#dfpOrderId}</td>
      * </tr>
      * <tr>
      * <td>{@code name}</td>

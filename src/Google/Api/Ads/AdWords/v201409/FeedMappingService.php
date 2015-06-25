@@ -1961,11 +1961,11 @@ if (!class_exists("FeedMappingServiceMutate", false)) {
    * <span class="constraint ContentsNotNull">This field must not contain {@code null} elements.</span>
    * <span class="constraint NotEmpty">This field must contain at least one element.</span>
    * <span class="constraint Required">This field is required and should not be {@code null}.</span>
-   * <span class="constraint SupportedOperators">The following {@link Operator}s are supported: ADD, REMOVE.</span>
    * 
    * 
    * 
    * Add and remove FeedMappings.
+   * The following {@link Operator}s are supported: ADD, REMOVE.
    * 
    * @param operations The operations to apply.
    * @return The resulting FeedMappings.
@@ -2409,6 +2409,8 @@ if (!class_exists("FeedMappingError", false)) {
 if (!class_exists("FeedMappingOperation", false)) {
   /**
    * Operation used to create a FeedMapping.
+   * 
+   * <p>The following {@link Operator}s are supported: ADD, REMOVE.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -3540,11 +3542,11 @@ if (!class_exists("FeedMappingService", false)) {
      * <span class="constraint ContentsNotNull">This field must not contain {@code null} elements.</span>
      * <span class="constraint NotEmpty">This field must contain at least one element.</span>
      * <span class="constraint Required">This field is required and should not be {@code null}.</span>
-     * <span class="constraint SupportedOperators">The following {@link Operator}s are supported: ADD, REMOVE.</span>
      * 
      * 
      * 
      * Add and remove FeedMappings.
+     * The following {@link Operator}s are supported: ADD, REMOVE.
      * 
      * @param operations The operations to apply.
      * @return The resulting FeedMappings.

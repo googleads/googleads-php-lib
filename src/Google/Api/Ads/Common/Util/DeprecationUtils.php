@@ -40,80 +40,17 @@ require_once 'Google/Api/Ads/Common/Lib/ServiceException.php';
 abstract class DeprecationUtils {
 
   /**
-   * Determines if a ClientLogin deprecation warning should be logged or not.
-   *
-   * @param AdsUser $user the AdsUser to test
-   */
-  public static function CheckUsingClientLogin(AdsUser $user) {
-    if (!self::IsUsingOAuth2($user)) {
-      self::Log("Current authentication method DEPRECATED. Please switch to"
-          . " OAuth2 as authentication method. For more information, see:\n"
-          . " https://developers.google.com/accounts/docs/"
-          . "AuthForInstalledApps", Logger::$ERROR);
-    }
-  }
-
-  /**
-   * Checks to see if an ads user is authenticating with OAuth 2 or not.
-   *
-   * @param AdsUser $user the AdsUser to test
-   * @return boolean true if using OAuth 2, false otherwise
-   */
-  public static function IsUsingOAuth2(AdsUser $user) {
-    // AdsUser doesn't have ClientLogin information on it, only the subclasses
-    // do, so we can only check for absence of OAuth 2 here.
-    return $user->GetOAuth2Info() !== NULL;
-  }
-
-  /**
-   * Checks to see if ClientLogin is being used as the authentication mechanism
-   * in a version where it is not supported and throws an error if this is the
-   * case.
-   *
-   * @param AdsUser $user the AdsUser to test
-   * @param string $finalClientLoginVersion the final API version that supports
-   *    ClientLogin
-   * @param string $requestedVersion the API version being used
-   * @throws ServiceException if the requested version does not support
-   *     ClientLogin
-   */
-  public static function CheckUsingClientLoginWithUnsupportedVersion(
-      AdsUser $user, $finalClientLoginVersion, $requestedVersion) {
-    if (!self::IsUsingOAuth2($user) &&
-        $requestedVersion > $finalClientLoginVersion) {
-      throw new ServiceException(sprintf("ClientLogin is not supported in "
-          . "version %s. Please upgrade to OAuth 2.", $requestedVersion));
-    }
-  }
-
-  /**
-   * Checks to see if returnMoneyInMicros can be used.  Throws an error if it
-   * cannot be used.
-   *
-   * @param string $finalVersion the final API version that supports
-   *    returnMoneyInMicros
-   * @param string $requestedVersion the API version being used
-   * @throws ServiceException if the requested version does not support
-   *     returnMoneyInMicros
-   */
-  public static function CheckUsingReturnMoneyInMicrosWithUnsupportedVersion(
-      $finalVersion, $requestedVersion) {
-    if ($requestedVersion > $finalVersion) {
-      throw new ServiceException(sprintf("returnMoneyInMicros is not supported "
-          . "in version %s.", $requestedVersion));
-    }
-  }
-
-  /**
-   * Checks to see if skipReportHeader or skipReportSummary can be used.
+   * Checks to see if skipReportHeader, skipColumnHeader or skipReportSummary 
+   * can be used.
    * Throws an error if it cannot be used.
    *
-   * @param string $header skipReportHeader or skipReportSummary
+   * @param string $header skipReportHeader, skipColumnHeader or 
+   *    skipReportSummary
    * @param string $minimumVersion the minimum API version that supports
-   *    skipReportHeader or skipReportSummary
+   *    skipReportHeader, skipColumnHeader or skipReportSummary
    * @param string $requestedVersion the API version being used
    * @throws ServiceException if the requested version does not support
-   *     skipReportHeader or skipReportSummary
+   *     skipReportHeader, skipColumnHeader or skipReportSummary
    */
   public static function CheckUsingSkipReportHeaderWithUnsupportedVersion(
       $header, $minimumVersion, $requestedVersion) {

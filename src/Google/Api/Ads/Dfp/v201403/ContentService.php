@@ -420,6 +420,51 @@ if (!class_exists("CmsContent", false)) {
   }
 }
 
+if (!class_exists("CollectionSizeError", false)) {
+  /**
+   * Error for the size of the collection being too large
+   * @package GoogleApiAdsDfp
+   * @subpackage v201403
+   */
+  class CollectionSizeError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
+    const XSI_TYPE = "CollectionSizeError";
+
+    /**
+     * @access public
+     * @var tnsCollectionSizeErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("CommonError", false)) {
   /**
    * A place for common errors that can be used across services.
@@ -1819,6 +1864,39 @@ if (!class_exists("AuthenticationErrorReason", false)) {
   }
 }
 
+if (!class_exists("CollectionSizeErrorReason", false)) {
+  /**
+   * The value returned if the actual value is not exposed by the requested API version.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201403
+   */
+  class CollectionSizeErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
+    const XSI_TYPE = "CollectionSizeError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("CommonErrorReason", false)) {
   /**
    * Describes reasons for common errors
@@ -2414,7 +2492,7 @@ if (!class_exists("GetContentByStatement", false)) {
    * </tr>
    * <tr>
    * <td>{@code lastModifiedDateTime}</td>
-   * <td>{@link Content#lastModifiedDateTime}: Requires indexed content search to be enabled.</td>
+   * <td>{@link Content#lastModifiedDateTime}</td>
    * </tr>
    * </table>
    * 
@@ -2523,7 +2601,7 @@ if (!class_exists("GetContentByStatementAndCustomTargetingValue", false)) {
    * </tr>
    * <tr>
    * <td>{@code lastModifiedDateTime}</td>
-   * <td>{@link Content#lastModifiedDateTime>}: Requires indexed content search to be enabled.</td>
+   * <td>{@link Content#lastModifiedDateTime>}</td>
    * </tr>
    * </table>
    * 
@@ -2941,6 +3019,7 @@ if (!class_exists("ContentService", false)) {
       "AuthenticationError" => "AuthenticationError",
       "BooleanValue" => "BooleanValue",
       "CmsContent" => "CmsContent",
+      "CollectionSizeError" => "CollectionSizeError",
       "CommonError" => "CommonError",
       "Content" => "Content",
       "ContentPage" => "ContentPage",
@@ -2974,6 +3053,7 @@ if (!class_exists("ContentService", false)) {
       "Value" => "Value",
       "ApiVersionError.Reason" => "ApiVersionErrorReason",
       "AuthenticationError.Reason" => "AuthenticationErrorReason",
+      "CollectionSizeError.Reason" => "CollectionSizeErrorReason",
       "CommonError.Reason" => "CommonErrorReason",
       "ContentPartnerError.Reason" => "ContentPartnerErrorReason",
       "ContentStatus" => "ContentStatus",
@@ -3031,7 +3111,7 @@ if (!class_exists("ContentService", false)) {
      * </tr>
      * <tr>
      * <td>{@code lastModifiedDateTime}</td>
-     * <td>{@link Content#lastModifiedDateTime}: Requires indexed content search to be enabled.</td>
+     * <td>{@link Content#lastModifiedDateTime}</td>
      * </tr>
      * </table>
      * 
@@ -3068,7 +3148,7 @@ if (!class_exists("ContentService", false)) {
      * </tr>
      * <tr>
      * <td>{@code lastModifiedDateTime}</td>
-     * <td>{@link Content#lastModifiedDateTime>}: Requires indexed content search to be enabled.</td>
+     * <td>{@link Content#lastModifiedDateTime>}</td>
      * </tr>
      * </table>
      * 

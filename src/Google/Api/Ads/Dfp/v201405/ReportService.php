@@ -249,54 +249,22 @@ if (!class_exists("ApplicationException", false)) {
   }
 }
 
-if (!class_exists("Authentication", false)) {
+if (!class_exists("AuthenticationError", false)) {
   /**
-   * A representation of the authentication protocols that can be used.
+   * An error for an exception that occurred when authenticating.
    * @package GoogleApiAdsDfp
    * @subpackage v201405
    */
-  class Authentication {
+  class AuthenticationError extends ApiError {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
-    const XSI_TYPE = "Authentication";
+    const XSI_TYPE = "AuthenticationError";
 
     /**
      * @access public
-     * @var string
+     * @var tnsAuthenticationErrorReason
      */
-    public $AuthenticationType;
-    private $_parameterMap = array(
-      "Authentication.Type" => "AuthenticationType",
-    );
-
-    /**
-     * Provided for setting non-php-standard named variables
-     * @param $var Variable name to set
-     * @param $value Value to set
-     */
-    public function __set($var, $value) {
-      $this->{$this->_parameterMap[$var]} = $value;
-    }
-
-    /**
-     * Provided for getting non-php-standard named variables
-     * @param $var Variable name to get
-     * @return mixed Variable value
-     */
-    public function __get($var) {
-      if (!isset($this->_parameterMap[$var])) {
-        return null;
-      }
-      return $this->{$this->_parameterMap[$var]};
-    }
-
-    /**
-     * Provided for getting non-php-standard named variables
-     * @return array parameter map
-     */
-    protected function getParameterMap() {
-      return $this->_parameterMap;
-    }
+    public $reason;
 
     /**
      * Gets the namesapce of this class
@@ -314,27 +282,32 @@ if (!class_exists("Authentication", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($AuthenticationType = null) {
-      $this->AuthenticationType = $AuthenticationType;
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
     }
 
   }
 }
 
-if (!class_exists("AuthenticationError", false)) {
+if (!class_exists("CollectionSizeError", false)) {
   /**
-   * An error for an exception that occurred when authenticating.
+   * Error for the size of the collection being too large
    * @package GoogleApiAdsDfp
    * @subpackage v201405
    */
-  class AuthenticationError extends ApiError {
+  class CollectionSizeError extends ApiError {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
-    const XSI_TYPE = "AuthenticationError";
+    const XSI_TYPE = "CollectionSizeError";
 
     /**
      * @access public
-     * @var tnsAuthenticationErrorReason
+     * @var tnsCollectionSizeErrorReason
      */
     public $reason;
 
@@ -1293,12 +1266,6 @@ if (!class_exists("SoapRequestHeader", false)) {
     public $applicationName;
 
     /**
-     * @access public
-     * @var Authentication
-     */
-    public $authentication;
-
-    /**
      * Gets the namesapce of this class
      * @return the namespace of this class
      */
@@ -1314,10 +1281,9 @@ if (!class_exists("SoapRequestHeader", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($networkCode = null, $applicationName = null, $authentication = null) {
+    public function __construct($networkCode = null, $applicationName = null) {
       $this->networkCode = $networkCode;
       $this->applicationName = $applicationName;
-      $this->authentication = $authentication;
     }
 
   }
@@ -1713,13 +1679,47 @@ if (!class_exists("AuthenticationErrorReason", false)) {
   }
 }
 
+if (!class_exists("CollectionSizeErrorReason", false)) {
+  /**
+   * The value returned if the actual value is not exposed by the requested API version.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201405
+   */
+  class CollectionSizeErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
+    const XSI_TYPE = "CollectionSizeError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("Column", false)) {
   /**
    * {@code Column} provides all the trafficking statistics and revenue
    * information available for the chosen {@link Dimension} objects.
    * <p>
    * Columns with {@code INVENTORY_LEVEL} should not be used with dimensions
-   * relating to line items, orders, companies and creatives, such as {@link Dimension#LINE_ITEM}.
+   * relating to line items, orders, companies and creatives,
+   * such as {@link Dimension#LINE_ITEM_NAME}.
    * Columns with {@code LINE_ITEM_LEVEL} can only be used if you have line item-level
    * dynamic allocation enabled on your network.
    * @package GoogleApiAdsDfp
@@ -2586,10 +2586,14 @@ if (!class_exists("GetReportDownloadUrlWithOptionsResponse", false)) {
 
 if (!class_exists("GetReportJob", false)) {
   /**
-   * Returns the {@link ReportJob} uniquely identified by the given ID.
+   * Returns the {@link ReportJob} uniquely identified by the given ID with only the
+   * {@link ReportJob#reportJobStatus} and {@link ReportJob#id} fields filled in.
+   * 
+   * <p>Replaced with {@code ReportService.getReportJobStatus} beginning in V201505.
    * 
    * @param reportJobId the Id of the report job which must already exist
-   * @return the {@code ReportJob} uniquely identified by the given ID
+   * @return the {@code ReportJob} uniquely identified by the given ID with the ID and status
+   * fields filled in.
    * @package GoogleApiAdsDfp
    * @subpackage v201405
    */
@@ -3077,9 +3081,9 @@ if (!class_exists("ReportService", false)) {
       "ApiException" => "ApiException",
       "ApiVersionError" => "ApiVersionError",
       "ApplicationException" => "ApplicationException",
-      "Authentication" => "Authentication",
       "AuthenticationError" => "AuthenticationError",
       "BooleanValue" => "BooleanValue",
+      "CollectionSizeError" => "CollectionSizeError",
       "CommonError" => "CommonError",
       "Date" => "Date",
       "DateTime" => "DfpDateTime",
@@ -3111,6 +3115,7 @@ if (!class_exists("ReportService", false)) {
       "ReportQuery.AdUnitView" => "ReportQueryAdUnitView",
       "ApiVersionError.Reason" => "ApiVersionErrorReason",
       "AuthenticationError.Reason" => "AuthenticationErrorReason",
+      "CollectionSizeError.Reason" => "CollectionSizeErrorReason",
       "Column" => "Column",
       "CommonError.Reason" => "CommonErrorReason",
       "DateRangeType" => "DateRangeType",
@@ -3183,10 +3188,14 @@ if (!class_exists("ReportService", false)) {
       return $result->rval;
     }
     /**
-     * Returns the {@link ReportJob} uniquely identified by the given ID.
+     * Returns the {@link ReportJob} uniquely identified by the given ID with only the
+     * {@link ReportJob#reportJobStatus} and {@link ReportJob#id} fields filled in.
+     * 
+     * <p>Replaced with {@code ReportService.getReportJobStatus} beginning in V201505.
      * 
      * @param reportJobId the Id of the report job which must already exist
-     * @return the {@code ReportJob} uniquely identified by the given ID
+     * @return the {@code ReportJob} uniquely identified by the given ID with the ID and status
+     * fields filled in.
      */
     public function getReportJob($reportJobId) {
       $args = new GetReportJob($reportJobId);

@@ -2600,7 +2600,7 @@ if (!class_exists("ManagedCustomerServiceMutate", false)) {
    * Adds managed customers.
    * 
    * <p class="note"><b>Note:</b> {@link ManagedCustomerOperation} only supports
-   * {@code ADD} operator. </p>
+   * {@code ADD} operator.</p>
    * 
    * @param operations List of unique operations.
    * @return The list of updated managed customers, returned in the same order as the
@@ -2693,11 +2693,11 @@ if (!class_exists("MutateLink", false)) {
    * Operator + Link Status):
    * 
    * <ul>
-   * <li>ADD + PENDING:   manager extends invitations
-   * <li>SET + CANCELLED: manager rescinds invitations
-   * <li>SET + INACTIVE:  manager/client terminates links
-   * <li>SET + ACTIVE:    client accepts invitations
-   * <li>SET + REFUSED:   client declines invitations
+   * <li>ADD + PENDING:   manager extends invitations</li>
+   * <li>SET + CANCELLED: manager rescinds invitations</li>
+   * <li>SET + INACTIVE:  manager/client terminates links</li>
+   * <li>SET + ACTIVE:    client accepts invitations</li>
+   * <li>SET + REFUSED:   client declines invitations</li>
    * </ul>
    * 
    * @param operations the list of operations
@@ -2793,7 +2793,7 @@ if (!class_exists("MutateManager", false)) {
    * 
    * <ul>
    * <li>SET + ACTIVE: manager moves client customers to new managers within the same MCC
-   * hierarchy
+   * hierarchy</li>
    * </ul>
    * 
    * @param operations List of unique operations.
@@ -4186,7 +4186,7 @@ if (!class_exists("ManagedCustomerService", false)) {
      * Adds managed customers.
      * 
      * <p class="note"><b>Note:</b> {@link ManagedCustomerOperation} only supports
-     * {@code ADD} operator. </p>
+     * {@code ADD} operator.</p>
      * 
      * @param operations List of unique operations.
      * @return The list of updated managed customers, returned in the same order as the
@@ -4207,11 +4207,11 @@ if (!class_exists("ManagedCustomerService", false)) {
      * Operator + Link Status):
      * 
      * <ul>
-     * <li>ADD + PENDING:   manager extends invitations
-     * <li>SET + CANCELLED: manager rescinds invitations
-     * <li>SET + INACTIVE:  manager/client terminates links
-     * <li>SET + ACTIVE:    client accepts invitations
-     * <li>SET + REFUSED:   client declines invitations
+     * <li>ADD + PENDING:   manager extends invitations</li>
+     * <li>SET + CANCELLED: manager rescinds invitations</li>
+     * <li>SET + INACTIVE:  manager/client terminates links</li>
+     * <li>SET + ACTIVE:    client accepts invitations</li>
+     * <li>SET + REFUSED:   client declines invitations</li>
      * </ul>
      * 
      * @param operations the list of operations
@@ -4235,7 +4235,7 @@ if (!class_exists("ManagedCustomerService", false)) {
      * 
      * <ul>
      * <li>SET + ACTIVE: manager moves client customers to new managers within the same MCC
-     * hierarchy
+     * hierarchy</li>
      * </ul>
      * 
      * @param operations List of unique operations.

@@ -30,7 +30,8 @@ require_once "Google/Api/Ads/AdWords/Lib/AdWordsSoapClient.php";
 
 if (!class_exists("DateRange", false)) {
   /**
-   * 
+   * Represents a range of dates that has either an upper or a lower bound.
+   * The format for the date is YYYYMMDD.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -77,7 +78,7 @@ if (!class_exists("DateRange", false)) {
 
 if (!class_exists("OrderBy", false)) {
   /**
-   * <span class="constraint Required">This field is required and should not be {@code null}.</span>
+   * Specifies how the resulting information should be sorted.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -124,7 +125,9 @@ if (!class_exists("OrderBy", false)) {
 
 if (!class_exists("Paging", false)) {
   /**
-   * <span class="constraint InRange">This field must be greater than or equal to 0.</span>
+   * Specifies the page of results to return in the response. A page is specified
+   * by the result position to start at and the maximum number of results to
+   * return.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -171,7 +174,7 @@ if (!class_exists("Paging", false)) {
 
 if (!class_exists("Predicate", false)) {
   /**
-   * <span class="constraint Required">This field is required and should not be {@code null}.</span>
+   * Specifies how an entity (eg. adgroup, campaign, criterion, ad) should be filtered.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -225,8 +228,8 @@ if (!class_exists("Predicate", false)) {
 
 if (!class_exists("SharedSet", false)) {
   /**
-   * <span class="constraint Selectable">This field can be selected using the value "SharedSetId".</span><span class="constraint Filterable">This field can be filtered on.</span>
-   * <span class="constraint Required">This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET, REMOVE.</span>
+   * SharedSets are used for sharing entities across multiple campaigns
+   * under the same account.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -301,7 +304,7 @@ if (!class_exists("SharedSet", false)) {
 
 if (!class_exists("SoapRequestHeader", false)) {
   /**
-   * 
+   * Defines the required and optional elements within the header of a SOAP request.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -369,7 +372,7 @@ if (!class_exists("SoapRequestHeader", false)) {
 
 if (!class_exists("SoapResponseHeader", false)) {
   /**
-   * 
+   * Defines the elements within the header of a SOAP response.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -437,9 +440,7 @@ if (!class_exists("SoapResponseHeader", false)) {
 
 if (!class_exists("ListReturnValue", false)) {
   /**
-   * Indicates that this instance is a subtype of ListReturnValue.
-   * Although this field is returned in the response, it is ignored on input
-   * and cannot be selected. Specify xsi:type instead.
+   * Base list return value type.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -511,7 +512,8 @@ if (!class_exists("ListReturnValue", false)) {
 
 if (!class_exists("Operation", false)) {
   /**
-   * <span class="constraint Required">This field is required and should not be {@code null}.</span>
+   * This represents an operation that includes an operator and an operand
+   * specified type.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -590,9 +592,7 @@ if (!class_exists("Operation", false)) {
 
 if (!class_exists("Page", false)) {
   /**
-   * Indicates that this instance is a subtype of Page.
-   * Although this field is returned in the response, it is ignored on input
-   * and cannot be selected. Specify xsi:type instead.
+   * Contains the results from a get call.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -671,9 +671,11 @@ if (!class_exists("Page", false)) {
 
 if (!class_exists("ApiError", false)) {
   /**
-   * Indicates that this instance is a subtype of ApiError.
-   * Although this field is returned in the response, it is ignored on input
-   * and cannot be selected. Specify xsi:type instead.
+   * The API error base class that provides details about an error that occurred
+   * while processing a service request.
+   * 
+   * <p>The OGNL field path is provided for parsers to identify the request data
+   * element that may have caused the error.</p>
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -766,9 +768,7 @@ if (!class_exists("ApiError", false)) {
 
 if (!class_exists("ApplicationException", false)) {
   /**
-   * Indicates that this instance is a subtype of ApplicationException.
-   * Although this field is returned in the response, it is ignored on input
-   * and cannot be selected. Specify xsi:type instead.
+   * Base class for exceptions.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -847,9 +847,7 @@ if (!class_exists("ApplicationException", false)) {
 
 if (!class_exists("Selector", false)) {
   /**
-   * <span class="constraint ContentsDistinct">This field must contain distinct elements.</span>
-   * <span class="constraint ContentsNotNull">This field must not contain {@code null} elements.</span>
-   * <span class="constraint Required">This field is required and should not be {@code null}.</span>
+   * A generic selector to specify the type of information to return.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -917,7 +915,7 @@ if (!class_exists("Selector", false)) {
 
 if (!class_exists("AuthenticationErrorReason", false)) {
   /**
-   * 
+   * The single reason for the authentication failure.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -950,7 +948,7 @@ if (!class_exists("AuthenticationErrorReason", false)) {
 
 if (!class_exists("AuthorizationErrorReason", false)) {
   /**
-   * 
+   * The reasons for the database error.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -983,7 +981,8 @@ if (!class_exists("AuthorizationErrorReason", false)) {
 
 if (!class_exists("ClientTermsErrorReason", false)) {
   /**
-   * 
+   * Enums for the various reasons an error can be thrown as a result of
+   * ClientTerms violation.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -1016,7 +1015,7 @@ if (!class_exists("ClientTermsErrorReason", false)) {
 
 if (!class_exists("DatabaseErrorReason", false)) {
   /**
-   * 
+   * The reasons for the database error.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -1049,7 +1048,7 @@ if (!class_exists("DatabaseErrorReason", false)) {
 
 if (!class_exists("DistinctErrorReason", false)) {
   /**
-   * 
+   * The reasons for the validation error.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -1082,7 +1081,7 @@ if (!class_exists("DistinctErrorReason", false)) {
 
 if (!class_exists("EntityCountLimitExceededReason", false)) {
   /**
-   * 
+   * Limits at various levels of the account.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -1115,7 +1114,8 @@ if (!class_exists("EntityCountLimitExceededReason", false)) {
 
 if (!class_exists("EntityNotFoundReason", false)) {
   /**
-   * 
+   * The specified id refered to an entity which either doesn't exist or is not accessible to the
+   * customer. e.g. campaign belongs to another customer.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -1148,7 +1148,7 @@ if (!class_exists("EntityNotFoundReason", false)) {
 
 if (!class_exists("IdErrorReason", false)) {
   /**
-   * 
+   * The reasons for the target error.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -1181,7 +1181,7 @@ if (!class_exists("IdErrorReason", false)) {
 
 if (!class_exists("InternalApiErrorReason", false)) {
   /**
-   * 
+   * The single reason for the internal API error.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -1214,7 +1214,7 @@ if (!class_exists("InternalApiErrorReason", false)) {
 
 if (!class_exists("NewEntityCreationErrorReason", false)) {
   /**
-   * 
+   * Do not set the id field while creating new entities.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -1247,7 +1247,7 @@ if (!class_exists("NewEntityCreationErrorReason", false)) {
 
 if (!class_exists("NotEmptyErrorReason", false)) {
   /**
-   * 
+   * The reasons for the validation error.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -1280,7 +1280,7 @@ if (!class_exists("NotEmptyErrorReason", false)) {
 
 if (!class_exists("NullErrorReason", false)) {
   /**
-   * 
+   * The reasons for the validation error.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -1313,7 +1313,7 @@ if (!class_exists("NullErrorReason", false)) {
 
 if (!class_exists("OperationAccessDeniedReason", false)) {
   /**
-   * 
+   * The reasons for the operation access error.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -1346,7 +1346,7 @@ if (!class_exists("OperationAccessDeniedReason", false)) {
 
 if (!class_exists("Operator", false)) {
   /**
-   * 
+   * This represents an operator that may be presented to an adsapi service.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -1379,7 +1379,7 @@ if (!class_exists("Operator", false)) {
 
 if (!class_exists("OperatorErrorReason", false)) {
   /**
-   * 
+   * The reasons for the validation error.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -1412,7 +1412,7 @@ if (!class_exists("OperatorErrorReason", false)) {
 
 if (!class_exists("PagingErrorReason", false)) {
   /**
-   * <span class="constraint Rejected">Used for return value only. An enumeration could not be processed, typically due to incompatibility with your WSDL version.</span>
+   * The reasons for errors when using pagination.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -1445,7 +1445,7 @@ if (!class_exists("PagingErrorReason", false)) {
 
 if (!class_exists("PredicateOperator", false)) {
   /**
-   * <span class="constraint Rejected">Used for return value only. An enumeration could not be processed, typically due to incompatibility with your WSDL version.</span>
+   * Defines the valid set of operators.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -1478,7 +1478,8 @@ if (!class_exists("PredicateOperator", false)) {
 
 if (!class_exists("QuotaCheckErrorReason", false)) {
   /**
-   * 
+   * Enums for all the reasons an error can be thrown to the user during
+   * billing quota checks.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -1511,7 +1512,7 @@ if (!class_exists("QuotaCheckErrorReason", false)) {
 
 if (!class_exists("RangeErrorReason", false)) {
   /**
-   * 
+   * The reasons for the target error.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -1544,7 +1545,7 @@ if (!class_exists("RangeErrorReason", false)) {
 
 if (!class_exists("RateExceededErrorReason", false)) {
   /**
-   * 
+   * The reason for the rate exceeded error.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -1577,7 +1578,7 @@ if (!class_exists("RateExceededErrorReason", false)) {
 
 if (!class_exists("ReadOnlyErrorReason", false)) {
   /**
-   * 
+   * The reasons for the target error.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -1610,7 +1611,7 @@ if (!class_exists("ReadOnlyErrorReason", false)) {
 
 if (!class_exists("RejectedErrorReason", false)) {
   /**
-   * 
+   * The reasons for the target error.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -1643,7 +1644,7 @@ if (!class_exists("RejectedErrorReason", false)) {
 
 if (!class_exists("RequestErrorReason", false)) {
   /**
-   * 
+   * Error reason is unknown.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -1676,7 +1677,7 @@ if (!class_exists("RequestErrorReason", false)) {
 
 if (!class_exists("RequiredErrorReason", false)) {
   /**
-   * 
+   * The reasons for the target error.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -1742,7 +1743,7 @@ if (!class_exists("SharedSetStatus", false)) {
 
 if (!class_exists("SharedSetErrorReason", false)) {
   /**
-   * 
+   * Error reasons
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -1775,7 +1776,7 @@ if (!class_exists("SharedSetErrorReason", false)) {
 
 if (!class_exists("SharedSetType", false)) {
   /**
-   * <span class="constraint Rejected">Used for return value only. An enumeration could not be processed, typically due to incompatibility with your WSDL version.</span>
+   * Enumerates the different types of shared sets.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -1808,7 +1809,7 @@ if (!class_exists("SharedSetType", false)) {
 
 if (!class_exists("SizeLimitErrorReason", false)) {
   /**
-   * <span class="constraint Rejected">Used for return value only. An enumeration could not be processed, typically due to incompatibility with your WSDL version.</span>
+   * The reasons for Ad Scheduling errors.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -1841,7 +1842,7 @@ if (!class_exists("SizeLimitErrorReason", false)) {
 
 if (!class_exists("SortOrder", false)) {
   /**
-   * 
+   * Possible orders of sorting.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -1874,7 +1875,7 @@ if (!class_exists("SortOrder", false)) {
 
 if (!class_exists("StringLengthErrorReason", false)) {
   /**
-   * 
+   * The reasons for the target error.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -1996,6 +1997,7 @@ if (!class_exists("SharedSetServiceGetResponse", false)) {
 if (!class_exists("SharedSetServiceMutate", false)) {
   /**
    * <span class="constraint ContentsNotNull">This field must not contain {@code null} elements.</span>
+   * <span class="constraint DistinctIds">Elements in this field must have distinct IDs for following {@link Operator}s : SET, REMOVE.</span>
    * <span class="constraint NotEmpty">This field must contain at least one element.</span>
    * <span class="constraint Required">This field is required and should not be {@code null}.</span>
    * 
@@ -2084,7 +2086,7 @@ if (!class_exists("SharedSetServiceMutateResponse", false)) {
 
 if (!class_exists("AuthenticationError", false)) {
   /**
-   * 
+   * Errors returned when Authentication failed.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -2129,7 +2131,7 @@ if (!class_exists("AuthenticationError", false)) {
 
 if (!class_exists("AuthorizationError", false)) {
   /**
-   * 
+   * Errors encountered when trying to authorize a user.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -2174,7 +2176,7 @@ if (!class_exists("AuthorizationError", false)) {
 
 if (!class_exists("ClientTermsError", false)) {
   /**
-   * 
+   * Error due to user not accepting the AdWords terms of service.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -2219,7 +2221,7 @@ if (!class_exists("ClientTermsError", false)) {
 
 if (!class_exists("DistinctError", false)) {
   /**
-   * 
+   * Errors related to distinct ids or content.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -2264,7 +2266,8 @@ if (!class_exists("DistinctError", false)) {
 
 if (!class_exists("EntityCountLimitExceeded", false)) {
   /**
-   * 
+   * Signals that an entity count limit was exceeded for some level.
+   * For example, too many criteria for a campaign.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -2337,7 +2340,8 @@ if (!class_exists("EntityCountLimitExceeded", false)) {
 
 if (!class_exists("EntityNotFound", false)) {
   /**
-   * 
+   * An id did not correspond to an entity, or it referred to an entity which does not belong to the
+   * customer.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -2382,7 +2386,7 @@ if (!class_exists("EntityNotFound", false)) {
 
 if (!class_exists("IdError", false)) {
   /**
-   * 
+   * Errors associated with the ids.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -2427,7 +2431,9 @@ if (!class_exists("IdError", false)) {
 
 if (!class_exists("InternalApiError", false)) {
   /**
-   * 
+   * Indicates that a server-side error has occured. {@code InternalApiError}s
+   * are generally not the result of an invalid request or message sent by the
+   * client.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -2472,7 +2478,7 @@ if (!class_exists("InternalApiError", false)) {
 
 if (!class_exists("NewEntityCreationError", false)) {
   /**
-   * 
+   * Error associated with creation of new entities.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -2517,7 +2523,7 @@ if (!class_exists("NewEntityCreationError", false)) {
 
 if (!class_exists("NotEmptyError", false)) {
   /**
-   * 
+   * Errors corresponding with violation of a NOT EMPTY check.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -2562,7 +2568,7 @@ if (!class_exists("NotEmptyError", false)) {
 
 if (!class_exists("NullError", false)) {
   /**
-   * 
+   * Errors associated with violation of a NOT NULL check.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -2607,7 +2613,7 @@ if (!class_exists("NullError", false)) {
 
 if (!class_exists("OperationAccessDenied", false)) {
   /**
-   * 
+   * Operation not permitted due to the invoked service's access policy.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -2652,7 +2658,7 @@ if (!class_exists("OperationAccessDenied", false)) {
 
 if (!class_exists("OperatorError", false)) {
   /**
-   * 
+   * Errors due to the use of unsupported operations.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -2697,7 +2703,8 @@ if (!class_exists("OperatorError", false)) {
 
 if (!class_exists("PagingError", false)) {
   /**
-   * 
+   * Error codes for pagination.
+   * See {@link com.google.ads.api.services.common.pagination.Paging}.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -2742,7 +2749,7 @@ if (!class_exists("PagingError", false)) {
 
 if (!class_exists("QuotaCheckError", false)) {
   /**
-   * 
+   * Encapsulates the errors thrown during developer quota checks.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -2787,7 +2794,7 @@ if (!class_exists("QuotaCheckError", false)) {
 
 if (!class_exists("RangeError", false)) {
   /**
-   * 
+   * A list of all errors associated with the Range constraint.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -2832,7 +2839,7 @@ if (!class_exists("RangeError", false)) {
 
 if (!class_exists("RateExceededError", false)) {
   /**
-   * 
+   * Signals that a call failed because a measured rate exceeded.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -2898,7 +2905,7 @@ if (!class_exists("RateExceededError", false)) {
 
 if (!class_exists("ReadOnlyError", false)) {
   /**
-   * 
+   * Errors from attempting to write to read-only fields.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -2943,7 +2950,7 @@ if (!class_exists("ReadOnlyError", false)) {
 
 if (!class_exists("RejectedError", false)) {
   /**
-   * 
+   * Indicates that a field was rejected due to compatibility issues.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -2988,7 +2995,8 @@ if (!class_exists("RejectedError", false)) {
 
 if (!class_exists("RequestError", false)) {
   /**
-   * 
+   * Encapsulates the generic errors thrown when there's an error with user
+   * request.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -3033,7 +3041,7 @@ if (!class_exists("RequestError", false)) {
 
 if (!class_exists("RequiredError", false)) {
   /**
-   * 
+   * Errors due to missing required field.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -3078,7 +3086,7 @@ if (!class_exists("RequiredError", false)) {
 
 if (!class_exists("SharedSetError", false)) {
   /**
-   * 
+   * Represents error codes for the SharedSetService.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -3123,7 +3131,7 @@ if (!class_exists("SharedSetError", false)) {
 
 if (!class_exists("SharedSetOperation", false)) {
   /**
-   * <span class="constraint Required">This field is required and should not be {@code null}.</span>
+   * Operations for adding/updating SharedSet entities.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -3166,7 +3174,7 @@ if (!class_exists("SharedSetOperation", false)) {
 
 if (!class_exists("SharedSetReturnValue", false)) {
   /**
-   * 
+   * A container for return values from the {@link SharedSetService#mutate} call.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -3208,7 +3216,7 @@ if (!class_exists("SharedSetReturnValue", false)) {
 
 if (!class_exists("SizeLimitError", false)) {
   /**
-   * 
+   * Indicates that the number of entries in the request or response exceeds the system limit.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -3253,7 +3261,8 @@ if (!class_exists("SizeLimitError", false)) {
 
 if (!class_exists("StringLengthError", false)) {
   /**
-   * 
+   * Errors associated with the length of the given string being
+   * out of bounds.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -3298,7 +3307,7 @@ if (!class_exists("StringLengthError", false)) {
 
 if (!class_exists("DatabaseError", false)) {
   /**
-   * 
+   * Errors that are thrown due to a database access problem.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -3379,7 +3388,7 @@ if (!class_exists("NullStatsPage", false)) {
 
 if (!class_exists("ApiException", false)) {
   /**
-   * 
+   * Exception class for holding a list of service errors.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -3422,7 +3431,8 @@ if (!class_exists("ApiException", false)) {
 
 if (!class_exists("SharedSetPage", false)) {
   /**
-   * 
+   * Contains a list of criterion lists resulting from the filtering and paging of
+   * {@link SharedSetService#get} call.
    * @package Google_Api_Ads_AdWords_v201409
    * @subpackage v201409
    */
@@ -3592,6 +3602,7 @@ if (!class_exists("SharedSetService", false)) {
     }
     /**
      * <span class="constraint ContentsNotNull">This field must not contain {@code null} elements.</span>
+     * <span class="constraint DistinctIds">Elements in this field must have distinct IDs for following {@link Operator}s : SET, REMOVE.</span>
      * <span class="constraint NotEmpty">This field must contain at least one element.</span>
      * <span class="constraint Required">This field is required and should not be {@code null}.</span>
      * 

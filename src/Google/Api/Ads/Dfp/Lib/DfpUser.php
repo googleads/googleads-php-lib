@@ -31,7 +31,6 @@
  */
 require_once 'Google/Api/Ads/Common/Lib/AdsUser.php';
 require_once 'Google/Api/Ads/Common/Util/ApiPropertiesUtils.php';
-require_once 'Google/Api/Ads/Common/Util/AuthToken.php';
 require_once 'Google/Api/Ads/Common/Util/DeprecationUtils.php';
 require_once 'Google/Api/Ads/Common/Util/Logger.php';
 require_once 'Google/Api/Ads/Dfp/Lib/DfpSoapClientFactory.php';
@@ -46,7 +45,6 @@ class DfpUser extends AdsUser {
 
   const OAUTH2_SCOPE = 'https://www.googleapis.com/auth/dfp';
   const OAUTH2_HANDLER_CLASS = 'SimpleOAuth2Handler';
-  const FINAL_CLIENT_LOGIN_VERSION = "v201311";
 
   /**
    * The name of the SOAP header that represents the user agent making API
@@ -60,11 +58,6 @@ class DfpUser extends AdsUser {
   private $libVersion;
   private $libName;
 
-  private $defaultVersion;
-  private $defaultServer;
-
-  private $email;
-  private $password;
   private $applicationName;
 
 
@@ -89,10 +82,6 @@ class DfpUser extends AdsUser {
    *     authentication INI or relative to the current directory (cwd). If
    *     <var>NULL</var>, the default authentication INI file will attempt to be
    *     loaded
-   * @param string $email the email of the user (required header). Will
-   *     overwrite the email entry loaded from any INI file
-   * @param string $password the password of the user (required header). Will
-   *     overwrite the password entry loaded from any INI file
    * @param string $applicationName the application name (required header). Will
    *     be prepended with the library name and version. Will also overwrite the
    *     applicationName entry in any INI file
@@ -102,12 +91,11 @@ class DfpUser extends AdsUser {
    *     file
    * @param string $settingsIniPath the path to the settings INI file. If
    *     <var>NULL</var>, the default settings INI file will be loaded
-   * @param string $authToken the authToken to use for requests
    * @param array $oauth2Info the OAuth 2.0 information to use for requests
    */
-  public function __construct($authenticationIniPath = NULL, $email = NULL,
-      $password = NULL, $applicationName = NULL, $networkCode = NULL,
-      $settingsIniPath = NULL, $authToken = NULL, $oauth2Info = NULL) {
+  public function __construct($authenticationIniPath = NULL,
+      $applicationName = NULL, $networkCode = NULL, $settingsIniPath = NULL,
+      $oauth2Info = NULL) {
     parent::__construct();
 
 
@@ -121,8 +109,8 @@ class DfpUser extends AdsUser {
     $apiProps = ApiPropertiesUtils::ParseApiPropertiesFile(dirname(__FILE__) .
         '/api.properties');
     $versions = explode(',', $apiProps['api.versions']);
-    $this->defaultVersion = $versions[count($versions) - 1];
-    $this->defaultServer = $apiProps['api.server'];
+    $defaultVersion = $versions[count($versions) - 1];
+    $defaultServer = $apiProps['api.server'];
 
     if (isset($authenticationIniPath)) {
       $authenticationIni =
@@ -132,21 +120,13 @@ class DfpUser extends AdsUser {
           parse_ini_file(dirname(__FILE__) . '/../auth.ini', TRUE);
     }
 
-    $email = $this->GetAuthVarValue($email, 'email', $authenticationIni);
-    $password = $this->GetAuthVarValue($password, 'password',
-        $authenticationIni);
     $applicationName = $this->GetAuthVarValue($applicationName,
         self::USER_AGENT_HEADER_NAME, $authenticationIni);
     $networkCode = $this->GetAuthVarValue($networkCode, 'networkCode',
         $authenticationIni);
-    $authToken = $this->GetAuthVarValue($authToken, 'authToken',
-        $authenticationIni);
     $oauth2Info = $this->GetAuthVarValue($oauth2Info, 'OAUTH2',
         $authenticationIni);
 
-    $this->SetEmail($email);
-    $this->SetPassword($password);
-    $this->SetAuthToken($authToken);
     $this->SetOAuth2Info($oauth2Info);
     $this->SetApplicationName($applicationName);
     $this->SetClientLibraryUserAgent($applicationName);
@@ -157,8 +137,8 @@ class DfpUser extends AdsUser {
     }
 
     $this->loadSettings($settingsIniPath,
-        $this->defaultVersion,
-        $this->defaultServer,
+        $defaultVersion,
+        $defaultServer,
         getcwd(), dirname(__FILE__));
   }
 
@@ -189,46 +169,7 @@ class DfpUser extends AdsUser {
       $serviceFactory = new DfpSoapClientFactory($this, $version, $server);
     }
 
-    DeprecationUtils::CheckUsingClientLoginWithUnsupportedVersion($this,
-        self::FINAL_CLIENT_LOGIN_VERSION, $version);
-
     return parent::GetServiceSoapClient($serviceName, $serviceFactory);
-  }
-
-  /**
-   * Regenerates the authentication token and sets it for this user.
-   * @param string $server The server to retrieve the token from.
-   * @return string The newly generated auth token.
-   */
-  public function RegenerateAuthToken($server = NULL) {
-    if (!isset($server)) {
-      $server = $this->GetAuthServer();
-    }
-    $authTokenClient = new AuthToken($this->email, $this->password, 'gam',
-        $this->GetClientLibraryUserAgent(), 'GOOGLE', $server);
-    $authToken = $authTokenClient->GetAuthToken();
-    $this->SetAuthToken($authToken);
-    return $authToken;
-  }
-
-  /**
-   * Gets the authentication token.
-   * @return string the auth token
-   */
-  public function GetAuthToken() {
-    $authToken = $this->GetHeaderValue('authToken');
-    if (!isset($authToken) && isset($this->email) && isset($this->password)) {
-      $authToken = $this->RegenerateAuthToken();
-    }
-    return $authToken;
-  }
-
-  /**
-   * Sets the authentication token.
-   * @param string $authToken the auth token to set
-   */
-  public function SetAuthToken($authToken) {
-    $this->SetHeaderValue('authToken', $authToken);
   }
 
   /**
@@ -278,38 +219,6 @@ class DfpUser extends AdsUser {
   }
 
   /**
-   * Gets the email address of the user login.
-   * @return string the user login email
-   */
-  public function GetEmail() {
-    return $this->email;
-  }
-
-  /**
-   * Sets the email address of the user login.
-   * @param string $email the user login email
-   */
-  public function SetEmail($email) {
-    $this->email = $email;
-  }
-
-  /**
-   * Gets the password for this user.
-   * @return string the password for this user
-   */
-  public function GetPassword() {
-    return $this->password;
-  }
-
-  /**
-   * Sets the password for this user.
-   * @param string $password the password for this user
-   */
-  public function SetPassword($password) {
-    $this->password = $password;
-  }
-
-  /**
    * Get the default OAuth2 Handler for this user.
    * @param NULL|string $className the name of the oauth2Handler class or NULL
    * @return mixed the configured OAuth2Handler class
@@ -325,21 +234,7 @@ class DfpUser extends AdsUser {
    * @throws ValidationException if there are any validation errors
    */
   public function ValidateUser() {
-    if ($this->GetOAuth2Info() !== NULL) {
-      parent::ValidateOAuth2Info();
-    } else if ($this->GetAuthToken() == NULL) {
-      if (!isset($this->email)) {
-        throw new ValidationException('email', NULL,
-            'email is required and cannot be NULL.');
-      }
-
-      if (!isset($this->password)) {
-        throw new ValidationException('password', NULL,
-            'password is required and cannot be NULL.');
-      }
-      // Generate an authToken.
-      $this->RegenerateAuthToken();
-    }
+    parent::ValidateOAuth2Info();
 
     if ($this->GetApplicationName() === NULL
         || trim($this->GetApplicationName()) === ''

@@ -456,6 +456,51 @@ if (!class_exists("AuthenticationError", false)) {
   }
 }
 
+if (!class_exists("CollectionSizeError", false)) {
+  /**
+   * Error for the size of the collection being too large
+   * @package GoogleApiAdsDfp
+   * @subpackage v201403
+   */
+  class CollectionSizeError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
+    const XSI_TYPE = "CollectionSizeError";
+
+    /**
+     * @access public
+     * @var tnsCollectionSizeErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("CommonError", false)) {
   /**
    * A place for common errors that can be used across services.
@@ -650,6 +695,51 @@ if (!class_exists("CustomCreativeError", false)) {
     /**
      * @access public
      * @var tnsCustomCreativeErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
+if (!class_exists("CustomFieldValueError", false)) {
+  /**
+   * Errors specific to editing custom field values
+   * @package GoogleApiAdsDfp
+   * @subpackage v201403
+   */
+  class CustomFieldValueError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
+    const XSI_TYPE = "CustomFieldValueError";
+
+    /**
+     * @access public
+     * @var tnsCustomFieldValueErrorReason
      */
     public $reason;
 
@@ -2380,7 +2470,7 @@ if (!class_exists("Size", false)) {
   /**
    * Represents the dimensions of an {@link AdUnit}, {@link LineItem} or {@link Creative}.
    * <p>
-   * For interstitial size (out-of-page), {@code Size} must be 1x1.
+   * For interstitial size (out-of-page) and native size, {@code Size} must be 1x1.
    * @package GoogleApiAdsDfp
    * @subpackage v201403
    */
@@ -3256,6 +3346,39 @@ if (!class_exists("AuthenticationErrorReason", false)) {
   }
 }
 
+if (!class_exists("CollectionSizeErrorReason", false)) {
+  /**
+   * The value returned if the actual value is not exposed by the requested API version.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201403
+   */
+  class CollectionSizeErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
+    const XSI_TYPE = "CollectionSizeError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("CommonErrorReason", false)) {
   /**
    * Describes reasons for common errors
@@ -3398,6 +3521,39 @@ if (!class_exists("CustomCreativeErrorReason", false)) {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
     const XSI_TYPE = "CustomCreativeError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("CustomFieldValueErrorReason", false)) {
+  /**
+   * The reasons for the target error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201403
+   */
+  class CustomFieldValueErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
+    const XSI_TYPE = "CustomFieldValueError.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -5347,11 +5503,13 @@ if (!class_exists("LineItemCreativeAssociationService", false)) {
       "Authentication" => "Authentication",
       "AuthenticationError" => "AuthenticationError",
       "BooleanValue" => "BooleanValue",
+      "CollectionSizeError" => "CollectionSizeError",
       "CommonError" => "CommonError",
       "CreativeAssetMacroError" => "CreativeAssetMacroError",
       "CreativeError" => "CreativeError",
       "CreativeSetError" => "CreativeSetError",
       "CustomCreativeError" => "CustomCreativeError",
+      "CustomFieldValueError" => "CustomFieldValueError",
       "Date" => "Date",
       "DateTime" => "DfpDateTime",
       "DateTimeValue" => "DateTimeValue",
@@ -5411,11 +5569,13 @@ if (!class_exists("LineItemCreativeAssociationService", false)) {
       "AssetError.Reason" => "AssetErrorReason",
       "AudienceExtensionError.Reason" => "AudienceExtensionErrorReason",
       "AuthenticationError.Reason" => "AuthenticationErrorReason",
+      "CollectionSizeError.Reason" => "CollectionSizeErrorReason",
       "CommonError.Reason" => "CommonErrorReason",
       "CreativeAssetMacroError.Reason" => "CreativeAssetMacroErrorReason",
       "CreativeError.Reason" => "CreativeErrorReason",
       "CreativeSetError.Reason" => "CreativeSetErrorReason",
       "CustomCreativeError.Reason" => "CustomCreativeErrorReason",
+      "CustomFieldValueError.Reason" => "CustomFieldValueErrorReason",
       "FeatureError.Reason" => "FeatureErrorReason",
       "FileError.Reason" => "FileErrorReason",
       "ImageError.Reason" => "ImageErrorReason",

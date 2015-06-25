@@ -249,54 +249,22 @@ if (!class_exists("ApplicationException", false)) {
   }
 }
 
-if (!class_exists("Authentication", false)) {
+if (!class_exists("AuthenticationError", false)) {
   /**
-   * A representation of the authentication protocols that can be used.
+   * An error for an exception that occurred when authenticating.
    * @package GoogleApiAdsDfp
    * @subpackage v201405
    */
-  class Authentication {
+  class AuthenticationError extends ApiError {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
-    const XSI_TYPE = "Authentication";
+    const XSI_TYPE = "AuthenticationError";
 
     /**
      * @access public
-     * @var string
+     * @var tnsAuthenticationErrorReason
      */
-    public $AuthenticationType;
-    private $_parameterMap = array(
-      "Authentication.Type" => "AuthenticationType",
-    );
-
-    /**
-     * Provided for setting non-php-standard named variables
-     * @param $var Variable name to set
-     * @param $value Value to set
-     */
-    public function __set($var, $value) {
-      $this->{$this->_parameterMap[$var]} = $value;
-    }
-
-    /**
-     * Provided for getting non-php-standard named variables
-     * @param $var Variable name to get
-     * @return mixed Variable value
-     */
-    public function __get($var) {
-      if (!isset($this->_parameterMap[$var])) {
-        return null;
-      }
-      return $this->{$this->_parameterMap[$var]};
-    }
-
-    /**
-     * Provided for getting non-php-standard named variables
-     * @return array parameter map
-     */
-    protected function getParameterMap() {
-      return $this->_parameterMap;
-    }
+    public $reason;
 
     /**
      * Gets the namesapce of this class
@@ -314,27 +282,32 @@ if (!class_exists("Authentication", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($AuthenticationType = null) {
-      $this->AuthenticationType = $AuthenticationType;
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
     }
 
   }
 }
 
-if (!class_exists("AuthenticationError", false)) {
+if (!class_exists("CollectionSizeError", false)) {
   /**
-   * An error for an exception that occurred when authenticating.
+   * Error for the size of the collection being too large
    * @package GoogleApiAdsDfp
    * @subpackage v201405
    */
-  class AuthenticationError extends ApiError {
+  class CollectionSizeError extends ApiError {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
-    const XSI_TYPE = "AuthenticationError";
+    const XSI_TYPE = "CollectionSizeError";
 
     /**
      * @access public
-     * @var tnsAuthenticationErrorReason
+     * @var tnsCollectionSizeErrorReason
      */
     public $reason;
 
@@ -1038,6 +1011,90 @@ if (!class_exists("DeleteCustomTargetingValues", false)) {
   }
 }
 
+if (!class_exists("EntityChildrenLimitReachedError", false)) {
+  /**
+   * Lists errors relating to having too many children on an entity.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201405
+   */
+  class EntityChildrenLimitReachedError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
+    const XSI_TYPE = "EntityChildrenLimitReachedError";
+
+    /**
+     * @access public
+     * @var tnsEntityChildrenLimitReachedErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
+if (!class_exists("EntityLimitReachedError", false)) {
+  /**
+   * An error that occurs when creating an entity if the limit on the number of allowed entities for
+   * a network has already been reached.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201405
+   */
+  class EntityLimitReachedError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
+    const XSI_TYPE = "EntityLimitReachedError";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("FeatureError", false)) {
   /**
    * Errors related to feature management.  If you attempt using a feature that is not available to
@@ -1563,12 +1620,6 @@ if (!class_exists("SoapRequestHeader", false)) {
     public $applicationName;
 
     /**
-     * @access public
-     * @var Authentication
-     */
-    public $authentication;
-
-    /**
      * Gets the namesapce of this class
      * @return the namespace of this class
      */
@@ -1584,10 +1635,9 @@ if (!class_exists("SoapRequestHeader", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($networkCode = null, $applicationName = null, $authentication = null) {
+    public function __construct($networkCode = null, $applicationName = null) {
       $this->networkCode = $networkCode;
       $this->applicationName = $applicationName;
-      $this->authentication = $authentication;
     }
 
   }
@@ -2066,6 +2116,39 @@ if (!class_exists("AuthenticationErrorReason", false)) {
   }
 }
 
+if (!class_exists("CollectionSizeErrorReason", false)) {
+  /**
+   * The value returned if the actual value is not exposed by the requested API version.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201405
+   */
+  class CollectionSizeErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
+    const XSI_TYPE = "CollectionSizeError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("CommonErrorReason", false)) {
   /**
    * Describes reasons for common errors
@@ -2176,6 +2259,39 @@ if (!class_exists("CustomTargetingValueMatchType", false)) {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
     const XSI_TYPE = "CustomTargetingValue.MatchType";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("EntityChildrenLimitReachedErrorReason", false)) {
+  /**
+   * The reasons for the entity children limit reached error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201405
+   */
+  class EntityChildrenLimitReachedErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201405";
+    const XSI_TYPE = "EntityChildrenLimitReachedError.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -3698,9 +3814,9 @@ if (!class_exists("CustomTargetingService", false)) {
       "ApiException" => "ApiException",
       "ApiVersionError" => "ApiVersionError",
       "ApplicationException" => "ApplicationException",
-      "Authentication" => "Authentication",
       "AuthenticationError" => "AuthenticationError",
       "BooleanValue" => "BooleanValue",
+      "CollectionSizeError" => "CollectionSizeError",
       "CommonError" => "CommonError",
       "CustomTargetingError" => "CustomTargetingError",
       "CustomTargetingKeyAction" => "CustomTargetingKeyAction",
@@ -3715,6 +3831,8 @@ if (!class_exists("CustomTargetingService", false)) {
       "DateValue" => "DateValue",
       "DeleteCustomTargetingKeys" => "DeleteCustomTargetingKeys",
       "DeleteCustomTargetingValues" => "DeleteCustomTargetingValues",
+      "EntityChildrenLimitReachedError" => "EntityChildrenLimitReachedError",
+      "EntityLimitReachedError" => "EntityLimitReachedError",
       "FeatureError" => "FeatureError",
       "InternalApiError" => "InternalApiError",
       "NotNullError" => "NotNullError",
@@ -3740,10 +3858,12 @@ if (!class_exists("CustomTargetingService", false)) {
       "Value" => "Value",
       "ApiVersionError.Reason" => "ApiVersionErrorReason",
       "AuthenticationError.Reason" => "AuthenticationErrorReason",
+      "CollectionSizeError.Reason" => "CollectionSizeErrorReason",
       "CommonError.Reason" => "CommonErrorReason",
       "CustomTargetingError.Reason" => "CustomTargetingErrorReason",
       "CustomTargetingKey.Type" => "CustomTargetingKeyType",
       "CustomTargetingValue.MatchType" => "CustomTargetingValueMatchType",
+      "EntityChildrenLimitReachedError.Reason" => "EntityChildrenLimitReachedErrorReason",
       "FeatureError.Reason" => "FeatureErrorReason",
       "InternalApiError.Reason" => "InternalApiErrorReason",
       "NotNullError.Reason" => "NotNullErrorReason",

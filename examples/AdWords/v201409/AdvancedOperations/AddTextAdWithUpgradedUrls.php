@@ -1,8 +1,6 @@
 <?php
 /**
  * This example adds text ads to an ad group that uses upgraded URLs.
- * This example will only work if your account is a test account or is
- * whitelisted for this feature.
  *
  * To get ad groups, run GetAdGroups.php.
  *
@@ -63,7 +61,7 @@ function AddTextAdWithUpgradedUrlsExample(AdWordsUser $user, $adGroupId) {
     // specify one at customer, campaign, ad group, ad, criterion or
     // feed item levels.
     $textAd->trackingUrlTemplate =
-        'http://tracker.example.com/?cid={_season}&promocode={_promocode}' .
+        'http://tracker.example.com/?season={_season}&promocode={_promocode}' .
         '&u={lpurl}';
 
     // Since your tracking url has two custom parameters, provide their

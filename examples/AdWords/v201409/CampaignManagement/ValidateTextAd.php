@@ -54,7 +54,7 @@ function ValidateTextAdExample(AdWordsUser $user, $adGroupId) {
   $textAd->description1 = 'Description Line 1';
   $textAd->description2 = 'Description Line 2';
   $textAd->displayUrl = 'www.example.com';
-  $textAd->url = 'http://www.example.com';
+  $textAd->finalUrls = array('http://www.example.com');
 
   // Create ad group ad.
   $adGroupAd = new AdGroupAd();

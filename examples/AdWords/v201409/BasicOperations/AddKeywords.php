@@ -60,14 +60,15 @@ function AddKeywordsExample(AdWordsUser $user, $adGroupId) {
 
     // Set additional settings (optional).
     $adGroupCriterion->userStatus = 'PAUSED';
-    $adGroupCriterion->destinationUrl = 'http://www.example.com/mars';
+    $adGroupCriterion->finalUrls = array('http://www.example.com/mars');
 
     // Set bids (optional).
     $bid = new CpcBid();
     $bid->bid =  new Money(500000);
     $biddingStrategyConfiguration = new BiddingStrategyConfiguration();
     $biddingStrategyConfiguration->bids[] = $bid;
-    $adGroupCriterion->biddingStrategyConfiguration = $biddingStrategyConfiguration;
+    $adGroupCriterion->biddingStrategyConfiguration =
+        $biddingStrategyConfiguration;
 
     $adGroupCriteria[] = $adGroupCriterion;
 

@@ -206,7 +206,6 @@ abstract class AdsSoapClient extends SoapClient {
    */
   function __soapCall($function_name, $arguments, $options = NULL,
       $input_headers = NULL, &$output_headers = NULL) {
-    DeprecationUtils::CheckUsingClientLogin($this->user);
     try {
       $input_headers[] = $this->GenerateSoapHeader();
       $this->lastHeaders = $input_headers;
@@ -222,8 +221,8 @@ abstract class AdsSoapClient extends SoapClient {
         // Override the existing HTTP headers each time since they may have
         // changed.
         $existingStreamContextOptions['http']['header'] = implode("\r\n",
-            array_map('AdsSoapClient::implodeHttpHeaders', array_keys($httpHeaders),
-                $httpHeaders));
+            array_map('AdsSoapClient::implodeHttpHeaders',
+                array_keys($httpHeaders), $httpHeaders));
         stream_context_set_option($existingStreamContext,
           $existingStreamContextOptions);
       }
@@ -333,14 +332,6 @@ abstract class AdsSoapClient extends SoapClient {
     } else {
       return NULL;
     }
-  }
-
-  /**
-   * Gets the email of the user making the request.
-   * @return string the email of the user making the request
-   */
-  public function GetEmail() {
-    return $this->user->getEmail();
   }
 
   /**

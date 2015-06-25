@@ -1,7 +1,7 @@
 <?php
 /**
- * This example demonstrates how to create an DfpUser
- * object without using an auth.ini file.
+ * This example demonstrates how to create an DfpUser object without using an
+ * auth.ini file.
  *
  * PHP version 5
  *
@@ -25,7 +25,7 @@
  * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Ray Tsang
+ * @author     Vincent Tsao
  */
 error_reporting(E_STRICT | E_ALL);
 
@@ -58,7 +58,7 @@ function RunExample(DfpUser $user) {
   // Gets the current network.
   $network = $networkService->getCurrentNetwork();
 
-  printf("Current network has network code \"%s\" and display name \"%s\".\n",
+  printf("Current network has network code %d and display name \"%s\".\n",
     $network->networkCode, $network->displayName);
 }
 
@@ -74,10 +74,7 @@ try {
     'refresh_token' => REFRESH_TOKEN
   );
 
-  // See DfpUser constructor
-  $user = new DfpUser(NULL, NULL, NULL, APPLICATION_NAME, NETWORK_CODE,
-      NULL, NULL, $oauth2Info);
-
+  $user = new DfpUser(null, APPLICATION_NAME, NETWORK_CODE, null, $oauth2Info);
   $user->LogDefault();
 
   // Get the OAuth2 credential.

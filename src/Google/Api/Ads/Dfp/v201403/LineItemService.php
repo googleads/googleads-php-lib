@@ -887,6 +887,51 @@ if (!class_exists("ClickTrackingLineItemError", false)) {
   }
 }
 
+if (!class_exists("CollectionSizeError", false)) {
+  /**
+   * Error for the size of the collection being too large
+   * @package GoogleApiAdsDfp
+   * @subpackage v201403
+   */
+  class CollectionSizeError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
+    const XSI_TYPE = "CollectionSizeError";
+
+    /**
+     * @access public
+     * @var tnsCollectionSizeErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("CommonError", false)) {
   /**
    * A place for common errors that can be used across services.
@@ -1279,6 +1324,51 @@ if (!class_exists("CreativePlaceholder", false)) {
       $this->id = $id;
       $this->expectedCreativeCount = $expectedCreativeCount;
       $this->creativeSizeType = $creativeSizeType;
+    }
+
+  }
+}
+
+if (!class_exists("CrossSellError", false)) {
+  /**
+   * Lists all errors associated with cross selling.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201403
+   */
+  class CrossSellError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
+    const XSI_TYPE = "CrossSellError";
+
+    /**
+     * @access public
+     * @var tnsCrossSellErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
     }
 
   }
@@ -2436,6 +2526,51 @@ if (!class_exists("GeoTargetingError", false)) {
     /**
      * @access public
      * @var tnsGeoTargetingErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
+if (!class_exists("ImageError", false)) {
+  /**
+   * Lists all errors associated with images.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201403
+   */
+  class ImageError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
+    const XSI_TYPE = "ImageError";
+
+    /**
+     * @access public
+     * @var tnsImageErrorReason
      */
     public $reason;
 
@@ -4665,6 +4800,51 @@ if (!class_exists("ResumeLineItems", false)) {
   }
 }
 
+if (!class_exists("AudienceSegmentError", false)) {
+  /**
+   * Errors that could occur on audience segment related requests.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201403
+   */
+  class AudienceSegmentError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
+    const XSI_TYPE = "AudienceSegmentError";
+
+    /**
+     * @access public
+     * @var tnsAudienceSegmentErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("ServerError", false)) {
   /**
    * Errors related to the server.
@@ -4714,7 +4894,7 @@ if (!class_exists("Size", false)) {
   /**
    * Represents the dimensions of an {@link AdUnit}, {@link LineItem} or {@link Creative}.
    * <p>
-   * For interstitial size (out-of-page), {@code Size} must be 1x1.
+   * For interstitial size (out-of-page) and native size, {@code Size} must be 1x1.
    * @package GoogleApiAdsDfp
    * @subpackage v201403
    */
@@ -6095,6 +6275,39 @@ if (!class_exists("ClickTrackingLineItemErrorReason", false)) {
   }
 }
 
+if (!class_exists("CollectionSizeErrorReason", false)) {
+  /**
+   * The value returned if the actual value is not exposed by the requested API version.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201403
+   */
+  class CollectionSizeErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
+    const XSI_TYPE = "CollectionSizeError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("CommonErrorReason", false)) {
   /**
    * Describes reasons for common errors
@@ -6373,6 +6586,39 @@ if (!class_exists("CreativeSizeType", false)) {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
     const XSI_TYPE = "CreativeSizeType";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("CrossSellErrorReason", false)) {
+  /**
+   * The reason of the error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201403
+   */
+  class CrossSellErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
+    const XSI_TYPE = "CrossSellError.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -6902,6 +7148,39 @@ if (!class_exists("GeoTargetingErrorReason", false)) {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
     const XSI_TYPE = "GeoTargetingError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("ImageErrorReason", false)) {
+  /**
+   * The reasons for the target error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201403
+   */
+  class ImageErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
+    const XSI_TYPE = "ImageError.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -7908,6 +8187,39 @@ if (!class_exists("RoadblockingType", false)) {
   }
 }
 
+if (!class_exists("AudienceSegmentErrorReason", false)) {
+  /**
+   * Reason of the given {@link AudienceSegmentError}.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201403
+   */
+  class AudienceSegmentErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201403";
+    const XSI_TYPE = "AudienceSegmentError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("ServerErrorReason", false)) {
   /**
    * Describes reasons for server errors
@@ -8402,55 +8714,22 @@ if (!class_exists("GetLineItemsByStatement", false)) {
    * filtering:
    * 
    * <table>
-   * <tr>
-   * <th scope="col">PQL Property</th> <th scope="col">Object Property</th>
-   * </tr>
-   * <tr>
-   * <td>{@code costType}</td>
-   * <td>{@link LineItem#costType}</td>
-   * </tr>
-   * <tr>
-   * <td>{@code id}</td>
-   * <td>{@link LineItem#id}</td>
-   * </tr>
-   * <tr>
-   * <td>{@code lineItemType}</td>
-   * <td>{@link LineItem#lineItemType}</td>
-   * </tr>
-   * <tr>
-   * <td>{@code name}</td>
-   * <td>{@link LineItem#name}</td>
-   * </tr>
-   * <tr>
-   * <td>{@code orderId}</td>
-   * <td>{@link LineItem#orderId}</td>
-   * </tr>
-   * <tr>
-   * <td>{@code status}</td>
-   * <td>{@link LineItem#status}</td>
-   * </tr>
-   * <tr>
-   * <td>{@code unitsBought}</td>
-   * <td>{@link LineItem#unitsBought}</td>
-   * </tr>
-   * <tr>
-   * <td>{@code deliveryRateType}</td>
-   * <td>{@link LineItem#deliveryRateType}</td>
-   * </tr>
-   * <tr>
-   * <td>{@code lastModifiedDateTime}</td>
-   * <td>{@link LineItem#lastModifiedDateTime}</td>
-   * </tr>
-   * <tr>
-   * <td>{@code creationDateTime}</td>
-   * <td>{@link LineItem#creationDateTime}</td>
-   * </tr>
-   * <tr>
-   * <td>{@code isMissingCreatives}</td>
-   * <td>{@link LineItem#isMissingCreatives}</td>
-   * </tr>
+   * <tr><th scope="col">PQL property</th><th scope="col">Entity property</th> </tr>
+   * <tr><td><code>CostType</code></td><td>{@link LineItem#costType}</td></tr>
+   * <tr><td><code>CreationDateTime</code></td><td>{@link LineItem#creationDateTime}</td></tr>
+   * <tr><td><code>DeliveryRateType</code></td><td>{@link LineItem#deliveryRateType}</td></tr>
+   * <tr><td><code>EndDateTime</code></td><td>{@link LineItem#endDateTime}</td></tr>
+   * <tr><td><code>ExternalId</code></td><td>{@link LineItem#externalId}</td></tr>
+   * <tr><td><code>Id</code></td><td>{@link LineItem#id}</td></tr>
+   * <tr><td><code>IsMissingCreatives</code></td><td>{@link LineItem#isMissingCreatives}</td></tr>
+   * <tr><td><code>LastModifiedDateTime</code></td><td>{@link LineItem#lastModifiedDateTime}</td></tr>
+   * <tr><td><code>LineItemType</code></td><td>{@link LineItem#lineItemType}</td></tr>
+   * <tr><td><code>Name</code></td><td>{@link LineItem#name}</td></tr>
+   * <tr><td><code>OrderId</code></td><td>{@link LineItem#orderId}</td></tr>
+   * <tr><td><code>StartDateTime</code></td><td>{@link LineItem#startDateTime}</td></tr>
+   * <tr><td><code>Status</code></td><td>{@link LineItem#status}</td></tr>
+   * <tr><td><code>UnitsBought</code></td><td>{@link LineItem#unitsBought}</td></tr>
    * </table>
-   * 
    * @param filterStatement a Publisher Query Language statement used to filter
    * a set of line items.
    * @return the line items that match the given filter
@@ -9976,6 +10255,7 @@ if (!class_exists("LineItemService", false)) {
       "BrowserLanguageTargeting" => "BrowserLanguageTargeting",
       "BrowserTargeting" => "BrowserTargeting",
       "ClickTrackingLineItemError" => "ClickTrackingLineItemError",
+      "CollectionSizeError" => "CollectionSizeError",
       "CommonError" => "CommonError",
       "CompanyCreditStatusError" => "CompanyCreditStatusError",
       "ContentMetadataKeyHierarchyTargeting" => "ContentMetadataKeyHierarchyTargeting",
@@ -9983,6 +10263,7 @@ if (!class_exists("LineItemService", false)) {
       "ContentTargeting" => "ContentTargeting",
       "CreativeError" => "CreativeError",
       "CreativePlaceholder" => "CreativePlaceholder",
+      "CrossSellError" => "CrossSellError",
       "CustomCriteria" => "CustomCriteria",
       "CustomCriteriaSet" => "CustomCriteriaSet",
       "CustomFieldValue" => "CustomFieldValue",
@@ -10017,6 +10298,7 @@ if (!class_exists("LineItemService", false)) {
       "GenericTargetingError" => "GenericTargetingError",
       "GeoTargeting" => "GeoTargeting",
       "GeoTargetingError" => "GeoTargetingError",
+      "ImageError" => "ImageError",
       "InternalApiError" => "InternalApiError",
       "InvalidUrlError" => "InvalidUrlError",
       "InventoryTargeting" => "InventoryTargeting",
@@ -10064,6 +10346,7 @@ if (!class_exists("LineItemService", false)) {
       "ReserveLineItems" => "ReserveLineItems",
       "ResumeAndOverbookLineItems" => "ResumeAndOverbookLineItems",
       "ResumeLineItems" => "ResumeLineItems",
+      "AudienceSegmentError" => "AudienceSegmentError",
       "ServerError" => "ServerError",
       "SetValue" => "SetValue",
       "Size" => "Size",
@@ -10095,6 +10378,7 @@ if (!class_exists("LineItemService", false)) {
       "AudienceExtensionError.Reason" => "AudienceExtensionErrorReason",
       "AuthenticationError.Reason" => "AuthenticationErrorReason",
       "ClickTrackingLineItemError.Reason" => "ClickTrackingLineItemErrorReason",
+      "CollectionSizeError.Reason" => "CollectionSizeErrorReason",
       "CommonError.Reason" => "CommonErrorReason",
       "CompanionDeliveryOption" => "CompanionDeliveryOption",
       "CompanyCreditStatusError.Reason" => "CompanyCreditStatusErrorReason",
@@ -10104,6 +10388,7 @@ if (!class_exists("LineItemService", false)) {
       "CreativeError.Reason" => "CreativeErrorReason",
       "CreativeRotationType" => "CreativeRotationType",
       "CreativeSizeType" => "CreativeSizeType",
+      "CrossSellError.Reason" => "CrossSellErrorReason",
       "CustomCriteria.ComparisonOperator" => "CustomCriteriaComparisonOperator",
       "CustomCriteriaSet.LogicalOperator" => "CustomCriteriaSetLogicalOperator",
       "CustomFieldValueError.Reason" => "CustomFieldValueErrorReason",
@@ -10120,6 +10405,7 @@ if (!class_exists("LineItemService", false)) {
       "FrequencyCapError.Reason" => "FrequencyCapErrorReason",
       "GenericTargetingError.Reason" => "GenericTargetingErrorReason",
       "GeoTargetingError.Reason" => "GeoTargetingErrorReason",
+      "ImageError.Reason" => "ImageErrorReason",
       "InternalApiError.Reason" => "InternalApiErrorReason",
       "InvalidUrlError.Reason" => "InvalidUrlErrorReason",
       "InventoryTargetingError.Reason" => "InventoryTargetingErrorReason",
@@ -10149,6 +10435,7 @@ if (!class_exists("LineItemService", false)) {
       "RequiredSizeError.Reason" => "RequiredSizeErrorReason",
       "ReservationDetailsError.Reason" => "ReservationDetailsErrorReason",
       "RoadblockingType" => "RoadblockingType",
+      "AudienceSegmentError.Reason" => "AudienceSegmentErrorReason",
       "ServerError.Reason" => "ServerErrorReason",
       "StartDateTimeType" => "StartDateTimeType",
       "StatementError.Reason" => "StatementErrorReason",
@@ -10199,55 +10486,22 @@ if (!class_exists("LineItemService", false)) {
      * filtering:
      * 
      * <table>
-     * <tr>
-     * <th scope="col">PQL Property</th> <th scope="col">Object Property</th>
-     * </tr>
-     * <tr>
-     * <td>{@code costType}</td>
-     * <td>{@link LineItem#costType}</td>
-     * </tr>
-     * <tr>
-     * <td>{@code id}</td>
-     * <td>{@link LineItem#id}</td>
-     * </tr>
-     * <tr>
-     * <td>{@code lineItemType}</td>
-     * <td>{@link LineItem#lineItemType}</td>
-     * </tr>
-     * <tr>
-     * <td>{@code name}</td>
-     * <td>{@link LineItem#name}</td>
-     * </tr>
-     * <tr>
-     * <td>{@code orderId}</td>
-     * <td>{@link LineItem#orderId}</td>
-     * </tr>
-     * <tr>
-     * <td>{@code status}</td>
-     * <td>{@link LineItem#status}</td>
-     * </tr>
-     * <tr>
-     * <td>{@code unitsBought}</td>
-     * <td>{@link LineItem#unitsBought}</td>
-     * </tr>
-     * <tr>
-     * <td>{@code deliveryRateType}</td>
-     * <td>{@link LineItem#deliveryRateType}</td>
-     * </tr>
-     * <tr>
-     * <td>{@code lastModifiedDateTime}</td>
-     * <td>{@link LineItem#lastModifiedDateTime}</td>
-     * </tr>
-     * <tr>
-     * <td>{@code creationDateTime}</td>
-     * <td>{@link LineItem#creationDateTime}</td>
-     * </tr>
-     * <tr>
-     * <td>{@code isMissingCreatives}</td>
-     * <td>{@link LineItem#isMissingCreatives}</td>
-     * </tr>
+     * <tr><th scope="col">PQL property</th><th scope="col">Entity property</th> </tr>
+     * <tr><td><code>CostType</code></td><td>{@link LineItem#costType}</td></tr>
+     * <tr><td><code>CreationDateTime</code></td><td>{@link LineItem#creationDateTime}</td></tr>
+     * <tr><td><code>DeliveryRateType</code></td><td>{@link LineItem#deliveryRateType}</td></tr>
+     * <tr><td><code>EndDateTime</code></td><td>{@link LineItem#endDateTime}</td></tr>
+     * <tr><td><code>ExternalId</code></td><td>{@link LineItem#externalId}</td></tr>
+     * <tr><td><code>Id</code></td><td>{@link LineItem#id}</td></tr>
+     * <tr><td><code>IsMissingCreatives</code></td><td>{@link LineItem#isMissingCreatives}</td></tr>
+     * <tr><td><code>LastModifiedDateTime</code></td><td>{@link LineItem#lastModifiedDateTime}</td></tr>
+     * <tr><td><code>LineItemType</code></td><td>{@link LineItem#lineItemType}</td></tr>
+     * <tr><td><code>Name</code></td><td>{@link LineItem#name}</td></tr>
+     * <tr><td><code>OrderId</code></td><td>{@link LineItem#orderId}</td></tr>
+     * <tr><td><code>StartDateTime</code></td><td>{@link LineItem#startDateTime}</td></tr>
+     * <tr><td><code>Status</code></td><td>{@link LineItem#status}</td></tr>
+     * <tr><td><code>UnitsBought</code></td><td>{@link LineItem#unitsBought}</td></tr>
      * </table>
-     * 
      * @param filterStatement a Publisher Query Language statement used to filter
      * a set of line items.
      * @return the line items that match the given filter

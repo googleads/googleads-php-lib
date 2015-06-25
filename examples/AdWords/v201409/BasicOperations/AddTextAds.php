@@ -55,7 +55,7 @@ function AddTextAdsExample(AdWordsUser $user, $adGroupId) {
     $textAd->description1 = 'Visit the Red Planet in style.';
     $textAd->description2 = 'Low-gravity fun for everyone!';
     $textAd->displayUrl = 'www.example.com';
-    $textAd->url = 'http://www.example.com';
+    $textAd->finalUrls = array('http://www.example.com');
 
     // Create ad group ad.
     $adGroupAd = new AdGroupAd();

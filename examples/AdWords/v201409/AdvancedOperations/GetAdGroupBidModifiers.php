@@ -56,7 +56,7 @@ function GetAdGroupBidModifiersExample(AdWordsUser $user) {
     if (isset($page->entries)) {
       foreach ($page->entries as $modifier) {
         $value = 'none';
-        if (!empty($modifier->bidModifier)) {
+        if (is_numeric($modifier->bidModifier)) {
           $value = $modifier->bidModifier;
         }
         printf("Campaign ID %d, AdGroup ID %d, Criterion ID %d has ad group " .

@@ -68,7 +68,7 @@ function AddAdGroupBidModifierExample(AdWordsUser $user, $adGroupId,
 
   foreach ($response->value as $modifier) {
     $value = 'none';
-    if (!empty($modifier->bidModifier)) {
+    if (is_numeric($modifier->bidModifier)) {
       $value = $modifier->bidModifier;
     }
     printf(

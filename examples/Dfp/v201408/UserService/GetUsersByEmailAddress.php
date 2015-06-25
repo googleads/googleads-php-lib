@@ -37,11 +37,11 @@ $path = dirname(__FILE__) . '/../../../../src';
 set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 
 require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
-require_once 'Google/Api/Ads/Dfp/Util/StatementBuilder.php';
+require_once 'Google/Api/Ads/Dfp/Util/v201408/StatementBuilder.php';
 require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
 
 // Set the email address of the user to select.
-$emailAddress = "INSERT_EMAIL_ADDRESS_HERE";
+$emailAddress = 'INSERT_EMAIL_ADDRESS_HERE';
 
 try {
   // Get DfpUser from credentials in "../auth.ini"
