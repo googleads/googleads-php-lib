@@ -28,7 +28,7 @@
  * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Eric Koleda
+ * @author     Thanet Knack Praneenararat
  */
 
 // Include the initialization file
@@ -82,12 +82,12 @@ function GetAccountChangesExample(AdWordsUser $user) {
         if ($campaignChangeData->campaignChangeStatus != 'NEW') {
           printf("\tAdded ad extensions: %s\n",
               ArrayToString($campaignChangeData->addedAdExtensions));
-          printf("\tDeleted ad extensions: %s\n",
-              ArrayToString($campaignChangeData->deletedAdExtensions));
+          printf("\tRemoved ad extensions: %s\n",
+              ArrayToString($campaignChangeData->removedAdExtensions));
           printf("\tAdded campaign criteria: %s\n",
               ArrayToString($campaignChangeData->addedCampaignCriteria));
-          printf("\tDeleted campaign criteria: %s\n",
-              ArrayToString($campaignChangeData->deletedCampaignCriteria));
+          printf("\tRemoved campaign criteria: %s\n",
+              ArrayToString($campaignChangeData->removedCampaignCriteria));
           if (isset($campaignChangeData->changedAdGroups)) {
             foreach($campaignChangeData->changedAdGroups as
                 $adGroupChangeData) {
@@ -99,8 +99,8 @@ function GetAccountChangesExample(AdWordsUser $user) {
                     ArrayToString($adGroupChangeData->changedAds));
                 printf("\t\tChanged criteria: %s\n",
                     ArrayToString($adGroupChangeData->changedCriteria));
-                printf("\t\tDeleted criteria: %s\n",
-                    ArrayToString($adGroupChangeData->deletedCriteria));
+                printf("\t\tRemoved criteria: %s\n",
+                    ArrayToString($adGroupChangeData->removedCriteria));
               }
             }
           }

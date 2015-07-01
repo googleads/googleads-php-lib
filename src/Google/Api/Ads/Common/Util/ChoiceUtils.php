@@ -41,7 +41,6 @@ class ChoiceUtils {
 
   /**
    * The ChoiceUtils class is not meant to have any instances.
-   * @access private
    */
   private function __construct() {}
 
@@ -56,7 +55,7 @@ class ChoiceUtils {
         return $value;
       }
     }
-    return NULL;
+    return null;
   }
 }
 

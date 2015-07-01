@@ -55,7 +55,7 @@ class ReportUtils {
    * @return mixed if $filePath isn't specified it will return the contents of
    *     the report, otherwise the size in bytes of the downloaded report
    */
-  public static function DownloadReport($downloadUrl, $filePath = NULL) {
+  public static function DownloadReport($downloadUrl, $filePath = null) {
     DeprecationUtils::LogDeprecatedMethodUsage('ReportUtils::DownloadReport',
         'Please use ReportDownloader.php instead.');
 

@@ -63,7 +63,7 @@ function EstimateKeywordTrafficExample(AdWordsUser $user) {
   foreach ($negativeKeywords as $negativeKeyword) {
     $keywordEstimateRequest = new KeywordEstimateRequest();
     $keywordEstimateRequest->keyword = $negativeKeyword;
-    $keywordEstimateRequest->isNegative = TRUE;
+    $keywordEstimateRequest->isNegative = true;
     $keywordEstimateRequests[] = $keywordEstimateRequest;
   }
 

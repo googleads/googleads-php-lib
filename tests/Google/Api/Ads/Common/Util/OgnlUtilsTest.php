@@ -73,7 +73,7 @@ class OgnlUtilsTest extends PHPUnit_Framework_TestCase {
     // Array context.
     $data[] = array('[0]', array('value'), 'value');
     // Null value.
-    $data[] = array('foo', array('foo' => NULL), NULL);
+    $data[] = array('foo', array('foo' => null), null);
     // Array value.
     $data[] = array('foo[0]', array('foo' => array('value')), 'value');
     // Child value.
@@ -84,23 +84,23 @@ class OgnlUtilsTest extends PHPUnit_Framework_TestCase {
 
     // Valid expressions that don't evaluate in the context.
     // Null context.
-    $data[] = array('foo', NULL, NULL);
-    // Child of NULL value.
-    $data[] = array('foo.bar', array('foo' => NULL), NULL);
+    $data[] = array('foo', null, null);
+    // Child of null value.
+    $data[] = array('foo.bar', array('foo' => null), null);
     // Fields deeper than context.
-    $data[] = array('foo.bar.more', array('foo' => 'value'), NULL);
+    $data[] = array('foo.bar.more', array('foo' => 'value'), null);
     // Index out of bounds.
-    $data[] = array('foo[1]', array('foo' => array('value')), NULL);
+    $data[] = array('foo[1]', array('foo' => array('value')), null);
 
     // Invalid expressions.
     // Null expression.
-    $data[] = array(NULL, array('foo' => 'value'), NULL);
+    $data[] = array(null, array('foo' => 'value'), null);
     // Invalid characters in field.
-    $data[] = array('foo!', array('foo' => 'value'), NULL);
+    $data[] = array('foo!', array('foo' => 'value'), null);
     // Invalid characters in index.
-    $data[] = array('[abc]', array('value'), NULL);
+    $data[] = array('[abc]', array('value'), null);
     // Missing dot.
-    $data[] = array('foo[0]bar', array('foo' => array('bar' => 'value')), NULL);
+    $data[] = array('foo[0]bar', array('foo' => array('bar' => 'value')), null);
 
     return $data;
   }
@@ -117,13 +117,13 @@ class OgnlUtilsTest extends PHPUnit_Framework_TestCase {
     $data[] = array('operations[123]', 123);
 
     // Expressions that don't reference an index.
-    $data[] = array('operations', NULL);
-    $data[] = array('operations.foo', NULL);
-    $data[] = array('foo', NULL);
+    $data[] = array('operations', null);
+    $data[] = array('operations.foo', null);
+    $data[] = array('foo', null);
 
     // Invalid expressions.
-    $data[] = array(NULL, NULL);
-    $data[] = array('', NULL);
+    $data[] = array(null, null);
+    $data[] = array('', null);
 
     return $data;
   }

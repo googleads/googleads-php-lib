@@ -45,7 +45,7 @@ function UpgradeAdUrlExample(AdWordsUser $user, $adGroupId, $adId) {
   // Get the service, which loads the required classes.
   $adGroupAdService = $user->GetService('AdGroupAdService', ADWORDS_VERSION);
 
-  $adGroupAd = NULL;
+  $adGroupAd = null;
 
   // Retrieving the ad first.
   $selector = new Selector();

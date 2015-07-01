@@ -132,7 +132,7 @@ try {
     $lineItem->orderId = $orderId;
     $lineItem->targeting = $targeting;
     $lineItem->lineItemType = 'STANDARD';
-    $lineItem->allowOverbook = 'TRUE';
+    $lineItem->allowOverbook = true;
 
     // Create the creative placeholder.
     $creativePlaceholder = new CreativePlaceholder();

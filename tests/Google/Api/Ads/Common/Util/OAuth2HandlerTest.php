@@ -40,7 +40,7 @@ class OAuth2HandlerTest extends PHPUnit_Framework_TestCase {
     date_default_timezone_set('America/New_York');
     $this->scope = 'TEST_SCOPE';
 
-    $this->oauth2Handler = new TestOAuth2Handler(NULL, $this->scope);
+    $this->oauth2Handler = new TestOAuth2Handler(null, $this->scope);
   }
 
   public function testGetAuthorizationUrl() {
@@ -107,8 +107,8 @@ class OAuth2HandlerTest extends PHPUnit_Framework_TestCase {
   public function testGetAuthorizationUrl_Offline() {
     $credentials = array('client_id' => 'TEST_CLIENT_ID');
 
-    $url = $this->oauth2Handler->GetAuthorizationUrl($credentials, NULL,
-        TRUE);
+    $url = $this->oauth2Handler->GetAuthorizationUrl($credentials, null,
+        true);
 
     $urlParts = parse_url($url);
     $params = array();
@@ -120,7 +120,7 @@ class OAuth2HandlerTest extends PHPUnit_Framework_TestCase {
     $credentials = array('client_id' => 'TEST_CLIENT_ID');
     $params = array('foo' => 'bar');
 
-    $url = $this->oauth2Handler->GetAuthorizationUrl($credentials, NULL, NULL,
+    $url = $this->oauth2Handler->GetAuthorizationUrl($credentials, null, null,
         $params);
 
     $urlParts = parse_url($url);
@@ -354,7 +354,7 @@ class TestOAuth2Handler extends OAuth2Handler {
   const REFRESH_TOKEN_MESSAGE = 'Refresh not implemented.';
 
   public function GetAccessToken(array $credentials, $code,
-      $redirectUri = NULL) {
+      $redirectUri = null) {
     throw new Exception(self::GET_TOKEN_MESSAGE);
   }
 

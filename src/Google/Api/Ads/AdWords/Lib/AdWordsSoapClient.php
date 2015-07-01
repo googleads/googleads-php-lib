@@ -38,7 +38,7 @@ class AdWordsSoapClient extends AdsSoapClient {
 
   /**
    * Constructor for the AdWords API SOAP client.
-   * @param string $wsdl URI of the WSDL file or <var>NULL</var> if working in
+   * @param string $wsdl URI of the WSDL file or <var>null</var> if working in
    *     non-WSDL mode
    * @param array $options the SOAP client options
    * @param AdsUser $user the user which is responsible for this client
@@ -82,8 +82,8 @@ class AdWordsSoapClient extends AdsSoapClient {
 
   /**
    * Generates the SOAP header for the client.
+   *
    * @return SoapHeader the instantiated SoapHeader ready to set
-   * @access protected
    */
   protected function GenerateSoapHeader() {
     $soapHeaderClassName = 'SoapHeader';
@@ -95,7 +95,7 @@ class AdWordsSoapClient extends AdsSoapClient {
       $headerObject->$var = $this->GetHeaderValue($var);
     }
     return new SoapHeader($this->serviceNamespace, 'RequestHeader',
-        $headerObject, FALSE);
+        $headerObject, false);
   }
 
   /**
@@ -198,8 +198,8 @@ class AdWordsSoapClient extends AdsSoapClient {
    * <li>isFault</li>
    * <li>faultMessage</li>
    * </ul>
+   *
    * @return string the request info message to log
-   * @access protected
    */
   protected function GenerateRequestInfoMessage() {
     return 'effectiveUser=' . $this->GetEffectiveUser()

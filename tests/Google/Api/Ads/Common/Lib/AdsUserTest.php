@@ -201,7 +201,7 @@ class AdsUserTest extends PHPUnit_Framework_TestCase {
    * @covers AdsUser::LoadSettings
    */
   public function testLoadSettings_Soap() {
-    $compression = FALSE;
+    $compression = false;
     $compressionLevel = '5';
     $wsdlCache = WSDL_CACHE_MEMORY;
     $settings = array(
@@ -272,7 +272,7 @@ class AdsUserTest extends PHPUnit_Framework_TestCase {
     $user->LoadSettings($settingsFilePath, self::DEFAULT_VERSION,
         self::DEFAULT_SERVER, self::DEFAULT_LOGS_DIR,
         $this->logsRelativePathBase);
-    $this->assertEquals(TRUE, $user->IsSoapCompressionEnabled());
+    $this->assertEquals(true, $user->IsSoapCompressionEnabled());
     $this->assertEquals(1, $user->GetSoapCompressionLevel());
     $this->assertEquals(WSDL_CACHE_NONE, $user->GetWsdlCacheType());
   }
@@ -385,7 +385,7 @@ class AdsUserTest extends PHPUnit_Framework_TestCase {
     foreach ($settings as $section => $properties) {
       fwrite($file, sprintf("[%s]\n", $section));
       foreach ($properties as $name => $value) {
-        if ($value === FALSE) {
+        if ($value === false) {
           $value = '0';
         }
         fwrite($file, sprintf("%s = '%s'\n", $name, $value));
@@ -433,7 +433,7 @@ class TestAdsUser extends AdsUser {
     return array(self::LIB_NAME, self::LIB_VERSION);
   }
 
-  public function GetDefaultOAuth2Handler($className = NULL) {
+  public function GetDefaultOAuth2Handler($className = null) {
     $className = !empty($className) ? $className : self::HANDLER_CLASS;
     return new $className($this->GetAuthServer(), self::OAUTH2_SCOPE);
   }

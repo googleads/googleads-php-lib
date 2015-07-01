@@ -139,7 +139,7 @@ class XmlUtilsTest extends PHPUnit_Framework_TestCase {
     $data = array();
 
     // Null.
-    $data[] = array(NULL);
+    $data[] = array(null);
     // Empty string.
     $data[] = array('');
     // Incomplete tag.
@@ -199,8 +199,8 @@ class XmlUtilsTest extends PHPUnit_Framework_TestCase {
       $data[] = array('<root>9223372036854775808</root>', 9223372036854775808);
     }
     // Boolean values.
-    $data[] = array('<root>true</root>', TRUE);
-    $data[] = array('<root>false</root>', FALSE);
+    $data[] = array('<root>true</root>', true);
+    $data[] = array('<root>false</root>', false);
     // Nested elements.
     $data[] = array('<root><a>apple</a></root>',
         (Object) array('a' => 'apple'));
@@ -236,8 +236,8 @@ class XmlUtilsTest extends PHPUnit_Framework_TestCase {
           "<?xml version=\"1.0\"?>\n<root>9223372036854775808</root>");
     }
     // Boolean values.
-    $data[] = array(TRUE, "<?xml version=\"1.0\"?>\n<root>true</root>");
-    $data[] = array(FALSE, "<?xml version=\"1.0\"?>\n<root>false</root>");
+    $data[] = array(true, "<?xml version=\"1.0\"?>\n<root>true</root>");
+    $data[] = array(false, "<?xml version=\"1.0\"?>\n<root>false</root>");
     // Simple object.
     $data[] = array((Object) array('a' => 'apple'),
         "<?xml version=\"1.0\"?>\n<root><a>apple</a></root>");

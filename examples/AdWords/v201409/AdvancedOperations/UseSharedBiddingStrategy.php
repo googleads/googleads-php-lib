@@ -32,8 +32,8 @@
 // Include the initialization file
 require_once dirname(dirname(__FILE__)) . '/init.php';
 
-// Enter budgetId required by the code example, or leave as NULL to create one.
-$budgetId = NULL;
+// Enter budgetId required by the code example, or leave as null to create one.
+$budgetId = null;
 
 /**
  * Runs the example.
@@ -42,7 +42,7 @@ $budgetId = NULL;
  *    to create a new one
  */
 function UseSharedBiddingStrategyExample(AdWordsUser $user,
-    $sharedBudgetId = NULL) {
+    $sharedBudgetId = null) {
   $biddingStrategy = CreateBiddingStrategy($user);
 
   if (!$sharedBudgetId) {

@@ -24,8 +24,6 @@
  * @copyright  2011, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Adam Rogal
- * @author     Eric Koleda
  * @author     Vincent Tsao
  */
 require_once 'Google/Api/Ads/Common/Util/Logger.php';
@@ -58,13 +56,11 @@ abstract class AdsUser {
 
   /**
    * Constructor for AdsUser.
-   * @access protected
    */
   protected function __construct() {
     $this->requestHeaderElements = array();
 
-    $buildIni = parse_ini_file(dirname(__FILE__) .
-        '/../Lib/build.ini', FALSE);
+    $buildIni = parse_ini_file(dirname(__FILE__) . '/../Lib/build.ini', false);
     $this->libVersion = $buildIni['LIB_VERSION'];
     $this->libName = $buildIni['LIB_NAME'];
   }
@@ -73,13 +69,12 @@ abstract class AdsUser {
    * Gets the authenticaiton value for the <var>$authVar</var> supplied. If
    * the <var>$authVar</var> is set, it is is used. Otherwise, the supplied
    * <var>$authenticationIni</var> is queired for the variable. If none is found
-   * <var>NULL</var> is returned.
+   * <var>null</var> is returned.
    * @param string $authVar the default value for the authenticaiton variable
    * @param string $authVarName the name of the authencation variable
    * @param array $authIni the array of authentication variables from
    *     an INI file
    * @return string the authentication variable value
-   * @access protected
    */
   protected function GetAuthVarValue($authVar, $authVarName,
       array $authIni) {
@@ -89,7 +84,7 @@ abstract class AdsUser {
       if (array_key_exists($authVarName, $authIni)) {
         return $authIni[$authVarName];
       } else {
-        return NULL;
+        return null;
       }
     }
   }
@@ -105,13 +100,13 @@ abstract class AdsUser {
   /**
    * Gets the value for a registered request header element.
    * @param string $key the name of the request header element
-   * @return string the value of the request header element or NULL if not found
+   * @return string the value of the request header element or null if not found
    */
   public function GetHeaderValue($key) {
     if (array_key_exists($key, $this->requestHeaderElements)) {
       return $this->requestHeaderElements[$key];
     } else {
-      return NULL;
+      return null;
     }
   }
 
@@ -195,11 +190,11 @@ abstract class AdsUser {
     set_time_limit(0);
     ini_set('default_socket_timeout', 480);
 
-    $settingsIni = parse_ini_file($settingsIniPath, TRUE);
+    $settingsIni = parse_ini_file($settingsIniPath, true);
 
     // Logging settings.
     $pathRelative = $this->GetSetting($settingsIni, 'LOGGING',
-        'PATH_RELATIVE', FALSE);
+        'PATH_RELATIVE', false);
     $libLogDirPath = $this->GetSetting($settingsIni, 'LOGGING',
         'LIB_LOG_DIR_PATH', $defaultLogsDir);
     $relativePath = realpath($logsRelativePathBase . '/' . $libLogDirPath);
@@ -221,7 +216,7 @@ abstract class AdsUser {
 
     // SOAP settings.
     $this->soapCompression = (bool) $this->GetSetting($settingsIni, 'SOAP',
-        'COMPRESSION', TRUE);
+        'COMPRESSION', true);
     $this->soapCompressionLevel = $this->GetSetting($settingsIni, 'SOAP',
         'COMPRESSION_LEVEL', 1);
     if ($this->soapCompressionLevel < 1 || $this->soapCompressionLevel > 9) {
@@ -238,9 +233,8 @@ abstract class AdsUser {
         (float) $forceHttpVersion;
     $forceAddXsiTypes = $this->GetSetting($settingsIni, 'SOAP',
         'FORCE_ADD_XSI_TYPES');
-    $this->forceAddXsiTypes = $forceAddXsiTypes === null ? null :
+    $this->forceAddXsiTypes = $forceAddXsiTypes === null ? false :
         (bool) $forceAddXsiTypes;
-
 
     // Proxy settings.
     $proxyHost = $this->GetSetting($settingsIni, 'PROXY', 'HOST');
@@ -295,11 +289,11 @@ abstract class AdsUser {
    * @param mixed $default the default value of the setting
    * @return string the value of the setting
    */
-  private function GetSetting($settings, $section, $name, $default = NULL) {
+  private function GetSetting($settings, $section, $name, $default = null) {
     if (!$settings || !array_key_exists($section, $settings)
         || !array_key_exists($name, $settings[$section])
-        || $settings[$section][$name] == NULL
-        || $settings[$section][$name] == '') {
+        || $settings[$section][$name] === null
+        || $settings[$section][$name] === '') {
       return $default;
     }
     return $settings[$section][$name];
@@ -505,27 +499,26 @@ abstract class AdsUser {
 
   /**
    * Get the default OAuth2 Handler for this user.
-   * @param NULL|string $className the name of the oauth2Handler class or NULL
+   * @param null|string $className the name of the oauth2Handler class or null
    * @return mixed the configured OAuth2Handler class
    */
-  public abstract function GetDefaultOAuth2Handler($className = NULL);
+  public abstract function GetDefaultOAuth2Handler($className = null);
 
   /**
    * Validates that the OAuth2 info is complete.
    * @throws ValidationException if there are any validation errors
-   * @access protected
    */
   protected function ValidateOAuth2Info() {
     $requiredFields = array('client_id', 'client_secret');
     foreach ($requiredFields as $field) {
       if (empty($this->oauth2Info[$field])) {
-        throw new ValidationException($field, NULL,
+        throw new ValidationException($field, null,
             sprintf('%s is required.', $field));
       }
     }
     if (empty($this->oauth2Info['access_token'])
         && empty($this->oauth2Info['refresh_token'])) {
-      throw new ValidationException('refresh_token', NULL,
+      throw new ValidationException('refresh_token', null,
           'Either the refresh_token or the access_token is required.');
     }
   }

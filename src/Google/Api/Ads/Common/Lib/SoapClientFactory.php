@@ -24,8 +24,6 @@
  * @copyright  2011, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Adam Rogal
- * @author     Eric Koleda
  * @author     Vincent Tsao
  */
 require_once 'Google/Api/Ads/Common/Lib/AdsUser.php';
@@ -59,10 +57,9 @@ abstract class SoapClientFactory {
    * @param string $version the version to generate clients for
    * @param string $server the server to generate clients for
    * @param string $productName the product name (i.e. adwords)
-   * @access protected
    */
   protected function __construct(AdsUser $user, $version, $server,
-      $productName, $headerOverrides = NULL) {
+      $productName, $headerOverrides = null) {
     $this->user = $user;
     $this->version = $version;
     $this->server = $server;
@@ -99,13 +96,12 @@ abstract class SoapClientFactory {
    * Generates the SOAP service client without the proper headers set yet.
    * @param string $serviceName the service to create a client for
    * @return AdsSoapClient the SOAP service client
-   * @access protected
    */
   protected function GenerateServiceClient($serviceName) {
     $location = $this->GetServiceLocation($serviceName);
     $wsdl = $location . '?wsdl';
     $options = array(
-        'trace' => TRUE,
+        'trace' => true,
         'encoding' => 'utf-8',
         'connection_timeout' => 0,
         'features' => SOAP_SINGLE_ELEMENT_ARRAYS);
@@ -186,7 +182,6 @@ abstract class SoapClientFactory {
    * Gets the end-point location of the service.
    * @param string $serviceName the service to instantiate
    * @return string the end-point location of the service.
-   * @access protected
    */
   protected function GetServiceLocation($serviceName) {
     $classVars = get_class_vars($serviceName);

@@ -64,7 +64,7 @@ function GetAccountHierarchyExample(AdWordsUser $user) {
     }
     // Create map from customerID to account, and find root account.
     $accounts = array();
-    $rootAccount = NULL;
+    $rootAccount = null;
     foreach ($graph->entries as $account) {
       $accounts[$account->customerId] = $account;
       if (!array_key_exists($account->customerId, $parentLinks)) {
@@ -78,7 +78,7 @@ function GetAccountHierarchyExample(AdWordsUser $user) {
     }
     // Display account tree.
     print "(Customer Id, Account Name)\n";
-    DisplayAccountTree($rootAccount, NULL, $accounts, $childLinks, 0);
+    DisplayAccountTree($rootAccount, null, $accounts, $childLinks, 0);
   } else {
     print "No serviced accounts were found.\n";
   }

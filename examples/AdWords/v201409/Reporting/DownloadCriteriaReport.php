@@ -56,7 +56,7 @@ function DownloadCriteriaReportExample(AdWordsUser $user, $filePath) {
   $reportDefinition->downloadFormat = 'CSV';
 
   // Exclude criteria that haven't recieved any impressions over the date range.
-  $reportDefinition->includeZeroImpressions = FALSE;
+  $reportDefinition->includeZeroImpressions = false;
 
   // Set additional options.
   $options = array('version' => ADWORDS_VERSION);

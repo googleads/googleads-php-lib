@@ -204,7 +204,7 @@ class TestSimpleOAuth2Handler extends SimpleOAuth2Handler {
   public $lastParams;
   public $response;
 
-  public function __construct($server = NULL) {
+  public function __construct($server = null) {
     parent::__construct($server);
     $this->response = array();
   }

@@ -41,6 +41,7 @@ class DfpSoapClientFactory extends SoapClientFactory {
   /**
    * The constructor for Google's DoubleClick for Publishers API SOAP client
    * factory.
+   *
    * @param AdsUser $user the user which the client will use for credentials
    * @param string $version the version to generate clients for
    * @param string $server the server to generate clients for
@@ -51,8 +52,8 @@ class DfpSoapClientFactory extends SoapClientFactory {
 
   /**
    * Initiates a require_once for the service.
+   *
    * @param string $serviceName the service to instantiate
-   * @access protected
    */
   public function DoRequireOnce($serviceName) {
     require_once implode("/", array(dirname(__FILE__), '..',

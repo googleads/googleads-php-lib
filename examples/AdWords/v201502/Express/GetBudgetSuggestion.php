@@ -87,7 +87,7 @@ function GetBudgetSuggestionExample(AdWordsUser $user) {
       toString($budgetSuggestion->cpc),
       $budgetSuggestion->impressions);
 
-  if ($budgetSuggestion->budgetQuantiles !== NULL
+  if ($budgetSuggestion->budgetQuantiles !== null
       && sizeof($budgetSuggestion->budgetQuantiles) > 0) {
     print("  Budget quantiles:\n");
     foreach ($budgetSuggestion->budgetQuantiles as $i => $budgetQuantile) {

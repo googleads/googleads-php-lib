@@ -50,7 +50,7 @@ function AddConversionTrackerExample(AdWordsUser $user) {
   $conversionTracker->status = 'ENABLED';
   $conversionTracker->category = 'DEFAULT';
   $conversionTracker->viewthroughLookbackWindow = 15;
-  $conversionTracker->isProductAdsChargeable = TRUE;
+  $conversionTracker->isProductAdsChargeable = true;
   $conversionTracker->productAdsChargeableConversionWindow = 15;
   $conversionTracker->markupLanguage = 'HTML';
   $conversionTracker->textFormat = 'HIDDEN';

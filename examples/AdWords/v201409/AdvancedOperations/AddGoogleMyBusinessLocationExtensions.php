@@ -47,7 +47,7 @@ define('GMB_ACCESS_TOKEN', 'INSERT_GMB_ACCESS_TOKEN');
 // which the manager has access. See the location extensions guide at
 // https://developers.google.com/adwords/api/docs/guides/feed-services-locations
 // for details.
-define('BUSINESS_ACCOUNT_IDENTIFIER', NULL);
+define('BUSINESS_ACCOUNT_IDENTIFIER', null);
 
 // The placeholder type for location extensions.
 // See the Placeholder reference page for a list of all the placeholder types
@@ -132,7 +132,7 @@ function AddGoogleMyBusinessLocationExtensions(
   // not be available for usage in a CustomerFeed until the sync between the
   // AdWords and GMB accounts completes. The loop below will retry adding
   // the CustomerFeed up to ten times with an exponential back-off policy.
-  $addedCustomerFeed = NULL;
+  $addedCustomerFeed = null;
   $numberOfAttempts = 0;
   do {
     $numberOfAttempts++;
@@ -151,7 +151,7 @@ function AddGoogleMyBusinessLocationExtensions(
       sleep($sleepSeconds);
     }
   } while ($numberOfAttempts < MAX_CUSTOMER_FEED_ADD_ATTEMPTS
-      && $addedCustomerFeed == NULL);
+      && $addedCustomerFeed == null);
 
   if($addedCustomerFeed == null) {
     throw new Exception('Could not create the CustomerFeed after '

@@ -128,13 +128,13 @@ class MapUtilsTest extends PHPUnit_Framework_TestCase {
     $data = array();
 
     // Maps.
-    $data[] = array(array('foo' => 'bar'), TRUE);
-    $data[] = array(array('foo' => 'bar', 1 => 'baz'), TRUE);
+    $data[] = array(array('foo' => 'bar'), true);
+    $data[] = array(array('foo' => 'bar', 1 => 'baz'), true);
 
     // Not maps.
-    $data[] = array(array(), FALSE);
-    $data[] = array(array('bar', 'baz'), FALSE);
-    $data[] = array(array('0' => 'bar'), FALSE);
+    $data[] = array(array(), false);
+    $data[] = array(array('bar', 'baz'), false);
+    $data[] = array(array('0' => 'bar'), false);
 
     return $data;
   }
@@ -155,12 +155,12 @@ class MapUtilsTest extends PHPUnit_Framework_TestCase {
         array('ant', 'bat', 'cat'));
     // Missing parameter.
     $data[] = array(array('a' => 'ant', 'b' => 'bat'),
-        array('ant', 'bat', NULL));
+        array('ant', 'bat', null));
     // Extra parameters.
     $data[] = array(array('a' => 'ant', 'b' => 'bat', 'c' => 'cat',
         'd' => 'dog'), array('ant', 'bat', 'cat'));
     // No parameters.
-    $data[] = array(array(), array(NULL, NULL, NULL));
+    $data[] = array(array(), array(null, null, null));
 
     return $data;
   }
@@ -171,7 +171,7 @@ class MapUtilsTest extends PHPUnit_Framework_TestCase {
    * @param string $b the second parameter
    * @param string $c the third paremter (optional)
    */
-  public function SampleMethod($a, $b, $c = NULL) {}
+  public function SampleMethod($a, $b, $c = null) {}
 }
 
 /**
