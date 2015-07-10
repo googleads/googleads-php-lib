@@ -25,8 +25,6 @@
  * @copyright  2011, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Adam Rogal
- * @author     Eric Koleda
  * @author     Vincent Tsao
  */
 require_once 'Google/Api/Ads/Common/Util/XmlUtils.php';
@@ -47,11 +45,11 @@ class SoapRequestXmlFixer {
 
   /**
    * Constructor to determine how the XML should be fixed.
-   * @param boolean $addXsiTypes <var>TRUE</var> if xsi:types should be added
+   * @param boolean $addXsiTypes <var>true</var> if xsi:types should be added
    *     to all complex type elements
-   * @param boolean $removeEmptyElements <var>TRUE</var> if all empty elements
+   * @param boolean $removeEmptyElements <var>true</var> if all empty elements
    *     should be removed from the XML request
-   * @param boolean $replaceReferences <var>TRUE</var> if element references
+   * @param boolean $replaceReferences <var>true</var> if element references
    *     should be replaced with a copy of the element.
    */
   public function __construct($addXsiTypes, $removeEmptyElements,
@@ -157,7 +155,6 @@ class SoapRequestXmlFixer {
    * Adds the xsi:type to the DOMNode generated from the corresponding object.
    * @param DOMNode $domNode the DOM node corresponding to the object
    * @param $object the object used to determine the xsi:type
-   * @access private
    */
   private function AddXsiType(DOMNode $domNode, $object) {
     $xsiType = $domNode->getAttributeNS(self::$XSI_NAMESPACE, 'xsi:type');
@@ -177,16 +174,10 @@ class SoapRequestXmlFixer {
    * Replaces an element reference with a copy of the element it references.
    * @param DOMElement $elementReference the element reference to replace
    * @param DOMXPath $xpath the xpath object representing the DOM
-   * @access private
    */
   private function ReplaceElementReference(DOMElement $elementReference,
       DOMXPath $xpath) {
     $href = $elementReference->getAttribute('href');
-    if (version_compare(PHP_VERSION, '5.2.2', '>=')
-        && version_compare(PHP_VERSION, '5.2.4', '<')) {
-      // These versions have a bug where href is generated without the # symbol.
-      $href = '#' . $href;
-    }
     $id = substr($href, 1);
     $referencedElements = $xpath->query('//*[@id="' . $id . '"]');
     if ($referencedElements->length > 0) {
@@ -202,7 +193,6 @@ class SoapRequestXmlFixer {
   /**
    * Removed id attributes leftover after reference replacement.
    * @param DOMXPath $xpath the xpath object representing the DOM
-   * @access private
    */
   private function RemoveIdAttributes(DOMXPath $xpath) {
     $elements = $xpath->query('//*[@id]');
@@ -215,7 +205,6 @@ class SoapRequestXmlFixer {
   /**
    * Removes empty header elements from the request.
    * @param DOMXPath $xpath the xpath object representing the DOM
-   * @access private
    */
   private function RemoveEmptyHeaderElements(DOMXPath $xpath) {
     $requestHeaderDom = $xpath->query(
@@ -225,7 +214,7 @@ class SoapRequestXmlFixer {
     $childNodes = $requestHeaderDom->childNodes;
 
     foreach ($childNodes as $childNode) {
-      if ($childNode->nodeValue == NULL) {
+      if ($childNode->nodeValue == null) {
         $requestHeaderDom->removeChild($childNode);
       }
     }

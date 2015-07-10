@@ -79,7 +79,7 @@ try {
       . '</a><br>Click above for great deals!';
 
   // Set the creative size.
-  $customCreative->size = new Size(300, 250, FALSE);
+  $customCreative->size = new Size(300, 250, false);
 
   // Create the custom creative on the server.
   $customCreatives = $creativeService->createCreatives(array($customCreative));

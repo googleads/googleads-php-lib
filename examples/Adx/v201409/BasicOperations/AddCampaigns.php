@@ -78,12 +78,12 @@ function AddCampaignsExample(AdWordsUser $user) {
 
     // Set keyword matching setting (required).
     $keywordMatchSetting = new KeywordMatchSetting();
-    $keywordMatchSetting->optIn = FALSE;
+    $keywordMatchSetting->optIn = false;
     $campaign->settings[] = $keywordMatchSetting;
 
     // Set network targeting (recommended).
     $networkSetting = new NetworkSetting();
-    $networkSetting->targetContentNetwork = TRUE;
+    $networkSetting->targetContentNetwork = true;
     $campaign->networkSetting = $networkSetting;
 
     // Set additional settings (optional).

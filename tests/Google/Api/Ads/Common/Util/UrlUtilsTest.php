@@ -125,7 +125,7 @@ class UrlUtilsTest extends PHPUnit_Framework_TestCase {
     // Empty params.
     $data[] = array('http://www.foo.com', array(), 'http://www.foo.com');
     // Null params.
-    $data[] = array('http://www.foo.com', NULL, 'http://www.foo.com');
+    $data[] = array('http://www.foo.com', null, 'http://www.foo.com');
 
     return $data;
   }

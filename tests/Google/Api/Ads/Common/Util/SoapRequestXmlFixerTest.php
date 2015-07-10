@@ -74,7 +74,7 @@ EOT;
     $bar->value = 'bar';
     $headers[] = $foo;
     $arguments[] = $bar;
-    $fixer = new SoapRequestXmlFixer(TRUE, FALSE, FALSE);
+    $fixer = new SoapRequestXmlFixer(true, false, false);
     $result = $fixer->FixXml($request, $arguments, $headers);
     $this->assertEquals($expected, $result);
   }
@@ -117,7 +117,7 @@ EOT;
     $bar->value = 'bar';
     $headers[] = array('header1' => 'value', 'header2' => '');
     $arguments[] = $bar;
-    $fixer = new SoapRequestXmlFixer(FALSE, TRUE, FALSE);
+    $fixer = new SoapRequestXmlFixer(false, true, false);
     $result = $fixer->FixXml($request, $arguments, $headers);
     $this->assertEquals($expected, $result);
   }
@@ -169,7 +169,7 @@ EOT;
     $headers[] = $foo;
     $arguments[] = $bar1;
     $arguments[] = $bar2;
-    $fixer = new SoapRequestXmlFixer(FALSE, FALSE, TRUE);
+    $fixer = new SoapRequestXmlFixer(false, false, true);
     $result = $fixer->FixXml($request, $arguments, $headers);
     $this->assertEquals($expected, $result);
   }

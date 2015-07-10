@@ -2349,6 +2349,14 @@ if (!class_exists("ConversionTrackerServiceMutate", false)) {
    * <code>SET</code> operation for the conversion tracker with the <code>status</code>
    * property set to <code>DISABLED</code></p>
    * 
+   * <p>You can mutate any ConversionTracker that belongs to your account. You may not
+   * mutate a ConversionTracker that belongs to some other account. You may not directly
+   * mutate a system-defined ConversionTracker, but you can create a mutable copy of it
+   * in your account by sending a mutate request with an ADD operation specifying
+   * an originalConversionTypeId matching a system-defined conversion tracker's ID. That new
+   * ADDed ConversionTracker will inherit the statistics and properties
+   * of the system-defined type, but will be editable as usual.</p>
+   * 
    * @param operations A list of mutate operations to perform.
    * @return The list of the conversion trackers as they appear after mutation,
    * in the same order as they appeared in the list of operations.
@@ -4333,6 +4341,14 @@ if (!class_exists("ConversionTrackerService", false)) {
      * <code>REMOVE</code> operator. In order to 'disable' a conversion type, send a
      * <code>SET</code> operation for the conversion tracker with the <code>status</code>
      * property set to <code>DISABLED</code></p>
+     * 
+     * <p>You can mutate any ConversionTracker that belongs to your account. You may not
+     * mutate a ConversionTracker that belongs to some other account. You may not directly
+     * mutate a system-defined ConversionTracker, but you can create a mutable copy of it
+     * in your account by sending a mutate request with an ADD operation specifying
+     * an originalConversionTypeId matching a system-defined conversion tracker's ID. That new
+     * ADDed ConversionTracker will inherit the statistics and properties
+     * of the system-defined type, but will be editable as usual.</p>
      * 
      * @param operations A list of mutate operations to perform.
      * @return The list of the conversion trackers as they appear after mutation,

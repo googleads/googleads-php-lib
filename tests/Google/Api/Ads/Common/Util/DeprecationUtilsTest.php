@@ -39,8 +39,18 @@ class DeprecationUtilsTest extends PHPUnit_Framework_TestCase {
   public function
       testCheckUsingSkipColumnHeaderWithUnsupportedVersion() {
     $this->setExpectedException('ServiceException');
-    DeprecationUtils::CheckUsingSkipReportHeaderWithUnsupportedVersion(
+    DeprecationUtils::CheckUsingReportHeadersWithUnsupportedVersion(
         'skipColumnHeader', 'v201502', 'v201409');
+  }
+
+  /**
+   * @expectedException ServiceException
+   */
+  public function
+      testCheckUsingIncludeZeroImpressionsHeaderWithUnsupportedVersion() {
+    $this->setExpectedException('ServiceException');
+    DeprecationUtils::CheckUsingReportHeadersWithUnsupportedVersion(
+        'includeZeroImpressions', 'v201506', 'v201502');
   }
 }
 

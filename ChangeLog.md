@@ -1,3 +1,12 @@
+### 6.1.0
+
+AdWords:
+  - Added support and examples for v201506.
+  - Added support for the new includeZeroImpressions HTTP header for reporting.
+
+Common:
+  - Removed all logic handling support for PHP 5.2 as this library [no longer supports PHP 5.2](http://googleadsdeveloper.blogspot.com/2014/07/deprecating-php-52-support-for-ads-php.html).
+
 ### 6.0.0
 
 AdWords:

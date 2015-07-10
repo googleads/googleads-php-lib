@@ -79,16 +79,16 @@ function AddCampaignsExample(AdWordsUser $user) {
 
     // You can optionally provide a bidding scheme in place of the type.
     $biddingScheme = new ManualCpcBiddingScheme();
-    $biddingScheme->enhancedCpcEnabled = FALSE;
+    $biddingScheme->enhancedCpcEnabled = false;
     $biddingStrategyConfiguration->biddingScheme = $biddingScheme;
 
     $campaign->biddingStrategyConfiguration = $biddingStrategyConfiguration;
 
     // Set network targeting (optional).
     $networkSetting = new NetworkSetting();
-    $networkSetting->targetGoogleSearch = TRUE;
-    $networkSetting->targetSearchNetwork = TRUE;
-    $networkSetting->targetContentNetwork = TRUE;
+    $networkSetting->targetGoogleSearch = true;
+    $networkSetting->targetSearchNetwork = true;
+    $networkSetting->targetContentNetwork = true;
     $campaign->networkSetting = $networkSetting;
 
     // Set additional settings (optional).

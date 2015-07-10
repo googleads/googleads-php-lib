@@ -70,32 +70,32 @@ class DfpUser extends AdsUser {
    * </ol></p>
    * <p>If an authentication INI file is provided and successfully loaded, those
    * values will be used unless a corresponding parameter overwrites it.
-   * If the authentication INI file is not provided (e.g. it is <var>NULL</var>)
+   * If the authentication INI file is not provided (e.g. it is <var>null</var>)
    * the class will attempt to load the default authentication file at the path
    * of "../auth.ini" relative to this file's directory. Any corresponding
-   * parameter, which is not <var>NULL</var> will however, overwrite any
+   * parameter, which is not <var>null</var> will however, overwrite any
    * parameter loaded from the default INI.</p>
    * <p>Likewise, if a custom settings INI file is not provided, the default
    * settings INI file will be loaded from the path of "../settings.ini"
    * relative to this file's directory.</p>
    * @param string $authenticationIniPath the absolute path to the
    *     authentication INI or relative to the current directory (cwd). If
-   *     <var>NULL</var>, the default authentication INI file will attempt to be
+   *     <var>null</var>, the default authentication INI file will attempt to be
    *     loaded
    * @param string $applicationName the application name (required header). Will
    *     be prepended with the library name and version. Will also overwrite the
    *     applicationName entry in any INI file
    * @param string $networkCode the network code the user belongs to
-   *     (optional header). Can be left <var>NULL</var> if the user only belongs
+   *     (optional header). Can be left <var>null</var> if the user only belongs
    *     to one network. Will overwrite the networkCode entry in any INI
    *     file
    * @param string $settingsIniPath the path to the settings INI file. If
-   *     <var>NULL</var>, the default settings INI file will be loaded
+   *     <var>null</var>, the default settings INI file will be loaded
    * @param array $oauth2Info the OAuth 2.0 information to use for requests
    */
-  public function __construct($authenticationIniPath = NULL,
-      $applicationName = NULL, $networkCode = NULL, $settingsIniPath = NULL,
-      $oauth2Info = NULL) {
+  public function __construct($authenticationIniPath = null,
+      $applicationName = null, $networkCode = null, $settingsIniPath = null,
+      $oauth2Info = null) {
     parent::__construct();
 
 
@@ -112,13 +112,11 @@ class DfpUser extends AdsUser {
     $defaultVersion = $versions[count($versions) - 1];
     $defaultServer = $apiProps['api.server'];
 
-    if (isset($authenticationIniPath)) {
-      $authenticationIni =
-          parse_ini_file(realpath($authenticationIniPath), TRUE);
-    } else {
-      $authenticationIni =
-          parse_ini_file(dirname(__FILE__) . '/../auth.ini', TRUE);
+    if ($authenticationIniPath === null) {
+      $authenticationIniPath = dirname(__FILE__) . '/../auth.ini';
     }
+    $authenticationIni =
+        parse_ini_file(realpath($authenticationIniPath), true);
 
     $applicationName = $this->GetAuthVarValue($applicationName,
         self::USER_AGENT_HEADER_NAME, $authenticationIni);
@@ -132,7 +130,7 @@ class DfpUser extends AdsUser {
     $this->SetClientLibraryUserAgent($applicationName);
     $this->SetNetworkCode($networkCode);
 
-    if (!isset($settingsIniPath)) {
+    if ($settingsIniPath === null) {
       $settingsIniPath = dirname(__FILE__) . '/../settings.ini';
     }
 
@@ -146,23 +144,23 @@ class DfpUser extends AdsUser {
    * Gets the service by its service name.
    * @param $serviceName the service name
    * @param string $version the version of the service to get. If
-   *     <var>NULL</var>, then the default version will be used
+   *     <var>null</var>, then the default version will be used
    * @param string $server the server to make the request to. If
-   *     <var>NULL</var>, then the default server will be used
+   *     <var>null</var>, then the default server will be used
    * @param SoapClientFactory $serviceFactory the factory to create the client.
-   *     If <var>NULL</var>, then the built-in SOAP client factory will be used
+   *     If <var>null</var>, then the built-in SOAP client factory will be used
    * @return SoapClient the instantiated service
    * @throws ServiceException if an error occurred when getting the service
    */
-  public function GetService($serviceName, $version = NULL, $server = NULL,
-      SoapClientFactory $serviceFactory = NULL) {
+  public function GetService($serviceName, $version = null, $server = null,
+      SoapClientFactory $serviceFactory = null) {
     $this->ValidateUser();
-    if (!isset($serviceFactory)) {
-      if (!isset($version)) {
+    if ($serviceFactory === null) {
+      if ($version === null) {
         $version = $this->GetDefaultVersion();
       }
 
-      if (!isset($server)) {
+      if ($server === null) {
         $server = $this->GetDefaultServer();
       }
 
@@ -220,10 +218,10 @@ class DfpUser extends AdsUser {
 
   /**
    * Get the default OAuth2 Handler for this user.
-   * @param NULL|string $className the name of the oauth2Handler class or NULL
+   * @param null|string $className the name of the oauth2Handler class or null
    * @return mixed the configured OAuth2Handler class
    */
-  public function GetDefaultOAuth2Handler($className = NULL) {
+  public function GetDefaultOAuth2Handler($className = null) {
     $className = !empty($className) ? $className : self::OAUTH2_HANDLER_CLASS;
     return new $className($this->GetAuthServer(), self::OAUTH2_SCOPE);
   }
@@ -234,15 +232,19 @@ class DfpUser extends AdsUser {
    * @throws ValidationException if there are any validation errors
    */
   public function ValidateUser() {
+    if ($this->GetOAuth2Info() === null) {
+      throw new ValidationException('OAuth2Info', null,
+          'OAuth 2.0 configuration is required.');
+    }
     parent::ValidateOAuth2Info();
 
-    if ($this->GetApplicationName() === NULL
+    if ($this->GetApplicationName() === null
         || trim($this->GetApplicationName()) === ''
         || strpos($this->GetApplicationName(),
             self::DEFAULT_APPLICATION_NAME) !== false) {
-      throw new ValidationException('applicationName', NULL,
+      throw new ValidationException('applicationName', null,
           sprintf("The property applicationName is required and cannot be "
-              . "NULL, the empty string, or the default [%s]",
+              . "null, the empty string, or the default [%s]",
               self::DEFAULT_APPLICATION_NAME));
     }
 

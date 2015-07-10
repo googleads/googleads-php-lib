@@ -44,7 +44,7 @@ function HandlePartialFailuresExample(AdWordsUser $user, $adGroupId) {
   // Get the service, which loads the required classes. Passing true for the
   // parameter $partialFailure enables partial failure behavior.
   $adGroupCriterionService = $user->GetService('AdGroupCriterionService',
-      ADWORDS_VERSION, NULL, NULL, NULL, TRUE);
+      ADWORDS_VERSION, null, null, null, true);
 
   // Create placements.
   $placements = array();

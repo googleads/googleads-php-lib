@@ -47,7 +47,7 @@ function HandlePolicyViolationErrorExample(AdWordsUser $user, $adGroupId) {
 
   // Get validateOnly version of the AdGroupAdService.
   $adGroupAdValidationService =
-      $user->GetService('AdGroupAdService', ADWORDS_VERSION, NULL, NULL, TRUE);
+      $user->GetService('AdGroupAdService', ADWORDS_VERSION, null, null, true);
 
   // Create text ad that violates an exemptable policy. This ad will only
   // trigger an error in the production environment.

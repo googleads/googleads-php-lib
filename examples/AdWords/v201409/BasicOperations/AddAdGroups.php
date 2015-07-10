@@ -67,11 +67,11 @@ function AddAdGroupsExample(AdWordsUser $user, $campaignId) {
     // Restricting to serve ads that match your ad group placements.
     // This is equivalent to choosing "Target and bid" in the UI.
     $targetingSetting->details[] =
-        new TargetingSettingDetail('PLACEMENT', FALSE);
+        new TargetingSettingDetail('PLACEMENT', false);
     // Using your ad group verticals only for bidding. This is equivalent
     // to choosing "Bid only" in the UI.
     $targetingSetting->details[] =
-        new TargetingSettingDetail('VERTICAL', TRUE);
+        new TargetingSettingDetail('VERTICAL', true);
     $adGroup->settings[] = $targetingSetting;
 
     // Create operation.

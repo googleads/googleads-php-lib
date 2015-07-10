@@ -53,12 +53,12 @@ class ChoiceUtilsTest extends PHPUnit_Framework_TestCase {
     $data = array();
 
     // Populated choice.
-    $choice = (object) array('first' => NULL, 'second' => 'value');
+    $choice = (object) array('first' => null, 'second' => 'value');
     $data[] = array($choice, 'value');
 
     // Empty choice.
-    $choice = (object) array('first' => NULL, 'second' => NULL);
-    $data[] = array($choice, NULL);
+    $choice = (object) array('first' => null, 'second' => null);
+    $data[] = array($choice, null);
 
     return $data;
   }

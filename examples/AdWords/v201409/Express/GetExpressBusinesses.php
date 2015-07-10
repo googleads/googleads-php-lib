@@ -56,7 +56,7 @@ function GetExpressBusinessesExample(AdWordsUser $user) {
     // Display results.
     if (isset($page->entries)) {
       foreach ($page->entries as $business) {
-        $address = $business->address !== NULL ?
+        $address = $business->address !== null ?
             $business->address :
             new Address();
         $geoPoint = $business->geoPoint;

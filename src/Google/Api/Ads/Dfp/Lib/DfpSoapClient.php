@@ -40,7 +40,7 @@ class DfpSoapClient extends AdsSoapClient {
 
   /**
    * Constructor for Google's DoubleClick for Publishers API SOAP client.
-   * @param string $wsdl URI of the WSDL file or <var>NULL</var> if working in
+   * @param string $wsdl URI of the WSDL file or <var>null</var> if working in
    *     non-WSDL mode
    * @param array $options the SOAP client options
    * @param AdsUser $user the user which is responsible for this client
@@ -63,7 +63,7 @@ class DfpSoapClient extends AdsSoapClient {
       $headerObject->$var = $this->GetHeaderValue($var);
     }
     return new SoapHeader($this->serviceNamespace, 'RequestHeader',
-        $headerObject, FALSE);
+        $headerObject, false);
   }
 
   /**

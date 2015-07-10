@@ -17,8 +17,7 @@ This project hosts the PHP client library for the various SOAP-based Ads APIs
 ### Requirements
 
 PHP
-  - [PHP 5.2.x - 5.4.x](http://php.net)
-    - [PHP 5.2 support will be deprecated](http://googleadsdeveloper.blogspot.com/2014/07/deprecating-php-52-support-for-ads-php.html) on January 1st, 2015.
+  - [PHP 5.3 and higher](http://php.net/supported-versions.php)
   - Required PHP extensions:
     - [SoapClient](http://us3.php.net/manual/en/book.soap.php) (--enable-soap)
     - [OpenSSL](http://php.net/manual/en/book.openssl.php) (--with-ssl)

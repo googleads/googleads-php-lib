@@ -57,18 +57,18 @@ class ErrorUtilsTest extends PHPUnit_Framework_TestCase {
     // No SoapVar.
     $exception = (object) array('errors' => array($error));
     $details = (object) array('ApiExceptionFault' => $exception);
-    $fault = new SoapFault('soap:Server', NULL, NULL, $details);
+    $fault = new SoapFault('soap:Server', null, null, $details);
     $data[] = array($fault, array($error));
 
     // With SoapVar.
     $soapVar = new SoapVar($error, SOAP_ENC_OBJECT);
     $exception = (object) array('errors' => array($soapVar));
     $details = (object) array('ApiExceptionFault' => $exception);
-    $fault = new SoapFault('soap:Server', NULL, NULL, $details);
+    $fault = new SoapFault('soap:Server', null, null, $details);
     $data[] = array($fault, array($error));
 
     // No errors.
-    $fault = new SoapFault('soap:Server', NULL);
+    $fault = new SoapFault('soap:Server', null);
     $data[] = array($fault, array());
 
     return $data;
@@ -103,21 +103,21 @@ class ErrorUtilsTest extends PHPUnit_Framework_TestCase {
     $data[] = array($error, 10);
 
     // Invalid data sets.
-    // NULL field path.
-    $error = (object) array('fieldPath' => NULL);
-    $data[] = array($error, NULL);
+    // Null field path.
+    $error = (object) array('fieldPath' => null);
+    $data[] = array($error, null);
     // Empty field path.
     $error = (object) array('fieldPath' => '');
-    $data[] = array($error, NULL);
+    $data[] = array($error, null);
     // Field path that doesn't reference an operation.
     $error = (object) array('fieldPath' => 'foo');
-    $data[] = array($error, NULL);
+    $data[] = array($error, null);
     // Negative index.
     $error = (object) array('fieldPath' => 'operations[-1]');
-    $data[] = array($error, NULL);
+    $data[] = array($error, null);
     // Non-numeric index.
     $error = (object) array('fieldPath' => 'operations[foo]');
-    $data[] = array($error, NULL);
+    $data[] = array($error, null);
 
     return $data;
   }

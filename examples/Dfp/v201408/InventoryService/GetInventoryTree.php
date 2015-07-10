@@ -43,9 +43,9 @@ require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
 
 /**
  * Gets all ad units for this user.
+ *
  * @param DfpUser $user the user to get the ad units for
  * @return array all ad units for this user
- * @access private
  */
 function GetAllAdUnits(DfpUser $user) {
   // Get the InventoryService.
@@ -78,10 +78,10 @@ function GetAllAdUnits(DfpUser $user) {
 
 /**
  * Finds the root ad unit for the user.
+ *
  * @param DfpUser $user the user to get the root ad unit for
- * @return the ad unit representing the root ad unit or <var>NULL</var> if one
+ * @return the ad unit representing the root ad unit or <var>null</var> if one
  *     is not found.
- * @access private
  */
 function FindRootAdUnit(DfpUser $user) {
   // Get the InventoryService.
@@ -96,16 +96,16 @@ function FindRootAdUnit(DfpUser $user) {
   if (isset($page->results)) {
     return $page->results[0];
   } else {
-    return NULL;
+    return null;
   }
 }
 
 /**
  * Builds and displays an ad unit tree from an array of ad units underneath
  * the root ad unit.
+ *
  * @param AdUnit $root the root ad unit to build the tree under
  * @param array $adUnits the array of ad units.
- * @access private
  */
 function BuildAndDisplayAdUnitTree(AdUnit $root,
     array $adUnits) {
@@ -126,9 +126,9 @@ function BuildAndDisplayAdUnitTree(AdUnit $root,
 
 /**
  * Displays the ad unit tree beginning at the root ad unit.
+ *
  * @param AdUnit $root the root ad unit
  * @param array $treeMap the map of id to array of ad units
- * @access private
  */
 function DisplayInventoryTree(AdUnit $root, array $treeMap) {
   DisplayInventoryTreeHelper($root, $treeMap, 0);
@@ -136,10 +136,10 @@ function DisplayInventoryTree(AdUnit $root, array $treeMap) {
 
 /**
  * Helper for displaying inventory units.
+ *
  * @param AdUnit $root the root inventory unit
  * @param array $treeMap the map of id to array of inventory units
  * @param $depth the depth the tree has reached
- * @access private
  */
 function DisplayInventoryTreeHelper(AdUnit $root,
     array $treeMap, $depth) {
@@ -156,9 +156,9 @@ function DisplayInventoryTreeHelper(AdUnit $root,
 
 /**
  * Generates a string of tabs to represent branching to children.
+ *
  * @param $depth a depth from 0 to max(depth)
  * @return string a string to insert in front of the root unit
- * @access private
  */
 function GenerateTab($depth) {
   $tab = '';

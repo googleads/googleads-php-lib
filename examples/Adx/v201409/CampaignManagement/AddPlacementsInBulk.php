@@ -81,8 +81,8 @@ function AddPlacementsInBulkExample(AdWordsUser $user, $adGroupId) {
   // Create a selector for retrieving the job status and later its results.
   $selector = new BulkMutateJobSelector();
   $selector->jobIds[] = $job->id;
-  $selector->includeStats = TRUE;
-  $selector->includeHistory = TRUE;
+  $selector->includeStats = true;
+  $selector->includeHistory = true;
 
   $numRetries = 0;
   $maxRetries = 100;

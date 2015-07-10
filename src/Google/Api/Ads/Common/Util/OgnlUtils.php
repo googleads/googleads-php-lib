@@ -49,7 +49,6 @@ class OgnlUtils {
 
   /**
    * The OgnlUtils class is not meant to have any instances.
-   * @access private
    */
   private function __construct() {}
 
@@ -57,11 +56,11 @@ class OgnlUtils {
    * Gets the value of an OGNL expression in the given context.
    * @param $expression the OGNL expression to evaluate
    * @param $context the context in which to evaluate the expression
-   * @return the value of the expression or NULL if the expression is invalid
+   * @return the value of the expression or null if the expression is invalid
    */
   public static function GetValue($expression, $context) {
     if (!isset($expression) || !isset($context)) {
-      return NULL;
+      return null;
     }
     while(strlen($expression) > 0) {
       $matches = array();
@@ -77,12 +76,12 @@ class OgnlUtils {
             $context = $context[$field];
           } else {
             // Field doesn't evaluate in the context.
-            return NULL;
+            return null;
           }
         }
       } else {
         // Invalid expression.
-        return NULL;
+        return null;
       }
     }
     return $context;
@@ -92,7 +91,7 @@ class OgnlUtils {
    * Retrieves the operation index from an OGNL expression that references an
    * operation.
    * @param string $expression the OGNL expression
-   * @return int the operation index referenced, or NULL if no operation was
+   * @return int the operation index referenced, or null if no operation was
    *     references
    */
   public static function GetOperationIndex($expression) {
@@ -100,7 +99,7 @@ class OgnlUtils {
     if (preg_match(self::$OPERATION_INDEX_REGEX, $expression, $matches)) {
       return $matches[1];
     } else {
-      return NULL;
+      return null;
     }
   }
 }

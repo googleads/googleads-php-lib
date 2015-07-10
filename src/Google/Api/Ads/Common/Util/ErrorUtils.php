@@ -40,7 +40,6 @@ class ErrorUtils {
 
   /**
    * The ErrorUtils class is not meant to have any instances.
-   * @access private
    */
   private function __construct() {}
 
@@ -74,7 +73,7 @@ class ErrorUtils {
   /**
    * Gets the index of the operation that was the source of an error.
    * @param mixed $error the error returned in the response
-   * @return int the index of the operation that caused the error, or NULL if
+   * @return int the index of the operation that caused the error, or null if
    *     no operation was referenced by the error
    */
   public static function GetSourceOperationIndex($error) {
@@ -84,7 +83,7 @@ class ErrorUtils {
       return $matches[1];
     } else {
       // Invalid fieldPath.
-      return NULL;
+      return null;
     }
   }
 }

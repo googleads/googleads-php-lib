@@ -71,7 +71,7 @@ try {
 
   // Create ad unit size.
   $adUnitSize = new AdUnitSize();
-  $adUnitSize->size = new Size(400, 300, FALSE);
+  $adUnitSize->size = new Size(400, 300, false);
   $adUnitSize->environmentType = 'BROWSER';
 
   // Set the size of possible creatives that can match this ad unit.

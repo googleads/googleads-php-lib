@@ -35,8 +35,8 @@ require_once dirname(__FILE__) . '/init.php';
  * @return array the user's OAuth 2 credentials
  */
 function GetOAuth2Credential($user) {
-  $redirectUri = NULL;
-  $offline = TRUE;
+  $redirectUri = null;
+  $offline = true;
   // Get the authorization URL for the OAuth2 token.
   // No redirect URL is being used since this is an installed application. A web
   // application would pass in a redirect URL back to the application,

@@ -168,7 +168,7 @@ class XmlUtils {
   private static function ConvertObjectToElement($object, $elementName,
       $document) {
     if (!isset($object)) {
-      return NULL;
+      return null;
     }
     $element = $document->createElement($elementName);
     $children = array();
@@ -226,7 +226,7 @@ class XmlUtils {
    *     as a string
    * @param integer $errline contains the line number the error was raised at,
    *     as an integer
-   * @return boolean <var>FALSE</var> if the normal error handler should
+   * @return boolean <var>false</var> if the normal error handler should
    *     continue
    */
   public static function HandleXmlError($errno, $errstr, $errfile, $errline) {
@@ -234,7 +234,7 @@ class XmlUtils {
         && substr_count($errstr, 'DOMDocument::loadXML()') > 0) {
       throw new DOMException($errstr);
     } else {
-      return FALSE;
+      return false;
     }
   }
 }

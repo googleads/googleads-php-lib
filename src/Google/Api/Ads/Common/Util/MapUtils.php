@@ -37,7 +37,6 @@ class MapUtils {
 
   /**
    * The MapUtils class is not meant to have any instances.
-   * @access private
    */
   private function __construct() {}
 
@@ -66,7 +65,7 @@ class MapUtils {
    * @return array an array of map entries built from the key-value pairs in
    *     the map
    */
-  public static function GetMapEntries(array $map, $mapEntryClassName = NULL) {
+  public static function GetMapEntries(array $map, $mapEntryClassName = null) {
     $result = array();
     foreach($map as $key => $value) {
       if (isset($mapEntryClassName)) {
@@ -94,14 +93,14 @@ class MapUtils {
   /**
    * Converts a map (associative array) to a flat, numerically indexed array
    * of method parameters. The method is used to determine the order of the
-   * parameters, and NULL values are using for missing parameters.
+   * parameters, and null values are using for missing parameters.
    * @param array $map the map of parameter names to values
    * @param ReflectionMethod $method the method to use for the mapping
    * @return array the parameter values as a flat array
    */
   public static function MapToMethodParameters($map, $method) {
     $params = $method->getParameters();
-    $result = array_fill(0, sizeof($params), NULL);
+    $result = array_fill(0, sizeof($params), null);
     foreach ($params as $param) {
       if (isset($map[$param->getName()])) {
         $result[$param->getPosition()] = $map[$param->getName()];

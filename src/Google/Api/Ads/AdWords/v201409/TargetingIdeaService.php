@@ -6555,7 +6555,6 @@ if (!class_exists("AttributeType", false)) {
    * <ul><li>{@link #AVERAGE_CPC}</li>
    * <li>{@link #CATEGORY_PRODUCTS_AND_SERVICES}</li>
    * <li>{@link #COMPETITION}</li>
-   * <li>{@link #CRITERION}</li>
    * <li>{@link #EXTRACTED_FROM_WEBPAGE}</li>
    * <li>{@link #IDEA_TYPE}</li>
    * <li>{@link #KEYWORD_TEXT}</li>

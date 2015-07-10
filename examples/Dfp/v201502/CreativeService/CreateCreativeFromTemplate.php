@@ -69,7 +69,7 @@ try {
   $templateCreative->creativeTemplateId = $creativeTemplateId;
 
   // Set the creative size.
-  $templateCreative->size = new Size(300, 250, FALSE);
+  $templateCreative->size = new Size(300, 250, false);
 
   // Create the asset variable value.
   $assetVariableValue = new AssetCreativeTemplateVariableValue();

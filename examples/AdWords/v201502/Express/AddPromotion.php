@@ -70,7 +70,7 @@ function AddPromotionExample(AdWordsUser $user, $businessId) {
   $marsTourPromotion->status = 'PAUSED';
   $marsTourPromotion->destinationUrl = 'http://www.example.com';
   $marsTourPromotion->budget = $budget;
-  $marsTourPromotion->callTrackingEnabled = TRUE;
+  $marsTourPromotion->callTrackingEnabled = true;
 
   // Criteria
   $criteria = array();

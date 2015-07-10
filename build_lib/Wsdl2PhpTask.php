@@ -34,21 +34,18 @@ class Wsdl2PhpTask extends Task {
   /**
    * The URL passed in the buildfile for the WSDL.
    * @var string the URL of the WSDL
-   * @access private
    */
   private $url = NULL;
 
   /**
    * The SOAP client classname of the API.
    * @var string the SoapClient class extension to extend
-   * @access private
    */
   private $soapClientClassName = NULL;
 
   /**
    * The SOAP client class path of the API.
    * @var string the path of the SoapClient class extension to extend
-   * @access private
    */
   private $soapClientClassPath = NULL;
 
@@ -57,14 +54,12 @@ class Wsdl2PhpTask extends Task {
    * from the current directory from which the task is called, or an
    * absolute path.
    * @var string the output directory of the task
-   * @access private
    */
   private $outputDir = NULL;
 
   /**
    * The classmap of 'Wsdl Type => PHP Class' for the WSDL.
    * @var array the classmap for the WSDL type to PHP class
-   * @access private
    */
   private $classmap = NULL;
 
@@ -72,7 +67,6 @@ class Wsdl2PhpTask extends Task {
    * A classmap of 'Wsdl Type => PHP Class' for the WSDL, to be used
    * to avoid class name conflicts when namespaces are not enabled.
    * @var array the classmap for the WSDL type to PHP class
-   * @access private
    */
   private $conflictClassmap = NULL;
 
@@ -81,35 +75,30 @@ class Wsdl2PhpTask extends Task {
    * uniqueness. This option will be ignored when namespaces are enabled.
    * @var array the WSDL types that shouldn't have their class names checked for
    *     uniqueness.
-   * @access private
    */
   private $skipClassNameCheckTypes = NULL;
 
   /**
    * The name of the service being worked on.
    * @var string the name of the service being worked on
-   * @access private
    */
   private $serviceName = NULL;
 
   /**
    * The version of the service being worked on
    * @var string the version of the service being worked
-   * @access private
    */
   private $version = NULL;
 
   /**
    * The package name to be included in the file header.
    * @var string the package name to be included in the file header
-   * @access private
    */
   private $package = NULL;
 
   /**
    * The proxy URL to use when downloading WSDLs.
    * @var string the proxy URL to use when downloading WSDLs
-   * @access private
    */
   private $proxy = NULL;
 
@@ -117,7 +106,6 @@ class Wsdl2PhpTask extends Task {
    * Whether or not to enable namespaces in the generated class names.
    * @var boolean whether or not to enable namespaces in the generated
    *     class names
-   * @access private
    */
   private $enableNamespaces = FALSE;
 

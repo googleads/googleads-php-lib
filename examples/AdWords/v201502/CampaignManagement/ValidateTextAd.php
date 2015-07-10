@@ -46,7 +46,7 @@ function ValidateTextAdExample(AdWordsUser $user, $adGroupId) {
   // Get the service, which loads the required classes. Passing true for the
   // parameter $validateOnly will ensure that ads aren't created.
   $adGroupAdValidationService =
-      $user->GetService('AdGroupAdService', ADWORDS_VERSION, NULL, NULL, TRUE);
+      $user->GetService('AdGroupAdService', ADWORDS_VERSION, null, null, true);
 
   // Create invalid text ad.
   $textAd = new TextAd();

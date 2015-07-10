@@ -67,21 +67,21 @@ try {
   $adUnit->parentId = $effectiveRootAdUnitId;
   $adUnit->description = 'Ad unit description.';
   $adUnit->targetWindow = 'BLANK';
-  $adUnit->explicitlyTargeted = TRUE;
+  $adUnit->explicitlyTargeted = true;
   $adUnit->targetPlatform = 'WEB';
 
   // Create master ad unit size.
   $masterAdUnitSize = new AdUnitSize();
-  $masterAdUnitSize->size = new Size(400, 300, FALSE);
+  $masterAdUnitSize->size = new Size(400, 300, false);
   $masterAdUnitSize->environmentType = 'VIDEO_PLAYER';
 
   // Create companion sizes.
   $companionAdUnitSize1 = new AdUnitSize();
-  $companionAdUnitSize1->size = new Size(300, 250, FALSE);
+  $companionAdUnitSize1->size = new Size(300, 250, false);
   $companionAdUnitSize1->environmentType = 'BROWSER';
 
   $companionAdUnitSize2 = new AdUnitSize();
-  $companionAdUnitSize2->size = new Size(728, 90, FALSE);
+  $companionAdUnitSize2->size = new Size(728, 90, false);
   $companionAdUnitSize2->environmentType = 'BROWSER';
 
   // Add companions to master ad unit size.

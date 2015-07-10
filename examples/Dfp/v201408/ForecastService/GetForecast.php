@@ -71,7 +71,7 @@ try {
 
   // Create the creative placeholder.
   $creativePlaceholder = new CreativePlaceholder();
-  $creativePlaceholder->size = new Size(300, 250, FALSE);
+  $creativePlaceholder->size = new Size(300, 250, false);
 
   // Set the size of creatives that can be associated with this line item.
   $lineItem->creativePlaceholders = array($creativePlaceholder);
