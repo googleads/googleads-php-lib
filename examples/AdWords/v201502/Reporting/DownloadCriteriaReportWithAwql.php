@@ -19,10 +19,10 @@
  * @package    GoogleApiAdsAdWords
  * @subpackage v201502
  * @category   WebServices
- * @copyright  2014, Google Inc. All Rights Reserved.
+ * @copyright  2015, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Danial Klimkin
+ * @author     Thanet Knack Praneenararat
  */
 
 error_reporting(E_STRICT | E_ALL);
@@ -39,6 +39,9 @@ require_once ADWORDS_UTIL_PATH . '/ReportUtils.php';
  */
 function DownloadCriteriaReportWithAwqlExample(AdWordsUser $user, $filePath,
     $reportFormat) {
+  // Optional: Set clientCustomerId to get reports of your child accounts
+  // $user->SetClientCustomerId('INSERT_CLIENT_CUSTOMER_ID_HERE');
+
   // Prepare a date range for the last week. Instead you can use 'LAST_7_DAYS'.
   $dateRange = sprintf('%d,%d',
       date('Ymd', strtotime('-7 day')), date('Ymd', strtotime('-1 day')));

@@ -105,17 +105,14 @@ function HandlePolicyViolationErrorExample(AdWordsUser $user, $adGroupId) {
     }
     $operationIndicesToRemove = array_unique($operationIndicesToRemove);
     rsort($operationIndicesToRemove, SORT_NUMERIC);
-    if (sizeof($operationIndicesToRemove) > 0) {
-      foreach ($operationIndicesToRemove as $operationIndex) {
-        unset($operations[$operationIndex]);
-      }
+    foreach ($operationIndicesToRemove as $operationIndex) {
+      unset($operations[$operationIndex]);
     }
   }
 
   if (sizeof($operations) > 0) {
     // Retry the mutate request.
     $result = $adGroupAdService->mutate($operations);
-
     // Display results.
     foreach ($result->value as $adGroupAd) {
       printf("Text ad with headline '%s' and ID '%s' was added.\n",

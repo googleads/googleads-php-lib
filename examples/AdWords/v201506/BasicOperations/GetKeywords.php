@@ -23,10 +23,10 @@
  * @package    GoogleApiAdsAdWords
  * @subpackage v201506
  * @category   WebServices
- * @copyright  2014, Google Inc. All Rights Reserved.
+ * @copyright  2015, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Eric Koleda
+ * @author     Thanet Knack Praneenararat
  */
 
 // Include the initialization file
@@ -47,7 +47,8 @@ function GetKeywordsExample(AdWordsUser $user, $adGroupId) {
 
   // Create selector.
   $selector = new Selector();
-  $selector->fields = array('KeywordText', 'KeywordMatchType', 'Id');
+  $selector->fields = array('Id', 'CriteriaType', 'KeywordMatchType',
+      'KeywordText');
   $selector->ordering[] = new OrderBy('KeywordText', 'ASCENDING');
 
   // Create predicates.
@@ -65,9 +66,11 @@ function GetKeywordsExample(AdWordsUser $user, $adGroupId) {
     // Display results.
     if (isset($page->entries)) {
       foreach ($page->entries as $adGroupCriterion) {
-      printf("Keyword with text '%s', match type '%s', and ID '%s' was "
-          . "found.\n", $adGroupCriterion->criterion->text,
+      printf("Keyword with text '%s', match type '%s', criteria type '%s', "
+          . "and ID '%s' was found.\n",
+          $adGroupCriterion->criterion->text,
           $adGroupCriterion->criterion->matchType,
+          $adGroupCriterion->criterion->type,
           $adGroupCriterion->criterion->id);
       }
     } else {

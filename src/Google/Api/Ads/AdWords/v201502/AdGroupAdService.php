@@ -2973,6 +2973,51 @@ if (!class_exists("OperationAccessDenied", false)) {
   }
 }
 
+if (!class_exists("OperatorError", false)) {
+  /**
+   * Errors due to the use of unsupported operations.
+   * @package Google_Api_Ads_AdWords_v201502
+   * @subpackage v201502
+   */
+  class OperatorError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201502";
+    const XSI_TYPE = "OperatorError";
+
+    /**
+     * @access public
+     * @var tnsOperatorErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("OrderBy", false)) {
   /**
    * Specifies how the resulting information should be sorted.
@@ -4962,49 +5007,43 @@ if (!class_exists("Video", false)) {
 if (!class_exists("DynamicSearchAd", false)) {
   /**
    * Represents a dynamic search ad. This ad will have its headline and
-   * destination URL auto-generated at serving time according to domain name
+   * tracking URL auto-generated at serving time according to domain name
    * specific information provided by {@link DomainInfoExtension} linked at the
    * campaign level.
    * 
-   * <p>Auto-generated fields: headline and destination URL (may contain an optional
-   * tracking URL).</p>
+   * <p>Auto-generated fields: headline and optional tracking URL.</p>
    * 
    * <p><b>Required fields:</b> {@code description1}, {@code description2},
    * {@code displayUrl}.</p>
    * 
-   * <p>The URL field must contain at least one of the following placeholder tags
+   * <p>The tracking URL field must contain at least one of the following placeholder tags
    * (URL parameters):</p>
    * <ul>
    * <li>{unescapedlpurl}</li>
    * <li>{escapedlpurl}</li>
-   * <li>{lpurlpath}</li>
    * <li>{lpurl}</li>
+   * <li>{lpurl+2}</li>
+   * <li>{lpurl+3}</li>
    * </ul>
    * 
-   * <p>If no URL is specified, {unescapedlpurl} will be used as default.</p>
-   * 
    * <ul>
-   * <li>{unescapedlpurl} can only be used at the beginning of the URL field. It
-   * will be replaced with the full landing page URL of the displayed ad. Extra query
-   * parameters can be added to the end, e.g.: "{unescapedlpurl}?lang=en".</li>
+   * <li>{unescapedlpurl} will be replaced with the full landing page URL of the displayed ad.
+   * Extra query parameters can be added to the end, e.g.: "{unescapedlpurl}?lang=en".</li>
    * 
    * <li>{escapedlpurl} will be replaced with the URL-encoded version of the full
    * landing page URL. This makes it suitable for use as a query parameter
    * value (e.g.: "http://www.3rdpartytracker.com/?lp={escapedlpurl}") but
    * not at the beginning of the URL field.</li>
    * 
-   * <li>{lpurlpath} will be replaced with the path and query part of the landing
-   * page URL and can be added to a different URL, e.g.:
-   * "http://www.mygoodbusiness.com/tracking/{lpurlpath}".</li>
-   * 
    * <li>{lpurl} encodes the "?" and "=" of the landing page URL making it suitable
    * for use as a query parameter. If found at the beginning of the URL field, it is
    * replaced by the {unescapedlpurl} value.
    * E.g.: "http://tracking.com/redir.php?tracking=xyz&url={lpurl}".</li>
-   * </ul>
    * 
-   * <p>There are also special rules that come into play depending on whether the
-   * destination URL uses local click tracking or third-party click tracking.</p>
+   * <li>{lpurl+2} and {lpurl+3}  will be replaced with the landing page URL escaped two or three
+   * times, respectively.  This makes it suitable if there is a chain of redirects in the tracking
+   * URL.</li>
+   * </ul>
    * 
    * <p class="note">Note that {@code finalUrls} and {@code finalMobileUrls}
    * cannot be set for dynamic search ads.</p>
@@ -6301,6 +6340,39 @@ if (!class_exists("Operator", false)) {
 
     const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201502";
     const XSI_TYPE = "Operator";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("OperatorErrorReason", false)) {
+  /**
+   * The reasons for the validation error.
+   * @package Google_Api_Ads_AdWords_v201502
+   * @subpackage v201502
+   */
+  class OperatorErrorReason {
+
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201502";
+    const XSI_TYPE = "OperatorError.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -8252,6 +8324,7 @@ if (!class_exists("AdGroupAdService", false)) {
       "NullError" => "NullError",
       "Operation" => "Operation",
       "OperationAccessDenied" => "OperationAccessDenied",
+      "OperatorError" => "OperatorError",
       "OrderBy" => "OrderBy",
       "Page" => "Page",
       "Paging" => "Paging",
@@ -8325,6 +8398,7 @@ if (!class_exists("AdGroupAdService", false)) {
       "NullError.Reason" => "NullErrorReason",
       "OperationAccessDenied.Reason" => "OperationAccessDeniedReason",
       "Operator" => "Operator",
+      "OperatorError.Reason" => "OperatorErrorReason",
       "PagingError.Reason" => "PagingErrorReason",
       "Predicate.Operator" => "PredicateOperator",
       "QueryError.Reason" => "QueryErrorReason",

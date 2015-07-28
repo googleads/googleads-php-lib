@@ -146,6 +146,17 @@ $operations[] = $operation;
 $campaignReturnValue = $campaignService->mutate($operations);
 ```
 
+### How do I set different client customer IDs than specified in auth.ini?
+
+You can do this by calling `SetClientCustomerId()` of an `AdWordUser` object
+with a parameter as client customer ID you want to set to:
+
+```php
+// Create an AdWordsUser instance using the default constructor, which will load
+// information from the auth.ini file as described above.
+$user = new AdWordsUser();
+$user->SetClientCustomerId('INSERT_CLIENT_CUSTOMER_ID_HERE');
+```
 
 ### How do I enable logging?
 

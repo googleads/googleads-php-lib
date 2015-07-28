@@ -23,10 +23,10 @@
  * @package    GoogleApiAdsAdWords
  * @subpackage v201502
  * @category   WebServices
- * @copyright  2014, Google Inc. All Rights Reserved.
+ * @copyright  2015, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Eric Koleda
+ * @author     Thanet Knack Praneenararat
  */
 
 // Include the initialization file
@@ -76,13 +76,15 @@ function GetKeywordBidSimulationsExample(AdWordsUser $user, $adGroupId) {
         }
         print "\n";
       }
-    } else {
-      print "No criterion bid landscapes were found.\n";
     }
 
     // Advance the paging index.
     $selector->paging->startIndex += AdWordsConstants::RECOMMENDED_PAGE_SIZE;
-  } while ($page->totalNumEntries > $selector->paging->startIndex);
+  } while (isset($page->entries) && count($page->entries) > 0);
+
+  if ($selector->paging->startIndex === 0) {
+    print "No criterion bid landscapes were found.\n";
+  }
 }
 
 // Don't run the example if the file is being included.

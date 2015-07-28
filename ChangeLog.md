@@ -1,3 +1,10 @@
+### 6.2.0
+
+AdWords:
+  - Fixed [issue #81](https://github.com/googleads/googleads-php-lib/issues/81).
+  - Removed support and examples for v201409.
+    See the [deprecation schedule](https://developers.google.com/adwords/api/docs/sunset-dates) for more information.
+
 ### 6.1.0
 
 AdWords:

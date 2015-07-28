@@ -19,10 +19,10 @@
  * @package    GoogleApiAdsAdWords
  * @subpackage v201502
  * @category   WebServices
- * @copyright  2014, Google Inc. All Rights Reserved.
+ * @copyright  2015, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Eric Koleda
+ * @author     Thanet Knack Praneenararat
  */
 
 // Include the initialization file
@@ -38,6 +38,8 @@ require_once ADWORDS_UTIL_PATH . '/ReportUtils.php';
 function DownloadCriteriaReportExample(AdWordsUser $user, $filePath) {
   // Load the service, so that the required classes are available.
   $user->LoadService('ReportDefinitionService', ADWORDS_VERSION);
+  // Optional: Set clientCustomerId to get reports of your child account
+  // $user->SetClientCustomerId('INSERT_CLIENT_CUSTOMER_ID_HERE');
 
   // Create selector.
   $selector = new Selector();

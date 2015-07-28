@@ -105,10 +105,8 @@ function HandlePolicyViolationErrorExample(AdWordsUser $user, $adGroupId) {
     }
     $operationIndicesToRemove = array_unique($operationIndicesToRemove);
     rsort($operationIndicesToRemove, SORT_NUMERIC);
-    if (sizeof($operationIndicesToRemove) > 0) {
-      foreach ($operationIndicesToRemove as $operationIndex) {
-        unset($operations[$operationIndex]);
-      }
+    foreach ($operationIndicesToRemove as $operationIndex) {
+      unset($operations[$operationIndex]);
     }
   }
 
