@@ -2,8 +2,6 @@
 /**
  * This example adds a Shopping campaign.
  *
- * Tags: CampaignService.mutate, AdGroupService.mutate, AdGroupAdService.mutate
- *
  * @package    GoogleApiAdsAdWords
  * @subpackage v201502
  * @category   WebServices

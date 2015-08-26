@@ -3,7 +3,6 @@
  * This example gets all keywords in an ad group. To add keywords, run
  * AddKeywords.php. To get ad groups, run GetAdGroups.php.
  *
- * Tags: AdGroupCriterionService.get
  * Restriction: adwords-only
  *
  * Copyright 2014, Google Inc. All Rights Reserved.
@@ -26,7 +25,6 @@
  * @copyright  2015, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Thanet Knack Praneenararat
  */
 
 // Include the initialization file

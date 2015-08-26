@@ -3,9 +3,6 @@
  * This example updates a team by adding an ad unit to it. To determine which
  * teams exist, run GetAllTeams.php.
  *
- * Tags: TeamService.getTeamsByStatement
- * Tags: TeamService.updateTeams
- *
  * PHP version 5
  *
  * Copyright 2014, Google Inc. All Rights Reserved.
@@ -28,7 +25,6 @@
  * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Vincent Tsao
  */
 error_reporting(E_STRICT | E_ALL);
 

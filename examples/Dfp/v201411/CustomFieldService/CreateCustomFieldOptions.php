@@ -5,8 +5,6 @@
  * the drop-down custom field and they cannot be deleted. To determine which
  * custom fields exist, run GetAllCustomFields.php.
  *
- * Tags: CustomFieldService.createCustomFieldOptions
- *
  * PHP version 5
  *
  * Copyright 2013, Google Inc. All Rights Reserved.
@@ -29,7 +27,6 @@
  * @copyright  2013, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Paul Rashidi
  */
 error_reporting(E_STRICT | E_ALL);
 

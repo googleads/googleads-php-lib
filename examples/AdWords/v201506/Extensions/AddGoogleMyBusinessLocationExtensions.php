@@ -3,8 +3,6 @@
  * This example adds a feed that syncs feed items from a Google
  * My Business (GMB) account and associates the feed with a customer.
  *
- * Tags: CampaignFeedService.mutate, FeedItemService.mutate
- * Tags: FeedMappingService.mutate, FeedService.mutate
  * Restriction: adwords-only
  *
  * Copyright 2014, Google Inc. All Rights Reserved.
@@ -27,7 +25,6 @@
  * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Ray Tsang
  */
 
 // Include the initialization file
@@ -121,7 +118,6 @@ function AddGoogleMyBusinessLocationExtensions(
   $customerFeedOperation = new CustomerFeedOperation();
   $customerFeedOperation->operand = $customerFeed;
   $customerFeedOperation->operator = 'ADD';
-
 
   // After the completion of the Feed ADD operation above the added feed will
   // not be available for usage in a CustomerFeed until the sync between the

@@ -1,3 +1,14 @@
+### 6.3.0
+
+DFP:
+  - Added support for v201508.
+  - Added ReconciliationLineItemReportService.
+  - Removed support for v201403 (sunset) and v201405 (deprecated). See the [deprecation schedule](https://developers.google.com/doubleclick-publishers/docs/deprecation) for more information.
+  - Removed examples for v201408.
+
+Common:
+  - Removed packaging WSDLInterpreter with the library for security reasons.
+
 ### 6.2.0
 
 AdWords:

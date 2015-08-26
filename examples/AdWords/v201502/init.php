@@ -24,7 +24,6 @@
  * @copyright  2015, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Danial Klimkin
  */
 // Set error reporting levels to highest
 error_reporting(E_STRICT | E_ALL);

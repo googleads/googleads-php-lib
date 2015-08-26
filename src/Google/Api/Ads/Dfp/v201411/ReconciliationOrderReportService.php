@@ -763,8 +763,7 @@ if (!class_exists("ReconciliationOrderReportAction", false)) {
 
 if (!class_exists("ReconciliationOrderReport", false)) {
   /**
-   * A {@link ReconciliationOrderReport} represents one order
-   * in the reconciliation report.
+   * Contains reconciliation data of an {@link Order} and/or {@link Proposal}.
    * @package GoogleApiAdsDfp
    * @subpackage v201411
    */

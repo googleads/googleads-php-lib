@@ -26,7 +26,6 @@
  * @copyright  2011, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Vincent Tsao
  */
 require_once 'Google/Api/Ads/Common/Lib/AdsUser.php';
 require_once 'Google/Api/Ads/Common/Util/Logger.php';

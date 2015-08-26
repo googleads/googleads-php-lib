@@ -4,7 +4,6 @@
  * must be run using the credentials of an MCC account, and by default the new
  * account will only be accessible via the parent MCC account.
  *
- * Tags: ManagedCustomerService.mutate
  * Restriction: adwords-only
  *
  * PHP version 5
@@ -29,7 +28,6 @@
  * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Eric Koleda
  */
 
 // Include the initialization file

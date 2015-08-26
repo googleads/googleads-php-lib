@@ -2007,6 +2007,51 @@ if (!class_exists("FeatureError", false)) {
   }
 }
 
+if (!class_exists("ForecastError", false)) {
+  /**
+   * Errors that can result from a forecast request.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201408
+   */
+  class ForecastError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201408";
+    const XSI_TYPE = "ForecastError";
+
+    /**
+     * @access public
+     * @var tnsForecastErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("FrequencyCap", false)) {
   /**
    * Represents a limit on the number of times a single viewer can be exposed to
@@ -4227,7 +4272,7 @@ if (!class_exists("Size", false)) {
   /**
    * Represents the dimensions of an {@link AdUnit}, {@link LineItem} or {@link Creative}.
    * <p>
-   * For interstitial size (out-of-page) and native size, {@code Size} must be 1x1.
+   * For interstitial size (out-of-page), native, ignored and fluid size, {@code Size} must be 1x1.
    * @package GoogleApiAdsDfp
    * @subpackage v201408
    */
@@ -4894,6 +4939,44 @@ if (!class_exists("TimeOfDay", false)) {
     public function __construct($hour = null, $minute = null) {
       $this->hour = $hour;
       $this->minute = $minute;
+    }
+
+  }
+}
+
+if (!class_exists("TypeError", false)) {
+  /**
+   * An error for a field which is an invalid type.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201408
+   */
+  class TypeError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201408";
+    const XSI_TYPE = "TypeError";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
     }
 
   }
@@ -6284,6 +6367,39 @@ if (!class_exists("FeatureErrorReason", false)) {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201408";
     const XSI_TYPE = "FeatureError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("ForecastErrorReason", false)) {
+  /**
+   * Reason why a forecast could not be retrieved.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201408
+   */
+  class ForecastErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201408";
+    const XSI_TYPE = "ForecastError.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -9560,6 +9676,7 @@ if (!class_exists("ProposalLineItemService", false)) {
       "EntityChildrenLimitReachedError" => "EntityChildrenLimitReachedError",
       "EntityLimitReachedError" => "EntityLimitReachedError",
       "FeatureError" => "FeatureError",
+      "ForecastError" => "ForecastError",
       "FrequencyCap" => "FrequencyCap",
       "FrequencyCapError" => "FrequencyCapError",
       "FrequencyCapPremiumFeature" => "FrequencyCapPremiumFeature",
@@ -9623,6 +9740,7 @@ if (!class_exists("ProposalLineItemService", false)) {
       "TechnologyTargetingError" => "TechnologyTargetingError",
       "TextValue" => "TextValue",
       "TimeOfDay" => "TimeOfDay",
+      "TypeError" => "TypeError",
       "UnarchiveProposalLineItems" => "UnarchiveProposalLineItems",
       "UniqueError" => "UniqueError",
       "UnknownPremiumFeature" => "UnknownPremiumFeature",
@@ -9661,6 +9779,7 @@ if (!class_exists("ProposalLineItemService", false)) {
       "DeliveryRateType" => "DeliveryRateType",
       "EntityChildrenLimitReachedError.Reason" => "EntityChildrenLimitReachedErrorReason",
       "FeatureError.Reason" => "FeatureErrorReason",
+      "ForecastError.Reason" => "ForecastErrorReason",
       "FrequencyCapError.Reason" => "FrequencyCapErrorReason",
       "GenericTargetingError.Reason" => "GenericTargetingErrorReason",
       "GeoTargetingError.Reason" => "GeoTargetingErrorReason",

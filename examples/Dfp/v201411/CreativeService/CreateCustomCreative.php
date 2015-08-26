@@ -5,8 +5,6 @@
  * companies are advertisers, run GetCompaniesByStatement.php. To
  * determine which creatives already exist, run GetAllCreatives.php.
  *
- * Tags: CreativeService.createCreatives
- *
  * PHP version 5
  *
  * Copyright 2013, Google Inc. All Rights Reserved.
@@ -29,7 +27,6 @@
  * @copyright  2013, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Eric Koleda
  */
 error_reporting(E_STRICT | E_ALL);
 

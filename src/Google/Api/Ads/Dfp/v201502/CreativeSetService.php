@@ -600,6 +600,50 @@ if (!class_exists("CreativeSetPage", false)) {
   }
 }
 
+if (!class_exists("CreativeTemplateError", false)) {
+  /**
+   * A catch-all error that lists all generic errors associated with CreativeTemplate.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201502
+   */
+  class CreativeTemplateError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201502";
+    const XSI_TYPE = "CreativeTemplateError";
+
+    /**
+     * @access public
+     * @var tnsCreativeTemplateErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+    }
+
+  }
+}
+
 if (!class_exists("CustomCreativeError", false)) {
   /**
    * Lists all errors associated with custom creatives.
@@ -2591,6 +2635,39 @@ if (!class_exists("CreativeSetErrorReason", false)) {
   }
 }
 
+if (!class_exists("CreativeTemplateErrorReason", false)) {
+  /**
+   * The reasons for the target error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201502
+   */
+  class CreativeTemplateErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201502";
+    const XSI_TYPE = "CreativeTemplateError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("CustomCreativeErrorReason", false)) {
   /**
    * The reasons for the target error.
@@ -4167,6 +4244,7 @@ if (!class_exists("CreativeSetService", false)) {
       "CreativeSet" => "CreativeSet",
       "CreativeSetError" => "CreativeSetError",
       "CreativeSetPage" => "CreativeSetPage",
+      "CreativeTemplateError" => "CreativeTemplateError",
       "CustomCreativeError" => "CustomCreativeError",
       "CustomFieldValueError" => "CustomFieldValueError",
       "Date" => "Date",
@@ -4218,6 +4296,7 @@ if (!class_exists("CreativeSetService", false)) {
       "CreativeAssetMacroError.Reason" => "CreativeAssetMacroErrorReason",
       "CreativeError.Reason" => "CreativeErrorReason",
       "CreativeSetError.Reason" => "CreativeSetErrorReason",
+      "CreativeTemplateError.Reason" => "CreativeTemplateErrorReason",
       "CustomCreativeError.Reason" => "CustomCreativeErrorReason",
       "CustomFieldValueError.Reason" => "CustomFieldValueErrorReason",
       "FeatureError.Reason" => "FeatureErrorReason",

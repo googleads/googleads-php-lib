@@ -2,8 +2,6 @@
 /**
  * This example adds campaigns.
  *
- * Tags: CampaignService.mutate
- *
  * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,7 +22,6 @@
  * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Paul Matthews
  */
 
 require_once dirname(dirname(__FILE__)) . '/init.php';

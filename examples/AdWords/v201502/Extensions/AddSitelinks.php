@@ -3,7 +3,6 @@
  * This example adds a sitelinks feed and associates it with a campaign.
  * To get campaigns, run GetCampaigns.php.
  *
- * Tags: CampaignExtensionSettingService.mutate
  * Restriction: adwords-only
  *
  * Copyright 2015, Google Inc. All Rights Reserved.
@@ -26,7 +25,6 @@
  * @copyright  2015, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Danial Klimkin
  */
 
 // Include the initialization file

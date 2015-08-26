@@ -3,8 +3,6 @@
  * This code example adds demographic target criteria to an ad group. To get
  * ad groups, run AddAdGroup.php.
  *
- * Tags: AdGroupCriterionService.mutate
- *
  * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,7 +23,6 @@
  * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Anash P. Oommen Rogal
  */
 
 // Include the initialization file

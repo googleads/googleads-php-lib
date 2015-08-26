@@ -3,9 +3,6 @@
  * This example adds an ad customizer feed and associates it with the customer.
  * Then it adds an ad that uses the feed to populate dynamic data.
  *
- * Tags: AdCustomizerFeedService.mutate
- * Tags: FeedItemService.mutate
- * Tags: AdGroupAdService.mutate
  * Restriction: adwords-only
  *
  * Copyright 2014, Google Inc. All Rights Reserved.
@@ -28,7 +25,6 @@
  * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Ray Tsang
  */
 
 // Include the initialization file

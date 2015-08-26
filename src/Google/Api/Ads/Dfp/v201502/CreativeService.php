@@ -1039,6 +1039,50 @@ if (!class_exists("CreativeSetError", false)) {
   }
 }
 
+if (!class_exists("CreativeTemplateError", false)) {
+  /**
+   * A catch-all error that lists all generic errors associated with CreativeTemplate.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201502
+   */
+  class CreativeTemplateError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201502";
+    const XSI_TYPE = "CreativeTemplateError";
+
+    /**
+     * @access public
+     * @var tnsCreativeTemplateErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+    }
+
+  }
+}
+
 if (!class_exists("CustomCreativeError", false)) {
   /**
    * Lists all errors associated with custom creatives.
@@ -2793,7 +2837,7 @@ if (!class_exists("Size", false)) {
   /**
    * Represents the dimensions of an {@link AdUnit}, {@link LineItem} or {@link Creative}.
    * <p>
-   * For interstitial size (out-of-page) and native size, {@code Size} must be 1x1.
+   * For interstitial size (out-of-page), native, ignored and fluid size, {@code Size} must be 1x1.
    * @package GoogleApiAdsDfp
    * @subpackage v201502
    */
@@ -4515,6 +4559,39 @@ if (!class_exists("CreativeSetErrorReason", false)) {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201502";
     const XSI_TYPE = "CreativeSetError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("CreativeTemplateErrorReason", false)) {
+  /**
+   * The reasons for the target error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201502
+   */
+  class CreativeTemplateErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201502";
+    const XSI_TYPE = "CreativeTemplateError.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -8414,6 +8491,7 @@ if (!class_exists("CreativeService", false)) {
       "CreativeError" => "CreativeError",
       "CreativePage" => "CreativePage",
       "CreativeSetError" => "CreativeSetError",
+      "CreativeTemplateError" => "CreativeTemplateError",
       "CustomCreative" => "CustomCreative",
       "CustomCreativeError" => "CustomCreativeError",
       "CustomFieldValue" => "CustomFieldValue",
@@ -8505,6 +8583,7 @@ if (!class_exists("CreativeService", false)) {
       "CreativeAssetMacroError.Reason" => "CreativeAssetMacroErrorReason",
       "CreativeError.Reason" => "CreativeErrorReason",
       "CreativeSetError.Reason" => "CreativeSetErrorReason",
+      "CreativeTemplateError.Reason" => "CreativeTemplateErrorReason",
       "CustomCreativeError.Reason" => "CustomCreativeErrorReason",
       "CustomFieldValueError.Reason" => "CustomFieldValueErrorReason",
       "DestinationUrlType" => "DestinationUrlType",

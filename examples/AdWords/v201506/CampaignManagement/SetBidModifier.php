@@ -2,7 +2,6 @@
 /**
  * This example sets a Bid Modifier on a Campaign.
  *
- * Tags: CampaignCriterionService.mutate
  * Restriction: adwords-only
  *
  * Copyright 2014, Google Inc. All Rights Reserved.
@@ -25,7 +24,6 @@
  * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Paul Matthews
  */
 
 // Include the initialization file.

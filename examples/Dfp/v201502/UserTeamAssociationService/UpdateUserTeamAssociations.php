@@ -3,9 +3,6 @@
  * This example updates the access of a user on a team. To determine which user
  * team associations exist, run GetAllUserTeamAssociations.php.
  *
- * Tags: UserTeamAssociationService.getUserTeamAssociationsByStatement
- * Tags: UserTeamAssociationService.updateUserTeamAssociations
- *
  * PHP version 5
  *
  * Copyright 2014, Google Inc. All Rights Reserved.
@@ -28,7 +25,6 @@
  * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Vincent Tsao
  */
 error_reporting(E_STRICT | E_ALL);
 

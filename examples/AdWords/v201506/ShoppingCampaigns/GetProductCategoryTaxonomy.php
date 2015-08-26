@@ -2,8 +2,6 @@
 /**
  * This example fetches the set of valid ProductBiddingCategories.
  *
- * Tags: ConstantDataService.getProductBiddingCategoryData
- *
  * @package    GoogleApiAdsAdWords
  * @subpackage v201506
  * @category   WebServices

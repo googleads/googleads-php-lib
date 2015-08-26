@@ -3,9 +3,6 @@
  * This code sample illustrates how to perform asynchronous requests using the
  * MutateJobService. To get ad groups, run BasicOperations/GetAdGroups.php.
  *
- * Tags: MutateJobService.mutate, MutateJobService.get
- * Tags: MutateJobService.getResults
- *
  * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,7 +23,6 @@
  * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Eric Koleda
  */
 
 require_once dirname(dirname(__FILE__)) . '/init.php';

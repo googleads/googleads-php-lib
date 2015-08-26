@@ -3,8 +3,6 @@
  * This example gets all campaigns in the account with AWQL. To add a campaign,
  * run AddCampaign.php.
  *
- * Tags: CampaignService.query
- *
  * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,7 +23,6 @@
  * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Danial Klimkin
  */
 
 // Include the initialization file

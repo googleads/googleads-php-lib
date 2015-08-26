@@ -3,8 +3,6 @@
  * This example gets a forecast for an existing line item. To determine which
  * line items exist, run GetAllLineItems.php.
  *
- * Tags: ForecastService.getForecastById
- *
  * PHP version 5
  *
  * Copyright 2013, Google Inc. All Rights Reserved.
@@ -27,8 +25,6 @@
  * @copyright  2013, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Eric Koleda
- * @author     Vincent Tsao
  */
 error_reporting(E_STRICT | E_ALL);
 

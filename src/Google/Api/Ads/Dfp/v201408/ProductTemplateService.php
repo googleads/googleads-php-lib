@@ -748,6 +748,51 @@ if (!class_exists("CommonError", false)) {
   }
 }
 
+if (!class_exists("ContentMetadataTargetingError", false)) {
+  /**
+   * Lists all errors related to {@link ContentMetadataTargeting}.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201408
+   */
+  class ContentMetadataTargetingError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201408";
+    const XSI_TYPE = "ContentMetadataTargetingError";
+
+    /**
+     * @access public
+     * @var tnsContentMetadataTargetingErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("CreativePlaceholder", false)) {
   /**
    * A {@code CreativePlaceholder} describes a slot that a creative is expected to
@@ -1162,6 +1207,97 @@ if (!class_exists("DfpDateTime", false)) {
       $this->minute = $minute;
       $this->second = $second;
       $this->timeZoneID = $timeZoneID;
+    }
+
+  }
+}
+
+if (!class_exists("DateTimeRangeTargetingError", false)) {
+  /**
+   * Lists all date time range errors caused by associating a line item with a targeting
+   * expression.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201408
+   */
+  class DateTimeRangeTargetingError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201408";
+    const XSI_TYPE = "DateTimeRangeTargetingError";
+
+    /**
+     * @access public
+     * @var tnsDateTimeRangeTargetingErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
+if (!class_exists("DayPartTargetingError", false)) {
+  /**
+   * Lists all errors associated with day-part targeting for a line item.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201408
+   */
+  class DayPartTargetingError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201408";
+    const XSI_TYPE = "DayPartTargetingError";
+
+    /**
+     * @access public
+     * @var tnsDayPartTargetingErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
     }
 
   }
@@ -3479,7 +3615,7 @@ if (!class_exists("Size", false)) {
   /**
    * Represents the dimensions of an {@link AdUnit}, {@link LineItem} or {@link Creative}.
    * <p>
-   * For interstitial size (out-of-page) and native size, {@code Size} must be 1x1.
+   * For interstitial size (out-of-page), native, ignored and fluid size, {@code Size} must be 1x1.
    * @package GoogleApiAdsDfp
    * @subpackage v201408
    */
@@ -3919,6 +4055,51 @@ if (!class_exists("Technology", false)) {
       $this->id = $id;
       $this->name = $name;
       $this->TechnologyType = $TechnologyType;
+    }
+
+  }
+}
+
+if (!class_exists("TechnologyTargetingError", false)) {
+  /**
+   * Technology targeting validation errors.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201408
+   */
+  class TechnologyTargetingError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201408";
+    const XSI_TYPE = "TechnologyTargetingError";
+
+    /**
+     * @access public
+     * @var tnsTechnologyTargetingErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
     }
 
   }
@@ -4374,6 +4555,39 @@ if (!class_exists("CommonErrorReason", false)) {
   }
 }
 
+if (!class_exists("ContentMetadataTargetingErrorReason", false)) {
+  /**
+   * The reasons for the metadata targeting error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201408
+   */
+  class ContentMetadataTargetingErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201408";
+    const XSI_TYPE = "ContentMetadataTargetingError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("CreativeSizeType", false)) {
   /**
    * Descriptions of the types of sizes a creative can be.  Not all creatives can
@@ -4550,6 +4764,72 @@ if (!class_exists("AudienceSegmentCriteriaComparisonOperator", false)) {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201408";
     const XSI_TYPE = "AudienceSegmentCriteria.ComparisonOperator";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("DateTimeRangeTargetingErrorReason", false)) {
+  /**
+   * {@link ApiErrorReason} enum for date time range targeting error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201408
+   */
+  class DateTimeRangeTargetingErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201408";
+    const XSI_TYPE = "DateTimeRangeTargetingError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("DayPartTargetingErrorReason", false)) {
+  /**
+   * The reasons for the target error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201408
+   */
+  class DayPartTargetingErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201408";
+    const XSI_TYPE = "DayPartTargetingError.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -5453,6 +5733,39 @@ if (!class_exists("StringLengthErrorReason", false)) {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201408";
     const XSI_TYPE = "StringLengthError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("TechnologyTargetingErrorReason", false)) {
+  /**
+   * The reasons for the target error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201408
+   */
+  class TechnologyTargetingErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201408";
+    const XSI_TYPE = "TechnologyTargetingError.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -7031,6 +7344,7 @@ if (!class_exists("ProductTemplateService", false)) {
       "BrowserTargeting" => "BrowserTargeting",
       "CollectionSizeError" => "CollectionSizeError",
       "CommonError" => "CommonError",
+      "ContentMetadataTargetingError" => "ContentMetadataTargetingError",
       "CreativePlaceholder" => "CreativePlaceholder",
       "CustomCriteria" => "CustomCriteria",
       "CustomCriteriaSet" => "CustomCriteriaSet",
@@ -7042,8 +7356,10 @@ if (!class_exists("ProductTemplateService", false)) {
       "AudienceSegmentCriteria" => "AudienceSegmentCriteria",
       "Date" => "Date",
       "DateTime" => "DfpDateTime",
+      "DateTimeRangeTargetingError" => "DateTimeRangeTargetingError",
       "DateTimeValue" => "DateTimeValue",
       "DateValue" => "DateValue",
+      "DayPartTargetingError" => "DayPartTargetingError",
       "DeactivateProductTemplates" => "DeactivateProductTemplates",
       "DeviceCapability" => "DeviceCapability",
       "DeviceCapabilityTargeting" => "DeviceCapabilityTargeting",
@@ -7102,6 +7418,7 @@ if (!class_exists("ProductTemplateService", false)) {
       "StringLengthError" => "StringLengthError",
       "String_ValueMapEntry" => "String_ValueMapEntry",
       "Technology" => "Technology",
+      "TechnologyTargetingError" => "TechnologyTargetingError",
       "TextValue" => "TextValue",
       "TypeError" => "TypeError",
       "UniqueError" => "UniqueError",
@@ -7114,12 +7431,15 @@ if (!class_exists("ProductTemplateService", false)) {
       "BaseRateError.Reason" => "BaseRateErrorReason",
       "CollectionSizeError.Reason" => "CollectionSizeErrorReason",
       "CommonError.Reason" => "CommonErrorReason",
+      "ContentMetadataTargetingError.Reason" => "ContentMetadataTargetingErrorReason",
       "CreativeSizeType" => "CreativeSizeType",
       "CustomCriteria.ComparisonOperator" => "CustomCriteriaComparisonOperator",
       "CustomCriteriaSet.LogicalOperator" => "CustomCriteriaSetLogicalOperator",
       "CustomFieldValueError.Reason" => "CustomFieldValueErrorReason",
       "CustomTargetingError.Reason" => "CustomTargetingErrorReason",
       "AudienceSegmentCriteria.ComparisonOperator" => "AudienceSegmentCriteriaComparisonOperator",
+      "DateTimeRangeTargetingError.Reason" => "DateTimeRangeTargetingErrorReason",
+      "DayPartTargetingError.Reason" => "DayPartTargetingErrorReason",
       "EntityChildrenLimitReachedError.Reason" => "EntityChildrenLimitReachedErrorReason",
       "FeatureError.Reason" => "FeatureErrorReason",
       "FrequencyCapError.Reason" => "FrequencyCapErrorReason",
@@ -7147,6 +7467,7 @@ if (!class_exists("ProductTemplateService", false)) {
       "ServerError.Reason" => "ServerErrorReason",
       "StatementError.Reason" => "StatementErrorReason",
       "StringLengthError.Reason" => "StringLengthErrorReason",
+      "TechnologyTargetingError.Reason" => "TechnologyTargetingErrorReason",
       "TimeUnit" => "TimeUnit",
       "UserDomainTargetingError.Reason" => "UserDomainTargetingErrorReason",
       "createProductTemplates" => "CreateProductTemplates",

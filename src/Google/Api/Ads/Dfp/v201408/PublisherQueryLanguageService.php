@@ -1860,6 +1860,51 @@ if (!class_exists("Row", false)) {
   }
 }
 
+if (!class_exists("AudienceSegmentError", false)) {
+  /**
+   * Errors that could occur on audience segment related requests.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201408
+   */
+  class AudienceSegmentError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201408";
+    const XSI_TYPE = "AudienceSegmentError";
+
+    /**
+     * @access public
+     * @var tnsAudienceSegmentErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("ServerError", false)) {
   /**
    * Errors related to the server.
@@ -3458,6 +3503,39 @@ if (!class_exists("ReservationDetailsErrorReason", false)) {
   }
 }
 
+if (!class_exists("AudienceSegmentErrorReason", false)) {
+  /**
+   * Reason of the given {@link AudienceSegmentError}.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201408
+   */
+  class AudienceSegmentErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201408";
+    const XSI_TYPE = "AudienceSegmentError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("ServerErrorReason", false)) {
   /**
    * Describes reasons for server errors
@@ -4109,6 +4187,7 @@ if (!class_exists("PublisherQueryLanguageService", false)) {
       "ReservationDetailsError" => "ReservationDetailsError",
       "ResultSet" => "ResultSet",
       "Row" => "Row",
+      "AudienceSegmentError" => "AudienceSegmentError",
       "ServerError" => "ServerError",
       "SetValue" => "SetValue",
       "SoapRequestHeader" => "SoapRequestHeader",
@@ -4154,6 +4233,7 @@ if (!class_exists("PublisherQueryLanguageService", false)) {
       "RequiredNumberError.Reason" => "RequiredNumberErrorReason",
       "RequiredSizeError.Reason" => "RequiredSizeErrorReason",
       "ReservationDetailsError.Reason" => "ReservationDetailsErrorReason",
+      "AudienceSegmentError.Reason" => "AudienceSegmentErrorReason",
       "ServerError.Reason" => "ServerErrorReason",
       "StatementError.Reason" => "StatementErrorReason",
       "select" => "Select",

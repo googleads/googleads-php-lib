@@ -3,9 +3,6 @@
  * This example deletes a custom targeting key. To determine which custom
  * targeting keys exist, run GetAllCustomTargetingKeysAndValues.php.
  *
- * Tags: CustomTargetingService.getCustomTargetingKeysByStatement
- * Tags: CustomTargetingService.performCustomTargetingKeyAction
- *
  * PHP version 5
  *
  * Copyright 2014, Google Inc. All Rights Reserved.
@@ -28,7 +25,6 @@
  * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Vincent Tsao
  */
 error_reporting(E_STRICT | E_ALL);
 

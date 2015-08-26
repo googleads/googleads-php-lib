@@ -2,8 +2,6 @@
 /**
  * This example gets the current user.
  *
- * Tags: UserService.getCurrentUser
- *
  * PHP version 5
  *
  * Copyright 2013, Google Inc. All Rights Reserved.
@@ -26,7 +24,6 @@
  * @copyright  2013, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Eric Koleda
  */
 error_reporting(E_STRICT | E_ALL);
 

@@ -3,9 +3,6 @@
  * This example submits a proposal for approval. To determine which proposals
  * exist, run GetAllProposals.php.
  *
- * Tags: ProposalService.getProposalsByStatement
- * Tags: ProposalService.performProposalAction
- *
  * PHP version 5
  *
  * Copyright 2014, Google Inc. All Rights Reserved.
@@ -28,7 +25,6 @@
  * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Vincent Tsao
  */
 error_reporting(E_STRICT | E_ALL);
 

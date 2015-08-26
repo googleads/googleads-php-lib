@@ -7,10 +7,6 @@
  * settings, see
  * https://developers.google.com/adwords/api/docs/guides/migrate-to-extension-settings
  *
- * Tags: FeedService.query, FeedMappingService.query, FeedItemService.query
- * Tags: CampaignExtensionSettingService.mutate, CampaignFeedService.query
- * Tags: CampaignFeedService.mutate
- *
  * Copyright 2015, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -31,7 +27,6 @@
  * @copyright  2015, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Danial Klimkin
  */
 
 // Include the initialization file
@@ -151,7 +146,6 @@ function GetCampaignFeeds($user, $feedId, $placeholderId) {
           . 'CONTAINS_ANY[%d]', $feedId, $placeholderId));
   return $page->entries;
 }
-
 
 function GetFeedMapping($user, $feedId, $placeholderTypeId) {
   $feedMappingService =
