@@ -2888,6 +2888,51 @@ if (!class_exists("OperationAccessDenied", false)) {
   }
 }
 
+if (!class_exists("OperatorError", false)) {
+  /**
+   * Errors due to the use of unsupported operations.
+   * @package Google_Api_Ads_AdWords_v201506
+   * @subpackage v201506
+   */
+  class OperatorError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201506";
+    const XSI_TYPE = "OperatorError";
+
+    /**
+     * @access public
+     * @var tnsOperatorErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("OrderBy", false)) {
   /**
    * Specifies how the resulting information should be sorted.
@@ -6200,6 +6245,39 @@ if (!class_exists("Operator", false)) {
   }
 }
 
+if (!class_exists("OperatorErrorReason", false)) {
+  /**
+   * The reasons for the validation error.
+   * @package Google_Api_Ads_AdWords_v201506
+   * @subpackage v201506
+   */
+  class OperatorErrorReason {
+
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201506";
+    const XSI_TYPE = "OperatorError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("PagingErrorReason", false)) {
   /**
    * The reasons for errors when using pagination.
@@ -8129,6 +8207,7 @@ if (!class_exists("AdGroupAdService", false)) {
       "NullError" => "NullError",
       "Operation" => "Operation",
       "OperationAccessDenied" => "OperationAccessDenied",
+      "OperatorError" => "OperatorError",
       "OrderBy" => "OrderBy",
       "Page" => "Page",
       "Paging" => "Paging",
@@ -8201,6 +8280,7 @@ if (!class_exists("AdGroupAdService", false)) {
       "NullError.Reason" => "NullErrorReason",
       "OperationAccessDenied.Reason" => "OperationAccessDeniedReason",
       "Operator" => "Operator",
+      "OperatorError.Reason" => "OperatorErrorReason",
       "PagingError.Reason" => "PagingErrorReason",
       "Predicate.Operator" => "PredicateOperator",
       "QueryError.Reason" => "QueryErrorReason",

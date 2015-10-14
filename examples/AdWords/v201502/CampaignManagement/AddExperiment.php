@@ -36,8 +36,8 @@
 require_once dirname(dirname(__FILE__)) . '/init.php';
 
 // Enter parameters required by the code example.
-$campaignId = "INSERT_CAMPAIGN_ID_HERE";
-$adGroupId = "INSERT_AD_GROUP_ID_HERE";
+$campaignId = 'INSERT_CAMPAIGN_ID_HERE';
+$adGroupId = 'INSERT_AD_GROUP_ID_HERE';
 
 /**
  * Runs the example.

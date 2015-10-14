@@ -1,8 +1,9 @@
 <?php
 /**
- * This example creates a new account under an MCC account. Note: this example
- * must be run using the credentials of an MCC account, and by default the new
- * account will only be accessible via the parent MCC account.
+ * This example creates a new account under an AdWords manager account. Note:
+ * this example must be run using the credentials of an AdWords manager account,
+ * and by default the new account will only be accessible via the parent AdWords
+ * manager account.
  *
  * Restriction: adwords-only
  *

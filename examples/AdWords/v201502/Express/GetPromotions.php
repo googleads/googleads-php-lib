@@ -43,7 +43,9 @@ function GetPromotionsExample(AdWordsUser $user, $businessId) {
 
   // Create selector.
   $selector = new Selector();
-  $selector->fields = array('PromotionId', 'Name');
+  $selector->fields = array('PromotionId', 'Name', 'Status', 'DestinationUrl',
+      'CallTrackingEnabled', 'Budget', 'PromotionCriteria', 'RemainingBudget',
+      'Creatives', 'CampaignIds');
   $selector->ordering[] = new OrderBy('Name', 'ASCENDING');
 
   // Create paging controls.

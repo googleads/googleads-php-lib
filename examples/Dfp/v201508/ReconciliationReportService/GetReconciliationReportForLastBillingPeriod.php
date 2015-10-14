@@ -50,6 +50,10 @@ try {
   $reconciliationReportService =
       $user->GetService('ReconciliationReportService', 'v201508');
 
+  // Get the NetworkService.
+  $networkService = $user->GetService('NetworkService', 'v201508');
+  $network = $networkService->getCurrentNetwork();
+
   // Create a statement to select the last month's reconciliation report.
   $statementBuilder = new StatementBuilder();
   $statementBuilder->Where('startDate = :startDate')
@@ -59,7 +63,7 @@ try {
           'startDate',
           DateTimeUtils::ToString(DateTimeUtils::ToDfpDateTime(new DateTime(
               'first day of last month',
-              new DateTimeZone('America/New_York')
+              new DateTimeZone($network->timeZone)
           ))->date)
       );
 
@@ -89,7 +93,6 @@ try {
 
     $statementBuilder->IncreaseOffsetBy(StatementBuilder::SUGGESTED_PAGE_LIMIT);
   } while ($statementBuilder->GetOffset() < $totalResultSetSize);
-
   printf("Number of results found: %d\n", $totalResultSetSize);
 } catch (OAuth2Exception $e) {
   ExampleUtils::CheckForOAuth2Errors($e);

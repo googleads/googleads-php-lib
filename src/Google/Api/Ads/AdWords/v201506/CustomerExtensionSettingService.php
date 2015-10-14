@@ -122,55 +122,6 @@ if (!class_exists("CustomParameter", false)) {
   }
 }
 
-if (!class_exists("CustomParameters", false)) {
-  /**
-   * CustomParameters holds a list of CustomParameters to be treated as a map.
-   * It has a special field used to indicate that the current map should be cleared and replaced
-   * with this new map.
-   * @package Google_Api_Ads_AdWords_v201506
-   * @subpackage v201506
-   */
-  class CustomParameters {
-
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201506";
-    const XSI_TYPE = "CustomParameters";
-
-    /**
-     * @access public
-     * @var CustomParameter[]
-     */
-    public $parameters;
-
-    /**
-     * @access public
-     * @var boolean
-     */
-    public $doReplace;
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($parameters = null, $doReplace = null) {
-      $this->parameters = $parameters;
-      $this->doReplace = $doReplace;
-    }
-
-  }
-}
-
 if (!class_exists("DateRange", false)) {
   /**
    * Represents a range of dates that has either an upper or a lower bound.
@@ -786,6 +737,55 @@ if (!class_exists("UrlList", false)) {
 
     public function __construct($urls = null) {
       $this->urls = $urls;
+    }
+
+  }
+}
+
+if (!class_exists("CustomParameters", false)) {
+  /**
+   * CustomParameters holds a list of CustomParameters to be treated as a map.
+   * It has a special field used to indicate that the current map should be cleared and replaced
+   * with this new map.
+   * @package Google_Api_Ads_AdWords_v201506
+   * @subpackage v201506
+   */
+  class CustomParameters {
+
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201506";
+    const XSI_TYPE = "CustomParameters";
+
+    /**
+     * @access public
+     * @var CustomParameter[]
+     */
+    public $parameters;
+
+    /**
+     * @access public
+     * @var boolean
+     */
+    public $doReplace;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($parameters = null, $doReplace = null) {
+      $this->parameters = $parameters;
+      $this->doReplace = $doReplace;
     }
 
   }
@@ -2965,6 +2965,11 @@ if (!class_exists("CustomerExtensionSettingServiceMutate", false)) {
    * 
    * Applies the list of mutate operations (add, remove, and set).
    * 
+   * <p> Beginning in v201509, add and set operations are treated identically. Performing an add
+   * operation when there is an existing ExtensionSetting will cause the operation to be
+   * treated like a set operation. Performing a set operation when there is no existing
+   * ExtensionSetting will cause the operation to be treated like an add operation.
+   * 
    * @param operations The operations to apply. The same {@link CustomerExtensionSetting} cannot be
    * specified in more than one operation.
    * @return The changed {@link CustomerExtensionSetting}s.
@@ -4687,106 +4692,6 @@ if (!class_exists("UrlError", false)) {
   }
 }
 
-if (!class_exists("AppFeedItem", false)) {
-  /**
-   * Represents an App extension.
-   * @package Google_Api_Ads_AdWords_v201506
-   * @subpackage v201506
-   */
-  class AppFeedItem extends ExtensionFeedItem {
-
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201506";
-    const XSI_TYPE = "AppFeedItem";
-
-    /**
-     * @access public
-     * @var tnsAppFeedItemAppStore
-     */
-    public $appStore;
-
-    /**
-     * @access public
-     * @var string
-     */
-    public $appId;
-
-    /**
-     * @access public
-     * @var string
-     */
-    public $appLinkText;
-
-    /**
-     * @access public
-     * @var string
-     */
-    public $appUrl;
-
-    /**
-     * @access public
-     * @var UrlList
-     */
-    public $appFinalUrls;
-
-    /**
-     * @access public
-     * @var UrlList
-     */
-    public $appFinalMobileUrls;
-
-    /**
-     * @access public
-     * @var string
-     */
-    public $appTrackingUrlTemplate;
-
-    /**
-     * @access public
-     * @var CustomParameters
-     */
-    public $appUrlCustomParameters;
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($appStore = null, $appId = null, $appLinkText = null, $appUrl = null, $appFinalUrls = null, $appFinalMobileUrls = null, $appTrackingUrlTemplate = null, $appUrlCustomParameters = null, $feedId = null, $feedItemId = null, $status = null, $feedType = null, $startTime = null, $endTime = null, $devicePreference = null, $scheduling = null, $policyData = null, $ExtensionFeedItemType = null) {
-      parent::__construct();
-      $this->appStore = $appStore;
-      $this->appId = $appId;
-      $this->appLinkText = $appLinkText;
-      $this->appUrl = $appUrl;
-      $this->appFinalUrls = $appFinalUrls;
-      $this->appFinalMobileUrls = $appFinalMobileUrls;
-      $this->appTrackingUrlTemplate = $appTrackingUrlTemplate;
-      $this->appUrlCustomParameters = $appUrlCustomParameters;
-      $this->feedId = $feedId;
-      $this->feedItemId = $feedItemId;
-      $this->status = $status;
-      $this->feedType = $feedType;
-      $this->startTime = $startTime;
-      $this->endTime = $endTime;
-      $this->devicePreference = $devicePreference;
-      $this->scheduling = $scheduling;
-      $this->policyData = $policyData;
-      $this->ExtensionFeedItemType = $ExtensionFeedItemType;
-    }
-
-  }
-}
-
 if (!class_exists("DatabaseError", false)) {
   /**
    * Errors that are thrown due to a database access problem.
@@ -4975,6 +4880,106 @@ if (!class_exists("ApiException", false)) {
   }
 }
 
+if (!class_exists("AppFeedItem", false)) {
+  /**
+   * Represents an App extension.
+   * @package Google_Api_Ads_AdWords_v201506
+   * @subpackage v201506
+   */
+  class AppFeedItem extends ExtensionFeedItem {
+
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201506";
+    const XSI_TYPE = "AppFeedItem";
+
+    /**
+     * @access public
+     * @var tnsAppFeedItemAppStore
+     */
+    public $appStore;
+
+    /**
+     * @access public
+     * @var string
+     */
+    public $appId;
+
+    /**
+     * @access public
+     * @var string
+     */
+    public $appLinkText;
+
+    /**
+     * @access public
+     * @var string
+     */
+    public $appUrl;
+
+    /**
+     * @access public
+     * @var UrlList
+     */
+    public $appFinalUrls;
+
+    /**
+     * @access public
+     * @var UrlList
+     */
+    public $appFinalMobileUrls;
+
+    /**
+     * @access public
+     * @var string
+     */
+    public $appTrackingUrlTemplate;
+
+    /**
+     * @access public
+     * @var CustomParameters
+     */
+    public $appUrlCustomParameters;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($appStore = null, $appId = null, $appLinkText = null, $appUrl = null, $appFinalUrls = null, $appFinalMobileUrls = null, $appTrackingUrlTemplate = null, $appUrlCustomParameters = null, $feedId = null, $feedItemId = null, $status = null, $feedType = null, $startTime = null, $endTime = null, $devicePreference = null, $scheduling = null, $policyData = null, $ExtensionFeedItemType = null) {
+      parent::__construct();
+      $this->appStore = $appStore;
+      $this->appId = $appId;
+      $this->appLinkText = $appLinkText;
+      $this->appUrl = $appUrl;
+      $this->appFinalUrls = $appFinalUrls;
+      $this->appFinalMobileUrls = $appFinalMobileUrls;
+      $this->appTrackingUrlTemplate = $appTrackingUrlTemplate;
+      $this->appUrlCustomParameters = $appUrlCustomParameters;
+      $this->feedId = $feedId;
+      $this->feedItemId = $feedItemId;
+      $this->status = $status;
+      $this->feedType = $feedType;
+      $this->startTime = $startTime;
+      $this->endTime = $endTime;
+      $this->devicePreference = $devicePreference;
+      $this->scheduling = $scheduling;
+      $this->policyData = $policyData;
+      $this->ExtensionFeedItemType = $ExtensionFeedItemType;
+    }
+
+  }
+}
+
 if (!class_exists("CustomerExtensionSettingOperation", false)) {
   /**
    * Operation used to create or mutate a CustomerExtensionSetting.
@@ -5135,7 +5140,6 @@ if (!class_exists("CustomerExtensionSettingService", false)) {
       "ClientTermsError" => "ClientTermsError",
       "CollectionSizeError" => "CollectionSizeError",
       "CustomParameter" => "CustomParameter",
-      "CustomParameters" => "CustomParameters",
       "DateError" => "DateError",
       "DateRange" => "DateRange",
       "DisapprovalReason" => "DisapprovalReason",
@@ -5173,12 +5177,13 @@ if (!class_exists("CustomerExtensionSettingService", false)) {
       "StringLengthError" => "StringLengthError",
       "UrlError" => "UrlError",
       "UrlList" => "UrlList",
-      "AppFeedItem" => "AppFeedItem",
+      "CustomParameters" => "CustomParameters",
       "DatabaseError" => "DatabaseError",
       "PolicyData" => "PolicyData",
       "SitelinkFeedItem" => "SitelinkFeedItem",
       "ApiError" => "ApiError",
       "ApiException" => "ApiException",
+      "AppFeedItem" => "AppFeedItem",
       "ApplicationException" => "ApplicationException",
       "ExtensionFeedItem" => "ExtensionFeedItem",
       "ExtensionSetting" => "ExtensionSetting",
@@ -5274,6 +5279,11 @@ if (!class_exists("CustomerExtensionSettingService", false)) {
      * 
      * 
      * Applies the list of mutate operations (add, remove, and set).
+     * 
+     * <p> Beginning in v201509, add and set operations are treated identically. Performing an add
+     * operation when there is an existing ExtensionSetting will cause the operation to be
+     * treated like a set operation. Performing a set operation when there is no existing
+     * ExtensionSetting will cause the operation to be treated like an add operation.
      * 
      * @param operations The operations to apply. The same {@link CustomerExtensionSetting} cannot be
      * specified in more than one operation.

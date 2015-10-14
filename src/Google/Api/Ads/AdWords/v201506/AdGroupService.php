@@ -129,55 +129,6 @@ if (!class_exists("CustomParameter", false)) {
   }
 }
 
-if (!class_exists("CustomParameters", false)) {
-  /**
-   * CustomParameters holds a list of CustomParameters to be treated as a map.
-   * It has a special field used to indicate that the current map should be cleared and replaced
-   * with this new map.
-   * @package Google_Api_Ads_AdWords_v201506
-   * @subpackage v201506
-   */
-  class CustomParameters {
-
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201506";
-    const XSI_TYPE = "CustomParameters";
-
-    /**
-     * @access public
-     * @var CustomParameter[]
-     */
-    public $parameters;
-
-    /**
-     * @access public
-     * @var boolean
-     */
-    public $doReplace;
-
-    /**
-     * Gets the namesapce of this class
-     * @return the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($parameters = null, $doReplace = null) {
-      $this->parameters = $parameters;
-      $this->doReplace = $doReplace;
-    }
-
-  }
-}
-
 if (!class_exists("DateRange", false)) {
   /**
    * Represents a range of dates that has either an upper or a lower bound.
@@ -565,6 +516,8 @@ if (!class_exists("TargetingSettingDetail", false)) {
    * Specifies if criteria of this type group should be used to restrict
    * targeting, or if ads can serve anywhere and criteria are only used in
    * determining the bid.
+   * <p>For more information, see
+   * <a href="https://support.google.com/adwords/answer/6056342">Targeting Settings</a>.</p>
    * @package Google_Api_Ads_AdWords_v201506
    * @subpackage v201506
    */
@@ -676,6 +629,55 @@ if (!class_exists("ComparableValue", false)) {
 
     public function __construct($ComparableValueType = null) {
       $this->ComparableValueType = $ComparableValueType;
+    }
+
+  }
+}
+
+if (!class_exists("CustomParameters", false)) {
+  /**
+   * CustomParameters holds a list of CustomParameters to be treated as a map.
+   * It has a special field used to indicate that the current map should be cleared and replaced
+   * with this new map.
+   * @package Google_Api_Ads_AdWords_v201506
+   * @subpackage v201506
+   */
+  class CustomParameters {
+
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201506";
+    const XSI_TYPE = "CustomParameters";
+
+    /**
+     * @access public
+     * @var CustomParameter[]
+     */
+    public $parameters;
+
+    /**
+     * @access public
+     * @var boolean
+     */
+    public $doReplace;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($parameters = null, $doReplace = null) {
+      $this->parameters = $parameters;
+      $this->doReplace = $doReplace;
     }
 
   }
@@ -1556,7 +1558,7 @@ if (!class_exists("BiddingStrategyConfiguration", false)) {
    * <p>Bids can be set only on ad groups and ad group criteria. They cannot be set on campaigns.
    * Multiple bids can be set at the same time. Only the bids that apply to the effective
    * bidding strategy will be used. Effective bidding strategy is considered to be the directly
-   * attached strategy or inherited strategy from above level(s) when there?s no directly attached
+   * attached strategy or inherited strategy from above level(s) when there is no directly attached
    * strategy.
    * 
    * <p>For more information on flexible bidding, visit the
@@ -6625,7 +6627,7 @@ if (!class_exists("TargetRoasBiddingScheme", false)) {
    * Target Roas bidding strategy helps you maximize revenue while averaging a specific target
    * Return On Average Spend (ROAS).
    * 
-   * For example: If TargetRoas is 1.5, the strategy will create as much revenue as possible while
+   * <p>For example: If TargetRoas is 1.5, the strategy will create as much revenue as possible while
    * ensuring that every $1.00 of clicks provides $1.50 in conversion value.
    * 
    * <p>Note that campaigns must meet <a
@@ -7234,7 +7236,6 @@ if (!class_exists("AdGroupService", false)) {
       "ClientTermsError" => "ClientTermsError",
       "ConversionOptimizerBiddingScheme" => "ConversionOptimizerBiddingScheme",
       "CustomParameter" => "CustomParameter",
-      "CustomParameters" => "CustomParameters",
       "DateError" => "DateError",
       "DateRange" => "DateRange",
       "DistinctError" => "DistinctError",
@@ -7286,6 +7287,7 @@ if (!class_exists("AdGroupService", false)) {
       "CpaBid" => "CpaBid",
       "CpcBid" => "CpcBid",
       "CpmBid" => "CpmBid",
+      "CustomParameters" => "CustomParameters",
       "DatabaseError" => "DatabaseError",
       "PageOnePromotedBiddingScheme" => "PageOnePromotedBiddingScheme",
       "Setting" => "Setting",

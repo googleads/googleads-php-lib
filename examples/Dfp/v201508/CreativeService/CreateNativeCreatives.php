@@ -69,9 +69,6 @@ try {
   $nativeAppInstallCreative->destinationUrl =
       'https://play.google.com/store/apps/details?id=com.google.fpl.pie_noon';
   $nativeAppInstallCreative->creativeTemplateId = $nativeAppInstallTemplateId;
-
-  // Set the size and specify that this is a native creative.
-  $nativeAppInstallCreative->isNativeEligible = true;
   $nativeAppInstallCreative->size = $size;
 
   // Set the headline.
@@ -142,14 +139,6 @@ try {
   $deepLinkVariableValue->value = 'market://details?id=com.google.fpl.pie_noon';
   $nativeAppInstallCreative->creativeTemplateVariableValues[] =
       $deepLinkVariableValue;
-
-  // Set the fallback URL.
-  $fallbackUrlVariableValue = new UrlCreativeTemplateVariableValue();
-  $fallbackUrlVariableValue->uniqueName = 'FallbackclickactionURL';
-  $fallbackUrlVariableValue->value =
-      'https://play.google.com/store/apps/details?id=com.google.fpl.pie_noon';
-  $nativeAppInstallCreative->creativeTemplateVariableValues[] =
-      $fallbackUrlVariableValue;
 
   // Create the native creative on the server.
   $nativeCreatives =

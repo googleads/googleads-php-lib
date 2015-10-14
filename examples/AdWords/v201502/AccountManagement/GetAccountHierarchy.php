@@ -1,7 +1,7 @@
 <?php
 /**
  * This example gets the account hierarchy under the current account. Note: this
- * example must be run using the credentials of an MCC account.
+ * example must be run using the credentials of an AdWords manager account.
  *
  * Restriction: adwords-only
  *

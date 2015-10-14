@@ -1,3 +1,11 @@
+### 6.4.0
+
+AdWords:
+  - Added support and examples for v201509.
+
+Common:
+  - Fixed [issue #96](https://github.com/googleads/googleads-php-lib/issues/96).
+
 ### 6.3.0
 
 DFP:

@@ -39,17 +39,17 @@ $campaignId = 'INSERT_CAMPAIGN_ID_HERE';
  * @param string $campaignId the ID of the campaign to add the sitelinks to
  */
 function AddSitelinksUsingFeedsExample(AdWordsUser $user, $campaignId) {
-  $sitelinksData = CreateSiteLinksFeed($user);
-  $sitelinksData = CreateSiteLinksFeedItems($user, $sitelinksData);
-  CreateSiteLinksFeedMapping($user, $sitelinksData);
-  CreateSiteLinksCampaignFeed($user, $sitelinksData, $campaignId);
+  $sitelinksData = CreateSitelinksFeed($user);
+  $sitelinksData = CreateSitelinksFeedItems($user, $sitelinksData);
+  CreateSitelinksFeedMapping($user, $sitelinksData);
+  CreateSitelinksCampaignFeed($user, $sitelinksData, $campaignId);
 }
 
 /**
  * Creates the feed that holds the sitelinks data.
  * @param AdWordsUser $user the user to run the example with
  */
-function CreateSiteLinksFeed(AdWordsUser $user) {
+function CreateSitelinksFeed(AdWordsUser $user) {
   // Map that holds IDs associated to the feeds metadata.
   $sitelinksData = array();
 
@@ -72,7 +72,7 @@ function CreateSiteLinksFeed(AdWordsUser $user) {
 
   // Create the feed.
   $sitelinksFeed = new Feed();
-  $sitelinksFeed->name = 'Feed For Site Links';
+  $sitelinksFeed->name = 'Feed For Sitelinks';
   $sitelinksFeed->attributes = array($textAttribute, $finalUrlAttribute,
       $line1Attribute, $line2Attribute);
   $sitelinksFeed->origin = 'USER';
@@ -113,38 +113,39 @@ function CreateSiteLinksFeed(AdWordsUser $user) {
  * @param AdWordsUser $user the user to run the example with
  * @param map $sitelinksData IDs associated to created sitelinks feed metadata
  */
-function CreateSiteLinksFeedItems(AdWordsUser $user, $sitelinksData) {
+function CreateSitelinksFeedItems(AdWordsUser $user, $sitelinksData) {
   // Get the FeedItemService, which loads the required classes.
   $feedItemService = $user->GetService('FeedItemService', ADWORDS_VERSION);
 
   // Create operations to add FeedItems.
-  $home = NewSiteLinkFeedItemAddOperation($sitelinksData, 'Home',
+  $home = NewSitelinkFeedItemAddOperation($sitelinksData, 'Home',
       'http://www.example.com', 'Home line 1', 'Home line 2');
-  $stores = NewSiteLinkFeedItemAddOperation($sitelinksData, 'Stores',
+  $stores = NewSitelinkFeedItemAddOperation($sitelinksData, 'Stores',
       'http://www.example.com/stores', 'Stores line 1', 'Stores line 2');
-  $onSale = NewSiteLinkFeedItemAddOperation($sitelinksData, 'On Sale',
+  $onSale = NewSitelinkFeedItemAddOperation($sitelinksData, 'On Sale',
       'http://www.example.com/sale', 'On Sale line 1', 'On Sale line 2');
-  $support = NewSiteLinkFeedItemAddOperation($sitelinksData, 'Support',
+  $support = NewSitelinkFeedItemAddOperation($sitelinksData, 'Support',
       'http://www.example.com/support', 'Support line 1', 'Support line 2');
-  $products = NewSiteLinkFeedItemAddOperation($sitelinksData, 'Products',
+  $products = NewSitelinkFeedItemAddOperation($sitelinksData, 'Products',
       'http://www.example.com/products', 'Products line 1', 'Products line 2');
-  $aboutUs = NewSiteLinkFeedItemAddOperation($sitelinksData, 'About Us',
+  $aboutUs = NewSitelinkFeedItemAddOperation($sitelinksData, 'About Us',
       'http://www.example.com/about', 'About Us line 1', 'About Us line 2');
 
   $operations = array($home, $stores, $onSale, $support, $products, $aboutUs);
 
   $result = $feedItemService->mutate($operations);
-  $sitelinksData['siteLinkFeedItemIds'] = array();
+  $sitelinksData['sitelinkFeedItemIds'] = array();
 
   foreach ($result->value as $feedItem) {
     printf("FeedItem with feedItemId %d was added.\n", $feedItem->feedItemId);
-    $sitelinksData['siteLinkFeedItemIds'][] = $feedItem->feedItemId;
+    $sitelinksData['sitelinkFeedItemIds'][] = $feedItem->feedItemId;
   }
 
   return $sitelinksData;
 }
 
-// See the Placeholder reference page for a list of all the placeholder types and fields.
+// See the Placeholder reference page for a list of all the placeholder types
+// and fields.
 // https://developers.google.com/adwords/api/docs/appendix/placeholders.html
 define('PLACEHOLDER_SITELINKS', 1);
 define('PLACEHOLDER_FIELD_SITELINK_LINK_TEXT', 1);
@@ -157,7 +158,7 @@ define('PLACEHOLDER_FIELD_LINE_2_TEXT', 4);
  * @param AdWordsUser $user the user to run the example with
  * @param map $sitelinksData IDs associated to created sitelinks feed metadata
  */
-function CreateSiteLinksFeedMapping(AdWordsUser $user, $sitelinksData) {
+function CreateSitelinksFeedMapping(AdWordsUser $user, $sitelinksData) {
   // Get the FeedMappingService, which loads the required classes.
   $feedMappingService = $user->GetService('FeedMappingService',
       ADWORDS_VERSION);
@@ -208,19 +209,19 @@ function CreateSiteLinksFeedMapping(AdWordsUser $user, $sitelinksData) {
  * @param map $sitelinksData IDs associated to created sitelinks feed metadata
  * @param string $campaignId the ID of the campaign to add the sitelinks to
  */
-function CreateSiteLinksCampaignFeed(AdWordsUser $user, $sitelinksData,
+function CreateSitelinksCampaignFeed(AdWordsUser $user, $sitelinksData,
     $campaignId) {
   // Get the CampaignFeedService, which loads the required classes.
   $campaignFeedService = $user->GetService('CampaignFeedService',
       ADWORDS_VERSION);
   $matchingFunctionString = sprintf(
       'AND( IN(FEED_ITEM_ID, {%s}), EQUALS(CONTEXT.DEVICE, "Mobile") )',
-      implode(',', $sitelinksData['siteLinkFeedItemIds']));
-  
+      implode(',', $sitelinksData['sitelinkFeedItemIds']));
+
   $campaignFeed = new CampaignFeed();
   $campaignFeed->feedId = $sitelinksData['sitelinksFeedId'];
   $campaignFeed->campaignId = $campaignId;
-  
+
   $matchingFunction = new FeedFunction();
   $matchingFunction->functionString = $matchingFunctionString;
   $campaignFeed->matchingFunction = $matchingFunction;
@@ -248,7 +249,7 @@ function CreateSiteLinksCampaignFeed(AdWordsUser $user, $sitelinksData,
  * @param string $text text of the sitelink
  * @param string $finalUrl URL of the sitelink
  */
-function NewSiteLinkFeedItemAddOperation($sitelinksData, $text, $finalUrl,
+function NewSitelinkFeedItemAddOperation($sitelinksData, $text, $finalUrl,
     $line1, $line2) {
   // Create the FeedItemAttributeValues for our text values.
   $linkTextAttributeValue = new FeedItemAttributeValue();

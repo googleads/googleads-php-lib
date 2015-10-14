@@ -60,7 +60,7 @@ try {
   // include all ad units in the network.
   $statementBuilder = new StatementBuilder();
   $statementBuilder->Where('PARENT_AD_UNIT_ID = :parentAdUnitId')
-      ->WithBindVariableValue('parentAdUnitId', intval($rootAdUnitId));
+      ->WithBindVariableValue('parentAdUnitId', floatval($rootAdUnitId));
 
   // Create report query.
   $reportQuery = new ReportQuery();

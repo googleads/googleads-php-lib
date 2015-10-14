@@ -185,7 +185,7 @@ class AdWordsUser extends AdsUser {
 
   /**
    * Gets the service by its service name and group.
-   * @param $serviceName the service name
+   * @param string $serviceName the service name
    * @param string $version the version of the service to get. If
    *     <var>null</var>, then the default version will be used
    * @param string $server the server to make the request to. If

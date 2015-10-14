@@ -160,7 +160,7 @@ function AddGoogleMyBusinessLocationExtensions(
 
   // OPTIONAL: Create a CampaignFeed to specify which FeedItems to use at the
   // Campaign level.  This will be similar to the CampaignFeed in the
-  // AddSiteLinks example, except you can also filter based on the business
+  // AddSitelinks example, except you can also filter based on the business
   // name and category of each FeedItem by using a FeedAttributeOperand in
   // your matching function.
 

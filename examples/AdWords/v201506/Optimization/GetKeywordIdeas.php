@@ -79,8 +79,12 @@ function GetKeywordIdeasExample(AdWordsUser $user) {
         $keyword = $data['KEYWORD_TEXT']->value;
         $search_volume = isset($data['SEARCH_VOLUME']->value)
             ? $data['SEARCH_VOLUME']->value : 0;
-        $categoryIds =
-            implode(', ', $data['CATEGORY_PRODUCTS_AND_SERVICES']->value);
+        if ($data['CATEGORY_PRODUCTS_AND_SERVICES']->value === null) {
+          $categoryIds = '';
+        } else {
+          $categoryIds =
+              implode(', ', $data['CATEGORY_PRODUCTS_AND_SERVICES']->value);
+        }
         printf("Keyword idea with text '%s', category IDs (%s) and average "
             . "monthly search volume '%s' was found.\n",
             $keyword, $categoryIds, $search_volume);

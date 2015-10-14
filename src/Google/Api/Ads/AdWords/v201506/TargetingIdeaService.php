@@ -5661,13 +5661,6 @@ if (!class_exists("SearchParameter", false)) {
    * <li>{@link SearchVolumeSearchParameter}</li>
    * <li>{@link SeedAdGroupIdSearchParameter}</li>
    * </ul><p>
-   * <p><b>{@link IdeaType} PLACEMENT supports following {@link SearchParameter}s:</b><br/>
-   * <ul>
-   * <li>{@link LanguageSearchParameter}</li>
-   * <li>{@link LocationSearchParameter}</li>
-   * <li>{@link RelatedToQuerySearchParameter}</li>
-   * <li>{@link RelatedToUrlSearchParameter}</li>
-   * </ul><p>
    * @package Google_Api_Ads_AdWords_v201506
    * @subpackage v201506
    */
@@ -6325,17 +6318,6 @@ if (!class_exists("AttributeType", false)) {
    * <li>{@link #KEYWORD_TEXT}</li>
    * <li>{@link #SEARCH_VOLUME}</li>
    * <li>{@link #TARGETED_MONTHLY_SEARCHES}</li>
-   * </ul>
-   * <p><b>{@link IdeaType} PLACEMENT supports the following {@link AttributeType}s:</b><br/>
-   * <ul><li>{@link #AD_TYPE_SPEC}</li>
-   * <li>{@link #APPROX_CONTENT_IMPRESSIONS_PER_DAY}</li>
-   * <li>{@link #CRITERION}</li>
-   * <li>{@link #IDEA_TYPE}</li>
-   * <li>{@link #IN_STREAM_AD_INFO}</li>
-   * <li>{@link #PLACEMENT_CATEGORY}</li>
-   * <li>{@link #PLACEMENT_NAME}</li>
-   * <li>{@link #PLACEMENT_TYPE}</li>
-   * <li>{@link #SAMPLE_URL}</li>
    * </ul>
    * @package Google_Api_Ads_AdWords_v201506
    * @subpackage v201506
@@ -7254,7 +7236,6 @@ if (!class_exists("CategoryProductsAndServicesSearchParameter", false)) {
    * A {@link SearchParameter} for {@code KEYWORD} {@link IdeaType}s that
    * sets a keyword category that all search results should belong to.
    * Uses the newer "Products and Services" taxonomy.
-   * <p>This search parameter can be used in bulk keyword requests through the {@link com.google.ads.api.services.targetingideas.TargetingIdeaService#getBulkKeywordIdeas(TargetingIdeaSelector)} method.
    * <p>This element is supported by following {@link IdeaType}s: KEYWORD.
    * <p>This element is supported by following {@link RequestType}s: IDEAS.
    * @package Google_Api_Ads_AdWords_v201506
@@ -7454,8 +7435,7 @@ if (!class_exists("LanguageSearchParameter", false)) {
    * {@code LanguageSearchParameter} or have unknown language will be filtered
    * out in the response. To avoid filtering, do not include
    * {@code LanguageSearchParameter} in the request.
-   * <p>This search parameter can be used in bulk keyword requests through the {@link com.google.ads.api.services.targetingideas.TargetingIdeaService#getBulkKeywordIdeas(TargetingIdeaSelector)} method. It must be single-valued when used in a call to that method.
-   * <p>This element is supported by following {@link IdeaType}s: KEYWORD, PLACEMENT.
+   * <p>This element is supported by following {@link IdeaType}s: KEYWORD.
    * <p>This element is supported by following {@link RequestType}s: IDEAS, STATS.
    * @package Google_Api_Ads_AdWords_v201506
    * @subpackage v201506
@@ -7508,8 +7488,7 @@ if (!class_exists("LocationSearchParameter", false)) {
    * 
    * <p>The service allows up to 10 locations to be targeted for KEYWORD requests and 50 locations
    * for PLACEMENT requests.
-   * <p>This search parameter can be used in bulk keyword requests through the {@link com.google.ads.api.services.targetingideas.TargetingIdeaService#getBulkKeywordIdeas(TargetingIdeaSelector)} method. It must be single-valued when used in a call to that method.
-   * <p>This element is supported by following {@link IdeaType}s: KEYWORD, PLACEMENT.
+   * <p>This element is supported by following {@link IdeaType}s: KEYWORD.
    * <p>This element is supported by following {@link RequestType}s: IDEAS, STATS.
    * @package Google_Api_Ads_AdWords_v201506
    * @subpackage v201506
@@ -7602,8 +7581,7 @@ if (!class_exists("NetworkSearchParameter", false)) {
 if (!class_exists("RelatedToQuerySearchParameter", false)) {
   /**
    * A {@link SearchParameter} for a query of {@code String}s.
-   * <p>This search parameter can be used in bulk keyword requests through the {@link com.google.ads.api.services.targetingideas.TargetingIdeaService#getBulkKeywordIdeas(TargetingIdeaSelector)} method.
-   * <p>This element is supported by following {@link IdeaType}s: KEYWORD, PLACEMENT.
+   * <p>This element is supported by following {@link IdeaType}s: KEYWORD.
    * <p>This element is supported by following {@link RequestType}s: IDEAS, STATS.
    * @package Google_Api_Ads_AdWords_v201506
    * @subpackage v201506
@@ -7649,8 +7627,7 @@ if (!class_exists("RelatedToUrlSearchParameter", false)) {
    * A {@link SearchParameter} that specifies a set of URLs that results should
    * in some way be related too. For example, keyword results would be
    * similar to content keywords found on the related URLs.
-   * <p>This search parameter can be used in bulk keyword requests through the {@link com.google.ads.api.services.targetingideas.TargetingIdeaService#getBulkKeywordIdeas(TargetingIdeaSelector)} method. It must be single-valued when used in a call to that method.
-   * <p>This element is supported by following {@link IdeaType}s: KEYWORD, PLACEMENT.
+   * <p>This element is supported by following {@link IdeaType}s: KEYWORD.
    * <p>This element is supported by following {@link RequestType}s: IDEAS, STATS.
    * @package Google_Api_Ads_AdWords_v201506
    * @subpackage v201506

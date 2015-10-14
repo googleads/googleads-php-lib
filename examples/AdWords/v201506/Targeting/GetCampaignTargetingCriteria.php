@@ -51,8 +51,7 @@ function GetCampaignTargetingCriteriaExample(AdWordsUser $user, $campaignId) {
       new Predicate('CampaignId', 'IN', array($campaignId));
   $selector->predicates[] = new Predicate('CriteriaType', 'IN',
       array('LANGUAGE', 'LOCATION', 'AGE_RANGE', 'CARRIER',
-          'OPERATING_SYSTEM_VERSION', 'GENDER', 'POLYGON', 'PROXIMITY',
-          'PLATFORM'));
+          'OPERATING_SYSTEM_VERSION', 'GENDER', 'PROXIMITY', 'PLATFORM'));
 
   // Create paging controls.
   $selector->paging = new Paging(0, AdWordsConstants::RECOMMENDED_PAGE_SIZE);

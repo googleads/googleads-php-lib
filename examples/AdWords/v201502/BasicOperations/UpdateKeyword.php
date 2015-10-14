@@ -67,8 +67,8 @@ function UpdateKeywordExample(AdWordsUser $user, $adGroupId, $criterionId) {
 
   // Display result.
   $adGroupCriterion = $result->value[0];
-  printf("Keyword with ID '%s' has updated destination URL '%s'.\n",
-      $adGroupCriterion->criterion->id, $adGroupCriterion->destinationUrl);
+  printf("Keyword with ID '%s' has updated final URL '%s'.\n",
+      $adGroupCriterion->criterion->id, $adGroupCriterion->finalUrls->urls[0]);
 }
 
 // Don't run the example if the file is being included.
