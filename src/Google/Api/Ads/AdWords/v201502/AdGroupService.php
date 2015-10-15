@@ -7348,7 +7348,7 @@ if (!class_exists("AdGroupService", false)) {
      * Returns a list of all the ad groups specified by the selector
      * from the target customer's account.
      * 
-     * @param serviceSelector The selector specifying the {@link AdGroup}s to return.
+     * @param $serviceSelector \Selector The selector specifying the {@link AdGroup}s to return.
      * @return List of adgroups identified by the selector.
      * @throws ApiException when there is at least one error with the request.
      */
