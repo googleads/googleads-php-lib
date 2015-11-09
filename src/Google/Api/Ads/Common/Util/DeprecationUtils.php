@@ -26,8 +26,7 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
-require_once 'Google/Api/Ads/Common/Lib/AdsUser.php';
-require_once 'Google/Api/Ads/Common/Lib/ServiceException.php';
+require_once 'Google/Api/Ads/Common/Util/Logger.php';
 
 /**
  * A collection of utility methods for logging or throwing errors related to the
@@ -36,29 +35,6 @@ require_once 'Google/Api/Ads/Common/Lib/ServiceException.php';
  * @subpackage Util
  */
 abstract class DeprecationUtils {
-
-  /**
-   * Checks to see if skipReportHeader, skipColumnHeader, skipReportSummary
-   * or includeZeroImpressions can be used for AdWords reports.
-   * Throws an error if it cannot be used.
-   *
-   * @param string $header skipReportHeader, skipColumnHeader,
-   *    skipReportSummary, includeZeroImpressions
-   * @param string $minimumVersion the minimum API version that supports
-   *    skipReportHeader, skipColumnHeader, skipReportSummary,
-   *    includeZeroImpressions
-   * @param string $requestedVersion the API version being used
-   * @throws ServiceException if the requested version does not support
-   *     skipReportHeader, skipColumnHeader, skipReportSummary,
-   *     includeZeroImpressions
-   */
-  public static function CheckUsingReportHeadersWithUnsupportedVersion(
-      $header, $minimumVersion, $requestedVersion) {
-    if ($requestedVersion < $minimumVersion) {
-      throw new ServiceException(sprintf("%s is not supported "
-          . "in version %s.", $header, $requestedVersion));
-    }
-  }
 
   /**
    * Logs an error message indicating that the specified method is deprecated.

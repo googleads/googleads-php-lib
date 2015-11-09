@@ -43,16 +43,20 @@ abstract class OAuth2Handler {
   const ACCESS_ENDPOINT = 'https://accounts.google.com/o/oauth2/token';
 
   private $server;
-  protected $scope;
+  private $scopes;
 
   /**
    * Constructor.
    *
    * @param string $server the auth server to make OAuth2 request against
    */
-  public function __construct($server = null, $scope = null) {
+  public function __construct($server = null, $scopes = null) {
     $this->server = $server;
-    $this->scope = $scope;
+    if ($scopes === null) {
+      $this->scopes = array();
+    } else {
+      $this->scopes = $scopes;
+    }
   }
 
   /**
@@ -75,11 +79,12 @@ abstract class OAuth2Handler {
     $redirectUri = is_null($redirectUri) ?
         self::DEFAULT_REDIRECT_URI : $redirectUri;
 
+    $scopes = implode(' ', $this->scopes);
     $params = array_merge($params, array(
         'response_type' => 'code',
         'client_id' => $credentials['client_id'],
         'redirect_uri' => $redirectUri,
-        'scope' => $this->scope,
+        'scope' => $scopes,
         'access_type' => $offline ? 'offline' : 'online'
     ));
     return $this->GetAuthorizeEndpoint($params);
@@ -265,6 +270,23 @@ abstract class OAuth2Handler {
     }
     return $endpoint;
   }
+
+  /**
+   * Gets OAuth2 scopes.
+   * @return array the list of OAuth2 scopes
+   */
+  public function GetScopes() {
+    return $this->scopes;
+  }
+
+  /**
+   * Sets OAuth2 scopes.
+   * @param array the list of OAuth2 scopes
+   */
+  public function SetScopes($scopes) {
+    $this->scopes = $scopes;
+  }
+
 }
 
 /**

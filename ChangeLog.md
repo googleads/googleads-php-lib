@@ -1,3 +1,13 @@
+### 6.5.0
+
+AdWords:
+  - Added support for additional OAuth2 scopes.
+  - Removed support and examples for v201502.
+    See the [deprecation schedule](https://developers.google.com/adwords/api/docs/sunset-dates) for more information.
+
+DFP:
+  - Added support for additional OAuth2 scopes.
+
 ### 6.4.0
 
 AdWords:

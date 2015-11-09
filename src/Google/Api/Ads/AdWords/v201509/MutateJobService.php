@@ -9488,7 +9488,7 @@ if (!class_exists("PolicyViolationKey", false)) {
 if (!class_exists("ProductAd", false)) {
   /**
    * Represents a product ad (known as a <a href=
-   * "//support.google.com/adwords/bin/answer.py?answer=2456103">product
+   * "//support.google.com/adwords/answer/2456103">product
    * listing ad</a> in the AdWords user interface). A product ad displays
    * product data (managed using the Google Merchant Center) that is
    * pulled from the Google base product feed specified in the parent campaign's
@@ -9792,7 +9792,7 @@ if (!class_exists("ProductType", false)) {
   /**
    * One element of a product type string at a certain level. Top-level product types are at level 1,
    * their children at level 2, and so on. We currently support up to 5 levels. The user must specify
-   * a dimension type that indicates the level of the product type. All cases of the the same
+   * a dimension type that indicates the level of the product type. All cases of the same
    * subdivision must have the same dimension type (product type level).
    * @package Google_Api_Ads_AdWords_v201509
    * @subpackage v201509
@@ -11329,7 +11329,7 @@ if (!class_exists("TargetCpaBiddingScheme", false)) {
    * average CPA target.
    * 
    * <p>Note that campaigns must meet <a
-   * href="//support.google.com/adwords/bin/answer.py?answer=2471188">specific
+   * href="//support.google.com/adwords/answer/2471188">specific
    * eligibility requirements</a> before they can use the <code>TargetCpaBiddingScheme</code>
    * bidding strategy.
    * <span class="constraint AdxEnabled">This is disabled for AdX.</span>
@@ -11519,7 +11519,7 @@ if (!class_exists("TargetRoasBiddingScheme", false)) {
    * ensuring that every $1.00 of clicks provides $1.50 in conversion value.
    * 
    * <p>Note that campaigns must meet <a
-   * href="//support.google.com/adwords/bin/answer.py?answer=2471188">specific
+   * href="//support.google.com/adwords/answer/2471188">specific
    * eligibility requirements</a> before they can use the <code>TargetRoasBiddingScheme</code>
    * bidding strategy.
    * <span class="constraint AdxEnabled">This is disabled for AdX.</span>
@@ -19933,7 +19933,7 @@ if (!class_exists("ProductBiddingCategory", false)) {
   /**
    * One element of a bidding category at a certain level. Top-level categories are at level 1,
    * their children at level 2, and so on. We currently support up to 5 levels. The user must specify
-   * a dimension type that indicates the level of the category. All cases of the the same subdivision
+   * a dimension type that indicates the level of the category. All cases of the same subdivision
    * must have the same dimension type (category level).
    * @package Google_Api_Ads_AdWords_v201509
    * @subpackage v201509

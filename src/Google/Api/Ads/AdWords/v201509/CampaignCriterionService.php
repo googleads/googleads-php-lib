@@ -1761,7 +1761,7 @@ if (!class_exists("MobileApplication", false)) {
 if (!class_exists("MobileDevice", false)) {
   /**
    * Represents a Mobile Device Criterion.
-   * <p>A criterion of this type can only be created using an ID. A criterion of this type is only targetable.
+   * <p>A criterion of this type can only be created using an ID. A criterion of this type can be either targeted or excluded.
    * <span class="constraint AdxEnabled">This is enabled for AdX.</span>
    * @package Google_Api_Ads_AdWords_v201509
    * @subpackage v201509
@@ -2890,7 +2890,7 @@ if (!class_exists("ProductType", false)) {
   /**
    * One element of a product type string at a certain level. Top-level product types are at level 1,
    * their children at level 2, and so on. We currently support up to 5 levels. The user must specify
-   * a dimension type that indicates the level of the product type. All cases of the the same
+   * a dimension type that indicates the level of the product type. All cases of the same
    * subdivision must have the same dimension type (product type level).
    * @package Google_Api_Ads_AdWords_v201509
    * @subpackage v201509
@@ -7312,7 +7312,7 @@ if (!class_exists("ProductBiddingCategory", false)) {
   /**
    * One element of a bidding category at a certain level. Top-level categories are at level 1,
    * their children at level 2, and so on. We currently support up to 5 levels. The user must specify
-   * a dimension type that indicates the level of the category. All cases of the the same subdivision
+   * a dimension type that indicates the level of the category. All cases of the same subdivision
    * must have the same dimension type (category level).
    * @package Google_Api_Ads_AdWords_v201509
    * @subpackage v201509

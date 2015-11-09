@@ -27,7 +27,6 @@
  */
 require_once dirname(__FILE__) . '/../Lib/AdWordsUser.php';
 require_once dirname(__FILE__) . '/../../Common/Util/CurlUtils.php';
-require_once dirname(__FILE__) . '/../../Common/Util/DeprecationUtils.php';
 require_once dirname(__FILE__) . '/../../Common/Util/Logger.php';
 require_once dirname(__FILE__) . '/../../Common/Util/XmlUtils.php';
 
@@ -37,9 +36,6 @@ require_once dirname(__FILE__) . '/../../Common/Util/XmlUtils.php';
  * @subpackage Util
  */
 class ReportUtils {
-
-  const MINIMUM_SKIP_COLUMN_HEADER_VERSION = "v201502";
-  const MINIMUM_INCLUDE_ZERO_IMPRESSIONS_HEADER_VERSION = "v201506";
 
   /**
    * The log name to use when logging requests.
@@ -334,8 +330,6 @@ class ReportUtils {
           $options['skipReportHeader'] ? 'true' : 'false';
     }
     if (isset($options['skipColumnHeader'])) {
-      DeprecationUtils::CheckUsingReportHeadersWithUnsupportedVersion(
-        'skipColumnHeader', self::MINIMUM_SKIP_COLUMN_HEADER_VERSION, $version);
       $headers['skipColumnHeader'] =
           $options['skipColumnHeader'] ? 'true' : 'false';
     }
@@ -344,9 +338,6 @@ class ReportUtils {
           $options['skipReportSummary'] ? 'true' : 'false';
     }
     if (isset($options['includeZeroImpressions'])) {
-      DeprecationUtils::CheckUsingReportHeadersWithUnsupportedVersion(
-        'includeZeroImpressions',
-        self::MINIMUM_INCLUDE_ZERO_IMPRESSIONS_HEADER_VERSION, $version);
       $headers['includeZeroImpressions'] =
           $options['includeZeroImpressions'] ? 'true' : 'false';
     }

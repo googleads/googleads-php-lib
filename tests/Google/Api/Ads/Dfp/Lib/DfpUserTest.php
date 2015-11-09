@@ -38,7 +38,9 @@ class DfpUserTest extends PHPUnit_Framework_TestCase {
   protected function setUp() {
     $this->authIniFilePath = tempnam(sys_get_temp_dir(), 'auth.ini.');
     $this->mockOAuth2Credential = array('client_id' => 'cid',
-        'client_secret' => 'csecret', 'refresh_token' => 'token');
+      'client_secret' => 'csecret', 'refresh_token' => 'token',
+      'oAuth2AdditionalScopes' => 'TEST_SCOPE1,TEST_SCOPE2'
+    );
   }
 
   /**
@@ -100,6 +102,18 @@ class DfpUserTest extends PHPUnit_Framework_TestCase {
     $user = new DfpUser($this->authIniFilePath, 'INSERT_APPLICATION_NAME_HERE',
         'networkCode', null, $this->mockOAuth2Credential);
     $user->ValidateUser();
+  }
+
+  /**
+   * Tests that additional scopes are added into DfpUser object.
+   *
+   * @covers DfpUser::__construct
+   */
+  public function testOAuth2AdditionalScopes() {
+    $user = new DfpUser($this->authIniFilePath, 'INSERT_APPLICATION_NAME_HERE',
+        'networkCode', null, $this->mockOAuth2Credential);
+    $this->assertEquals($user->GetScopes(),
+        array('TEST_SCOPE1','TEST_SCOPE2',DfpUser::OAUTH2_SCOPE));
   }
 }
 

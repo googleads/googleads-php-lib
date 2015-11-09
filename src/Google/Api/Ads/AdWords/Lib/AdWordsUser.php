@@ -29,7 +29,6 @@
  */
 require_once dirname(__FILE__) . '/../../Common/Lib/AdsUser.php';
 require_once dirname(__FILE__) . '/../../Common/Util/ApiPropertiesUtils.php';
-require_once dirname(__FILE__) . '/../../Common/Util/DeprecationUtils.php';
 require_once dirname(__FILE__) . '/../Util/ReportUtils.php';
 require_once 'AdWordsSoapClientFactory.php';
 require_once 'AdWordsConstants.php';
@@ -58,6 +57,7 @@ class AdWordsUser extends AdsUser {
   private $libName;
 
   private $userAgent;
+  private $scopes;
 
   /**
    * The AdWordsUser constructor.
@@ -121,6 +121,12 @@ class AdWordsUser extends AdsUser {
         'clientCustomerId', $authenticationIni);
     $oauth2Info = $this->GetAuthVarValue($oauth2Info, 'OAUTH2',
         $authenticationIni);
+    if (isset($oauth2Info['oAuth2AdditionalScopes'])) {
+      $scopes = explode(',', $oauth2Info['oAuth2AdditionalScopes']);
+    } else {
+      $scopes = array();
+    }
+    $scopes[] = self::OAUTH2_SCOPE;
 
     $clientId = $this->GetAuthVarValue(null, 'clientId', $authenticationIni);
     if ($clientId !== null) {
@@ -134,6 +140,7 @@ class AdWordsUser extends AdsUser {
     $this->SetClientLibraryUserAgent($userAgent);
     $this->SetClientCustomerId($clientCustomerId);
     $this->SetDeveloperToken($developerToken);
+    $this->SetScopes($scopes);
 
     if ($settingsIniPath === null) {
       $settingsIniPath = dirname(__FILE__) . '/../settings.ini';
@@ -332,6 +339,22 @@ class AdWordsUser extends AdsUser {
   }
 
   /**
+   * Gets OAuth2 scopes.
+   * @return array the list of OAuth2 scopes
+   */
+  public function GetScopes() {
+    return $this->scopes;
+  }
+
+  /**
+   * Sets OAuth2 scopes.
+   * @param array the list of OAuth2 scopes
+   */
+  public function SetScopes($scopes) {
+    $this->scopes = $scopes;
+  }
+
+  /**
    * Validates the user and throws a validation error if there are any errors.
    * @throws ValidationException if there are any validation errors
    */
@@ -364,7 +387,7 @@ class AdWordsUser extends AdsUser {
    */
   public function GetDefaultOAuth2Handler($className = null) {
     $className = !empty($className) ? $className : self::OAUTH2_HANDLER_CLASS;
-    return new $className($this->GetAuthServer(), self::OAUTH2_SCOPE);
+    return new $className($this->GetAuthServer(), $this->GetScopes());
   }
 
   /**
