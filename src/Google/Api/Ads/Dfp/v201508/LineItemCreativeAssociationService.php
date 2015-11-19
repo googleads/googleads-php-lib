@@ -1811,6 +1811,50 @@ if (!class_exists("NullError", false)) {
   }
 }
 
+if (!class_exists("OrderError", false)) {
+  /**
+   * Lists all errors associated with orders.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201508
+   */
+  class OrderError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201508";
+    const XSI_TYPE = "OrderError";
+
+    /**
+     * @access public
+     * @var tnsOrderErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+    }
+
+  }
+}
+
 if (!class_exists("ParseError", false)) {
   /**
    * Lists errors related to parsing.
@@ -4007,6 +4051,39 @@ if (!class_exists("NullErrorReason", false)) {
   }
 }
 
+if (!class_exists("OrderErrorReason", false)) {
+  /**
+   * The reasons for the target error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201508
+   */
+  class OrderErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201508";
+    const XSI_TYPE = "OrderError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("ParseErrorReason", false)) {
   /**
    * The reasons for the target error.
@@ -5638,6 +5715,7 @@ if (!class_exists("LineItemCreativeAssociationService", false)) {
       "NotNullError" => "NotNullError",
       "NullError" => "NullError",
       "NumberValue" => "NumberValue",
+      "OrderError" => "OrderError",
       "ParseError" => "ParseError",
       "PermissionError" => "PermissionError",
       "PublisherQueryLanguageContextError" => "PublisherQueryLanguageContextError",
@@ -5696,6 +5774,7 @@ if (!class_exists("LineItemCreativeAssociationService", false)) {
       "LineItemError.Reason" => "LineItemErrorReason",
       "NotNullError.Reason" => "NotNullErrorReason",
       "NullError.Reason" => "NullErrorReason",
+      "OrderError.Reason" => "OrderErrorReason",
       "ParseError.Reason" => "ParseErrorReason",
       "PermissionError.Reason" => "PermissionErrorReason",
       "PublisherQueryLanguageContextError.Reason" => "PublisherQueryLanguageContextErrorReason",

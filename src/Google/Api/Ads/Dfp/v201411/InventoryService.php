@@ -1914,6 +1914,51 @@ if (!class_exists("AdUnitTypeError", false)) {
   }
 }
 
+if (!class_exists("LabelEntityAssociationError", false)) {
+  /**
+   * Errors specific to creating label entity associations.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201411
+   */
+  class LabelEntityAssociationError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201411";
+    const XSI_TYPE = "LabelEntityAssociationError";
+
+    /**
+     * @access public
+     * @var tnsLabelEntityAssociationErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("LabelFrequencyCap", false)) {
   /**
    * A {@code LabelFrequencyCap} assigns a frequency cap to a label.  The
@@ -4067,6 +4112,39 @@ if (!class_exists("AdUnitTypeErrorReason", false)) {
   }
 }
 
+if (!class_exists("LabelEntityAssociationErrorReason", false)) {
+  /**
+   * The reasons for the target error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201411
+   */
+  class LabelEntityAssociationErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201411";
+    const XSI_TYPE = "LabelEntityAssociationError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("MobilePlatform", false)) {
   /**
    * The platform associated with a mobile {@code AdUnit}, i.e. whether this ad unit
@@ -5797,6 +5875,7 @@ if (!class_exists("InventoryService", false)) {
       "AdUnitSize" => "AdUnitSize",
       "InventoryUnitSizesError" => "InventoryUnitSizesError",
       "AdUnitTypeError" => "AdUnitTypeError",
+      "LabelEntityAssociationError" => "LabelEntityAssociationError",
       "LabelFrequencyCap" => "LabelFrequencyCap",
       "NotNullError" => "NotNullError",
       "NullError" => "NullError",
@@ -5853,6 +5932,7 @@ if (!class_exists("InventoryService", false)) {
       "InventoryUnitRefreshRateError.Reason" => "InventoryUnitRefreshRateErrorReason",
       "InventoryUnitSizesError.Reason" => "InventoryUnitSizesErrorReason",
       "AdUnitTypeError.Reason" => "AdUnitTypeErrorReason",
+      "LabelEntityAssociationError.Reason" => "LabelEntityAssociationErrorReason",
       "MobilePlatform" => "MobilePlatform",
       "NotNullError.Reason" => "NotNullErrorReason",
       "NullError.Reason" => "NullErrorReason",

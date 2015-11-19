@@ -2644,6 +2644,50 @@ if (!class_exists("OperatingSystemVersionTargeting", false)) {
   }
 }
 
+if (!class_exists("ParseError", false)) {
+  /**
+   * Lists errors related to parsing.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201508
+   */
+  class ParseError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201508";
+    const XSI_TYPE = "ParseError";
+
+    /**
+     * @access public
+     * @var tnsParseErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+    }
+
+  }
+}
+
 if (!class_exists("PermissionError", false)) {
   /**
    * Errors related to incorrect permission.
@@ -5304,6 +5348,39 @@ if (!class_exists("NotNullErrorReason", false)) {
   }
 }
 
+if (!class_exists("ParseErrorReason", false)) {
+  /**
+   * The reasons for the target error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201508
+   */
+  class ParseErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201508";
+    const XSI_TYPE = "ParseError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("PermissionErrorReason", false)) {
   /**
    * Describes reasons for permission errors.
@@ -7544,6 +7621,7 @@ if (!class_exists("ProductService", false)) {
       "OperatingSystemTargeting" => "OperatingSystemTargeting",
       "OperatingSystemVersion" => "OperatingSystemVersion",
       "OperatingSystemVersionTargeting" => "OperatingSystemVersionTargeting",
+      "ParseError" => "ParseError",
       "PermissionError" => "PermissionError",
       "ProductAction" => "ProductAction",
       "ProductActionError" => "ProductActionError",
@@ -7608,6 +7686,7 @@ if (!class_exists("ProductService", false)) {
       "LineItemType" => "LineItemType",
       "MinuteOfHour" => "MinuteOfHour",
       "NotNullError.Reason" => "NotNullErrorReason",
+      "ParseError.Reason" => "ParseErrorReason",
       "PermissionError.Reason" => "PermissionErrorReason",
       "ProductActionError.Reason" => "ProductActionErrorReason",
       "ProductError.Reason" => "ProductErrorReason",

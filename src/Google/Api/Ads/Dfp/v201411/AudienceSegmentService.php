@@ -1323,6 +1323,51 @@ if (!class_exists("QuotaError", false)) {
   }
 }
 
+if (!class_exists("RequiredCollectionError", false)) {
+  /**
+   * A list of all errors to be used for validating sizes of collections.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201411
+   */
+  class RequiredCollectionError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201411";
+    const XSI_TYPE = "RequiredCollectionError";
+
+    /**
+     * @access public
+     * @var tnsRequiredCollectionErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("RequiredError", false)) {
   /**
    * Errors due to missing required field.
@@ -1959,6 +2004,44 @@ if (!class_exists("String_ValueMapEntry", false)) {
     public function __construct($key = null, $value = null) {
       $this->key = $key;
       $this->value = $value;
+    }
+
+  }
+}
+
+if (!class_exists("TypeError", false)) {
+  /**
+   * An error for a field which is an invalid type.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201411
+   */
+  class TypeError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201411";
+    const XSI_TYPE = "TypeError";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
     }
 
   }
@@ -2628,6 +2711,39 @@ if (!class_exists("QuotaErrorReason", false)) {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201411";
     const XSI_TYPE = "QuotaError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("RequiredCollectionErrorReason", false)) {
+  /**
+   * A required collection is missing.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201411
+   */
+  class RequiredCollectionErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201411";
+    const XSI_TYPE = "RequiredCollectionError.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -3813,6 +3929,9 @@ if (!class_exists("NonRuleBasedFirstPartyAudienceSegment", false)) {
    * A {@link NonRuleBasedFirstPartyAudienceSegment} is a {@link FirstPartyAudienceSegment} owned by
    * the publisher network. It doesn't contain a rule. Cookies are usually added to this segment via
    * cookie upload.
+   * 
+   * <p>These segments are created by data management platforms or Google Analytics. They cannot be
+   * created using the DFP API.
    * @package GoogleApiAdsDfp
    * @subpackage v201411
    */
@@ -4265,6 +4384,7 @@ if (!class_exists("AudienceSegmentService", false)) {
       "FirstPartyAudienceSegmentRule" => "FirstPartyAudienceSegmentRule",
       "QuotaError" => "QuotaError",
       "RejectAudienceSegments" => "RejectAudienceSegments",
+      "RequiredCollectionError" => "RequiredCollectionError",
       "RequiredError" => "RequiredError",
       "RuleBasedFirstPartyAudienceSegment" => "RuleBasedFirstPartyAudienceSegment",
       "RuleBasedFirstPartyAudienceSegmentSummary" => "RuleBasedFirstPartyAudienceSegmentSummary",
@@ -4280,6 +4400,7 @@ if (!class_exists("AudienceSegmentService", false)) {
       "StatementError" => "StatementError",
       "String_ValueMapEntry" => "String_ValueMapEntry",
       "TextValue" => "TextValue",
+      "TypeError" => "TypeError",
       "UpdateResult" => "UpdateResult",
       "Value" => "Value",
       "ApiVersionError.Reason" => "ApiVersionErrorReason",
@@ -4299,6 +4420,7 @@ if (!class_exists("AudienceSegmentService", false)) {
       "PublisherQueryLanguageContextError.Reason" => "PublisherQueryLanguageContextErrorReason",
       "PublisherQueryLanguageSyntaxError.Reason" => "PublisherQueryLanguageSyntaxErrorReason",
       "QuotaError.Reason" => "QuotaErrorReason",
+      "RequiredCollectionError.Reason" => "RequiredCollectionErrorReason",
       "RequiredError.Reason" => "RequiredErrorReason",
       "AudienceSegment.AudienceSegmentType" => "AudienceSegmentAudienceSegmentType",
       "AudienceSegment.Status" => "AudienceSegmentStatus",

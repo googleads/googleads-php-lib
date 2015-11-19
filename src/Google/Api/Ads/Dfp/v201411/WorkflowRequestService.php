@@ -842,6 +842,51 @@ if (!class_exists("NotNullError", false)) {
   }
 }
 
+if (!class_exists("ParseError", false)) {
+  /**
+   * Lists errors related to parsing.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201411
+   */
+  class ParseError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201411";
+    const XSI_TYPE = "ParseError";
+
+    /**
+     * @access public
+     * @var tnsParseErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("PermissionError", false)) {
   /**
    * Errors related to incorrect permission.
@@ -1039,6 +1084,96 @@ if (!class_exists("QuotaError", false)) {
     /**
      * @access public
      * @var tnsQuotaErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
+if (!class_exists("RequiredCollectionError", false)) {
+  /**
+   * A list of all errors to be used for validating sizes of collections.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201411
+   */
+  class RequiredCollectionError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201411";
+    const XSI_TYPE = "RequiredCollectionError";
+
+    /**
+     * @access public
+     * @var tnsRequiredCollectionErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
+if (!class_exists("RequiredError", false)) {
+  /**
+   * Errors due to missing required field.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201411
+   */
+  class RequiredError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201411";
+    const XSI_TYPE = "RequiredError";
+
+    /**
+     * @access public
+     * @var tnsRequiredErrorReason
      */
     public $reason;
 
@@ -2134,6 +2269,39 @@ if (!class_exists("NotNullErrorReason", false)) {
   }
 }
 
+if (!class_exists("ParseErrorReason", false)) {
+  /**
+   * The reasons for the target error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201411
+   */
+  class ParseErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201411";
+    const XSI_TYPE = "ParseError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("PermissionErrorReason", false)) {
   /**
    * Describes reasons for permission errors.
@@ -2286,6 +2454,72 @@ if (!class_exists("QuotaErrorReason", false)) {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201411";
     const XSI_TYPE = "QuotaError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("RequiredCollectionErrorReason", false)) {
+  /**
+   * A required collection is missing.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201411
+   */
+  class RequiredCollectionErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201411";
+    const XSI_TYPE = "RequiredCollectionError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("RequiredErrorReason", false)) {
+  /**
+   * The reasons for the target error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201411
+   */
+  class RequiredErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201411";
+    const XSI_TYPE = "RequiredError.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -3276,6 +3510,7 @@ if (!class_exists("WorkflowRequestService", false)) {
       "LineItemOperationError" => "LineItemOperationError",
       "NotNullError" => "NotNullError",
       "NumberValue" => "NumberValue",
+      "ParseError" => "ParseError",
       "TriggerWorkflowExternalConditionRequests" => "TriggerWorkflowExternalConditionRequests",
       "PermissionError" => "PermissionError",
       "ProposalActionError" => "ProposalActionError",
@@ -3283,6 +3518,8 @@ if (!class_exists("WorkflowRequestService", false)) {
       "PublisherQueryLanguageSyntaxError" => "PublisherQueryLanguageSyntaxError",
       "QuotaError" => "QuotaError",
       "RejectWorkflowApprovalRequests" => "RejectWorkflowApprovalRequests",
+      "RequiredCollectionError" => "RequiredCollectionError",
+      "RequiredError" => "RequiredError",
       "ServerError" => "ServerError",
       "SetValue" => "SetValue",
       "SoapRequestHeader" => "SoapRequestHeader",
@@ -3309,11 +3546,14 @@ if (!class_exists("WorkflowRequestService", false)) {
       "InternalApiError.Reason" => "InternalApiErrorReason",
       "LineItemOperationError.Reason" => "LineItemOperationErrorReason",
       "NotNullError.Reason" => "NotNullErrorReason",
+      "ParseError.Reason" => "ParseErrorReason",
       "PermissionError.Reason" => "PermissionErrorReason",
       "ProposalActionError.Reason" => "ProposalActionErrorReason",
       "PublisherQueryLanguageContextError.Reason" => "PublisherQueryLanguageContextErrorReason",
       "PublisherQueryLanguageSyntaxError.Reason" => "PublisherQueryLanguageSyntaxErrorReason",
       "QuotaError.Reason" => "QuotaErrorReason",
+      "RequiredCollectionError.Reason" => "RequiredCollectionErrorReason",
+      "RequiredError.Reason" => "RequiredErrorReason",
       "ServerError.Reason" => "ServerErrorReason",
       "StatementError.Reason" => "StatementErrorReason",
       "WorkflowActionError.Reason" => "WorkflowActionErrorReason",

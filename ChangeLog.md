@@ -1,3 +1,9 @@
+### 6.6.0
+
+DFP:
+  - Added support for v201511.
+  - Removed support for v201408 (deprecated) and examples for v201411 (deprecated). See the [deprecation schedule](https://developers.google.com/doubleclick-publishers/docs/deprecation) for more information.
+
 ### 6.5.0
 
 AdWords:

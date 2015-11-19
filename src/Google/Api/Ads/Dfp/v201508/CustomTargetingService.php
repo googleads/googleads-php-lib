@@ -1353,6 +1353,50 @@ if (!class_exists("QuotaError", false)) {
   }
 }
 
+if (!class_exists("RequiredCollectionError", false)) {
+  /**
+   * A list of all errors to be used for validating sizes of collections.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201508
+   */
+  class RequiredCollectionError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201508";
+    const XSI_TYPE = "RequiredCollectionError";
+
+    /**
+     * @access public
+     * @var tnsRequiredCollectionErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+    }
+
+  }
+}
+
 if (!class_exists("RequiredError", false)) {
   /**
    * Errors due to missing required field.
@@ -2501,6 +2545,39 @@ if (!class_exists("QuotaErrorReason", false)) {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201508";
     const XSI_TYPE = "QuotaError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("RequiredCollectionErrorReason", false)) {
+  /**
+   * A required collection is missing.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201508
+   */
+  class RequiredCollectionErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201508";
+    const XSI_TYPE = "RequiredCollectionError.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -3852,6 +3929,7 @@ if (!class_exists("CustomTargetingService", false)) {
       "PublisherQueryLanguageContextError" => "PublisherQueryLanguageContextError",
       "PublisherQueryLanguageSyntaxError" => "PublisherQueryLanguageSyntaxError",
       "QuotaError" => "QuotaError",
+      "RequiredCollectionError" => "RequiredCollectionError",
       "RequiredError" => "RequiredError",
       "ServerError" => "ServerError",
       "SetValue" => "SetValue",
@@ -3885,6 +3963,7 @@ if (!class_exists("CustomTargetingService", false)) {
       "PublisherQueryLanguageContextError.Reason" => "PublisherQueryLanguageContextErrorReason",
       "PublisherQueryLanguageSyntaxError.Reason" => "PublisherQueryLanguageSyntaxErrorReason",
       "QuotaError.Reason" => "QuotaErrorReason",
+      "RequiredCollectionError.Reason" => "RequiredCollectionErrorReason",
       "RequiredError.Reason" => "RequiredErrorReason",
       "ServerError.Reason" => "ServerErrorReason",
       "StatementError.Reason" => "StatementErrorReason",

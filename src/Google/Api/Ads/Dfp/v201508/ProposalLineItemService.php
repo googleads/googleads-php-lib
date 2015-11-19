@@ -2967,6 +2967,50 @@ if (!class_exists("OperatingSystemVersionTargeting", false)) {
   }
 }
 
+if (!class_exists("ParseError", false)) {
+  /**
+   * Lists errors related to parsing.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201508
+   */
+  class ParseError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201508";
+    const XSI_TYPE = "ParseError";
+
+    /**
+     * @access public
+     * @var tnsParseErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+    }
+
+  }
+}
+
 if (!class_exists("PermissionError", false)) {
   /**
    * Errors related to incorrect permission.
@@ -4126,6 +4170,50 @@ if (!class_exists("ReleaseProposalLineItems", false)) {
 
     public function __construct() {
       parent::__construct();
+    }
+
+  }
+}
+
+if (!class_exists("RequiredCollectionError", false)) {
+  /**
+   * A list of all errors to be used for validating sizes of collections.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201508
+   */
+  class RequiredCollectionError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201508";
+    const XSI_TYPE = "RequiredCollectionError";
+
+    /**
+     * @access public
+     * @var tnsRequiredCollectionErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
     }
 
   }
@@ -6952,6 +7040,39 @@ if (!class_exists("NotNullErrorReason", false)) {
   }
 }
 
+if (!class_exists("ParseErrorReason", false)) {
+  /**
+   * The reasons for the target error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201508
+   */
+  class ParseErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201508";
+    const XSI_TYPE = "ParseError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("PermissionErrorReason", false)) {
   /**
    * Describes reasons for permission errors.
@@ -7369,6 +7490,39 @@ if (!class_exists("RateType", false)) {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201508";
     const XSI_TYPE = "RateType";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("RequiredCollectionErrorReason", false)) {
+  /**
+   * A required collection is missing.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201508
+   */
+  class RequiredCollectionErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201508";
+    const XSI_TYPE = "RequiredCollectionError.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -8239,7 +8393,8 @@ if (!class_exists("PerformProposalLineItemActionResponse", false)) {
 
 if (!class_exists("UpdateProposalLineItems", false)) {
   /**
-   * Updates the specified {@link ProposalLineItem} objects.
+   * Updates the specified {@link ProposalLineItem} objects. If free editing mode is enabled,
+   * this will trigger inventory reservation and cause the proposal to be pushed to DFP again.
    * 
    * @param proposalLineItems the proposal line items to update
    * @return the updated proposal line items
@@ -10080,6 +10235,7 @@ if (!class_exists("ProposalLineItemService", false)) {
       "OperatingSystemTargeting" => "OperatingSystemTargeting",
       "OperatingSystemVersion" => "OperatingSystemVersion",
       "OperatingSystemVersionTargeting" => "OperatingSystemVersionTargeting",
+      "ParseError" => "ParseError",
       "PauseProposalLineItems" => "PauseProposalLineItems",
       "PermissionError" => "PermissionError",
       "PlacementPremiumFeature" => "PlacementPremiumFeature",
@@ -10100,6 +10256,7 @@ if (!class_exists("ProposalLineItemService", false)) {
       "QuotaError" => "QuotaError",
       "RangeError" => "RangeError",
       "ReleaseProposalLineItems" => "ReleaseProposalLineItems",
+      "RequiredCollectionError" => "RequiredCollectionError",
       "RequiredError" => "RequiredError",
       "RequiredNumberError" => "RequiredNumberError",
       "ReservationDetailsError" => "ReservationDetailsError",
@@ -10175,6 +10332,7 @@ if (!class_exists("ProposalLineItemService", false)) {
       "LinkStatus" => "LinkStatus",
       "MinuteOfHour" => "MinuteOfHour",
       "NotNullError.Reason" => "NotNullErrorReason",
+      "ParseError.Reason" => "ParseErrorReason",
       "PermissionError.Reason" => "PermissionErrorReason",
       "PrecisionError.Reason" => "PrecisionErrorReason",
       "PremiumAdjustmentType" => "PremiumAdjustmentType",
@@ -10188,6 +10346,7 @@ if (!class_exists("ProposalLineItemService", false)) {
       "QuotaError.Reason" => "QuotaErrorReason",
       "RangeError.Reason" => "RangeErrorReason",
       "RateType" => "RateType",
+      "RequiredCollectionError.Reason" => "RequiredCollectionErrorReason",
       "RequiredError.Reason" => "RequiredErrorReason",
       "RequiredNumberError.Reason" => "RequiredNumberErrorReason",
       "ReservationDetailsError.Reason" => "ReservationDetailsErrorReason",
@@ -10313,7 +10472,8 @@ if (!class_exists("ProposalLineItemService", false)) {
       return $result->rval;
     }
     /**
-     * Updates the specified {@link ProposalLineItem} objects.
+     * Updates the specified {@link ProposalLineItem} objects. If free editing mode is enabled,
+     * this will trigger inventory reservation and cause the proposal to be pushed to DFP again.
      * 
      * @param proposalLineItems the proposal line items to update
      * @return the updated proposal line items

@@ -2530,6 +2530,51 @@ if (!class_exists("OperatingSystemTargeting", false)) {
   }
 }
 
+if (!class_exists("ParseError", false)) {
+  /**
+   * Lists errors related to parsing.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201411
+   */
+  class ParseError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201411";
+    const XSI_TYPE = "ParseError";
+
+    /**
+     * @access public
+     * @var tnsParseErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("PermissionError", false)) {
   /**
    * Errors related to incorrect permission.
@@ -5563,6 +5608,39 @@ if (!class_exists("NullErrorReason", false)) {
   }
 }
 
+if (!class_exists("ParseErrorReason", false)) {
+  /**
+   * The reasons for the target error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201411
+   */
+  class ParseErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201411";
+    const XSI_TYPE = "ParseError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("PermissionErrorReason", false)) {
   /**
    * Describes reasons for permission errors.
@@ -7885,6 +7963,7 @@ if (!class_exists("ProductTemplateService", false)) {
       "OperatingSystem" => "OperatingSystem",
       "OperatingSystemTargeting" => "OperatingSystemTargeting",
       "OperatingSystemVersion" => "OperatingSystemVersion",
+      "ParseError" => "ParseError",
       "PermissionError" => "PermissionError",
       "PlacementTargeting" => "PlacementTargeting",
       "ProductTemplateAction" => "ProductTemplateAction",
@@ -7948,6 +8027,7 @@ if (!class_exists("ProductTemplateService", false)) {
       "LineItemType" => "LineItemType",
       "NotNullError.Reason" => "NotNullErrorReason",
       "NullError.Reason" => "NullErrorReason",
+      "ParseError.Reason" => "ParseErrorReason",
       "PermissionError.Reason" => "PermissionErrorReason",
       "ProductTemplateActionError.Reason" => "ProductTemplateActionErrorReason",
       "ProductTemplateError.Reason" => "ProductTemplateErrorReason",

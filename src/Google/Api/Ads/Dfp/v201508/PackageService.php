@@ -1015,12 +1015,6 @@ if (!class_exists("PackageAction", false)) {
     const XSI_TYPE = "PackageAction";
 
     /**
-     * @access public
-     * @var tnsPackageOperator
-     */
-    public $packageOperator;
-
-    /**
      * Gets the namesapce of this class
      * @return the namespace of this class
      */
@@ -1036,8 +1030,7 @@ if (!class_exists("PackageAction", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($packageOperator = null) {
-      $this->packageOperator = $packageOperator;
+    public function __construct() {
     }
 
   }
@@ -1283,6 +1276,50 @@ if (!class_exists("PackagePage", false)) {
       $this->results = $results;
       $this->startIndex = $startIndex;
       $this->totalResultSetSize = $totalResultSetSize;
+    }
+
+  }
+}
+
+if (!class_exists("ParseError", false)) {
+  /**
+   * Lists errors related to parsing.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201508
+   */
+  class ParseError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201508";
+    const XSI_TYPE = "ParseError";
+
+    /**
+     * @access public
+     * @var tnsParseErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
     }
 
   }
@@ -1657,6 +1694,50 @@ if (!class_exists("RangeError", false)) {
     /**
      * @access public
      * @var tnsRangeErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+    }
+
+  }
+}
+
+if (!class_exists("RequiredCollectionError", false)) {
+  /**
+   * A list of all errors to be used for validating sizes of collections.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201508
+   */
+  class RequiredCollectionError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201508";
+    const XSI_TYPE = "RequiredCollectionError";
+
+    /**
+     * @access public
+     * @var tnsRequiredCollectionErrorReason
      */
     public $reason;
 
@@ -3086,16 +3167,16 @@ if (!class_exists("PackageErrorReason", false)) {
   }
 }
 
-if (!class_exists("PackageOperator", false)) {
+if (!class_exists("PackageStatus", false)) {
   /**
-   * Possible operators to be performed on a {@link Package}.
+   * Describes the different statuses for {@link Package}.
    * @package GoogleApiAdsDfp
    * @subpackage v201508
    */
-  class PackageOperator {
+  class PackageStatus {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201508";
-    const XSI_TYPE = "PackageOperator";
+    const XSI_TYPE = "PackageStatus";
 
     /**
      * Gets the namesapce of this class
@@ -3119,16 +3200,16 @@ if (!class_exists("PackageOperator", false)) {
   }
 }
 
-if (!class_exists("PackageStatus", false)) {
+if (!class_exists("ParseErrorReason", false)) {
   /**
-   * Describes the different statuses for {@link Package}.
+   * The reasons for the target error.
    * @package GoogleApiAdsDfp
    * @subpackage v201508
    */
-  class PackageStatus {
+  class ParseErrorReason {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201508";
-    const XSI_TYPE = "PackageStatus";
+    const XSI_TYPE = "ParseError.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -3436,6 +3517,39 @@ if (!class_exists("RangeErrorReason", false)) {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201508";
     const XSI_TYPE = "RangeError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("RequiredCollectionErrorReason", false)) {
+  /**
+   * A required collection is missing.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201508
+   */
+  class RequiredCollectionErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201508";
+    const XSI_TYPE = "RequiredCollectionError.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -4320,9 +4434,8 @@ if (!class_exists("CreateProposalLineItemsFromPackages", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($packageOperator = null) {
+    public function __construct() {
       parent::__construct();
-      $this->packageOperator = $packageOperator;
     }
 
   }
@@ -4589,6 +4702,7 @@ if (!class_exists("PackageService", false)) {
       "Package" => "Package",
       "PackageError" => "PackageError",
       "PackagePage" => "PackagePage",
+      "ParseError" => "ParseError",
       "PermissionError" => "PermissionError",
       "PrecisionError" => "PrecisionError",
       "ProductError" => "ProductError",
@@ -4598,6 +4712,7 @@ if (!class_exists("PackageService", false)) {
       "PublisherQueryLanguageSyntaxError" => "PublisherQueryLanguageSyntaxError",
       "QuotaError" => "QuotaError",
       "RangeError" => "RangeError",
+      "RequiredCollectionError" => "RequiredCollectionError",
       "RequiredError" => "RequiredError",
       "RequiredNumberError" => "RequiredNumberError",
       "ReservationDetailsError" => "ReservationDetailsError",
@@ -4636,8 +4751,8 @@ if (!class_exists("PackageService", false)) {
       "NotNullError.Reason" => "NotNullErrorReason",
       "PackageActionError.Reason" => "PackageActionErrorReason",
       "PackageError.Reason" => "PackageErrorReason",
-      "PackageOperator" => "PackageOperator",
       "PackageStatus" => "PackageStatus",
+      "ParseError.Reason" => "ParseErrorReason",
       "PermissionError.Reason" => "PermissionErrorReason",
       "PrecisionError.Reason" => "PrecisionErrorReason",
       "ProductError.Reason" => "ProductErrorReason",
@@ -4647,6 +4762,7 @@ if (!class_exists("PackageService", false)) {
       "PublisherQueryLanguageSyntaxError.Reason" => "PublisherQueryLanguageSyntaxErrorReason",
       "QuotaError.Reason" => "QuotaErrorReason",
       "RangeError.Reason" => "RangeErrorReason",
+      "RequiredCollectionError.Reason" => "RequiredCollectionErrorReason",
       "RequiredError.Reason" => "RequiredErrorReason",
       "RequiredNumberError.Reason" => "RequiredNumberErrorReason",
       "ReservationDetailsError.Reason" => "ReservationDetailsErrorReason",

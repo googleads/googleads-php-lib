@@ -4488,6 +4488,50 @@ if (!class_exists("OperatingSystemVersionTargeting", false)) {
   }
 }
 
+if (!class_exists("OrderActionError", false)) {
+  /**
+   * Lists all errors associated with performing actions on {@link Order} objects.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201508
+   */
+  class OrderActionError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201508";
+    const XSI_TYPE = "OrderActionError";
+
+    /**
+     * @access public
+     * @var tnsOrderActionErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+    }
+
+  }
+}
+
 if (!class_exists("OrderError", false)) {
   /**
    * Lists all errors associated with orders.
@@ -8467,6 +8511,39 @@ if (!class_exists("NullErrorReason", false)) {
   }
 }
 
+if (!class_exists("OrderActionErrorReason", false)) {
+  /**
+   * The reasons for the target error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201508
+   */
+  class OrderActionErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201508";
+    const XSI_TYPE = "OrderActionError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("OrderErrorReason", false)) {
   /**
    * The reasons for the target error.
@@ -9116,6 +9193,11 @@ if (!class_exists("SetTopBoxLineItemErrorReason", false)) {
 }
 
 if (!class_exists("SetTopBoxSyncStatus", false)) {
+  /**
+   * The set top box line item sync status.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201508
+   */
   class SetTopBoxSyncStatus {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201508";
@@ -11288,6 +11370,7 @@ if (!class_exists("ForecastService", false)) {
       "OperatingSystemTargeting" => "OperatingSystemTargeting",
       "OperatingSystemVersion" => "OperatingSystemVersion",
       "OperatingSystemVersionTargeting" => "OperatingSystemVersionTargeting",
+      "OrderActionError" => "OrderActionError",
       "OrderError" => "OrderError",
       "ParseError" => "ParseError",
       "PermissionError" => "PermissionError",
@@ -11392,6 +11475,7 @@ if (!class_exists("ForecastService", false)) {
       "MinuteOfHour" => "MinuteOfHour",
       "NotNullError.Reason" => "NotNullErrorReason",
       "NullError.Reason" => "NullErrorReason",
+      "OrderActionError.Reason" => "OrderActionErrorReason",
       "OrderError.Reason" => "OrderErrorReason",
       "ParseError.Reason" => "ParseErrorReason",
       "PermissionError.Reason" => "PermissionErrorReason",
