@@ -1,3 +1,15 @@
+### 7.0.0
+
+AdWords:
+  - Versioned ReportUtils.
+  - Added XmlSerializer and XmlDeserializer.
+  - Added BatchJobUtils for uploading batch operations and downloading the
+    results from batch processing.
+  - Added an example of adding campaigns using BatchJobService.
+
+Common:
+  - Fixed [issue #100](https://github.com/googleads/googleads-php-lib/issues/100).
+
 ### 6.6.0
 
 DFP:

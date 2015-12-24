@@ -28,8 +28,7 @@ error_reporting(E_STRICT | E_ALL);
 
 // Include the initialization file
 require_once dirname(dirname(__FILE__)) . '/init.php';
-
-require_once ADWORDS_UTIL_PATH . '/ReportUtils.php';
+require_once ADWORDS_UTIL_VERSION_PATH . '/ReportUtils.php';
 
 /**
  * Runs the example.

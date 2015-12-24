@@ -29,7 +29,6 @@
  */
 require_once dirname(__FILE__) . '/../../Common/Lib/AdsUser.php';
 require_once dirname(__FILE__) . '/../../Common/Util/ApiPropertiesUtils.php';
-require_once dirname(__FILE__) . '/../Util/ReportUtils.php';
 require_once 'AdWordsSoapClientFactory.php';
 require_once 'AdWordsConstants.php';
 
@@ -43,6 +42,8 @@ class AdWordsUser extends AdsUser {
 
   const OAUTH2_SCOPE = 'https://www.googleapis.com/auth/adwords';
   const OAUTH2_HANDLER_CLASS = 'SimpleOAuth2Handler';
+  const REPORT_LOG_CHANNEL_NAME = 'report';
+  const REPORT_LOG_FILE_NAME = 'report_download.log';
 
   /**
    * The name of the SOAP header that represents the user agent making API
@@ -158,9 +159,10 @@ class AdWordsUser extends AdsUser {
    */
   protected function InitLogs() {
     parent::InitLogs();
-    Logger::LogToFile(ReportUtils::$LOG_NAME,
-        $this->GetLogsDirectory() . "/report_download.log");
-    Logger::SetLogLevel(ReportUtils::$LOG_NAME, Logger::$FATAL);
+    Logger::LogToFile(self::REPORT_LOG_CHANNEL_NAME,
+        $this->GetLogsDirectory() . DIRECTORY_SEPARATOR
+            . self::REPORT_LOG_FILE_NAME);
+    Logger::SetLogLevel(self::REPORT_LOG_CHANNEL_NAME, Logger::$FATAL);
   }
 
   /**
@@ -169,7 +171,7 @@ class AdWordsUser extends AdsUser {
    */
   public function LogDefaults() {
     parent::LogDefaults();
-    Logger::SetLogLevel(ReportUtils::$LOG_NAME, Logger::$ERROR);
+    Logger::SetLogLevel(self::REPORT_LOG_CHANNEL_NAME, Logger::$ERROR);
   }
 
   /**
@@ -178,7 +180,7 @@ class AdWordsUser extends AdsUser {
    */
   public function LogErrors() {
     parent::LogErrors();
-    Logger::SetLogLevel(ReportUtils::$LOG_NAME, Logger::$ERROR);
+    Logger::SetLogLevel(self::REPORT_LOG_CHANNEL_NAME, Logger::$ERROR);
   }
 
   /**
@@ -187,7 +189,7 @@ class AdWordsUser extends AdsUser {
    */
   public function LogAll() {
     parent::LogAll();
-    Logger::SetLogLevel(ReportUtils::$LOG_NAME, Logger::$INFO);
+    Logger::SetLogLevel(self::REPORT_LOG_CHANNEL_NAME, Logger::$INFO);
   }
 
   /**
