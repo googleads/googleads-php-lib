@@ -94,7 +94,7 @@ class XmlSerializer {
       // Set xsi:type when the object contains it. This is required for some
       // services to make XML tag contain more specific type information needed
       // for executing operations.
-      if ($useXsiType && !empty($object->getXsiTypeName())) {
+      if ($useXsiType && $object->getXsiTypeName()) {
         $element->setAttribute('xsi:type', 'ns1:' . $object->getXsiTypeName());
       }
       $children = $this->CreateChildListForObjects($object, $document,
