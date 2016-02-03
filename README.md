@@ -1,7 +1,7 @@
 ## The Google Ads APIs PHP Client Library
 
 This project hosts the PHP client library for the various SOAP-based Ads APIs
-(AdWords, AdExchange Buyer, and DFP) at Google.
+(AdWords and DFP) at Google.
 
 
 ### Features
@@ -45,7 +45,6 @@ Developers page](https://plus.google.com/+GoogleAdsDevelopers/posts) and our
 If you have questions about the client library or the APIs, you can ask them on our forums:
   * [AdWords API Forum](https://groups.google.com/group/adwords-api)
   * [DoubleClick for Publishers API Forum](https://groups.google.com/forum/#!forum/google-doubleclick-for-publishers-api)
-  * [DoubleClick Ad Exchange Buyer API Forum](https://groups.google.com/forum/#!forum/google-doubleclick-ad-exchange-buyer-api)
 
 ### Getting started
 

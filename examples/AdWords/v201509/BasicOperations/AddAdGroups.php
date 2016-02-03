@@ -58,8 +58,10 @@ function AddAdGroupsExample(AdWordsUser $user, $campaignId) {
     // Set additional settings (optional).
     $adGroup->status = 'ENABLED';
 
-    // Targeting restriction settings - these settings only affect serving
-    // for the Display Network.
+    // Targeting restriction settings. Depending on the criterionTypeGroup
+    // value, most TargetingSettingDetail only affect Display campaigns.
+    // However, the USER_INTEREST_AND_LIST value works for RLSA campaigns -
+    // Search campaigns targeting using a remarketing list.
     $targetingSetting = new TargetingSetting();
     // Restricting to serve ads that match your ad group placements.
     // This is equivalent to choosing "Target and bid" in the UI.

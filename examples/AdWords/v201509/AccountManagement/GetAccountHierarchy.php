@@ -45,60 +45,60 @@ function GetAccountHierarchyExample(AdWordsUser $user) {
   $selector = new Selector();
   // Specify the fields to retrieve.
   $selector->fields = array('CustomerId',  'Name');
+  $selector->paging = new Paging(0, AdWordsConstants::RECOMMENDED_PAGE_SIZE);
 
-  // Make the get request.
-  $graph = $managedCustomerService->get($selector);
+  // Create map from customerID to account.
+  $accounts = array();
+  // Create map from customerId to parent and child links.
+  $childLinks = array();
+  $parentLinks = array();
+  do {
+    // Make the get request.
+    $graph = $managedCustomerService->get($selector);
 
-  // Display serviced account graph.
-  if (isset($graph->entries)) {
-    // Create map from customerId to parent and child links.
-    $childLinks = array();
-    $parentLinks = array();
-    if (isset($graph->links)) {
-      foreach ($graph->links as $link) {
-        $childLinks[$link->managerCustomerId][] = $link;
-        $parentLinks[$link->clientCustomerId][] = $link;
+    // Create links between manager and clients.
+    if (isset($graph->entries)) {
+      if (isset($graph->links)) {
+        foreach ($graph->links as $link) {
+          $childLinks[$link->managerCustomerId][] = $link;
+          $parentLinks[$link->clientCustomerId][] = $link;
+        }
+      }
+      foreach ($graph->entries as $account) {
+        $accounts[$account->customerId] = $account;
       }
     }
-    // Create map from customerID to account, and find root account.
-    $accounts = array();
-    $rootAccount = null;
-    foreach ($graph->entries as $account) {
-      $accounts[$account->customerId] = $account;
-      if (!array_key_exists($account->customerId, $parentLinks)) {
-        $rootAccount = $account;
-      }
+    $selector->paging->startIndex += AdWordsConstants::RECOMMENDED_PAGE_SIZE;
+  } while ($selector->paging->startIndex < $graph->totalNumEntries);
+
+  $rootAccount = null;
+  foreach ($accounts as $account) {
+    if (!array_key_exists($account->customerId, $parentLinks)) {
+      $rootAccount = $account;
+      break;
     }
-    // The root account may not be returned in the sandbox.
-    if (!isset($rootAccount)) {
-      $rootAccount = new Account();
-      $rootAccount->customerId = 0;
-    }
-    // Display account tree.
-    print "(Customer Id, Account Name)\n";
-    DisplayAccountTree($rootAccount, null, $accounts, $childLinks, 0);
-  } else {
-    print "No serviced accounts were found.\n";
   }
+
+  // Display account tree.
+  print "(Customer Id, Account Name)\n";
+  DisplayAccountTree($rootAccount, $accounts, $childLinks, 0);
 }
 
 /**
- * Displays an account tree, starting at the account and link provided, and
- * recursing to all child accounts.
- * @param Account $account the account to display
- * @param Link $link the link used to reach this account
+ * Displays an account tree, starting at the account provided, and recursing to
+ * all child accounts.
+ * @param ManagedCustomer $account the account to display
  * @param array $accounts a map from customerId to account
  * @param array $links a map from customerId to child links
  * @param int $depth the depth of the current account in the tree
  */
-function DisplayAccountTree($account, $link, $accounts, $links, $depth) {
+function DisplayAccountTree($account, $accounts, $links, $depth) {
   print str_repeat('-', $depth * 2);
   printf("%s, %s\n", $account->customerId, $account->name);
   if (array_key_exists($account->customerId, $links)) {
     foreach ($links[$account->customerId] as $childLink) {
       $childAccount = $accounts[$childLink->clientCustomerId];
-      DisplayAccountTree($childAccount, $childLink, $accounts, $links,
-          $depth +1);
+      DisplayAccountTree($childAccount, $accounts, $links, $depth + 1);
     }
   }
 }

@@ -1,6 +1,6 @@
 {
     "name": "googleads/googleads-php-lib",
-    "description": "Google Ads APIs Client Library for PHP (AdWords, Adx, and DFP)",
+    "description": "Google Ads APIs Client Library for PHP (AdWords and DFP)",
     "require": {
         "php": ">=5.3.0"
     },
@@ -16,8 +16,8 @@
     },
     "authors": [
       {
-        "name": "Vincent Tsao",
-        "role": "Developer"
+        "name": "Google",
+        "homepage": "https://github.com/googleads/googleads-php-lib/contributors"
       }
     ]
 }

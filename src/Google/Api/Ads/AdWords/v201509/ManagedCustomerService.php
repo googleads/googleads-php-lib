@@ -5,7 +5,7 @@
  *
  * PHP version 5
  *
- * Copyright 2014, Google Inc. All Rights Reserved.
+ * Copyright 2016, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@
  * @package    Google_Api_Ads_AdWords_v201509
  * @subpackage v201509
  * @category   WebServices
- * @copyright  2014, Google Inc. All Rights Reserved.
+ * @copyright  2016, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
@@ -2364,8 +2364,12 @@ if (!class_exists("ManagedCustomer", false)) {
 
 if (!class_exists("ManagedCustomerOperation", false)) {
   /**
-   * An operation on a managed customer.
-   * <p class="note"><b>Note:</b> only <code>ADD</code> operator is supported.</p>
+   * An operation to create or modify a managed customer.
+   * <p class="note"><b>Note:</b>
+   * <li><code>ADD</code> operator is supported in all API versions.</li>
+   * <li><code>SET</code> operator is supported beginning with v201601.</li>
+   * <li><code>REMOVE</code> operator is not supported.</li>
+   * </p>
    * @package Google_Api_Ads_AdWords_v201509
    * @subpackage v201509
    */
@@ -2806,10 +2810,9 @@ if (!class_exists("ManagedCustomerServiceMutate", false)) {
    * 
    * 
    * 
-   * Adds managed customers.
+   * Modifies or creates new {@link ManagedCustomer}s.
    * 
-   * <p class="note"><b>Note:</b> {@link ManagedCustomerOperation} only supports
-   * {@code ADD} operator.</p>
+   * <p class="note"><b>Note:</b> See {@link ManagedCustomerOperation} for available operators.</p>
    * 
    * @param operations List of unique operations.
    * @return The list of updated managed customers, returned in the same order as the
@@ -4504,10 +4507,9 @@ if (!class_exists("ManagedCustomerService", false)) {
      * 
      * 
      * 
-     * Adds managed customers.
+     * Modifies or creates new {@link ManagedCustomer}s.
      * 
-     * <p class="note"><b>Note:</b> {@link ManagedCustomerOperation} only supports
-     * {@code ADD} operator.</p>
+     * <p class="note"><b>Note:</b> See {@link ManagedCustomerOperation} for available operators.</p>
      * 
      * @param operations List of unique operations.
      * @return The list of updated managed customers, returned in the same order as the

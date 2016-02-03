@@ -179,7 +179,7 @@ class XmlDeserializer {
     // If the 'xsi:type' attribute is not empty string, use it as a class name.
     // If it's not found, use $className as a class name when it's not null.
     // Finally, look up the tag name of $element in $this->classmap.
-    if (!empty($element->getAttribute('xsi:type'))) {
+    if ($element->getAttribute('xsi:type') !== '') {
       // Strip off the prefix if exists, e.g., ns1:, to make the name a valid
       // PHP class name.
       $typeHint =

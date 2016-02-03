@@ -1,3 +1,14 @@
+### 8.0.0
+
+AdWords:
+  - Added support and examples for v201601.
+  - Removed AdX support.
+  - Added incremental upload for batch processing.
+  - Made the BatchJobUtils constructor accept upload URLs and optional
+    total content bytes as arguments.
+  - Fixed [issue #111](https://github.com/googleads/googleads-php-lib/issues/111).
+  - Fixed [issue #116](https://github.com/googleads/googleads-php-lib/issues/116).
+
 ### 7.0.0
 
 AdWords:

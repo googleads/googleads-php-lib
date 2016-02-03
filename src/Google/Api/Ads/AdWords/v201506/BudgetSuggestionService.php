@@ -5,7 +5,7 @@
  *
  * PHP version 5
  *
- * Copyright 2014, Google Inc. All Rights Reserved.
+ * Copyright 2016, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@
  * @package    Google_Api_Ads_AdWords_v201506
  * @subpackage v201506
  * @category   WebServices
- * @copyright  2014, Google Inc. All Rights Reserved.
+ * @copyright  2016, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
@@ -3178,12 +3178,6 @@ if (!class_exists("BudgetSuggestion", false)) {
 
     /**
      * @access public
-     * @var Money[]
-     */
-    public $budgetQuantiles;
-
-    /**
-     * @access public
      * @var integer
      */
     public $impressions;
@@ -3210,7 +3204,7 @@ if (!class_exists("BudgetSuggestion", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($cpc = null, $minCpc = null, $maxCpc = null, $cpm = null, $suggestedBudget = null, $minBudget = null, $maxBudget = null, $budgetQuantiles = null, $impressions = null, $currencyCode = null) {
+    public function __construct($cpc = null, $minCpc = null, $maxCpc = null, $cpm = null, $suggestedBudget = null, $minBudget = null, $maxBudget = null, $impressions = null, $currencyCode = null) {
       $this->cpc = $cpc;
       $this->minCpc = $minCpc;
       $this->maxCpc = $maxCpc;
@@ -3218,7 +3212,6 @@ if (!class_exists("BudgetSuggestion", false)) {
       $this->suggestedBudget = $suggestedBudget;
       $this->minBudget = $minBudget;
       $this->maxBudget = $maxBudget;
-      $this->budgetQuantiles = $budgetQuantiles;
       $this->impressions = $impressions;
       $this->currencyCode = $currencyCode;
     }

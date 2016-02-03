@@ -61,10 +61,8 @@ function AddCrmBasedUserList(AdWordsUser $user, array $EMAILS) {
   // Maximum life span is 180 days.
   $userList->membershipLifeSpan = 180;
 
-  // This field is required. It links to a service you created that allows
-  // members of this list to remove themselves. It will be shown in the
-  // "Why This Ad?" of an ad and so it needs to be verified. Read more about
-  // "Why This Ad?" here https://support.google.com/ads/answer/2662850.
+  // This field is optional. It links to a service you created that allows
+  // members of this list to remove themselves.
   $userList->optOutLink = 'http://endpoint1.example.com/optout';
 
   // Create operations to add the user list.
