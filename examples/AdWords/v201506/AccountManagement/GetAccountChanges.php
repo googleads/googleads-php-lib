@@ -4,8 +4,6 @@
  * Note: this example must be run using the credentials of an ad-serving
  * account.
  *
- * Tags: CustomerSyncService.get
- *
  * PHP version 5
  *
  * Copyright 2014, Google Inc. All Rights Reserved.
@@ -28,7 +26,6 @@
  * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Thanet Knack Praneenararat
  */
 
 // Include the initialization file

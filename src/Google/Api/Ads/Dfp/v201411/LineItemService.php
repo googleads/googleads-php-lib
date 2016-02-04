@@ -53,7 +53,7 @@ if (!class_exists("AdUnitTargeting", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -61,7 +61,7 @@ if (!class_exists("AdUnitTargeting", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -148,7 +148,7 @@ if (!class_exists("ApiError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -156,7 +156,7 @@ if (!class_exists("ApiError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -252,7 +252,7 @@ if (!class_exists("TechnologyTargeting", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -260,7 +260,7 @@ if (!class_exists("TechnologyTargeting", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -302,7 +302,7 @@ if (!class_exists("ApiVersionError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -310,7 +310,7 @@ if (!class_exists("ApiVersionError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -385,7 +385,7 @@ if (!class_exists("ApplicationException", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -393,7 +393,7 @@ if (!class_exists("ApplicationException", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -434,7 +434,7 @@ if (!class_exists("AppliedLabel", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -442,7 +442,7 @@ if (!class_exists("AppliedLabel", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -475,7 +475,7 @@ if (!class_exists("AudienceExtensionError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -483,7 +483,7 @@ if (!class_exists("AudienceExtensionError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -520,7 +520,7 @@ if (!class_exists("AuthenticationError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -528,7 +528,7 @@ if (!class_exists("AuthenticationError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -572,7 +572,7 @@ if (!class_exists("BandwidthGroupTargeting", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -580,7 +580,7 @@ if (!class_exists("BandwidthGroupTargeting", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -651,7 +651,7 @@ if (!class_exists("BaseCustomFieldValue", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -659,7 +659,7 @@ if (!class_exists("BaseCustomFieldValue", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -699,7 +699,7 @@ if (!class_exists("BrowserLanguageTargeting", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -707,7 +707,7 @@ if (!class_exists("BrowserLanguageTargeting", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -747,7 +747,7 @@ if (!class_exists("BrowserTargeting", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -755,7 +755,7 @@ if (!class_exists("BrowserTargeting", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -789,7 +789,7 @@ if (!class_exists("ClickTrackingLineItemError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -797,7 +797,7 @@ if (!class_exists("ClickTrackingLineItemError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -834,7 +834,7 @@ if (!class_exists("CollectionSizeError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -842,7 +842,7 @@ if (!class_exists("CollectionSizeError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -879,7 +879,7 @@ if (!class_exists("CommonError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -887,7 +887,7 @@ if (!class_exists("CommonError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -924,7 +924,7 @@ if (!class_exists("CompanyCreditStatusError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -932,7 +932,7 @@ if (!class_exists("CompanyCreditStatusError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -970,7 +970,7 @@ if (!class_exists("ContentMetadataKeyHierarchyTargeting", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -978,7 +978,7 @@ if (!class_exists("ContentMetadataKeyHierarchyTargeting", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -1010,7 +1010,7 @@ if (!class_exists("ContentMetadataTargetingError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -1018,7 +1018,7 @@ if (!class_exists("ContentMetadataTargetingError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -1097,7 +1097,7 @@ if (!class_exists("ContentTargeting", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -1105,7 +1105,7 @@ if (!class_exists("ContentTargeting", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -1144,7 +1144,7 @@ if (!class_exists("CreativeError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -1152,7 +1152,7 @@ if (!class_exists("CreativeError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -1230,7 +1230,7 @@ if (!class_exists("CreativePlaceholder", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -1238,7 +1238,7 @@ if (!class_exists("CreativePlaceholder", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -1276,7 +1276,7 @@ if (!class_exists("CrossSellError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -1284,7 +1284,7 @@ if (!class_exists("CrossSellError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -1322,7 +1322,7 @@ if (!class_exists("CustomFieldValue", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -1330,7 +1330,7 @@ if (!class_exists("CustomFieldValue", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -1365,7 +1365,7 @@ if (!class_exists("CustomFieldValueError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -1373,7 +1373,7 @@ if (!class_exists("CustomFieldValueError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -1411,7 +1411,7 @@ if (!class_exists("CustomTargetingError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -1419,7 +1419,7 @@ if (!class_exists("CustomTargetingError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -1491,7 +1491,7 @@ if (!class_exists("CustomCriteriaNode", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -1499,7 +1499,7 @@ if (!class_exists("CustomCriteriaNode", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -1543,7 +1543,7 @@ if (!class_exists("Date", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -1551,7 +1551,7 @@ if (!class_exists("Date", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -1609,7 +1609,7 @@ if (!class_exists("DfpDateTime", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -1617,7 +1617,7 @@ if (!class_exists("DfpDateTime", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -1654,7 +1654,7 @@ if (!class_exists("DateTimeRangeTargetingError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -1662,7 +1662,7 @@ if (!class_exists("DateTimeRangeTargetingError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -1712,7 +1712,7 @@ if (!class_exists("DayPart", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -1720,7 +1720,7 @@ if (!class_exists("DayPart", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -1761,7 +1761,7 @@ if (!class_exists("DayPartTargeting", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -1769,7 +1769,7 @@ if (!class_exists("DayPartTargeting", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -1802,7 +1802,7 @@ if (!class_exists("DayPartTargetingError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -1810,7 +1810,7 @@ if (!class_exists("DayPartTargetingError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -1849,7 +1849,7 @@ if (!class_exists("DeliveryData", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -1857,7 +1857,7 @@ if (!class_exists("DeliveryData", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -1895,7 +1895,7 @@ if (!class_exists("DeliveryIndicator", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -1903,7 +1903,7 @@ if (!class_exists("DeliveryIndicator", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -1942,7 +1942,7 @@ if (!class_exists("DeviceCapabilityTargeting", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -1950,7 +1950,7 @@ if (!class_exists("DeviceCapabilityTargeting", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -1989,7 +1989,7 @@ if (!class_exists("DeviceCategoryTargeting", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -1997,7 +1997,7 @@ if (!class_exists("DeviceCategoryTargeting", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -2037,7 +2037,7 @@ if (!class_exists("DeviceManufacturerTargeting", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -2045,7 +2045,7 @@ if (!class_exists("DeviceManufacturerTargeting", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -2079,7 +2079,7 @@ if (!class_exists("DropDownCustomFieldValue", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -2087,7 +2087,7 @@ if (!class_exists("DropDownCustomFieldValue", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -2122,7 +2122,7 @@ if (!class_exists("EntityChildrenLimitReachedError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -2130,7 +2130,7 @@ if (!class_exists("EntityChildrenLimitReachedError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -2162,7 +2162,7 @@ if (!class_exists("EntityLimitReachedError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -2170,7 +2170,7 @@ if (!class_exists("EntityLimitReachedError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -2207,7 +2207,7 @@ if (!class_exists("FeatureError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -2215,7 +2215,7 @@ if (!class_exists("FeatureError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -2252,7 +2252,7 @@ if (!class_exists("ForecastError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -2260,7 +2260,7 @@ if (!class_exists("ForecastError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -2310,7 +2310,7 @@ if (!class_exists("FrequencyCap", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -2318,7 +2318,7 @@ if (!class_exists("FrequencyCap", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -2352,7 +2352,7 @@ if (!class_exists("FrequencyCapError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -2360,7 +2360,7 @@ if (!class_exists("FrequencyCapError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -2397,7 +2397,7 @@ if (!class_exists("GenericTargetingError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -2405,7 +2405,7 @@ if (!class_exists("GenericTargetingError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -2462,7 +2462,7 @@ if (!class_exists("GeoTargeting", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -2470,7 +2470,7 @@ if (!class_exists("GeoTargeting", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -2504,7 +2504,7 @@ if (!class_exists("GeoTargetingError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -2512,7 +2512,7 @@ if (!class_exists("GeoTargetingError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -2561,7 +2561,7 @@ if (!class_exists("Goal", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -2569,7 +2569,7 @@ if (!class_exists("Goal", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -2623,7 +2623,7 @@ if (!class_exists("GrpSettings", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -2631,7 +2631,7 @@ if (!class_exists("GrpSettings", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -2666,7 +2666,7 @@ if (!class_exists("GrpSettingsError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -2674,7 +2674,7 @@ if (!class_exists("GrpSettingsError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -2711,7 +2711,7 @@ if (!class_exists("ImageError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -2719,7 +2719,7 @@ if (!class_exists("ImageError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -2758,7 +2758,7 @@ if (!class_exists("InternalApiError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -2766,7 +2766,7 @@ if (!class_exists("InternalApiError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -2803,7 +2803,7 @@ if (!class_exists("InvalidUrlError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -2811,7 +2811,7 @@ if (!class_exists("InvalidUrlError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -2860,7 +2860,7 @@ if (!class_exists("InventoryTargeting", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -2868,7 +2868,7 @@ if (!class_exists("InventoryTargeting", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -2903,7 +2903,7 @@ if (!class_exists("InventoryTargetingError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -2911,7 +2911,7 @@ if (!class_exists("InventoryTargetingError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -2948,7 +2948,7 @@ if (!class_exists("LabelEntityAssociationError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -2956,7 +2956,7 @@ if (!class_exists("LabelEntityAssociationError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -3025,7 +3025,7 @@ if (!class_exists("LineItemAction", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -3033,7 +3033,7 @@ if (!class_exists("LineItemAction", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -3065,7 +3065,7 @@ if (!class_exists("LineItemActivityAssociationError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -3073,7 +3073,7 @@ if (!class_exists("LineItemActivityAssociationError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -3123,7 +3123,7 @@ if (!class_exists("LineItemActivityAssociation", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -3131,7 +3131,7 @@ if (!class_exists("LineItemActivityAssociation", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -3165,7 +3165,7 @@ if (!class_exists("LineItemCreativeAssociationError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -3173,7 +3173,7 @@ if (!class_exists("LineItemCreativeAssociationError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -3210,7 +3210,7 @@ if (!class_exists("LineItemError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -3218,7 +3218,7 @@ if (!class_exists("LineItemError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -3255,7 +3255,7 @@ if (!class_exists("LineItemFlightDateError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -3263,7 +3263,7 @@ if (!class_exists("LineItemFlightDateError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -3300,7 +3300,7 @@ if (!class_exists("LineItemOperationError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -3308,7 +3308,7 @@ if (!class_exists("LineItemOperationError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -3357,7 +3357,7 @@ if (!class_exists("LineItemPage", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -3365,7 +3365,7 @@ if (!class_exists("LineItemPage", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -3756,7 +3756,7 @@ if (!class_exists("LineItemSummary", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -3764,7 +3764,7 @@ if (!class_exists("LineItemSummary", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -3909,7 +3909,7 @@ if (!class_exists("DfpLocation", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -3917,7 +3917,7 @@ if (!class_exists("DfpLocation", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -3959,7 +3959,7 @@ if (!class_exists("MobileCarrierTargeting", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -3967,7 +3967,7 @@ if (!class_exists("MobileCarrierTargeting", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -4006,7 +4006,7 @@ if (!class_exists("MobileDeviceSubmodelTargeting", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -4014,7 +4014,7 @@ if (!class_exists("MobileDeviceSubmodelTargeting", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -4053,7 +4053,7 @@ if (!class_exists("MobileDeviceTargeting", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -4061,7 +4061,7 @@ if (!class_exists("MobileDeviceTargeting", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -4100,7 +4100,7 @@ if (!class_exists("Money", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -4108,7 +4108,7 @@ if (!class_exists("Money", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -4141,7 +4141,7 @@ if (!class_exists("NotNullError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -4149,7 +4149,7 @@ if (!class_exists("NotNullError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -4186,7 +4186,7 @@ if (!class_exists("NullError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -4194,7 +4194,7 @@ if (!class_exists("NullError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -4238,7 +4238,7 @@ if (!class_exists("OperatingSystemTargeting", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -4246,7 +4246,7 @@ if (!class_exists("OperatingSystemTargeting", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -4285,7 +4285,7 @@ if (!class_exists("OperatingSystemVersionTargeting", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -4293,7 +4293,7 @@ if (!class_exists("OperatingSystemVersionTargeting", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -4302,6 +4302,51 @@ if (!class_exists("OperatingSystemVersionTargeting", false)) {
     public function __construct($targetedOperatingSystemVersions = null, $excludedOperatingSystemVersions = null) {
       $this->targetedOperatingSystemVersions = $targetedOperatingSystemVersions;
       $this->excludedOperatingSystemVersions = $excludedOperatingSystemVersions;
+    }
+
+  }
+}
+
+if (!class_exists("OrderActionError", false)) {
+  /**
+   * Lists all errors associated with performing actions on {@link Order} objects.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201411
+   */
+  class OrderActionError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201411";
+    const XSI_TYPE = "OrderActionError";
+
+    /**
+     * @access public
+     * @var tnsOrderActionErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
     }
 
   }
@@ -4326,7 +4371,7 @@ if (!class_exists("OrderError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -4334,7 +4379,7 @@ if (!class_exists("OrderError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -4371,7 +4416,7 @@ if (!class_exists("ParseError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -4379,7 +4424,7 @@ if (!class_exists("ParseError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -4410,7 +4455,7 @@ if (!class_exists("PauseLineItems", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -4418,7 +4463,7 @@ if (!class_exists("PauseLineItems", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -4451,7 +4496,7 @@ if (!class_exists("PermissionError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -4459,7 +4504,7 @@ if (!class_exists("PermissionError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -4496,7 +4541,7 @@ if (!class_exists("ProgrammaticError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -4504,7 +4549,7 @@ if (!class_exists("ProgrammaticError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -4542,7 +4587,7 @@ if (!class_exists("PublisherQueryLanguageContextError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -4550,7 +4595,7 @@ if (!class_exists("PublisherQueryLanguageContextError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -4588,7 +4633,7 @@ if (!class_exists("PublisherQueryLanguageSyntaxError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -4596,7 +4641,7 @@ if (!class_exists("PublisherQueryLanguageSyntaxError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -4634,7 +4679,7 @@ if (!class_exists("QuotaError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -4642,7 +4687,7 @@ if (!class_exists("QuotaError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -4679,7 +4724,7 @@ if (!class_exists("RangeError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -4687,7 +4732,7 @@ if (!class_exists("RangeError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -4718,7 +4763,7 @@ if (!class_exists("ReleaseLineItems", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -4726,7 +4771,7 @@ if (!class_exists("ReleaseLineItems", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -4759,7 +4804,7 @@ if (!class_exists("RequiredCollectionError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -4767,7 +4812,7 @@ if (!class_exists("RequiredCollectionError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -4804,7 +4849,7 @@ if (!class_exists("RequiredError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -4812,7 +4857,7 @@ if (!class_exists("RequiredError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -4850,7 +4895,7 @@ if (!class_exists("RequiredNumberError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -4858,7 +4903,7 @@ if (!class_exists("RequiredNumberError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -4895,7 +4940,7 @@ if (!class_exists("RequiredSizeError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -4903,7 +4948,7 @@ if (!class_exists("RequiredSizeError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -4940,7 +4985,7 @@ if (!class_exists("ReservationDetailsError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -4948,7 +4993,7 @@ if (!class_exists("ReservationDetailsError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -4985,7 +5030,7 @@ if (!class_exists("ReserveLineItems", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -4993,7 +5038,7 @@ if (!class_exists("ReserveLineItems", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -5027,7 +5072,7 @@ if (!class_exists("ResumeLineItems", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -5035,7 +5080,7 @@ if (!class_exists("ResumeLineItems", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -5069,7 +5114,7 @@ if (!class_exists("AudienceSegmentError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -5077,7 +5122,7 @@ if (!class_exists("AudienceSegmentError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -5114,7 +5159,7 @@ if (!class_exists("ServerError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -5122,7 +5167,7 @@ if (!class_exists("ServerError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -5144,7 +5189,7 @@ if (!class_exists("Size", false)) {
   /**
    * Represents the dimensions of an {@link AdUnit}, {@link LineItem} or {@link Creative}.
    * <p>
-   * For interstitial size (out-of-page) and native size, {@code Size} must be 1x1.
+   * For interstitial size (out-of-page), native, ignored and fluid size, {@code Size} must be 1x1.
    * @package GoogleApiAdsDfp
    * @subpackage v201411
    */
@@ -5173,7 +5218,7 @@ if (!class_exists("Size", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -5181,7 +5226,7 @@ if (!class_exists("Size", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -5221,7 +5266,7 @@ if (!class_exists("SoapRequestHeader", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -5229,7 +5274,7 @@ if (!class_exists("SoapRequestHeader", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -5268,7 +5313,7 @@ if (!class_exists("SoapResponseHeader", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -5276,7 +5321,7 @@ if (!class_exists("SoapResponseHeader", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -5343,7 +5388,7 @@ if (!class_exists("Statement", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -5351,7 +5396,7 @@ if (!class_exists("Statement", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -5384,7 +5429,7 @@ if (!class_exists("StatementError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -5392,7 +5437,7 @@ if (!class_exists("StatementError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -5448,7 +5493,7 @@ if (!class_exists("Stats", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -5456,7 +5501,7 @@ if (!class_exists("Stats", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -5491,7 +5536,7 @@ if (!class_exists("StringLengthError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -5499,7 +5544,7 @@ if (!class_exists("StringLengthError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -5543,7 +5588,7 @@ if (!class_exists("String_ValueMapEntry", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -5551,7 +5596,7 @@ if (!class_exists("String_ValueMapEntry", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -5627,7 +5672,7 @@ if (!class_exists("Targeting", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -5635,7 +5680,7 @@ if (!class_exists("Targeting", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -5674,7 +5719,7 @@ if (!class_exists("TeamError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -5682,7 +5727,7 @@ if (!class_exists("TeamError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -5763,7 +5808,7 @@ if (!class_exists("Technology", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -5771,7 +5816,7 @@ if (!class_exists("Technology", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -5805,7 +5850,7 @@ if (!class_exists("TechnologyTargetingError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -5813,7 +5858,7 @@ if (!class_exists("TechnologyTargetingError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -5856,7 +5901,7 @@ if (!class_exists("TimeOfDay", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -5864,7 +5909,7 @@ if (!class_exists("TimeOfDay", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -5891,7 +5936,7 @@ if (!class_exists("TypeError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -5899,7 +5944,7 @@ if (!class_exists("TypeError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -5929,7 +5974,7 @@ if (!class_exists("UnarchiveLineItems", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -5937,7 +5982,7 @@ if (!class_exists("UnarchiveLineItems", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -5964,7 +6009,7 @@ if (!class_exists("UniqueError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -5972,7 +6017,7 @@ if (!class_exists("UniqueError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -6008,7 +6053,7 @@ if (!class_exists("UpdateResult", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -6016,7 +6061,7 @@ if (!class_exists("UpdateResult", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -6055,7 +6100,7 @@ if (!class_exists("UserDomainTargeting", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -6063,7 +6108,7 @@ if (!class_exists("UserDomainTargeting", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -6096,7 +6141,7 @@ if (!class_exists("UserDomainTargetingError", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -6104,7 +6149,7 @@ if (!class_exists("UserDomainTargetingError", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -6173,7 +6218,7 @@ if (!class_exists("Value", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -6181,7 +6226,7 @@ if (!class_exists("Value", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -6220,7 +6265,7 @@ if (!class_exists("VideoPosition", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -6228,7 +6273,7 @@ if (!class_exists("VideoPosition", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -6265,7 +6310,7 @@ if (!class_exists("VideoPositionTargeting", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -6273,7 +6318,7 @@ if (!class_exists("VideoPositionTargeting", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -6307,7 +6352,7 @@ if (!class_exists("VideoPositionWithinPod", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -6315,7 +6360,7 @@ if (!class_exists("VideoPositionWithinPod", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -6359,7 +6404,7 @@ if (!class_exists("VideoPositionTarget", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -6367,7 +6412,7 @@ if (!class_exists("VideoPositionTarget", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -6396,7 +6441,7 @@ if (!class_exists("ApiVersionErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -6404,7 +6449,7 @@ if (!class_exists("ApiVersionErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -6429,7 +6474,7 @@ if (!class_exists("AudienceExtensionErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -6437,7 +6482,7 @@ if (!class_exists("AudienceExtensionErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -6465,7 +6510,7 @@ if (!class_exists("AuthenticationErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -6473,7 +6518,7 @@ if (!class_exists("AuthenticationErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -6498,7 +6543,7 @@ if (!class_exists("ClickTrackingLineItemErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -6506,7 +6551,7 @@ if (!class_exists("ClickTrackingLineItemErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -6531,7 +6576,7 @@ if (!class_exists("CollectionSizeErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -6539,7 +6584,7 @@ if (!class_exists("CollectionSizeErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -6564,7 +6609,7 @@ if (!class_exists("CommonErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -6572,7 +6617,7 @@ if (!class_exists("CommonErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -6598,7 +6643,7 @@ if (!class_exists("CompanionDeliveryOption", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -6606,7 +6651,7 @@ if (!class_exists("CompanionDeliveryOption", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -6631,7 +6676,7 @@ if (!class_exists("CompanyCreditStatusErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -6639,7 +6684,7 @@ if (!class_exists("CompanyCreditStatusErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -6665,7 +6710,7 @@ if (!class_exists("ComputedStatus", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -6673,7 +6718,7 @@ if (!class_exists("ComputedStatus", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -6698,7 +6743,7 @@ if (!class_exists("ContentMetadataTargetingErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -6706,7 +6751,7 @@ if (!class_exists("ContentMetadataTargetingErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -6731,7 +6776,7 @@ if (!class_exists("CostType", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -6739,7 +6784,7 @@ if (!class_exists("CostType", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -6764,7 +6809,7 @@ if (!class_exists("CreativeErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -6772,7 +6817,7 @@ if (!class_exists("CreativeErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -6798,7 +6843,7 @@ if (!class_exists("CreativeRotationType", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -6806,7 +6851,7 @@ if (!class_exists("CreativeRotationType", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -6832,7 +6877,7 @@ if (!class_exists("CreativeSizeType", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -6840,7 +6885,7 @@ if (!class_exists("CreativeSizeType", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -6865,7 +6910,7 @@ if (!class_exists("CrossSellErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -6873,7 +6918,7 @@ if (!class_exists("CrossSellErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -6898,7 +6943,7 @@ if (!class_exists("CustomCriteriaComparisonOperator", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -6906,7 +6951,7 @@ if (!class_exists("CustomCriteriaComparisonOperator", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -6931,7 +6976,7 @@ if (!class_exists("CustomCriteriaSetLogicalOperator", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -6939,7 +6984,7 @@ if (!class_exists("CustomCriteriaSetLogicalOperator", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -6964,7 +7009,7 @@ if (!class_exists("CustomFieldValueErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -6972,7 +7017,7 @@ if (!class_exists("CustomFieldValueErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -6997,7 +7042,7 @@ if (!class_exists("CustomTargetingErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -7005,7 +7050,7 @@ if (!class_exists("CustomTargetingErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -7030,7 +7075,7 @@ if (!class_exists("AudienceSegmentCriteriaComparisonOperator", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -7038,7 +7083,7 @@ if (!class_exists("AudienceSegmentCriteriaComparisonOperator", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -7063,7 +7108,7 @@ if (!class_exists("DateTimeRangeTargetingErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -7071,7 +7116,7 @@ if (!class_exists("DateTimeRangeTargetingErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -7096,7 +7141,7 @@ if (!class_exists("DayOfWeek", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -7104,7 +7149,7 @@ if (!class_exists("DayOfWeek", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -7129,7 +7174,7 @@ if (!class_exists("DayPartTargetingErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -7137,7 +7182,7 @@ if (!class_exists("DayPartTargetingErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -7162,7 +7207,7 @@ if (!class_exists("DeliveryTimeZone", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -7170,7 +7215,7 @@ if (!class_exists("DeliveryTimeZone", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -7196,7 +7241,7 @@ if (!class_exists("DeliveryRateType", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -7204,7 +7249,7 @@ if (!class_exists("DeliveryRateType", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -7229,7 +7274,7 @@ if (!class_exists("EntityChildrenLimitReachedErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -7237,7 +7282,7 @@ if (!class_exists("EntityChildrenLimitReachedErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -7262,7 +7307,7 @@ if (!class_exists("EnvironmentType", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -7270,7 +7315,7 @@ if (!class_exists("EnvironmentType", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -7295,7 +7340,7 @@ if (!class_exists("FeatureErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -7303,7 +7348,7 @@ if (!class_exists("FeatureErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -7328,7 +7373,7 @@ if (!class_exists("ForecastErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -7336,7 +7381,7 @@ if (!class_exists("ForecastErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -7361,7 +7406,7 @@ if (!class_exists("FrequencyCapErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -7369,7 +7414,7 @@ if (!class_exists("FrequencyCapErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -7394,7 +7439,7 @@ if (!class_exists("GenericTargetingErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -7402,7 +7447,7 @@ if (!class_exists("GenericTargetingErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -7427,7 +7472,7 @@ if (!class_exists("GeoTargetingErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -7435,7 +7480,7 @@ if (!class_exists("GeoTargetingErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -7460,7 +7505,7 @@ if (!class_exists("GoalType", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -7468,7 +7513,7 @@ if (!class_exists("GoalType", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -7493,7 +7538,7 @@ if (!class_exists("GrpProvider", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -7501,7 +7546,7 @@ if (!class_exists("GrpProvider", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -7526,7 +7571,7 @@ if (!class_exists("GrpSettingsErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -7534,7 +7579,7 @@ if (!class_exists("GrpSettingsErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -7559,7 +7604,7 @@ if (!class_exists("GrpTargetGender", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -7567,7 +7612,7 @@ if (!class_exists("GrpTargetGender", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -7592,7 +7637,7 @@ if (!class_exists("ImageErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -7600,7 +7645,7 @@ if (!class_exists("ImageErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -7625,7 +7670,7 @@ if (!class_exists("InternalApiErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -7633,7 +7678,7 @@ if (!class_exists("InternalApiErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -7658,7 +7703,7 @@ if (!class_exists("InvalidUrlErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -7666,7 +7711,7 @@ if (!class_exists("InvalidUrlErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -7691,7 +7736,7 @@ if (!class_exists("InventoryTargetingErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -7699,7 +7744,7 @@ if (!class_exists("InventoryTargetingErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -7724,7 +7769,7 @@ if (!class_exists("LabelEntityAssociationErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -7732,7 +7777,7 @@ if (!class_exists("LabelEntityAssociationErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -7757,7 +7802,7 @@ if (!class_exists("LineItemActivityAssociationErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -7765,7 +7810,7 @@ if (!class_exists("LineItemActivityAssociationErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -7790,7 +7835,7 @@ if (!class_exists("LineItemCreativeAssociationErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -7798,7 +7843,7 @@ if (!class_exists("LineItemCreativeAssociationErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -7824,7 +7869,7 @@ if (!class_exists("LineItemDiscountType", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -7832,7 +7877,7 @@ if (!class_exists("LineItemDiscountType", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -7857,7 +7902,7 @@ if (!class_exists("LineItemErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -7865,7 +7910,7 @@ if (!class_exists("LineItemErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -7890,7 +7935,7 @@ if (!class_exists("LineItemFlightDateErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -7898,7 +7943,7 @@ if (!class_exists("LineItemFlightDateErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -7923,7 +7968,7 @@ if (!class_exists("LineItemOperationErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -7931,7 +7976,7 @@ if (!class_exists("LineItemOperationErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -7956,7 +8001,7 @@ if (!class_exists("LineItemSummaryReservationStatus", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -7964,7 +8009,7 @@ if (!class_exists("LineItemSummaryReservationStatus", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -7990,7 +8035,7 @@ if (!class_exists("LineItemType", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -7998,7 +8043,7 @@ if (!class_exists("LineItemType", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -8024,7 +8069,7 @@ if (!class_exists("MinuteOfHour", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -8032,7 +8077,7 @@ if (!class_exists("MinuteOfHour", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -8057,7 +8102,7 @@ if (!class_exists("NotNullErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -8065,7 +8110,7 @@ if (!class_exists("NotNullErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -8090,7 +8135,7 @@ if (!class_exists("NullErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -8098,7 +8143,40 @@ if (!class_exists("NullErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("OrderActionErrorReason", false)) {
+  /**
+   * The reasons for the target error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201411
+   */
+  class OrderActionErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201411";
+    const XSI_TYPE = "OrderActionError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -8123,7 +8201,7 @@ if (!class_exists("OrderErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -8131,7 +8209,7 @@ if (!class_exists("OrderErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -8156,7 +8234,7 @@ if (!class_exists("ParseErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -8164,7 +8242,7 @@ if (!class_exists("ParseErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -8189,7 +8267,7 @@ if (!class_exists("PermissionErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -8197,7 +8275,7 @@ if (!class_exists("PermissionErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -8232,7 +8310,7 @@ if (!class_exists("CreativePersistenceType", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -8240,7 +8318,7 @@ if (!class_exists("CreativePersistenceType", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -8265,7 +8343,7 @@ if (!class_exists("ProgrammaticErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -8273,7 +8351,7 @@ if (!class_exists("ProgrammaticErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -8298,7 +8376,7 @@ if (!class_exists("PublisherQueryLanguageContextErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -8306,7 +8384,7 @@ if (!class_exists("PublisherQueryLanguageContextErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -8331,7 +8409,7 @@ if (!class_exists("PublisherQueryLanguageSyntaxErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -8339,7 +8417,7 @@ if (!class_exists("PublisherQueryLanguageSyntaxErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -8374,7 +8452,7 @@ if (!class_exists("QuotaErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -8382,7 +8460,7 @@ if (!class_exists("QuotaErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -8407,7 +8485,7 @@ if (!class_exists("RangeErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -8415,7 +8493,7 @@ if (!class_exists("RangeErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -8440,7 +8518,7 @@ if (!class_exists("RequiredCollectionErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -8448,7 +8526,7 @@ if (!class_exists("RequiredCollectionErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -8473,7 +8551,7 @@ if (!class_exists("RequiredErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -8481,7 +8559,7 @@ if (!class_exists("RequiredErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -8506,7 +8584,7 @@ if (!class_exists("RequiredNumberErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -8514,7 +8592,7 @@ if (!class_exists("RequiredNumberErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -8540,7 +8618,7 @@ if (!class_exists("RequiredSizeErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -8548,7 +8626,7 @@ if (!class_exists("RequiredSizeErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -8573,7 +8651,7 @@ if (!class_exists("ReservationDetailsErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -8581,7 +8659,7 @@ if (!class_exists("ReservationDetailsErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -8606,7 +8684,7 @@ if (!class_exists("RoadblockingType", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -8614,7 +8692,7 @@ if (!class_exists("RoadblockingType", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -8639,7 +8717,7 @@ if (!class_exists("AudienceSegmentErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -8647,7 +8725,7 @@ if (!class_exists("AudienceSegmentErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -8672,7 +8750,7 @@ if (!class_exists("ServerErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -8680,7 +8758,7 @@ if (!class_exists("ServerErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -8706,7 +8784,7 @@ if (!class_exists("StartDateTimeType", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -8714,7 +8792,7 @@ if (!class_exists("StartDateTimeType", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -8739,7 +8817,7 @@ if (!class_exists("StatementErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -8747,7 +8825,7 @@ if (!class_exists("StatementErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -8772,7 +8850,7 @@ if (!class_exists("StringLengthErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -8780,7 +8858,7 @@ if (!class_exists("StringLengthErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -8805,7 +8883,7 @@ if (!class_exists("TargetPlatform", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -8813,7 +8891,7 @@ if (!class_exists("TargetPlatform", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -8838,7 +8916,7 @@ if (!class_exists("TeamErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -8846,7 +8924,7 @@ if (!class_exists("TeamErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -8871,7 +8949,7 @@ if (!class_exists("TechnologyTargetingErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -8879,7 +8957,7 @@ if (!class_exists("TechnologyTargetingErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -8904,7 +8982,7 @@ if (!class_exists("TimeUnit", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -8912,7 +8990,7 @@ if (!class_exists("TimeUnit", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -8941,7 +9019,7 @@ if (!class_exists("UnitType", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -8949,7 +9027,7 @@ if (!class_exists("UnitType", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -8974,7 +9052,7 @@ if (!class_exists("UserDomainTargetingErrorReason", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -8982,7 +9060,7 @@ if (!class_exists("UserDomainTargetingErrorReason", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -9010,7 +9088,7 @@ if (!class_exists("VideoBumperType", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -9018,7 +9096,7 @@ if (!class_exists("VideoBumperType", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -9043,7 +9121,7 @@ if (!class_exists("VideoPositionType", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -9051,7 +9129,7 @@ if (!class_exists("VideoPositionType", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -9085,7 +9163,7 @@ if (!class_exists("CreateLineItems", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -9093,7 +9171,7 @@ if (!class_exists("CreateLineItems", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -9125,7 +9203,7 @@ if (!class_exists("CreateLineItemsResponse", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -9133,7 +9211,7 @@ if (!class_exists("CreateLineItemsResponse", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -9152,24 +9230,7 @@ if (!class_exists("GetLineItemsByStatement", false)) {
    * given {@link Statement#query}. The following fields are supported for
    * filtering:
    * 
-   * <table>
-   * <tr><th scope="col">PQL property</th><th scope="col">Entity property</th> </tr>
-   * <tr><td><code>CostType</code></td><td>{@link LineItem#costType}</td></tr>
-   * <tr><td><code>CreationDateTime</code></td><td>{@link LineItem#creationDateTime}</td></tr>
-   * <tr><td><code>DeliveryRateType</code></td><td>{@link LineItem#deliveryRateType}</td></tr>
-   * <tr><td><code>EndDateTime</code></td><td>{@link LineItem#endDateTime}</td></tr>
-   * <tr><td><code>ExternalId</code></td><td>{@link LineItem#externalId}</td></tr>
-   * <tr><td><code>Id</code></td><td>{@link LineItem#id}</td></tr>
-   * <tr><td><code>IsMissingCreatives</code></td><td>{@link LineItem#isMissingCreatives}</td></tr>
-   * <tr><td><code>LastModifiedDateTime</code></td><td>{@link LineItem#lastModifiedDateTime}</td></tr>
-   * <tr><td><code>LineItemType</code></td><td>{@link LineItem#lineItemType}</td></tr>
-   * <tr><td><code>Name</code></td><td>{@link LineItem#name}</td></tr>
-   * <tr><td><code>OrderId</code></td><td>{@link LineItem#orderId}</td></tr>
-   * <tr><td><code>StartDateTime</code></td><td>{@link LineItem#startDateTime}</td></tr>
-   * <tr><td><code>Status</code></td><td>{@link LineItem#status}</td></tr>
-   * <tr><td><code>Targeting</code></td><td>{@link LineItem#targeting}</td></tr>
-   * <tr><td><code>UnitsBought</code></td><td>{@link LineItem#unitsBought}</td></tr>
-   * </table>
+   * <table><tr><th>PQL property</th><th>Entity property</th></tr><tr><td><code>CostType</code></td><td>{@link LineItem#costType}</td></tr><tr><td><code>CreationDateTime</code></td><td>{@link LineItem#creationDateTime}</td></tr><tr><td><code>DeliveryRateType</code></td><td>{@link LineItem#deliveryRateType}</td></tr><tr><td><code>EndDateTime</code></td><td>{@link LineItem#endDateTime}</td></tr><tr><td><code>ExternalId</code></td><td>{@link LineItem#externalId}</td></tr><tr><td><code>Id</code></td><td>{@link LineItem#id}</td></tr><tr><td><code>IsMissingCreatives</code></td><td>{@link LineItem#isMissingCreatives}</td></tr><tr><td><code>LastModifiedDateTime</code></td><td>{@link LineItem#lastModifiedDateTime}</td></tr><tr><td><code>LineItemType</code></td><td>{@link LineItem#lineItemType}</td></tr><tr><td><code>Name</code></td><td>{@link LineItem#name}</td></tr><tr><td><code>OrderId</code></td><td>{@link LineItem#orderId}</td></tr><tr><td><code>StartDateTime</code></td><td>{@link LineItem#startDateTime}</td></tr><tr><td><code>Status</code></td><td>{@link LineItem#status}</td></tr><tr><td><code>Targeting</code></td><td>{@link LineItem#targeting}</td></tr><tr><td><code>UnitsBought</code></td><td>{@link LineItem#unitsBought}</td></tr></table>
    * @param filterStatement a Publisher Query Language statement used to filter
    * a set of line items.
    * @return the line items that match the given filter
@@ -9189,7 +9250,7 @@ if (!class_exists("GetLineItemsByStatement", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -9197,7 +9258,7 @@ if (!class_exists("GetLineItemsByStatement", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -9229,7 +9290,7 @@ if (!class_exists("GetLineItemsByStatementResponse", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -9237,7 +9298,7 @@ if (!class_exists("GetLineItemsByStatementResponse", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -9281,7 +9342,7 @@ if (!class_exists("PerformLineItemAction", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -9289,7 +9350,7 @@ if (!class_exists("PerformLineItemAction", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -9322,7 +9383,7 @@ if (!class_exists("PerformLineItemActionResponse", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -9330,7 +9391,7 @@ if (!class_exists("PerformLineItemActionResponse", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -9365,7 +9426,7 @@ if (!class_exists("UpdateLineItems", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -9373,7 +9434,7 @@ if (!class_exists("UpdateLineItems", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -9405,7 +9466,7 @@ if (!class_exists("UpdateLineItemsResponse", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -9413,7 +9474,7 @@ if (!class_exists("UpdateLineItemsResponse", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -9446,7 +9507,7 @@ if (!class_exists("ObjectValue", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -9454,7 +9515,7 @@ if (!class_exists("ObjectValue", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -9481,7 +9542,7 @@ if (!class_exists("ActivateLineItems", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -9489,7 +9550,7 @@ if (!class_exists("ActivateLineItems", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -9522,7 +9583,7 @@ if (!class_exists("ApiException", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -9530,7 +9591,7 @@ if (!class_exists("ApiException", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -9559,7 +9620,7 @@ if (!class_exists("ArchiveLineItems", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -9567,7 +9628,7 @@ if (!class_exists("ArchiveLineItems", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -9595,7 +9656,7 @@ if (!class_exists("BandwidthGroup", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -9603,7 +9664,7 @@ if (!class_exists("BandwidthGroup", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -9638,7 +9699,7 @@ if (!class_exists("BooleanValue", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -9646,7 +9707,7 @@ if (!class_exists("BooleanValue", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -9686,7 +9747,7 @@ if (!class_exists("Browser", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -9694,7 +9755,7 @@ if (!class_exists("Browser", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -9725,7 +9786,7 @@ if (!class_exists("BrowserLanguage", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -9733,7 +9794,7 @@ if (!class_exists("BrowserLanguage", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -9778,7 +9839,7 @@ if (!class_exists("CustomCriteriaSet", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -9786,7 +9847,7 @@ if (!class_exists("CustomCriteriaSet", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -9816,7 +9877,7 @@ if (!class_exists("CustomCriteriaLeaf", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -9824,7 +9885,7 @@ if (!class_exists("CustomCriteriaLeaf", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -9863,7 +9924,7 @@ if (!class_exists("AudienceSegmentCriteria", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -9871,7 +9932,7 @@ if (!class_exists("AudienceSegmentCriteria", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -9905,7 +9966,7 @@ if (!class_exists("DateTimeValue", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -9913,7 +9974,7 @@ if (!class_exists("DateTimeValue", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -9947,7 +10008,7 @@ if (!class_exists("DateValue", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -9955,7 +10016,7 @@ if (!class_exists("DateValue", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -9984,7 +10045,7 @@ if (!class_exists("DeleteLineItems", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -9992,7 +10053,7 @@ if (!class_exists("DeleteLineItems", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -10019,7 +10080,7 @@ if (!class_exists("DeviceCapability", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -10027,7 +10088,7 @@ if (!class_exists("DeviceCapability", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -10056,7 +10117,7 @@ if (!class_exists("DeviceCategory", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -10064,7 +10125,7 @@ if (!class_exists("DeviceCategory", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -10093,7 +10154,7 @@ if (!class_exists("DeviceManufacturer", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -10101,7 +10162,7 @@ if (!class_exists("DeviceManufacturer", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -10137,7 +10198,7 @@ if (!class_exists("LineItem", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -10145,7 +10206,7 @@ if (!class_exists("LineItem", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -10228,7 +10289,7 @@ if (!class_exists("MobileCarrier", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -10236,7 +10297,7 @@ if (!class_exists("MobileCarrier", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -10271,7 +10332,7 @@ if (!class_exists("MobileDevice", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -10279,7 +10340,7 @@ if (!class_exists("MobileDevice", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -10321,7 +10382,7 @@ if (!class_exists("MobileDeviceSubmodel", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -10329,7 +10390,7 @@ if (!class_exists("MobileDeviceSubmodel", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -10366,7 +10427,7 @@ if (!class_exists("NumberValue", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -10374,7 +10435,7 @@ if (!class_exists("NumberValue", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -10402,7 +10463,7 @@ if (!class_exists("OperatingSystem", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -10410,7 +10471,7 @@ if (!class_exists("OperatingSystem", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -10457,7 +10518,7 @@ if (!class_exists("OperatingSystemVersion", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -10465,7 +10526,7 @@ if (!class_exists("OperatingSystemVersion", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -10497,7 +10558,7 @@ if (!class_exists("ReserveAndOverbookLineItems", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -10505,7 +10566,7 @@ if (!class_exists("ReserveAndOverbookLineItems", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -10532,7 +10593,7 @@ if (!class_exists("ResumeAndOverbookLineItems", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -10540,7 +10601,7 @@ if (!class_exists("ResumeAndOverbookLineItems", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -10573,7 +10634,7 @@ if (!class_exists("SetValue", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -10581,7 +10642,7 @@ if (!class_exists("SetValue", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -10615,7 +10676,7 @@ if (!class_exists("TextValue", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -10623,7 +10684,7 @@ if (!class_exists("TextValue", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -10671,7 +10732,7 @@ if (!class_exists("CustomCriteria", false)) {
 
     /**
      * Gets the namesapce of this class
-     * @return the namespace of this class
+     * @return string the namespace of this class
      */
     public function getNamespace() {
       return self::WSDL_NAMESPACE;
@@ -10679,7 +10740,7 @@ if (!class_exists("CustomCriteria", false)) {
 
     /**
      * Gets the xsi:type name of this class
-     * @return the xsi:type name of this class
+     * @return string the xsi:type name of this class
      */
     public function getXsiTypeName() {
       return self::XSI_TYPE;
@@ -10817,6 +10878,7 @@ if (!class_exists("LineItemService", false)) {
       "OperatingSystemTargeting" => "OperatingSystemTargeting",
       "OperatingSystemVersion" => "OperatingSystemVersion",
       "OperatingSystemVersionTargeting" => "OperatingSystemVersionTargeting",
+      "OrderActionError" => "OrderActionError",
       "OrderError" => "OrderError",
       "ParseError" => "ParseError",
       "PauseLineItems" => "PauseLineItems",
@@ -10916,6 +10978,7 @@ if (!class_exists("LineItemService", false)) {
       "MinuteOfHour" => "MinuteOfHour",
       "NotNullError.Reason" => "NotNullErrorReason",
       "NullError.Reason" => "NullErrorReason",
+      "OrderActionError.Reason" => "OrderActionErrorReason",
       "OrderError.Reason" => "OrderErrorReason",
       "ParseError.Reason" => "ParseErrorReason",
       "PermissionError.Reason" => "PermissionErrorReason",
@@ -10981,24 +11044,7 @@ if (!class_exists("LineItemService", false)) {
      * given {@link Statement#query}. The following fields are supported for
      * filtering:
      * 
-     * <table>
-     * <tr><th scope="col">PQL property</th><th scope="col">Entity property</th> </tr>
-     * <tr><td><code>CostType</code></td><td>{@link LineItem#costType}</td></tr>
-     * <tr><td><code>CreationDateTime</code></td><td>{@link LineItem#creationDateTime}</td></tr>
-     * <tr><td><code>DeliveryRateType</code></td><td>{@link LineItem#deliveryRateType}</td></tr>
-     * <tr><td><code>EndDateTime</code></td><td>{@link LineItem#endDateTime}</td></tr>
-     * <tr><td><code>ExternalId</code></td><td>{@link LineItem#externalId}</td></tr>
-     * <tr><td><code>Id</code></td><td>{@link LineItem#id}</td></tr>
-     * <tr><td><code>IsMissingCreatives</code></td><td>{@link LineItem#isMissingCreatives}</td></tr>
-     * <tr><td><code>LastModifiedDateTime</code></td><td>{@link LineItem#lastModifiedDateTime}</td></tr>
-     * <tr><td><code>LineItemType</code></td><td>{@link LineItem#lineItemType}</td></tr>
-     * <tr><td><code>Name</code></td><td>{@link LineItem#name}</td></tr>
-     * <tr><td><code>OrderId</code></td><td>{@link LineItem#orderId}</td></tr>
-     * <tr><td><code>StartDateTime</code></td><td>{@link LineItem#startDateTime}</td></tr>
-     * <tr><td><code>Status</code></td><td>{@link LineItem#status}</td></tr>
-     * <tr><td><code>Targeting</code></td><td>{@link LineItem#targeting}</td></tr>
-     * <tr><td><code>UnitsBought</code></td><td>{@link LineItem#unitsBought}</td></tr>
-     * </table>
+     * <table><tr><th>PQL property</th><th>Entity property</th></tr><tr><td><code>CostType</code></td><td>{@link LineItem#costType}</td></tr><tr><td><code>CreationDateTime</code></td><td>{@link LineItem#creationDateTime}</td></tr><tr><td><code>DeliveryRateType</code></td><td>{@link LineItem#deliveryRateType}</td></tr><tr><td><code>EndDateTime</code></td><td>{@link LineItem#endDateTime}</td></tr><tr><td><code>ExternalId</code></td><td>{@link LineItem#externalId}</td></tr><tr><td><code>Id</code></td><td>{@link LineItem#id}</td></tr><tr><td><code>IsMissingCreatives</code></td><td>{@link LineItem#isMissingCreatives}</td></tr><tr><td><code>LastModifiedDateTime</code></td><td>{@link LineItem#lastModifiedDateTime}</td></tr><tr><td><code>LineItemType</code></td><td>{@link LineItem#lineItemType}</td></tr><tr><td><code>Name</code></td><td>{@link LineItem#name}</td></tr><tr><td><code>OrderId</code></td><td>{@link LineItem#orderId}</td></tr><tr><td><code>StartDateTime</code></td><td>{@link LineItem#startDateTime}</td></tr><tr><td><code>Status</code></td><td>{@link LineItem#status}</td></tr><tr><td><code>Targeting</code></td><td>{@link LineItem#targeting}</td></tr><tr><td><code>UnitsBought</code></td><td>{@link LineItem#unitsBought}</td></tr></table>
      * @param filterStatement a Publisher Query Language statement used to filter
      * a set of line items.
      * @return the line items that match the given filter

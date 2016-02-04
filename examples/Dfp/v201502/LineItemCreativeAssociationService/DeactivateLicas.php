@@ -3,9 +3,6 @@
  * This example deactivates all line item creative associations (LICAs) for
  * a line item. To determine which LICAs exist, run GetAllLicas.php.
  *
- * Tags: LineItemCreativeAssociationService.getLineItemCreativeAssociationsByStatement
- * Tags: LineItemCreativeAssociationService.performLineItemCreativeAssociationAction
- *
  * PHP version 5
  *
  * Copyright 2014, Google Inc. All Rights Reserved.
@@ -28,7 +25,6 @@
  * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Vincent Tsao
  */
 error_reporting(E_STRICT | E_ALL);
 

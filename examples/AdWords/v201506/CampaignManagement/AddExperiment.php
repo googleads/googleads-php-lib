@@ -8,7 +8,6 @@
  * BasicOperations/GetAdGroups.php. To get keywords, run
  * BasicOperations/GetKeywords.php.
  *
- * Tags: ExperimentService.mutate
  * Restriction: adwords-only
  *
  * Copyright 2014, Google Inc. All Rights Reserved.
@@ -31,15 +30,14 @@
  * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Eric Koleda
  */
 
 // Include the initialization file
 require_once dirname(dirname(__FILE__)) . '/init.php';
 
 // Enter parameters required by the code example.
-$campaignId = "INSERT_CAMPAIGN_ID_HERE";
-$adGroupId = "INSERT_AD_GROUP_ID_HERE";
+$campaignId = 'INSERT_CAMPAIGN_ID_HERE';
+$adGroupId = 'INSERT_AD_GROUP_ID_HERE';
 
 /**
  * Runs the example.

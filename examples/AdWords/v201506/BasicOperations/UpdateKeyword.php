@@ -3,7 +3,6 @@
  * This example updates the final URL of a keyword. To get keywords, run
  * GetKeywords.php.
  *
- * Tags: AdGroupCriterionService.mutate
  * Restriction: adwords-only
  *
  * Copyright 2014, Google Inc. All Rights Reserved.
@@ -26,7 +25,6 @@
  * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Eric Koleda
  */
 
 // Include the initialization file
@@ -69,8 +67,8 @@ function UpdateKeywordExample(AdWordsUser $user, $adGroupId, $criterionId) {
 
   // Display result.
   $adGroupCriterion = $result->value[0];
-  printf("Keyword with ID '%s' has updated destination URL '%s'.\n",
-      $adGroupCriterion->criterion->id, $adGroupCriterion->destinationUrl);
+  printf("Keyword with ID '%s' has updated final URL '%s'.\n",
+      $adGroupCriterion->criterion->id, $adGroupCriterion->finalUrls->urls[0]);
 }
 
 // Don't run the example if the file is being included.

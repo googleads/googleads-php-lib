@@ -2,8 +2,6 @@
 /**
  * This example creates a ProductPartition tree.
  *
- * Tags: AdGroupCriterionService.mutate
- *
  * @package    GoogleApiAdsAdWords
  * @subpackage v201506
  * @category   WebServices

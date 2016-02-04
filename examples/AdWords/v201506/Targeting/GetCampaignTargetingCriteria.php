@@ -3,8 +3,6 @@
  * This example gets all targeting criteria for a campaign. To add targeting
  * criteria, run AddCampaignTargetingCriteria.php.
  *
- * Tags: CampaignCriterionService.get
- *
  * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,8 +23,6 @@
  * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Adam Rogal
- * @author     Eric Koleda
  */
 
 // Include the initialization file
@@ -55,8 +51,7 @@ function GetCampaignTargetingCriteriaExample(AdWordsUser $user, $campaignId) {
       new Predicate('CampaignId', 'IN', array($campaignId));
   $selector->predicates[] = new Predicate('CriteriaType', 'IN',
       array('LANGUAGE', 'LOCATION', 'AGE_RANGE', 'CARRIER',
-          'OPERATING_SYSTEM_VERSION', 'GENDER', 'POLYGON', 'PROXIMITY',
-          'PLATFORM'));
+          'OPERATING_SYSTEM_VERSION', 'GENDER', 'PROXIMITY', 'PLATFORM'));
 
   // Create paging controls.
   $selector->paging = new Paging(0, AdWordsConstants::RECOMMENDED_PAGE_SIZE);

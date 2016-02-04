@@ -24,7 +24,6 @@
  * @copyright  2015, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Thanet Knack Praneenararat
  */
 // Set error reporting levels to highest
 error_reporting(E_STRICT | E_ALL);
@@ -34,6 +33,7 @@ define('SRC_PATH', dirname(__FILE__) . $depth . 'src/');
 define('LIB_PATH', 'Google/Api/Ads/AdWords/Lib');
 define('UTIL_PATH', 'Google/Api/Ads/Common/Util');
 define('ADWORDS_UTIL_PATH', 'Google/Api/Ads/AdWords/Util');
+define('ADWORDS_UTIL_VERSION_PATH', 'Google/Api/Ads/AdWords/Util/v201506');
 
 define('ADWORDS_VERSION', 'v201506');
 

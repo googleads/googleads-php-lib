@@ -3,8 +3,6 @@
  * This example adds ad groups to a campaign. To get campaigns, run
  * GetCampaigns.php.
  *
- * Tags: AdGroupService.mutate
- *
  * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,7 +23,6 @@
  * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Eric Koleda
  */
 
 // Include the initialization file
@@ -61,8 +58,10 @@ function AddAdGroupsExample(AdWordsUser $user, $campaignId) {
     // Set additional settings (optional).
     $adGroup->status = 'ENABLED';
 
-    // Targeting restriction settings - these settings only affect serving
-    // for the Display Network.
+    // Targeting restriction settings. Depending on the criterionTypeGroup
+    // value, most TargetingSettingDetail only affect Display campaigns.
+    // However, the USER_INTEREST_AND_LIST value works for RLSA campaigns -
+    // Search campaigns targeting using a remarketing list.
     $targetingSetting = new TargetingSetting();
     // Restricting to serve ads that match your ad group placements.
     // This is equivalent to choosing "Target and bid" in the UI.

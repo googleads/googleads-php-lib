@@ -1,10 +1,10 @@
 <?php
 /**
- * This example creates a new account under an MCC account. Note: this example
- * must be run using the credentials of an MCC account, and by default the new
- * account will only be accessible via the parent MCC account.
+ * This example creates a new account under an AdWords manager account. Note:
+ * this example must be run using the credentials of an AdWords manager account,
+ * and by default the new account will only be accessible via the parent AdWords
+ * manager account.
  *
- * Tags: ManagedCustomerService.mutate
  * Restriction: adwords-only
  *
  * PHP version 5
@@ -29,7 +29,6 @@
  * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Eric Koleda
  */
 
 // Include the initialization file

@@ -3,8 +3,6 @@
  * This example creates a new exchange rate. To determine which exchange rates
  * exist, run GetAllExchangeRates.php.
  *
- * Tags: ExchangeRateService.createExchangeRates
- *
  * PHP version 5
  *
  * Copyright 2014, Google Inc. All Rights Reserved.
@@ -27,7 +25,6 @@
  * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Vincent Tsao
  */
 error_reporting(E_STRICT | E_ALL);
 

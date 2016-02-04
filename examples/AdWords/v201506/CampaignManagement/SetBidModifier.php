@@ -2,7 +2,6 @@
 /**
  * This example sets a Bid Modifier on a Campaign.
  *
- * Tags: CampaignCriterionService.mutate
  * Restriction: adwords-only
  *
  * Copyright 2014, Google Inc. All Rights Reserved.
@@ -25,11 +24,10 @@
  * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Paul Matthews
  */
 
 // Include the initialization file.
-require_once dirname(dirname(__FILE__)) . "/init.php";
+require_once dirname(dirname(__FILE__)) . '/init.php';
 
 // Enter parameters required by the code example.
 $campaignId = 'INSERT_CAMPAIGN_ID_HERE';
@@ -44,7 +42,7 @@ $bidModifier = 1.5;
 function SetBidModifierExample(AdWordsUser $user, $campaignId, $bidModifier) {
   // Get the CampaignCriterionService, also loads classes
   $campaignCriterionService =
-      $user->GetService("CampaignCriterionService", ADWORDS_VERSION);
+      $user->GetService('CampaignCriterionService', ADWORDS_VERSION);
 
   // Create Mobile Platform. The ID can be found in the documentation.
   // https://developers.google.com/adwords/api/docs/appendix/platforms
@@ -59,7 +57,7 @@ function SetBidModifierExample(AdWordsUser $user, $campaignId, $bidModifier) {
 
   // Create SET operation.
   $operation = new CampaignCriterionOperation();
-  $operation->operator = "SET";
+  $operation->operator = 'SET';
   $operation->operand = $criterion;
 
   // Update campaign criteria.
@@ -79,11 +77,11 @@ function SetBidModifierExample(AdWordsUser $user, $campaignId, $bidModifier) {
 
     return true;
   }
-  print "No campaign criterias were modified.";
+  print 'No campaign criterias were modified.';
 }
 
 // Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER["PHP_SELF"])) {
+if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
   return;
 }
 

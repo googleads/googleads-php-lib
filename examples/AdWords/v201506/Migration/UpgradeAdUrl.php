@@ -2,7 +2,6 @@
 /**
  * This code example upgrades an ad to use upgraded URLs.
  *
- * Tags: AdGroupAdService.get, AdGroupAdService.mutate
  * Restriction: adwords-only
  *
  * Copyright 2015, Google Inc. All Rights Reserved.
@@ -25,7 +24,6 @@
  * @copyright  2015, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Danial Klimkin
  */
 
 // Include the initialization file

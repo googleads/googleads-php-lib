@@ -3,8 +3,6 @@
  * This example gets all promotions for an express businesses. To add
  * a promotion, run AddPromotion.php.
  *
- * Tags: PromotionService.get
- *
  * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,7 +23,6 @@
  * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Josh Radcliff
  */
 
 // Include the initialization file
@@ -46,7 +43,9 @@ function GetPromotionsExample(AdWordsUser $user, $businessId) {
 
   // Create selector.
   $selector = new Selector();
-  $selector->fields = array('PromotionId', 'Name');
+  $selector->fields = array('PromotionId', 'Name', 'Status', 'DestinationUrl',
+      'CallTrackingEnabled', 'Budget', 'PromotionCriteria', 'RemainingBudget',
+      'Creatives', 'CampaignIds');
   $selector->ordering[] = new OrderBy('Name', 'ASCENDING');
 
   // Create paging controls.

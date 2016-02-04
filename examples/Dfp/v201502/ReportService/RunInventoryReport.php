@@ -2,8 +2,6 @@
 /**
  * This example runs a typical daily inventory report.
  *
- * Tags: ReportService.runReportJob
- *
  * PHP version 5
  *
  * Copyright 2014, Google Inc. All Rights Reserved.
@@ -26,7 +24,6 @@
  * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Vincent Tsao
  */
 error_reporting(E_STRICT | E_ALL);
 
@@ -63,7 +60,7 @@ try {
   // include all ad units in the network.
   $statementBuilder = new StatementBuilder();
   $statementBuilder->Where('PARENT_AD_UNIT_ID = :parentAdUnitId')
-      ->WithBindVariableValue('parentAdUnitId', intval($rootAdUnitId));
+      ->WithBindVariableValue('parentAdUnitId', floatval($rootAdUnitId));
 
   // Create report query.
   $reportQuery = new ReportQuery();

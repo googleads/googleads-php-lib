@@ -1,7 +1,7 @@
 ## The Google Ads APIs PHP Client Library
 
 This project hosts the PHP client library for the various SOAP-based Ads APIs
-(AdWords, AdExchange Buyer, and DFP) at Google.
+(AdWords and DFP) at Google.
 
 
 ### Features
@@ -45,7 +45,6 @@ Developers page](https://plus.google.com/+GoogleAdsDevelopers/posts) and our
 If you have questions about the client library or the APIs, you can ask them on our forums:
   * [AdWords API Forum](https://groups.google.com/group/adwords-api)
   * [DoubleClick for Publishers API Forum](https://groups.google.com/forum/#!forum/google-doubleclick-for-publishers-api)
-  * [DoubleClick Ad Exchange Buyer API Forum](https://groups.google.com/forum/#!forum/google-doubleclick-ad-exchange-buyer-api)
 
 ### Getting started
 
@@ -146,6 +145,17 @@ $operations[] = $operation;
 $campaignReturnValue = $campaignService->mutate($operations);
 ```
 
+### How do I set different client customer IDs than specified in auth.ini?
+
+You can do this by calling `SetClientCustomerId()` of an `AdWordUser` object
+with a parameter as client customer ID you want to set to:
+
+```php
+// Create an AdWordsUser instance using the default constructor, which will load
+// information from the auth.ini file as described above.
+$user = new AdWordsUser();
+$user->SetClientCustomerId('INSERT_CLIENT_CUSTOMER_ID_HERE');
+```
 
 ### How do I enable logging?
 

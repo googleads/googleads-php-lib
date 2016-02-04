@@ -2,7 +2,6 @@
 /**
  * This example gets keyword ideas related to a seed keyword.
  *
- * Tags: TargetingIdeaService.get
  * Restriction: adwords-only
  *
  * Copyright 2014, Google Inc. All Rights Reserved.
@@ -25,7 +24,6 @@
  * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Eric Koleda
  */
 
 // Include the initialization file
@@ -81,8 +79,12 @@ function GetKeywordIdeasExample(AdWordsUser $user) {
         $keyword = $data['KEYWORD_TEXT']->value;
         $search_volume = isset($data['SEARCH_VOLUME']->value)
             ? $data['SEARCH_VOLUME']->value : 0;
-        $categoryIds =
-            implode(', ', $data['CATEGORY_PRODUCTS_AND_SERVICES']->value);
+        if ($data['CATEGORY_PRODUCTS_AND_SERVICES']->value === null) {
+          $categoryIds = '';
+        } else {
+          $categoryIds =
+              implode(', ', $data['CATEGORY_PRODUCTS_AND_SERVICES']->value);
+        }
         printf("Keyword idea with text '%s', category IDs (%s) and average "
             . "monthly search volume '%s' was found.\n",
             $keyword, $categoryIds, $search_volume);

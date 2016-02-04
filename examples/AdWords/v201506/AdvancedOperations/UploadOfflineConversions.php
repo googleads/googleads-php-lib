@@ -4,7 +4,6 @@
  * your account. To get Google Click ID for a click, run
  * CLICK_PERFORMANCE_REPORT.
  *
- * Tags: ConversionTrackerService.mutate, OfflineConversionFeedService.mutate
  * Restriction: adwords-only
  *
  * Copyright 2014, Google Inc. All Rights Reserved.
@@ -27,7 +26,6 @@
  * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     David Torres
  */
 
 // Include the initialization file.

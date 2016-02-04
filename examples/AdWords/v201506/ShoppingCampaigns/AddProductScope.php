@@ -3,8 +3,6 @@
  * This example restricts the products that will be included in the campaign by
  * setting a ProductScope.
  *
- * Tags: CampaignCriterionService.mutate
- *
  * @package    GoogleApiAdsAdWords
  * @subpackage v201506
  * @category   WebServices

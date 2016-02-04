@@ -3,8 +3,6 @@
  * This example demonstrates how to handle policy violation errors when creating
  * text ads.
  *
- * Tags: AdGroupAdService.mutate
- *
  * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,7 +23,6 @@
  * @copyright  2014, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Eric Koleda
  */
 
 // Include the initialization file
@@ -105,10 +102,8 @@ function HandlePolicyViolationErrorExample(AdWordsUser $user, $adGroupId) {
     }
     $operationIndicesToRemove = array_unique($operationIndicesToRemove);
     rsort($operationIndicesToRemove, SORT_NUMERIC);
-    if (sizeof($operationIndicesToRemove) > 0) {
-      foreach ($operationIndicesToRemove as $operationIndex) {
-        unset($operations[$operationIndex]);
-      }
+    foreach ($operationIndicesToRemove as $operationIndex) {
+      unset($operations[$operationIndex]);
     }
   }
 

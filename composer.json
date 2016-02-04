@@ -19,8 +19,8 @@
     },
     "authors": [
       {
-        "name": "Vincent Tsao",
-        "role": "Developer"
+        "name": "Google",
+        "homepage": "https://github.com/googleads/googleads-php-lib/contributors"
       }
     ]
 }

@@ -25,9 +25,6 @@
  * @copyright  2011, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Adam Rogal
- * @author     Eric Koleda
- * @author     Vincent Tsao
  */
 require_once 'Google/Api/Ads/Common/Lib/AdsUser.php';
 require_once 'Google/Api/Ads/Common/Util/ApiPropertiesUtils.php';
@@ -59,6 +56,7 @@ class DfpUser extends AdsUser {
   private $libName;
 
   private $applicationName;
+  private $scopes;
 
 
   /**
@@ -124,11 +122,18 @@ class DfpUser extends AdsUser {
         $authenticationIni);
     $oauth2Info = $this->GetAuthVarValue($oauth2Info, 'OAUTH2',
         $authenticationIni);
+    if (isset($oauth2Info['oAuth2AdditionalScopes'])) {
+      $scopes = explode(',', $oauth2Info['oAuth2AdditionalScopes']);
+    } else {
+      $scopes = array();
+    }
+    $scopes[] = self::OAUTH2_SCOPE;
 
     $this->SetOAuth2Info($oauth2Info);
     $this->SetApplicationName($applicationName);
     $this->SetClientLibraryUserAgent($applicationName);
     $this->SetNetworkCode($networkCode);
+    $this->SetScopes($scopes);
 
     if ($settingsIniPath === null) {
       $settingsIniPath = dirname(__FILE__) . '/../settings.ini';
@@ -142,7 +147,7 @@ class DfpUser extends AdsUser {
 
   /**
    * Gets the service by its service name.
-   * @param $serviceName the service name
+   * @param string $serviceName the service name
    * @param string $version the version of the service to get. If
    *     <var>null</var>, then the default version will be used
    * @param string $server the server to make the request to. If
@@ -217,13 +222,29 @@ class DfpUser extends AdsUser {
   }
 
   /**
+   * Gets OAuth2 scopes.
+   * @return array the list of OAuth2 scopes
+   */
+  public function GetScopes() {
+    return $this->scopes;
+  }
+
+  /**
+   * Sets OAuth2 scopes.
+   * @param array the list of OAuth2 scopes
+   */
+  public function SetScopes($scopes) {
+    $this->scopes = $scopes;
+  }
+
+  /**
    * Get the default OAuth2 Handler for this user.
    * @param null|string $className the name of the oauth2Handler class or null
    * @return mixed the configured OAuth2Handler class
    */
   public function GetDefaultOAuth2Handler($className = null) {
     $className = !empty($className) ? $className : self::OAUTH2_HANDLER_CLASS;
-    return new $className($this->GetAuthServer(), self::OAUTH2_SCOPE);
+    return new $className($this->GetAuthServer(), $this->GetScopes());
   }
 
 
