@@ -11,13 +11,10 @@ This project hosts the PHP client library for the various SOAP-based Ads APIs
 
 ### Getting started
 
-1. Download the beta source from the
-[experimental branch](https://github.com/googleads/googleads-php-lib/archive/experimental).
-
-1. Install dependencies using [Composer](https://getcomposer.org/).
+1. Install the latest BETA version using [Composer](https://getcomposer.org/).
 
   ```
-  $ php composer.phar install
+  $ php composer.phar require googleads/googleads-php-lib:dev-experimental
   ```
 
 1. Copy the sample **adsapi_php.ini** for your product to your home directory
@@ -171,7 +168,7 @@ our:
 * [Google+ Ads Developers page](https://plus.google.com/+GoogleAdsDevelopers/posts)
 * [Google Ads Developers blog](http://googleadsdeveloper.blogspot.com)
 * [AdWords API Announcements mailing list](https://groups.google.com/forum/#!forum/adwordsapi-announcements)
-* [DFP API Deprecation Announcements mailing list](https://groups.google.com/forum/#!forum/dfpapi-deprecation-announce)
+* [DFP API Sunset Announcements mailing list](https://groups.google.com/forum/#!forum/dfpapi-sunset-announce)
 
 API deprecation schedules can be found at:
 
