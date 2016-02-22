@@ -1,0 +1,16 @@
+<?php
+
+namespace Google\AdsApi\Dfp\v201511;
+
+class UnitType
+{
+    const __default = 'IMPRESSIONS';
+    const IMPRESSIONS = 'IMPRESSIONS';
+    const CLICKS = 'CLICKS';
+    const CLICK_THROUGH_CPA_CONVERSIONS = 'CLICK_THROUGH_CPA_CONVERSIONS';
+    const VIEW_THROUGH_CPA_CONVERSIONS = 'VIEW_THROUGH_CPA_CONVERSIONS';
+    const TOTAL_CPA_CONVERSIONS = 'TOTAL_CPA_CONVERSIONS';
+    const UNKNOWN = 'UNKNOWN';
+
+
+}

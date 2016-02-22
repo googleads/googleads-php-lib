@@ -1,0 +1,18 @@
+<?php
+
+namespace Google\AdsApi\Dfp\v201511;
+
+class CompanyType
+{
+    const __default = 'HOUSE_ADVERTISER';
+    const HOUSE_ADVERTISER = 'HOUSE_ADVERTISER';
+    const HOUSE_AGENCY = 'HOUSE_AGENCY';
+    const ADVERTISER = 'ADVERTISER';
+    const AGENCY = 'AGENCY';
+    const AD_NETWORK = 'AD_NETWORK';
+    const AFFILIATE_DISTRIBUTION_PARTNER = 'AFFILIATE_DISTRIBUTION_PARTNER';
+    const CONTENT_PARTNER = 'CONTENT_PARTNER';
+    const UNKNOWN = 'UNKNOWN';
+
+
+}

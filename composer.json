@@ -1,38 +1,26 @@
 {
-    "name": "googleads/googleads-php-lib",
-    "description": "Google Ads APIs Client Library for PHP (AdWords, Adx, and DFP)",
-    "require": {
-        "php": ">=5.3.0"
-    },
-    "type": "library",
-    "homepage": "https://github.com/googleads/googleads-php-lib",
-    "license": "Apache-2.0",
-    "include-path": ["src/"],
-    "autoload": {
-      "psr-4" : {
-        "Google\\Api\\Ads\\" : "src/Google/Api/Ads/"
-      }
-    },
-    "authors": [
-      {
-        "name": "Paul Matthews",
-        "role": "Developer"
-      },
-      {
-        "name": "Adam Rogal",
-        "role": "Developer"
-      },
-      {
-        "name": "Mat Scales",
-        "role": "Developer"
-      },
-      {
-        "name": "Vincent Tsao",
-        "role": "Developer"
-      },
-      {
-        "name": "Ray Tsang",
-        "role": "Developer"
-      }
-    ]
+  "name": "googleads/googleads-php-lib",
+  "description": "Google Ads APIs Client Library for PHP (AdWords and DFP)",
+  "require": {
+    "php": ">=5.5.0",
+    "monolog/monolog": "~1.17.1",
+    "ext-soap": "*",
+    "ext-curl": "*",
+    "ext-openssl": "*"
+  },
+  "suggest": {
+    "php-64bit": ">=5.5.0"
+  },
+  "homepage": "https://github.com/googleads/googleads-php-lib",
+  "license": "Apache-2.0",
+  "autoload": {
+    "psr-4": { "Google\\AdsApi\\": "src/Google/AdsApi/" }
+  },
+  "authors": [
+    {
+      "name": "Google",
+      "homepage": "https://github.com/googleads/googleads-php-lib/contributors"
+    }
+  ]
 }
+

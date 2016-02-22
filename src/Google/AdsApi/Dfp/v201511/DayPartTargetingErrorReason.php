@@ -1,0 +1,15 @@
+<?php
+
+namespace Google\AdsApi\Dfp\v201511;
+
+class DayPartTargetingErrorReason
+{
+    const __default = 'INVALID_HOUR';
+    const INVALID_HOUR = 'INVALID_HOUR';
+    const INVALID_MINUTE = 'INVALID_MINUTE';
+    const END_TIME_NOT_AFTER_START_TIME = 'END_TIME_NOT_AFTER_START_TIME';
+    const TIME_PERIODS_OVERLAP = 'TIME_PERIODS_OVERLAP';
+    const UNKNOWN = 'UNKNOWN';
+
+
+}

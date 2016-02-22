@@ -1,0 +1,14 @@
+<?php
+
+namespace Google\AdsApi\Dfp\v201511;
+
+class LabelEntityAssociationErrorReason
+{
+    const __default = 'DUPLICATE_ASSOCIATION';
+    const DUPLICATE_ASSOCIATION = 'DUPLICATE_ASSOCIATION';
+    const INVALID_ASSOCIATION = 'INVALID_ASSOCIATION';
+    const DUPLICATE_ASSOCIATION_WITH_NEGATION = 'DUPLICATE_ASSOCIATION_WITH_NEGATION';
+    const UNKNOWN = 'UNKNOWN';
+
+
+}
