@@ -1,3 +1,13 @@
+### 8.1.0
+
+AdWords:
+  - Fixed [issue #119](https://github.com/googleads/googleads-php-lib/issues/119).
+
+DFP:
+  - Added support for v201602.
+  - Removed examples for v201502 (deprecated).
+  - Removed support for v201411 (sunset).
+
 ### 8.0.0
 
 AdWords:

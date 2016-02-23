@@ -5,7 +5,7 @@
  *
  * PHP version 5
  *
- * Copyright 2014, Google Inc. All Rights Reserved.
+ * Copyright 2016, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201508
  * @category   WebServices
- * @copyright  2014, Google Inc. All Rights Reserved.
+ * @copyright  2016, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
@@ -921,6 +921,50 @@ if (!class_exists("CommonError", false)) {
     /**
      * @access public
      * @var tnsCommonErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+    }
+
+  }
+}
+
+if (!class_exists("CompanyError", false)) {
+  /**
+   * A list of all errors associated with companies.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201508
+   */
+  class CompanyError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201508";
+    const XSI_TYPE = "CompanyError";
+
+    /**
+     * @access public
+     * @var tnsCompanyErrorReason
      */
     public $reason;
 
@@ -3509,6 +3553,39 @@ if (!class_exists("CommonErrorReason", false)) {
   }
 }
 
+if (!class_exists("CompanyErrorReason", false)) {
+  /**
+   * Enumerates all possible company specific errors.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201508
+   */
+  class CompanyErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201508";
+    const XSI_TYPE = "CompanyError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("CreativeWrapperErrorReason", false)) {
   /**
    * The reasons for the creative wrapper error.
@@ -5702,6 +5779,7 @@ if (!class_exists("InventoryService", false)) {
       "BooleanValue" => "BooleanValue",
       "CollectionSizeError" => "CollectionSizeError",
       "CommonError" => "CommonError",
+      "CompanyError" => "CompanyError",
       "CreativeWrapperError" => "CreativeWrapperError",
       "CrossSellError" => "CrossSellError",
       "CrossSellingDistributor" => "CrossSellingDistributor",
@@ -5766,6 +5844,7 @@ if (!class_exists("InventoryService", false)) {
       "AuthenticationError.Reason" => "AuthenticationErrorReason",
       "CollectionSizeError.Reason" => "CollectionSizeErrorReason",
       "CommonError.Reason" => "CommonErrorReason",
+      "CompanyError.Reason" => "CompanyErrorReason",
       "CreativeWrapperError.Reason" => "CreativeWrapperErrorReason",
       "CrossSellError.Reason" => "CrossSellErrorReason",
       "EntityLimitReachedError.Reason" => "EntityLimitReachedErrorReason",

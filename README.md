@@ -166,11 +166,11 @@ below.
   - REQUEST_INFO_LOG: Logs all requests from the client library along
     with information such as the timestamp, email, service, method,
     request Id, response time and which server was used. The default
-    behavior is to log this information to "logs/request_info.log" relative to
+    behavior is to log this information to "request_info.log" relative to
     your project's home directory.
 
   - SOAP_XML_LOG: Logs all incoming and outgoing SOAP requests/responses. The
-    default behavior is to log this information to "logs/soap_xml.log" relative
+    default behavior is to log this information to "soap_xml.log" relative
     to your project's home directory. Sensitive information, such as
     authentication tokens, will be stripped.
 
@@ -187,6 +187,26 @@ Logging can be enabled using the following methods.
 You can use the methods of the Logger class directly for even more control over
 how requests are logged.
 
+### Notes about using composer.json
+
+As there are some classes declared with the same names in each version directory
+under `src/Google/Api/Ads/AdWords/Util`, this path cannot be included in
+`classmap` of `composer.json`.
+
+Thus, if you use composer, you will still need to manually copy over the version
+of the utility files you need to use.
+For instance, if you use `classmap` and v201601 of this library, you may add the
+following to your project's `composer.json`:
+
+```json
+  "classmap": [
+    "vendor/googleads/googleads-php-lib/src/Google/Api/Ads/AdWords/Util/v201601"
+  ]
+```
+
+We are working on rewriting this library with namespacing and PSR-4 support.
+The progress and discussion of this work can be found at issue
+[#4](https://github.com/googleads/googleads-php-lib/issues/4).
 
 ### Where do I submit client library bug reports, feature requests, and patches?
 

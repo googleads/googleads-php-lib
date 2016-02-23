@@ -61,7 +61,7 @@ function GetAccountHierarchyExample(AdWordsUser $user) {
       if (isset($graph->links)) {
         foreach ($graph->links as $link) {
           $childLinks[$link->managerCustomerId][] = $link;
-          $parentLinks[$link->clientCustomerId][] = $link;
+          $parentLinks[$link->clientCustomerId] = $link;
         }
       }
       foreach ($graph->entries as $account) {
@@ -79,9 +79,13 @@ function GetAccountHierarchyExample(AdWordsUser $user) {
     }
   }
 
-  // Display account tree.
-  print "(Customer Id, Account Name)\n";
-  DisplayAccountTree($rootAccount, $accounts, $childLinks, 0);
+  if ($rootAccount !== null) {
+    // Display account tree.
+    print "(Customer Id, Account Name)\n";
+    DisplayAccountTree($rootAccount, $accounts, $childLinks, 0);
+  } else {
+    printf("No accounts were found.\n");
+  }
 }
 
 /**

@@ -95,7 +95,7 @@ class XmlTestHelper {
   private static function InitMutateRequestObject() {
     $campaign = new Campaign();
     $campaign->id = -1;
-    $campaign->name = 'Test campaign&<>';
+    $campaign->name = 'Test campaign&<>"\'';
     $campaign->advertisingChannelType = 'SEARCH';
     $campaign->status = 'ENABLED';
     $campaignOperation = new CampaignOperation();

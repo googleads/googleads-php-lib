@@ -125,7 +125,7 @@ class XmlSerializer {
     } else if (is_bool($object)) {
       return $object ? 'true': 'false';
     } else {
-      return strval(htmlspecialchars($object, ENT_XML1, 'UTF-8'));
+      return strval(htmlspecialchars($object));
     }
   }
 

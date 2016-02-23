@@ -5,7 +5,7 @@
  *
  * PHP version 5
  *
- * Copyright 2014, Google Inc. All Rights Reserved.
+ * Copyright 2016, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201511
  * @category   WebServices
- * @copyright  2014, Google Inc. All Rights Reserved.
+ * @copyright  2016, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
@@ -4442,6 +4442,50 @@ if (!class_exists("ResumeProposalLineItems", false)) {
   }
 }
 
+if (!class_exists("AudienceSegmentError", false)) {
+  /**
+   * Errors that could occur on audience segment related requests.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201511
+   */
+  class AudienceSegmentError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201511";
+    const XSI_TYPE = "AudienceSegmentError";
+
+    /**
+     * @access public
+     * @var tnsAudienceSegmentErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+    }
+
+  }
+}
+
 if (!class_exists("ServerError", false)) {
   /**
    * Errors related to the server.
@@ -7767,6 +7811,39 @@ if (!class_exists("RoadblockingType", false)) {
   }
 }
 
+if (!class_exists("AudienceSegmentErrorReason", false)) {
+  /**
+   * Reason of the given {@link AudienceSegmentError}.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201511
+   */
+  class AudienceSegmentErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201511";
+    const XSI_TYPE = "AudienceSegmentError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("ServerErrorReason", false)) {
   /**
    * Describes reasons for server errors
@@ -8251,6 +8328,14 @@ if (!class_exists("GetProposalLineItemsByStatement", false)) {
    * <tr>
    * <td>{@code proposalId}</td>
    * <td>{@link ProposalLineItem#proposalId}</td>
+   * </tr>
+   * <tr>
+   * <td>{@code startDateTime}</td>
+   * <td>{@link ProposalLineItem#startDateTime}</td>
+   * </tr>
+   * <tr>
+   * <td>{@code endDateTime}</td>
+   * <td>{@link ProposalLineItem#endDateTime}</td>
    * </tr>
    * <tr>
    * <td>{@code isArchived}</td>
@@ -10317,6 +10402,7 @@ if (!class_exists("ProposalLineItemService", false)) {
       "RequiredNumberError" => "RequiredNumberError",
       "ReservationDetailsError" => "ReservationDetailsError",
       "ResumeProposalLineItems" => "ResumeProposalLineItems",
+      "AudienceSegmentError" => "AudienceSegmentError",
       "ServerError" => "ServerError",
       "SetValue" => "SetValue",
       "Size" => "Size",
@@ -10408,6 +10494,7 @@ if (!class_exists("ProposalLineItemService", false)) {
       "ReservationDetailsError.Reason" => "ReservationDetailsErrorReason",
       "ReservationStatus" => "ReservationStatus",
       "RoadblockingType" => "RoadblockingType",
+      "AudienceSegmentError.Reason" => "AudienceSegmentErrorReason",
       "ServerError.Reason" => "ServerErrorReason",
       "StatementError.Reason" => "StatementErrorReason",
       "StringLengthError.Reason" => "StringLengthErrorReason",
@@ -10481,6 +10568,14 @@ if (!class_exists("ProposalLineItemService", false)) {
      * <tr>
      * <td>{@code proposalId}</td>
      * <td>{@link ProposalLineItem#proposalId}</td>
+     * </tr>
+     * <tr>
+     * <td>{@code startDateTime}</td>
+     * <td>{@link ProposalLineItem#startDateTime}</td>
+     * </tr>
+     * <tr>
+     * <td>{@code endDateTime}</td>
+     * <td>{@link ProposalLineItem#endDateTime}</td>
      * </tr>
      * <tr>
      * <td>{@code isArchived}</td>
