@@ -3,8 +3,6 @@
  * This example gets all available keyword bid simulations within an ad group.
  * To get ad groups, run BasicOperation/GetAdGroups.php.
  *
- * Restriction: adwords-only
- *
  * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -70,20 +68,17 @@ function GetKeywordBidSimulationsExample(AdWordsUser $user, $adGroupId) {
               $bidLandscapePoint->bid->microAmount,
               $bidLandscapePoint->clicks,
               $bidLandscapePoint->cost->microAmount,
-              $bidLandscapePoint->impressions);
+              $bidLandscapePoint->impressions
+          );
         }
         print "\n";
       }
+    } else if ($selector->paging->startIndex === 0) {
+      printf("No criterion bid landscapes were found.\n");
     }
-
     // Advance the paging index.
     $selector->paging->startIndex += AdWordsConstants::RECOMMENDED_PAGE_SIZE;
   } while (isset($page->entries) && count($page->entries) > 0);
-
-  if ($selector->paging->startIndex === 0) {
-    print "No criterion bid landscapes were found.\n";
-  }
-
 }
 
 // Don't run the example if the file is being included.

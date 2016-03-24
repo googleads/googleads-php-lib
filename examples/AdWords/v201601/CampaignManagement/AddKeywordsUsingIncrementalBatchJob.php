@@ -70,39 +70,83 @@ function AddKeywordsUsingIncrementalBatchJob(AdWordsUser $user, $adGroupId) {
       buildAdGroupCriterionOperations($adGroupId);
   $batchJobUtils->UploadIncrementalBatchJobOperations(
       $adGroupCriterionOperations);
+  printf("Uploaded %d operations for batch job with ID %d.\n",
+      count($adGroupCriterionOperations), $batchJob->id);
 
   // Generate and upload the second set of operations.
   $adGroupCriterionOperations =
       buildAdGroupCriterionOperations($adGroupId);
   $batchJobUtils->UploadIncrementalBatchJobOperations(
       $adGroupCriterionOperations);
+  printf("Uploaded %d operations for batch job with ID %d.\n",
+      count($adGroupCriterionOperations), $batchJob->id);
 
   // Generate and upload the third and final set of operations.
   $adGroupCriterionOperations =
       buildAdGroupCriterionOperations($adGroupId);
   $batchJobUtils->UploadIncrementalBatchJobOperations(
       $adGroupCriterionOperations, true);
+  printf("Uploaded %d operations for batch job with ID %d.\n",
+      count($adGroupCriterionOperations), $batchJob->id);
 
   // Poll for completion of the batch job using an exponential back off.
   $pollAttempts = 0;
   $isPending = true;
+  $wasCancelRequested = false;
+
+  $selector = new Selector();
+  $selector->fields = array('Id', 'Status', 'DownloadUrl', 'ProcessingErrors',
+      'ProgressStats');
+  $selector->predicates[] = new Predicate('Id', 'EQUALS', $batchJob->id);
   do {
     $sleepSeconds = POLL_FREQUENCY_SECONDS * pow(2, $pollAttempts);
     printf("Sleeping %d seconds...\n", $sleepSeconds);
     sleep($sleepSeconds);
 
-    $selector = new Selector();
-    $selector->fields = array('Id', 'Status', 'DownloadUrl', 'ProcessingErrors',
-        'ProgressStats');
-    $selector->predicates[] = new Predicate('Id', 'EQUALS', $batchJob->id);
     $batchJob = $batchJobService->get($selector)->entries[0];
     printf("Batch job ID %d has status '%s'.\n", $batchJob->id,
         $batchJob->status);
 
     $pollAttempts++;
     if ($batchJob->status !== 'ACTIVE' &&
-        $batchJob->status !== 'AWAITING_FILE') {
+        $batchJob->status !== 'AWAITING_FILE' &&
+        $batchJob->status !== 'CANCELING') {
       $isPending = false;
+    }
+
+    // Optional: Cancel the job if it has not completed after polling
+    // MAX_POLL_ATTEMPTS times.
+    if ($isPending && !$wasCancelRequested
+        && $pollAttempts == MAX_POLL_ATTEMPTS) {
+      $batchJob->status = 'CANCELING';
+      $batchJobSetOperation = new BatchJobOperation();
+      $batchJobSetOperation->operand = $batchJob;
+      $batchJobSetOperation->operator = 'SET';
+
+      // Only request cancellation once per job.
+      $wasCancelRequested = true;
+      try {
+        $operations[] = $batchJobSetOperation;
+        $batchJob = $batchJobService->mutate($operations)->value[0];
+        printf("Requested cancellation of batch job with ID %d.\n",
+            $batchJob->id);
+        // Reset the poll attempt counter to wait for cancellation.
+        $pollAttempts = 0;
+      } catch (Exception $e) {
+        $errors = $e->detail->ApiExceptionFault->errors;
+        if ($errors !== null
+            && $errors->enc_value instanceof BatchJobError) {
+          if ($errors->enc_value->reason === 'INVALID_STATE_CHANGE') {
+            printf("Attempt to cancel batch job with ID %d was rejected because"
+                . " the job already completed or was canceled.\n",
+                $batchJob->id);
+            // Reset the poll attempt counter to wait for cancellation.
+            $pollAttempts = 0;
+            continue;
+          }
+        }
+        throw $e;
+      }
     }
   } while ($isPending && $pollAttempts <= MAX_POLL_ATTEMPTS);
 
@@ -126,6 +170,8 @@ function AddKeywordsUsingIncrementalBatchJob(AdWordsUser $user, $adGroupId) {
           $processingError->reason
       );
     }
+  } else {
+    printf("No processing errors found.\n");
   }
 
   if ($batchJob->downloadUrl !== null && $batchJob->downloadUrl->url !== null) {
@@ -142,6 +188,8 @@ function AddKeywordsUsingIncrementalBatchJob(AdWordsUser $user, $adGroupId) {
         printf("  Operation [%d] - %s\n", $mutateResult->index, $outcome);
       }
     }
+  } else {
+    printf("No results available for download.\n");
   }
 }
 

@@ -69,6 +69,7 @@ try {
 
     // Default for total result set size.
     $totalResultSetSize = 0;
+    $statementBuilder->Offset(0);
 
     do {
       // Get custom targeting values by statement.
@@ -78,15 +79,16 @@ try {
       // Display results.
       if (isset($page->results)) {
         $totalResultSetSize = $page->totalResultSetSize;
-        $i = $page->startIndex;
         foreach ($page->results as $customTargetingValue) {
-          printf("%d) Custom targeting value with ID %d, name '%s', display "
-              . "name '%s', and belonging to key with ID %d was found.\n",
-              $totalResultSetSize++,
+          printf(
+              "%d) Custom targeting value with ID %d, name '%s', display "
+                  . "name '%s', and belonging to key with ID %d was found.\n",
+              $totalResultsCounter++,
               $customTargetingValue->id,
               $customTargetingValue->name,
               $customTargetingValue->displayName,
-              $customTargetingValue->customTargetingKeyId);
+              $customTargetingValue->customTargetingKeyId
+          );
         }
       }
 
@@ -95,7 +97,7 @@ try {
     } while ($statementBuilder->GetOffset() < $totalResultSetSize);
   }
 
-  printf("Number of results found: %d\n", $totalResultSetSize);
+  printf("Number of results found: %d\n", $totalResultsCounter);
 } catch (OAuth2Exception $e) {
   ExampleUtils::CheckForOAuth2Errors($e);
 } catch (ValidationException $e) {
@@ -132,9 +134,14 @@ function getAllCustomTargetingKeyIds($user) {
       $totalResultSetSize = $page->totalResultSetSize;
       $i = $page->startIndex;
       foreach ($page->results as $customTargetingKey) {
-        printf("%d) Custom targeting key with ID %d, name '%s', and display "
-            . "name '%s' was found.\n", $i++, $customTargetingKey->id,
-            $customTargetingKey->name, $customTargetingKey->displayName);
+        printf(
+            "%d) Custom targeting key with ID %d, name '%s', and display "
+                . "name '%s' was found.\n",
+            $i++,
+            $customTargetingKey->id,
+            $customTargetingKey->name,
+            $customTargetingKey->displayName
+        );
         $customTargetingKeyIds[] = $customTargetingKey->id;
       }
     }

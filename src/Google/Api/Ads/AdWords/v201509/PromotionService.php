@@ -661,64 +661,6 @@ if (!class_exists("DatabaseError", false)) {
   }
 }
 
-if (!class_exists("Date", false)) {
-  /**
-   * Represents a date.
-   * 
-   * 
-   * 
-   * Structure to specify an address location.
-   * @package Google_Api_Ads_AdWords_v201509
-   * @subpackage v201509
-   */
-  class Date {
-
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201509";
-    const XSI_TYPE = "Date";
-
-    /**
-     * @access public
-     * @var integer
-     */
-    public $year;
-
-    /**
-     * @access public
-     * @var integer
-     */
-    public $month;
-
-    /**
-     * @access public
-     * @var integer
-     */
-    public $day;
-
-    /**
-     * Gets the namesapce of this class
-     * @return string the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return string the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($year = null, $month = null, $day = null) {
-      $this->year = $year;
-      $this->month = $month;
-      $this->day = $day;
-    }
-
-  }
-}
-
 if (!class_exists("DateError", false)) {
   /**
    * Errors associated with invalid dates and date ranges.
@@ -786,13 +728,13 @@ if (!class_exists("DateRange", false)) {
 
     /**
      * @access public
-     * @var Date
+     * @var string
      */
     public $min;
 
     /**
      * @access public
-     * @var Date
+     * @var string
      */
     public $max;
 
@@ -5473,7 +5415,6 @@ if (!class_exists("PromotionService", false)) {
       "ComparableValue" => "ComparableValue",
       "Criterion" => "Criterion",
       "DatabaseError" => "DatabaseError",
-      "Date" => "Date",
       "DateError" => "DateError",
       "DateRange" => "DateRange",
       "DistinctError" => "DistinctError",

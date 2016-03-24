@@ -28,12 +28,14 @@
 require_once 'Google/Api/Ads/AdWords/Util/v201601/ReportClasses.php';
 require_once 'Google/Api/Ads/AdWords/Util/v201601/BatchJobClasses.php';
 require_once 'Google/Api/Ads/AdWords/v201601/CampaignService.php';
+require_once 'Google/Api/Ads/AdWords/v201601/CampaignCriterionService.php';
 require_once 'Google/Api/Ads/AdWords/v201601/AdGroupService.php';
 
 class XmlTestHelper {
 
   public static $NAMESPACED_MUTATE_REQUEST_XML;
   public static $MUTATE_REQUEST_XML;
+  public static $NAMESPACED_MUTATE_RESPONSE_XML;
   public static $REPORT_DOWNLOAD_ERROR_XML;
   public static $REPORT_DOWNLOAD_ERROR_FORMATTED_XML;
   public static $EMPTY_REPORT_DOWNLOAD_ERROR_XML;
@@ -41,6 +43,7 @@ class XmlTestHelper {
 
   public static $REPORT_DOWNLOAD_ERROR_OBJECT;
   public static $MUTATE_REQUEST_OBJECT;
+  public static $MUTATE_RESPONSE_OBJECT;
   public static $REPORT_DEFINITION_OBJECT;
 
   /**
@@ -51,6 +54,9 @@ class XmlTestHelper {
     self::$NAMESPACED_MUTATE_REQUEST_XML =
         self::LoadXmlPayload(dirname(__FILE__)
             . '/mutate_request_with_namespaces.xml');
+    self::$NAMESPACED_MUTATE_RESPONSE_XML =
+        self::LoadXmlPayload(dirname(__FILE__)
+            . '/mutate_response_with_namespaces.xml');
     self::$MUTATE_REQUEST_XML =
         self::LoadXmlPayload(dirname(__FILE__) . '/mutate_request.xml');
     self::$REPORT_DOWNLOAD_ERROR_XML =
@@ -66,6 +72,7 @@ class XmlTestHelper {
 
     self::InitReportDownloadErrorObject();
     self::InitMutateRequestObject();
+    self::InitMutateResponseObject();
     self::InitReportDefinitionObject();
   }
 
@@ -114,6 +121,45 @@ class XmlTestHelper {
 
     self::$MUTATE_REQUEST_OBJECT = new BatchJobOpsMutate();
     self::$MUTATE_REQUEST_OBJECT->operations = $operations;
+  }
+
+  /**
+   * Create a relevant AdWords object for testing with mutate response payload.
+   */
+  private static function InitMutateResponseObject() {
+    self::$MUTATE_RESPONSE_OBJECT =
+        new CampaignCriterionServiceMutateResponse();
+    $returnValue = new CampaignCriterionReturnValue();
+    $returnValue->ListReturnValueType = 'CampaignCriterionReturnValue';
+    self::$MUTATE_RESPONSE_OBJECT->rval = $returnValue;
+
+    // result 1
+    $campaignCriterion = new CampaignCriterion();
+    $campaignCriterion->campaignId = 1111;
+    $campaignCriterion->isNegative = false;
+
+    $criterion = new Language();
+    $criterion->id = 1000;
+    $criterion->type = 'LANGUAGE';
+    $criterion->code = 'en';
+    $criterion->name = 'English';
+    $criterion->CriterionType = 'Language';
+    $campaignCriterion->criterion = $criterion;
+    $campaignCriterion->CampaignCriterionType = 'CampaignCriterion';
+    $returnValue->value[] = $campaignCriterion;
+
+    // result 2
+    $campaignCriterion = new NegativeCampaignCriterion();
+    $campaignCriterion->campaignId = 2222;
+    $campaignCriterion->isNegative = true;
+
+    $criterion = new Location();
+    $criterion->id = 2276;
+    $criterion->type = 'LOCATION';
+    $criterion->CriterionType = 'Location';
+    $campaignCriterion->criterion = $criterion;
+    $campaignCriterion->CampaignCriterionType = 'NegativeCampaignCriterion';
+    $returnValue->value[] = $campaignCriterion;
   }
 
   /**

@@ -7482,12 +7482,14 @@ if (!class_exists("LocationSearchParameter", false)) {
    * This can be used, for example, to search for {@code KEYWORD}
    * {@link IdeaType}s that are best for Japan and Los Angeles.
    * 
-   * <p>This parameter replaces the {@code CountryTargetSearchParameter}.
+   * <p>This parameter replaces the {@code CountryTargetSearchParameter}.</p>
    * 
-   * <p>Warning: Not all back-ends support sub-country precision.
+   * <p>See the
+   * <a href="https://developers.google.com/adwords/api/docs/appendix/geotargeting">Geographical
+   * Targeting</a> page for the complete list of supported geo target types for this service.</p>
    * 
    * <p>The service allows up to 10 locations to be targeted for KEYWORD requests and 50 locations
-   * for PLACEMENT requests.
+   * for PLACEMENT requests.</p>
    * <p>This element is supported by following {@link IdeaType}s: KEYWORD.
    * <p>This element is supported by following {@link RequestType}s: IDEAS, STATS.
    * @package Google_Api_Ads_AdWords_v201506
