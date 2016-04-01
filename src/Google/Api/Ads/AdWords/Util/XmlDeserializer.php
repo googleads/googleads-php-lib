@@ -117,16 +117,20 @@ class XmlDeserializer {
     // from $result.
     foreach ($result as $name => $value) {
       // In case the property doesn't exist in the current class, look up in
-      // _parameterMap, which should be available in the class or its parent
+      // _parameterMap, which should be available in the class or its ancestor
       // class.
       // e.g., Subclasses of Operation have Operation.Type as their property
       // in WSDL, but it is generated as OperationType in PHP. _parameterMap
       // tells what the property is generated as.
       if (!$elementClass->hasProperty($name)) {
-        $parentClass = $elementClass->getParentClass();
-        $parameterMapProp = $elementClass->hasProperty('_parameterMap')
-            ? $elementClass->getProperty('_parameterMap')
-            : $parentClass->getProperty('_parameterMap');
+        $parameterMapProp = null;
+        $iteratorClass = $elementClass;
+        do {
+          if ($iteratorClass->hasProperty('_parameterMap')) {
+            $parameterMapProp = $iteratorClass->getProperty('_parameterMap');
+          }
+          $iteratorClass = $iteratorClass->getParentClass();
+        } while ($parameterMapProp === null && $iteratorClass !== false);
         $parameterMapProp->setAccessible(true);
         $parameterMap = $parameterMapProp->getValue($elementObject);
         $name = $parameterMap[$name];

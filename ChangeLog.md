@@ -1,3 +1,8 @@
+### 8.2.1
+
+AdWords:
+  - Fixed [issue #128](https://github.com/googleads/googleads-php-lib/issues/128).
+
 ### 8.2.0
 
 AdWords:

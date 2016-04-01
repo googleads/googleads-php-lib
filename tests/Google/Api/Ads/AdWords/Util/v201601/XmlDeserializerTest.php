@@ -36,7 +36,8 @@ class XmlDeserializerTest extends PHPUnit_Framework_TestCase {
   private static $CLASS_MAP = array(
       'reportDownloadError' => 'ReportDownloadError',
       'mutate' => 'BatchJobOpsMutate',
-      'mutateResponse' => 'CampaignCriterionServiceMutateResponse'
+      'mutateResponse' => 'CampaignCriterionServiceMutateResponse',
+      'batchJobMutateResponse' => 'BatchJobOpsMutateResponse'
   );
 
   /**
@@ -76,6 +77,10 @@ class XmlDeserializerTest extends PHPUnit_Framework_TestCase {
     // Deserialization for mutate response XML of AdWords.
     $testData[] = array(XmlTestHelper::$NAMESPACED_MUTATE_RESPONSE_XML,
         XmlTestHelper::$MUTATE_RESPONSE_OBJECT);
+
+    // Deserialization for batch job mutate response XML of AdWords.
+    $testData[] = array(XmlTestHelper::$BATCH_JOB_MUTATE_RESPONSE_XML,
+        XmlTestHelper::$BATCH_JOB_MUTATE_RESPONSE_OBJECT);
     return $testData;
   }
 }

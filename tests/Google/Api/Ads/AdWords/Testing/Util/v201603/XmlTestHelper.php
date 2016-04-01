@@ -25,6 +25,7 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
+require_once 'FakeClasses.php';
 require_once 'Google/Api/Ads/AdWords/Util/v201603/ReportClasses.php';
 require_once 'Google/Api/Ads/AdWords/Util/v201603/BatchJobClasses.php';
 require_once 'Google/Api/Ads/AdWords/v201603/CampaignService.php';
@@ -36,6 +37,7 @@ class XmlTestHelper {
   public static $NAMESPACED_MUTATE_REQUEST_XML;
   public static $MUTATE_REQUEST_XML;
   public static $NAMESPACED_MUTATE_RESPONSE_XML;
+  public static $BATCH_JOB_MUTATE_RESPONSE_XML;
   public static $REPORT_DOWNLOAD_ERROR_XML;
   public static $REPORT_DOWNLOAD_ERROR_FORMATTED_XML;
   public static $EMPTY_REPORT_DOWNLOAD_ERROR_XML;
@@ -44,6 +46,7 @@ class XmlTestHelper {
   public static $REPORT_DOWNLOAD_ERROR_OBJECT;
   public static $MUTATE_REQUEST_OBJECT;
   public static $MUTATE_RESPONSE_OBJECT;
+  public static $BATCH_JOB_MUTATE_RESPONSE_OBJECT;
   public static $REPORT_DEFINITION_OBJECT;
 
   /**
@@ -54,11 +57,14 @@ class XmlTestHelper {
     self::$NAMESPACED_MUTATE_REQUEST_XML =
         self::LoadXmlPayload(dirname(__FILE__)
             . '/mutate_request_with_namespaces.xml');
+    self::$MUTATE_REQUEST_XML =
+        self::LoadXmlPayload(dirname(__FILE__) . '/mutate_request.xml');
     self::$NAMESPACED_MUTATE_RESPONSE_XML =
         self::LoadXmlPayload(dirname(__FILE__)
             . '/mutate_response_with_namespaces.xml');
-    self::$MUTATE_REQUEST_XML =
-        self::LoadXmlPayload(dirname(__FILE__) . '/mutate_request.xml');
+    self::$BATCH_JOB_MUTATE_RESPONSE_XML =
+        self::LoadXmlPayload(dirname(__FILE__)
+            . '/batch_job_mutate_response.xml');
     self::$REPORT_DOWNLOAD_ERROR_XML =
         self::LoadXmlPayload(dirname(__FILE__) . '/report_download_error.xml');
     self::$REPORT_DOWNLOAD_ERROR_FORMATTED_XML =
@@ -73,6 +79,7 @@ class XmlTestHelper {
     self::InitReportDownloadErrorObject();
     self::InitMutateRequestObject();
     self::InitMutateResponseObject();
+    self::InitBatchJobMutateResponseObject();
     self::InitReportDefinitionObject();
   }
 
@@ -160,6 +167,38 @@ class XmlTestHelper {
     $campaignCriterion->criterion = $criterion;
     $campaignCriterion->CampaignCriterionType = 'NegativeCampaignCriterion';
     $returnValue->value[] = $campaignCriterion;
+  }
+
+  /**
+   * Create a relevant AdWords object for testing with batch job mutate
+   * response payload.
+   */
+  private static function InitBatchJobMutateResponseObject() {
+    $apiError = new FakeCriterionPolicyError();
+    $apiError->fieldPath = 'operations[0].operand.criterion.text';
+    $apiError->trigger = 'text';
+    $apiError->errorString = 'CriterionPolicyError.POLICY_ERROR';
+    $apiError->key = new PolicyViolationKey();
+    $apiError->key->policyName = 'pharma';
+    $apiError->key->violatingText = 'text';
+    $apiError->externalPolicyName = 'Online pharmacy certification required';
+    $apiError->externalPolicyUrl = '';
+    $apiError->externalPolicyDescription = 'Description';
+    $apiError->isExemptable = true;
+    $policyViolationErrorPart = new PolicyViolationErrorPart();
+    $policyViolationErrorPart->index = 0;
+    $policyViolationErrorPart->length = 3;
+    $apiError->violatingParts = $policyViolationErrorPart;
+    $apiError->ApiErrorType = 'CriterionPolicyError';
+
+    $errorList = new ErrorList();
+    $errorList->errors = $apiError;
+
+    $mutateResult = new MutateResult();
+    $mutateResult->errorList = $errorList;
+    $mutateResult->index = 0;
+    self::$BATCH_JOB_MUTATE_RESPONSE_OBJECT = new BatchJobOpsMutateResponse();
+    self::$BATCH_JOB_MUTATE_RESPONSE_OBJECT->rval = $mutateResult;
   }
 
   /**
