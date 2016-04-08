@@ -1,3 +1,9 @@
+### 8.3.0
+
+AdWords:
+  - Removed support and examples for v201506. See deprecation schedule at:
+    https://developers.google.com/adwords/api/docs/sunset-dates
+
 ### 8.2.1
 
 AdWords:
