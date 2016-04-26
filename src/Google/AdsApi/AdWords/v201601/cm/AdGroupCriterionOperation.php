@@ -17,13 +17,13 @@ class AdGroupCriterionOperation extends \Google\AdsApi\AdWords\v201601\cm\Operat
 
     /**
      * @param string $operator
-     * @param string $OperationType
+     * @param string $operationType
      * @param \Google\AdsApi\AdWords\v201601\cm\AdGroupCriterion $operand
      * @param \Google\AdsApi\AdWords\v201601\cm\ExemptionRequest[] $exemptionRequests
      */
-    public function __construct($operator = null, $OperationType = null, $operand = null, array $exemptionRequests = null)
+    public function __construct($operator = null, $operationType = null, $operand = null, array $exemptionRequests = null)
     {
-      parent::__construct($operator, $OperationType);
+      parent::__construct($operator, $operationType);
       $this->operand = $operand;
       $this->exemptionRequests = $exemptionRequests;
     }
