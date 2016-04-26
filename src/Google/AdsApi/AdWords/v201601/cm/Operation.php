@@ -11,18 +11,18 @@ abstract class Operation
     protected $operator = null;
 
     /**
-     * @var string $OperationType
+     * @var string $operationType
      */
-    protected $OperationType = null;
+    protected $operationType = null;
 
     /**
      * @param string $operator
-     * @param string $OperationType
+     * @param string $operationType
      */
-    public function __construct($operator = null, $OperationType = null)
+    public function __construct($operator = null, $operationType = null)
     {
       $this->operator = $operator;
-      $this->OperationType = $OperationType;
+      $this->operationType = $operationType;
     }
 
     /**
@@ -48,16 +48,16 @@ abstract class Operation
      */
     public function getOperationType()
     {
-      return $this->OperationType;
+      return $this->operationType;
     }
 
     /**
-     * @param string $OperationType
+     * @param string $operationType
      * @return \Google\AdsApi\AdWords\v201601\cm\Operation
      */
-    public function setOperationType($OperationType)
+    public function setOperationType($operationType)
     {
-      $this->OperationType = $OperationType;
+      $this->operationType = $operationType;
       return $this;
     }
 

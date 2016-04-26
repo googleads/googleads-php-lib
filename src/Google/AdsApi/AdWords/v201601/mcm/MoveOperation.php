@@ -17,13 +17,13 @@ class MoveOperation extends \Google\AdsApi\AdWords\v201601\cm\Operation
 
     /**
      * @param string $operator
-     * @param string $OperationType
+     * @param string $operationType
      * @param \Google\AdsApi\AdWords\v201601\mcm\ManagedCustomerLink $operand
      * @param int $oldManagerCustomerId
      */
-    public function __construct($operator = null, $OperationType = null, $operand = null, $oldManagerCustomerId = null)
+    public function __construct($operator = null, $operationType = null, $operand = null, $oldManagerCustomerId = null)
     {
-      parent::__construct($operator, $OperationType);
+      parent::__construct($operator, $operationType);
       $this->operand = $operand;
       $this->oldManagerCustomerId = $oldManagerCustomerId;
     }
