@@ -37,8 +37,10 @@ location on your PHP include path, or add the current directory path of the
 
  > **Caveats with using Composer**
 
- > Because this library isn't namespaced (see #4), there are some class naming
- > conflicts with versioned utilities. E.g., [src/Google/Api/Ads/AdWords/Util]
+ > Because this library isn't namespaced (see
+ > [issue #4](https://github.com/googleads/googleads-php-lib/issues/4)), there
+ > are some class naming conflicts with versioned utilities. E.g.,
+ > [src/Google/Api/Ads/AdWords/Util]
  > (https://github.com/googleads/googleads-php-lib/tree/master/src/Google/Api/Ads/AdWords/Util).
  > Thus, these versioned utility src paths aren't included in the `classmap` of
  > [composer.json](https://github.com/googleads/googleads-php-lib/blob/master/composer.json).
