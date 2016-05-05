@@ -1,154 +1,133 @@
-## The Google Ads APIs PHP Client Library
+## Google Ads API PHP Client Library
 
 This project hosts the PHP client library for the various SOAP-based Ads APIs
 (AdWords and DFP) at Google.
 
-
-### Features
-
-* Provides easy SOAP logging of API calls.
-* Automatic handling of SOAP headers.
-* Easy management of credentials, authentication, and session information.
-* Examples to that show how to access API services.
-* PHPDoc - [AdWords](http://googleads.github.io/googleads-php-lib/AdWords/),
-  [DFP](http://googleads.github.io/googleads-php-lib/Dfp/)
-
-
 ### Requirements
 
 PHP
-  - [PHP 5.3 and higher](http://php.net/supported-versions.php)
-  - Required PHP extensions:
-    - [SoapClient](http://us3.php.net/manual/en/book.soap.php) (--enable-soap)
-    - [OpenSSL](http://php.net/manual/en/book.openssl.php) (--with-ssl)
-    - [cURL](http://php.net/manual/en/book.curl.php) (--with-curl)
 
-Build environment
-  - [PHPUnit](http://www.phpunit.de)
-  - [Phing](http://phing.info)
-  - Modified wsdl2php-interpreter (included in this project)
-    - Original: http://code.google.com/p/wsdl2php-interpreter
-  - Required PHP extensions:
-    - [XSLTProcessor](http://php.net/manual/en/class.xsltprocessor.php)
-        (--with-xsl)
+* [PHP 5.3 and higher](http://php.net/supported-versions.php)
+* Required PHP extensions:
+ * [SoapClient](http://us3.php.net/manual/en/book.soap.php) (`--enable-soap`)
+ * [OpenSSL](http://php.net/manual/en/book.openssl.php) (`--with-ssl`)
+ * [cURL](http://php.net/manual/en/book.curl.php) (`--with-curl`)
 
+Testing
 
-### Announcements and updates
-
-For API and client library updates and news, please follow our [Google+ Ads
-Developers page](https://plus.google.com/+GoogleAdsDevelopers/posts) and our
-[Google Ads Developers blog](http://googleadsdeveloper.blogspot.com).
-
-
-### Support forum
-
-If you have questions about the client library or the APIs, you can ask them on our forums:
-  * [AdWords API Forum](https://groups.google.com/group/adwords-api)
-  * [DoubleClick for Publishers API Forum](https://groups.google.com/forum/#!forum/google-doubleclick-for-publishers-api)
+* [PHPUnit](http://www.phpunit.de)
 
 ### Getting started
 
-1\. Register an OAuth 2 application.
+1. Download and install the client library.
 
-You will need to register an OAuth2 application to get a valid client ID and
-secret. See the [Using OAuth 2 wiki page]
-(https://github.com/googleads/googleads-php-lib/wiki/Using-OAuth-2.0) for more information.
+  Download the latest examples and lib tarball distribution from the
+[releases section](https://github.com/googleads/googleads-php-lib/releases). To
+install the client library, either copy the contents of the `lib/` folder into a
+location on your PHP include path, or add the current directory path of the
+`lib/` folder to your PHP include path.
 
-2\. Download the client library.
+1. **[Alternative]** install via Composer.
 
-The client library source can be found with the example distributions in the
-[releases section](https://github.com/googleads/googleads-php-lib/releases) of
-this GitHub project. Download the examples for the product you are working with
-and untar it.
+  You may also install this library via [Composer](https://getcomposer.org).
 
-3\. Enter your OAuth 2 and account credentials.
+  ```
+  $ php composer.phar require googleads/googleads-php-lib
+  ```
 
-In the distribution you will find a lib folder. Under
-lib/Google/Api/Ads/[PRODUCT]/ you will find an auth.ini file. Open the auth.ini
-file and enter your OAuth 2 client ID and secret that you generated in step 1.
-Also enter the required product specific credentials, such as network code for
-DFP and developer token for AdWords.
+ > **Caveats with using Composer**
 
-> It is recommended that during development of your library, you use a test
-> network/account. For DFP, you can follow instructions for how to obtain a
-> test network here:
-> https://developers.google.com/doubleclick-publishers/docs/start
-> For AdWords, you can follow instructions here:
-> https://developers.google.com/adwords/api/docs/test-accounts
+ > Because this library isn't namespaced (see #4), there are some class naming
+ > conflicts with versioned utilities. E.g., [src/Google/Api/Ads/AdWords/Util]
+ > (https://github.com/googleads/googleads-php-lib/tree/master/src/Google/Api/Ads/AdWords/Util).
+ > Thus, these versioned utility src paths aren't included in the `classmap` of
+ > [composer.json](https://github.com/googleads/googleads-php-lib/blob/master/composer.json).
+ > So if you use composer, you will need to manually specify the version of the
+ > utility files you're using. E.g., if you're using AdWords v201603, then in
+ > your project's `composer.json` file, you can add those utility files to your
+ > `classmap`:
 
-Now in your distribution, navigate to examples/[PRODUCT]/Auth and run the
-GetRefreshToken.php example. Copy the refresh token the example produces into
-the auth.ini file mentioned above.
+ > ```json
+ > "classmap": [
+ >   "vendor/googleads/googleads-php-lib/src/Google/Api/Ads/AdWords/Util/v201603"
+ > ]
+ > ```
 
-4\. Run an example.
+1. Copy the sample **auth.ini** and **settings.ini** for your product to your
+home directory and fill out the required properties.
 
-To ensure you have setup credentials properly, run the GetAllCompanies.php
-example located in examples/Dfp/v201311/CompanyService/ if you're using DFP.
+  * AdWords - [auth.ini](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/Api/Ads/AdWords/auth.ini),
+[settings.ini](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/Api/Ads/AdWords/settings.ini)
+  * DFP - [auth.ini](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/Api/Ads/Dfp/auth.ini),
+[settings.ini](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/Api/Ads/Dfp/settings.ini)
 
-If you're using AdWords, run the GetCampaigns.php example located in
-examples/AdWords/v201309/BasicOperations/.
+1. Setup your OAuth2 credentials.
 
-5\. Install the client library.
+  The AdWords and DoubleClick for Publishers APIs use
+[OAuth2](http://oauth.net/2/) as the authentication mechanism. Follow the
+appropriate guide below based on your use case.
 
-To install the client library, either copy the lib/ folder into where you store
-your PHP source files that is on your PHP include path, or add the current
-directory path of the lib/ folder to your PHP include path.
+  **If you're accessing an API using your own credentials...**
 
+  * [Using AdWords](https://github.com/googleads/googleads-php-lib/wiki/API-access-using-own-credentials-(installed-application-flow))
+  * [Using DFP](https://github.com/googleads/googleads-php-lib/wiki/API-access-using-own-credentials-(installed-application-flow))
 
 ### Basic usage
 
-The following example is for AdWords, but the general code applies to all
-products.
+The best way to learn how to use this library is to review the examples for your
+product.
 
+* [AdWords examples](https://github.com/googleads/googleads-php-lib/tree/master/examples/AdWords)
+* [DFP examples](https://github.com/googleads/googleads-php-lib/tree/master/examples/Dfp)
+
+> All our examples are meant to be run via the command line and not as a
+> webpage.
+
+The following snippet of code from the **BasicOperations/GetCampaigns.php**
+example for AdWords gives you an idea of how to use this library. The usage
+pattern is similar for DFP.
 
 ```php
-
-// Set the include path and the require the folowing PHP file.
-//
-// You can set the include path to src directory or reference
-// AdWordsUser.php directly via require_once.
-// $path = '/path/to/pda_api_php_lib/src';
-$path = dirname(__FILE__) . '/../../../src';
-set_include_path(get_include_path() . PATH_SEPARATOR . $path);
 require_once 'Google/Api/Ads/AdWords/Lib/AdWordsUser.php';
 
-// Create an AdWordsUser instance using the default constructor, which will load
-// information from the auth.ini file as described above.
 $user = new AdWordsUser();
 
-// Optionally, enable logging to capture the content of SOAP requests and
-// responses.
-$user->LogDefaults();
+$campaignService = $user->GetService('CampaignService', 'v201603');
 
-// Instantiate the desired service class by calling the get***Service method on
-// the AdWordsUser instance.
-$campaignService = $user->GetService('CampaignService', 'v201309');
+// Create selector.
+$selector = new Selector();
+$selector->fields = array('Id', 'Name');
+$selector->ordering[] = new OrderBy('Name', 'ASCENDING');
 
-// Create data objects and invoke methods on the service class instance. The
-// data objects and methods map directly to the data objects and requests for
-// the corresponding web service.
+// Create paging controls.
+$selector->paging = new Paging(0, AdWordsConstants::RECOMMENDED_PAGE_SIZE);
 
-// Create new campaign structure.
-$campaign = new Campaign();
-$campaign->name = 'Campaign #' . time();
-$campaign->status = 'ACTIVE';
-$campaign->biddingStrategyConfiguration = new BiddingStrategyConfiguration();
-$campaign->biddingStrategyConfiguration->biddingStrategyType = 'MANUAL_CPC';
-$campaign->budget = new Budget('DAILY', new Money(50000000), 'STANDARD');
+// Make the get request.
+$page = $campaignService->get($selector);
 
-$operation = new CampaignOperation();
-$operation->operand = $campaign;
-$operation->operator = 'ADD';
-$operations[] = $operation;
-
-// Add campaign.
-$campaignReturnValue = $campaignService->mutate($operations);
+// Do something with the $page.
 ```
+
+The `AdWordsUser` constructor method looks for an **auth.ini** file in your home
+directory by default. If you want to store this file in another directory, pass
+the path of the file as an argument. For example:
+
+```
+$user = new AdWordsUser('/config/myprops.ini');
+```
+
+It is highly recommended that you use an **auth.ini** file. However, if you
+don't want to or can't use it, you can also set the same information using the
+`AdWordsUser` or `DfpUser` constructor. See the example for your product for
+details.
+
+  * AdWords - [CreateAdWordsUserWithoutIniFile.php](https://github.com/googleads/googleads-php-lib/blob/master/examples/AdWords/Auth/CreateAdWordsUserWithoutIniFile.php)
+  * DFP - [CreateDfpUserWithoutIniFile.php](https://github.com/googleads/googleads-php-lib/blob/master/examples/Dfp/Auth/CreateDfpUserWithoutIniFile.php)
+
 
 ### How do I set different client customer IDs than specified in auth.ini?
 
-You can do this by calling `SetClientCustomerId()` of an `AdWordUser` object
-with a parameter as client customer ID you want to set to:
+You can do this by calling `SetClientCustomerId()` on an `AdWordsUser`:
 
 ```php
 // Create an AdWordsUser instance using the default constructor, which will load
@@ -157,22 +136,22 @@ $user = new AdWordsUser();
 $user->SetClientCustomerId('INSERT_CLIENT_CUSTOMER_ID_HERE');
 ```
 
-### How do I enable logging?
+### Configuring logging
 
-The client library uses a custom class for all logging purposes and is exposed
-through the Logger.php file. There are two loggers within this class described
+The client library uses a custom class for all logging purposes that is exposed
+through the [Logger.php](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/Api/Ads/Common/Util/Logger.php)
+file. There are two loggers within this class described
 below.
 
-  - REQUEST_INFO_LOG: Logs all requests from the client library along
-    with information such as the timestamp, email, service, method,
-    request Id, response time and which server was used. The default
-    behavior is to log this information to "request_info.log" relative to
-    your project's home directory.
+  - REQUEST_INFO_LOG: Logs all requests from the client library along with
+    information such as the timestamp, email, service, method, request ID,
+    response time and which server was used. The default behavior is to log this
+    information to "request_info.log" relative to your project's home directory.
 
   - SOAP_XML_LOG: Logs all incoming and outgoing SOAP requests/responses. The
-    default behavior is to log this information to "soap_xml.log" relative
-    to your project's home directory. Sensitive information, such as
-    authentication tokens, will be stripped.
+    default behavior is to log this information to "soap_xml.log" relative to
+    your project's home directory. Sensitive information, such as authentication
+    tokens, will be stripped.
 
 Logging can be enabled using the following methods.
 
@@ -187,30 +166,43 @@ Logging can be enabled using the following methods.
 You can use the methods of the Logger class directly for even more control over
 how requests are logged.
 
-### Notes about using composer.json
+### Documentation
 
-As there are some classes declared with the same names in each version directory
-under `src/Google/Api/Ads/AdWords/Util`, this path cannot be included in
-`classmap` of `composer.json`.
+PHPDoc for this library can be found in the
+[gh-pages](https://github.com/googleads/googleads-php-lib/tree/gh-pages) branch
+of this repository and can be viewed at:
 
-Thus, if you use composer, you will still need to manually copy over the version
-of the utility files you need to use.
-For instance, if you use `classmap` and v201601 of this library, you may add the
-following to your project's `composer.json`:
+* [AdWords](http://googleads.github.io/googleads-php-lib/AdWords)
+* [DFP](http://googleads.github.io/googleads-php-lib/Dfp)
 
-```json
-  "classmap": [
-    "vendor/googleads/googleads-php-lib/src/Google/Api/Ads/AdWords/Util/v201601"
-  ]
-```
+General AdWords and DFP API documentation can be found on our Developers site.
 
-We are working on rewriting this library with namespacing and PSR-4 support.
-The progress and discussion of this work can be found at issue
-[#4](https://github.com/googleads/googleads-php-lib/issues/4).
+* [AdWords API documentation](https://developers.google.com/adwords/api)
+* [DFP API documentation](https://developers.google.com/doubleclick-publishers)
 
-### Where do I submit client library bug reports, feature requests, and patches?
+### Getting support
 
-All of these can be submitted through the
-[issue tracker](https://github.com/googleads/googleads-php-lib/issues) in this
-GitHub project.
+For client library specific bug reports, feature requests, and patches, please
+create an issue on the
+[issue tracker](https://github.com/googleads/googleads-php-lib/issues).
 
+For general AdWords and DFP API questions, bug reports, or feature requests,
+please post to our API forums:
+
+* [AdWords API Forum](https://groups.google.com/group/adwords-api)
+* [DoubleClick for Publishers API Forum](https://groups.google.com/forum/#!forum/google-doubleclick-for-publishers-api)
+
+### Announcements and updates
+
+For general ads API and client library updates and news, please follow or join
+our:
+
+* [Google+ Ads Developers page](https://plus.google.com/+GoogleAdsDevelopers/posts)
+* [Google Ads Developers blog](http://googleadsdeveloper.blogspot.com)
+* [AdWords API Announcements mailing list](https://groups.google.com/forum/#!forum/adwordsapi-announcements)
+* [DFP API Sunset Announcements mailing list](https://groups.google.com/forum/#!forum/dfpapi-sunset-announce)
+
+API deprecation schedules can be found at:
+
+* [AdWords API deprecation schedule](https://developers.google.com/adwords/api/docs/sunset-dates)
+* [DFP API deprecation schedule](https://developers.google.com/doubleclick-publishers/docs/deprecation)
