@@ -41,6 +41,7 @@ abstract class OAuth2Handler {
   const DEFAULT_REDIRECT_URI = 'urn:ietf:wg:oauth:2.0:oob';
   const AUTHORIZE_ENDPOINT = 'https://accounts.google.com/o/oauth2/auth';
   const ACCESS_ENDPOINT = 'https://accounts.google.com/o/oauth2/token';
+  const REVOKE_ENDPOINT = 'https://accounts.google.com/o/oauth2/revoke';
 
   private $server;
   private $scopes;
@@ -210,6 +211,13 @@ abstract class OAuth2Handler {
   public abstract function RefreshAccessToken(array $credentials);
 
   /**
+   * Refreshes the access or refresh token.
+   * @param array $credentials: ['token' => 'xxx']
+   * @return array the credentials
+   */
+  public abstract function RevokeToken(array $credentials);
+
+  /**
    * Formats OAuth2 credentials for use in a URL.
    * For example: access_token=token.
    * @param array $credentials the OAuth2 credentials
@@ -255,6 +263,15 @@ abstract class OAuth2Handler {
    */
   protected function GetAccessEndpoint($params = null) {
     return $this->GetEndpoint(self::ACCESS_ENDPOINT, $params);
+  }
+
+  /**
+   * Gets the revocation endpoint using the given server and parameters.
+   * @param array $params the parameters to include in the endpoint
+   * @return string the revocation endpoint
+   */
+  protected function GetRevocationEndpoint($params = NULL) {
+    return $this->GetEndpoint(self::REVOKE_ENDPOINT, $params);
   }
 
   /**

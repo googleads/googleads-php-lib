@@ -49,7 +49,7 @@ class SimpleOAuth2Handler extends OAuth2Handler {
   }
 
   /**
-   * @see OAuth2Hanlder::GetAccessToken()
+   * @see OAuth2Handler::GetAccessToken()
    */
   public function GetAccessToken(array $credentials, $code,
       $redirectUri = null) {
@@ -74,7 +74,25 @@ class SimpleOAuth2Handler extends OAuth2Handler {
   }
 
   /**
-   * @see OAuth2Hanlder::RefreshAccessToken()
+   * @see OAuth2Handler::GetRevokeToken()
+   */
+  public function RevokeToken(array $credentials) {
+    if (empty($credentials['client_id'])) {
+      throw new OAuth2Exception('client_id required.');
+    }
+    if (empty($credentials['client_secret'])) {
+      throw new OAuth2Exception('client_secret required.');
+    }
+    $params = array(
+        'token' => $credentials['refresh_token'],
+    );
+    $endpoint = $this->GetRevocationEndpoint();
+    $response = $this->MakeRequest($endpoint, $params);
+    return $response;
+  }
+
+  /**
+   * @see OAuth2Handler::RefreshAccessToken()
    */
   public function RefreshAccessToken(array $credentials) {
     if (empty($credentials['refresh_token'])) {
