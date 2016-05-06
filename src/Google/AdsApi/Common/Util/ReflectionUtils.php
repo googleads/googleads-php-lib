@@ -16,6 +16,8 @@
  */
 namespace Google\AdsApi\Common\Util;
 
+use ReflectionException;
+
 /**
  * A collection of utility methods for working with reflection.
  */
@@ -28,6 +30,7 @@ interface ReflectionUtils {
    * @param mixed $args,... a variable number of arguments to pass to the class
    *     constructor
    * @return mixed the created object instance
+   * @throws ReflectionException if the object instance could not be created
    */
   public function createInstance($className, $args = null);
 }

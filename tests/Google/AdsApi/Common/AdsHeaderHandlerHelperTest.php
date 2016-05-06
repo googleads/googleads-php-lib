@@ -77,7 +77,7 @@ class AdsHeaderHandlerHelperTest extends PHPUnit_Framework_TestCase {
         . "Authorization: *****\n"
         . "Bear: Sheep";
     $scrubbedHttpHeaders = $this->adsHeaderHandlerHelper->scrubHttpHeaders(
-        $originalHttpHeaders, array('Authorization'));
+        $originalHttpHeaders, ['Authorization']);
     $this->assertSame($expectedScrubbedHttpHeaders, $scrubbedHttpHeaders);
   }
 
@@ -94,7 +94,7 @@ class AdsHeaderHandlerHelperTest extends PHPUnit_Framework_TestCase {
         . "Authorization: *****\n"
         . "Bear: Sheep";
     $scrubbedHttpHeaders = $this->adsHeaderHandlerHelper->scrubHttpHeaders(
-        $originalHttpHeaders, array('Authorization'));
+        $originalHttpHeaders, ['Authorization']);
     $this->assertSame($expectedScrubbedHttpHeaders, $scrubbedHttpHeaders);
   }
 
@@ -109,7 +109,7 @@ class AdsHeaderHandlerHelperTest extends PHPUnit_Framework_TestCase {
     $expectedSoapXml = '<xml><RequestHeader><developerToken>*****'
         . '</developerToken></RequestHeader></xml>';
     $scrubbedSoapHeaders = $this->adsHeaderHandlerHelper->scrubSoapHeaders(
-        $originalSoapXml, array('developerToken'));
+        $originalSoapXml, ['developerToken']);
     $this->assertSame($expectedSoapXml, $scrubbedSoapHeaders);
   }
 
@@ -122,7 +122,7 @@ class AdsHeaderHandlerHelperTest extends PHPUnit_Framework_TestCase {
     $originalSoapXml = '<xml><RequestHeader><developerToken>rawr'
         . '</developerToken></RequestHeader></xml>';
     $scrubbedSoapHeaders = $this->adsHeaderHandlerHelper->scrubSoapHeaders(
-        $originalSoapXml, array());
+        $originalSoapXml, []);
     $this->assertSame($originalSoapXml, $scrubbedSoapHeaders);
   }
 }

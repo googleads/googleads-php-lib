@@ -16,6 +16,8 @@
  */
 namespace Google\AdsApi\Common;
 
+use InvalidArgumentException;
+
 /**
  * Helps load settings from *.ini files into Configuration objects.
  * @see Configuration
@@ -28,7 +30,7 @@ class ConfigurationLoader {
    * that order.
    *
    * @param string $configIniFilePath the filepath to the *.ini file
-   * @throws ConfigurationException if there was an error reading the config
+   * @throws InvalidArgumentException if there was an error reading the config
    *     file
    */
   public function fromFile($configIniFilePath) {
@@ -39,7 +41,8 @@ class ConfigurationLoader {
           . pathinfo($configIniFilePath, PATHINFO_BASENAME);
     }
     if (!file_exists($configIniFilePath)) {
-      throw new ConfigurationException($configIniFilePath, 'file not found');
+      throw new InvalidArgumentException(
+          'File not found: ' . $configIniFilePath);
     } else {
       return new Configuration(parse_ini_file($configIniFilePath, true));
     }

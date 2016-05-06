@@ -16,6 +16,9 @@
  */
 namespace Google\AdsApi\Common;
 
+use Google\Auth\FetchAuthTokenInterface;
+use Psr\Log\LoggerInterface;
+
 /**
  * A session for using an ads API.
  */
@@ -29,19 +32,19 @@ interface AdsSession {
 
   /**
    * Gets the server endpoint to make API requests against.
-   * @return string the server endpoint
+   * @return string the non-null server endpoint
    */
   public function getEndpoint();
 
   /**
    * Gets the Google OAuth2 credential for authenticating API requests.
-   * @return GoogleCredential the Google OAuth2 credential
+   * @return FetchAuthTokenInterface the non-null Google OAuth2 credential
    */
   public function getOAuth2Credential();
 
   /**
    * Gets the SOAP settings to apply to API requests.
-   * @return SoapSettings the SOAP settings.
+   * @return SoapSettings the non-null SOAP settings
    */
   public function getSoapSettings();
 }

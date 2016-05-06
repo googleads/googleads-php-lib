@@ -16,6 +16,8 @@
  */
 namespace Google\AdsApi\Common;
 
+use InvalidArgumentException;
+
 /**
  * Builder for SOAP settings.
  * @see SoapSettings
@@ -30,9 +32,7 @@ class SoapSettingsBuilder implements AdsBuilder {
   private $proxyPort;
   private $proxyUser;
   private $proxyPassword;
-  private $sslVerifyPeer;
-  private $sslVerifyHost;
-  private $sslCaPath;
+  private $sslVerify;
   private $sslCaFile;
 
   public function __construct() {
@@ -53,22 +53,28 @@ class SoapSettingsBuilder implements AdsBuilder {
    * @see AdsBuilder::from()
    */
   public function from(Configuration $configuration) {
-    $this->compressionLevel =
-        intval($configuration->getConfiguration('COMPRESSION_LEVEL', 'SOAP'));
-    $this->wsdlCacheType =
-        intval($configuration->getConfiguration('WSDL_CACHE', 'SOAP'));
-    $this->proxyHost = $configuration->getConfiguration('HOST', 'PROXY');
-    $this->proxyPort =
-        intval($configuration->getConfiguration('PORT', 'PROXY'));
-    $this->proxyUser = $configuration->getConfiguration('USER', 'PROXY');
+    $compressionLevel =
+        $configuration->getConfiguration('compressionLevel', 'SOAP');
+    if ($compressionLevel !== null) {
+      $this->compressionLevel = intval($compressionLevel);
+    }
+
+    $wsdlCacheType = $configuration->getConfiguration('wsdlCache', 'SOAP');
+    if ($wsdlCacheType !== null) {
+      $this->wsdlCacheType = intval($wsdlCacheType);
+    }
+
+    $this->proxyHost = $configuration->getConfiguration('host', 'PROXY');
+
+    $proxyPort = $configuration->getConfiguration('port', 'PROXY');
+    if ($proxyPort !== null) {
+      $this->proxyPort = intval($proxyPort);
+    }
+
+    $this->proxyUser = $configuration->getConfiguration('user', 'PROXY');
     $this->proxyPassword =
-        $configuration->getConfiguration('PASSWORD', 'PROXY');
-    $this->sslVerifyPeer =
-        boolval($configuration->getConfiguration('VERIFY_PEER', 'SSL'));
-    $this->sslVerifyHost =
-        boolval($configuration->getConfiguration('VERIFY_HOST', 'SSL'));
-    $this->sslCaPath = $configuration->getConfiguration('CA_PATH', 'SSL');
-    $this->sslCaFile = $configuration->getConfiguration('CA_FILE', 'SSL');
+        $configuration->getConfiguration('password', 'PROXY');
+
     return $this;
   }
 
@@ -77,8 +83,11 @@ class SoapSettingsBuilder implements AdsBuilder {
    *
    * <p>The level of gzip compression to use, from 1 to 9. The higher the level
    * the greater the compression and time needed to perform the compression.
+   * This is optional and defaults to `null`, in which case PHP will use its
+   * default value.
    *
-   * @param int $compressionLevel the gzip compression level
+   * @see http://php.net/manual/en/soapclient.soapclient.php
+   * @param int|null $compressionLevel
    * @return SoapSettingsBuilder this builder
    */
   public function withCompressionLevel($compressionLevel) {
@@ -88,10 +97,11 @@ class SoapSettingsBuilder implements AdsBuilder {
 
   /**
    * Includes WSDL cache type. Additional WSDL caching settings can be set in
-   * the php.ini.
+   * the php.ini. This is optional and defaults to `null`, in which case PHP
+   * will use its default value.
    *
    * @see http://php.net/manual/en/soap.configuration.php
-   * @param int $wsdlCacheType
+   * @param int|null $wsdlCacheType
    * @return SoapSettingsBuilder this builder
    */
   public function withWsdlCacheType($wsdlCacheType) {
@@ -100,8 +110,9 @@ class SoapSettingsBuilder implements AdsBuilder {
   }
 
   /**
-   * Includes proxy host.
-   * @param string $proxyHost
+   * Includes proxy host. This is optional and defaults to `null`.
+   *
+   * @param string|null $proxyHost
    * @return SoapSettingsBuilder this builder
    */
   public function withProxyHost($proxyHost) {
@@ -110,8 +121,9 @@ class SoapSettingsBuilder implements AdsBuilder {
   }
 
   /**
-   * Includes proxy port.
-   * @param int $proxyPort
+   * Includes proxy port. This is optional and defaults to `null`.
+   *
+   * @param int|null $proxyPort
    * @return SoapSettingsBuilder this builder
    */
   public function withProxyPort($proxyPort) {
@@ -120,8 +132,9 @@ class SoapSettingsBuilder implements AdsBuilder {
   }
 
   /**
-   * Includes proxy user.
-   * @param string $proxyUser
+   * Includes proxy user. This is optional and defaults to `null`.
+   *
+   * @param string|null $proxyUser
    * @return SoapSettingsBuilder this builder
    */
   public function withProxyUser($proxyUser) {
@@ -130,8 +143,9 @@ class SoapSettingsBuilder implements AdsBuilder {
   }
 
   /**
-   * Includes proxy password.
-   * @param string $proxyPassword
+   * Includes proxy password. This is optional and defaults to `null`.
+   *
+   * @param string|null $proxyPassword
    * @return SoapSettingsBuilder this builder
    */
   public function withProxyPassword($proxyPassword) {
@@ -140,36 +154,28 @@ class SoapSettingsBuilder implements AdsBuilder {
   }
 
   /**
-   * Enables SSL peer verification. Disabled by default.
+   * Disables SSL verification. Enabled by default.
+   *
+   * <p>This is not recommended.
+   *
    * @return SoapSettingsBuilder this builder
    */
-  public function enableSslVerifyPeer() {
-    $this->sslVerifyPeer = true;
+  public function disableSslVerify() {
+    $this->sslVerify = false;
     return $this;
   }
 
   /**
-   * Enables SSL host verification. Disabled by default.
-   * @return SoapSettingsBuilder this builder
-   */
-  public function enableSslVerifyHost() {
-    $this->sslVerifyHost = true;
-    return $this;
-  }
-
-  /**
-   * Includes path to SSL CA file.
-   * @param string $sslCaPath
-   * @return SoapSettingsBuilder this builder
-   */
-  public function withSslCaPath($sslCaPath) {
-    $this->sslCaPath = $sslCaPath;
-    return $this;
-  }
-
-  /**
-   * Includes name of SSL CA file.
-   * @param string $sslCaFile
+   * Includes the path to a CA bundle file to use for SSL verification. This
+   * field is only meaningful if SSL verification is not disabled.
+   *
+   * <p>This is optional and defaults to `null`, in which case this library will
+   * try to automatically find your system CA bundle file. Use this function
+   * only if you want to use a custom CA bundle file or you're getting SSL
+   * verification errors because this library cannot find a CA bundle file for
+   * you on your system.
+   *
+   * @param string|null $sslCaFile
    * @return SoapSettingsBuilder this builder
    */
   public function withSslCaFile($sslCaFile) {
@@ -190,7 +196,9 @@ class SoapSettingsBuilder implements AdsBuilder {
    * @see AdsBuilder::defaultOptionals()
    */
   public function defaultOptionals() {
-    // All fields should and already default to null.
+    if ($this->sslVerify === null) {
+      $this->sslVerify = true;
+    }
   }
 
   /**
@@ -199,14 +207,22 @@ class SoapSettingsBuilder implements AdsBuilder {
   public function validate() {
     if ($this->proxyHost !== null
         && filter_var($this->proxyHost, FILTER_VALIDATE_URL) === false) {
-      throw new ValidationException('proxy host', $this->proxyHost,
-          'Proxy host must be a valid URL.');
+      throw new InvalidArgumentException('Proxy host must be a valid URL.');
+    }
+
+    if ($this->sslCaFile !== null) {
+      if (!file_exists($this->sslCaFile)) {
+        throw new InvalidArgumentException(sprintf(
+            'Could not find SSL CA bundle file: %s',
+            $this->sslCaFile
+        ));
+      }
     }
   }
 
   /**
    * Gets the gzip compression level.
-   * @return int
+   * @return int|null
    */
   public function getCompressionLevel() {
     return $this->compressionLevel;
@@ -214,7 +230,7 @@ class SoapSettingsBuilder implements AdsBuilder {
 
   /**
    * Gets the type of WSDL caching in use.
-   * @return int
+   * @return int|null
    */
   public function getWsdlCacheType() {
     return $this->wsdlCacheType;
@@ -222,7 +238,7 @@ class SoapSettingsBuilder implements AdsBuilder {
 
   /**
    * Gets the proxy host.
-   * @return string
+   * @return string|null
    */
   public function getProxyHost() {
     return $this->proxyHost;
@@ -230,7 +246,7 @@ class SoapSettingsBuilder implements AdsBuilder {
 
   /**
    * Gets the proxy port.
-   * @return int
+   * @return int|null
    */
   public function getProxyPort() {
     return $this->proxyPort;
@@ -238,7 +254,7 @@ class SoapSettingsBuilder implements AdsBuilder {
 
   /**
    * Gets the proxy user.
-   * @return string
+   * @return string|null
    */
   public function getProxyUser() {
     return $this->proxyUser;
@@ -246,39 +262,23 @@ class SoapSettingsBuilder implements AdsBuilder {
 
   /**
    * Gets the proxy password.
-   * @return string
+   * @return string|null
    */
   public function getProxyPassword() {
     return $this->proxyPassword;
   }
 
   /**
-   * Gets whether to verify SSL peer or not.
+   * Gets whether SSL verification is enabled.
    * @return boolean
    */
-  public function getSslVerifyPeer() {
-    return $this->sslVerifyPeer;
-  }
-
-  /**
-   * Gets whether to verify SSL host or not.
-   * @return boolean
-   */
-  public function getSslVerifyHost() {
-    return $this->sslVerifyHost;
-  }
-
-  /**
-   * Gets the SSL CA path.
-   * @return string
-   */
-  public function getSslCaPath() {
-    return $this->sslCaPath;
+  public function getSslVerify() {
+    return $this->sslVerify;
   }
 
   /**
    * Gets the SSL CA file.
-   * @return string
+   * @return string|null
    */
   public function getSslCaFile() {
     return $this->sslCaFile;

@@ -33,7 +33,7 @@ class AdWordsServiceDescriptor implements AdsServiceDescriptor {
    * @var array a list of AdWords services that require the `ExpressSoapHeader`
    *     to be used
    */
-  private $expressHeaderServices = array('PromotionService');
+  private $expressHeaderServices = ['PromotionService'];
 
   private $serviceName;
   private $version;

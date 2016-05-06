@@ -20,7 +20,7 @@ use Google\AdsApi\Common\AdsServices;
 use Google\AdsApi\Common\AdsServicesSoapClientFactory;
 use Google\AdsApi\Common\AdsSession;
 use Google\AdsApi\Common\AdsSoapClientFactory;
-use Google\AdsApi\Common\ValidationException;
+use InvalidArgumentException;
 
 /**
  * Entry point for accessing the DFP API's services.
@@ -60,12 +60,10 @@ class DfpServices implements AdsServices {
 
   private function validateGet($serviceName, $version) {
     if ($serviceName === null || $serviceName === '') {
-      throw new ValidationException('serviceName', $serviceName,
-          'A service name is required.');
+      throw new InvalidArgumentException('A service name is required.');
     }
     if ($version === null || $version === '') {
-      throw new ValidationException('version', $version,
-          'A version name is required.');
+      throw new InvalidArgumentException('A version name is required.');
     }
   }
 

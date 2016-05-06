@@ -40,18 +40,14 @@ class SoapSettingsBuilderTest extends PHPUnit_Framework_TestCase {
    * @covers Google\AdsApi\Common\SoapSettingsBuilder::from
    */
   public function testBuildFrom() {
-    $valueMap = array(
-        array('COMPRESSION_LEVEL', 'SOAP', '2'),
-        array('WSDL_CACHE', 'SOAP', '3'),
-        array('HOST', 'PROXY', 'https://abc.xyz'),
-        array('PORT', 'PROXY', '2021'),
-        array('USER', 'PROXY', 'jane.doe@gmail.com'),
-        array('PASSWORD', 'PROXY', 'abc123yxz456'),
-        array('VERIFY_PEER', 'SSL', '1'),
-        array('VERIFY_HOST', 'SSL', '1'),
-        array('CA_PATH', 'SSL', '/tmp/ca'),
-        array('CA_FILE', 'SSL', 'cacert.pem')
-    );
+    $valueMap = [
+        ['compressionLevel', 'SOAP', '2'],
+        ['wsdlCache', 'SOAP', '3'],
+        ['host', 'PROXY', 'https://abc.xyz'],
+        ['port', 'PROXY', '2021'],
+        ['user', 'PROXY', 'jane.doe@gmail.com'],
+        ['password', 'PROXY', 'abc123yxz456']
+    ];
     $configurationMock =
         $this->getMockBuilder('Google\AdsApi\Common\Configuration')
         ->disableOriginalConstructor()
@@ -69,15 +65,34 @@ class SoapSettingsBuilderTest extends PHPUnit_Framework_TestCase {
     $this->assertSame(2021, $soapSettings->getProxyPort());
     $this->assertSame('jane.doe@gmail.com', $soapSettings->getProxyUser());
     $this->assertSame('abc123yxz456', $soapSettings->getProxyPassword());
-    $this->assertSame(true, $soapSettings->getSslVerifyPeer());
-    $this->assertSame(true, $soapSettings->getSslVerifyHost());
-    $this->assertSame('/tmp/ca', $soapSettings->getSslCaPath());
-    $this->assertSame('cacert.pem', $soapSettings->getSslCaFile());
+  }
+
+  /**
+   * @covers Google\AdsApi\Common\SoapSettingsBuilder::from
+   */
+  public function testBuildFromDefaults() {
+    $configurationMock =
+        $this->getMockBuilder('Google\AdsApi\Common\Configuration')
+        ->disableOriginalConstructor()
+        ->getMock();
+    $configurationMock->expects($this->any())
+        ->method('getConfiguration')
+        ->will($this->returnValueMap([]));
+
+    $soapSettings = $this->soapSettingsBuilder
+        ->from($configurationMock)
+        ->build();
+    $this->assertNull($soapSettings->getCompressionLevel());
+    $this->assertNull($soapSettings->getWsdlCacheType());
+    $this->assertNull($soapSettings->getProxyHost());
+    $this->assertNull($soapSettings->getProxyPort());
+    $this->assertNull($soapSettings->getProxyUser());
+    $this->assertNull($soapSettings->getProxyPassword());
   }
 
   /**
    * @covers Google\AdsApi\Common\SoapSettingsBuilder::build
-   * @expectedException Google\AdsApi\Common\ValidationException
+   * @expectedException InvalidArgumentException
    */
   public function testBuildFailsWithInvalidProxyHost() {
     $this->soapSettingsBuilder
@@ -89,6 +104,9 @@ class SoapSettingsBuilderTest extends PHPUnit_Framework_TestCase {
    * @covers Google\AdsApi\Common\SoapSettingsBuilder::build
    */
   public function testBuild() {
+    $caCertFile = __DIR__
+        . '/../../../../src/Google/AdsApi/Common/Testing/ca-certificates.crt';
+
     $soapSettings = $this->soapSettingsBuilder
         ->withCompressionLevel(SOAP_COMPRESSION_GZIP)
         ->withWsdlCacheType(WSDL_CACHE_DISK)
@@ -96,10 +114,9 @@ class SoapSettingsBuilderTest extends PHPUnit_Framework_TestCase {
         ->withProxyPort(2021)
         ->withProxyUser('jane.doe@gmail.com')
         ->withProxyPassword('abc123yxz456')
-        ->enableSslVerifyPeer()
-        ->enableSslVerifyHost()
-        ->withSslCaPath('/tmp/ca')
-        ->withSslCaFile('cacert.pem');
+        ->disableSslVerify()
+        ->withSslCaFile($caCertFile)
+        ->build();
     $this->assertSame(
         SOAP_COMPRESSION_GZIP, $soapSettings->getCompressionLevel());
     $this->assertSame(WSDL_CACHE_DISK, $soapSettings->getWsdlCacheType());
@@ -107,10 +124,23 @@ class SoapSettingsBuilderTest extends PHPUnit_Framework_TestCase {
     $this->assertSame(2021, $soapSettings->getProxyPort());
     $this->assertSame('jane.doe@gmail.com', $soapSettings->getProxyUser());
     $this->assertSame('abc123yxz456', $soapSettings->getProxyPassword());
-    $this->assertSame(true, $soapSettings->getSslVerifyPeer());
-    $this->assertSame(true, $soapSettings->getSslVerifyHost());
-    $this->assertSame('/tmp/ca', $soapSettings->getSslCaPath());
-    $this->assertSame('cacert.pem', $soapSettings->getSslCaFile());
+    $this->assertSame(false, $soapSettings->getSslVerify());
+    $this->assertSame($caCertFile, $soapSettings->getSslCaFile());
+  }
+
+  /**
+   * @covers Google\AdsApi\Common\SoapSettingsBuilder::build
+   */
+  public function testBuildDefaults() {
+    $soapSettings = $this->soapSettingsBuilder->build();
+    $this->assertNull($soapSettings->getCompressionLevel());
+    $this->assertNull($soapSettings->getWsdlCacheType());
+    $this->assertNull($soapSettings->getProxyHost());
+    $this->assertNull($soapSettings->getProxyPort());
+    $this->assertNull($soapSettings->getProxyUser());
+    $this->assertNull($soapSettings->getProxyPassword());
+    $this->assertNotNull($soapSettings->getSslVerify());
+    $this->assertNull($soapSettings->getSslCaFile());
   }
 }
 

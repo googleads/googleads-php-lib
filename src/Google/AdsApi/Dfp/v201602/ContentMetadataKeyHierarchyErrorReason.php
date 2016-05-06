@@ -1,0 +1,18 @@
+<?php
+
+namespace Google\AdsApi\Dfp\v201602;
+
+
+/**
+ * This file was generated from WSDL. DO NOT EDIT.
+ */
+class ContentMetadataKeyHierarchyErrorReason
+{
+    const __default = 'LEVEL_MISSING';
+    const LEVEL_MISSING = 'LEVEL_MISSING';
+    const INVALID_DSM_HIERARCHY = 'INVALID_DSM_HIERARCHY';
+    const CANNOT_USE_BROWSE_BY_KEY_WITH_HIERARCHY_FEATURE_ENABLED = 'CANNOT_USE_BROWSE_BY_KEY_WITH_HIERARCHY_FEATURE_ENABLED';
+    const UNKNOWN = 'UNKNOWN';
+
+
+}

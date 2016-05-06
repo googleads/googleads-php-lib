@@ -81,7 +81,7 @@ class AdsSoapClientLogMessageHandler implements SoapClientLogMessageHandler {
   }
 
   private function getServer($requestHeaders) {
-    $hostMatches = array();
+    $hostMatches = [];
     $isMatch = preg_match(
         '/^.*Host:\\s(.*)Connection:.*$/s',
         $requestHeaders,

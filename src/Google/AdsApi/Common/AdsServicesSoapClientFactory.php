@@ -18,6 +18,7 @@ namespace Google\AdsApi\Common;
 
 use Google\AdsApi\Common\Util\AdsReflectionUtils;
 use Google\AdsApi\Common\Util\ReflectionUtils;
+use RuntimeException;
 
 /**
  * Factory for creating SOAP client objects that extend `AdsSoapClient`. For
@@ -38,9 +39,11 @@ final class AdsServicesSoapClientFactory implements AdsSoapClientFactory {
    * @param int|null $soapCallTimeout the time in seconds to wait for a SOAP
    *     call to connect to the service and respond before timing out
    */
-  public function __construct(ReflectionUtils $reflectionUtils = null,
+  public function __construct(
+      ReflectionUtils $reflectionUtils = null,
       SoapClientLogMessageHandler $soapClientLogMessageHandler = null,
-      $soapCallTimeout = null) {
+      $soapCallTimeout = null
+  ) {
     $this->reflectionUtils = ($reflectionUtils === null)
         ? new AdsReflectionUtils()
         : $reflectionUtils;
@@ -58,12 +61,12 @@ final class AdsServicesSoapClientFactory implements AdsSoapClientFactory {
   public function generateSoapClient(AdsSession $session,
       AdsHeaderHandler $headerHandler,
       AdsServiceDescriptor $serviceDescriptor) {
-    $options = array(
+    $options = [
         'trace' => true,
         'encoding' => 'utf-8',
         'connection_timeout' => $this->soapCallTimeout,
         'features' => SOAP_SINGLE_ELEMENT_ARRAYS
-    );
+    ];
 
     $soapSettings = $session->getSoapSettings();
     $options = $this->populateOptions($session, $options, $soapSettings);
@@ -93,7 +96,7 @@ final class AdsServicesSoapClientFactory implements AdsSoapClientFactory {
 
   private function populateOptions(AdsSession $session, array $options,
       SoapSettings $soapSettings = null) {
-    $contextOptions = array();
+    $contextOptions = [];
     if ($soapSettings !== null) {
       // Compression settings.
       if ($soapSettings->getCompressionLevel() !== null) {
@@ -101,7 +104,7 @@ final class AdsServicesSoapClientFactory implements AdsSoapClientFactory {
             | SOAP_COMPRESSION_GZIP
             | $soapSettings->getCompressionLevel();
         // The User-Agent HTTP header must contain the string 'gzip'.
-        $options['user_agent'] = 'PHP-SOAP/'. phpversion() . ', gzip';
+        $options['user_agent'] = 'PHP-SOAP/'. PHP_VERSION . ', gzip';
       }
 
       // WSDL caching settings.
@@ -124,21 +127,42 @@ final class AdsServicesSoapClientFactory implements AdsSoapClientFactory {
       }
 
       // SSL settings.
-      if ($soapSettings->getSslVerifyPeer() !== null) {
-        $contextOptions['ssl']['verify_peer'] =
-            $soapSettings->getSslVerifyPeer();
-      }
-      if ($soapSettings->getSslVerifyHost() !== null) {
-        $contextOptions['ssl']['CN_match'] =
-            parse_url($session->getEndpoint(), PHP_URL_HOST);
-      }
-      if ($soapSettings->getSslCaPath() !== null) {
-        $contextOptions['ssl']['capath'] = $soapSettings->getSslCaPath();
-      }
-      if ($soapSettings->getSslCaFile() !== null) {
-        $contextOptions['ssl']['cafile'] = $soapSettings->getSslCaFile();
+      if ($soapSettings->getSslVerify() === true) {
+        // If there's a manually specified CA file, always use it.
+        if ($soapSettings->getSslCaFile() !== null) {
+          $contextOptions['ssl']['cafile'] = $soapSettings->getSslCaFile();
+        }
+
+        // PHP >= 5.6 automatically sets the system cert and sets verify_peer to
+        // true by default. PHP < 5.6 does not, so we need to set verify_peer to
+        // true and use Guzzle to try to find the system cert (if it hasn't been
+        // manually specified above).
+        // http://php.net/manual/en/migration56.openssl.php
+        // http://php.net/manual/en/context.ssl.php
+        if (PHP_VERSION_ID < 50600) {
+          if (!isset($contextOptions['ssl']['cafile'])) {
+            try {
+              $contextOptions['ssl']['cafile'] =
+                  \GuzzleHttp\default_ca_bundle();
+            } catch (RuntimeException $e) {
+              throw new RuntimeException('No system CA bundle could be found '
+                  . 'in any of the the common system locations. PHP versions '
+                  . 'earlier than 5.6 are not properly configured to use the '
+                  . 'system\'s CA bundle by default. In order to verify peer '
+                  . 'certificates, you will need to supply the path on disk to '
+                  . 'a certificate bundle in the SoapSettings of an '
+                  . 'AdsSession. See SoapSettingsBuilder::withSslCaFile().');
+            }
+          }
+          $contextOptions['ssl']['verify_peer'] = true;
+        }
+      } else {
+        $session->getLogger()->warning('Disabling SSL verification is not '
+            . 'recommended.');
+        $contextOptions['ssl']['verify_peer'] = false;
       }
     }
+
     $options['stream_context'] = stream_context_create($contextOptions);
 
     return $options;

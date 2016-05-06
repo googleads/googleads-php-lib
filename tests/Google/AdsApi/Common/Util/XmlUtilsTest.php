@@ -80,19 +80,21 @@ class XmlUtilsTest extends PHPUnit_Framework_TestCase {
    * @return array an array of arrays of XML strings
    */
   public function validXmlProvider() {
-    $data = array();
+    $data = [];
 
     // No value.
-    $data[] = array('<root/>');
+    $data[] = ['<root/>'];
     // With value.
-    $data[] = array('<root>value</root>');
+    $data[] = ['<root>value</root>'];
     // With attribute.
-    $data[] = array('<root type="none"/>');
+    $data[] = ['<root type="none"/>'];
     // With child elements.
-    $data[] = array('<root><a>apple</a><b>banana</b></root>');
+    $data[] = ['<root><a>apple</a><b>banana</b></root>'];
     // With namespaces.
-    $data[] = array('<root xmlns="http://foo" xmlns:bar="http://bar">'
-        . '<a bar:type="none"/></root>');
+    $data[] = [
+        '<root xmlns="http://foo" xmlns:bar="http://bar"><a bar:type="none"/>'
+            . '</root>'
+    ];
 
     return $data;
   }
@@ -103,22 +105,22 @@ class XmlUtilsTest extends PHPUnit_Framework_TestCase {
    * @return array an array of arrays of XML strings
    */
   public function invalidXmlProvider() {
-    $data = array();
+    $data = [];
 
     // Null.
-    $data[] = array(null);
+    $data[] = [null];
     // Empty string.
-    $data[] = array('');
+    $data[] = [''];
     // Incomplete tag.
-    $data[] = array('<root');
+    $data[] = ['<root'];
     // Unclosed tag.
-    $data[] = array('<root>');
+    $data[] = ['<root>'];
     // Incomplete attribute.
-    $data[] = array('<root type="none />');
+    $data[] = ['<root type="none />'];
     // Illegal character.
-    $data[] = array('<root>this & that</root>');
+    $data[] = ['<root>this & that</root>'];
     // Illegal attribute name
-    $data[] = array('<root 1="none"/>');
+    $data[] = ['<root 1="none"/>'];
 
     return $data;
   }
@@ -129,15 +131,17 @@ class XmlUtilsTest extends PHPUnit_Framework_TestCase {
    * @return array an array of arrays of non-pretty and pretty XML strings
    */
   public function prettyXmlProvider() {
-    $data = array();
+    $data = [];
 
     // Insert XML declaration.
-    $data[] = array('<root/>', "<?xml version=\"1.0\"?>\n<root/>");
+    $data[] = ['<root/>', "<?xml version=\"1.0\"?>\n<root/>"];
     // Collapse empty tags.
-    $data[] = array('<root></root>', "<?xml version=\"1.0\"?>\n<root/>");
+    $data[] = ['<root></root>', "<?xml version=\"1.0\"?>\n<root/>"];
     // Tab in child elements.
-    $data[] = array('<root><a>apple</a></root>',
-        "<?xml version=\"1.0\"?>\n<root>\n  <a>apple</a>\n</root>");
+    $data[] = [
+        "<root><a>apple</a></root>",
+        "<?xml version=\"1.0\"?>\n<root>\n  <a>apple</a>\n</root>"
+    ];
 
     return $data;
   }

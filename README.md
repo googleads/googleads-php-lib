@@ -1,4 +1,4 @@
-## The Google Ads APIs PHP Client Library (BETA)
+## Google Ads API PHP Client Library (BETA)
 
 This project hosts the PHP client library for the various SOAP-based Ads APIs
 (AdWords and DFP) at Google.
@@ -32,7 +32,11 @@ appropriate guide below based on your use case.
   **If you're accessing an API using your own credentials...**
 
   * [Using AdWords](https://github.com/googleads/googleads-php-lib/wiki/%5BEXPERIMENTAL-BRANCH%5D-API-access-using-own-credentials-(installed-application-flow))
-  * [Using DFP](https://github.com/googleads/googleads-php-lib/wiki/%5BEXPERIMENTAL-BRANCH%5D-API-access-using-own-credentials-(installed-application-flow))
+  * [Using DFP](https://github.com/googleads/googleads-php-lib/wiki/%5BEXPERIMENTAL-BRANCH%5D-API-access-using-own-credentials-(server-to-server-flow))
+
+  **If you're accessing an API on behalf of clients...**
+
+  * [Using AdWords or DFP](https://github.com/googleads/googleads-php-lib/wiki/%5BEXPERIMENTAL-BRANCH%5D-API-access-on-behalf-of-your-clients-(web-flow))
 
 ### Basic usage
 
@@ -50,18 +54,26 @@ The following snippet of code from the
 how to use this library. The usage pattern is similar for DFP.
 
 ```php
-$oAuth2Credential = new SimpleGoogleCredential();
-$oAuth2Credential->fromFile();
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201603\cm\OrderBy;
+use Google\AdsApi\AdWords\v201603\cm\Paging;
+use Google\AdsApi\AdWords\v201603\cm\Selector;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
-$builder = new AdWordsSessionBuilder();
-$session = $builder->fromFile()
+$oAuth2Credential = (new OAuth2TokenBuilder())
+    ->fromFile()
+    ->build();
+
+$session = (new AdWordsSessionBuilder())
+    ->fromFile()
     ->withOAuth2Credential($oAuth2Credential)
     ->build();
 
 $adWordsServices = new AdWordsServices();
 
 $campaignService =
-    $adWordsServices->get($session, 'CampaignService', 'v201509', 'cm');
+    $adWordsServices->get($session, 'CampaignService', 'v201603', 'cm');
 
 // Create selector.
 $selector = new Selector();
@@ -86,12 +98,12 @@ fromFile('/config/myprops.ini')
 ```
 
 It is highly recommended that you use an **adsapi_php.ini** file. However, if
-you don't want to or can't use it, you can also use the ads session builders
-to set the same information. See the **CreateAdsSessionWithoutIniFile.php**
-example for your product for details.
+you don't want to or can't use it, you can also use the OAuth2 token and ads
+session builders to set the same information. See the builders for details:
 
-  * [AdWords CreateAdsSessionWithoutIniFile.php](https://github.com/googleads/googleads-php-lib/blob/experimental/examples/AdWords/Auth/CreateAdsSessionWithoutIniFile.php)
-  * [DFP CreateAdsSessionWithoutIniFile.php](https://github.com/googleads/googleads-php-lib/blob/experimental/examples/Dfp/Auth/CreateAdsSessionWithoutIniFile.php)
+  * [OAuth2TokenBuilder](https://github.com/googleads/googleads-php-lib/blob/experimental/src/Google/AdsApi/Common/OAuth2TokenBuilder.php)
+  * [AdWordsSessionBuilder](https://github.com/googleads/googleads-php-lib/blob/experimental/src/Google/AdsApi/AdWords/AdWordsSessionBuilder.php)
+  * [DfpSessionBuilder](https://github.com/googleads/googleads-php-lib/blob/experimental/src/Google/AdsApi/Dfp/DfpSessionBuilder.php)
 
 ### WSDL objects with names that are reserved PHP keywords
 
@@ -125,8 +137,8 @@ This can be customized by building an ads session with a different
 For example:
 
 ```php
-$builder = new AdWordsSessionBuilder();
-$session = $builder->fromFile()
+$session = (new AdWordsSessionBuilder())
+    ->fromFile()
     ->withOAuth2Credential($oAuth2Credential)
     ->withLogger(new MyCustomLogger())
     ->build();
@@ -141,7 +153,8 @@ of this repository and can be viewed at:
 * [AdWords](http://googleads.github.io/googleads-php-lib/AdWords-beta)
 * [DFP](http://googleads.github.io/googleads-php-lib/Dfp-beta)
 
-General AdWords and DFP API documentation can be found on our Developers site.
+General AdWords and DFP API documentation can be found on our Google Developers
+site.
 
 * [AdWords API documentation](https://developers.google.com/adwords/api)
 * [DFP API documentation](https://developers.google.com/doubleclick-publishers)
@@ -174,3 +187,4 @@ API deprecation schedules can be found at:
 
 * [AdWords API deprecation schedule](https://developers.google.com/adwords/api/docs/sunset-dates)
 * [DFP API deprecation schedule](https://developers.google.com/doubleclick-publishers/docs/deprecation)
+

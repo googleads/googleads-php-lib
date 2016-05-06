@@ -52,12 +52,24 @@ class ReportSettingsBuilder implements AdsBuilder {
    * @see AdsBuilder::from()
    */
   public function from(Configuration $configuration) {
-    $this->isSkipReportHeader = boolval($configuration->getConfiguration(
-        'isSkipReportHeader', 'REPORTING'));
-    $this->isSkipColumnHeader = boolval($configuration->getConfiguration(
-        'isSkipColumnHeader', 'REPORTING'));
-    $this->isSkipReportSummary = boolval($configuration->getConfiguration(
-        'isSkipReportSummary', 'REPORTING'));
+    $isSkipReportHeader = $configuration->getConfiguration(
+        'isSkipReportHeader', 'ADWORDS_REPORTING');
+    if ($isSkipReportHeader !== null) {
+      $this->isSkipReportHeader = boolval($isSkipReportHeader);
+    }
+
+    $isSkipColumnHeader = $configuration->getConfiguration(
+        'isSkipColumnHeader', 'ADWORDS_REPORTING');
+    if ($isSkipColumnHeader !== null) {
+      $this->isSkipColumnHeader = boolval($isSkipColumnHeader);
+    }
+
+    $isSkipReportSummary = $configuration->getConfiguration(
+        'isSkipReportSummary', 'ADWORDS_REPORTING');
+    if ($isSkipReportSummary !== null) {
+      $this->isSkipReportSummary = boolval($isSkipReportSummary);
+    }
+
     return $this;
   }
 
@@ -65,7 +77,7 @@ class ReportSettingsBuilder implements AdsBuilder {
    * Whether report responses should skip the header row containing the report
    * name and date range. This is optional and defaults to false.
    *
-   * @param boolean $isSkipReportHeader
+   * @param boolean|null $isSkipReportHeader
    * @return ReportSettingsBuilder this builder
    */
   public function skipReportHeader($isSkipReportHeader) {
@@ -77,7 +89,7 @@ class ReportSettingsBuilder implements AdsBuilder {
    * Whether report responses should skip the header row containing the column
    * names. This is optional and defaults to false.
    *
-   * @param boolean $isSkipColumnHeader
+   * @param boolean|null $isSkipColumnHeader
    * @return ReportSettingsBuilder this builder
    */
   public function skipColumnHeader($isSkipColumnHeader) {
@@ -89,7 +101,7 @@ class ReportSettingsBuilder implements AdsBuilder {
    * Whether report responses should skip the summary row containing totals.
    * This is optional and defaults to false.
    *
-   * @param boolean $isSkipReportSummary
+   * @param boolean|null $isSkipReportSummary
    * @return ReportSettingsBuilder this builder
    */
   public function skipReportSummary($isSkipReportSummary) {

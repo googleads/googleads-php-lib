@@ -16,6 +16,8 @@
  */
 namespace Google\AdsApi\Common;
 
+use Google\AdsApi\Common\Util\AdsReflectionUtils;
+use ReflectionException;
 use SoapClient;
 use SoapFault;
 
@@ -25,13 +27,22 @@ use SoapFault;
  */
 class AdsSoapClient extends SoapClient {
 
+  // SOAP fault names to types are bound via a wsdl:message element in the
+  // WSDLs and don't have their XSI type included in the SOAP fault responses.
+  // So we need to manually map the fault types we know about.
+  private static $SOAP_FAULT_NAME_TO_TYPE_MAP = [
+    'ApiExceptionFault' => 'ApiException'
+  ];
+
   private $wsdlUri;
+  private $classmap;
   private $streamContext;
   private $logMessageHandler;
   private $adsSession;
   private $headerHandler;
   private $serviceDescriptor;
   private $soapCallTimeout;
+  private $adsReflectionUtils;
 
   /**
    * The constructor to create a new instance of this SOAP client. Do not use
@@ -45,6 +56,10 @@ class AdsSoapClient extends SoapClient {
    */
   public function __construct($wsdl, array $options = null) {
     $this->wsdlUri = $wsdl;
+    if (array_key_exists('classmap', $options)) {
+      $this->classmap = $options['classmap'];
+    }
+    $this->adsReflectionUtils = new AdsReflectionUtils();
     parent::__construct($wsdl, $options);
   }
 
@@ -53,58 +68,105 @@ class AdsSoapClient extends SoapClient {
    */
   public function __soapCall($function_name, $arguments, $options = null,
       $input_headers = null, &$output_headers = null) {
+    // Generate the HTTP headers for this API request.
+    $httpHeaders = $this->headerHandler->generateHttpHeaders($this->adsSession);
+    // The context this SOAP client was originally created with. This is the
+    // only way to modify the HTTP headers per SOAP call.
+    $existingStreamContextOptions =
+        stream_context_get_options($this->streamContext);
+    // Flatten headers into a string with each header separated by \r\n. This is
+    // the most reliable way to set multiple HTTP headers in PHP.
+    // See: http://php.net/manual/en/context.http.php
+    $existingStreamContextOptions['http']['header'] = implode("\r\n",
+        // Flatten the HTTP header map to a single dimension array with each
+        // element becoming "[headerName]: [headerValue]".
+        array_map(
+            function ($headerName, $headerValue) {
+              return sprintf('%s: %s', $headerName, $headerValue);
+            },
+            array_keys($httpHeaders),
+            $httpHeaders
+        )
+    );
+    stream_context_set_option(
+        $this->streamContext, $existingStreamContextOptions);
+
+    // Generate the SOAP headers for this API request.
+    $input_headers[] = $this->headerHandler->generateSoapHeaders(
+        $this->adsSession, $this->serviceDescriptor);
+
+    $response = null;
     try {
-      // Generate the HTTP headers for this API request.
-      $httpHeaders = $this->generateHttpHeaders();
-      // The context this SOAP client was originally created with. This is the
-      // only way to modify the HTTP headers per SOAP call.
-      $existingStreamContextOptions =
-          stream_context_get_options($this->streamContext);
-      // Flatten headers into a string with each header separated by \r\n.
-      // This is the most reliable way to set multiple HTTP headers in PHP.
-      // See: http://php.net/manual/en/context.http.php
-      $existingStreamContextOptions['http']['header'] = implode("\r\n",
-          // Flatten the HTTP header map to a single dimension array with each
-          // element becoming "[headerName]: [headerValue]".
-          array_map(
-              function ($headerName, $headerValue) {
-                return sprintf('%s: %s', $headerName, $headerValue);
-              },
-              array_keys($httpHeaders),
-              $httpHeaders
-          )
-      );
-      stream_context_set_option(
-          $this->streamContext, $existingStreamContextOptions);
-
-      // Generate the SOAP headers for this API request.
-      $input_headers[] = $this->headerHandler->generateSoapHeaders(
-          $this->adsSession, $this->serviceDescriptor);
-
       ini_set('default_socket_timeout', $this->soapCallTimeout);
       $response = parent::__soapCall($function_name, $arguments, $options,
           $input_headers, $output_headers);
       ini_restore('default_socket_timeout');
-
-      $this->logSoapCall($function_name);
-      return $response;
-    } catch (SoapFault $soapFault) {
+    } catch(SoapFault $soapFault) {
+      ini_restore('default_socket_timeout');
       $this->logSoapCall($function_name, $soapFault);
-      throw $soapFault;
+
+      // If there's no detail, just throw the SOAP fault.
+      if (!isset($soapFault->detail)) {
+        throw $soapFault;
+      }
+
+      // Otherwise, attempt to parse out the API exception and throw that.
+      $apiException = $this->parseApiExceptionFromSoapFault($soapFault);
+      if ($apiException !== false) {
+        throw $apiException;
+      } else {
+        // If we can't deserialize the SOAP fault to an API exception, just
+        // throw the fault.
+        throw $soapFault;
+      }
     }
+
+    $this->logSoapCall($function_name);
+    return $response;
   }
 
-  private function generateHttpHeaders() {
-    $httpHeaders = array();
-    $oAuth2Credential = $this->adsSession->getOAuth2Credential();
-    $oAuth2Credential->getOrRefreshAccessToken();
-    $httpHeaders['Authorization'] =
-        $oAuth2Credential->formatCredentialsForHeader();
+  private function parseApiExceptionFromSoapFault(SoapFault $soapFault) {
+    // The AW and DFP APIs always return one element in the SOAP fault detail
+    // that represents an exception.
+    $soapFaultDetailName = key(get_object_vars($soapFault->detail));
+    $soapFaultDetail = current(get_object_vars($soapFault->detail));
 
-    $httpHeaders = array_merge($httpHeaders,
-        $this->headerHandler->generateHttpHeaders($this->adsSession));
+    if (!array_key_exists(
+        $soapFaultDetailName, self::$SOAP_FAULT_NAME_TO_TYPE_MAP)) {
+      return false;
+    }
+    $exceptionClassShortName =
+        self::$SOAP_FAULT_NAME_TO_TYPE_MAP[$soapFaultDetailName];
 
-    return $httpHeaders;
+    if (!array_key_exists($exceptionClassShortName, $this->classmap)) {
+      return false;
+    }
+    $exceptionClassName = $this->classmap[$exceptionClassShortName];
+
+    try {
+      $apiException = $this->adsReflectionUtils->createInstance(
+          $exceptionClassName, $soapFaultDetail->message);
+    } catch (ReflectionException $reflectionException) {
+      return false;
+    }
+
+    $apiException->setMessage1($soapFaultDetail->message);
+
+    // Complex types in a SOAPFault are deserialized as SoapVars and don't
+    // respect SOAP_SINGLE_ELEMENT_ARRAYS, so we need to check if there was
+    // one or multiple errors.
+    $apiErrors = $soapFaultDetail->errors;
+    // If a single error, wrap in an array.
+    if (!is_array($apiErrors)) {
+      $apiErrors = [$apiErrors];
+    }
+    // Map SoapVars to their underlying object, which has been deserialized
+    // properly since they contain an XSI type in the SOAP response.
+    $apiException->setErrors(array_map(function($soapVar) {
+      return $soapVar->enc_value;
+    }, $apiErrors));
+
+    return $apiException;
   }
 
   private function logSoapCall($methodName, SoapFault $soapFault = null) {

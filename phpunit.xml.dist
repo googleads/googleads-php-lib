@@ -11,6 +11,10 @@
   <filter>
     <whitelist>
       <directory suffix=".php">src/Google/AdsApi</directory>
+      <exclude>
+        <directory suffix=".php">src/Google/AdsApi/AdWords/v*</directory>
+        <directory suffix=".php">src/Google/AdsApi/Dfp/v*</directory>
+      </exclude>
     </whitelist>
   </filter>
 </phpunit>

@@ -21,8 +21,9 @@ use Google\AdsApi\Common\AdsHeaderHandlerHelper;
 use Google\AdsApi\Common\AdsServiceDescriptor;
 use Google\AdsApi\Common\AdsSession;
 use Google\AdsApi\Common\LibraryMetadataProvider;
+use Google\AdsApi\Common\OAuth2TokenRefresher;
 use Google\AdsApi\Common\Util\AdsReflectionUtils;
-use Google\AdsApi\Common\ValidationException;
+use InvalidArgumentException;
 use ReflectionClass;
 use SoapHeader;
 
@@ -50,18 +51,19 @@ class AdWordsHeaderHandler implements AdsHeaderHandler {
   const EXPRESS_SOAP_HEADER_CLASS_NAME = 'express\\ExpressSoapHeader';
 
   /**
-   * @var array a list of HTTP headers to scrub
+   * @var string[] a list of HTTP headers to scrub
    */
-  private $httpHeadersToScrub = array('Authorization');
+  private $httpHeadersToScrub = ['Authorization'];
 
   /**
-   * @var array a list of SOAP headers to scrub
+   * @var string[] a list of SOAP headers to scrub
    */
-  private $soapHeadersToScrub = array('developerToken');
+  private $soapHeadersToScrub = ['developerToken'];
 
   private $libraryMetadataProvider;
   private $adsHeaderHandlerHelper;
   private $reflectionUtils;
+  private $oAuth2TokenRefresher;
 
   /**
    * Creates a new instance of this header handler.
@@ -70,13 +72,19 @@ class AdWordsHeaderHandler implements AdsHeaderHandler {
     $this->libraryMetadataProvider = new LibraryMetadataProvider();
     $this->adsHeaderHandlerHelper = new AdsHeaderHandlerHelper();
     $this->reflectionUtils = new AdsReflectionUtils();
+    $this->oAuth2TokenRefresher = new OAuth2TokenRefresher();
   }
 
   /**
    * @see AdsHeaderHandler::generateHttpHeaders()
    */
   public function generateHttpHeaders(AdsSession $session) {
-    return array();
+    $httpHeaders = ['Authorization' => sprintf(
+        'Bearer %s',
+        urlencode($this->oAuth2TokenRefresher->getOrFetchAccessToken(
+            $session->getOAuth2Credential()))
+    )];
+    return $httpHeaders;
   }
 
   /**
@@ -97,9 +105,7 @@ class AdWordsHeaderHandler implements AdsHeaderHandler {
       $plusPageId = $session->getExpressPlusPageId();
       if ($businessId !== null && $plusPageId !== null
           || $businessId === null && $plusPageId === null) {
-        throw new ValidationException(
-            'expressBusinessId, expressPlusPageId',
-            $businessId . ', ' . $plusPageId,
+        throw new InvalidArgumentException(
             'One of expressBusinessId or expressPlusPageId must be set, but '
                 . 'not both.'
         );

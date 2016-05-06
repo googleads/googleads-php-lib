@@ -18,7 +18,6 @@ namespace Google\AdsApi\AdWords;
 
 
 use Google\AdsApi\AdWords\AdWordsSessionBuilder;
-use Google\AdsApi\Common\Util\SimpleGoogleCredential;
 use PHPUnit_Framework_TestCase;
 
 /**
@@ -29,30 +28,35 @@ use PHPUnit_Framework_TestCase;
 class AdWordsSessionBuilderTest extends PHPUnit_Framework_TestCase {
 
   private $adWordsSessionBuilder;
+  private $fetchAuthTokenInterfaceMock;
 
   /**
    * @see PHPUnit_Framework_TestCase::setUp
    */
   protected function setUp() {
     $this->adWordsSessionBuilder = new AdWordsSessionBuilder();
+    $this->fetchAuthTokenInterfaceMock = $this
+        ->getMockBuilder('Google\Auth\FetchAuthTokenInterface')
+        ->disableOriginalConstructor()
+        ->getMock();
   }
 
   /**
    * @covers Google\AdsApi\AdWords\AdWordsSessionBuilder::from
    */
   public function testBuildFrom() {
-    $valueMap = array(
-        array('developerToken', null, 'ABcdeFGH93KL-NOPQ_STUv'),
-        array('userAgent', null, 'report downloader'),
-        array('endpoint', null, 'https://abc.xyz'),
-        array('clientCustomerId', null, '123-456-7890'),
-        array('isPartialFailure', null, '1'),
-        array('isSkipReportHeader', 'REPORTING', '1'),
-        array('isSkipColumnHeader', 'REPORTING', '1'),
-        array('isSkipReportSummary', 'REPORTING', '')
-    );
-    $configurationMock =
-        $this->getMockBuilder('Google\AdsApi\Common\Configuration')
+    $valueMap = [
+        ['developerToken', 'ADWORDS', 'ABcdeFGH93KL-NOPQ_STUv'],
+        ['userAgent', 'ADWORDS', 'report downloader'],
+        ['endpoint', 'ADWORDS', 'https://abc.xyz'],
+        ['clientCustomerId', 'ADWORDS', '123-456-7890'],
+        ['isPartialFailure', 'ADWORDS', '1'],
+        ['isSkipReportHeader', 'ADWORDS_REPORTING', '1'],
+        ['isSkipColumnHeader', 'ADWORDS_REPORTING', '1'],
+        ['isSkipReportSummary', 'ADWORDS_REPORTING', '']
+    ];
+    $configurationMock = $this
+        ->getMockBuilder('Google\AdsApi\Common\Configuration')
         ->disableOriginalConstructor()
         ->getMock();
     $configurationMock->expects($this->any())
@@ -61,8 +65,9 @@ class AdWordsSessionBuilderTest extends PHPUnit_Framework_TestCase {
 
     $adWordsSession = $this->adWordsSessionBuilder
         ->from($configurationMock)
-        ->withOAuth2Credential(new SimpleGoogleCredential())
+        ->withOAuth2Credential($this->fetchAuthTokenInterfaceMock)
         ->build();
+
     $this->assertSame(
         'ABcdeFGH93KL-NOPQ_STUv', $adWordsSession->getDeveloperToken());
     $this->assertSame('report downloader', $adWordsSession->getUserAgent());
@@ -75,60 +80,97 @@ class AdWordsSessionBuilderTest extends PHPUnit_Framework_TestCase {
         true, $adWordsSession->getReportSettings()->isSkipColumnHeader());
     $this->assertSame(
         false, $adWordsSession->getReportSettings()->isSkipReportSummary());
+  }
+
+  /**
+   * @covers Google\AdsApi\AdWords\AdWordsSessionBuilder::from
+   */
+  public function testBuildFromDefaults() {
+    $valueMap = [
+        ['developerToken', 'ADWORDS', 'ABcdeFGH93KL-NOPQ_STUv'],
+        ['userAgent', 'ADWORDS', 'report downloader'],
+    ];
+    $configurationMock = $this
+        ->getMockBuilder('Google\AdsApi\Common\Configuration')
+        ->disableOriginalConstructor()
+        ->getMock();
+    $configurationMock->expects($this->any())
+        ->method('getConfiguration')
+        ->will($this->returnValueMap($valueMap));
+
+    $adWordsSession = $this->adWordsSessionBuilder
+        ->from($configurationMock)
+        ->withOAuth2Credential($this->fetchAuthTokenInterfaceMock)
+        ->build();
+
+    $this->assertSame(
+        'ABcdeFGH93KL-NOPQ_STUv', $adWordsSession->getDeveloperToken());
+    $this->assertSame('report downloader', $adWordsSession->getUserAgent());
+    $this->assertTrue(filter_var(
+        $adWordsSession->getEndpoint(), FILTER_VALIDATE_URL) !== false);
+    $this->assertNull($adWordsSession->getClientCustomerId());
+    $this->assertNotNull($adWordsSession->isPartialFailure());
+    $this->assertNotNull(
+        $adWordsSession->getReportSettings()->isSkipReportHeader());
+    $this->assertNotNull(
+        $adWordsSession->getReportSettings()->isSkipColumnHeader());
+    $this->assertNotNull(
+        $adWordsSession->getReportSettings()->isSkipReportSummary());
     $this->assertNull(
         $adWordsSession->getReportSettings()->isIncludeZeroImpressions());
+    $this->assertNotNull($adWordsSession->getSoapSettings());
   }
 
   /**
    * @covers Google\AdsApi\AdWords\AdWordsSessionBuilder::build
-   * @expectedException Google\AdsApi\Common\ValidationException
+   * @expectedException InvalidArgumentException
    */
   public function testBuildFailsWithoutDeveloperToken() {
     $this->adWordsSessionBuilder
         ->withUserAgent('report downloader')
-        ->withOAuth2Credential(new SimpleGoogleCredential())
+        ->withOAuth2Credential($this->fetchAuthTokenInterfaceMock)
         ->build();
   }
 
   /**
    * @covers Google\AdsApi\AdWords\AdWordsSessionBuilder::build
-   * @expectedException Google\AdsApi\Common\ValidationException
+   * @expectedException InvalidArgumentException
    */
   public function testBuildFailsWithoutUserAgent() {
     $this->adWordsSessionBuilder
         ->withDeveloperToken('ABcdeFGH93KL-NOPQ_STUv')
-        ->withOAuth2Credential(new SimpleGoogleCredential())
+        ->withOAuth2Credential($this->fetchAuthTokenInterfaceMock)
         ->build();
   }
 
   /**
    * @covers Google\AdsApi\AdWords\AdWordsSessionBuilder::build
-   * @expectedException Google\AdsApi\Common\ValidationException
+   * @expectedException InvalidArgumentException
    */
   public function testBuildFailsWithDefaultUserAgent() {
     $this->adWordsSessionBuilder
         ->withDeveloperToken('ABcdeFGH93KL-NOPQ_STUv')
         ->withUserAgent(AdWordsSessionBuilder::DEFAULT_USER_AGENT)
-        ->withOAuth2Credential(new SimpleGoogleCredential())
+        ->withOAuth2Credential($this->fetchAuthTokenInterfaceMock)
         ->build();
   }
 
   /**
    * @covers Google\AdsApi\AdWords\AdWordsSessionBuilder::build
-   * @expectedException Google\AdsApi\Common\ValidationException
+   * @expectedException InvalidArgumentException
    */
   public function testBuildFailsWithInvalidEndpointUrl() {
     $this->adWordsSessionBuilder
         ->withDeveloperToken('ABcdeFGH93KL-NOPQ_STUv')
         ->withUserAgent('report downloader')
         ->withEndpoint('abcxyz')
-        ->withOAuth2Credential(new SimpleGoogleCredential())
+        ->withOAuth2Credential($this->fetchAuthTokenInterfaceMock)
         ->build();
   }
 
   /**
    * @covers Google\AdsApi\AdWords\AdWordsSessionBuilder::build
-   * @expectedException Google\AdsApi\Common\ValidationException
+   * @expectedException InvalidArgumentException
    */
   public function testBuildFailsWithoutOAuth2Credential() {
     $this->adWordsSessionBuilder
@@ -140,37 +182,53 @@ class AdWordsSessionBuilderTest extends PHPUnit_Framework_TestCase {
   /**
    * @covers Google\AdsApi\AdWords\AdWordsSessionBuilder::build
    */
-  public function testBuildDefaults() {
-    $adWordsSession = $this->adWordsSessionBuilder
-        ->withDeveloperToken('ABcdeFGH93KL-NOPQ_STUv')
-        ->withUserAgent('report downloader')
-        ->withOAuth2Credential(new SimpleGoogleCredential())
-        ->build();
-    $this->assertInstanceOf(
-        'Psr\Log\LoggerInterface', $adWordsSession->getLogger());
-    $this->assertTrue(filter_var(
-        $adWordsSession->getEndpoint(), FILTER_VALIDATE_URL) !== false);
-  }
-
-  /**
-   * @covers Google\AdsApi\AdWords\AdWordsSessionBuilder::build
-   */
   public function testBuild() {
     $adWordsSession = $this->adWordsSessionBuilder
         ->withDeveloperToken('ABcdeFGH93KL-NOPQ_STUv')
         ->withUserAgent('report downloader')
         ->withEndpoint('https://abc.xyz/')
-        ->withOAuth2Credential(new SimpleGoogleCredential())
+        ->withOAuth2Credential($this->fetchAuthTokenInterfaceMock)
         ->build();
+
     $this->assertSame(
         'ABcdeFGH93KL-NOPQ_STUv', $adWordsSession->getDeveloperToken());
     $this->assertSame('https://abc.xyz/', $adWordsSession->getEndpoint());
     $this->assertSame(
         'report downloader', $adWordsSession->getUserAgent());
+    $this->assertInstanceOf('Google\Auth\FetchAuthTokenInterface',
+        $adWordsSession->getOAuth2Credential());
+  }
+
+  /**
+   * @covers Google\AdsApi\AdWords\AdWordsSessionBuilder::build
+   */
+  public function testBuildDefaults() {
+    $adWordsSession = $this->adWordsSessionBuilder
+        ->withDeveloperToken('ABcdeFGH93KL-NOPQ_STUv')
+        ->withUserAgent('report downloader')
+        ->withOAuth2Credential($this->fetchAuthTokenInterfaceMock)
+        ->build();
+
+    $this->assertSame(
+        'ABcdeFGH93KL-NOPQ_STUv', $adWordsSession->getDeveloperToken());
+    $this->assertSame('report downloader', $adWordsSession->getUserAgent());
+    $this->assertInstanceOf('Google\Auth\FetchAuthTokenInterface',
+        $adWordsSession->getOAuth2Credential());
     $this->assertInstanceOf(
-        'Google\AdsApi\Common\Util\SimpleGoogleCredential',
-        $adWordsSession->getOAuth2Credential()
-    );
+        'Psr\Log\LoggerInterface', $adWordsSession->getLogger());
+    $this->assertTrue(filter_var(
+        $adWordsSession->getEndpoint(), FILTER_VALIDATE_URL) !== false);
+    $this->assertNull($adWordsSession->getClientCustomerId());
+    $this->assertNotNull($adWordsSession->isPartialFailure());
+    $this->assertNotNull(
+        $adWordsSession->getReportSettings()->isSkipReportHeader());
+    $this->assertNotNull(
+        $adWordsSession->getReportSettings()->isSkipColumnHeader());
+    $this->assertNotNull(
+        $adWordsSession->getReportSettings()->isSkipReportSummary());
+    $this->assertNull(
+        $adWordsSession->getReportSettings()->isIncludeZeroImpressions());
+    $this->assertNotNull($adWordsSession->getSoapSettings());
   }
 
   /**
@@ -180,17 +238,16 @@ class AdWordsSessionBuilderTest extends PHPUnit_Framework_TestCase {
     $adWordsSession = $this->adWordsSessionBuilder
         ->withDeveloperToken('ABcdeFGH93KL-NOPQ_STUv')
         ->withUserAgent('report downloader')
-        ->withOAuth2Credential(new SimpleGoogleCredential())
+        ->withOAuth2Credential($this->fetchAuthTokenInterfaceMock)
         ->withClientCustomerId('123-456-7890')
         ->build();
+
     $this->assertSame(
         'ABcdeFGH93KL-NOPQ_STUv', $adWordsSession->getDeveloperToken());
     $this->assertSame(
         'report downloader', $adWordsSession->getUserAgent());
-    $this->assertInstanceOf(
-        'Google\AdsApi\Common\Util\SimpleGoogleCredential',
-        $adWordsSession->getOAuth2Credential()
-    );
+    $this->assertInstanceOf('Google\Auth\FetchAuthTokenInterface',
+        $adWordsSession->getOAuth2Credential());
     $this->assertSame('123-456-7890', $adWordsSession->getClientCustomerId());
   }
 
@@ -201,18 +258,17 @@ class AdWordsSessionBuilderTest extends PHPUnit_Framework_TestCase {
     $adWordsSession = $this->adWordsSessionBuilder
         ->withDeveloperToken('ABcdeFGH93KL-NOPQ_STUv')
         ->withUserAgent('report downloader')
-        ->withOAuth2Credential(new SimpleGoogleCredential())
+        ->withOAuth2Credential($this->fetchAuthTokenInterfaceMock)
         ->enableValidateOnly()
         ->enablePartialFailure()
         ->build();
+
     $this->assertSame(
         'ABcdeFGH93KL-NOPQ_STUv', $adWordsSession->getDeveloperToken());
     $this->assertSame(
         'report downloader', $adWordsSession->getUserAgent());
-    $this->assertInstanceOf(
-        'Google\AdsApi\Common\Util\SimpleGoogleCredential',
-        $adWordsSession->getOAuth2Credential()
-    );
+    $this->assertInstanceOf('Google\Auth\FetchAuthTokenInterface',
+        $adWordsSession->getOAuth2Credential());
     $this->assertSame(true, $adWordsSession->isValidateOnly());
     $this->assertSame(true, $adWordsSession->isPartialFailure());
   }

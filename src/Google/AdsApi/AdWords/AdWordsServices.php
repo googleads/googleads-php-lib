@@ -20,6 +20,7 @@ use Google\AdsApi\Common\AdsServices;
 use Google\AdsApi\Common\AdsServicesSoapClientFactory;
 use Google\AdsApi\Common\AdsSession;
 use Google\AdsApi\Common\AdsSoapClientFactory;
+use InvalidArgumentException;
 
 /**
  * Entry point for accessing the AdWords API's services.
@@ -58,15 +59,13 @@ class AdWordsServices implements AdsServices {
 
   private function validateGet($serviceName, $version, $group) {
     if ($serviceName === null || $serviceName === '') {
-      throw new ValidationException('serviceName', $serviceName,
-          'A service name is required.');
+      throw new InvalidArgumentException('A service name is required.');
     }
     if ($version === null || $version === '') {
-      throw new ValidationException('version', $version,
-          'A version name is required.');
+      throw new InvalidArgumentException('A version name is required.');
     }
     if ($group === null || $group === '') {
-      throw new ValidationException('group', $group, 'A group is required.');
+      throw new InvalidArgumentException('A group is required.');
     }
   }
 

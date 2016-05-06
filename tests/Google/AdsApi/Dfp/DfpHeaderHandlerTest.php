@@ -17,7 +17,6 @@
 namespace Google\AdsApi\Dfp;
 
 
-use Google\AdsApi\Common\Util\SimpleGoogleCredential;
 use Google\AdsApi\Dfp\DfpHeaderHandler;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use PHPUnit_Framework_TestCase;
@@ -38,20 +37,28 @@ class DfpHeaderHandlerTest extends PHPUnit_Framework_TestCase {
   protected function setUp() {
     $this->dfpHeaderHandler = new DfpHeaderHandler();
     $this->dfpSessionBuilder = new DfpSessionBuilder();
+
+    $fetchAuthTokenInterfaceMock = $this
+        ->getMockBuilder('Google\Auth\FetchAuthTokenInterface')
+        ->disableOriginalConstructor()
+        ->getMock();
+    $fetchAuthTokenInterfaceMock->expects($this->once())
+        ->method('fetchAuthToken')
+        ->will($this->returnValue(['access_token' => 'abc123']));
     $this->dfpSessionBuilder
         ->withNetworkCode('12345678')
         ->withApplicationName('Google report runner')
-        ->withOAuth2Credential(new SimpleGoogleCredential());
+        ->withOAuth2Credential($fetchAuthTokenInterfaceMock);
   }
 
   /**
    * @covers Google\AdsApi\Dfp\DfpHeaderHandler::generateHttpHeaders
    */
   public function testGenerateHttpHeaders() {
+    $expectedHttpHeaders = ['Authorization' => 'Bearer abc123'];
     $dfpSession = $this->dfpSessionBuilder->build();
     $httpHeaders = $this->dfpHeaderHandler->generateHttpHeaders($dfpSession);
-    $this->assertSame(array(), $httpHeaders);
+    $this->assertSame($expectedHttpHeaders, $httpHeaders);
   }
-
 }
 

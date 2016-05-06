@@ -21,8 +21,8 @@ use Google\AdsApi\Common\Configuration;
 use Google\AdsApi\Common\ConfigurationLoader;
 use Google\AdsApi\Common\SoapSettings;
 use Google\AdsApi\Common\SoapSettingsBuilder;
-use Google\AdsApi\Common\Util\GoogleCredential;
-use Google\AdsApi\Common\ValidationException;
+use Google\Auth\FetchAuthTokenInterface;
+use InvalidArgumentException;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Psr\Log\LoggerInterface;
@@ -81,17 +81,21 @@ class AdWordsSessionBuilder implements AdsBuilder {
    * @see AdsBuilder::from()
    */
   public function from(Configuration $configuration) {
-    $this->developerToken = $configuration->getConfiguration('developerToken');
-    $this->userAgent = $configuration->getConfiguration('userAgent');
-    $this->endpoint = $configuration->getConfiguration('endpoint');
+    $this->developerToken =
+        $configuration->getConfiguration('developerToken', 'ADWORDS');
+    $this->userAgent = $configuration->getConfiguration('userAgent', 'ADWORDS');
+    $this->endpoint = $configuration->getConfiguration('endpoint', 'ADWORDS');
 
     $this->soapSettings =
         $this->soapSettingsBuilder->from($configuration)->build();
 
     $this->clientCustomerId =
-        $configuration->getConfiguration('clientCustomerId');
-    $this->isPartialFailure =
-        boolval($configuration->getConfiguration('isPartialFailure'));
+        $configuration->getConfiguration('clientCustomerId', 'ADWORDS');
+    if ($configuration->getConfiguration('isPartialFailure', 'ADWORDS')
+        !== null) {
+      $this->isPartialFailure = boolval(
+          $configuration->getConfiguration('isPartialFailure', 'ADWORDS'));
+    }
 
     $this->reportSettings =
         $this->reportSettingsBuilder->from($configuration)->build();
@@ -102,7 +106,8 @@ class AdWordsSessionBuilder implements AdsBuilder {
   /**
    * Includes a PSR-3 compliant logger. This is optional and will default to a
    * Monolog logger that logs to STDERR.
-   * @param LoggerInterface $logger
+   *
+   * @param LoggerInterface|null $logger
    * @return AdWordsSessionBuilder this builder
    */
   public function withLogger(LoggerInterface $logger) {
@@ -112,6 +117,7 @@ class AdWordsSessionBuilder implements AdsBuilder {
 
   /**
    * Includes a developer token. This is required.
+   *
    * @param string $developerToken
    * @return AdWordsSessionBuilder this builder
    */
@@ -122,6 +128,7 @@ class AdWordsSessionBuilder implements AdsBuilder {
 
   /**
    * Includes user agent. This is required.
+   *
    * @param string $userAgent
    * @return AdWordsSessionBuilder this builder
    */
@@ -132,8 +139,9 @@ class AdWordsSessionBuilder implements AdsBuilder {
 
   /**
    * Includes the AdWords API server's base endpoint. This is optional.
+   *
    * @see self::DEFAULT_ENDPOINT
-   * @param string $endpoint
+   * @param string|null $endpoint
    * @return AdWordsSessionBuilder this builder
    */
   public function withEndpoint($endpoint) {
@@ -144,17 +152,21 @@ class AdWordsSessionBuilder implements AdsBuilder {
   /**
    * Includes the OAuth2 credential to be used for authentication. This is
    * required.
-   * @param GoogleCredential $oaAuth2Credential
+   *
+   * @param FetchAuthTokenInterface $oAuth2Credential
    * @return AdWordsSessionBuilder this builder
    */
-  public function withOAuth2Credential(GoogleCredential $oAuth2Credential) {
+  public function withOAuth2Credential(
+      FetchAuthTokenInterface $oAuth2Credential) {
     $this->oAuth2Credential = $oAuth2Credential;
     return $this;
   }
 
   /**
    * Includes SOAP settings. This is optional.
-   * @param SoapSettings $soapSettings
+   *
+   * @see SoapSettingsBuilder::defaultOptionals()
+   * @param SoapSettings|null $soapSettings
    * @return AdWordsSessionBuilder this builder
    */
   public function withSoapSettings(SoapSettings $soapSettings) {
@@ -165,7 +177,8 @@ class AdWordsSessionBuilder implements AdsBuilder {
   /**
    * Includes a client customer ID. This is required except when using
    * CustomerService.
-   * @param string $clientCustomerId
+   *
+   * @param string|null $clientCustomerId
    * @return AdWordsSessionBuilder this builder
    */
   public function withClientCustomerId($clientCustomerId) {
@@ -175,6 +188,7 @@ class AdWordsSessionBuilder implements AdsBuilder {
 
   /**
    * Enables validate only. Disabled by default.
+   *
    * @return AdWordsSessionBuilder this builder
    */
   public function enableValidateOnly() {
@@ -184,6 +198,7 @@ class AdWordsSessionBuilder implements AdsBuilder {
 
   /**
    * Enables partial failure. Disabled by default.
+   *
    * @return AdWordsSessionBuilder this builder
    */
   public function enablePartialFailure() {
@@ -193,7 +208,9 @@ class AdWordsSessionBuilder implements AdsBuilder {
 
   /**
    * Includes report settings. This is optional.
-   * @param ReportSettings $reportSettings
+   *
+   * @see ReportSettingsBuilder::defaultOptionals()
+   * @param ReportSettings|null $reportSettings
    * @return AdWordsSessionBuilder this builder
    */
   public function withReportSettings(ReportSettings $reportSettings) {
@@ -222,7 +239,23 @@ class AdWordsSessionBuilder implements AdsBuilder {
       $handler = new StreamHandler(STDERR, Logger::INFO);
       $handler->getFormatter()->ignoreEmptyContextAndExtra();
       $handler->getFormatter()->allowInlineLineBreaks();
-      $this->logger = new Logger('', array($handler));
+      $this->logger = new Logger('', [$handler]);
+    }
+
+    if ($this->isValidateOnly === null) {
+      $this->isValidateOnly = false;
+    }
+
+    if ($this->isPartialFailure === null) {
+      $this->isPartialFailure = false;
+    }
+
+    if ($this->reportSettings === null) {
+      $this->reportSettings = (new ReportSettingsBuilder())->build();
+    }
+
+    if ($this->soapSettings === null) {
+      $this->soapSettings = (new SoapSettingsBuilder())->build();
     }
   }
 
@@ -231,15 +264,14 @@ class AdWordsSessionBuilder implements AdsBuilder {
    */
   public function validate() {
     if ($this->developerToken === null || trim($this->developerToken) === '') {
-      throw new ValidationException('developerToken', $this->developerToken,
-              'A developer token must be set.');
+      throw new InvalidArgumentException('A developer token must be set.');
     }
 
     if ($this->userAgent === null
         || trim($this->userAgent) === ''
         || strpos($this->userAgent,
             self::DEFAULT_USER_AGENT) !== false) {
-      throw new ValidationException('userAgent', $this->userAgent,
+      throw new InvalidArgumentException(
           sprintf(
               'User agent is required and cannot be the default [%s].',
               self::DEFAULT_USER_AGENT
@@ -247,13 +279,12 @@ class AdWordsSessionBuilder implements AdsBuilder {
     }
 
     if (filter_var($this->endpoint, FILTER_VALIDATE_URL) === false) {
-      throw new ValidationException('endpoint', $this->endpoint,
-          'Endpoint must be a valid URL.');
+      throw new InvalidArgumentException('Endpoint must be a valid URL.');
     }
 
     if ($this->oAuth2Credential === null) {
-      throw new ValidationException('oAuth2Credential', null,
-          'OAuth2 configuration is required.');
+      throw new InvalidArgumentException(
+          'Missing OAuth2 authentication credentials.');
     }
   }
 
@@ -291,7 +322,7 @@ class AdWordsSessionBuilder implements AdsBuilder {
 
   /**
    * Gets the OAuth2 credential.
-   * @return GoogleCredential
+   * @return FetchAuthTokenInterface
    */
   public function getOAuth2Credential() {
     return $this->oAuth2Credential;
@@ -307,7 +338,7 @@ class AdWordsSessionBuilder implements AdsBuilder {
 
   /**
    * Gets the client customer ID.
-   * @return string
+   * @return string|null
    */
   public function getClientCustomerId() {
     return $this->clientCustomerId;

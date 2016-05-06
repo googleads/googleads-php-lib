@@ -31,11 +31,11 @@ class ConfigurationTest extends PHPUnit_Framework_TestCase {
    * @covers Google\AdsApi\Common\Configuration::getConfiguration
    */
   public function testGetConfigurationWithoutSections() {
-    $settings = array(
+    $settings = [
         'networkCode' => '12345678',
         'applicationName' => 'Google report runner',
         'endpoint' => 'https://abc.xyz'
-    );
+    ];
     $configuration = new Configuration($settings);
     $this->assertSame('12345678',
         $configuration->getConfiguration('networkCode'));
@@ -49,19 +49,19 @@ class ConfigurationTest extends PHPUnit_Framework_TestCase {
    * @covers Google\AdsApi\Common\Configuration::getConfiguration
    */
   public function testGetConfigurationWithSections() {
-    $settings = array(
+    $settings = [
         'networkCode' => '12345678',
         'applicationName' => 'Google report runner',
         'endpoint' => 'https://abc.xyz',
-        'OAUTH2' => array(
+        'OAUTH2' => [
             'client_id' => '123aBC456-xYz.apps.googleusercontent.com',
             'client_secret' => '1abC-456Xyz'
-        ),
-        'SSL' => array(
+        ],
+        'SSL' => [
             'VERIFY_PEER' => '1',
             'VERIFY_HOST' => ''
-        )
-    );
+        ]
+    ];
     $configuration = new Configuration($settings);
     $this->assertSame('12345678',
         $configuration->getConfiguration('networkCode'));
@@ -83,20 +83,20 @@ class ConfigurationTest extends PHPUnit_Framework_TestCase {
    * @covers Google\AdsApi\Common\Configuration::getConfiguration
    */
   public function testGetConfigurationWithOnlySections() {
-    $settings = array(
-        'OAUTH2' => array(
+    $settings = [
+        'OAUTH2' => [
             'client_id' => '123aBC456-xYz.apps.googleusercontent.com',
             'client_secret' => '1abC-456Xyz'
-        ),
-        'SOAP' => array(
+        ],
+        'SOAP' => [
             'COMPRESSION_LEVEL' => '2',
             'WSDL_CACHE' => '1'
-        ),
-        'SSL' => array(
+        ],
+        'SSL' => [
             'VERIFY_PEER' => '1',
             'VERIFY_HOST' => ''
-        )
-    );
+        ]
+    ];
     $configuration = new Configuration($settings);
     $this->assertSame('123aBC456-xYz.apps.googleusercontent.com',
         $configuration->getConfiguration('client_id', 'OAUTH2'));
@@ -116,14 +116,14 @@ class ConfigurationTest extends PHPUnit_Framework_TestCase {
    * @covers Google\AdsApi\Common\Configuration::getConfiguration
    */
   public function testGetConfigurationWithSettingNameNotFound() {
-    $settings = array(
+    $settings = [
         'networkCode' => '12345678',
         'applicationName' => 'Google report runner',
-        'OAUTH2' => array(
+        'OAUTH2' => [
             'client_id' => '123aBC456-xYz.apps.googleusercontent.com',
             'client_secret' => '1abC-456Xyz'
-        )
-    );
+        ]
+    ];
     $configuration = new Configuration($settings);
     $this->assertSame('12345678',
         $configuration->getConfiguration('networkCode'));
@@ -142,14 +142,14 @@ class ConfigurationTest extends PHPUnit_Framework_TestCase {
    * @covers Google\AdsApi\Common\Configuration::getConfiguration
    */
   public function testGetConfigurationWithSectionNameNotFound() {
-    $settings = array(
+    $settings = [
         'networkCode' => '12345678',
         'applicationName' => 'Google report runner',
-        'OAUTH2' => array(
+        'OAUTH2' => [
             'client_id' => '123aBC456-xYz.apps.googleusercontent.com',
             'client_secret' => '1abC-456Xyz'
-        )
-    );
+        ]
+    ];
     $configuration = new Configuration($settings);
     $this->assertSame('12345678',
         $configuration->getConfiguration('networkCode'));

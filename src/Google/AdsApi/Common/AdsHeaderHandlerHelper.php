@@ -68,7 +68,7 @@ class AdsHeaderHandlerHelper {
    * Removes any sensitive information from the specified HTTP headers.
    *
    * @param string $httpHeaders the HTTP headers
-   * @param array $headersToScrub which HTTP headers to scrub
+   * @param string[] $headersToScrub which HTTP headers to scrub
    * @return string the HTTP headers with any sensitive info removed
    */
   public function scrubHttpHeaders($httpHeaders, array $headersToScrub) {
@@ -83,7 +83,7 @@ class AdsHeaderHandlerHelper {
    * Removes any sensitive information from the specified SOAP XML's headers.
    *
    * @param string $soapXml the SOAP XML
-   * @param array $headersToScrub which SOAP headers to scrub
+   * @param string[] $headersToScrub which SOAP headers to scrub
    * @return string the SOAP XML with any sensitive info removed from its
    *     headers
    */

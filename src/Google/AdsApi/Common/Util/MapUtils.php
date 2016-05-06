@@ -41,7 +41,7 @@ class MapUtils {
    * @throws UnexpectedValueException if a map entry type is invalid
    */
   public static function toMap(array $mapEntries) {
-    $result = array();
+    $result = [];
     foreach ($mapEntries as $mapEntry) {
       try {
         $reflectionObject = new ReflectionObject($mapEntry);
@@ -73,7 +73,7 @@ class MapUtils {
    * @throws UnexpectedValueException if the map entry class is invalid
    */
   public static function toList(array $map, $mapEntryClassName) {
-    $result = array();
+    $result = [];
 
     foreach($map as $key => $value) {
       try {

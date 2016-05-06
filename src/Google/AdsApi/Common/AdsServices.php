@@ -32,8 +32,8 @@ interface AdsServices {
    *     groups
    * @return AdsSoapClient the ads API service, which is a subclass of
    *     AdsSoapClient
-   * @throws ValidationException if any of the required fields needed to obtain
-   *     a session are missing
+   * @throws InvalidArgumentException if any of the required fields needed to
+   *     obtain a session are missing
    */
   public function get(AdsSession $session, $serviceName, $version, $group);
 }

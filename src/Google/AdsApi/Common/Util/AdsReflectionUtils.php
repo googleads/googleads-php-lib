@@ -17,8 +17,6 @@
 namespace Google\AdsApi\Common\Util;
 
 use ReflectionClass;
-use ReflectionException;
-use UnexpectedValueException;
 
 /**
  * A collection of utility methods for working with reflection.
@@ -29,18 +27,10 @@ class AdsReflectionUtils implements ReflectionUtils {
    * @see ReflectionUtils::createInstance()
    */
   public function createInstance($className, $args = null) {
-    try {
-      $reflectionClass = new ReflectionClass($className);
-      $args = func_get_args();
-      array_shift($args);
-      return $reflectionClass->newInstanceArgs($args);
-    } catch (ReflectionException $e) {
-      throw new UnexpectedValueException(sprintf(
-          "Class '%s' was not found: %s",
-          $className,
-          $e->getMessage()
-      ));
-    }
+    $reflectionClass = new ReflectionClass($className);
+    $args = func_get_args();
+    array_shift($args);
+    return $reflectionClass->newInstanceArgs($args);
   }
 }
 

@@ -21,8 +21,8 @@ use Google\AdsApi\Common\Configuration;
 use Google\AdsApi\Common\ConfigurationLoader;
 use Google\AdsApi\Common\SoapSettings;
 use Google\AdsApi\Common\SoapSettingsBuilder;
-use Google\AdsApi\Common\Util\GoogleCredential;
-use Google\AdsApi\Common\ValidationException;
+use Google\Auth\FetchAuthTokenInterface;
+use InvalidArgumentException;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Psr\Log\LoggerInterface;
@@ -73,10 +73,10 @@ class DfpSessionBuilder implements AdsBuilder {
    * @see AdsBuilder::from()
    */
   public function from(Configuration $configuration) {
-    $this->networkCode = $configuration->getConfiguration('networkCode');
+    $this->networkCode = $configuration->getConfiguration('networkCode', 'DFP');
     $this->applicationName =
-        $configuration->getConfiguration('applicationName');
-    $this->endpoint = $configuration->getConfiguration('endpoint');
+        $configuration->getConfiguration('applicationName', 'DFP');
+    $this->endpoint = $configuration->getConfiguration('endpoint', 'DFP');
     $this->soapSettings =
         $this->soapSettingsBuilder->from($configuration)->build();
     return $this;
@@ -85,7 +85,8 @@ class DfpSessionBuilder implements AdsBuilder {
   /**
    * Includes a PSR-3 compliant logger. This is optional and will default to a
    * Monolog logger that logs to STDERR.
-   * @param LoggerInterface $logger the logger
+   *
+   * @param LoggerInterface|null $logger the logger
    * @return DfpSessionBuilder this builder
    */
   public function withLogger(LoggerInterface $logger) {
@@ -95,6 +96,7 @@ class DfpSessionBuilder implements AdsBuilder {
 
   /**
    * Includes network code. This is required.
+   *
    * @param string $networkCode
    * @return DfpSessionBuilder this builder
    */
@@ -105,6 +107,7 @@ class DfpSessionBuilder implements AdsBuilder {
 
   /**
    * Includes application name. This is required.
+   *
    * @param string $applicationName
    * @return DfpSessionBuilder this builder
    */
@@ -115,8 +118,9 @@ class DfpSessionBuilder implements AdsBuilder {
 
   /**
    * Includes the DFP API server's base endpoint. This is optional.
+   *
    * @see self::DEFAULT_ENDPOINT
-   * @param string $endpoint
+   * @param string|null $endpoint
    * @return DfpSessionBuilder this builder
    */
   public function withEndpoint($endpoint) {
@@ -127,17 +131,21 @@ class DfpSessionBuilder implements AdsBuilder {
   /**
    * Includes the OAuth2 credential to be used for authentication. This is
    * required.
-   * @param GoogleCredential $oaAuth2Credential
+   *
+   * @param FetchAuthTokenInterface $oAuth2Credential
    * @return DfpSessionBuilder this builder
    */
-  public function withOAuth2Credential(GoogleCredential $oAuth2Credential) {
+  public function withOAuth2Credential(
+      FetchAuthTokenInterface $oAuth2Credential) {
     $this->oAuth2Credential = $oAuth2Credential;
     return $this;
   }
 
   /**
    * Includes SOAP settings. This is optional.
-   * @param SoapSettings $soapSettings
+   *
+   * @see SoapSettingsBuilder::defaultOptionals()
+   * @param SoapSettings|null $soapSettings
    * @return DfpSessionBuilder this builder
    */
   public function withSoapSettings(SoapSettings $soapSettings) {
@@ -167,7 +175,11 @@ class DfpSessionBuilder implements AdsBuilder {
       $handler = new StreamHandler(STDERR, Logger::INFO);
       $handler->getFormatter()->ignoreEmptyContextAndExtra();
       $handler->getFormatter()->allowInlineLineBreaks();
-      $this->logger = new Logger('', array($handler));
+      $this->logger = new Logger('', [$handler]);
+    }
+
+    if ($this->soapSettings === null) {
+      $this->soapSettings = (new SoapSettingsBuilder())->build();
     }
   }
 
@@ -176,15 +188,14 @@ class DfpSessionBuilder implements AdsBuilder {
    */
   public function validate() {
     if ($this->networkCode === null || trim($this->networkCode) === '') {
-      throw new ValidationException('networkCode', $this->networkCode,
-              'Network code is required.');
+      throw new InvalidArgumentException('Network code is required.');
     }
 
     if ($this->applicationName === null
         || trim($this->applicationName) === ''
         || strpos($this->applicationName,
             self::DEFAULT_APPLICATION_NAME) !== false) {
-      throw new ValidationException('applicationName', $this->applicationName,
+      throw new InvalidArgumentException(
           sprintf(
               'Application name is required and cannot be the default [%s].',
               self::DEFAULT_APPLICATION_NAME
@@ -192,13 +203,12 @@ class DfpSessionBuilder implements AdsBuilder {
     }
 
     if (filter_var($this->endpoint, FILTER_VALIDATE_URL) === false) {
-      throw new ValidationException('endpoint', $this->endpoint,
-          'Endpoint must be a valid URL.');
+      throw new InvalidArgumentException('Endpoint must be a valid URL.');
     }
 
     if ($this->oAuth2Credential === null) {
-      throw new ValidationException('oAuth2Credential', null,
-          'OAuth2 configuration is required.');
+      throw new InvalidArgumentException(
+          'Missing OAuth2 authentication credentials.');
     }
 
   }
@@ -237,7 +247,7 @@ class DfpSessionBuilder implements AdsBuilder {
 
   /**
    * Gets the OAuth2 credential.
-   * @return GoogleCredential
+   * @return FetchAuthTokenInterface
    */
   public function getOAuth2Credential() {
     return $this->oAuth2Credential;

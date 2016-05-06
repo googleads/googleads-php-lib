@@ -1,0 +1,20 @@
+<?php
+
+namespace Google\AdsApi\Dfp\v201602;
+
+
+/**
+ * This file was generated from WSDL. DO NOT EDIT.
+ */
+class AdSenseSettingsFontFamily
+{
+    const __default = 'aDEFAULT';
+    const aDEFAULT = 'DEFAULT';
+    const ARIAL = 'ARIAL';
+    const TAHOMA = 'TAHOMA';
+    const GEORGIA = 'GEORGIA';
+    const TIMES = 'TIMES';
+    const VERDANA = 'VERDANA';
+
+
+}

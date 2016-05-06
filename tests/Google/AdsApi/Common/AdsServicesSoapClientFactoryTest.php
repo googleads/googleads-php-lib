@@ -47,17 +47,17 @@ class AdsServicesSoapClientFactoryTest extends PHPUnit_Framework_TestCase {
 
     // Return a partial mock for the ads SOAP client the factory creates to
     // suppress the SOAP client from looking for a live WSDL.
-    $adsSoapClientMock =
-        $this->getMockBuilder('Google\AdsApi\Common\AdsSoapClient')
-        ->setMethods(array('getWsdlUri'))
+    $adsSoapClientMock = $this
+        ->getMockBuilder('Google\AdsApi\Common\AdsSoapClient')
+        ->setMethods(['getWsdlUri'])
         ->disableOriginalConstructor()
         ->getMock();
     $adsSoapClientMock->expects($this->atLeastOnce())
         ->method('getWsdlUri')
         ->will($this->returnValue(
             'https://ads.google.com/apis/ads/publisher/MockService?wsdl'));
-    $reflectionUtilsMock =
-        $this->getMockBuilder('Google\AdsApi\Common\Util\AdsReflectionUtils')
+    $reflectionUtilsMock = $this
+        ->getMockBuilder('Google\AdsApi\Common\Util\AdsReflectionUtils')
         ->getMock();
     $reflectionUtilsMock->expects($this->once())
         ->method('createInstance')

@@ -52,7 +52,7 @@ interface AdsBuilder {
    * Creates a new instance of the data object being populated. This method
    * should call defaultOptionals() and validate().
    * @return mixed the data object
-   * @throws ValidationException if there are any validation errors
+   * @throws InvalidArgumentException if there are any validation errors
    */
   public function build();
 
@@ -64,7 +64,7 @@ interface AdsBuilder {
   /**
    * Checks that required fields have been included and all included
    * fields are valid (e.g., URIs are valid).
-   * @throws ValidationException if there are any validation errors
+   * @throws InvalidArgumentException if there are any validation errors
    */
   public function validate();
 }

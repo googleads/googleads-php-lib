@@ -46,7 +46,7 @@ class MapUtilsTest extends PHPUnit_Framework_TestCase {
   public function testToMapWithInvalidMapEntryType() {
     $invalidClass = new InvalidTestString_ValueMapEntry();
     $invalidClass->lets = 'foo';
-    MapUtils::toMap(array($invalidClass));
+    MapUtils::toMap([$invalidClass]);
   }
 
   /**
@@ -74,7 +74,7 @@ class MapUtilsTest extends PHPUnit_Framework_TestCase {
    * @expectedException UnexpectedValueException
    */
   public function testToListWithInvalidClass() {
-    MapUtils::toList(array('foo' => 'bar'),
+    MapUtils::toList(['foo' => 'bar'],
         'Google\Api\Ads\Common\Util\InvalidTestString_ValueMapEntry');
   }
 
@@ -97,34 +97,34 @@ class MapUtilsTest extends PHPUnit_Framework_TestCase {
    *     equivalent
    */
   public function mapEntriesProvider() {
-    $data = array();
+    $data = [];
 
     // One entry.
-    $mapEntries1 = array(
+    $mapEntries1 = [
         new TestString_ValueMapEntry('foo', 'bar')
-    );
-    $entryMap1 = array(
+    ];
+    $entryMap1 = [
         'foo' => 'bar'
-    );
-    $data[] = array($mapEntries1, $entryMap1);
+    ];
+    $data[] = [$mapEntries1, $entryMap1];
 
     // Multiple entries.
-    $mapEntries2 = array(
+    $mapEntries2 = [
         new TestString_ValueMapEntry('foo', 'bar'),
         new TestString_ValueMapEntry('bear', 'Sheep'),
         new TestString_ValueMapEntry('Cow', 'PIG')
-    );
-    $entryMap2 = array(
+    ];
+    $entryMap2 = [
         'foo' => 'bar',
         'bear' => 'Sheep',
         'Cow' => 'PIG'
-    );
-    $data[] = array($mapEntries2, $entryMap2);
+    ];
+    $data[] = [$mapEntries2, $entryMap2];
 
     // No entries.
-    $mapEntries3 = array();
-    $entryMap3 = array();
-    $data[] = array($mapEntries3, $entryMap3);
+    $mapEntries3 = [];
+    $entryMap3 = [];
+    $data[] = [$mapEntries3, $entryMap3];
 
     return $data;
   }
@@ -135,16 +135,16 @@ class MapUtilsTest extends PHPUnit_Framework_TestCase {
    * @return array an array or arrays of array and booleans
    */
   public function isMapProvider() {
-    $data = array();
+    $data = [];
 
     // Maps.
-    $data[] = array(array('foo' => 'bar'), true);
-    $data[] = array(array('foo' => 'bar', 1 => 'baz'), true);
+    $data[] = [['foo' => 'bar'], true];
+    $data[] = [['foo' => 'bar', 1 => 'baz'], true];
 
     // Not maps.
-    $data[] = array(array(), false);
-    $data[] = array(array('bar', 'baz'), false);
-    $data[] = array(array('0' => 'bar'), false);
+    $data[] = [[], false];
+    $data[] = [['bar', 'baz'], false];
+    $data[] = [['0' => 'bar'], false];
 
     return $data;
   }

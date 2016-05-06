@@ -32,7 +32,7 @@ class XmlUtils {
    * @throws DOMException if a DOMDocument could not be created
    */
   public function getDomFromXml($xml) {
-    set_error_handler(array($this, 'handleLoadXmlWarnings'));
+    set_error_handler([$this, 'handleLoadXmlWarnings']);
     $dom = new DOMDocument();
     try {
       $dom->loadXML($xml,

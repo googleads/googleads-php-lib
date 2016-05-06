@@ -29,9 +29,7 @@ class SoapSettings {
   private $proxyPort;
   private $proxyUser;
   private $proxyPassword;
-  private $sslVerifyPeer;
-  private $sslVerifyHost;
-  private $sslCaPath;
+  private $sslVerify;
   private $sslCaFile;
 
   /**
@@ -50,15 +48,13 @@ class SoapSettings {
     $this->proxyPort = $builder->getProxyPort();
     $this->proxyUser = $builder->getProxyUser();
     $this->proxyPassword = $builder->getProxyPassword();
-    $this->sslVerifyPeer = $builder->getSslVerifyPeer();
-    $this->sslVerifyHost = $builder->getSslVerifyHost();
-    $this->sslCaPath = $builder->getSslCaPath();
+    $this->sslVerify = $builder->getSslVerify();
     $this->sslCaFile = $builder->getSslCaFile();
   }
 
   /**
    * Gets the gzip compression level.
-   * @return int
+   * @return int|null
    */
   public function getCompressionLevel() {
     return $this->compressionLevel;
@@ -66,7 +62,7 @@ class SoapSettings {
 
   /**
    * Gets the type of WSDL caching in use.
-   * @return int
+   * @return int|null
    */
   public function getWsdlCacheType() {
     return $this->wsdlCacheType;
@@ -74,7 +70,7 @@ class SoapSettings {
 
   /**
    * Gets the proxy host.
-   * @return string
+   * @return string|null
    */
   public function getProxyHost() {
     return $this->proxyHost;
@@ -82,7 +78,7 @@ class SoapSettings {
 
   /**
    * Gets the proxy port.
-   * @return int
+   * @return int|null
    */
   public function getProxyPort() {
     return $this->proxyPort;
@@ -90,7 +86,7 @@ class SoapSettings {
 
   /**
    * Gets the proxy user.
-   * @return string
+   * @return string|null
    */
   public function getProxyUser() {
     return $this->proxyUser;
@@ -98,39 +94,23 @@ class SoapSettings {
 
   /**
    * Gets the proxy password.
-   * @return string
+   * @return string|null
    */
   public function getProxyPassword() {
     return $this->proxyPassword;
   }
 
   /**
-   * Gets whether to verify SSL peer or not.
+   * Gets whether SSL verification is enabled.
    * @return boolean
    */
-  public function getSslVerifyPeer() {
-    return $this->sslVerifyPeer;
-  }
-
-  /**
-   * Gets whether to verify SSL host or not.
-   * @return boolean
-   */
-  public function getSslVerifyHost() {
-    return $this->sslVerifyHost;
-  }
-
-  /**
-   * Gets the SSL CA path.
-   * @return string
-   */
-  public function getSslCaPath() {
-    return $this->sslCaPath;
+  public function getSslVerify() {
+    return $this->sslVerify;
   }
 
   /**
    * Gets the SSL CA file.
-   * @return string
+   * @return string|null
    */
   public function getSslCaFile() {
     return $this->sslCaFile;

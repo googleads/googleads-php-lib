@@ -17,7 +17,6 @@
 namespace Google\AdsApi\Dfp;
 
 
-use Google\AdsApi\Common\Util\SimpleGoogleCredential;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use PHPUnit_Framework_TestCase;
 
@@ -29,25 +28,30 @@ use PHPUnit_Framework_TestCase;
 class DfpSessionBuilderTest extends PHPUnit_Framework_TestCase {
 
   private $dfpSessionBuilder;
+  private $fetchAuthTokenInterfaceMock;
 
   /**
    * @see PHPUnit_Framework_TestCase::setUp
    */
   protected function setUp() {
     $this->dfpSessionBuilder = new DfpSessionBuilder();
+    $this->fetchAuthTokenInterfaceMock = $this
+        ->getMockBuilder('Google\Auth\FetchAuthTokenInterface')
+        ->disableOriginalConstructor()
+        ->getMock();
   }
 
   /**
    * @covers Google\AdsApi\Dfp\DfpSessionBuilder::from
    */
   public function testBuildFrom() {
-    $valueMap = array(
-        array('networkCode', null, '12345678'),
-        array('applicationName', null, 'google report runner'),
-        array('endpoint', null, 'https://abc.xyz')
-    );
-    $configurationMock =
-        $this->getMockBuilder('Google\AdsApi\Common\Configuration')
+    $valueMap = [
+        ['networkCode', 'DFP', '12345678'],
+        ['applicationName', 'DFP', 'google report runner'],
+        ['endpoint', 'DFP', 'https://abc.xyz']
+    ];
+    $configurationMock = $this
+        ->getMockBuilder('Google\AdsApi\Common\Configuration')
         ->disableOriginalConstructor()
         ->getMock();
     $configurationMock->expects($this->any())
@@ -56,7 +60,7 @@ class DfpSessionBuilderTest extends PHPUnit_Framework_TestCase {
 
     $dfpSession = $this->dfpSessionBuilder
         ->from($configurationMock)
-        ->withOAuth2Credential(new SimpleGoogleCredential())
+        ->withOAuth2Credential($this->fetchAuthTokenInterfaceMock)
         ->build();
     $this->assertSame('12345678', $dfpSession->getNetworkCode());
     $this->assertSame(
@@ -65,55 +69,83 @@ class DfpSessionBuilderTest extends PHPUnit_Framework_TestCase {
   }
 
   /**
+   * @covers Google\AdsApi\Dfp\DfpSessionBuilder::from
+   */
+  public function testBuildFromDefaults() {
+    $valueMap = [
+        ['networkCode', 'DFP', '12345678'],
+        ['applicationName', 'DFP', 'google report runner']
+    ];
+    $configurationMock = $this
+        ->getMockBuilder('Google\AdsApi\Common\Configuration')
+        ->disableOriginalConstructor()
+        ->getMock();
+    $configurationMock->expects($this->any())
+        ->method('getConfiguration')
+        ->will($this->returnValueMap($valueMap));
+
+    $dfpSession = $this->dfpSessionBuilder
+        ->from($configurationMock)
+        ->withOAuth2Credential($this->fetchAuthTokenInterfaceMock)
+        ->build();
+    $this->assertSame('12345678', $dfpSession->getNetworkCode());
+    $this->assertSame(
+        'google report runner', $dfpSession->getApplicationName());
+    $this->assertTrue(
+        filter_var($dfpSession->getEndpoint(), FILTER_VALIDATE_URL) !== false);
+    $this->assertNotNull($dfpSession->getSoapSettings());
+  }
+
+  /**
    * @covers Google\AdsApi\Dfp\DfpSessionBuilder::build
-   * @expectedException Google\AdsApi\Common\ValidationException
+   * @expectedException InvalidArgumentException
    */
   public function testBuildFailsWithoutNetworkCode() {
     $this->dfpSessionBuilder
         ->withApplicationName('Google report runner')
-        ->withOAuth2Credential(new SimpleGoogleCredential())
+        ->withOAuth2Credential($this->fetchAuthTokenInterfaceMock)
         ->build();
   }
 
   /**
    * @covers Google\AdsApi\Dfp\DfpSessionBuilder::build
-   * @expectedException Google\AdsApi\Common\ValidationException
+   * @expectedException InvalidArgumentException
    */
   public function testBuildFailsWithoutApplicationName() {
     $this->dfpSessionBuilder
         ->withNetworkCode('12345678')
-        ->withOAuth2Credential(new SimpleGoogleCredential())
+        ->withOAuth2Credential($this->fetchAuthTokenInterfaceMock)
         ->build();
   }
 
   /**
    * @covers Google\AdsApi\Dfp\DfpSessionBuilder::build
-   * @expectedException Google\AdsApi\Common\ValidationException
+   * @expectedException InvalidArgumentException
    */
   public function testBuildFailsWithDefaultApplicationName() {
     $this->dfpSessionBuilder
         ->withNetworkCode('12345678')
         ->withApplicationName(DfpSessionBuilder::DEFAULT_APPLICATION_NAME)
-        ->withOAuth2Credential(new SimpleGoogleCredential())
+        ->withOAuth2Credential($this->fetchAuthTokenInterfaceMock)
         ->build();
   }
 
   /**
    * @covers Google\AdsApi\Dfp\DfpSessionBuilder::build
-   * @expectedException Google\AdsApi\Common\ValidationException
+   * @expectedException InvalidArgumentException
    */
   public function testBuildFailsWithInvalidEndpointUrl() {
     $this->dfpSessionBuilder
         ->withNetworkCode('12345678')
         ->withApplicationName('Google report runner')
         ->withEndpoint('abcxyz')
-        ->withOAuth2Credential(new SimpleGoogleCredential())
+        ->withOAuth2Credential($this->fetchAuthTokenInterfaceMock)
         ->build();
   }
 
   /**
    * @covers Google\AdsApi\Dfp\DfpSessionBuilder::build
-   * @expectedException Google\AdsApi\Common\ValidationException
+   * @expectedException InvalidArgumentException
    */
   public function testBuildFailsWithoutOAuth2Credential() {
     $this->dfpSessionBuilder
@@ -126,36 +158,41 @@ class DfpSessionBuilderTest extends PHPUnit_Framework_TestCase {
   /**
    * @covers Google\AdsApi\Dfp\DfpSessionBuilder::build
    */
-  public function testBuildDefaults() {
-    $dfpSession = $this->dfpSessionBuilder
-        ->withNetworkCode('12345678')
-        ->withApplicationName('Google report runner')
-        ->withOAuth2Credential(new SimpleGoogleCredential())
-        ->build();
-    $this->assertInstanceOf(
-        'Psr\Log\LoggerInterface', $dfpSession->getLogger());
-    $this->assertTrue(
-        filter_var($dfpSession->getEndpoint(), FILTER_VALIDATE_URL) !== false);
-  }
-
-  /**
-   * @covers Google\AdsApi\Dfp\DfpSessionBuilder::build
-   */
   public function testBuild() {
     $dfpSession = $this->dfpSessionBuilder
         ->withNetworkCode('12345678')
         ->withApplicationName('Google report runner')
         ->withEndpoint('https://abc.xyz/')
-        ->withOAuth2Credential(new SimpleGoogleCredential())
+        ->withOAuth2Credential($this->fetchAuthTokenInterfaceMock)
         ->build();
     $this->assertSame('12345678', $dfpSession->getNetworkCode());
     $this->assertSame('https://abc.xyz/', $dfpSession->getEndpoint());
     $this->assertSame(
         'Google report runner', $dfpSession->getApplicationName());
+    $this->assertInstanceOf('Google\Auth\FetchAuthTokenInterface',
+        $dfpSession->getOAuth2Credential());
+  }
+
+  /**
+   * @covers Google\AdsApi\Dfp\DfpSessionBuilder::build
+   */
+  public function testBuildDefaults() {
+    $dfpSession = $this->dfpSessionBuilder
+        ->withNetworkCode('12345678')
+        ->withApplicationName('Google report runner')
+        ->withOAuth2Credential($this->fetchAuthTokenInterfaceMock)
+        ->build();
+
     $this->assertInstanceOf(
-        'Google\AdsApi\Common\Util\SimpleGoogleCredential',
-        $dfpSession->getOAuth2Credential()
-    );
+        'Psr\Log\LoggerInterface', $dfpSession->getLogger());
+    $this->assertSame('12345678', $dfpSession->getNetworkCode());
+    $this->assertSame(
+        'Google report runner', $dfpSession->getApplicationName());
+    $this->assertTrue(
+        filter_var($dfpSession->getEndpoint(), FILTER_VALIDATE_URL) !== false);
+    $this->assertInstanceOf('Google\Auth\FetchAuthTokenInterface',
+        $dfpSession->getOAuth2Credential());
+    $this->assertNotNull($dfpSession->getSoapSettings());
   }
 
 }

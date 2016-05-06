@@ -104,7 +104,7 @@ class AdWordsSession implements AdsSession {
 
   /**
    * Gets the client customer ID.
-   * @return string
+   * @return string|null
    */
   public function getClientCustomerId() {
     return $this->clientCustomerId;
@@ -113,7 +113,7 @@ class AdWordsSession implements AdsSession {
   /**
    * Gets the AdWords Express business ID used by the AdWords Express
    * PromotionService.
-   * @return string
+   * @return string|null
    */
   public function getExpressBusinessId() {
     return $this->expressBusinessId;
@@ -122,7 +122,7 @@ class AdWordsSession implements AdsSession {
   /**
    * Sets the AdWords Express business ID used by the AdWords Express
    * PromotionService.
-   * @param string $expressBusinessId
+   * @param string|null $expressBusinessId
    */
   public function setExpressBusinessId($expressBusinessId) {
     $this->expressBusinessId = $expressBusinessId;
@@ -131,7 +131,7 @@ class AdWordsSession implements AdsSession {
   /**
    * Gets the Google+ page ID for the Google My Business location used by the
    * AdWords Express PromotionService.
-   * @return string
+   * @return string|null
    */
   public function getExpressPlusPageId() {
     return $this->expressPlusPageId;
@@ -140,7 +140,7 @@ class AdWordsSession implements AdsSession {
   /**
    * Sets the Google+ page ID for the Google My Business location used by the
    * AdWords Express PromotionService.
-   * @param string $expressPlusPageId
+   * @param string|null $expressPlusPageId
    */
   public function setExpressPlusPageId($expressPlusPageId) {
     $this->expressPlusPageId = $expressPlusPageId;

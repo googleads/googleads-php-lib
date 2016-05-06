@@ -116,16 +116,24 @@ class AdsSoapClientLogMessageHandlerTest extends PHPUnit_Framework_TestCase {
   public function testGenerateSoapXmlLogMessage() {
     // Mock the HTTP and SOAP header scrubbers to leave the headers unchanged
     // (no-op).
-    $scrubHttpHeadersValueMap = array(
-        array(trim($this->requestHttpHeadersMock),
-            trim($this->requestHttpHeadersMock)),
-        array(trim($this->responseHttpHeadersMock),
-            trim($this->responseHttpHeadersMock))
-    );
-    $scrubSoapHeadersValueMap = array(
-        array($this->requestSoapXmlMock, $this->requestSoapXmlMock),
-        array($this->responseSoapXmlMock, $this->responseSoapXmlMock)
-    );
+    $scrubHttpHeadersValueMap = [
+        [
+            trim($this->requestHttpHeadersMock),
+            trim($this->requestHttpHeadersMock)
+        ], [
+            trim($this->responseHttpHeadersMock),
+            trim($this->responseHttpHeadersMock)
+        ]
+    ];
+    $scrubSoapHeadersValueMap = [
+        [
+            $this->requestSoapXmlMock,
+            $this->requestSoapXmlMock
+        ], [
+            $this->responseSoapXmlMock,
+            $this->responseSoapXmlMock
+        ]
+    ];
     $adsHeaderHandlerMock =
         $this->getMock('Google\AdsApi\Common\AdsHeaderHandler');
     $adsHeaderHandlerMock->expects($this->any())
