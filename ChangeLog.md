@@ -1,3 +1,20 @@
+### 9.0.0
+
+AdWords:
+  - Fixed
+[issue #131](https://github.com/googleads/googleads-php-lib/issues/131).
+
+DFP:
+  - Added support for v201605.
+  - Removed examples for v201505
+([deprecated](https://developers.google.com/doubleclick-publishers/docs/deprecation)).
+  - Removed support for v201502
+([sunset](https://developers.google.com/doubleclick-publishers/docs/deprecation)).
+  - Added a creative service example showing how to copy image creatives.
+
+Common:
+  - Updated out of date information in README.md.
+
 ### 8.3.0
 
 AdWords:

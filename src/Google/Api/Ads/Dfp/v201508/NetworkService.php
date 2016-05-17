@@ -1117,6 +1117,50 @@ if (!class_exists("ServerError", false)) {
   }
 }
 
+if (!class_exists("SetTopBoxCreativeError", false)) {
+  /**
+   * Errors associated with {@link SetTopBoxCreative set-top box creatives}.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201508
+   */
+  class SetTopBoxCreativeError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201508";
+    const XSI_TYPE = "SetTopBoxCreativeError";
+
+    /**
+     * @access public
+     * @var tnsSetTopBoxCreativeErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+    }
+
+  }
+}
+
 if (!class_exists("SoapRequestHeader", false)) {
   /**
    * Represents the SOAP request header used by API requests.
@@ -2047,6 +2091,39 @@ if (!class_exists("ServerErrorReason", false)) {
   }
 }
 
+if (!class_exists("SetTopBoxCreativeErrorReason", false)) {
+  /**
+   * Error reasons for set-top box creatives.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201508
+   */
+  class SetTopBoxCreativeErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201508";
+    const XSI_TYPE = "SetTopBoxCreativeError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("StatementErrorReason", false)) {
   /**
    * A bind variable has not been bound to a value.
@@ -2534,6 +2611,7 @@ if (!class_exists("NetworkService", false)) {
       "RequiredError" => "RequiredError",
       "RequiredNumberError" => "RequiredNumberError",
       "ServerError" => "ServerError",
+      "SetTopBoxCreativeError" => "SetTopBoxCreativeError",
       "SoapRequestHeader" => "SoapRequestHeader",
       "SoapResponseHeader" => "SoapResponseHeader",
       "StatementError" => "StatementError",
@@ -2560,6 +2638,7 @@ if (!class_exists("NetworkService", false)) {
       "RequiredError.Reason" => "RequiredErrorReason",
       "RequiredNumberError.Reason" => "RequiredNumberErrorReason",
       "ServerError.Reason" => "ServerErrorReason",
+      "SetTopBoxCreativeError.Reason" => "SetTopBoxCreativeErrorReason",
       "StatementError.Reason" => "StatementErrorReason",
       "StringLengthError.Reason" => "StringLengthErrorReason",
       "getAllNetworks" => "GetAllNetworks",

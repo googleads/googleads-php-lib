@@ -2768,28 +2768,7 @@ if (!class_exists("GetRateCardsByStatement", false)) {
    * Gets a {@link RateCardPage} of {@link RateCard} objects that satisfy the given
    * {@link Statement#query}. The following fields are supported for filtering:
    * 
-   * <table>
-   * <tr>
-   * <th scope="col">PQL Property</th> <th scope="col">Object Property</th>
-   * </tr>
-   * <tr>
-   * <td>{@code id}</td>
-   * <td>{@link RateCard#id}</td>
-   * </tr>
-   * <tr>
-   * <td>{@code name}</td>
-   * <td>{@link RateCard#name}</td>
-   * </tr>
-   * <tr>
-   * <td>{@code status}</td>
-   * <td>{@link RateCard#status}</td>
-   * </tr>
-   * <tr>
-   * <td>{@code lastModifiedDateTime}</td>
-   * <td>{@link RateCard#lastModifiedDateTime}</td>
-   * </tr>
-   * </table>
-   * 
+   * <table><tr><th>PQL property</th><th>Entity property</th></tr><tr><td><code>Id</code></td><td>{@link RateCard#id}</td></tr><tr><td><code>LastModifiedDateTime</code></td><td>{@link RateCard#lastModifiedDateTime}</td></tr><tr><td><code>Name</code></td><td>{@link RateCard#name}</td></tr><tr><td><code>Status</code></td><td>{@link RateCard#status}</td></tr></table>
    * @param filterStatement a Publisher Query Language statement to filter a list of rate cards.
    * @return the rate cards that match the filter
    * @package GoogleApiAdsDfp
@@ -3576,28 +3555,7 @@ if (!class_exists("RateCardService", false)) {
      * Gets a {@link RateCardPage} of {@link RateCard} objects that satisfy the given
      * {@link Statement#query}. The following fields are supported for filtering:
      * 
-     * <table>
-     * <tr>
-     * <th scope="col">PQL Property</th> <th scope="col">Object Property</th>
-     * </tr>
-     * <tr>
-     * <td>{@code id}</td>
-     * <td>{@link RateCard#id}</td>
-     * </tr>
-     * <tr>
-     * <td>{@code name}</td>
-     * <td>{@link RateCard#name}</td>
-     * </tr>
-     * <tr>
-     * <td>{@code status}</td>
-     * <td>{@link RateCard#status}</td>
-     * </tr>
-     * <tr>
-     * <td>{@code lastModifiedDateTime}</td>
-     * <td>{@link RateCard#lastModifiedDateTime}</td>
-     * </tr>
-     * </table>
-     * 
+     * <table><tr><th>PQL property</th><th>Entity property</th></tr><tr><td><code>Id</code></td><td>{@link RateCard#id}</td></tr><tr><td><code>LastModifiedDateTime</code></td><td>{@link RateCard#lastModifiedDateTime}</td></tr><tr><td><code>Name</code></td><td>{@link RateCard#name}</td></tr><tr><td><code>Status</code></td><td>{@link RateCard#status}</td></tr></table>
      * @param filterStatement a Publisher Query Language statement to filter a list of rate cards.
      * @return the rate cards that match the filter
      */

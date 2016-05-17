@@ -67,10 +67,11 @@ abstract class AdsUser {
   /**
    * Gets the authenticaiton value for the <var>$authVar</var> supplied. If
    * the <var>$authVar</var> is set, it is is used. Otherwise, the supplied
-   * <var>$authenticationIni</var> is queired for the variable. If none is found
+   * <var>$authenticationIni</var> is queried for the variable. If none is found
    * <var>null</var> is returned.
-   * @param string $authVar the default value for the authenticaiton variable
-   * @param string $authVarName the name of the authencation variable
+   * @param string|null $authVar the default value for the authentication
+   *     variable
+   * @param string $authVarName the name of the authentication variable
    * @param array $authIni the array of authentication variables from
    *     an INI file
    * @return string the authentication variable value
@@ -487,7 +488,7 @@ abstract class AdsUser {
    * TODO(vtsao): The current contract requires that subclasses call this method
    * in their constructor.
    *
-   * @param $applicationName The application name that will appear in this
+   * @param string $applicationName The application name that will appear in this
    *     header.
    */
   public function SetClientLibraryUserAgent($applicationName) {

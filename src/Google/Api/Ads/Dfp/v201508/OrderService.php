@@ -2571,7 +2571,7 @@ if (!class_exists("PermissionError", false)) {
 
 if (!class_exists("ProgrammaticError", false)) {
   /**
-   * Errors associated with programmatic line items
+   * Errors associated with programmatic line items.
    * @package GoogleApiAdsDfp
    * @subpackage v201508
    */
@@ -5579,7 +5579,7 @@ if (!class_exists("PermissionErrorReason", false)) {
 
 if (!class_exists("ProgrammaticErrorReason", false)) {
   /**
-   * Audience extension is not supported by programmatic line items.
+   * Possible error reasons for a programmatic error.
    * @package GoogleApiAdsDfp
    * @subpackage v201508
    */

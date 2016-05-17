@@ -5294,6 +5294,10 @@ if (!class_exists("GetProposalsByStatement", false)) {
    * <td>{@code customThirdPartyAdServerName}</td>
    * <td>{@link Proposal#customThirdPartyAdServerName}</td>
    * </tr>
+   * <tr>
+   * <td>{@code hasOfflineErrors}</td>
+   * <td>{@link Proposal#hasOfflineErrors}</td>
+   * </tr>
    * </table>
    * 
    * @param filterStatement a Publisher Query Language statement used to filter
@@ -6189,6 +6193,10 @@ if (!class_exists("ProposalService", false)) {
      * <tr>
      * <td>{@code customThirdPartyAdServerName}</td>
      * <td>{@link Proposal#customThirdPartyAdServerName}</td>
+     * </tr>
+     * <tr>
+     * <td>{@code hasOfflineErrors}</td>
+     * <td>{@link Proposal#hasOfflineErrors}</td>
      * </tr>
      * </table>
      * 

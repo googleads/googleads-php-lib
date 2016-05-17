@@ -2525,7 +2525,7 @@ if (!class_exists("WorkflowRequestType", false)) {
 
 if (!class_exists("WorkflowExternalConditionStatus", false)) {
   /**
-   * The status of workflow external conditions during workflow execution.
+   * The status of a workflow rule during workflow execution.
    * @package GoogleApiAdsDfp
    * @subpackage v201508
    */
