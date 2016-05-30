@@ -3,8 +3,6 @@
  * This example gets all text ads in an ad group. To add text ads, run
  * AddTextAds.php. To get ad groups, run GetAdGroups.php
  *
- * Restriction: adwords-only
- *
  * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");

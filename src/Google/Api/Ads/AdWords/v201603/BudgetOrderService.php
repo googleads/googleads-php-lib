@@ -1617,7 +1617,6 @@ if (!class_exists("Paging", false)) {
 if (!class_exists("PagingError", false)) {
   /**
    * Error codes for pagination.
-   * See {@link com.google.ads.api.services.common.pagination.Paging}.
    * 
    * 
    * 
@@ -4323,7 +4322,7 @@ if (!class_exists("BudgetOrderErrorReason", false)) {
 
 if (!class_exists("BudgetOrderRequestStatus", false)) {
   /**
-   * <span class="constraint Rejected">Used for return value only. An enumeration could not be processed, typically due to incompatibility with your WSDL version.</span>
+   * The budget request is under review.
    * @package Google_Api_Ads_AdWords_v201603
    * @subpackage v201603
    */

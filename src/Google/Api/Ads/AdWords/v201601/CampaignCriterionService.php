@@ -2494,7 +2494,6 @@ if (!class_exists("Paging", false)) {
 if (!class_exists("PagingError", false)) {
   /**
    * Error codes for pagination.
-   * See {@link com.google.ads.api.services.common.pagination.Paging}.
    * @package Google_Api_Ads_AdWords_v201601
    * @subpackage v201601
    */

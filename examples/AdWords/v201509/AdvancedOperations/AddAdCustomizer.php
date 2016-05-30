@@ -3,8 +3,6 @@
  * This example adds an ad customizer feed and associates it with the customer.
  * Then it adds an ad that uses the feed to populate dynamic data.
  *
- * Restriction: adwords-only
- *
  * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");

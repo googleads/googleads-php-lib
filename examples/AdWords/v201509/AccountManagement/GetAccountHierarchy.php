@@ -3,8 +3,6 @@
  * This example gets the account hierarchy under the current account. Note: this
  * example must be run using the credentials of an AdWords manager account.
  *
- * Restriction: adwords-only
- *
  * PHP version 5
  *
  * Copyright 2014, Google Inc. All Rights Reserved.

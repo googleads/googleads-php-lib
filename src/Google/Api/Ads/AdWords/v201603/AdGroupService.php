@@ -3886,16 +3886,14 @@ if (!class_exists("MutateLabel", false)) {
    * 
    * 
    * 
-   * Adds labels to the {@linkplain AdGroup ad group} or removes
-   * {@linkplain com.google.ads.api.services.campaignmgmt.label.Label label}s from the
+   * Adds labels to the {@linkplain AdGroup ad group} or removes {@linkplain Label label}s from the
    * {@linkplain AdGroup ad group}.
-   * <p>Add - Apply an existing label to an existing
-   * {@linkplain AdGroup ad group}. The {@code adGroupId} must reference an existing
-   * {@linkplain AdGroup ad group}. The {@code labelId} must reference an existing
-   * {@linkplain com.google.ads.api.services.campaignmgmt.label.Label label}.
-   * <p>Remove - Removes the link between the specified
-   * {@linkplain AdGroup ad group} and
-   * {@linkplain com.google.ads.api.services.campaignmgmt.label.Label label}.</p>
+   * <p>{@code ADD} -- Apply an existing label to an existing {@linkplain AdGroup ad group}.
+   * The {@code adGroupId} must reference an existing {@linkplain AdGroup ad group}. The
+   * {@code labelId} must reference an existing {@linkplain Label label}.
+   * <p>{@code REMOVE} -- Removes the link between the specified {@linkplain AdGroup ad group}
+   * and a {@linkplain Label label}.</p>
+   * 
    * @param operations the operations to apply.
    * @return a list of {@linkplain AdGroupLabel}s where each entry in the list is the result of
    * applying the operation in the input list with the same index. For an
@@ -7048,8 +7046,8 @@ if (!class_exists("AdGroupOperation", false)) {
 
 if (!class_exists("AdGroupPage", false)) {
   /**
-   * Contains a subset of adgroup resulting from the filtering and paging of the
-   * {@link com.google.ads.api.services.campaignmgmt.adgroup.AdGroupService#get} call
+   * Contains a subset of ad groups resulting from the filtering and paging of the
+   * {@link AdGroupService#get} call.
    * @package Google_Api_Ads_AdWords_v201603
    * @subpackage v201603
    */
@@ -7460,16 +7458,14 @@ if (!class_exists("AdGroupService", false)) {
      * 
      * 
      * 
-     * Adds labels to the {@linkplain AdGroup ad group} or removes
-     * {@linkplain com.google.ads.api.services.campaignmgmt.label.Label label}s from the
+     * Adds labels to the {@linkplain AdGroup ad group} or removes {@linkplain Label label}s from the
      * {@linkplain AdGroup ad group}.
-     * <p>Add - Apply an existing label to an existing
-     * {@linkplain AdGroup ad group}. The {@code adGroupId} must reference an existing
-     * {@linkplain AdGroup ad group}. The {@code labelId} must reference an existing
-     * {@linkplain com.google.ads.api.services.campaignmgmt.label.Label label}.
-     * <p>Remove - Removes the link between the specified
-     * {@linkplain AdGroup ad group} and
-     * {@linkplain com.google.ads.api.services.campaignmgmt.label.Label label}.</p>
+     * <p>{@code ADD} -- Apply an existing label to an existing {@linkplain AdGroup ad group}.
+     * The {@code adGroupId} must reference an existing {@linkplain AdGroup ad group}. The
+     * {@code labelId} must reference an existing {@linkplain Label label}.
+     * <p>{@code REMOVE} -- Removes the link between the specified {@linkplain AdGroup ad group}
+     * and a {@linkplain Label label}.</p>
+     * 
      * @param operations the operations to apply.
      * @return a list of {@linkplain AdGroupLabel}s where each entry in the list is the result of
      * applying the operation in the input list with the same index. For an

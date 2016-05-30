@@ -4112,8 +4112,7 @@ if (!class_exists("StatsEstimate", false)) {
 
 if (!class_exists("TrafficEstimatorError", false)) {
   /**
-   * Base error class for
-   * {@link com.google.ads.api.services.trafficestimator.TrafficEstimatorService}.
+   * Base error class for {@link TrafficEstimatorService}.
    * @package Google_Api_Ads_AdWords_v201603
    * @subpackage v201603
    */
@@ -4271,11 +4270,8 @@ if (!class_exists("CurrencyCodeErrorReason", false)) {
 
 if (!class_exists("TrafficEstimatorErrorReason", false)) {
   /**
-   * When the request with {@code null} campaign ID in
-   * {@link com.google.ads.api.services.trafficestimator.CampaignEstimateRequest}
-   * contains an
-   * {@link com.google.ads.api.services.trafficestimator.AdGroupEstimateRequest}
-   * with an ID.
+   * When the request with {@code null} campaign ID in {@link CampaignEstimateRequest} contains an
+   * {@link AdGroupEstimateRequest} with an ID.
    * @package Google_Api_Ads_AdWords_v201603
    * @subpackage v201603
    */

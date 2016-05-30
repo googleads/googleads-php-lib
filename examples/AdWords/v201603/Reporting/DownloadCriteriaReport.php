@@ -63,6 +63,11 @@ function DownloadCriteriaReportExample(AdWordsUser $user, $filePath) {
   // $options['skipReportHeader'] = true;
   // $options['skipColumnHeader'] = true;
   // $options['skipReportSummary'] = true;
+  //
+  // Optional: Set useRawEnumValues to return enum values instead of enum
+  //     display values.
+  // $options['useRawEnumValues'] = false;
+  //
   // Optional: Set includeZeroImpressions to include zero impression rows in
   //     the report output.
   // $options['includeZeroImpressions'] = true;

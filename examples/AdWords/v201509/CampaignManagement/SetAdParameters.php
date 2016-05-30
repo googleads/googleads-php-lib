@@ -3,8 +3,6 @@
  * This example sets ad parameters for a keyword. To get keywords, run
  * BasicOperaitons/GetKeywords.php.
  *
- * Restriction: adwords-only
- *
  * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");

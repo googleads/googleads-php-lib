@@ -5,8 +5,6 @@
  * CLICK_PERFORMANCE_REPORT. To set up a conversion tracker, run the
  * AddConversionTracker.php example.
  *
- * Restriction: adwords-only
- *
  * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");

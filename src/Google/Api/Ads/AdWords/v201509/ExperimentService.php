@@ -3532,7 +3532,7 @@ if (!class_exists("ExperimentOperation", false)) {
 if (!class_exists("ExperimentPage", false)) {
   /**
    * Contains a subset of experiment resulting from the filtering and paging of the
-   * {@link com.google.ads.api.services.campaignmgmt.campaign.ExperimentService#get} call.
+   * {@link ExperimentService#get} call.
    * @package Google_Api_Ads_AdWords_v201509
    * @subpackage v201509
    */

@@ -6909,16 +6909,14 @@ if (!class_exists("MutateLabel", false)) {
    * 
    * 
    * 
-   * Adds labels to the {@linkplain Campaign campaign} or removes
-   * {@linkplain com.google.ads.api.services.campaignmgmt.label.Label label}s from the
+   * Adds labels to the {@linkplain Campaign campaign} or removes {@linkplain Label label}s from the
    * {@linkplain Campaign campaign}.
-   * <p>Add - Apply an existing label to an existing
-   * {@linkplain Campaign campaign}. The {@code campaignId} must reference an existing
-   * {@linkplain Campaign}. The {@code labelId} must reference an existing
-   * {@linkplain com.google.ads.api.services.campaignmgmt.label.Label label}.</p>
-   * <p>Remove - Removes the link between the specified
-   * {@linkplain Campaign campaign} and
-   * {@linkplain com.google.ads.api.services.campaignmgmt.label.Label label}.</p>
+   * <p>Add - Apply an existing label to an existing {@linkplain Campaign campaign}. The
+   * {@code campaignId} must reference an existing {@linkplain Campaign}. The {@code labelId} must
+   * reference an existing {@linkplain Label label}.
+   * <p>Remove - Removes the link between the specified {@linkplain Campaign campaign} and
+   * {@linkplain Label label}.
+   * 
    * @param operations the operations to apply.
    * @return a list of {@linkplain CampaignLabel}s where each entry in the list is the result of
    * applying the operation in the input list with the same index. For an
@@ -7358,8 +7356,8 @@ if (!class_exists("CampaignOperation", false)) {
 
 if (!class_exists("CampaignPage", false)) {
   /**
-   * Contains a subset of campaign resulting from the filtering and paging of the
-   * {@link com.google.ads.api.services.campaignmgmt.campaign.CampaignService#get} call.
+   * Contains a set of campaigns resulting from the filtering and paging of the
+   * {@link CampaignService#get} call.
    * @package Google_Api_Ads_AdWords_v201509
    * @subpackage v201509
    */
@@ -7948,16 +7946,14 @@ if (!class_exists("CampaignService", false)) {
      * 
      * 
      * 
-     * Adds labels to the {@linkplain Campaign campaign} or removes
-     * {@linkplain com.google.ads.api.services.campaignmgmt.label.Label label}s from the
+     * Adds labels to the {@linkplain Campaign campaign} or removes {@linkplain Label label}s from the
      * {@linkplain Campaign campaign}.
-     * <p>Add - Apply an existing label to an existing
-     * {@linkplain Campaign campaign}. The {@code campaignId} must reference an existing
-     * {@linkplain Campaign}. The {@code labelId} must reference an existing
-     * {@linkplain com.google.ads.api.services.campaignmgmt.label.Label label}.</p>
-     * <p>Remove - Removes the link between the specified
-     * {@linkplain Campaign campaign} and
-     * {@linkplain com.google.ads.api.services.campaignmgmt.label.Label label}.</p>
+     * <p>Add - Apply an existing label to an existing {@linkplain Campaign campaign}. The
+     * {@code campaignId} must reference an existing {@linkplain Campaign}. The {@code labelId} must
+     * reference an existing {@linkplain Label label}.
+     * <p>Remove - Removes the link between the specified {@linkplain Campaign campaign} and
+     * {@linkplain Label label}.
+     * 
      * @param operations the operations to apply.
      * @return a list of {@linkplain CampaignLabel}s where each entry in the list is the result of
      * applying the operation in the input list with the same index. For an

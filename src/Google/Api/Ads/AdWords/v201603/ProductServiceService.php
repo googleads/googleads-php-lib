@@ -2393,6 +2393,18 @@ if (!class_exists("CriterionUserList", false)) {
     public $userListMembershipStatus;
 
     /**
+     * @access public
+     * @var boolean
+     */
+    public $userListEligibleForSearch;
+
+    /**
+     * @access public
+     * @var boolean
+     */
+    public $userListEligibleForDisplay;
+
+    /**
      * Gets the namesapce of this class
      * @return string the namespace of this class
      */
@@ -2408,11 +2420,13 @@ if (!class_exists("CriterionUserList", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($userListId = null, $userListName = null, $userListMembershipStatus = null, $id = null, $type = null, $CriterionType = null) {
+    public function __construct($userListId = null, $userListName = null, $userListMembershipStatus = null, $userListEligibleForSearch = null, $userListEligibleForDisplay = null, $id = null, $type = null, $CriterionType = null) {
       parent::__construct();
       $this->userListId = $userListId;
       $this->userListName = $userListName;
       $this->userListMembershipStatus = $userListMembershipStatus;
+      $this->userListEligibleForSearch = $userListEligibleForSearch;
+      $this->userListEligibleForDisplay = $userListEligibleForDisplay;
       $this->id = $id;
       $this->type = $type;
       $this->CriterionType = $CriterionType;

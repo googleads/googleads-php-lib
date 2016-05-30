@@ -4376,9 +4376,7 @@ if (!class_exists("DomainCategory", false)) {
 if (!class_exists("AdGroupBidLandscapePage", false)) {
   /**
    * Contains a subset of {@link AdGroupBidLandscape} objects resulting from the
-   * filtering and paging of
-   * {@link com.google.ads.api.services.campaignmgmt.data.DataService#getAdGroupBidLandscape}
-   * call.
+   * filtering and paging of {@link DataService#getAdGroupBidLandscape} call.
    * @package Google_Api_Ads_AdWords_v201603
    * @subpackage v201603
    */
@@ -4420,9 +4418,7 @@ if (!class_exists("AdGroupBidLandscapePage", false)) {
 if (!class_exists("CriterionBidLandscapePage", false)) {
   /**
    * Contains a subset of {@link CriterionBidLandscapePage} objects resulting from the
-   * filtering and paging of
-   * {@link com.google.ads.api.services.campaignmgmt.data.DataService#getCriterionBidLandscape}
-   * call.
+   * filtering and paging of {@link DataService#getCriterionBidLandscape} call.
    * @package Google_Api_Ads_AdWords_v201603
    * @subpackage v201603
    */

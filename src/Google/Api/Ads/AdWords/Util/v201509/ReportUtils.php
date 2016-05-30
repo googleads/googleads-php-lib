@@ -89,6 +89,8 @@ class ReportUtils {
    *         summary row containing totals
    *     {boolean} includeZeroImpressions: if report responses should include
    *         zero impression rows
+   *     {boolean} useRawEnumValues: if report responses should return enum
+   *         values instead of enum display values
    *     {string} server: the server to make the request to. If <var>null</var>,
    *         then the default server will be used
    *     {string} version: the version to make the request against. If
@@ -347,6 +349,10 @@ class ReportUtils {
     if (isset($options['includeZeroImpressions'])) {
       $headers['includeZeroImpressions'] =
           $options['includeZeroImpressions'] ? 'true' : 'false';
+    }
+    if (isset($options['useRawEnumValues'])) {
+      $headers['useRawEnumValues'] =
+          $options['useRawEnumValues'] ? 'true' : 'false';
     }
     return $headers;
   }

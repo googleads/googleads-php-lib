@@ -3,8 +3,6 @@
  * This code sample illustrates how to perform multiple requests using the
  * BatchJobService using incremental uploads.
  *
- * Restriction: adwords-only
- *
  * Copyright 2016, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");

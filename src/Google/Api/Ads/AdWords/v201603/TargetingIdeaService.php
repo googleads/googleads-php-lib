@@ -4344,14 +4344,12 @@ if (!class_exists("CriterionUserListMembershipStatus", false)) {
 
 if (!class_exists("Attribute", false)) {
   /**
-   * {@link Attribute}s encompass the core information about a particular
-   * {@link com.google.ads.api.services.targetingideas.TargetingIdea}. Some
-   * attributes are for {@code KEYWORD} {@link IdeaType}s, some are for
-   * {@code PLACEMENT} {@link IdeaType}s, and some are for both. Ultimately, an
-   * {@link Attribute} instance simply wraps an actual value of interest. For
-   * example, {@link KeywordAttribute} wraps the keyword itself, while a
-   * {@link BooleanAttribute} simply wraps a boolean describing some information
-   * about the keyword idea.
+   * {@link Attribute}s encompass the core information about a particular {@link TargetingIdea}. Some
+   * attributes are for {@code KEYWORD} {@link IdeaType}s, some are for {@code PLACEMENT}
+   * {@link IdeaType}s, and some are for both. Ultimately, an {@link Attribute} instance simply wraps
+   * an actual value of interest. For example, {@link KeywordAttribute} wraps the keyword itself,
+   * while a {@link BooleanAttribute} simply wraps a boolean describing some information about the
+   * keyword idea.
    * @package Google_Api_Ads_AdWords_v201603
    * @subpackage v201603
    */
@@ -4594,9 +4592,8 @@ if (!class_exists("DoubleAttribute", false)) {
 
 if (!class_exists("IdeaTypeAttribute", false)) {
   /**
-   * {@link Attribute} type that contains an {@link IdeaType} value. For example,
-   * if a {@link com.google.ads.api.services.targetingideas.TargetingIdea}
-   * represents a keyword idea, its {@link IdeaTypeAttribute} would contain a
+   * {@link Attribute} type that contains an {@link IdeaType} value. For example, if a
+   * {@link TargetingIdea} represents a keyword idea, its {@link IdeaTypeAttribute} would contain a
    * {@code KEYWORD} {@link IdeaType}.
    * @package Google_Api_Ads_AdWords_v201603
    * @subpackage v201603
@@ -4808,10 +4805,8 @@ if (!class_exists("LongAttribute", false)) {
 if (!class_exists("LongComparisonOperation", false)) {
   /**
    * Object representing integer comparison operations. This is usually used within
-   * a particular
-   * {@link com.google.ads.api.services.targetingideas.search.SearchParameter} to
-   * specify the valid values requested for the specific
-   * {@link com.google.ads.api.services.common.optimization.attributes.Attribute}.
+   * a particular {@link SearchParameter} to specify the valid values requested for the specific
+   * {@link Attribute}.
    * @package Google_Api_Ads_AdWords_v201603
    * @subpackage v201603
    */
@@ -5091,10 +5086,8 @@ if (!class_exists("Range", false)) {
 
 if (!class_exists("SearchParameter", false)) {
   /**
-   * A set of {@link SearchParameter}s is supplied to the
-   * {@link com.google.ads.api.services.targetingideas.TargetingIdeaSelector}
-   * to specify how the user wants to filter the set of all possible
-   * {@link com.google.ads.api.services.targetingideas.TargetingIdea}s.
+   * A set of {@link SearchParameter}s is supplied to the {@link TargetingIdeaSelector} to specify how
+   * the user wants to filter the set of all possible {@link TargetingIdea}s.
    * 
    * <p>There is a {@link SearchParameter} for each type of input.
    * {@link SearchParameter}s can conceptually be broken down into two types.</p>
@@ -5103,11 +5096,9 @@ if (!class_exists("SearchParameter", false)) {
    * <li>Input {@link SearchParameter}s provide the seed information from which
    * ideas or stats are to be generated (e.g., {@link RelatedToQuerySearchParameter},
    * {@link RelatedToUrlSearchParameter}, etc.). This type of {@link SearchParameters}
-   * is required in requests.</li>
+   * is required in requests.
    * <li>Filter {@link SearchParameter}s (e.g., {@link CompetitionSearchParameter}, etc.)
-   * are used to trim down the results based on
-   * {@link com.google.ads.api.services.targetingideas.attributes.Attribute}-related
-   * information.</li>
+   * are used to trim down the results based on {@link Attribute}-related information.
    * </ul>
    * 
    * <p>A request should only contain one instance of each {@link SearchParameter}.
@@ -5206,11 +5197,9 @@ if (!class_exists("SearchParameter", false)) {
 if (!class_exists("SearchVolumeSearchParameter", false)) {
   /**
    * A {@link SearchParameter} that specifies the level of search volume expected in results,
-   * and it has a direct relationship to
-   * {@link com.google.ads.api.services.targetingideas.external.AttributeType#SEARCH_VOLUME}.
-   * Absence of a {@link SearchVolumeSearchParameter} in a
-   * {@link com.google.ads.api.services.targetingideas.TargetingIdeaSelector} is
-   * equivalent to having no constraint on search volume specified.
+   * and it has a direct relationship to {@link AttributeType#SEARCH_VOLUME SEARCH_VOLUME}. Absence of
+   * a {@link SearchVolumeSearchParameter} in a {@link TargetingIdeaSelector} is equivalent to having
+   * no constraint on search volume specified.
    * <p>This element is supported by following {@link IdeaType}s: KEYWORD.
    * <p>This element is supported by following {@link RequestType}s: IDEAS, STATS.
    * @package Google_Api_Ads_AdWords_v201603
@@ -5385,8 +5374,7 @@ if (!class_exists("TargetingIdea", false)) {
 
 if (!class_exists("TargetingIdeaError", false)) {
   /**
-   * Base error class for the
-   * {@link com.google.ads.api.services.targetingideas.TargetingIdeaService}.
+   * Base error class for the {@link TargetingIdeaService}.
    * @package Google_Api_Ads_AdWords_v201603
    * @subpackage v201603
    */
@@ -5561,8 +5549,7 @@ if (!class_exists("TargetingIdeaSelector", false)) {
 
 if (!class_exists("TrafficEstimatorError", false)) {
   /**
-   * Base error class for
-   * {@link com.google.ads.api.services.trafficestimator.TrafficEstimatorService}.
+   * Base error class for {@link TrafficEstimatorService}.
    * @package Google_Api_Ads_AdWords_v201603
    * @subpackage v201603
    */
@@ -5744,8 +5731,7 @@ if (!class_exists("WebpageDescriptorAttribute", false)) {
 
 if (!class_exists("AttributeType", false)) {
   /**
-   * Represents the type of
-   * {@link com.google.ads.api.services.common.optimization.attributes.Attribute}.
+   * Represents the type of {@link Attribute}.
    * <p><b>{@link IdeaType} KEYWORD supports the following {@link AttributeType}s:</b><br/>
    * <ul><li>{@link #AVERAGE_CPC}</li>
    * <li>{@link #CATEGORY_PRODUCTS_AND_SERVICES}</li>
@@ -5923,9 +5909,7 @@ if (!class_exists("RequestType", false)) {
 
 if (!class_exists("TargetingIdeaErrorReason", false)) {
   /**
-   * An enumeration of
-   * {@link com.google.ads.api.services.targetingideas.TargetingIdeaService}
-   * specific errors.
+   * An enumeration of {@link TargetingIdeaService} specific errors.
    * @package Google_Api_Ads_AdWords_v201603
    * @subpackage v201603
    */
@@ -5958,11 +5942,8 @@ if (!class_exists("TargetingIdeaErrorReason", false)) {
 
 if (!class_exists("TrafficEstimatorErrorReason", false)) {
   /**
-   * When the request with {@code null} campaign ID in
-   * {@link com.google.ads.api.services.trafficestimator.CampaignEstimateRequest}
-   * contains an
-   * {@link com.google.ads.api.services.trafficestimator.AdGroupEstimateRequest}
-   * with an ID.
+   * When the request with {@code null} campaign ID in {@link CampaignEstimateRequest} contains an
+   * {@link AdGroupEstimateRequest} with an ID.
    * @package Google_Api_Ads_AdWords_v201603
    * @subpackage v201603
    */

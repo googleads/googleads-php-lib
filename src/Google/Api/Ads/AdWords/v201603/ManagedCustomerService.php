@@ -3010,7 +3010,7 @@ if (!class_exists("MutateLink", false)) {
    * <li>SET + REFUSED:   client declines invitations</li>
    * </ul>
    * 
-   * As of v201506 in addition to these, active links can also be marked hidden / unhidden.
+   * In addition to these, active links can also be marked hidden / unhidden.
    * <ul>
    * <li> An ACTIVE link can be marked hidden with SET + ACTIVE along with setting the
    * isHidden bit to true. </li>
@@ -4563,7 +4563,7 @@ if (!class_exists("ManagedCustomerService", false)) {
      * <li>SET + REFUSED:   client declines invitations</li>
      * </ul>
      * 
-     * As of v201506 in addition to these, active links can also be marked hidden / unhidden.
+     * In addition to these, active links can also be marked hidden / unhidden.
      * <ul>
      * <li> An ACTIVE link can be marked hidden with SET + ACTIVE along with setting the
      * isHidden bit to true. </li>

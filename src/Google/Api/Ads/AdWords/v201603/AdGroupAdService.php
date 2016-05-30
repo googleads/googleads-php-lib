@@ -3246,7 +3246,6 @@ if (!class_exists("Paging", false)) {
 if (!class_exists("PagingError", false)) {
   /**
    * Error codes for pagination.
-   * See {@link com.google.ads.api.services.common.pagination.Paging}.
    * @package Google_Api_Ads_AdWords_v201603
    * @subpackage v201603
    */
@@ -7389,9 +7388,9 @@ if (!class_exists("MutateLabel", false)) {
    * <p>Add - Apply an existing label to an existing {@linkplain AdGroupAd ad group ad}. The
    * {@code adGroupId} and {@code adId} must reference an existing
    * {@linkplain AdGroupAd ad group ad}. The {@code labelId} must reference an existing
-   * {@linkplain com.google.ads.api.services.campaignmgmt.label.Label label}.
+   * {@linkplain Label label}.
    * <p>Remove - Removes the link between the specified {@linkplain AdGroupAd ad group ad} and
-   * {@linkplain com.google.ads.api.services.campaignmgmt.label.Label label}.</p>
+   * {@linkplain Label label}.
    * @param operations The operations to apply.
    * @return A list of AdGroupAdLabel where each entry in the list is the result of
    * applying the operation in the input list with the same index. For an
@@ -8600,9 +8599,9 @@ if (!class_exists("AdGroupAdService", false)) {
      * <p>Add - Apply an existing label to an existing {@linkplain AdGroupAd ad group ad}. The
      * {@code adGroupId} and {@code adId} must reference an existing
      * {@linkplain AdGroupAd ad group ad}. The {@code labelId} must reference an existing
-     * {@linkplain com.google.ads.api.services.campaignmgmt.label.Label label}.
+     * {@linkplain Label label}.
      * <p>Remove - Removes the link between the specified {@linkplain AdGroupAd ad group ad} and
-     * {@linkplain com.google.ads.api.services.campaignmgmt.label.Label label}.</p>
+     * {@linkplain Label label}.
      * @param operations The operations to apply.
      * @return A list of AdGroupAdLabel where each entry in the list is the result of
      * applying the operation in the input list with the same index. For an

@@ -4,8 +4,6 @@
  * experimental changes made to its related ad groups, criteria and ads.
  * To add an experiment, run AddExperiment.php.
  *
- * Restriction: adwords-only
- *
  * Copyright 2014, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");

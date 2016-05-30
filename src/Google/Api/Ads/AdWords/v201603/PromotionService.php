@@ -811,6 +811,56 @@ if (!class_exists("DistinctError", false)) {
   }
 }
 
+if (!class_exists("EntityNotFound", false)) {
+  /**
+   * An id did not correspond to an entity, or it referred to an entity which does not belong to the
+   * customer.
+   * 
+   * 
+   * 
+   * Structure to specify an address location.
+   * @package Google_Api_Ads_AdWords_v201603
+   * @subpackage v201603
+   */
+  class EntityNotFound extends ApiError {
+
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201603";
+    const XSI_TYPE = "EntityNotFound";
+
+    /**
+     * @access public
+     * @var tnsEntityNotFoundReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("GeoPoint", false)) {
   /**
    * Specifies a geo location with the supplied latitude/longitude.
@@ -2823,6 +2873,18 @@ if (!class_exists("CriterionUserList", false)) {
     public $userListMembershipStatus;
 
     /**
+     * @access public
+     * @var boolean
+     */
+    public $userListEligibleForSearch;
+
+    /**
+     * @access public
+     * @var boolean
+     */
+    public $userListEligibleForDisplay;
+
+    /**
      * Gets the namesapce of this class
      * @return string the namespace of this class
      */
@@ -2838,11 +2900,13 @@ if (!class_exists("CriterionUserList", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($userListId = null, $userListName = null, $userListMembershipStatus = null, $id = null, $type = null, $CriterionType = null) {
+    public function __construct($userListId = null, $userListName = null, $userListMembershipStatus = null, $userListEligibleForSearch = null, $userListEligibleForDisplay = null, $id = null, $type = null, $CriterionType = null) {
       parent::__construct();
       $this->userListId = $userListId;
       $this->userListName = $userListName;
       $this->userListMembershipStatus = $userListMembershipStatus;
+      $this->userListEligibleForSearch = $userListEligibleForSearch;
+      $this->userListEligibleForDisplay = $userListEligibleForDisplay;
       $this->id = $id;
       $this->type = $type;
       $this->CriterionType = $CriterionType;
@@ -3141,6 +3205,43 @@ if (!class_exists("DateErrorReason", false)) {
   }
 }
 
+if (!class_exists("DayOfWeek", false)) {
+  /**
+   * Days of the week.
+   * 
+   * 
+   * 
+   * Structure to specify an address location.
+   * @package Google_Api_Ads_AdWords_v201603
+   * @subpackage v201603
+   */
+  class DayOfWeek {
+
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201603";
+    const XSI_TYPE = "DayOfWeek";
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("DistinctErrorReason", false)) {
   /**
    * The reasons for the validation error.
@@ -3155,6 +3256,44 @@ if (!class_exists("DistinctErrorReason", false)) {
 
     const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201603";
     const XSI_TYPE = "DistinctError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("EntityNotFoundReason", false)) {
+  /**
+   * The specified id refered to an entity which either doesn't exist or is not accessible to the
+   * customer. e.g. campaign belongs to another customer.
+   * 
+   * 
+   * 
+   * Structure to specify an address location.
+   * @package Google_Api_Ads_AdWords_v201603
+   * @subpackage v201603
+   */
+  class EntityNotFoundReason {
+
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201603";
+    const XSI_TYPE = "EntityNotFound.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -3304,6 +3443,43 @@ if (!class_exists("LocationTargetingStatus", false)) {
 
     const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201603";
     const XSI_TYPE = "LocationTargetingStatus";
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("MinuteOfHour", false)) {
+  /**
+   * Minutes in an hour.  Currently only 0, 15, 30, and 45 are supported
+   * 
+   * 
+   * 
+   * Structure to specify an address location.
+   * @package Google_Api_Ads_AdWords_v201603
+   * @subpackage v201603
+   */
+  class MinuteOfHour {
+
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201603";
+    const XSI_TYPE = "MinuteOfHour";
 
     /**
      * Gets the namesapce of this class
@@ -4031,6 +4207,127 @@ if (!class_exists("CriterionUserListMembershipStatus", false)) {
   }
 }
 
+if (!class_exists("AdSchedule", false)) {
+  /**
+   * Represents an AdSchedule Criterion.
+   * It is a variant of {@code AdSchedule} that also keeps track of the time zone.
+   * Note: one single day may not have more than six AdSchedules after the time zone adjustment.
+   * <span class="constraint AdxEnabled">This is disabled for AdX when it is contained within Operators: ADD, SET.</span>
+   * @package Google_Api_Ads_AdWords_v201603
+   * @subpackage v201603
+   */
+  class AdSchedule extends Criterion {
+
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/express/v201603";
+    const XSI_TYPE = "AdSchedule";
+
+    /**
+     * @access public
+     * @var cmDayOfWeek
+     */
+    public $dayOfWeek;
+
+    /**
+     * @access public
+     * @var integer
+     */
+    public $startHour;
+
+    /**
+     * @access public
+     * @var cmMinuteOfHour
+     */
+    public $startMinute;
+
+    /**
+     * @access public
+     * @var integer
+     */
+    public $endHour;
+
+    /**
+     * @access public
+     * @var cmMinuteOfHour
+     */
+    public $endMinute;
+
+    /**
+     * @access public
+     * @var string
+     */
+    public $timeZone;
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($dayOfWeek = null, $startHour = null, $startMinute = null, $endHour = null, $endMinute = null, $timeZone = null, $id = null, $type = null, $CriterionType = null) {
+      parent::__construct();
+      $this->dayOfWeek = $dayOfWeek;
+      $this->startHour = $startHour;
+      $this->startMinute = $startMinute;
+      $this->endHour = $endHour;
+      $this->endMinute = $endMinute;
+      $this->timeZone = $timeZone;
+      $this->id = $id;
+      $this->type = $type;
+      $this->CriterionType = $CriterionType;
+    }
+
+  }
+}
+
+if (!class_exists("BusinessHour", false)) {
+  /**
+   * A marker criterion which allows the user to run his/her ad according to the business hour of
+   * his/her business.
+   * <span class="constraint AdxEnabled">This is disabled for AdX when it is contained within Operators: ADD, SET.</span>
+   * @package Google_Api_Ads_AdWords_v201603
+   * @subpackage v201603
+   */
+  class BusinessHour extends Criterion {
+
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/express/v201603";
+    const XSI_TYPE = "BusinessHour";
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($id = null, $type = null, $CriterionType = null) {
+      parent::__construct();
+      $this->id = $id;
+      $this->type = $type;
+      $this->CriterionType = $CriterionType;
+    }
+
+  }
+}
+
 if (!class_exists("Creative", false)) {
   /**
    * Creative for a text ad.
@@ -4245,8 +4542,7 @@ if (!class_exists("KeywordSet", false)) {
 if (!class_exists("NegativeCriterion", false)) {
   /**
    * A negative criterion. It wraps a {@link Criterion} and will be associated with an ad group as a
-   * {@link com.google.ads.api.services.campaignmgmt.criterion.adgroupcriterion.NegativeAdGroupCriterion}
-   * .
+   * {@code NegativeAdGroupCriterion}.
    * <span class="constraint AdxEnabled">This is disabled for AdX when it is contained within Operators: ADD, SET.</span>
    * @package Google_Api_Ads_AdWords_v201603
    * @subpackage v201603
@@ -5419,6 +5715,7 @@ if (!class_exists("PromotionService", false)) {
       "DateRange" => "DateRange",
       "DistinctError" => "DistinctError",
       "DoubleValue" => "DoubleValue",
+      "EntityNotFound" => "EntityNotFound",
       "GeoPoint" => "GeoPoint",
       "IdError" => "IdError",
       "InternalApiError" => "InternalApiError",
@@ -5463,11 +5760,14 @@ if (!class_exists("PromotionService", false)) {
       "Criterion.Type" => "CriterionType",
       "DatabaseError.Reason" => "DatabaseErrorReason",
       "DateError.Reason" => "DateErrorReason",
+      "DayOfWeek" => "DayOfWeek",
       "DistinctError.Reason" => "DistinctErrorReason",
+      "EntityNotFound.Reason" => "EntityNotFoundReason",
       "IdError.Reason" => "IdErrorReason",
       "InternalApiError.Reason" => "InternalApiErrorReason",
       "KeywordMatchType" => "KeywordMatchType",
       "LocationTargetingStatus" => "LocationTargetingStatus",
+      "MinuteOfHour" => "MinuteOfHour",
       "NotEmptyError.Reason" => "NotEmptyErrorReason",
       "NullError.Reason" => "NullErrorReason",
       "OperationAccessDenied.Reason" => "OperationAccessDeniedReason",
@@ -5487,6 +5787,8 @@ if (!class_exists("PromotionService", false)) {
       "SortOrder" => "SortOrder",
       "StringLengthError.Reason" => "StringLengthErrorReason",
       "CriterionUserList.MembershipStatus" => "CriterionUserListMembershipStatus",
+      "AdSchedule" => "AdSchedule",
+      "BusinessHour" => "BusinessHour",
       "Creative" => "Creative",
       "ExpressSoapHeader" => "ExpressSoapHeader",
       "KeywordGroup" => "KeywordGroup",

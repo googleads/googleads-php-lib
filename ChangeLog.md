@@ -1,3 +1,9 @@
+### 9.1.0
+
+AdWords:
+  - Fixed [issue #137](https://github.com/googleads/googleads-php-lib/issues/137).
+  - Added support and examples for v201605.
+
 ### 9.0.0
 
 AdWords:

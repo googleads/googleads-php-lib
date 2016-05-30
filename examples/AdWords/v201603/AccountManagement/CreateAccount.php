@@ -5,8 +5,6 @@
  * and by default the new account will only be accessible via the parent AdWords
  * manager account.
  *
- * Restriction: adwords-only
- *
  * PHP version 5
  *
  * Copyright 2016, Google Inc. All Rights Reserved.

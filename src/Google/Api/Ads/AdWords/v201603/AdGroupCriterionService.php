@@ -3932,7 +3932,6 @@ if (!class_exists("Paging", false)) {
 if (!class_exists("PagingError", false)) {
   /**
    * Error codes for pagination.
-   * See {@link com.google.ads.api.services.common.pagination.Paging}.
    * @package Google_Api_Ads_AdWords_v201603
    * @subpackage v201603
    */
@@ -8889,11 +8888,9 @@ if (!class_exists("MutateLabel", false)) {
    * {@linkplain AdGroupCriterion ad group criterion}. The {@code adGroupId} and
    * {@code criterionId}
    * must reference an existing {@linkplain AdGroupCriterion ad group criterion}. The
-   * {@code labelId} must reference an existing
-   * {@linkplain com.google.ads.api.services.campaignmgmt.label.Label label}.
+   * {@code labelId} must reference an existing {@linkplain Label label}.
    * <p>Remove - Removes the link between the specified
-   * {@linkplain AdGroupCriterion ad group criterion} and
-   * {@linkplain com.google.ads.api.services.campaignmgmt.label.Label label}.</p>
+   * {@linkplain AdGroupCriterion ad group criterion} and {@linkplain Label label}.</p>
    * @param operations the operations to apply
    * @return a list of AdGroupCriterionLabel where each entry in the list is the result of
    * applying the operation in the input list with the same index. For an
@@ -10442,11 +10439,9 @@ if (!class_exists("AdGroupCriterionService", false)) {
      * {@linkplain AdGroupCriterion ad group criterion}. The {@code adGroupId} and
      * {@code criterionId}
      * must reference an existing {@linkplain AdGroupCriterion ad group criterion}. The
-     * {@code labelId} must reference an existing
-     * {@linkplain com.google.ads.api.services.campaignmgmt.label.Label label}.
+     * {@code labelId} must reference an existing {@linkplain Label label}.
      * <p>Remove - Removes the link between the specified
-     * {@linkplain AdGroupCriterion ad group criterion} and
-     * {@linkplain com.google.ads.api.services.campaignmgmt.label.Label label}.</p>
+     * {@linkplain AdGroupCriterion ad group criterion} and {@linkplain Label label}.</p>
      * @param operations the operations to apply
      * @return a list of AdGroupCriterionLabel where each entry in the list is the result of
      * applying the operation in the input list with the same index. For an

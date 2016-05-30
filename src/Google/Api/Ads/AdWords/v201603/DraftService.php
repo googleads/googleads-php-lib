@@ -3620,7 +3620,7 @@ if (!class_exists("ApiException", false)) {
 if (!class_exists("DraftPage", false)) {
   /**
    * Contains a subset of drafts resulting from the filtering and paging of
-   * {@link com.google.ads.api.services.campaignmgmt.draft.DraftService#get} call.
+   * {@link DraftService#get} call.
    * @package Google_Api_Ads_AdWords_v201603
    * @subpackage v201603
    */

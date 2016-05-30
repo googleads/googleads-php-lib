@@ -3,8 +3,6 @@
  * This code sample illustrates how to use BatchJobService to create a complete
  * campaign, including ad groups and keywords.
  *
- * Restriction: adwords-only
- *
  * Copyright 2015, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
