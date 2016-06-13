@@ -73,7 +73,8 @@ function DownloadCriteriaReportExample(AdWordsUser $user, $filePath) {
   // $options['includeZeroImpressions'] = true;
 
   // Download report.
-  ReportUtils::DownloadReport($reportDefinition, $filePath, $user, $options);
+  $reportUtils = new ReportUtils();
+  $reportUtils->DownloadReport($reportDefinition, $filePath, $user, $options);
   printf("Report with name '%s' was downloaded to '%s'.\n",
       $reportDefinition->reportName, $filePath);
 }

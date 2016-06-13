@@ -138,7 +138,7 @@ class AdWordsUser extends AdsUser {
 
     $this->SetOAuth2Info($oauth2Info);
     $this->SetUserAgent($userAgent);
-    $this->SetClientLibraryUserAgent($userAgent);
+    $this->updateClientLibraryUserAgent($userAgent);
     $this->SetClientCustomerId($clientCustomerId);
     $this->SetDeveloperToken($developerToken);
     $this->SetScopes($scopes);
@@ -223,7 +223,7 @@ class AdWordsUser extends AdsUser {
       }
 
       $serviceFactory = new AdWordsSoapClientFactory($this, $version, $server,
-        $validateOnly, $partialFailure);
+          $validateOnly, $partialFailure);
     }
 
     return parent::GetServiceSoapClient($serviceName, $serviceFactory);

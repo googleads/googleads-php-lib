@@ -131,7 +131,7 @@ class DfpUser extends AdsUser {
 
     $this->SetOAuth2Info($oauth2Info);
     $this->SetApplicationName($applicationName);
-    $this->SetClientLibraryUserAgent($applicationName);
+    $this->updateClientLibraryUserAgent($applicationName);
     $this->SetNetworkCode($networkCode);
     $this->SetScopes($scopes);
 

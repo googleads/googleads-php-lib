@@ -414,7 +414,7 @@ class TestAdsUser extends AdsUser {
    */
   public function __construct() {
     parent::__construct();
-    $this->SetClientLibraryUserAgent(self::APPLICATION_NAME);
+    $this->updateClientLibraryUserAgent(self::APPLICATION_NAME);
   }
 
   /**

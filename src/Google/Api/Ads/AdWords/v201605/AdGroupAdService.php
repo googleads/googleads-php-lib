@@ -4114,7 +4114,7 @@ if (!class_exists("ResponsiveDisplayAd", false)) {
      * @access public
      * @var string
      */
-    public $advertiserName;
+    public $businessName;
 
     /**
      * Gets the namesapce of this class
@@ -4132,14 +4132,14 @@ if (!class_exists("ResponsiveDisplayAd", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($marketingImage = null, $logoImage = null, $shortHeadline = null, $longHeadline = null, $description = null, $advertiserName = null, $id = null, $url = null, $displayUrl = null, $finalUrls = null, $finalMobileUrls = null, $finalAppUrls = null, $trackingUrlTemplate = null, $urlCustomParameters = null, $type = null, $devicePreference = null, $AdType = null) {
+    public function __construct($marketingImage = null, $logoImage = null, $shortHeadline = null, $longHeadline = null, $description = null, $businessName = null, $id = null, $url = null, $displayUrl = null, $finalUrls = null, $finalMobileUrls = null, $finalAppUrls = null, $trackingUrlTemplate = null, $urlCustomParameters = null, $type = null, $devicePreference = null, $AdType = null) {
       parent::__construct();
       $this->marketingImage = $marketingImage;
       $this->logoImage = $logoImage;
       $this->shortHeadline = $shortHeadline;
       $this->longHeadline = $longHeadline;
       $this->description = $description;
-      $this->advertiserName = $advertiserName;
+      $this->businessName = $businessName;
       $this->id = $id;
       $this->url = $url;
       $this->displayUrl = $displayUrl;

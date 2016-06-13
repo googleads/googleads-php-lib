@@ -57,7 +57,14 @@ function AddResponsiveDisplayAd(AdWordsUser $user, $adGroupId) {
 
   // Create a responsive display ad.
   $responsiveDisplayAd = new ResponsiveDisplayAd();
-  $responsiveDisplayAd->marketingImage = $image;
+
+  // This ad format does not allow the creation of an image using the
+  // Image.data field. An image must first be created using the MediaService,
+  // and Image.mediaId must be populated when creating the ad.
+  $marketingImage = new Image();
+  $marketingImage->mediaId = $image->mediaId;
+
+  $responsiveDisplayAd->marketingImage = $marketingImage;
   $responsiveDisplayAd->shortHeadline = 'Travel';
   $responsiveDisplayAd->longHeadline = 'Travel the World';
   $responsiveDisplayAd->description = 'Take to the air!';

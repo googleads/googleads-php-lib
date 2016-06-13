@@ -25,6 +25,7 @@ error_reporting(E_STRICT | E_ALL);
 
 require_once 'Google/Api/Ads/AdWords/Lib/AdWordsUser.php';
 require_once 'Google/Api/Ads/Common/Lib/ValidationException.php';
+require_once 'Google/Api/Ads/Common/Util/AdsUtilityRegistry.php';
 
 /**
  * Unit tests for {@link AdWordsUser}.
@@ -59,13 +60,13 @@ class AdWordsUserTest extends PHPUnit_Framework_TestCase {
     // Example: "AdWordsApiPhpClient-test (AwApi-PHP/4.1.1, Common-PHP/5.0.0,
     // PHP/5.4.8)"
     $search = sprintf(
-      '/^%s \(%s\/%s, %s\/%s, PHP\/%s\)$/',
-      preg_quote($user->GetUserAgent()),
-      preg_quote($LIB_NAME),
-      $VERSION_REGEX,
-      preg_quote($COMMON_NAME),
-      $VERSION_REGEX,
-      preg_quote(PHP_VERSION)
+        '/^%s \(%s\/%s, %s\/%s, PHP\/%s\)$/',
+        preg_quote($user->GetUserAgent()),
+        preg_quote($LIB_NAME),
+        $VERSION_REGEX,
+        preg_quote($COMMON_NAME),
+        $VERSION_REGEX,
+        preg_quote(PHP_VERSION)
     );
 
     $this->assertRegExp($search, $user->GetClientLibraryUserAgent());
@@ -130,6 +131,123 @@ class AdWordsUserTest extends PHPUnit_Framework_TestCase {
         null, null, null, $this->mockOAuth2Credential);
     $this->assertEquals($user->GetScopes(),
         array('TEST_SCOPE1','TEST_SCOPE2',AdWordsUser::OAUTH2_SCOPE));
+  }
+
+  /**
+   * Tests that the AdWordsUser object recognizes the settings of including
+   * user agents of ads utilities into the SOAP headers.
+   *
+   * @covers AdsUser::getIsIncludeUtilitiesInUserAgent
+   * @covers AdsUser::setIncludeUtilitiesInUserAgent
+   * @covers AdWordsUser::__construct
+   */
+  public function testIncludeUtiliesInUserAgent() {
+    $user = new AdWordsUser($this->authIniFilePath, 'devToken', null, null,
+        null, $this->mockOAuth2Credential);
+    $user->setIncludeUtilitiesInUserAgent('true');
+    $this->assertEquals($user->getIsIncludeUtilitiesInUserAgent(), 'true');
+  }
+
+  /**
+   * Tests if the user agent includes the usage of ads utilities by default.
+   *
+   * @covers AdsUser::updateClientLibraryUserAgent
+   * @covers AdWordsUser::__construct
+   */
+  public function testUpdateClientLibraryUserAgent_default() {
+    $USER_AGENT = 'AdWordsApiPhpClient-test';
+    $LIB_NAME = 'AwApi-PHP';
+    $COMMON_NAME = 'Common-PHP';
+    $VERSION_REGEX = '\d{1,2}\.\d{1,2}\.\d{1,2}';
+
+    $user = new AdWordsUser($this->authIniFilePath, 'devToken', $USER_AGENT,
+        null, null, $this->mockOAuth2Credential);
+    AdsUtilityRegistry::getInstance()->addUtility('ReportDownloader/file');
+    AdsUtilityRegistry::getInstance()->addUtility('BatchJobHelper');
+
+    $user->updateClientLibraryUserAgent($user->GetUserAgent());
+    // Example: "AdWordsApiPhpClient-test (AwApi-PHP/9.0.0, Common-PHP/9.0.0,
+    // PHP/5.4.8, BatchJobHelper, ReportDownloader/file)"
+    $expectedUserAgents = sprintf(
+        '/^%s \(%s\/%s, %s\/%s, PHP\/%s, %s\)$/',
+        preg_quote($user->GetUserAgent()),
+        preg_quote($LIB_NAME),
+        $VERSION_REGEX,
+        preg_quote($COMMON_NAME),
+        $VERSION_REGEX,
+        preg_quote(PHP_VERSION),
+        preg_quote('BatchJobHelper, ReportDownloader/file', '/')
+    );
+    $this->assertRegExp($expectedUserAgents,
+        $user->GetClientLibraryUserAgent());
+  }
+
+  /**
+   * Tests if the user agent doesn't include any usages of ads utilities when
+   * the registry is empty.
+   *
+   * @covers AdsUser::updateClientLibraryUserAgent
+   * @covers AdWordsUser::__construct
+   */
+  public function testUpdateClientLibraryUserAgent_registry_empty() {
+    $USER_AGENT = 'AdWordsApiPhpClient-test';
+    $LIB_NAME = 'AwApi-PHP';
+    $COMMON_NAME = 'Common-PHP';
+    $VERSION_REGEX = '\d{1,2}\.\d{1,2}\.\d{1,2}';
+
+    $user = new AdWordsUser($this->authIniFilePath, 'devToken', $USER_AGENT,
+        null, null, $this->mockOAuth2Credential);
+
+    $user->updateClientLibraryUserAgent($user->GetUserAgent());
+    // Example: "AdWordsApiPhpClient-test (AwApi-PHP/9.0.0, Common-PHP/9.0.0,
+    // PHP/5.4.8)"
+    $expectedUserAgents = sprintf(
+        '/^%s \(%s\/%s, %s\/%s, PHP\/%s\)$/',
+        preg_quote($user->GetUserAgent()),
+        preg_quote($LIB_NAME),
+        $VERSION_REGEX,
+        preg_quote($COMMON_NAME),
+        $VERSION_REGEX,
+        preg_quote(PHP_VERSION)
+    );
+    $this->assertRegExp($expectedUserAgents,
+        $user->GetClientLibraryUserAgent());
+  }
+
+  /**
+   * Tests if the user agent doesn't include any usages of ads utilities when
+   * isIncludeUtilitiesInUserAgent is false.
+   *
+   * @covers AdsUser::setIncludeUtilitiesInUserAgent
+   * @covers AdsUser::updateClientLibraryUserAgent
+   * @covers AdWordsUser::__construct
+   */
+  public function
+      testUpdateClientLibraryUserAgent_isIncludeUtilitiesInUserAgent_false() {
+    $USER_AGENT = 'AdWordsApiPhpClient-test';
+    $LIB_NAME = 'AwApi-PHP';
+    $COMMON_NAME = 'Common-PHP';
+    $VERSION_REGEX = '\d{1,2}\.\d{1,2}\.\d{1,2}';
+
+    $user = new AdWordsUser($this->authIniFilePath, 'devToken', $USER_AGENT,
+        null, null, $this->mockOAuth2Credential);
+    $user->setIncludeUtilitiesInUserAgent('false');
+    AdsUtilityRegistry::getInstance()->addUtility('BatchJobHelper');
+    $user->updateClientLibraryUserAgent($user->GetUserAgent());
+
+    // Example: "AdWordsApiPhpClient-test (AwApi-PHP/9.0.0, Common-PHP/9.0.0,
+    // PHP/5.4.8)"
+    $expectedUserAgents = sprintf(
+        '/^%s \(%s\/%s, %s\/%s, PHP\/%s\)$/',
+        preg_quote($user->GetUserAgent()),
+        preg_quote($LIB_NAME),
+        $VERSION_REGEX,
+        preg_quote($COMMON_NAME),
+        $VERSION_REGEX,
+        preg_quote(PHP_VERSION)
+    );
+    $this->assertRegExp($expectedUserAgents,
+        $user->GetClientLibraryUserAgent());
   }
 }
 

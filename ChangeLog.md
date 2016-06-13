@@ -1,3 +1,14 @@
+### 10.0.0
+
+AdWords:
+  - Fixed a bug in v201605's AdGroupAdService.php.
+  - Removed support and examples for v201509.
+  - Added new ParallelReportDownload example to demonstrate how to download an
+    Ad Hoc report for all accounts directly under a manager account.
+
+Common:
+  - Added support for including utility usage in the user agent header.
+
 ### 9.1.0
 
 AdWords:

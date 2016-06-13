@@ -67,7 +67,8 @@ function DownloadCriteriaReportWithAwqlExample(AdWordsUser $user, $filePath,
   // $options['includeZeroImpressions'] = true;
 
   // Download report.
-  ReportUtils::DownloadReportWithAwql($reportQuery, $filePath, $user,
+  $reportUtils = new ReportUtils();
+  $reportUtils->DownloadReportWithAwql($reportQuery, $filePath, $user,
       $reportFormat, $options);
 
   printf("Report was downloaded to '%s'.\n", $filePath);
