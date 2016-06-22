@@ -25,6 +25,7 @@ class ReportSettings {
   private $isSkipReportHeader;
   private $isSkipColumnHeader;
   private $isSkipReportSummary;
+  private $isUseRawEnumValues;
   private $isIncludeZeroImpressions;
 
   /**
@@ -40,6 +41,7 @@ class ReportSettings {
     $this->isSkipReportHeader = $builder->isSkipReportHeader();
     $this->isSkipColumnHeader = $builder->isSkipColumnHeader();
     $this->isSkipReportSummary = $builder->isSkipReportSummary();
+    $this->isUseRawEnumValues = $builder->isUseRawEnumValues();
     $this->isIncludeZeroImpressions = $builder->isIncludeZeroImpressions();
   }
 
@@ -70,6 +72,16 @@ class ReportSettings {
    */
   public function isSkipReportSummary() {
     return $this->isSkipReportSummary;
+  }
+
+  /**
+   * Whether report responses should return enum values instead of enum display
+   * values.
+   *
+   * @return boolean
+   */
+  public function isUseRawEnumValues() {
+    return $this->isUseRawEnumValues;
   }
 
   /**

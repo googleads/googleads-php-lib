@@ -32,6 +32,7 @@ class ReportSettingsBuilder implements AdsBuilder {
   private $isSkipReportHeader;
   private $isSkipColumnHeader;
   private $isSkipReportSummary;
+  private $isUseRawEnumValues;
   private $isIncludeZeroImpressions;
 
   public function __construct() {
@@ -68,6 +69,12 @@ class ReportSettingsBuilder implements AdsBuilder {
         'isSkipReportSummary', 'ADWORDS_REPORTING');
     if ($isSkipReportSummary !== null) {
       $this->isSkipReportSummary = boolval($isSkipReportSummary);
+    }
+
+    $isUseRawEnumValues = $configuration->getConfiguration(
+        'isUseRawEnumValues', 'ADWORDS_REPORTING');
+    if ($isUseRawEnumValues !== null) {
+      $this->isUseRawEnumValues = boolval($isUseRawEnumValues);
     }
 
     return $this;
@@ -110,6 +117,18 @@ class ReportSettingsBuilder implements AdsBuilder {
   }
 
   /**
+   * Whether report responses should return enum values instead of enum display
+   * values. This is optional and defaults to false.
+   *
+   * @param boolean|null $isUseRawEnumValues
+   * @return ReportSettingsBuilder this builder
+   */
+  public function useRawEnumValues($isUseRawEnumValues) {
+    $this->isUseRawEnumValues = $isUseRawEnumValues;
+    return $this;
+  }
+
+  /**
    * Whether report responses should include zero impression rows. This is
    * optional and defaults to `null`.
    *
@@ -144,6 +163,10 @@ class ReportSettingsBuilder implements AdsBuilder {
 
     if ($this->isSkipReportSummary === null) {
       $this->isSkipReportSummary = false;
+    }
+
+    if ($this->isUseRawEnumValues === null) {
+      $this->isUseRawEnumValues = false;
     }
   }
 
@@ -181,6 +204,16 @@ class ReportSettingsBuilder implements AdsBuilder {
    */
   public function isSkipReportSummary() {
     return $this->isSkipReportSummary;
+  }
+
+  /**
+   * Whether report responses should return enum values instead of enum display
+   * values.
+   *
+   * @return boolean
+   */
+  public function isUseRawEnumValues() {
+    return $this->isUseRawEnumValues;
   }
 
   /**

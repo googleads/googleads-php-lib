@@ -1,3 +1,12 @@
+### 1.3.0-beta
+
+AdWords:
+ - Added report downloader utility.
+ - Added support and examples for v201605.
+ - Removed support and examples for v201603.
+ - Added support for reporting request header [`useRawEnumValues`]
+   (https://developers.google.com/adwords/api/docs/guides/reporting#request-headers).
+
 ### 1.2.0-beta
 
 Common:

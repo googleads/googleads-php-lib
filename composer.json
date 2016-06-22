@@ -2,16 +2,17 @@
   "name": "googleads/googleads-php-lib",
   "description": "Google Ads APIs Client Library for PHP (AdWords and DFP)",
   "require": {
-    "php": ">=5.5.0",
+    "php": ">=5.5.9",
     "google/auth": "0.7",
     "guzzlehttp/guzzle": "~6.0",
     "guzzlehttp/psr7": "~1.2",
     "monolog/monolog": "~1.17.1",
+    "symfony/serializer": "~3.0.3",
     "ext-openssl": "*",
     "ext-soap": "*"
   },
   "suggest": {
-    "php-64bit": ">=5.5.0"
+    "php-64bit": ">=5.5.9"
   },
   "homepage": "https://github.com/googleads/googleads-php-lib",
   "license": "Apache-2.0",

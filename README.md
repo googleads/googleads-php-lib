@@ -56,9 +56,9 @@ how to use this library. The usage pattern is similar for DFP.
 ```php
 use Google\AdsApi\AdWords\AdWordsServices;
 use Google\AdsApi\AdWords\AdWordsSessionBuilder;
-use Google\AdsApi\AdWords\v201603\cm\OrderBy;
-use Google\AdsApi\AdWords\v201603\cm\Paging;
-use Google\AdsApi\AdWords\v201603\cm\Selector;
+use Google\AdsApi\AdWords\v201605\cm\OrderBy;
+use Google\AdsApi\AdWords\v201605\cm\Paging;
+use Google\AdsApi\AdWords\v201605\cm\Selector;
 use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 $oAuth2Credential = (new OAuth2TokenBuilder())
@@ -73,7 +73,7 @@ $session = (new AdWordsSessionBuilder())
 $adWordsServices = new AdWordsServices();
 
 $campaignService =
-    $adWordsServices->get($session, 'CampaignService', 'v201603', 'cm');
+    $adWordsServices->get($session, 'CampaignService', 'v201605', 'cm');
 
 // Create selector.
 $selector = new Selector();

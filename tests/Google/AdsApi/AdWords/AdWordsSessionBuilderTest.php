@@ -53,7 +53,8 @@ class AdWordsSessionBuilderTest extends PHPUnit_Framework_TestCase {
         ['isPartialFailure', 'ADWORDS', '1'],
         ['isSkipReportHeader', 'ADWORDS_REPORTING', '1'],
         ['isSkipColumnHeader', 'ADWORDS_REPORTING', '1'],
-        ['isSkipReportSummary', 'ADWORDS_REPORTING', '']
+        ['isSkipReportSummary', 'ADWORDS_REPORTING', ''],
+        ['isUseRawEnumValues', 'ADWORDS_REPORTING', '']
     ];
     $configurationMock = $this
         ->getMockBuilder('Google\AdsApi\Common\Configuration')
@@ -80,6 +81,8 @@ class AdWordsSessionBuilderTest extends PHPUnit_Framework_TestCase {
         true, $adWordsSession->getReportSettings()->isSkipColumnHeader());
     $this->assertSame(
         false, $adWordsSession->getReportSettings()->isSkipReportSummary());
+    $this->assertSame(
+        false, $adWordsSession->getReportSettings()->isUseRawEnumValues());
   }
 
   /**
@@ -116,6 +119,8 @@ class AdWordsSessionBuilderTest extends PHPUnit_Framework_TestCase {
         $adWordsSession->getReportSettings()->isSkipColumnHeader());
     $this->assertNotNull(
         $adWordsSession->getReportSettings()->isSkipReportSummary());
+    $this->assertNotNull(
+        $adWordsSession->getReportSettings()->isUseRawEnumValues());
     $this->assertNull(
         $adWordsSession->getReportSettings()->isIncludeZeroImpressions());
     $this->assertNotNull($adWordsSession->getSoapSettings());
@@ -226,6 +231,8 @@ class AdWordsSessionBuilderTest extends PHPUnit_Framework_TestCase {
         $adWordsSession->getReportSettings()->isSkipColumnHeader());
     $this->assertNotNull(
         $adWordsSession->getReportSettings()->isSkipReportSummary());
+    $this->assertNotNull(
+        $adWordsSession->getReportSettings()->isUseRawEnumValues());
     $this->assertNull(
         $adWordsSession->getReportSettings()->isIncludeZeroImpressions());
     $this->assertNotNull($adWordsSession->getSoapSettings());

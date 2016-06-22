@@ -14,13 +14,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-namespace Google\AdsApi\AdWords\v201603;
+namespace Google\AdsApi\AdWords\v201605;
 
 
 use Google\AdsApi\AdWords\AdWordsServices;
 use Google\AdsApi\AdWords\AdWordsSessionBuilder;
-use Google\AdsApi\AdWords\v201603\cm\Campaign;
-use Google\AdsApi\AdWords\v201603\cm\Selector;
+use Google\AdsApi\AdWords\v201605\cm\Campaign;
+use Google\AdsApi\AdWords\v201605\cm\Selector;
 use Google\AdsApi\Common\AdsServicesSoapClientFactory;
 use Google\AdsApi\Common\SoapSettingsBuilder;
 use Google\AdsApi\Common\Testing\ApplicationNameTestHelper;
@@ -80,7 +80,7 @@ class AdWordsServicesIntegrationTest extends PHPUnit_Framework_TestCase {
       array $expectedCampaigns) {
     // Mock the SOAP XML response from the HTTP request to the campaign service.
     $campaignServiceMock = $this
-        ->getMockBuilder('Google\AdsApi\AdWords\v201603\cm\CampaignService')
+        ->getMockBuilder('Google\AdsApi\AdWords\v201605\cm\CampaignService')
         ->setMethods(['__doRequest'])
         ->getMock();
     // Test that the application name is formatted correctly in the outgoing
@@ -106,7 +106,7 @@ class AdWordsServicesIntegrationTest extends PHPUnit_Framework_TestCase {
     $adWordsServices = new AdWordsServices();
     $adWordsServices->setSoapClientFactory($soapClientFactory);
     $campaignService = $adWordsServices->get(
-        $this->adWordsSession, 'CampaignService', 'v201603', 'cm');
+        $this->adWordsSession, 'CampaignService', 'v201605', 'cm');
 
     // Make an API call where the mock campaign service will return a mocked
     // SOAP XML response.
@@ -157,13 +157,13 @@ class AdWordsServicesIntegrationTest extends PHPUnit_Framework_TestCase {
    * against.
    *
    * @covers Google\AdsApi\AdWords\AdWordsServices::get
-   * @expectedException Google\AdsApi\AdWords\v201603\cm\ApiException
+   * @expectedException Google\AdsApi\AdWords\v201605\cm\ApiException
    * @expectedExceptionMessage [SelectorError.INVALID_FIELD_NAME @ serviceSelector; trigger:'asDEEf'; errorDetails:asDEEf]
    */
   public function testGetCallToCampaignServiceExpectFault() {
     // Mock the SOAP XML response from the HTTP request to the campaign service.
     $campaignServiceMock = $this
-        ->getMockBuilder('Google\AdsApi\AdWords\v201603\cm\CampaignService')
+        ->getMockBuilder('Google\AdsApi\AdWords\v201605\cm\CampaignService')
         ->setMethods(['__doRequest'])
         ->getMock();
     $campaignServiceMock->expects($this->once())
@@ -184,7 +184,7 @@ class AdWordsServicesIntegrationTest extends PHPUnit_Framework_TestCase {
     $adWordsServices = new AdWordsServices();
     $adWordsServices->setSoapClientFactory($soapClientFactory);
     $campaignService = $adWordsServices->get(
-        $this->adWordsSession, 'CampaignService', 'v201603', 'cm');
+        $this->adWordsSession, 'CampaignService', 'v201605', 'cm');
 
     // Make an API call where the mock campaign service will return a mocked
     // SOAP XML response.
