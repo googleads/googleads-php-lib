@@ -44,7 +44,14 @@ class ConfigurationLoader {
       throw new InvalidArgumentException(
           'File not found: ' . $configIniFilePath);
     } else {
-      return new Configuration(parse_ini_file($configIniFilePath, true));
+      $data = parse_ini_file($configIniFilePath, true);
+
+      if (FALSE === $data) {
+        throw new InvalidArgumentException(
+            'Invalid ini config file: ' . $configIniFilePath);
+      } else {
+        return new Configuration($data);
+      }
     }
   }
 
@@ -55,7 +62,14 @@ class ConfigurationLoader {
    * @param string $iniString the string holding the contents of an *.ini file
    */
   public function fromString($iniString) {
-    return new Configuration(parse_ini_string($configIniFilePath, true));
+    $data = parse_ini_string($iniString, true);
+
+    if (FALSE === $data) {
+      throw new InvalidArgumentException(
+          'Invalid ini config string: ' . $iniString);
+    } else {
+      return new Configuration($data);
+    }
   }
 }
 
