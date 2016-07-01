@@ -50,6 +50,10 @@ class OAuth2TokenBuilder implements AdsBuilder {
     return $this->from($this->configurationLoader->fromFile($path));
   }
 
+  public function fromString($string = null) {
+	return $this->from($this->configurationLoader->fromString($string));
+  }
+
   /**
    * @see AdsBuilder::from()
    */
