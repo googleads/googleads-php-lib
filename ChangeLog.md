@@ -5,6 +5,8 @@ AdWords:
   - Removed support and examples for v201509.
   - Added new ParallelReportDownload example to demonstrate how to download an
     Ad Hoc report for all accounts directly under a manager account.
+  - Made the ReportUtils methods DownloadReport and DownloadReportWithAwql
+    non-static for better inversion of control.
 
 Common:
   - Added support for including utility usage in the user agent header.
