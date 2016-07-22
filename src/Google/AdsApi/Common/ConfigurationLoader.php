@@ -16,7 +16,9 @@
  */
 namespace Google\AdsApi\Common;
 
+use Google\AdsApi\Common\Util\EnvironmentalVariables;
 use InvalidArgumentException;
+use UnexpectedValueException;
 
 /**
  * Helps load settings from *.ini files into Configuration objects.
@@ -24,38 +26,64 @@ use InvalidArgumentException;
  */
 class ConfigurationLoader {
 
+  private $environmentalVariables;
+
   /**
-   * Creates a configuration from a filepath to an *.ini file. If not absolute,
-   * will look in the current directory, and then the user's home directory, in
-   * that order.
+   * @param EnvironmentalVariables $environmentalVariables
+   */
+  public function __construct(
+      EnvironmentalVariables $environmentalVariables = null) {
+    $this->environmentalVariables = $environmentalVariables === null
+        ? new EnvironmentalVariables()
+        : $environmentalVariables;
+  }
+
+  /**
+   * Creates a configuration from a filepath to an *.ini file. If the file isn't
+   * found in the specified path, we will try to find the file in the user's
+   * home directory.
+   *
+   * <p>E.g., If you specified the path "/config/ads/ads_props.ini" and it
+   * doesn't exist, we will try to find "ads_props.ini" in your home directory.
    *
    * @param string $configIniFilePath the filepath to the *.ini file
-   * @throws InvalidArgumentException if there was an error reading the config
-   *     file
+   * @throws InvalidArgumentException if the config file could not be found
    */
   public function fromFile($configIniFilePath) {
-    if (!realpath($configIniFilePath)) {
-      $userInfo = posix_getpwuid(posix_getuid());
-      $configIniFilePath = $userInfo['dir']
-          . DIRECTORY_SEPARATOR
-          . pathinfo($configIniFilePath, PATHINFO_BASENAME);
-    }
     if (!file_exists($configIniFilePath)) {
-      throw new InvalidArgumentException(
-          'File not found: ' . $configIniFilePath);
-    } else {
-      return new Configuration(parse_ini_file($configIniFilePath, true));
+      try {
+        $home = $this->environmentalVariables->getHome();
+        $homeConfigIniFilePath = $home
+            . DIRECTORY_SEPARATOR
+            . pathinfo($configIniFilePath, PATHINFO_BASENAME);
+        if (file_exists($homeConfigIniFilePath)) {
+          $configIniFilePath = $homeConfigIniFilePath;
+        } else {
+          throw new InvalidArgumentException(sprintf(
+              'Config file not found as specified: \'%s\' or in the home '
+                  . 'directory: \'%s\'.',
+              $configIniFilePath,
+              $homeConfigIniFilePath
+          ));
+        }
+      } catch (UnexpectedValueException $e) {
+        throw new InvalidArgumentException(sprintf(
+            'Config file not found as specified: \'%s\'. Home '
+                . 'directory could not be located so it was not searched.',
+            $configIniFilePath
+        ));
+      }
     }
+
+    return new Configuration(parse_ini_file($configIniFilePath, true));
   }
 
   /**
-   * Creates a configuration from a string holding the contents of an *.ini
-   * file.
+   * Creates a configuration from an *.ini string.
    *
-   * @param string $iniString the string holding the contents of an *.ini file
+   * @param string $iniString
    */
   public function fromString($iniString) {
-    return new Configuration(parse_ini_string($configIniFilePath, true));
+    return new Configuration(parse_ini_string($iniString, true));
   }
 }
-

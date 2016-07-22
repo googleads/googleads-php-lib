@@ -28,8 +28,7 @@ use PHPUnit_Framework_TestCase;
 class AdsServicesSoapClientFactoryTest extends PHPUnit_Framework_TestCase {
 
   /**
-   * @covers
-   *     Google\AdsApi\Common\AdsServicesSoapClientFactory::generateSoapClient
+   * @covers Google\AdsApi\Common\AdsServicesSoapClientFactory::generateSoapClient
    */
   public function testGenerateSoapClientWithEndpointOverride() {
     // Mock the arguments the generate SOAP client method needs.

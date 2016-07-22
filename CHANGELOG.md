@@ -1,3 +1,12 @@
+### 1.3.1-beta
+
+DFP:
+ - Added v201602 retrieval examples.
+
+Common:
+ - Fixed [issue #143](https://github.com/googleads/googleads-php-lib/issues/143)
+   and [issue #144](https://github.com/googleads/googleads-php-lib/issues/144).
+
 ### 1.3.0-beta
 
 AdWords:
@@ -40,4 +49,3 @@ Common:
 
 Common:
  - Initial release.
-

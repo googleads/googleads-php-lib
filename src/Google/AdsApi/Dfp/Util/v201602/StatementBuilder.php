@@ -24,25 +24,24 @@ use InvalidArgumentException;
  * `StatementBuilder` allows for statements to be constructed in parts.
  *
  * <p>Typical usage is:
- * <pre>
- * $statementBuilder = new StatementBuilder()
- *     ->where('lastModifiedDateTime > :yesterday AND type = :type')
- *     ->orderBy('name DESC')
- *     ->limit(200)
- *     ->offset(20)
- *     ->withBindVariableValue(
- *         'yesterday',
- *         DateTimeUtils::toDfpDateTime(new DateTime(
- *             '-1 day',
- *             new DateTimeZone('America/New_York')
- *         )))
- *     ->withBindVariableValue('type', 'SomeType')
  *
- * $statement = $statementBuilder->toStatement();
- * //...
- * $statementBuilder->increaseOffsetBy(20);
- * $statement = $statementBuilder->toStatement();
- * </pre>
+ *     $statementBuilder = new StatementBuilder()
+ *         ->where('lastModifiedDateTime > :yesterday AND type = :type')
+ *         ->orderBy('name DESC')
+ *         ->limit(200)
+ *         ->offset(20)
+ *         ->withBindVariableValue(
+ *             'yesterday',
+ *             DateTimeUtils::toDfpDateTime(new DateTime(
+ *                 '-1 day',
+ *                 new DateTimeZone('America/New_York')
+ *             )))
+ *         ->withBindVariableValue('type', 'SomeType')
+ *
+ *     $statement = $statementBuilder->toStatement();
+ *     //...
+ *     $statementBuilder->increaseOffsetBy(20);
+ *     $statement = $statementBuilder->toStatement();
  */
 class StatementBuilder {
 

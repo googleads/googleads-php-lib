@@ -69,8 +69,7 @@ class AdsSoapClientLogMessageHandlerTest extends PHPUnit_Framework_TestCase {
   }
 
   /**
-   * @covers
-   *     Google\AdsApi\Common\AdsSoapClientLogMessageHandler::generateRequestInfoMessage
+   * @covers Google\AdsApi\Common\AdsSoapClientLogMessageHandler::generateRequestInfoMessage
    */
   public function testGenerateRequestInfoMessage() {
     $infoMessage =
@@ -89,8 +88,7 @@ class AdsSoapClientLogMessageHandlerTest extends PHPUnit_Framework_TestCase {
   }
 
   /**
-   * @covers
-   *     Google\AdsApi\Common\AdsSoapClientLogMessageHandler::generateRequestInfoMessage
+   * @covers Google\AdsApi\Common\AdsSoapClientLogMessageHandler::generateRequestInfoMessage
    */
   public function testGenerateRequestInfoMessageWithFault() {
     $infoMessage =
@@ -110,8 +108,7 @@ class AdsSoapClientLogMessageHandlerTest extends PHPUnit_Framework_TestCase {
   }
 
   /**
-   * @covers
-   *     Google\AdsApi\Common\AdsSoapClientLogMessageHandler::generateSoapXmlLogMessage
+   * @covers Google\AdsApi\Common\AdsSoapClientLogMessageHandler::generateSoapXmlLogMessage
    */
   public function testGenerateSoapXmlLogMessage() {
     // Mock the HTTP and SOAP header scrubbers to leave the headers unchanged

@@ -120,8 +120,7 @@ class DateTimeUtilsTest extends PHPUnit_Framework_TestCase {
   }
 
   /**
-   * @covers
-   *     Google\AdsApi\Dfp\Util\v201602\DateTimeUtils::toDfpDateTimeFromString
+   * @covers Google\AdsApi\Dfp\Util\v201602\DateTimeUtils::toDfpDateTimeFromString
    */
   public function testToDfpDateTimeFromString() {
     $this->assertTrue($this->assertSameDfpDateTime(
@@ -147,8 +146,7 @@ class DateTimeUtilsTest extends PHPUnit_Framework_TestCase {
   }
 
   /**
-   * @covers
-   *     Google\AdsApi\Dfp\Util\v201602\DateTimeUtils::toDfpDateTimeFromStringWithTimeZone
+   * @covers Google\AdsApi\Dfp\Util\v201602\DateTimeUtils::toDfpDateTimeFromStringWithTimeZone
    */
   public function testToDfpDateTimeFromStringWithTimeZone() {
     $this->assertTrue($this->assertSameDfpDateTime(

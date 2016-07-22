@@ -113,8 +113,7 @@ class StatementBuilderTest extends PHPUnit_Framework_TestCase {
 
   /**
    * @covers Google\AdsApi\Dfp\Util\v201602\StatementBuilder::toStatement
-   * @covers
-   *     Google\AdsApi\Dfp\Util\v201602\StatementBuilder::removeLimitAndOffset
+   * @covers Google\AdsApi\Dfp\Util\v201602\StatementBuilder::removeLimitAndOffset
    */
   public function testToStatementRemoveLimitAndOffset() {
     $expectedQueryBefore = 'WHERE a = b ORDER BY a LIMIT 500 OFFSET 0';
@@ -188,8 +187,7 @@ class StatementBuilderTest extends PHPUnit_Framework_TestCase {
   }
 
   /**
-   * @covers
-   *     Google\AdsApi\Dfp\Util\v201602\StatementBuilder::withBindVariableValue
+   * @covers Google\AdsApi\Dfp\Util\v201602\StatementBuilder::withBindVariableValue
    */
   public function testWithBindingVariable() {
     $key = 'key';

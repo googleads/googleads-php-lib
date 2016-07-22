@@ -120,7 +120,7 @@ class DateTimeUtils {
    * format. If you need to convert the DFP date time into another time zone,
    * use toStringForTimeZone() instead.
    *
-   * @see DateTimeUtils::toStringForTimeZone()
+   * @see self::toStringForTimeZone()
    * @param DfpDateTime $dfpDateTime the DFP date time to stringify
    * @return string the string representation of the DFP date time in ISO 8601
    *     format
@@ -137,8 +137,8 @@ class DateTimeUtils {
    * also want to use this with your network's time zone, e.g.,
    *
    *     $timeZoneId = $networkService->getCurrentNetwork()->getTimeZone();
-   *     $pqlFilterStatement = '... WHERE startDateTime >= '
-   *         . DateTimeUtils::toStringForTimeZone($dfpDateTime, $timeZoneId);
+   *     $newDateTimeString =
+   *         DateTimeUtils::toStringForTimeZone($dfpDateTime, $timeZoneId);
    *
    * @param DfpDateTime $dfpDateTime the DFP date time to stringify
    * @param string $timeZoneId the time zone ID

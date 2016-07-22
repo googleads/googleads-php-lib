@@ -87,7 +87,7 @@ class PqlTest extends PHPUnit_Framework_TestCase {
     $this->numberValue3 = new NumberValue('-8');
     $this->date1 = new Date(2012, 12, 2);
     $this->dateTime1 =
-        new DfpDateTime($this->date1, 12, 45, 0, PqlTest::TIME_ZONE_ID1);
+        new DfpDateTime($this->date1, 12, 45, 0, self::TIME_ZONE_ID1);
     $this->dateValue1 = new DateValue($this->date1);
     $this->dateTimeValue1 = new DateTimeValue($this->dateTime1);
 

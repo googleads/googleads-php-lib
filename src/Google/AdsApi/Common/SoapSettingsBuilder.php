@@ -205,11 +205,6 @@ class SoapSettingsBuilder implements AdsBuilder {
    * @see AdsBuilder::validate()
    */
   public function validate() {
-    if ($this->proxyHost !== null
-        && filter_var($this->proxyHost, FILTER_VALIDATE_URL) === false) {
-      throw new InvalidArgumentException('Proxy host must be a valid URL.');
-    }
-
     if ($this->sslCaFile !== null) {
       if (!file_exists($this->sslCaFile)) {
         throw new InvalidArgumentException(sprintf(

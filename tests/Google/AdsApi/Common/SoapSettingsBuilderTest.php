@@ -68,6 +68,16 @@ class SoapSettingsBuilderTest extends PHPUnit_Framework_TestCase {
   }
 
   /**
+   * @covers Google\AdsApi\Common\SoapSettingsBuilder::build
+   */
+  public function testBuildWithIpAsProxyHost() {
+    $soapSettings = $this->soapSettingsBuilder
+        ->withProxyHost('127.0.0.1')
+        ->build();
+    $this->assertSame('127.0.0.1', $soapSettings->getProxyHost());
+  }
+
+  /**
    * @covers Google\AdsApi\Common\SoapSettingsBuilder::from
    */
   public function testBuildFromDefaults() {
@@ -88,16 +98,6 @@ class SoapSettingsBuilderTest extends PHPUnit_Framework_TestCase {
     $this->assertNull($soapSettings->getProxyPort());
     $this->assertNull($soapSettings->getProxyUser());
     $this->assertNull($soapSettings->getProxyPassword());
-  }
-
-  /**
-   * @covers Google\AdsApi\Common\SoapSettingsBuilder::build
-   * @expectedException InvalidArgumentException
-   */
-  public function testBuildFailsWithInvalidProxyHost() {
-    $this->soapSettingsBuilder
-        ->withProxyHost('abcxyz')
-        ->build();
   }
 
   /**

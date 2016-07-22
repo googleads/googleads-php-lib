@@ -46,8 +46,7 @@ class ReportDownloaderTest extends PHPUnit_Framework_TestCase {
   }
 
   /**
-   * @covers
-   *     Google\AdsApi\Dfp\Util\v201602\ReportDownloader::waitForReportToFinish
+   * @covers Google\AdsApi\Dfp\Util\v201602\ReportDownloader::waitForReportToFinish
    */
   public function testWaitForReportToFinishFinishesImmediatelySuccess() {
     $this->reportServiceMock->expects($this->once())
@@ -58,8 +57,7 @@ class ReportDownloaderTest extends PHPUnit_Framework_TestCase {
   }
 
   /**
-   * @covers
-   *     Google\AdsApi\Dfp\Util\v201602\ReportDownloader::waitForReportToFinish
+   * @covers Google\AdsApi\Dfp\Util\v201602\ReportDownloader::waitForReportToFinish
    */
   public function testWaitForReportToFinishFinishesImmediatelyFailed() {
     $this->reportServiceMock->expects($this->once())
@@ -70,8 +68,7 @@ class ReportDownloaderTest extends PHPUnit_Framework_TestCase {
   }
 
   /**
-   * @covers
-   *     Google\AdsApi\Dfp\Util\v201602\ReportDownloader::waitForReportToFinish
+   * @covers Google\AdsApi\Dfp\Util\v201602\ReportDownloader::waitForReportToFinish
    */
   public function testWaitForReportToFinishPollsOnceSuccess() {
     $this->reportServiceMock->expects($this->exactly(2))
@@ -86,8 +83,7 @@ class ReportDownloaderTest extends PHPUnit_Framework_TestCase {
   }
 
   /**
-   * @covers
-   *     Google\AdsApi\Dfp\Util\v201602\ReportDownloader::downloadReport
+   * @covers Google\AdsApi\Dfp\Util\v201602\ReportDownloader::downloadReport
    */
   public function testDownloadReportAsStream() {
     $this->reportServiceMock->expects($this->once())
@@ -116,8 +112,7 @@ class ReportDownloaderTest extends PHPUnit_Framework_TestCase {
   }
 
   /**
-   * @covers
-   *     Google\AdsApi\Dfp\Util\v201602\ReportDownloader::downloadReport
+   * @covers Google\AdsApi\Dfp\Util\v201602\ReportDownloader::downloadReport
    * @expectedException UnexpectedValueException
    */
   public function testDownloadReportBeforeCompleteThrowsEx() {

@@ -40,8 +40,7 @@ class AdsHeaderHandlerHelperTest extends PHPUnit_Framework_TestCase {
   }
 
   /**
-   * @covers
-   *     Google\AdsApi\Common\AdsHeaderHandlerHelper::formatApplicationNameForSoapHeader
+   * @covers Google\AdsApi\Common\AdsHeaderHandlerHelper::formatApplicationNameForSoapHeader
    */
   public function testFormatApplicationNameForSoapHeader() {
     $libraryMetadataProviderMock = $this->getMock(
