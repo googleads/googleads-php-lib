@@ -3666,6 +3666,7 @@ if (!class_exists("MutateMembers", false)) {
    * 
    * 
    * Mutate members of user lists by either adding or removing their lists of members.
+   * The following {@link Operator}s are supported: ADD and REMOVE.
    * 
    * <p>Note that operations cannot have same user list id but different operators.
    * 
@@ -5646,6 +5647,7 @@ if (!class_exists("AdwordsUserListService", false)) {
      * 
      * 
      * Mutate members of user lists by either adding or removing their lists of members.
+     * The following {@link Operator}s are supported: ADD and REMOVE.
      * 
      * <p>Note that operations cannot have same user list id but different operators.
      * 

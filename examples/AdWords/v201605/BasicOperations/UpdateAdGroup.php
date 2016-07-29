@@ -46,7 +46,7 @@ function UpdateAdGroupExample(AdWordsUser $user, $adGroupId) {
 
   // Update the bid.
   $bid = new CpcBid();
-  $bid->bid =  new Money(0.75 * AdWordsConstants::MICROS_PER_DOLLAR);
+  $bid->bid =  new Money(intval(0.75 * AdWordsConstants::MICROS_PER_DOLLAR));
   $biddingStrategyConfiguration = new BiddingStrategyConfiguration();
   $biddingStrategyConfiguration->bids[] = $bid;
   $adGroup->biddingStrategyConfiguration = $biddingStrategyConfiguration;

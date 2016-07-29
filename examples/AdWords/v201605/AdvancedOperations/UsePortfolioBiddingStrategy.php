@@ -64,8 +64,8 @@ function CreateBiddingStrategy(AdWordsUser $user) {
 
   $biddingScheme = new TargetSpendBiddingScheme();
   // Optionally set additional bidding scheme parameters.
-  $biddingScheme->bidCeiling = new Money('2000000');
-  $biddingScheme->spendTarget = new Money('20000000');
+  $biddingScheme->bidCeiling = new Money(2000000);
+  $biddingScheme->spendTarget = new Money(20000000);
 
   $biddingStrategy->biddingScheme = $biddingScheme;
 

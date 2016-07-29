@@ -1,7 +1,7 @@
 <?php
 /**
- * This example adds a remarketing user list (a.k.a. audience) and uploads
- * hashed email addresses to populate the list.
+ * This example adds a user list (a.k.a. audience) and uploads hashed email
+ * addresses to populate the list.
  *
  * <p>
  * <em>Note:</em> It may take up to several hours for the list to be populated
@@ -52,7 +52,7 @@ function AddCrmBasedUserList(AdWordsUser $user, array $EMAILS) {
   $userListService = $user->GetService('AdwordsUserListService',
       ADWORDS_VERSION);
 
-  // Create remarketing user list.
+  // Create a user list.
   $userList = new CrmBasedUserList();
   $userList->name = 'Customer relationship management list #' . uniqid();
   $userList->description =

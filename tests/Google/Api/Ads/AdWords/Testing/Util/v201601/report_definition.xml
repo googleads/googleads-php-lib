@@ -7,9 +7,19 @@
     <fields>Clicks</fields>
     <fields>Cost</fields>
     <predicates>
-      <field>Clicks</field>
+      <field>Conversions</field>
       <operator>GREATER_THAN</operator>
-      <values>0</values>
+      <values>2</values>
+    </predicates>
+    <predicates>
+      <field>AllConversions</field>
+      <operator>LESS_THAN</operator>
+      <values>50.52</values>
+    </predicates>
+    <predicates>
+      <field>AverageCost</field>
+      <operator>LESS_THAN</operator>
+      <values>2050000</values>
     </predicates>
   </selector>
   <reportName>Custom Adgroup Performance Report</reportName>

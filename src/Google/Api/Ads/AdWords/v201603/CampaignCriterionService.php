@@ -3691,6 +3691,8 @@ if (!class_exists("LocationGroups", false)) {
    * function.setRhsOperand(Arrays.asList(
    * (Operand) new GeoTargetOperand(Lists.newArrayList(new CriterionId(2250L))));
    * </code></pre>
+   * 
+   * <p>NOTE: Starting v201607 places of interest targeting is read only.</p>
    * <span class="constraint AdxEnabled">This is disabled for AdX when it is contained within Operators: ADD, SET.</span>
    * @package Google_Api_Ads_AdWords_v201603
    * @subpackage v201603

@@ -26,6 +26,7 @@
  *             Version 2.0
  */
 require_once 'FakeClasses.php';
+require_once 'Google/Api/Ads/AdWords/Lib/AdWordsConstants.php';
 require_once 'Google/Api/Ads/AdWords/Util/v201601/ReportClasses.php';
 require_once 'Google/Api/Ads/AdWords/Util/v201601/BatchJobClasses.php';
 require_once 'Google/Api/Ads/AdWords/v201601/CampaignService.php';
@@ -210,7 +211,12 @@ class XmlTestHelper {
     $selector->fields =
         array('CampaignId', 'Id', 'Impressions', 'Clicks', 'Cost');
     $selector->predicates[] =
-        new Predicate('Clicks', 'GREATER_THAN', array('0'));
+        new Predicate('Conversions', 'GREATER_THAN', array(2.0));
+    $selector->predicates[] =
+        new Predicate('AllConversions', 'LESS_THAN', array(50.52));
+    $selector->predicates[] =
+        new Predicate('AverageCost', 'LESS_THAN',
+            array(2.05 * AdWordsConstants::MICROS_PER_DOLLAR));
 
     self::$REPORT_DEFINITION_OBJECT = new ReportDefinition();
     self::$REPORT_DEFINITION_OBJECT->selector = $selector;

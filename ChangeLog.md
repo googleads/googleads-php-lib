@@ -1,3 +1,8 @@
+### 10.1.0
+
+AdWords:
+  - Added support and examples for v201607.
+
 ### 10.0.0
 
 AdWords:
