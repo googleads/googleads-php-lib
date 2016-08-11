@@ -2,8 +2,6 @@
 /**
  * This example gets keyword ideas related to a seed keyword.
  *
- * Restriction: adwords-only
- *
  * Copyright 2016, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -40,15 +38,19 @@ function GetKeywordIdeasExample(AdWordsUser $user) {
   $targetingIdeaService =
       $user->GetService('TargetingIdeaService', ADWORDS_VERSION);
 
-  // Create seed keyword.
-  $keyword = 'mars cruise';
-
   // Create selector.
   $selector = new TargetingIdeaSelector();
   $selector->requestType = 'IDEAS';
   $selector->ideaType = 'KEYWORD';
   $selector->requestedAttributeTypes = array('KEYWORD_TEXT', 'SEARCH_VOLUME',
       'CATEGORY_PRODUCTS_AND_SERVICES');
+
+  // Create seed keyword.
+  $keyword = 'mars cruise';
+  // Create related to query search parameter.
+  $relatedToQuerySearchParameter = new RelatedToQuerySearchParameter();
+  $relatedToQuerySearchParameter->queries = array($keyword);
+  $selector->searchParameters[] = $relatedToQuerySearchParameter;
 
   // Create language search parameter (optional).
   // The ID can be found in the documentation:
@@ -58,12 +60,18 @@ function GetKeywordIdeasExample(AdWordsUser $user) {
   $english = new Language();
   $english->id = 1000;
   $languageParameter->languages = array($english);
-
-  // Create related to query search parameter.
-  $relatedToQuerySearchParameter = new RelatedToQuerySearchParameter();
-  $relatedToQuerySearchParameter->queries = array($keyword);
-  $selector->searchParameters[] = $relatedToQuerySearchParameter;
   $selector->searchParameters[] = $languageParameter;
+
+  // Create network search parameter (optional).
+  $networkSetting = new NetworkSetting();
+  $networkSetting->targetGoogleSearch = true;
+  $networkSetting->targetSearchNetwork = false;
+  $networkSetting->targetContentNetwork = false;
+  $networkSetting->targetPartnerSearchNetwork = false;
+
+  $networkSearchParameter = new NetworkSearchParameter();
+  $networkSearchParameter->networkSetting = $networkSetting;
+  $selector->searchParameters[] = $networkSearchParameter;
 
   // Set selector paging (required by this service).
   $selector->paging = new Paging(0, AdWordsConstants::RECOMMENDED_PAGE_SIZE);

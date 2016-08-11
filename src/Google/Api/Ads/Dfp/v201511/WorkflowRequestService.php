@@ -5,7 +5,7 @@
  *
  * PHP version 5
  *
- * Copyright 2014, Google Inc. All Rights Reserved.
+ * Copyright 2016, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201511
  * @category   WebServices
- * @copyright  2014, Google Inc. All Rights Reserved.
+ * @copyright  2016, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
@@ -2525,7 +2525,7 @@ if (!class_exists("WorkflowRequestType", false)) {
 
 if (!class_exists("WorkflowExternalConditionStatus", false)) {
   /**
-   * The status of workflow external conditions during workflow execution.
+   * The status of a workflow rule during workflow execution.
    * @package GoogleApiAdsDfp
    * @subpackage v201511
    */

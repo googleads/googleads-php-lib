@@ -1553,7 +1553,13 @@ if (!class_exists("ComparableValue", false)) {
 
 if (!class_exists("ConversionOptimizerBiddingScheme", false)) {
   /**
-   * Conversion optimizer bidding strategy helps you maximize your return on investment
+   * This bidding strategy has been deprecated and replaced with
+   * {@linkplain TargetCpaBiddingScheme TargetCpa}. After V201601, we no longer allow
+   * advertisers to opt into this strategy--{@code ConversionOptimizerBiddingScheme}
+   * solely exists so that advertisers can access campaigns that had specified
+   * this strategy.</p>
+   * 
+   * <p>Conversion optimizer bidding strategy helps you maximize your return on investment
    * (ROI) by automatically getting you the most possible conversions for your budget.
    * 
    * <p class="warning">{@code pricingMode} currently defaults to {@code CLICKS} and
@@ -1565,7 +1571,7 @@ if (!class_exists("ConversionOptimizerBiddingScheme", false)) {
    * <code>ConversionOptimizer</code> bidding strategy.</p>
    * 
    * <p>For more information on conversion optimizer, visit the
-   * <a href="https://support.google.com/adwords/answer/2471188"
+   * <a href="https://support.google.com/adwords/answer/2390684"
    * >Conversion Optimizer help center</a>.</p>
    * <span class="constraint AdxEnabled">This is disabled for AdX.</span>
    * @package Google_Api_Ads_AdWords_v201601
@@ -3856,7 +3862,6 @@ if (!class_exists("Paging", false)) {
 if (!class_exists("PagingError", false)) {
   /**
    * Error codes for pagination.
-   * See {@link com.google.ads.api.services.common.pagination.Paging}.
    * @package Google_Api_Ads_AdWords_v201601
    * @subpackage v201601
    */
@@ -5425,17 +5430,17 @@ if (!class_exists("String_StringMapEntry", false)) {
 
 if (!class_exists("TargetCpaBiddingScheme", false)) {
   /**
-   * Target Cpa bidding strategy helps you maximize your return on investment
-   * (ROI) by automatically getting you the most possible conversions for your budget.
+   * <a href="https://support.google.com/adwords/answer/6268632">Target CPA</a> is an automated bid
+   * strategy that sets bids to help get as many conversions as possible at the target
+   * cost-per-acquisition (CPA) you set.
    * 
-   * This is similar to the <code>ConversionOptimizerBiddingScheme<code> but does not
-   * support user-entered AdGroup-level target CPA bids, but rather a strategy-wide
-   * average CPA target.
+   * <p>A {@linkplain #targetCpa target CPA} must be set for the strategy, but can also be optionally
+   * set for individual ad groups in the strategy. Ad group targets, if set, will override strategy
+   * targets.
    * 
-   * <p>Note that campaigns must meet <a
-   * href="//support.google.com/adwords/answer/2471188">specific
-   * eligibility requirements</a> before they can use the <code>TargetCpaBiddingScheme</code>
-   * bidding strategy.
+   * <p>Note that campaigns must meet
+   * <a href="https://support.google.com/adwords/answer/2471188">specific eligibility requirements</a>
+   * before they can use the Target CPA bid strategy.
    * <span class="constraint AdxEnabled">This is disabled for AdX.</span>
    * @package Google_Api_Ads_AdWords_v201601
    * @subpackage v201601
@@ -5631,9 +5636,8 @@ if (!class_exists("TargetRoasBiddingScheme", false)) {
 
 if (!class_exists("TargetSpendBiddingScheme", false)) {
   /**
-   * Target Spend bidding scheme, in which Google automatically places
-   * bids for the user based on their daily/monthly budget or optional
-   * spend target.
+   * <a href="https://support.google.com/adwords/answer/6268626">Target Spend</a> is an automated
+   * bid strategy that sets your bids to help get as many clicks as possible within your budget.
    * <span class="constraint AdxEnabled">This is disabled for AdX.</span>
    * @package Google_Api_Ads_AdWords_v201601
    * @subpackage v201601
@@ -6652,7 +6656,8 @@ if (!class_exists("BiddingStrategySource", false)) {
 
 if (!class_exists("BiddingStrategyType", false)) {
   /**
-   * The bidding strategy type.
+   * The bidding strategy type. See {@linkplain BiddingStrategyConfiguration}
+   * for additional information.
    * @package Google_Api_Ads_AdWords_v201601
    * @subpackage v201601
    */
@@ -7381,7 +7386,7 @@ if (!class_exists("KeywordMatchType", false)) {
 
 if (!class_exists("LabelStatus", false)) {
   /**
-   * <span class="constraint Rejected">Used for return value only. An enumeration could not be processed, typically due to incompatibility with your WSDL version.</span>
+   * The label is enabled.
    * @package Google_Api_Ads_AdWords_v201601
    * @subpackage v201601
    */
@@ -8766,11 +8771,9 @@ if (!class_exists("MutateLabel", false)) {
    * {@linkplain AdGroupCriterion ad group criterion}. The {@code adGroupId} and
    * {@code criterionId}
    * must reference an existing {@linkplain AdGroupCriterion ad group criterion}. The
-   * {@code labelId} must reference an existing
-   * {@linkplain com.google.ads.api.services.campaignmgmt.label.Label label}.
+   * {@code labelId} must reference an existing {@linkplain Label label}.
    * <p>Remove - Removes the link between the specified
-   * {@linkplain AdGroupCriterion ad group criterion} and
-   * {@linkplain com.google.ads.api.services.campaignmgmt.label.Label label}.</p>
+   * {@linkplain AdGroupCriterion ad group criterion} and {@linkplain Label label}.</p>
    * @param operations the operations to apply
    * @return a list of AdGroupCriterionLabel where each entry in the list is the result of
    * applying the operation in the input list with the same index. For an
@@ -10317,11 +10320,9 @@ if (!class_exists("AdGroupCriterionService", false)) {
      * {@linkplain AdGroupCriterion ad group criterion}. The {@code adGroupId} and
      * {@code criterionId}
      * must reference an existing {@linkplain AdGroupCriterion ad group criterion}. The
-     * {@code labelId} must reference an existing
-     * {@linkplain com.google.ads.api.services.campaignmgmt.label.Label label}.
+     * {@code labelId} must reference an existing {@linkplain Label label}.
      * <p>Remove - Removes the link between the specified
-     * {@linkplain AdGroupCriterion ad group criterion} and
-     * {@linkplain com.google.ads.api.services.campaignmgmt.label.Label label}.</p>
+     * {@linkplain AdGroupCriterion ad group criterion} and {@linkplain Label label}.</p>
      * @param operations the operations to apply
      * @return a list of AdGroupCriterionLabel where each entry in the list is the result of
      * applying the operation in the input list with the same index. For an

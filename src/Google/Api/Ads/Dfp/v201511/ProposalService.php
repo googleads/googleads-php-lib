@@ -5,7 +5,7 @@
  *
  * PHP version 5
  *
- * Copyright 2014, Google Inc. All Rights Reserved.
+ * Copyright 2016, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201511
  * @category   WebServices
- * @copyright  2014, Google Inc. All Rights Reserved.
+ * @copyright  2016, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
@@ -5294,6 +5294,10 @@ if (!class_exists("GetProposalsByStatement", false)) {
    * <td>{@code customThirdPartyAdServerName}</td>
    * <td>{@link Proposal#customThirdPartyAdServerName}</td>
    * </tr>
+   * <tr>
+   * <td>{@code hasOfflineErrors}</td>
+   * <td>{@link Proposal#hasOfflineErrors}</td>
+   * </tr>
    * </table>
    * 
    * @param filterStatement a Publisher Query Language statement used to filter
@@ -6224,6 +6228,10 @@ if (!class_exists("ProposalService", false)) {
      * <tr>
      * <td>{@code customThirdPartyAdServerName}</td>
      * <td>{@link Proposal#customThirdPartyAdServerName}</td>
+     * </tr>
+     * <tr>
+     * <td>{@code hasOfflineErrors}</td>
+     * <td>{@link Proposal#hasOfflineErrors}</td>
      * </tr>
      * </table>
      * 

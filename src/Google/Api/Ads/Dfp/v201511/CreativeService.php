@@ -5,7 +5,7 @@
  *
  * PHP version 5
  *
- * Copyright 2014, Google Inc. All Rights Reserved.
+ * Copyright 2016, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201511
  * @category   WebServices
- * @copyright  2014, Google Inc. All Rights Reserved.
+ * @copyright  2016, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
@@ -1025,6 +1025,50 @@ if (!class_exists("CreativeTemplateError", false)) {
     /**
      * @access public
      * @var tnsCreativeTemplateErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+    }
+
+  }
+}
+
+if (!class_exists("CreativeTemplateOperationError", false)) {
+  /**
+   * An error that can occur while performing an operation on a creative template.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201511
+   */
+  class CreativeTemplateOperationError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201511";
+    const XSI_TYPE = "CreativeTemplateOperationError";
+
+    /**
+     * @access public
+     * @var tnsCreativeTemplateOperationErrorReason
      */
     public $reason;
 
@@ -4625,6 +4669,39 @@ if (!class_exists("CreativeTemplateErrorReason", false)) {
   }
 }
 
+if (!class_exists("CreativeTemplateOperationErrorReason", false)) {
+  /**
+   * The reasons for the target error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201511
+   */
+  class CreativeTemplateOperationErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201511";
+    const XSI_TYPE = "CreativeTemplateOperationError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("CustomCreativeErrorReason", false)) {
   /**
    * The reasons for the target error.
@@ -8127,7 +8204,7 @@ if (!class_exists("RichMediaStudioCreative", false)) {
 if (!class_exists("SetTopBoxCreative", false)) {
   /**
    * A {@code Creative} that will be served into cable set-top boxes. There are no assets for this
-   * creative type, as they are hosted by Canoe.
+   * creative type, as they are hosted by external cable systems.
    * @package GoogleApiAdsDfp
    * @subpackage v201511
    */
@@ -8309,8 +8386,7 @@ if (!class_exists("VideoCreative", false)) {
 if (!class_exists("VideoRedirectCreative", false)) {
   /**
    * A {@code Creative} that contains externally hosted video ads and
-   * is served via VAST 2.0 XML. This creative is read-only in versions
-   * V201408 and lower.
+   * is served via VAST 2.0 XML.
    * @package GoogleApiAdsDfp
    * @subpackage v201511
    */
@@ -8500,6 +8576,7 @@ if (!class_exists("CreativeService", false)) {
       "CreativePage" => "CreativePage",
       "CreativeSetError" => "CreativeSetError",
       "CreativeTemplateError" => "CreativeTemplateError",
+      "CreativeTemplateOperationError" => "CreativeTemplateOperationError",
       "CustomCreative" => "CustomCreative",
       "CustomCreativeError" => "CustomCreativeError",
       "CustomFieldValue" => "CustomFieldValue",
@@ -8593,6 +8670,7 @@ if (!class_exists("CreativeService", false)) {
       "CreativePolicyViolation" => "CreativePolicyViolation",
       "CreativeSetError.Reason" => "CreativeSetErrorReason",
       "CreativeTemplateError.Reason" => "CreativeTemplateErrorReason",
+      "CreativeTemplateOperationError.Reason" => "CreativeTemplateOperationErrorReason",
       "CustomCreativeError.Reason" => "CustomCreativeErrorReason",
       "CustomFieldValueError.Reason" => "CustomFieldValueErrorReason",
       "DestinationUrlType" => "DestinationUrlType",

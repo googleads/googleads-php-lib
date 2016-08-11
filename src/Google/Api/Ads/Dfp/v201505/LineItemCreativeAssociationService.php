@@ -5,7 +5,7 @@
  *
  * PHP version 5
  *
- * Copyright 2014, Google Inc. All Rights Reserved.
+ * Copyright 2016, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201505
  * @category   WebServices
- * @copyright  2014, Google Inc. All Rights Reserved.
+ * @copyright  2016, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
@@ -580,6 +580,50 @@ if (!class_exists("CreativeTemplateError", false)) {
     /**
      * @access public
      * @var tnsCreativeTemplateErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+    }
+
+  }
+}
+
+if (!class_exists("CreativeTemplateOperationError", false)) {
+  /**
+   * An error that can occur while performing an operation on a creative template.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201505
+   */
+  class CreativeTemplateOperationError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201505";
+    const XSI_TYPE = "CreativeTemplateOperationError";
+
+    /**
+     * @access public
+     * @var tnsCreativeTemplateOperationErrorReason
      */
     public $reason;
 
@@ -3476,6 +3520,39 @@ if (!class_exists("CreativeTemplateErrorReason", false)) {
   }
 }
 
+if (!class_exists("CreativeTemplateOperationErrorReason", false)) {
+  /**
+   * The reasons for the target error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201505
+   */
+  class CreativeTemplateOperationErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201505";
+    const XSI_TYPE = "CreativeTemplateOperationError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("CustomCreativeErrorReason", false)) {
   /**
    * The reasons for the target error.
@@ -5605,6 +5682,7 @@ if (!class_exists("LineItemCreativeAssociationService", false)) {
       "CreativePreviewError" => "CreativePreviewError",
       "CreativeSetError" => "CreativeSetError",
       "CreativeTemplateError" => "CreativeTemplateError",
+      "CreativeTemplateOperationError" => "CreativeTemplateOperationError",
       "CustomCreativeError" => "CustomCreativeError",
       "CustomFieldValueError" => "CustomFieldValueError",
       "Date" => "Date",
@@ -5675,6 +5753,7 @@ if (!class_exists("LineItemCreativeAssociationService", false)) {
       "CreativePreviewError.Reason" => "CreativePreviewErrorReason",
       "CreativeSetError.Reason" => "CreativeSetErrorReason",
       "CreativeTemplateError.Reason" => "CreativeTemplateErrorReason",
+      "CreativeTemplateOperationError.Reason" => "CreativeTemplateOperationErrorReason",
       "CustomCreativeError.Reason" => "CustomCreativeErrorReason",
       "CustomFieldValueError.Reason" => "CustomFieldValueErrorReason",
       "EntityChildrenLimitReachedError.Reason" => "EntityChildrenLimitReachedErrorReason",

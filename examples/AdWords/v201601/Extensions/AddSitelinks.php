@@ -3,8 +3,6 @@
  * This example adds a sitelinks feed and associates it with a campaign.
  * To get campaigns, run GetCampaigns.php.
  *
- * Restriction: adwords-only
- *
  * Copyright 2015, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");

@@ -5,7 +5,7 @@
  *
  * PHP version 5
  *
- * Copyright 2014, Google Inc. All Rights Reserved.
+ * Copyright 2016, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@
  * @package    GoogleApiAdsDfp
  * @subpackage v201508
  * @category   WebServices
- * @copyright  2014, Google Inc. All Rights Reserved.
+ * @copyright  2016, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
@@ -4299,7 +4299,7 @@ if (!class_exists("PermissionError", false)) {
 
 if (!class_exists("ProgrammaticError", false)) {
   /**
-   * Errors associated with programmatic line items
+   * Errors associated with programmatic line items.
    * @package GoogleApiAdsDfp
    * @subpackage v201508
    */
@@ -8266,7 +8266,7 @@ if (!class_exists("CreativePersistenceType", false)) {
 
 if (!class_exists("ProgrammaticErrorReason", false)) {
   /**
-   * Audience extension is not supported by programmatic line items.
+   * Possible error reasons for a programmatic error.
    * @package GoogleApiAdsDfp
    * @subpackage v201508
    */

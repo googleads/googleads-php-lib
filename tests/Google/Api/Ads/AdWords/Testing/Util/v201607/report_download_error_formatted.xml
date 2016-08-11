@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reportDownloadError>
+  <ApiError>
+    <trigger>Test</trigger>
+    <type>ReportDefinitionError.INVALID_FIELD_NAME_FOR_REPORT</type>
+  </ApiError>
+  <ApiError>
+    <trigger>Test2</trigger>
+    <type>NO_ENUMS_FOR_THIS_COLUMN_NAME</type>
+  </ApiError>
+</reportDownloadError>

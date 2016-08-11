@@ -57,12 +57,18 @@ function DownloadCriteriaReportWithAwqlExample(AdWordsUser $user, $filePath,
   // $options['skipReportHeader'] = true;
   // $options['skipColumnHeader'] = true;
   // $options['skipReportSummary'] = true;
+  //
+  // Optional: Set useRawEnumValues to return enum values instead of enum
+  //     display values.
+  // $options['useRawEnumValues'] = false;
+  //
   // Optional: Set includeZeroImpressions to include zero impression rows in
   //     the report output.
   // $options['includeZeroImpressions'] = true;
 
   // Download report.
-  ReportUtils::DownloadReportWithAwql($reportQuery, $filePath, $user,
+  $reportUtils = new ReportUtils();
+  $reportUtils->DownloadReportWithAwql($reportQuery, $filePath, $user,
       $reportFormat, $options);
 
   printf("Report was downloaded to '%s'.\n", $filePath);

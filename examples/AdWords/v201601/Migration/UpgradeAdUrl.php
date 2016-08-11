@@ -2,8 +2,6 @@
 /**
  * This code example upgrades an ad to use upgraded URLs.
  *
- * Restriction: adwords-only
- *
  * Copyright 2015, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");

@@ -3,8 +3,6 @@
  * This example gets the account hierarchy under the current account. Note: this
  * example must be run using the credentials of an AdWords manager account.
  *
- * Restriction: adwords-only
- *
  * PHP version 5
  *
  * Copyright 2016, Google Inc. All Rights Reserved.
@@ -61,7 +59,7 @@ function GetAccountHierarchyExample(AdWordsUser $user) {
       if (isset($graph->links)) {
         foreach ($graph->links as $link) {
           $childLinks[$link->managerCustomerId][] = $link;
-          $parentLinks[$link->clientCustomerId][] = $link;
+          $parentLinks[$link->clientCustomerId] = $link;
         }
       }
       foreach ($graph->entries as $account) {
@@ -79,9 +77,13 @@ function GetAccountHierarchyExample(AdWordsUser $user) {
     }
   }
 
-  // Display account tree.
-  print "(Customer Id, Account Name)\n";
-  DisplayAccountTree($rootAccount, $accounts, $childLinks, 0);
+  if ($rootAccount !== null) {
+    // Display account tree.
+    print "(Customer Id, Account Name)\n";
+    DisplayAccountTree($rootAccount, $accounts, $childLinks, 0);
+  } else {
+    printf("No accounts were found.\n");
+  }
 }
 
 /**

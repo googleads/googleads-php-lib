@@ -25,6 +25,7 @@
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
+require_once 'Google/Api/Ads/Common/Util/AdsUtilityRegistry.php';
 require_once 'Google/Api/Ads/Common/Util/Logger.php';
 require_once 'Google/Api/Ads/Common/Util/SimpleOAuth2Handler.php';
 require_once 'Google/Api/Ads/Common/Lib/SoapClientFactory.php';
@@ -52,6 +53,7 @@ abstract class AdsUser {
   private $authServer;
   private $oauth2Info;
   private $oauth2Handler;
+  private $isIncludeUtilitiesInUserAgent;
 
   /**
    * Constructor for AdsUser.
@@ -67,10 +69,11 @@ abstract class AdsUser {
   /**
    * Gets the authenticaiton value for the <var>$authVar</var> supplied. If
    * the <var>$authVar</var> is set, it is is used. Otherwise, the supplied
-   * <var>$authenticationIni</var> is queired for the variable. If none is found
+   * <var>$authenticationIni</var> is queried for the variable. If none is found
    * <var>null</var> is returned.
-   * @param string $authVar the default value for the authenticaiton variable
-   * @param string $authVarName the name of the authencation variable
+   * @param string|null $authVar the default value for the authentication
+   *     variable
+   * @param string $authVarName the name of the authentication variable
    * @param array $authIni the array of authentication variables from
    *     an INI file
    * @return string the authentication variable value
@@ -197,6 +200,10 @@ abstract class AdsUser {
     $libLogDirPath = $this->GetSetting($settingsIni, 'LOGGING',
         'LIB_LOG_DIR_PATH', $defaultLogsDir);
     $relativePath = realpath($logsRelativePathBase . '/' . $libLogDirPath);
+    // User agent settings.
+    $this->isIncludeUtilitiesInUserAgent =
+        $this->GetSetting($settingsIni, 'LOGGING',
+            'includeUtilitiesInUserAgent', 'true');
 
     if ($pathRelative && $relativePath) {
       $this->logsDirectory = $relativePath;
@@ -432,6 +439,23 @@ abstract class AdsUser {
   }
 
   /**
+   * @return boolean whether or not names of ads utilities being used will be
+   *     included in the user agent
+   */
+  public function getIsIncludeUtilitiesInUserAgent() {
+    return $this->isIncludeUtilitiesInUserAgent;
+  }
+
+  /**
+   * @param boolean $isIncludeUtilitiesInUserAgent whether ads utilities being
+   *     used will be included in the user agent
+   */
+  public function setIncludeUtilitiesInUserAgent(
+      $isIncludeUtilitiesInUserAgent) {
+    $this->isIncludeUtilitiesInUserAgent = $isIncludeUtilitiesInUserAgent;
+  }
+
+  /**
    * Gets the appropriate user agent header name for the API this client library
    * is targeting.
    * @return string The user agent header name.
@@ -465,20 +489,28 @@ abstract class AdsUser {
   }
 
   /**
-   * Gets all the user agent parts that identify this client library.
+   * Gets all the user agent parts that identify this client library plus user
+   * agent parts from the ads utilities registry.
    * @return array An array of all the user agent parts that identify this
    *     client library where each user agent part has been joined by a '/'
    *     (forward slash).
    */
   private function GetAllClientLibraryUserAgentParts() {
-    $allUserAgentParts[] = implode('/',
+    $clientLibUserAgentParts[] = implode('/',
         $this->GetClientLibraryNameAndVersion());
 
     foreach ($this->GetCommonClientLibraryUserAgentParts() as $userAgentPart) {
-      $allUserAgentParts[] = implode('/', $userAgentPart);
+      $clientLibUserAgentParts[] = implode('/', $userAgentPart);
     }
 
-    return $allUserAgentParts;
+    if ($this->getIsIncludeUtilitiesInUserAgent() === 'true') {
+      $adsUtilities = AdsUtilityRegistry::getInstance()->popAllUtilities();
+      sort($adsUtilities, SORT_STRING);
+      $clientLibUserAgentParts =
+          array_merge($clientLibUserAgentParts, $adsUtilities);
+    }
+
+    return $clientLibUserAgentParts;
   }
 
   /**
@@ -487,13 +519,15 @@ abstract class AdsUser {
    * TODO(vtsao): The current contract requires that subclasses call this method
    * in their constructor.
    *
-   * @param $applicationName The application name that will appear in this
-   *     header.
+   * @param string $applicationName The application name that will appear in
+   *     this header
    */
-  public function SetClientLibraryUserAgent($applicationName) {
-    $this->SetHeaderValue($this->GetUserAgentHeaderName(), sprintf("%s (%s)",
-        $applicationName, implode(', ',
-        $this->GetAllClientLibraryUserAgentParts())));
+  public function updateClientLibraryUserAgent($applicationName) {
+    $this->SetHeaderValue(
+        $this->GetUserAgentHeaderName(),
+        sprintf("%s (%s)", $applicationName,
+            implode(', ', $this->GetAllClientLibraryUserAgentParts()))
+    );
   }
 
   /**

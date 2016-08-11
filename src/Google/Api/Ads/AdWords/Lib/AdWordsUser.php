@@ -75,21 +75,21 @@ class AdWordsUser extends AdsUser {
    * <p>Likewise, if a custom settings INI file is not provided, the default
    * settings INI file will be loaded from the path of "../settings.ini"
    * relative to this file's directory.</p>
-   * @param string $authenticationIniPath the absolute path to the
+   * @param string|null $authenticationIniPath the absolute path to the
    *     authentication INI or relative to the current directory (cwd). If
    *     <var>null</var>, the default authentication INI file will attempt to be
    *     loaded
-   * @param string $developerToken the developer token (required header). Will
-   *     overwrite the developer token entry loaded from any INI file
-   * @param string $userAgent the user agent name (required header). Will
+   * @param string|null $developerToken the developer token (required header).
+   *     Will overwrite the developer token entry loaded from any INI file
+   * @param string|null $userAgent the user agent name (required header). Will
    *     be prepended with the library name and version. Will overwrite the
    *     userAgent entry loaded from any INI file
-   * @param string $clientCustomerId the client customer ID to make the request
-   *     against (optional header). Will overwrite the clientCustomerId entry
-   *     loaded from any INI file
-   * @param string $settingsIniPath the path to the settings INI file. If
+   * @param string|null $clientCustomerId the client customer ID to make the
+   *     request against (optional header). Will overwrite the clientCustomerId
+   *     entry loaded from any INI file
+   * @param string|null $settingsIniPath the path to the settings INI file. If
    *     <var>null</var>, the default settings INI file will be loaded
-   * @param array $oauth2Info the OAuth 2.0 information to use for requests
+   * @param array|null $oauth2Info the OAuth 2.0 information to use for requests
    */
   public function __construct($authenticationIniPath = null,
       $developerToken = null, $userAgent = null, $clientCustomerId = null,
@@ -138,7 +138,7 @@ class AdWordsUser extends AdsUser {
 
     $this->SetOAuth2Info($oauth2Info);
     $this->SetUserAgent($userAgent);
-    $this->SetClientLibraryUserAgent($userAgent);
+    $this->updateClientLibraryUserAgent($userAgent);
     $this->SetClientCustomerId($clientCustomerId);
     $this->SetDeveloperToken($developerToken);
     $this->SetScopes($scopes);
@@ -195,15 +195,16 @@ class AdWordsUser extends AdsUser {
   /**
    * Gets the service by its service name and group.
    * @param string $serviceName the service name
-   * @param string $version the version of the service to get. If
+   * @param string|null $version the version of the service to get. If
    *     <var>null</var>, then the default version will be used
-   * @param string $server the server to make the request to. If
+   * @param string|null $server the server to make the request to. If
    *     <var>null</var>, then the default server will be used
-   * @param SoapClientFactory $serviceFactory the factory to create the client.
-   *     If <var>null</var>, then the built-in SOAP client factory will be used
-   * @param bool $validateOnly if the service should be created in validateOnly
-   *     mode
-   * @param bool $partialFailure if the service should be created in
+   * @param SoapClientFactory|null $serviceFactory the factory to create the
+   *     client. If <var>null</var>, then the built-in SOAP client factory will
+   *     be used
+   * @param bool|null $validateOnly if the service should be created in
+   *     validateOnly mode
+   * @param bool|null $partialFailure if the service should be created in
    *     partialFailure mode
    * @return SoapClient the instantiated service
    * @throws ServiceException if an error occurred when getting the service
@@ -222,7 +223,7 @@ class AdWordsUser extends AdsUser {
       }
 
       $serviceFactory = new AdWordsSoapClientFactory($this, $version, $server,
-        $validateOnly, $partialFailure);
+          $validateOnly, $partialFailure);
     }
 
     return parent::GetServiceSoapClient($serviceName, $serviceFactory);
@@ -231,8 +232,8 @@ class AdWordsUser extends AdsUser {
   /**
    * Loads the classes within a service, so they can be used before the service
    * is constructed.
-   * @param $serviceName the service name
-   * @param string $version the version of the service to get. If
+   * @param string $serviceName the service name
+   * @param string|null $version the version of the service to get. If
    *     <var>null</var>, then the default version will be used
    */
   public function LoadService($serviceName, $version = null) {

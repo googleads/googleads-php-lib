@@ -66,12 +66,18 @@ function DownloadCriteriaReportExample(AdWordsUser $user, $filePath) {
   // $options['skipReportHeader'] = true;
   // $options['skipColumnHeader'] = true;
   // $options['skipReportSummary'] = true;
+  //
+  // Optional: Set useRawEnumValues to return enum values instead of enum
+  //     display values.
+  // $options['useRawEnumValues'] = false;
+  //
   // Optional: Set includeZeroImpressions to include zero impression rows in
   //     the report output.
   // $options['includeZeroImpressions'] = true;
 
   // Download report.
-  ReportUtils::DownloadReport($reportDefinition, $filePath, $user, $options);
+  $reportUtils = new ReportUtils();
+  $reportUtils->DownloadReport($reportDefinition, $filePath, $user, $options);
   printf("Report with name '%s' was downloaded to '%s'.\n",
       $reportDefinition->reportName, $filePath);
 }

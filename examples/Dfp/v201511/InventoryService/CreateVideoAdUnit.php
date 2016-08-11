@@ -64,7 +64,6 @@ try {
   $adUnit->description = 'Ad unit description.';
   $adUnit->targetWindow = 'BLANK';
   $adUnit->explicitlyTargeted = true;
-  $adUnit->targetPlatform = 'WEB';
 
   // Create master ad unit size.
   $masterAdUnitSize = new AdUnitSize();

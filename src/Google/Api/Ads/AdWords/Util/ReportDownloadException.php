@@ -34,9 +34,9 @@ class ReportDownloadException extends Exception {
    * code that causes this exception.
    *
    * @param string $error an error message
-   * @param string $httpCode an HTTP status code of the response
+   * @param int|null $httpCode an HTTP status code of the response
    */
-  public function __construct($error, $httpCode) {
+  public function __construct($error, $httpCode = null) {
     parent::__construct($error);
     $this->httpCode = $httpCode;
   }
@@ -44,7 +44,7 @@ class ReportDownloadException extends Exception {
   /**
    * Gets the HTTP status code of the response.
    *
-   * @return string the HTTP status code
+   * @return int|null the HTTP status code
    */
   public function GetHttpCode() {
     return $this->httpCode;

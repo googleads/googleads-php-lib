@@ -3,8 +3,6 @@
  * This code sample illustrates how to use BatchJobService to create a complete
  * campaign, including ad groups and keywords.
  *
- * Restriction: adwords-only
- *
  * Copyright 2015, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -115,7 +113,8 @@ function AddCompleteCampaignUsingBatchJobExample(AdWordsUser $user) {
 
     $pollAttempts++;
     if ($batchJob->status !== 'ACTIVE' &&
-        $batchJob->status !== 'AWAITING_FILE') {
+        $batchJob->status !== 'AWAITING_FILE' &&
+        $batchJob->status !== 'CANCELING') {
       $isPending = false;
     }
   } while ($isPending && $pollAttempts <= MAX_POLL_ATTEMPTS);
@@ -140,6 +139,8 @@ function AddCompleteCampaignUsingBatchJobExample(AdWordsUser $user) {
           $processingError->reason
       );
     }
+  } else {
+    printf("No processing errors found.\n");
   }
 
   if ($batchJob->downloadUrl !== null && $batchJob->downloadUrl->url !== null) {
@@ -156,6 +157,8 @@ function AddCompleteCampaignUsingBatchJobExample(AdWordsUser $user) {
         printf("  Operation [%d] - %s\n", $mutateResult->index, $outcome);
       }
     }
+  } else {
+    printf("No results available for download.\n");
   }
 }
 

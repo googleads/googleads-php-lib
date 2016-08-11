@@ -1,3 +1,74 @@
+### 10.1.0
+
+AdWords:
+  - Added support and examples for v201607.
+
+### 10.0.0
+
+AdWords:
+  - Fixed a bug in v201605's AdGroupAdService.php.
+  - Removed support and examples for v201509.
+  - Added new ParallelReportDownload example to demonstrate how to download an
+    Ad Hoc report for all accounts directly under a manager account.
+  - Made the ReportUtils methods DownloadReport and DownloadReportWithAwql
+    non-static for better inversion of control.
+
+Common:
+  - Added support for including utility usage in the user agent header.
+
+### 9.1.0
+
+AdWords:
+  - Fixed [issue #137](https://github.com/googleads/googleads-php-lib/issues/137).
+  - Added support and examples for v201605.
+
+### 9.0.0
+
+AdWords:
+  - Fixed
+[issue #131](https://github.com/googleads/googleads-php-lib/issues/131).
+
+DFP:
+  - Added support for v201605.
+  - Removed examples for v201505
+([deprecated](https://developers.google.com/doubleclick-publishers/docs/deprecation)).
+  - Removed support for v201502
+([sunset](https://developers.google.com/doubleclick-publishers/docs/deprecation)).
+  - Added a creative service example showing how to copy image creatives.
+
+Common:
+  - Updated out of date information in README.md.
+
+### 8.3.0
+
+AdWords:
+  - Removed support and examples for v201506. See deprecation schedule at:
+    https://developers.google.com/adwords/api/docs/sunset-dates
+
+### 8.2.1
+
+AdWords:
+  - Fixed [issue #128](https://github.com/googleads/googleads-php-lib/issues/128).
+
+### 8.2.0
+
+AdWords:
+  - Fixed [issue #123](https://github.com/googleads/googleads-php-lib/issues/123).
+  - Added support and examples for v201603.
+
+DFP:
+  - Fixed [issue #126](https://github.com/googleads/googleads-php-lib/issues/126).
+
+### 8.1.0
+
+AdWords:
+  - Fixed [issue #119](https://github.com/googleads/googleads-php-lib/issues/119).
+
+DFP:
+  - Added support for v201602.
+  - Removed examples for v201502 (deprecated).
+  - Removed support for v201411 (sunset).
+
 ### 8.0.0
 
 AdWords:

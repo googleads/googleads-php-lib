@@ -117,7 +117,7 @@ class XmlSerializer {
    */
   private function ConvertObjectToNodeValue($object) {
     if (is_float($object)) {
-      if (floatval(strval($object)) == $object) {
+      if (bccomp(floatval(strval($object)), $object) === 0) {
         return strval($object);
       } else {
         return sprintf('%.01f', $object);
@@ -125,7 +125,7 @@ class XmlSerializer {
     } else if (is_bool($object)) {
       return $object ? 'true': 'false';
     } else {
-      return strval(htmlspecialchars($object, ENT_XML1, 'UTF-8'));
+      return strval(htmlspecialchars($object));
     }
   }
 

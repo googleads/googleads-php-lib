@@ -2,7 +2,10 @@
     "name": "sidecar/googleads-php-lib",
     "description": "Google Ads APIs Client Library for PHP (AdWords, Adx, and DFP)",
     "require": {
-        "php": ">=5.3.0"
+        "php": ">=5.3.0",
+        "ext-curl": "*",
+        "ext-openssl": "*",
+        "ext-soap": "*"
     },
     "autoload": {
         "classmap": ["src/"]
