@@ -4499,6 +4499,51 @@ if (!class_exists("RangeError", false)) {
   }
 }
 
+if (!class_exists("RegExError", false)) {
+  /**
+   * Caused by supplying a value for an object attribute that does not conform
+   * to a documented valid regular expression.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201602
+   */
+  class RegExError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201602";
+    const XSI_TYPE = "RegExError";
+
+    /**
+     * @access public
+     * @var tnsRegExErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+    }
+
+  }
+}
+
 if (!class_exists("ReleaseLineItems", false)) {
   /**
    * The action used for releasing {@link LineItem} objects.
@@ -5203,14 +5248,9 @@ if (!class_exists("Statement", false)) {
    * <p>
    * An example of such a query might be {@code "WHERE name LIKE 'startswith%'"}.
    * </p>
-   * If using an API version newer than V201010, the value for the variable
-   * idValue must then be set with an object of type {@link Value} and is one of
-   * {@link NumberValue}, {@link TextValue} or {@link BooleanValue}.
-   * <p>
-   * If using an API version older than or equal to V201010, the value for the
-   * variable idValue must then be set with an object of type {@link Param} and is
-   * one of {@link DoubleParam}, {@link LongParam} or {@link StringParam}.
-   * </p>
+   * The value for the variable idValue must then be set with an object of type
+   * {@link Value}, e.g., {@link NumberValue}, {@link TextValue} or
+   * {@link BooleanValue}.
    * @package GoogleApiAdsDfp
    * @subpackage v201602
    */
@@ -7447,7 +7487,8 @@ if (!class_exists("GoalType", false)) {
 
 if (!class_exists("GrpProvider", false)) {
   /**
-   * Represents available GRP providers that a line item will have its target demographic measured by.
+   * Represents available GRP providers that a line item will have its target demographic measured
+   * by.
    * @package GoogleApiAdsDfp
    * @subpackage v201602
    */
@@ -8402,6 +8443,39 @@ if (!class_exists("RangeErrorReason", false)) {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201602";
     const XSI_TYPE = "RangeError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("RegExErrorReason", false)) {
+  /**
+   * The reasons for the target error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201602
+   */
+  class RegExErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201602";
+    const XSI_TYPE = "RegExError.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -10892,6 +10966,7 @@ if (!class_exists("LineItemService", false)) {
       "PublisherQueryLanguageSyntaxError" => "PublisherQueryLanguageSyntaxError",
       "QuotaError" => "QuotaError",
       "RangeError" => "RangeError",
+      "RegExError" => "RegExError",
       "ReleaseLineItems" => "ReleaseLineItems",
       "RequiredCollectionError" => "RequiredCollectionError",
       "RequiredError" => "RequiredError",
@@ -10998,6 +11073,7 @@ if (!class_exists("LineItemService", false)) {
       "PublisherQueryLanguageSyntaxError.Reason" => "PublisherQueryLanguageSyntaxErrorReason",
       "QuotaError.Reason" => "QuotaErrorReason",
       "RangeError.Reason" => "RangeErrorReason",
+      "RegExError.Reason" => "RegExErrorReason",
       "RequiredCollectionError.Reason" => "RequiredCollectionErrorReason",
       "RequiredError.Reason" => "RequiredErrorReason",
       "RequiredNumberError.Reason" => "RequiredNumberErrorReason",

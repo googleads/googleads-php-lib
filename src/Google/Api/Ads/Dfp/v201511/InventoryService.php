@@ -1273,6 +1273,50 @@ if (!class_exists("DeactivateAdUnits", false)) {
   }
 }
 
+if (!class_exists("EntityChildrenLimitReachedError", false)) {
+  /**
+   * Lists errors relating to having too many children on an entity.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201511
+   */
+  class EntityChildrenLimitReachedError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201511";
+    const XSI_TYPE = "EntityChildrenLimitReachedError";
+
+    /**
+     * @access public
+     * @var tnsEntityChildrenLimitReachedErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+    }
+
+  }
+}
+
 if (!class_exists("EntityLimitReachedError", false)) {
   /**
    * An error that occurs when creating an entity if the limit on the number of allowed entities for
@@ -2726,14 +2770,9 @@ if (!class_exists("Statement", false)) {
    * <p>
    * An example of such a query might be {@code "WHERE name LIKE 'startswith%'"}.
    * </p>
-   * If using an API version newer than V201010, the value for the variable
-   * idValue must then be set with an object of type {@link Value} and is one of
-   * {@link NumberValue}, {@link TextValue} or {@link BooleanValue}.
-   * <p>
-   * If using an API version older than or equal to V201010, the value for the
-   * variable idValue must then be set with an object of type {@link Param} and is
-   * one of {@link DoubleParam}, {@link LongParam} or {@link StringParam}.
-   * </p>
+   * The value for the variable idValue must then be set with an object of type
+   * {@link Value}, e.g., {@link NumberValue}, {@link TextValue} or
+   * {@link BooleanValue}.
    * @package GoogleApiAdsDfp
    * @subpackage v201511
    */
@@ -3107,7 +3146,7 @@ if (!class_exists("Value", false)) {
 
 if (!class_exists("AdSenseAccountErrorReason", false)) {
   /**
-   * An error occured while trying to associate an AdSense account with GFP. Unable to create an
+   * An error occured while trying to associate an AdSense account with DFP. Unable to create an
    * association with AdSense or Ad Exchange account.
    * @package GoogleApiAdsDfp
    * @subpackage v201511
@@ -3622,6 +3661,39 @@ if (!class_exists("CrossSellErrorReason", false)) {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201511";
     const XSI_TYPE = "CrossSellError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("EntityChildrenLimitReachedErrorReason", false)) {
+  /**
+   * The reasons for the entity children limit reached error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201511
+   */
+  class EntityChildrenLimitReachedErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201511";
+    const XSI_TYPE = "EntityChildrenLimitReachedError.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -5748,6 +5820,7 @@ if (!class_exists("InventoryService", false)) {
       "DateTimeValue" => "DateTimeValue",
       "DateValue" => "DateValue",
       "DeactivateAdUnits" => "DeactivateAdUnits",
+      "EntityChildrenLimitReachedError" => "EntityChildrenLimitReachedError",
       "EntityLimitReachedError" => "EntityLimitReachedError",
       "FeatureError" => "FeatureError",
       "FrequencyCap" => "FrequencyCap",
@@ -5807,6 +5880,7 @@ if (!class_exists("InventoryService", false)) {
       "CompanyError.Reason" => "CompanyErrorReason",
       "CreativeWrapperError.Reason" => "CreativeWrapperErrorReason",
       "CrossSellError.Reason" => "CrossSellErrorReason",
+      "EntityChildrenLimitReachedError.Reason" => "EntityChildrenLimitReachedErrorReason",
       "EntityLimitReachedError.Reason" => "EntityLimitReachedErrorReason",
       "EnvironmentType" => "EnvironmentType",
       "FeatureError.Reason" => "FeatureErrorReason",

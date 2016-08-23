@@ -2774,7 +2774,7 @@ if (!class_exists("ProductAction", false)) {
 
 if (!class_exists("ProductActionError", false)) {
   /**
-   * An error lists all error reasons associated with performing action on {@link Product} objects.
+   * Lists all error reasons associated with performing actions on {@link Product products}.
    * @package GoogleApiAdsDfp
    * @subpackage v201602
    */
@@ -3006,7 +3006,7 @@ if (!class_exists("Product", false)) {
 
 if (!class_exists("ProductError", false)) {
   /**
-   * A catch-all error that lists all generic errors associated with Product.
+   * Lists all error reasons associated with {@link Product products}.
    * @package GoogleApiAdsDfp
    * @subpackage v201602
    */
@@ -3631,14 +3631,9 @@ if (!class_exists("Statement", false)) {
    * <p>
    * An example of such a query might be {@code "WHERE name LIKE 'startswith%'"}.
    * </p>
-   * If using an API version newer than V201010, the value for the variable
-   * idValue must then be set with an object of type {@link Value} and is one of
-   * {@link NumberValue}, {@link TextValue} or {@link BooleanValue}.
-   * <p>
-   * If using an API version older than or equal to V201010, the value for the
-   * variable idValue must then be set with an object of type {@link Param} and is
-   * one of {@link DoubleParam}, {@link LongParam} or {@link StringParam}.
-   * </p>
+   * The value for the variable idValue must then be set with an object of type
+   * {@link Value}, e.g., {@link NumberValue}, {@link TextValue} or
+   * {@link BooleanValue}.
    * @package GoogleApiAdsDfp
    * @subpackage v201602
    */
@@ -6327,7 +6322,9 @@ if (!class_exists("VideoPositionTargetingErrorReason", false)) {
 if (!class_exists("GetProductsByStatement", false)) {
   /**
    * Gets a {@link ProductPage} of {@link Product} objects that satisfy the criteria specified by
-   * given {@link Statement#query}. The following fields are supported for filtering and/or sorting:
+   * given {@link Statement#query}.
+   * <p>
+   * When using sales management, the following fields are supported for filtering and/or sorting.
    * 
    * <table>
    * <tr>
@@ -6354,6 +6351,7 @@ if (!class_exists("GetProductsByStatement", false)) {
    * <td>Yes</td>
    * <td>Yes</td>
    * </tr>
+   * <tr>
    * <td>{@code productType}</td>
    * <td>{@link Product#productType}</td>
    * <td>Yes</td>
@@ -6382,6 +6380,48 @@ if (!class_exists("GetProductsByStatement", false)) {
    * <td>{@link Product#description}</td>
    * <td>Yes</td>
    * <td>No</td>
+   * </tr>
+   * <tr>
+   * <td>{@code id}</td>
+   * <td>{@link Product#id}</td>
+   * <td>Yes</td>
+   * <td>Yes</td>
+   * </tr>
+   * <tr>
+   * <td>{@code lastModifiedDateTime}</td>
+   * <td>{@link Product#lastModifiedDateTime}</td>
+   * <td>Yes</td>
+   * <td>Yes</td>
+   * </tr>
+   * </table>
+   * 
+   * When using programmatic guaranteed and not sales management,
+   * the following fields are supported for filtering and/or sorting.
+   * 
+   * <table>
+   * <tr>
+   * <th scope="col">PQL Property</th>
+   * <th scope="col">Object Property</th>
+   * <th scope="col">Filterable</th>
+   * <th scope="col">Sortable</th>
+   * </tr>
+   * <tr>
+   * <td>{@code status}</td>
+   * <td>{@link Product#status}</td>
+   * <td>Yes</td>
+   * <td>Yes</td>
+   * </tr>
+   * <tr>
+   * <td>{@code rateType}</td>
+   * <td>{@link Product#rateType}</td>
+   * <td>Yes</td>
+   * <td>Yes</td>
+   * </tr>
+   * <tr>
+   * <td>{@code name}</td>
+   * <td>{@link Product#name}</td>
+   * <td>Yes</td>
+   * <td>Yes</td>
    * </tr>
    * <tr>
    * <td>{@code id}</td>
@@ -7905,7 +7945,9 @@ if (!class_exists("ProductService", false)) {
     }
     /**
      * Gets a {@link ProductPage} of {@link Product} objects that satisfy the criteria specified by
-     * given {@link Statement#query}. The following fields are supported for filtering and/or sorting:
+     * given {@link Statement#query}.
+     * <p>
+     * When using sales management, the following fields are supported for filtering and/or sorting.
      * 
      * <table>
      * <tr>
@@ -7932,6 +7974,7 @@ if (!class_exists("ProductService", false)) {
      * <td>Yes</td>
      * <td>Yes</td>
      * </tr>
+     * <tr>
      * <td>{@code productType}</td>
      * <td>{@link Product#productType}</td>
      * <td>Yes</td>
@@ -7960,6 +8003,48 @@ if (!class_exists("ProductService", false)) {
      * <td>{@link Product#description}</td>
      * <td>Yes</td>
      * <td>No</td>
+     * </tr>
+     * <tr>
+     * <td>{@code id}</td>
+     * <td>{@link Product#id}</td>
+     * <td>Yes</td>
+     * <td>Yes</td>
+     * </tr>
+     * <tr>
+     * <td>{@code lastModifiedDateTime}</td>
+     * <td>{@link Product#lastModifiedDateTime}</td>
+     * <td>Yes</td>
+     * <td>Yes</td>
+     * </tr>
+     * </table>
+     * 
+     * When using programmatic guaranteed and not sales management,
+     * the following fields are supported for filtering and/or sorting.
+     * 
+     * <table>
+     * <tr>
+     * <th scope="col">PQL Property</th>
+     * <th scope="col">Object Property</th>
+     * <th scope="col">Filterable</th>
+     * <th scope="col">Sortable</th>
+     * </tr>
+     * <tr>
+     * <td>{@code status}</td>
+     * <td>{@link Product#status}</td>
+     * <td>Yes</td>
+     * <td>Yes</td>
+     * </tr>
+     * <tr>
+     * <td>{@code rateType}</td>
+     * <td>{@link Product#rateType}</td>
+     * <td>Yes</td>
+     * <td>Yes</td>
+     * </tr>
+     * <tr>
+     * <td>{@code name}</td>
+     * <td>{@link Product#name}</td>
+     * <td>Yes</td>
+     * <td>Yes</td>
      * </tr>
      * <tr>
      * <td>{@code id}</td>

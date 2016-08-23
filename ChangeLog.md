@@ -1,3 +1,13 @@
+### 11.0.0
+
+DFP:
+  - Added support and examples for v201608.
+  - Removed support for v201505 (sunset).
+  - Removed examples for v201508 and v201511 (deprecated).
+
+Common:
+  - Fixed [issue #155](https://github.com/googleads/googleads-php-lib/pull/155).
+
 ### 10.1.0
 
 AdWords:

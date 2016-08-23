@@ -1489,7 +1489,7 @@ if (!class_exists("PrecisionError", false)) {
 
 if (!class_exists("ProductError", false)) {
   /**
-   * A catch-all error that lists all generic errors associated with Product.
+   * Lists all error reasons associated with {@link Product products}.
    * @package GoogleApiAdsDfp
    * @subpackage v201602
    */
@@ -2936,14 +2936,9 @@ if (!class_exists("Statement", false)) {
    * <p>
    * An example of such a query might be {@code "WHERE name LIKE 'startswith%'"}.
    * </p>
-   * If using an API version newer than V201010, the value for the variable
-   * idValue must then be set with an object of type {@link Value} and is one of
-   * {@link NumberValue}, {@link TextValue} or {@link BooleanValue}.
-   * <p>
-   * If using an API version older than or equal to V201010, the value for the
-   * variable idValue must then be set with an object of type {@link Param} and is
-   * one of {@link DoubleParam}, {@link LongParam} or {@link StringParam}.
-   * </p>
+   * The value for the variable idValue must then be set with an object of type
+   * {@link Value}, e.g., {@link NumberValue}, {@link TextValue} or
+   * {@link BooleanValue}.
    * @package GoogleApiAdsDfp
    * @subpackage v201602
    */
@@ -5340,7 +5335,10 @@ if (!class_exists("GetProposalsByStatement", false)) {
    * <td>{@link Proposal#isArchived}</td>
    * </tr>
    * <tr>
-   * <td>{@code approvalStatus}</td>
+   * <td>
+   * {@code approvalStatus}
+   * <div class="constraint">Only applicable for proposals using sales management</div>
+   * </td>
    * <td>{@link Proposal#approvalStatus}</td>
    * </tr>
    * <tr>
@@ -5348,16 +5346,37 @@ if (!class_exists("GetProposalsByStatement", false)) {
    * <td>{@link Proposal#lastModifiedDateTime}</td>
    * </tr>
    * <tr>
-   * <td>{@code thirdPartyAdServerId}</td>
+   * <td>
+   * {@code thirdPartyAdServerId}
+   * <div class="constraint">
+   * Only applicable for non-programmatic proposals using sales management
+   * </div>
+   * </td>
    * <td>{@link Proposal#thirdPartyAdServerId}</td>
    * </tr>
    * <tr>
-   * <td>{@code customThirdPartyAdServerName}</td>
+   * <td>
+   * {@code customThirdPartyAdServerName}
+   * <div class="constraint">
+   * Only applicable for non-programmatic proposals using sales management
+   * </div>
+   * </td>
    * <td>{@link Proposal#customThirdPartyAdServerName}</td>
    * </tr>
    * <tr>
    * <td>{@code hasOfflineErrors}</td>
    * <td>{@link Proposal#hasOfflineErrors}</td>
+   * </tr>
+   * <tr>
+   * <td>{@code isProgrammatic}</td>
+   * <td>{@link Proposal#isProgrammatic}</td>
+   * </tr>
+   * <tr>
+   * <td>
+   * {@code negotiationStatus}
+   * <div class="constraint">Only applicable for programmatic proposals</div>
+   * </td>
+   * <td>{@link ProposalMarketplaceInfo#negotiationStatus}</td>
    * </tr>
    * </table>
    * 
@@ -6276,7 +6295,10 @@ if (!class_exists("ProposalService", false)) {
      * <td>{@link Proposal#isArchived}</td>
      * </tr>
      * <tr>
-     * <td>{@code approvalStatus}</td>
+     * <td>
+     * {@code approvalStatus}
+     * <div class="constraint">Only applicable for proposals using sales management</div>
+     * </td>
      * <td>{@link Proposal#approvalStatus}</td>
      * </tr>
      * <tr>
@@ -6284,16 +6306,37 @@ if (!class_exists("ProposalService", false)) {
      * <td>{@link Proposal#lastModifiedDateTime}</td>
      * </tr>
      * <tr>
-     * <td>{@code thirdPartyAdServerId}</td>
+     * <td>
+     * {@code thirdPartyAdServerId}
+     * <div class="constraint">
+     * Only applicable for non-programmatic proposals using sales management
+     * </div>
+     * </td>
      * <td>{@link Proposal#thirdPartyAdServerId}</td>
      * </tr>
      * <tr>
-     * <td>{@code customThirdPartyAdServerName}</td>
+     * <td>
+     * {@code customThirdPartyAdServerName}
+     * <div class="constraint">
+     * Only applicable for non-programmatic proposals using sales management
+     * </div>
+     * </td>
      * <td>{@link Proposal#customThirdPartyAdServerName}</td>
      * </tr>
      * <tr>
      * <td>{@code hasOfflineErrors}</td>
      * <td>{@link Proposal#hasOfflineErrors}</td>
+     * </tr>
+     * <tr>
+     * <td>{@code isProgrammatic}</td>
+     * <td>{@link Proposal#isProgrammatic}</td>
+     * </tr>
+     * <tr>
+     * <td>
+     * {@code negotiationStatus}
+     * <div class="constraint">Only applicable for programmatic proposals</div>
+     * </td>
+     * <td>{@link ProposalMarketplaceInfo#negotiationStatus}</td>
      * </tr>
      * </table>
      * 

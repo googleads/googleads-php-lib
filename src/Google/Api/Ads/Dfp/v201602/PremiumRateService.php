@@ -1433,14 +1433,9 @@ if (!class_exists("Statement", false)) {
    * <p>
    * An example of such a query might be {@code "WHERE name LIKE 'startswith%'"}.
    * </p>
-   * If using an API version newer than V201010, the value for the variable
-   * idValue must then be set with an object of type {@link Value} and is one of
-   * {@link NumberValue}, {@link TextValue} or {@link BooleanValue}.
-   * <p>
-   * If using an API version older than or equal to V201010, the value for the
-   * variable idValue must then be set with an object of type {@link Param} and is
-   * one of {@link DoubleParam}, {@link LongParam} or {@link StringParam}.
-   * </p>
+   * The value for the variable idValue must then be set with an object of type
+   * {@link Value}, e.g., {@link NumberValue}, {@link TextValue} or
+   * {@link BooleanValue}.
    * @package GoogleApiAdsDfp
    * @subpackage v201602
    */
@@ -1499,6 +1494,50 @@ if (!class_exists("StatementError", false)) {
     /**
      * @access public
      * @var tnsStatementErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+    }
+
+  }
+}
+
+if (!class_exists("StringLengthError", false)) {
+  /**
+   * Errors for Strings which do not meet given length constraints.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201602
+   */
+  class StringLengthError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201602";
+    const XSI_TYPE = "StringLengthError";
+
+    /**
+     * @access public
+     * @var tnsStringLengthErrorReason
      */
     public $reason;
 
@@ -2465,6 +2504,39 @@ if (!class_exists("StatementErrorReason", false)) {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201602";
     const XSI_TYPE = "StatementError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("StringLengthErrorReason", false)) {
+  /**
+   * The value returned if the actual value is not exposed by the requested API version.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201602
+   */
+  class StringLengthErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201602";
+    const XSI_TYPE = "StringLengthError.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -3729,6 +3801,7 @@ if (!class_exists("PremiumRateService", false)) {
       "SoapResponseHeader" => "SoapResponseHeader",
       "Statement" => "Statement",
       "StatementError" => "StatementError",
+      "StringLengthError" => "StringLengthError",
       "String_ValueMapEntry" => "String_ValueMapEntry",
       "TextValue" => "TextValue",
       "UnknownPremiumFeature" => "UnknownPremiumFeature",
@@ -3758,6 +3831,7 @@ if (!class_exists("PremiumRateService", false)) {
       "RequiredError.Reason" => "RequiredErrorReason",
       "ServerError.Reason" => "ServerErrorReason",
       "StatementError.Reason" => "StatementErrorReason",
+      "StringLengthError.Reason" => "StringLengthErrorReason",
       "createPremiumRates" => "CreatePremiumRates",
       "createPremiumRatesResponse" => "CreatePremiumRatesResponse",
       "getPremiumRatesByStatement" => "GetPremiumRatesByStatement",

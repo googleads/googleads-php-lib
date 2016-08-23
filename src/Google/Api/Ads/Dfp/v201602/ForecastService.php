@@ -7841,7 +7841,8 @@ if (!class_exists("GrpGender", false)) {
 
 if (!class_exists("GrpProvider", false)) {
   /**
-   * Represents available GRP providers that a line item will have its target demographic measured by.
+   * Represents available GRP providers that a line item will have its target demographic measured
+   * by.
    * @package GoogleApiAdsDfp
    * @subpackage v201602
    */

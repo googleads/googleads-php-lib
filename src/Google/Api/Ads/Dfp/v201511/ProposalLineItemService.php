@@ -823,6 +823,50 @@ if (!class_exists("ContentMetadataKeyHierarchyTargeting", false)) {
   }
 }
 
+if (!class_exists("ContentMetadataTargetingError", false)) {
+  /**
+   * Lists all errors related to {@link ContentMetadataTargeting}.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201511
+   */
+  class ContentMetadataTargetingError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201511";
+    const XSI_TYPE = "ContentMetadataTargetingError";
+
+    /**
+     * @access public
+     * @var tnsContentMetadataTargetingErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+    }
+
+  }
+}
+
 if (!class_exists("ContentTargeting", false)) {
   /**
    * Used to target {@link LineItem}s to specific videos on a publisher's site.
@@ -1457,6 +1501,51 @@ if (!class_exists("DfpDateTime", false)) {
       $this->minute = $minute;
       $this->second = $second;
       $this->timeZoneID = $timeZoneID;
+    }
+
+  }
+}
+
+if (!class_exists("DateTimeRangeTargetingError", false)) {
+  /**
+   * Lists all date time range errors caused by associating a line item with a targeting
+   * expression.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201511
+   */
+  class DateTimeRangeTargetingError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201511";
+    const XSI_TYPE = "DateTimeRangeTargetingError";
+
+    /**
+     * @access public
+     * @var tnsDateTimeRangeTargetingErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
     }
 
   }
@@ -3225,7 +3314,7 @@ if (!class_exists("PremiumRateValue", false)) {
 
 if (!class_exists("ProductError", false)) {
   /**
-   * A catch-all error that lists all generic errors associated with Product.
+   * Lists all error reasons associated with {@link Product products}.
    * @package GoogleApiAdsDfp
    * @subpackage v201511
    */
@@ -4703,14 +4792,9 @@ if (!class_exists("Statement", false)) {
    * <p>
    * An example of such a query might be {@code "WHERE name LIKE 'startswith%'"}.
    * </p>
-   * If using an API version newer than V201010, the value for the variable
-   * idValue must then be set with an object of type {@link Value} and is one of
-   * {@link NumberValue}, {@link TextValue} or {@link BooleanValue}.
-   * <p>
-   * If using an API version older than or equal to V201010, the value for the
-   * variable idValue must then be set with an object of type {@link Param} and is
-   * one of {@link DoubleParam}, {@link LongParam} or {@link StringParam}.
-   * </p>
+   * The value for the variable idValue must then be set with an object of type
+   * {@link Value}, e.g., {@link NumberValue}, {@link TextValue} or
+   * {@link BooleanValue}.
    * @package GoogleApiAdsDfp
    * @subpackage v201511
    */
@@ -5709,6 +5793,50 @@ if (!class_exists("VideoPositionTargeting", false)) {
   }
 }
 
+if (!class_exists("VideoPositionTargetingError", false)) {
+  /**
+   * Lists all errors related to {@link VideoPositionTargeting}.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201511
+   */
+  class VideoPositionTargetingError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201511";
+    const XSI_TYPE = "VideoPositionTargetingError";
+
+    /**
+     * @access public
+     * @var tnsVideoPositionTargetingErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+    }
+
+  }
+}
+
 if (!class_exists("VideoPositionWithinPod", false)) {
   /**
    * Represents a targetable position within a pod within a video stream. A video ad can be targeted
@@ -6211,6 +6339,39 @@ if (!class_exists("ComputedStatus", false)) {
   }
 }
 
+if (!class_exists("ContentMetadataTargetingErrorReason", false)) {
+  /**
+   * The reasons for the metadata targeting error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201511
+   */
+  class ContentMetadataTargetingErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201511";
+    const XSI_TYPE = "ContentMetadataTargetingError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("CostAdjustment", false)) {
   /**
    * Describes the cost adjustment of {@link ProposalLineItem}.
@@ -6454,6 +6615,39 @@ if (!class_exists("AudienceSegmentCriteriaComparisonOperator", false)) {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201511";
     const XSI_TYPE = "AudienceSegmentCriteria.ComparisonOperator";
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("DateTimeRangeTargetingErrorReason", false)) {
+  /**
+   * {@link ApiErrorReason} enum for date time range targeting error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201511
+   */
+  class DateTimeRangeTargetingErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201511";
+    const XSI_TYPE = "DateTimeRangeTargetingError.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -8214,6 +8408,39 @@ if (!class_exists("VideoPositionType", false)) {
   }
 }
 
+if (!class_exists("VideoPositionTargetingErrorReason", false)) {
+  /**
+   * The reasons for the video position targeting error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201511
+   */
+  class VideoPositionTargetingErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201511";
+    const XSI_TYPE = "VideoPositionTargetingError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("CreateProposalLineItems", false)) {
   /**
    * Creates new {@link ProposalLineItem} objects.
@@ -8346,16 +8573,35 @@ if (!class_exists("GetProposalLineItemsByStatement", false)) {
    * <td>{@link ProposalLineItem#lastModifiedDateTime}</td>
    * </tr>
    * <tr>
-   * <td>{@code useThirdPartyAdServerFromProposal}</td>
+   * <td>
+   * {@code useThirdPartyAdServerFromProposal}
+   * <div class="constraint">
+   * Only applicable for non-programmatic proposal line items using sales management
+   * </div>
+   * </td>
    * <td>{@link ProposalLineItem#useThirdPartyAdServerFromProposal}</td>
    * </tr>
    * <tr>
-   * <td>{@code thirdPartyAdServerId}</td>
+   * <td>
+   * {@code thirdPartyAdServerId}
+   * <div class="constraint">
+   * Only applicable for non-programmatic proposal line items using sales management
+   * </div>
+   * </td>
    * <td>{@link ProposalLineItem#thirdPartyAdServerId}</td>
    * </tr>
    * <tr>
-   * <td>{@code customThirdPartyAdServerName}</td>
+   * <td>
+   * {@code customThirdPartyAdServerName}
+   * <div class="constraint">
+   * Only applicable for non-programmatic proposal line items using sales management
+   * </div>
+   * </td>
    * <td>{@link ProposalLineItem#customThirdPartyAdServerName}</td>
+   * </tr>
+   * <tr>
+   * <td>{@code isProgrammatic}</td>
+   * <td>{@link ProposalLineItem#isProgrammatic}</td>
    * </tr>
    * </table>
    * 
@@ -10311,6 +10557,7 @@ if (!class_exists("ProposalLineItemService", false)) {
       "CommonError" => "CommonError",
       "ContentBundlePremiumFeature" => "ContentBundlePremiumFeature",
       "ContentMetadataKeyHierarchyTargeting" => "ContentMetadataKeyHierarchyTargeting",
+      "ContentMetadataTargetingError" => "ContentMetadataTargetingError",
       "ContentTargeting" => "ContentTargeting",
       "CreativePlaceholder" => "CreativePlaceholder",
       "CustomCriteria" => "CustomCriteria",
@@ -10325,6 +10572,7 @@ if (!class_exists("ProposalLineItemService", false)) {
       "CustomizableAttributes" => "CustomizableAttributes",
       "Date" => "Date",
       "DateTime" => "DfpDateTime",
+      "DateTimeRangeTargetingError" => "DateTimeRangeTargetingError",
       "DateTimeValue" => "DateTimeValue",
       "DateValue" => "DateValue",
       "DayPart" => "DayPart",
@@ -10432,6 +10680,7 @@ if (!class_exists("ProposalLineItemService", false)) {
       "VideoPosition" => "VideoPosition",
       "VideoPositionPremiumFeature" => "VideoPositionPremiumFeature",
       "VideoPositionTargeting" => "VideoPositionTargeting",
+      "VideoPositionTargetingError" => "VideoPositionTargetingError",
       "VideoPositionWithinPod" => "VideoPositionWithinPod",
       "VideoPositionTarget" => "VideoPositionTarget",
       "ApiVersionError.Reason" => "ApiVersionErrorReason",
@@ -10446,6 +10695,7 @@ if (!class_exists("ProposalLineItemService", false)) {
       "CommonError.Reason" => "CommonErrorReason",
       "CompanionDeliveryOption" => "CompanionDeliveryOption",
       "ComputedStatus" => "ComputedStatus",
+      "ContentMetadataTargetingError.Reason" => "ContentMetadataTargetingErrorReason",
       "CostAdjustment" => "CostAdjustment",
       "CreativeRotationType" => "CreativeRotationType",
       "CreativeSizeType" => "CreativeSizeType",
@@ -10454,6 +10704,7 @@ if (!class_exists("ProposalLineItemService", false)) {
       "CustomFieldValueError.Reason" => "CustomFieldValueErrorReason",
       "CustomTargetingError.Reason" => "CustomTargetingErrorReason",
       "AudienceSegmentCriteria.ComparisonOperator" => "AudienceSegmentCriteriaComparisonOperator",
+      "DateTimeRangeTargetingError.Reason" => "DateTimeRangeTargetingErrorReason",
       "DayOfWeek" => "DayOfWeek",
       "DayPartTargetingError.Reason" => "DayPartTargetingErrorReason",
       "DeliveryTimeZone" => "DeliveryTimeZone",
@@ -10506,6 +10757,7 @@ if (!class_exists("ProposalLineItemService", false)) {
       "UserDomainTargetingError.Reason" => "UserDomainTargetingErrorReason",
       "VideoBumperType" => "VideoBumperType",
       "VideoPosition.Type" => "VideoPositionType",
+      "VideoPositionTargetingError.Reason" => "VideoPositionTargetingErrorReason",
       "createProposalLineItems" => "CreateProposalLineItems",
       "createProposalLineItemsResponse" => "CreateProposalLineItemsResponse",
       "getProposalLineItemsByStatement" => "GetProposalLineItemsByStatement",
@@ -10586,16 +10838,35 @@ if (!class_exists("ProposalLineItemService", false)) {
      * <td>{@link ProposalLineItem#lastModifiedDateTime}</td>
      * </tr>
      * <tr>
-     * <td>{@code useThirdPartyAdServerFromProposal}</td>
+     * <td>
+     * {@code useThirdPartyAdServerFromProposal}
+     * <div class="constraint">
+     * Only applicable for non-programmatic proposal line items using sales management
+     * </div>
+     * </td>
      * <td>{@link ProposalLineItem#useThirdPartyAdServerFromProposal}</td>
      * </tr>
      * <tr>
-     * <td>{@code thirdPartyAdServerId}</td>
+     * <td>
+     * {@code thirdPartyAdServerId}
+     * <div class="constraint">
+     * Only applicable for non-programmatic proposal line items using sales management
+     * </div>
+     * </td>
      * <td>{@link ProposalLineItem#thirdPartyAdServerId}</td>
      * </tr>
      * <tr>
-     * <td>{@code customThirdPartyAdServerName}</td>
+     * <td>
+     * {@code customThirdPartyAdServerName}
+     * <div class="constraint">
+     * Only applicable for non-programmatic proposal line items using sales management
+     * </div>
+     * </td>
      * <td>{@link ProposalLineItem#customThirdPartyAdServerName}</td>
+     * </tr>
+     * <tr>
+     * <td>{@code isProgrammatic}</td>
+     * <td>{@link ProposalLineItem#isProgrammatic}</td>
      * </tr>
      * </table>
      * 
