@@ -39,6 +39,7 @@ class XmlTestHelper {
   public static $MUTATE_REQUEST_XML;
   public static $NAMESPACED_MUTATE_RESPONSE_XML;
   public static $BATCH_JOB_MUTATE_RESPONSE_XML;
+  public static $SUCCESS_BATCH_JOB_MUTATE_RESPONSE_XML;
   public static $REPORT_DOWNLOAD_ERROR_XML;
   public static $REPORT_DOWNLOAD_ERROR_FORMATTED_XML;
   public static $EMPTY_REPORT_DOWNLOAD_ERROR_XML;
@@ -48,6 +49,7 @@ class XmlTestHelper {
   public static $MUTATE_REQUEST_OBJECT;
   public static $MUTATE_RESPONSE_OBJECT;
   public static $BATCH_JOB_MUTATE_RESPONSE_OBJECT;
+  public static $SUCCESS_BATCH_JOB_MUTATE_RESPONSE_OBJECT;
   public static $REPORT_DEFINITION_OBJECT;
 
   /**
@@ -63,6 +65,9 @@ class XmlTestHelper {
     self::$NAMESPACED_MUTATE_RESPONSE_XML =
         self::LoadXmlPayload(dirname(__FILE__)
             . '/mutate_response_with_namespaces.xml');
+    self::$SUCCESS_BATCH_JOB_MUTATE_RESPONSE_XML =
+        self::LoadXmlPayload(dirname(__FILE__)
+            . '/success_batch_job_mutate_response.xml');
     self::$BATCH_JOB_MUTATE_RESPONSE_XML =
         self::LoadXmlPayload(dirname(__FILE__)
             . '/batch_job_mutate_response.xml');
@@ -81,6 +86,7 @@ class XmlTestHelper {
     self::InitMutateRequestObject();
     self::InitMutateResponseObject();
     self::InitBatchJobMutateResponseObject();
+    self::InitSuccessBatchJobMutateResponseObject();
     self::InitReportDefinitionObject();
   }
 
@@ -171,6 +177,21 @@ class XmlTestHelper {
   }
 
   /**
+   * Create a relevant AdWords object for testing with success batch job mutate
+   * response payload.
+   */
+  private static function InitSuccessBatchJobMutateResponseObject() {
+    $operand = new Budget(12345, 'Test Budget');
+
+    $mutateResult = new MutateResult();
+    $mutateResult->result = $operand;
+    $mutateResult->index = 0;
+    self::$SUCCESS_BATCH_JOB_MUTATE_RESPONSE_OBJECT =
+        new BatchJobOpsMutateResponse();
+    self::$SUCCESS_BATCH_JOB_MUTATE_RESPONSE_OBJECT->rval[] = $mutateResult;
+  }
+
+  /**
    * Create a relevant AdWords object for testing with batch job mutate
    * response payload.
    */
@@ -189,17 +210,17 @@ class XmlTestHelper {
     $policyViolationErrorPart = new PolicyViolationErrorPart();
     $policyViolationErrorPart->index = 0;
     $policyViolationErrorPart->length = 3;
-    $apiError->violatingParts = $policyViolationErrorPart;
+    $apiError->violatingParts = array($policyViolationErrorPart);
     $apiError->ApiErrorType = 'CriterionPolicyError';
 
     $errorList = new ErrorList();
-    $errorList->errors = $apiError;
+    $errorList->errors = array($apiError);
 
     $mutateResult = new MutateResult();
     $mutateResult->errorList = $errorList;
     $mutateResult->index = 0;
     self::$BATCH_JOB_MUTATE_RESPONSE_OBJECT = new BatchJobOpsMutateResponse();
-    self::$BATCH_JOB_MUTATE_RESPONSE_OBJECT->rval = $mutateResult;
+    self::$BATCH_JOB_MUTATE_RESPONSE_OBJECT->rval[] = $mutateResult;
   }
 
   /**

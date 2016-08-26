@@ -1,6 +1,9 @@
 <?php
 /**
- * This example uploads an image. To get images, run GetAllImagesAndVideos.php.
+ * This code snippet is meant to be used in the Campaign Drafts and Experiments
+ * guide to demonstrate how to fetch ad groups for a specific draft.
+ *
+ * https://developers.google.com/adwords/api/docs/guides/campaign-drafts-experiments
  *
  * Copyright 2016, Google Inc. All Rights Reserved.
  *
@@ -17,7 +20,7 @@
  * limitations under the License.
  *
  * @package    GoogleApiAdsAdWords
- * @subpackage v201601
+ * @subpackage v201607
  * @category   WebServices
  * @copyright  2016, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
@@ -27,31 +30,38 @@
 // Include the initialization file
 require_once dirname(dirname(__FILE__)) . '/init.php';
 
-require_once UTIL_PATH . '/MediaUtils.php';
-require_once UTIL_PATH . '/MapUtils.php';
+// Enter parameters required by the code example.
+$draftCampaignId = 'INSERT_DRAFT_CAMPAIGN_ID_HERE';
 
 /**
  * Runs the example.
  * @param AdWordsUser $user the user to run the example with
+ * @param int $draftCampaignId the ID of the draft used to get ad groups
  */
-function UploadImageExample(AdWordsUser $user) {
-  // Get the service, which loads the required classes.
-  $mediaService = $user->GetService('MediaService', ADWORDS_VERSION);
+function GetAdGroupsForDraftExample(AdWordsUser $user, $draftCampaignId) {
+  // Get the AdGroupService.
+  $adGroupService = $user->GetService('AdGroupService', ADWORDS_VERSION);
 
-  // Create image.
-  $image = new Image();
-  $image->data = MediaUtils::GetBase64Data('http://goo.gl/HJM3L');
-  $image->type = 'IMAGE';
+  // Create selector.
+  $selector = new Selector();
+  $selector->fields = array('Id');
 
-  // Make the upload request.
-  $result = $mediaService->upload(array($image));
+  // Create predicates.
+  $selector->predicates[] =
+      new Predicate('CampaignId', 'EQUALS', $draftCampaignId);
 
-  // Display result.
-  $image = $result[0];
-  $dimensions = MapUtils::GetMap($image->dimensions);
-  printf("Image with dimensions '%dx%d', MIME type '%s', and id '%s' was "
-      . "uploaded.\n", $dimensions['FULL']->width,
-      $dimensions['FULL']->height, $image->mimeType, $image->mediaId);
+  // Create paging controls.
+  $selector->paging = new Paging(0, AdWordsConstants::RECOMMENDED_PAGE_SIZE);
+
+  // Make the get request.
+  $page = $adGroupService->get($selector);
+
+  // Display results.
+  if ($page->totalNumEntries !== null && $page->totalNumEntries > 0) {
+    printf("Found %d ad groups.\n", $page->totalNumEntries);
+  } else {
+    print "No ad groups were found.\n";
+  }
 }
 
 // Don't run the example if the file is being included.
@@ -68,7 +78,7 @@ try {
   $user->LogAll();
 
   // Run the example.
-  UploadImageExample($user);
+  GetAdGroupsForDraftExample($user, $draftCampaignId);
 } catch (Exception $e) {
   printf("An error has occurred: %s\n", $e->getMessage());
 }

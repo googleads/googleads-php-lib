@@ -1,3 +1,12 @@
+### 12.0.0
+
+AdWords:
+  - Removed support for v201601.
+  - Fixed [issue #158](https://github.com/googleads/googleads-php-lib/issues/158).
+  - User agent is now optional. If no user agent is specified, 'unknown' will
+    be passed instead. If provided, user agent must contain US-ASCII characters
+    only.
+
 ### 11.0.0
 
 DFP:

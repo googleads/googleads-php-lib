@@ -52,7 +52,7 @@ class AdWordsUser extends AdsUser {
    */
   const USER_AGENT_HEADER_NAME = 'userAgent';
 
-  const DEFAULT_USER_AGENT = 'INSERT_COMPANY_NAME_HERE';
+  const DEFAULT_USER_AGENT = 'unknown';
 
   private $libVersion;
   private $libName;
@@ -368,13 +368,11 @@ class AdWordsUser extends AdsUser {
     }
     parent::ValidateOAuth2Info();
 
-    if ($this->GetUserAgent() === null
-        || trim($this->GetUserAgent()) === ''
-        || strpos($this->GetUserAgent(), self::DEFAULT_USER_AGENT) !== false) {
-      throw new ValidationException('userAgent', null,
-          sprintf("The property userAgent is required and cannot be "
-              . "null, the empty string, or the default [%s]",
-              self::DEFAULT_USER_AGENT));
+    if ($this->GetUserAgent() === null || trim($this->GetUserAgent()) === '') {
+      $this->SetUserAgent(self::DEFAULT_USER_AGENT);
+    } else if (mb_check_encoding($this->GetUserAgent(), 'ASCII') === false) {
+      throw new ValidationException('userAgent', $this->GetUserAgent(),
+          'The property userAgent must contain only ASCII characters');
     }
 
     if ($this->GetDeveloperToken() === null) {

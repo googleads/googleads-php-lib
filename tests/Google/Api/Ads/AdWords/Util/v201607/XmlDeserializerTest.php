@@ -62,7 +62,6 @@ class XmlDeserializerTest extends PHPUnit_Framework_TestCase {
     $testData = array(array('<mutate/>', ''));
 
     // Deserialization for report download error XML of AdWords.
-    $reportDownloadErrorPayload = XmlTestHelper::$REPORT_DOWNLOAD_ERROR_XML;
     $testData[] = array(XmlTestHelper::$REPORT_DOWNLOAD_ERROR_XML,
         XmlTestHelper::$REPORT_DOWNLOAD_ERROR_OBJECT);
 
@@ -81,6 +80,10 @@ class XmlDeserializerTest extends PHPUnit_Framework_TestCase {
     // Deserialization for batch job mutate response XML of AdWords.
     $testData[] = array(XmlTestHelper::$BATCH_JOB_MUTATE_RESPONSE_XML,
         XmlTestHelper::$BATCH_JOB_MUTATE_RESPONSE_OBJECT);
+
+    // Deserialization for success batch job mutate response XML of AdWords.
+    $testData[] = array(XmlTestHelper::$SUCCESS_BATCH_JOB_MUTATE_RESPONSE_XML,
+        XmlTestHelper::$SUCCESS_BATCH_JOB_MUTATE_RESPONSE_OBJECT);
     return $testData;
   }
 }
