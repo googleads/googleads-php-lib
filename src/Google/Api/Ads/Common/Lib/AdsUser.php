@@ -50,7 +50,6 @@ abstract class AdsUser {
   private $wsdlCache;
   private $forceHttpVersion;
   private $forceAddXsiTypes;
-  private $authServer;
   private $oauth2Info;
   private $oauth2Handler;
   private $isIncludeUtilitiesInUserAgent;
@@ -260,9 +259,6 @@ abstract class AdsUser {
       $this->Define('HTTP_PROXY_PASSWORD', $proxyPassword);
     }
 
-    // Auth settings.
-    $this->authServer = $this->GetSetting($settingsIni, 'AUTH', 'AUTH_SERVER',
-        'https://accounts.google.com');
     // OAuth2.
     $this->oauth2Handler = $this->GetDefaultOAuth2Handler(
         $this->GetSetting($settingsIni, 'AUTH', 'OAUTH2_HANDLER_CLASS'));
@@ -396,14 +392,6 @@ abstract class AdsUser {
    */
   public function GetForceAddXsiTypes() {
     return $this->forceAddXsiTypes;
-  }
-
-  /**
-   * Gets the server used for authentication.
-   * @return string the server used for authentiation
-   */
-  public function GetAuthServer() {
-    return $this->authServer;
   }
 
   /**
@@ -556,4 +544,3 @@ abstract class AdsUser {
     }
   }
 }
-

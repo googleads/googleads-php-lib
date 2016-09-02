@@ -1,10 +1,6 @@
 <?php
 /**
- * An abstract class for Google OAuth 2.0 flow.
- *
- * PHP version 5
- *
- * Copyright 2011, Google Inc. All Rights Reserved.
+ * Copyright 2012, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,6 +25,7 @@ require_once 'Google/Api/Ads/Common/Util/UrlUtils.php';
 
 /**
  * An abstract class for Google OAuth2 flow.
+ *
  * @package GoogleApiAdsCommon
  * @subpackage Util
  */
@@ -39,24 +36,16 @@ abstract class OAuth2Handler {
    */
   const REFRESH_BUFFER = 60;
   const DEFAULT_REDIRECT_URI = 'urn:ietf:wg:oauth:2.0:oob';
-  const AUTHORIZE_ENDPOINT = 'https://accounts.google.com/o/oauth2/auth';
-  const ACCESS_ENDPOINT = 'https://accounts.google.com/o/oauth2/token';
+  const AUTHORIZE_ENDPOINT = 'https://accounts.google.com/o/oauth2/v2/auth';
+  const ACCESS_ENDPOINT = 'https://www.googleapis.com/oauth2/v4/token';
 
-  private $server;
   private $scopes;
 
   /**
-   * Constructor.
-   *
-   * @param string $server the auth server to make OAuth2 request against
+   * @param array $scopes optional, Google API scopes this handler should use
    */
-  public function __construct($server = null, $scopes = null) {
-    $this->server = $server;
-    if ($scopes === null) {
-      $this->scopes = array();
-    } else {
-      $this->scopes = $scopes;
-    }
+  public function __construct(array $scopes = null) {
+    $this->scopes = $scopes === null ? array() : $scopes;
   }
 
   /**
@@ -264,11 +253,7 @@ abstract class OAuth2Handler {
    * @return string the endpoint
    */
   private function GetEndpoint($endpoint, $params = null) {
-    $endpoint = UrlUtils::AddParamsToUrl($endpoint, $params);
-    if (!empty($this->server)) {
-      $endpoint = UrlUtils::ReplaceServerInUrl($endpoint, $this->server);
-    }
-    return $endpoint;
+    return UrlUtils::AddParamsToUrl($endpoint, $params);
   }
 
   /**
@@ -299,4 +284,3 @@ class OAuth2Exception extends Exception {
     parent::__construct($message, $code);
   }
 }
-

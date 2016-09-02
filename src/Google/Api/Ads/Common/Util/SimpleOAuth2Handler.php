@@ -1,9 +1,5 @@
 <?php
 /**
- * A simple OAuth 2.0 handler.
- *
- * PHP version 5
- *
  * Copyright 2011, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,7 +17,7 @@
  * @package    GoogleApiAdsCommon
  * @subpackage Util
  * @category   WebServices
- * @copyright  2012, Google Inc. All Rights Reserved.
+ * @copyright  2011, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
  */
@@ -29,7 +25,8 @@ require_once 'Google/Api/Ads/Common/Util/OAuth2Handler.php';
 require_once 'Google/Api/Ads/Common/Util/CurlUtils.php';
 
 /**
- * A simple OAuth 2.0 handler.
+ * A simple OAuth2 handler.
+ *
  * @package GoogleApiAdsCommon
  * @subpackage Util
  */
@@ -38,14 +35,13 @@ class SimpleOAuth2Handler extends OAuth2Handler {
   private $curlUtils;
 
   /**
-   * Creates a new instance of this OAuth handler.
-   * @param string $server the auth server to make OAuth2 request against
-   * @param CurlUtils $curlUtils an instance of CurlUtils
+   * @param array $scopes optional, Google API scopes this handler should use
+   * @param CurlUtils $curlUtils optional, curl utility to be used for HTTP
    */
-  public function __construct($server = null, $scope = null,
-      $curlUtils = null) {
-    parent::__construct($server, $scope);
-    $this->curlUtils = is_null($curlUtils) ? new CurlUtils() : $curlUtils;
+  public function __construct(
+      array $scope = null, CurlUtils $curlUtils = null) {
+    parent::__construct($scope);
+    $this->curlUtils = $curlUtils === null ? new CurlUtils() : $curlUtils;
   }
 
   /**
@@ -100,13 +96,16 @@ class SimpleOAuth2Handler extends OAuth2Handler {
   /**
    * Makes an HTTP request to the given URL and extracts the returned OAuth2
    * response.
+   *
    * @param string $url the URL to make the request to
    * @param array $params the parameters to include in the POST body
    * @return OAuthToken the returned token
    */
   protected function MakeRequest($url, $params) {
     $ch = $this->curlUtils->CreateSession($url);
-    $this->curlUtils->SetOpt($ch, CURLOPT_POSTFIELDS, $params);
+    $this->curlUtils->SetOpt($ch, CURLOPT_POST, 1);
+    $this->curlUtils->SetOpt(
+        $ch, CURLOPT_POSTFIELDS, http_build_query($params));
     $response = $this->curlUtils->Exec($ch);
     $error = $this->curlUtils->Error($ch);
     $httpCode = $this->curlUtils->GetInfo($ch, CURLINFO_HTTP_CODE);

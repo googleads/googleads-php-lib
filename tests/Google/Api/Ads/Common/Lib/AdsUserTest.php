@@ -308,11 +308,9 @@ class AdsUserTest extends PHPUnit_Framework_TestCase {
    * @covers AdsUser::LoadSettings
    */
   public function testLoadSettings_Auth() {
-    $server = 'http://localhost';
     $oAuth2HandlerClass = 'SimpleOAuth2Handler';
     $settings = array(
         'AUTH' => array(
-            'AUTH_SERVER' => $server,
             'OAUTH2_HANDLER_CLASS' => $oAuth2HandlerClass,
         ),
     );
@@ -321,7 +319,6 @@ class AdsUserTest extends PHPUnit_Framework_TestCase {
     $user->LoadSettings($settingsFilePath, self::DEFAULT_VERSION,
         self::DEFAULT_SERVER, self::DEFAULT_LOGS_DIR,
         $this->logsRelativePathBase);
-    $this->assertEquals($server, $user->GetAuthServer());
     $this->assertEquals($oAuth2HandlerClass,
         get_class($user->GetOAuth2Handler()));
   }
@@ -339,7 +336,6 @@ class AdsUserTest extends PHPUnit_Framework_TestCase {
     $user->LoadSettings($settingsFilePath, self::DEFAULT_VERSION,
         self::DEFAULT_SERVER, self::DEFAULT_LOGS_DIR,
         $this->logsRelativePathBase);
-    $this->assertEquals('https://accounts.google.com', $user->GetAuthServer());
     $this->assertEquals('SimpleOAuth2Handler',
         get_class($user->GetOAuth2Handler()));
   }
@@ -433,8 +429,7 @@ class TestAdsUser extends AdsUser {
 
   public function GetDefaultOAuth2Handler($className = null) {
     $className = !empty($className) ? $className : self::HANDLER_CLASS;
-    return new $className($this->GetAuthServer(), self::OAUTH2_SCOPE);
+    return new $className(array(self::OAUTH2_SCOPE));
   }
 
 }
-

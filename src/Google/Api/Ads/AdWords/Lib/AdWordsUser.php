@@ -388,7 +388,7 @@ class AdWordsUser extends AdsUser {
    */
   public function GetDefaultOAuth2Handler($className = null) {
     $className = !empty($className) ? $className : self::OAUTH2_HANDLER_CLASS;
-    return new $className($this->GetAuthServer(), $this->GetScopes());
+    return new $className($this->GetScopes());
   }
 
   /**
@@ -407,4 +407,3 @@ class AdWordsUser extends AdsUser {
     }
   }
 }
-
