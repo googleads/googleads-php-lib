@@ -70,22 +70,22 @@ class ReportUtilsDelegate {
    * @see ReportUtils::DownloadReport
    */
   public static function DownloadReport($reportDefinition, $path = null,
-      AdWordsUser $user, array $options = null) {
+      AdWordsUser $user, array $options = null, array $customCurlOptions = null) {
     $url = self::GetUrl($user, $options);
     $headers = self::GetHeaders($user, $url, $options);
     $params = self::GetParams($reportDefinition);
-    return self::DownloadReportFromUrl($url, $headers, $params, $path);
+    return self::DownloadReportFromUrl($url, $headers, $params, $path, $customCurlOptions);
   }
 
   /**
    * @see ReportUtils::DownloadReportWithAwql
    */
   public static function DownloadReportWithAwql($reportQuery, $path = null,
-      AdWordsUser $user, $reportFormat, array $options = null) {
+      AdWordsUser $user, $reportFormat, array $options = null, array $customCurlOptions = null) {
     $url = self::GetUrl($user, $options);
     $headers = self::GetHeaders($user, $url, $options);
     $params = self::GetQueryParams($reportQuery, $reportFormat);
-    return self::DownloadReportFromUrl($url, $headers, $params, $path);
+    return self::DownloadReportFromUrl($url, $headers, $params, $path, $customCurlOptions);
   }
 
   /**
@@ -98,7 +98,7 @@ class ReportUtilsDelegate {
    *     otherwise the size in bytes of the downloaded report
    */
   private static function DownloadReportFromUrl($url, $headers, $params,
-      $path = null) {
+      $path = null, $customCurlOptions = null) {
     /*
      * This method should not be static and instantiation of this class should
      * be allowed so we can "inject" CurlUtils, but would break too many things
@@ -124,6 +124,13 @@ class ReportUtilsDelegate {
       $file = fopen($path, 'w');
       $curlUtils->SetOpt($ch, CURLOPT_RETURNTRANSFER, false);
       $curlUtils->SetOpt($ch, CURLOPT_FILE, $file);
+    }
+
+    ## sometimes need to set some useful curl options. example: $customCurlOptions =  ['CURLOPT_TIMEOUT' => 1];
+    if(!empty($customCurlOptions)) {
+        foreach ($customCurlOptions as $curlOption => $curlValue) {
+            $curlUtils->SetOpt($ch, $curlOption, $curlValue);
+        }
     }
 
     $response = $curlUtils->Exec($ch);
