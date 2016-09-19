@@ -16,7 +16,6 @@
  */
 namespace Google\AdsApi\AdWords;
 
-
 use Google\AdsApi\AdWords\AdWordsSessionBuilder;
 use PHPUnit_Framework_TestCase;
 
@@ -139,23 +138,30 @@ class AdWordsSessionBuilderTest extends PHPUnit_Framework_TestCase {
 
   /**
    * @covers Google\AdsApi\AdWords\AdWordsSessionBuilder::build
-   * @expectedException InvalidArgumentException
    */
-  public function testBuildFailsWithoutUserAgent() {
-    $this->adWordsSessionBuilder
+  public function testBuildWithNullOrEmptyUserAgent() {
+    $adWordsSession = $this->adWordsSessionBuilder
         ->withDeveloperToken('ABcdeFGH93KL-NOPQ_STUv')
+        ->withUserAgent('')
         ->withOAuth2Credential($this->fetchAuthTokenInterfaceMock)
         ->build();
+    $this->assertSame('unknown', $adWordsSession->getUserAgent());
+    $adWordsSession = $this->adWordsSessionBuilder
+        ->withDeveloperToken('ABcdeFGH93KL-NOPQ_STUv')
+        ->withUserAgent(null)
+        ->withOAuth2Credential($this->fetchAuthTokenInterfaceMock)
+        ->build();
+    $this->assertSame('unknown', $adWordsSession->getUserAgent());
   }
 
   /**
    * @covers Google\AdsApi\AdWords\AdWordsSessionBuilder::build
    * @expectedException InvalidArgumentException
    */
-  public function testBuildFailsWithDefaultUserAgent() {
+  public function testBuildFailsWithNonAsciiUserAgent() {
     $this->adWordsSessionBuilder
         ->withDeveloperToken('ABcdeFGH93KL-NOPQ_STUv')
-        ->withUserAgent(AdWordsSessionBuilder::DEFAULT_USER_AGENT)
+        ->withUserAgent('å∫ç∂´ƒ')
         ->withOAuth2Credential($this->fetchAuthTokenInterfaceMock)
         ->build();
   }

@@ -16,7 +16,6 @@
  */
 namespace Google\AdsApi\Dfp;
 
-
 use Google\AdsApi\Dfp\DfpHeaderHandler;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use PHPUnit_Framework_TestCase;
@@ -61,4 +60,3 @@ class DfpHeaderHandlerTest extends PHPUnit_Framework_TestCase {
     $this->assertSame($expectedHttpHeaders, $httpHeaders);
   }
 }
-

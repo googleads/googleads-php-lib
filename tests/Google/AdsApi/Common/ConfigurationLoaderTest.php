@@ -16,7 +16,6 @@
  */
 namespace Google\AdsApi\Common;
 
-
 use Google\AdsApi\Common\ConfigurationLoader;
 use Google\AdsApi\Common\Testing\ConfigurationLoaderTestProvider;
 use PHPUnit_Framework_TestCase;

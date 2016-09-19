@@ -16,7 +16,6 @@
  */
 namespace Google\AdsApi\AdWords;
 
-
 use Google\AdsApi\AdWords\AdWordsHeaderHandler;
 use Google\AdsApi\AdWords\AdWordsSessionBuilder;
 use PHPUnit_Framework_TestCase;

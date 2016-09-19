@@ -16,7 +16,6 @@
  */
 namespace Google\AdsApi\Common;
 
-
 use Google\AdsApi\Common\AdsHeaderHandlerHelper;
 use Google\AdsApi\Common\Testing\ApplicationNameTestHelper;
 use PHPUnit_Framework_TestCase;

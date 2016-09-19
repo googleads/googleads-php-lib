@@ -29,7 +29,7 @@ class ConfigurationLoaderTestProvider {
    * @return string
    */
   public static function getFilePathForTestIniFile() {
-    return realpath(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'adsapi_php.ini');
+    return dirname(__FILE__) . DIRECTORY_SEPARATOR . 'adsapi_php.ini';
   }
 
   /**
@@ -39,6 +39,6 @@ class ConfigurationLoaderTestProvider {
    * @return string
    */
   public static function getFilePathToFakeHome() {
-    return realpath(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'fakehome');
+    return dirname(__FILE__) . DIRECTORY_SEPARATOR . 'fakehome';
   }
 }

@@ -16,7 +16,6 @@
  */
 namespace Google\Api\Ads\Common\Util;
 
-
 use Google\AdsApi\Common\Util\MapUtils;
 use PHPUnit_Framework_TestCase;
 use ReflectionClass;

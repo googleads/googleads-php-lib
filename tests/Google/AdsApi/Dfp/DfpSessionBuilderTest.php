@@ -16,7 +16,6 @@
  */
 namespace Google\AdsApi\Dfp;
 
-
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use PHPUnit_Framework_TestCase;
 
@@ -154,7 +153,6 @@ class DfpSessionBuilderTest extends PHPUnit_Framework_TestCase {
         ->build();
   }
 
-
   /**
    * @covers Google\AdsApi\Dfp\DfpSessionBuilder::build
    */
@@ -194,6 +192,4 @@ class DfpSessionBuilderTest extends PHPUnit_Framework_TestCase {
         $dfpSession->getOAuth2Credential());
     $this->assertNotNull($dfpSession->getSoapSettings());
   }
-
 }
-

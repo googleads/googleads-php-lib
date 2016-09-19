@@ -16,8 +16,8 @@
  */
 namespace Google\AdsApi\Common;
 
-
 use Google\AdsApi\Common\AdsSoapClientLogMessageHandler;
+use Google\AdsApi\Common\Testing\AdsSoapClientLogMessageHandlerTestProvider;
 use PHPUnit_Framework_TestCase;
 use SoapFault;
 
@@ -40,25 +40,14 @@ class AdsSoapClientLogMessageHandlerTest extends PHPUnit_Framework_TestCase {
   protected function setUp() {
     $this->adsSoapClientLogMessageHandler =
         new AdsSoapClientLogMessageHandler();
-
-    set_include_path(get_include_path() . PATH_SEPARATOR
-        . __DIR__ . '/../../../../src/Google/AdsApi/Common/Testing');
-    $this->requestHttpHeadersMock = file_get_contents(
-        'getCreativesByStatement_request_httpheaders.txt',
-        FILE_USE_INCLUDE_PATH
-    );
-    $this->requestSoapXmlMock = file_get_contents(
-        'getCreativesByStatement_request.xml',
-        FILE_USE_INCLUDE_PATH
-    );
-    $this->responseHttpHeadersMock = file_get_contents(
-        'getCreativesByStatement_response_httpheaders.txt',
-        FILE_USE_INCLUDE_PATH
-    );
-    $this->responseSoapXmlMock = file_get_contents(
-        'getCreativesByStatement_response.xml',
-        FILE_USE_INCLUDE_PATH
-    );
+    $this->requestHttpHeadersMock = AdsSoapClientLogMessageHandlerTestProvider
+        ::getFakeGetCreativesRequestHttpHeaders();
+    $this->requestSoapXmlMock = AdsSoapClientLogMessageHandlerTestProvider
+        ::getFakeGetCreativesRequest();
+    $this->responseHttpHeadersMock = AdsSoapClientLogMessageHandlerTestProvider
+        ::getFakeGetCreativesResponseHttpHeaders();
+    $this->responseSoapXmlMock = AdsSoapClientLogMessageHandlerTestProvider
+        ::getFakeGetCreativesResponse();
   }
 
   /**
@@ -148,11 +137,8 @@ class AdsSoapClientLogMessageHandlerTest extends PHPUnit_Framework_TestCase {
             $this->responseSoapXmlMock,
             $adsHeaderHandlerMock
         );
-    $expectedSoapLogs = file_get_contents(
-        'getCreativesByStatement_expected_soapxmllog.txt',
-        FILE_USE_INCLUDE_PATH
-    );
+    $expectedSoapLogs =
+        AdsSoapClientLogMessageHandlerTestProvider::getFakeSoapXmlLog();
     $this->assertSame(trim($expectedSoapLogs), trim($actualSoapLogs));
   }
 }
-

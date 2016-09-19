@@ -1,0 +1,20 @@
+<?php
+
+namespace Google\AdsApi\Dfp\v201608;
+
+
+/**
+ * This file was generated from WSDL. DO NOT EDIT.
+ */
+class BillingCap
+{
+    const __default = 'NO_CAP';
+    const NO_CAP = 'NO_CAP';
+    const CAPPED_CUMULATIVE = 'CAPPED_CUMULATIVE';
+    const CAPPED_PER_BILLING_CYCLE = 'CAPPED_PER_BILLING_CYCLE';
+    const CAPPED_CUMULATIVE_PER_BILLING_CYCLE = 'CAPPED_CUMULATIVE_PER_BILLING_CYCLE';
+    const CAPPED_WITH_ROLLOVER_PER_BILLING_CYCLE = 'CAPPED_WITH_ROLLOVER_PER_BILLING_CYCLE';
+    const UNKNOWN = 'UNKNOWN';
+
+
+}

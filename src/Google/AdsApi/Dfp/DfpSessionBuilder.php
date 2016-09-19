@@ -153,7 +153,6 @@ class DfpSessionBuilder implements AdsBuilder {
     return $this;
   }
 
-
   /**
    * @see AdsBuilder::build()
    */
@@ -210,7 +209,6 @@ class DfpSessionBuilder implements AdsBuilder {
       throw new InvalidArgumentException(
           'Missing OAuth2 authentication credentials.');
     }
-
   }
 
   /**
@@ -260,6 +258,4 @@ class DfpSessionBuilder implements AdsBuilder {
   public function getSoapSettings() {
     return $this->soapSettings;
   }
-
 }
-

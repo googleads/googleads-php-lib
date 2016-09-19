@@ -1,0 +1,16 @@
+<?php
+
+namespace Google\AdsApi\Dfp\v201608;
+
+
+/**
+ * This file was generated from WSDL. DO NOT EDIT.
+ */
+class CustomCriteriaComparisonOperator
+{
+    const __default = 'IS';
+    const IS = 'IS';
+    const IS_NOT = 'IS_NOT';
+
+
+}

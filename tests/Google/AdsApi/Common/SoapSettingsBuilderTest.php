@@ -16,8 +16,8 @@
  */
 namespace Google\AdsApi\Dfp;
 
-
 use Google\AdsApi\Common\SoapSettingsBuilder;
+use Google\AdsApi\Common\Testing\AdsBuildersTestProvider;
 use PHPUnit_Framework_TestCase;
 
 /**
@@ -104,8 +104,7 @@ class SoapSettingsBuilderTest extends PHPUnit_Framework_TestCase {
    * @covers Google\AdsApi\Common\SoapSettingsBuilder::build
    */
   public function testBuild() {
-    $caCertFile = __DIR__
-        . '/../../../../src/Google/AdsApi/Common/Testing/ca-certificates.crt';
+    $caCertFile = AdsBuildersTestProvider::getFakeCertsFilePath();
 
     $soapSettings = $this->soapSettingsBuilder
         ->withCompressionLevel(SOAP_COMPRESSION_GZIP)

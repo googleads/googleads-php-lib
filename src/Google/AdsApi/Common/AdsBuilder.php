@@ -37,6 +37,8 @@ interface AdsBuilder {
    *
    * @param string $path the filepath
    * @return AdsBuilder this builder populated from the configuration
+   * @throws InvalidArgumentException if the configuration file could not be
+   *     found
    */
   public function fromFile($path = null);
 
@@ -68,4 +70,3 @@ interface AdsBuilder {
    */
   public function validate();
 }
-

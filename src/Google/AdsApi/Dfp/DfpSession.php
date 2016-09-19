@@ -91,6 +91,4 @@ class DfpSession implements AdsSession {
   public function getSoapSettings() {
     return $this->soapSettings;
   }
-
 }
-

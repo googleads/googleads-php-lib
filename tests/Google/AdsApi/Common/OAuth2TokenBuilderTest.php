@@ -16,8 +16,8 @@
  */
 namespace Google\AdsApi\Common;
 
-
 use Google\AdsApi\Common\OAuth2TokenBuilder;
+use Google\AdsApi\Common\Testing\AdsBuildersTestProvider;
 use PHPUnit_Framework_TestCase;
 
 /**
@@ -35,8 +35,7 @@ class OAuth2TokenBuilderTest extends PHPUnit_Framework_TestCase {
    */
   protected function setUp() {
     $this->oAuth2TokenBuilder = new OAuth2TokenBuilder();
-    $this->jsonKeyFilePath = __DIR__ . '/../../../../src/Google/AdsApi/Common/'
-        . 'Testing/API-Project-abc123xyz.json';
+    $this->jsonKeyFilePath = AdsBuildersTestProvider::getFakeJsonKeyFilePath();
   }
 
   /**

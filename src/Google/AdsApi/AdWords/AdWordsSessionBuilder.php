@@ -37,7 +37,7 @@ class AdWordsSessionBuilder implements AdsBuilder {
    * @var string the default user agent included in our example library *.ini
    *     files
    */
-  const DEFAULT_USER_AGENT = 'INSERT_USER_AGENT_HERE';
+  const DEFAULT_USER_AGENT = 'unknown';
 
   /**
    * @var string DEFAULT_ENDPOINT the default base endpoint for the AdWords API
@@ -267,15 +267,11 @@ class AdWordsSessionBuilder implements AdsBuilder {
       throw new InvalidArgumentException('A developer token must be set.');
     }
 
-    if ($this->userAgent === null
-        || trim($this->userAgent) === ''
-        || strpos($this->userAgent,
-            self::DEFAULT_USER_AGENT) !== false) {
+    if ($this->userAgent === null || trim($this->userAgent) === '') {
+      $this->userAgent = self::DEFAULT_USER_AGENT;
+    } else if (mb_check_encoding($this->userAgent, 'ASCII') === false) {
       throw new InvalidArgumentException(
-          sprintf(
-              'User agent is required and cannot be the default [%s].',
-              self::DEFAULT_USER_AGENT
-          ));
+          'User agent must contain only ASCII characters.');
     }
 
     if (filter_var($this->endpoint, FILTER_VALIDATE_URL) === false) {

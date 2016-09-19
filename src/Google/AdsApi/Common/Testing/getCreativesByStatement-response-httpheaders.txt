@@ -1,0 +1,8 @@
+HTTP/1.1 200 OK
+Content-Type: text/xml; charset=UTF-8
+Content-Encoding: gzip
+Date: Mon, 12 Oct 2015 16:09:17 GMT
+Expires: Mon, 12 Oct 2015 16:09:17 GMT
+Cache-Control: private, max-age=0
+Content-Length: 1005
+Server: GSE

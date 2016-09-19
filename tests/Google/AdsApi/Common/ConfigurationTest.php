@@ -16,7 +16,6 @@
  */
 namespace Google\AdsApi\Common;
 
-
 use Google\AdsApi\Common\Configuration;
 use PHPUnit_Framework_TestCase;
 
