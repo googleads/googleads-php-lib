@@ -9,7 +9,8 @@
     "monolog/monolog": "~1.18",
     "symfony/serializer": "~2.7|~3.0",
     "ext-openssl": "*",
-    "ext-soap": "*"
+    "ext-soap": "*",
+    "phpdocumentor/reflection-docblock": "^3.1"
   },
   "suggest": {
     "php-64bit": ">=5.5.9"
