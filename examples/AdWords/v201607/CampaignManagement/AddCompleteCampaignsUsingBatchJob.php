@@ -112,10 +112,9 @@ function AddCompleteCampaignUsingBatchJobExample(AdWordsUser $user) {
         $batchJob->status);
 
     $pollAttempts++;
-    if (!in_array($batchJob->status, array(
-      BatchJobStatus::ACTIVE, 
-      BatchJobStatus::AWAITING_FILE, 
-      BatchJobStatus::CANCELING))) {
+    if ($batchJob->status !== BatchJobStatus::ACTIVE &&
+        $batchJob->status !== BatchJobStatus::AWAITING_FILE &&
+        $batchJob->status !== BatchJobStatus::CANCELING) {
       $isPending = false;
     }
   } while ($isPending && $pollAttempts <= MAX_POLL_ATTEMPTS);
