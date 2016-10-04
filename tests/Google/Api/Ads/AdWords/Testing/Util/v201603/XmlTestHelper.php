@@ -234,7 +234,9 @@ class XmlTestHelper {
     $selector->predicates[] =
         new Predicate('Conversions', 'GREATER_THAN', array(2.0));
     $selector->predicates[] =
-        new Predicate('AllConversions', 'LESS_THAN', array(50.52));
+        new Predicate('AllConversions', 'LESS_THAN', array(50.5221));
+    $selector->predicates[] =
+        new Predicate('Clicks', 'GREATER_THAN', array(3400));
     $selector->predicates[] =
         new Predicate('AverageCost', 'LESS_THAN',
             array(2.05 * AdWordsConstants::MICROS_PER_DOLLAR));

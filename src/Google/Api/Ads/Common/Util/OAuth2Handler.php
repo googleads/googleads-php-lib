@@ -40,12 +40,14 @@ abstract class OAuth2Handler {
   const ACCESS_ENDPOINT = 'https://www.googleapis.com/oauth2/v4/token';
 
   private $scopes;
+  private $tokenUrlServer;
 
   /**
    * @param array $scopes optional, Google API scopes this handler should use
    */
   public function __construct(array $scopes = null) {
     $this->scopes = $scopes === null ? array() : $scopes;
+    $this->tokenUrlServer = self::ACCESS_ENDPOINT;
   }
 
   /**
@@ -243,7 +245,7 @@ abstract class OAuth2Handler {
    * @return string the access endpoint
    */
   protected function GetAccessEndpoint($params = null) {
-    return $this->GetEndpoint(self::ACCESS_ENDPOINT, $params);
+    return $this->GetEndpoint($this->tokenUrlServer, $params);
   }
 
   /**
@@ -271,7 +273,6 @@ abstract class OAuth2Handler {
   public function SetScopes($scopes) {
     $this->scopes = $scopes;
   }
-
 }
 
 /**

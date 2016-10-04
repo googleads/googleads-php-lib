@@ -1,3 +1,10 @@
+### 13.1.0
+
+AdWords:
+  - Added support and examples for v201609.
+  - Fixed [issue #156](https://github.com/googleads/googleads-php-lib/issues/156).
+  - Fixed [issue #164](https://github.com/googleads/googleads-php-lib/pull/164).
+
 ### 13.0.0
 
 Common:

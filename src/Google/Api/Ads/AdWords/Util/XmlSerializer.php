@@ -117,11 +117,7 @@ class XmlSerializer {
    */
   private function ConvertObjectToNodeValue($object) {
     if (is_float($object)) {
-      if (bccomp(floatval(strval($object)), $object) === 0) {
-        return strval($object);
-      } else {
-        return sprintf('%.01f', $object);
-      }
+      return strval($object);
     } else if (is_bool($object)) {
       return $object ? 'true': 'false';
     } else {

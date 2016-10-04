@@ -1207,8 +1207,7 @@ if (!class_exists("AdGroupChangeData", false)) {
 
 if (!class_exists("CampaignChangeData", false)) {
   /**
-   * Holds information about a changed campaign and any ad groups under
-   * that have changed.
+   * Holds information about a changed campaign and any ad groups under that have changed.
    * @package Google_Api_Ads_AdWords_v201603
    * @subpackage v201603
    */
@@ -1511,13 +1510,11 @@ if (!class_exists("CustomerSyncSelector", false)) {
 
 if (!class_exists("ChangeStatus", false)) {
   /**
-   * An enum used to classify the types of changes that have been made to
-   * an adgroup/campaign during a specified date range.  This only refers
-   * to the field of the entity itself, and not its children.
+   * An enum used to classify the types of changes that have been made to an adgroup/campaign during a
+   * specified date range. This only refers to the field of the entity itself, and not its children.
    * 
-   * For example, if an AdGroup name changed, this status would be FIELDS_CHANGED,
-   * but if only bids on keywords belonging an AdGroup were changed this
-   * status would be FIELDS_UNCHANGED.
+   * <p>For example, if an AdGroup name changed, this status would be FIELDS_CHANGED, but if only bids
+   * on keywords belonging an AdGroup were changed this status would be FIELDS_UNCHANGED.
    * @package Google_Api_Ads_AdWords_v201603
    * @subpackage v201603
    */
@@ -1550,8 +1547,8 @@ if (!class_exists("ChangeStatus", false)) {
 
 if (!class_exists("CustomerSyncErrorReason", false)) {
   /**
-   * The request attempted to access a campaign that either does not
-   * exist or belongs to a different account.
+   * The request attempted to access a campaign that either does not exist or belongs to a
+   * different account.
    * @package Google_Api_Ads_AdWords_v201603
    * @subpackage v201603
    */
@@ -1592,7 +1589,7 @@ if (!class_exists("CustomerSyncServiceGet", false)) {
    * 
    * @param selector Specifies the filter for selecting changehistory events for a customer.
    * @return A Customer->Campaign->AdGroup hierarchy containing information about the objects
-   * changed at each level.  All Campaigns that are requested in the selector will be returned,
+   * changed at each level. All Campaigns that are requested in the selector will be returned,
    * regardless of whether or not they have changed, but unchanged AdGroups will be ignored.
    * @package Google_Api_Ads_AdWords_v201603
    * @subpackage v201603
@@ -2778,7 +2775,7 @@ if (!class_exists("CustomerSyncService", false)) {
      * 
      * @param selector Specifies the filter for selecting changehistory events for a customer.
      * @return A Customer->Campaign->AdGroup hierarchy containing information about the objects
-     * changed at each level.  All Campaigns that are requested in the selector will be returned,
+     * changed at each level. All Campaigns that are requested in the selector will be returned,
      * regardless of whether or not they have changed, but unchanged AdGroups will be ignored.
      */
     public function get($selector) {

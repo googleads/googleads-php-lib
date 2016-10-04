@@ -388,7 +388,8 @@ class AdWordsUser extends AdsUser {
    */
   public function GetDefaultOAuth2Handler($className = null) {
     $className = !empty($className) ? $className : self::OAUTH2_HANDLER_CLASS;
-    return new $className($this->GetScopes());
+    $oauth2Handler = new $className($this->GetScopes());
+    return $oauth2Handler;
   }
 
   /**

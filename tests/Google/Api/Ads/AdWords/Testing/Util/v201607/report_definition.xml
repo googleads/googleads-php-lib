@@ -14,7 +14,12 @@
     <predicates>
       <field>AllConversions</field>
       <operator>LESS_THAN</operator>
-      <values>50.52</values>
+      <values>50.5221</values>
+    </predicates>
+    <predicates>
+      <field>Clicks</field>
+      <operator>GREATER_THAN</operator>
+      <values>3400</values>
     </predicates>
     <predicates>
       <field>AverageCost</field>

@@ -1,9 +1,7 @@
 <?php
 /**
- * This code snippet is meant to be used in the Campaign Drafts and Experiments
- * guide to demonstrate how to fetch ad groups for a specific draft.
- *
- * https://developers.google.com/adwords/api/docs/guides/campaign-drafts-experiments
+ * This example gets all keywords in an ad group. To add keywords, run
+ * AddKeywords.php. To get ad groups, run GetAdGroups.php.
  *
  * Copyright 2016, Google Inc. All Rights Reserved.
  *
@@ -20,7 +18,7 @@
  * limitations under the License.
  *
  * @package    GoogleApiAdsAdWords
- * @subpackage v201607
+ * @subpackage v201609
  * @category   WebServices
  * @copyright  2016, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
@@ -31,37 +29,53 @@
 require_once dirname(dirname(__FILE__)) . '/init.php';
 
 // Enter parameters required by the code example.
-$draftCampaignId = 'INSERT_DRAFT_CAMPAIGN_ID_HERE';
+$adGroupId = 'INSERT_AD_GROUP_ID_HERE';
 
 /**
  * Runs the example.
  * @param AdWordsUser $user the user to run the example with
- * @param int $draftCampaignId the ID of the draft used to get ad groups
+ * @param string $adGroupId the id of the parent ad group
  */
-function GetAdGroupsForDraftExample(AdWordsUser $user, $draftCampaignId) {
-  // Get the AdGroupService.
-  $adGroupService = $user->GetService('AdGroupService', ADWORDS_VERSION);
+function GetKeywordsExample(AdWordsUser $user, $adGroupId) {
+  // Get the service, which loads the required classes.
+  $adGroupCriterionService =
+      $user->GetService('AdGroupCriterionService', ADWORDS_VERSION);
 
   // Create selector.
   $selector = new Selector();
-  $selector->fields = array('Id');
+  $selector->fields = array('Id', 'CriteriaType', 'KeywordMatchType',
+      'KeywordText');
+  $selector->ordering[] = new OrderBy('KeywordText', 'ASCENDING');
 
   // Create predicates.
+  $selector->predicates[] = new Predicate('AdGroupId', 'IN', array($adGroupId));
   $selector->predicates[] =
-      new Predicate('CampaignId', 'EQUALS', $draftCampaignId);
+      new Predicate('CriteriaType', 'IN', array('KEYWORD'));
 
   // Create paging controls.
   $selector->paging = new Paging(0, AdWordsConstants::RECOMMENDED_PAGE_SIZE);
 
-  // Make the get request.
-  $page = $adGroupService->get($selector);
+  do {
+    // Make the get request.
+    $page = $adGroupCriterionService->get($selector);
 
-  // Display results.
-  if ($page->totalNumEntries !== null && $page->totalNumEntries > 0) {
-    printf("Found %d ad groups.\n", $page->totalNumEntries);
-  } else {
-    print "No ad groups were found.\n";
-  }
+    // Display results.
+    if (isset($page->entries)) {
+      foreach ($page->entries as $adGroupCriterion) {
+      printf("Keyword with text '%s', match type '%s', criteria type '%s', "
+          . "and ID '%s' was found.\n",
+          $adGroupCriterion->criterion->text,
+          $adGroupCriterion->criterion->matchType,
+          $adGroupCriterion->criterion->type,
+          $adGroupCriterion->criterion->id);
+      }
+    } else {
+      print "No keywords were found.\n";
+    }
+
+    // Advance the paging index.
+    $selector->paging->startIndex += AdWordsConstants::RECOMMENDED_PAGE_SIZE;
+  } while ($page->totalNumEntries > $selector->paging->startIndex);
 }
 
 // Don't run the example if the file is being included.
@@ -78,7 +92,7 @@ try {
   $user->LogAll();
 
   // Run the example.
-  GetAdGroupsForDraftExample($user, $draftCampaignId);
+  GetKeywordsExample($user, $adGroupId);
 } catch (Exception $e) {
   printf("An error has occurred: %s\n", $e->getMessage());
 }

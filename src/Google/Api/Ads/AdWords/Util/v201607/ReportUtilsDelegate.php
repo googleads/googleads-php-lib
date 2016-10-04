@@ -70,22 +70,26 @@ class ReportUtilsDelegate {
    * @see ReportUtils::DownloadReport
    */
   public static function DownloadReport($reportDefinition, $path = null,
-      AdWordsUser $user, array $options = null, array $customCurlOptions = null) {
+      AdWordsUser $user, array $options = null,
+      array $customCurlOptions = null) {
     $url = self::GetUrl($user, $options);
     $headers = self::GetHeaders($user, $url, $options);
     $params = self::GetParams($reportDefinition);
-    return self::DownloadReportFromUrl($url, $headers, $params, $path, $customCurlOptions);
+    return self::DownloadReportFromUrl($url, $headers, $params, $path,
+        $customCurlOptions);
   }
 
   /**
    * @see ReportUtils::DownloadReportWithAwql
    */
   public static function DownloadReportWithAwql($reportQuery, $path = null,
-      AdWordsUser $user, $reportFormat, array $options = null, array $customCurlOptions = null) {
+      AdWordsUser $user, $reportFormat, array $options = null,
+      array $customCurlOptions = null) {
     $url = self::GetUrl($user, $options);
     $headers = self::GetHeaders($user, $url, $options);
     $params = self::GetQueryParams($reportQuery, $reportFormat);
-    return self::DownloadReportFromUrl($url, $headers, $params, $path, $customCurlOptions);
+    return self::DownloadReportFromUrl($url, $headers, $params, $path,
+        $customCurlOptions);
   }
 
   /**
@@ -96,6 +100,8 @@ class ReportUtilsDelegate {
    * @param string $path the optional path to download the report to
    * @return mixed if path isn't specified the contents of the report,
    *     otherwise the size in bytes of the downloaded report
+   * @param array $customCurlOptions the custom curl options for downloading
+   *     reports
    */
   private static function DownloadReportFromUrl($url, $headers, $params,
       $path = null, $customCurlOptions = null) {
@@ -126,11 +132,11 @@ class ReportUtilsDelegate {
       $curlUtils->SetOpt($ch, CURLOPT_FILE, $file);
     }
 
-    ## sometimes need to set some useful curl options. example: $customCurlOptions =  ['CURLOPT_TIMEOUT' => 1];
-    if(!empty($customCurlOptions)) {
-        foreach ($customCurlOptions as $curlOption => $curlValue) {
-            $curlUtils->SetOpt($ch, $curlOption, $curlValue);
-        }
+    // Set additional cURL options, e.g., CURLOPT_TIMEOUT, if needed.
+    if ($customCurlOptions !== null) {
+      foreach ($customCurlOptions as $curlOption => $curlValue) {
+        $curlUtils->SetOpt($ch, $curlOption, $curlValue);
+      }
     }
 
     $response = $curlUtils->Exec($ch);

@@ -77,7 +77,7 @@ class SimpleOAuth2HandlerTest extends PHPUnit_Framework_TestCase {
         'client_secret' => 'TEST_CLIENT_SECRET'
     );
     $code = 'TEST_CODE';
-    $response = $this->simpleOAuth2Handler->GetAccessToken($credentials, $code);
+    $this->simpleOAuth2Handler->GetAccessToken($credentials, $code);
   }
 
   /**
@@ -88,7 +88,7 @@ class SimpleOAuth2HandlerTest extends PHPUnit_Framework_TestCase {
         'client_id' => 'TEST_CLIENT_ID'
     );
     $code = 'TEST_CODE';
-    $response = $this->simpleOAuth2Handler->GetAccessToken($credentials, $code);
+    $this->simpleOAuth2Handler->GetAccessToken($credentials, $code);
   }
 
   public function testGetAccessToken_DifferentRedirectUri() {
@@ -105,7 +105,7 @@ class SimpleOAuth2HandlerTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals($redirectUri, $params['redirect_uri']);
   }
 
- public function testRefreshAccessToken() {
+  public function testRefreshAccessToken() {
     $credentials = array(
         'client_id' => 'TEST_CLIENT_ID',
         'client_secret' => 'TEST_CLIENT_SECRET',
@@ -143,7 +143,7 @@ class SimpleOAuth2HandlerTest extends PHPUnit_Framework_TestCase {
         'client_secret' => 'TEST_CLIENT_SECRET',
         'refresh_token' => 'TEST_REFRESH_TOKEN'
     );
-    $response = $this->simpleOAuth2Handler->RefreshAccessToken($credentials);
+    $this->simpleOAuth2Handler->RefreshAccessToken($credentials);
   }
 
   /**
@@ -154,7 +154,7 @@ class SimpleOAuth2HandlerTest extends PHPUnit_Framework_TestCase {
         'client_id' => 'TEST_CLIENT_ID',
         'refresh_token' => 'TEST_REFRESH_TOKEN'
     );
-    $response = $this->simpleOAuth2Handler->RefreshAccessToken($credentials);
+    $this->simpleOAuth2Handler->RefreshAccessToken($credentials);
   }
 
   /**
@@ -165,7 +165,7 @@ class SimpleOAuth2HandlerTest extends PHPUnit_Framework_TestCase {
         'client_id' => 'TEST_CLIENT_ID',
         'client_secret' => 'TEST_CLIENT_SECRET'
     );
-    $response = $this->simpleOAuth2Handler->RefreshAccessToken($credentials);
+    $this->simpleOAuth2Handler->RefreshAccessToken($credentials);
   }
 }
 
@@ -175,6 +175,7 @@ class TestSimpleOAuth2Handler extends SimpleOAuth2Handler {
   public $response;
 
   public function __construct() {
+    parent::__construct();
     $this->response = array();
   }
 
