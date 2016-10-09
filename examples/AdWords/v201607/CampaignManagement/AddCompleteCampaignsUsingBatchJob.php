@@ -135,9 +135,9 @@ class AddCompleteCampaignsUsingBatchJob {
           $batchJob->getStatus());
 
       $pollAttempts++;
-      if ($batchJob->getStatus() !== 'ACTIVE' &&
-          $batchJob->getStatus() !== 'AWAITING_FILE' &&
-          $batchJob->getStatus() !== 'CANCELING') {
+      if ($batchJob->getStatus() !== BatchJobStatus::ACTIVE &&
+          $batchJob->getStatus() !== BatchJobStatus::AWAITING_FILE &&
+          $batchJob->getStatus() !== BatchJobStatus::CANCELING) {
         $isPending = false;
       }
     } while ($isPending && $pollAttempts <= self::MAX_POLL_ATTEMPTS);
