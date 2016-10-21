@@ -179,7 +179,9 @@ class ReportUtilsDelegate {
         $exception = new ReportDownloadException($error);
       } else if (isset($code)) {
         $message = 'Report download failed. ';
-        !empty($curlError) && $message .= $curlError;
+        if (!empty($curlError)) {
+            $message .= $curlError;
+        }
         $exception = new ReportDownloadException($message, $code);
       }
     }
