@@ -1,6 +1,7 @@
 <?php
 /**
- * This example removes a keyword. To get keywords, run GetKeywords.php.
+ * This example accepts a pending invitation to link your AdWords account to a
+ * Google Merchant Center account.
  *
  * Copyright 2016, Google Inc. All Rights Reserved.
  *
@@ -17,7 +18,7 @@
  * limitations under the License.
  *
  * @package    GoogleApiAdsAdWords
- * @subpackage v201603
+ * @subpackage v201609
  * @category   WebServices
  * @copyright  2016, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
@@ -28,44 +29,43 @@
 require_once dirname(dirname(__FILE__)) . '/init.php';
 
 // Enter parameters required by the code example.
-$adGroupId = 'INSERT_AD_GROUP_ID_HERE';
-$criterionId = 'INSERT_KEYWORD_CRITERION_ID_HERE';
+$serviceLinkId = 'INSERT_SERVICE_LINK_ID_HERE';
 
 /**
  * Runs the example.
  * @param AdWordsUser $user the user to run the example with
- * @param string $adGroupId the id of the ad group that the keyword is in
- * @param string $criterionId the id of the keyword to remove
+ * @param int $serviceLinkId the service link ID to accept
  */
-function RemoveKeywordExample(AdWordsUser $user, $adGroupId, $criterionId) {
+function AcceptServiceLinkExample(AdWordsUser $user, $serviceLinkId) {
   // Get the service, which loads the required classes.
-  $adGroupCriterionService =
-      $user->GetService('AdGroupCriterionService', ADWORDS_VERSION);
+  $customerService = $user->GetService('CustomerService', ADWORDS_VERSION);
 
-  // Create criterion using an existing ID. Use the base class Criterion
-  // instead of Keyword to avoid having to set keyword-specific fields.
-  $criterion = new Criterion();
-  $criterion->id = $criterionId;
-
-  // Create ad group criterion.
-  $adGroupCriterion = new AdGroupCriterion();
-  $adGroupCriterion->adGroupId = $adGroupId;
-  $adGroupCriterion->criterion = new Criterion($criterionId);
+  // Create service link and set the status to ACTIVE.
+  $serviceLink = new ServiceLink();
+  $serviceLink->serviceLinkId = $serviceLinkId;
+  $serviceLink->serviceType = 'MERCHANT_CENTER';
+  $serviceLink->linkStatus = 'ACTIVE';
 
   // Create operation.
-  $operation = new AdGroupCriterionOperation();
-  $operation->operand = $adGroupCriterion;
-  $operation->operator = 'REMOVE';
+  $operation = new ServiceLinkOperation();
+  $operation->operator = 'SET';
+  $operation->operand = $serviceLink;
 
   $operations = array($operation);
 
   // Make the mutate request.
-  $result = $adGroupCriterionService->mutate($operations);
+  $serviceLinks = $customerService->mutateServiceLinks($operations);
 
-  // Display result.
-  $adGroupCriterion = $result->value[0];
-  printf("Keyword with ID '%d' was removed.\n",
-      $adGroupCriterion->criterion->id);
+  // Display the results.
+  foreach ($serviceLinks as $serviceLink) {
+    printf(
+        "Service link with service link ID %d, type '%s' updated to status: %s."
+            . "\n",
+        $serviceLink->serviceLinkId,
+        $serviceLink->serviceType,
+        $serviceLink->linkStatus
+    );
+  }
 }
 
 // Don't run the example if the file is being included.
@@ -82,7 +82,7 @@ try {
   $user->LogAll();
 
   // Run the example.
-  RemoveKeywordExample($user, $adGroupId, $criterionId);
+  AcceptServiceLinkExample($user, $serviceLinkId);
 } catch (Exception $e) {
   printf("An error has occurred: %s\n", $e->getMessage());
 }

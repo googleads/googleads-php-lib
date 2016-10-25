@@ -46,6 +46,10 @@ function addShoppingCampaignExample(AdWordsUser $user, $budgetId, $merchantId) {
   $campaign->name = 'Shopping campaign #' . uniqid();
   // The advertisingChannelType is what makes this a Shopping campaign
   $campaign->advertisingChannelType = 'SHOPPING';
+  // Recommendation: Set the campaign to PAUSED when creating it to stop
+  // the ads from immediately serving. Set to ENABLED once you've added
+  // targeting and the ads are ready to serve.
+  $campaign->status = 'PAUSED';
 
   // Set portfolio budget (required).
   $campaign->budget = new Budget();

@@ -150,6 +150,10 @@ function CreateCampaignWithBiddingStrategy(AdWordsUser $user,
   $networkSetting->targetSearchNetwork = true;
   $networkSetting->targetContentNetwork = true;
   $campaign->networkSetting = $networkSetting;
+  // Recommendation: Set the campaign to PAUSED when creating it to stop
+  // the ads from immediately serving. Set to ENABLED once you've added
+  // targeting and the ads are ready to serve.
+  $campaign->status = 'PAUSED';
 
   // Create operation.
   $operation = new CampaignOperation();

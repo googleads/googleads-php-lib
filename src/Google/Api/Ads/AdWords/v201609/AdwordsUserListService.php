@@ -2890,6 +2890,8 @@ if (!class_exists("UserListLogicalRule", false)) {
 if (!class_exists("UserListOperation", false)) {
   /**
    * UserList operations for adding/updating UserList entities.
+   * The following {@link Operator}s are supported: ADD and SET.
+   * The REMOVE operator is not supported.
    * @package Google_Api_Ads_AdWords_v201609
    * @subpackage v201609
    */

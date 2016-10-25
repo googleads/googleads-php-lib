@@ -87,6 +87,9 @@ function AddCampaignsExample(AdWordsUser $user) {
     $campaign->networkSetting = $networkSetting;
 
     // Set additional settings (optional).
+    // Recommendation: Set the campaign to PAUSED when creating it to stop
+    // the ads from immediately serving. Set to ENABLED once you've added
+    // targeting and the ads are ready to serve.
     $campaign->status = 'PAUSED';
     $campaign->startDate = date('Ymd', strtotime('+1 day'));
     $campaign->endDate = date('Ymd', strtotime('+1 month'));

@@ -140,7 +140,7 @@ class ReportUtilsDelegate {
     }
 
     $response = $curlUtils->Exec($ch);
-    $curlError = $curlUtils->Error($ch);
+    $error = $curlUtils->Error($ch);
     $code = $curlUtils->GetInfo($ch, CURLINFO_HTTP_CODE);
     $downloadSize = $curlUtils->GetInfo($ch, CURLINFO_SIZE_DOWNLOAD);
     $request = $curlUtils->GetInfo($ch, CURLINFO_HEADER_OUT);
@@ -178,11 +178,8 @@ class ReportUtilsDelegate {
       } else if (!empty($error)) {
         $exception = new ReportDownloadException($error);
       } else if (isset($code)) {
-        $message = 'Report download failed. ';
-        if (!empty($curlError)) {
-            $message .= $curlError;
-        }
-        $exception = new ReportDownloadException($message, $code);
+        $exception =
+            new ReportDownloadException('Report download failed.', $code);
       }
     }
 

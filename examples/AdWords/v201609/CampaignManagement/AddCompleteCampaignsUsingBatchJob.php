@@ -317,6 +317,10 @@ function buildCampaignOperations($namePrefix,
     $campaign->id = TempIdGenerator::Generate();
     $campaign->name = sprintf("Batch Campaign %s.%s", $namePrefix,
         strval($campaign->id));
+
+    // Recommendation: Set the campaign to PAUSED when creating it to stop
+    // the ads from immediately serving. Set to ENABLED once you've added
+    // targeting and the ads are ready to serve.
     $campaign->status = 'PAUSED';
     $campaign->advertisingChannelType = 'SEARCH';
 
