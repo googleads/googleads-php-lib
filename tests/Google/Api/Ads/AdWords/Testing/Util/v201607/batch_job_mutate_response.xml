@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<batchJobMutateResponse xmlns="https://adwords.google.com/api/adwords/cm/v201607">
+  <rval>
+    <errorList>
+      <errors xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="FakeCriterionPolicyError">
+        <fieldPath>operations[0].operand.criterion.text</fieldPath>
+        <trigger>text</trigger>
+        <errorString>CriterionPolicyError.POLICY_ERROR</errorString>
+        <ApiError.Type>CriterionPolicyError</ApiError.Type>
+        <key>
+          <policyName>pharma</policyName>
+          <violatingText>text</violatingText>
+        </key>
+        <externalPolicyName>Online pharmacy certification required</externalPolicyName>
+        <externalPolicyUrl/>
+        <externalPolicyDescription>Description</externalPolicyDescription>
+        <isExemptable>true</isExemptable>
+        <violatingParts>
+          <index>0</index>
+          <length>3</length>
+        </violatingParts>
+      </errors>
+    </errorList>
+    <index>0</index>
+  </rval>
+</batchJobMutateResponse>

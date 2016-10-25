@@ -1,3 +1,139 @@
+### 10.1.0
+
+AdWords:
+  - Added support and examples for v201607.
+
+### 10.0.0
+
+AdWords:
+  - Fixed a bug in v201605's AdGroupAdService.php.
+  - Removed support and examples for v201509.
+  - Added new ParallelReportDownload example to demonstrate how to download an
+    Ad Hoc report for all accounts directly under a manager account.
+  - Made the ReportUtils methods DownloadReport and DownloadReportWithAwql
+    non-static for better inversion of control.
+
+Common:
+  - Added support for including utility usage in the user agent header.
+
+### 9.1.0
+
+AdWords:
+  - Fixed [issue #137](https://github.com/googleads/googleads-php-lib/issues/137).
+  - Added support and examples for v201605.
+
+### 9.0.0
+
+AdWords:
+  - Fixed
+[issue #131](https://github.com/googleads/googleads-php-lib/issues/131).
+
+DFP:
+  - Added support for v201605.
+  - Removed examples for v201505
+([deprecated](https://developers.google.com/doubleclick-publishers/docs/deprecation)).
+  - Removed support for v201502
+([sunset](https://developers.google.com/doubleclick-publishers/docs/deprecation)).
+  - Added a creative service example showing how to copy image creatives.
+
+Common:
+  - Updated out of date information in README.md.
+
+### 8.3.0
+
+AdWords:
+  - Removed support and examples for v201506. See deprecation schedule at:
+    https://developers.google.com/adwords/api/docs/sunset-dates
+
+### 8.2.1
+
+AdWords:
+  - Fixed [issue #128](https://github.com/googleads/googleads-php-lib/issues/128).
+
+### 8.2.0
+
+AdWords:
+  - Fixed [issue #123](https://github.com/googleads/googleads-php-lib/issues/123).
+  - Added support and examples for v201603.
+
+DFP:
+  - Fixed [issue #126](https://github.com/googleads/googleads-php-lib/issues/126).
+
+### 8.1.0
+
+AdWords:
+  - Fixed [issue #119](https://github.com/googleads/googleads-php-lib/issues/119).
+
+DFP:
+  - Added support for v201602.
+  - Removed examples for v201502 (deprecated).
+  - Removed support for v201411 (sunset).
+
+### 8.0.0
+
+AdWords:
+  - Added support and examples for v201601.
+  - Removed AdX support.
+  - Added incremental upload for batch processing.
+  - Made the BatchJobUtils constructor accept upload URLs and optional
+    total content bytes as arguments.
+  - Fixed [issue #111](https://github.com/googleads/googleads-php-lib/issues/111).
+  - Fixed [issue #116](https://github.com/googleads/googleads-php-lib/issues/116).
+
+### 7.0.0
+
+AdWords:
+  - Versioned ReportUtils.
+  - Added XmlSerializer and XmlDeserializer.
+  - Added BatchJobUtils for uploading batch operations and downloading the
+    results from batch processing.
+  - Added an example of adding campaigns using BatchJobService.
+
+Common:
+  - Fixed [issue #100](https://github.com/googleads/googleads-php-lib/issues/100).
+
+### 6.6.0
+
+DFP:
+  - Added support for v201511.
+  - Removed support for v201408 (deprecated) and examples for v201411 (deprecated). See the [deprecation schedule](https://developers.google.com/doubleclick-publishers/docs/deprecation) for more information.
+
+### 6.5.0
+
+AdWords:
+  - Added support for additional OAuth2 scopes.
+  - Removed support and examples for v201502.
+    See the [deprecation schedule](https://developers.google.com/adwords/api/docs/sunset-dates) for more information.
+
+DFP:
+  - Added support for additional OAuth2 scopes.
+
+### 6.4.0
+
+AdWords:
+  - Added support and examples for v201509.
+
+Common:
+  - Fixed [issue #96](https://github.com/googleads/googleads-php-lib/issues/96).
+
+### 6.3.0
+
+DFP:
+  - Added support for v201508.
+  - Added ReconciliationLineItemReportService.
+  - Removed support for v201403 (sunset) and v201405 (deprecated). See the [deprecation schedule](https://developers.google.com/doubleclick-publishers/docs/deprecation) for more information.
+  - Removed examples for v201408.
+
+Common:
+  - Removed packaging WSDLInterpreter with the library for security reasons.
+
+### 6.2.0
+
+AdWords:
+  - Fixed [issue #81](https://github.com/googleads/googleads-php-lib/issues/81).
+  - Removed support and examples for v201409.
+    See the [deprecation schedule](https://developers.google.com/adwords/api/docs/sunset-dates) for more information.
+
 ### 6.1.0
 
 AdWords:

@@ -24,7 +24,6 @@
  * @copyright  2011, Google Inc. All Rights Reserved.
  * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
  *             Version 2.0
- * @author     Adam Rogal
  * @see        SoapClientFactory
  */
 require_once dirname(__FILE__) . '/../../Common/Lib/AdsUser.php';

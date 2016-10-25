@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns1:mutate><operations xsi:type="ns1:CampaignOperation"><operand xsi:type="ns1:Campaign"><id>-1</id><name>Test campaign</name><status>ENABLED</status><advertisingChannelType>SEARCH</advertisingChannelType></operand><operator>ADD</operator></operations><operations xsi:type="ns1:AdGroupOperation"><operand xsi:type="ns1:AdGroup"><id>-2</id><campaignId>-1</campaignId><name>Test ad group</name></operand><operator>ADD</operator></operations></ns1:mutate>
