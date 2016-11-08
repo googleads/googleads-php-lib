@@ -74,7 +74,7 @@ function UploadOfflineCallConversionsExample(AdWordsUser $user, $callerId,
       $offlineCallConversionService->mutate($offlineCallConversionOperations);
 
   $feed = $result->value[0];
-  printf("Uploaded offline call conversion value of '%s' for caller ID '%s'.\n"
+  printf("Uploaded offline call conversion value of '%s' for caller ID '%s'.\n",
       $feed->conversionValue, $feed->callerId);
 }
 
