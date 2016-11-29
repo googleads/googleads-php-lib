@@ -139,9 +139,9 @@ abstract class AdsUser {
    */
   protected function InitLogs() {
     Logger::LogToFile(Logger::$SOAP_XML_LOG,
-        $this->logsDirectory . "/soap_xml.log");
+        $this->GetLogsDirectory() . "/soap_xml.log");
     Logger::LogToFile(Logger::$REQUEST_INFO_LOG,
-        $this->logsDirectory . "/request_info.log");
+        $this->GetLogsDirectory() . "/request_info.log");
     Logger::SetLogLevel(Logger::$SOAP_XML_LOG, Logger::$FATAL);
     Logger::SetLogLevel(Logger::$REQUEST_INFO_LOG, Logger::$FATAL);
   }
