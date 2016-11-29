@@ -235,7 +235,7 @@ class AdWordsSessionBuilder implements AdsBuilder {
       $this->endpoint = self::DEFAULT_ENDPOINT;
     }
 
-    if ($this->logger === null) {
+    if ($this->logger === null && defined('STDERR')) {
       $handler = new StreamHandler(STDERR, Logger::INFO);
       $handler->getFormatter()->ignoreEmptyContextAndExtra();
       $handler->getFormatter()->allowInlineLineBreaks();
