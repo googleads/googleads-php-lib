@@ -2091,6 +2091,50 @@ if (!class_exists("EntityLimitReachedError", false)) {
   }
 }
 
+if (!class_exists("ExchangeRateError", false)) {
+  /**
+   * Lists all errors associated with {@link ExchangeRate} objects.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201608
+   */
+  class ExchangeRateError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201608";
+    const XSI_TYPE = "ExchangeRateError";
+
+    /**
+     * @access public
+     * @var tnsExchangeRateErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+    }
+
+  }
+}
+
 if (!class_exists("FeatureError", false)) {
   /**
    * Errors related to feature management.  If you attempt using a feature that is not available to
@@ -7189,6 +7233,39 @@ if (!class_exists("EnvironmentType", false)) {
   }
 }
 
+if (!class_exists("ExchangeRateErrorReason", false)) {
+  /**
+   * The reasons for the target error.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201608
+   */
+  class ExchangeRateErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201608";
+    const XSI_TYPE = "ExchangeRateError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("FeatureErrorReason", false)) {
   /**
    * A feature is being used that is not enabled on the current network.
@@ -10979,6 +11056,7 @@ if (!class_exists("ProposalLineItemService", false)) {
       "DropDownCustomFieldValue" => "DropDownCustomFieldValue",
       "EntityChildrenLimitReachedError" => "EntityChildrenLimitReachedError",
       "EntityLimitReachedError" => "EntityLimitReachedError",
+      "ExchangeRateError" => "ExchangeRateError",
       "FeatureError" => "FeatureError",
       "ForecastError" => "ForecastError",
       "FrequencyCap" => "FrequencyCap",
@@ -11103,6 +11181,7 @@ if (!class_exists("ProposalLineItemService", false)) {
       "EntityChildrenLimitReachedError.Reason" => "EntityChildrenLimitReachedErrorReason",
       "EntityLimitReachedError.Reason" => "EntityLimitReachedErrorReason",
       "EnvironmentType" => "EnvironmentType",
+      "ExchangeRateError.Reason" => "ExchangeRateErrorReason",
       "FeatureError.Reason" => "FeatureErrorReason",
       "ForecastError.Reason" => "ForecastErrorReason",
       "FrequencyCapError.Reason" => "FrequencyCapErrorReason",

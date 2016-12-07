@@ -3680,9 +3680,12 @@ if (!class_exists("SubmitProposalsForArchival", false)) {
 
 if (!class_exists("SyncProposalsWithMarketplace", false)) {
   /**
-   * The action used for synchronizing the local {@link Proposal} with the latest version in
+   * Synchronizes the local {@link Proposal} with the latest version in
    * Marketplace.
-   * This action is only applicable for programmatic proposals.
+   * This action is only to be used in cases where a {@link RequestBuyerAcceptance} action is being
+   * performed, but the buyer has made updates that have not yet been picked up by DFP. In this case
+   * a {@link DealError#PROPOSAL_OUT_OF_SYNC_WITH_MARKETPLACE} error will be thrown. This action is
+   * used to tell DFP to pick up the buyer changes immediately.
    * @package GoogleApiAdsDfp
    * @subpackage v201608
    */
@@ -6337,10 +6340,10 @@ if (!class_exists("CreateProposalsResponse", false)) {
 
 if (!class_exists("GetMarketplaceCommentsByStatement", false)) {
   /**
-   * Gets a {@link MarketplaceCommentPage} of {@link MarketplaceComment} objects that satisfy
-   * the given {@link Statement#query}. This method only returns comments already sent to
-   * Marketplace, local draft {@link ProposalMarketplaceInfo#marketplaceComment} are not included.
-   * The following fields are supported for filtering:
+   * Gets a {@link MarketplaceCommentPage} of {@link MarketplaceComment} objects that satisfy the
+   * given {@link Statement#query}. This method only returns comments already sent to Marketplace,
+   * local draft {@link ProposalMarketplaceInfo#marketplaceComment} are not included. The following
+   * fields are supported for filtering:
    * 
    * <table>
    * <tr>
@@ -6353,17 +6356,18 @@ if (!class_exists("GetMarketplaceCommentsByStatement", false)) {
    * </tr>
    * </table>
    * 
-   * The query must specify the {@code proposalId}, and only supports a subset of PQL syntax:<br>
+   * The query must specify a {@code proposalId}, and only supports a subset of PQL syntax:<br>
    * <code>[WHERE <condition> {AND <condition> ...}]</code><br>
-   * <p>
-   * <code><condition></code><br>
-   * &nbsp;&nbsp;&nbsp;&nbsp;
-   * <code>:= <property> = <value></code><br>
-   * <code><condition> := <property> IN <list></code><br>
-   * </p>
+   * <code>[ORDER BY <property> [ASC | DESC]]</code><br>
+   * <code>[LIMIT {[<offset>,] <count>} | {<count> OFFSET <offset>}]</code><br>
    * 
-   * @param filterStatement a Publisher Query Language statement used to filter
-   * a set of marketplace comments
+   * <p><code><condition></code><br>
+   * &nbsp;&nbsp;&nbsp;&nbsp; <code>:= <property> = <value></code><br>
+   * <code><condition> := <property> IN <list></code><br>
+   * Only supports {@code ORDER BY} {@link MarketplaceComment#creationTime}.
+   * 
+   * @param filterStatement a Publisher Query Language statement used to filter a set of marketplace
+   * comments
    * @return the marketplace comments that match the given filter
    * @package GoogleApiAdsDfp
    * @subpackage v201608
@@ -7126,8 +7130,15 @@ if (!class_exists("DiscardProposalDrafts", false)) {
 
 if (!class_exists("EditProposalsForNegotiation", false)) {
   /**
-   * The action used to mark {@link Proposal proposals} as editable.
-   * This action is only applicable for programmatic proposals.
+   * Opens the non-free-editable fields of a {@link Proposal} for edit.
+   * 
+   * <p>This proposal will not receive updates from Marketplace while
+   * it's open for edit. If the buyer updates the proposal while it is open for local editing,
+   * Google will set {@link ProposalMarketplaceInfo#isNewVersionFromBuyer} to {@code true}. You will
+   * then need to call {@link DiscardProposalDrafts} to revert your edits to get the buyer's latest
+   * changes, and then perform this action to start making your edits again.
+   * 
+   * <p>This action is only applicable for programmatic proposals.
    * @package GoogleApiAdsDfp
    * @subpackage v201608
    */
@@ -7647,10 +7658,10 @@ if (!class_exists("ProposalService", false)) {
       return $result->rval;
     }
     /**
-     * Gets a {@link MarketplaceCommentPage} of {@link MarketplaceComment} objects that satisfy
-     * the given {@link Statement#query}. This method only returns comments already sent to
-     * Marketplace, local draft {@link ProposalMarketplaceInfo#marketplaceComment} are not included.
-     * The following fields are supported for filtering:
+     * Gets a {@link MarketplaceCommentPage} of {@link MarketplaceComment} objects that satisfy the
+     * given {@link Statement#query}. This method only returns comments already sent to Marketplace,
+     * local draft {@link ProposalMarketplaceInfo#marketplaceComment} are not included. The following
+     * fields are supported for filtering:
      * 
      * <table>
      * <tr>
@@ -7663,17 +7674,18 @@ if (!class_exists("ProposalService", false)) {
      * </tr>
      * </table>
      * 
-     * The query must specify the {@code proposalId}, and only supports a subset of PQL syntax:<br>
+     * The query must specify a {@code proposalId}, and only supports a subset of PQL syntax:<br>
      * <code>[WHERE <condition> {AND <condition> ...}]</code><br>
-     * <p>
-     * <code><condition></code><br>
-     * &nbsp;&nbsp;&nbsp;&nbsp;
-     * <code>:= <property> = <value></code><br>
-     * <code><condition> := <property> IN <list></code><br>
-     * </p>
+     * <code>[ORDER BY <property> [ASC | DESC]]</code><br>
+     * <code>[LIMIT {[<offset>,] <count>} | {<count> OFFSET <offset>}]</code><br>
      * 
-     * @param filterStatement a Publisher Query Language statement used to filter
-     * a set of marketplace comments
+     * <p><code><condition></code><br>
+     * &nbsp;&nbsp;&nbsp;&nbsp; <code>:= <property> = <value></code><br>
+     * <code><condition> := <property> IN <list></code><br>
+     * Only supports {@code ORDER BY} {@link MarketplaceComment#creationTime}.
+     * 
+     * @param filterStatement a Publisher Query Language statement used to filter a set of marketplace
+     * comments
      * @return the marketplace comments that match the given filter
      */
     public function getMarketplaceCommentsByStatement($filterStatement) {

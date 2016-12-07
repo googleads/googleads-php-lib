@@ -1680,7 +1680,7 @@ if (!class_exists("InvalidEmailErrorReason", false)) {
 
 if (!class_exists("NetworkErrorReason", false)) {
   /**
-   * The value returned if the actual value is not exposed by the requested API version.
+   * Possible reasons for {@link NetworkError}
    * @package GoogleApiAdsDfp
    * @subpackage v201608
    */

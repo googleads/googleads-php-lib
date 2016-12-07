@@ -1,3 +1,14 @@
+### 15.0.0
+
+AdWords:
+  - Fixed [issue #174](https://github.com/googleads/googleads-php-lib/pull/174).
+  - Fixed [issue #176](https://github.com/googleads/googleads-php-lib/pull/176).
+
+DFP:
+  - Added support and examples for v201611.
+  - Removed examples for v201602 (deprecated).
+  - Removed support for v201508 and v201511 (sunset).
+
 ### 14.0.0
 
 AdWords:
