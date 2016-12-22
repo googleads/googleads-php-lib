@@ -36,8 +36,7 @@ class PauseLineItems {
 
   public static function runExample(DfpServices $dfpServices,
       DfpSession $session, $lineItemId) {
-    $lineItemService = $dfpServices->get(
-        $dfpServices->get($session, LineItemService::class);
+    $lineItemService = $dfpServices->get($session, LineItemService::class);
 
     // Create a statement to select a single line item by ID.
     $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
