@@ -1,10 +1,6 @@
 <?php
 /**
- * This example adds an image representing the ad using the MediaService and
- * then adds a responsive display ad to an ad group.
- * To get ad groups, run GetAdGroups.php.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,99 +13,110 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\AdvancedOperations;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
 
-require_once UTIL_PATH . '/MediaUtils.php';
-
-// Enter parameters required by the code example.
-$adGroupId = 'INSERT_AD_GROUP_ID_HERE';
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupAd;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupAdOperation;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupAdService;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupAdStatus;
+use Google\AdsApi\AdWords\v201609\cm\Image;
+use Google\AdsApi\AdWords\v201609\cm\MediaMediaType;
+use Google\AdsApi\AdWords\v201609\cm\MediaService;
+use Google\AdsApi\AdWords\v201609\cm\Operator;
+use Google\AdsApi\AdWords\v201609\cm\ResponsiveDisplayAd;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
- * @param string $adGroupId the ID of the ad group to add the ads to
+ * This example adds an image representing the ad using the MediaService and
+ * then adds a responsive display ad to an ad group. To get ad groups, run
+ * GetAdGroups.php.
  */
-function AddResponsiveDisplayAd(AdWordsUser $user, $adGroupId) {
-  // Get the service, which loads the required classes.
-  $mediaService = $user->GetService('MediaService', ADWORDS_VERSION);
+class AddResponsiveDisplayAd {
 
-  // Creates image.
-  $image = new Image();
-  $image->data = MediaUtils::GetBase64Data('https://goo.gl/3b9Wfh');
-  $image->type = 'IMAGE';
+  const AD_GROUP_ID = 'INSERT_AD_GROUP_ID_HERE';
 
-  // Make the upload request.
-  $result = $mediaService->upload(array($image));
-  $image = $result[0];
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session, $adGroupId) {
+    $mediaService = $adWordsServices->get($session, MediaService::class);
 
-  // Get the service, which loads the required classes.
-  $adGroupAdService = $user->GetService('AdGroupAdService', ADWORDS_VERSION);
+    // Create an image and add it to the images list.
+    $image = new Image();
+    $image->setData(file_get_contents('http://goo.gl/3b9Wfh'));
+    $image->setType(MediaMediaType::IMAGE);
+    $images = [$image];
 
-  // Create a responsive display ad.
-  $responsiveDisplayAd = new ResponsiveDisplayAd();
+    // Upload the image to the server.
+    $image = $mediaService->upload($images)[0];
 
-  // This ad format does not allow the creation of an image using the
-  // Image.data field. An image must first be created using the MediaService,
-  // and Image.mediaId must be populated when creating the ad.
-  $marketingImage = new Image();
-  $marketingImage->mediaId = $image->mediaId;
+    $adGroupAdService =
+        $adWordsServices->get($session, AdGroupAdService::class);
 
-  $responsiveDisplayAd->marketingImage = $marketingImage;
-  $responsiveDisplayAd->shortHeadline = 'Travel';
-  $responsiveDisplayAd->longHeadline = 'Travel the World';
-  $responsiveDisplayAd->description = 'Take to the air!';
-  $responsiveDisplayAd->businessName = 'Google';
-  $responsiveDisplayAd->finalUrls = array('http://www.example.com');
+    $operations = [];
+    // Create a responsive display ad.
+    $responsiveDisplayAd = new ResponsiveDisplayAd();
 
-  // Create ad group ad.
-  $adGroupAd = new AdGroupAd();
-  $adGroupAd->adGroupId = $adGroupId;
-  $adGroupAd->ad = $responsiveDisplayAd;
+    // This ad format does not allow the creation of an image using the
+    // Image.data field. An image must first be created using the MediaService,
+    // and Image.mediaId must be populated when creating the ad.
+    $marketingImage = new Image();
+    $marketingImage->setMediaId($image->getMediaId());
 
-  // Set additional settings (optional).
-  $adGroupAd->status = 'PAUSED';
+    $responsiveDisplayAd->setMarketingImage($marketingImage);
+    $responsiveDisplayAd->setShortHeadline('Travel');
+    $responsiveDisplayAd->setLongHeadline('Travel the World');
+    $responsiveDisplayAd->setDescription('Take to the air!');
+    $responsiveDisplayAd->setBusinessName('Google');
+    $responsiveDisplayAd->setFinalUrls(['http://www.example.com']);
 
-  // Create operation.
-  $operation = new AdGroupAdOperation();
-  $operation->operand = $adGroupAd;
-  $operation->operator = 'ADD';
-  $operations[] = $operation;
+    // Create ad group ad.
+    $adGroupAd = new AdGroupAd();
+    $adGroupAd->setAdGroupId($adGroupId);
+    $adGroupAd->setAd($responsiveDisplayAd);
+    // Optional: Set additional settings.
+    $adGroupAd->setStatus(AdGroupAdStatus::PAUSED);
 
-  // Make the mutate request.
-  $result = $adGroupAdService->mutate($operations);
+    // Create ad group ad operation and add it to the list.
+    $operation = new AdGroupAdOperation();
+    $operation->setOperand($adGroupAd);
+    $operation->setOperator(Operator::ADD);
+    $operations[] = $operation;
 
-  // Display results.
-  foreach ($result->value as $adGroupAd) {
-    printf("Responsive display ad with ID '%d' and short headline '%s'"
-        . " was added.\n", $adGroupAd->ad->id, $adGroupAd->ad->shortHeadline);
+    // Add a responsive display ad on the server.
+    $result = $adGroupAdService->mutate($operations);
+
+    // Create the responsive display ad on the server and print out some
+    // information for each created responsive display ad.
+    foreach ($result->getValue() as $adGroupAd) {
+      printf(
+          "Responsive display ad with ID %d and short headline '%s'"
+              . " was added.\n",
+          $adGroupAd->getAd()->getId(),
+          $adGroupAd->getAd()->getShortHeadline()
+      );
+    }
+  }
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(
+        new AdWordsServices(), $session, intval(self::AD_GROUP_ID));
   }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  AddResponsiveDisplayAd($user, $adGroupId);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+AddResponsiveDisplayAd::main();

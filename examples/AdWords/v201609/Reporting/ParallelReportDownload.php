@@ -1,14 +1,6 @@
 <?php
 /**
- * This example gets and downloads an Ad Hoc report from an XML report
- * definition for all accounts directly under a manager account.
- * This example should be run against an AdWords manager account.
- *
- * Although the example's name is `ParallelReportDownload`, it doesn't download
- * reports in parallel as this client lib isn't built to support multithreading.
- * It is named so to be consistent with other client libs.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,176 +13,203 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\Reporting;
 
-require_once dirname(dirname(__FILE__)) . '/init.php';
-require_once ADWORDS_UTIL_VERSION_PATH . '/ReportUtils.php';
-define('MAX_RETRIES', 5);
-define('BACKOFF_FACTOR', 5);
+require '../../../../vendor/autoload.php';
+
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\ReportSettings;
+use Google\AdsApi\AdWords\ReportSettingsBuilder;
+use Google\AdsApi\AdWords\Reporting\v201609\DownloadFormat;
+use Google\AdsApi\AdWords\Reporting\v201609\ReportDefinition;
+use Google\AdsApi\AdWords\Reporting\v201609\ReportDefinitionDateRangeType;
+use Google\AdsApi\AdWords\Reporting\v201609\ReportDownloader;
+use Google\AdsApi\AdWords\v201609\cm\ApiException;
+use Google\AdsApi\AdWords\v201609\cm\Paging;
+use Google\AdsApi\AdWords\v201609\cm\Predicate;
+use Google\AdsApi\AdWords\v201609\cm\PredicateOperator;
+use Google\AdsApi\AdWords\v201609\cm\ReportDefinitionReportType;
+use Google\AdsApi\AdWords\v201609\cm\Selector;
+use Google\AdsApi\AdWords\v201609\mcm\ManagedCustomerService;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
+use Google\Auth\FetchAuthTokenInterface;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
+ * This example gets and downloads an Ad Hoc report from an XML report
+ * definition for all accounts directly under a manager account.
+ * This example should be run against an AdWords manager account.
+ *
+ * Although the example's name is `ParallelReportDownload`, it doesn't download
+ * reports in parallel as this client library doesn't support multithreading.
+ * It is named so to be consistent with other client libraries.
  */
-function ParallelReportDownloadExample(AdWordsUser $user) {
-  // Load the service, so that the required classes are available.
-  $user->LoadService('ReportDefinitionService', ADWORDS_VERSION);
+class ParallelReportDownload {
 
-  // Create selector.
-  $selector = new Selector();
-  $selector->fields =
-      array('CampaignId', 'AdGroupId', 'Impressions', 'Clicks', 'Cost');
+  // Timeout between retries in seconds.
+  const BACKOFF_FACTOR = 5;
 
-  // Create report definition.
-  $reportDefinition = new ReportDefinition();
-  $reportDefinition->selector = $selector;
-  $reportDefinition->reportName = 'Custom ADGROUP_PERFORMANCE_REPORT';
-  $reportDefinition->dateRangeType = 'LAST_7_DAYS';
-  $reportDefinition->reportType = 'ADGROUP_PERFORMANCE_REPORT';
-  $reportDefinition->downloadFormat = 'CSV';
+  // Maximum number of retries for 500 errors.
+  const MAX_RETRIES = 5;
 
-  // Set additional options.
-  $options = array('version' => ADWORDS_VERSION);
+  // The number of entries per page of the results.
+  const PAGE_LIMIT = 500;
 
-  // Optional: Set skipReportHeader, skipColumnHeader, skipReportSummary to
-  //     suppress headers or summary rows.
-  // $options['skipReportHeader'] = true;
-  // $options['skipColumnHeader'] = true;
-  // $options['skipReportSummary'] = true;
-  //
-  // Optional: Set useRawEnumValues to return enum values instead of enum
-  //     display values.
-  // $options['useRawEnumValues'] = true;
-  //
-  // Optional: Set includeZeroImpressions to include zero impression rows in
-  //     the report output.
-  // $options['includeZeroImpressions'] = true;
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSessionBuilder $sessionBuilder, $reportDir) {
+    // Construct an API session for the client customer ID specified in the
+    // configuration file.
+    $session = $sessionBuilder->build();
 
-  $customerIds = getAllManagedCustomerIds($user);
-  printf("Downloading reports for %d managed customers.\n",
-      count($customerIds));
+    // Create selector.
+    $selector = new Selector();
+    $selector->setFields(
+        ['CampaignId', 'AdGroupId', 'Impressions', 'Clicks', 'Cost']);
 
-  $successfulReports = array();
-  $failedReports = array();
-  $reportDir = sys_get_temp_dir();
-  $reportUtils = new ReportUtils();
+    // Create report definition.
+    $reportDefinition = new ReportDefinition();
+    $reportDefinition->setSelector($selector);
+    $reportDefinition->setReportName('Custom ADGROUP_PERFORMANCE_REPORT');
+    $reportDefinition->setDateRangeType(
+        ReportDefinitionDateRangeType::LAST_7_DAYS);
+    $reportDefinition->setReportType(
+        ReportDefinitionReportType::ADGROUP_PERFORMANCE_REPORT);
+    $reportDefinition->setDownloadFormat(DownloadFormat::CSV);
 
-  foreach ($customerIds as $customerId) {
-    $filePath = sprintf('%s.csv', tempnam($reportDir, 'adgroup_'));
-    $user->SetClientCustomerId($customerId);
+    $customerIds = self::getAllManagedCustomerIds($adWordsServices, $session);
+    printf("Downloading reports for %d managed customers.\n",
+        count($customerIds));
 
-    $retryCount = 0;
-    $doContinue = true;
-    do {
-      $retryCount++;
-      try {
-        $reportUtils->DownloadReport($reportDefinition, $filePath, $user,
-            $options);
-        printf(
-            "Report for client customer ID %d successfully downloaded to: %s\n",
-            $customerId,
-            $filePath
-        );
-        $successfulReports[$customerId] = $filePath;
-        $doContinue = false;
-      } catch (ReportDownloadException $e) {
-        printf(
-            "Report attempt #%d for client customer ID %d was not downloaded"
-                . " due to: %s\n",
-            $retryCount,
-            $customerId,
-            $e->getMessage()
-        );
+    $successfulReports = [];
+    $failedReports = [];
 
-        if ($e->GetHttpCode() >= 500 && $retryCount < MAX_RETRIES) {
-          $sleepTime = $retryCount * BACKOFF_FACTOR;
+    foreach ($customerIds as $customerId) {
+      $filePath = sprintf('%s%sadgroup_%d.csv', $reportDir,
+          DIRECTORY_SEPARATOR, $customerId);
+
+      // Construct an API session for the specified client customer ID.
+      $session = $sessionBuilder->withClientCustomerId($customerId)->build();
+      $reportDownloader = new ReportDownloader($session);
+
+      $retryCount = 0;
+      $doContinue = true;
+      do {
+        $retryCount++;
+        try {
+          $reportDownloadResult =
+              $reportDownloader->downloadReport($reportDefinition);
+          $reportDownloadResult->saveToFile($filePath);
           printf(
-              "Sleeping %d seconds before retrying report for client customer "
-                  . "ID %d.\n",
-              $sleepTime,
-              $customerId
+              "Report for client customer ID %d successfully downloaded to: "
+                  . "%s\n",
+              $customerId,
+              $filePath
           );
-          sleep($sleepTime);
-        } else {
-          printf(
-              "Report request failed for client customer ID %d.\n",
-              $customerId
-          );
-          $failedReports[$customerId] = $filePath;
+          $successfulReports[$customerId] = $filePath;
           $doContinue = false;
+        } catch (ApiException $e) {
+          printf(
+              "Report attempt #%d for client customer ID %d was not downloaded"
+                  . " due to: %s\n",
+              $retryCount,
+              $customerId,
+              $e->getMessage()
+          );
+
+          // If this is a server error, retry up to the defined maximum number
+          // of retries.
+          if ($e->getErrors() === null && $retryCount < self::MAX_RETRIES) {
+            $sleepTime = $retryCount * self::BACKOFF_FACTOR;
+            printf(
+                "Sleeping %d seconds before retrying report for client customer"
+                    . " ID %d.\n",
+                $sleepTime,
+                $customerId
+            );
+            sleep($sleepTime);
+          } else {
+            printf(
+                "Report request failed for client customer ID %d.\n",
+                $customerId
+            );
+            $failedReports[$customerId] = $filePath;
+            $doContinue = false;
+          }
         }
-
-      }
-    } while ($doContinue === true);
-  }
-
-  print "All downloads completed. Results:\n";
-  print "Successful reports:\n";
-  foreach ($successfulReports as $customerId => $filePath) {
-    printf("\tClient ID %d => '%s'\n", $customerId, $filePath);
-  }
-  print "Failed reports:\n";
-  foreach ($failedReports as $customerId => $filePath) {
-    printf("\tClient ID %d => '%s'\n", $customerId, $filePath);
-  }
-  print "End of results.\n";
-}
-
-/**
- * Retrieves all the customer IDs under a manager account.
- *
- * @param AdWordsUser $user the user to run the example with
- * @return array the list of customer IDs under a manager account
- */
-function getAllManagedCustomerIds(AdWordsUser $user) {
-  // Optional: Set clientCustomerId to any manager account you want to get
-  //     reports for its client accounts.
-  // $user->SetClientCustomerId('INSERT_CLIENT_CUSTOMER_ID_HERE');
-  $managedCustomerService =
-      $user->GetService('ManagedCustomerService', ADWORDS_VERSION);
-
-  $selector = new Selector();
-  $selector->fields = array('CustomerId');
-  $selector->paging = new Paging(0, AdWordsConstants::RECOMMENDED_PAGE_SIZE);
-  $selector->predicates[] =
-      new Predicate('CanManageClients', 'EQUALS', 'false');
-
-  $customerIds = array();
-  do {
-    $page = $managedCustomerService->get($selector);
-    if (isset($page->entries)) {
-      foreach ($page->entries as $customer) {
-        $customerIds[] = $customer->customerId;
-      }
+      } while ($doContinue === true);
     }
-    $selector->paging->startIndex += AdWordsConstants::RECOMMENDED_PAGE_SIZE;
-  } while ($selector->paging->startIndex < $page->totalNumEntries);
 
-  return $customerIds;
+    print "All downloads completed. Results:\n";
+    print "Successful reports:\n";
+    foreach ($successfulReports as $customerId => $filePath) {
+      printf("\tClient ID %d => '%s'\n", $customerId, $filePath);
+    }
+    print "Failed reports:\n";
+    foreach ($failedReports as $customerId => $filePath) {
+      printf("\tClient ID %d => '%s'\n", $customerId, $filePath);
+    }
+    print "End of results.\n";
+  }
+
+  /**
+   * Retrieves all the customer IDs under a manager account.
+   *
+   * To set clientCustomerId to any manager account you want to get
+   * reports for its client accounts, use `AdWordsSessionBuilder` to
+   * create new session.
+   */
+  private static function getAllManagedCustomerIds(
+      AdWordsServices $adWordsServices, AdWordsSession $session) {
+    $managedCustomerService =
+        $adWordsServices->get($session, ManagedCustomerService::class);
+
+    $selector = new Selector();
+    $selector->setFields(['CustomerId']);
+    $selector->setPaging(new Paging(0, self::PAGE_LIMIT));
+    $selector->setPredicates([new Predicate('CanManageClients',
+        PredicateOperator::EQUALS, ['false'])]);
+
+    $customerIds = [];
+    do {
+      $page = $managedCustomerService->get($selector);
+      if ($page->getEntries() !== null) {
+        $totalNumEntries = $page->getTotalNumEntries();
+        foreach ($page->getEntries() as $customer) {
+          $customerIds[] = $customer->getCustomerId();
+        }
+      }
+      $selector->getPaging()->setStartIndex(
+          $selector->getPaging()->getStartIndex() + self::PAGE_LIMIT);
+    } while ($selector->getPaging()->getStartIndex() < $totalNumEntries);
+
+    return $customerIds;
+  }
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // See: ReportSettingsBuilder for more options (e.g., suppress headers)
+    // or set them in your adsapi_php.ini file.
+    $reportSettings = (new ReportSettingsBuilder())
+        ->fromFile()
+        ->includeZeroImpressions(false)
+        ->build();
+
+    // See: AdWordsSessionBuilder for setting a client customer ID that is
+    // different from that specified in your adsapi_php.ini file.
+    $sessionBuilder = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->withReportSettings($reportSettings);
+
+    self::runExample(new AdWordsServices(), $sessionBuilder,
+        sys_get_temp_dir());
+  }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  ParallelReportDownloadExample($user);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+ParallelReportDownload::main();

@@ -1,8 +1,6 @@
 <?php
 /**
- * This example adds campaigns.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,131 +13,179 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\BasicOperations;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
+
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\AdServingOptimizationStatus;
+use Google\AdsApi\AdWords\v201609\cm\AdvertisingChannelType;
+use Google\AdsApi\AdWords\v201609\cm\BiddingStrategyConfiguration;
+use Google\AdsApi\AdWords\v201609\cm\BiddingStrategyType;
+use Google\AdsApi\AdWords\v201609\cm\Budget;
+use Google\AdsApi\AdWords\v201609\cm\BudgetBudgetDeliveryMethod;
+use Google\AdsApi\AdWords\v201609\cm\BudgetOperation;
+use Google\AdsApi\AdWords\v201609\cm\BudgetService;
+use Google\AdsApi\AdWords\v201609\cm\Campaign;
+use Google\AdsApi\AdWords\v201609\cm\CampaignOperation;
+use Google\AdsApi\AdWords\v201609\cm\CampaignService;
+use Google\AdsApi\AdWords\v201609\cm\CampaignStatus;
+use Google\AdsApi\AdWords\v201609\cm\FrequencyCap;
+use Google\AdsApi\AdWords\v201609\cm\GeoTargetTypeSetting;
+use Google\AdsApi\AdWords\v201609\cm\GeoTargetTypeSettingNegativeGeoTargetType;
+use Google\AdsApi\AdWords\v201609\cm\GeoTargetTypeSettingPositiveGeoTargetType;
+use Google\AdsApi\AdWords\v201609\cm\Level;
+use Google\AdsApi\AdWords\v201609\cm\ManualCpcBiddingScheme;
+use Google\AdsApi\AdWords\v201609\cm\Money;
+use Google\AdsApi\AdWords\v201609\cm\NetworkSetting;
+use Google\AdsApi\AdWords\v201609\cm\Operator;
+use Google\AdsApi\AdWords\v201609\cm\TimeUnit;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
+ * This example adds campaigns.
  */
-function AddCampaignsExample(AdWordsUser $user) {
-  // Get the BudgetService, which loads the required classes.
-  $budgetService = $user->GetService('BudgetService', ADWORDS_VERSION);
+class AddCampaigns {
 
-  // Create the shared budget (required).
-  $budget = new Budget();
-  $budget->name = 'Interplanetary Cruise Budget #' . uniqid();
-  $budget->amount = new Money(50000000);
-  $budget->deliveryMethod = 'STANDARD';
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session) {
+    $budgetService = $adWordsServices->get($session, BudgetService::class);
 
-  $operations = array();
+    // Create the shared budget (required).
+    $budget = new Budget();
+    $budget->setName('Interplanetary Cruise Budget #' . uniqid());
+    $money = new Money();
+    $money->setMicroAmount(50000000);
+    $budget->setAmount($money);
+    $budget->setDeliveryMethod(BudgetBudgetDeliveryMethod::STANDARD);
 
-  // Create operation.
-  $operation = new BudgetOperation();
-  $operation->operand = $budget;
-  $operation->operator = 'ADD';
-  $operations[] = $operation;
+    $operations = [];
 
-   // Make the mutate request.
-  $result = $budgetService->mutate($operations);
-  $budget = $result->value[0];
+    // Create a budget operation.
+    $operation = new BudgetOperation();
+    $operation->setOperand($budget);
+    $operation->setOperator(Operator::ADD);
+    $operations[] = $operation;
 
-  // Get the CampaignService, which loads the required classes.
-  $campaignService = $user->GetService('CampaignService', ADWORDS_VERSION);
+    // Create the budget on the server.
+    $result = $budgetService->mutate($operations);
+    $budget = $result->getValue()[0];
 
-  $numCampaigns = 2;
-  $operations = array();
-  for ($i = 0; $i < $numCampaigns; $i++) {
-    // Create campaign.
+    $campaignService = $adWordsServices->get($session, CampaignService::class);
+
+    $operations = [];
+
+    // Create a campaign with required and optional settings.
     $campaign = new Campaign();
-    $campaign->name = 'Interplanetary Cruise #' . uniqid();
-    $campaign->advertisingChannelType = 'SEARCH';
+    $campaign->setName('Interplanetary Cruise #' . uniqid());
+    $campaign->setAdvertisingChannelType(AdvertisingChannelType::SEARCH);
 
     // Set shared budget (required).
-    $campaign->budget = new Budget();
-    $campaign->budget->budgetId = $budget->budgetId;
+    $campaign->setBudget(new Budget());
+    $campaign->getBudget()->setBudgetId($budget->getBudgetId());
 
     // Set bidding strategy (required).
     $biddingStrategyConfiguration = new BiddingStrategyConfiguration();
-    $biddingStrategyConfiguration->biddingStrategyType = 'MANUAL_CPC';
+    $biddingStrategyConfiguration->setBiddingStrategyType(
+        BiddingStrategyType::MANUAL_CPC);
 
     // You can optionally provide a bidding scheme in place of the type.
     $biddingScheme = new ManualCpcBiddingScheme();
-    $biddingScheme->enhancedCpcEnabled = false;
-    $biddingStrategyConfiguration->biddingScheme = $biddingScheme;
+    $biddingScheme->setEnhancedCpcEnabled(false);
+    $biddingStrategyConfiguration->setBiddingScheme($biddingScheme);
 
-    $campaign->biddingStrategyConfiguration = $biddingStrategyConfiguration;
+    $campaign->setBiddingStrategyConfiguration($biddingStrategyConfiguration);
 
     // Set network targeting (optional).
     $networkSetting = new NetworkSetting();
-    $networkSetting->targetGoogleSearch = true;
-    $networkSetting->targetSearchNetwork = true;
-    $networkSetting->targetContentNetwork = true;
-    $campaign->networkSetting = $networkSetting;
+    $networkSetting->setTargetGoogleSearch(true);
+    $networkSetting->setTargetSearchNetwork(true);
+    $networkSetting->setTargetContentNetwork(true);
+    $campaign->setNetworkSetting($networkSetting);
 
     // Set additional settings (optional).
     // Recommendation: Set the campaign to PAUSED when creating it to stop
     // the ads from immediately serving. Set to ENABLED once you've added
     // targeting and the ads are ready to serve.
-    $campaign->status = 'PAUSED';
-    $campaign->startDate = date('Ymd', strtotime('+1 day'));
-    $campaign->endDate = date('Ymd', strtotime('+1 month'));
-    $campaign->adServingOptimizationStatus = 'ROTATE';
+    $campaign->setStatus(CampaignStatus::PAUSED);
+    $campaign->setStartDate(date('Ymd', strtotime('+1 day')));
+    $campaign->setEndDate(date('Ymd', strtotime('+1 month')));
+    $campaign->setAdServingOptimizationStatus(
+        AdServingOptimizationStatus::ROTATE);
 
     // Set frequency cap (optional).
     $frequencyCap = new FrequencyCap();
-    $frequencyCap->impressions = 5;
-    $frequencyCap->timeUnit = 'DAY';
-    $frequencyCap->level = 'ADGROUP';
-    $campaign->frequencyCap = $frequencyCap;
+    $frequencyCap->setImpressions(5);
+    $frequencyCap->setTimeUnit(TimeUnit::DAY);
+    $frequencyCap->setLevel(Level::ADGROUP);
+    $campaign->setFrequencyCap($frequencyCap);
 
     // Set advanced location targeting settings (optional).
     $geoTargetTypeSetting = new GeoTargetTypeSetting();
-    $geoTargetTypeSetting->positiveGeoTargetType = 'DONT_CARE';
-    $geoTargetTypeSetting->negativeGeoTargetType = 'DONT_CARE';
-    $campaign->settings[] = $geoTargetTypeSetting;
+    $geoTargetTypeSetting->setPositiveGeoTargetType(
+        GeoTargetTypeSettingPositiveGeoTargetType::DONT_CARE);
+    $geoTargetTypeSetting->setNegativeGeoTargetType(
+        GeoTargetTypeSettingNegativeGeoTargetType::DONT_CARE);
+    $campaign->setSettings([$geoTargetTypeSetting]);
 
-    // Create operation.
+    // Create a campaign operation and add it to the operations list.
     $operation = new CampaignOperation();
-    $operation->operand = $campaign;
-    $operation->operator = 'ADD';
+    $operation->setOperand($campaign);
+    $operation->setOperator(Operator::ADD);
     $operations[] = $operation;
+
+    // Create a campaign with only required settings.
+    $campaign = new Campaign();
+    $campaign->setName('Interplanetary Cruise #' . uniqid());
+    $campaign->setAdvertisingChannelType(AdvertisingChannelType::DISPLAY);
+
+    // Set shared budget (required).
+    $campaign->setBudget(new Budget());
+    $campaign->getBudget()->setBudgetId($budget->getBudgetId());
+
+    // Set bidding strategy (required).
+    $biddingStrategyConfiguration = new BiddingStrategyConfiguration();
+    $biddingStrategyConfiguration->setBiddingStrategyType(
+        BiddingStrategyType::MANUAL_CPC);
+    $campaign->setBiddingStrategyConfiguration($biddingStrategyConfiguration);
+
+    $campaign->setStatus(CampaignStatus::PAUSED);
+
+    // Create a campaign operation and add it to the operations list.
+    $operation = new CampaignOperation();
+    $operation->setOperand($campaign);
+    $operation->setOperator(Operator::ADD);
+    $operations[] = $operation;
+
+    // Create the campaigns on the server and print out some information for
+    // each created campaign.
+    $result = $campaignService->mutate($operations);
+    foreach ($result->getValue() as $campaign) {
+      printf("Campaign with name '%s' and ID %d was added.\n",
+          $campaign->getName(),
+          $campaign->getId()
+      );
+    }
   }
 
-  // Make the mutate request.
-  $result = $campaignService->mutate($operations);
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
 
-  // Display results.
-  foreach ($result->value as $campaign) {
-    printf("Campaign with name '%s' and ID '%s' was added.\n", $campaign->name,
-        $campaign->id);
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(new AdWordsServices(), $session);
   }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
+AddCampaigns::main();
 
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  AddCampaignsExample($user);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}

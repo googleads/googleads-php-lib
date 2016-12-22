@@ -1,9 +1,6 @@
 <?php
 /**
- * This example adds an HTML5 ad to given ad group. To get ad groups, run
- * GetAdGroups.php.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,117 +13,131 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\AdvancedOperations;
 
-// Include the initialization file.
-require_once dirname(dirname(__FILE__)) . '/init.php';
-require_once UTIL_PATH . '/MediaUtils.php';
+require '../../../../vendor/autoload.php';
 
-// Enter parameters required by the code example.
-$adGroupId = 'INSERT_AD_GROUP_ID_HERE';
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupAd;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupAdOperation;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupAdService;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupAdStatus;
+use Google\AdsApi\AdWords\v201609\cm\Dimensions;
+use Google\AdsApi\AdWords\v201609\cm\Image;
+use Google\AdsApi\AdWords\v201609\cm\MediaBundle;
+use Google\AdsApi\AdWords\v201609\cm\Operator;
+use Google\AdsApi\AdWords\v201609\cm\TemplateAd;
+use Google\AdsApi\AdWords\v201609\cm\TemplateElement;
+use Google\AdsApi\AdWords\v201609\cm\TemplateElementField;
+use Google\AdsApi\AdWords\v201609\cm\TemplateElementFieldType;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
- * @param string $adGroupId the ID of the ad group to add the ad to
+ * This example adds an HTML5 ad to given ad group. To get ad groups, run
+ * GetAdGroups.php.
  */
-function AddHtml5Ad(AdWordsUser $user, $adGroupId) {
-  // Get the AdGroupAdService, which loads the required classes.
-  $adGroupAdService = $user->GetService('AdGroupAdService', ADWORDS_VERSION);
+class AddHtml5Ad {
 
-  // Create the template ad.
-  $html5Ad = new TemplateAd();
+  const AD_GROUP_ID = 'INSERT_AD_GROUP_ID_HERE';
 
-  $html5Ad->name = 'Ad for HTML5';
-  $html5Ad->templateId = 419;
-  $html5Ad->finalUrls = array('http://example.com/html5');
-  $html5Ad->displayUrl = 'example.com/html5';
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session, $adGroupId) {
+    $adGroupAdService =
+        $adWordsServices->get($session, AdGroupAdService::class);
 
-  $dimensions = new Dimensions();
-  $dimensions->width = 300;
-  $dimensions->height = 250;
-  $html5Ad->dimensions = $dimensions;
+    $operations = [];
+    // Create a template ad.
+    $html5Ad = new TemplateAd();
+    $html5Ad->setName('Ad for HTML5');
+    // 419 represents uploaded HTML5 bundle. See
+    // https://developers.google.com/adwords/api/docs/appendix/templateads
+    // for details.
+    $html5Ad->setTemplateId(419);
+    $html5Ad->setFinalUrls(['http://example.com/html5']);
+    $html5Ad->setDisplayUrl('example.com/html5');
 
-  // The HTML5 zip file contains all the HTML, CSS, and images needed for the
-  // HTML5 ad. For help on creating an HTML5 zip file, check out Google Web
-  // Designer (https://www.google.com/webdesigner/).
-  $html5Zip = MediaUtils::GetBase64Data('https://goo.gl/9Y7qI2');
+    $dimensions = new Dimensions();
+    $dimensions->setWidth(300);
+    $dimensions->setHeight(250);
+    $html5Ad->setDimensions($dimensions);
 
-  // Create a media bundle containing the zip file with all the HTML5
-  // components.
-  // NOTE: You may also upload an HTML5 zip using MediaService.upload()
-  // and simply set the mediaId field below. See UploadMediaBundle.php for an
-  // example.
-  $mediaBundle = new MediaBundle();
-  $mediaBundle->data = $html5Zip;
-  $mediaBundle->entryPoint = 'carousel/index.html';
-  $mediaBundle->type = 'MEDIA_BUNDLE';
+    // The HTML5 zip file contains all the HTML, CSS, and images needed for the
+    // HTML5 ad. For help on creating an HTML5 zip file, check out Google Web
+    // Designer (https://www.google.com/webdesigner/).
+    $html5Zip = file_get_contents('https://goo.gl/9Y7qI2');
 
-  // Create the template elements for the ad. You can refer to
-  // https://developers.google.com/adwords/api/docs/appendix/templateads
-  // for the list of avaliable template fields.
-  $media = new TemplateElementField();
-  $media->name = 'Custom_layout';
-  $media->fieldMedia = $mediaBundle;
-  $media->type = 'MEDIA_BUNDLE';
+    // Create a media bundle containing the zip file with all the HTML5
+    // components.
+    // NOTE: You may also upload an HTML5 zip using MediaService.upload()
+    // and simply set the mediaId field below. See UploadMediaBundle.php for an
+    // example.
+    $mediaBundle = new MediaBundle();
+    $mediaBundle->setData($html5Zip);
+    $mediaBundle->setEntryPoint('carousel/index.html');
+    $mediaBundle->setType('MEDIA_BUNDLE');
 
-  $layout = new TemplateElementField();
-  $layout->name = 'layout';
-  $layout->fieldText = 'Custom';
-  $layout->type = 'ENUM';
+    // Create the template elements for the ad. You can refer to
+    // https://developers.google.com/adwords/api/docs/appendix/templateads
+    // for the list of avaliable template fields.
+    $media = new TemplateElementField();
+    $media->setName('Custom_layout');
+    $media->setFieldMedia($mediaBundle);
+    $media->setType(TemplateElementFieldType::MEDIA_BUNDLE);
 
-  $adData = new TemplateElement();
-  $adData->uniqueName = 'adData';
-  $adData->fields = array($media, $layout);
+    $layout = new TemplateElementField();
+    $layout->setName('layout');
+    $layout->setFieldText('Custom');
+    $layout->setType(TemplateElementFieldType::ENUM);
 
-  $html5Ad->templateElements = array($adData);
+    $adData = new TemplateElement();
+    $adData->setUniqueName('adData');
+    $adData->setFields([$media, $layout]);
 
-  // Create the ad group ad.
-  $html5AdGroupAd = new AdGroupAd();
-  $html5AdGroupAd->adGroupId = $adGroupId;
-  $html5AdGroupAd->ad = $html5Ad;
+    $html5Ad->setTemplateElements([$adData]);
 
-  // Optional: Set the status.
-  $html5AdGroupAd->status = 'PAUSED';
+    // Create ad group ad.
+    $adGroupAd = new AdGroupAd();
+    $adGroupAd->setAdGroupId($adGroupId);
+    $adGroupAd->setAd($html5Ad);
+    // Optional: Set additional settings.
+    $adGroupAd->setStatus(AdGroupAdStatus::PAUSED);
 
-  // Create the operation.
-  $operation = new AdGroupAdOperation();
-  $operation->operator = 'ADD';
-  $operation->operand = $html5AdGroupAd;
+    // Create ad group ad operation and add it to the list.
+    $operation = new AdGroupAdOperation();
+    $operation->setOperand($adGroupAd);
+    $operation->setOperator(Operator::ADD);
+    $operations[] = $operation;
 
-  $operations = array($operation);
+    // Create the ad group ad on the server and print out some information
+    // about it.
+    $result = $adGroupAdService->mutate($operations);
+    foreach ($result->getValue() as $adGroupAd) {
+      printf(
+          "New HTML5 ad with ID %d and display URL '%s' was created.\n",
+          $adGroupAd->getAd()->getId(),
+          $adGroupAd->getAd()->getDisplayUrl()
+      );
+    }
+  }
 
-  // Create the ads.
-  $result = $adGroupAdService->mutate($operations);
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
 
-  foreach ($result->value as $adGroupAd) {
-    printf("New HTML5 ad with ID %d and display URL '%s' was created.\n",
-        $adGroupAd->ad->id, $adGroupAd->ad->displayUrl);
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(
+        new AdWordsServices(), $session, intval(self::AD_GROUP_ID));
   }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  AddHtml5Ad($user, $adGroupId);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+AddHtml5Ad::main();

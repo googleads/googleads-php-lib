@@ -1,9 +1,6 @@
 <?php
 /**
- * This example pauses an ad. To get expanded text ads, run
- * GetExpandedTextAds.php.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,76 +13,83 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\BasicOperations;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
 
-// Enter parameters required by the code example.
-$adGroupId = 'INSERT_AD_GROUP_ID_HERE';
-$adId = 'INSERT_AD_ID_HERE';
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\Ad;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupAd;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupAdOperation;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupAdService;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupAdStatus;
+use Google\AdsApi\AdWords\v201609\cm\AdType;
+use Google\AdsApi\AdWords\v201609\cm\Operator;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
- * @param string $adGroupId the id of the ad group containing the ad
- * @param string $adId the ID of the ad
+ * This example pauses an ad. To get expanded text ads, run
+ * GetExpandedTextAds.php.
  */
-function PauseAdExample(AdWordsUser $user, $adGroupId, $adId) {
-  // Get the service, which loads the required classes.
-  $adGroupAdService = $user->GetService('AdGroupAdService', ADWORDS_VERSION);
+class PauseAd {
 
-  // Create ad using an existing ID. Use the base class Ad instead of
-  // ExpandedTextAd to avoid having to set ad-specific fields.
-  $ad = new Ad();
-  $ad->id = $adId;
+  const AD_GROUP_ID = 'INSERT_AD_GROUP_ID_HERE';
+  const AD_ID = 'INSERT_AD_ID_HERE';
 
-  // Create ad group ad.
-  $adGroupAd = new AdGroupAd();
-  $adGroupAd->adGroupId = $adGroupId;
-  $adGroupAd->ad = $ad;
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session, $adGroupId, $adId) {
+    $adGroupAdService =
+        $adWordsServices->get($session, AdGroupAdService::class);
 
-  // Update the status.
-  $adGroupAd->status = 'PAUSED';
+    $operations = [];
+    // Create ad using an existing ID. Use the base class Ad instead of TextAd
+    // to avoid having to set ad-specific fields.
+    $ad = new Ad();
+    $ad->setId($adId);
 
-  // Create operation.
-  $operation = new AdGroupAdOperation();
-  $operation->operand = $adGroupAd;
-  $operation->operator = 'SET';
+    // Create ad group ad.
+    $adGroupAd = new AdGroupAd();
+    $adGroupAd->setAdGroupId($adGroupId);
+    $adGroupAd->setAd($ad);
 
-  $operations = array($operation);
+    // Update the status to PAUSED.
+    $adGroupAd->setStatus(AdGroupAdStatus::PAUSED);
 
-  // Make the mutate request.
-  $result = $adGroupAdService->mutate($operations);
+    // Create ad group ad operation and add it to the list.
+    $operation = new AdGroupAdOperation();
+    $operation->setOperand($adGroupAd);
+    $operation->setOperator(Operator::SET);
+    $operations[] = $operation;
 
-  // Display result.
-  $adGroupAd = $result->value[0];
-  printf("Ad of type '%s' with ID '%s' has updated status '%s'.\n",
-      $adGroupAd->ad->AdType, $adGroupAd->ad->id, $adGroupAd->status);
+    // Pause the ad on the server.
+    $result = $adGroupAdService->mutate($operations);
+    printf(
+        "Ad of type '%s' with ID %d has updated status '%s'.\n",
+        $adGroupAd->getAd()->getAdType(),
+        $adGroupAd->getAd()->getId(),
+        $adGroupAd->getStatus()
+    );
+  }
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(
+        new AdWordsServices(), $session, intval(self::AD_GROUP_ID),
+            intval(self::AD_ID));
+  }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  PauseAdExample($user, $adGroupId, $adId);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+PauseAd::main();

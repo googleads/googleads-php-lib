@@ -1,9 +1,6 @@
 <?php
 /**
- * This example gets all images. To upload an image, run UploadImage.php. To
- * upload a video, see http://goo.gl/Uqn0l.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,82 +13,93 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\Misc;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
 
-require_once UTIL_PATH . '/MediaUtils.php';
-require_once UTIL_PATH . '/MapUtils.php';
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\MediaMediaType;
+use Google\AdsApi\AdWords\v201609\cm\MediaService;
+use Google\AdsApi\AdWords\v201609\cm\OrderBy;
+use Google\AdsApi\AdWords\v201609\cm\Paging;
+use Google\AdsApi\AdWords\v201609\cm\Predicate;
+use Google\AdsApi\AdWords\v201609\cm\PredicateOperator;
+use Google\AdsApi\AdWords\v201609\cm\Selector;
+use Google\AdsApi\AdWords\v201609\cm\SortOrder;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
+use Google\AdsApi\Common\Util\MapUtils;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
+ * This example gets all images and videos. To upload an image, run
+ * UploadImage.php. To upload a video, see http://goo.gl/Uqn0l.
  */
-function GetAllImagesAndVideosExample(AdWordsUser $user) {
-  // Get the service, which loads the required classes.
-  $mediaService = $user->GetService('MediaService', ADWORDS_VERSION);
+class GetAllImagesAndVideos {
 
-  // Create selector.
-  $selector = new Selector();
-  $selector->fields = array('MediaId', 'Width', 'Height', 'MimeType', 'Name');
-  $selector->ordering = array(new OrderBy('MediaId', 'ASCENDING'));
+  const PAGE_LIMIT = 500;
 
-  // Create predicates.
-  $selector->predicates[] =
-      new Predicate('Type', 'IN', array('IMAGE', 'VIDEO'));
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session) {
+    $mediaService = $adWordsServices->get($session, MediaService::class);
 
-  // Create paging controls.
-  $selector->paging = new Paging(0, AdWordsConstants::RECOMMENDED_PAGE_SIZE);
+    // Create selector.
+    $selector = new Selector();
+    $selector->setFields(['MediaId', 'Width', 'Height', 'MimeType', 'Name']);
+    $selector->setOrdering([new OrderBy('MediaId', SortOrder::ASCENDING)]);
+    $selector->setPredicates([new Predicate('Type', PredicateOperator::IN,
+        [MediaMediaType::IMAGE, MediaMediaType::VIDEO])]);
+    $selector->setPaging(new Paging(0, self::PAGE_LIMIT));
 
-  do {
-    // Make the get request.
-    $page = $mediaService->get($selector);
+    $totalNumEntries = 0;
+    do {
+      // Make the get request.
+      $page = $mediaService->get($selector);
 
-    // Display images.
-    if (isset($page->entries)) {
-      foreach ($page->entries as $media) {
-        if ($media->MediaType == 'Image') {
-          $dimensions = MapUtils::GetMap($media->dimensions);
-          printf("Image with dimensions '%dx%d', MIME type '%s', and id '%s' "
-              . "was found.\n", $dimensions['FULL']->width,
-              $dimensions['FULL']->height, $media->mimeType, $media->mediaId);
-        } else if ($media->MediaType == 'Video') {
-          printf("Video with name '%s' and id '%s' was found.\n", $media->name,
-              $media->mediaId);
+      // Display results.
+      if ($page->getEntries() !== null) {
+        $totalNumEntries = $page->getTotalNumEntries();
+        foreach ($page->getEntries() as $media) {
+          if ($media->getType() === MediaMediaType::IMAGE) {
+            $dimensions = MapUtils::toMap($media->getDimensions());
+            printf(
+                "Image with dimensions %dx%d, MIME type '%s', and ID %d "
+                    . "was found.\n",
+                $dimensions['FULL']->getWidth(),
+                $dimensions['FULL']->getHeight(),
+                $media->getMimeType(),
+                $media->getMediaId()
+            );
+          } else if ($media->getType() === MediaMediaType::VIDEO) {
+            printf("Video with name '%s' and ID %d was found.\n",
+                $media->getName(), $media->getMediaId());
+          }
         }
       }
-    } else {
-      print "No images or videos were found.\n";
-    }
 
-    // Advance the paging index.
-    $selector->paging->startIndex += AdWordsConstants::RECOMMENDED_PAGE_SIZE;
-  } while ($page->totalNumEntries > $selector->paging->startIndex);
+      // Advance the paging index.
+      $selector->getPaging()->setStartIndex(
+          $selector->getPaging()->getStartIndex() + self::PAGE_LIMIT);
+    } while ($selector->getPaging()->getStartIndex() < $totalNumEntries);
+
+    printf("Number of results found: %d\n", $totalNumEntries);
+  }
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(new AdWordsServices(), $session);
+  }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  GetAllImagesAndVideosExample($user);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+GetAllImagesAndVideos::main();

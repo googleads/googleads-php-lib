@@ -1,9 +1,6 @@
 <?php
 /**
- * This example adds keywords to an ad group. To get ad groups run
- * GetAdGroups.php.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,92 +13,116 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\BasicOperations;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
 
-// Enter parameters required by the code example.
-$adGroupId = 'INSERT_AD_GROUP_ID_HERE';
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupCriterionOperation;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupCriterionService;
+use Google\AdsApi\AdWords\v201609\cm\BiddableAdGroupCriterion;
+use Google\AdsApi\AdWords\v201609\cm\BiddingStrategyConfiguration;
+use Google\AdsApi\AdWords\v201609\cm\CpcBid;
+use Google\AdsApi\AdWords\v201609\cm\Keyword;
+use Google\AdsApi\AdWords\v201609\cm\KeywordMatchType;
+use Google\AdsApi\AdWords\v201609\cm\Money;
+use Google\AdsApi\AdWords\v201609\cm\NegativeAdGroupCriterion;
+use Google\AdsApi\AdWords\v201609\cm\Operator;
+use Google\AdsApi\AdWords\v201609\cm\UserStatus;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
- * @param string $adGroupId the ID of the ad group to add the keywords to
+ * This example adds keywords to an ad group. To get ad groups run
+ * GetAdGroups.php.
  */
-function AddKeywordsExample(AdWordsUser $user, $adGroupId) {
-  // Get the service, which loads the required classes.
-  $adGroupCriterionService =
-      $user->GetService('AdGroupCriterionService', ADWORDS_VERSION);
+class AddKeywords {
 
-  $numKeywords = 5;
-  $operations = array();
-  for ($i = 0; $i < $numKeywords; $i++) {
-    // Create keyword criterion.
+  const AD_GROUP_ID = 'INSERT_AD_GROUP_ID_HERE';
+
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session, $adGroupId) {
+    $adGroupCriterionService =
+        $adWordsServices->get($session, AdGroupCriterionService::class);
+
+    $operations = [];
+
+    // Create the first keyword criterion.
     $keyword = new Keyword();
-    $keyword->text = 'mars cruise ' . uniqid();
-    $keyword->matchType = 'BROAD';
+    $keyword->setText('mars cruise');
+    $keyword->setMatchType(KeywordMatchType::BROAD);
 
     // Create biddable ad group criterion.
     $adGroupCriterion = new BiddableAdGroupCriterion();
-    $adGroupCriterion->adGroupId = $adGroupId;
-    $adGroupCriterion->criterion = $keyword;
+    $adGroupCriterion->setAdGroupId($adGroupId);
+    $adGroupCriterion->setCriterion($keyword);
 
     // Set additional settings (optional).
-    $adGroupCriterion->userStatus = 'PAUSED';
-    $adGroupCriterion->finalUrls = array('http://www.example.com/mars');
+    $adGroupCriterion->setUserStatus(UserStatus::PAUSED);
+    $adGroupCriterion->setFinalUrls(['http://www.example.com/mars']);
 
     // Set bids (optional).
     $bid = new CpcBid();
-    $bid->bid =  new Money(500000);
+    $money = new Money();
+    $money->setMicroAmount(500000);
+    $bid->setBid($money);
     $biddingStrategyConfiguration = new BiddingStrategyConfiguration();
-    $biddingStrategyConfiguration->bids[] = $bid;
-    $adGroupCriterion->biddingStrategyConfiguration =
-        $biddingStrategyConfiguration;
+    $biddingStrategyConfiguration->setBids([$bid]);
+    $adGroupCriterion->setBiddingStrategyConfiguration(
+        $biddingStrategyConfiguration);
 
-    $adGroupCriteria[] = $adGroupCriterion;
-
-    // Create operation.
+    // Create an ad group criterion operation and add it to the list.
     $operation = new AdGroupCriterionOperation();
-    $operation->operand = $adGroupCriterion;
-    $operation->operator = 'ADD';
+    $operation->setOperand($adGroupCriterion);
+    $operation->setOperator(Operator::ADD);
     $operations[] = $operation;
+
+    // Create the second keyword criterion.
+    $keyword = new Keyword();
+    $keyword->setText('space hotel');
+    $keyword->setMatchType(KeywordMatchType::EXACT);
+
+    // Create negative ad group criterion.
+    $negativeAdGroupCriterion = new NegativeAdGroupCriterion();
+    $negativeAdGroupCriterion->setAdGroupId($adGroupId);
+    $negativeAdGroupCriterion->setCriterion($keyword);
+
+    // Create an ad group criterion operation and add it to the list.
+    $operation = new AdGroupCriterionOperation();
+    $operation->setOperand($negativeAdGroupCriterion);
+    $operation->setOperator(Operator::ADD);
+    $operations[] = $operation;
+
+    // Create the ad group criteria on the server and print out some information
+    // for each created ad group criterion.
+    $result = $adGroupCriterionService->mutate($operations);
+    foreach ($result->getValue() as $adGroupCriterion) {
+      printf(
+          "Keyword with text '%s', match type '%s', and ID %d was added.\n",
+          $adGroupCriterion->getCriterion()->getText(),
+          $adGroupCriterion->getCriterion()->getMatchType(),
+          $adGroupCriterion->getCriterion()->getId()
+      );
+    }
   }
 
-  // Make the mutate request.
-  $result = $adGroupCriterionService->mutate($operations);
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
 
-  // Display results.
-  foreach ($result->value as $adGroupCriterion) {
-    printf("Keyword with text '%s', match type '%s', and ID '%s' was added.\n",
-        $adGroupCriterion->criterion->text,
-        $adGroupCriterion->criterion->matchType,
-        $adGroupCriterion->criterion->id);
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(
+        new AdWordsServices(), $session, intval(self::AD_GROUP_ID));
   }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  AddKeywordsExample($user, $adGroupId);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+AddKeywords::main();

@@ -1,9 +1,6 @@
 <?php
 /**
- * This example gets all available keyword bid simulations within an ad group.
- * To get ad groups, run BasicOperation/GetAdGroups.php.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,86 +13,95 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\Optimization;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
 
-// Enter parameters required by the code example.
-$adGroupId = 'INSERT_ADGROUP_ID_HERE';
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\DataService;
+use Google\AdsApi\AdWords\v201609\cm\Paging;
+use Google\AdsApi\AdWords\v201609\cm\Predicate;
+use Google\AdsApi\AdWords\v201609\cm\PredicateOperator;
+use Google\AdsApi\AdWords\v201609\cm\Selector;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
- * @param string $adGroupId the id the ad group containing keyword bid
- *     simulations
+ * This example gets all available keyword bid simulations within an ad group.
+ * To get ad groups, run BasicOperation/GetAdGroups.php.
  */
-function GetKeywordBidSimulationsExample(AdWordsUser $user, $adGroupId) {
-  // Get the service, which loads the required classes.
-  $dataService = $user->GetService('DataService', ADWORDS_VERSION);
+class GetKeywordBidSimulations {
 
-  // Create selector.
-  $selector = new Selector();
-  $selector->fields = array('AdGroupId', 'CriterionId', 'StartDate', 'EndDate',
-      'Bid', 'LocalClicks', 'LocalCost', 'LocalImpressions');
+  const AD_GROUP_ID = 'INSERT_AD_GROUP_ID_HERE';
 
-  // Create predicates.
-  $selector->predicates[] = new Predicate('AdGroupId', 'IN', array($adGroupId));
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session, $adGroupId) {
+    $dataService = $adWordsServices->get($session, DataService::class);
 
-  // Create paging controls.
-  $selector->paging = new Paging(0, AdWordsConstants::RECOMMENDED_PAGE_SIZE);
+    // Create a selector to select all keyword bid simulations for the
+    // specified ad group.
+    $selector = new Selector();
+    $selector->setFields([
+        'AdGroupId',
+        'CriterionId',
+        'StartDate',
+        'EndDate',
+        'Bid',
+        'LocalClicks',
+        'LocalCost',
+        'LocalImpressions'
+    ]);
+    $selector->setPredicates([
+        new Predicate('AdGroupId', PredicateOperator::IN, [$adGroupId])
+    ]);
 
-  do{
-    // Make the getCriterionBidLandscape request.
+    // Retrieve keyword bid simulations one page at a time, continuing to
+    // request pages until all of them have been retrieved.
     $page = $dataService->getCriterionBidLandscape($selector);
 
-    // Display results.
-    if (isset($page->entries)) {
-      foreach ($page->entries as $bidLandscape) {
-        printf("Found criterion bid landscape for keyword with id '%s', start "
-            . "date '%s', end date '%s', and landscape points:\n",
-            $bidLandscape->criterionId, $bidLandscape->startDate,
-            $bidLandscape->endDate);
-        foreach ($bidLandscape->landscapePoints as $bidLandscapePoint) {
-          printf("  bid: %.0f => clicks: %d, cost: %.0f, impressions: %d\n",
-              $bidLandscapePoint->bid->microAmount,
-              $bidLandscapePoint->clicks,
-              $bidLandscapePoint->cost->microAmount,
-              $bidLandscapePoint->impressions
+    // Print out some information for each bid landscape.
+    if ($page->getEntries() !== null) {
+      foreach ($page->getEntries() as $bidLandscape) {
+        printf(
+            "Found criterion bid landscape for keyword with ID %d, start "
+                . "date '%s', end date '%s', and landscape points:\n",
+            $bidLandscape->getCriterionId(),
+            $bidLandscape->getStartDate(),
+            $bidLandscape->getEndDate()
+        );
+        foreach ($bidLandscape->getLandscapePoints() as $bidLandscapePoint) {
+          printf(
+              "  bid: %d => clicks: %d, cost: %d, impressions: %d\n",
+              $bidLandscapePoint->getBid()->getMicroAmount(),
+              $bidLandscapePoint->getClicks(),
+              $bidLandscapePoint->getCost()->getMicroAmount(),
+              $bidLandscapePoint->getImpressions()
           );
         }
         print "\n";
       }
-    } else if ($selector->paging->startIndex === 0) {
-      printf("No criterion bid landscapes were found.\n");
+    } else {
+      print "No criterion bid landscapes were found.\n";
     }
-    // Advance the paging index.
-    $selector->paging->startIndex += AdWordsConstants::RECOMMENDED_PAGE_SIZE;
-  } while (isset($page->entries) && count($page->entries) > 0);
+  }
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(
+        new AdWordsServices(), $session, intval(self::AD_GROUP_ID));
+  }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  GetKeywordBidSimulationsExample($user, $adGroupId);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+GetKeywordBidSimulations::main();

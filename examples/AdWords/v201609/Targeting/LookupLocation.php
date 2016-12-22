@@ -1,8 +1,6 @@
 <?php
 /**
- * This example looks up location criteria by name.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,92 +13,97 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\Targeting;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
+
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\LocationCriterionService;
+use Google\AdsApi\AdWords\v201609\cm\Predicate;
+use Google\AdsApi\AdWords\v201609\cm\PredicateOperator;
+use Google\AdsApi\AdWords\v201609\cm\Selector;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Gets a string representation for a location.
- * @param Location $location the location
- * @return string the string representation
+ * This example looks up location criteria by name.
  */
-function GetLocationString($location) {
-  return sprintf('%s (%s)', $location->locationName, $location->displayType);
-}
+class LookupLocation {
 
-/**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
- */
-function LookupLocationExample(AdWordsUser $user) {
-  // Get the service, which loads the required classes.
-  $locationCriterionService =
-      $user->GetService('LocationCriterionService', ADWORDS_VERSION);
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session) {
+    $locationCriterionService =
+        $adWordsServices->get($session, LocationCriterionService::class);
 
-  // Location names to look up.
-  $locationNames = array('Paris', 'Quebec', 'Spain', 'Deutschland');
-  // Locale to retrieve location names in.
-  $locale = 'en';
+    // Location names to look up.
+    $locationNames = ['Paris', 'Quebec', 'Spain', 'Deutschland'];
+    // Locale to retrieve location names in.
+    $locale = 'en';
 
-  $selector = new Selector();
-  $selector->fields = array('Id', 'LocationName', 'CanonicalName',
-      'DisplayType',  'ParentLocations', 'Reach', 'TargetingStatus');
-  // Location names must match exactly, only EQUALS and IN are supported.
-  $selector->predicates[] = new Predicate('LocationName', 'IN', $locationNames);
-  // Only one locale can be used in a request.
-  $selector->predicates[] = new Predicate('Locale', 'EQUALS', $locale);
+    // Create a selector to select all locations.
+    $selector = new Selector();
+    $selector->setFields(['Id', 'LocationName', 'CanonicalName',
+        'DisplayType',  'ParentLocations', 'Reach', 'TargetingStatus']);
+    // Location names must match exactly, only EQUALS and IN are supported
+    // and only one locale can be used in a request.
+    $selector->setPredicates([
+        new Predicate('LocationName', PredicateOperator::IN, $locationNames),
+        new Predicate('Locale', PredicateOperator::EQUALS, [$locale])
+    ]);
 
-  // Make the get request.
-  $locationCriteria = $locationCriterionService->get($selector);
+    // Retrieve location criteria from the server.
+    $locationCriteria = $locationCriterionService->get($selector);
 
-  // Display results.
-  if (isset($locationCriteria)) {
-    foreach ($locationCriteria as $locationCriterion) {
-      if (isset($locationCriterion->location->parentLocations)) {
-        $parentLocations = implode(', ',
-            array_map('GetLocationString',
-                $locationCriterion->location->parentLocations));
-      } else {
-        $parentLocations = 'N/A';
+    // Print out some information for each location criterion.
+    if ($locationCriteria !== null) {
+      foreach ($locationCriteria as $locationCriterion) {
+        if ($locationCriterion->getLocation()->getParentLocations() !== null) {
+          $parentLocations = [];
+          foreach ($locationCriterion->getLocation()->getParentLocations()
+              as $location) {
+            $parentLocations[] = sprintf(
+                '%s (%s)',
+                $location->getLocationName(),
+                $location->getDisplayType()
+            );
+          }
+          $parentLocationsString = implode(', ', $parentLocations);
+        } else {
+          $parentLocations = 'N/A';
+        }
+        printf(
+            "The search term '%s' returned the location '%s' of type '%s' "
+                . "with ID %d, parent locations '%s', and reach %d (%s).\n",
+            $locationCriterion->getSearchTerm(),
+            $locationCriterion->getLocation()->getLocationName(),
+            $locationCriterion->getLocation()->getDisplayType(),
+            $locationCriterion->getLocation()->getId(),
+            $parentLocationsString,
+            $locationCriterion->getReach(),
+            $locationCriterion->getLocation()->getTargetingStatus()
+        );
       }
-      printf("The search term '%s' returned the location '%s' of type '%s' "
-          . "with ID '%s', parent locations '%s', and reach '%d' (%s).\n",
-          $locationCriterion->searchTerm,
-          $locationCriterion->location->locationName,
-          $locationCriterion->location->displayType,
-          $locationCriterion->location->id,
-          $parentLocations,
-          $locationCriterion->reach,
-          $locationCriterion->location->targetingStatus);
+    } else {
+      print "No location criteria were found.\n";
     }
-  } else {
-    print "No location criteria were found.\n";
+  }
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(new AdWordsServices(), $session);
   }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  LookupLocationExample($user);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+LookupLocation::main();

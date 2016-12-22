@@ -1,9 +1,6 @@
 <?php
 /**
- * This example demonstrates how to handle policy violation errors when creating
- * text ads.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,126 +13,154 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\ErrorHandling;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
 
-require_once UTIL_PATH . '/ErrorUtils.php';
-
-// Enter parameters required by the code example.
-$adGroupId = 'INSERT_AD_GROUP_ID_HERE';
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupAd;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupAdOperation;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupAdService;
+use Google\AdsApi\AdWords\v201609\cm\ApiException;
+use Google\AdsApi\AdWords\v201609\cm\ExemptionRequest;
+use Google\AdsApi\AdWords\v201609\cm\ExpandedTextAd;
+use Google\AdsApi\AdWords\v201609\cm\Operator;
+use Google\AdsApi\AdWords\v201609\cm\PolicyViolationError;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
- * @param string $adGroupId the if the ad group to add the text ads to
+ * This example demonstrates how to handle policy violation errors when creating
+ * text ads.
  */
-function HandlePolicyViolationErrorExample(AdWordsUser $user, $adGroupId) {
-  // Get the service, which loads the required classes.
-  $adGroupAdService = $user->GetService('AdGroupAdService', ADWORDS_VERSION);
+class HandlePolicyViolationError {
 
-  // Get validateOnly version of the AdGroupAdService.
-  $adGroupAdValidationService =
-      $user->GetService('AdGroupAdService', ADWORDS_VERSION, null, null, true);
+  const AD_GROUP_ID = 'INSERT_AD_GROUP_ID_HERE';
 
-  // Create text ad that violates an exemptable policy. This ad will only
-  // trigger an error in the production environment.
-  $textAd = new TextAd();
-  $textAd->headline = 'Mars Cruise !!!';
-  $textAd->description1 = 'Visit the Red Planet in style.';
-  $textAd->description2 = 'Low-gravity fun for everyone!';
-  $textAd->displayUrl = 'www.example.com';
-  $textAd->finalUrls = array('http://www.example.com/');
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session, $adGroupId) {
+    $session->setValidateOnly(true);
+    $adGroupAdService =
+        $adWordsServices->get($session, AdGroupAdService::class);
 
-  // Create ad group ad.
-  $adGroupAd = new AdGroupAd();
-  $adGroupAd->adGroupId = $adGroupId;
-  $adGroupAd->ad = $textAd;
+    // Create text ad that violates an exemptable policy.
+    $expandedTextAd = new ExpandedTextAd();
+    $expandedTextAd->setHeadlinePart1('Mars Cruise !!!');
+    $expandedTextAd->setHeadlinePart2('Visit the Red Planet in style.');
+    $expandedTextAd->setDescription('Low-gravity fun for everyone!');
+    $expandedTextAd->setFinalUrls(['http://www.example.com']);
 
-  // Create operation.
-  $operation = new AdGroupAdOperation();
-  $operation->operand = $adGroupAd;
-  $operation->operator = 'ADD';
+    // Create ad group ad.
+    $adGroupAd = new AdGroupAd();
+    $adGroupAd->setAdGroupId($adGroupId);
+    $adGroupAd->setAd($expandedTextAd);
 
-  $operations = array($operation);
+    // Create ad group ad operation and add it to the list.
+    $operations = [];
+    $operation = new AdGroupAdOperation();
+    $operation->setOperand($adGroupAd);
+    $operation->setOperator(Operator::ADD);
+    $operations[] = $operation;
 
-  try {
-    // Make the mutate request.
-    $result = $adGroupAdValidationService->mutate($operations);
-  } catch (SoapFault $fault) {
-    $errors = ErrorUtils::GetApiErrors($fault);
-    if (sizeof($errors) == 0) {
-      // Not an API error, so throw fault.
-      throw $fault;
-    }
-    $operationIndicesToRemove = array();
-    foreach ($errors as $error) {
-      if ($error->ApiErrorType == 'PolicyViolationError') {
-        $operationIndex = ErrorUtils::GetSourceOperationIndex($error);
+    try {
+      // Try creating an ad group ad on the server.
+      $result = $adGroupAdService->mutate($operations);
+    } catch (ApiException $apiException) {
+      $operationIndicesToRemove = [];
+      foreach ($apiException->getErrors() as $error) {
+        $operationIndex = self::getSourceOperationIndex($error);
         $operation = $operations[$operationIndex];
-        printf("Ad with headline '%s' violated %s policy '%s'.\n",
-            $operation->operand->ad->headline,
-            $error->isExemptable ? 'exemptable' : 'non-exemptable',
-            $error->externalPolicyName);
-        if ($error->isExemptable) {
-          // Add exemption request to the operation.
-          printf("Adding exemption request for policy name '%s' on text "
-              ."'%s'.\n", $error->key->policyName, $error->key->violatingText);
-          $operation->exemptionRequests[] = new ExemptionRequest($error->key);
+        if ($error instanceof PolicyViolationError) {
+          printf("Ad with headline part 1 '%s' violated %s policy '%s'.\n",
+              $operation->getOperand()->getAd()->getHeadlinePart1(),
+              $error->getIsExemptable() ? 'exemptable' : 'non-exemptable',
+              $error->getExternalPolicyName()
+          );
+          if ($error->getIsExemptable() === true) {
+            // Add exemption request to the operation.
+            printf(
+                "Adding exemption request for policy name '%s' on text "
+                    ."'%s'.\n",
+                $error->getKey()->getPolicyName(),
+                $error->getKey()->getViolatingText()
+            );
+            $operation->setExemptionRequests(
+                [new ExemptionRequest($error->getKey())]);
+          } else {
+            // Remove non-exemptable operation.
+          print "Removing non-exemptable operation from the request.\n";
+            $operationIndicesToRemove[] = $operationIndex;
+          }
         } else {
-          // Remove non-exemptable operation.
-          print "Removing the operation from the request.\n";
+          // Non-policy error returned.
+          printf(
+              "Ad with headline part 1 '%s' created non-policy error '%s'.\n",
+              $operation->getOperand()->getAd()->getHeadlinePart1(),
+              $error->getErrorString()
+          );
+          print "Removing the operation causing non-policy error from the "
+              . "request.\n";
           $operationIndicesToRemove[] = $operationIndex;
         }
-      } else {
-        // Non-policy error returned, throw fault.
-        throw $fault;
+      }
+      $operationIndicesToRemove = array_unique($operationIndicesToRemove);
+      rsort($operationIndicesToRemove, SORT_NUMERIC);
+      foreach ($operationIndicesToRemove as $operationIndex) {
+        unset($operations[$operationIndex]);
       }
     }
-    $operationIndicesToRemove = array_unique($operationIndicesToRemove);
-    rsort($operationIndicesToRemove, SORT_NUMERIC);
-    foreach ($operationIndicesToRemove as $operationIndex) {
-      unset($operations[$operationIndex]);
+
+    if (count($operations) > 0) {
+      // Make the mutate request to really add an ad group ad.
+      $session->setValidateOnly(false);
+      $result = $adGroupAdService->mutate($operations);
+
+      // Print out some information about the created ad group ad.
+      foreach ($result->getValue() as $adGroupAd) {
+        printf(
+            "Expanded text ad with headline part 1 '%s' and ID '%s' was added."
+                . "\n",
+            $adGroupAd->getAd()->getHeadlinePart1(),
+            $adGroupAd->getAd()->getId()
+        );
+      }
+    } else {
+      print "All the operations were invalid with non-exemptable errors.\n";
     }
   }
 
-  if (sizeof($operations) > 0) {
-    // Retry the mutate request.
-    $result = $adGroupAdService->mutate($operations);
-
-    // Display results.
-    foreach ($result->value as $adGroupAd) {
-      printf("Text ad with headline '%s' and ID '%s' was added.\n",
-          $adGroupAd->ad->headline, $adGroupAd->ad->id);
+  /**
+   * Get the index of source operation that failed.
+   */
+  private static function getSourceOperationIndex($error) {
+    $matches = [];
+    // Get the index of operations that has a problem.
+    if (preg_match('/^operations\[(\d+)\]/', $error->getFieldPath(),
+        $matches)) {
+      return $matches[1];
     }
-  } else {
-    print "All the operations were invalid with non-exemptable errors.\n";
+    // No field path was returned from the server.
+    return null;
+  }
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    // Partial failure behavior is also enabled in this example.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(
+        new AdWordsServices(), $session, intval(self::AD_GROUP_ID));
   }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  HandlePolicyViolationErrorExample($user, $adGroupId);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+HandlePolicyViolationError::main();

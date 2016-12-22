@@ -1,8 +1,6 @@
 <?php
 /**
- * This example uploads an image. To get images, run GetAllImagesAndVideos.php.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,60 +13,66 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\Misc;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
 
-require_once UTIL_PATH . '/MediaUtils.php';
-require_once UTIL_PATH . '/MapUtils.php';
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\Image;
+use Google\AdsApi\AdWords\v201609\cm\MediaMediaType;
+use Google\AdsApi\AdWords\v201609\cm\MediaService;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
+use Google\AdsApi\Common\Util\MapEntries;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
+ * This example uploads an image.
  */
-function UploadImageExample(AdWordsUser $user) {
-  // Get the service, which loads the required classes.
-  $mediaService = $user->GetService('MediaService', ADWORDS_VERSION);
+class UploadImage {
 
-  // Create image.
-  $image = new Image();
-  $image->data = MediaUtils::GetBase64Data('http://goo.gl/HJM3L');
-  $image->type = 'IMAGE';
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session) {
+    $mediaService =
+        $adWordsServices->get($session, MediaService::class);
 
-  // Make the upload request.
-  $result = $mediaService->upload(array($image));
+    // Create an image and add it to the images list.
+    $image = new Image();
+    $image->setData(file_get_contents('http://goo.gl/HJM3L'));
+    $image->setType(MediaMediaType::IMAGE);
+    $images = [$image];
 
-  // Display result.
-  $image = $result[0];
-  $dimensions = MapUtils::GetMap($image->dimensions);
-  printf("Image with dimensions '%dx%d', MIME type '%s', and id '%s' was "
-      . "uploaded.\n", $dimensions['FULL']->width,
-      $dimensions['FULL']->height, $image->mimeType, $image->mediaId);
+    // Upload the image to the server.
+    $result = $mediaService->upload($images);
+
+    // Print out some information about the uploaded image.
+    $image = $result[0];
+    $dimensions = MapEntries::toAssociativeArray($image->getDimensions());
+    printf(
+        "Image with dimensions '%dx%d', MIME type '%s', and id %d was "
+            . "uploaded.\n",
+        $dimensions['FULL']->getWidth(),
+        $dimensions['FULL']->getHeight(),
+        $image->getMimeType(),
+        $image->getMediaId()
+    );
+  }
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(new AdWordsServices(), $session);
+  }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  UploadImageExample($user);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+UploadImage::main();

@@ -1,8 +1,6 @@
 <?php
 /**
- * This example adds a Shopping campaign.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,128 +13,150 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\ShoppingCampaigns;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
 
-$budgetId = 'INSERT_BUDGET_ID_HERE';
-$merchantId = 'INSERT_MERCHANT_CENTER_ID_HERE';
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\AdGroup;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupAd;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupAdOperation;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupAdService;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupOperation;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupService;
+use Google\AdsApi\AdWords\v201609\cm\AdvertisingChannelType;
+use Google\AdsApi\AdWords\v201609\cm\BiddingStrategyConfiguration;
+use Google\AdsApi\AdWords\v201609\cm\BiddingStrategyType;
+use Google\AdsApi\AdWords\v201609\cm\Budget;
+use Google\AdsApi\AdWords\v201609\cm\Campaign;
+use Google\AdsApi\AdWords\v201609\cm\CampaignOperation;
+use Google\AdsApi\AdWords\v201609\cm\CampaignService;
+use Google\AdsApi\AdWords\v201609\cm\CampaignStatus;
+use Google\AdsApi\AdWords\v201609\cm\Operator;
+use Google\AdsApi\AdWords\v201609\cm\ProductAd;
+use Google\AdsApi\AdWords\v201609\cm\ShoppingSetting;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
- * @param int $budgetId the ID of a portfolio budget to use for the campaign
- * @param int $merchantId the Merchant Center account ID to use for product data
+ * This example adds a shopping campaign.
  */
-function addShoppingCampaignExample(AdWordsUser $user, $budgetId, $merchantId) {
-  // Get the services, which loads the required classes.
-  $campaignService = $user->GetService('CampaignService', ADWORDS_VERSION);
-  $adGroupService = $user->GetService('AdGroupService', ADWORDS_VERSION);
-  $adGroupAdService = $user->GetService('AdGroupAdService', ADWORDS_VERSION);
+class AddShoppingCampaign {
 
-  // Create campaign.
-  $campaign = new Campaign();
-  $campaign->name = 'Shopping campaign #' . uniqid();
-  // The advertisingChannelType is what makes this a Shopping campaign
-  $campaign->advertisingChannelType = 'SHOPPING';
-  // Recommendation: Set the campaign to PAUSED when creating it to stop
-  // the ads from immediately serving. Set to ENABLED once you've added
-  // targeting and the ads are ready to serve.
-  $campaign->status = 'PAUSED';
+  const BUDGET_ID = 'INSERT_BUDGET_ID_HERE';
+  const MERCHANT_ID = 'INSERT_MERCHANT_ID_HERE';
 
-  // Set portfolio budget (required).
-  $campaign->budget = new Budget();
-  $campaign->budget->budgetId = $budgetId;
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session, $budgetId, $merchantId) {
+    $campaignService = $adWordsServices->get($session, CampaignService::class);
+    $adGroupService = $adWordsServices->get($session, AdGroupService::class);
+    $adGroupAdService =
+        $adWordsServices->get($session, AdGroupAdService::class);
 
-  // Set bidding strategy (required).
-  $biddingStrategyConfiguration = new BiddingStrategyConfiguration();
-  $biddingStrategyConfiguration->biddingStrategyType = 'MANUAL_CPC';
+    // Create a campaign with required and optional settings.
+    $campaign = new Campaign();
+    $campaign->setName('Shopping campaign #' . uniqid());
+    // The advertisingChannelType is what makes this a Shopping campaign
+    $campaign->setAdvertisingChannelType(AdvertisingChannelType::SHOPPING);
+    // Recommendation: Set the campaign to PAUSED when creating it to stop
+    // the ads from immediately serving. Set to ENABLED once you've added
+    // targeting and the ads are ready to serve.
+    $campaign->setStatus(CampaignStatus::PAUSED);
 
-  $campaign->biddingStrategyConfiguration = $biddingStrategyConfiguration;
+    // Set portfolio budget (required).
+    $campaign->setBudget(new Budget());
+    $campaign->getBudget()->setBudgetId($budgetId);
 
-  // All Shopping campaigns need a ShoppingSetting.
-  $shoppingSetting = new ShoppingSetting();
-  $shoppingSetting->salesCountry = 'US';
-  $shoppingSetting->campaignPriority = 0;
-  $shoppingSetting->merchantId = $merchantId;
-  // Set to "true" to enable Local Inventory Ads in your campaign.
-  $shoppingSetting->enableLocal = true;
-  $campaign->settings[] = $shoppingSetting;
+    // Set bidding strategy (required).
+    $biddingStrategyConfiguration = new BiddingStrategyConfiguration();
+    $biddingStrategyConfiguration->setBiddingStrategyType(
+        BiddingStrategyType::MANUAL_CPC);
 
-  // Create operation.
-  $operation = new CampaignOperation();
-  $operation->operand = $campaign;
-  $operation->operator = 'ADD';
+    $campaign->setBiddingStrategyConfiguration($biddingStrategyConfiguration);
 
-  // Make the mutate request.
-  $result = $campaignService->mutate(array($operation));
+    // All Shopping campaigns need a ShoppingSetting.
+    $shoppingSetting = new ShoppingSetting();
+    $shoppingSetting->setSalesCountry('US');
+    $shoppingSetting->setCampaignPriority(0);
+    $shoppingSetting->setMerchantId($merchantId);
+    // Set to "true" to enable Local Inventory Ads in your campaign.
+    $shoppingSetting->setEnableLocal(true);
+    $campaign->setSettings([$shoppingSetting]);
 
-  // Display result.
-  $campaign = $result->value[0];
-  printf("Campaign with name '%s' and ID '%s' was added.\n", $campaign->name,
-        $campaign->id);
+    // Create a campaign operation and add it to the operations list.
+    $operations = [];
+    $operation = new CampaignOperation();
+    $operation->setOperand($campaign);
+    $operation->setOperator(Operator::ADD);
+    $operations[] = $operation;
 
-  // Create ad group.
-  $adGroup = new AdGroup();
-  $adGroup->campaignId = $campaign->id;
-  $adGroup->name = 'Ad Group #' . uniqid();
+    // Create the campaign on the server and print out some information.
+    $campaign = $campaignService->mutate($operations)->getValue()[0];
+    printf("Campaign with name '%s' and ID %d was added.\n",
+        $campaign->getName(),
+        $campaign->getId()
+    );
 
-  // Create operation.
-  $operation = new AdGroupOperation();
-  $operation->operand = $adGroup;
-  $operation->operator = 'ADD';
+    // Create ad group.
+    $adGroup = new AdGroup();
+    $adGroup->setCampaignId($campaign->getId());
+    $adGroup->setName('Ad Group #' . uniqid());
 
-  // Make the mutate request.
-  $result = $adGroupService->mutate(array($operation));
+    // Create an ad group operation and add it to the operations list.
+    $operations = [];
+    $operation = new AdGroupOperation();
+    $operation->setOperand($adGroup);
+    $operation->setOperator(Operator::ADD);
+    $operations[] = $operation;
 
-  // Display result.
-  $adGroup = $result->value[0];
-  printf("Ad group with name '%s' and ID '%s' was added.\n", $adGroup->name,
-        $adGroup->id);
+    // Create the ad group on the server and print out some information.
+    $adGroup = $adGroupService->mutate($operations)->getValue()[0];
+    printf("Ad group with name '%s' and ID %d was added.\n",
+        $adGroup->getName(),
+        $adGroup->getId()
+    );
 
-  // Create product ad.
-  $productAd = new ProductAd();
+    // Create product ad.
+    $productAd = new ProductAd();
 
-  // Create ad group ad.
-  $adGroupAd = new AdGroupAd();
-  $adGroupAd->adGroupId = $adGroup->id;
-  $adGroupAd->ad = $productAd;
+    // Create ad group ad.
+    $adGroupAd = new AdGroupAd();
+    $adGroupAd->setAdGroupId($adGroup->getId());
+    $adGroupAd->setAd($productAd);
 
-  // Create operation.
-  $operation = new AdGroupAdOperation();
-  $operation->operand = $adGroupAd;
-  $operation->operator = 'ADD';
+    // Create an ad group ad operation and add it to the operations list.
+    $operations = [];
+    $operation = new AdGroupAdOperation();
+    $operation->setOperand($adGroupAd);
+    $operation->setOperator(Operator::ADD);
+    $operations[] = $operation;
 
-  // Make the mutate request.
-  $result = $adGroupAdService->mutate(array($operation));
+    // Create the ad group ad on the server and print out some information.
+    $adGroupAd = $adGroupAdService->mutate($operations)->getValue()[0];
+    printf("Product ad with ID %d was added.\n", $adGroupAd->getAd()->getId());
+  }
 
-  // Display result.
-  $adGroupAd = $result->value[0];
-  printf("Product ad with ID '%s' was added.\n", $adGroupAd->ad->id);
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(
+        new AdWordsServices(),
+        $session,
+        intval(self::BUDGET_ID),
+        intval(self::MERCHANT_ID)
+    );
+  }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  addShoppingCampaignExample($user, $budgetId, $merchantId);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+AddShoppingCampaign::main();

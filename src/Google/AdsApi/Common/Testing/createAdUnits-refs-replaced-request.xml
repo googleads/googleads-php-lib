@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="https://www.google.com/apis/ads/publisher/v201608">
+<SOAP-ENV:Header>
+  <ns1:RequestHeader>
+    <ns1:networkCode>888888</ns1:networkCode>
+    <ns1:applicationName>google report downloader (DfpApi-PHP, googleads-php-lib2/1.0.0-alpha, PHP/5.5.20)</ns1:applicationName>
+  </ns1:RequestHeader>
+</SOAP-ENV:Header>
+<SOAP-ENV:Body>
+  <ns1:createAdUnits>
+    <ns1:adUnits>
+      <ns1:parentId>77777777</ns1:parentId>
+      <ns1:name>sports_page_584f53dc41ddd</ns1:name>
+      <ns1:description>Banner ad on a sports page.</ns1:description>
+      <ns1:targetWindow>BLANK</ns1:targetWindow>
+      <ns1:adUnitSizes>
+        <ns1:size>
+          <ns1:width>300</ns1:width>
+          <ns1:height>250</ns1:height>
+          <ns1:isAspectRatio>false</ns1:isAspectRatio>
+        </ns1:size>
+        <ns1:environmentType>BROWSER</ns1:environmentType>
+      </ns1:adUnitSizes>
+    </ns1:adUnits>
+    <ns1:adUnits>
+      <ns1:parentId>77777777</ns1:parentId>
+      <ns1:name>sports_page_584f53dc41ddd</ns1:name>
+      <ns1:description>Banner ad on a sports page.</ns1:description>
+      <ns1:targetWindow>BLANK</ns1:targetWindow>
+      <ns1:adUnitSizes>
+        <ns1:size>
+          <ns1:width>300</ns1:width>
+          <ns1:height>250</ns1:height>
+          <ns1:isAspectRatio>false</ns1:isAspectRatio>
+        </ns1:size>
+        <ns1:environmentType>BROWSER</ns1:environmentType>
+      </ns1:adUnitSizes>
+    </ns1:adUnits>
+    <ns1:adUnits>
+      <ns1:parentId>77777777</ns1:parentId>
+      <ns1:name>sports_page_584f53dc42675</ns1:name>
+      <ns1:description>Banner ad on a sports page.</ns1:description>
+      <ns1:targetWindow>BLANK</ns1:targetWindow>
+      <ns1:adUnitSizes>
+        <ns1:size>
+          <ns1:width>300</ns1:width>
+          <ns1:height>250</ns1:height>
+          <ns1:isAspectRatio>false</ns1:isAspectRatio>
+        </ns1:size>
+        <ns1:environmentType>BROWSER</ns1:environmentType>
+      </ns1:adUnitSizes>
+    </ns1:adUnits>
+    <ns1:adUnits>
+      <ns1:parentId>77777777</ns1:parentId>
+      <ns1:name>sports_page_584f53dc41ddd</ns1:name>
+      <ns1:description>Banner ad on a sports page.</ns1:description>
+      <ns1:targetWindow>BLANK</ns1:targetWindow>
+      <ns1:adUnitSizes>
+        <ns1:size>
+          <ns1:width>300</ns1:width>
+          <ns1:height>250</ns1:height>
+          <ns1:isAspectRatio>false</ns1:isAspectRatio>
+        </ns1:size>
+        <ns1:environmentType>BROWSER</ns1:environmentType>
+      </ns1:adUnitSizes>
+    </ns1:adUnits>
+  </ns1:createAdUnits>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

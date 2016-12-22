@@ -1,9 +1,6 @@
 <?php
 /**
- * This example demonstrates how to handle partial failures when adding
- * keywords. To get ad groups run BasicOperations/GetAdGroups.php.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,98 +13,139 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\ErrorHandling;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
-require_once UTIL_PATH . '/ErrorUtils.php';
+require '../../../../vendor/autoload.php';
 
-// Enter parameters required by the code example.
-$adGroupId = 'INSERT_AD_GROUP_ID_HERE';
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupCriterion;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupCriterionOperation;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupCriterionService;
+use Google\AdsApi\AdWords\v201609\cm\BiddableAdGroupCriterion;
+use Google\AdsApi\AdWords\v201609\cm\Keyword;
+use Google\AdsApi\AdWords\v201609\cm\KeywordMatchType;
+use Google\AdsApi\AdWords\v201609\cm\Operator;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
- * @param string $adGroupId the id to add keywords to
+ * This example demonstrates how to handle partial failures when adding
+ * keywords. To get ad groups run BasicOperations/GetAdGroups.php.
  */
-function HandlePartialFailuresExample(AdWordsUser $user, $adGroupId) {
-  // Get the service, which loads the required classes. Passing true for the
-  // parameter $partialFailure enables partial failure behavior.
-  $adGroupCriterionService = $user->GetService('AdGroupCriterionService',
-      ADWORDS_VERSION, null, null, null, true);
+class HandlePartialFailures {
 
-  // Create keywords.
-  $keywords = array();
-  $keywords[] = new Keyword('mars cruise', 'BROAD');
-  $keywords[] = new Keyword('inv@lid cruise', 'BROAD');
-  $keywords[] = new Keyword('venus cruise', 'BROAD');
-  $keywords[] = new Keyword('b(a)d keyword cruise', 'BROAD');
+  const AD_GROUP_ID = 'INSERT_AD_GROUP_ID_HERE';
 
-  // Create ad group criteria and operations.
-  $operations = array();
-  foreach ($keywords as $keyword) {
-    $adGroupCriterion = new BiddableAdGroupCriterion();
-    $adGroupCriterion->adGroupId = $adGroupId;
-    $adGroupCriterion->criterion = $keyword;
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session, $adGroupId) {
+    $adGroupCriterionService =
+        $adWordsServices->get($session, AdGroupCriterionService::class);
 
-    $operation = new AdGroupCriterionOperation();
-    $operation->operand = $adGroupCriterion;
-    $operation->operator = 'ADD';
+    $keywords = [];
 
-    $operations[] = $operation;
-  }
+    $keyword = new Keyword();
+    $keyword->setText('mars cruise');
+    $keyword->setMatchType(KeywordMatchType::BROAD);
+    $keywords[] = $keyword;
 
-  // Make the mutate request.
-  $result = $adGroupCriterionService->mutate($operations);
+    $keyword = new Keyword();
+    $keyword->setText('inv@lid cruise');
+    $keyword->setMatchType(KeywordMatchType::BROAD);
+    $keywords[] = $keyword;
 
-  // Display results.
-  foreach ($result->value as $adGroupCriterion) {
-    if ($adGroupCriterion->AdGroupCriterionType == 'BiddableAdGroupCriterion') {
-      printf("Keyword with text '%s', match type '%s', and ID '%s' was "
-          . "added.\n", $adGroupCriterion->criterion->text,
-          $adGroupCriterion->criterion->matchType,
-          $adGroupCriterion->criterion->id);
+    $keyword = new Keyword();
+    $keyword->setText('venus cruise');
+    $keyword->setMatchType(KeywordMatchType::BROAD);
+    $keywords[] = $keyword;
+
+    $keyword = new Keyword();
+    $keyword->setText('b(a)d keyword cruise');
+    $keyword->setMatchType(KeywordMatchType::BROAD);
+    $keywords[] = $keyword;
+
+    // Create ad group criteria and ad group criterion operations.
+    $operations = [];
+    foreach ($keywords as $keyword) {
+      $adGroupCriterion = new BiddableAdGroupCriterion();
+      $adGroupCriterion->setAdGroupId($adGroupId);
+      $adGroupCriterion->setCriterion($keyword);
+
+      $operation = new AdGroupCriterionOperation();
+      $operation->setOperand($adGroupCriterion);
+      $operation->setOperator(Operator::ADD);
+
+      $operations[] = $operation;
     }
-  }
 
-  // Check for partial failures.
-  if (isset($result->partialFailureErrors)) {
-    foreach ($result->partialFailureErrors as $error) {
-      $index = ErrorUtils::GetSourceOperationIndex($error);
-      if (isset($index)) {
-        $adGroupCriterion = $operations[$index]->operand;
-        printf("Keyword with text '%s' and match type '%s' failed with error "
-            . "'%s'.\n", $adGroupCriterion->criterion->text,
-          $adGroupCriterion->criterion->matchType, $error->errorString);
-      } else {
-        printf("Operations failed with error '%s'.\n", $error->errorString);
+    // Create ad group criteria on the server.
+    $result = $adGroupCriterionService->mutate($operations);
+
+    // Print out some information about ad group criteria.
+    foreach ($result->getValue() as $adGroupCriterion) {
+      if ($adGroupCriterion->getCriterion() !== null) {
+        printf(
+            "Keyword with text '%s', match type '%s', and ID %d was added.\n",
+            $adGroupCriterion->getCriterion()->getText(),
+            $adGroupCriterion->getCriterion()->getMatchType(),
+            $adGroupCriterion->getCriterion()->getId()
+        );
+      }
+    }
+
+    // Check for partial failures.
+    if ($result->getPartialFailureErrors() !== null) {
+      foreach ($result->getPartialFailureErrors() as $error) {
+        $index = self::getSourceOperationIndex($error);
+        if ($index !== null) {
+          $adGroupCriterion = $operations[$index]->getOperand();
+          printf(
+              "Keyword with text '%s' and match type '%s' failed with error "
+                  . "'%s'.\n",
+              $adGroupCriterion->getCriterion()->getText(),
+              $adGroupCriterion->getCriterion()->getMatchType(),
+              $error->getErrorString()
+          );
+        } else {
+          printf("Operations failed with error '%s'.\n",
+              $error->getErrorString());
+        }
       }
     }
   }
+
+  /**
+   * Get the index of source operation that failed.
+   */
+  private static function getSourceOperationIndex($error) {
+    $matches = [];
+    // Get the index of operations that has a problem.
+    if (preg_match('/^operations\[(\d+)\]/', $error->getFieldPath(),
+        $matches)) {
+      return $matches[1];
+    }
+    // No field path was returned from the server.
+    return null;
+  }
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    // Partial failure behavior is also enabled in this example.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->enablePartialFailure()
+        ->build();
+    self::runExample(
+        new AdWordsServices(), $session, intval(self::AD_GROUP_ID));
+  }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  HandlePartialFailuresExample($user, $adGroupId);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+HandlePartialFailures::main();

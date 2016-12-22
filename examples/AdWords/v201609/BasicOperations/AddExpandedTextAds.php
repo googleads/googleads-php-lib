@@ -1,9 +1,6 @@
 <?php
 /**
- * This example adds an expanded text ad to an ad group. To get ad groups,
- * run GetAdGroups.php.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,83 +13,108 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\BasicOperations;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
 
-// Enter parameters required by the code example.
-$adGroupId = 'INSERT_AD_GROUP_ID_HERE';
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupAd;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupAdOperation;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupAdService;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupAdStatus;
+use Google\AdsApi\AdWords\v201609\cm\ExpandedTextAd;
+use Google\AdsApi\AdWords\v201609\cm\Operator;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
- * @param string $adGroupId the ID of the ad group to add the ads to
+ * This example adds an expanded text ad to an ad group. To get ad groups,
+ * run GetAdGroups.php.
  */
-function AddExpandedTextAdsExample(AdWordsUser $user, $adGroupId) {
-  // Get the service, which loads the required classes.
-  $adGroupAdService = $user->GetService('AdGroupAdService', ADWORDS_VERSION);
+class AddExpandedTextAds {
 
-  // Create an expanded text ad.
-  $expandedTextAd = new ExpandedTextAd();
-  $expandedTextAd->headlinePart1 = 'Cruise to Mars #' . uniqid();
-  $expandedTextAd->headlinePart2 = 'Best Space Cruise Line';
-  $expandedTextAd->description = 'Buy your tickets now!';
-  $expandedTextAd->finalUrls = array('http://www.example.com');
-  $expandedTextAd->path1 = 'all-inclusive';
-  $expandedTextAd->path2 = 'deals';
+  const AD_GROUP_ID = 'INSERT_AD_GROUP_ID_HERE';
 
-  // Create ad group ad.
-  $adGroupAd = new AdGroupAd();
-  $adGroupAd->adGroupId = $adGroupId;
-  $adGroupAd->ad = $expandedTextAd;
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session, $adGroupId) {
+    $adGroupAdService =
+        $adWordsServices->get($session, AdGroupAdService::class);
 
-  // Set additional settings (optional).
-  $adGroupAd->status = 'PAUSED';
+    $operations = [];
+    // Create an expanded text ad.
+    $expandedTextAd = new ExpandedTextAd();
+    $expandedTextAd->setHeadlinePart1('Cruise to Mars #' . uniqid());
+    $expandedTextAd->setHeadlinePart2('Best Space Cruise Line');
+    $expandedTextAd->setDescription('Buy your tickets now!');
+    $expandedTextAd->setFinalUrls(['http://www.example.com']);
+    $expandedTextAd->setPath1('all-inclusive');
+    $expandedTextAd->setPath2('deals');
 
-  // Create operation.
-  $operation = new AdGroupAdOperation();
-  $operation->operand = $adGroupAd;
-  $operation->operator = 'ADD';
+    // Create ad group ad.
+    $adGroupAd = new AdGroupAd();
+    $adGroupAd->setAdGroupId($adGroupId);
+    $adGroupAd->setAd($expandedTextAd);
+    // Optional: Set additional settings.
+    $adGroupAd->setStatus(AdGroupAdStatus::PAUSED);
 
-  $operations = array($operation);
+    // Create ad group ad operation and add it to the list.
+    $operation = new AdGroupAdOperation();
+    $operation->setOperand($adGroupAd);
+    $operation->setOperator(Operator::ADD);
+    $operations[] = $operation;
 
-  // Make the mutate request.
-  $result = $adGroupAdService->mutate($operations);
+    // Create another expanded text ad.
+    $expandedTextAd = new ExpandedTextAd();
+    $expandedTextAd->setHeadlinePart1('Cruise to Venus #' . uniqid());
+    $expandedTextAd->setHeadlinePart2('Best Space Cruise Line');
+    $expandedTextAd->setDescription('Buy your tickets now!');
+    $expandedTextAd->setFinalUrls(['http://www.example.com']);
 
-  // Display results.
-  foreach ($result->value as $adGroupAd) {
-    printf(
-        "Expanded text ad with ID '%d' and headline '%s - %s' was added.\n",
-        $adGroupAd->ad->id,
-        $adGroupAd->ad->headlinePart1,
-        $adGroupAd->ad->headlinePart2
-    );
+    // Create ad group ad.
+    $adGroupAd = new AdGroupAd();
+    $adGroupAd->setAdGroupId($adGroupId);
+    $adGroupAd->setAd($expandedTextAd);
+    // Optional: Set additional settings.
+    $adGroupAd->setStatus(AdGroupAdStatus::PAUSED);
+
+    // Create ad group ad operation and add it to the list.
+    $operation = new AdGroupAdOperation();
+    $operation->setOperand($adGroupAd);
+    $operation->setOperator(Operator::ADD);
+    $operations[] = $operation;
+
+    // Add expanded text ads on the server.
+    $result = $adGroupAdService->mutate($operations);
+
+    // Create the expanded text ads on the server and print out some information
+    // for each created expanded text ad.
+    foreach ($result->getValue() as $adGroupAd) {
+      printf(
+          "Expanded text ad with ID %d and headline '%s - %s' was added.\n",
+          $adGroupAd->getAd()->getId(),
+          $adGroupAd->getAd()->getHeadlinePart1(),
+          $adGroupAd->getAd()->getHeadlinePart2()
+      );
+    }
+  }
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(
+        new AdWordsServices(), $session, intval(self::AD_GROUP_ID));
   }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  AddExpandedTextAdsExample($user, $adGroupId);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+AddExpandedTextAds::main();

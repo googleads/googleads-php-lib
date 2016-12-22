@@ -1,9 +1,6 @@
 <?php
 /**
- * This example validates a text ad without creating it, which can be useful
- * when checking for policy violations.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,86 +13,86 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\CampaignManagement;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
-require_once UTIL_PATH . '/ErrorUtils.php';
+require '../../../../vendor/autoload.php';
 
-// Enter parameters required by the code example.
-$adGroupId = 'INSERT_AD_GROUP_ID_HERE';
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupAd;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupAdOperation;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupAdService;
+use Google\AdsApi\AdWords\v201609\cm\ApiException;
+use Google\AdsApi\AdWords\v201609\cm\ExpandedTextAd;
+use Google\AdsApi\AdWords\v201609\cm\Operator;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
- * @param string $adGroupId the ID of the ad group to hypothetically add the
- *     expanded text ad to
+ * This example validates a text ad without creating it using the validateOnly
+ * mode, which can be useful when checking for policy violations.
  */
-function ValidateTextAdExample(AdWordsUser $user, $adGroupId) {
-  // Get the service, which loads the required classes. Passing true for the
-  // parameter $validateOnly will ensure that ads aren't created.
-  $adGroupAdValidationService =
-      $user->GetService('AdGroupAdService', ADWORDS_VERSION, null, null, true);
+class ValidateTextAd {
 
-  // Create invalid expanded text ad.
-  $expandedTextAd = new ExpandedTextAd();
-  $expandedTextAd->headlinePart1 = 'Luxury Cruise to Mars';
-  $expandedTextAd->headlinePart2 = 'Visit the Red Planet in style.';
-  $expandedTextAd->description = 'Low-gravity fun for all astronauts in orbit.';
-  $expandedTextAd->finalUrls = array('http://www.example.com');
+  const AD_GROUP_ID = 'INSERT_AD_GROUP_ID_HERE';
 
-  // Create ad group ad.
-  $adGroupAd = new AdGroupAd();
-  $adGroupAd->adGroupId = $adGroupId;
-  $adGroupAd->ad = $expandedTextAd;
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session, $adGroupId) {
+    $session->setValidateOnly(true);
+    $adGroupAdService =
+        $adWordsServices->get($session, AdGroupAdService::class);
 
-  // Create operation.
-  $operation = new AdGroupAdOperation();
-  $operation->operand = $adGroupAd;
-  $operation->operator = 'ADD';
+    $operations = [];
+    // Create invalid expanded text ad.
+    $expandedTextAd = new ExpandedTextAd();
+    $expandedTextAd->setHeadlinePart1('Luxury Cruise to Mars !!!');
+    $expandedTextAd->setHeadlinePart2('Visit the Red Planet in style.');
+    $expandedTextAd->setDescription(
+        'Low-gravity fun for all astronauts in orbit.');
+    $expandedTextAd->setFinalUrls(['http://www.example.com']);
 
-  $operations = array($operation);
+    // Create ad group ad.
+    $adGroupAd = new AdGroupAd();
+    $adGroupAd->setAdGroupId($adGroupId);
+    $adGroupAd->setAd($expandedTextAd);
 
-  // Make the mutate request.
-  try {
-    $result = $adGroupAdValidationService->mutate($operations);
-    printf("The expanded text ad is valid.\n");
-  } catch (SoapFault $e) {
-    $errors = ErrorUtils::GetApiErrors($e);
-    if (sizeof($errors) > 0) {
-      printf("The expanded text ad is invalid for the following reasons:\n");
-      foreach ($errors as $error) {
-        printf("  %s @ %s\n", $error->errorString, $error->fieldPath);
+    // Create ad group ad operation and add it to the list.
+    $operation = new AdGroupAdOperation();
+    $operation->setOperand($adGroupAd);
+    $operation->setOperator(Operator::ADD);
+    $operations[] = $operation;
+
+    try {
+      $result = $adGroupAdService->mutate($operations);
+      printf("The expanded text ad is valid.\n");
+    } catch (ApiException $e) {
+      $errors = $e->getErrors();
+      if (count($errors) > 0) {
+        printf("The expanded text ad is invalid for the following reasons:\n");
+        foreach ($errors as $error) {
+          printf("  %s @ %s\n", $error->getErrorString(),
+              $error->getFieldPath());
+        }
       }
-    } else {
-      // Not an API error, so throw it up a level.
-      throw $e;
     }
+  }
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(
+        new AdWordsServices(), $session, intval(self::AD_GROUP_ID));
   }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  ValidateTextAdExample($user, $adGroupId);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+ValidateTextAd::main();

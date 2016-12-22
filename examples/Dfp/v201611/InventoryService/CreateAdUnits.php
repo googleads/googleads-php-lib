@@ -1,12 +1,6 @@
 <?php
 /**
- * This example creates new ad units under the effective root ad unit. To
- * determine which ad units exist, run GetInventoryTree.php or
- * GetAllAdUnits.php.
- *
- * PHP version 5
- *
- * Copyright 2013, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,82 +13,92 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsDfp
- * @subpackage v201611
- * @category   WebServices
- * @copyright  2013, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
-error_reporting(E_STRICT | E_ALL);
+namespace Google\AdsApi\Examples\Dfp\v201611\InventoryService;
 
-// You can set the include path to src directory or reference
-// DfpUser.php directly via require_once.
-// $path = '/path/to/dfp_api_php_lib/src';
-$path = dirname(__FILE__) . '/../../../../src';
-set_include_path(get_include_path() . PATH_SEPARATOR . $path);
+require '../../../../vendor/autoload.php';
 
-require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
-require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
+use Google\AdsApi\Common\OAuth2TokenBuilder;
+use Google\AdsApi\Dfp\DfpServices;
+use Google\AdsApi\Dfp\DfpSession;
+use Google\AdsApi\Dfp\DfpSessionBuilder;
+use Google\AdsApi\Dfp\Util\v201611\StatementBuilder;
+use Google\AdsApi\Dfp\v201611\AdUnit;
+use Google\AdsApi\Dfp\v201611\AdUnitSize;
+use Google\AdsApi\Dfp\v201611\AdUnitTargetWindow;
+use Google\AdsApi\Dfp\v201611\EnvironmentType;
+use Google\AdsApi\Dfp\v201611\InventoryService;
+use Google\AdsApi\Dfp\v201611\NetworkService;
+use Google\AdsApi\Dfp\v201611\Size;
 
-try {
-  // Get DfpUser from credentials in "../auth.ini"
-  // relative to the DfpUser.php file's directory.
-  $user = new DfpUser();
+/**
+ * This example creates ad units.
+ *
+ * It is meant to be run from a command line (not as a webpage) and requires
+ * that you've setup an `adsapi_php.ini` file in your home directory with your
+ * API credentials and settings. See README.md for more info.
+ */
+class CreateAdUnits {
 
-  // Log SOAP XML request and response.
-  $user->LogDefaults();
+  public static function runExample(DfpServices $dfpServices,
+      DfpSession $session) {
+    $inventoryService =
+        $dfpServices->get($session, InventoryService::class);
+    $networkService =
+        $dfpServices->get($session, NetworkService::class);
 
-  // Get the InventoryService.
-  $inventoryService = $user->GetService('InventoryService', 'v201611');
+    // Get the effective root ad unit's ID for all ad units to be created under.
+    $network = $networkService->getCurrentNetwork();
+    $effectiveRootAdUnitId = $network->getEffectiveRootAdUnitId();
 
-  // Get the NetworkService.
-  $networkService = $user->GetService('NetworkService', 'v201611');
-
-  // Get the effective root ad unit's ID for all ad units to be created under.
-  $network = $networkService->getCurrentNetwork();
-  $effectiveRootAdUnitId = $network->effectiveRootAdUnitId;
-
-  // Create an array to store local ad unit objects.
-  $adUnits = array();
-
-  for ($i = 0; $i < 5; $i++) {
+    // Configure the ad unit to be created.
     $adUnit = new AdUnit();
-    $adUnit->name = uniqid('Ad_Unit_');
-    $adUnit->parentId = $effectiveRootAdUnitId;
-    $adUnit->description = 'Ad unit description.';
-    $adUnit->targetWindow = 'BLANK';
-
-    // Create ad unit size.
-    $adUnitSize = new AdUnitSize();
-    $adUnitSize->size = new Size(300, 250, false);
-    $adUnitSize->environmentType = 'BROWSER';
+    $adUnit->setName(uniqid('sports_page_'));
+    $adUnit->setParentId($effectiveRootAdUnitId);
+    $adUnit->setDescription('Banner ad on a sports page.');
+    $adUnit->setTargetWindow(AdUnitTargetWindow::BLANK);
 
     // Set the size of possible creatives that can match this ad unit.
-    $adUnit->adUnitSizes = array($adUnitSize);
+    $size = new Size();
+    $size->setWidth(300);
+    $size->setHeight(250);
+    $size->setIsAspectRatio(false);
+    $adUnitSize = new AdUnitSize();
+    $adUnitSize->setSize($size);
+    $adUnitSize->setEnvironmentType(EnvironmentType::BROWSER);
+    $adUnit->setAdUnitSizes([$adUnitSize]);
 
-    $adUnits[] = $adUnit;
-  }
+    // Create the ad units.
+    $adUnits = $inventoryService->createAdUnits([$adUnit]);
 
-  // Create the ad units on the server.
-  $adUnits = $inventoryService->createAdUnits($adUnits);
-
-  // Display results.
-  if (isset($adUnits)) {
-    foreach ($adUnits as $adUnit) {
-      print 'An ad unit with ID "' . $adUnit->id
-          . '" was created under parent with ID "' . $adUnit->parentId
-          . "\".\n";
+    // Print out some information for each created ad unit.
+    foreach ($adUnits as $i => $adUnit) {
+      printf(
+          "%d) An ad unit with ID '%s' and name '%s' was created.\n",
+          $i,
+          $adUnit->getId(),
+          $adUnit->getName()
+      );
     }
-  } else {
-    print "No ad units created.\n";
+
+    printf("Created %d ad unit(s).\n", count($adUnits));
   }
-} catch (OAuth2Exception $e) {
-  ExampleUtils::CheckForOAuth2Errors($e);
-} catch (ValidationException $e) {
-  ExampleUtils::CheckForOAuth2Errors($e);
-} catch (Exception $e) {
-  print $e->getMessage() . "\n";
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new DfpSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+
+    self::runExample(new DfpServices(), $session);
+  }
 }
 
+CreateAdUnits::main();

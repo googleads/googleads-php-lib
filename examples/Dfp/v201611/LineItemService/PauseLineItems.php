@@ -1,11 +1,6 @@
 <?php
 /**
- * This example pauses a line item. To determine which line items exist,
- * run GetAllLineItems.php.
- *
- * PHP version 5
- *
- * Copyright 2014, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,94 +13,97 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsDfp
- * @subpackage v201611
- * @category   WebServices
- * @copyright  2014, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
-error_reporting(E_STRICT | E_ALL);
+namespace Google\AdsApi\Examples\Dfp\v201611\LineItemService;
 
-// You can set the include path to src directory or reference
-// DfpUser.php directly via require_once.
-// $path = '/path/to/dfp_api_php_lib/src';
-$path = dirname(__FILE__) . '/../../../../src';
-set_include_path(get_include_path() . PATH_SEPARATOR . $path);
+require '../../../../vendor/autoload.php';
 
-require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
-require_once 'Google/Api/Ads/Dfp/Util/v201611/StatementBuilder.php';
-require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
+use Google\AdsApi\Common\OAuth2TokenBuilder;
+use Google\AdsApi\Dfp\DfpServices;
+use Google\AdsApi\Dfp\DfpSession;
+use Google\AdsApi\Dfp\DfpSessionBuilder;
+use Google\AdsApi\Dfp\Util\v201611\StatementBuilder;
+use Google\AdsApi\Dfp\v201611\LineItemService;
+use Google\AdsApi\Dfp\v201611\PauseLineItems as PauseLineItemsAction;
 
-// Set the ID of the line item to pause.
-$lineItemId = 'INSERT_LINE_ITEM_ID_HERE';
+/**
+ * This example pauses a single line item.
+ */
+class PauseLineItems {
 
-try {
-  // Get DfpUser from credentials in "../auth.ini"
-  // relative to the DfpUser.php file's directory.
-  $user = new DfpUser();
+  // Set the ID of the line item to pause.
+  const LINE_ITEM_ID = 'INSERT_LINE_ITEM_ID_HERE';
 
-  // Log SOAP XML request and response.
-  $user->LogDefaults();
+  public static function runExample(DfpServices $dfpServices,
+      DfpSession $session, $lineItemId) {
+    $lineItemService = $dfpServices->get(
+        $dfpServices->get($session, LineItemService::class);
 
-  // Get the LineItemService.
-  $lineItemService = $user->GetService('LineItemService', 'v201611');
+    // Create a statement to select a single line item by ID.
+    $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
+    $statementBuilder = (new StatementBuilder())
+        ->where('id = :id')
+        ->orderBy('id ASC')
+        ->limit(1)
+        ->withBindVariableValue('id', $lineItemId);
 
-  // Create a statement to select a single line item by ID.
-  $statementBuilder = new StatementBuilder();
-  $statementBuilder->Where('id = :id')
-      ->OrderBy('id ASC')
-      ->Limit(1)
-      ->WithBindVariableValue('id', $lineItemId);
+    $totalResultSetSize = 0;
+    do {
+      // Get line items by statement.
+      $page = $lineItemService->getLineItemsByStatement(
+          $statementBuilder->toStatement());
 
-  // Default for total result set size.
-  $totalResultSetSize = 0;
+      // Display results.
+      if ($page->getResults() !== null) {
+        $totalResultSetSize = $page->getTotalResultSetSize();
+        $i = $page->getStartIndex();
+        foreach ($page->getResults() as $lineItem) {
+          printf(
+              "%d) Line item with ID %d, belonging to order %d, and name '%s' "
+                  . "will be paused.\n",
+              $i++,
+              $lineItem->getId(),
+              $lineItem->getOrderId(),
+              $lineItem->getName()
+          );
+        }
+      }
 
-  do {
-    // Get line items by statement.
-    $page = $lineItemService->getLineItemsByStatement(
-        $statementBuilder->ToStatement());
+      $statementBuilder->increaseOffsetBy($pageSize);
+    } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-    // Display results.
-    if (isset($page->results)) {
-      $totalResultSetSize = $page->totalResultSetSize;
-      $i = $page->startIndex;
-      foreach ($page->results as $lineItem) {
-        printf("%d) Line item with ID %d, belonging to order %d, and name '%s' "
-            . "will be paused.\n", $i++, $lineItem->id, $lineItem->orderId,
-            $lineItem->name);
+    printf(
+        "Total number of line items to be paused: %d\n", $totalResultSetSize);
+
+    if ($totalResultSetSize > 0) {
+      // Remove limit and offset from statement.
+      $statementBuilder->removeLimitAndOffset();
+
+      // Create and perform action.
+      $action = new PauseLineItemsAction();
+      $result = $lineItemService->performLineItemAction($action,
+          $statementBuilder->toStatement());
+
+      // Display results.
+      if ($result !== null && $result->getNumChanges() > 0) {
+        printf("Number of line items paused: %d\n", $result->getNumChanges());
+      } else {
+        printf("No line items were paused.\n");
       }
     }
-
-    $statementBuilder->IncreaseOffsetBy(StatementBuilder::SUGGESTED_PAGE_LIMIT);
-  } while ($statementBuilder->GetOffset() < $totalResultSetSize);
-
-  printf("Number of line items to be paused: %d\n", $totalResultSetSize);
-
-  if ($totalResultSetSize > 0) {
-    // Remove limit and offset from statement.
-    $statementBuilder->RemoveLimitAndOffset();
-
-    // Create action.
-    $action = new PauseLineItems();
-
-    // Perform action.
-    $result = $lineItemService->performLineItemAction($action,
-        $statementBuilder->ToStatement());
-
-    // Display results.
-    if (isset($result) && $result->numChanges > 0) {
-      printf("Number of line items paused: %d\n", $result->numChanges);
-    } else {
-      printf("No line items were paused.\n");
-    }
   }
-} catch (OAuth2Exception $e) {
-  ExampleUtils::CheckForOAuth2Errors($e);
-} catch (ValidationException $e) {
-  ExampleUtils::CheckForOAuth2Errors($e);
-} catch (Exception $e) {
-  printf("%s\n", $e->getMessage());
+
+  public static function main() {
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+    $session = (new DfpSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(new DfpServices(), $session, intval(self::LINE_ITEM_ID));
+  }
 }
+
+PauseLineItems::main();
 

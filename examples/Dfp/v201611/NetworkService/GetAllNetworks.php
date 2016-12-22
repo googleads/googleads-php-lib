@@ -1,11 +1,6 @@
 <?php
 /**
- * This example gets all networks that you have access to with the current login
- * credentials. A networkCode should be left out for this request.
- *
- * PHP version 5
- *
- * Copyright 2014, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,53 +13,63 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsDfp
- * @subpackage v201611
- * @category   WebServices
- * @copyright  2014, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
-error_reporting(E_STRICT | E_ALL);
+namespace Google\AdsApi\Examples\Dfp\v201611\NetworkService;
 
-// You can set the include path to src directory or reference
-// DfpUser.php directly via require_once.
-// $path = '/path/to/dfp_api_php_lib/src';
-$path = dirname(__FILE__) . '/../../../../src';
-set_include_path(get_include_path() . PATH_SEPARATOR . $path);
+require '../../../../vendor/autoload.php';
 
-require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
-require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
+use Google\AdsApi\Common\OAuth2TokenBuilder;
+use Google\AdsApi\Dfp\DfpServices;
+use Google\AdsApi\Dfp\DfpSession;
+use Google\AdsApi\Dfp\DfpSessionBuilder;
+use Google\AdsApi\Dfp\Util\v201611\StatementBuilder;
+use Google\AdsApi\Dfp\v201611\NetworkService;
 
-try {
-  // Get DfpUser from credentials in "../auth.ini"
-  // relative to the DfpUser.php file's directory.
-  $user = new DfpUser();
+/**
+ * This example gets all networks.
+ *
+ * <p>It is meant to be run from a command line (not as a webpage) and requires
+ * that you've setup an `adsapi_php.ini` file in your home directory with your
+ * API credentials and settings. See README.md for more info.
+ */
+class GetAllNetworks {
 
-  // Log SOAP XML request and response.
-  $user->LogDefaults();
+  public static function runExample(DfpServices $dfpServices,
+      DfpSession $session) {
+    $networkService = $dfpServices->get($session, NetworkService::class);
 
-  // Get the NetworkService.
-  $networkService = $user->GetService('NetworkService', 'v201611');
+    // Get all networks that you have access to with the current authentication
+    // credentials.
+    $networks = $networkService->getAllNetworks();
 
-  // Get all networks that you have access to with the current authentication
-  // credentials.
-  $networks = $networkService->getAllNetworks();
+    // Print out some information for each network.
+    foreach ($networks as $i => $network) {
+      printf(
+          "%d) Network with code %d and display name '%s' was found.\n",
+          $i,
+          $network->getNetworkCode(),
+          $network->getDisplayName()
+      );
+    }
 
-  // Display results.
-  $i = 0;
-  foreach ($networks as $network) {
-    printf("%d) Network with network code %d, and display name '%s' was "
-        . "found.\n", $i++, $network->networkCode, $network->displayName);
+    printf("Number of results found: %d\n", count($networks));
   }
 
-  printf("Number of results found: %d\n", $i);
-} catch (OAuth2Exception $e) {
-  ExampleUtils::CheckForOAuth2Errors($e);
-} catch (ValidationException $e) {
-  ExampleUtils::CheckForOAuth2Errors($e);
-} catch (Exception $e) {
-  printf("%s\n", $e->getMessage());
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new DfpSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+
+    self::runExample(new DfpServices(), $session);
+  }
 }
 
+GetAllNetworks::main();

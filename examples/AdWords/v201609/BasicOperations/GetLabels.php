@@ -1,8 +1,6 @@
 <?php
 /**
- * This example gets all labels in the account.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,68 +13,73 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\BasicOperations;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
+
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\LabelService;
+use Google\AdsApi\AdWords\v201609\cm\OrderBy;
+use Google\AdsApi\AdWords\v201609\cm\Paging;
+use Google\AdsApi\AdWords\v201609\cm\Selector;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
+ * This example gets all labels in the account.
  */
-function GetLabelsExample(AdWordsUser $user) {
-  // Get the service, which loads the required classes.
-  $labelService = $user->GetService('LabelService', ADWORDS_VERSION);
+class GetLabels {
 
-  // Create selector.
-  $selector = new Selector();
-  $selector->fields = array('LabelId', 'LabelName');
-  $selector->ordering[] = new OrderBy('LabelName', 'ASCENDING');
+  const PAGE_LIMIT = 500;
 
-  // Create paging controls.
-  $selector->paging = new Paging(0, AdWordsConstants::RECOMMENDED_PAGE_SIZE);
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session) {
+    $labelService = $adWordsServices->get($session, LabelService::class);
 
-  do {
-    // Make the get request.
-    $page = $labelService->get($selector);
+    // Create selector.
+    $selector = new Selector();
+    $selector->setFields(['LabelId', 'LabelName']);
+    $selector->setOrdering([new OrderBy('LabelName', 'ASCENDING')]);
+    $selector->setPaging(new Paging(0, self::PAGE_LIMIT));
 
-    // Display results.
-    if (isset($page->entries)) {
-      foreach ($page->entries as $label) {
-        printf("Label with name '%s' and ID '%s' was found.\n",
-            $label->name, $label->id);
+    $totalNumEntries = 0;
+    do {
+      // Make the get request.
+      $page = $labelService->get($selector);
+
+      // Print out information about labels obtained from LabelService.
+      if ($page->getEntries() !== null) {
+        $totalNumEntries = $page->getTotalNumEntries();
+        foreach ($page->getEntries() as $label) {
+          printf("Label with ID %d and name '%s' was found.\n",
+              $label->getId(), $label->getName());
+        }
       }
-    } else {
-      print "No labels were found.\n";
-    }
 
-    // Advance the paging index.
-    $selector->paging->startIndex += AdWordsConstants::RECOMMENDED_PAGE_SIZE;
-  } while ($page->totalNumEntries > $selector->paging->startIndex);
+      // Advance the paging index.
+      $selector->getPaging()->setStartIndex(
+          $selector->getPaging()->getStartIndex() + self::PAGE_LIMIT);
+    } while ($selector->getPaging()->getStartIndex() < $totalNumEntries);
+
+    printf("Number of results found: %d\n", $totalNumEntries);
+  }
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(new AdWordsServices(), $session);
+  }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  GetLabelsExample($user);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+GetLabels::main();

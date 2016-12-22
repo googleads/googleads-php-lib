@@ -1,0 +1,94 @@
+POST /apis/ads/publisher/v201505/CreativeService?wsdl HTTP/1.1
+Host: ads.google.com
+Connection: Keep-Alive
+User-Agent: PHP-SOAP/5.5.20, gzip
+Accept-Encoding: gzip, deflate
+Content-Type: text/xml; charset=utf-8
+SOAPAction: ""
+Content-Length: 621
+Authorization: REDACTED
+
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="https://www.google.com/apis/ads/publisher/v201505">
+<SOAP-ENV:Header>
+  <ns1:RequestHeader>
+    <ns1:networkCode id="hello googs" sing="and_dance">REDACTED</ns1:networkCode>
+    <ns1:clientCustomerId>REDACTED</ns1:clientCustomerId>
+    <ns1:applicationName>google report downloader (DfpApi-PHP, googleads-php-lib2/1.0.0-alpha, PHP/5.5.20)</ns1:applicationName>
+  </ns1:RequestHeader>
+</SOAP-ENV:Header>
+<SOAP-ENV:Body>
+  <ns1:getCreativesByStatement>
+    <ns1:filterStatement>
+      <ns1:query>ORDER BY id DESC LIMIT 1</ns1:query>
+    </ns1:filterStatement>
+  </ns1:getCreativesByStatement>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+
+HTTP/1.1 200 OK
+Content-Type: text/xml; charset=UTF-8
+Content-Encoding: gzip
+Date: Mon, 12 Oct 2015 16:09:17 GMT
+Expires: Mon, 12 Oct 2015 16:09:17 GMT
+Cache-Control: private, max-age=0
+Content-Length: 1005
+Server: GSE
+
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Header>
+    <ResponseHeader xmlns="https://www.google.com/apis/ads/publisher/v201505">
+      <requestId>123abc456xyz</requestId>
+      <responseTime>226</responseTime>
+      <operations>9</operations>
+    </ResponseHeader>
+  </soap:Header>
+  <soap:Body>
+    <getCreativesByStatementResponse xmlns="https://www.google.com/apis/ads/publisher/v201505">
+      <rval>
+        <totalResultSetSize>64</totalResultSetSize>
+        <startIndex>0</startIndex>
+        <results xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ImageCreative">
+          <advertiserId>123</advertiserId>
+          <id>456</id>
+          <name>Image creative #561adb1234e4</name>
+          <size>
+            <width>300</width>
+            <height>250</height>
+            <isAspectRatio>false</isAspectRatio>
+          </size>
+          <previewUrl>https://partner.googleadservices.com/gampad/ads?gct=123abc456xyz&amp;iu=456&amp;gdfp_req=1&amp;height=250&amp;width=300&amp;impl=ifr</previewUrl>
+          <lastModifiedDateTime>
+            <date>
+              <year>2015</year>
+              <month>10</month>
+              <day>11</day>
+            </date>
+            <hour>14</hour>
+            <minute>58</minute>
+            <second>2</second>
+            <timeZoneID>PST8PDT</timeZoneID>
+          </lastModifiedDateTime>
+          <destinationUrl>https://google.com</destinationUrl>
+          <destinationUrlType>CLICK_TO_WEB</destinationUrlType>
+          <overrideSize>false</overrideSize>
+          <primaryImageAsset>
+            <assetId>123789</assetId>
+            <fileName>image123abcxyz456.jpg</fileName>
+            <fileSize>50952</fileSize>
+            <assetUrl>https://tpc.googlesyndication.com/pageadimg/imgad?id=123abc456xyz</assetUrl>
+            <size>
+              <width>300</width>
+              <height>250</height>
+              <isAspectRatio>false</isAspectRatio>
+            </size>
+            <imageDensity>ONE_TO_ONE</imageDensity>
+          </primaryImageAsset>
+          <altText>
+          </altText>
+          <lockedOrientation>FREE_ORIENTATION</lockedOrientation>
+        </results>
+      </rval>
+    </getCreativesByStatementResponse>
+  </soap:Body>
+</soap:Envelope>

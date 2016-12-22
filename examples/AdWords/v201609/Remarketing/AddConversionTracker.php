@@ -1,10 +1,6 @@
 <?php
 /**
- * This example adds a new conversion type to the account.
- *
- * PHP version 5
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,71 +13,78 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\Remarketing;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
+
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\AdWordsConversionTracker;
+use Google\AdsApi\AdWords\v201609\cm\AdWordsConversionTrackerTextFormat;
+use Google\AdsApi\AdWords\v201609\cm\ConversionTrackerCategory;
+use Google\AdsApi\AdWords\v201609\cm\ConversionTrackerOperation;
+use Google\AdsApi\AdWords\v201609\cm\ConversionTrackerService;
+use Google\AdsApi\AdWords\v201609\cm\ConversionTrackerStatus;
+use Google\AdsApi\AdWords\v201609\cm\Operator;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
+ * This example adds a new conversion type to the account.
  */
-function AddConversionTrackerExample(AdWordsUser $user) {
-  // Get the service, which loads the required classes.
-  $conversionTrackerService =
-      $user->GetService('ConversionTrackerService', ADWORDS_VERSION);
+class AddConversionTracker {
 
-  // Create conversion tracker.
-  $conversionTracker = new AdWordsConversionTracker();
-  $conversionTracker->name = 'Interplanetary Cruise Conversion #' . uniqid();
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session) {
+    $conversionTrackerService =
+        $adWordsServices->get($session, ConversionTrackerService::class);
 
-  // Set additional settings (optional).
-  $conversionTracker->status = 'ENABLED';
-  $conversionTracker->category = 'DEFAULT';
-  $conversionTracker->viewthroughLookbackWindow = 15;
-  $conversionTracker->textFormat = 'HIDDEN';
-  $conversionTracker->conversionPageLanguage = 'en';
-  $conversionTracker->backgroundColor = '#0000FF';
+    // Create a conversion tracker.
+    $conversionTracker = new AdWordsConversionTracker();
+    $conversionTracker->setName(
+        'Interplanetary Cruise Conversion #' . uniqid());
 
-  // Create operation.
-  $operation = new ConversionTrackerOperation();
-  $operation->operand = $conversionTracker;
-  $operation->operator = 'ADD';
+    // Set additional settings (optional).
+    $conversionTracker->setStatus(ConversionTrackerStatus::ENABLED);
+    $conversionTracker->setCategory(ConversionTrackerCategory::DEFAULT_VALUE);
+    $conversionTracker->setViewthroughLookbackWindow(15);
+    $conversionTracker->setTextFormat(
+        AdWordsConversionTrackerTextFormat::HIDDEN);
+    $conversionTracker->setConversionPageLanguage('en');
+    $conversionTracker->setBackgroundColor('#0000FF');
 
-  $operations = array($operation);
+    // Create a conversion tracker operation and add it to the list.
+    $operations = [];
+    $operation = new ConversionTrackerOperation();
+    $operation->setOperand($conversionTracker);
+    $operation->setOperator(Operator::ADD);
+    $operations[] = $operation;
 
-  // Make the mutate request.
-  $result = $conversionTrackerService->mutate($operations);
+    // Create the conversion tracker on the server and print out some
+    // information.
+    $conversionTracker =
+        $conversionTrackerService->mutate($operations)->getValue()[0];
+    printf("Conversion type with name '%s' and ID %d was added.\n",
+        $conversionTracker->getName(), $conversionTracker->getId());
+    printf("Conversion tracker snippet:\n%s\n",
+        $conversionTracker->getSnippet());
+  }
 
-  // Display result.
-  $conversionTracker = $result->value[0];
-  printf("Conversion type with name '%s' and ID '%.0f' was added.\n",
-      $conversionTracker->name, $conversionTracker->id);
-  printf("Tag code:\n%s\n", $conversionTracker->snippet);
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(new AdWordsServices(), $session);
+  }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  AddConversionTrackerExample($user);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+AddConversionTracker::main();

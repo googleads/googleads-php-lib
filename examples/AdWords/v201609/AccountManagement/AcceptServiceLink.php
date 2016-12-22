@@ -1,9 +1,6 @@
 <?php
 /**
- * This example accepts a pending invitation to link your AdWords account to a
- * Google Merchant Center account.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,73 +13,76 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\AccountManagement;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
 
-// Enter parameters required by the code example.
-$serviceLinkId = 'INSERT_SERVICE_LINK_ID_HERE';
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\Operator;
+use Google\AdsApi\AdWords\v201609\mcm\CustomerService;
+use Google\AdsApi\AdWords\v201609\mcm\ServiceLink;
+use Google\AdsApi\AdWords\v201609\mcm\ServiceLinkLinkStatus;
+use Google\AdsApi\AdWords\v201609\mcm\ServiceLinkOperation;
+use Google\AdsApi\AdWords\v201609\mcm\ServiceType;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
- * @param int $serviceLinkId the service link ID to accept
+ * This example accepts a pending invitation to link your AdWords account to a
+ * Google Merchant Center account.
  */
-function AcceptServiceLinkExample(AdWordsUser $user, $serviceLinkId) {
-  // Get the service, which loads the required classes.
-  $customerService = $user->GetService('CustomerService', ADWORDS_VERSION);
+class AcceptServiceLink {
 
-  // Create service link and set the status to ACTIVE.
-  $serviceLink = new ServiceLink();
-  $serviceLink->serviceLinkId = $serviceLinkId;
-  $serviceLink->serviceType = 'MERCHANT_CENTER';
-  $serviceLink->linkStatus = 'ACTIVE';
+  const SERVICE_LINK_ID = 'INSERT_SERVICE_LINK_ID_HERE';
 
-  // Create operation.
-  $operation = new ServiceLinkOperation();
-  $operation->operator = 'SET';
-  $operation->operand = $serviceLink;
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session, $serviceLinkId) {
+    $customerService = $adWordsServices->get($session, CustomerService::class);
 
-  $operations = array($operation);
+    // Create service link.
+    $serviceLink = new ServiceLink();
+    $serviceLink->setServiceLinkId($serviceLinkId);
+    $serviceLink->setServiceType(ServiceType::MERCHANT_CENTER);
+    $serviceLink->setLinkStatus(ServiceLinkLinkStatus::ACTIVE);
 
-  // Make the mutate request.
-  $serviceLinks = $customerService->mutateServiceLinks($operations);
+    // Create a service link operation and add it to the list.
+    $operations = [];
+    $operation = new ServiceLinkOperation();
+    $operation->setOperator(Operator::SET);
+    $operation->setOperand($serviceLink);
+    $operations[] = $operation;
 
-  // Display the results.
-  foreach ($serviceLinks as $serviceLink) {
-    printf(
-        "Service link with service link ID %d, type '%s' updated to status: %s."
-            . "\n",
-        $serviceLink->serviceLinkId,
-        $serviceLink->serviceType,
-        $serviceLink->linkStatus
-    );
+    // Accept service links on the server and print out some information about
+    // accepted service links.
+    $serviceLinks = $customerService->mutateServiceLinks($operations);
+    foreach ($serviceLinks as $serviceLink) {
+      printf(
+          "Service link with service link ID %d and type '%s' updated to status"
+              . ": %s.\n",
+          $serviceLink->getServiceLinkId(),
+          $serviceLink->getServiceType(),
+          $serviceLink->getLinkStatus()
+      );
+    }
+  }
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(
+        new AdWordsServices(), $session, intval(self::SERVICE_LINK_ID));
   }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  AcceptServiceLinkExample($user, $serviceLinkId);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+AcceptServiceLink::main();

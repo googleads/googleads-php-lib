@@ -1,9 +1,6 @@
 <?php
 /**
- * This example gets all campaigns in the account with AWQL. To add a campaign,
- * run AddCampaign.php.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,68 +13,73 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\BasicOperations;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
+
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\CampaignService;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
+ * This example gets all campaigns in the account with AWQL. To add a campaign,
+ * run AddCampaign.php.
  */
-function GetCampaignsWithAwqlExample(AdWordsUser $user) {
-  // Get the service, which loads the required classes.
-  $campaignService = $user->GetService('CampaignService', ADWORDS_VERSION);
+class GetCampaignsWithAwql {
 
-  // Create AWQL query.
-  $query = 'SELECT Id, Name, Status ORDER BY Name';
+  const PAGE_LIMIT = 500;
 
-  // Create paging controls.
-  $offset = 0;
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session) {
+    $campaignService = $adWordsServices->get($session, CampaignService::class);
 
-  do {
-    $pageQuery = sprintf('%s LIMIT %d,%d', $query, $offset,
-        AdWordsConstants::RECOMMENDED_PAGE_SIZE);
-    // Make the query request.
-    $page = $campaignService->query($pageQuery);
+    // Create AWQL query.
+    $query = 'SELECT Id, Name, Status ORDER BY Name';
 
-    // Display results.
-    if (isset($page->entries)) {
-      foreach ($page->entries as $campaign) {
-        printf("Campaign with name '%s' and ID '%s' was found.\n",
-            $campaign->name, $campaign->id);
+    // Create paging controls.
+    $totalNumEntries = 0;
+    $offset = 0;
+    do {
+      $pageQuery = sprintf('%s LIMIT %d,%d', $query, $offset, self::PAGE_LIMIT);
+      // Make the query request.
+      $page = $campaignService->query($pageQuery);
+
+      // Display results from the query.
+      if ($page->getEntries() !== null) {
+        $totalNumEntries = $page->getTotalNumEntries();
+        foreach ($page->getEntries() as $campaign) {
+          printf(
+              "Campaign with ID %d and name '%s' was found.\n",
+              $campaign->getId(),
+              $campaign->getName()
+          );
+        }
       }
-    } else {
-      print "No campaigns were found.\n";
-    }
 
-    // Advance the paging offset.
-    $offset += AdWordsConstants::RECOMMENDED_PAGE_SIZE;
-  } while ($page->totalNumEntries > $offset);
+      // Advance the paging offset.
+      $offset += self::PAGE_LIMIT;
+    } while ($offset < $totalNumEntries);
+
+    printf("Number of results found: %d\n", $totalNumEntries);
+  }
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(new AdWordsServices(), $session);
+  }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  GetCampaignsWithAwqlExample($user);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+GetCampaignsWithAwql::main();

@@ -1,10 +1,6 @@
 <?php
 /**
- * This example adds a price extension and associates it with an account.
- * Campaign targeting is also set using the specified campaign ID.
- * To get campaigns, run GetCampaigns.php.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,136 +13,167 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\Extensions;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
 
-// Enter parameters required by the code example.
-$campaignId = 'INSERT_CAMPAIGN_ID_HERE';
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\CustomerExtensionSetting;
+use Google\AdsApi\AdWords\v201609\cm\CustomerExtensionSettingOperation;
+use Google\AdsApi\AdWords\v201609\cm\CustomerExtensionSettingService;
+use Google\AdsApi\AdWords\v201609\cm\DayOfWeek;
+use Google\AdsApi\AdWords\v201609\cm\ExtensionSetting;
+use Google\AdsApi\AdWords\v201609\cm\FeedItemCampaignTargeting;
+use Google\AdsApi\AdWords\v201609\cm\FeedItemScheduling;
+use Google\AdsApi\AdWords\v201609\cm\FeedItemSchedule;
+use Google\AdsApi\AdWords\v201609\cm\FeedType;
+use Google\AdsApi\AdWords\v201609\cm\MinuteOfHour;
+use Google\AdsApi\AdWords\v201609\cm\Money;
+use Google\AdsApi\AdWords\v201609\cm\MoneyWithCurrency;
+use Google\AdsApi\AdWords\v201609\cm\Operator;
+use Google\AdsApi\AdWords\v201609\cm\PriceFeedItem;
+use Google\AdsApi\AdWords\v201609\cm\PriceExtensionType;
+use Google\AdsApi\AdWords\v201609\cm\PriceExtensionPriceQualifier;
+use Google\AdsApi\AdWords\v201609\cm\PriceExtensionPriceUnit;
+use Google\AdsApi\AdWords\v201609\cm\PriceTableRow;
+use Google\AdsApi\AdWords\v201609\cm\UrlList;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
- * @param string $campaignId the ID of campaign the price extension is
- *     targeted to
+ * This example adds a price extension and associates it with an account.
+ * Campaign targeting is also set using the specified campaign ID.
+ * To get campaigns, run GetCampaigns.php.
  */
-function AddPricesExample(AdWordsUser $user, $campaignId) {
-  // Get the services and load the required classes.
-  $customerExtensionSettingService =
-      $user->GetService('CustomerExtensionSettingService', ADWORDS_VERSION);
+class AddPrices {
 
-  // Create the price extension feed item.
-  $priceFeedItem = new PriceFeedItem();
-  $priceFeedItem->priceExtensionType = 'SERVICES';
-  // Price qualifer is optional.
-  $priceFeedItem->priceQualifier = 'FROM';
-  $priceFeedItem->trackingUrlTemplate = 'http://tracker.example.com/?u={lpurl}';
-  $priceFeedItem->language = 'en';
-  $priceFeedItem->campaignTargeting =
-      new FeedItemCampaignTargeting($campaignId);
-  $priceFeedItem->scheduling = new FeedItemScheduling(array(
-      new FeedItemSchedule('SUNDAY', 10, 'ZERO', 18, 'ZERO'),
-      new FeedItemSchedule('SATURDAY', 10, 'ZERO', 22, 'ZERO')
-  ));
+  const CAMPAIGN_ID = 'INSERT_CAMPAIGN_ID_HERE';
+  const MICROS_PER_DOLLAR = 1000000;
 
-  // To create a price extension, at least three table rows are needed.
-  $tableRows = array();
-  $tableRows[] = createPriceTableRow(
-      'Scrubs',
-      'Body Scrub, Salt Scrub',
-      'http://www.example.com/scrubs',
-      60 * AdWordsConstants::MICROS_PER_DOLLAR,
-      'USD',
-      'PER_HOUR'
-  );
-  $tableRows[] = createPriceTableRow(
-      'Hair Cuts',
-      'Once a month',
-      'http://www.example.com/haircuts',
-      75 * AdWordsConstants::MICROS_PER_DOLLAR,
-      'USD',
-      'PER_MONTH'
-  );
-  $tableRows[] = createPriceTableRow(
-      'Skin Care Package',
-      'Four times a month',
-      'http://www.example.com/skincarepackage',
-      250 * AdWordsConstants::MICROS_PER_DOLLAR,
-      'USD',
-      'PER_MONTH'
-  );
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session, $campaignId) {
+    $customerExtensionSettingService =
+        $adWordsServices->get($session, CustomerExtensionSettingService::class);
 
-  $priceFeedItem->tableRows = $tableRows;
+    // Create the price extension feed item.
+    $priceFeedItem = new PriceFeedItem();
+    $priceFeedItem->setPriceExtensionType(PriceExtensionType::SERVICES);
+    // Price qualifer is optional.
+    $priceFeedItem->setPriceQualifier(PriceExtensionPriceQualifier::FROM);
+    $priceFeedItem->setTrackingUrlTemplate(
+        'http://tracker.example.com/?u={lpurl}');
+    $priceFeedItem->setLanguage('en');
+    $priceFeedItem->setCampaignTargeting(
+        new FeedItemCampaignTargeting($campaignId));
+    $priceFeedItem->setScheduling(new FeedItemScheduling([
+        new FeedItemSchedule(DayOfWeek::SUNDAY, 10, MinuteOfHour::ZERO, 18,
+            MinuteOfHour::ZERO),
+        new FeedItemSchedule(DayOfWeek::SATURDAY, 10, MinuteOfHour::ZERO, 22,
+            MinuteOfHour::ZERO)
+    ]));
 
-  // Create your customer extension settings. This associates the price
-  // extension to your account.
-  $customerExtensionSetting = new CustomerExtensionSetting();
-  $customerExtensionSetting->extensionType = 'PRICE';
-  $customerExtensionSetting->extensionSetting = new ExtensionSetting();
-  $customerExtensionSetting->extensionSetting->extensions =
-      array($priceFeedItem);
+    // To create a price extension, at least three table rows are needed.
+    $tableRows = [];
+    $tableRows[] = self::createPriceTableRow(
+        'Scrubs',
+        'Body Scrub, Salt Scrub',
+        'http://www.example.com/scrubs',
+        60 * self::MICROS_PER_DOLLAR,
+        'USD',
+        PriceExtensionPriceUnit::PER_HOUR
+    );
+    $tableRows[] = self::createPriceTableRow(
+        'Hair Cuts',
+        'Once a month',
+        'http://www.example.com/haircuts',
+        75 * self::MICROS_PER_DOLLAR,
+        'USD',
+        PriceExtensionPriceUnit::PER_MONTH
+    );
+    $tableRows[] = self::createPriceTableRow(
+        'Skin Care Package',
+        'Four times a month',
+        'http://www.example.com/skincarepackage',
+        250 * self::MICROS_PER_DOLLAR,
+        'USD',
+        PriceExtensionPriceUnit::PER_MONTH
+    );
 
-  // Create operation.
-  $operation = new CustomerExtensionSettingOperation();
-  $operation->operator = 'ADD';
-  $operation->operand = $customerExtensionSetting;
+    $priceFeedItem->setTableRows($tableRows);
 
-  $operations = array($operation);
+    // Create your customer extension settings. This associates the price
+    // extension to your account.
+    $customerExtensionSetting = new CustomerExtensionSetting();
+    $customerExtensionSetting->setExtensionType(FeedType::PRICE);
+    $customerExtensionSetting->setExtensionSetting(new ExtensionSetting());
+    $customerExtensionSetting->getExtensionSetting()->setExtensions(
+        [$priceFeedItem]);
 
-  // Add the price extension.
-  $result = $customerExtensionSettingService->mutate($operations);
+    // Create a customer extension setting operation and add it to the list.
+    $operations = [];
+    $operation = new CustomerExtensionSettingOperation();
+    $operation->setOperator(Operator::ADD);
+    $operation->setOperand($customerExtensionSetting);
+    $operations = [$operation];
 
-  // Print the results.
-  $newExtensionSetting = $result->value[0];
-  printf("Extension setting with type '%s' was added to your account.\n",
-      $newExtensionSetting->extensionType);
+    // Add the price extension on the server.
+    $result = $customerExtensionSettingService->mutate($operations);
+
+    // Print out some information about the added extension setting.
+    $newExtensionSetting = $result->getValue()[0];
+    printf("Extension setting with type '%s' was added to your account.\n",
+        $newExtensionSetting->getExtensionType());
+  }
+
+  /**
+   * Creates a new price table row with the specified attributes.
+   *
+   * @param string $header the header of price table row
+   * @param string $description the description of price table row
+   * @param string $finalUrl the final url of price table row
+   * @param integer $priceInMicros the price in micro amount
+   * @param string $currencyCode the 3-character currency code
+   * @param string $priceUnit the unit of shown price
+   */
+  private static function createPriceTableRow(
+      $header,
+      $description,
+      $finalUrl,
+      $priceInMicros,
+      $currencyCode,
+      $priceUnit
+  ) {
+    $priceTableRow = new PriceTableRow();
+    $priceTableRow->setHeader($header);
+    $priceTableRow->setDescription($description);
+    $priceTableRow->setFinalUrls(new UrlList([$finalUrl]));
+    $money = new Money();
+    $money->setMicroAmount($priceInMicros);
+    $moneyWithCurrency = new MoneyWithCurrency();
+    $moneyWithCurrency->setMoney($money);
+    $moneyWithCurrency->setCurrencyCode($currencyCode);
+    $priceTableRow->setPrice($moneyWithCurrency);
+    $priceTableRow->setPriceUnit($priceUnit);
+    return $priceTableRow;
+  }
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(
+        new AdWordsServices(), $session, intval(self::CAMPAIGN_ID));
+  }
 }
 
-/**
- * Creates a new price table row with the specified attributes.
- *
- * @param string $header the header of price table row
- * @param string $description the description of price table row
- * @param string $finalUrl the final url of price table row
- * @param integer $priceInMicros the price in micro amount
- * @param string $currencyCode the 3-character currency code
- * @param string $priceUnit the unit of shown price
- */
-function createPriceTableRow($header, $description, $finalUrl, $priceInMicros,
-    $currencyCode, $priceUnit) {
-  $priceTableRow = new PriceTableRow();
-  $priceTableRow->header = $header;
-  $priceTableRow->description = $description;
-  $priceTableRow->finalUrls = new UrlList(array($finalUrl));
-  $priceTableRow->price =
-      new MoneyWithCurrency(new Money($priceInMicros), $currencyCode);
-  $priceTableRow->priceUnit = $priceUnit;
-  return $priceTableRow;
-}
-
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  AddPricesExample($user, $campaignId);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+AddPrices::main();

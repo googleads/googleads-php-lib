@@ -1,11 +1,6 @@
 <?php
 /**
- * This example gets all creative sets for a master creative. To create creative
- * sets, run CreateCreativeSets.php.
- *
- * PHP version 5
- *
- * Copyright 2014, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,75 +13,84 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsDfp
- * @subpackage v201611
- * @category   WebServices
- * @copyright  2014, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
-error_reporting(E_STRICT | E_ALL);
+namespace Google\AdsApi\Examples\Dfp\v201611\CreativeSetService;
 
-// You can set the include path to src directory or reference
-// DfpUser.php directly via require_once.
-// $path = '/path/to/dfp_api_php_lib/src';
-$path = dirname(__FILE__) . '/../../../../src';
-set_include_path(get_include_path() . PATH_SEPARATOR . $path);
+require '../../../../vendor/autoload.php';
 
-require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
-require_once 'Google/Api/Ads/Dfp/Util/v201611/StatementBuilder.php';
-require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
+use Google\AdsApi\Common\OAuth2TokenBuilder;
+use Google\AdsApi\Dfp\DfpServices;
+use Google\AdsApi\Dfp\DfpSession;
+use Google\AdsApi\Dfp\DfpSessionBuilder;
+use Google\AdsApi\Dfp\Util\v201611\StatementBuilder;
+use Google\AdsApi\Dfp\v201611\CreativeSetService;
 
-// Set the ID of the master creative to get all creative sets for.
-$masterCreativeId = "INSERT_MASTER_CREATIVE_ID_HERE";
+/**
+ * This example gets all creative sets for a master creative.
+ *
+ * <p>It is meant to be run from a command line (not as a webpage) and requires
+ * that you've setup an `adsapi_php.ini` file in your home directory with your
+ * API credentials and settings. See README.md for more info.
+ */
+class GetCreativeSetsForMasterCreative {
 
-try {
-  // Get DfpUser from credentials in "../auth.ini"
-  // relative to the DfpUser.php file's directory.
-  $user = new DfpUser();
+  const MASTER_CREATIVE_ID = 'INSERT_MASTER_CREATIVE_ID_HERE';
 
-  // Log SOAP XML request and response.
-  $user->LogDefaults();
+  public static function runExample(DfpServices $dfpServices,
+      DfpSession $session, $masterCreativeId) {
+    $creativeSetService =
+        $dfpServices->get($session, CreativeSetService::class);
 
-  // Get the CreativeSetService.
-  $creativeSetService = $user->GetService('CreativeSetService', 'v201611');
+    // Create a statement to select creative sets.
+    $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
+    $statementBuilder = (new StatementBuilder())
+        ->where('masterCreativeId = :masterCreativeId')
+        ->orderBy('id ASC')
+        ->limit($pageSize)
+        ->withBindVariableValue('masterCreativeId', $masterCreativeId);
 
-  // Create a statement to select only creative sets that have the given master
-  // creative.
-  $statementBuilder = new StatementBuilder();
-  $statementBuilder->Where('masterCreativeId = :masterCreativeId')
-      ->OrderBy('id ASC')
-      ->Limit(StatementBuilder::SUGGESTED_PAGE_LIMIT)
-      ->WithBindVariableValue('masterCreativeId', $masterCreativeId);
+    // Retrieve a small amount of creative sets at a time, paging
+    // through until all creative sets have been retrieved.
+    $totalResultSetSize = 0;
+    do {
+      $page = $creativeSetService->getCreativeSetsByStatement(
+          $statementBuilder->toStatement());
 
-  // Default for total result set size.
-  $totalResultSetSize = 0;
-
-  do {
-    // Get creative sets by statement.
-    $page = $creativeSetService->getCreativeSetsByStatement(
-        $statementBuilder->ToStatement());
-
-    // Display results.
-    if (isset($page->results)) {
-      $totalResultSetSize = $page->totalResultSetSize;
-      $i = $page->startIndex;
-      foreach ($page->results as $creativeSet) {
-        printf("%d) Creative set with ID %d, and name '%s' was found.\n", $i++,
-            $creativeSet->id, $creativeSet->name);
+      // Print out some information for each creative set.
+      if ($page->getResults() !== null) {
+        $totalResultSetSize = $page->getTotalResultSetSize();
+        $i = $page->getStartIndex();
+        foreach ($page->getResults() as $creativeSet) {
+          printf(
+              "%d) Creative set with ID %d and name '%s' was found.\n",
+              $i++,
+              $creativeSet->getId(),
+              $creativeSet->getName()
+          );
+        }
       }
-    }
 
-    $statementBuilder->IncreaseOffsetBy(StatementBuilder::SUGGESTED_PAGE_LIMIT);
-  } while ($statementBuilder->GetOffset() < $totalResultSetSize);
+      $statementBuilder->increaseOffsetBy($pageSize);
+    } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-  printf("Number of results found: %d\n", $totalResultSetSize);
-} catch (OAuth2Exception $e) {
-  ExampleUtils::CheckForOAuth2Errors($e);
-} catch (ValidationException $e) {
-  ExampleUtils::CheckForOAuth2Errors($e);
-} catch (Exception $e) {
-  printf("%s\n", $e->getMessage());
+    printf("Number of results found: %d\n", $totalResultSetSize);
+  }
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new DfpSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+
+    self::runExample(new DfpServices(), $session, intval(self::MASTER_CREATIVE_ID));
+  }
 }
 
+GetCreativeSetsForMasterCreative::main();

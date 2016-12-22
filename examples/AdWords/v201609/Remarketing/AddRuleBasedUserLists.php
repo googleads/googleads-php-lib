@@ -1,12 +1,6 @@
 <?php
 /**
- * This example adds two rule-based remarketing user lists: one with no site
- * visit date restrictions, and another that will only include users who visit
- * your site in the next six months.
- *
- * PHP version 5
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,155 +13,187 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\Remarketing;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
+
+use DateTime;
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\Operator;
+use Google\AdsApi\AdWords\v201609\rm\AdwordsUserListService;
+use Google\AdsApi\AdWords\v201609\rm\DateKey;
+use Google\AdsApi\AdWords\v201609\rm\DateRuleItem;
+use Google\AdsApi\AdWords\v201609\rm\DateRuleItemDateOperator;
+use Google\AdsApi\AdWords\v201609\rm\DateSpecificRuleUserList;
+use Google\AdsApi\AdWords\v201609\rm\ExpressionRuleUserList;
+use Google\AdsApi\AdWords\v201609\rm\MutateMembersOperand;
+use Google\AdsApi\AdWords\v201609\rm\MutateMembersOperandDataType;
+use Google\AdsApi\AdWords\v201609\rm\MutateMembersOperation;
+use Google\AdsApi\AdWords\v201609\rm\NumberKey;
+use Google\AdsApi\AdWords\v201609\rm\NumberRuleItem;
+use Google\AdsApi\AdWords\v201609\rm\NumberRuleItemNumberOperator;
+use Google\AdsApi\AdWords\v201609\rm\Rule;
+use Google\AdsApi\AdWords\v201609\rm\RuleItem;
+use Google\AdsApi\AdWords\v201609\rm\RuleItemGroup;
+use Google\AdsApi\AdWords\v201609\rm\StringKey;
+use Google\AdsApi\AdWords\v201609\rm\StringRuleItem;
+use Google\AdsApi\AdWords\v201609\rm\StringRuleItemStringOperator;
+use Google\AdsApi\AdWords\v201609\rm\UserListOperation;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
+ * This example adds two rule-based remarketing user lists: one with no site
+ * visit date restrictions, and another that will only include users who visit
+ * your site in the next six months.
  */
-function AddRuleBasedUserLists(AdWordsUser $user) {
-  // Get the services, which loads the required classes.
-  $userListService = $user->GetService('AdwordsUserListService',
-      ADWORDS_VERSION);
+class AddRuleBasedUserLists {
 
-  // First rule item group - users who visited the checkout page and had more
-  // than one item in their shopping cart.
-  $checkoutStringRuleItem = new StringRuleItem();
-  $checkoutStringKey = new StringKey();
-  $checkoutStringKey->name = 'ecomm_pagetype';
-  $checkoutStringRuleItem->key = $checkoutStringKey;
-  $checkoutStringRuleItem->op = 'EQUALS';
-  $checkoutStringRuleItem->value = 'checkout';
-  $checkoutRuleItem = new RuleItem();
-  $checkoutRuleItem->StringRuleItem = $checkoutStringRuleItem;
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session) {
+    $userListService =
+        $adWordsServices->get($session, AdwordsUserListService::class);
 
-  $cartSizeNumberRuleItem = new NumberRuleItem();
-  $cartSizeNumberKey = new NumberKey();
-  $cartSizeNumberKey->name = 'cartsize';
-  $cartSizeNumberRuleItem->key = $cartSizeNumberKey;
-  $cartSizeNumberRuleItem->op = 'GREATER_THAN';
-  $cartSizeNumberRuleItem->value = 1.0;
-  $cartSizeRuleItem = new RuleItem();
-  $cartSizeRuleItem->NumberRuleItem = $cartSizeNumberRuleItem;
+    // Create the user list with no restrictions on site visit date.
+    $expressionUserList = new ExpressionRuleUserList();
+    $expressionUserList->setName(
+        sprintf('Expression based user list created at %s', date('Y-m-d_His')));
+    $expressionUserList->setDescription('Users who checked out in three month '
+        . 'window OR visited the checkout page with more than one item in '
+        . 'their cart');
+    $expressionUserList->setRule(self::createUserListRule());
 
-  // Combine the two rule items into a RuleItemGroup so AdWords will AND their
-  // rules together.
-  $checkoutMultipleItemGroup = new RuleItemGroup();
-  $checkoutMultipleItemGroup->items = array($checkoutRuleItem,
-      $cartSizeRuleItem);
+    // Create the user list restricted to users who visit your site within the
+    // next six months.
+    $startDate = new DateTime();
+    $endDate = new DateTime('+6 month');
 
-  // Second rule item group - users who checked out within the next 3 months.
-  $today = new DateTime();
-  $startDateDateRuleItem = new DateRuleItem();
-  $startDateDateKey = new DateKey();
-  $startDateDateKey->name = 'checkoutdate';
-  $startDateDateRuleItem->key = $startDateDateKey;
-  $startDateDateRuleItem->op = 'AFTER';
-  $startDateDateRuleItem->value = $today->format('Ymd');
-  $startDateRuleItem = new RuleItem();
-  $startDateRuleItem->DateRuleItem = $startDateDateRuleItem;
+    $dateUserList = new DateSpecificRuleUserList();
+    $dateUserList->setName(
+        sprintf('Date rule user list created at %s', date('Y-m-d_His')));
+    $dateUserList->setDescription(sprintf(
+        'Users who visited the site between %s '
+            . 'and %s and checked out in three month window OR visited the '
+            . 'checkout page with more than one item in their cart',
+        $startDate->format('Ymd'),
+        $endDate->format('Ymd')
+    ));
+    $dateUserList->setRule(self::createUserListRule());
 
-  $threeMonthsLater = clone($today);
-  $threeMonthsLater->modify('+3 month');
-  $endDateDateRuleItem = new DateRuleItem();
-  $endDateDateKey = new DateKey();
-  $endDateDateKey->name = 'checkoutdate';
-  $endDateDateRuleItem->key = $endDateDateKey;
-  $endDateDateRuleItem->op = 'BEFORE';
-  $endDateDateRuleItem->value = $threeMonthsLater->format('Ymd');
-  $endDateRuleItem = new RuleItem();
-  $endDateRuleItem->DateRuleItem = $endDateDateRuleItem;
+    // Set the start and end dates of the user list.
+    $dateUserList->setStartDate($startDate->format('Ymd'));
+    $dateUserList->setEndDate($endDate->format('Ymd'));
 
-  // Combine the date rule items into a RuleItemGroup.
-  $checkedOutDateRangeItemGroup = new RuleItemGroup();
-  $checkedOutDateRangeItemGroup->items = array($startDateRuleItem,
-      $endDateRuleItem);
+    // Create operations to add the user lists.
+    $operations = [];
+    foreach ([$expressionUserList, $dateUserList] as $userList) {
+      $operation = new UserListOperation();
+      $operation->setOperand($userList);
+      $operation->setOperator(Operator::ADD);
+      $operations[] = $operation;
+    }
 
-  // Combine the rule item groups into a Rule so AdWords will OR the groups
-  // together.
-  $rule = new Rule();
-  $rule->groups = array($checkoutMultipleItemGroup,
-      $checkedOutDateRangeItemGroup);
+    // Create the user lists on the server.
+    $result = $userListService->mutate($operations);
 
-  // Create the user list with no restrictions on site visit date.
-  $expressionUserList = new ExpressionRuleUserList();
-  $expressionUserList->name = sprintf('Expression based user list created at '
-      . '%s', date('Y-m-d_His'));
-  $expressionUserList->description = 'Users who checked out in three month '
-      . 'window OR visited the checkout page with more than one item in '
-      . 'their cart';
-  $expressionUserList->rule = $rule;
-
-  // Create the user list restricted to users who visit your site within the
-  // next six months.
-  $startDate = clone($today);
-  $endDate = clone($today);
-  $endDate->modify('+6 month');
-
-  $dateUserList = new DateSpecificRuleUserList();
-  $dateUserList->name = sprintf('Date rule user list created at %s',
-      date('Y-m-d_His'));
-  $dateUserList->description = sprintf('Users who visited the site between %s '
-      . 'and %s and checked out in three month window OR visited the checkout '
-      . 'page with more than one item in their cart',
-      $startDate->format('Ymd'),
-      $endDate->format('Ymd'));
-  $dateUserList->rule = $rule;
-
-  // Set the start and end dates of the user list.
-  $dateUserList->startDate = $startDate->format('Ymd');
-  $dateUserList->endDate = $endDate->format('Ymd');
-
-  // Create operations to add the user lists.
-  $operations = array();
-  foreach (array($expressionUserList, $dateUserList) as $userList) {
-    $operation = new UserListOperation();
-    $operation->operand = $userList;
-    $operation->operator = 'ADD';
-    $operations[] = $operation;
+    // Print out some information about created user lists.
+    foreach ($result->getValue() as $userListResult) {
+      printf(
+          "User list added with ID %d, name '%s', status '%s', list type '%s'"
+              . ", account user list status '%s', description '%s'.\n",
+          $userListResult->getId(),
+          $userListResult->getName(),
+          $userListResult->getStatus(),
+          $userListResult->getListType(),
+          $userListResult->getAccountUserListStatus(),
+          $userListResult->getDescription()
+      );
+    }
   }
 
-  // Submit the operations.
-  $result = $userListService->mutate($operations);
+  /**
+   * Create a user list rule composed of two rule item groups.
+   *
+   * @return Rule the created user list
+   */
+  private static function createUserListRule() {
+    // First rule item group - users who visited the checkout page and had more
+    // than one item in their shopping cart.
+    $checkoutStringRuleItem = new StringRuleItem();
+    $checkoutStringKey = new StringKey();
+    $checkoutStringKey->setName('ecomm_pagetype');
+    $checkoutStringRuleItem->setKey($checkoutStringKey);
+    $checkoutStringRuleItem->setOp(StringRuleItemStringOperator::EQUALS);
+    $checkoutStringRuleItem->setValue('checkout');
+    $checkoutRuleItem = new RuleItem();
+    $checkoutRuleItem->setStringRuleItem($checkoutStringRuleItem);
 
-  // Display the results.
-  foreach ($result->value as $userListResult) {
-    printf("User list added with ID %d, name '%s', status '%s', list type '%s'"
-        . ", accountUserListStatus '%s', description '%s'.\n",
-    $userListResult->id,
-    $userListResult->name,
-    $userListResult->status,
-    $userListResult->listType,
-    $userListResult->accountUserListStatus,
-    $userListResult->description);
+    $cartSizeNumberRuleItem = new NumberRuleItem();
+    $cartSizeNumberKey = new NumberKey();
+    $cartSizeNumberKey->setName('cartsize');
+    $cartSizeNumberRuleItem->setKey($cartSizeNumberKey);
+    $cartSizeNumberRuleItem->setOp(NumberRuleItemNumberOperator::GREATER_THAN);
+    $cartSizeNumberRuleItem->setValue(1.0);
+    $cartSizeRuleItem = new RuleItem();
+    $cartSizeRuleItem->setNumberRuleItem($cartSizeNumberRuleItem);
+
+    // Combine the two rule items into a RuleItemGroup so AdWords will AND their
+    // rules together.
+    $checkoutMultipleItemGroup = new RuleItemGroup();
+    $checkoutMultipleItemGroup->setItems(
+        [$checkoutRuleItem, $cartSizeRuleItem]);
+
+    // Second rule item group - users who checked out within the next 3 months.
+    $today = new DateTime();
+    $startDateDateRuleItem = new DateRuleItem();
+    $startDateDateKey = new DateKey();
+    $startDateDateKey->setName('checkoutdate');
+    $startDateDateRuleItem->setKey($startDateDateKey);
+    $startDateDateRuleItem->setOp(DateRuleItemDateOperator::AFTER);
+    $startDateDateRuleItem->setValue($today->format('Ymd'));
+    $startDateRuleItem = new RuleItem();
+    $startDateRuleItem->setDateRuleItem($startDateDateRuleItem);
+
+    $threeMonthsLater = new DateTime('+3 month');
+    $endDateDateRuleItem = new DateRuleItem();
+    $endDateDateKey = new DateKey();
+    $endDateDateKey->setName('checkoutdate');
+    $endDateDateRuleItem->setKey($endDateDateKey);
+    $endDateDateRuleItem->setOp(DateRuleItemDateOperator::BEFORE);
+    $endDateDateRuleItem->setValue($threeMonthsLater->format('Ymd'));
+    $endDateRuleItem = new RuleItem();
+    $endDateRuleItem->setDateRuleItem($endDateDateRuleItem);
+
+    // Combine the date rule items into a RuleItemGroup.
+    $checkedOutDateRangeItemGroup = new RuleItemGroup();
+    $checkedOutDateRangeItemGroup->setItems(
+        [$startDateRuleItem, $endDateRuleItem]);
+
+    // Combine the rule item groups into a Rule so AdWords will OR the groups
+    // together.
+    $rule = new Rule();
+    $rule->setGroups(
+        [$checkoutMultipleItemGroup, $checkedOutDateRangeItemGroup]);
+
+    return $rule;
+  }
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(new AdWordsServices(), $session);
   }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  AddRuleBasedUserLists($user);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+AddRuleBasedUserLists::main();

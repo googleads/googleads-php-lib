@@ -1,9 +1,6 @@
 <?php
 /**
- * This example gets all ad groups in a campaign. To add ad groups, run
- * AddAdGroup.php. To get campaigns, run GetCampaigns.php.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,76 +13,84 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\BasicOperations;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
 
-// Enter parameters required by the code example.
-$campaignId = 'INSERT_CAMPAIGN_ID_HERE';
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupService;
+use Google\AdsApi\AdWords\v201609\cm\OrderBy;
+use Google\AdsApi\AdWords\v201609\cm\Predicate;
+use Google\AdsApi\AdWords\v201609\cm\PredicateOperator;
+use Google\AdsApi\AdWords\v201609\cm\Paging;
+use Google\AdsApi\AdWords\v201609\cm\Selector;
+use Google\AdsApi\AdWords\v201609\cm\SortOrder;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
- * @param string $campaignId the id of the parent campaign
+ * This example gets all ad groups in a campaign. To get campaigns, run
+ * GetCampaigns.php.
  */
-function GetAdGroupsExample(AdWordsUser $user, $campaignId) {
-  // Get the service, which loads the required classes.
-  $adGroupService = $user->GetService('AdGroupService', ADWORDS_VERSION);
+class GetAdGroups {
 
-  // Create selector.
-  $selector = new Selector();
-  $selector->fields = array('Id', 'Name');
-  $selector->ordering[] = new OrderBy('Name', 'ASCENDING');
+  const CAMPAIGN_ID = 'INSERT_CAMPAIGN_ID_HERE';
+  const PAGE_LIMIT = 500;
 
-  // Create predicates.
-  $selector->predicates[] =
-      new Predicate('CampaignId', 'IN', array($campaignId));
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session, $campaignId) {
+    $adGroupService = $adWordsServices->get($session, AdGroupService::class);
 
-  // Create paging controls.
-  $selector->paging = new Paging(0, AdWordsConstants::RECOMMENDED_PAGE_SIZE);
+    // Create a selector to select all ad groups for the specified campaign.
+    $selector = new Selector();
+    $selector->setFields(['Id', 'Name']);
+    $selector->setOrdering([new OrderBy('Name', SortOrder::ASCENDING)]);
+    $selector->setPredicates(
+        [new Predicate('CampaignId', PredicateOperator::IN, [$campaignId])]);
+    $selector->setPaging(new Paging(0, self::PAGE_LIMIT));
 
-  do {
-    // Make the get request.
-    $page = $adGroupService->get($selector);
+    $totalNumEntries = 0;
+    do {
+      // Retrieve ad groups one page at a time, continuing to request pages
+      // until all ad groups have been retrieved.
+      $page = $adGroupService->get($selector);
 
-    // Display results.
-    if (isset($page->entries)) {
-      foreach ($page->entries as $adGroup) {
-        printf("Ad group with name '%s' and ID '%s' was found.\n",
-            $adGroup->name, $adGroup->id);
+      // Print out some information for each ad group.
+      if ($page->getEntries() !== null) {
+        $totalNumEntries = $page->getTotalNumEntries();
+        foreach ($page->getEntries() as $adGroup) {
+          printf(
+              "Ad group with ID %d and name '%s' was found.\n",
+              $adGroup->getId(),
+              $adGroup->getName()
+          );
+        }
       }
-    } else {
-      print "No ad groups were found.\n";
-    }
 
-    // Advance the paging index.
-    $selector->paging->startIndex += AdWordsConstants::RECOMMENDED_PAGE_SIZE;
-  } while ($page->totalNumEntries > $selector->paging->startIndex);
+      $selector->getPaging()->setStartIndex(
+          $selector->getPaging()->getStartIndex() + self::PAGE_LIMIT);
+    } while ($selector->getPaging()->getStartIndex() < $totalNumEntries);
+
+    printf("Number of results found: %d\n", $totalNumEntries);
+  }
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(
+        new AdWordsServices(), $session, intval(self::CAMPAIGN_ID));
+  }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  GetAdGroupsExample($user, $campaignId);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+GetAdGroups::main();

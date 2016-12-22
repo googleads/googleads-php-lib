@@ -1,8 +1,6 @@
 <?php
 /**
- * This example gets keyword ideas related to a seed keyword.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,112 +13,134 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\Optimization;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
 
-require_once UTIL_PATH . '/MapUtils.php';
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\Keyword;
+use Google\AdsApi\AdWords\v201609\cm\Language;
+use Google\AdsApi\AdWords\v201609\cm\Location;
+use Google\AdsApi\AdWords\v201609\cm\NetworkSetting;
+use Google\AdsApi\AdWords\v201609\cm\Paging;
+use Google\AdsApi\AdWords\v201609\o\AttributeType;
+use Google\AdsApi\AdWords\v201609\o\IdeaType;
+use Google\AdsApi\AdWords\v201609\o\LanguageSearchParameter;
+use Google\AdsApi\AdWords\v201609\o\NetworkSearchParameter;
+use Google\AdsApi\AdWords\v201609\o\RelatedToQuerySearchParameter;
+use Google\AdsApi\AdWords\v201609\o\RequestType;
+use Google\AdsApi\AdWords\v201609\o\TargetingIdeaSelector;
+use Google\AdsApi\AdWords\v201609\o\TargetingIdeaService;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
+use Google\AdsApi\Common\Util\MapUtils;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
+ * This example gets keyword ideas related to a seed keyword.
  */
-function GetKeywordIdeasExample(AdWordsUser $user) {
-  // Get the service, which loads the required classes.
-  $targetingIdeaService =
-      $user->GetService('TargetingIdeaService', ADWORDS_VERSION);
+class GetKeywordIdeas {
 
-  // Create selector.
-  $selector = new TargetingIdeaSelector();
-  $selector->requestType = 'IDEAS';
-  $selector->ideaType = 'KEYWORD';
-  $selector->requestedAttributeTypes = array('KEYWORD_TEXT', 'SEARCH_VOLUME',
-      'CATEGORY_PRODUCTS_AND_SERVICES');
+  const PAGE_LIMIT = 500;
 
-  // Create seed keyword.
-  $keyword = 'mars cruise';
-  // Create related to query search parameter.
-  $relatedToQuerySearchParameter = new RelatedToQuerySearchParameter();
-  $relatedToQuerySearchParameter->queries = array($keyword);
-  $selector->searchParameters[] = $relatedToQuerySearchParameter;
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session) {
+    $targetingIdeaService =
+        $adWordsServices->get($session, TargetingIdeaService::class);
 
-  // Create language search parameter (optional).
-  // The ID can be found in the documentation:
-  //   https://developers.google.com/adwords/api/docs/appendix/languagecodes
-  // Note: As of v201302, only a single language parameter is allowed.
-  $languageParameter = new LanguageSearchParameter();
-  $english = new Language();
-  $english->id = 1000;
-  $languageParameter->languages = array($english);
-  $selector->searchParameters[] = $languageParameter;
+    // Create selector.
+    $selector = new TargetingIdeaSelector();
+    $selector->setRequestType(RequestType::IDEAS);
+    $selector->setIdeaType(IdeaType::KEYWORD);
+    $selector->setRequestedAttributeTypes([
+        AttributeType::KEYWORD_TEXT,
+        AttributeType::SEARCH_VOLUME,
+        AttributeType::CATEGORY_PRODUCTS_AND_SERVICES
+    ]);
 
-  // Create network search parameter (optional).
-  $networkSetting = new NetworkSetting();
-  $networkSetting->targetGoogleSearch = true;
-  $networkSetting->targetSearchNetwork = false;
-  $networkSetting->targetContentNetwork = false;
-  $networkSetting->targetPartnerSearchNetwork = false;
+    $searchParameters = [];
+    // Create seed keyword.
+    $keyword = 'mars cruise';
+    // Create related to query search parameter.
+    $relatedToQuerySearchParameter = new RelatedToQuerySearchParameter();
+    $relatedToQuerySearchParameter->setQueries([$keyword]);
+    $searchParameters[] = $relatedToQuerySearchParameter;
 
-  $networkSearchParameter = new NetworkSearchParameter();
-  $networkSearchParameter->networkSetting = $networkSetting;
-  $selector->searchParameters[] = $networkSearchParameter;
+    // Create language search parameter (optional).
+    // The ID can be found in the documentation:
+    // https://developers.google.com/adwords/api/docs/appendix/languagecodes
+    $languageParameter = new LanguageSearchParameter();
+    $english = new Language();
+    $english->setId(1000);
+    $languageParameter->setLanguages([$english]);
+    $searchParameters[] = $languageParameter;
 
-  // Set selector paging (required by this service).
-  $selector->paging = new Paging(0, AdWordsConstants::RECOMMENDED_PAGE_SIZE);
+    // Create network search parameter (optional).
+    $networkSetting = new NetworkSetting();
+    $networkSetting->setTargetGoogleSearch(true);
+    $networkSetting->setTargetSearchNetwork(false);
+    $networkSetting->setTargetContentNetwork(false);
+    $networkSetting->setTargetPartnerSearchNetwork(false);
 
-  do {
-    // Make the get request.
-    $page = $targetingIdeaService->get($selector);
+    $networkSearchParameter = new NetworkSearchParameter();
+    $networkSearchParameter->setNetworkSetting($networkSetting);
+    $searchParameters[] = $networkSearchParameter;
 
-    // Display results.
-    if (isset($page->entries)) {
-      foreach ($page->entries as $targetingIdea) {
-        $data = MapUtils::GetMap($targetingIdea->data);
-        $keyword = $data['KEYWORD_TEXT']->value;
-        $search_volume = isset($data['SEARCH_VOLUME']->value)
-            ? $data['SEARCH_VOLUME']->value : 0;
-        if ($data['CATEGORY_PRODUCTS_AND_SERVICES']->value === null) {
-          $categoryIds = '';
-        } else {
+    $selector->setSearchParameters($searchParameters);
+    $selector->setPaging(new Paging(0, self::PAGE_LIMIT));
+
+    $totalNumEntries = 0;
+    do {
+      // Retrieve targeting ideas one page at a time, continuing to request
+      // pages until all of them have been retrieved.
+      $page = $targetingIdeaService->get($selector);
+
+      // Print out some information for each targeting idea.
+      if ($page->getEntries() !== null) {
+        $totalNumEntries = $page->getTotalNumEntries();
+        foreach ($page->getEntries() as $targetingIdea) {
+          $data = MapUtils::toMap($targetingIdea->getData());
+          $keyword = $data[AttributeType::KEYWORD_TEXT]->getValue();
+          $searchVolume =
+              ($data[AttributeType::SEARCH_VOLUME]->getValue() !== null)
+              ? $data[AttributeType::SEARCH_VOLUME]->getValue() : 0;
           $categoryIds =
-              implode(', ', $data['CATEGORY_PRODUCTS_AND_SERVICES']->value);
+              ($data[AttributeType::CATEGORY_PRODUCTS_AND_SERVICES]->getValue()
+                  === null)
+              ? $categoryIds = '' : implode(', ', $data[
+                  AttributeType::CATEGORY_PRODUCTS_AND_SERVICES]->getValue());
+          printf(
+              "Keyword idea with text '%s', category IDs (%d) and average "
+                  . "monthly search volume %d was found.\n",
+              $keyword,
+              $categoryIds,
+              $searchVolume
+          );
         }
-        printf("Keyword idea with text '%s', category IDs (%s) and average "
-            . "monthly search volume '%s' was found.\n",
-            $keyword, $categoryIds, $search_volume);
       }
-    } else {
-      print "No keywords ideas were found.\n";
-    }
 
-    // Advance the paging index.
-    $selector->paging->startIndex += AdWordsConstants::RECOMMENDED_PAGE_SIZE;
-  } while ($page->totalNumEntries > $selector->paging->startIndex);
+      $selector->getPaging()->setStartIndex(
+          $selector->getPaging()->getStartIndex() + self::PAGE_LIMIT);
+    } while ($selector->getPaging()->getStartIndex() < $totalNumEntries);
+
+    printf("Number of results found: %d\n", $totalNumEntries);
+  }
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(new AdWordsServices(), $session);
+  }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  GetKeywordIdeasExample($user);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+GetKeywordIdeas::main();

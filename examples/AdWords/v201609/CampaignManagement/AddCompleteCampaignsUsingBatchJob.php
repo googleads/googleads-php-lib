@@ -1,9 +1,6 @@
 <?php
 /**
- * This code sample illustrates how to use BatchJobService to create a complete
- * campaign, including ad groups and keywords.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,371 +13,419 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\CampaignManagement;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
-require_once ADWORDS_UTIL_PATH . '/TempIdGenerator.php';
-require_once ADWORDS_UTIL_PATH . '/XmlDeserializer.php';
-require_once ADWORDS_UTIL_PATH . '/XmlSerializer.php';
-require_once ADWORDS_UTIL_VERSION_PATH . '/BatchJobUtils.php';
+require '../../../../vendor/autoload.php';
 
-define('NUMBER_OF_CAMPAIGNS_TO_ADD', 2);
-define('NUMBER_OF_ADGROUPS_TO_ADD', 2);
-define('NUMBER_OF_KEYWORDS_TO_ADD', 5);
-define('POLL_FREQUENCY_SECONDS', 30);
-define('MAX_POLL_ATTEMPTS', 60);
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\BatchJobs\BatchJobUploadStatus;
+use Google\AdsApi\AdWords\BatchJobs\v201609\BatchJobs;
+use Google\AdsApi\AdWords\v201609\cm\AdGroup;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupOperation;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupAd;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupAdOperation;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupCriterionOperation;
+use Google\AdsApi\AdWords\v201609\cm\AdvertisingChannelType;
+use Google\AdsApi\AdWords\v201609\cm\BatchJob;
+use Google\AdsApi\AdWords\v201609\cm\BatchJobOperation;
+use Google\AdsApi\AdWords\v201609\cm\BatchJobService;
+use Google\AdsApi\AdWords\v201609\cm\BatchJobStatus;
+use Google\AdsApi\AdWords\v201609\cm\BiddableAdGroupCriterion;
+use Google\AdsApi\AdWords\v201609\cm\BiddingStrategyConfiguration;
+use Google\AdsApi\AdWords\v201609\cm\BiddingStrategyType;
+use Google\AdsApi\AdWords\v201609\cm\Budget;
+use Google\AdsApi\AdWords\v201609\cm\BudgetBudgetDeliveryMethod;
+use Google\AdsApi\AdWords\v201609\cm\BudgetOperation;
+use Google\AdsApi\AdWords\v201609\cm\Campaign;
+use Google\AdsApi\AdWords\v201609\cm\CampaignCriterionOperation;
+use Google\AdsApi\AdWords\v201609\cm\CampaignOperation;
+use Google\AdsApi\AdWords\v201609\cm\CampaignStatus;
+use Google\AdsApi\AdWords\v201609\cm\CpcBid;
+use Google\AdsApi\AdWords\v201609\cm\Keyword;
+use Google\AdsApi\AdWords\v201609\cm\KeywordMatchType;
+use Google\AdsApi\AdWords\v201609\cm\ManualCpcBiddingScheme;
+use Google\AdsApi\AdWords\v201609\cm\Money;
+use Google\AdsApi\AdWords\v201609\cm\NegativeCampaignCriterion;
+use Google\AdsApi\AdWords\v201609\cm\Operator;
+use Google\AdsApi\AdWords\v201609\cm\Predicate;
+use Google\AdsApi\AdWords\v201609\cm\PredicateOperator;
+use Google\AdsApi\AdWords\v201609\cm\Selector;
+use Google\AdsApi\AdWords\v201609\cm\TextAd;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
+use UnexpectedValueException;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
+ * This example adds complete campaigns using BatchJobService.
  */
-function AddCompleteCampaignUsingBatchJobExample(AdWordsUser $user) {
-  // Get the service, which loads the required classes.
-  $batchJobService = $user->GetService('BatchJobService', ADWORDS_VERSION);
+class AddCompleteCampaignsUsingBatchJob {
 
-  // Create a BatchJob.
-  $addOp = new BatchJobOperation();
-  $addOp->operator = 'ADD';
-  $addOp->operand = new BatchJob();
-  $addOps[] = $addOp;
+  const NUMBER_OF_CAMPAIGNS_TO_ADD = 2;
+  const NUMBER_OF_ADGROUPS_TO_ADD = 2;
+  const NUMBER_OF_KEYWORDS_TO_ADD = 5;
+  const POLL_FREQUENCY_SECONDS = 30;
+  const MAX_POLL_ATTEMPTS = 60;
 
-  $result = $batchJobService->mutate($addOps);
-  $batchJob = $result->value[0];
+  private static $temporaryId = 0;
 
-  // Get the upload URL from the new job.
-  $uploadUrl = $batchJob->uploadUrl->url;
-  printf("Created BatchJob with ID %d, status '%s' and upload 'URL' %s.\n",
-      $batchJob->id, $batchJob->status, $uploadUrl);
+  public static function runExample(
+      AdWordsServices $adWordsServices, AdWordsSession $session) {
+    $batchJobService = $adWordsServices->get($session, BatchJobService::class);
 
-  $namePrefix = uniqid();
-  // Create and add an operation to create a new budget.
-  $budgetOperation = buildBudgetOperation($namePrefix);
-  $operations = array($budgetOperation);
+    // Create a BatchJob.
+    $addOp = new BatchJobOperation();
+    $addOp->setOperator(Operator::ADD);
+    $addOp->setOperand(new BatchJob());
 
-  // Create and add an operation to create new campaigns.
-  $campaignOperations = buildCampaignOperations($namePrefix, $budgetOperation);
-  $operations = array_merge($operations, $campaignOperations);
+    $result = $batchJobService->mutate([$addOp]);
+    $batchJob = $result->getValue()[0];
 
-  // Create and add operations to create new negative keyword criteria for
-  // each campaign.
-  $campaignCriterionOperations =
-      buildCampaignCriterionOperations($campaignOperations);
-  $operations = array_merge($operations, $campaignCriterionOperations);
+    // Get the upload URL from the new job.
+    $uploadUrl = $batchJob->getUploadUrl()->getUrl();
+    printf("Created BatchJob with ID %d, status '%s' and upload URL '%s'.\n",
+        $batchJob->getId(), $batchJob->getStatus(), $uploadUrl);
 
-  // Create and add operations to create new ad groups.
-  $adGroupOperations = buildAdGroupOperations($namePrefix, $campaignOperations);
-  $operations = array_merge($operations, $adGroupOperations);
+    $namePrefix = uniqid();
+    // Create and add an operation to create a new budget.
+    $budgetOperation = self::buildBudgetOperation($namePrefix);
+    $operations = [$budgetOperation];
 
-  // Create and add operations to create new ad group criteria (keywords).
-  $adGroupCriterionOperations =
-      buildAdGroupCriterionOperations($adGroupOperations);
-  $operations = array_merge($operations, $adGroupCriterionOperations);
+    // Create and add an operation to create new campaigns.
+    $campaignOperations =
+        self::buildCampaignOperations($namePrefix, $budgetOperation);
+    $operations = array_merge($operations, $campaignOperations);
 
-  // Create and add operations to create new ad group ads (text ads).
-  $adGroupAdOperations = buildAdGroupAdOperations($adGroupOperations);
-  $operations = array_merge($operations, $adGroupAdOperations);
+    // Create and add operations to create new negative keyword criteria for
+    // each campaign.
+    $campaignCriterionOperations =
+        self::buildCampaignCriterionOperations($campaignOperations);
+    $operations = array_merge($operations, $campaignCriterionOperations);
 
-  // Use BatchJobUtils to upload all operations.
-  $batchJobUtils = new BatchJobUtils($batchJob->uploadUrl->url);
-  $batchJobUtils->UploadBatchJobOperations($operations);
+    // Create and add operations to create new ad groups.
+    $adGroupOperations =
+        self::buildAdGroupOperations($namePrefix, $campaignOperations);
+    $operations = array_merge($operations, $adGroupOperations);
 
-  printf("Uploaded %d operations for batch job with ID %d.\n",
-      count($operations), $batchJob->id);
+    // Create and add operations to create new ad group criteria (keywords).
+    $adGroupCriterionOperations =
+        self::buildAdGroupCriterionOperations($adGroupOperations);
+    $operations = array_merge($operations, $adGroupCriterionOperations);
 
-  // Poll for completion of the batch job using an exponential back off.
-  $pollAttempts = 0;
-  $isPending = true;
-  do {
-    $sleepSeconds = POLL_FREQUENCY_SECONDS * pow(2, $pollAttempts);
-    printf("Sleeping %d seconds...\n", $sleepSeconds);
-    sleep($sleepSeconds);
+    // Create and add operations to create new ad group ads (text ads).
+    $adGroupAdOperations = self::buildAdGroupAdOperations($adGroupOperations);
+    $operations = array_merge($operations, $adGroupAdOperations);
 
-    $selector = new Selector();
-    $selector->fields = array('Id', 'Status', 'DownloadUrl', 'ProcessingErrors',
-        'ProgressStats');
-    $selector->predicates[] = new Predicate('Id', 'EQUALS', $batchJob->id);
-    $batchJob = $batchJobService->get($selector)->entries[0];
-    printf("Batch job ID %d has status '%s'.\n", $batchJob->id,
-        $batchJob->status);
+    // Use BatchJobs to upload all operations.
+    $batchJobs = new BatchJobs($session);
+    $batchJobs->uploadBatchJobOperations($operations, $uploadUrl);
 
-    $pollAttempts++;
-    if ($batchJob->status !== 'ACTIVE' &&
-        $batchJob->status !== 'AWAITING_FILE' &&
-        $batchJob->status !== 'CANCELING') {
-      $isPending = false;
+    printf("Uploaded %d operations for batch job with ID %d.\n",
+        count($operations), $batchJob->getId());
+
+    // Poll for completion of the batch job using an exponential back off.
+    $pollAttempts = 0;
+    $isPending = true;
+    do {
+      $sleepSeconds = self::POLL_FREQUENCY_SECONDS * pow(2, $pollAttempts);
+      printf("Sleeping %d seconds...\n", $sleepSeconds);
+      sleep($sleepSeconds);
+
+      $selector = new Selector();
+      $selector->setFields(
+          ['Id', 'Status', 'DownloadUrl', 'ProcessingErrors', 'ProgressStats']);
+      $selector->setPredicates([
+          new Predicate('Id', PredicateOperator::EQUALS, [$batchJob->getId()])
+      ]);
+      $batchJob = $batchJobService->get($selector)->getEntries()[0];
+      printf("Batch job ID %d has status '%s'.\n", $batchJob->getId(),
+          $batchJob->getStatus());
+
+      $pollAttempts++;
+      if ($batchJob->getStatus() !== BatchJobStatus::ACTIVE &&
+          $batchJob->getStatus() !== BatchJobStatus::AWAITING_FILE &&
+          $batchJob->getStatus() !== BatchJobStatus::CANCELING) {
+        $isPending = false;
+      }
+    } while ($isPending && $pollAttempts <= self::MAX_POLL_ATTEMPTS);
+
+    if ($isPending) {
+      throw new UnexpectedValueException(
+          sprintf('Job is still pending state after polling %d times.',
+              self::MAX_POLL_ATTEMPTS));
     }
-  } while ($isPending && $pollAttempts <= MAX_POLL_ATTEMPTS);
 
-  if ($isPending) {
-    throw new BatchJobException(
-        sprintf("Job is still pending state after polling %d times.",
-            MAX_POLL_ATTEMPTS));
-  }
-
-  if ($batchJob->processingErrors !== null) {
-    $i = 0;
-    foreach ($batchJob->processingErrors as $processingError) {
-      printf(
-          " Processing error [%d]: errorType=%s, trigger=%s, errorString=%s,"
-              . " fieldPath=%s, reason=%s\n",
-          $i++,
-          $processingError->ApiErrorType,
-          $processingError->trigger,
-          $processingError->errorString,
-          $processingError->fieldPath,
-          $processingError->reason
-      );
-    }
-  } else {
-    printf("No processing errors found.\n");
-  }
-
-  if ($batchJob->downloadUrl !== null && $batchJob->downloadUrl->url !== null) {
-    $xmlResponse =
-        $batchJobUtils->DownloadBatchJobResults($batchJob->downloadUrl->url);
-    printf("Downloaded results from %s:\n", $batchJob->downloadUrl->url);
-    $deserializer = new XmlDeserializer(BatchJobUtils::$CLASS_MAP);
-    $mutateResponse = $deserializer->ConvertXmlToObject($xmlResponse);
-    if (empty($mutateResponse)) {
-      printf("  No results available.\n");
+    if ($batchJob->getProcessingErrors() !== null) {
+      $i = 0;
+      foreach ($batchJob->getProcessingErrors() as $processingError) {
+        printf(
+            " Processing error [%d]: errorType=%s, trigger=%s, errorString=%s,"
+                . " fieldPath=%s, reason=%s\n",
+            $i++,
+            $processingError->getApiErrorType(),
+            $processingError->getTrigger(),
+            $processingError->getErrorString(),
+            $processingError->getFieldPath(),
+            $processingError->getReason()
+        );
+      }
     } else {
-      foreach ($mutateResponse->rval as $mutateResult) {
-        $outcome = $mutateResult->errorList === null ? 'SUCCESS' : 'FAILURE';
-        printf("  Operation [%d] - %s\n", $mutateResult->index, $outcome);
-      }
+      printf("No processing errors found.\n");
     }
-  } else {
-    printf("No results available for download.\n");
-  }
-}
 
-/**
- * Builds objects of AdGroupAdOperation for creating an ad group ad for
- * ad groups in the specified ad group operations.
- *
- * @param array $adGroupOperations an array of AdGroupOperation
- * @return array an array of AdGroupAdOperation
- */
-function buildAdGroupAdOperations(array $adGroupOperations) {
-  $operations = array();
-  foreach ($adGroupOperations as $adGroupOperation) {
-    $adGroupId = $adGroupOperation->operand->id;
-    $adGroupAd = new AdGroupAd();
-    $adGroupAd->adGroupId = $adGroupId;
+    if ($batchJob->getDownloadUrl() !== null
+        && $batchJob->getDownloadUrl()->getUrl() !== null) {
+      $mutateResults = $batchJobs->downloadBatchJobResults(
+          $batchJob->getDownloadUrl()->getUrl());
+      printf("Downloaded results from %s:\n",
+          $batchJob->getDownloadUrl()->getUrl());
 
-    $expandedTextAd = new ExpandedTextAd();
-    $expandedTextAd->headlinePart1 = 'Luxury Cruise to Mars';
-    $expandedTextAd->headlinePart2 = 'Visit the Red Planet in style.';
-    $expandedTextAd->description = 'Low-gravity fun for everyone!';
-    $expandedTextAd->finalUrls[] = 'http://www.example.com/1';
-
-    $adGroupAd->ad = $expandedTextAd;
-
-    $operation = new AdGroupAdOperation();
-    $operation->operator = 'ADD';
-    $operation->operand = $adGroupAd;
-
-    $operations[] = $operation;
-  }
-  return $operations;
-}
-
-/**
- * Builds objects of AdGroupCriterionOperation for creating biddable criteria
- * (as keywords) for ad groups in the specified ad group operations. 50% of
- * keywords are created with some invalid characters to demonstrate how
- * BatchJobService returns information about such errors.
- *
- * @param array $adGroupOperations an array of AdGroupOperation
- * @return array an array of AdGroupCriterionOperation
- */
-function buildAdGroupCriterionOperations(array $adGroupOperations) {
-  $adGroupCriteriaOperations = array();
-
-  // Create AdGroupCriterionOperations to add keywords.
-  foreach ($adGroupOperations as $adGroupOperation) {
-    $newAdGroupId = $adGroupOperation->operand->id;
-    for ($i = 0; $i < NUMBER_OF_KEYWORDS_TO_ADD; $i++) {
-      // Create Keyword.
-      $text = sprintf("mars%d", $i);
-
-      // Make 50% of keywords invalid to demonstrate error handling.
-      if ($i % 2 == 0) {
-        $text = $text . '!!!';
+      if (count($mutateResults) === 0) {
+        printf("  No results available.\n");
+      } else {
+        foreach ($mutateResults as $mutateResult) {
+          $outcome =
+              $mutateResult->getErrorList() === null ? 'SUCCESS' : 'FAILURE';
+          printf("  Operation [%d] - %s\n", $mutateResult->getIndex(),
+              $outcome);
+        }
       }
-      $keyword = new Keyword();
-      $keyword->text = $text;
-      $keyword->matchType = 'BROAD';
-
-      // Create BiddableAdGroupCriterion.
-      $biddableAdGroupCriterion = new BiddableAdGroupCriterion();
-      $biddableAdGroupCriterion->adGroupId = $newAdGroupId;
-      $biddableAdGroupCriterion->criterion = $keyword;
-
-      // Create AdGroupCriterionOperation.
-      $operation = new AdGroupCriterionOperation();
-      $operation->operand = $biddableAdGroupCriterion;
-      $operation->operator = 'ADD';
-
-      // Add to list.
-      $adGroupCriteriaOperations[] = $operation;
+    } else {
+      printf("No results available for download.\n");
     }
   }
-  return $adGroupCriteriaOperations;
-}
 
-/**
- * Builds objects of AdGroupOperation for creating ad groups for campaigns in
- * the specified campaign operations.
- *
- * @param string $namePrefix a prefix string used to name ad groups
- * @param array $campaignOperations an array of CampaignOperation
- * @return array an array of AdGroupOperation
- */
-function buildAdGroupOperations($namePrefix, array $campaignOperations) {
-  $operations = array();
-  foreach ($campaignOperations as $campaignOperation) {
-    for ($i = 0; $i < NUMBER_OF_ADGROUPS_TO_ADD; $i++) {
-      $adGroup = new AdGroup();
-      $adGroup->campaignId = $campaignOperation->operand->id;
-      $adGroup->id = TempIdGenerator::Generate();
-      $adGroup->name = sprintf("Batch Ad Group %s.%s", $namePrefix,
-          strval($adGroup->id));
+  /**
+   * Builds objects of AdGroupAdOperation for creating an ad group ad for
+   * ad groups in the specified ad group operations.
+   *
+   * @param AdGroupOperation[] $adGroupOperations an array of AdGroupOperation
+   * @return array an array of AdGroupAdOperation
+   */
+  private static function buildAdGroupAdOperations(array $adGroupOperations) {
+    $operations = [];
+    foreach ($adGroupOperations as $adGroupOperation) {
+      $adGroupId = $adGroupOperation->getOperand()->getId();
+      $adGroupAd = new AdGroupAd();
+      $adGroupAd->setAdGroupId($adGroupId);
 
-      $biddingStrategyConfiguration = new BiddingStrategyConfiguration();
-      $bid = new CpcBid();
-      $bid->bid = new Money(10000000);
-      $biddingStrategyConfiguration->bids[] = $bid;
+      $expandedTextAd = new ExpandedTextAd();
+      $expandedTextAd->setHeadline('Luxury Cruise to Mars');
+      $expandedTextAd->setDescription1('Visit the Red Planet in style.');
+      $expandedTextAd->setDescription2('Low-gravity fun for everyone!');
+      $expandedTextAd->setDisplayUrl('www.example.com');
+      $expandedTextAd->setFinalUrls(['http://www.example.com/1']);
 
-      $adGroup->biddingStrategyConfiguration = $biddingStrategyConfiguration;
+      $adGroupAd->setAd($expandedTextAd);
 
-      $operation = new AdGroupOperation();
-      $operation->operand = $adGroup;
-      $operation->operator = 'ADD';
+      $operation = new AdGroupAdOperation();
+      $operation->setOperator(Operator::ADD);
+      $operation->setOperand($adGroupAd);
 
       $operations[] = $operation;
     }
+    return $operations;
   }
-  return $operations;
-}
 
-/**
- * Builds objects of CampaignCriterionOperation for creating a negative campaign
- * criterion (as keyword) for campaigns in the specified campaign operations.
- *
- * @param array $campaignOperations an array of CampaignOperation
- * @return array an array of CampaignCriterionOperation
- */
-function buildCampaignCriterionOperations(array $campaignOperations) {
-  $operations = array();
-  foreach ($campaignOperations as $campaignOperation) {
-    $keyword = new Keyword();
-    $keyword->matchType = 'BROAD';
-    $keyword->text = 'venus';
+  /**
+   * Builds objects of AdGroupCriterionOperation for creating biddable criteria
+   * (as keywords) for ad groups in the specified ad group operations. 50% of
+   * keywords are created with some invalid characters to demonstrate how
+   * BatchJobService returns information about such errors.
+   *
+   * @param AdGroupOperation[] $adGroupOperations an array of AdGroupOperation
+   * @return array an array of AdGroupCriterionOperation
+   */
+  private static function buildAdGroupCriterionOperations
+      (array $adGroupOperations) {
+    $adGroupCriteriaOperations = [];
 
-    $negativeCriterion = new NegativeCampaignCriterion();
-    $negativeCriterion->campaignId = $campaignOperation->operand->id;
-    $negativeCriterion->criterion = $keyword;
+    // Create AdGroupCriterionOperations to add keywords.
+    foreach ($adGroupOperations as $adGroupOperation) {
+      $newAdGroupId = $adGroupOperation->getOperand()->getId();
+      for ($i = 0; $i < self::NUMBER_OF_KEYWORDS_TO_ADD; $i++) {
+        // Create Keyword.
+        $text = sprintf('mars%d', $i);
 
-    $operation = new CampaignCriterionOperation();
-    $operation->operand = $negativeCriterion;
-    $operation->operator = 'ADD';
+        // Make 50% of keywords invalid to demonstrate error handling.
+        if ($i % 2 == 0) {
+          $text = $text . '!!!';
+        }
+        $keyword = new Keyword();
+        $keyword->setText($text);
+        $keyword->setMatchType(KeywordMatchType::BROAD);
 
-    $operations[] = $operation;
+        // Create BiddableAdGroupCriterion.
+        $biddableAdGroupCriterion = new BiddableAdGroupCriterion();
+        $biddableAdGroupCriterion->setAdGroupId($newAdGroupId);
+        $biddableAdGroupCriterion->setCriterion($keyword);
+
+        // Create AdGroupCriterionOperation.
+        $operation = new AdGroupCriterionOperation();
+        $operation->setOperand($biddableAdGroupCriterion);
+        $operation->setOperator(Operator::ADD);
+
+        // Add to list.
+        $adGroupCriteriaOperations[] = $operation;
+      }
+    }
+    return $adGroupCriteriaOperations;
   }
-  return $operations;
-}
 
-/**
- * Builds objects of CampaignOperation for creating a campaign using the ID of
- * budget in the specified budget operation.
- *
- * @param string $namePrefix a prefix string used to name campaigns
- * @param BudgetOperation $budgetOperation an object of BudgetOperation
- * @return array an array of CampaignOperation
- */
-function buildCampaignOperations($namePrefix,
-    BudgetOperation $budgetOperation) {
-  $budgetId = $budgetOperation->operand->budgetId;
+  /**
+   * Builds objects of AdGroupOperation for creating ad groups for campaigns in
+   * the specified campaign operations.
+   *
+   * @param string $namePrefix a prefix string used to name ad groups
+   * @param CampaignOperation[] $campaignOperations an array of
+   *     CampaignOperation
+   * @return array an array of AdGroupOperation
+   */
+  private static function buildAdGroupOperations($namePrefix,
+      array $campaignOperations) {
+    $operations = [];
+    foreach ($campaignOperations as $campaignOperation) {
+      for ($i = 0; $i < self::NUMBER_OF_ADGROUPS_TO_ADD; $i++) {
+        $adGroup = new AdGroup();
+        $adGroup->setCampaignId($campaignOperation->getOperand()->getId());
+        $adGroup->setId(--self::$temporaryId);
+        $adGroup->setName(sprintf('Batch Ad Group %s.%s', $namePrefix,
+            strval($adGroup->getId())));
 
-  $operations = array();
-  for ($i = 0; $i < NUMBER_OF_CAMPAIGNS_TO_ADD; $i++) {
-    $campaign = new Campaign();
-    $campaign->id = TempIdGenerator::Generate();
-    $campaign->name = sprintf("Batch Campaign %s.%s", $namePrefix,
-        strval($campaign->id));
+        $biddingStrategyConfiguration = new BiddingStrategyConfiguration();
+        $money = new Money();
+        $money->setMicroAmount(10000000);
+        $bid = new CpcBid();
+        $bid->setBid($money);
+        $biddingStrategyConfiguration->setBids([$bid]);
 
-    // Recommendation: Set the campaign to PAUSED when creating it to stop
-    // the ads from immediately serving. Set to ENABLED once you've added
-    // targeting and the ads are ready to serve.
-    $campaign->status = 'PAUSED';
-    $campaign->advertisingChannelType = 'SEARCH';
+        $adGroup->setBiddingStrategyConfiguration(
+            $biddingStrategyConfiguration);
 
+        $operation = new AdGroupOperation();
+        $operation->setOperand($adGroup);
+        $operation->setOperator(Operator::ADD);
+
+        $operations[] = $operation;
+      }
+    }
+    return $operations;
+  }
+
+  /**
+   * Builds objects of CampaignCriterionOperation for creating a negative
+   * campaign criterion (as keyword) for campaigns in the specified campaign
+   * operations.
+   *
+   * @param CampaignOperation[] $campaignOperations an array of
+   *     CampaignOperation
+   * @return array an array of CampaignCriterionOperation
+   */
+  private static function buildCampaignCriterionOperations(
+      array $campaignOperations) {
+    $operations = [];
+    foreach ($campaignOperations as $campaignOperation) {
+      $keyword = new Keyword();
+      $keyword->setMatchType(KeywordMatchType::BROAD);
+      $keyword->setText('venus');
+
+      $negativeCriterion = new NegativeCampaignCriterion();
+      $negativeCriterion->setCampaignId(
+          $campaignOperation->getOperand()->getId());
+      $negativeCriterion->setCriterion($keyword);
+
+      $operation = new CampaignCriterionOperation();
+      $operation->setOperand($negativeCriterion);
+      $operation->setOperator(Operator::ADD);
+
+      $operations[] = $operation;
+    }
+    return $operations;
+  }
+
+  /**
+   * Builds objects of CampaignOperation for creating a campaign using the ID of
+   * budget in the specified budget operation.
+   *
+   * @param string $namePrefix a prefix string used to name campaigns
+   * @param BudgetOperation $budgetOperation an object of BudgetOperation
+   * @return array an array of CampaignOperation
+   */
+  private static function buildCampaignOperations($namePrefix,
+      BudgetOperation $budgetOperation) {
+    $budgetId = $budgetOperation->getOperand()->getBudgetId();
+
+    $operations = [];
+    for ($i = 0; $i < self::NUMBER_OF_CAMPAIGNS_TO_ADD; $i++) {
+      $campaign = new Campaign();
+      $campaign->setId(--self::$temporaryId);
+      $campaign->setName(sprintf('Batch Campaign %s.%s', $namePrefix,
+          strval($campaign->getId())));
+
+      // Recommendation: Set the campaign to PAUSED when creating it to stop
+      // the ads from immediately serving. Set to ENABLED once you've added
+      // targeting and the ads are ready to serve.
+      $campaign->setStatus(CampaignStatus::PAUSED);
+      $campaign->setAdvertisingChannelType(AdvertisingChannelType::SEARCH);
+
+      $budget = new Budget();
+      $budget->setBudgetId($budgetId);
+      $campaign->setBudget($budget);
+      $biddingStrategyConfiguration = new BiddingStrategyConfiguration();
+      $biddingStrategyConfiguration->setBiddingStrategyType(
+          BiddingStrategyType::MANUAL_CPC);
+
+      // You can optionally provide a bidding scheme in place of the type.
+      $cpcBiddingScheme = new ManualCpcBiddingScheme();
+      $cpcBiddingScheme->setEnhancedCpcEnabled(false);
+      $biddingStrategyConfiguration->setBiddingScheme($cpcBiddingScheme);
+
+      $campaign->setBiddingStrategyConfiguration($biddingStrategyConfiguration);
+
+      $operation = new CampaignOperation();
+      $operation->setOperand($campaign);
+      $operation->setOperator(Operator::ADD);
+      $operations[] = $operation;
+    }
+    return $operations;
+  }
+
+  /**
+   * Builds BudgetOperation for creating a budget.
+   *
+   * @param string $namePrefix a prefix string used to name a budget
+   * @return BudgetOperation an object of BudgetOperation
+   */
+  private static function buildBudgetOperation($namePrefix) {
     $budget = new Budget();
-    $budget->budgetId = $budgetId;
-    $campaign->budget = $budget;
-    $biddingStrategyConfiguration = new BiddingStrategyConfiguration();
-    $biddingStrategyConfiguration->biddingStrategyType = 'MANUAL_CPC';
+    $budget->setBudgetId(--self::$temporaryId);
+    $budget->setName('Interplanetary Cruise #' . $namePrefix);
+    $budgetAmount = new Money();
+    $budgetAmount->setMicroAmount(50000000);
+    $budget->setAmount($budgetAmount);
+    $budget->setDeliveryMethod(BudgetBudgetDeliveryMethod::STANDARD);
 
-    // You can optionally provide a bidding scheme in place of the type.
-    $cpcBiddingScheme = new ManualCpcBiddingScheme();
-    $cpcBiddingScheme->enhancedCpcEnabled = false;
-    $biddingStrategyConfiguration->biddingScheme = $cpcBiddingScheme;
-
-    $campaign->biddingStrategyConfiguration = $biddingStrategyConfiguration;
-
-    $operation = new CampaignOperation();
-    $operation->operand = $campaign;
-    $operation->operator = 'ADD';
-    $operations[] = $operation;
+    $budgetOperation = new BudgetOperation();
+    $budgetOperation->setOperand($budget);
+    $budgetOperation->setOperator(Operator::ADD);
+    return $budgetOperation;
   }
-  return $operations;
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(new AdWordsServices(), $session);
+  }
 }
 
-/**
- * Builds BudgetOperation for creating a budget.
- *
- * @param string $namePrefix a prefix string used to name a budget
- * @return BudgetOperation an object of BudgetOperation
- */
-function buildBudgetOperation($namePrefix) {
-  $budget = new Budget();
-  $budget->budgetId = TempIdGenerator::Generate();
-  $budget->name = 'Interplanetary Cruise #' . $namePrefix;
-  $budgetAmount = new Money();
-  $budgetAmount->microAmount = 50000000;
-  $budget->amount = $budgetAmount;
-  $budget->deliveryMethod = 'STANDARD';
-
-  $budgetOperation = new BudgetOperation();
-  $budgetOperation->operand = $budget;
-  $budgetOperation->operator = 'ADD';
-  return $budgetOperation;
-}
-
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  AddCompleteCampaignUsingBatchJobExample($user);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+AddCompleteCampaignsUsingBatchJob::main();

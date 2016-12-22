@@ -1,20 +1,6 @@
 <?php
 /**
- * This example adds a user list (a.k.a. audience) and uploads hashed email
- * addresses to populate the list.
- *
- * <p>
- * <em>Note:</em> It may take up to several hours for the list to be populated
- * with members.
- * Email addresses must be associated with a Google account.
- * For privacy purposes, the user list size will show as zero until the list has
- * at least 1,000 members. After that, the size will be rounded to the two most
- * significant digits.
- * </p>
- *
- * PHP version 5
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,112 +13,118 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\Remarketing;
 
-// Include the initialization file.
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
 
-$EMAILS = array('customer1@example.com', 'customer2@example.com',
-    'Client3@example.com ');
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\Operator;
+use Google\AdsApi\AdWords\v201609\rm\AdwordsUserListService;
+use Google\AdsApi\AdWords\v201609\rm\CrmBasedUserList;
+use Google\AdsApi\AdWords\v201609\rm\MutateMembersOperand;
+use Google\AdsApi\AdWords\v201609\rm\MutateMembersOperandDataType;
+use Google\AdsApi\AdWords\v201609\rm\MutateMembersOperation;
+use Google\AdsApi\AdWords\v201609\rm\UserListOperation;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
- * @param array $EMAILS a list of member emails to be added to a user list
+ * This example adds a user list (a.k.a. audience) and uploads hashed email
+ * addresses to populate the list.
+ *
+ * <p><em>Note:</em> It may take up to several hours for the list to be
+ * populated with members.
+ * Email addresses must be associated with a Google account.
+ * For privacy purposes, the user list size will show as zero until the list has
+ * at least 1,000 members. After that, the size will be rounded to the two most
+ * significant digits.
  */
-function AddCrmBasedUserList(AdWordsUser $user, array $EMAILS) {
-  // Get the services, which loads the required classes.
-  $userListService = $user->GetService('AdwordsUserListService',
-      ADWORDS_VERSION);
+class AddCrmBasedUserList {
 
-  // Create a user list.
-  $userList = new CrmBasedUserList();
-  $userList->name = 'Customer relationship management list #' . uniqid();
-  $userList->description =
-      'A list of customers that originated from email addresses';
+  private static $EMAILS = ['customer1@example.com', 'customer2@example.com',
+      ' Client3@example.com '];
 
-  // Maximum life span is 180 days.
-  $userList->membershipLifeSpan = 180;
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session, array $emails) {
+    $userListService =
+        $adWordsServices->get($session, AdwordsUserListService::class);
 
-  // Create operations to add the user list.
-  $operation = new UserListOperation();
-  $operation->operand = $userList;
-  $operation->operator = 'ADD';
+    // Create a CRM based user list.
+    $userList = new CrmBasedUserList();
+    $userList->setName('Customer relationship management list #' . uniqid());
+    $userList->setDescription(
+        'A list of customers that originated from email addresses');
 
-  $operations = array($operation);
+    // Maximum life span is 180 days.
+    $userList->setMembershipLifeSpan(180);
 
-  // Add user list.
-  $result = $userListService->mutate($operations);
+    // Create a user list operation and add it to the list.
+    $operations = [];
+    $operation = new UserListOperation();
+    $operation->setOperand($userList);
+    $operation->setOperator(Operator::ADD);
+    $operations[] = $operation;
 
-  // Display user list.
-  $userListAdded = $result->value[0];
-  printf("User list with name '%s' and ID '%d' was added.\n",
-      $userListAdded->name, $userListAdded->id);
+    // Create the user list on the server and print out some information.
+    $userList = $userListService->mutate($operations)->getValue()[0];
+    printf("User list with name '%s' and ID %d was added.\n",
+        $userList->getName(), $userList->getId());
 
-  // Get a user list ID.
-  $userListId = $userListAdded->id;
+    // Create operation to add members to the user list based on email
+    // addresses.
+    $mutateMembersOperations = [];
+    $mutateMembersOperation = new MutateMembersOperation();
+    $operand = new MutateMembersOperand();
+    $operand->setUserListId($userList->getId());
 
-  // Create operation to add members to the user list based on email addresses.
-  $mutateMembersOperation = new MutateMembersOperation();
-  $operand = new MutateMembersOperand();
-  $operand->userListId = $userListId;
+    // You can optionally provide this field.
+    $operand->setDataType(MutateMembersOperandDataType::EMAIL_SHA256);
 
-  // You can optionally provide this field.
-  $operand->dataType = 'EMAIL_SHA256';
+    // Hash normalized email addresses based on SHA-256 hashing algorithm.
+    $emailHashes = [];
+    foreach ($emails as $email) {
+      $emailHashes[] = hash('sha256', strtolower(trim($email)));
+    }
 
-  // Hash normalized email addresses based on SHA-256 hashing algorithm.
-  $emailHashes = array();
-  foreach ($EMAILS as $email) {
-    $emailHashes[] = hash('sha256', strtolower(trim($email)));
+    // Add email address hashes and add the operation to the list.
+    $operand->setMembers($emailHashes);
+    $mutateMembersOperation->setOperand($operand);
+    $mutateMembersOperation->setOperator(Operator::ADD);
+    $mutateMembersOperations[] = $mutateMembersOperation;
+
+    // Add members to the user list based on email addresses.
+    $result = $userListService->mutateMembers($mutateMembersOperations);
+
+    // Print out some information about the added user list.
+    // Reminder: it may take several hours for the list to be populated with
+    // members.
+    foreach ($result->getUserLists() as $userList) {
+      printf(
+          "%d email addresses were uploaded to user list with name '%s' and ID"
+              . " %d and are scheduled for review.\n",
+          count($emails),
+          $userList->getName(),
+          $userList->getId()
+      );
+    }
   }
 
-  // Add email address hashes.
-  $operand->members = $emailHashes;
-  $mutateMembersOperation->operand = $operand;
-  $mutateMembersOperation->operator = 'ADD';
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
 
-  $mutateMembersOperations = array($mutateMembersOperation);
-
-  // Add members to the user list based on email addresses.
-  $mutateMembersResult =
-      $userListService->mutateMembers($mutateMembersOperations);
-
-  // Display results.
-  // Reminder: it may take several hours for the list to be populated with
-  //     members.
-  foreach ($mutateMembersResult->userLists as $userListResult) {
-    printf(
-        "%d email addresses were uploaded to user list with name '%s' and ID"
-            . " '%d' and are scheduled for review.\n",
-        count($EMAILS),
-        $userListResult->name,
-        $userListResult->id
-    );
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(new AdWordsServices(), $session, self::$EMAILS);
   }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  AddCrmBasedUserList($user, $EMAILS);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+AddCrmBasedUserList::main();

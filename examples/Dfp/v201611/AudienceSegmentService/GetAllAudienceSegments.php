@@ -1,11 +1,6 @@
 <?php
 /**
- * This example gets all audience segments. To create audience segments, run
- * CreateAudienceSegments.php.
- *
- * PHP version 5
- *
- * Copyright 2014, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,71 +13,81 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsDfp
- * @subpackage v201611
- * @category   WebServices
- * @copyright  2014, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
-error_reporting(E_STRICT | E_ALL);
+namespace Google\AdsApi\Examples\Dfp\v201611\AudienceSegmentService;
 
-// You can set the include path to src directory or reference
-// DfpUser.php directly via require_once.
-// $path = '/path/to/dfp_api_php_lib/src';
-$path = dirname(__FILE__) . '/../../../../src';
-set_include_path(get_include_path() . PATH_SEPARATOR . $path);
+require '../../../../vendor/autoload.php';
 
-require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
-require_once 'Google/Api/Ads/Dfp/Util/v201611/StatementBuilder.php';
-require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
+use Google\AdsApi\Common\OAuth2TokenBuilder;
+use Google\AdsApi\Dfp\DfpServices;
+use Google\AdsApi\Dfp\DfpSession;
+use Google\AdsApi\Dfp\DfpSessionBuilder;
+use Google\AdsApi\Dfp\Util\v201611\StatementBuilder;
+use Google\AdsApi\Dfp\v201611\AudienceSegmentService;
 
-try {
-  // Get DfpUser from credentials in "../auth.ini"
-  // relative to the DfpUser.php file's directory.
-  $user = new DfpUser();
+/**
+ * This example gets all audience segments.
+ *
+ * <p>It is meant to be run from a command line (not as a webpage) and requires
+ * that you've setup an `adsapi_php.ini` file in your home directory with your
+ * API credentials and settings. See README.md for more info.
+ */
+class GetAllAudienceSegments {
 
-  // Log SOAP XML request and response.
-  $user->LogDefaults();
+  public static function runExample(DfpServices $dfpServices,
+      DfpSession $session) {
+    $audienceSegmentService =
+        $dfpServices->get($session, AudienceSegmentService::class);
 
-  // Get the AudienceSegmentService.
-  $audienceSegmentService = $user->GetService('AudienceSegmentService',
-      'v201611');
+    // Create a statement to select audience segments.
+    $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
+    $statementBuilder = (new StatementBuilder())
+        ->orderBy('id ASC')
+        ->limit($pageSize);
 
-  // Create a statement to select all audience segments.
-  $statementBuilder = new StatementBuilder();
-  $statementBuilder->OrderBy('id ASC')
-      ->Limit(StatementBuilder::SUGGESTED_PAGE_LIMIT);
+    // Retrieve a small amount of audience segments at a time, paging
+    // through until all audience segments have been retrieved.
+    $totalResultSetSize = 0;
+    do {
+      $page = $audienceSegmentService->getAudienceSegmentsByStatement(
+          $statementBuilder->toStatement());
 
-  // Default for total result set size.
-  $totalResultSetSize = 0;
-
-  do {
-    // Get audience segments by statement.
-    $page = $audienceSegmentService->getAudienceSegmentsByStatement(
-        $statementBuilder->ToStatement());
-
-    // Display results.
-    if (isset($page->results)) {
-      $totalResultSetSize = $page->totalResultSetSize;
-      $i = $page->startIndex;
-      foreach ($page->results as $audienceSegment) {
-        printf("%d) Audience segment with ID %d, name '%s', and size %s was "
-            . "found.\n", $i++, $audienceSegment->id, $audienceSegment->name,
-            $audienceSegment->size);
+      // Print out some information for each audience segment.
+      if ($page->getResults() !== null) {
+        $totalResultSetSize = $page->getTotalResultSetSize();
+        $i = $page->getStartIndex();
+        foreach ($page->getResults() as $audienceSegment) {
+          printf(
+              "%d) Audience segment with ID %d, name '%s', and size %d was found.\n",
+              $i++,
+              $audienceSegment->getId(),
+              $audienceSegment->getName(),
+              $audienceSegment->getSize()
+          );
+        }
       }
-    }
 
-    $statementBuilder->IncreaseOffsetBy(StatementBuilder::SUGGESTED_PAGE_LIMIT);
-  } while ($statementBuilder->GetOffset() < $totalResultSetSize);
+      $statementBuilder->increaseOffsetBy($pageSize);
+    } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-  printf("Number of results found: %d\n", $totalResultSetSize);
-} catch (OAuth2Exception $e) {
-  ExampleUtils::CheckForOAuth2Errors($e);
-} catch (ValidationException $e) {
-  ExampleUtils::CheckForOAuth2Errors($e);
-} catch (Exception $e) {
-  printf("%s\n", $e->getMessage());
+    printf("Number of results found: %d\n", $totalResultSetSize);
+  }
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new DfpSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+
+    self::runExample(new DfpServices(), $session);
+  }
 }
 
+GetAllAudienceSegments::main();

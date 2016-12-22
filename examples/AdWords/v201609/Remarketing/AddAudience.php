@@ -1,11 +1,6 @@
 <?php
 /**
- * This example adds a new remarketing list audience to the account and
- * retrieves the associated remarketing tag code.
- *
- * PHP version 5
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,87 +13,94 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\Remarketing;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
+
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\ConversionTrackerService;
+use Google\AdsApi\AdWords\v201609\cm\Predicate;
+use Google\AdsApi\AdWords\v201609\cm\PredicateOperator;
+use Google\AdsApi\AdWords\v201609\cm\Operator;
+use Google\AdsApi\AdWords\v201609\cm\Selector;
+use Google\AdsApi\AdWords\v201609\rm\AdwordsUserListService;
+use Google\AdsApi\AdWords\v201609\rm\BasicUserList;
+use Google\AdsApi\AdWords\v201609\rm\UserListConversionType;
+use Google\AdsApi\AdWords\v201609\rm\UserListMembershipStatus;
+use Google\AdsApi\AdWords\v201609\rm\UserListOperation;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
+ * This example adds a new remarketing list audience to the account and
+ * retrieves the associated remarketing tag code.
  */
-function AddAudienceExample(AdWordsUser $user) {
-  // Get the services, which loads the required classes.
-  $userListService = $user->GetService('AdwordsUserListService', ADWORDS_VERSION);
-  $conversionTrackerService =
-      $user->GetService('ConversionTrackerService', ADWORDS_VERSION);
+class AddAudience {
 
-  // Create conversion type (tag).
-  $conversionType = new UserListConversionType();
-  $conversionType->name = 'Mars cruise customers #' . uniqid();
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session) {
+    $userListService =
+        $adWordsServices->get($session, AdwordsUserListService::class);
+    $conversionTrackerService =
+        $adWordsServices->get($session, ConversionTrackerService::class);
 
-  // Create remarketing user list.
-  $userList = new BasicUserList();
-  $userList->name = 'Mars cruise customers #' . uniqid();
-  $userList->conversionTypes = array($conversionType);
+    // Create a conversion type (tag).
+    $conversionType = new UserListConversionType();
+    $conversionType->setName('Mars cruise customers #' . uniqid());
 
-  // Set additional settings (optional).
-  $userList->description = 'A list of mars cruise customers in the last year';
-  $userList->status = 'OPEN';
-  $userList->membershipLifeSpan = 365;
+    // Create a basic user list.
+    $userList = new BasicUserList();
+    $userList->setName('Mars cruise customers #' . uniqid());
+    $userList->setConversionTypes([$conversionType]);
 
-  // Create operation.
-  $operation = new UserListOperation();
-  $operation->operand = $userList;
-  $operation->operator = 'ADD';
+    // Set additional settings (optional).
+    $userList->setDescription(
+        'A list of mars cruise customers in the last year');
+    $userList->setStatus(UserListMembershipStatus::OPEN);
+    $userList->setMembershipLifeSpan(365);
 
-  $operations = array($operation);
+    // Create a user list operation and add it to the list.
+    $operations = [];
+    $operation = new UserListOperation();
+    $operation->setOperand($userList);
+    $operation->setOperator(Operator::ADD);
+    $operations[] = $operation;
 
-  // Make the mutate request.
-  $result = $userListService->mutate($operations);
-  $userList = $result->value[0];
+    // Create the user list on the server.
+    $userList = $userListService->mutate($operations)->getValue()[0];
 
-  // Wait a moment before retrieving the conversion snippet.
-  sleep(1);
+    // Create the selector.
+    $selector = new Selector();
+    $selector->setFields(['Id']);
+    $selector->setPredicates(
+        [new Predicate('Id', PredicateOperator::IN,
+            [$userList->getConversionTypes()[0]->getId()])]);
 
-  // Create the selector.
-  $selector = new Selector();
-  $selector->fields = array('Id');
-  $selector->predicates[] =
-      new Predicate('Id', 'IN', array($userList->conversionTypes[0]->id));
+    // Retrieve the conversion tracker and print out its information.
+    $conversionTracker =
+        $conversionTrackerService->get($selector)->getEntries()[0];
+    printf("Audience with name '%s' and ID %d was added.\n",
+        $userList->getName(), $userList->getId());
+    printf("Conversion tracker snippet:\n%s\n",
+        $conversionTracker->getSnippet());
+  }
 
-  // Make the get request.
-  $page = $conversionTrackerService->get($selector);
-  $conversionTracker = $page->entries[0];
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
 
-  // Display result.
-  printf("Audience with name '%s' and ID '%.0f' was added.\n", $userList->name,
-      $userList->id);
-  printf("Tag code:\n%s\n", $conversionTracker->snippet);
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(new AdWordsServices(), $session);
+  }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  AddAudienceExample($user);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+AddAudience::main();

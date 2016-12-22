@@ -1,11 +1,6 @@
 <?php
 /**
- * This example gets all reconciliation order reports for a given reconciliation
- * report.
- *
- * PHP version 5
- *
- * Copyright 2015, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,82 +13,84 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsDfp
- * @subpackage v201611
- * @category   WebServices
- * @copyright  2015, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
-error_reporting(E_STRICT | E_ALL);
+namespace Google\AdsApi\Examples\Dfp\v201611\ReconciliationOrderReportService;
 
-// You can set the include path to src directory or reference
-// DfpUser.php directly via require_once.
-// $path = '/path/to/dfp_api_php_lib/src';
-$path = dirname(__FILE__) . '/../../../../src';
-set_include_path(get_include_path() . PATH_SEPARATOR . $path);
+require '../../../../vendor/autoload.php';
 
-require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
-require_once 'Google/Api/Ads/Dfp/Util/v201611/StatementBuilder.php';
-require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
+use Google\AdsApi\Common\OAuth2TokenBuilder;
+use Google\AdsApi\Dfp\DfpServices;
+use Google\AdsApi\Dfp\DfpSession;
+use Google\AdsApi\Dfp\DfpSessionBuilder;
+use Google\AdsApi\Dfp\Util\v201611\StatementBuilder;
+use Google\AdsApi\Dfp\v201611\ReconciliationOrderReportService;
 
-// Set the ID of the reconciliation report to retrieve order reports for.
-$reconciliationReportId = 'INSERT_RECONCILIATION_REPORT_ID_HERE';
+/**
+ * This example gets all reconciliation order reports for a given reconciliation report.
+ *
+ * <p>It is meant to be run from a command line (not as a webpage) and requires
+ * that you've setup an `adsapi_php.ini` file in your home directory with your
+ * API credentials and settings. See README.md for more info.
+ */
+class GetReconciliationOrderReportsForReconciliationReport {
 
-try {
-  // Get DfpUser from credentials in "../auth.ini"
-  // relative to the DfpUser.php file's directory.
-  $user = new DfpUser();
+  const RECONCILIATION_REPORT_ID = 'INSERT_RECONCILIATION_REPORT_ID_HERE';
 
-  // Log SOAP XML request and response.
-  $user->LogDefaults();
+  public static function runExample(DfpServices $dfpServices,
+      DfpSession $session, $reconciliationReportId) {
+    $reconciliationOrderReportService =
+        $dfpServices->get($session, ReconciliationOrderReportService::class);
 
-  // Get the ReconciliationOrderReportService.
-  $reconciliationOrderReportService =
-      $user->GetService('ReconciliationOrderReportService', 'v201611');
+    // Create a statement to select reconciliation order reports.
+    $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
+    $statementBuilder = (new StatementBuilder())
+        ->where('reconciliationReportId = :reconciliationReportId')
+        ->orderBy('id ASC')
+        ->limit($pageSize)
+        ->withBindVariableValue('reconciliationReportId', $reconciliationReportId);
 
-  // Create a statement to select reconciliation line item reports.
-  $statementBuilder = new StatementBuilder();
-  $statementBuilder->Where('reconciliationReportId = :reconciliationReportId')
-      ->OrderBy('id ASC')
-      ->Limit(StatementBuilder::SUGGESTED_PAGE_LIMIT)
-      ->WithBindVariableValue(
-          'reconciliationReportId', $reconciliationReportId);
+    // Retrieve a small amount of reconciliation order reports at a time, paging
+    // through until all reconciliation order reports have been retrieved.
+    $totalResultSetSize = 0;
+    do {
+      $page = $reconciliationOrderReportService->getReconciliationOrderReportsByStatement(
+          $statementBuilder->toStatement());
 
-  // Default for total result set size.
-  $totalResultSetSize = 0;
-
-  do {
-    // Get reconciliation order reports by statement.
-    $page = $reconciliationOrderReportService->
-        getReconciliationOrderReportsByStatement(
-            $statementBuilder->ToStatement());
-
-    // Display results.
-    if (isset($page->results)) {
-      $totalResultSetSize = $page->totalResultSetSize;
-      $i = $page->startIndex;
-      foreach ($page->results as $reconciliationOrderReport) {
-        printf(
-            "%d) Reconciliation order report with ID %d and status '%s' was "
-                . "found\n",
-            $i++,
-            $reconciliationOrderReport->id,
-            $reconciliationOrderReport->status
-        );
+      // Print out some information for each reconciliation order report.
+      if ($page->getResults() !== null) {
+        $totalResultSetSize = $page->getTotalResultSetSize();
+        $i = $page->getStartIndex();
+        foreach ($page->getResults() as $reconciliationOrderReport) {
+          printf(
+              "%d) Reconciliation order report with ID %d and status '%s' was found.\n",
+              $i++,
+              $reconciliationOrderReport->getId(),
+              $reconciliationOrderReport->getStatus()
+          );
+        }
       }
-    }
 
-    $statementBuilder->IncreaseOffsetBy(StatementBuilder::SUGGESTED_PAGE_LIMIT);
-  } while ($statementBuilder->GetOffset() < $totalResultSetSize);
+      $statementBuilder->increaseOffsetBy($pageSize);
+    } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-  printf("Number of results found: %d\n", $totalResultSetSize);
-} catch (OAuth2Exception $e) {
-  ExampleUtils::CheckForOAuth2Errors($e);
-} catch (ValidationException $e) {
-  ExampleUtils::CheckForOAuth2Errors($e);
-} catch (Exception $e) {
-  printf("%s\n", $e->getMessage());
+    printf("Number of results found: %d\n", $totalResultSetSize);
+  }
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new DfpSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+
+    self::runExample(new DfpServices(), $session, intval(self::RECONCILIATION_REPORT_ID));
+  }
 }
 
+GetReconciliationOrderReportsForReconciliationReport::main();

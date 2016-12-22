@@ -1,13 +1,6 @@
 <?php
 /**
- * This example creates a new account under an AdWords manager account. Note:
- * this example must be run using the credentials of an AdWords manager account,
- * and by default the new account will only be accessible via the parent AdWords
- * manager account.
- *
- * PHP version 5
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,64 +13,68 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\AccountManagement;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
+
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\Operator;
+use Google\AdsApi\AdWords\v201609\mcm\ManagedCustomerService;
+use Google\AdsApi\AdWords\v201609\mcm\ManagedCustomer;
+use Google\AdsApi\AdWords\v201609\mcm\ManagedCustomerOperation;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
+ * This example creates a new account under an AdWords manager account. Note:
+ * this example must be run using the credentials of an AdWords manager account,
+ * and by default the new account will only be accessible via the parent AdWords
+ * manager account.
  */
-function CreateAccountExample(AdWordsUser $user) {
-  // Get the service, which loads the required classes.
-  $managedCustomerService =
-      $user->GetService('ManagedCustomerService', ADWORDS_VERSION);
+class CreateAccount {
 
-  // Create customer.
-  $customer = new ManagedCustomer();
-  $customer->name = 'Account #' . uniqid();
-  $customer->currencyCode = 'EUR';
-  $customer->dateTimeZone = 'Europe/London';
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session) {
+    $managedCustomerService =
+        $adWordsServices->get($session, ManagedCustomerService::class);
 
-  // Create operation.
-  $operation = new ManagedCustomerOperation();
-  $operation->operator = 'ADD';
-  $operation->operand = $customer;
+    // Create a managed customer.
+    $customer = new ManagedCustomer();
+    $customer->setName('Account #' . uniqid());
+    $customer->setCurrencyCode('EUR');
+    $customer->setDateTimeZone('Europe/London');
 
-  $operations = array($operation);
+    // Create a managed customer operation and add it to the list.
+    $operations = [];
+    $operation = new ManagedCustomerOperation();
+    $operation->setOperator(Operator::ADD);
+    $operation->setOperand($customer);
+    $operations[] = $operation;
 
-  // Make the mutate request.
-  $result = $managedCustomerService->mutate($operations);
+    // Create a managed customer on the server and print out some information
+    // about it.
+    $customer = $managedCustomerService->mutate($operations)->getValue()[0];
+    printf("Account with customer ID %d was created.\n",
+        $customer->getCustomerId());
+  }
 
-  // Display result.
-  $customer = $result->value[0];
-  printf("Account with customer ID '%s' was created.\n",
-      $customer->customerId);
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->withClientCustomerId('176-504-4936')
+        ->build();
+    self::runExample(new AdWordsServices(), $session);
+  }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  CreateAccountExample($user);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+CreateAccount::main();

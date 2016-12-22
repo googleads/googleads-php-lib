@@ -1,8 +1,6 @@
 <?php
 /**
- * This example fetches the set of valid ProductBiddingCategories.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,93 +13,98 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\ShoppingCampaigns;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
+
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\ConstantDataService;
+use Google\AdsApi\AdWords\v201609\cm\Predicate;
+use Google\AdsApi\AdWords\v201609\cm\PredicateOperator;
+use Google\AdsApi\AdWords\v201609\cm\Selector;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
+ * This example fetches the set of valid `ProductBiddingCategory`.
  */
-function getProductCategoryTaxonomyExample(AdWordsUser $user) {
-  // Get the ConstantDataService, which loads the required classes.
-  $constantDataService = $user->GetService('ConstantDataService',
-        ADWORDS_VERSION);
+class GetProductCategoryTaxonomy {
 
-  $selector = new Selector();
-  $selector->predicates[] = new Predicate('Country', 'IN', array('US'));
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session) {
+    $constantDataService =
+        $adWordsServices->get($session, ConstantDataService::class);
 
-  $results = $constantDataService->getProductBiddingCategoryData($selector);
+    // Create a selector to select product bidding categories in US.
+    $selector = new Selector();
+    $selector->setPredicates(
+        [new Predicate('Country', PredicateOperator::IN, ['US'])]);
 
-  $biddingCategories = array();
-  $rootCategories = array();
+    // A mapping from ID to bidding category.
+    $biddingCategories = [];
+    // An array of root bidding categories (those that don't have any parents).
+    $rootCategories = [];
 
-  foreach ($results as $productBiddingCategory) {
-    $id = $productBiddingCategory->dimensionValue->value;
-    $parentId = null;
-    $name = $productBiddingCategory->displayValue[0]->value;
+    $productBiddingCategories =
+        $constantDataService->getProductBiddingCategoryData($selector);
+    foreach ($productBiddingCategories as $productBiddingCategory) {
+      $id = $productBiddingCategory->getDimensionValue()->getvalue();
+      $name = $productBiddingCategory->getDisplayValue()[0]->getvalue();
+      $parentId = ($productBiddingCategory->getParentDimensionValue() !== null)
+          ? $productBiddingCategory->getParentDimensionValue()->getvalue()
+          : null;
 
-    if ($productBiddingCategory->parentDimensionValue) {
-      $parentId = $productBiddingCategory->parentDimensionValue->value;
-    }
-
-    if (!isset($biddingCategories[$id])) {
-      $biddingCategories[$id] = new StdClass();
-    }
-
-    $category = $biddingCategories[$id];
-
-    if ($parentId) {
-      if (!isset($biddingCategories[$parentId])) {
-        $biddingCategories[$parentId] = new StdClass();
+      if (array_key_exists($id, $biddingCategories) === false) {
+        $biddingCategories[$id] = [
+            'children' => []
+        ];
       }
-      $parent = $biddingCategories[$parentId];
-      if (!isset($parent->children)) {
-        $parent->children = array();
+      $biddingCategories[$id]['id'] = $id;
+      $biddingCategories[$id]['name'] = $name;
+
+      if ($parentId !== null) {
+        if (array_key_exists($parentId, $biddingCategories) === false) {
+          // 'id' and 'name' of $biddingCategories[$parentId] will get
+          // populated in its iteration of this loop.
+          $biddingCategories[$parentId] = [
+              'children' => []
+          ];
+        }
+        $biddingCategories[$parentId]['children'][] = $biddingCategories[$id];
+      } else {
+        $rootCategories[] = $biddingCategories[$id];
       }
-      $parent->children[] = $category;
-    } else {
-      $rootCategories[] = $category;
     }
 
-    $category->id = $id;
-    $category->name = $name;
+    self::displayCategories($rootCategories, '');
   }
 
-  displayCategories($rootCategories);
-}
-
-function displayCategories($categories, $prefix = "") {
-  foreach ($categories as $category) {
-    printf("%s%s [%s]\n", $prefix, $category->name, $category->id);
-    if (isset($category->children)) {
-      displayCategories($category->children, "{$prefix}{$category->name} > ");
+  private static function displayCategories(array $categories, $prefix) {
+    foreach ($categories as $category) {
+      printf("%s%s [%s]\n", $prefix, $category['name'], $category['id']);
+      if (count($category['children']) > 0) {
+        self::displayCategories($category['children'],
+            sprintf('%s%s > ', $prefix, $category['name']));
+      }
     }
+  }
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(new AdWordsServices(), $session);
   }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  getProductCategoryTaxonomyExample($user);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+GetProductCategoryTaxonomy::main();

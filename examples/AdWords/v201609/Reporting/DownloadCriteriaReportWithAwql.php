@@ -1,8 +1,6 @@
 <?php
 /**
- * This example downloads a criteria report to a file.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,84 +13,62 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\Reporting;
 
-error_reporting(E_STRICT | E_ALL);
+require '../../../../vendor/autoload.php';
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
-require_once ADWORDS_UTIL_VERSION_PATH . '/ReportUtils.php';
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\Reporting\v201609\ReportDownloader;
+use Google\AdsApi\AdWords\Reporting\v201609\DownloadFormat;
+use Google\AdsApi\AdWords\ReportSettingsBuilder;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
- * @param string $filePath the path of the file to download the report to
+ * Downloads CRITERIA_PERFORMANCE_REPORT for the specified client customer ID.
  */
-function DownloadCriteriaReportWithAwqlExample(AdWordsUser $user, $filePath,
-    $reportFormat) {
-  // Optional: Set clientCustomerId to get reports of your child accounts
-  // $user->SetClientCustomerId('INSERT_CLIENT_CUSTOMER_ID_HERE');
+class DownloadCriteriaReportWithAwql {
 
-  // Prepare a date range for the last week. Instead you can use 'LAST_7_DAYS'.
-  $dateRange = sprintf('%d,%d',
-      date('Ymd', strtotime('-7 day')), date('Ymd', strtotime('-1 day')));
+  public static function runExample(AdWordsSession $session, $reportFormat) {
+    // Create report query to get the data for last 7 days.
+    $reportQuery = 'SELECT CampaignId, AdGroupId, Id, Criteria, CriteriaType, '
+        . 'Impressions, Clicks, Cost FROM CRITERIA_PERFORMANCE_REPORT '
+        . 'WHERE Status IN [ENABLED, PAUSED] DURING LAST_7_DAYS';
 
-  // Create report query.
-  $reportQuery = 'SELECT CampaignId, AdGroupId, Id, Criteria, CriteriaType, '
-      . 'Impressions, Clicks, Cost FROM CRITERIA_PERFORMANCE_REPORT '
-      . 'WHERE Status IN [ENABLED, PAUSED] DURING ' . $dateRange;
+    // Download report as a string.
+    $reportDownloader = new ReportDownloader($session);
+    $reportDownloadResult = $reportDownloader->downloadReportWithAwql(
+        $reportQuery, $reportFormat);
+    print "Report was downloaded and printed below:\n";
+    print $reportDownloadResult->getAsString();
+  }
 
-  // Set additional options.
-  $options = array('version' => ADWORDS_VERSION);
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
 
-  // Optional: Set skipReportHeader, skipColumnHeader, skipReportSummary to
-  //     suppress headers or summary rows.
-  // $options['skipReportHeader'] = true;
-  // $options['skipColumnHeader'] = true;
-  // $options['skipReportSummary'] = true;
-  //
-  // Optional: Set useRawEnumValues to return enum values instead of enum
-  //     display values.
-  // $options['useRawEnumValues'] = false;
-  //
-  // Optional: Set includeZeroImpressions to include zero impression rows in
-  //     the report output.
-  // $options['includeZeroImpressions'] = true;
+    // See: ReportSettingsBuilder for more options (e.g., suppress headers)
+    // or set them in your adsapi_php.ini file.
+    $reportSettings = (new ReportSettingsBuilder())
+        ->fromFile()
+        ->includeZeroImpressions(false)
+        ->build();
 
-  // Download report.
-  $reportUtils = new ReportUtils();
-  $reportUtils->DownloadReportWithAwql($reportQuery, $filePath, $user,
-      $reportFormat, $options);
+    // See: AdWordsSessionBuilder for setting a client customer ID that is
+    // different from that specified in your adsapi_php.ini file.
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->withReportSettings($reportSettings)
+        ->build();
 
-  printf("Report was downloaded to '%s'.\n", $filePath);
+    self::runExample($session, DownloadFormat::CSV);
+  }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Download the report to a file in the same directory as the example.
-  $filePath = dirname(__FILE__) . '/report.csv';
-  $reportFormat = 'CSV';
-
-  // Run the example.
-  DownloadCriteriaReportWithAwqlExample($user, $filePath, $reportFormat);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+DownloadCriteriaReportWithAwql::main();

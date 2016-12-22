@@ -1,9 +1,6 @@
 <?php
 /**
- * This code example illustrates how to add ad group level mobile bid modifier
- * override for a campaign.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,83 +13,86 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\AdvancedOperations;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
 
-// Enter parameters required by the code example.
-$adGroupId = 'INSERT_ADGROUP_ID_HERE';
-$bidModifier = 1.5;
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupBidModifier;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupBidModifierOperation;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupBidModifierService;
+use Google\AdsApi\AdWords\v201609\cm\Operator;
+use Google\AdsApi\AdWords\v201609\cm\Platform;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
- * @param string $adGroupId the ID of the ad group to add the bid modifier to
- * @param int $bidModifier the bid modifier multiplier
+ * This code example illustrates how to add ad group level mobile bid modifier
+ * override for a campaign.
  */
-function AddAdGroupBidModifierExample(AdWordsUser $user, $adGroupId,
-    $bidModifier) {
-  // Get the AdGroupBidModifierService, which loads the r©equired classes.
-  $bidModifierService = $user->GetService('AdGroupBidModifierService',
-      ADWORDS_VERSION);
+class AddAdGroupBidModifier {
 
-  // Mobile criterion ID.
-  $criterionId = 30001;
+  const AD_GROUP_ID = 'INSERT_AD_GROUP_ID_HERE';
+  const BID_MODIFIER = 'INSERT_BID_MODIFIER_HERE';
 
-  // Prepare to add an ad group level override.
-  $agBidModifier = new AdGroupBidModifier();
-  $agBidModifier->adGroupId = $adGroupId;
-  $agBidModifier->criterion = new Platform();
-  $agBidModifier->criterion->id = $criterionId;
-  $agBidModifier->bidModifier = $bidModifier;
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session, $adGroupId, $bidModifier) {
+    $adGroupBidModifierService =
+        $adWordsServices->get($session, AdGroupBidModifierService::class);
 
-  $operation = new AdGroupBidModifierOperation();
+    $operations = [];
 
-  // Use 'ADD' to add a new modifier and 'SET' to update an existing one. A
-  // modifier can be removed with the 'REMOVE' operator.
-  $operation->operator = 'ADD';
-  $operation->operand = $agBidModifier;
+    // Mobile criterion ID.
+    $criterionId = 30001;
+    // Prepare to add an ad group level override.
+    $adGroupBidModifier = new AdGroupBidModifier();
+    $adGroupBidModifier->setAdGroupId($adGroupId);
+    $adGroupBidModifier->setCriterion(new Platform());
+    $adGroupBidModifier->getCriterion()->setId($criterionId);
+    $adGroupBidModifier->setBidModifier($bidModifier);
 
-  $response = $bidModifierService->mutate(array($operation));
+    $operation = new AdGroupBidModifierOperation();
 
-  foreach ($response->value as $modifier) {
-    $value = 'none';
-    if (is_numeric($modifier->bidModifier)) {
-      $value = $modifier->bidModifier;
+    // Create an ad group bid modifier operation and add it to the list.
+    $operation->setOperator(Operator::ADD);
+    $operation->setOperand($adGroupBidModifier);
+    $operations[] = $operation;
+
+    // Create the ad group bid modifier on the server and print out some
+    // information for each created ad group criterion.
+    $result = $adGroupBidModifierService->mutate($operations);
+    foreach ($result->getValue() as $adGroupBidModifier) {
+      printf(
+          "Ad group ID %d, criterion ID %d was updated with "
+              . "ad group level modifier: %s\n",
+          $adGroupBidModifier->getAdGroupId(),
+          $adGroupBidModifier->getCriterion()->getId(),
+          $adGroupBidModifier->getBidModifier()
+      );
     }
-    printf(
-      'AdGroup ID %d, Criterion ID %d was updated with ' .
-          "ad group level modifier: %s\n",
-      $modifier->adGroupId,
-      $modifier->criterion->id,
-      $value
+  }
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(
+        new AdWordsServices(),
+        $session,
+        intval(self::AD_GROUP_ID),
+        floatval(self::BID_MODIFIER)
     );
   }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  AddAdGroupBidModifierExample($user, $adGroupId, $bidModifier);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+AddAdGroupBidModifier::main();

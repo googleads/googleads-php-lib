@@ -1,10 +1,6 @@
 <?php
 /**
- * This example adds a Universal App campaign. To get campaigns, run
- * GetCampaigns.php. To upload image assets for this campaign, run
- * UploadImage.php.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,215 +13,246 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\AdvancedOperations;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
+
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\AdvertisingChannelSubType;
+use Google\AdsApi\AdWords\v201609\cm\AdvertisingChannelType;
+use Google\AdsApi\AdWords\v201609\cm\BiddingStrategyConfiguration;
+use Google\AdsApi\AdWords\v201609\cm\BiddingStrategyType;
+use Google\AdsApi\AdWords\v201609\cm\Budget;
+use Google\AdsApi\AdWords\v201609\cm\BudgetBudgetDeliveryMethod;
+use Google\AdsApi\AdWords\v201609\cm\BudgetOperation;
+use Google\AdsApi\AdWords\v201609\cm\BudgetService;
+use Google\AdsApi\AdWords\v201609\cm\Campaign;
+use Google\AdsApi\AdWords\v201609\cm\CampaignCriterion;
+use Google\AdsApi\AdWords\v201609\cm\CampaignCriterionOperation;
+use Google\AdsApi\AdWords\v201609\cm\CampaignCriterionService;
+use Google\AdsApi\AdWords\v201609\cm\CampaignOperation;
+use Google\AdsApi\AdWords\v201609\cm\CampaignService;
+use Google\AdsApi\AdWords\v201609\cm\CampaignStatus;
+use Google\AdsApi\AdWords\v201609\cm\GeoTargetTypeSetting;
+use Google\AdsApi\AdWords\v201609\cm\GeoTargetTypeSettingNegativeGeoTargetType;
+use Google\AdsApi\AdWords\v201609\cm\Language;
+use Google\AdsApi\AdWords\v201609\cm\Location;
+use Google\AdsApi\AdWords\v201609\cm\Money;
+use Google\AdsApi\AdWords\v201609\cm\Operator;
+use Google\AdsApi\AdWords\v201609\cm\TargetCpaBiddingScheme;
+use Google\AdsApi\AdWords\v201609\cm\UniversalAppBiddingStrategyGoalType;
+use Google\AdsApi\AdWords\v201609\cm\UniversalAppCampaignSetting;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Runs the example.
- *
- * @param AdWordsUser $user the user to run the example with
+ * This example adds a Universal App campaign. To get campaigns, run
+ * GetCampaigns.php. To upload image assets for this campaign, run
+ * UploadImage.php.
  */
-function AddUniversalAppCampaignExample(AdWordsUser $user) {
-  // Get the CampaignService, which loads the required classes.
-  $campaignService = $user->GetService('CampaignService', ADWORDS_VERSION);
+class AddUniversalAppCampaign {
 
-  // Create campaign with some properties set.
-  $campaign = new Campaign();
-  $campaign->name = 'Interplanetary Cruise #' . uniqid();
-  // Recommendation: Set the campaign to PAUSED when creating it to stop
-  // the ads from immediately serving. Set to ENABLED once you've added
-  // targeting and the ads are ready to serve.
-  $campaign->status = 'PAUSED';
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session) {
+    $campaignService = $adWordsServices->get($session, CampaignService::class);
 
-  // Set the advertising channel and subchannel types for Universal app
-  // campaigns.
-  $campaign->advertisingChannelType = 'MULTI_CHANNEL';
-  $campaign->advertisingChannelSubType = 'UNIVERSAL_APP_CAMPAIGN';
+    // Create campaign with some properties set.
+    $campaign = new Campaign();
+    $campaign->setName('Interplanetary Cruise #' . uniqid());
+    // Recommendation: Set the campaign to PAUSED when creating it to stop
+    // the ads from immediately serving. Set to ENABLED once you've added
+    // targeting and the ads are ready to serve.
+    $campaign->setStatus(CampaignStatus::PAUSED);
 
-  // Set the campaign's bidding strategy. Universal App campaigns
-  // only support TARGET_CPA bidding strategy.
-  $biddingStrategyConfiguration = new BiddingStrategyConfiguration();
-  $biddingStrategyConfiguration->biddingStrategyType = 'TARGET_CPA';
+    // Set the advertising channel and subchannel types for Universal app
+    // campaigns.
+    $campaign->setAdvertisingChannelType(AdvertisingChannelType::MULTI_CHANNEL);
+    $campaign->setAdvertisingChannelSubType(
+        AdvertisingChannelSubType::UNIVERSAL_APP_CAMPAIGN);
 
-  // Set the target CPA to $1 / app install.
-  $biddingScheme = new TargetCpaBiddingScheme();
-  $biddingScheme->targetCpa = new Money(1000000);
+    // Set the campaign's bidding strategy. Universal App campaigns
+    // only support TARGET_CPA bidding strategy.
+    $biddingStrategyConfiguration = new BiddingStrategyConfiguration();
+    $biddingStrategyConfiguration->setBiddingStrategyType(
+        BiddingStrategyType::TARGET_CPA);
 
-  $biddingStrategyConfiguration->biddingScheme = $biddingScheme;
-  $campaign->biddingStrategyConfiguration = $biddingStrategyConfiguration;
+    // Set the target CPA to $1 / app install.
+    $biddingScheme = new TargetCpaBiddingScheme();
+    $money = new Money();
+    $money->setMicroAmount(1000000);
+    $biddingScheme->setTargetCpa($money);
 
-  // Set the campaign's budget.
-  $campaign->budget = new Budget();
-  $campaign->budget->budgetId = CreateBudget($user);
+    $biddingStrategyConfiguration->setBiddingScheme($biddingScheme);
+    $campaign->setBiddingStrategyConfiguration($biddingStrategyConfiguration);
 
-  // Optional: Set the start date.
-  $campaign->startDate = date('Ymd', strtotime('+1 day'));
+    // Set shared budget (required).
+    $campaign->setBudget(new Budget());
+    $campaign->getBudget()->setBudgetId(
+        self::createBudget($adWordsServices, $session));
 
-  // Optional: Set the end date.
-  $campaign->endDate = date('Ymd', strtotime('+1 year'));
+    // Optional: Set the start date.
+    $campaign->setStartDate(date('Ymd', strtotime('+1 day')));
 
-  // Set the campaign's assets and ad text ideas. These values will be used to
-  // generate ads.
-  $universalAppSetting = new UniversalAppCampaignSetting();
-  $universalAppSetting->appId = 'com.interplanetarycruise.booking';
-  $universalAppSetting->description1 = 'Best Space Cruise Line';
-  $universalAppSetting->description2 = 'Visit all the planets';
-  $universalAppSetting->description3 = 'Trips 7 days a week';
-  $universalAppSetting->description4 = 'Buy your tickets now!';
+    // Optional: Set the end date.
+    $campaign->setEndDate(date('Ymd', strtotime('+1 year')));
 
-  // Optional: You can set up to 10 image assets for your campaign.
-  // See UploadImage.php for an example on how to upload images.
-  //
-  // $universalAppSetting->imageMediaIds = array(INSERT_IMAGE_MEDIA_ID_HERE);
+    // Set the campaign's assets and ad text ideas. These values will be used to
+    // generate ads.
+    $universalAppSetting = new UniversalAppCampaignSetting();
+    $universalAppSetting->setAppId('com.interplanetarycruise.booking');
+    $universalAppSetting->setDescription1('Best Space Cruise Line');
+    $universalAppSetting->setDescription2('Visit all the planets');
+    $universalAppSetting->setDescription3('Trips 7 days a week');
+    $universalAppSetting->setDescription4('Buy your tickets now!');
 
-  // Optimize this campaign for getting new users for your app.
-  $universalAppSetting->universalAppBiddingStrategyGoalType =
-      'OPTIMIZE_FOR_INSTALL_CONVERSION_VOLUME';
+    // Optional: You can set up to 10 image assets for your campaign.
+    // See UploadImage.php for an example on how to upload images.
+    //
+    // $universalAppSetting->imageMediaIds = array(INSERT_IMAGE_MEDIA_ID_HERE);
 
-  // If you select bidding strategy goal type as
-  // OPTIMIZE_FOR_IN_APP_CONVERSION_VOLUME, then you may specify a set of
-  // conversion types for in-app actions to optimize the campaign towards.
-  // Conversion type IDs can be retrieved using ConversionTrackerService.get.
-  //
-  // $campaign->selectiveOptimization = new SelectiveOptimization();
-  // $campaign->selectiveOptimization->conversionTypeIds = array(
-  //     INSERT_CONVERSION_TYPE_ID_1_HERE,
-  //     INSERT_CONVERSION_TYPE_ID_2_HERE
-  // );
+    // Optimize this campaign for getting new users for your app.
+    $universalAppSetting->setUniversalAppBiddingStrategyGoalType(
+        UniversalAppBiddingStrategyGoalType
+            ::OPTIMIZE_FOR_INSTALL_CONVERSION_VOLUME);
 
-  // Optional: Set the campaign settings for Advanced location options.
-  $geoTargetTypeSetting = new GeoTargetTypeSetting();
-  $geoTargetTypeSetting->negativeGeoTargetType = 'LOCATION_OF_PRESENCE';
-  $campaign->settings = array($universalAppSetting, $geoTargetTypeSetting);
+    // If you select bidding strategy goal type as
+    // OPTIMIZE_FOR_IN_APP_CONVERSION_VOLUME, then you may specify a set of
+    // conversion types for in-app actions to optimize the campaign towards.
+    // Conversion type IDs can be retrieved using ConversionTrackerService.get.
+    //
+    // $campaign->selectiveOptimization = new SelectiveOptimization();
+    // $campaign->selectiveOptimization->conversionTypeIds = array(
+    //     INSERT_CONVERSION_TYPE_ID_1_HERE,
+    //     INSERT_CONVERSION_TYPE_ID_2_HERE
+    // );
 
-  // Create the campaign operation.
-  $operations = array();
-  $operation = new CampaignOperation();
-  $operation->operand = $campaign;
-  $operation->operator = 'ADD';
-  $operations[] = $operation;
+    // Optional: Set the campaign settings for Advanced location options.
+    $geoTargetTypeSetting = new GeoTargetTypeSetting();
+    $geoTargetTypeSetting->setNegativeGeoTargetType(
+        GeoTargetTypeSettingNegativeGeoTargetType::LOCATION_OF_PRESENCE);
+    $campaign->setSettings([$universalAppSetting, $geoTargetTypeSetting]);
 
-  // Add campaigns on the server.
-  $result = $campaignService->mutate($operations);
+    // Create a campaign operation and add it to the operations list.
+    $operations = [];
+    $operation = new CampaignOperation();
+    $operation->setOperand($campaign);
+    $operation->setOperator(Operator::ADD);
+    $operations[] = $operation;
 
-  // Print information for each campaign.
-  foreach ($result->value as $campaign) {
-    printf("Universal App Campaign with name '%s' and ID %d was added.\n",
-        $campaign->name, $campaign->id);
-    // Optional: Set the campaign's location and language targeting. No other
-    // targeting criteria can be used for Universal App campaigns.
-    SetCampaignTargetingCriteria($campaign->id, $user);
+    // Create the campaign on the server and print out some information for the
+    // campaign.
+    $result = $campaignService->mutate($operations);
+    foreach ($result->getValue() as $campaign) {
+      printf("Universal App Campaign with name '%s' and ID %d was added.\n",
+          $campaign->getName(), $campaign->getId());
+      // Optional: Set the campaign's location and language targeting. No other
+      // targeting criteria can be used for Universal App campaigns.
+      self::setCampaignTargetingCriteria(
+          $campaign->getId(), $adWordsServices, $session);
+    }
+  }
+
+  /**
+   * Creates the budget for the campaign.
+   */
+  private static function createBudget(AdWordsServices $adWordsServices,
+      AdWordsSession $session) {
+    $budgetService = $adWordsServices->get($session, BudgetService::class);
+
+    // Create the shared budget (required).
+    $budget = new Budget();
+    $budget->setName('Interplanetary Cruise Budget #' . uniqid());
+    $money = new Money();
+    $money->setMicroAmount(50000000);
+    $budget->setAmount($money);
+    $budget->setDeliveryMethod(BudgetBudgetDeliveryMethod::STANDARD);
+
+    // Universal App campaigns don't support shared budgets.
+    $budget->setIsExplicitlyShared(false);
+    $operations = [];
+
+    // Create a budget operation.
+    $operation = new BudgetOperation();
+    $operation->setOperand($budget);
+    $operation->setOperator(Operator::ADD);
+    $operations[] = $operation;
+
+    // Create the budget on the server.
+    $result = $budgetService->mutate($operations);
+    $budget = $result->getValue()[0];
+
+    printf("Budget with name '%s' and ID %d was created.\n",
+        $budget->getName(), $budget->getBudgetId());
+
+    return $budget->getBudgetId();
+  }
+
+  /**
+   * Sets the campaign's targeting criteria.
+   */
+  private static function setCampaignTargetingCriteria(
+      $campaignId, AdWordsServices $adWordsServices, AdWordsSession $session) {
+    $campaignCriterionService =
+        $adWordsServices->get($session, CampaignCriterionService::class);
+
+    $campaignCriteria = [];
+    // Create locations. The IDs can be found in the documentation or retrieved
+    // with the LocationCriterionService.
+    $california = new Location();
+    $california->setId(21137);
+    $campaignCriteria[] = new CampaignCriterion($campaignId, null, $california);
+
+    $mexico = new Location();
+    $mexico->setId(2484);
+    $campaignCriteria[] = new CampaignCriterion($campaignId, null, $mexico);
+
+    // Create languages. The IDs can be found in the documentation or retrieved
+    // with the ConstantDataService.
+    $english = new Language();
+    $english->setId(1000);
+    $campaignCriteria[] = new CampaignCriterion($campaignId, null, $english);
+
+    $spanish = new Language();
+    $spanish->setId(1003);
+    $campaignCriteria[] = new CampaignCriterion($campaignId, null, $spanish);
+
+    // Create operations to add each of the criteria above.
+    $operations = [];
+    foreach ($campaignCriteria as $campaignCriterion) {
+      $operation = new CampaignCriterionOperation();
+      $operation->setOperand($campaignCriterion);
+      $operation->setOperator(Operator::ADD);
+      $operations[] = $operation;
+    }
+
+    // Set the campaign targets.
+    $result = $campaignCriterionService->mutate($operations);
+
+    // Display added campaign targets.
+    foreach ($result->getValue() as $campaignCriterion) {
+      printf("Campaign criterion of type '%s' and ID %d was added.\n",
+          $campaignCriterion->getCriterion()->getType(),
+          $campaignCriterion->getCriterion()->getId()
+      );
+    }
+  }
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(new AdWordsServices(), $session);
   }
 }
 
-/**
- * Creates the budget for the campaign.
- *
- * @return the new budget ID
- */
-function CreateBudget(AdWordsUser $user) {
-  // Get the BudgetService, which loads the required classes.
-  $budgetService = $user->GetService('BudgetService', ADWORDS_VERSION);
-
-  // Create the shared budget (required).
-  $budget = new Budget();
-  $budget->name = 'Interplanetary Cruise Budget #' . uniqid();
-  $budget->amount = new Money(50000000);
-  $budget->deliveryMethod = 'STANDARD';
-
-  // Universal App campaigns don't support shared budgets.
-  $budget->isExplicitlyShared = false;
-  $operations = array();
-
-  // Create operation.
-  $operation = new BudgetOperation();
-  $operation->operand = $budget;
-  $operation->operator = 'ADD';
-  $operations[] = $operation;
-
-  // Make the mutate request.
-  $result = $budgetService->mutate($operations);
-  $budget = $result->value[0];
-
-  printf("Budget with name '%s' and ID %d was created.\n",
-      $budget->name, $budget->budgetId);
-
-  return $budget->budgetId;
-}
-
-/**
- * Sets the campaign's targeting criteria.
- *
- * @param AdWordsUser $user the AdWords user object
- */
-function SetCampaignTargetingCriteria($campaignId, AdWordsUser $user) {
-  // Get the service, which loads the required classes.
-  $campaignCriterionService =
-      $user->GetService('CampaignCriterionService', ADWORDS_VERSION);
-
-  $campaignCriteria = array();
-  // Create locations. The IDs can be found in the documentation or retrieved
-  // with the LocationCriterionService.
-  $california = new Location();
-  $california->id = 21137;
-  $campaignCriteria[] = new CampaignCriterion($campaignId, null, $california);
-
-  $mexico = new Location();
-  $mexico->id = 2484;
-  $campaignCriteria[] = new CampaignCriterion($campaignId, null, $mexico);
-
-  // Create languages. The IDs can be found in the documentation or retrieved
-  // with the ConstantDataService.
-  $english = new Language();
-  $english->id = 1000;
-  $campaignCriteria[] = new CampaignCriterion($campaignId, null, $english);
-
-  $spanish = new Language();
-  $spanish->id = 1003;
-  $campaignCriteria[] = new CampaignCriterion($campaignId, null, $spanish);
-
-  // Create operations to add each of the criteria above.
-  $operations = array();
-  foreach ($campaignCriteria as $campaignCriterion) {
-    $operations[] = new CampaignCriterionOperation($campaignCriterion, 'ADD');
-  }
-
-  // Set the campaign targets.
-  $result = $campaignCriterionService->mutate($operations);
-
-  // Display added campaign targets.
-  foreach ($result->value as $campaignCriterion) {
-    printf("Campaign criterion of type '%s' and ID %d was added.\n",
-        $campaignCriterion->criterion->CriterionType,
-        $campaignCriterion->criterion->id
-    );
-  }
-}
-
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  AddUniversalAppCampaignExample($user);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+AddUniversalAppCampaign::main();

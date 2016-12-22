@@ -1,8 +1,6 @@
 <?php
 /**
- * This example sets a Bid Modifier on a Campaign.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,84 +13,83 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\CampaignManagement;
 
-// Include the initialization file.
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
 
-// Enter parameters required by the code example.
-$campaignId = 'INSERT_CAMPAIGN_ID_HERE';
-$bidModifier = 1.5;
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\CampaignCriterion;
+use Google\AdsApi\AdWords\v201609\cm\CampaignCriterionOperation;
+use Google\AdsApi\AdWords\v201609\cm\CampaignCriterionService;
+use Google\AdsApi\AdWords\v201609\cm\Operator;
+use Google\AdsApi\AdWords\v201609\cm\Platform;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
- * @param string $campaignId the id of the campaign to modify
- * @param float $bidModifier the multiplier to set on the campaign
+ * This example sets a bid modifier on a campaign.
  */
-function SetBidModifierExample(AdWordsUser $user, $campaignId, $bidModifier) {
-  // Get the CampaignCriterionService, also loads classes
-  $campaignCriterionService =
-      $user->GetService('CampaignCriterionService', ADWORDS_VERSION);
+class SetBidModifier {
 
-  // Create Mobile Platform. The ID can be found in the documentation.
-  // https://developers.google.com/adwords/api/docs/appendix/platforms
-  $mobile = new Platform();
-  $mobile->id = 30001; // HighEndMobile = 30001
+  const CAMPAIGN_ID = 'INSERT_CAMPAIGN_ID_HERE';
+  // Bid modifiers are float number, not percentages, e.g., 1.5 means 50% more
+  // bidding.
+  const BID_MODIFIER = 'INSERT_BID_MODIFIER_HERE';
 
-  // Create criterion with modified bid.
-  $criterion = new CampaignCriterion();
-  $criterion->campaignId = $campaignId;
-  $criterion->criterion = $mobile;
-  $criterion->bidModifier = $bidModifier;
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session, $campaignId, $bidModifier) {
+    $campaignCriterionService =
+        $adWordsServices->get($session, CampaignCriterionService::class);
 
-  // Create SET operation.
-  $operation = new CampaignCriterionOperation();
-  $operation->operator = 'SET';
-  $operation->operand = $criterion;
+    // Create a mobile platform. The ID can be found in the documentation.
+    // https://developers.google.com/adwords/api/docs/appendix/platforms
+    $mobile = new Platform();
+    $mobile->setId(30001); // HighEndMobile = 30001
 
-  // Update campaign criteria.
-  $results = $campaignCriterionService->mutate(array($operation));
+    // Create a criterion with modified bid.
+    $criterion = new CampaignCriterion();
+    $criterion->setCampaignId($campaignId);
+    $criterion->setCriterion($mobile);
+    $criterion->setBidModifier($bidModifier);
 
-  // Display campaign criteria.
-  if (count($results->value)) {
-    foreach ($results->value as $campaignCriterion) {
+    // Create a campaign criterion operation and add it to the operations list.
+    $operation = new CampaignCriterionOperation();
+    $operation->setOperator(Operator::SET);
+    $operation->setOperand($criterion);
+    $operations = [$operation];
+
+    // Update campaign criteria on the server.
+    $results = $campaignCriterionService->mutate($operations);
+
+    // Print out some information about the updated campaign criterion.
+    foreach ($results->getValue() as $campaignCriterion) {
       printf(
-          "Campaign criterion with campaign ID '%s', criterion ID '%s', "
-          . "and type '%s' was modified with bid %.2f.\n",
-          $campaignCriterion->campaignId,
-          $campaignCriterion->criterion->id,
-          $campaignCriterion->criterion->type,
-          $campaignCriterion->bidModifier);
+          "Campaign criterion with campaign ID %d, criterion ID %d, "
+              . "and type '%s' was modified with bid %.2f.\n",
+          $campaignCriterion->getCampaignId(),
+          $campaignCriterion->getCriterion()->getId(),
+          $campaignCriterion->getCriterion()->getType(),
+          $campaignCriterion->getBidModifier());
     }
-
-    return true;
   }
-  print 'No campaign criterias were modified.';
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(new AdWordsServices(), $session, intval(self::CAMPAIGN_ID),
+        floatval(self::BID_MODIFIER));
+  }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  SetBidModifierExample($user, $campaignId, $bidModifier);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+SetBidModifier::main();

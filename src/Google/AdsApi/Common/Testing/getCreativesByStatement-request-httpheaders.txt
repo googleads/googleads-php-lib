@@ -1,0 +1,9 @@
+POST /apis/ads/publisher/v201505/CreativeService?wsdl HTTP/1.1
+Host: ads.google.com
+Connection: Keep-Alive
+User-Agent: PHP-SOAP/5.5.20, gzip
+Accept-Encoding: gzip, deflate
+Content-Type: text/xml; charset=utf-8
+SOAPAction: ""
+Content-Length: 621
+Authorization: Bearer 123abc456xyz

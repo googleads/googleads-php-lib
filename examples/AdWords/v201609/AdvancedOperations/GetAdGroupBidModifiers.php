@@ -1,9 +1,6 @@
 <?php
 /**
- * This example illustrates how to retrieve ad group level bid modifiers for a
- * campaign.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,78 +13,84 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\AdvancedOperations;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
+
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupBidModifierService;
+use Google\AdsApi\AdWords\v201609\cm\OrderBy;
+use Google\AdsApi\AdWords\v201609\cm\Paging;
+use Google\AdsApi\AdWords\v201609\cm\Selector;
+use Google\AdsApi\AdWords\v201609\cm\SortOrder;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
+ * This example illustrates how to retrieve ad group level bid modifiers for
+ * all campaigns.
  */
-function GetAdGroupBidModifiersExample(AdWordsUser $user) {
-  // Get the service, which loads the required classes.
-  $bidModifierService = $user->GetService('AdGroupBidModifierService',
-      ADWORDS_VERSION);
+class GetAdGroupBidModifiers {
 
-  // Create selector.
-  $selector = new Selector();
-  $selector->fields = array('CampaignId', 'AdGroupId', 'BidModifier', 'Id');
-  $selector->ordering[] = new OrderBy('CampaignId', 'ASCENDING');
+  const PAGE_LIMIT = 500;
 
-  // Create paging controls.
-  $selector->paging = new Paging(0, AdWordsConstants::RECOMMENDED_PAGE_SIZE);
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session) {
+    $adGroupBidModifierService =
+        $adWordsServices->get($session, AdGroupBidModifierService::class);
 
-  do {
-    // Make the get request.
-    $page = $bidModifierService->get($selector);
+    // Create a selector to select all ad group bid modifiers.
+    $selector = new Selector();
+    $selector->setFields(
+        ['Id', 'AdGroupId', 'CampaignId', 'BidModifier']);
+    $selector->setOrdering([new OrderBy('CampaignId', SortOrder::ASCENDING)]);
+    $selector->setPaging(new Paging(0, self::PAGE_LIMIT));
 
-    // Display results.
-    if (isset($page->entries)) {
-      foreach ($page->entries as $modifier) {
-        $value = 'none';
-        if (is_numeric($modifier->bidModifier)) {
-          $value = $modifier->bidModifier;
+    $totalNumEntries = 0;
+    do {
+      // Retrieve ad group bid modifiers one page at a time, continuing to
+      // request pages until all ad group bid modifiers have been retrieved.
+      $page = $adGroupBidModifierService->get($selector);
+
+      // Print out some information for each ad group bid modifier.
+      if ($page->getEntries() !== null) {
+        $totalNumEntries = $page->getTotalNumEntries();
+        foreach ($page->getEntries() as $adGroupBidModifier) {
+          printf(
+              "Campaign ID %d, ad group ID %d, criterion ID %d has ad group "
+                  . "level modifier: %s\n",
+              $adGroupBidModifier->getCampaignId(),
+              $adGroupBidModifier->getAdGroupId(),
+              $adGroupBidModifier->getCriterion()->getId(),
+              ($adGroupBidModifier->getBidModifier() === null)
+                  ? 'none' : $adGroupBidModifier->getBidModifier()
+          );
         }
-        printf("Campaign ID %d, AdGroup ID %d, Criterion ID %d has ad group " .
-            "level modifier: %s\n",
-          $modifier->campaignId,
-          $modifier->adGroupId,
-          $modifier->criterion->id,
-          $value
-        );
       }
-    } else {
-      print "No bid modifiers were found.\n";
-    }
 
-    // Advance the paging index.
-    $selector->paging->startIndex += AdWordsConstants::RECOMMENDED_PAGE_SIZE;
-  } while ($page->totalNumEntries > $selector->paging->startIndex);
+      $selector->getPaging()->setStartIndex(
+          $selector->getPaging()->getStartIndex() + self::PAGE_LIMIT);
+    } while ($selector->getPaging()->getStartIndex() < $totalNumEntries);
+
+    printf("Number of results found: %d\n", $totalNumEntries);
+  }
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(new AdWordsServices(), $session);
+  }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  GetAdGroupBidModifiersExample($user);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+GetAdGroupBidModifiers::main();

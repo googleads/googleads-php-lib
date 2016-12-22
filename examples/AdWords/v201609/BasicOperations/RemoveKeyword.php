@@ -1,8 +1,6 @@
 <?php
 /**
- * This example removes a keyword. To get keywords, run GetKeywords.php.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,74 +13,78 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\BasicOperations;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
 
-// Enter parameters required by the code example.
-$adGroupId = 'INSERT_AD_GROUP_ID_HERE';
-$criterionId = 'INSERT_KEYWORD_CRITERION_ID_HERE';
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupCriterion;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupCriterionOperation;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupCriterionService;
+use Google\AdsApi\AdWords\v201609\cm\Criterion;
+use Google\AdsApi\AdWords\v201609\cm\Operator;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
- * @param string $adGroupId the id of the ad group that the keyword is in
- * @param string $criterionId the id of the keyword to remove
+ * This example removes a keyword.
  */
-function RemoveKeywordExample(AdWordsUser $user, $adGroupId, $criterionId) {
-  // Get the service, which loads the required classes.
-  $adGroupCriterionService =
-      $user->GetService('AdGroupCriterionService', ADWORDS_VERSION);
+class RemoveKeyword {
 
-  // Create criterion using an existing ID. Use the base class Criterion
-  // instead of Keyword to avoid having to set keyword-specific fields.
-  $criterion = new Criterion();
-  $criterion->id = $criterionId;
+  const AD_GROUP_ID = 'INSERT_AD_GROUP_ID_HERE';
+  const CRITERION_ID = 'INSERT_KEYWORD_CRITERION_ID_HERE';
 
-  // Create ad group criterion.
-  $adGroupCriterion = new AdGroupCriterion();
-  $adGroupCriterion->adGroupId = $adGroupId;
-  $adGroupCriterion->criterion = new Criterion($criterionId);
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session, $adGroupId, $criterionId) {
+    $adGroupCriterionService =
+        $adWordsServices->get($session, AdGroupCriterionService::class);
 
-  // Create operation.
-  $operation = new AdGroupCriterionOperation();
-  $operation->operand = $adGroupCriterion;
-  $operation->operator = 'REMOVE';
+    // Create criterion using an existing ID. Use the base class Criterion
+    // instead of Keyword to avoid having to set keyword-specific fields.
+    $criterion = new Criterion();
+    $criterion->setId($criterionId);
 
-  $operations = array($operation);
+    // Create an ad group criterion.
+    $adGroupCriterion = new AdGroupCriterion();
+    $adGroupCriterion->setAdGroupId($adGroupId);
+    $adGroupCriterion->setCriterion($criterion);
 
-  // Make the mutate request.
-  $result = $adGroupCriterionService->mutate($operations);
+    // Create an ad group criterion operation and add it the operations list.
+    $operation = new AdGroupCriterionOperation();
+    $operation->setOperand($adGroupCriterion);
+    $operation->setOperator(Operator::REMOVE);
+    $operations = [$operation];
 
-  // Display result.
-  $adGroupCriterion = $result->value[0];
-  printf("Keyword with ID '%d' was removed.\n",
-      $adGroupCriterion->criterion->id);
+    // Remove criterion on the server.
+    $result = $adGroupCriterionService->mutate($operations);
+
+    // Print out some information for the removed keyword.
+    $adGroupCriterion = $result->getValue()[0];
+    printf("Keyword with ID '%d' was removed.\n",
+        $adGroupCriterion->getCriterion()->getId());
+  }
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(
+        new AdWordsServices(),
+        $session,
+        intval(self::AD_GROUP_ID),
+        intval(self::CRITERION_ID)
+    );
+  }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  RemoveKeywordExample($user, $adGroupId, $criterionId);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+RemoveKeyword::main();

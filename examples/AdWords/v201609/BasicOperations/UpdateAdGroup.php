@@ -1,9 +1,6 @@
 <?php
 /**
- * This example updates the default bid of an ad group. To get ad groups, run
- * GetAdGroups.php.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,74 +13,84 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\BasicOperations;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
 
-// Enter parameters required by the code example.
-$adGroupId = 'INSERT_AD_GROUP_ID_HERE';
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\AdGroup;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupOperation;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupService;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupStatus;
+use Google\AdsApi\AdWords\v201609\cm\BiddingStrategyConfiguration;
+use Google\AdsApi\AdWords\v201609\cm\CpcBid;
+use Google\AdsApi\AdWords\v201609\cm\Money;
+use Google\AdsApi\AdWords\v201609\cm\Operator;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
- * @param string $adGroupId the id of the ad group to update
+ * This example updates the default bid of an ad group. To get ad groups, run
+ * GetAdGroups.php.
  */
-function UpdateAdGroupExample(AdWordsUser $user, $adGroupId) {
-  // Get the service, which loads the required classes.
-  $adGroupService = $user->GetService('AdGroupService', ADWORDS_VERSION);
+class UpdateAdGroup {
 
-  // Create ad group using an existing ID.
-  $adGroup = new AdGroup();
-  $adGroup->id = $adGroupId;
+  const AD_GROUP_ID = 'INSERT_AD_GROUP_ID_HERE';
+  const MICROS_PER_DOLLAR = 1000000;
 
-  // Update the bid.
-  $bid = new CpcBid();
-  $bid->bid =  new Money(0.75 * AdWordsConstants::MICROS_PER_DOLLAR);
-  $biddingStrategyConfiguration = new BiddingStrategyConfiguration();
-  $biddingStrategyConfiguration->bids[] = $bid;
-  $adGroup->biddingStrategyConfiguration = $biddingStrategyConfiguration;
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session, $adGroupId) {
+    $adGroupService = $adWordsServices->get($session, AdGroupService::class);
 
-  // Create operation.
-  $operation = new AdGroupOperation();
-  $operation->operand = $adGroup;
-  $operation->operator = 'SET';
+    $operations = [];
+    // Create ad group object.
+    $adGroup = new AdGroup();
+    $adGroup->setId($adGroupId);
 
-  $operations = array($operation);
+    // Update the bid.
+    $bid = new CpcBid();
+    $money = new Money();
+    $money->setMicroAmount(intval(0.75 * self::MICROS_PER_DOLLAR));
+    $bid->setBid($money);
+    $biddingStrategyConfiguration = new BiddingStrategyConfiguration();
+    $biddingStrategyConfiguration->setBids([$bid]);
+    $adGroup->setBiddingStrategyConfiguration($biddingStrategyConfiguration);
 
-  // Make the mutate request.
-  $result = $adGroupService->mutate($operations);
+    // Create ad group operation and add it to the list.
+    $operation = new AdGroupOperation();
+    $operation->setOperand($adGroup);
+    $operation->setOperator(Operator::SET);
+    $operations[] = $operation;
 
-  // Display result.
-  $adGroup = $result->value[0];
-  printf("Ad group with ID '%s' has updated default bid '$%s'.\n", $adGroup->id,
-      $adGroup->biddingStrategyConfiguration->bids[0]->bid->microAmount /
-          AdWordsConstants::MICROS_PER_DOLLAR);
+    // Update the ad group on the server.
+    $result = $adGroupService->mutate($operations);
 
+    $adGroup = $result->getValue()[0];
+    $bid = $adGroup->getBiddingStrategyConfiguration()->getBids()[0]->getBid();
+    printf(
+        "Ad group with ID %d has updated default bid to %f in your currency.\n",
+        $adGroup->getId(),
+        $bid->getMicroAmount() / self::MICROS_PER_DOLLAR
+    );
+  }
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(
+        new AdWordsServices(), $session, intval(self::AD_GROUP_ID));
+  }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  UpdateAdGroupExample($user, $adGroupId);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+UpdateAdGroup::main();

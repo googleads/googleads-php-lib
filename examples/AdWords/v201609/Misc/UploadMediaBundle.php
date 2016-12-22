@@ -1,8 +1,6 @@
 <?php
 /**
- * This example uploads an HTML5 zip file as a MediaBundle.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,65 +13,66 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\Misc;
 
-// Include the initialization file.
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
 
-require_once UTIL_PATH . '/MediaUtils.php';
-require_once UTIL_PATH . '/MapUtils.php';
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\MediaBundle;
+use Google\AdsApi\AdWords\v201609\cm\MediaMediaType;
+use Google\AdsApi\AdWords\v201609\cm\MediaService;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
+use Google\AdsApi\Common\Util\MapEntries;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
+ * This example uploads an HTML5 zip file as a MediaBundle.
  */
-function UploadMediaBundleExample(AdWordsUser $user) {
-  // Get the service, which loads the required classes.
-  $mediaService = $user->GetService('MediaService', ADWORDS_VERSION);
+class UploadImageBundle {
 
-  // Create HTML5 media.
-  $html5Zip = new MediaBundle();
-  $html5Zip->data = MediaUtils::GetBase64Data('https://goo.gl/9Y7qI2');
-  $html5Zip->type = 'MEDIA_BUNDLE';
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session) {
+    $mediaService =
+        $adWordsServices->get($session, MediaService::class);
 
-  // Make the upload request.
-  $result = $mediaService->upload(array($html5Zip));
+    // Create HTML5 media and add it to the list.
+    $html5Zip = new MediaBundle();
+    $html5Zip->setData(file_get_contents('https://goo.gl/9Y7qI2'));
+    $html5Zip->setType(MediaMediaType::MEDIA_BUNDLE);
+    $mediaBundles = [$html5Zip];
 
-  // Display result.
-  $mediaBundle = $result[0];
-  $dimensions = MapUtils::GetMap($mediaBundle->dimensions);
-  printf(
-      "HTML5 media with ID %d, dimensions '%dx%d', MIME type '%s' was "
-          . "uploaded.\n",
-              $mediaBundle->mediaId,
-              $dimensions['FULL']->width,
-              $dimensions['FULL']->height,
-              $mediaBundle->mimeType
-  );
+    // Upload the media bundle to the server.
+    $result = $mediaService->upload($mediaBundles);
+
+    // Print out some information about the uploaded image.
+    $mediaBundle = $result[0];
+    $dimensions = MapEntries::toAssociativeArray($mediaBundle->getDimensions());
+    printf(
+        "HTML5 media with ID %d, dimensions '%dx%d', MIME type '%s' was "
+            . "uploaded.\n",
+        $mediaBundle->getMediaId(),
+        $dimensions['FULL']->getWidth(),
+        $dimensions['FULL']->getHeight(),
+        $mediaBundle->getMimeType()
+    );
+  }
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(new AdWordsServices(), $session);
+  }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  UploadMediaBundleExample($user);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+UploadImageBundle::main();

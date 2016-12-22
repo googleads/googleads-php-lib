@@ -1,10 +1,6 @@
 <?php
 /**
- * This example gets the Marketplace comments for a programmatic proposal.
- *
- * PHP version 5
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,75 +13,84 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsDfp
- * @subpackage v201611
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
-error_reporting(E_STRICT | E_ALL);
+namespace Google\AdsApi\Examples\Dfp\v201611\ProposalService;
 
-// You can set the include path to src directory or reference
-// DfpUser.php directly via require_once.
-// $path = '/path/to/dfp_api_php_lib/src';
-$path = dirname(__FILE__) . '/../../../../src';
-set_include_path(get_include_path() . PATH_SEPARATOR . $path);
+require '../../../../vendor/autoload.php';
 
-require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
-require_once 'Google/Api/Ads/Dfp/Util/v201611/DateTimeUtils.php';
-require_once 'Google/Api/Ads/Dfp/Util/v201611/StatementBuilder.php';
-require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
+use Google\AdsApi\Common\OAuth2TokenBuilder;
+use Google\AdsApi\Dfp\DfpServices;
+use Google\AdsApi\Dfp\DfpSession;
+use Google\AdsApi\Dfp\DfpSessionBuilder;
+use Google\AdsApi\Dfp\Util\v201611\DfpDateTimes;
+use Google\AdsApi\Dfp\Util\v201611\StatementBuilder;
+use Google\AdsApi\Dfp\v201611\ProposalService;
 
-$proposalId = 'INSERT_PROGRAMMATIC_PROPOSAL_ID_HERE';
+/**
+ * This example gets the Marketplace comments for a programmatic proposal.
+ *
+ * <p>It is meant to be run from a command line (not as a webpage) and requires
+ * that you've setup an `adsapi_php.ini` file in your home directory with your
+ * API credentials and settings. See README.md for more info.
+ */
+class GetMarketplaceComments {
 
-try {
-  // Get DfpUser from credentials in "../auth.ini"
-  // relative to the DfpUser.php file's directory.
-  $user = new DfpUser();
+  const PROPOSAL_ID = 'INSERT_PROPOSAL_ID_HERE';
 
-  // Log SOAP XML request and response.
-  $user->LogDefaults();
+  public static function runExample(DfpServices $dfpServices,
+      DfpSession $session, $proposalId) {
+    $proposalService = $dfpServices->get($session, ProposalService::class);
 
-  $proposalService = $user->GetService('ProposalService', 'v201611');
+    // Create a statement to select marketplace comments.
+    $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
+    $statementBuilder = (new StatementBuilder())
+        ->where('proposalId = :proposalId')
+        ->withBindVariableValue('proposalId', $proposalId);
 
-  // Create a statement to select Marketplace comments.
-  $statementBuilder = new StatementBuilder();
-  $statementBuilder->Where('proposalId = :proposalId')
-      ->WithBindVariableValue('proposalId', $proposalId);
+    // Retrieve a small amount of marketplace comments at a time, paging
+    // through until all marketplace comments have been retrieved.
+    $totalResultSetSize = 0;
+    do {
+      $page = $proposalService->getMarketplaceCommentsByStatement(
+          $statementBuilder->toStatement());
 
-  // Retrieve a small amount of Marketplace comments at a time, paging through
-  // until all comments have been retrieved.
-  $totalResultSetSize = 0;
-  do {
-    $page = $proposalService->getMarketplaceCommentsByStatement(
-        $statementBuilder->ToStatement());
-
-    if ($page->results !== null) {
-      // Print out some information for each Marketplace comment.
-      $totalResultSetSize = $page->totalResultSetSize;
-      $i = $page->startIndex;
-      foreach ($page->results as $marketplaceComment) {
-        printf(
-            "%d) Marketplace comment with creation time '%s' and comment '%s' "
-                . "was found.\n",
-            $i++,
-            DateTimeUtils::ToStringWithTimeZone(
-                $marketplaceComment->creationTime),
-            $marketplaceComment->comment
-        );
+      // Print out some information for each marketplace comment.
+      if ($page->getResults() !== null) {
+        $totalResultSetSize = $page->getTotalResultSetSize();
+        $i = $page->getStartIndex();
+        foreach ($page->getResults() as $marketplaceComment) {
+          printf(
+              "%d) Marketplace comment with creation time '%s' and comment "
+                  . "'%s' was found.\n",
+              $i++,
+              DfpDateTimes::toDateTimeString(
+                  $marketplaceComment->getCreationTime()),
+              $marketplaceComment->getComment()
+          );
+        }
       }
-    }
 
-    $statementBuilder->IncreaseOffsetBy(StatementBuilder::SUGGESTED_PAGE_LIMIT);
-  } while ($statementBuilder->GetOffset() < $totalResultSetSize);
+      $statementBuilder->increaseOffsetBy($pageSize);
+    } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-  printf("Number of results found: %d\n", $totalResultSetSize);
-} catch (OAuth2Exception $e) {
-  ExampleUtils::CheckForOAuth2Errors($e);
-} catch (ValidationException $e) {
-  ExampleUtils::CheckForOAuth2Errors($e);
-} catch (Exception $e) {
-  printf("%s\n", $e->getMessage());
+    printf("Number of results found: %d\n", $totalResultSetSize);
+  }
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new DfpSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+
+    self::runExample(new DfpServices(), $session, intval(self::PROPOSAL_ID));
+  }
 }
+
+GetMarketplaceComments::main();

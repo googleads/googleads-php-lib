@@ -1,12 +1,6 @@
 <?php
 /**
- * This example shows how to create a draft and access its associated
- * draft campaign.
- *
- * See the Campaign Drafts and Experiments guide for more information:
- * https://developers.google.com/adwords/api/docs/guides/campaign-drafts-experiments
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,96 +13,103 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\CampaignManagement;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
 
-// Enter parameters required by the code example.
-$baseCampaignId = 'INSERT_BASE_CAMPAIGN_ID_HERE';
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\CampaignCriterion;
+use Google\AdsApi\AdWords\v201609\cm\CampaignCriterionOperation;
+use Google\AdsApi\AdWords\v201609\cm\CampaignCriterionService;
+use Google\AdsApi\AdWords\v201609\cm\Draft;
+use Google\AdsApi\AdWords\v201609\cm\DraftOperation;
+use Google\AdsApi\AdWords\v201609\cm\DraftService;
+use Google\AdsApi\AdWords\v201609\cm\Language;
+use Google\AdsApi\AdWords\v201609\cm\Operator;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
- * @param int $baseCampaignId the ID of the base campaign used to create
- *     a draft
+ * This example shows how to create a draft and access its associated
+ * draft campaign.
  */
-function AddDraftExample(AdWordsUser $user, $baseCampaignId) {
-  // Get the DraftService, which loads the required classes.
-  $draftService = $user->GetService('DraftService', ADWORDS_VERSION);
+class AddDraft {
 
-  // Create a draft.
-  $draft = new Draft();
-  $draft->baseCampaignId = $baseCampaignId;
-  $draft->draftName = 'Test Draft #' . uniqid();
+  const BASE_CAMPAIGN_ID = 'INSERT_BASE_CAMPAIGN_ID_HERE';
 
-  // Create an operation.
-  $operation = new DraftOperation();
-  $operation->operand = $draft;
-  $operation->operator = 'ADD';
-  $operations[] = $operation;
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session, $baseCampaignId) {
+    $draftService = $adWordsServices->get($session, DraftService::class);
 
-  // Make the mutate request.
-  $result = $draftService->mutate($operations);
-  $draft = $result->value[0];
-  printf(
-      "Draft with ID %d, base campaign ID %d, and draft campaign ID"
-          . " %d was added.\n",
-      $draft->draftId,
-      $draft->baseCampaignId,
-      $draft->draftCampaignId
-  );
+    $operations = [];
+    // Create a draft.
+    $draft = new Draft();
+    $draft->setBaseCampaignId($baseCampaignId);
+    $draft->setDraftname('Test Draft #' . uniqid());
 
-  // Once the draft is created, you can modify the draft campaign as if it were
-  // a real campaign. For example, you may add criteria, adjust bids, or even
-  // include additional ads. Adding a criterion is shown here.
-  $campaignCriterionService =
-      $user->GetService('CampaignCriterionService', ADWORDS_VERSION);
+    // Create a draft operation and add it to the operations list.
+    $operation = new DraftOperation();
+    $operation->setOperand($draft);
+    $operation->setOperator(Operator::ADD);
+    $operations[] = $operation;
 
-  // Create a criterion.
-  $language = new Language();
-  $language->id = 1003; // Spanish
-  $campaignCriterion = new CampaignCriterion();
-  $campaignCriterion->campaignId = $draft->draftCampaignId;
-  $campaignCriterion->criterion = $language;
+    // Create the draft on the server and print out some information for
+    // the created draft.
+    $result = $draftService->mutate($operations);
+    $draft = $result->getValue()[0];
+    printf(
+        "Draft with ID %d, base campaign ID %d, and draft campaign ID"
+            . " %d was added.\n",
+        $draft->getDraftId(),
+        $draft->getBaseCampaignId(),
+        $draft->getDraftCampaignId()
+    );
 
-  // Create an operation.
-  $operations = array();
-  $operation = new CampaignCriterionOperation();
-  $operation->operand = $campaignCriterion;
-  $operation->operator = 'ADD';
-  $operations[] = $operation;
+    // Once the draft is created, you can modify the draft campaign as if it
+    // were a real campaign. For example, you may add criteria, adjust bids, or
+    // even include additional ads. Adding a criterion is shown here.
+    $campaignCriterionService =
+        $adWordsServices->get($session, CampaignCriterionService::class);
 
-  // Make the mutate request.
-  $result = $campaignCriterionService->mutate($operations);
-  $campaignCriterion = $result->value[0];
+    // Create a criterion.
+    $language = new Language();
+    $language->setId(1003); // Spanish
+    $campaignCriterion = new CampaignCriterion();
+    $campaignCriterion->setCampaignId($draft->getDraftCampaignId());
+    $campaignCriterion->setCriterion($language);
 
-  printf("Draft updated to include criteria in the campaign with ID %d.\n",
-      $draft->draftCampaignId);
+    // Create a campaign criterion operation and add it to the operations list.
+    $operations = [];
+    $operation = new CampaignCriterionOperation();
+    $operation->setOperand($campaignCriterion);
+    $operation->setOperator(Operator::ADD);
+    $operations[] = $operation;
+
+    // Create a campaign criterion on the server.
+    $campaignCriterion =
+        $campaignCriterionService->mutate($operations)->getValue()[0];
+
+    printf("Draft updated to include criteria in the campaign with ID %d.\n",
+        $draft->getDraftCampaignId());
+  }
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(new AdWordsServices(), $session,
+        intval(self::BASE_CAMPAIGN_ID));
+  }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  AddDraftExample($user, $baseCampaignId);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+AddDraft::main();

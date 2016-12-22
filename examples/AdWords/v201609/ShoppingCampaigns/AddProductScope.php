@@ -1,9 +1,6 @@
 <?php
 /**
- * This example restricts the products that will be included in the campaign by
- * setting a ProductScope.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,77 +13,121 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\ShoppingCampaigns;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
 
-$campaignId = 'INSERT_CAMPAIGN_ID_HERE';
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\CampaignCriterion;
+use Google\AdsApi\AdWords\v201609\cm\CampaignCriterionOperation;
+use Google\AdsApi\AdWords\v201609\cm\CampaignCriterionService;
+use Google\AdsApi\AdWords\v201609\cm\Operator;
+use Google\AdsApi\AdWords\v201609\cm\ProductBiddingCategory;
+use Google\AdsApi\AdWords\v201609\cm\ProductBrand;
+use Google\AdsApi\AdWords\v201609\cm\ProductCanonicalCondition;
+use Google\AdsApi\AdWords\v201609\cm\ProductCanonicalConditionCondition;
+use Google\AdsApi\AdWords\v201609\cm\ProductCustomAttribute;
+use Google\AdsApi\AdWords\v201609\cm\ProductDimensionType;
+use Google\AdsApi\AdWords\v201609\cm\ProductOfferId;
+use Google\AdsApi\AdWords\v201609\cm\ProductScope;
+use Google\AdsApi\AdWords\v201609\cm\ProductType;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
- * @param int $campaignId the campaign to modify
+ * This example restricts the products that will be included in the campaign by
+ * setting a ProductScope.
  */
-function addProductScopeExample(AdWordsUser $user, $campaignId) {
-  // Get the CampaignCriterionService, which loads the required classes.
-  $campaignCriterionService = $user->GetService('CampaignCriterionService',
-        ADWORDS_VERSION);
+class AddProductScope {
 
-  $productScope = new ProductScope();
-  // This set of dimensions is for demonstration purposes only. It would be
-  // extremely unlikely that you want to include so many dimensions in your
-  // product scope.
-  $productScope->dimensions[] = new ProductBrand('Nexus');
-  $productScope->dimensions[] = new ProductCanonicalCondition('NEW');
-  $productScope->dimensions[] =
-      new ProductCustomAttribute('CUSTOM_ATTRIBUTE_0', 'my attribute value');
-  $productScope->dimensions[] = new ProductOfferId('book1');
-  $productScope->dimensions[] = new ProductType('PRODUCT_TYPE_L1', 'Media');
-  $productScope->dimensions[] = new ProductType('PRODUCT_TYPE_L2', 'Books');
-  // The value for the bidding category is a fixed ID for the 'Luggage & Bags'
-  // category. You can retrieve IDs for categories from the ConstantDataService.
-  // See the 'GetProductCategoryTaxonomy' example for more details.
-  $productScope->dimensions[] =
-      new ProductBiddingCategory('BIDDING_CATEGORY_L1', '-5914235892932915235');
+  const CAMPAIGN_ID = 'INSERT_CAMPAIGN_ID_HERE';
 
-  $campaignCriterion = new CampaignCriterion();
-  $campaignCriterion->campaignId = $campaignId;
-  $campaignCriterion->criterion = $productScope;
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session, $campaignId) {
+    $campaignCriterionService =
+        $adWordsServices->get($session, CampaignCriterionService::class);
 
-  // Create operation.
-  $operation = new CampaignCriterionOperation();
-  $operation->operand = $campaignCriterion;
-  $operation->operator = 'ADD';
+    $productScope = new ProductScope();
+    // This set of dimensions is for demonstration purposes only. It would be
+    // extremely unlikely that you want to include so many dimensions in your
+    // product scope.
+    $dimensions = [];
+    $productBrand = new ProductBrand();
+    $productBrand->setValue('Nexus');
 
-  // Make the mutate request.
-  $result = $campaignCriterionService->mutate(array($operation));
+    $productCanonicalCondition = new ProductCanonicalCondition();
+    $productCanonicalCondition->setCondition(
+        ProductCanonicalConditionCondition::NEW_VALUE);
 
-  printf("Created a ProductScope criterion with ID '%s'",
-        $result->value[0]->criterion->id);
+    $productCustomAttribute = new ProductCustomAttribute();
+    $productCustomAttribute->setType(ProductDimensionType::CUSTOM_ATTRIBUTE_0);
+    $productCustomAttribute->setValue('my attribute value');
+
+    $productOfferId = new ProductOfferId();
+    $productOfferId->setValue('book1');
+
+    $productType1 = new ProductType();
+    $productType1->setType(ProductDimensionType::PRODUCT_TYPE_L1);
+    $productType1->setValue('Media');
+
+    $productType2 = new ProductType();
+    $productType2->setType(ProductDimensionType::PRODUCT_TYPE_L2);
+    $productType2->setValue('Books');
+
+    // The value for the bidding category is a fixed ID for the 'Luggage & Bags'
+    // category. You can retrieve IDs for categories from the
+    // ConstantDataService.
+    // See the 'GetProductCategoryTaxonomy' example for more details.
+    $productBiddingCategory = new ProductBiddingCategory();
+    $productBiddingCategory->setType(ProductDimensionType::BIDDING_CATEGORY_L1);
+    $productBiddingCategory->setValue(-5914235892932915235);
+
+    $productScope->setDimensions([
+        $productBrand,
+        $productCanonicalCondition,
+        $productCustomAttribute,
+        $productOfferId,
+        $productType1,
+        $productType2,
+        $productBiddingCategory
+    ]);
+
+    $campaignCriterion = new CampaignCriterion();
+    $campaignCriterion->setCampaignId($campaignId);
+    $campaignCriterion->setCriterion($productScope);
+
+    // Create a campaign criterion operation and add it to the operations list.
+    $operations = [];
+    $operation = new CampaignCriterionOperation();
+    $operation->setOperand($campaignCriterion);
+    $operation->setOperator(Operator::ADD);
+    $operations[] = $operation;
+
+    // Create the campaign criterion on the server and print out some
+    // information.
+    $campaignCrtierion =
+        $campaignCriterionService->mutate($operations)->getValue()[0];
+    printf("Created a ProductScope criterion with ID %d.\n",
+        $campaignCriterion->getCriterion()->getId());
+  }
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(new AdWordsServices(), $session,
+        intval(self::CAMPAIGN_ID));
+  }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  addProductScopeExample($user, $campaignId);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+AddProductScope::main();

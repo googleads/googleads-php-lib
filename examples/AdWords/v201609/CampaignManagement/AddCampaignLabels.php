@@ -1,8 +1,6 @@
 <?php
 /**
- * This example adds a label to multiple campaigns.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,70 +13,76 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\CampaignManagement;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
 
-$campaignIds = array('INSERT_CAMPAIGN_ID_1_HERE', 'INSERT_CAMPAIGN_ID_2_HERE');
-$labelId = 'INSERT_LABEL_ID_HERE';
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\CampaignLabel;
+use Google\AdsApi\AdWords\v201609\cm\CampaignLabelOperation;
+use Google\AdsApi\AdWords\v201609\cm\CampaignService;
+use Google\AdsApi\AdWords\v201609\cm\Operator;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
- * @param array $campaignIds an array of campaign Ids to run the example with
- * @param string $labelId the label Id to run the example with
+ * This example adds a label to multiple campaigns.
  */
-function AddCampaignLabelsExample(AdWordsUser $user, array $campaignIds,
-    $labelId) {
-  // Get the CampaignService, which loads the required classes.
-  $campaignService = $user->GetService('CampaignService', ADWORDS_VERSION);
+class AddCampaignLabels {
 
-  $operations = array();
-  foreach ($campaignIds as $campaignId) {
-    $campaignLabel = new CampaignLabel();
-    $campaignLabel->campaignId = $campaignId;
-    $campaignLabel->labelId = $labelId;
+  const CAMPAIGN_ID_1 = 'INSERT_CAMPAIGN_ID_1_HERE';
+  const CAMPAIGN_ID_2 = 'INSERT_CAMPAIGN_ID_2_HERE';
+  const LABEL_ID = 'INSERT_LABEL_ID_HERE';
 
-    $operation = new CampaignLabelOperation();
-    $operation->operand = $campaignLabel;
-    $operation->operator = 'ADD';
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session, array $campaignIds, $labelId) {
+    $campaignService = $adWordsServices->get($session, CampaignService::class);
 
-    $operations[] = $operation;
+    // Create campaign labels and campaign label operations, and add the
+    // operations to the list.
+    $operations = [];
+    foreach ($campaignIds as $campaignId) {
+      $campaignLabel = new CampaignLabel();
+      $campaignLabel->setCampaignId($campaignId);
+      $campaignLabel->setLabelId($labelId);
+
+      $operation = new CampaignLabelOperation();
+      $operation->setOperand($campaignLabel);
+      $operation->setOperator(Operator::ADD);
+
+      $operations[] = $operation;
+    }
+
+    // Add campaign labels on the server and print out some information for
+    // each created campaign label.
+    $result = $campaignService->mutateLabel($operations);
+    foreach ($result->getValue() as $campaignLabel) {
+      printf("Campaign label for campaign ID %d and label ID %d was added.\n",
+          $campaignLabel->getCampaignId(), $campaignLabel->getLabelId());
+    }
   }
 
-  // Make the mutate request.
-  $result = $campaignService->mutateLabel($operations);
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
 
-  // Display results.
-  foreach ($result->value as $campaignLabel) {
-    printf("Campaign label for campaign ID '%s' and label ID '%d' was added.\n",
-        $campaignLabel->campaignId, $campaignLabel->labelId);
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(
+        new AdWordsServices(),
+        $session,
+        [intval(self::CAMPAIGN_ID_1), intval(self::CAMPAIGN_ID_2)],
+        intval(self::LABEL_ID)
+    );
   }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  AddCampaignLabelsExample($user, $campaignIds, $labelId);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+AddCampaignLabels::main();

@@ -1,9 +1,6 @@
 <?php
 /**
- * This example gets all disapproved ads in an ad group. To get ad groups, run
- * BasicOperation/GetAdGroups.php.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,84 +13,96 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\CampaignManagement;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
 
-// Enter parameters required by the code example.
-$adGroupId = 'INSERT_AD_GROUP_ID_HERE';
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\AdGroupAdService;
+use Google\AdsApi\AdWords\v201609\cm\ApprovalStatus;
+use Google\AdsApi\AdWords\v201609\cm\OrderBy;
+use Google\AdsApi\AdWords\v201609\cm\Paging;
+use Google\AdsApi\AdWords\v201609\cm\Predicate;
+use Google\AdsApi\AdWords\v201609\cm\PredicateOperator;
+use Google\AdsApi\AdWords\v201609\cm\Selector;
+use Google\AdsApi\AdWords\v201609\cm\SortOrder;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
- * @param string $adGroupId the parent ad group id of the ads to retrieve
+ * This example gets all disapproved ads in an ad group. To get ad groups, run
+ * BasicOperation/GetAdGroups.php.
  */
-function GetAllDisapprovedAdsExample(AdWordsUser $user, $adGroupId) {
-  // Get the service, which loads the required classes.
-  $adGroupAdService = $user->GetService('AdGroupAdService', ADWORDS_VERSION);
+class GetAllDisapprovedAds {
 
-  // Create selector.
-  $selector = new Selector();
-  $selector->fields = array('Id', 'AdGroupAdDisapprovalReasons');
-  $selector->ordering = array(new OrderBy('Id', 'ASCENDING'));
+  const AD_GROUP_ID = 'INSERT_AD_GROUP_ID_HERE';
+  const PAGE_LIMIT = 500;
 
-  // Create predicates.
-  $selector->predicates[] = new Predicate('AdGroupId', 'IN', array($adGroupId));
-  $selector->predicates[] =
-      new Predicate('AdGroupCreativeApprovalStatus', 'IN',
-          array('DISAPPROVED'));
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session, $adGroupId) {
+    $adGroupAdService =
+        $adWordsServices->get($session, AdGroupAdService::class);
 
-  // Create paging controls.
-  $selector->paging = new Paging(0, AdWordsConstants::RECOMMENDED_PAGE_SIZE);
+    // Create a selector to select all ads for the specified ad group.
+    $selector = new Selector();
+    $selector->setFields(['Id', 'AdGroupAdDisapprovalReasons']);
+    $selector->setOrdering([new OrderBy('Id', SortOrder::ASCENDING)]);
+    // Create the predicate to get only disapproved ads.
+    $selector->setPredicates([
+        new Predicate('AdGroupId', PredicateOperator::IN, [$adGroupId]),
+        new Predicate('AdGroupCreativeApprovalStatus', PredicateOperator::IN,
+            [ApprovalStatus::DISAPPROVED])
+    ]);
+    $selector->setPaging(new Paging(0, self::PAGE_LIMIT));
 
-  do {
-    // Make the get request.
-    $page = $adGroupAdService->get($selector);
+    $totalNumEntries = 0;
+    do {
+      // Retrieve ad group ads one page at a time, continuing to request pages
+      // until all ad group ads have been retrieved.
+      $page = $adGroupAdService->get($selector);
 
-    // Display results.
-    if (isset($page->entries)) {
-      foreach ($page->entries as $adGroupAd) {
-        printf("Ad with ID '%.0f', and type '%s' was disapproved for the "
-            . "following reasons:\n", $adGroupAd->ad->id,
-            $adGroupAd->ad->AdType);
-        if (!empty($adGroupAd->disapprovalReasons)) {
-          foreach ($adGroupAd->disapprovalReasons as $reason) {
-            printf("\t'%s'\n", $reason);
+      // Print out some information for each ad group ad.
+      if ($page->getEntries() !== null) {
+        $totalNumEntries = $page->getTotalNumEntries();
+        foreach ($page->getEntries() as $adGroupAd) {
+          printf(
+              "Ad with ID %d and type '%s' was disapproved for the following"
+                  . " reasons:\n",
+              $adGroupAd->getAd()->getId(),
+              $adGroupAd->getAd()->getType()
+          );
+          if ($adGroupAd->getDisapprovalReasons() !== null) {
+            foreach ($adGroupAd->getDisapprovalReasons() as $reason) {
+              printf("\t'%s'\n", $reason);
+            }
           }
         }
       }
-    } else {
-      print "No disapproved ads were found.\n";
-    }
 
-    // Advance the paging index.
-    $selector->paging->startIndex += AdWordsConstants::RECOMMENDED_PAGE_SIZE;
-  } while ($page->totalNumEntries > $selector->paging->startIndex);
+      $selector->getPaging()->setStartIndex(
+          $selector->getPaging()->getStartIndex() + self::PAGE_LIMIT);
+    } while ($selector->getPaging()->getStartIndex() < $totalNumEntries);
+
+    printf("Number of results found: %d\n", $totalNumEntries);
+  }
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(
+        new AdWordsServices(), $session, intval(self::AD_GROUP_ID));
+  }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  GetAllDisapprovedAdsExample($user, $adGroupId);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+GetAllDisapprovedAds::main();

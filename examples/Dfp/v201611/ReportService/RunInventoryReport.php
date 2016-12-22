@@ -1,10 +1,6 @@
 <?php
 /**
- * This example runs a typical daily inventory report.
- *
- * PHP version 5
- *
- * Copyright 2014, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,97 +13,104 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsDfp
- * @subpackage v201611
- * @category   WebServices
- * @copyright  2014, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
-error_reporting(E_STRICT | E_ALL);
+namespace Google\AdsApi\Examples\Dfp\v201611\ReportService;
 
-// You can set the include path to src directory or reference
-// DfpUser.php directly via require_once.
-// $path = '/path/to/dfp_api_php_lib/src';
-$path = dirname(__FILE__) . '/../../../../src';
-set_include_path(get_include_path() . PATH_SEPARATOR . $path);
+require '../../../../vendor/autoload.php';
 
-require_once 'Google/Api/Ads/Dfp/Lib/DfpUser.php';
-require_once 'Google/Api/Ads/Dfp/Util/v201611/ReportDownloader.php';
-require_once 'Google/Api/Ads/Dfp/Util/v201611/StatementBuilder.php';
-require_once dirname(__FILE__) . '/../../../Common/ExampleUtils.php';
+use Google\AdsApi\Common\OAuth2TokenBuilder;
+use Google\AdsApi\Dfp\DfpServices;
+use Google\AdsApi\Dfp\DfpSession;
+use Google\AdsApi\Dfp\DfpSessionBuilder;
+use Google\AdsApi\Dfp\Util\v201611\ReportDownloader;
+use Google\AdsApi\Dfp\Util\v201611\StatementBuilder;
+use Google\AdsApi\Dfp\v201611\Column;
+use Google\AdsApi\Dfp\v201611\DateRangeType;
+use Google\AdsApi\Dfp\v201611\Dimension;
+use Google\AdsApi\Dfp\v201611\ExportFormat;
+use Google\AdsApi\Dfp\v201611\NetworkService;
+use Google\AdsApi\Dfp\v201611\ReportJob;
+use Google\AdsApi\Dfp\v201611\ReportQuery;
+use Google\AdsApi\Dfp\v201611\ReportQueryAdUnitView;
+use Google\AdsApi\Dfp\v201611\ReportService;
 
-try {
-  // Get DfpUser from credentials in "../auth.ini"
-  // relative to the DfpUser.php file's directory.
-  $user = new DfpUser();
+/**
+ * This example runs a typical daily inventory report and saves it in your
+ * system's temp directory. It filters on the network's root ad unit ID. This is
+ * only to demonstrate filtering for the purposes of this example, as filtering
+ * on the root ad unit is equivalent to not filtering on any ad units.
+ */
+class RunInventoryReport {
 
-  // Log SOAP XML request and response.
-  $user->LogDefaults();
+  public static function runExample(DfpServices $dfpServices,
+      DfpSession $session) {
+    $reportService = $dfpServices->get($session, ReportService::class);
+    $networkService = $dfpServices->get($session, NetworkService::class);
 
-  // Get the ReportService.
-  $reportService = $user->GetService('ReportService', 'v201611');
+    // Get the network's root ad unit ID to filter on.
+    $rootAdUnitId =
+        $networkService->getCurrentNetwork()->getEffectiveRootAdUnitId();
 
-  // Get the NetworkService.
-  $networkService = $user->GetService('NetworkService', 'v201611');
+    // Create statement to filter on a parent ad unit with the root ad unit ID
+    // to include all ad units in the network.
+    $statementBuilder = (new StatementBuilder())
+        ->where('PARENT_AD_UNIT_ID = :parentAdUnitId')
+        ->withBindVariableValue('parentAdUnitId', intval($rootAdUnitId));
 
-  // Get the root ad unit ID to filter on.
-  $rootAdUnitId =
-      $networkService->getCurrentNetwork()->effectiveRootAdUnitId;
+    // Create report query.
+    $reportQuery = new ReportQuery();
+    $reportQuery->setDimensions([
+        Dimension::AD_UNIT_ID,
+        Dimension::AD_UNIT_NAME
+    ]);
+    $reportQuery->setColumns([
+        Column::AD_SERVER_IMPRESSIONS,
+        Column::AD_SERVER_CLICKS,
+        Column::DYNAMIC_ALLOCATION_INVENTORY_LEVEL_IMPRESSIONS,
+        Column::DYNAMIC_ALLOCATION_INVENTORY_LEVEL_CLICKS,
+        Column::TOTAL_INVENTORY_LEVEL_IMPRESSIONS,
+        Column::TOTAL_INVENTORY_LEVEL_CPM_AND_CPC_REVENUE
+    ]);
+    // Set the filter statement.
+    $reportQuery->setStatement($statementBuilder->toStatement());
+    // Set the ad unit view to hierarchical.
+    $reportQuery->setAdUnitView(ReportQueryAdUnitView::HIERARCHICAL);
+    // Set the start and end dates or choose a dynamic date range type.
+    $reportQuery->setDateRangeType(DateRangeType::YESTERDAY);
 
-  // Create statement to filter on a parent ad unit with the root ad unit ID to
-  // include all ad units in the network.
-  $statementBuilder = new StatementBuilder();
-  $statementBuilder->Where('PARENT_AD_UNIT_ID = :parentAdUnitId')
-      ->WithBindVariableValue('parentAdUnitId', floatval($rootAdUnitId));
+    // Create report job and start it.
+    $reportJob = new ReportJob();
+    $reportJob->setReportQuery($reportQuery);
+    $reportJob = $reportService->runReportJob($reportJob);
 
-  // Create report query.
-  $reportQuery = new ReportQuery();
-  $reportQuery->dimensions = array('AD_UNIT_ID', 'AD_UNIT_NAME');
-  $reportQuery->columns = array('AD_SERVER_IMPRESSIONS', 'AD_SERVER_CLICKS',
-      'DYNAMIC_ALLOCATION_INVENTORY_LEVEL_IMPRESSIONS',
-      'DYNAMIC_ALLOCATION_INVENTORY_LEVEL_CLICKS',
-      'TOTAL_INVENTORY_LEVEL_IMPRESSIONS',
-      'TOTAL_INVENTORY_LEVEL_CPM_AND_CPC_REVENUE');
+    // Create report downloader to poll report's status and download when ready.
+    $reportDownloader = new ReportDownloader(
+        $reportService, $reportJob->getId());
+    if ($reportDownloader->waitForReportToFinish()) {
+      // Write to system temp directory by default.
+      $filePath = sprintf(
+          '%s.csv.gz',
+          tempnam(sys_get_temp_dir(), 'inventory-report-')
+      );
+      printf("Downloading report to %s ...\n", $filePath);
+      // Download the report.
+      $reportDownloader->downloadReport(ExportFormat::CSV_DUMP, $filePath);
+      print "done.\n";
+    } else {
+      print "Report failed.\n";
+    }
+  }
 
-  // Set the filter statement.
-  $reportQuery->statement = $statementBuilder->ToStatement();
-
-  // Set the ad unit view to hierarchical.
-  $reportQuery->adUnitView = 'HIERARCHICAL';
-
-  // Set the start and end dates or choose a dynamic date range type.
-  $reportQuery->dateRangeType = 'YESTERDAY';
-
-  // Create report job.
-  $reportJob = new ReportJob();
-  $reportJob->reportQuery = $reportQuery;
-
-  // Run report job.
-  $reportJob = $reportService->runReportJob($reportJob);
-
-  // Create report downloader.
-  $reportDownloader = new ReportDownloader($reportService, $reportJob->id);
-
-  // Wait for the report to be ready.
-  $reportDownloader->waitForReportReady();
-
-  // Change to your file location.
-  $filePath = sprintf('%s.csv.gz', tempnam(sys_get_temp_dir(),
-      'inventory-report-'));
-
-  printf("Downloading report to %s ...\n", $filePath);
-
-  // Download the report.
-  $reportDownloader->downloadReport('CSV_DUMP', $filePath);
-
-  printf("done.\n");
-} catch (OAuth2Exception $e) {
-  ExampleUtils::CheckForOAuth2Errors($e);
-} catch (ValidationException $e) {
-  ExampleUtils::CheckForOAuth2Errors($e);
-} catch (Exception $e) {
-  printf("%s\n", $e->getMessage());
+  public static function main() {
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+    $session = (new DfpSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(new DfpServices(), $session);
+  }
 }
 
+RunInventoryReport::main();

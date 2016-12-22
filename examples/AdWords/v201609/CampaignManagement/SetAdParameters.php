@@ -1,9 +1,6 @@
 <?php
 /**
- * This example sets ad parameters for a keyword. To get keywords, run
- * BasicOperaitons/GetKeywords.php.
- *
- * Copyright 2016, Google Inc. All Rights Reserved.
+ * Copyright 2016 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,74 +13,80 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
- * @package    GoogleApiAdsAdWords
- * @subpackage v201609
- * @category   WebServices
- * @copyright  2016, Google Inc. All Rights Reserved.
- * @license    http://www.apache.org/licenses/LICENSE-2.0 Apache License,
- *             Version 2.0
  */
+namespace Google\AdsApi\Examples\AdWords\v201609\CampaignManagement;
 
-// Include the initialization file
-require_once dirname(dirname(__FILE__)) . '/init.php';
+require '../../../../vendor/autoload.php';
 
-// Enter parameters required by the code example.
-$adGroupId = 'INSERT_AD_GROUP_ID_HERE';
-$keywordId = 'INSERT_KEYWORD_ID_HERE';
+use Google\AdsApi\AdWords\AdWordsServices;
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\v201609\cm\AdParam;
+use Google\AdsApi\AdWords\v201609\cm\AdParamOperation;
+use Google\AdsApi\AdWords\v201609\cm\AdParamService;
+use Google\AdsApi\AdWords\v201609\cm\Operator;
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Runs the example.
- * @param AdWordsUser $user the user to run the example with
- * @param string $adGroupId the id of the parent ad group of the keyword
- * @param string $keywordId the id of the keyword to set ad parameters for
+ * This example sets ad parameters for a keyword. To get keywords, run
+ * BasicOperations/GetKeywords.php.
  */
-function SetAdParametersExample(AdWordsUser $user, $adGroupId, $keywordId) {
-  // Get the service, which loads the required classes.
-  $adParamService = $user->GetService('AdParamService', ADWORDS_VERSION);
+class SetAdParameters {
 
-  // Create ad parameters.
-  $adParam1 = new AdParam($adGroupId, $keywordId, '100', 1);
-  $adParam2 = new AdParam($adGroupId, $keywordId, '$40', 2);
+  const AD_GROUP_ID = 'INSERT_AD_GROUP_ID_HERE';
+  const KEYWORD_ID = 'INSERT_KEYWORD_ID_HERE';
 
-  // Create operations.
-  $operations = array();
+  public static function runExample(AdWordsServices $adWordsServices,
+      AdWordsSession $session, $adGroupId, $keywordId) {
+    $adParamService =
+        $adWordsServices->get($session, AdParamService::class);
 
-  $adParamOperation1 = new AdParamOperation();
-  $adParamOperation1->operand = $adParam1;
-  $adParamOperation1->operator = 'SET';
-  $operations[] = $adParamOperation1;
+    // Create ad parameters.
+    $adParam1 = new AdParam($adGroupId, $keywordId, '100', 1);
+    $adParam2 = new AdParam($adGroupId, $keywordId, '$40', 2);
 
-  $adParamOperation2 = new AdParamOperation();
-  $adParamOperation2->operand = $adParam2;
-  $adParamOperation2->operator = 'SET';
-  $operations[] = $adParamOperation2;
+    $adParamOperation1s = [];
 
-  // Make the mutate request.
-  $adParams = $adParamService->mutate($operations);
+    $adParamOperation1 = new AdParamOperation();
+    $adParamOperation1->setOperand($adParam1);
+    $adParamOperation1->setOperator(Operator::SET);
+    $operations[] = $adParamOperation1;
 
-  // Display results.
-  foreach ($adParams as $adParam) {
-    printf("Ad parameter with insertion text '%s' and parameter index '%s' "
-        . "was set.\n", $adParam->insertionText, $adParam->paramIndex);
+    $adParamOperation2 = new AdParamOperation();
+    $adParamOperation2->setOperand($adParam2);
+    $adParamOperation2->setOperator(Operator::SET);
+    $operations[] = $adParamOperation2;
+
+    // Add ad params on the server.
+    $adParams = $adParamService->mutate($operations);
+
+    // Print out some information about added ad parameters.
+    foreach ($adParams as $adParam) {
+      printf(
+          "Ad parameter with insertion text '%s' and parameter index %d "
+              . "was set.\n",
+          $adParam->getInsertionText(),
+          $adParam->getParamIndex()
+      );
+    }
+  }
+
+  public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
+    $oAuth2Credential = (new OAuth2TokenBuilder())
+        ->fromFile()
+        ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
+    $session = (new AdWordsSessionBuilder())
+        ->fromFile()
+        ->withOAuth2Credential($oAuth2Credential)
+        ->build();
+    self::runExample(
+        new AdWordsServices(), $session, intval(self::AD_GROUP_ID),
+            intval(self::KEYWORD_ID));
   }
 }
 
-// Don't run the example if the file is being included.
-if (__FILE__ != realpath($_SERVER['PHP_SELF'])) {
-  return;
-}
-
-try {
-  // Get AdWordsUser from credentials in "../auth.ini"
-  // relative to the AdWordsUser.php file's directory.
-  $user = new AdWordsUser();
-
-  // Log every SOAP XML request and response.
-  $user->LogAll();
-
-  // Run the example.
-  SetAdParametersExample($user, $adGroupId, $keywordId);
-} catch (Exception $e) {
-  printf("An error has occurred: %s\n", $e->getMessage());
-}
+SetAdParameters::main();
