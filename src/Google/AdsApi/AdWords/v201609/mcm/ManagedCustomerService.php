@@ -12,7 +12,7 @@ class ManagedCustomerService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap = array (
+    private static $classmap =  [
       'AuthenticationError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\AuthenticationError',
       'AuthorizationError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\AuthorizationError',
       'ClientTermsError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\ClientTermsError',
@@ -70,13 +70,13 @@ class ManagedCustomerService extends \Google\AdsApi\Common\AdsSoapClient
       'mutateLabelResponse' => 'Google\\AdsApi\\AdWords\\v201609\\mcm\\mutateLabelResponse',
       'mutateLinkResponse' => 'Google\\AdsApi\\AdWords\\v201609\\mcm\\mutateLinkResponse',
       'mutateManagerResponse' => 'Google\\AdsApi\\AdWords\\v201609\\mcm\\mutateManagerResponse',
-    );
+    ];
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = array(),
+    public function __construct(array $options = [],
                 $wsdl = 'https://adwords.google.com/api/adwords/mcm/v201609/ManagedCustomerService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -84,9 +84,9 @@ class ManagedCustomerService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge(array (
+      $options = array_merge( [
       'features' => 1,
-    ), $options);
+    ], $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -99,7 +99,7 @@ class ManagedCustomerService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function get(\Google\AdsApi\AdWords\v201609\cm\Selector $serviceSelector)
     {
-      return $this->__soapCall('get', array(array('serviceSelector' => $serviceSelector)))->getRval();
+      return $this->__soapCall('get', [['serviceSelector' => $serviceSelector]])->getRval();
     }
 
     /**
@@ -111,7 +111,7 @@ class ManagedCustomerService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getPendingInvitations(\Google\AdsApi\AdWords\v201609\mcm\PendingInvitationSelector $selector)
     {
-      return $this->__soapCall('getPendingInvitations', array(array('selector' => $selector)))->getRval();
+      return $this->__soapCall('getPendingInvitations', [['selector' => $selector]])->getRval();
     }
 
     /**
@@ -127,7 +127,7 @@ class ManagedCustomerService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function mutate(array $operations)
     {
-      return $this->__soapCall('mutate', array(array('operations' => $operations)))->getRval();
+      return $this->__soapCall('mutate', [['operations' => $operations]])->getRval();
     }
 
     /**
@@ -152,7 +152,7 @@ class ManagedCustomerService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function mutateLabel(array $operations)
     {
-      return $this->__soapCall('mutateLabel', array(array('operations' => $operations)))->getRval();
+      return $this->__soapCall('mutateLabel', [['operations' => $operations]])->getRval();
     }
 
     /**
@@ -181,7 +181,7 @@ class ManagedCustomerService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function mutateLink(array $operations)
     {
-      return $this->__soapCall('mutateLink', array(array('operations' => $operations)))->getRval();
+      return $this->__soapCall('mutateLink', [['operations' => $operations]])->getRval();
     }
 
     /**
@@ -198,7 +198,7 @@ class ManagedCustomerService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function mutateManager(array $operations)
     {
-      return $this->__soapCall('mutateManager', array(array('operations' => $operations)))->getRval();
+      return $this->__soapCall('mutateManager', [['operations' => $operations]])->getRval();
     }
 
 }

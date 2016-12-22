@@ -12,7 +12,7 @@ class ContentMetadataKeyHierarchyService extends \Google\AdsApi\Common\AdsSoapCl
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap = array (
+    private static $classmap =  [
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'ApiError' => 'Google\\AdsApi\\Dfp\\v201611\\ApiError',
       'ApiException' => 'Google\\AdsApi\\Dfp\\v201611\\ApiException',
@@ -60,13 +60,13 @@ class ContentMetadataKeyHierarchyService extends \Google\AdsApi\Common\AdsSoapCl
       'getContentMetadataKeyHierarchiesByStatementResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getContentMetadataKeyHierarchiesByStatementResponse',
       'performContentMetadataKeyHierarchyActionResponse' => 'Google\\AdsApi\\Dfp\\v201611\\performContentMetadataKeyHierarchyActionResponse',
       'updateContentMetadataKeyHierarchiesResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updateContentMetadataKeyHierarchiesResponse',
-    );
+    ];
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = array(),
+    public function __construct(array $options = [],
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/ContentMetadataKeyHierarchyService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -74,9 +74,9 @@ class ContentMetadataKeyHierarchyService extends \Google\AdsApi\Common\AdsSoapCl
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge(array (
+      $options = array_merge( [
       'features' => 1,
-    ), $options);
+    ], $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -96,7 +96,7 @@ class ContentMetadataKeyHierarchyService extends \Google\AdsApi\Common\AdsSoapCl
      */
     public function createContentMetadataKeyHierarchies(array $contentMetadataKeyHierarchies)
     {
-      return $this->__soapCall('createContentMetadataKeyHierarchies', array(array('contentMetadataKeyHierarchies' => $contentMetadataKeyHierarchies)))->getRval();
+      return $this->__soapCall('createContentMetadataKeyHierarchies', [['contentMetadataKeyHierarchies' => $contentMetadataKeyHierarchies]])->getRval();
     }
 
     /**
@@ -131,7 +131,7 @@ class ContentMetadataKeyHierarchyService extends \Google\AdsApi\Common\AdsSoapCl
      */
     public function getContentMetadataKeyHierarchiesByStatement(\Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('getContentMetadataKeyHierarchiesByStatement', array(array('filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('getContentMetadataKeyHierarchiesByStatement', [['filterStatement' => $filterStatement]])->getRval();
     }
 
     /**
@@ -147,7 +147,7 @@ class ContentMetadataKeyHierarchyService extends \Google\AdsApi\Common\AdsSoapCl
      */
     public function performContentMetadataKeyHierarchyAction(\Google\AdsApi\Dfp\v201611\ContentMetadataKeyHierarchyAction $contentMetadataKeyHierarchyAction, \Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('performContentMetadataKeyHierarchyAction', array(array('contentMetadataKeyHierarchyAction' => $contentMetadataKeyHierarchyAction, 'filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('performContentMetadataKeyHierarchyAction', [['contentMetadataKeyHierarchyAction' => $contentMetadataKeyHierarchyAction, 'filterStatement' => $filterStatement]])->getRval();
     }
 
     /**
@@ -159,7 +159,7 @@ class ContentMetadataKeyHierarchyService extends \Google\AdsApi\Common\AdsSoapCl
      */
     public function updateContentMetadataKeyHierarchies(array $contentMetadataKeyHierarchies)
     {
-      return $this->__soapCall('updateContentMetadataKeyHierarchies', array(array('contentMetadataKeyHierarchies' => $contentMetadataKeyHierarchies)))->getRval();
+      return $this->__soapCall('updateContentMetadataKeyHierarchies', [['contentMetadataKeyHierarchies' => $contentMetadataKeyHierarchies]])->getRval();
     }
 
 }

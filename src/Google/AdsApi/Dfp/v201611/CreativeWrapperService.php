@@ -12,7 +12,7 @@ class CreativeWrapperService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap = array (
+    private static $classmap =  [
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'ActivateCreativeWrappers' => 'Google\\AdsApi\\Dfp\\v201611\\ActivateCreativeWrappers',
       'ApiError' => 'Google\\AdsApi\\Dfp\\v201611\\ApiError',
@@ -63,13 +63,13 @@ class CreativeWrapperService extends \Google\AdsApi\Common\AdsSoapClient
       'getCreativeWrappersByStatementResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getCreativeWrappersByStatementResponse',
       'performCreativeWrapperActionResponse' => 'Google\\AdsApi\\Dfp\\v201611\\performCreativeWrapperActionResponse',
       'updateCreativeWrappersResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updateCreativeWrappersResponse',
-    );
+    ];
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = array(),
+    public function __construct(array $options = [],
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/CreativeWrapperService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -77,9 +77,9 @@ class CreativeWrapperService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge(array (
+      $options = array_merge( [
       'features' => 1,
-    ), $options);
+    ], $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -99,7 +99,7 @@ class CreativeWrapperService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function createCreativeWrappers(array $creativeWrappers)
     {
-      return $this->__soapCall('createCreativeWrappers', array(array('creativeWrappers' => $creativeWrappers)))->getRval();
+      return $this->__soapCall('createCreativeWrappers', [['creativeWrappers' => $creativeWrappers]])->getRval();
     }
 
     /**
@@ -137,7 +137,7 @@ class CreativeWrapperService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getCreativeWrappersByStatement(\Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('getCreativeWrappersByStatement', array(array('filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('getCreativeWrappersByStatement', [['filterStatement' => $filterStatement]])->getRval();
     }
 
     /**
@@ -153,7 +153,7 @@ class CreativeWrapperService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function performCreativeWrapperAction(\Google\AdsApi\Dfp\v201611\CreativeWrapperAction $creativeWrapperAction, \Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('performCreativeWrapperAction', array(array('creativeWrapperAction' => $creativeWrapperAction, 'filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('performCreativeWrapperAction', [['creativeWrapperAction' => $creativeWrapperAction, 'filterStatement' => $filterStatement]])->getRval();
     }
 
     /**
@@ -165,7 +165,7 @@ class CreativeWrapperService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function updateCreativeWrappers(array $creativeWrappers)
     {
-      return $this->__soapCall('updateCreativeWrappers', array(array('creativeWrappers' => $creativeWrappers)))->getRval();
+      return $this->__soapCall('updateCreativeWrappers', [['creativeWrappers' => $creativeWrappers]])->getRval();
     }
 
 }

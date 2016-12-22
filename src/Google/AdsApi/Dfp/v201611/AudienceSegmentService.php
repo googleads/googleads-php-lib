@@ -12,7 +12,7 @@ class AudienceSegmentService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap = array (
+    private static $classmap =  [
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'ActivateAudienceSegments' => 'Google\\AdsApi\\Dfp\\v201611\\ActivateAudienceSegments',
       'AdUnitTargeting' => 'Google\\AdsApi\\Dfp\\v201611\\AdUnitTargeting',
@@ -80,13 +80,13 @@ class AudienceSegmentService extends \Google\AdsApi\Common\AdsSoapClient
       'getAudienceSegmentsByStatementResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getAudienceSegmentsByStatementResponse',
       'performAudienceSegmentActionResponse' => 'Google\\AdsApi\\Dfp\\v201611\\performAudienceSegmentActionResponse',
       'updateAudienceSegmentsResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updateAudienceSegmentsResponse',
-    );
+    ];
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = array(),
+    public function __construct(array $options = [],
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/AudienceSegmentService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -94,9 +94,9 @@ class AudienceSegmentService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge(array (
+      $options = array_merge( [
       'features' => 1,
-    ), $options);
+    ], $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -109,7 +109,7 @@ class AudienceSegmentService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function createAudienceSegments(array $segments)
     {
-      return $this->__soapCall('createAudienceSegments', array(array('segments' => $segments)))->getRval();
+      return $this->__soapCall('createAudienceSegments', [['segments' => $segments]])->getRval();
     }
 
     /**
@@ -171,7 +171,7 @@ class AudienceSegmentService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getAudienceSegmentsByStatement(\Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('getAudienceSegmentsByStatement', array(array('filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('getAudienceSegmentsByStatement', [['filterStatement' => $filterStatement]])->getRval();
     }
 
     /**
@@ -187,7 +187,7 @@ class AudienceSegmentService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function performAudienceSegmentAction(\Google\AdsApi\Dfp\v201611\AudienceSegmentAction $action, \Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('performAudienceSegmentAction', array(array('action' => $action, 'filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('performAudienceSegmentAction', [['action' => $action, 'filterStatement' => $filterStatement]])->getRval();
     }
 
     /**
@@ -199,7 +199,7 @@ class AudienceSegmentService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function updateAudienceSegments(array $segments)
     {
-      return $this->__soapCall('updateAudienceSegments', array(array('segments' => $segments)))->getRval();
+      return $this->__soapCall('updateAudienceSegments', [['segments' => $segments]])->getRval();
     }
 
 }

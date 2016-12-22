@@ -12,7 +12,7 @@ class BudgetOrderService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap = array (
+    private static $classmap =  [
       'ApiError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\ApiError',
       'ApiException' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\ApiException',
       'ApplicationException' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\ApplicationException',
@@ -70,13 +70,13 @@ class BudgetOrderService extends \Google\AdsApi\Common\AdsSoapClient
       'getResponse' => 'Google\\AdsApi\\AdWords\\v201609\\billing\\getResponse',
       'getBillingAccountsResponse' => 'Google\\AdsApi\\AdWords\\v201609\\billing\\getBillingAccountsResponse',
       'mutateResponse' => 'Google\\AdsApi\\AdWords\\v201609\\billing\\mutateResponse',
-    );
+    ];
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = array(),
+    public function __construct(array $options = [],
                 $wsdl = 'https://adwords.google.com/api/adwords/billing/v201609/BudgetOrderService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -84,9 +84,9 @@ class BudgetOrderService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge(array (
+      $options = array_merge( [
       'features' => 1,
-    ), $options);
+    ], $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -100,7 +100,7 @@ class BudgetOrderService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function get(\Google\AdsApi\AdWords\v201609\cm\Selector $serviceSelector)
     {
-      return $this->__soapCall('get', array(array('serviceSelector' => $serviceSelector)))->getRval();
+      return $this->__soapCall('get', [['serviceSelector' => $serviceSelector]])->getRval();
     }
 
     /**
@@ -112,7 +112,7 @@ class BudgetOrderService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getBillingAccounts()
     {
-      return $this->__soapCall('getBillingAccounts', array(array()))->getRval();
+      return $this->__soapCall('getBillingAccounts', [[]])->getRval();
     }
 
     /**
@@ -133,7 +133,7 @@ class BudgetOrderService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function mutate(array $operations)
     {
-      return $this->__soapCall('mutate', array(array('operations' => $operations)))->getRval();
+      return $this->__soapCall('mutate', [['operations' => $operations]])->getRval();
     }
 
 }

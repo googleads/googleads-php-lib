@@ -12,7 +12,7 @@ class ConstantDataService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap = array (
+    private static $classmap =  [
       'AdxError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\AdxError',
       'AgeRange' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\AgeRange',
       'AuthenticationError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\AuthenticationError',
@@ -88,13 +88,13 @@ class ConstantDataService extends \Google\AdsApi\Common\AdsSoapClient
       'getProductBiddingCategoryDataResponse' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\getProductBiddingCategoryDataResponse',
       'getUserInterestCriterionResponse' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\getUserInterestCriterionResponse',
       'getVerticalCriterionResponse' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\getVerticalCriterionResponse',
-    );
+    ];
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = array(),
+    public function __construct(array $options = [],
                 $wsdl = 'https://adwords.google.com/api/adwords/cm/v201609/ConstantDataService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -102,9 +102,9 @@ class ConstantDataService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge(array (
+      $options = array_merge( [
       'features' => 1,
-    ), $options);
+    ], $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -116,7 +116,7 @@ class ConstantDataService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getAgeRangeCriterion()
     {
-      return $this->__soapCall('getAgeRangeCriterion', array(array()))->getRval();
+      return $this->__soapCall('getAgeRangeCriterion', [[]])->getRval();
     }
 
     /**
@@ -127,7 +127,7 @@ class ConstantDataService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getCarrierCriterion()
     {
-      return $this->__soapCall('getCarrierCriterion', array(array()))->getRval();
+      return $this->__soapCall('getCarrierCriterion', [[]])->getRval();
     }
 
     /**
@@ -138,7 +138,7 @@ class ConstantDataService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getGenderCriterion()
     {
-      return $this->__soapCall('getGenderCriterion', array(array()))->getRval();
+      return $this->__soapCall('getGenderCriterion', [[]])->getRval();
     }
 
     /**
@@ -149,7 +149,7 @@ class ConstantDataService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getLanguageCriterion()
     {
-      return $this->__soapCall('getLanguageCriterion', array(array()))->getRval();
+      return $this->__soapCall('getLanguageCriterion', [[]])->getRval();
     }
 
     /**
@@ -160,7 +160,7 @@ class ConstantDataService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getMobileAppCategoryCriterion()
     {
-      return $this->__soapCall('getMobileAppCategoryCriterion', array(array()))->getRval();
+      return $this->__soapCall('getMobileAppCategoryCriterion', [[]])->getRval();
     }
 
     /**
@@ -171,7 +171,7 @@ class ConstantDataService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getMobileDeviceCriterion()
     {
-      return $this->__soapCall('getMobileDeviceCriterion', array(array()))->getRval();
+      return $this->__soapCall('getMobileDeviceCriterion', [[]])->getRval();
     }
 
     /**
@@ -182,7 +182,7 @@ class ConstantDataService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getOperatingSystemVersionCriterion()
     {
-      return $this->__soapCall('getOperatingSystemVersionCriterion', array(array()))->getRval();
+      return $this->__soapCall('getOperatingSystemVersionCriterion', [[]])->getRval();
     }
 
     /**
@@ -198,7 +198,7 @@ class ConstantDataService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getProductBiddingCategoryData(\Google\AdsApi\AdWords\v201609\cm\Selector $selector)
     {
-      return $this->__soapCall('getProductBiddingCategoryData', array(array('selector' => $selector)))->getRval();
+      return $this->__soapCall('getProductBiddingCategoryData', [['selector' => $selector]])->getRval();
     }
 
     /**
@@ -210,7 +210,7 @@ class ConstantDataService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getUserInterestCriterion($userInterestTaxonomyType)
     {
-      return $this->__soapCall('getUserInterestCriterion', array(array('userInterestTaxonomyType' => $userInterestTaxonomyType)))->getRval();
+      return $this->__soapCall('getUserInterestCriterion', [['userInterestTaxonomyType' => $userInterestTaxonomyType]])->getRval();
     }
 
     /**
@@ -221,7 +221,7 @@ class ConstantDataService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getVerticalCriterion()
     {
-      return $this->__soapCall('getVerticalCriterion', array(array()))->getRval();
+      return $this->__soapCall('getVerticalCriterion', [[]])->getRval();
     }
 
 }

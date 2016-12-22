@@ -12,7 +12,7 @@ class OrderService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap = array (
+    private static $classmap =  [
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'ApiError' => 'Google\\AdsApi\\Dfp\\v201611\\ApiError',
       'ApiException' => 'Google\\AdsApi\\Dfp\\v201611\\ApiException',
@@ -122,13 +122,13 @@ class OrderService extends \Google\AdsApi\Common\AdsSoapClient
       'getOrdersByStatementResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getOrdersByStatementResponse',
       'performOrderActionResponse' => 'Google\\AdsApi\\Dfp\\v201611\\performOrderActionResponse',
       'updateOrdersResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updateOrdersResponse',
-    );
+    ];
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = array(),
+    public function __construct(array $options = [],
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/OrderService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -136,9 +136,9 @@ class OrderService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge(array (
+      $options = array_merge( [
       'features' => 1,
-    ), $options);
+    ], $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -151,7 +151,7 @@ class OrderService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function createOrders(array $orders)
     {
-      return $this->__soapCall('createOrders', array(array('orders' => $orders)))->getRval();
+      return $this->__soapCall('createOrders', [['orders' => $orders]])->getRval();
     }
 
     /**
@@ -208,7 +208,7 @@ class OrderService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getOrdersByStatement(\Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('getOrdersByStatement', array(array('filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('getOrdersByStatement', [['filterStatement' => $filterStatement]])->getRval();
     }
 
     /**
@@ -224,7 +224,7 @@ class OrderService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function performOrderAction(\Google\AdsApi\Dfp\v201611\OrderAction $orderAction, \Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('performOrderAction', array(array('orderAction' => $orderAction, 'filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('performOrderAction', [['orderAction' => $orderAction, 'filterStatement' => $filterStatement]])->getRval();
     }
 
     /**
@@ -236,7 +236,7 @@ class OrderService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function updateOrders(array $orders)
     {
-      return $this->__soapCall('updateOrders', array(array('orders' => $orders)))->getRval();
+      return $this->__soapCall('updateOrders', [['orders' => $orders]])->getRval();
     }
 
 }

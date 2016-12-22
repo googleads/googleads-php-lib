@@ -12,7 +12,7 @@ class ContactService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap = array (
+    private static $classmap =  [
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'ApiError' => 'Google\\AdsApi\\Dfp\\v201611\\ApiError',
       'ApiException' => 'Google\\AdsApi\\Dfp\\v201611\\ApiException',
@@ -56,13 +56,13 @@ class ContactService extends \Google\AdsApi\Common\AdsSoapClient
       'createContactsResponse' => 'Google\\AdsApi\\Dfp\\v201611\\createContactsResponse',
       'getContactsByStatementResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getContactsByStatementResponse',
       'updateContactsResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updateContactsResponse',
-    );
+    ];
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = array(),
+    public function __construct(array $options = [],
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/ContactService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -70,9 +70,9 @@ class ContactService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge(array (
+      $options = array_merge( [
       'features' => 1,
-    ), $options);
+    ], $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -85,7 +85,7 @@ class ContactService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function createContacts(array $contacts)
     {
-      return $this->__soapCall('createContacts', array(array('contacts' => $contacts)))->getRval();
+      return $this->__soapCall('createContacts', [['contacts' => $contacts]])->getRval();
     }
 
     /**
@@ -146,7 +146,7 @@ class ContactService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getContactsByStatement(\Google\AdsApi\Dfp\v201611\Statement $statement)
     {
-      return $this->__soapCall('getContactsByStatement', array(array('statement' => $statement)))->getRval();
+      return $this->__soapCall('getContactsByStatement', [['statement' => $statement]])->getRval();
     }
 
     /**
@@ -158,7 +158,7 @@ class ContactService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function updateContacts(array $contacts)
     {
-      return $this->__soapCall('updateContacts', array(array('contacts' => $contacts)))->getRval();
+      return $this->__soapCall('updateContacts', [['contacts' => $contacts]])->getRval();
     }
 
 }

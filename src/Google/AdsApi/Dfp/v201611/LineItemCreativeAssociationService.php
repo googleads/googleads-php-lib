@@ -12,7 +12,7 @@ class LineItemCreativeAssociationService extends \Google\AdsApi\Common\AdsSoapCl
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap = array (
+    private static $classmap =  [
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'ActivateLineItemCreativeAssociations' => 'Google\\AdsApi\\Dfp\\v201611\\ActivateLineItemCreativeAssociations',
       'AdSenseAccountError' => 'Google\\AdsApi\\Dfp\\v201611\\AdSenseAccountError',
@@ -97,13 +97,13 @@ class LineItemCreativeAssociationService extends \Google\AdsApi\Common\AdsSoapCl
       'getPreviewUrlResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getPreviewUrlResponse',
       'performLineItemCreativeAssociationActionResponse' => 'Google\\AdsApi\\Dfp\\v201611\\performLineItemCreativeAssociationActionResponse',
       'updateLineItemCreativeAssociationsResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updateLineItemCreativeAssociationsResponse',
-    );
+    ];
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = array(),
+    public function __construct(array $options = [],
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/LineItemCreativeAssociationService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -111,9 +111,9 @@ class LineItemCreativeAssociationService extends \Google\AdsApi\Common\AdsSoapCl
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge(array (
+      $options = array_merge( [
       'features' => 1,
-    ), $options);
+    ], $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -129,7 +129,7 @@ class LineItemCreativeAssociationService extends \Google\AdsApi\Common\AdsSoapCl
      */
     public function createLineItemCreativeAssociations(array $lineItemCreativeAssociations)
     {
-      return $this->__soapCall('createLineItemCreativeAssociations', array(array('lineItemCreativeAssociations' => $lineItemCreativeAssociations)))->getRval();
+      return $this->__soapCall('createLineItemCreativeAssociations', [['lineItemCreativeAssociations' => $lineItemCreativeAssociations]])->getRval();
     }
 
     /**
@@ -175,7 +175,7 @@ class LineItemCreativeAssociationService extends \Google\AdsApi\Common\AdsSoapCl
      */
     public function getLineItemCreativeAssociationsByStatement(\Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('getLineItemCreativeAssociationsByStatement', array(array('filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('getLineItemCreativeAssociationsByStatement', [['filterStatement' => $filterStatement]])->getRval();
     }
 
     /**
@@ -193,7 +193,7 @@ class LineItemCreativeAssociationService extends \Google\AdsApi\Common\AdsSoapCl
      */
     public function getPreviewUrl($lineItemId, $creativeId, $siteUrl)
     {
-      return $this->__soapCall('getPreviewUrl', array(array('lineItemId' => $lineItemId, 'creativeId' => $creativeId, 'siteUrl' => $siteUrl)))->getRval();
+      return $this->__soapCall('getPreviewUrl', [['lineItemId' => $lineItemId, 'creativeId' => $creativeId, 'siteUrl' => $siteUrl]])->getRval();
     }
 
     /**
@@ -209,7 +209,7 @@ class LineItemCreativeAssociationService extends \Google\AdsApi\Common\AdsSoapCl
      */
     public function performLineItemCreativeAssociationAction(\Google\AdsApi\Dfp\v201611\LineItemCreativeAssociationAction $lineItemCreativeAssociationAction, \Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('performLineItemCreativeAssociationAction', array(array('lineItemCreativeAssociationAction' => $lineItemCreativeAssociationAction, 'filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('performLineItemCreativeAssociationAction', [['lineItemCreativeAssociationAction' => $lineItemCreativeAssociationAction, 'filterStatement' => $filterStatement]])->getRval();
     }
 
     /**
@@ -223,7 +223,7 @@ class LineItemCreativeAssociationService extends \Google\AdsApi\Common\AdsSoapCl
      */
     public function updateLineItemCreativeAssociations(array $lineItemCreativeAssociations)
     {
-      return $this->__soapCall('updateLineItemCreativeAssociations', array(array('lineItemCreativeAssociations' => $lineItemCreativeAssociations)))->getRval();
+      return $this->__soapCall('updateLineItemCreativeAssociations', [['lineItemCreativeAssociations' => $lineItemCreativeAssociations]])->getRval();
     }
 
 }

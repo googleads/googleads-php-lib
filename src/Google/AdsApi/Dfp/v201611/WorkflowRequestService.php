@@ -12,7 +12,7 @@ class WorkflowRequestService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap = array (
+    private static $classmap =  [
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'ApiError' => 'Google\\AdsApi\\Dfp\\v201611\\ApiError',
       'ApiException' => 'Google\\AdsApi\\Dfp\\v201611\\ApiException',
@@ -64,13 +64,13 @@ class WorkflowRequestService extends \Google\AdsApi\Common\AdsSoapClient
       'WorkflowRequestPage' => 'Google\\AdsApi\\Dfp\\v201611\\WorkflowRequestPage',
       'getWorkflowRequestsByStatementResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getWorkflowRequestsByStatementResponse',
       'performWorkflowRequestActionResponse' => 'Google\\AdsApi\\Dfp\\v201611\\performWorkflowRequestActionResponse',
-    );
+    ];
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = array(),
+    public function __construct(array $options = [],
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/WorkflowRequestService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -78,9 +78,9 @@ class WorkflowRequestService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge(array (
+      $options = array_merge( [
       'features' => 1,
-    ), $options);
+    ], $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -130,7 +130,7 @@ class WorkflowRequestService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getWorkflowRequestsByStatement(\Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('getWorkflowRequestsByStatement', array(array('filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('getWorkflowRequestsByStatement', [['filterStatement' => $filterStatement]])->getRval();
     }
 
     /**
@@ -146,7 +146,7 @@ class WorkflowRequestService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function performWorkflowRequestAction(\Google\AdsApi\Dfp\v201611\WorkflowRequestAction $action, \Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('performWorkflowRequestAction', array(array('action' => $action, 'filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('performWorkflowRequestAction', [['action' => $action, 'filterStatement' => $filterStatement]])->getRval();
     }
 
 }

@@ -12,7 +12,7 @@ class RateCardService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap = array (
+    private static $classmap =  [
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'ActivateRateCards' => 'Google\\AdsApi\\Dfp\\v201611\\ActivateRateCards',
       'ApiError' => 'Google\\AdsApi\\Dfp\\v201611\\ApiError',
@@ -66,13 +66,13 @@ class RateCardService extends \Google\AdsApi\Common\AdsSoapClient
       'getRateCardsByStatementResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getRateCardsByStatementResponse',
       'performRateCardActionResponse' => 'Google\\AdsApi\\Dfp\\v201611\\performRateCardActionResponse',
       'updateRateCardsResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updateRateCardsResponse',
-    );
+    ];
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = array(),
+    public function __construct(array $options = [],
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/RateCardService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -80,9 +80,9 @@ class RateCardService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge(array (
+      $options = array_merge( [
       'features' => 1,
-    ), $options);
+    ], $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -96,7 +96,7 @@ class RateCardService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function createRateCards(array $rateCards)
     {
-      return $this->__soapCall('createRateCards', array(array('rateCards' => $rateCards)))->getRval();
+      return $this->__soapCall('createRateCards', [['rateCards' => $rateCards]])->getRval();
     }
 
     /**
@@ -111,7 +111,7 @@ class RateCardService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getRateCardsByStatement(\Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('getRateCardsByStatement', array(array('filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('getRateCardsByStatement', [['filterStatement' => $filterStatement]])->getRval();
     }
 
     /**
@@ -127,7 +127,7 @@ class RateCardService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function performRateCardAction(\Google\AdsApi\Dfp\v201611\RateCardAction $rateCardAction, \Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('performRateCardAction', array(array('rateCardAction' => $rateCardAction, 'filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('performRateCardAction', [['rateCardAction' => $rateCardAction, 'filterStatement' => $filterStatement]])->getRval();
     }
 
     /**
@@ -139,7 +139,7 @@ class RateCardService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function updateRateCards(array $rateCards)
     {
-      return $this->__soapCall('updateRateCards', array(array('rateCards' => $rateCards)))->getRval();
+      return $this->__soapCall('updateRateCards', [['rateCards' => $rateCards]])->getRval();
     }
 
 }

@@ -12,7 +12,7 @@ class InventoryService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap = array (
+    private static $classmap =  [
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'ActivateAdUnits' => 'Google\\AdsApi\\Dfp\\v201611\\ActivateAdUnits',
       'AdSenseAccountError' => 'Google\\AdsApi\\Dfp\\v201611\\AdSenseAccountError',
@@ -92,13 +92,13 @@ class InventoryService extends \Google\AdsApi\Common\AdsSoapClient
       'getAdUnitsByStatementResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getAdUnitsByStatementResponse',
       'performAdUnitActionResponse' => 'Google\\AdsApi\\Dfp\\v201611\\performAdUnitActionResponse',
       'updateAdUnitsResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updateAdUnitsResponse',
-    );
+    ];
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = array(),
+    public function __construct(array $options = [],
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/InventoryService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -106,9 +106,9 @@ class InventoryService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge(array (
+      $options = array_merge( [
       'features' => 1,
-    ), $options);
+    ], $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -121,7 +121,7 @@ class InventoryService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function createAdUnits(array $adUnits)
     {
-      return $this->__soapCall('createAdUnits', array(array('adUnits' => $adUnits)))->getRval();
+      return $this->__soapCall('createAdUnits', [['adUnits' => $adUnits]])->getRval();
     }
 
     /**
@@ -151,7 +151,7 @@ class InventoryService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getAdUnitSizesByStatement(\Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('getAdUnitSizesByStatement', array(array('filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('getAdUnitSizesByStatement', [['filterStatement' => $filterStatement]])->getRval();
     }
 
     /**
@@ -196,7 +196,7 @@ class InventoryService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getAdUnitsByStatement(\Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('getAdUnitsByStatement', array(array('filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('getAdUnitsByStatement', [['filterStatement' => $filterStatement]])->getRval();
     }
 
     /**
@@ -212,7 +212,7 @@ class InventoryService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function performAdUnitAction(\Google\AdsApi\Dfp\v201611\AdUnitAction $adUnitAction, \Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('performAdUnitAction', array(array('adUnitAction' => $adUnitAction, 'filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('performAdUnitAction', [['adUnitAction' => $adUnitAction, 'filterStatement' => $filterStatement]])->getRval();
     }
 
     /**
@@ -224,7 +224,7 @@ class InventoryService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function updateAdUnits(array $adUnits)
     {
-      return $this->__soapCall('updateAdUnits', array(array('adUnits' => $adUnits)))->getRval();
+      return $this->__soapCall('updateAdUnits', [['adUnits' => $adUnits]])->getRval();
     }
 
 }

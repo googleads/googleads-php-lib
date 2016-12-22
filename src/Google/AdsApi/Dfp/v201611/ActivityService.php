@@ -12,7 +12,7 @@ class ActivityService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap = array (
+    private static $classmap =  [
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'Activity' => 'Google\\AdsApi\\Dfp\\v201611\\Activity',
       'ActivityError' => 'Google\\AdsApi\\Dfp\\v201611\\ActivityError',
@@ -55,13 +55,13 @@ class ActivityService extends \Google\AdsApi\Common\AdsSoapClient
       'createActivitiesResponse' => 'Google\\AdsApi\\Dfp\\v201611\\createActivitiesResponse',
       'getActivitiesByStatementResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getActivitiesByStatementResponse',
       'updateActivitiesResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updateActivitiesResponse',
-    );
+    ];
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = array(),
+    public function __construct(array $options = [],
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/ActivityService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -69,9 +69,9 @@ class ActivityService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge(array (
+      $options = array_merge( [
       'features' => 1,
-    ), $options);
+    ], $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -84,7 +84,7 @@ class ActivityService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function createActivities(array $activities)
     {
-      return $this->__soapCall('createActivities', array(array('activities' => $activities)))->getRval();
+      return $this->__soapCall('createActivities', [['activities' => $activities]])->getRval();
     }
 
     /**
@@ -123,7 +123,7 @@ class ActivityService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getActivitiesByStatement(\Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('getActivitiesByStatement', array(array('filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('getActivitiesByStatement', [['filterStatement' => $filterStatement]])->getRval();
     }
 
     /**
@@ -135,7 +135,7 @@ class ActivityService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function updateActivities(array $activities)
     {
-      return $this->__soapCall('updateActivities', array(array('activities' => $activities)))->getRval();
+      return $this->__soapCall('updateActivities', [['activities' => $activities]])->getRval();
     }
 
 }

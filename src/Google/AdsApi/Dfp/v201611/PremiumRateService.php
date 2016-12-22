@@ -12,7 +12,7 @@ class PremiumRateService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap = array (
+    private static $classmap =  [
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'AdUnitPremiumFeature' => 'Google\\AdsApi\\Dfp\\v201611\\AdUnitPremiumFeature',
       'ApiError' => 'Google\\AdsApi\\Dfp\\v201611\\ApiError',
@@ -77,13 +77,13 @@ class PremiumRateService extends \Google\AdsApi\Common\AdsSoapClient
       'createPremiumRatesResponse' => 'Google\\AdsApi\\Dfp\\v201611\\createPremiumRatesResponse',
       'getPremiumRatesByStatementResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getPremiumRatesByStatementResponse',
       'updatePremiumRatesResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updatePremiumRatesResponse',
-    );
+    ];
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = array(),
+    public function __construct(array $options = [],
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/PremiumRateService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -91,9 +91,9 @@ class PremiumRateService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge(array (
+      $options = array_merge( [
       'features' => 1,
-    ), $options);
+    ], $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -106,7 +106,7 @@ class PremiumRateService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function createPremiumRates(array $premiumRates)
     {
-      return $this->__soapCall('createPremiumRates', array(array('premiumRates' => $premiumRates)))->getRval();
+      return $this->__soapCall('createPremiumRates', [['premiumRates' => $premiumRates]])->getRval();
     }
 
     /**
@@ -140,7 +140,7 @@ class PremiumRateService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getPremiumRatesByStatement(\Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('getPremiumRatesByStatement', array(array('filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('getPremiumRatesByStatement', [['filterStatement' => $filterStatement]])->getRval();
     }
 
     /**
@@ -152,7 +152,7 @@ class PremiumRateService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function updatePremiumRates(array $premiumRates)
     {
-      return $this->__soapCall('updatePremiumRates', array(array('premiumRates' => $premiumRates)))->getRval();
+      return $this->__soapCall('updatePremiumRates', [['premiumRates' => $premiumRates]])->getRval();
     }
 
 }

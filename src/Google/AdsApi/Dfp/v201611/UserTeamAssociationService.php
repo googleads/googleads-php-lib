@@ -12,7 +12,7 @@ class UserTeamAssociationService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap = array (
+    private static $classmap =  [
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'ApiError' => 'Google\\AdsApi\\Dfp\\v201611\\ApiError',
       'ApiException' => 'Google\\AdsApi\\Dfp\\v201611\\ApiException',
@@ -59,13 +59,13 @@ class UserTeamAssociationService extends \Google\AdsApi\Common\AdsSoapClient
       'getUserTeamAssociationsByStatementResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getUserTeamAssociationsByStatementResponse',
       'performUserTeamAssociationActionResponse' => 'Google\\AdsApi\\Dfp\\v201611\\performUserTeamAssociationActionResponse',
       'updateUserTeamAssociationsResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updateUserTeamAssociationsResponse',
-    );
+    ];
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = array(),
+    public function __construct(array $options = [],
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/UserTeamAssociationService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -73,9 +73,9 @@ class UserTeamAssociationService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge(array (
+      $options = array_merge( [
       'features' => 1,
-    ), $options);
+    ], $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -88,7 +88,7 @@ class UserTeamAssociationService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function createUserTeamAssociations(array $userTeamAssociations)
     {
-      return $this->__soapCall('createUserTeamAssociations', array(array('userTeamAssociations' => $userTeamAssociations)))->getRval();
+      return $this->__soapCall('createUserTeamAssociations', [['userTeamAssociations' => $userTeamAssociations]])->getRval();
     }
 
     /**
@@ -118,7 +118,7 @@ class UserTeamAssociationService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getUserTeamAssociationsByStatement(\Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('getUserTeamAssociationsByStatement', array(array('filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('getUserTeamAssociationsByStatement', [['filterStatement' => $filterStatement]])->getRval();
     }
 
     /**
@@ -134,7 +134,7 @@ class UserTeamAssociationService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function performUserTeamAssociationAction(\Google\AdsApi\Dfp\v201611\UserTeamAssociationAction $userTeamAssociationAction, \Google\AdsApi\Dfp\v201611\Statement $statement)
     {
-      return $this->__soapCall('performUserTeamAssociationAction', array(array('userTeamAssociationAction' => $userTeamAssociationAction, 'statement' => $statement)))->getRval();
+      return $this->__soapCall('performUserTeamAssociationAction', [['userTeamAssociationAction' => $userTeamAssociationAction, 'statement' => $statement]])->getRval();
     }
 
     /**
@@ -146,7 +146,7 @@ class UserTeamAssociationService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function updateUserTeamAssociations(array $userTeamAssociations)
     {
-      return $this->__soapCall('updateUserTeamAssociations', array(array('userTeamAssociations' => $userTeamAssociations)))->getRval();
+      return $this->__soapCall('updateUserTeamAssociations', [['userTeamAssociations' => $userTeamAssociations]])->getRval();
     }
 
 }

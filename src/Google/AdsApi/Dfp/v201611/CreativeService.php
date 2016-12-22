@@ -12,7 +12,7 @@ class CreativeService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap = array (
+    private static $classmap =  [
       'BaseDynamicAllocationCreative' => 'Google\\AdsApi\\Dfp\\v201611\\BaseDynamicAllocationCreative',
       'BaseCreativeTemplateVariableValue' => 'Google\\AdsApi\\Dfp\\v201611\\BaseCreativeTemplateVariableValue',
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
@@ -137,13 +137,13 @@ class CreativeService extends \Google\AdsApi\Common\AdsSoapClient
       'createCreativesResponse' => 'Google\\AdsApi\\Dfp\\v201611\\createCreativesResponse',
       'getCreativesByStatementResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getCreativesByStatementResponse',
       'updateCreativesResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updateCreativesResponse',
-    );
+    ];
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = array(),
+    public function __construct(array $options = [],
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/CreativeService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -151,9 +151,9 @@ class CreativeService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge(array (
+      $options = array_merge( [
       'features' => 1,
-    ), $options);
+    ], $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -166,7 +166,7 @@ class CreativeService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function createCreatives(array $creatives)
     {
-      return $this->__soapCall('createCreatives', array(array('creatives' => $creatives)))->getRval();
+      return $this->__soapCall('createCreatives', [['creatives' => $creatives]])->getRval();
     }
 
     /**
@@ -212,7 +212,7 @@ class CreativeService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getCreativesByStatement(\Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('getCreativesByStatement', array(array('filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('getCreativesByStatement', [['filterStatement' => $filterStatement]])->getRval();
     }
 
     /**
@@ -224,7 +224,7 @@ class CreativeService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function updateCreatives(array $creatives)
     {
-      return $this->__soapCall('updateCreatives', array(array('creatives' => $creatives)))->getRval();
+      return $this->__soapCall('updateCreatives', [['creatives' => $creatives]])->getRval();
     }
 
 }

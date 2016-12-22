@@ -12,7 +12,7 @@ class LabelService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap = array (
+    private static $classmap =  [
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'ActivateLabels' => 'Google\\AdsApi\\Dfp\\v201611\\ActivateLabels',
       'ApiError' => 'Google\\AdsApi\\Dfp\\v201611\\ApiError',
@@ -62,13 +62,13 @@ class LabelService extends \Google\AdsApi\Common\AdsSoapClient
       'getLabelsByStatementResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getLabelsByStatementResponse',
       'performLabelActionResponse' => 'Google\\AdsApi\\Dfp\\v201611\\performLabelActionResponse',
       'updateLabelsResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updateLabelsResponse',
-    );
+    ];
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = array(),
+    public function __construct(array $options = [],
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/LabelService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -76,9 +76,9 @@ class LabelService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge(array (
+      $options = array_merge( [
       'features' => 1,
-    ), $options);
+    ], $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -91,7 +91,7 @@ class LabelService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function createLabels(array $labels)
     {
-      return $this->__soapCall('createLabels', array(array('labels' => $labels)))->getRval();
+      return $this->__soapCall('createLabels', [['labels' => $labels]])->getRval();
     }
 
     /**
@@ -134,7 +134,7 @@ class LabelService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getLabelsByStatement(\Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('getLabelsByStatement', array(array('filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('getLabelsByStatement', [['filterStatement' => $filterStatement]])->getRval();
     }
 
     /**
@@ -150,7 +150,7 @@ class LabelService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function performLabelAction(\Google\AdsApi\Dfp\v201611\LabelAction $labelAction, \Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('performLabelAction', array(array('labelAction' => $labelAction, 'filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('performLabelAction', [['labelAction' => $labelAction, 'filterStatement' => $filterStatement]])->getRval();
     }
 
     /**
@@ -162,7 +162,7 @@ class LabelService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function updateLabels(array $labels)
     {
-      return $this->__soapCall('updateLabels', array(array('labels' => $labels)))->getRval();
+      return $this->__soapCall('updateLabels', [['labels' => $labels]])->getRval();
     }
 
 }
