@@ -73,7 +73,7 @@ final class BatchJobsDelegate {
       $stack->before(
           'http_errors',
           GuzzleLogMessageHandler::log(
-              $this->session->getBatchJobsUtilLogger())
+              $session->getBatchJobsUtilLogger())
       );
       $this->httpClient = new Client(['handler' => $stack]);
     } else {
