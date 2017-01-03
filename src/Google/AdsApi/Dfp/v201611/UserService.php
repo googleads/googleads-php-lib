@@ -12,7 +12,7 @@ class UserService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap =  [
+    private static $classmap = array (
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'ActivateUsers' => 'Google\\AdsApi\\Dfp\\v201611\\ActivateUsers',
       'ApiError' => 'Google\\AdsApi\\Dfp\\v201611\\ApiError',
@@ -71,13 +71,13 @@ class UserService extends \Google\AdsApi\Common\AdsSoapClient
       'getUsersByStatementResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getUsersByStatementResponse',
       'performUserActionResponse' => 'Google\\AdsApi\\Dfp\\v201611\\performUserActionResponse',
       'updateUsersResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updateUsersResponse',
-    ];
+    );
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = [],
+    public function __construct(array $options = array(),
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/UserService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -85,9 +85,9 @@ class UserService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge( [
+      $options = array_merge(array (
       'features' => 1,
-    ], $options);
+    ), $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -100,7 +100,7 @@ class UserService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function createUsers(array $users)
     {
-      return $this->__soapCall('createUsers', [['users' => $users]])->getRval();
+      return $this->__soapCall('createUsers', array(array('users' => $users)))->getRval();
     }
 
     /**
@@ -112,7 +112,7 @@ class UserService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getAllRoles()
     {
-      return $this->__soapCall('getAllRoles', [[]])->getRval();
+      return $this->__soapCall('getAllRoles', array(array()))->getRval();
     }
 
     /**
@@ -123,7 +123,7 @@ class UserService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getCurrentUser()
     {
-      return $this->__soapCall('getCurrentUser', [[]])->getRval();
+      return $this->__soapCall('getCurrentUser', array(array()))->getRval();
     }
 
     /**
@@ -169,7 +169,7 @@ class UserService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getUsersByStatement(\Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('getUsersByStatement', [['filterStatement' => $filterStatement]])->getRval();
+      return $this->__soapCall('getUsersByStatement', array(array('filterStatement' => $filterStatement)))->getRval();
     }
 
     /**
@@ -185,7 +185,7 @@ class UserService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function performUserAction(\Google\AdsApi\Dfp\v201611\UserAction $userAction, \Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('performUserAction', [['userAction' => $userAction, 'filterStatement' => $filterStatement]])->getRval();
+      return $this->__soapCall('performUserAction', array(array('userAction' => $userAction, 'filterStatement' => $filterStatement)))->getRval();
     }
 
     /**
@@ -197,7 +197,7 @@ class UserService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function updateUsers(array $users)
     {
-      return $this->__soapCall('updateUsers', [['users' => $users]])->getRval();
+      return $this->__soapCall('updateUsers', array(array('users' => $users)))->getRval();
     }
 
 }

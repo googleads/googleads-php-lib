@@ -12,7 +12,7 @@ class MobileApplicationService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap =  [
+    private static $classmap = array (
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'UnarchiveMobileApplications' => 'Google\\AdsApi\\Dfp\\v201611\\UnarchiveMobileApplications',
       'ApiError' => 'Google\\AdsApi\\Dfp\\v201611\\ApiError',
@@ -61,13 +61,13 @@ class MobileApplicationService extends \Google\AdsApi\Common\AdsSoapClient
       'getMobileApplicationsByStatementResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getMobileApplicationsByStatementResponse',
       'performMobileApplicationActionResponse' => 'Google\\AdsApi\\Dfp\\v201611\\performMobileApplicationActionResponse',
       'updateMobileApplicationsResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updateMobileApplicationsResponse',
-    ];
+    );
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = [],
+    public function __construct(array $options = array(),
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/MobileApplicationService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -75,9 +75,9 @@ class MobileApplicationService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge( [
+      $options = array_merge(array (
       'features' => 1,
-    ], $options);
+    ), $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -91,7 +91,7 @@ class MobileApplicationService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function createMobileApplications(array $mobileApplications)
     {
-      return $this->__soapCall('createMobileApplications', [['mobileApplications' => $mobileApplications]])->getRval();
+      return $this->__soapCall('createMobileApplications', array(array('mobileApplications' => $mobileApplications)))->getRval();
     }
 
     /**
@@ -135,7 +135,7 @@ class MobileApplicationService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getMobileApplicationsByStatement(\Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('getMobileApplicationsByStatement', [['filterStatement' => $filterStatement]])->getRval();
+      return $this->__soapCall('getMobileApplicationsByStatement', array(array('filterStatement' => $filterStatement)))->getRval();
     }
 
     /**
@@ -150,7 +150,7 @@ class MobileApplicationService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function performMobileApplicationAction(\Google\AdsApi\Dfp\v201611\MobileApplicationAction $mobileApplicationAction, \Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('performMobileApplicationAction', [['mobileApplicationAction' => $mobileApplicationAction, 'filterStatement' => $filterStatement]])->getRval();
+      return $this->__soapCall('performMobileApplicationAction', array(array('mobileApplicationAction' => $mobileApplicationAction, 'filterStatement' => $filterStatement)))->getRval();
     }
 
     /**
@@ -162,7 +162,7 @@ class MobileApplicationService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function updateMobileApplications(array $mobileApplications)
     {
-      return $this->__soapCall('updateMobileApplications', [['mobileApplications' => $mobileApplications]])->getRval();
+      return $this->__soapCall('updateMobileApplications', array(array('mobileApplications' => $mobileApplications)))->getRval();
     }
 
 }

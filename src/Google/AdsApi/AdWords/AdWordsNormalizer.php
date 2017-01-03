@@ -87,7 +87,7 @@ final class AdWordsNormalizer extends GetSetMethodNormalizer {
   /**
    * @see GetSetMethodNormalizer::normalize()
    */
-  public function normalize($object, $format = null, array $context = []) {
+  public function normalize($object, $format = null, array $context = array()) {
     $data = [];
     $reflClass = new \ReflectionClass($object);
     if ($reflClass->getParentClass() !== false) {
@@ -132,7 +132,7 @@ final class AdWordsNormalizer extends GetSetMethodNormalizer {
    * @throws UnexpectedValueException if the getter of an attribute is not found
    */
   public function denormalize($data, $class, $format = null,
-      array $context = []) {
+      array $context = array()) {
 
     // If xsi:type is present, we need to use it as the class to deserialize to,
     // since it may be a child class of the provided $class with more fields.

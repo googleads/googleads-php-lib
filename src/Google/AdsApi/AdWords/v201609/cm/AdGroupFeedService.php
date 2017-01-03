@@ -12,7 +12,7 @@ class AdGroupFeedService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap =  [
+    private static $classmap = array (
       'AdGroupFeed' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\AdGroupFeed',
       'AdGroupFeedError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\AdGroupFeedError',
       'AdGroupFeedOperation' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\AdGroupFeedOperation',
@@ -68,13 +68,13 @@ class AdGroupFeedService extends \Google\AdsApi\Common\AdsSoapClient
       'getResponse' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\getResponse',
       'mutateResponse' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\mutateResponse',
       'queryResponse' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\queryResponse',
-    ];
+    );
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = [],
+    public function __construct(array $options = array(),
                 $wsdl = 'https://adwords.google.com/api/adwords/cm/v201609/AdGroupFeedService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -82,9 +82,9 @@ class AdGroupFeedService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge( [
+      $options = array_merge(array (
       'features' => 1,
-    ], $options);
+    ), $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -99,7 +99,7 @@ class AdGroupFeedService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function get(\Google\AdsApi\AdWords\v201609\cm\Selector $selector)
     {
-      return $this->__soapCall('get', [['selector' => $selector]])->getRval();
+      return $this->__soapCall('get', array(array('selector' => $selector)))->getRval();
     }
 
     /**
@@ -111,7 +111,7 @@ class AdGroupFeedService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function mutate(array $operations)
     {
-      return $this->__soapCall('mutate', [['operations' => $operations]])->getRval();
+      return $this->__soapCall('mutate', array(array('operations' => $operations)))->getRval();
     }
 
     /**
@@ -123,7 +123,7 @@ class AdGroupFeedService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function query($query)
     {
-      return $this->__soapCall('query', [['query' => $query]])->getRval();
+      return $this->__soapCall('query', array(array('query' => $query)))->getRval();
     }
 
 }

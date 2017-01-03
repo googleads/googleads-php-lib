@@ -12,7 +12,7 @@ class ReconciliationLineItemReportService extends \Google\AdsApi\Common\AdsSoapC
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap =  [
+    private static $classmap = array (
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'ApiError' => 'Google\\AdsApi\\Dfp\\v201611\\ApiError',
       'ApiException' => 'Google\\AdsApi\\Dfp\\v201611\\ApiException',
@@ -56,13 +56,13 @@ class ReconciliationLineItemReportService extends \Google\AdsApi\Common\AdsSoapC
       'Value' => 'Google\\AdsApi\\Dfp\\v201611\\Value',
       'getReconciliationLineItemReportsByStatementResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getReconciliationLineItemReportsByStatementResponse',
       'updateReconciliationLineItemReportsResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updateReconciliationLineItemReportsResponse',
-    ];
+    );
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = [],
+    public function __construct(array $options = array(),
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/ReconciliationLineItemReportService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -70,9 +70,9 @@ class ReconciliationLineItemReportService extends \Google\AdsApi\Common\AdsSoapC
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge( [
+      $options = array_merge(array (
       'features' => 1,
-    ], $options);
+    ), $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -117,7 +117,7 @@ class ReconciliationLineItemReportService extends \Google\AdsApi\Common\AdsSoapC
      */
     public function getReconciliationLineItemReportsByStatement(\Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('getReconciliationLineItemReportsByStatement', [['filterStatement' => $filterStatement]])->getRval();
+      return $this->__soapCall('getReconciliationLineItemReportsByStatement', array(array('filterStatement' => $filterStatement)))->getRval();
     }
 
     /**
@@ -132,7 +132,7 @@ class ReconciliationLineItemReportService extends \Google\AdsApi\Common\AdsSoapC
      */
     public function updateReconciliationLineItemReports(array $reconciliationLineItemReports)
     {
-      return $this->__soapCall('updateReconciliationLineItemReports', [['reconciliationLineItemReports' => $reconciliationLineItemReports]])->getRval();
+      return $this->__soapCall('updateReconciliationLineItemReports', array(array('reconciliationLineItemReports' => $reconciliationLineItemReports)))->getRval();
     }
 
 }

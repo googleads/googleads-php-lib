@@ -12,7 +12,7 @@ class ProductPackageService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap =  [
+    private static $classmap = array (
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'ActivateProductPackages' => 'Google\\AdsApi\\Dfp\\v201611\\ActivateProductPackages',
       'ApiError' => 'Google\\AdsApi\\Dfp\\v201611\\ApiError',
@@ -72,13 +72,13 @@ class ProductPackageService extends \Google\AdsApi\Common\AdsSoapClient
       'getProductPackagesByStatementResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getProductPackagesByStatementResponse',
       'performProductPackageActionResponse' => 'Google\\AdsApi\\Dfp\\v201611\\performProductPackageActionResponse',
       'updateProductPackagesResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updateProductPackagesResponse',
-    ];
+    );
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = [],
+    public function __construct(array $options = array(),
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/ProductPackageService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -86,9 +86,9 @@ class ProductPackageService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge( [
+      $options = array_merge(array (
       'features' => 1,
-    ], $options);
+    ), $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -101,7 +101,7 @@ class ProductPackageService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function createProductPackages(array $productPackages)
     {
-      return $this->__soapCall('createProductPackages', [['productPackages' => $productPackages]])->getRval();
+      return $this->__soapCall('createProductPackages', array(array('productPackages' => $productPackages)))->getRval();
     }
 
     /**
@@ -147,7 +147,7 @@ class ProductPackageService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getProductPackagesByStatement(\Google\AdsApi\Dfp\v201611\Statement $statement)
     {
-      return $this->__soapCall('getProductPackagesByStatement', [['statement' => $statement]])->getRval();
+      return $this->__soapCall('getProductPackagesByStatement', array(array('statement' => $statement)))->getRval();
     }
 
     /**
@@ -161,7 +161,7 @@ class ProductPackageService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function performProductPackageAction(\Google\AdsApi\Dfp\v201611\ProductPackageAction $action, \Google\AdsApi\Dfp\v201611\Statement $statement)
     {
-      return $this->__soapCall('performProductPackageAction', [['action' => $action, 'statement' => $statement]])->getRval();
+      return $this->__soapCall('performProductPackageAction', array(array('action' => $action, 'statement' => $statement)))->getRval();
     }
 
     /**
@@ -173,7 +173,7 @@ class ProductPackageService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function updateProductPackages(array $productPackages)
     {
-      return $this->__soapCall('updateProductPackages', [['productPackages' => $productPackages]])->getRval();
+      return $this->__soapCall('updateProductPackages', array(array('productPackages' => $productPackages)))->getRval();
     }
 
 }

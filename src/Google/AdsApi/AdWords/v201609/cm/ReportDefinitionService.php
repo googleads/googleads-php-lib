@@ -12,7 +12,7 @@ class ReportDefinitionService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap =  [
+    private static $classmap = array (
       'AuthenticationError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\AuthenticationError',
       'AuthorizationError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\AuthorizationError',
       'ClientTermsError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\ClientTermsError',
@@ -46,13 +46,13 @@ class ReportDefinitionService extends \Google\AdsApi\Common\AdsSoapClient
       'ApiException' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\ApiException',
       'ApplicationException' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\ApplicationException',
       'getReportFieldsResponse' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\getReportFieldsResponse',
-    ];
+    );
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = [],
+    public function __construct(array $options = array(),
                 $wsdl = 'https://adwords.google.com/api/adwords/cm/v201609/ReportDefinitionService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -60,9 +60,9 @@ class ReportDefinitionService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge( [
+      $options = array_merge(array (
       'features' => 1,
-    ], $options);
+    ), $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -85,7 +85,7 @@ class ReportDefinitionService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getReportFields($reportType)
     {
-      return $this->__soapCall('getReportFields', [['reportType' => $reportType]])->getRval();
+      return $this->__soapCall('getReportFields', array(array('reportType' => $reportType)))->getRval();
     }
 
 }

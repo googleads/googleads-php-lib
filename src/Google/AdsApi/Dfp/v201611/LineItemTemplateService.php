@@ -12,7 +12,7 @@ class LineItemTemplateService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap =  [
+    private static $classmap = array (
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'ApiError' => 'Google\\AdsApi\\Dfp\\v201611\\ApiError',
       'ApiException' => 'Google\\AdsApi\\Dfp\\v201611\\ApiException',
@@ -94,13 +94,13 @@ class LineItemTemplateService extends \Google\AdsApi\Common\AdsSoapClient
       'Value' => 'Google\\AdsApi\\Dfp\\v201611\\Value',
       'VideoPositionTargetingError' => 'Google\\AdsApi\\Dfp\\v201611\\VideoPositionTargetingError',
       'getLineItemTemplatesByStatementResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getLineItemTemplatesByStatementResponse',
-    ];
+    );
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = [],
+    public function __construct(array $options = array(),
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/LineItemTemplateService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -108,9 +108,9 @@ class LineItemTemplateService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge( [
+      $options = array_merge(array (
       'features' => 1,
-    ], $options);
+    ), $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -137,7 +137,7 @@ class LineItemTemplateService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getLineItemTemplatesByStatement(\Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('getLineItemTemplatesByStatement', [['filterStatement' => $filterStatement]])->getRval();
+      return $this->__soapCall('getLineItemTemplatesByStatement', array(array('filterStatement' => $filterStatement)))->getRval();
     }
 
 }

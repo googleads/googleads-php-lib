@@ -12,7 +12,7 @@ class LiveStreamEventService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap =  [
+    private static $classmap = array (
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'ActivateLiveStreamEvents' => 'Google\\AdsApi\\Dfp\\v201611\\ActivateLiveStreamEvents',
       'ApiError' => 'Google\\AdsApi\\Dfp\\v201611\\ApiError',
@@ -66,13 +66,13 @@ class LiveStreamEventService extends \Google\AdsApi\Common\AdsSoapClient
       'performLiveStreamEventActionResponse' => 'Google\\AdsApi\\Dfp\\v201611\\performLiveStreamEventActionResponse',
       'registerSessionsForMonitoringResponse' => 'Google\\AdsApi\\Dfp\\v201611\\registerSessionsForMonitoringResponse',
       'updateLiveStreamEventsResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updateLiveStreamEventsResponse',
-    ];
+    );
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = [],
+    public function __construct(array $options = array(),
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/LiveStreamEventService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -80,9 +80,9 @@ class LiveStreamEventService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge( [
+      $options = array_merge(array (
       'features' => 1,
-    ], $options);
+    ), $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -104,7 +104,7 @@ class LiveStreamEventService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function createLiveStreamEvents(array $liveStreamEvents)
     {
-      return $this->__soapCall('createLiveStreamEvents', [['liveStreamEvents' => $liveStreamEvents]])->getRval();
+      return $this->__soapCall('createLiveStreamEvents', array(array('liveStreamEvents' => $liveStreamEvents)))->getRval();
     }
 
     /**
@@ -130,7 +130,7 @@ class LiveStreamEventService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getLiveStreamEventsByStatement(\Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('getLiveStreamEventsByStatement', [['filterStatement' => $filterStatement]])->getRval();
+      return $this->__soapCall('getLiveStreamEventsByStatement', array(array('filterStatement' => $filterStatement)))->getRval();
     }
 
     /**
@@ -146,7 +146,7 @@ class LiveStreamEventService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function performLiveStreamEventAction(\Google\AdsApi\Dfp\v201611\LiveStreamEventAction $liveStreamEventAction, \Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('performLiveStreamEventAction', [['liveStreamEventAction' => $liveStreamEventAction, 'filterStatement' => $filterStatement]])->getRval();
+      return $this->__soapCall('performLiveStreamEventAction', array(array('liveStreamEventAction' => $liveStreamEventAction, 'filterStatement' => $filterStatement)))->getRval();
     }
 
     /**
@@ -162,7 +162,7 @@ class LiveStreamEventService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function registerSessionsForMonitoring(array $sessionIds)
     {
-      return $this->__soapCall('registerSessionsForMonitoring', [['sessionIds' => $sessionIds]])->getRval();
+      return $this->__soapCall('registerSessionsForMonitoring', array(array('sessionIds' => $sessionIds)))->getRval();
     }
 
     /**
@@ -174,7 +174,7 @@ class LiveStreamEventService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function updateLiveStreamEvents(array $liveStreamEvents)
     {
-      return $this->__soapCall('updateLiveStreamEvents', [['liveStreamEvents' => $liveStreamEvents]])->getRval();
+      return $this->__soapCall('updateLiveStreamEvents', array(array('liveStreamEvents' => $liveStreamEvents)))->getRval();
     }
 
 }
