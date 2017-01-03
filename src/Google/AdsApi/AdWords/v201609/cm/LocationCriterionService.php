@@ -12,7 +12,7 @@ class LocationCriterionService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap = array (
+    private static $classmap =  [
       'AdxError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\AdxError',
       'ApiError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\ApiError',
       'ApiException' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\ApiException',
@@ -61,13 +61,13 @@ class LocationCriterionService extends \Google\AdsApi\Common\AdsSoapClient
       'Vertical' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\Vertical',
       'getResponse' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\getResponse',
       'queryResponse' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\queryResponse',
-    );
+    ];
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = array(),
+    public function __construct(array $options = [],
                 $wsdl = 'https://adwords.google.com/api/adwords/cm/v201609/LocationCriterionService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -75,9 +75,9 @@ class LocationCriterionService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge(array (
+      $options = array_merge( [
       'features' => 1,
-    ), $options);
+    ], $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -90,7 +90,7 @@ class LocationCriterionService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function get(\Google\AdsApi\AdWords\v201609\cm\Selector $selector)
     {
-      return $this->__soapCall('get', array(array('selector' => $selector)))->getRval();
+      return $this->__soapCall('get', [['selector' => $selector]])->getRval();
     }
 
     /**
@@ -102,7 +102,7 @@ class LocationCriterionService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function query($query)
     {
-      return $this->__soapCall('query', array(array('query' => $query)))->getRval();
+      return $this->__soapCall('query', [['query' => $query]])->getRval();
     }
 
 }

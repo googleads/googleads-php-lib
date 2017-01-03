@@ -12,7 +12,7 @@ class ProductTemplateService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap = array (
+    private static $classmap =  [
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'ActivateProductTemplates' => 'Google\\AdsApi\\Dfp\\v201611\\ActivateProductTemplates',
       'AdUnitTargeting' => 'Google\\AdsApi\\Dfp\\v201611\\AdUnitTargeting',
@@ -139,13 +139,13 @@ class ProductTemplateService extends \Google\AdsApi\Common\AdsSoapClient
       'getProductTemplatesByStatementResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getProductTemplatesByStatementResponse',
       'performProductTemplateActionResponse' => 'Google\\AdsApi\\Dfp\\v201611\\performProductTemplateActionResponse',
       'updateProductTemplatesResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updateProductTemplatesResponse',
-    );
+    ];
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = array(),
+    public function __construct(array $options = [],
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/ProductTemplateService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -153,9 +153,9 @@ class ProductTemplateService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge(array (
+      $options = array_merge( [
       'features' => 1,
-    ), $options);
+    ], $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -168,7 +168,7 @@ class ProductTemplateService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function createProductTemplates(array $productTemplates)
     {
-      return $this->__soapCall('createProductTemplates', array(array('productTemplates' => $productTemplates)))->getRval();
+      return $this->__soapCall('createProductTemplates', [['productTemplates' => $productTemplates]])->getRval();
     }
 
     /**
@@ -226,7 +226,7 @@ class ProductTemplateService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getProductTemplatesByStatement(\Google\AdsApi\Dfp\v201611\Statement $statement)
     {
-      return $this->__soapCall('getProductTemplatesByStatement', array(array('statement' => $statement)))->getRval();
+      return $this->__soapCall('getProductTemplatesByStatement', [['statement' => $statement]])->getRval();
     }
 
     /**
@@ -242,7 +242,7 @@ class ProductTemplateService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function performProductTemplateAction(\Google\AdsApi\Dfp\v201611\ProductTemplateAction $action, \Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('performProductTemplateAction', array(array('action' => $action, 'filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('performProductTemplateAction', [['action' => $action, 'filterStatement' => $filterStatement]])->getRval();
     }
 
     /**
@@ -254,7 +254,7 @@ class ProductTemplateService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function updateProductTemplates(array $productTemplates)
     {
-      return $this->__soapCall('updateProductTemplates', array(array('productTemplates' => $productTemplates)))->getRval();
+      return $this->__soapCall('updateProductTemplates', [['productTemplates' => $productTemplates]])->getRval();
     }
 
 }

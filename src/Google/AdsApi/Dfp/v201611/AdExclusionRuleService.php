@@ -12,7 +12,7 @@ class AdExclusionRuleService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap = array (
+    private static $classmap =  [
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'ActivateAdExclusionRules' => 'Google\\AdsApi\\Dfp\\v201611\\ActivateAdExclusionRules',
       'AdExclusionRuleAction' => 'Google\\AdsApi\\Dfp\\v201611\\AdExclusionRuleAction',
@@ -63,13 +63,13 @@ class AdExclusionRuleService extends \Google\AdsApi\Common\AdsSoapClient
       'getAdExclusionRulesByStatementResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getAdExclusionRulesByStatementResponse',
       'performAdExclusionRuleActionResponse' => 'Google\\AdsApi\\Dfp\\v201611\\performAdExclusionRuleActionResponse',
       'updateAdExclusionRulesResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updateAdExclusionRulesResponse',
-    );
+    ];
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = array(),
+    public function __construct(array $options = [],
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/AdExclusionRuleService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -77,9 +77,9 @@ class AdExclusionRuleService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge(array (
+      $options = array_merge( [
       'features' => 1,
-    ), $options);
+    ], $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -92,7 +92,7 @@ class AdExclusionRuleService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function createAdExclusionRules(array $adExclusionRules)
     {
-      return $this->__soapCall('createAdExclusionRules', array(array('adExclusionRules' => $adExclusionRules)))->getRval();
+      return $this->__soapCall('createAdExclusionRules', [['adExclusionRules' => $adExclusionRules]])->getRval();
     }
 
     /**
@@ -126,7 +126,7 @@ class AdExclusionRuleService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getAdExclusionRulesByStatement(\Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('getAdExclusionRulesByStatement', array(array('filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('getAdExclusionRulesByStatement', [['filterStatement' => $filterStatement]])->getRval();
     }
 
     /**
@@ -142,7 +142,7 @@ class AdExclusionRuleService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function performAdExclusionRuleAction(\Google\AdsApi\Dfp\v201611\AdExclusionRuleAction $adExclusionRuleAction, \Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('performAdExclusionRuleAction', array(array('adExclusionRuleAction' => $adExclusionRuleAction, 'filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('performAdExclusionRuleAction', [['adExclusionRuleAction' => $adExclusionRuleAction, 'filterStatement' => $filterStatement]])->getRval();
     }
 
     /**
@@ -154,7 +154,7 @@ class AdExclusionRuleService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function updateAdExclusionRules(array $adExclusionRules)
     {
-      return $this->__soapCall('updateAdExclusionRules', array(array('adExclusionRules' => $adExclusionRules)))->getRval();
+      return $this->__soapCall('updateAdExclusionRules', [['adExclusionRules' => $adExclusionRules]])->getRval();
     }
 
 }

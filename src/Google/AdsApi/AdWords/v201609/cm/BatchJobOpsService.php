@@ -12,7 +12,7 @@ class BatchJobOpsService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap = array (
+    private static $classmap =  [
       'Ad' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\Ad',
       'AdCustomizerError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\AdCustomizerError',
       'AdError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\AdError',
@@ -271,13 +271,13 @@ class BatchJobOpsService extends \Google\AdsApi\Common\AdsSoapClient
       'YouTubeChannel' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\YouTubeChannel',
       'YouTubeVideo' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\YouTubeVideo',
       'mutateResponse' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\mutateResponse',
-    );
+    ];
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = array(),
+    public function __construct(array $options = [],
                 $wsdl = 'https://adwords.google.com/api/adwords/cm/v201609/BatchJobOpsService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -285,9 +285,9 @@ class BatchJobOpsService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge(array (
+      $options = array_merge( [
       'features' => 1,
-    ), $options);
+    ], $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -298,7 +298,7 @@ class BatchJobOpsService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function mutate(array $operations)
     {
-      return $this->__soapCall('mutate', array(array('operations' => $operations)))->getRval();
+      return $this->__soapCall('mutate', [['operations' => $operations]])->getRval();
     }
 
 }

@@ -12,7 +12,7 @@ class CustomerSyncService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap = array (
+    private static $classmap =  [
       'AuthenticationError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\AuthenticationError',
       'AuthorizationError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\AuthorizationError',
       'ClientTermsError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\ClientTermsError',
@@ -47,13 +47,13 @@ class CustomerSyncService extends \Google\AdsApi\Common\AdsSoapClient
       'CustomerChangeData' => 'Google\\AdsApi\\AdWords\\v201609\\ch\\CustomerChangeData',
       'CustomerSyncSelector' => 'Google\\AdsApi\\AdWords\\v201609\\ch\\CustomerSyncSelector',
       'getResponse' => 'Google\\AdsApi\\AdWords\\v201609\\ch\\getResponse',
-    );
+    ];
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = array(),
+    public function __construct(array $options = [],
                 $wsdl = 'https://adwords.google.com/api/adwords/ch/v201609/CustomerSyncService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -61,9 +61,9 @@ class CustomerSyncService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge(array (
+      $options = array_merge( [
       'features' => 1,
-    ), $options);
+    ], $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -79,7 +79,7 @@ class CustomerSyncService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function get(\Google\AdsApi\AdWords\v201609\ch\CustomerSyncSelector $selector)
     {
-      return $this->__soapCall('get', array(array('selector' => $selector)))->getRval();
+      return $this->__soapCall('get', [['selector' => $selector]])->getRval();
     }
 
 }

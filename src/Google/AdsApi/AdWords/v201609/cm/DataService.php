@@ -12,7 +12,7 @@ class DataService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap = array (
+    private static $classmap =  [
       'AdGroupBidLandscape' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\AdGroupBidLandscape',
       'AdxError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\AdxError',
       'AuthenticationError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\AuthenticationError',
@@ -75,13 +75,13 @@ class DataService extends \Google\AdsApi\Common\AdsSoapClient
       'queryCampaignCriterionBidLandscapeResponse' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\queryCampaignCriterionBidLandscapeResponse',
       'queryCriterionBidLandscapeResponse' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\queryCriterionBidLandscapeResponse',
       'queryDomainCategoryResponse' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\queryDomainCategoryResponse',
-    );
+    ];
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = array(),
+    public function __construct(array $options = [],
                 $wsdl = 'https://adwords.google.com/api/adwords/cm/v201609/DataService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -89,9 +89,9 @@ class DataService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge(array (
+      $options = array_merge( [
       'features' => 1,
-    ), $options);
+    ], $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -107,7 +107,7 @@ class DataService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getAdGroupBidLandscape(\Google\AdsApi\AdWords\v201609\cm\Selector $serviceSelector)
     {
-      return $this->__soapCall('getAdGroupBidLandscape', array(array('serviceSelector' => $serviceSelector)))->getRval();
+      return $this->__soapCall('getAdGroupBidLandscape', [['serviceSelector' => $serviceSelector]])->getRval();
     }
 
     /**
@@ -123,7 +123,7 @@ class DataService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getCampaignCriterionBidLandscape(\Google\AdsApi\AdWords\v201609\cm\Selector $serviceSelector)
     {
-      return $this->__soapCall('getCampaignCriterionBidLandscape', array(array('serviceSelector' => $serviceSelector)))->getRval();
+      return $this->__soapCall('getCampaignCriterionBidLandscape', [['serviceSelector' => $serviceSelector]])->getRval();
     }
 
     /**
@@ -138,7 +138,7 @@ class DataService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getCriterionBidLandscape(\Google\AdsApi\AdWords\v201609\cm\Selector $serviceSelector)
     {
-      return $this->__soapCall('getCriterionBidLandscape', array(array('serviceSelector' => $serviceSelector)))->getRval();
+      return $this->__soapCall('getCriterionBidLandscape', [['serviceSelector' => $serviceSelector]])->getRval();
     }
 
     /**
@@ -150,7 +150,7 @@ class DataService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getDomainCategory(\Google\AdsApi\AdWords\v201609\cm\Selector $serviceSelector)
     {
-      return $this->__soapCall('getDomainCategory', array(array('serviceSelector' => $serviceSelector)))->getRval();
+      return $this->__soapCall('getDomainCategory', [['serviceSelector' => $serviceSelector]])->getRval();
     }
 
     /**
@@ -165,7 +165,7 @@ class DataService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function queryAdGroupBidLandscape($query)
     {
-      return $this->__soapCall('queryAdGroupBidLandscape', array(array('query' => $query)))->getRval();
+      return $this->__soapCall('queryAdGroupBidLandscape', [['query' => $query]])->getRval();
     }
 
     /**
@@ -181,7 +181,7 @@ class DataService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function queryCampaignCriterionBidLandscape($query)
     {
-      return $this->__soapCall('queryCampaignCriterionBidLandscape', array(array('query' => $query)))->getRval();
+      return $this->__soapCall('queryCampaignCriterionBidLandscape', [['query' => $query]])->getRval();
     }
 
     /**
@@ -196,7 +196,7 @@ class DataService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function queryCriterionBidLandscape($query)
     {
-      return $this->__soapCall('queryCriterionBidLandscape', array(array('query' => $query)))->getRval();
+      return $this->__soapCall('queryCriterionBidLandscape', [['query' => $query]])->getRval();
     }
 
     /**
@@ -210,7 +210,7 @@ class DataService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function queryDomainCategory($query)
     {
-      return $this->__soapCall('queryDomainCategory', array(array('query' => $query)))->getRval();
+      return $this->__soapCall('queryDomainCategory', [['query' => $query]])->getRval();
     }
 
 }

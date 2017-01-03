@@ -12,7 +12,7 @@ class ContentService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap = array (
+    private static $classmap =  [
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'ApiError' => 'Google\\AdsApi\\Dfp\\v201611\\ApiError',
       'ApiException' => 'Google\\AdsApi\\Dfp\\v201611\\ApiException',
@@ -56,13 +56,13 @@ class ContentService extends \Google\AdsApi\Common\AdsSoapClient
       'Value' => 'Google\\AdsApi\\Dfp\\v201611\\Value',
       'getContentByStatementResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getContentByStatementResponse',
       'getContentByStatementAndCustomTargetingValueResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getContentByStatementAndCustomTargetingValueResponse',
-    );
+    ];
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = array(),
+    public function __construct(array $options = [],
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/ContentService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -70,9 +70,9 @@ class ContentService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge(array (
+      $options = array_merge( [
       'features' => 1,
-    ), $options);
+    ], $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -111,7 +111,7 @@ class ContentService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getContentByStatement(\Google\AdsApi\Dfp\v201611\Statement $statement)
     {
-      return $this->__soapCall('getContentByStatement', array(array('statement' => $statement)))->getRval();
+      return $this->__soapCall('getContentByStatement', [['statement' => $statement]])->getRval();
     }
 
     /**
@@ -151,7 +151,7 @@ class ContentService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getContentByStatementAndCustomTargetingValue(\Google\AdsApi\Dfp\v201611\Statement $filterStatement, $customTargetingValueId)
     {
-      return $this->__soapCall('getContentByStatementAndCustomTargetingValue', array(array('filterStatement' => $filterStatement, 'customTargetingValueId' => $customTargetingValueId)))->getRval();
+      return $this->__soapCall('getContentByStatementAndCustomTargetingValue', [['filterStatement' => $filterStatement, 'customTargetingValueId' => $customTargetingValueId]])->getRval();
     }
 
 }

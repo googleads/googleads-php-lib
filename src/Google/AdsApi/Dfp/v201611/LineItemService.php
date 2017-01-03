@@ -12,7 +12,7 @@ class LineItemService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap = array (
+    private static $classmap =  [
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'ActivateLineItems' => 'Google\\AdsApi\\Dfp\\v201611\\ActivateLineItems',
       'AdUnitTargeting' => 'Google\\AdsApi\\Dfp\\v201611\\AdUnitTargeting',
@@ -171,13 +171,13 @@ class LineItemService extends \Google\AdsApi\Common\AdsSoapClient
       'getLineItemsByStatementResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getLineItemsByStatementResponse',
       'performLineItemActionResponse' => 'Google\\AdsApi\\Dfp\\v201611\\performLineItemActionResponse',
       'updateLineItemsResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updateLineItemsResponse',
-    );
+    ];
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = array(),
+    public function __construct(array $options = [],
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/LineItemService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -185,9 +185,9 @@ class LineItemService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge(array (
+      $options = array_merge( [
       'features' => 1,
-    ), $options);
+    ], $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -200,7 +200,7 @@ class LineItemService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function createLineItems(array $lineItems)
     {
-      return $this->__soapCall('createLineItems', array(array('lineItems' => $lineItems)))->getRval();
+      return $this->__soapCall('createLineItems', [['lineItems' => $lineItems]])->getRval();
     }
 
     /**
@@ -217,7 +217,7 @@ class LineItemService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getLineItemsByStatement(\Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('getLineItemsByStatement', array(array('filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('getLineItemsByStatement', [['filterStatement' => $filterStatement]])->getRval();
     }
 
     /**
@@ -233,7 +233,7 @@ class LineItemService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function performLineItemAction(\Google\AdsApi\Dfp\v201611\LineItemAction $lineItemAction, \Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('performLineItemAction', array(array('lineItemAction' => $lineItemAction, 'filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('performLineItemAction', [['lineItemAction' => $lineItemAction, 'filterStatement' => $filterStatement]])->getRval();
     }
 
     /**
@@ -245,7 +245,7 @@ class LineItemService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function updateLineItems(array $lineItems)
     {
-      return $this->__soapCall('updateLineItems', array(array('lineItems' => $lineItems)))->getRval();
+      return $this->__soapCall('updateLineItems', [['lineItems' => $lineItems]])->getRval();
     }
 
 }

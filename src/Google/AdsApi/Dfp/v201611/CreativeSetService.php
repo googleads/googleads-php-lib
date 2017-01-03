@@ -12,7 +12,7 @@ class CreativeSetService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap = array (
+    private static $classmap =  [
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'ApiError' => 'Google\\AdsApi\\Dfp\\v201611\\ApiError',
       'ApiException' => 'Google\\AdsApi\\Dfp\\v201611\\ApiException',
@@ -77,13 +77,13 @@ class CreativeSetService extends \Google\AdsApi\Common\AdsSoapClient
       'createCreativeSetResponse' => 'Google\\AdsApi\\Dfp\\v201611\\createCreativeSetResponse',
       'getCreativeSetsByStatementResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getCreativeSetsByStatementResponse',
       'updateCreativeSetResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updateCreativeSetResponse',
-    );
+    ];
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = array(),
+    public function __construct(array $options = [],
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/CreativeSetService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -91,9 +91,9 @@ class CreativeSetService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge(array (
+      $options = array_merge( [
       'features' => 1,
-    ), $options);
+    ], $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -106,7 +106,7 @@ class CreativeSetService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function createCreativeSet(\Google\AdsApi\Dfp\v201611\CreativeSet $creativeSet)
     {
-      return $this->__soapCall('createCreativeSet', array(array('creativeSet' => $creativeSet)))->getRval();
+      return $this->__soapCall('createCreativeSet', [['creativeSet' => $creativeSet]])->getRval();
     }
 
     /**
@@ -144,7 +144,7 @@ class CreativeSetService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getCreativeSetsByStatement(\Google\AdsApi\Dfp\v201611\Statement $statement)
     {
-      return $this->__soapCall('getCreativeSetsByStatement', array(array('statement' => $statement)))->getRval();
+      return $this->__soapCall('getCreativeSetsByStatement', [['statement' => $statement]])->getRval();
     }
 
     /**
@@ -156,7 +156,7 @@ class CreativeSetService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function updateCreativeSet(\Google\AdsApi\Dfp\v201611\CreativeSet $creativeSet)
     {
-      return $this->__soapCall('updateCreativeSet', array(array('creativeSet' => $creativeSet)))->getRval();
+      return $this->__soapCall('updateCreativeSet', [['creativeSet' => $creativeSet]])->getRval();
     }
 
 }

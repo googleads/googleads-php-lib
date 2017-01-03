@@ -12,7 +12,7 @@ class TeamService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap = array (
+    private static $classmap =  [
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'ApiError' => 'Google\\AdsApi\\Dfp\\v201611\\ApiError',
       'ApiException' => 'Google\\AdsApi\\Dfp\\v201611\\ApiException',
@@ -57,13 +57,13 @@ class TeamService extends \Google\AdsApi\Common\AdsSoapClient
       'createTeamsResponse' => 'Google\\AdsApi\\Dfp\\v201611\\createTeamsResponse',
       'getTeamsByStatementResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getTeamsByStatementResponse',
       'updateTeamsResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updateTeamsResponse',
-    );
+    ];
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = array(),
+    public function __construct(array $options = [],
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/TeamService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -71,9 +71,9 @@ class TeamService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge(array (
+      $options = array_merge( [
       'features' => 1,
-    ), $options);
+    ], $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -91,7 +91,7 @@ class TeamService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function createTeams(array $teams)
     {
-      return $this->__soapCall('createTeams', array(array('teams' => $teams)))->getRval();
+      return $this->__soapCall('createTeams', [['teams' => $teams]])->getRval();
     }
 
     /**
@@ -125,7 +125,7 @@ class TeamService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getTeamsByStatement(\Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('getTeamsByStatement', array(array('filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('getTeamsByStatement', [['filterStatement' => $filterStatement]])->getRval();
     }
 
     /**
@@ -137,7 +137,7 @@ class TeamService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function updateTeams(array $teams)
     {
-      return $this->__soapCall('updateTeams', array(array('teams' => $teams)))->getRval();
+      return $this->__soapCall('updateTeams', [['teams' => $teams]])->getRval();
     }
 
 }

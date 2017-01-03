@@ -12,7 +12,7 @@ class SuggestedAdUnitService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap = array (
+    private static $classmap =  [
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'AdUnitParent' => 'Google\\AdsApi\\Dfp\\v201611\\AdUnitParent',
       'ApiError' => 'Google\\AdsApi\\Dfp\\v201611\\ApiError',
@@ -61,13 +61,13 @@ class SuggestedAdUnitService extends \Google\AdsApi\Common\AdsSoapClient
       'Value' => 'Google\\AdsApi\\Dfp\\v201611\\Value',
       'getSuggestedAdUnitsByStatementResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getSuggestedAdUnitsByStatementResponse',
       'performSuggestedAdUnitActionResponse' => 'Google\\AdsApi\\Dfp\\v201611\\performSuggestedAdUnitActionResponse',
-    );
+    ];
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = array(),
+    public function __construct(array $options = [],
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/SuggestedAdUnitService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -75,9 +75,9 @@ class SuggestedAdUnitService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge(array (
+      $options = array_merge( [
       'features' => 1,
-    ), $options);
+    ], $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -111,7 +111,7 @@ class SuggestedAdUnitService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getSuggestedAdUnitsByStatement(\Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('getSuggestedAdUnitsByStatement', array(array('filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('getSuggestedAdUnitsByStatement', [['filterStatement' => $filterStatement]])->getRval();
     }
 
     /**
@@ -141,7 +141,7 @@ class SuggestedAdUnitService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function performSuggestedAdUnitAction(\Google\AdsApi\Dfp\v201611\SuggestedAdUnitAction $suggestedAdUnitAction, \Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('performSuggestedAdUnitAction', array(array('suggestedAdUnitAction' => $suggestedAdUnitAction, 'filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('performSuggestedAdUnitAction', [['suggestedAdUnitAction' => $suggestedAdUnitAction, 'filterStatement' => $filterStatement]])->getRval();
     }
 
 }

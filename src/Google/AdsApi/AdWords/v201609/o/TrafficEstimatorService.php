@@ -12,7 +12,7 @@ class TrafficEstimatorService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap = array (
+    private static $classmap =  [
       'AdxError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\AdxError',
       'ApiError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\ApiError',
       'ApiException' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\ApiException',
@@ -77,13 +77,13 @@ class TrafficEstimatorService extends \Google\AdsApi\Common\AdsSoapClient
       'TrafficEstimatorResult' => 'Google\\AdsApi\\AdWords\\v201609\\o\\TrafficEstimatorResult',
       'TrafficEstimatorSelector' => 'Google\\AdsApi\\AdWords\\v201609\\o\\TrafficEstimatorSelector',
       'getResponse' => 'Google\\AdsApi\\AdWords\\v201609\\o\\getResponse',
-    );
+    ];
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = array(),
+    public function __construct(array $options = [],
                 $wsdl = 'https://adwords.google.com/api/adwords/o/v201609/TrafficEstimatorService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -91,9 +91,9 @@ class TrafficEstimatorService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge(array (
+      $options = array_merge( [
       'features' => 1,
-    ), $options);
+    ], $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -108,7 +108,7 @@ class TrafficEstimatorService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function get(\Google\AdsApi\AdWords\v201609\o\TrafficEstimatorSelector $selector)
     {
-      return $this->__soapCall('get', array(array('selector' => $selector)))->getRval();
+      return $this->__soapCall('get', [['selector' => $selector]])->getRval();
     }
 
 }

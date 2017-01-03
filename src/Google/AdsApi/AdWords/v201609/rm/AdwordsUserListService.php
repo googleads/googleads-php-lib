@@ -12,7 +12,7 @@ class AdwordsUserListService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap = array (
+    private static $classmap =  [
       'AuthenticationError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\AuthenticationError',
       'AuthorizationError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\AuthorizationError',
       'DateError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\DateError',
@@ -83,13 +83,13 @@ class AdwordsUserListService extends \Google\AdsApi\Common\AdsSoapClient
       'mutateResponse' => 'Google\\AdsApi\\AdWords\\v201609\\rm\\mutateResponse',
       'mutateMembersResponse' => 'Google\\AdsApi\\AdWords\\v201609\\rm\\mutateMembersResponse',
       'queryResponse' => 'Google\\AdsApi\\AdWords\\v201609\\rm\\queryResponse',
-    );
+    ];
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = array(),
+    public function __construct(array $options = [],
                 $wsdl = 'https://adwords.google.com/api/adwords/rm/v201609/AdwordsUserListService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -97,9 +97,9 @@ class AdwordsUserListService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge(array (
+      $options = array_merge( [
       'features' => 1,
-    ), $options);
+    ], $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -112,7 +112,7 @@ class AdwordsUserListService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function get(\Google\AdsApi\AdWords\v201609\cm\Selector $serviceSelector)
     {
-      return $this->__soapCall('get', array(array('serviceSelector' => $serviceSelector)))->getRval();
+      return $this->__soapCall('get', [['serviceSelector' => $serviceSelector]])->getRval();
     }
 
     /**
@@ -128,7 +128,7 @@ class AdwordsUserListService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function mutate(array $operations)
     {
-      return $this->__soapCall('mutate', array(array('operations' => $operations)))->getRval();
+      return $this->__soapCall('mutate', [['operations' => $operations]])->getRval();
     }
 
     /**
@@ -144,7 +144,7 @@ class AdwordsUserListService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function mutateMembers(array $operations)
     {
-      return $this->__soapCall('mutateMembers', array(array('operations' => $operations)))->getRval();
+      return $this->__soapCall('mutateMembers', [['operations' => $operations]])->getRval();
     }
 
     /**
@@ -156,7 +156,7 @@ class AdwordsUserListService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function query($query)
     {
-      return $this->__soapCall('query', array(array('query' => $query)))->getRval();
+      return $this->__soapCall('query', [['query' => $query]])->getRval();
     }
 
 }

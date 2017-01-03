@@ -12,7 +12,7 @@ class ForecastService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap = array (
+    private static $classmap =  [
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'AdUnitCodeError' => 'Google\\AdsApi\\Dfp\\v201611\\AdUnitCodeError',
       'AdUnitTargeting' => 'Google\\AdsApi\\Dfp\\v201611\\AdUnitTargeting',
@@ -168,13 +168,13 @@ class ForecastService extends \Google\AdsApi\Common\AdsSoapClient
       'getAvailabilityForecastByIdResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getAvailabilityForecastByIdResponse',
       'getDeliveryForecastResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getDeliveryForecastResponse',
       'getDeliveryForecastByIdsResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getDeliveryForecastByIdsResponse',
-    );
+    ];
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = array(),
+    public function __construct(array $options = [],
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/ForecastService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -182,9 +182,9 @@ class ForecastService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge(array (
+      $options = array_merge( [
       'features' => 1,
-    ), $options);
+    ], $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -202,7 +202,7 @@ class ForecastService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getAvailabilityForecast(\Google\AdsApi\Dfp\v201611\ProspectiveLineItem $lineItem, \Google\AdsApi\Dfp\v201611\AvailabilityForecastOptions $forecastOptions)
     {
-      return $this->__soapCall('getAvailabilityForecast', array(array('lineItem' => $lineItem, 'forecastOptions' => $forecastOptions)))->getRval();
+      return $this->__soapCall('getAvailabilityForecast', [['lineItem' => $lineItem, 'forecastOptions' => $forecastOptions]])->getRval();
     }
 
     /**
@@ -223,7 +223,7 @@ class ForecastService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getAvailabilityForecastById($lineItemId, \Google\AdsApi\Dfp\v201611\AvailabilityForecastOptions $forecastOptions)
     {
-      return $this->__soapCall('getAvailabilityForecastById', array(array('lineItemId' => $lineItemId, 'forecastOptions' => $forecastOptions)))->getRval();
+      return $this->__soapCall('getAvailabilityForecastById', [['lineItemId' => $lineItemId, 'forecastOptions' => $forecastOptions]])->getRval();
     }
 
     /**
@@ -239,7 +239,7 @@ class ForecastService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getDeliveryForecast(array $lineItems, \Google\AdsApi\Dfp\v201611\DeliveryForecastOptions $forecastOptions)
     {
-      return $this->__soapCall('getDeliveryForecast', array(array('lineItems' => $lineItems, 'forecastOptions' => $forecastOptions)))->getRval();
+      return $this->__soapCall('getDeliveryForecast', [['lineItems' => $lineItems, 'forecastOptions' => $forecastOptions]])->getRval();
     }
 
     /**
@@ -255,7 +255,7 @@ class ForecastService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getDeliveryForecastByIds(array $lineItemIds, \Google\AdsApi\Dfp\v201611\DeliveryForecastOptions $forecastOptions)
     {
-      return $this->__soapCall('getDeliveryForecastByIds', array(array('lineItemIds' => $lineItemIds, 'forecastOptions' => $forecastOptions)))->getRval();
+      return $this->__soapCall('getDeliveryForecastByIds', [['lineItemIds' => $lineItemIds, 'forecastOptions' => $forecastOptions]])->getRval();
     }
 
 }

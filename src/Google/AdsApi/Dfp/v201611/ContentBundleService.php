@@ -12,7 +12,7 @@ class ContentBundleService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap = array (
+    private static $classmap =  [
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'ActivateContentBundles' => 'Google\\AdsApi\\Dfp\\v201611\\ActivateContentBundles',
       'ApiError' => 'Google\\AdsApi\\Dfp\\v201611\\ApiError',
@@ -61,13 +61,13 @@ class ContentBundleService extends \Google\AdsApi\Common\AdsSoapClient
       'getContentBundlesByStatementResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getContentBundlesByStatementResponse',
       'performContentBundleActionResponse' => 'Google\\AdsApi\\Dfp\\v201611\\performContentBundleActionResponse',
       'updateContentBundlesResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updateContentBundlesResponse',
-    );
+    ];
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = array(),
+    public function __construct(array $options = [],
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/ContentBundleService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -75,9 +75,9 @@ class ContentBundleService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge(array (
+      $options = array_merge( [
       'features' => 1,
-    ), $options);
+    ], $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -90,7 +90,7 @@ class ContentBundleService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function createContentBundles(array $contentBundles)
     {
-      return $this->__soapCall('createContentBundles', array(array('contentBundles' => $contentBundles)))->getRval();
+      return $this->__soapCall('createContentBundles', [['contentBundles' => $contentBundles]])->getRval();
     }
 
     /**
@@ -123,7 +123,7 @@ class ContentBundleService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getContentBundlesByStatement(\Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('getContentBundlesByStatement', array(array('filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('getContentBundlesByStatement', [['filterStatement' => $filterStatement]])->getRval();
     }
 
     /**
@@ -139,7 +139,7 @@ class ContentBundleService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function performContentBundleAction(\Google\AdsApi\Dfp\v201611\ContentBundleAction $contentBundleAction, \Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('performContentBundleAction', array(array('contentBundleAction' => $contentBundleAction, 'filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('performContentBundleAction', [['contentBundleAction' => $contentBundleAction, 'filterStatement' => $filterStatement]])->getRval();
     }
 
     /**
@@ -151,7 +151,7 @@ class ContentBundleService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function updateContentBundles(array $contentBundles)
     {
-      return $this->__soapCall('updateContentBundles', array(array('contentBundles' => $contentBundles)))->getRval();
+      return $this->__soapCall('updateContentBundles', [['contentBundles' => $contentBundles]])->getRval();
     }
 
 }

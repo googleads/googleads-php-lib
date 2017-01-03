@@ -12,7 +12,7 @@ class PlacementService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap = array (
+    private static $classmap =  [
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'ActivatePlacements' => 'Google\\AdsApi\\Dfp\\v201611\\ActivatePlacements',
       'ApiError' => 'Google\\AdsApi\\Dfp\\v201611\\ApiError',
@@ -67,13 +67,13 @@ class PlacementService extends \Google\AdsApi\Common\AdsSoapClient
       'getPlacementsByStatementResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getPlacementsByStatementResponse',
       'performPlacementActionResponse' => 'Google\\AdsApi\\Dfp\\v201611\\performPlacementActionResponse',
       'updatePlacementsResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updatePlacementsResponse',
-    );
+    ];
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = array(),
+    public function __construct(array $options = [],
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/PlacementService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -81,9 +81,9 @@ class PlacementService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge(array (
+      $options = array_merge( [
       'features' => 1,
-    ), $options);
+    ], $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -96,7 +96,7 @@ class PlacementService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function createPlacements(array $placements)
     {
-      return $this->__soapCall('createPlacements', array(array('placements' => $placements)))->getRval();
+      return $this->__soapCall('createPlacements', [['placements' => $placements]])->getRval();
     }
 
     /**
@@ -146,7 +146,7 @@ class PlacementService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getPlacementsByStatement(\Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('getPlacementsByStatement', array(array('filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('getPlacementsByStatement', [['filterStatement' => $filterStatement]])->getRval();
     }
 
     /**
@@ -162,7 +162,7 @@ class PlacementService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function performPlacementAction(\Google\AdsApi\Dfp\v201611\PlacementAction $placementAction, \Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('performPlacementAction', array(array('placementAction' => $placementAction, 'filterStatement' => $filterStatement)))->getRval();
+      return $this->__soapCall('performPlacementAction', [['placementAction' => $placementAction, 'filterStatement' => $filterStatement]])->getRval();
     }
 
     /**
@@ -174,7 +174,7 @@ class PlacementService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function updatePlacements(array $placements)
     {
-      return $this->__soapCall('updatePlacements', array(array('placements' => $placements)))->getRval();
+      return $this->__soapCall('updatePlacements', [['placements' => $placements]])->getRval();
     }
 
 }
