@@ -12,7 +12,7 @@ class PublisherQueryLanguageService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap =  [
+    private static $classmap = array (
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'AdUnitCodeError' => 'Google\\AdsApi\\Dfp\\v201611\\AdUnitCodeError',
       'AdUnitHierarchyError' => 'Google\\AdsApi\\Dfp\\v201611\\AdUnitHierarchyError',
@@ -120,13 +120,13 @@ class PublisherQueryLanguageService extends \Google\AdsApi\Common\AdsSoapClient
       'VideoPositionWithinPod' => 'Google\\AdsApi\\Dfp\\v201611\\VideoPositionWithinPod',
       'VideoPositionTarget' => 'Google\\AdsApi\\Dfp\\v201611\\VideoPositionTarget',
       'selectResponse' => 'Google\\AdsApi\\Dfp\\v201611\\selectResponse',
-    ];
+    );
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = [],
+    public function __construct(array $options = array(),
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/PublisherQueryLanguageService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -134,9 +134,9 @@ class PublisherQueryLanguageService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge( [
+      $options = array_merge(array (
       'features' => 1,
-    ], $options);
+    ), $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -152,7 +152,7 @@ class PublisherQueryLanguageService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function select(\Google\AdsApi\Dfp\v201611\Statement $selectStatement)
     {
-      return $this->__soapCall('select', [['selectStatement' => $selectStatement]])->getRval();
+      return $this->__soapCall('select', array(array('selectStatement' => $selectStatement)))->getRval();
     }
 
 }

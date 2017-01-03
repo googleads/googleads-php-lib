@@ -12,7 +12,7 @@ class ProposalLineItemService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap =  [
+    private static $classmap = array (
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'ActualizeProposalLineItems' => 'Google\\AdsApi\\Dfp\\v201611\\ActualizeProposalLineItems',
       'AdUnitPremiumFeature' => 'Google\\AdsApi\\Dfp\\v201611\\AdUnitPremiumFeature',
@@ -179,13 +179,13 @@ class ProposalLineItemService extends \Google\AdsApi\Common\AdsSoapClient
       'getProposalLineItemsByStatementResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getProposalLineItemsByStatementResponse',
       'performProposalLineItemActionResponse' => 'Google\\AdsApi\\Dfp\\v201611\\performProposalLineItemActionResponse',
       'updateProposalLineItemsResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updateProposalLineItemsResponse',
-    ];
+    );
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = [],
+    public function __construct(array $options = array(),
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/ProposalLineItemService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -193,9 +193,9 @@ class ProposalLineItemService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge( [
+      $options = array_merge(array (
       'features' => 1,
-    ], $options);
+    ), $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -218,7 +218,7 @@ class ProposalLineItemService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function createProposalLineItems(array $proposalLineItems)
     {
-      return $this->__soapCall('createProposalLineItems', [['proposalLineItems' => $proposalLineItems]])->getRval();
+      return $this->__soapCall('createProposalLineItems', array(array('proposalLineItems' => $proposalLineItems)))->getRval();
     }
 
     /**
@@ -299,7 +299,7 @@ class ProposalLineItemService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getProposalLineItemsByStatement(\Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('getProposalLineItemsByStatement', [['filterStatement' => $filterStatement]])->getRval();
+      return $this->__soapCall('getProposalLineItemsByStatement', array(array('filterStatement' => $filterStatement)))->getRval();
     }
 
     /**
@@ -315,7 +315,7 @@ class ProposalLineItemService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function performProposalLineItemAction(\Google\AdsApi\Dfp\v201611\ProposalLineItemAction $proposalLineItemAction, \Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('performProposalLineItemAction', [['proposalLineItemAction' => $proposalLineItemAction, 'filterStatement' => $filterStatement]])->getRval();
+      return $this->__soapCall('performProposalLineItemAction', array(array('proposalLineItemAction' => $proposalLineItemAction, 'filterStatement' => $filterStatement)))->getRval();
     }
 
     /**
@@ -328,7 +328,7 @@ class ProposalLineItemService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function updateProposalLineItems(array $proposalLineItems)
     {
-      return $this->__soapCall('updateProposalLineItems', [['proposalLineItems' => $proposalLineItems]])->getRval();
+      return $this->__soapCall('updateProposalLineItems', array(array('proposalLineItems' => $proposalLineItems)))->getRval();
     }
 
 }

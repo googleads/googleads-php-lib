@@ -12,7 +12,7 @@ class PromotionService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap =  [
+    private static $classmap = array (
       'Address' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\Address',
       'ApiError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\ApiError',
       'ApiException' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\ApiException',
@@ -84,13 +84,13 @@ class PromotionService extends \Google\AdsApi\Common\AdsSoapClient
       'PromotionPage' => 'Google\\AdsApi\\AdWords\\v201609\\express\\PromotionPage',
       'getResponse' => 'Google\\AdsApi\\AdWords\\v201609\\express\\getResponse',
       'mutateResponse' => 'Google\\AdsApi\\AdWords\\v201609\\express\\mutateResponse',
-    ];
+    );
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = [],
+    public function __construct(array $options = array(),
                 $wsdl = 'https://adwords.google.com/api/adwords/express/v201609/PromotionService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -98,9 +98,9 @@ class PromotionService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge( [
+      $options = array_merge(array (
       'features' => 1,
-    ], $options);
+    ), $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -113,7 +113,7 @@ class PromotionService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function get(\Google\AdsApi\AdWords\v201609\cm\Selector $selector)
     {
-      return $this->__soapCall('get', [['selector' => $selector]])->getRval();
+      return $this->__soapCall('get', array(array('selector' => $selector)))->getRval();
     }
 
     /**
@@ -126,7 +126,7 @@ class PromotionService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function mutate(array $operations)
     {
-      return $this->__soapCall('mutate', [['operations' => $operations]])->getRval();
+      return $this->__soapCall('mutate', array(array('operations' => $operations)))->getRval();
     }
 
 }

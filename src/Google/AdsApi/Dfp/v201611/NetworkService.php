@@ -12,7 +12,7 @@ class NetworkService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap =  [
+    private static $classmap = array (
       'ApiError' => 'Google\\AdsApi\\Dfp\\v201611\\ApiError',
       'ApiException' => 'Google\\AdsApi\\Dfp\\v201611\\ApiException',
       'ApiVersionError' => 'Google\\AdsApi\\Dfp\\v201611\\ApiVersionError',
@@ -48,13 +48,13 @@ class NetworkService extends \Google\AdsApi\Common\AdsSoapClient
       'getCurrentNetworkResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getCurrentNetworkResponse',
       'makeTestNetworkResponse' => 'Google\\AdsApi\\Dfp\\v201611\\makeTestNetworkResponse',
       'updateNetworkResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updateNetworkResponse',
-    ];
+    );
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = [],
+    public function __construct(array $options = array(),
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/NetworkService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -62,9 +62,9 @@ class NetworkService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge( [
+      $options = array_merge(array (
       'features' => 1,
-    ], $options);
+    ), $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -81,7 +81,7 @@ class NetworkService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getAllNetworks()
     {
-      return $this->__soapCall('getAllNetworks', [[]])->getRval();
+      return $this->__soapCall('getAllNetworks', array(array()))->getRval();
     }
 
     /**
@@ -92,7 +92,7 @@ class NetworkService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getCurrentNetwork()
     {
-      return $this->__soapCall('getCurrentNetwork', [[]])->getRval();
+      return $this->__soapCall('getCurrentNetwork', array(array()))->getRval();
     }
 
     /**
@@ -123,7 +123,7 @@ class NetworkService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function makeTestNetwork()
     {
-      return $this->__soapCall('makeTestNetwork', [[]])->getRval();
+      return $this->__soapCall('makeTestNetwork', array(array()))->getRval();
     }
 
     /**
@@ -136,7 +136,7 @@ class NetworkService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function updateNetwork(\Google\AdsApi\Dfp\v201611\Network $network)
     {
-      return $this->__soapCall('updateNetwork', [['network' => $network]])->getRval();
+      return $this->__soapCall('updateNetwork', array(array('network' => $network)))->getRval();
     }
 
 }

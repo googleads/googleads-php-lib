@@ -12,7 +12,7 @@ class AdRuleService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap =  [
+    private static $classmap = array (
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'ActivateAdRules' => 'Google\\AdsApi\\Dfp\\v201611\\ActivateAdRules',
       'AdRuleAction' => 'Google\\AdsApi\\Dfp\\v201611\\AdRuleAction',
@@ -118,13 +118,13 @@ class AdRuleService extends \Google\AdsApi\Common\AdsSoapClient
       'getAdRulesByStatementResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getAdRulesByStatementResponse',
       'performAdRuleActionResponse' => 'Google\\AdsApi\\Dfp\\v201611\\performAdRuleActionResponse',
       'updateAdRulesResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updateAdRulesResponse',
-    ];
+    );
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = [],
+    public function __construct(array $options = array(),
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/AdRuleService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -132,9 +132,9 @@ class AdRuleService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge( [
+      $options = array_merge(array (
       'features' => 1,
-    ], $options);
+    ), $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -147,7 +147,7 @@ class AdRuleService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function createAdRules(array $adRules)
     {
-      return $this->__soapCall('createAdRules', [['adRules' => $adRules]])->getRval();
+      return $this->__soapCall('createAdRules', array(array('adRules' => $adRules)))->getRval();
     }
 
     /**
@@ -181,7 +181,7 @@ class AdRuleService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getAdRulesByStatement(\Google\AdsApi\Dfp\v201611\Statement $statement)
     {
-      return $this->__soapCall('getAdRulesByStatement', [['statement' => $statement]])->getRval();
+      return $this->__soapCall('getAdRulesByStatement', array(array('statement' => $statement)))->getRval();
     }
 
     /**
@@ -197,7 +197,7 @@ class AdRuleService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function performAdRuleAction(\Google\AdsApi\Dfp\v201611\AdRuleAction $adRuleAction, \Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('performAdRuleAction', [['adRuleAction' => $adRuleAction, 'filterStatement' => $filterStatement]])->getRval();
+      return $this->__soapCall('performAdRuleAction', array(array('adRuleAction' => $adRuleAction, 'filterStatement' => $filterStatement)))->getRval();
     }
 
     /**
@@ -209,7 +209,7 @@ class AdRuleService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function updateAdRules(array $adRules)
     {
-      return $this->__soapCall('updateAdRules', [['adRules' => $adRules]])->getRval();
+      return $this->__soapCall('updateAdRules', array(array('adRules' => $adRules)))->getRval();
     }
 
 }

@@ -12,7 +12,7 @@ class ExchangeRateService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap =  [
+    private static $classmap = array (
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'ApiError' => 'Google\\AdsApi\\Dfp\\v201611\\ApiError',
       'ApiException' => 'Google\\AdsApi\\Dfp\\v201611\\ApiException',
@@ -59,13 +59,13 @@ class ExchangeRateService extends \Google\AdsApi\Common\AdsSoapClient
       'getExchangeRatesByStatementResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getExchangeRatesByStatementResponse',
       'performExchangeRateActionResponse' => 'Google\\AdsApi\\Dfp\\v201611\\performExchangeRateActionResponse',
       'updateExchangeRatesResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updateExchangeRatesResponse',
-    ];
+    );
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = [],
+    public function __construct(array $options = array(),
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/ExchangeRateService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -73,9 +73,9 @@ class ExchangeRateService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge( [
+      $options = array_merge(array (
       'features' => 1,
-    ], $options);
+    ), $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -95,7 +95,7 @@ class ExchangeRateService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function createExchangeRates(array $exchangeRates)
     {
-      return $this->__soapCall('createExchangeRates', [['exchangeRates' => $exchangeRates]])->getRval();
+      return $this->__soapCall('createExchangeRates', array(array('exchangeRates' => $exchangeRates)))->getRval();
     }
 
     /**
@@ -136,7 +136,7 @@ class ExchangeRateService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getExchangeRatesByStatement(\Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('getExchangeRatesByStatement', [['filterStatement' => $filterStatement]])->getRval();
+      return $this->__soapCall('getExchangeRatesByStatement', array(array('filterStatement' => $filterStatement)))->getRval();
     }
 
     /**
@@ -178,7 +178,7 @@ class ExchangeRateService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function performExchangeRateAction(\Google\AdsApi\Dfp\v201611\ExchangeRateAction $exchangeRateAction, \Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('performExchangeRateAction', [['exchangeRateAction' => $exchangeRateAction, 'filterStatement' => $filterStatement]])->getRval();
+      return $this->__soapCall('performExchangeRateAction', array(array('exchangeRateAction' => $exchangeRateAction, 'filterStatement' => $filterStatement)))->getRval();
     }
 
     /**
@@ -190,7 +190,7 @@ class ExchangeRateService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function updateExchangeRates(array $exchangeRates)
     {
-      return $this->__soapCall('updateExchangeRates', [['exchangeRates' => $exchangeRates]])->getRval();
+      return $this->__soapCall('updateExchangeRates', array(array('exchangeRates' => $exchangeRates)))->getRval();
     }
 
 }

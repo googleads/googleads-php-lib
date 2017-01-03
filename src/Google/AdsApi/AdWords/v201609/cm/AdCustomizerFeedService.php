@@ -12,7 +12,7 @@ class AdCustomizerFeedService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap =  [
+    private static $classmap = array (
       'AdCustomizerFeedAttribute' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\AdCustomizerFeedAttribute',
       'AdCustomizerFeedError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\AdCustomizerFeedError',
       'AuthenticationError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\AuthenticationError',
@@ -61,13 +61,13 @@ class AdCustomizerFeedService extends \Google\AdsApi\Common\AdsSoapClient
       'Selector' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\Selector',
       'getResponse' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\getResponse',
       'mutateResponse' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\mutateResponse',
-    ];
+    );
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = [],
+    public function __construct(array $options = array(),
                 $wsdl = 'https://adwords.google.com/api/adwords/cm/v201609/AdCustomizerFeedService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -75,9 +75,9 @@ class AdCustomizerFeedService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge( [
+      $options = array_merge(array (
       'features' => 1,
-    ], $options);
+    ), $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -92,7 +92,7 @@ class AdCustomizerFeedService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function get(\Google\AdsApi\AdWords\v201609\cm\Selector $selector)
     {
-      return $this->__soapCall('get', [['selector' => $selector]])->getRval();
+      return $this->__soapCall('get', array(array('selector' => $selector)))->getRval();
     }
 
     /**
@@ -104,7 +104,7 @@ class AdCustomizerFeedService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function mutate(array $operations)
     {
-      return $this->__soapCall('mutate', [['operations' => $operations]])->getRval();
+      return $this->__soapCall('mutate', array(array('operations' => $operations)))->getRval();
     }
 
 }

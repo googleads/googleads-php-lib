@@ -12,7 +12,7 @@ class MediaService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap =  [
+    private static $classmap = array (
       'Audio' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\Audio',
       'AudioError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\AudioError',
       'AuthenticationError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\AuthenticationError',
@@ -65,13 +65,13 @@ class MediaService extends \Google\AdsApi\Common\AdsSoapClient
       'getResponse' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\getResponse',
       'queryResponse' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\queryResponse',
       'uploadResponse' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\uploadResponse',
-    ];
+    );
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = [],
+    public function __construct(array $options = array(),
                 $wsdl = 'https://adwords.google.com/api/adwords/cm/v201609/MediaService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -79,9 +79,9 @@ class MediaService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge( [
+      $options = array_merge(array (
       'features' => 1,
-    ], $options);
+    ), $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -96,7 +96,7 @@ class MediaService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function get(\Google\AdsApi\AdWords\v201609\cm\Selector $serviceSelector)
     {
-      return $this->__soapCall('get', [['serviceSelector' => $serviceSelector]])->getRval();
+      return $this->__soapCall('get', array(array('serviceSelector' => $serviceSelector)))->getRval();
     }
 
     /**
@@ -108,7 +108,7 @@ class MediaService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function query($query)
     {
-      return $this->__soapCall('query', [['query' => $query]])->getRval();
+      return $this->__soapCall('query', array(array('query' => $query)))->getRval();
     }
 
     /**
@@ -122,7 +122,7 @@ class MediaService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function upload(array $media)
     {
-      return $this->__soapCall('upload', [['media' => $media]])->getRval();
+      return $this->__soapCall('upload', array(array('media' => $media)))->getRval();
     }
 
 }

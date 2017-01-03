@@ -12,7 +12,7 @@ class ReportService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap =  [
+    private static $classmap = array (
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'ApiError' => 'Google\\AdsApi\\Dfp\\v201611\\ApiError',
       'ApiException' => 'Google\\AdsApi\\Dfp\\v201611\\ApiException',
@@ -58,13 +58,13 @@ class ReportService extends \Google\AdsApi\Common\AdsSoapClient
       'getReportJobStatusResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getReportJobStatusResponse',
       'getSavedQueriesByStatementResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getSavedQueriesByStatementResponse',
       'runReportJobResponse' => 'Google\\AdsApi\\Dfp\\v201611\\runReportJobResponse',
-    ];
+    );
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = [],
+    public function __construct(array $options = array(),
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/ReportService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -72,9 +72,9 @@ class ReportService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge( [
+      $options = array_merge(array (
       'features' => 1,
-    ], $options);
+    ), $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -90,7 +90,7 @@ class ReportService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getReportDownloadURL($reportJobId, $exportFormat)
     {
-      return $this->__soapCall('getReportDownloadURL', [['reportJobId' => $reportJobId, 'exportFormat' => $exportFormat]])->getRval();
+      return $this->__soapCall('getReportDownloadURL', array(array('reportJobId' => $reportJobId, 'exportFormat' => $exportFormat)))->getRval();
     }
 
     /**
@@ -107,7 +107,7 @@ class ReportService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getReportDownloadUrlWithOptions($reportJobId, \Google\AdsApi\Dfp\v201611\ReportDownloadOptions $reportDownloadOptions)
     {
-      return $this->__soapCall('getReportDownloadUrlWithOptions', [['reportJobId' => $reportJobId, 'reportDownloadOptions' => $reportDownloadOptions]])->getRval();
+      return $this->__soapCall('getReportDownloadUrlWithOptions', array(array('reportJobId' => $reportJobId, 'reportDownloadOptions' => $reportDownloadOptions)))->getRval();
     }
 
     /**
@@ -119,7 +119,7 @@ class ReportService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getReportJobStatus($reportJobId)
     {
-      return $this->__soapCall('getReportJobStatus', [['reportJobId' => $reportJobId]])->getRval();
+      return $this->__soapCall('getReportJobStatus', array(array('reportJobId' => $reportJobId)))->getRval();
     }
 
     /**
@@ -152,7 +152,7 @@ class ReportService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getSavedQueriesByStatement(\Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('getSavedQueriesByStatement', [['filterStatement' => $filterStatement]])->getRval();
+      return $this->__soapCall('getSavedQueriesByStatement', array(array('filterStatement' => $filterStatement)))->getRval();
     }
 
     /**
@@ -169,7 +169,7 @@ class ReportService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function runReportJob(\Google\AdsApi\Dfp\v201611\ReportJob $reportJob)
     {
-      return $this->__soapCall('runReportJob', [['reportJob' => $reportJob]])->getRval();
+      return $this->__soapCall('runReportJob', array(array('reportJob' => $reportJob)))->getRval();
     }
 
 }

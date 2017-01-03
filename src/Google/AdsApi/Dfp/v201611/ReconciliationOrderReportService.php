@@ -12,7 +12,7 @@ class ReconciliationOrderReportService extends \Google\AdsApi\Common\AdsSoapClie
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap =  [
+    private static $classmap = array (
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'ApiError' => 'Google\\AdsApi\\Dfp\\v201611\\ApiError',
       'ApiException' => 'Google\\AdsApi\\Dfp\\v201611\\ApiException',
@@ -60,13 +60,13 @@ class ReconciliationOrderReportService extends \Google\AdsApi\Common\AdsSoapClie
       'getReconciliationOrderReportsByStatementResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getReconciliationOrderReportsByStatementResponse',
       'performReconciliationOrderReportActionResponse' => 'Google\\AdsApi\\Dfp\\v201611\\performReconciliationOrderReportActionResponse',
       'updateReconciliationOrderReportsResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updateReconciliationOrderReportsResponse',
-    ];
+    );
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = [],
+    public function __construct(array $options = array(),
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/ReconciliationOrderReportService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -74,9 +74,9 @@ class ReconciliationOrderReportService extends \Google\AdsApi\Common\AdsSoapClie
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge( [
+      $options = array_merge(array (
       'features' => 1,
-    ], $options);
+    ), $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -131,7 +131,7 @@ class ReconciliationOrderReportService extends \Google\AdsApi\Common\AdsSoapClie
      */
     public function getReconciliationOrderReportsByStatement(\Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('getReconciliationOrderReportsByStatement', [['filterStatement' => $filterStatement]])->getRval();
+      return $this->__soapCall('getReconciliationOrderReportsByStatement', array(array('filterStatement' => $filterStatement)))->getRval();
     }
 
     /**
@@ -175,7 +175,7 @@ class ReconciliationOrderReportService extends \Google\AdsApi\Common\AdsSoapClie
      */
     public function performReconciliationOrderReportAction(\Google\AdsApi\Dfp\v201611\ReconciliationOrderReportAction $reconciliationOrderReportAction, \Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('performReconciliationOrderReportAction', [['reconciliationOrderReportAction' => $reconciliationOrderReportAction, 'filterStatement' => $filterStatement]])->getRval();
+      return $this->__soapCall('performReconciliationOrderReportAction', array(array('reconciliationOrderReportAction' => $reconciliationOrderReportAction, 'filterStatement' => $filterStatement)))->getRval();
     }
 
     /**
@@ -190,7 +190,7 @@ class ReconciliationOrderReportService extends \Google\AdsApi\Common\AdsSoapClie
      */
     public function updateReconciliationOrderReports(array $reconciliationOrderReports)
     {
-      return $this->__soapCall('updateReconciliationOrderReports', [['reconciliationOrderReports' => $reconciliationOrderReports]])->getRval();
+      return $this->__soapCall('updateReconciliationOrderReports', array(array('reconciliationOrderReports' => $reconciliationOrderReports)))->getRval();
     }
 
 }

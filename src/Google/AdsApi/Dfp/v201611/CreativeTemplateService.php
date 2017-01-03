@@ -12,7 +12,7 @@ class CreativeTemplateService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap =  [
+    private static $classmap = array (
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'ApiError' => 'Google\\AdsApi\\Dfp\\v201611\\ApiError',
       'ApiException' => 'Google\\AdsApi\\Dfp\\v201611\\ApiException',
@@ -64,13 +64,13 @@ class CreativeTemplateService extends \Google\AdsApi\Common\AdsSoapClient
       'UniqueError' => 'Google\\AdsApi\\Dfp\\v201611\\UniqueError',
       'Value' => 'Google\\AdsApi\\Dfp\\v201611\\Value',
       'getCreativeTemplatesByStatementResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getCreativeTemplatesByStatementResponse',
-    ];
+    );
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = [],
+    public function __construct(array $options = array(),
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/CreativeTemplateService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -78,9 +78,9 @@ class CreativeTemplateService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge( [
+      $options = array_merge(array (
       'features' => 1,
-    ], $options);
+    ), $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -119,7 +119,7 @@ class CreativeTemplateService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getCreativeTemplatesByStatement(\Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('getCreativeTemplatesByStatement', [['filterStatement' => $filterStatement]])->getRval();
+      return $this->__soapCall('getCreativeTemplatesByStatement', array(array('filterStatement' => $filterStatement)))->getRval();
     }
 
 }

@@ -12,7 +12,7 @@ class CustomFieldService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap =  [
+    private static $classmap = array (
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'ActivateCustomFields' => 'Google\\AdsApi\\Dfp\\v201611\\ActivateCustomFields',
       'ApiError' => 'Google\\AdsApi\\Dfp\\v201611\\ApiError',
@@ -67,13 +67,13 @@ class CustomFieldService extends \Google\AdsApi\Common\AdsSoapClient
       'performCustomFieldActionResponse' => 'Google\\AdsApi\\Dfp\\v201611\\performCustomFieldActionResponse',
       'updateCustomFieldOptionsResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updateCustomFieldOptionsResponse',
       'updateCustomFieldsResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updateCustomFieldsResponse',
-    ];
+    );
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = [],
+    public function __construct(array $options = array(),
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/CustomFieldService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -81,9 +81,9 @@ class CustomFieldService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge( [
+      $options = array_merge(array (
       'features' => 1,
-    ], $options);
+    ), $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -102,7 +102,7 @@ class CustomFieldService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function createCustomFieldOptions(array $customFieldOptions)
     {
-      return $this->__soapCall('createCustomFieldOptions', [['customFieldOptions' => $customFieldOptions]])->getRval();
+      return $this->__soapCall('createCustomFieldOptions', array(array('customFieldOptions' => $customFieldOptions)))->getRval();
     }
 
     /**
@@ -122,7 +122,7 @@ class CustomFieldService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function createCustomFields(array $customFields)
     {
-      return $this->__soapCall('createCustomFields', [['customFields' => $customFields]])->getRval();
+      return $this->__soapCall('createCustomFields', array(array('customFields' => $customFields)))->getRval();
     }
 
     /**
@@ -134,7 +134,7 @@ class CustomFieldService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getCustomFieldOption($customFieldOptionId)
     {
-      return $this->__soapCall('getCustomFieldOption', [['customFieldOptionId' => $customFieldOptionId]])->getRval();
+      return $this->__soapCall('getCustomFieldOption', array(array('customFieldOptionId' => $customFieldOptionId)))->getRval();
     }
 
     /**
@@ -177,7 +177,7 @@ class CustomFieldService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getCustomFieldsByStatement(\Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('getCustomFieldsByStatement', [['filterStatement' => $filterStatement]])->getRval();
+      return $this->__soapCall('getCustomFieldsByStatement', array(array('filterStatement' => $filterStatement)))->getRval();
     }
 
     /**
@@ -193,7 +193,7 @@ class CustomFieldService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function performCustomFieldAction(\Google\AdsApi\Dfp\v201611\CustomFieldAction $customFieldAction, \Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('performCustomFieldAction', [['customFieldAction' => $customFieldAction, 'filterStatement' => $filterStatement]])->getRval();
+      return $this->__soapCall('performCustomFieldAction', array(array('customFieldAction' => $customFieldAction, 'filterStatement' => $filterStatement)))->getRval();
     }
 
     /**
@@ -205,7 +205,7 @@ class CustomFieldService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function updateCustomFieldOptions(array $customFieldOptions)
     {
-      return $this->__soapCall('updateCustomFieldOptions', [['customFieldOptions' => $customFieldOptions]])->getRval();
+      return $this->__soapCall('updateCustomFieldOptions', array(array('customFieldOptions' => $customFieldOptions)))->getRval();
     }
 
     /**
@@ -217,7 +217,7 @@ class CustomFieldService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function updateCustomFields(array $customFields)
     {
-      return $this->__soapCall('updateCustomFields', [['customFields' => $customFields]])->getRval();
+      return $this->__soapCall('updateCustomFields', array(array('customFields' => $customFields)))->getRval();
     }
 
 }

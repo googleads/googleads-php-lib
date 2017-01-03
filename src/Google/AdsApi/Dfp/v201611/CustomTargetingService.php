@@ -12,7 +12,7 @@ class CustomTargetingService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap =  [
+    private static $classmap = array (
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'ActivateCustomTargetingKeys' => 'Google\\AdsApi\\Dfp\\v201611\\ActivateCustomTargetingKeys',
       'ActivateCustomTargetingValues' => 'Google\\AdsApi\\Dfp\\v201611\\ActivateCustomTargetingValues',
@@ -72,13 +72,13 @@ class CustomTargetingService extends \Google\AdsApi\Common\AdsSoapClient
       'performCustomTargetingValueActionResponse' => 'Google\\AdsApi\\Dfp\\v201611\\performCustomTargetingValueActionResponse',
       'updateCustomTargetingKeysResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updateCustomTargetingKeysResponse',
       'updateCustomTargetingValuesResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updateCustomTargetingValuesResponse',
-    ];
+    );
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = [],
+    public function __construct(array $options = array(),
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/CustomTargetingService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -86,9 +86,9 @@ class CustomTargetingService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge( [
+      $options = array_merge(array (
       'features' => 1,
-    ], $options);
+    ), $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -107,7 +107,7 @@ class CustomTargetingService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function createCustomTargetingKeys(array $keys)
     {
-      return $this->__soapCall('createCustomTargetingKeys', [['keys' => $keys]])->getRval();
+      return $this->__soapCall('createCustomTargetingKeys', array(array('keys' => $keys)))->getRval();
     }
 
     /**
@@ -125,7 +125,7 @@ class CustomTargetingService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function createCustomTargetingValues(array $values)
     {
-      return $this->__soapCall('createCustomTargetingValues', [['values' => $values]])->getRval();
+      return $this->__soapCall('createCustomTargetingValues', array(array('values' => $values)))->getRval();
     }
 
     /**
@@ -164,7 +164,7 @@ class CustomTargetingService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getCustomTargetingKeysByStatement(\Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('getCustomTargetingKeysByStatement', [['filterStatement' => $filterStatement]])->getRval();
+      return $this->__soapCall('getCustomTargetingKeysByStatement', array(array('filterStatement' => $filterStatement)))->getRval();
     }
 
     /**
@@ -226,7 +226,7 @@ class CustomTargetingService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getCustomTargetingValuesByStatement(\Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('getCustomTargetingValuesByStatement', [['filterStatement' => $filterStatement]])->getRval();
+      return $this->__soapCall('getCustomTargetingValuesByStatement', array(array('filterStatement' => $filterStatement)))->getRval();
     }
 
     /**
@@ -242,7 +242,7 @@ class CustomTargetingService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function performCustomTargetingKeyAction(\Google\AdsApi\Dfp\v201611\CustomTargetingKeyAction $customTargetingKeyAction, \Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('performCustomTargetingKeyAction', [['customTargetingKeyAction' => $customTargetingKeyAction, 'filterStatement' => $filterStatement]])->getRval();
+      return $this->__soapCall('performCustomTargetingKeyAction', array(array('customTargetingKeyAction' => $customTargetingKeyAction, 'filterStatement' => $filterStatement)))->getRval();
     }
 
     /**
@@ -258,7 +258,7 @@ class CustomTargetingService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function performCustomTargetingValueAction(\Google\AdsApi\Dfp\v201611\CustomTargetingValueAction $customTargetingValueAction, \Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('performCustomTargetingValueAction', [['customTargetingValueAction' => $customTargetingValueAction, 'filterStatement' => $filterStatement]])->getRval();
+      return $this->__soapCall('performCustomTargetingValueAction', array(array('customTargetingValueAction' => $customTargetingValueAction, 'filterStatement' => $filterStatement)))->getRval();
     }
 
     /**
@@ -270,7 +270,7 @@ class CustomTargetingService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function updateCustomTargetingKeys(array $keys)
     {
-      return $this->__soapCall('updateCustomTargetingKeys', [['keys' => $keys]])->getRval();
+      return $this->__soapCall('updateCustomTargetingKeys', array(array('keys' => $keys)))->getRval();
     }
 
     /**
@@ -282,7 +282,7 @@ class CustomTargetingService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function updateCustomTargetingValues(array $values)
     {
-      return $this->__soapCall('updateCustomTargetingValues', [['values' => $values]])->getRval();
+      return $this->__soapCall('updateCustomTargetingValues', array(array('values' => $values)))->getRval();
     }
 
 }

@@ -12,7 +12,7 @@ class ActivityGroupService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap =  [
+    private static $classmap = array (
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201611\\ObjectValue',
       'ActivityError' => 'Google\\AdsApi\\Dfp\\v201611\\ActivityError',
       'ActivityGroup' => 'Google\\AdsApi\\Dfp\\v201611\\ActivityGroup',
@@ -55,13 +55,13 @@ class ActivityGroupService extends \Google\AdsApi\Common\AdsSoapClient
       'createActivityGroupsResponse' => 'Google\\AdsApi\\Dfp\\v201611\\createActivityGroupsResponse',
       'getActivityGroupsByStatementResponse' => 'Google\\AdsApi\\Dfp\\v201611\\getActivityGroupsByStatementResponse',
       'updateActivityGroupsResponse' => 'Google\\AdsApi\\Dfp\\v201611\\updateActivityGroupsResponse',
-    ];
+    );
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = [],
+    public function __construct(array $options = array(),
                 $wsdl = 'https://ads.google.com/apis/ads/publisher/v201611/ActivityGroupService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -69,9 +69,9 @@ class ActivityGroupService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge( [
+      $options = array_merge(array (
       'features' => 1,
-    ], $options);
+    ), $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -84,7 +84,7 @@ class ActivityGroupService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function createActivityGroups(array $activityGroups)
     {
-      return $this->__soapCall('createActivityGroups', [['activityGroups' => $activityGroups]])->getRval();
+      return $this->__soapCall('createActivityGroups', array(array('activityGroups' => $activityGroups)))->getRval();
     }
 
     /**
@@ -123,7 +123,7 @@ class ActivityGroupService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getActivityGroupsByStatement(\Google\AdsApi\Dfp\v201611\Statement $filterStatement)
     {
-      return $this->__soapCall('getActivityGroupsByStatement', [['filterStatement' => $filterStatement]])->getRval();
+      return $this->__soapCall('getActivityGroupsByStatement', array(array('filterStatement' => $filterStatement)))->getRval();
     }
 
     /**
@@ -135,7 +135,7 @@ class ActivityGroupService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function updateActivityGroups(array $activityGroups)
     {
-      return $this->__soapCall('updateActivityGroups', [['activityGroups' => $activityGroups]])->getRval();
+      return $this->__soapCall('updateActivityGroups', array(array('activityGroups' => $activityGroups)))->getRval();
     }
 
 }

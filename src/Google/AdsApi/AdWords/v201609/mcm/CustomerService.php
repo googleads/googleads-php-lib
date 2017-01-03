@@ -12,7 +12,7 @@ class CustomerService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap =  [
+    private static $classmap = array (
       'AuthenticationError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\AuthenticationError',
       'AuthorizationError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\AuthorizationError',
       'ClientTermsError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\ClientTermsError',
@@ -56,13 +56,13 @@ class CustomerService extends \Google\AdsApi\Common\AdsSoapClient
       'getServiceLinksResponse' => 'Google\\AdsApi\\AdWords\\v201609\\mcm\\getServiceLinksResponse',
       'mutateResponse' => 'Google\\AdsApi\\AdWords\\v201609\\mcm\\mutateResponse',
       'mutateServiceLinksResponse' => 'Google\\AdsApi\\AdWords\\v201609\\mcm\\mutateServiceLinksResponse',
-    ];
+    );
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = [],
+    public function __construct(array $options = array(),
                 $wsdl = 'https://adwords.google.com/api/adwords/mcm/v201609/CustomerService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -70,9 +70,9 @@ class CustomerService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge( [
+      $options = array_merge(array (
       'features' => 1,
-    ], $options);
+    ), $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -88,7 +88,7 @@ class CustomerService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getCustomers()
     {
-      return $this->__soapCall('getCustomers', [[]])->getRval();
+      return $this->__soapCall('getCustomers', array(array()))->getRval();
     }
 
     /**
@@ -101,7 +101,7 @@ class CustomerService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function getServiceLinks(\Google\AdsApi\AdWords\v201609\cm\Selector $selector)
     {
-      return $this->__soapCall('getServiceLinks', [['selector' => $selector]])->getRval();
+      return $this->__soapCall('getServiceLinks', array(array('selector' => $selector)))->getRval();
     }
 
     /**
@@ -117,7 +117,7 @@ class CustomerService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function mutate(\Google\AdsApi\AdWords\v201609\mcm\Customer $customer)
     {
-      return $this->__soapCall('mutate', [['customer' => $customer]])->getRval();
+      return $this->__soapCall('mutate', array(array('customer' => $customer)))->getRval();
     }
 
     /**
@@ -130,7 +130,7 @@ class CustomerService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function mutateServiceLinks(array $operations)
     {
-      return $this->__soapCall('mutateServiceLinks', [['operations' => $operations]])->getRval();
+      return $this->__soapCall('mutateServiceLinks', array(array('operations' => $operations)))->getRval();
     }
 
 }

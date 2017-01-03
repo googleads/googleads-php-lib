@@ -12,7 +12,7 @@ class CampaignService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * @var array $classmap The defined classes
      */
-    private static $classmap =  [
+    private static $classmap = array (
       'AdxError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\AdxError',
       'ApiError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\ApiError',
       'ApiException' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\ApiException',
@@ -123,13 +123,13 @@ class CampaignService extends \Google\AdsApi\Common\AdsSoapClient
       'mutateResponse' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\mutateResponse',
       'mutateLabelResponse' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\mutateLabelResponse',
       'queryResponse' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\queryResponse',
-    ];
+    );
 
     /**
      * @param array $options A array of config values
      * @param string $wsdl The wsdl file to use
      */
-    public function __construct(array $options = [],
+    public function __construct(array $options = array(),
                 $wsdl = 'https://adwords.google.com/api/adwords/cm/v201609/CampaignService?wsdl')
     {
       foreach (self::$classmap as $key => $value) {
@@ -137,9 +137,9 @@ class CampaignService extends \Google\AdsApi\Common\AdsSoapClient
           $options['classmap'][$key] = $value;
         }
       }
-      $options = array_merge( [
+      $options = array_merge(array (
       'features' => 1,
-    ], $options);
+    ), $options);
       parent::__construct($wsdl, $options);
     }
 
@@ -152,7 +152,7 @@ class CampaignService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function get(\Google\AdsApi\AdWords\v201609\cm\Selector $serviceSelector)
     {
-      return $this->__soapCall('get', [['serviceSelector' => $serviceSelector]])->getRval();
+      return $this->__soapCall('get', array(array('serviceSelector' => $serviceSelector)))->getRval();
     }
 
     /**
@@ -169,7 +169,7 @@ class CampaignService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function mutate(array $operations)
     {
-      return $this->__soapCall('mutate', [['operations' => $operations]])->getRval();
+      return $this->__soapCall('mutate', array(array('operations' => $operations)))->getRval();
     }
 
     /**
@@ -191,7 +191,7 @@ class CampaignService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function mutateLabel(array $operations)
     {
-      return $this->__soapCall('mutateLabel', [['operations' => $operations]])->getRval();
+      return $this->__soapCall('mutateLabel', array(array('operations' => $operations)))->getRval();
     }
 
     /**
@@ -205,7 +205,7 @@ class CampaignService extends \Google\AdsApi\Common\AdsSoapClient
      */
     public function query($query)
     {
-      return $this->__soapCall('query', [['query' => $query]])->getRval();
+      return $this->__soapCall('query', array(array('query' => $query)))->getRval();
     }
 
 }
