@@ -65,10 +65,10 @@ class PauseAd {
     $operations[] = $operation;
 
     // Pause the ad on the server.
-    $result = $adGroupAdService->mutate($operations);
+    $adGroupAd = $adGroupAdService->mutate($operations)->getValue()[0];
     printf(
         "Ad of type '%s' with ID %d has updated status '%s'.\n",
-        $adGroupAd->getAd()->getAdType(),
+        $adGroupAd->getAd()->getType(),
         $adGroupAd->getAd()->getId(),
         $adGroupAd->getStatus()
     );

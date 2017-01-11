@@ -44,6 +44,7 @@ use Google\AdsApi\AdWords\v201609\cm\CampaignCriterionOperation;
 use Google\AdsApi\AdWords\v201609\cm\CampaignOperation;
 use Google\AdsApi\AdWords\v201609\cm\CampaignStatus;
 use Google\AdsApi\AdWords\v201609\cm\CpcBid;
+use Google\AdsApi\AdWords\v201609\cm\ExpandedTextAd;
 use Google\AdsApi\AdWords\v201609\cm\Keyword;
 use Google\AdsApi\AdWords\v201609\cm\KeywordMatchType;
 use Google\AdsApi\AdWords\v201609\cm\ManualCpcBiddingScheme;
@@ -211,10 +212,9 @@ class AddCompleteCampaignsUsingBatchJob {
       $adGroupAd->setAdGroupId($adGroupId);
 
       $expandedTextAd = new ExpandedTextAd();
-      $expandedTextAd->setHeadline('Luxury Cruise to Mars');
-      $expandedTextAd->setDescription1('Visit the Red Planet in style.');
-      $expandedTextAd->setDescription2('Low-gravity fun for everyone!');
-      $expandedTextAd->setDisplayUrl('www.example.com');
+      $expandedTextAd->setHeadlinePart1('Luxury Cruise to Mars');
+      $expandedTextAd->setHeadlinePart2('Visit the Red Planet in style.');
+      $expandedTextAd->setDescription('Low-gravity fun for everyone!');
       $expandedTextAd->setFinalUrls(['http://www.example.com/1']);
 
       $adGroupAd->setAd($expandedTextAd);

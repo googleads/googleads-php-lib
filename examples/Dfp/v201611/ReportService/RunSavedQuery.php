@@ -24,63 +24,48 @@ use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201611\ReportDownloader;
 use Google\AdsApi\Dfp\Util\v201611\StatementBuilder;
-use Google\AdsApi\Dfp\v201611\Column;
-use Google\AdsApi\Dfp\v201611\DateRangeType;
-use Google\AdsApi\Dfp\v201611\Dimension;
 use Google\AdsApi\Dfp\v201611\ExportFormat;
-use Google\AdsApi\Dfp\v201611\NetworkService;
 use Google\AdsApi\Dfp\v201611\ReportJob;
 use Google\AdsApi\Dfp\v201611\ReportQuery;
 use Google\AdsApi\Dfp\v201611\ReportQueryAdUnitView;
 use Google\AdsApi\Dfp\v201611\ReportService;
+use UnexpectedValueException;
 
 /**
- * This example runs a typical daily inventory report and saves it in your
- * system's temp directory. It filters on the network's root ad unit ID. This is
- * only to demonstrate filtering for the purposes of this example, as filtering
- * on the root ad unit is equivalent to not filtering on any ad units.
+ * This example retrieves and runs a saved report query.
  */
-class RunInventoryReport {
+class RunSavedQuery {
+
+  const SAVED_QUERY_ID = 'INSERT_SAVED_QUERY_ID_HERE';
 
   public static function runExample(DfpServices $dfpServices,
-      DfpSession $session) {
+      DfpSession $session, $savedQueryId) {
     $reportService = $dfpServices->get($session, ReportService::class);
-    $networkService = $dfpServices->get($session, NetworkService::class);
 
-    // Get the network's root ad unit ID to filter on.
-    $rootAdUnitId =
-        $networkService->getCurrentNetwork()->getEffectiveRootAdUnitId();
-
-    // Create statement to filter on a parent ad unit with the root ad unit ID
-    // to include all ad units in the network.
+    // Create statement to retrieve the saved query.
     $statementBuilder = (new StatementBuilder())
-        ->where('PARENT_AD_UNIT_ID = :parentAdUnitId')
-        ->withBindVariableValue('parentAdUnitId', intval($rootAdUnitId));
+        ->where('id = :id')
+        ->orderBy('id ASC')
+        ->limit(1)
+        ->withBindVariableValue('id', $savedQueryId);
 
-    // Create report query.
-    $reportQuery = new ReportQuery();
-    $reportQuery->setDimensions([
-        Dimension::AD_UNIT_ID,
-        Dimension::AD_UNIT_NAME
-    ]);
-    $reportQuery->setColumns([
-        Column::AD_SERVER_IMPRESSIONS,
-        Column::AD_SERVER_CLICKS,
-        Column::DYNAMIC_ALLOCATION_INVENTORY_LEVEL_IMPRESSIONS,
-        Column::DYNAMIC_ALLOCATION_INVENTORY_LEVEL_CLICKS,
-        Column::TOTAL_INVENTORY_LEVEL_IMPRESSIONS,
-        Column::TOTAL_INVENTORY_LEVEL_CPM_AND_CPC_REVENUE
-    ]);
-    // Set the filter statement.
-    $reportQuery->setStatement($statementBuilder->toStatement());
-    // Set the ad unit view to hierarchical.
+    $savedQueryPage = $reportService->getSavedQueriesByStatement(
+        $statementBuilder->toStatement());
+    $savedQuery = $savedQueryPage->getResults()[0];
+
+    if ($savedQuery->getIsCompatibleWithApiVersion() === false) {
+      throw new UnexpectedValueException(
+          'The saved query is not compatible with this API version.');
+    }
+
+    // Optionally modify the query.
+    $reportQuery = $savedQuery->getReportQuery();
     $reportQuery->setAdUnitView(ReportQueryAdUnitView::HIERARCHICAL);
-    // Set the start and end dates or choose a dynamic date range type.
-    $reportQuery->setDateRangeType(DateRangeType::YESTERDAY);
 
-    // Create report job and start it.
+    // Create report job using the saved query.
     $reportJob = new ReportJob();
     $reportJob->setReportQuery($reportQuery);
+
     $reportJob = $reportService->runReportJob($reportJob);
 
     // Create report downloader to poll report's status and download when ready.
@@ -90,7 +75,7 @@ class RunInventoryReport {
       // Write to system temp directory by default.
       $filePath = sprintf(
           '%s.csv.gz',
-          tempnam(sys_get_temp_dir(), 'inventory-report-')
+          tempnam(sys_get_temp_dir(), 'saved-report-')
       );
       printf("Downloading report to %s ...\n", $filePath);
       // Download the report.
@@ -109,8 +94,8 @@ class RunInventoryReport {
         ->fromFile()
         ->withOAuth2Credential($oAuth2Credential)
         ->build();
-    self::runExample(new DfpServices(), $session);
+    self::runExample(new DfpServices(), $session, intval(self::SAVED_QUERY_ID));
   }
 }
 
-RunInventoryReport::main();
+RunSavedQuery::main();

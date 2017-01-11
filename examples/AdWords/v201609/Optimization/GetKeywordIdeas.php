@@ -35,7 +35,7 @@ use Google\AdsApi\AdWords\v201609\o\RequestType;
 use Google\AdsApi\AdWords\v201609\o\TargetingIdeaSelector;
 use Google\AdsApi\AdWords\v201609\o\TargetingIdeaService;
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Common\Util\MapUtils;
+use Google\AdsApi\Common\Util\MapEntries;
 
 /**
  * This example gets keyword ideas related to a seed keyword.
@@ -100,7 +100,7 @@ class GetKeywordIdeas {
       if ($page->getEntries() !== null) {
         $totalNumEntries = $page->getTotalNumEntries();
         foreach ($page->getEntries() as $targetingIdea) {
-          $data = MapUtils::toMap($targetingIdea->getData());
+          $data = MapEntries::toAssociativeArray($targetingIdea->getData());
           $keyword = $data[AttributeType::KEYWORD_TEXT]->getValue();
           $searchVolume =
               ($data[AttributeType::SEARCH_VOLUME]->getValue() !== null)

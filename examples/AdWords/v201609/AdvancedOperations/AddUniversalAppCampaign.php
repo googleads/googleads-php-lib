@@ -101,11 +101,11 @@ class AddUniversalAppCampaign {
     // Set the campaign's assets and ad text ideas. These values will be used to
     // generate ads.
     $universalAppSetting = new UniversalAppCampaignSetting();
-    $universalAppSetting->setAppId('com.interplanetarycruise.booking');
-    $universalAppSetting->setDescription1('Best Space Cruise Line');
-    $universalAppSetting->setDescription2('Visit all the planets');
-    $universalAppSetting->setDescription3('Trips 7 days a week');
-    $universalAppSetting->setDescription4('Buy your tickets now!');
+    $universalAppSetting->setAppId('com.labpixies.colordrips');
+    $universalAppSetting->setDescription1('A cool puzzle game');
+    $universalAppSetting->setDescription2('Remove connected blocks');
+    $universalAppSetting->setDescription3('3 difficulty levels');
+    $universalAppSetting->setDescription4('4 colorful fun skins');
 
     // Optional: You can set up to 10 image assets for your campaign.
     // See UploadImage.php for an example on how to upload images.

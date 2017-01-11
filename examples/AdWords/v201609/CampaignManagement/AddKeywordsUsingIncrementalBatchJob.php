@@ -71,7 +71,7 @@ class AddKeywordsUsingIncrementalBatchJob {
         $batchJob->getId(), $batchJob->getStatus(), $uploadUrl);
 
     // Use BatchJobs to upload all operations.
-    $batchJobs = new BatchJobs();
+    $batchJobs = new BatchJobs($session);
 
     // Generate and upload the first set of operations.
     $adGroupCriterionOperations =

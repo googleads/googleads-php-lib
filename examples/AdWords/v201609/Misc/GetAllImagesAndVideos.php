@@ -30,7 +30,7 @@ use Google\AdsApi\AdWords\v201609\cm\PredicateOperator;
 use Google\AdsApi\AdWords\v201609\cm\Selector;
 use Google\AdsApi\AdWords\v201609\cm\SortOrder;
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Common\Util\MapUtils;
+use Google\AdsApi\Common\Util\MapEntries;
 
 /**
  * This example gets all images and videos. To upload an image, run
@@ -62,7 +62,8 @@ class GetAllImagesAndVideos {
         $totalNumEntries = $page->getTotalNumEntries();
         foreach ($page->getEntries() as $media) {
           if ($media->getType() === MediaMediaType::IMAGE) {
-            $dimensions = MapUtils::toMap($media->getDimensions());
+            $dimensions =
+                MapEntries::toAssociativeArray($media->getDimensions());
             printf(
                 "Image with dimensions %dx%d, MIME type '%s', and ID %d "
                     . "was found.\n",

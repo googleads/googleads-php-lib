@@ -68,10 +68,11 @@ class CreateAccount {
 
     // Construct an API session configured from a properties file and the OAuth2
     // credentials above.
+    // You can use withClientCustomerId() of AdWordsSessionBuilder to specify
+    // your manager account ID under which you want to create an account.
     $session = (new AdWordsSessionBuilder())
         ->fromFile()
         ->withOAuth2Credential($oAuth2Credential)
-        ->withClientCustomerId('176-504-4936')
         ->build();
     self::runExample(new AdWordsServices(), $session);
   }

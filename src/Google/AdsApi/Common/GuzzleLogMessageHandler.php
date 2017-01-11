@@ -47,9 +47,11 @@ final class GuzzleLogMessageHandler {
 
               $logger->info(
                   (new MessageFormatter())->format($clonedRequest, $response));
+              \GuzzleHttp\Psr7\rewind_body($response);
               $logger->debug(
                   (new MessageFormatter(MessageFormatter::DEBUG))
                       ->format($clonedRequest, $response));
+              \GuzzleHttp\Psr7\rewind_body($response);
               return $response;
             },
             function ($reason) use ($request, $logger) {
@@ -69,9 +71,11 @@ final class GuzzleLogMessageHandler {
 
               $logger->warning(
                   (new MessageFormatter())->format($clonedRequest, $response));
+              \GuzzleHttp\Psr7\rewind_body($response);
               $logger->notice(
                   (new MessageFormatter(MessageFormatter::DEBUG))
                       ->format($clonedRequest, $response, $reason));
+              \GuzzleHttp\Psr7\rewind_body($response);
               return \GuzzleHttp\Promise\rejection_for($reason);
             }
         );

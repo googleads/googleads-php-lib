@@ -18,65 +18,68 @@ namespace Google\AdsApi\Examples\Dfp\v201611\ReportService;
 
 require '../../../../vendor/autoload.php';
 
+use DateTime;
+use DateTimeZone;
 use Google\AdsApi\Common\OAuth2TokenBuilder;
 use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
+use Google\AdsApi\Dfp\Util\v201611\DfpDateTimes;
 use Google\AdsApi\Dfp\Util\v201611\ReportDownloader;
 use Google\AdsApi\Dfp\Util\v201611\StatementBuilder;
 use Google\AdsApi\Dfp\v201611\Column;
 use Google\AdsApi\Dfp\v201611\DateRangeType;
 use Google\AdsApi\Dfp\v201611\Dimension;
+use Google\AdsApi\Dfp\v201611\DimensionAttribute;
 use Google\AdsApi\Dfp\v201611\ExportFormat;
-use Google\AdsApi\Dfp\v201611\NetworkService;
 use Google\AdsApi\Dfp\v201611\ReportJob;
 use Google\AdsApi\Dfp\v201611\ReportQuery;
-use Google\AdsApi\Dfp\v201611\ReportQueryAdUnitView;
 use Google\AdsApi\Dfp\v201611\ReportService;
 
 /**
- * This example runs a typical daily inventory report and saves it in your
- * system's temp directory. It filters on the network's root ad unit ID. This is
- * only to demonstrate filtering for the purposes of this example, as filtering
- * on the root ad unit is equivalent to not filtering on any ad units.
+ * Runs a typical delivery report for a single order.
  */
-class RunInventoryReport {
+class RunDeliveryReportForOrder {
+
+  const ORDER_ID = 'INSERT_ORDER_ID_HERE';
 
   public static function runExample(DfpServices $dfpServices,
-      DfpSession $session) {
+      DfpSession $session, $orderId) {
     $reportService = $dfpServices->get($session, ReportService::class);
-    $networkService = $dfpServices->get($session, NetworkService::class);
-
-    // Get the network's root ad unit ID to filter on.
-    $rootAdUnitId =
-        $networkService->getCurrentNetwork()->getEffectiveRootAdUnitId();
-
-    // Create statement to filter on a parent ad unit with the root ad unit ID
-    // to include all ad units in the network.
-    $statementBuilder = (new StatementBuilder())
-        ->where('PARENT_AD_UNIT_ID = :parentAdUnitId')
-        ->withBindVariableValue('parentAdUnitId', intval($rootAdUnitId));
 
     // Create report query.
     $reportQuery = new ReportQuery();
     $reportQuery->setDimensions([
-        Dimension::AD_UNIT_ID,
-        Dimension::AD_UNIT_NAME
+        Dimension::ORDER_ID,
+        Dimension::ORDER_NAME
+    ]);
+    $reportQuery->setDimensionAttributes([
+        DimensionAttribute::ORDER_TRAFFICKER,
+        DimensionAttribute::ORDER_START_DATE_TIME,
+        DimensionAttribute::ORDER_END_DATE_TIME
     ]);
     $reportQuery->setColumns([
         Column::AD_SERVER_IMPRESSIONS,
         Column::AD_SERVER_CLICKS,
-        Column::DYNAMIC_ALLOCATION_INVENTORY_LEVEL_IMPRESSIONS,
-        Column::DYNAMIC_ALLOCATION_INVENTORY_LEVEL_CLICKS,
-        Column::TOTAL_INVENTORY_LEVEL_IMPRESSIONS,
-        Column::TOTAL_INVENTORY_LEVEL_CPM_AND_CPC_REVENUE
+        Column::AD_SERVER_CTR,
+        Column::AD_SERVER_CPM_AND_CPC_REVENUE,
+        Column::AD_SERVER_WITHOUT_CPD_AVERAGE_ECPM
     ]);
+
+    // Create statement to filter for an order.
+    $statementBuilder = (new StatementBuilder())
+        ->where('ORDER_ID = :orderId')
+        ->withBindVariableValue('orderId', $orderId);
+
     // Set the filter statement.
     $reportQuery->setStatement($statementBuilder->toStatement());
-    // Set the ad unit view to hierarchical.
-    $reportQuery->setAdUnitView(ReportQueryAdUnitView::HIERARCHICAL);
+
     // Set the start and end dates or choose a dynamic date range type.
-    $reportQuery->setDateRangeType(DateRangeType::YESTERDAY);
+    $reportQuery->setDateRangeType(DateRangeType::CUSTOM_DATE);
+    $reportQuery->setStartDate(DfpDateTimes::fromDateTime(new DateTime(
+        '-10 days', new DateTimeZone('America/New_York')))->getDate());
+    $reportQuery->setEndDate(DfpDateTimes::fromDateTime(new DateTime(
+        'now', new DateTimeZone('America/New_York')))->getDate());
 
     // Create report job and start it.
     $reportJob = new ReportJob();
@@ -90,7 +93,7 @@ class RunInventoryReport {
       // Write to system temp directory by default.
       $filePath = sprintf(
           '%s.csv.gz',
-          tempnam(sys_get_temp_dir(), 'inventory-report-')
+          tempnam(sys_get_temp_dir(), 'delivery-report-')
       );
       printf("Downloading report to %s ...\n", $filePath);
       // Download the report.
@@ -109,8 +112,8 @@ class RunInventoryReport {
         ->fromFile()
         ->withOAuth2Credential($oAuth2Credential)
         ->build();
-    self::runExample(new DfpServices(), $session);
+    self::runExample(new DfpServices(), $session, intval(self::ORDER_ID));
   }
 }
 
-RunInventoryReport::main();
+RunDeliveryReportForOrder::main();

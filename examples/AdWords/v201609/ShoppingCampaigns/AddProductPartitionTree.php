@@ -123,6 +123,7 @@ class AddProductPartitionTree {
     $type = 'n/a';
 
     if ($node->getCaseValue() !== null) {
+      $type = (new ReflectionClass($node->getCaseValue()))->getShortName();
       if ($node->getCaseValue() instanceof ProductCanonicalCondition) {
         $value = $node->getCaseValue()->getCondition();
       } else if ($node->getCaseValue() instanceof ProductBiddingCategory) {
@@ -137,7 +138,7 @@ class AddProductPartitionTree {
         "%sID: %d, type: %s, value: %s\n",
         str_repeat("  ", $level),
         $node->getId(),
-        (new ReflectionClass($node->getCaseValue()))->getShortName(),
+        $type,
         $value
     );
     foreach ($children[$node->getId()] as $childNode) {

@@ -64,7 +64,7 @@ final class BatchJobsDelegate {
    *     denormalization
    */
   public function __construct(
-      AdWordsSession $session = null,
+      AdWordsSession $session,
       Client $httpClient = null,
       $mutateResultClassName = null
   ) {
@@ -72,8 +72,7 @@ final class BatchJobsDelegate {
       $stack = HandlerStack::create();
       $stack->before(
           'http_errors',
-          GuzzleLogMessageHandler::log(
-              $session->getBatchJobsUtilLogger())
+          GuzzleLogMessageHandler::log($session->getBatchJobsUtilLogger())
       );
       $this->httpClient = new Client(['handler' => $stack]);
     } else {
