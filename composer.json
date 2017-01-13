@@ -10,7 +10,7 @@
     "guzzlehttp/psr7": "^1.2",
     "monolog/monolog": "^1.17.1",
     "phpdocumentor/reflection-docblock": "^3.0.3",
-    "symfony/serializer": "^3.0.3"
+    "symfony/serializer": "^2.8.0 || ^3.0.3"
   },
   "require-dev": {
     "phpunit/phpunit": "^4.8"
