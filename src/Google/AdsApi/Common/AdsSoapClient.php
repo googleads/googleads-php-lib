@@ -80,7 +80,7 @@ class AdsSoapClient extends SoapClient {
   /**
    * @see SoapClient::__soapCall
    */
-  public function __soapCall($function_name, $arguments, $options = null,
+  public function __soapCall($function_name, $arguments, $options = [],
       $input_headers = null, &$output_headers = null) {
 
     // Generate the SOAP headers for this API request.
