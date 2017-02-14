@@ -3976,39 +3976,6 @@ if (!class_exists("AuthenticationErrorReason", false)) {
   }
 }
 
-if (!class_exists("ChangeHistoryEntityType", false)) {
-  /**
-   * The type of entity a change occurred on.
-   * @package GoogleApiAdsDfp
-   * @subpackage v201611
-   */
-  class ChangeHistoryEntityType {
-
-    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201611";
-    const XSI_TYPE = "ChangeHistoryEntityType";
-
-    /**
-     * Gets the namesapce of this class
-     * @return string the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return string the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct() {
-    }
-
-  }
-}
-
 if (!class_exists("CollectionSizeErrorReason", false)) {
   /**
    * The value returned if the actual value is not exposed by the requested API version.
@@ -4680,39 +4647,6 @@ if (!class_exists("NullErrorReason", false)) {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201611";
     const XSI_TYPE = "NullError.Reason";
-
-    /**
-     * Gets the namesapce of this class
-     * @return string the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return string the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct() {
-    }
-
-  }
-}
-
-if (!class_exists("ChangeHistoryOperation", false)) {
-  /**
-   * An operation that was performed on an entity.
-   * @package GoogleApiAdsDfp
-   * @subpackage v201611
-   */
-  class ChangeHistoryOperation {
-
-    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201611";
-    const XSI_TYPE = "ChangeHistoryOperation";
 
     /**
      * Gets the namesapce of this class
@@ -5831,54 +5765,6 @@ if (!class_exists("BrowserLanguage", false)) {
   }
 }
 
-if (!class_exists("ChangeHistoryValue", false)) {
-  /**
-   * 
-   * @package GoogleApiAdsDfp
-   * @subpackage v201611
-   */
-  class ChangeHistoryValue extends ObjectValue {
-
-    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201611";
-    const XSI_TYPE = "ChangeHistoryValue";
-
-    /**
-     * @access public
-     * @var tnsChangeHistoryEntityType
-     */
-    public $entityType;
-
-    /**
-     * @access public
-     * @var tnsChangeHistoryOperation
-     */
-    public $operation;
-
-    /**
-     * Gets the namesapce of this class
-     * @return string the namespace of this class
-     */
-    public function getNamespace() {
-      return self::WSDL_NAMESPACE;
-    }
-
-    /**
-     * Gets the xsi:type name of this class
-     * @return string the xsi:type name of this class
-     */
-    public function getXsiTypeName() {
-      return self::XSI_TYPE;
-    }
-
-    public function __construct($entityType = null, $operation = null) {
-      parent::__construct();
-      $this->entityType = $entityType;
-      $this->operation = $operation;
-    }
-
-  }
-}
-
 if (!class_exists("CustomCriteriaSet", false)) {
   /**
    * A {@link CustomCriteriaSet} comprises of a set of {@link CustomCriteriaNode}
@@ -6695,7 +6581,6 @@ if (!class_exists("PublisherQueryLanguageService", false)) {
       "BrowserLanguage" => "BrowserLanguage",
       "BrowserLanguageTargeting" => "BrowserLanguageTargeting",
       "BrowserTargeting" => "BrowserTargeting",
-      "ChangeHistoryValue" => "ChangeHistoryValue",
       "CollectionSizeError" => "CollectionSizeError",
       "ColumnType" => "ColumnType",
       "CommonError" => "CommonError",
@@ -6788,7 +6673,6 @@ if (!class_exists("PublisherQueryLanguageService", false)) {
       "AdUnitHierarchyError.Reason" => "AdUnitHierarchyErrorReason",
       "ApiVersionError.Reason" => "ApiVersionErrorReason",
       "AuthenticationError.Reason" => "AuthenticationErrorReason",
-      "ChangeHistoryEntityType" => "ChangeHistoryEntityType",
       "CollectionSizeError.Reason" => "CollectionSizeErrorReason",
       "CommonError.Reason" => "CommonErrorReason",
       "CreativeError.Reason" => "CreativeErrorReason",
@@ -6810,7 +6694,6 @@ if (!class_exists("PublisherQueryLanguageService", false)) {
       "MinuteOfHour" => "MinuteOfHour",
       "NotNullError.Reason" => "NotNullErrorReason",
       "NullError.Reason" => "NullErrorReason",
-      "ChangeHistoryOperation" => "ChangeHistoryOperation",
       "OrderActionError.Reason" => "OrderActionErrorReason",
       "OrderError.Reason" => "OrderErrorReason",
       "ParseError.Reason" => "ParseErrorReason",

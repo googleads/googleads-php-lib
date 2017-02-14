@@ -28,10 +28,13 @@
 require_once 'Google/Api/Ads/AdWords/v201609/AdGroupAdService.php';
 require_once 'Google/Api/Ads/AdWords/v201609/AdGroupBidModifierService.php';
 require_once 'Google/Api/Ads/AdWords/v201609/AdGroupCriterionService.php';
+require_once 'Google/Api/Ads/AdWords/v201609/AdGroupExtensionSettingService.php';
 require_once 'Google/Api/Ads/AdWords/v201609/AdGroupService.php';
 require_once 'Google/Api/Ads/AdWords/v201609/BudgetService.php';
 require_once 'Google/Api/Ads/AdWords/v201609/CampaignCriterionService.php';
+require_once 'Google/Api/Ads/AdWords/v201609/CampaignExtensionSettingService.php';
 require_once 'Google/Api/Ads/AdWords/v201609/CampaignService.php';
+require_once 'Google/Api/Ads/AdWords/v201609/CustomerExtensionSettingService.php';
 require_once 'Google/Api/Ads/AdWords/v201609/FeedItemService.php';
 
 if (!class_exists("ErrorList", false)) {
@@ -140,6 +143,11 @@ if (!class_exists("Operand", false)) {
     public $AdGroupCriterionLabel;
 
     /**
+     * @var AdGroupExtensionSetting
+     */
+    public $AdGroupExtensionSetting;
+
+    /**
      * @var AdGroupCriterion
      */
     public $AdGroupCriterion;
@@ -170,6 +178,11 @@ if (!class_exists("Operand", false)) {
     public $CampaignCriterion;
 
     /**
+     * @var CampaignExtensionSetting
+     */
+    public $CampaignExtensionSetting;
+
+    /**
      * @var CampaignLabel
      */
     public $CampaignLabel;
@@ -178,6 +191,11 @@ if (!class_exists("Operand", false)) {
      * @var Campaign
      */
     public $Campaign;
+
+    /**
+     * @var CustomerExtensionSetting
+     */
+    public $CustomerExtensionSetting;
 
     /**
      * @var FeedItem
@@ -216,13 +234,16 @@ if (!class_exists("Operand", false)) {
         $AdGroupBidModifier = null,
         $AdGroupCriterionLabel = null,
         $AdGroupCriterion = null,
+        $AdGroupExtensionSetting = null,
         $AdGroupLabel = null,
         $AdGroup = null,
         $Ad = null,
         $Budget = null,
         $CampaignCriterion = null,
+        $CampaignExtensionSetting = null,
         $CampaignLabel = null,
         $Campaign = null,
+        $CustomerExtensionSetting = null,
         $FeedItem = null,
         $Label = null,
         $Media = null
@@ -232,13 +253,16 @@ if (!class_exists("Operand", false)) {
       $this->AdGroupBidModifier = $AdGroupBidModifier;
       $this->AdGroupCriterionLabel = $AdGroupCriterionLabel;
       $this->AdGroupCriterion = $AdGroupCriterion;
+      $this->AdGroupExtensionSetting = $AdGroupExtensionSetting;
       $this->AdGroupLabel = $AdGroupLabel;
       $this->AdGroup = $AdGroup;
       $this->Ad = $Ad;
       $this->Budget = $Budget;
       $this->CampaignCriterion = $CampaignCriterion;
+      $this->CampaignExtensionSetting = $CampaignExtensionSetting;
       $this->CampaignLabel = $CampaignLabel;
       $this->Campaign = $Campaign;
+      $this->CustomerExtensionSetting = $CustomerExtensionSetting;
       $this->FeedItem = $FeedItem;
       $this->Label = $Label;
       $this->Media = $Media;

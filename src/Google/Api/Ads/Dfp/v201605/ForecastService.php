@@ -9693,8 +9693,6 @@ if (!class_exists("GetAvailabilityForecast", false)) {
    * reports the maximum number of available units that the line item can book, and the total
    * number of units matching the line item's targeting.
    * 
-   * <p>Note: Beginning in v201502, this replaces the previous getForecast method.
-   * 
    * @param lineItem the prospective line item (new or existing) to be forecasted for availability
    * @param forecastOptions options controlling the forecast
    * @package GoogleApiAdsDfp
@@ -9790,8 +9788,6 @@ if (!class_exists("GetAvailabilityForecastById", false)) {
    * <p>Only line items having type {@link LineItemType#SPONSORSHIP} or
    * {@link LineItemType#STANDARD} are valid. Other types will result in
    * {@link ReservationDetailsError.Reason#LINE_ITEM_TYPE_NOT_ALLOWED}.
-   * 
-   * <p>Note: Beginning in v201502, this replaces the previous getForecastById method.
    * 
    * @param lineItemId the ID of a {@link LineItem} to run the forecast on.
    * @param forecastOptions options controlling the forecast
@@ -9975,9 +9971,8 @@ if (!class_exists("GetDeliveryForecastResponse", false)) {
 if (!class_exists("GetDeliveryForecastByIds", false)) {
   /**
    * Gets the delivery forecast for a list of existing {@link LineItem} objects in a single
-   * delivery simulation with line items potentially contending with each other. A delivery
-   * forecast reports the number of units that will be delivered to each line item given the line
-   * item goals and contentions from other line items.
+   * delivery simulation. A delivery forecast reports the number of units that will be delivered
+   * to each line item given the line item goals and contentions from other line items.
    * 
    * @param lineItemIds the IDs of line items to be forecasted for delivery
    * @param forecastOptions options controlling the forecast
@@ -11481,8 +11476,6 @@ if (!class_exists("ForecastService", false)) {
      * reports the maximum number of available units that the line item can book, and the total
      * number of units matching the line item's targeting.
      * 
-     * <p>Note: Beginning in v201502, this replaces the previous getForecast method.
-     * 
      * @param lineItem the prospective line item (new or existing) to be forecasted for availability
      * @param forecastOptions options controlling the forecast
      */
@@ -11499,8 +11492,6 @@ if (!class_exists("ForecastService", false)) {
      * <p>Only line items having type {@link LineItemType#SPONSORSHIP} or
      * {@link LineItemType#STANDARD} are valid. Other types will result in
      * {@link ReservationDetailsError.Reason#LINE_ITEM_TYPE_NOT_ALLOWED}.
-     * 
-     * <p>Note: Beginning in v201502, this replaces the previous getForecastById method.
      * 
      * @param lineItemId the ID of a {@link LineItem} to run the forecast on.
      * @param forecastOptions options controlling the forecast
@@ -11526,9 +11517,8 @@ if (!class_exists("ForecastService", false)) {
     }
     /**
      * Gets the delivery forecast for a list of existing {@link LineItem} objects in a single
-     * delivery simulation with line items potentially contending with each other. A delivery
-     * forecast reports the number of units that will be delivered to each line item given the line
-     * item goals and contentions from other line items.
+     * delivery simulation. A delivery forecast reports the number of units that will be delivered
+     * to each line item given the line item goals and contentions from other line items.
      * 
      * @param lineItemIds the IDs of line items to be forecasted for delivery
      * @param forecastOptions options controlling the forecast

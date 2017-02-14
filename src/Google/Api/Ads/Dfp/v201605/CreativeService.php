@@ -8402,7 +8402,7 @@ if (!class_exists("VideoCreative", false)) {
 if (!class_exists("VideoRedirectCreative", false)) {
   /**
    * A {@code Creative} that contains externally hosted video ads and
-   * is served via VAST 2.0 XML.
+   * is served via VAST XML.
    * @package GoogleApiAdsDfp
    * @subpackage v201605
    */

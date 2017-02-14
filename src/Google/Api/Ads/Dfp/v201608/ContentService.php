@@ -2367,9 +2367,8 @@ if (!class_exists("StringLengthErrorReason", false)) {
 
 if (!class_exists("GetContentByStatement", false)) {
   /**
-   * Gets a {@link ContentPage} of {@link Content} objects that satisfy the
-   * given {@link Statement#query}. The following fields are supported for
-   * filtering:
+   * Gets a {@link ContentPage} of {@link Content} objects that satisfy the given {@link
+   * Statement#query}. The following fields are supported for filtering:
    * 
    * <table>
    * <tr>
@@ -2391,10 +2390,17 @@ if (!class_exists("GetContentByStatement", false)) {
    * <td>{@code lastModifiedDateTime}</td>
    * <td>{@link Content#lastModifiedDateTime}</td>
    * </tr>
+   * <tr>
+   * <td>{@code lastDaiIngestDateTime}</td>
+   * <td>{@link Content#lastDaiIngestDateTime}</td>
+   * </tr>
+   * <tr>
+   * <td>{@code daiIngestStatus}</td>
+   * <td>{@link Content#daiIngestStatus}</td>
+   * </tr>
    * </table>
    * 
-   * @params filterStatement a Publisher Query Language statement used to
-   * filter a set of content
+   * @param statement a Publisher Query Language statement used to filter a set of content
    * @return the content that matches the given filter
    * @package GoogleApiAdsDfp
    * @subpackage v201608
@@ -3023,9 +3029,8 @@ if (!class_exists("ContentService", false)) {
           self::WSDL_NAMESPACE);
     }
     /**
-     * Gets a {@link ContentPage} of {@link Content} objects that satisfy the
-     * given {@link Statement#query}. The following fields are supported for
-     * filtering:
+     * Gets a {@link ContentPage} of {@link Content} objects that satisfy the given {@link
+     * Statement#query}. The following fields are supported for filtering:
      * 
      * <table>
      * <tr>
@@ -3047,10 +3052,17 @@ if (!class_exists("ContentService", false)) {
      * <td>{@code lastModifiedDateTime}</td>
      * <td>{@link Content#lastModifiedDateTime}</td>
      * </tr>
+     * <tr>
+     * <td>{@code lastDaiIngestDateTime}</td>
+     * <td>{@link Content#lastDaiIngestDateTime}</td>
+     * </tr>
+     * <tr>
+     * <td>{@code daiIngestStatus}</td>
+     * <td>{@link Content#daiIngestStatus}</td>
+     * </tr>
      * </table>
      * 
-     * @params filterStatement a Publisher Query Language statement used to
-     * filter a set of content
+     * @param statement a Publisher Query Language statement used to filter a set of content
      * @return the content that matches the given filter
      */
     public function getContentByStatement($statement) {

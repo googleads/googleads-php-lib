@@ -76,11 +76,11 @@ function AddUniversalAppCampaignExample(AdWordsUser $user) {
   // Set the campaign's assets and ad text ideas. These values will be used to
   // generate ads.
   $universalAppSetting = new UniversalAppCampaignSetting();
-  $universalAppSetting->appId = 'com.interplanetarycruise.booking';
-  $universalAppSetting->description1 = 'Best Space Cruise Line';
-  $universalAppSetting->description2 = 'Visit all the planets';
-  $universalAppSetting->description3 = 'Trips 7 days a week';
-  $universalAppSetting->description4 = 'Buy your tickets now!';
+  $universalAppSetting->appId = 'com.labpixies.colordrips';
+  $universalAppSetting->description1 = 'A cool puzzle game';
+  $universalAppSetting->description2 = 'Remove connected blocks';
+  $universalAppSetting->description3 = '3 difficulty levels';
+  $universalAppSetting->description4 = '4 colorful fun skins';
 
   // Optional: You can set up to 10 image assets for your campaign.
   // See UploadImage.php for an example on how to upload images.

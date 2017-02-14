@@ -1733,6 +1733,43 @@ if (!class_exists("String_ValueMapEntry", false)) {
   }
 }
 
+if (!class_exists("UniqueError", false)) {
+  /**
+   * An error for a field which must satisfy a uniqueness constraint
+   * @package GoogleApiAdsDfp
+   * @subpackage v201605
+   */
+  class UniqueError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201605";
+    const XSI_TYPE = "UniqueError";
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($fieldPath = null, $trigger = null, $errorString = null) {
+      parent::__construct();
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+    }
+
+  }
+}
+
 if (!class_exists("UpdateResult", false)) {
   /**
    * Represents the result of performing an action on objects.
@@ -3442,6 +3479,7 @@ if (!class_exists("LiveStreamEventService", false)) {
       "StringLengthError" => "StringLengthError",
       "String_ValueMapEntry" => "String_ValueMapEntry",
       "TextValue" => "TextValue",
+      "UniqueError" => "UniqueError",
       "UpdateResult" => "UpdateResult",
       "Value" => "Value",
       "ApiVersionError.Reason" => "ApiVersionErrorReason",

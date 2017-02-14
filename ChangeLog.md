@@ -1,3 +1,19 @@
+### 16.0.0
+
+AdWords:
+  - Fixed
+    [issue #192](https://github.com/googleads/googleads-php-lib/issues/192).
+
+DFP:
+  - Added support and examples for v201702.
+  - Removed examples for v201605 (deprecated).
+  - Removed support for v201602 (sunset).
+
+Common:
+  - The old ads PHP client library has been deprecated. Please
+    [upgrade](https://github.com/googleads/googleads-php-lib/blob/master/UPGRADING.md)
+    to the new ads PHP client library.
+
 ### 15.0.0
 
 AdWords:

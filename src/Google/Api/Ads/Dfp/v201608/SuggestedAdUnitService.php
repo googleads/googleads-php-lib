@@ -571,10 +571,9 @@ if (!class_exists("InternalApiError", false)) {
 
 if (!class_exists("AdUnitSize", false)) {
   /**
-   * An {@code AdUnitSize} represents the size of an ad in an ad unit. Starting
-   * with v201108 this also represents the environment, and companions of a
-   * particular ad in an ad unit. In most cases, it is a simple size with just a
-   * width and a height (sometimes representing an aspect ratio).
+   * An {@code AdUnitSize} represents the size of an ad in an ad unit. This also represents
+   * the environment and companions of a particular ad in an ad unit. In most cases, it is
+   * a simple size with just a width and a height (sometimes representing an aspect ratio).
    * @package GoogleApiAdsDfp
    * @subpackage v201608
    */

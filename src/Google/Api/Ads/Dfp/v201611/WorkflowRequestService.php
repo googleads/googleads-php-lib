@@ -2667,7 +2667,9 @@ if (!class_exists("GetWorkflowRequestsByStatement", false)) {
    * <td>{@link WorkflowRequest#type}</td>
    * </tr>
    * </table>
-   * <p>Starting in V201405 a {@code type} filter must be used</p>
+   * 
+   * <p>The {@code type} filter is required.
+   * 
    * @param filterStatement a Publisher Query Language statement used to filter a set of proposals
    * @return the workflow requests that match the given filter
    * @package GoogleApiAdsDfp
@@ -3474,7 +3476,9 @@ if (!class_exists("WorkflowRequestService", false)) {
      * <td>{@link WorkflowRequest#type}</td>
      * </tr>
      * </table>
-     * <p>Starting in V201405 a {@code type} filter must be used</p>
+     * 
+     * <p>The {@code type} filter is required.
+     * 
      * @param filterStatement a Publisher Query Language statement used to filter a set of proposals
      * @return the workflow requests that match the given filter
      */

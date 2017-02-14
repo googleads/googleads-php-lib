@@ -2499,8 +2499,7 @@ if (!class_exists("ParseError", false)) {
 
 if (!class_exists("PauseOrders", false)) {
   /**
-   * The action used for pausing {@link Order} objects. All {@link LineItem}
-   * objects within the order will be paused as well.
+   * The action used for pausing all {@link LineItem} objects within an order.
    * @package GoogleApiAdsDfp
    * @subpackage v201605
    */
