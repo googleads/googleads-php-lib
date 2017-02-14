@@ -59,6 +59,7 @@ class LiveStreamEventService extends \Google\AdsApi\Common\AdsSoapClient
       'StringLengthError' => 'Google\\AdsApi\\Dfp\\v201611\\StringLengthError',
       'String_ValueMapEntry' => 'Google\\AdsApi\\Dfp\\v201611\\String_ValueMapEntry',
       'TextValue' => 'Google\\AdsApi\\Dfp\\v201611\\TextValue',
+      'UniqueError' => 'Google\\AdsApi\\Dfp\\v201611\\UniqueError',
       'UpdateResult' => 'Google\\AdsApi\\Dfp\\v201611\\UpdateResult',
       'Value' => 'Google\\AdsApi\\Dfp\\v201611\\Value',
       'createLiveStreamEventsResponse' => 'Google\\AdsApi\\Dfp\\v201611\\createLiveStreamEventsResponse',

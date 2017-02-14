@@ -1,3 +1,13 @@
+### 25.2.0
+
+##### DFP
+
+*   Added support and examples for v201702.
+
+##### Common
+
+*   Accepted [PR #217](https://github.com/googleads/googleads-php-lib/pull/217).
+
 ### 25.1.0
 
 ##### AdWords

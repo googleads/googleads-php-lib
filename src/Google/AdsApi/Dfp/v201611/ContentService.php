@@ -77,9 +77,8 @@ class ContentService extends \Google\AdsApi\Common\AdsSoapClient
     }
 
     /**
-     * Gets a {@link ContentPage} of {@link Content} objects that satisfy the
-     * given {@link Statement#query}. The following fields are supported for
-     * filtering:
+     * Gets a {@link ContentPage} of {@link Content} objects that satisfy the given {@link
+     * Statement#query}. The following fields are supported for filtering:
      *
      * <table>
      * <tr>
@@ -101,9 +100,15 @@ class ContentService extends \Google\AdsApi\Common\AdsSoapClient
      * <td>{@code lastModifiedDateTime}</td>
      * <td>{@link Content#lastModifiedDateTime}</td>
      * </tr>
+     * <tr>
+     * <td>{@code lastDaiIngestDateTime}</td>
+     * <td>{@link Content#lastDaiIngestDateTime}</td>
+     * </tr>
+     * <tr>
+     * <td>{@code daiIngestStatus}</td>
+     * <td>{@link Content#daiIngestStatus}</td>
+     * </tr>
      * </table>
-     *
-     * filter a set of content
      *
      * @param \Google\AdsApi\Dfp\v201611\Statement $statement
      * @return \Google\AdsApi\Dfp\v201611\ContentPage

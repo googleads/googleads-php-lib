@@ -30,7 +30,6 @@ class PublisherQueryLanguageService extends \Google\AdsApi\Common\AdsSoapClient
       'BrowserLanguage' => 'Google\\AdsApi\\Dfp\\v201611\\BrowserLanguage',
       'BrowserLanguageTargeting' => 'Google\\AdsApi\\Dfp\\v201611\\BrowserLanguageTargeting',
       'BrowserTargeting' => 'Google\\AdsApi\\Dfp\\v201611\\BrowserTargeting',
-      'ChangeHistoryValue' => 'Google\\AdsApi\\Dfp\\v201611\\ChangeHistoryValue',
       'CollectionSizeError' => 'Google\\AdsApi\\Dfp\\v201611\\CollectionSizeError',
       'ColumnType' => 'Google\\AdsApi\\Dfp\\v201611\\ColumnType',
       'CommonError' => 'Google\\AdsApi\\Dfp\\v201611\\CommonError',

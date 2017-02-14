@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2016 Google Inc. All Rights Reserved.
+ * Copyright 2017 Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,72 +22,74 @@ use Google\AdsApi\Common\OAuth2TokenBuilder;
 use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
-use Google\AdsApi\Dfp\v201611\CreativeAsset;
-use Google\AdsApi\Dfp\v201611\CreativeService;
-use Google\AdsApi\Dfp\v201611\ImageCreative;
 use Google\AdsApi\Dfp\v201611\Size;
-use ReflectionObject;
+use Google\AdsApi\Dfp\v201611\CreativeAsset;
+use Google\AdsApi\Dfp\v201611\ImageCreative;
+use Google\AdsApi\Dfp\v201611\CreativeService;
 
 /**
- * This example creates a new image creative for a specified advertiser.
+ * Creates image creatives.
+ *
+ * This example is meant to be run from a command line (not as a webpage) and
+ * requires that you've setup an `adsapi_php.ini` file in your home directory
+ * with your API credentials and settings. See `README.md` for more info.
  */
 class CreateCreatives {
 
-  // Set the ID of the advertiser that the creative will belong to.
   const ADVERTISER_ID = 'INSERT_ADVERTISER_ID_HERE';
 
   public static function runExample(DfpServices $dfpServices,
       DfpSession $session, $advertiserId) {
-    $creativeService = $dfpServices->get($session, CreativeService::class);
+    $creativeService =
+        $dfpServices->get($session, CreativeService::class);
 
-    // Create creative size.
+    $imageCreative = new ImageCreative();
+    $imageCreative->setName('Image creative #'. uniqid());
+    $imageCreative->setAdvertiserId($advertiserId);
+    $imageCreative->setDestinationUrl('http://google.com');
+
+    // Set the size of the image creative.
     $size = new Size();
     $size->setWidth(300);
     $size->setHeight(250);
     $size->setIsAspectRatio(false);
-
-    // Create image creative.
-    $imageCreative = new ImageCreative();
-    $imageCreative->setName('Image creative #' . uniqid());
-    $imageCreative->setAdvertiserId($advertiserId);
-    $imageCreative->setDestinationUrl('http://google.com');
     $imageCreative->setSize($size);
 
-    // Create image asset.
+    // Set the creative's asset.
     $creativeAsset = new CreativeAsset();
-    $creativeAsset->setFileName(sprintf('image-%s.jpg', uniqid()));
+    $creativeAsset->setFileName(300);
     $creativeAsset->setAssetByteArray(file_get_contents(
         'http://www.google.com/intl/en/adwords/select/images/samples/inline.jpg'
     ));
-
     $imageCreative->setPrimaryImageAsset($creativeAsset);
 
-    // Create the image creative on the server.
-    $createdCreatives =
-        $creativeService->createCreatives([$imageCreative]);
+    // Create the image creatives on the server.
+    $results = $creativeService->createCreatives([$imageCreative]);
 
-    foreach ($createdCreatives as $imageCreative) {
-      $imageCreativeClazz = new ReflectionObject($imageCreative);
-      printf("Creative with ID %d, name '%s', size '%sx%s', and type '%s' "
-          . "was created and can be previewed at: '%s'\n",
+    // Print out some information for each created image creative.
+    foreach ($results as $i => $imageCreative) {
+      printf(
+          "%d) Image creative with ID %d and name '%s' was created.\n",
+          $i,
           $imageCreative->getId(),
-          $imageCreative->getName(),
-          $imageCreative->getSize()->getWidth(),
-          $imageCreative->getSize()->getHeight(),
-          $imageCreativeClazz->getShortName(),
-          $imageCreative->getPreviewUrl()
+          $imageCreative->getName()
       );
     }
   }
 
   public static function main() {
+    // Generate a refreshable OAuth2 credential for authentication.
     $oAuth2Credential = (new OAuth2TokenBuilder())
         ->fromFile()
         ->build();
+
+    // Construct an API session configured from a properties file and the OAuth2
+    // credentials above.
     $session = (new DfpSessionBuilder())
         ->fromFile()
         ->withOAuth2Credential($oAuth2Credential)
         ->build();
+
     self::runExample(new DfpServices(), $session, intval(self::ADVERTISER_ID));
   }
 }
