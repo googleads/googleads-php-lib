@@ -22,6 +22,7 @@ class NetworkService extends \Google\AdsApi\Common\AdsSoapClient
       'CommonError' => 'Google\\AdsApi\\Dfp\\v201702\\CommonError',
       'ExchangeRateError' => 'Google\\AdsApi\\Dfp\\v201702\\ExchangeRateError',
       'FeatureError' => 'Google\\AdsApi\\Dfp\\v201702\\FeatureError',
+      'FieldPathElement' => 'Google\\AdsApi\\Dfp\\v201702\\FieldPathElement',
       'InternalApiError' => 'Google\\AdsApi\\Dfp\\v201702\\InternalApiError',
       'InvalidEmailError' => 'Google\\AdsApi\\Dfp\\v201702\\InvalidEmailError',
       'Network' => 'Google\\AdsApi\\Dfp\\v201702\\Network',

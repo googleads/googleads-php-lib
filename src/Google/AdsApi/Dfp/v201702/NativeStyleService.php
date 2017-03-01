@@ -52,6 +52,7 @@ class NativeStyleService extends \Google\AdsApi\Common\AdsSoapClient
       'DeviceManufacturerTargeting' => 'Google\\AdsApi\\Dfp\\v201702\\DeviceManufacturerTargeting',
       'EntityChildrenLimitReachedError' => 'Google\\AdsApi\\Dfp\\v201702\\EntityChildrenLimitReachedError',
       'FeatureError' => 'Google\\AdsApi\\Dfp\\v201702\\FeatureError',
+      'FieldPathElement' => 'Google\\AdsApi\\Dfp\\v201702\\FieldPathElement',
       'GeoTargeting' => 'Google\\AdsApi\\Dfp\\v201702\\GeoTargeting',
       'ImageError' => 'Google\\AdsApi\\Dfp\\v201702\\ImageError',
       'InternalApiError' => 'Google\\AdsApi\\Dfp\\v201702\\InternalApiError',

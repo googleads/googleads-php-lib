@@ -65,6 +65,7 @@ class ProductService extends \Google\AdsApi\Common\AdsSoapClient
       'DropDownCustomFieldValue' => 'Google\\AdsApi\\Dfp\\v201702\\DropDownCustomFieldValue',
       'EntityChildrenLimitReachedError' => 'Google\\AdsApi\\Dfp\\v201702\\EntityChildrenLimitReachedError',
       'FeatureError' => 'Google\\AdsApi\\Dfp\\v201702\\FeatureError',
+      'FieldPathElement' => 'Google\\AdsApi\\Dfp\\v201702\\FieldPathElement',
       'ForecastError' => 'Google\\AdsApi\\Dfp\\v201702\\ForecastError',
       'FrequencyCap' => 'Google\\AdsApi\\Dfp\\v201702\\FrequencyCap',
       'GenericTargetingError' => 'Google\\AdsApi\\Dfp\\v201702\\GenericTargetingError',

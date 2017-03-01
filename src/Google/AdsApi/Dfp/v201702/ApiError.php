@@ -15,6 +15,11 @@ abstract class ApiError
     protected $fieldPath = null;
 
     /**
+     * @var \Google\AdsApi\Dfp\v201702\FieldPathElement[] $fieldPathElements
+     */
+    protected $fieldPathElements = null;
+
+    /**
      * @var string $trigger
      */
     protected $trigger = null;
@@ -26,12 +31,14 @@ abstract class ApiError
 
     /**
      * @param string $fieldPath
+     * @param \Google\AdsApi\Dfp\v201702\FieldPathElement[] $fieldPathElements
      * @param string $trigger
      * @param string $errorString
      */
-    public function __construct($fieldPath = null, $trigger = null, $errorString = null)
+    public function __construct($fieldPath = null, array $fieldPathElements = null, $trigger = null, $errorString = null)
     {
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -51,6 +58,24 @@ abstract class ApiError
     public function setFieldPath($fieldPath)
     {
       $this->fieldPath = $fieldPath;
+      return $this;
+    }
+
+    /**
+     * @return \Google\AdsApi\Dfp\v201702\FieldPathElement[]
+     */
+    public function getFieldPathElements()
+    {
+      return $this->fieldPathElements;
+    }
+
+    /**
+     * @param \Google\AdsApi\Dfp\v201702\FieldPathElement[] $fieldPathElements
+     * @return \Google\AdsApi\Dfp\v201702\ApiError
+     */
+    public function setFieldPathElements(array $fieldPathElements)
+    {
+      $this->fieldPathElements = $fieldPathElements;
       return $this;
     }
 

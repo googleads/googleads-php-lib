@@ -80,6 +80,9 @@ class OfflineCallConversionFeedService extends \Google\AdsApi\Common\AdsSoapClie
      * <p>This bulk operation does not have any transactional guarantees. Some operations can succeed
      * while others fail.
      *
+     * <p><b>Note:</b> {@link OfflineCallConversionFeedOperation} supports only the
+     * {@code ADD} operator. ({@code SET} and {@code REMOVE} are not supported.)
+     *
      * @param \Google\AdsApi\AdWords\v201609\cm\OfflineCallConversionFeedOperation[] $operations
      * @return \Google\AdsApi\AdWords\v201609\cm\OfflineCallConversionFeedReturnValue
      * @throws \Google\AdsApi\AdWords\v201609\cm\ApiException

@@ -17,9 +17,9 @@
 namespace Google\AdsApi\AdWords;
 
 use Google\AdsApi\AdWords\Testing\AdWordsServicesIntegrationTestProvider;
-use Google\AdsApi\AdWords\v201609\cm\Campaign;
-use Google\AdsApi\AdWords\v201609\cm\CampaignService;
-use Google\AdsApi\AdWords\v201609\cm\Selector;
+use Google\AdsApi\AdWords\v201702\cm\Campaign;
+use Google\AdsApi\AdWords\v201702\cm\CampaignService;
+use Google\AdsApi\AdWords\v201702\cm\Selector;
 use Google\AdsApi\Common\AdsSoapClientFactory;
 use Google\AdsApi\Common\SoapSettingsBuilder;
 use Google\AdsApi\Common\Testing\ApplicationNames;
@@ -176,7 +176,7 @@ class AdWordsServicesIntegrationTest extends PHPUnit_Framework_TestCase {
 
   /**
    * @covers Google\AdsApi\AdWords\AdWordsServices::get
-   * @expectedException Google\AdsApi\AdWords\v201609\cm\ApiException
+   * @expectedException Google\AdsApi\AdWords\v201702\cm\ApiException
    * @expectedExceptionMessage [SelectorError.INVALID_FIELD_NAME @ serviceSelector; trigger:'asDEEf'; errorDetails:asDEEf]
    */
   public function testGetCallToCampaignServiceExpectFault() {

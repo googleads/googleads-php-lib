@@ -32,6 +32,7 @@ final class OAuth2TokenBuilder implements AdsBuilder {
 
   private $jsonKeyFilePath;
   private $scopes;
+  private $impersonatedEmail;
 
   private $clientId;
   private $clientSecret;
@@ -58,6 +59,8 @@ final class OAuth2TokenBuilder implements AdsBuilder {
     $this->jsonKeyFilePath =
         $configuration->getConfiguration('jsonKeyFilePath', 'OAUTH2');
     $this->scopes = $configuration->getConfiguration('scopes', 'OAUTH2');
+    $this->impersonatedEmail =
+        $configuration->getConfiguration('impersonatedEmail', 'OAUTH2');
     $this->clientId = $configuration->getConfiguration('clientId', 'OAUTH2');
     $this->clientSecret =
         $configuration->getConfiguration('clientSecret', 'OAUTH2');
@@ -87,6 +90,18 @@ final class OAuth2TokenBuilder implements AdsBuilder {
    */
   public function withScopes($scopes) {
     $this->scopes = $scopes;
+    return $this;
+  }
+
+  /**
+   * Includes an email of account to impersonate when using service account
+   * flow. Optional and only applicable when using service account flow.
+   *
+   * @param string|null $impersonatedEmail
+   * @return OAuth2TokenBuilder this builder
+   */
+  public function withImpersonatedEmail($impersonatedEmail) {
+    $this->impersonatedEmail = $impersonatedEmail;
     return $this;
   }
 
@@ -136,7 +151,8 @@ final class OAuth2TokenBuilder implements AdsBuilder {
     if ($this->jsonKeyFilePath !== null) {
       return new ServiceAccountCredentials(
           $this->scopes,
-          $this->jsonKeyFilePath
+          $this->jsonKeyFilePath,
+          $this->impersonatedEmail
       );
     } else {
       return new UserRefreshCredentials(
@@ -196,6 +212,14 @@ final class OAuth2TokenBuilder implements AdsBuilder {
    */
   public function getScopes() {
     return $this->scopes;
+  }
+
+  /**
+   * Gets the impersonated email.
+   * @return string|null
+   */
+  public function getImpersonatedEmail() {
+    return $this->impersonatedEmail;
   }
 
   /**

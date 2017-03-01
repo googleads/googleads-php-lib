@@ -73,6 +73,7 @@ class LineItemService extends \Google\AdsApi\Common\AdsSoapClient
       'EntityChildrenLimitReachedError' => 'Google\\AdsApi\\Dfp\\v201702\\EntityChildrenLimitReachedError',
       'EntityLimitReachedError' => 'Google\\AdsApi\\Dfp\\v201702\\EntityLimitReachedError',
       'FeatureError' => 'Google\\AdsApi\\Dfp\\v201702\\FeatureError',
+      'FieldPathElement' => 'Google\\AdsApi\\Dfp\\v201702\\FieldPathElement',
       'ForecastError' => 'Google\\AdsApi\\Dfp\\v201702\\ForecastError',
       'FrequencyCap' => 'Google\\AdsApi\\Dfp\\v201702\\FrequencyCap',
       'FrequencyCapError' => 'Google\\AdsApi\\Dfp\\v201702\\FrequencyCapError',

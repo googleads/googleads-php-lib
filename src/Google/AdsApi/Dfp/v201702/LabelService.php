@@ -30,6 +30,7 @@ class LabelService extends \Google\AdsApi\Common\AdsSoapClient
       'DateValue' => 'Google\\AdsApi\\Dfp\\v201702\\DateValue',
       'DeactivateLabels' => 'Google\\AdsApi\\Dfp\\v201702\\DeactivateLabels',
       'FeatureError' => 'Google\\AdsApi\\Dfp\\v201702\\FeatureError',
+      'FieldPathElement' => 'Google\\AdsApi\\Dfp\\v201702\\FieldPathElement',
       'InternalApiError' => 'Google\\AdsApi\\Dfp\\v201702\\InternalApiError',
       'LabelAction' => 'Google\\AdsApi\\Dfp\\v201702\\LabelAction',
       'Label' => 'Google\\AdsApi\\Dfp\\v201702\\Label',

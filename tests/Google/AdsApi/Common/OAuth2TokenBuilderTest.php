@@ -70,6 +70,39 @@ class OAuth2TokenBuilderTest extends PHPUnit_Framework_TestCase {
   }
 
   /**
+   * @covers Google\AdsApi\Common\OAuth2TokenBuilder::from
+   */
+  public function testBuildFromWithServiceAccountFlowUsingImpersonation() {
+    $valueMap = [
+        [
+            'jsonKeyFilePath',
+            'OAUTH2',
+            $this->jsonKeyFilePath
+        ], [
+            'scopes',
+            'OAUTH2',
+            'https://www.googleapis.com/auth/dfp'
+        ], [
+            'impersonatedEmail',
+            'OAUTH2',
+            'dfp@google.com'
+        ]
+    ];
+    $configurationMock = $this->getMockBuilder(Configuration::class)
+        ->disableOriginalConstructor()
+        ->getMock();
+    $configurationMock->expects($this->any())
+        ->method('getConfiguration')
+        ->will($this->returnValueMap($valueMap));
+
+    $tokenFetcher = $this->oAuth2TokenBuilder
+        ->from($configurationMock)
+        ->build();
+
+    $this->assertInstanceOf(ServiceAccountCredentials::class, $tokenFetcher);
+  }
+
+  /**
    * @covers Google\AdsApi\Common\OAuth2TokenBuilder::build
    * @expectedException InvalidArgumentException
    * @expectedExceptionMessageRegExp /both service account.+installed.+web.+flow.+set/
@@ -91,6 +124,18 @@ class OAuth2TokenBuilderTest extends PHPUnit_Framework_TestCase {
     $tokenFetcher = $this->oAuth2TokenBuilder
         ->withJsonKeyFilePath($this->jsonKeyFilePath)
         ->withScopes('https://www.googleapis.com/auth/dfp')
+        ->build();
+    $this->assertInstanceOf(ServiceAccountCredentials::class, $tokenFetcher);
+  }
+
+  /**
+   * @covers Google\AdsApi\Common\OAuth2TokenBuilder::build
+   */
+  public function testBuildWithServiceAccountFlowUsingImpersonation() {
+    $tokenFetcher = $this->oAuth2TokenBuilder
+        ->withJsonKeyFilePath($this->jsonKeyFilePath)
+        ->withScopes('https://www.googleapis.com/auth/dfp')
+        ->withImpersonatedEmail('dfp@google.com')
         ->build();
     $this->assertInstanceOf(ServiceAccountCredentials::class, $tokenFetcher);
   }

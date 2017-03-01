@@ -28,6 +28,7 @@ class ReconciliationLineItemReportService extends \Google\AdsApi\Common\AdsSoapC
       'DateTimeValue' => 'Google\\AdsApi\\Dfp\\v201702\\DateTimeValue',
       'DateValue' => 'Google\\AdsApi\\Dfp\\v201702\\DateValue',
       'FeatureError' => 'Google\\AdsApi\\Dfp\\v201702\\FeatureError',
+      'FieldPathElement' => 'Google\\AdsApi\\Dfp\\v201702\\FieldPathElement',
       'InternalApiError' => 'Google\\AdsApi\\Dfp\\v201702\\InternalApiError',
       'Money' => 'Google\\AdsApi\\Dfp\\v201702\\Money',
       'NotNullError' => 'Google\\AdsApi\\Dfp\\v201702\\NotNullError',

@@ -33,6 +33,7 @@ class ContentMetadataKeyHierarchyService extends \Google\AdsApi\Common\AdsSoapCl
       'DateValue' => 'Google\\AdsApi\\Dfp\\v201702\\DateValue',
       'DeleteContentMetadataKeyHierarchies' => 'Google\\AdsApi\\Dfp\\v201702\\DeleteContentMetadataKeyHierarchies',
       'FeatureError' => 'Google\\AdsApi\\Dfp\\v201702\\FeatureError',
+      'FieldPathElement' => 'Google\\AdsApi\\Dfp\\v201702\\FieldPathElement',
       'InternalApiError' => 'Google\\AdsApi\\Dfp\\v201702\\InternalApiError',
       'NotNullError' => 'Google\\AdsApi\\Dfp\\v201702\\NotNullError',
       'NumberValue' => 'Google\\AdsApi\\Dfp\\v201702\\NumberValue',

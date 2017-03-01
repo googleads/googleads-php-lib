@@ -13,22 +13,28 @@ class OfflineConversionFeedService extends \Google\AdsApi\Common\AdsSoapClient
      * @var array $classmap The defined classes
      */
     private static $classmap = array (
+      'ApiError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\ApiError',
+      'ApiException' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\ApiException',
+      'ApplicationException' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\ApplicationException',
       'AuthenticationError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\AuthenticationError',
       'AuthorizationError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\AuthorizationError',
       'ClientTermsError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\ClientTermsError',
       'CollectionSizeError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\CollectionSizeError',
       'CurrencyCodeError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\CurrencyCodeError',
+      'DatabaseError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\DatabaseError',
       'DateError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\DateError',
       'DistinctError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\DistinctError',
       'EntityCountLimitExceeded' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\EntityCountLimitExceeded',
       'EntityNotFound' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\EntityNotFound',
       'IdError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\IdError',
       'InternalApiError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\InternalApiError',
+      'ListReturnValue' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\ListReturnValue',
       'NotEmptyError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\NotEmptyError',
       'NullError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\NullError',
       'OfflineConversionError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\OfflineConversionError',
       'OfflineConversionFeed' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\OfflineConversionFeed',
       'OfflineConversionFeedOperation' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\OfflineConversionFeedOperation',
+      'OfflineConversionFeedReturnValue' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\OfflineConversionFeedReturnValue',
       'Operation' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\Operation',
       'OperationAccessDenied' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\OperationAccessDenied',
       'OperatorError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\OperatorError',
@@ -46,12 +52,6 @@ class OfflineConversionFeedService extends \Google\AdsApi\Common\AdsSoapClient
       'SoapResponseHeader' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\SoapResponseHeader',
       'StringFormatError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\StringFormatError',
       'StringLengthError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\StringLengthError',
-      'DatabaseError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\DatabaseError',
-      'ApiError' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\ApiError',
-      'ApiException' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\ApiException',
-      'ApplicationException' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\ApplicationException',
-      'OfflineConversionFeedReturnValue' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\OfflineConversionFeedReturnValue',
-      'ListReturnValue' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\ListReturnValue',
       'mutateResponse' => 'Google\\AdsApi\\AdWords\\v201609\\cm\\mutateResponse',
     );
 
@@ -78,6 +78,9 @@ class OfflineConversionFeedService extends \Google\AdsApi\Common\AdsSoapClient
      * <p>
      * This bulk operation does not have any transactional guarantees. Some operations can succeed
      * while others fail.
+     *
+     * <p><b>Note:</b> {@link OfflineConversionFeedOperation} supports only the
+     * {@code ADD} operator. ({@code SET} and {@code REMOVE} are not supported.)
      *
      * @param \Google\AdsApi\AdWords\v201609\cm\OfflineConversionFeedOperation[] $operations
      * @return \Google\AdsApi\AdWords\v201609\cm\OfflineConversionFeedReturnValue

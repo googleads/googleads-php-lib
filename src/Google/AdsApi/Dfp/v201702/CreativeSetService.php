@@ -38,6 +38,7 @@ class CreativeSetService extends \Google\AdsApi\Common\AdsSoapClient
       'DateValue' => 'Google\\AdsApi\\Dfp\\v201702\\DateValue',
       'EntityLimitReachedError' => 'Google\\AdsApi\\Dfp\\v201702\\EntityLimitReachedError',
       'FeatureError' => 'Google\\AdsApi\\Dfp\\v201702\\FeatureError',
+      'FieldPathElement' => 'Google\\AdsApi\\Dfp\\v201702\\FieldPathElement',
       'FileError' => 'Google\\AdsApi\\Dfp\\v201702\\FileError',
       'HtmlBundleProcessorError' => 'Google\\AdsApi\\Dfp\\v201702\\HtmlBundleProcessorError',
       'ImageError' => 'Google\\AdsApi\\Dfp\\v201702\\ImageError',

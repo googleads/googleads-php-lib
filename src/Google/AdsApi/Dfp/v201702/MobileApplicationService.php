@@ -29,6 +29,7 @@ class MobileApplicationService extends \Google\AdsApi\Common\AdsSoapClient
       'DateValue' => 'Google\\AdsApi\\Dfp\\v201702\\DateValue',
       'ArchiveMobileApplications' => 'Google\\AdsApi\\Dfp\\v201702\\ArchiveMobileApplications',
       'FeatureError' => 'Google\\AdsApi\\Dfp\\v201702\\FeatureError',
+      'FieldPathElement' => 'Google\\AdsApi\\Dfp\\v201702\\FieldPathElement',
       'InternalApiError' => 'Google\\AdsApi\\Dfp\\v201702\\InternalApiError',
       'MobileApplicationAction' => 'Google\\AdsApi\\Dfp\\v201702\\MobileApplicationAction',
       'MobileApplicationActionError' => 'Google\\AdsApi\\Dfp\\v201702\\MobileApplicationActionError',

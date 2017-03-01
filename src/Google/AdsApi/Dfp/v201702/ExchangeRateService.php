@@ -32,6 +32,7 @@ class ExchangeRateService extends \Google\AdsApi\Common\AdsSoapClient
       'ExchangeRateError' => 'Google\\AdsApi\\Dfp\\v201702\\ExchangeRateError',
       'ExchangeRatePage' => 'Google\\AdsApi\\Dfp\\v201702\\ExchangeRatePage',
       'FeatureError' => 'Google\\AdsApi\\Dfp\\v201702\\FeatureError',
+      'FieldPathElement' => 'Google\\AdsApi\\Dfp\\v201702\\FieldPathElement',
       'InternalApiError' => 'Google\\AdsApi\\Dfp\\v201702\\InternalApiError',
       'NotNullError' => 'Google\\AdsApi\\Dfp\\v201702\\NotNullError',
       'NumberValue' => 'Google\\AdsApi\\Dfp\\v201702\\NumberValue',

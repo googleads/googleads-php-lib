@@ -29,6 +29,7 @@ class SuggestedAdUnitService extends \Google\AdsApi\Common\AdsSoapClient
       'DateTimeValue' => 'Google\\AdsApi\\Dfp\\v201702\\DateTimeValue',
       'DateValue' => 'Google\\AdsApi\\Dfp\\v201702\\DateValue',
       'FeatureError' => 'Google\\AdsApi\\Dfp\\v201702\\FeatureError',
+      'FieldPathElement' => 'Google\\AdsApi\\Dfp\\v201702\\FieldPathElement',
       'InternalApiError' => 'Google\\AdsApi\\Dfp\\v201702\\InternalApiError',
       'AdUnitSize' => 'Google\\AdsApi\\Dfp\\v201702\\AdUnitSize',
       'InventoryUnitSizesError' => 'Google\\AdsApi\\Dfp\\v201702\\InventoryUnitSizesError',

@@ -36,6 +36,7 @@ class CustomFieldService extends \Google\AdsApi\Common\AdsSoapClient
       'DropDownCustomField' => 'Google\\AdsApi\\Dfp\\v201702\\DropDownCustomField',
       'EntityLimitReachedError' => 'Google\\AdsApi\\Dfp\\v201702\\EntityLimitReachedError',
       'FeatureError' => 'Google\\AdsApi\\Dfp\\v201702\\FeatureError',
+      'FieldPathElement' => 'Google\\AdsApi\\Dfp\\v201702\\FieldPathElement',
       'InternalApiError' => 'Google\\AdsApi\\Dfp\\v201702\\InternalApiError',
       'NotNullError' => 'Google\\AdsApi\\Dfp\\v201702\\NotNullError',
       'NullError' => 'Google\\AdsApi\\Dfp\\v201702\\NullError',

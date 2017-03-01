@@ -34,6 +34,7 @@ class BaseRateService extends \Google\AdsApi\Common\AdsSoapClient
       'DeleteBaseRates' => 'Google\\AdsApi\\Dfp\\v201702\\DeleteBaseRates',
       'EntityChildrenLimitReachedError' => 'Google\\AdsApi\\Dfp\\v201702\\EntityChildrenLimitReachedError',
       'FeatureError' => 'Google\\AdsApi\\Dfp\\v201702\\FeatureError',
+      'FieldPathElement' => 'Google\\AdsApi\\Dfp\\v201702\\FieldPathElement',
       'InternalApiError' => 'Google\\AdsApi\\Dfp\\v201702\\InternalApiError',
       'Money' => 'Google\\AdsApi\\Dfp\\v201702\\Money',
       'NotNullError' => 'Google\\AdsApi\\Dfp\\v201702\\NotNullError',

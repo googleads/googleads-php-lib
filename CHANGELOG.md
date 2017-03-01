@@ -1,3 +1,23 @@
+### 25.3.0
+
+##### AdWords
+
+*   Added support and examples for v201702.
+*   Fixed
+    [issue #236](https://github.com/googleads/googleads-php-lib/issues/236).
+*   Accepted [PR #196](https://github.com/googleads/googleads-php-lib/pull/196).
+
+##### DFP
+
+*   Fixed [issue #238]
+    (https://github.com/googleads/googleads-php-lib/issues/238).
+*   Fixed an unmarshalling issue with `ApiError`.
+*   Added `create` examples for core services.
+
+##### Common
+
+*   Added support for impersonation when using service accounts.
+
 ### 25.2.0
 
 ##### DFP

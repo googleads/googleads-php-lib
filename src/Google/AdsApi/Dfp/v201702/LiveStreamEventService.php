@@ -29,6 +29,7 @@ class LiveStreamEventService extends \Google\AdsApi\Common\AdsSoapClient
       'DateTimeValue' => 'Google\\AdsApi\\Dfp\\v201702\\DateTimeValue',
       'DateValue' => 'Google\\AdsApi\\Dfp\\v201702\\DateValue',
       'FeatureError' => 'Google\\AdsApi\\Dfp\\v201702\\FeatureError',
+      'FieldPathElement' => 'Google\\AdsApi\\Dfp\\v201702\\FieldPathElement',
       'InternalApiError' => 'Google\\AdsApi\\Dfp\\v201702\\InternalApiError',
       'InvalidUrlError' => 'Google\\AdsApi\\Dfp\\v201702\\InvalidUrlError',
       'LiveStreamEventAction' => 'Google\\AdsApi\\Dfp\\v201702\\LiveStreamEventAction',

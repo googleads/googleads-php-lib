@@ -39,6 +39,7 @@ class PremiumRateService extends \Google\AdsApi\Common\AdsSoapClient
       'DeviceManufacturerPremiumFeature' => 'Google\\AdsApi\\Dfp\\v201702\\DeviceManufacturerPremiumFeature',
       'EntityChildrenLimitReachedError' => 'Google\\AdsApi\\Dfp\\v201702\\EntityChildrenLimitReachedError',
       'FeatureError' => 'Google\\AdsApi\\Dfp\\v201702\\FeatureError',
+      'FieldPathElement' => 'Google\\AdsApi\\Dfp\\v201702\\FieldPathElement',
       'FrequencyCapPremiumFeature' => 'Google\\AdsApi\\Dfp\\v201702\\FrequencyCapPremiumFeature',
       'GeographyPremiumFeature' => 'Google\\AdsApi\\Dfp\\v201702\\GeographyPremiumFeature',
       'InternalApiError' => 'Google\\AdsApi\\Dfp\\v201702\\InternalApiError',

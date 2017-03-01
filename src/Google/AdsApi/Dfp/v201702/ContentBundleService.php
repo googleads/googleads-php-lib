@@ -33,6 +33,7 @@ class ContentBundleService extends \Google\AdsApi\Common\AdsSoapClient
       'DeactivateContentBundles' => 'Google\\AdsApi\\Dfp\\v201702\\DeactivateContentBundles',
       'ExcludeContentFromContentBundle' => 'Google\\AdsApi\\Dfp\\v201702\\ExcludeContentFromContentBundle',
       'FeatureError' => 'Google\\AdsApi\\Dfp\\v201702\\FeatureError',
+      'FieldPathElement' => 'Google\\AdsApi\\Dfp\\v201702\\FieldPathElement',
       'IncludeContentInContentBundle' => 'Google\\AdsApi\\Dfp\\v201702\\IncludeContentInContentBundle',
       'InternalApiError' => 'Google\\AdsApi\\Dfp\\v201702\\InternalApiError',
       'NotNullError' => 'Google\\AdsApi\\Dfp\\v201702\\NotNullError',

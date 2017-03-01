@@ -58,6 +58,11 @@ product.
 > All our examples are meant to be run via the command line and not as a
 > webpage.
 
+> If you're using 32-bit PHP, you may need to change `intval()` of any examples
+> to `floatval()` when running them. This is because some IDs would be larger
+> than 32-bit `PHP_INT_MAX`. In that case, `intval()` would return incorrect
+> values.
+
 The following snippet of code from the **BasicOperations/GetCampaigns.php**
 example for AdWords gives you an idea of how to use this library. The usage
 pattern is similar for DFP.

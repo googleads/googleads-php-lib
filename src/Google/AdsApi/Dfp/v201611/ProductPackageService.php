@@ -151,8 +151,8 @@ class ProductPackageService extends \Google\AdsApi\Common\AdsSoapClient
     }
 
     /**
-     * Performs actions on {@link ProductPackage} objects that match the given
-     * {@link Statement#query}.
+     * Performs actions on {@link ProductPackage} objects that match the given {@link
+     * Statement#query}.
      *
      * @param \Google\AdsApi\Dfp\v201611\ProductPackageAction $action
      * @param \Google\AdsApi\Dfp\v201611\Statement $statement

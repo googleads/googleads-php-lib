@@ -28,6 +28,7 @@ class UserTeamAssociationService extends \Google\AdsApi\Common\AdsSoapClient
       'DateValue' => 'Google\\AdsApi\\Dfp\\v201702\\DateValue',
       'DeleteUserTeamAssociations' => 'Google\\AdsApi\\Dfp\\v201702\\DeleteUserTeamAssociations',
       'FeatureError' => 'Google\\AdsApi\\Dfp\\v201702\\FeatureError',
+      'FieldPathElement' => 'Google\\AdsApi\\Dfp\\v201702\\FieldPathElement',
       'InternalApiError' => 'Google\\AdsApi\\Dfp\\v201702\\InternalApiError',
       'NotNullError' => 'Google\\AdsApi\\Dfp\\v201702\\NotNullError',
       'NullError' => 'Google\\AdsApi\\Dfp\\v201702\\NullError',

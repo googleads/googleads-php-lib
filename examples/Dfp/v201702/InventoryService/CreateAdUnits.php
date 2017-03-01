@@ -68,7 +68,7 @@ class CreateAdUnits {
     $adUnitSize->setEnvironmentType(EnvironmentType::BROWSER);
     $adUnit->setAdUnitSizes([$adUnitSize]);
 
-    // Create the ad units.
+    // Create the ad units on the server.
     $adUnits = $inventoryService->createAdUnits([$adUnit]);
 
     // Print out some information for each created ad unit.

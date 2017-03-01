@@ -42,6 +42,7 @@ class AudienceSegmentService extends \Google\AdsApi\Common\AdsSoapClient
       'EntityLimitReachedError' => 'Google\\AdsApi\\Dfp\\v201702\\EntityLimitReachedError',
       'ThirdPartyAudienceSegment' => 'Google\\AdsApi\\Dfp\\v201702\\ThirdPartyAudienceSegment',
       'FeatureError' => 'Google\\AdsApi\\Dfp\\v201702\\FeatureError',
+      'FieldPathElement' => 'Google\\AdsApi\\Dfp\\v201702\\FieldPathElement',
       'InternalApiError' => 'Google\\AdsApi\\Dfp\\v201702\\InternalApiError',
       'InventoryTargeting' => 'Google\\AdsApi\\Dfp\\v201702\\InventoryTargeting',
       'Money' => 'Google\\AdsApi\\Dfp\\v201702\\Money',

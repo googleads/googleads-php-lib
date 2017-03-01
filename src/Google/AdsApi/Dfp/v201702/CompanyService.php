@@ -36,6 +36,7 @@ class CompanyService extends \Google\AdsApi\Common\AdsSoapClient
       'DateTimeValue' => 'Google\\AdsApi\\Dfp\\v201702\\DateTimeValue',
       'DateValue' => 'Google\\AdsApi\\Dfp\\v201702\\DateValue',
       'FeatureError' => 'Google\\AdsApi\\Dfp\\v201702\\FeatureError',
+      'FieldPathElement' => 'Google\\AdsApi\\Dfp\\v201702\\FieldPathElement',
       'InternalApiError' => 'Google\\AdsApi\\Dfp\\v201702\\InternalApiError',
       'InvalidEmailError' => 'Google\\AdsApi\\Dfp\\v201702\\InvalidEmailError',
       'LabelEntityAssociationError' => 'Google\\AdsApi\\Dfp\\v201702\\LabelEntityAssociationError',

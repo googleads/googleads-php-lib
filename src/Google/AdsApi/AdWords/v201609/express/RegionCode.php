@@ -86,6 +86,7 @@ class RegionCode
     const ES = 'ES';
     const ET = 'ET';
     const EU = 'EU';
+    const EZ = 'EZ';
     const FI = 'FI';
     const FJ = 'FJ';
     const FK = 'FK';
@@ -257,6 +258,7 @@ class RegionCode
     const UA = 'UA';
     const UG = 'UG';
     const UM = 'UM';
+    const UN = 'UN';
     const US = 'US';
     const UY = 'UY';
     const UZ = 'UZ';

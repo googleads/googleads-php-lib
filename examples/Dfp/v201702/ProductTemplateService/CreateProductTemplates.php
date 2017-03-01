@@ -136,6 +136,7 @@ class CreateProductTemplates {
     $location2 = new Location();
     $location2->setId(2344); // Hong Kong
     $geoTargeting->setTargetedLocations([$location1, $location2]);
+
     $productSegmentation->setGeoSegment($geoTargeting);
     $productTemplate->setProductSegmentation($productSegmentation);
 

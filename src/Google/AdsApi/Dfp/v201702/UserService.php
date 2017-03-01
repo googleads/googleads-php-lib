@@ -33,6 +33,7 @@ class UserService extends \Google\AdsApi\Common\AdsSoapClient
       'DeactivateUsers' => 'Google\\AdsApi\\Dfp\\v201702\\DeactivateUsers',
       'DropDownCustomFieldValue' => 'Google\\AdsApi\\Dfp\\v201702\\DropDownCustomFieldValue',
       'FeatureError' => 'Google\\AdsApi\\Dfp\\v201702\\FeatureError',
+      'FieldPathElement' => 'Google\\AdsApi\\Dfp\\v201702\\FieldPathElement',
       'InternalApiError' => 'Google\\AdsApi\\Dfp\\v201702\\InternalApiError',
       'InvalidEmailError' => 'Google\\AdsApi\\Dfp\\v201702\\InvalidEmailError',
       'NotNullError' => 'Google\\AdsApi\\Dfp\\v201702\\NotNullError',

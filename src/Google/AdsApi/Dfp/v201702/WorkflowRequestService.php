@@ -30,6 +30,7 @@ class WorkflowRequestService extends \Google\AdsApi\Common\AdsSoapClient
       'DateValue' => 'Google\\AdsApi\\Dfp\\v201702\\DateValue',
       'SkipWorkflowExternalConditionRequests' => 'Google\\AdsApi\\Dfp\\v201702\\SkipWorkflowExternalConditionRequests',
       'FeatureError' => 'Google\\AdsApi\\Dfp\\v201702\\FeatureError',
+      'FieldPathElement' => 'Google\\AdsApi\\Dfp\\v201702\\FieldPathElement',
       'ForecastError' => 'Google\\AdsApi\\Dfp\\v201702\\ForecastError',
       'InternalApiError' => 'Google\\AdsApi\\Dfp\\v201702\\InternalApiError',
       'LineItemOperationError' => 'Google\\AdsApi\\Dfp\\v201702\\LineItemOperationError',

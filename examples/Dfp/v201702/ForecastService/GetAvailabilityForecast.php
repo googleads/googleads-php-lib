@@ -101,7 +101,7 @@ class GetAvailabilityForecast {
     $prospectiveLineItem = new ProspectiveLineItem();
     $prospectiveLineItem->setAdvertiserId($advertiserId);
     $prospectiveLineItem->setLineItem($lineItem);
-    $options  = new AvailabilityForecastOptions();
+    $options = new AvailabilityForecastOptions();
     $options->setIncludeContendingLineItems(true);
     $options->setIncludeTargetingCriteriaBreakdown(true);
 

@@ -33,6 +33,7 @@ class CreativeWrapperService extends \Google\AdsApi\Common\AdsSoapClient
       'DateValue' => 'Google\\AdsApi\\Dfp\\v201702\\DateValue',
       'DeactivateCreativeWrappers' => 'Google\\AdsApi\\Dfp\\v201702\\DeactivateCreativeWrappers',
       'FeatureError' => 'Google\\AdsApi\\Dfp\\v201702\\FeatureError',
+      'FieldPathElement' => 'Google\\AdsApi\\Dfp\\v201702\\FieldPathElement',
       'CreativeWrapperHtmlSnippet' => 'Google\\AdsApi\\Dfp\\v201702\\CreativeWrapperHtmlSnippet',
       'InternalApiError' => 'Google\\AdsApi\\Dfp\\v201702\\InternalApiError',
       'LabelError' => 'Google\\AdsApi\\Dfp\\v201702\\LabelError',

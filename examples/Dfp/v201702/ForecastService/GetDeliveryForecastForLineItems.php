@@ -40,7 +40,7 @@ class GetDeliveryForecastForLineItems {
 
     // Get forecast for the line items with no options set.
     $forecast = $forecastService->getDeliveryForecastByIds(
-        [$lineItemId1, $lineItemId2), new DeliveryForecastOptions()];
+        [$lineItemId1, $lineItemId2], new DeliveryForecastOptions());
 
     // Print out forecast results.
     foreach ($forecast->getLineItemDeliveryForecasts() as $lineItemForecast) {

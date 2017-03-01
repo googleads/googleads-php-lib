@@ -56,6 +56,7 @@ class PublisherQueryLanguageService extends \Google\AdsApi\Common\AdsSoapClient
       'DeviceManufacturerTargeting' => 'Google\\AdsApi\\Dfp\\v201702\\DeviceManufacturerTargeting',
       'ExchangeRateError' => 'Google\\AdsApi\\Dfp\\v201702\\ExchangeRateError',
       'FeatureError' => 'Google\\AdsApi\\Dfp\\v201702\\FeatureError',
+      'FieldPathElement' => 'Google\\AdsApi\\Dfp\\v201702\\FieldPathElement',
       'FileError' => 'Google\\AdsApi\\Dfp\\v201702\\FileError',
       'GeoTargeting' => 'Google\\AdsApi\\Dfp\\v201702\\GeoTargeting',
       'InternalApiError' => 'Google\\AdsApi\\Dfp\\v201702\\InternalApiError',

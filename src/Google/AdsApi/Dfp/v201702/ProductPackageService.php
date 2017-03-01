@@ -36,6 +36,7 @@ class ProductPackageService extends \Google\AdsApi\Common\AdsSoapClient
       'EntityChildrenLimitReachedError' => 'Google\\AdsApi\\Dfp\\v201702\\EntityChildrenLimitReachedError',
       'EntityLimitReachedError' => 'Google\\AdsApi\\Dfp\\v201702\\EntityLimitReachedError',
       'FeatureError' => 'Google\\AdsApi\\Dfp\\v201702\\FeatureError',
+      'FieldPathElement' => 'Google\\AdsApi\\Dfp\\v201702\\FieldPathElement',
       'InternalApiError' => 'Google\\AdsApi\\Dfp\\v201702\\InternalApiError',
       'NotNullError' => 'Google\\AdsApi\\Dfp\\v201702\\NotNullError',
       'NullError' => 'Google\\AdsApi\\Dfp\\v201702\\NullError',
@@ -151,8 +152,8 @@ class ProductPackageService extends \Google\AdsApi\Common\AdsSoapClient
     }
 
     /**
-     * Performs actions on {@link ProductPackage} objects that match the given
-     * {@link Statement#query}.
+     * Performs actions on {@link ProductPackage} objects that match the given {@link
+     * Statement#query}.
      *
      * @param \Google\AdsApi\Dfp\v201702\ProductPackageAction $action
      * @param \Google\AdsApi\Dfp\v201702\Statement $statement

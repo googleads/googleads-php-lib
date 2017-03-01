@@ -63,6 +63,7 @@ class CreativeService extends \Google\AdsApi\Common\AdsSoapClient
       'DropDownCustomFieldValue' => 'Google\\AdsApi\\Dfp\\v201702\\DropDownCustomFieldValue',
       'EntityLimitReachedError' => 'Google\\AdsApi\\Dfp\\v201702\\EntityLimitReachedError',
       'FeatureError' => 'Google\\AdsApi\\Dfp\\v201702\\FeatureError',
+      'FieldPathElement' => 'Google\\AdsApi\\Dfp\\v201702\\FieldPathElement',
       'FileError' => 'Google\\AdsApi\\Dfp\\v201702\\FileError',
       'FlashCreative' => 'Google\\AdsApi\\Dfp\\v201702\\FlashCreative',
       'FlashOverlayCreative' => 'Google\\AdsApi\\Dfp\\v201702\\FlashOverlayCreative',

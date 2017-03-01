@@ -16,13 +16,14 @@ class PackageError extends \Google\AdsApi\Dfp\v201702\ApiError
 
     /**
      * @param string $fieldPath
+     * @param \Google\AdsApi\Dfp\v201702\FieldPathElement[] $fieldPathElements
      * @param string $trigger
      * @param string $errorString
      * @param string $reason
      */
-    public function __construct($fieldPath = null, $trigger = null, $errorString = null, $reason = null)
+    public function __construct($fieldPath = null, array $fieldPathElements = null, $trigger = null, $errorString = null, $reason = null)
     {
-      parent::__construct($fieldPath, $trigger, $errorString);
+      parent::__construct($fieldPath, $fieldPathElements, $trigger, $errorString);
       $this->reason = $reason;
     }
 
