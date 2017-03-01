@@ -3086,8 +3086,8 @@ if (!class_exists("GetProductPackagesByStatementResponse", false)) {
 
 if (!class_exists("PerformProductPackageAction", false)) {
   /**
-   * Performs actions on {@link ProductPackage} objects that match the given
-   * {@link Statement#query}.
+   * Performs actions on {@link ProductPackage} objects that match the given {@link
+   * Statement#query}.
    * 
    * @param action the action to perform
    * @param statement a Publisher Query Language statement used to filter a set of product packages
@@ -3870,8 +3870,8 @@ if (!class_exists("ProductPackageService", false)) {
       return $result->rval;
     }
     /**
-     * Performs actions on {@link ProductPackage} objects that match the given
-     * {@link Statement#query}.
+     * Performs actions on {@link ProductPackage} objects that match the given {@link
+     * Statement#query}.
      * 
      * @param action the action to perform
      * @param statement a Publisher Query Language statement used to filter a set of product packages

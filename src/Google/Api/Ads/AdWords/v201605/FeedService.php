@@ -1085,7 +1085,7 @@ if (!class_exists("OAuthInfo", false)) {
   /**
    * Data used for authorization using OAuth.
    * For more information about OAuth, see:
-   * {@link "https://developers.google.com/accounts/docs/OAuth2"}
+   * {@link "https://developers.google.com/identity/protocols/OAuth2"}
    * @package Google_Api_Ads_AdWords_v201605
    * @subpackage v201605
    */

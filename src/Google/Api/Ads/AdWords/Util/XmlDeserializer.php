@@ -110,6 +110,16 @@ class XmlDeserializer {
 
     // If $result contains no members, $element is a leaf node.
     if (count($result) === 0) {
+      // Return the element object if it was created for this node and the
+      // element class has at least one property to avoid returning enum
+      // classes. (Enum classes are those having no properties).
+      //
+      // If the element object is null or it's an enum class, deserialize its
+      // DOM node value to scalar value.
+      if ($elementObject !== null
+          && count($elementClass->getProperties()) > 0) {
+        return $elementObject;
+      }
       return self::ConvertNodeValueToObject($element->nodeValue);
     }
 

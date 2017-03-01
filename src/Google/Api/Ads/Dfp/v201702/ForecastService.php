@@ -162,6 +162,12 @@ if (!class_exists("ApiError", false)) {
 
     /**
      * @access public
+     * @var FieldPathElement[]
+     */
+    public $fieldPathElements;
+
+    /**
+     * @access public
      * @var string
      */
     public $trigger;
@@ -188,8 +194,9 @@ if (!class_exists("ApiError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -341,10 +348,11 @@ if (!class_exists("ApiVersionError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -474,10 +482,11 @@ if (!class_exists("AudienceExtensionError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -518,10 +527,11 @@ if (!class_exists("AuthenticationError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -927,10 +937,11 @@ if (!class_exists("ClickTrackingLineItemError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -971,10 +982,11 @@ if (!class_exists("CollectionSizeError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -1015,10 +1027,11 @@ if (!class_exists("CommonError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -1059,10 +1072,11 @@ if (!class_exists("CompanyCreditStatusError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -1191,10 +1205,11 @@ if (!class_exists("ContentMetadataTargetingError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -1310,10 +1325,11 @@ if (!class_exists("CreativeError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -1495,10 +1511,11 @@ if (!class_exists("CrossSellError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -1582,10 +1599,11 @@ if (!class_exists("CustomFieldValueError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -1627,10 +1645,11 @@ if (!class_exists("CustomTargetingError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -1830,10 +1849,11 @@ if (!class_exists("DateTimeRangeTargetingError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -1977,10 +1997,11 @@ if (!class_exists("DayPartTargetingError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -2376,10 +2397,11 @@ if (!class_exists("EntityChildrenLimitReachedError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -2421,10 +2443,11 @@ if (!class_exists("EntityLimitReachedError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -2466,12 +2489,60 @@ if (!class_exists("FeatureError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
+    }
+
+  }
+}
+
+if (!class_exists("FieldPathElement", false)) {
+  /**
+   * A segment of a field path. Each dot in a field path defines a new segment.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201702
+   */
+  class FieldPathElement {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201702";
+    const XSI_TYPE = "FieldPathElement";
+
+    /**
+     * @access public
+     * @var string
+     */
+    public $field;
+
+    /**
+     * @access public
+     * @var integer
+     */
+    public $index;
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($field = null, $index = null) {
+      $this->field = $field;
+      $this->index = $index;
     }
 
   }
@@ -2510,10 +2581,11 @@ if (!class_exists("ForecastError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -2609,10 +2681,11 @@ if (!class_exists("FrequencyCapError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -2653,10 +2726,11 @@ if (!class_exists("GenericTargetingError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -2759,10 +2833,11 @@ if (!class_exists("GeoTargetingError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -2995,10 +3070,11 @@ if (!class_exists("GrpSettingsError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -3039,10 +3115,11 @@ if (!class_exists("ImageError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -3085,10 +3162,11 @@ if (!class_exists("InternalApiError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -3129,10 +3207,11 @@ if (!class_exists("InvalidUrlError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -3228,10 +3307,11 @@ if (!class_exists("InventoryTargetingError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -3272,10 +3352,11 @@ if (!class_exists("InventoryUnitError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -3316,10 +3397,11 @@ if (!class_exists("LabelEntityAssociationError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -3360,10 +3442,11 @@ if (!class_exists("LineItemActivityAssociationError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -3459,10 +3542,11 @@ if (!class_exists("LineItemCreativeAssociationError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -3578,10 +3662,11 @@ if (!class_exists("LineItemError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -3622,10 +3707,11 @@ if (!class_exists("LineItemFlightDateError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -3666,10 +3752,11 @@ if (!class_exists("LineItemOperationError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -4435,10 +4522,11 @@ if (!class_exists("NotNullError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -4479,10 +4567,11 @@ if (!class_exists("NullError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -4618,10 +4707,11 @@ if (!class_exists("OrderActionError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -4662,10 +4752,11 @@ if (!class_exists("OrderError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -4706,10 +4797,11 @@ if (!class_exists("ParseError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -4750,10 +4842,11 @@ if (!class_exists("PermissionError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -4794,10 +4887,11 @@ if (!class_exists("ProgrammaticError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -4886,10 +4980,11 @@ if (!class_exists("PublisherQueryLanguageContextError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -4931,10 +5026,11 @@ if (!class_exists("PublisherQueryLanguageSyntaxError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -4976,10 +5072,11 @@ if (!class_exists("QuotaError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -5020,10 +5117,11 @@ if (!class_exists("RangeError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -5065,10 +5163,11 @@ if (!class_exists("RegExError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -5109,10 +5208,11 @@ if (!class_exists("RequiredCollectionError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -5153,10 +5253,11 @@ if (!class_exists("RequiredError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -5198,10 +5299,11 @@ if (!class_exists("RequiredNumberError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -5242,10 +5344,11 @@ if (!class_exists("RequiredSizeError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -5286,10 +5389,11 @@ if (!class_exists("ReservationDetailsError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -5330,10 +5434,11 @@ if (!class_exists("AudienceSegmentError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -5374,10 +5479,11 @@ if (!class_exists("ServerError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -5480,10 +5586,11 @@ if (!class_exists("SetTopBoxLineItemError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -5674,10 +5781,11 @@ if (!class_exists("StatementError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -5787,10 +5895,11 @@ if (!class_exists("StringLengthError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -6003,10 +6112,11 @@ if (!class_exists("TeamError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -6094,10 +6204,11 @@ if (!class_exists("TechnologyTargetingError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -6185,10 +6296,11 @@ if (!class_exists("TimeZoneError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -6223,9 +6335,10 @@ if (!class_exists("TypeError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -6260,9 +6373,10 @@ if (!class_exists("UniqueError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -6351,10 +6465,11 @@ if (!class_exists("UserDomainTargetingError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -6520,10 +6635,11 @@ if (!class_exists("VideoPositionTargetingError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -10188,10 +10304,11 @@ if (!class_exists("AdUnitCodeError", false)) {
       return self::XSI_TYPE;
     }
 
-    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null) {
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
       parent::__construct();
       $this->reason = $reason;
       $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
       $this->trigger = $trigger;
       $this->errorString = $errorString;
     }
@@ -11325,6 +11442,7 @@ if (!class_exists("ForecastService", false)) {
       "EntityChildrenLimitReachedError" => "EntityChildrenLimitReachedError",
       "EntityLimitReachedError" => "EntityLimitReachedError",
       "FeatureError" => "FeatureError",
+      "FieldPathElement" => "FieldPathElement",
       "ForecastError" => "ForecastError",
       "FrequencyCap" => "FrequencyCap",
       "FrequencyCapError" => "FrequencyCapError",

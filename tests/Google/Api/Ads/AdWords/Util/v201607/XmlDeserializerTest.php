@@ -59,7 +59,7 @@ class XmlDeserializerTest extends PHPUnit_Framework_TestCase {
    */
   public function XmlToObjectProvider() {
     // Deserialization for empty XML.
-    $testData = array(array('<mutate/>', ''));
+    $testData = array(array('<mutate/>', new BatchJobOpsMutate()));
 
     // Deserialization for report download error XML of AdWords.
     $testData[] = array(XmlTestHelper::$REPORT_DOWNLOAD_ERROR_XML,

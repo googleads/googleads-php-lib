@@ -5983,7 +5983,7 @@ if (!class_exists("TargetingIdeaServiceGet", false)) {
    * Returns a page of ideas that match the query described by the specified
    * {@link TargetingIdeaSelector}.
    * 
-   * <p>The selector must specify a {@code paging} value, with {@code numberResults} set to 800 or
+   * <p>The selector must specify a {@code paging} value, with {@code numberResults} set to 700 or
    * less.  Large result sets must be composed through multiple calls to this method, advancing the
    * paging {@code startIndex} value by {@code numberResults} with each call.</p>
    * 
@@ -7030,7 +7030,7 @@ if (!class_exists("TargetingIdeaService", false)) {
      * Returns a page of ideas that match the query described by the specified
      * {@link TargetingIdeaSelector}.
      * 
-     * <p>The selector must specify a {@code paging} value, with {@code numberResults} set to 800 or
+     * <p>The selector must specify a {@code paging} value, with {@code numberResults} set to 700 or
      * less.  Large result sets must be composed through multiple calls to this method, advancing the
      * paging {@code startIndex} value by {@code numberResults} with each call.</p>
      * 

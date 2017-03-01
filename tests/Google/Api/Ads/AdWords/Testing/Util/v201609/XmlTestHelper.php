@@ -119,6 +119,9 @@ class XmlTestHelper {
     $campaign->name = 'Test campaign&<>"\'';
     $campaign->advertisingChannelType = 'SEARCH';
     $campaign->status = 'ENABLED';
+    $biddingStrategyConfiguration = new BiddingStrategyConfiguration();
+    $biddingStrategyConfiguration->biddingScheme = new ManualCpcBiddingScheme();
+    $campaign->biddingStrategyConfiguration = $biddingStrategyConfiguration;
     $campaignOperation = new CampaignOperation();
     $campaignOperation->operand = $campaign;
     $campaignOperation->operator = 'ADD';

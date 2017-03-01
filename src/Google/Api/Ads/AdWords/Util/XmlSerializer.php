@@ -103,10 +103,9 @@ class XmlSerializer {
     }
 
     foreach ($children as $child) {
-      if (!empty($child->nodeValue) || is_numeric($child->nodeValue)) {
-        $element->appendChild($child);
-      }
+      $element->appendChild($child);
     }
+
     return $element;
   }
 
@@ -131,15 +130,30 @@ class XmlSerializer {
    * @param DOMDocument $document the document being constructed
    * @param bool $useXsiType whether the xsi:type will be added into XML tags
    *     when available
+   * @param string $fieldName the field name whose value is the specified
+   *     ordered array
    * @return array an array of child elements created from the specified array
    */
-  private function CreateChildListForOrderedArrays(array $orderedArray,
-      DOMDocument $document, $useXsiType) {
+  private function CreateChildListForOrderedArrays(
+      array $orderedArray,
+      DOMDocument $document,
+      $useXsiType,
+      $fieldName = null
+  ) {
     $children = array();
     foreach ($orderedArray as $value) {
-      $children[] =
-        self::ConvertObjectToElement($value, get_class($value), $document,
-            $useXsiType);
+      if ($value === null) {
+        continue;
+      }
+      $node = self::ConvertObjectToElement(
+          $value,
+          ($fieldName === null) ? get_class($value) : $fieldName,
+          $document,
+          $useXsiType
+      );
+      if (self::ShouldAddDomNode($value, $node)) {
+        $children[] = $node;
+      }
     }
     return $children;
   }
@@ -157,17 +171,28 @@ class XmlSerializer {
     $children = array();
     foreach (get_object_vars($object) as $field => $value) {
       if (is_array($value) && !MapUtils::IsMap($value)) {
-        foreach ($value as $item) {
-          $children[] =
-              self::ConvertObjectToElement($item, $field, $document,
-                  $useXsiType);
-        }
+        $children =  array_merge(
+            $children,
+            self::CreateChildListForOrderedArrays(
+                $value, $document, $useXsiType, $field)
+        );
       } else {
-        $children[] =
-            self::ConvertObjectToElement($value, $field, $document,
-                $useXsiType);
+        if ($value === null) {
+          continue;
+        }
+        $node = self::ConvertObjectToElement(
+            $value, $field, $document, $useXsiType);
+        if (self::ShouldAddDomNode($value, $node)) {
+          $children[] = $node;
+        }
       }
     }
     return $children;
+  }
+
+  private function ShouldAddDomNode($value, $node) {
+    return is_object($value)
+        || !empty($node->nodeValue)
+        || is_numeric($node->nodeValue);
   }
 }

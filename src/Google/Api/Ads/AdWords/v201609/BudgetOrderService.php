@@ -4213,7 +4213,6 @@ if (!class_exists("BudgetOrderRequest", false)) {
   /**
    * Holds fields that provide information on the last set of values that were passed in through
    * the parent BudgetOrder for mutate.add and mutate.set.
-   * <span class="constraint Billing">This element only applies if manager account is whitelisted for new billing backend.</span>
    * @package Google_Api_Ads_AdWords_v201609
    * @subpackage v201609
    */

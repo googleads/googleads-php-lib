@@ -1607,6 +1607,9 @@ if (!class_exists("OfflineCallConversionFeedServiceMutate", false)) {
    * <p>This bulk operation does not have any transactional guarantees. Some operations can succeed
    * while others fail.
    * 
+   * <p><b>Note:</b> {@link OfflineCallConversionFeedOperation} supports only the
+   * {@code ADD} operator. ({@code SET} and {@code REMOVE} are not supported.)
+   * 
    * @param operations A list of offline call conversion feed operations.
    * @return The list of offline call conversion feed results (in the same order as the operations).
    * @throws {@link ApiException} if problems occurred while applying offline call conversions.
@@ -2353,6 +2356,9 @@ if (!class_exists("OfflineCallConversionError", false)) {
 if (!class_exists("OfflineCallConversionFeedOperation", false)) {
   /**
    * Operation for uploading {@link OfflineCallConversionFeed}.
+   * See {@link OfflineCallConversionFeedService#mutate}.
+   * 
+   * <p><b>Note:</b> Only the {@code ADD} operator is supported.
    * @package Google_Api_Ads_AdWords_v201609
    * @subpackage v201609
    */
@@ -3349,6 +3355,9 @@ if (!class_exists("OfflineCallConversionFeedService", false)) {
      * 
      * <p>This bulk operation does not have any transactional guarantees. Some operations can succeed
      * while others fail.
+     * 
+     * <p><b>Note:</b> {@link OfflineCallConversionFeedOperation} supports only the
+     * {@code ADD} operator. ({@code SET} and {@code REMOVE} are not supported.)
      * 
      * @param operations A list of offline call conversion feed operations.
      * @return The list of offline call conversion feed results (in the same order as the operations).

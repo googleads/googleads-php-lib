@@ -1103,7 +1103,7 @@ if (!class_exists("ClientTermsErrorReason", false)) {
 
 if (!class_exists("DraftStatus", false)) {
   /**
-   * Status diagram available at go/adsapi-commander
+   * Status of a draft.
    * @package Google_Api_Ads_AdWords_v201605
    * @subpackage v201605
    */

@@ -2402,11 +2402,7 @@ if (!class_exists("ManagedCustomer", false)) {
 if (!class_exists("ManagedCustomerOperation", false)) {
   /**
    * An operation to create or modify a managed customer.
-   * <p class="note"><b>Note:</b>
-   * <li><code>ADD</code> operator is supported in all API versions.</li>
-   * <li><code>SET</code> operator is supported beginning with v201601.</li>
-   * <li><code>REMOVE</code> operator is not supported.</li>
-   * </p>
+   * <p><b>Note:</b> The {@code REMOVE} operator is not supported.</p>
    * @package Google_Api_Ads_AdWords_v201605
    * @subpackage v201605
    */
@@ -2600,7 +2596,7 @@ if (!class_exists("PendingInvitation", false)) {
 
 if (!class_exists("LinkStatus", false)) {
   /**
-   * These status values match the values in the ServicedAccounts.Status column.
+   * Status of the link.
    * @package Google_Api_Ads_AdWords_v201605
    * @subpackage v201605
    */

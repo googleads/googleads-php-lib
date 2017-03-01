@@ -2035,7 +2035,7 @@ if (!class_exists("TrialErrorReason", false)) {
 
 if (!class_exists("TrialStatus", false)) {
   /**
-   * Status diagram available at go/adsapi-commander
+   * Status of a trial.
    * @package Google_Api_Ads_AdWords_v201605
    * @subpackage v201605
    */
