@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-namespace Google\AdsApi\Examples\Dfp\v201702\LineItemService;
+namespace Google\AdsApi\Examples\Dfp\v201702\ReconciliationOrderReportService;
 
 require '../../../../vendor/autoload.php';
 
@@ -23,49 +23,52 @@ use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201702\StatementBuilder;
-use Google\AdsApi\Dfp\v201702\LineItemService;
-use Google\AdsApi\Dfp\v201702\PauseLineItems as PauseLineItemsAction;
+use Google\AdsApi\Dfp\v201702\ReconciliationOrderReportService;
+use Google\AdsApi\Dfp\v201702\SubmitReconciliationOrderReports as SubmitReconciliationOrderReportsAction;
 
 /**
- * Pauses line items.
+ * Submits reconciliation order reports.
  *
  * This example is meant to be run from a command line (not as a webpage) and
  * requires that you've setup an `adsapi_php.ini` file in your home directory
  * with your API credentials and settings. See `README.md` for more info.
  */
-class PauseLineItems {
+class SubmitReconciliationOrderReports {
 
-  const LINE_ITEM_ID = 'INSERT_LINE_ITEM_ID_HERE';
+  const RECONCILIATION_ORDER_REPORT_ID =
+      'INSERT_RECONCILIATION_ORDER_REPORT_ID_HERE';
 
   public static function runExample(DfpServices $dfpServices,
-      DfpSession $session, $lineItemId) {
-    $lineItemService = $dfpServices->get($session, LineItemService::class);
+      DfpSession $session, $reconciliationOrderReportId) {
+    $reconciliationOrderReportService =
+        $dfpServices->get($session, ReconciliationOrderReportService::class);
 
-    // Create a statement to select the line items to pause.
+    // Create a statement to select the reconciliation order reports to submit.
     $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
     $statementBuilder = (new StatementBuilder())
         ->where('id = :id')
         ->orderBy('id ASC')
         ->limit($pageSize)
-        ->withBindVariableValue('id', $lineItemId);
+        ->withBindVariableValue('id', $reconciliationOrderReportId);
 
-    // Retrieve a small amount of line items at a time, paging through until all
-    // line items have been retrieved.
+    // Retrieve a small amount of reconciliation order reports at a time, paging
+    // through until all reconciliation order reports have been retrieved.
     $totalResultSetSize = 0;
     do {
-      $page = $lineItemService->getLineItemsByStatement(
-          $statementBuilder->toStatement());
+      $page = $reconciliationOrderReportService
+          ->getReconciliationOrderReportsByStatement(
+              $statementBuilder->toStatement());
 
-      // Print out some information for the line items to be paused.
+      // Print out some information for the reconciliation order reports to be
+      // submitted.
       if ($page->getResults() !== null) {
         $totalResultSetSize = $page->getTotalResultSetSize();
         $i = $page->getStartIndex();
-        foreach ($page->getResults() as $lineItem) {
+        foreach ($page->getResults() as $reconciliationOrderReport) {
           printf(
-              "%d) Line item with ID %d and name '%s' will be paused.\n",
+              "%d) Reconciliation order report with ID %d will be submitted.\n",
               $i++,
-              $lineItem->getId(),
-              $lineItem->getName()
+              $reconciliationOrderReport->getId()
           );
         }
       }
@@ -73,22 +76,24 @@ class PauseLineItems {
       $statementBuilder->increaseOffsetBy($pageSize);
     } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-    printf(
-        "Total number of line items to be paused: %d\n", $totalResultSetSize);
+    printf("Total number of reconciliation order reports to be submitted: %d\n",
+        $totalResultSetSize);
 
     if ($totalResultSetSize > 0) {
       // Remove limit and offset from statement so we can reuse the statement.
       $statementBuilder->removeLimitAndOffset();
 
       // Create and perform action.
-      $action = new PauseLineItemsAction();
-      $result = $lineItemService->performLineItemAction($action,
-          $statementBuilder->toStatement());
+      $action = new SubmitReconciliationOrderReportsAction();
+      $result = $reconciliationOrderReportService
+          ->performReconciliationOrderReportAction(
+              $action, $statementBuilder->toStatement());
 
       if ($result !== null && $result->getNumChanges() > 0) {
-        printf("Number of line items paused: %d\n", $result->getNumChanges());
+        printf("Number of reconciliation order reports submitted: %d\n",
+            $result->getNumChanges());
       } else {
-        printf("No line items were paused.\n");
+        printf("No reconciliation order reports were submitted.\n");
       }
     }
   }
@@ -106,8 +111,12 @@ class PauseLineItems {
         ->withOAuth2Credential($oAuth2Credential)
         ->build();
 
-    self::runExample(new DfpServices(), $session, intval(self::LINE_ITEM_ID));
+    self::runExample(
+        new DfpServices(),
+        $session,
+        intval(self::RECONCILIATION_ORDER_REPORT_ID)
+    );
   }
 }
 
-PauseLineItems::main();
+SubmitReconciliationOrderReports::main();

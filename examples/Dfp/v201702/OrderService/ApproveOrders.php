@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-namespace Google\AdsApi\Examples\Dfp\v201702\LineItemService;
+namespace Google\AdsApi\Examples\Dfp\v201702\OrderService;
 
 require '../../../../vendor/autoload.php';
 
@@ -23,49 +23,52 @@ use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201702\StatementBuilder;
-use Google\AdsApi\Dfp\v201702\LineItemService;
-use Google\AdsApi\Dfp\v201702\PauseLineItems as PauseLineItemsAction;
+use Google\AdsApi\Dfp\v201702\ApproveOrders as ApproveOrdersAction;
+use Google\AdsApi\Dfp\v201702\OrderService;
 
 /**
- * Pauses line items.
+ * Approves orders.
  *
  * This example is meant to be run from a command line (not as a webpage) and
  * requires that you've setup an `adsapi_php.ini` file in your home directory
  * with your API credentials and settings. See `README.md` for more info.
  */
-class PauseLineItems {
+class ApproveOrders {
 
-  const LINE_ITEM_ID = 'INSERT_LINE_ITEM_ID_HERE';
+  const ORDER_ID = 'INSERT_ORDER_ID_HERE';
 
   public static function runExample(DfpServices $dfpServices,
-      DfpSession $session, $lineItemId) {
-    $lineItemService = $dfpServices->get($session, LineItemService::class);
+      DfpSession $session, $orderId) {
+    $orderService = $dfpServices->get($session, OrderService::class);
 
-    // Create a statement to select the line items to pause.
+    // Create a statement to select the orders to approve.
     $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
     $statementBuilder = (new StatementBuilder())
         ->where('id = :id')
         ->orderBy('id ASC')
         ->limit($pageSize)
-        ->withBindVariableValue('id', $lineItemId);
+        ->withBindVariableValue('id', $orderId);
 
-    // Retrieve a small amount of line items at a time, paging through until all
-    // line items have been retrieved.
+    // Retrieve a small amount of orders at a time, paging through until all
+    // orders have been retrieved.
     $totalResultSetSize = 0;
     do {
-      $page = $lineItemService->getLineItemsByStatement(
+      $page = $orderService->getOrdersByStatement(
           $statementBuilder->toStatement());
 
-      // Print out some information for the line items to be paused.
+      // Print out some information for the orders to be approved.
       if ($page->getResults() !== null) {
         $totalResultSetSize = $page->getTotalResultSetSize();
         $i = $page->getStartIndex();
-        foreach ($page->getResults() as $lineItem) {
+        foreach ($page->getResults() as $order) {
           printf(
-              "%d) Line item with ID %d and name '%s' will be paused.\n",
+              "%d) Order with ID %d, " .
+                  "name '%s', " .
+                  "and advertiser ID %d will be approved.\n",
               $i++,
-              $lineItem->getId(),
-              $lineItem->getName()
+              $order->getId(),
+              $order->getName(),
+              $order->getAdvertiserId()
           );
         }
       }
@@ -73,22 +76,21 @@ class PauseLineItems {
       $statementBuilder->increaseOffsetBy($pageSize);
     } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-    printf(
-        "Total number of line items to be paused: %d\n", $totalResultSetSize);
+    printf("Total number of orders to be approved: %d\n", $totalResultSetSize);
 
     if ($totalResultSetSize > 0) {
       // Remove limit and offset from statement so we can reuse the statement.
       $statementBuilder->removeLimitAndOffset();
 
       // Create and perform action.
-      $action = new PauseLineItemsAction();
-      $result = $lineItemService->performLineItemAction($action,
+      $action = new ApproveOrdersAction();
+      $result = $orderService->performOrderAction($action,
           $statementBuilder->toStatement());
 
       if ($result !== null && $result->getNumChanges() > 0) {
-        printf("Number of line items paused: %d\n", $result->getNumChanges());
+        printf("Number of orders approved: %d\n", $result->getNumChanges());
       } else {
-        printf("No line items were paused.\n");
+        printf("No orders were approved.\n");
       }
     }
   }
@@ -106,8 +108,8 @@ class PauseLineItems {
         ->withOAuth2Credential($oAuth2Credential)
         ->build();
 
-    self::runExample(new DfpServices(), $session, intval(self::LINE_ITEM_ID));
+    self::runExample(new DfpServices(), $session, intval(self::ORDER_ID));
   }
 }
 
-PauseLineItems::main();
+ApproveOrders::main();

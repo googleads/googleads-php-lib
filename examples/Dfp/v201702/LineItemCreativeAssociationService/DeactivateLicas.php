@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-namespace Google\AdsApi\Examples\Dfp\v201702\LineItemService;
+namespace Google\AdsApi\Examples\Dfp\v201702\LineItemCreativeAssociationService;
 
 require '../../../../vendor/autoload.php';
 
@@ -23,50 +23,66 @@ use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201702\StatementBuilder;
-use Google\AdsApi\Dfp\v201702\LineItemService;
-use Google\AdsApi\Dfp\v201702\PauseLineItems as PauseLineItemsAction;
+use Google\AdsApi\Dfp\v201702\DeactivateLineItemCreativeAssociations as DeactivateLineItemCreativeAssociationsAction;
+use Google\AdsApi\Dfp\v201702\LineItemCreativeAssociationService;
 
 /**
- * Pauses line items.
+ * Deactivates line item creative associations.
  *
  * This example is meant to be run from a command line (not as a webpage) and
  * requires that you've setup an `adsapi_php.ini` file in your home directory
  * with your API credentials and settings. See `README.md` for more info.
  */
-class PauseLineItems {
+class DeactivateLicas {
 
   const LINE_ITEM_ID = 'INSERT_LINE_ITEM_ID_HERE';
 
   public static function runExample(DfpServices $dfpServices,
       DfpSession $session, $lineItemId) {
-    $lineItemService = $dfpServices->get($session, LineItemService::class);
+    $lineItemCreativeAssociationService =
+        $dfpServices->get($session, LineItemCreativeAssociationService::class);
 
-    // Create a statement to select the line items to pause.
+    // Create a statement to select the line item creative associations to
+    // deactivate.
     $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
     $statementBuilder = (new StatementBuilder())
-        ->where('id = :id')
-        ->orderBy('id ASC')
+        ->where('lineItemId = :lineItemId')
+        ->orderBy('lineItemId ASC, creativeId ASC')
         ->limit($pageSize)
-        ->withBindVariableValue('id', $lineItemId);
+        ->withBindVariableValue('lineItemId', $lineItemId);
 
-    // Retrieve a small amount of line items at a time, paging through until all
-    // line items have been retrieved.
+    // Retrieve a small amount of line item creative associations at a time,
+    // paging through until all line item creative associations have been
+    // retrieved.
     $totalResultSetSize = 0;
     do {
-      $page = $lineItemService->getLineItemsByStatement(
-          $statementBuilder->toStatement());
+      $page = $lineItemCreativeAssociationService
+          ->getLineItemCreativeAssociationsByStatement(
+              $statementBuilder->toStatement());
 
-      // Print out some information for the line items to be paused.
+      // Print out some information for the line item creative associations to
+      // be deactivated.
       if ($page->getResults() !== null) {
         $totalResultSetSize = $page->getTotalResultSetSize();
         $i = $page->getStartIndex();
-        foreach ($page->getResults() as $lineItem) {
-          printf(
-              "%d) Line item with ID %d and name '%s' will be paused.\n",
-              $i++,
-              $lineItem->getId(),
-              $lineItem->getName()
-          );
+        foreach ($page->getResults() as $lica) {
+          if ($lica->getCreativeSetId() !== null) {
+            printf(
+                "%d) Line item creative association with line item ID %d " .
+                    "and creative set ID %d will be deactivated.\n",
+                $i++,
+                $lica->getLineItemId(),
+                $lica->getCreativeSetId()
+            );
+          } else {
+            printf(
+                "%d) Line item creative association with line item ID %d " .
+                    "and creative ID %d will be deactivated.\n",
+                $i++,
+                $lica->getLineItemId(),
+                $lica->getCreativeId()
+            );
+          }
         }
       }
 
@@ -74,21 +90,26 @@ class PauseLineItems {
     } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
     printf(
-        "Total number of line items to be paused: %d\n", $totalResultSetSize);
+        "Total number of line item creative associations to be deactivated: "
+            . "%d\n",
+        $totalResultSetSize
+    );
 
     if ($totalResultSetSize > 0) {
       // Remove limit and offset from statement so we can reuse the statement.
       $statementBuilder->removeLimitAndOffset();
 
       // Create and perform action.
-      $action = new PauseLineItemsAction();
-      $result = $lineItemService->performLineItemAction($action,
-          $statementBuilder->toStatement());
+      $action = new DeactivateLineItemCreativeAssociationsAction();
+      $result = $lineItemCreativeAssociationService
+          ->performLineItemCreativeAssociationAction(
+              $action, $statementBuilder->toStatement());
 
       if ($result !== null && $result->getNumChanges() > 0) {
-        printf("Number of line items paused: %d\n", $result->getNumChanges());
+        printf("Number of line item creative associations deactivated: %d\n",
+            $result->getNumChanges());
       } else {
-        printf("No line items were paused.\n");
+        printf("No line item creative associations were deactivated.\n");
       }
     }
   }
@@ -110,4 +131,4 @@ class PauseLineItems {
   }
 }
 
-PauseLineItems::main();
+DeactivateLicas::main();

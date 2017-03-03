@@ -85,7 +85,7 @@ class OAuth2TokenBuilderTest extends PHPUnit_Framework_TestCase {
         ], [
             'impersonatedEmail',
             'OAUTH2',
-            'dfp@google.com'
+            'dfp@gmail.com'
         ]
     ];
     $configurationMock = $this->getMockBuilder(Configuration::class)
@@ -135,7 +135,7 @@ class OAuth2TokenBuilderTest extends PHPUnit_Framework_TestCase {
     $tokenFetcher = $this->oAuth2TokenBuilder
         ->withJsonKeyFilePath($this->jsonKeyFilePath)
         ->withScopes('https://www.googleapis.com/auth/dfp')
-        ->withImpersonatedEmail('dfp@google.com')
+        ->withImpersonatedEmail('dfp@gmail.com')
         ->build();
     $this->assertInstanceOf(ServiceAccountCredentials::class, $tokenFetcher);
   }

@@ -1,3 +1,12 @@
+### 25.4.0
+
+##### DFP
+
+*   Added `perform action` examples for core services.
+*   Added `CreateNativeCreatives` example.
+*   Fixed the `CreateProposals` example.
+*   Added some `update` examples for reconciliation services.
+
 ### 25.3.0
 
 ##### AdWords

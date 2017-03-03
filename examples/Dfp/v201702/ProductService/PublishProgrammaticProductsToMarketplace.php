@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-namespace Google\AdsApi\Examples\Dfp\v201702\LineItemService;
+namespace Google\AdsApi\Examples\Dfp\v201702\ProductService;
 
 require '../../../../vendor/autoload.php';
 
@@ -23,49 +23,50 @@ use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201702\StatementBuilder;
-use Google\AdsApi\Dfp\v201702\LineItemService;
-use Google\AdsApi\Dfp\v201702\PauseLineItems as PauseLineItemsAction;
+use Google\AdsApi\Dfp\v201702\ProductService;
+use Google\AdsApi\Dfp\v201702\PublishProducts as PublishProductsAction;
 
 /**
- * Pauses line items.
+ * Publishes programmatic products to Marketplace.
  *
  * This example is meant to be run from a command line (not as a webpage) and
  * requires that you've setup an `adsapi_php.ini` file in your home directory
  * with your API credentials and settings. See `README.md` for more info.
  */
-class PauseLineItems {
+class PublishProgrammaticProductsToMarketplace {
 
-  const LINE_ITEM_ID = 'INSERT_LINE_ITEM_ID_HERE';
+  const PRODUCT_ID = 'INSERT_PROGRAMMATIC_PRODUCT_ID_HERE';
 
   public static function runExample(DfpServices $dfpServices,
-      DfpSession $session, $lineItemId) {
-    $lineItemService = $dfpServices->get($session, LineItemService::class);
+      DfpSession $session, $productId) {
+    $productService = $dfpServices->get($session, ProductService::class);
 
-    // Create a statement to select the line items to pause.
+    // Create a statement to select the programmatic products to publish.
     $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
     $statementBuilder = (new StatementBuilder())
         ->where('id = :id')
         ->orderBy('id ASC')
         ->limit($pageSize)
-        ->withBindVariableValue('id', $lineItemId);
+        ->withBindVariableValue('id', $productId);
 
-    // Retrieve a small amount of line items at a time, paging through until all
-    // line items have been retrieved.
+    // Retrieve a small amount of products at a time, paging through until all
+    // products have been retrieved.
     $totalResultSetSize = 0;
     do {
-      $page = $lineItemService->getLineItemsByStatement(
+      $page = $productService->getProductsByStatement(
           $statementBuilder->toStatement());
 
-      // Print out some information for the line items to be paused.
+      // Print out some information for the products to be published.
       if ($page->getResults() !== null) {
         $totalResultSetSize = $page->getTotalResultSetSize();
         $i = $page->getStartIndex();
-        foreach ($page->getResults() as $lineItem) {
+        foreach ($page->getResults() as $product) {
           printf(
-              "%d) Line item with ID %d and name '%s' will be paused.\n",
+              "%d) Programmatic product with ID %d and name '%s' will be "
+                  . "published.\n",
               $i++,
-              $lineItem->getId(),
-              $lineItem->getName()
+              $product->getId(),
+              $product->getName()
           );
         }
       }
@@ -73,22 +74,23 @@ class PauseLineItems {
       $statementBuilder->increaseOffsetBy($pageSize);
     } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-    printf(
-        "Total number of line items to be paused: %d\n", $totalResultSetSize);
+    printf("Total number of programmatic products to be published: %d\n",
+        $totalResultSetSize);
 
     if ($totalResultSetSize > 0) {
       // Remove limit and offset from statement so we can reuse the statement.
       $statementBuilder->removeLimitAndOffset();
 
       // Create and perform action.
-      $action = new PauseLineItemsAction();
-      $result = $lineItemService->performLineItemAction($action,
-          $statementBuilder->toStatement());
+      $action = new PublishProductsAction();
+      $result = $productService->performProductAction(
+          $action, $statementBuilder->toStatement());
 
       if ($result !== null && $result->getNumChanges() > 0) {
-        printf("Number of line items paused: %d\n", $result->getNumChanges());
+        printf("Number of programmatic products published: %d\n",
+            $result->getNumChanges());
       } else {
-        printf("No line items were paused.\n");
+        printf("No programmatic products were published.\n");
       }
     }
   }
@@ -106,8 +108,8 @@ class PauseLineItems {
         ->withOAuth2Credential($oAuth2Credential)
         ->build();
 
-    self::runExample(new DfpServices(), $session, intval(self::LINE_ITEM_ID));
+    self::runExample(new DfpServices(), $session, intval(self::PRODUCT_ID));
   }
 }
 
-PauseLineItems::main();
+PublishProgrammaticProductsToMarketplace::main();

@@ -36,8 +36,7 @@ class GetImageCreatives {
 
   public static function runExample(DfpServices $dfpServices,
       DfpSession $session) {
-    $creativeService =
-        $dfpServices->get($session, CreativeService::class);
+    $creativeService = $dfpServices->get($session, CreativeService::class);
 
     // Create a statement to select creatives.
     $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;

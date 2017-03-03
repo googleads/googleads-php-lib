@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-namespace Google\AdsApi\Examples\Dfp\v201702\LineItemService;
+namespace Google\AdsApi\Examples\Dfp\v201702\CustomTargetingService;
 
 require '../../../../vendor/autoload.php';
 
@@ -23,49 +23,53 @@ use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201702\StatementBuilder;
-use Google\AdsApi\Dfp\v201702\LineItemService;
-use Google\AdsApi\Dfp\v201702\PauseLineItems as PauseLineItemsAction;
+use Google\AdsApi\Dfp\v201702\CustomTargetingService;
+use Google\AdsApi\Dfp\v201702\DeleteCustomTargetingKeys as DeleteCustomTargetingKeysAction;
 
 /**
- * Pauses line items.
+ * Deletes custom targeting keys.
  *
  * This example is meant to be run from a command line (not as a webpage) and
  * requires that you've setup an `adsapi_php.ini` file in your home directory
  * with your API credentials and settings. See `README.md` for more info.
  */
-class PauseLineItems {
+class DeleteCustomTargetingKeys {
 
-  const LINE_ITEM_ID = 'INSERT_LINE_ITEM_ID_HERE';
+  const CUSTOM_TARGETING_KEY_ID = 'INSERT_CUSTOM_TARGETING_KEY_ID_HERE';
 
   public static function runExample(DfpServices $dfpServices,
-      DfpSession $session, $lineItemId) {
-    $lineItemService = $dfpServices->get($session, LineItemService::class);
+      DfpSession $session, $customTargetingKeyId) {
+    $customTargetingService =
+        $dfpServices->get($session, CustomTargetingService::class);
 
-    // Create a statement to select the line items to pause.
+    // Create a statement to select the custom targeting keys to delete.
     $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
     $statementBuilder = (new StatementBuilder())
         ->where('id = :id')
         ->orderBy('id ASC')
         ->limit($pageSize)
-        ->withBindVariableValue('id', $lineItemId);
+        ->withBindVariableValue('id', $customTargetingKeyId);
 
-    // Retrieve a small amount of line items at a time, paging through until all
-    // line items have been retrieved.
+    // Retrieve a small amount of custom targeting keys at a time, paging
+    // through until all custom targeting keys have been retrieved.
     $totalResultSetSize = 0;
     do {
-      $page = $lineItemService->getLineItemsByStatement(
+      $page = $customTargetingService->getCustomTargetingKeysByStatement(
           $statementBuilder->toStatement());
 
-      // Print out some information for the line items to be paused.
+      // Print out some information for the custom targeting keys to be deleted.
       if ($page->getResults() !== null) {
         $totalResultSetSize = $page->getTotalResultSetSize();
         $i = $page->getStartIndex();
-        foreach ($page->getResults() as $lineItem) {
+        foreach ($page->getResults() as $customTargetingKey) {
           printf(
-              "%d) Line item with ID %d and name '%s' will be paused.\n",
+              "%d) Custom targeting key with ID %d, " .
+                  "name '%s', " .
+                  "and display name '%s' will be deleted.\n",
               $i++,
-              $lineItem->getId(),
-              $lineItem->getName()
+              $customTargetingKey->getId(),
+              $customTargetingKey->getName(),
+              $customTargetingKey->getDisplayName()
           );
         }
       }
@@ -73,22 +77,23 @@ class PauseLineItems {
       $statementBuilder->increaseOffsetBy($pageSize);
     } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-    printf(
-        "Total number of line items to be paused: %d\n", $totalResultSetSize);
+    printf("Total number of custom targeting keys to be deleted: %d\n",
+        $totalResultSetSize);
 
     if ($totalResultSetSize > 0) {
       // Remove limit and offset from statement so we can reuse the statement.
       $statementBuilder->removeLimitAndOffset();
 
       // Create and perform action.
-      $action = new PauseLineItemsAction();
-      $result = $lineItemService->performLineItemAction($action,
-          $statementBuilder->toStatement());
+      $action = new DeleteCustomTargetingKeysAction();
+      $result = $customTargetingService->performCustomTargetingKeyAction(
+          $action, $statementBuilder->toStatement());
 
       if ($result !== null && $result->getNumChanges() > 0) {
-        printf("Number of line items paused: %d\n", $result->getNumChanges());
+        printf("Number of custom targeting keys deleted: %d\n",
+            $result->getNumChanges());
       } else {
-        printf("No line items were paused.\n");
+        printf("No custom targeting keys were deleted.\n");
       }
     }
   }
@@ -106,8 +111,9 @@ class PauseLineItems {
         ->withOAuth2Credential($oAuth2Credential)
         ->build();
 
-    self::runExample(new DfpServices(), $session, intval(self::LINE_ITEM_ID));
+    self::runExample(
+        new DfpServices(), $session, intval(self::CUSTOM_TARGETING_KEY_ID));
   }
 }
 
-PauseLineItems::main();
+DeleteCustomTargetingKeys::main();

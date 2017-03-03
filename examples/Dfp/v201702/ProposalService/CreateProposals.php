@@ -22,8 +22,15 @@ use Google\AdsApi\Common\OAuth2TokenBuilder;
 use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
+use Google\AdsApi\Dfp\v201702\BillingCap;
+use Google\AdsApi\Dfp\v201702\BillingSource;
+use Google\AdsApi\Dfp\v201702\Money;
+use Google\AdsApi\Dfp\v201702\NetworkService;
 use Google\AdsApi\Dfp\v201702\Proposal;
+use Google\AdsApi\Dfp\v201702\ProposalCompanyAssociation;
+use Google\AdsApi\Dfp\v201702\ProposalCompanyAssociationType;
 use Google\AdsApi\Dfp\v201702\ProposalService;
+use Google\AdsApi\Dfp\v201702\SalespersonSplit;
 
 /**
  * Creates proposals.
@@ -34,18 +41,68 @@ use Google\AdsApi\Dfp\v201702\ProposalService;
  */
 class CreateProposals {
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session) {
-    $proposalService = $dfpServices->get($session, ProposalService::class);
+  // Set the advertiser, salespersons, and trafficker IDs for creating the
+  // proposal.
+  const ADVERTISER_ID = 'INSERT_ADVERTISER_ID_HERE';
+  const PRIMARY_SALESPERSON_ID = 'INSERT_PRIMARY_SALESPERSON_ID_HERE';
+  const SECONDARY_SALESPERSON_ID = 'INSERT_SECONDARY_SALESPERSON_ID_HERE';
+  const PRIMARY_TRAFFICKER_ID = 'INSERT_PRIMARY_TRAFFICKER_ID_HERE';
 
+  public static function runExample(
+      DfpServices $dfpServices,
+      DfpSession $session,
+      $advertiserId,
+      $primarySalespersonId,
+      $secondarySalespersonId,
+      $primaryTraffickerId
+  ) {
+    $proposalService = $dfpServices->get($session, ProposalService::class);
+    $networkService = $dfpServices->get($session, NetworkService::class);
+
+    // Create a proposal.
     $proposal = new Proposal();
     $proposal->setName('Proposal #' . uniqid());
 
+    // Create a proposal company association.
+    $proposalCompanyAssociation = new ProposalCompanyAssociation();
+    $proposalCompanyAssociation->setCompanyId($advertiserId);
+    $proposalCompanyAssociation
+        ->setType(ProposalCompanyAssociationType::ADVERTISER);
+    $proposal->setAdvertiser($proposalCompanyAssociation);
+
+    // Create salesperson splits for the primary salesperson and secondary
+    // salespeople.
+    $primarySalesperson = new SalespersonSplit();
+    $primarySalesperson->setUserId($primarySalespersonId);
+    $primarySalesperson->setSplit(75000);
+    $proposal->setPrimarySalesperson($primarySalesperson);
+
+    $secondarySalesperson = new SalespersonSplit();
+    $secondarySalesperson->setUserId($secondarySalespersonId);
+    $secondarySalesperson->setSplit(25000);
+    $proposal->setSecondarySalespeople([$secondarySalesperson]);
+
+    // Set the probability to close to 100%.
+    $proposal->setProbabilityOfClose(100000);
+
+    // Set the primary trafficker on the proposal for when it becomes an order.
+    $proposal->setPrimaryTraffickerId($primaryTraffickerId);
+
+    // Create a budget for the proposal worth 100 in the network local currency.
+    $budget = new Money();
+    $budget->setMicroAmount(100000000);
+    $budget->setCurrencyCode(
+        $networkService->getCurrentNetwork()->getCurrencyCode());
+    $proposal->setBudget($budget);
+
+    $proposal->setBillingCap(BillingCap::CAPPED_CUMULATIVE);
+    $proposal->setBillingSource(BillingSource::DFP_VOLUME);
+
     // Create the proposals on the server.
-    $results = $proposalService->createProposals([$proposal]);
+    $proposals = $proposalService->createProposals([$proposal]);
 
     // Print out some information for each created proposal.
-    foreach ($results as $i => $proposal) {
+    foreach ($proposals as $i => $proposal) {
       printf(
           "%d) Proposal with ID %d and name '%s' was created.\n",
           $i,
@@ -68,7 +125,14 @@ class CreateProposals {
         ->withOAuth2Credential($oAuth2Credential)
         ->build();
 
-    self::runExample(new DfpServices(), $session);
+    self::runExample(
+        new DfpServices(),
+        $session,
+        intval(self::ADVERTISER_ID),
+        intval(self::PRIMARY_SALESPERSON_ID),
+        intval(self::SECONDARY_SALESPERSON_ID),
+        intval(self::PRIMARY_TRAFFICKER_ID)
+    );
   }
 }
 

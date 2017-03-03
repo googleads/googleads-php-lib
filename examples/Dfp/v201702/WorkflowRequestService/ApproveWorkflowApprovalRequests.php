@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-namespace Google\AdsApi\Examples\Dfp\v201702\LineItemService;
+namespace Google\AdsApi\Examples\Dfp\v201702\WorkflowRequestService;
 
 require '../../../../vendor/autoload.php';
 
@@ -23,49 +23,60 @@ use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201702\StatementBuilder;
-use Google\AdsApi\Dfp\v201702\LineItemService;
-use Google\AdsApi\Dfp\v201702\PauseLineItems as PauseLineItemsAction;
+use Google\AdsApi\Dfp\v201702\ApproveWorkflowApprovalRequests as ApproveWorkflowApprovalRequestsAction;
+use Google\AdsApi\Dfp\v201702\WorkflowEntityType;
+use Google\AdsApi\Dfp\v201702\WorkflowRequestService;
+use Google\AdsApi\Dfp\v201702\WorkflowRequestType;
 
 /**
- * Pauses line items.
+ * Approves workflow approval requests.
  *
  * This example is meant to be run from a command line (not as a webpage) and
  * requires that you've setup an `adsapi_php.ini` file in your home directory
  * with your API credentials and settings. See `README.md` for more info.
  */
-class PauseLineItems {
+class ApproveWorkflowApprovalRequests {
 
-  const LINE_ITEM_ID = 'INSERT_LINE_ITEM_ID_HERE';
+  const PROPOSAL_ID = 'INSERT_PROPOSAL_ID_HERE';
 
   public static function runExample(DfpServices $dfpServices,
-      DfpSession $session, $lineItemId) {
-    $lineItemService = $dfpServices->get($session, LineItemService::class);
+      DfpSession $session, $proposalId) {
+    $workflowRequestService =
+        $dfpServices->get($session, WorkflowRequestService::class);
 
-    // Create a statement to select the line items to pause.
+    // Create a statement to select the workflow approval requests to approve.
     $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
     $statementBuilder = (new StatementBuilder())
-        ->where('id = :id')
+        ->where('WHERE entityId = :entityId and entityType = :entityType and '
+            . 'type = :type')
         ->orderBy('id ASC')
         ->limit($pageSize)
-        ->withBindVariableValue('id', $lineItemId);
+        ->withBindVariableValue('entityId', $proposalId)
+        ->withBindVariableValue('entityType', WorkflowEntityType::PROPOSAL)
+        ->withBindVariableValue(
+            'type', WorkflowRequestType::WORKFLOW_APPROVAL_REQUEST);
 
-    // Retrieve a small amount of line items at a time, paging through until all
-    // line items have been retrieved.
+    // Retrieve a small amount of workflow approval requests at a time, paging
+    // through until all workflow requests have been retrieved.
     $totalResultSetSize = 0;
     do {
-      $page = $lineItemService->getLineItemsByStatement(
+      $page = $workflowRequestService->getWorkflowRequestsByStatement(
           $statementBuilder->toStatement());
 
-      // Print out some information for the line items to be paused.
+      // Print out some information for the workflow approval requests to be
+      // approved.
       if ($page->getResults() !== null) {
         $totalResultSetSize = $page->getTotalResultSetSize();
         $i = $page->getStartIndex();
-        foreach ($page->getResults() as $lineItem) {
+        foreach ($page->getResults() as $workflowRequest) {
           printf(
-              "%d) Line item with ID %d and name '%s' will be paused.\n",
+              "%d) Workflow approval request with ID %d, " .
+                  "for '%s', " .
+                  "and ID %d will be approved.\n",
               $i++,
-              $lineItem->getId(),
-              $lineItem->getName()
+              $workflowRequest->getId(),
+              $workflowRequest->getEntityType(),
+              $workflowRequest->getEntityId()
           );
         }
       }
@@ -73,22 +84,24 @@ class PauseLineItems {
       $statementBuilder->increaseOffsetBy($pageSize);
     } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-    printf(
-        "Total number of line items to be paused: %d\n", $totalResultSetSize);
+    printf("Total number of workflow approval requests to be approved: %d\n",
+        $totalResultSetSize);
 
     if ($totalResultSetSize > 0) {
       // Remove limit and offset from statement so we can reuse the statement.
       $statementBuilder->removeLimitAndOffset();
 
-      // Create and perform action.
-      $action = new PauseLineItemsAction();
-      $result = $lineItemService->performLineItemAction($action,
+      // Create and perform action, adding a comment for approval.
+      $action = new ApproveWorkflowApprovalRequestsAction();
+      $action->setComment('The proposal looks good to me. Approved.');
+      $result = $workflowRequestService->performWorkflowRequestAction($action,
           $statementBuilder->toStatement());
 
       if ($result !== null && $result->getNumChanges() > 0) {
-        printf("Number of line items paused: %d\n", $result->getNumChanges());
+        printf("Number of workflow approval requests approved: %d\n",
+            $result->getNumChanges());
       } else {
-        printf("No line items were paused.\n");
+        printf("No workflow approval requests were approved.\n");
       }
     }
   }
@@ -106,8 +119,8 @@ class PauseLineItems {
         ->withOAuth2Credential($oAuth2Credential)
         ->build();
 
-    self::runExample(new DfpServices(), $session, intval(self::LINE_ITEM_ID));
+    self::runExample(new DfpServices(), $session, intval(self::PROPOSAL_ID));
   }
 }
 
-PauseLineItems::main();
+ApproveWorkflowApprovalRequests::main();

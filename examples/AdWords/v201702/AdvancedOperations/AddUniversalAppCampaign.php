@@ -110,7 +110,7 @@ class AddUniversalAppCampaign {
     // Optional: You can set up to 10 image assets for your campaign.
     // See UploadImage.php for an example on how to upload images.
     //
-    // $universalAppSetting->imageMediaIds = array(INSERT_IMAGE_MEDIA_ID_HERE);
+    // $universalAppSetting->imageMediaIds = [INSERT_IMAGE_MEDIA_ID_HERE];
 
     // Optimize this campaign for getting new users for your app.
     $universalAppSetting->setUniversalAppBiddingStrategyGoalType(
@@ -123,10 +123,10 @@ class AddUniversalAppCampaign {
     // Conversion type IDs can be retrieved using ConversionTrackerService.get.
     //
     // $campaign->selectiveOptimization = new SelectiveOptimization();
-    // $campaign->selectiveOptimization->conversionTypeIds = array(
+    // $campaign->selectiveOptimization->conversionTypeIds = [
     //     INSERT_CONVERSION_TYPE_ID_1_HERE,
     //     INSERT_CONVERSION_TYPE_ID_2_HERE
-    // );
+    // ];
 
     // Optional: Set the campaign settings for Advanced location options.
     $geoTargetTypeSetting = new GeoTargetTypeSetting();

@@ -22,10 +22,10 @@ use Google\AdsApi\Common\OAuth2TokenBuilder;
 use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
-use Google\AdsApi\Dfp\v201702\Size;
 use Google\AdsApi\Dfp\v201702\CreativeAsset;
-use Google\AdsApi\Dfp\v201702\ImageCreative;
 use Google\AdsApi\Dfp\v201702\CreativeService;
+use Google\AdsApi\Dfp\v201702\ImageCreative;
+use Google\AdsApi\Dfp\v201702\Size;
 
 /**
  * Creates image creatives.
@@ -40,8 +40,7 @@ class CreateCreatives {
 
   public static function runExample(DfpServices $dfpServices,
       DfpSession $session, $advertiserId) {
-    $creativeService =
-        $dfpServices->get($session, CreativeService::class);
+    $creativeService = $dfpServices->get($session, CreativeService::class);
 
     $imageCreative = new ImageCreative();
     $imageCreative->setName('Image creative #'. uniqid());
