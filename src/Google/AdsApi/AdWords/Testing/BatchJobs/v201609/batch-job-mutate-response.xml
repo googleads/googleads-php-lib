@@ -24,4 +24,14 @@
     </result>
     <index>1</index>
   </rval>
+  <rval>
+    <result>
+      <Campaign>
+        <id>9223372036854775900</id>
+        <name>Test large ID</name>
+        <Operand.Type></Operand.Type>
+      </Campaign>
+    </result>
+    <index>2</index>
+  </rval>
 </mutateResponse>

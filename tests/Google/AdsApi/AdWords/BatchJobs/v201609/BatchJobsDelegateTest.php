@@ -260,6 +260,13 @@ class BatchJobsDelegateTest extends PHPUnit_Framework_TestCase {
         $actualCampaign->getIsServing());
     $this->assertSame($expectedCampaign->getOperandType(),
         $actualCampaign->getOperandType());
+
+    $this->assertSame($expectedMutateResults[2]->getIndex(),
+        $actualMutateResults[2]->getIndex());
+    $expectedCampaign = $expectedMutateResults[2]->getResult()->getCampaign();
+    $actualCampaign = $actualMutateResults[2]->getResult()->getCampaign();
+    $this->assertSame($expectedCampaign->getId(), $actualCampaign->getId());
+    $this->assertSame($expectedCampaign->getName(), $actualCampaign->getName());
   }
 
   /**

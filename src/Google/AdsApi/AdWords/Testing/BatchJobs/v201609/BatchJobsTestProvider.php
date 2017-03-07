@@ -100,6 +100,15 @@ class BatchJobsTestProvider {
     $mutateResult2->setResult($operand);
     $mutateResult2->setIndex(1);
 
-    return [$mutateResult1, $mutateResult2];
+    $campaign = new FakeCampaign();
+    $campaign->setId(9223372036854775900);
+    $campaign->setName('Test large ID');
+    $operand = new FakeOperand();
+    $operand->setCampaign($campaign);
+    $mutateResult3 = new FakeMutateResult();
+    $mutateResult3->setResult($operand);
+    $mutateResult3->setIndex(2);
+
+    return [$mutateResult1, $mutateResult2, $mutateResult3];
   }
 }
