@@ -171,6 +171,21 @@ final class ProductPartitions {
 
    return $operation;
   }
+
+  /**
+   * Creates an ad group criterion operation for the given criterion.
+   *
+   * @param AdGroupCriterion $criterion the ad group criterion to create the
+   *     REMOVE operation
+   * @return AdGroupCriterionOperation the ad group criterion operation
+   */
+  public static function createRemoveOperation(AdGroupCriterion $criterion) {
+    $operation = new AdGroupCriterionOperation();
+    $operation->setOperand($criterion);
+    $operation->setOperator(Operator::REMOVE);
+
+    return $operation;
+  }
   /**
    * Returns the string representation of ad group criteria of the specified
    * ad group ID by showing them hierarchically.
