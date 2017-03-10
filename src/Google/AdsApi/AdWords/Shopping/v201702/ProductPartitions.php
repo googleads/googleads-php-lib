@@ -165,11 +165,7 @@ final class ProductPartitions {
    * @return AdGroupCriterionOperation the ad group criterion operation
    */
   public static function createAddOperation(AdGroupCriterion $criterion) {
-    $operation = new AdGroupCriterionOperation();
-    $operation->setOperand($criterion);
-    $operation->setOperator(Operator::ADD);
-
-   return $operation;
+    return self::createOperation($criterion, Operator::ADD);
   }
 
   /**
@@ -180,12 +176,35 @@ final class ProductPartitions {
    * @return AdGroupCriterionOperation the ad group criterion operation
    */
   public static function createRemoveOperation(AdGroupCriterion $criterion) {
+    return self::createOperation($criterion, Operator::REMOVE);
+  }
+
+
+  /**
+   * Creates an ad group criterion operation for the given criterion.
+   *
+   * @param AdGroupCriterion $criterion the ad group criterion to create the
+   *     SET operation
+   * @return AdGroupCriterionOperation the ad group criterion operation
+   */
+  public static function createSetOperation(AdGroupCriterion $criterion) {
+    return self::createOperation($criterion, Operator::SET);
+  }
+
+  /**
+   * Creates an ad group criterion operation for the given criterion.
+   *
+   * @param AdGroupCriterion $criterion the ad group criterion
+   * @param string $operator the operator to use ADD|REMOVE|SET
+   * @return AdGroupCriterionOperation the ad group criterion operation
+   */
+  protected static function createOperation(AdGroupCriterion $criterion, $operator) {
     $operation = new AdGroupCriterionOperation();
     $operation->setOperand($criterion);
-    $operation->setOperator(Operator::REMOVE);
-
+    $operation->setOperator($operator);
     return $operation;
   }
+
   /**
    * Returns the string representation of ad group criteria of the specified
    * ad group ID by showing them hierarchically.
