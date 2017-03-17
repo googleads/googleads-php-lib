@@ -3,7 +3,7 @@
  * This example gets all images. To upload an image, run UploadImage.php. To
  * upload a video, see http://goo.gl/Uqn0l.
  *
- * Copyright 2017, Google Inc. All Rights Reserved.
+ * Copyright 2016, Google Inc. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.

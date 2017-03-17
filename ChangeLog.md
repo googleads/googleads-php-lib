@@ -1,3 +1,9 @@
+### 17.0.0
+
+AdWords:
+  - Removed support and examples for v201605. See deprecation schedule at:
+    https://developers.google.com/adwords/api/docs/sunset-dates
+
 ### 16.1.0
 
 AdWords:
