@@ -73,8 +73,7 @@ class PauseLineItems {
       $statementBuilder->increaseOffsetBy($pageSize);
     } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-    printf(
-        "Total number of line items to be paused: %d\n", $totalResultSetSize);
+    printf("Total number of line items to be paused: %d\n", $totalResultSetSize);
 
     if ($totalResultSetSize > 0) {
       // Remove limit and offset from statement so we can reuse the statement.
@@ -82,7 +81,7 @@ class PauseLineItems {
 
       // Create and perform action.
       $action = new PauseLineItemsAction();
-      $result = $lineItemService->performLineItemAction($action,
+      $result = $lineItemService->performlineItemAction($action,
           $statementBuilder->toStatement());
 
       if ($result !== null && $result->getNumChanges() > 0) {

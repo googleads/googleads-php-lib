@@ -18,7 +18,7 @@ namespace Google\AdsApi\AdWords\BatchJobs\v201609;
 
 use Google\AdsApi\AdWords\AdWordsSessionBuilder;
 use Google\AdsApi\AdWords\BatchJobs\BatchJobUploadStatus;
-use Google\AdsApi\AdWords\BatchJobs\DotRemoverNameConverter;
+use Google\AdsApi\AdWords\Testing\BatchJobs\SimpleGuzzleHttpClientFactory;
 use Google\AdsApi\AdWords\Testing\BatchJobs\v201609\BatchJobsTestProvider;
 use Google\AdsApi\AdWords\Testing\BatchJobs\v201609\FakeMutateResult;
 use Google\Auth\FetchAuthTokenInterface;
@@ -65,7 +65,7 @@ class BatchJobsDelegateTest extends PHPUnit_Framework_TestCase {
         ->withClientCustomerId('123-456-7890')
         ->withUserAgent('batch jobs delegate')
         ->withOAuth2Credential($fetchAuthTokenInterfaceStub)
-        ->withReportDownloaderLogger(new Logger('', [new NullHandler()]))
+        ->withBatchJobsUtilLogger(new Logger('', [new NullHandler()]))
         ->build();
   }
 
@@ -80,8 +80,13 @@ class BatchJobsDelegateTest extends PHPUnit_Framework_TestCase {
             ['Location' => [self::$DUMMY_RESUMABLE_UPLOAD_URL]])]);
     $handler = HandlerStack::create($mockHandler);
     $httpClient = new Client(['handler' => $handler]);
-    $batchJobUploadStatus =
-        new BatchJobUploadStatus(self::$DUMMY_UPLOAD_URL, 0, $httpClient);
+    $batchJobUploadStatus = new BatchJobUploadStatus(
+        self::$DUMMY_UPLOAD_URL,
+        $this->adWordsSession,
+        0,
+        $httpClient,
+        new SimpleGuzzleHttpClientFactory($httpClient)
+    );
     $this->assertSame(self::$DUMMY_RESUMABLE_UPLOAD_URL,
         $batchJobUploadStatus->getResumableUploadUrl());
 
@@ -89,8 +94,12 @@ class BatchJobsDelegateTest extends PHPUnit_Framework_TestCase {
     $mockHandler = new MockHandler([new Response(308)]);
     $handler = HandlerStack::create($mockHandler);
     $httpClient = new Client(['handler' => $handler]);
-    $batchJobsDelegate =
-        new BatchJobsDelegate($this->adWordsSession, $httpClient);
+    $batchJobsDelegate = new BatchJobsDelegate(
+        $this->adWordsSession,
+        $httpClient,
+        null,
+        new SimpleGuzzleHttpClientFactory($httpClient)
+    );
     $batchJobUploadStatus =
         $batchJobsDelegate->uploadIncrementalBatchJobOperations(
             BatchJobsTestProvider::getBatchJobOperations(),
@@ -114,7 +123,12 @@ class BatchJobsDelegateTest extends PHPUnit_Framework_TestCase {
   public function
       testUploadIncrementalBatchJobOperations_intermediateRequest() {
     $batchJobUploadStatus = new BatchJobUploadStatus(
-        self::$DUMMY_RESUMABLE_UPLOAD_URL, self::$BYTES_OF_256K);
+        self::$DUMMY_RESUMABLE_UPLOAD_URL,
+        $this->adWordsSession,
+        self::$BYTES_OF_256K,
+        null,
+        new SimpleGuzzleHttpClientFactory()
+    );
     $this->assertSame(self::$DUMMY_RESUMABLE_UPLOAD_URL,
         $batchJobUploadStatus->getResumableUploadUrl());
 
@@ -122,8 +136,12 @@ class BatchJobsDelegateTest extends PHPUnit_Framework_TestCase {
     $mockHandler = new MockHandler([new Response(308)]);
     $handler = HandlerStack::create($mockHandler);
     $httpClient = new Client(['handler' => $handler]);
-    $batchJobsDelegate =
-        new BatchJobsDelegate($this->adWordsSession, $httpClient);
+    $batchJobsDelegate = new BatchJobsDelegate(
+        $this->adWordsSession,
+        $httpClient,
+        null,
+        new SimpleGuzzleHttpClientFactory($httpClient)
+    );
     $batchJobUploadStatus =
         $batchJobsDelegate->uploadIncrementalBatchJobOperations(
             BatchJobsTestProvider::getBatchJobOperations(),
@@ -151,7 +169,12 @@ class BatchJobsDelegateTest extends PHPUnit_Framework_TestCase {
    */
   public function testUploadIncrementalBatchJobOperationsFails() {
     $batchJobUploadStatus = new BatchJobUploadStatus(
-        self::$DUMMY_RESUMABLE_UPLOAD_URL, self::$BYTES_OF_256K);
+        self::$DUMMY_RESUMABLE_UPLOAD_URL,
+        $this->adWordsSession,
+        self::$BYTES_OF_256K,
+        null,
+        new SimpleGuzzleHttpClientFactory()
+    );
 
     $mockHandler = new MockHandler([
         new ServerException(
@@ -161,8 +184,12 @@ class BatchJobsDelegateTest extends PHPUnit_Framework_TestCase {
     ]);
     $handler = HandlerStack::create($mockHandler);
     $httpClient = new Client(['handler' => $handler]);
-    $batchJobsDelegate =
-        new BatchJobsDelegate($this->adWordsSession, $httpClient);
+    $batchJobsDelegate = new BatchJobsDelegate(
+        $this->adWordsSession,
+        $httpClient,
+        null,
+        new SimpleGuzzleHttpClientFactory($httpClient)
+    );
     $batchJobsDelegate->uploadIncrementalBatchJobOperations(
         BatchJobsTestProvider::getBatchJobOperations(), $batchJobUploadStatus);
   }
@@ -172,15 +199,24 @@ class BatchJobsDelegateTest extends PHPUnit_Framework_TestCase {
    */
   public function testCloseIncrementalUpload() {
     $batchJobUploadStatus = new BatchJobUploadStatus(
-        self::$DUMMY_RESUMABLE_UPLOAD_URL, self::$BYTES_OF_256K);
+        self::$DUMMY_RESUMABLE_UPLOAD_URL,
+        $this->adWordsSession,
+        self::$BYTES_OF_256K,
+        null,
+        new SimpleGuzzleHttpClientFactory()
+    );
     $this->assertSame(self::$DUMMY_RESUMABLE_UPLOAD_URL,
         $batchJobUploadStatus->getResumableUploadUrl());
 
     $mockHandler = new MockHandler([new Response(200)]);
     $handler = HandlerStack::create($mockHandler);
     $httpClient = new Client(['handler' => $handler]);
-    $batchJobsDelegate =
-        new BatchJobsDelegate($this->adWordsSession, $httpClient);
+    $batchJobsDelegate = new BatchJobsDelegate(
+        $this->adWordsSession,
+        $httpClient,
+        null,
+        new SimpleGuzzleHttpClientFactory($httpClient)
+    );
     $batchJobUploadStatus =
         $batchJobsDelegate->closeIncrementalUpload($batchJobUploadStatus);
 
@@ -196,7 +232,12 @@ class BatchJobsDelegateTest extends PHPUnit_Framework_TestCase {
    */
   public function testCloseIncrementalUploadFails() {
     $batchJobUploadStatus = new BatchJobUploadStatus(
-        self::$DUMMY_RESUMABLE_UPLOAD_URL, self::$BYTES_OF_256K);
+        self::$DUMMY_RESUMABLE_UPLOAD_URL,
+        $this->adWordsSession,
+        self::$BYTES_OF_256K,
+        null,
+        new SimpleGuzzleHttpClientFactory()
+    );
 
     $mockHandler = new MockHandler([
         new ServerException(
@@ -206,8 +247,12 @@ class BatchJobsDelegateTest extends PHPUnit_Framework_TestCase {
     ]);
     $handler = HandlerStack::create($mockHandler);
     $httpClient = new Client(['handler' => $handler]);
-    $batchJobsDelegate =
-        new BatchJobsDelegate($this->adWordsSession, $httpClient);
+    $batchJobsDelegate = new BatchJobsDelegate(
+        $this->adWordsSession,
+        $httpClient,
+        null,
+        new SimpleGuzzleHttpClientFactory($httpClient)
+    );
     $batchJobsDelegate->closeIncrementalUpload($batchJobUploadStatus);
   }
 
@@ -221,7 +266,11 @@ class BatchJobsDelegateTest extends PHPUnit_Framework_TestCase {
     $handler = HandlerStack::create($mockHandler);
     $httpClient = new Client(['handler' => $handler]);
     $batchJobsDelegate = new BatchJobsDelegate(
-        $this->adWordsSession, $httpClient, FakeMutateResult::class);
+        $this->adWordsSession,
+        $httpClient,
+        FakeMutateResult::class,
+        new SimpleGuzzleHttpClientFactory($httpClient)
+    );
 
     $expectedMutateResults = BatchJobsTestProvider::getMutateResultArray();
     $actualMutateResults =
@@ -283,8 +332,11 @@ class BatchJobsDelegateTest extends PHPUnit_Framework_TestCase {
     $handler = HandlerStack::create($mockHandler);
     $httpClient = new Client(['handler' => $handler]);
     $batchJobsDelegate = new BatchJobsDelegate(
-        $this->adWordsSession, $httpClient, FakeMutateResult::class);
-    $mutateResults =
-        $batchJobsDelegate->downloadBatchJobResults(self::$DUMMY_DOWNLOAD_URL);
+        $this->adWordsSession,
+        $httpClient,
+        FakeMutateResult::class,
+        new SimpleGuzzleHttpClientFactory($httpClient)
+    );
+    $batchJobsDelegate->downloadBatchJobResults(self::$DUMMY_DOWNLOAD_URL);
   }
 }

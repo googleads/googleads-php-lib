@@ -105,6 +105,7 @@ class BatchJobsTestProvider {
     $campaign->setName('Test large ID');
     $operand = new FakeOperand();
     $operand->setCampaign($campaign);
+
     $mutateResult3 = new FakeMutateResult();
     $mutateResult3->setResult($operand);
     $mutateResult3->setIndex(2);

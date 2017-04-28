@@ -77,7 +77,9 @@ class AddKeywordsUsingIncrementalBatchJob {
     $adGroupCriterionOperations =
         self::buildAdGroupCriterionOperations($adGroupId);
     $batchJobUploadStatus = $batchJobs->uploadIncrementalBatchJobOperations(
-        $adGroupCriterionOperations, new BatchJobUploadStatus($uploadUrl));
+        $adGroupCriterionOperations,
+        new BatchJobUploadStatus($uploadUrl, $session)
+    );
     printf("Uploaded %d operations for batch job with ID %d.\n",
         count($adGroupCriterionOperations), $batchJob->getId());
 

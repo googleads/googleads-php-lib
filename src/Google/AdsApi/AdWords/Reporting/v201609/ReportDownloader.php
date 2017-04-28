@@ -22,11 +22,11 @@ use Google\AdsApi\AdWords\Reporting\ApiErrorFieldNameConverter;
 use Google\AdsApi\AdWords\Reporting\ReportDownloadResult;
 use Google\AdsApi\AdWords\v201609\cm\ApiError;
 use Google\AdsApi\AdWords\v201609\cm\ApiException;
-use Google\AdsApi\Common\GuzzleLogMessageHandler;
+use Google\AdsApi\Common\AdsGuzzleHttpClientFactory;
+use Google\AdsApi\Common\GuzzleHttpClientFactory;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
-use GuzzleHttp\HandlerStack;
 use GuzzleHttp\RequestOptions;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
@@ -50,29 +50,26 @@ final class ReportDownloader {
    * Creates a report downloader with the specified parameters.
    *
    * @param AdWordsSession $session the session used to connect to AdWords API
-   * @param Client|null $httpClient optional, the Guzzle HTTP client that will
-   *     handle HTTP calls
    * @param RequestOptionsFactory|null $requestOptionsFactory optional, the
    *     factory to create report requests
+   * @param Client|null $httpClient optional, the Guzzle HTTP client whose
+   *     handler stacks this library's logging middleware will be pushed to
+   * @param GuzzleHttpClientFactory|null $httpClientFactory optional, the Guzzle
+   *     HTTP client factory that will generate a client handling HTTP calls
    */
   public function __construct(
       AdWordsSession $session,
+      RequestOptionsFactory $requestOptionsFactory = null,
       Client $httpClient = null,
-      RequestOptionsFactory $requestOptionsFactory = null
+      GuzzleHttpClientFactory $httpClientFactory = null
   ) {
     $this->session = $session;
 
-    if ($httpClient === null) {
-      $stack = HandlerStack::create();
-      $stack->before(
-          'http_errors',
-          GuzzleLogMessageHandler::log(
-              $this->session->getReportDownloaderLogger())
-      );
-      $this->httpClient = new Client(['handler' => $stack]);
-    } else {
-      $this->httpClient = $httpClient;
+    if ($httpClientFactory === null) {
+      $httpClientFactory = new AdsGuzzleHttpClientFactory(
+          $this->session->getReportDownloaderLogger(), $httpClient);
     }
+    $this->httpClient = $httpClientFactory->generateHttpClient();
 
     $this->requestOptionsFactory = ($requestOptionsFactory === null)
         ? new RequestOptionsFactory($session) : $requestOptionsFactory;

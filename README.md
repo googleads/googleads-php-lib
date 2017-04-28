@@ -1,5 +1,7 @@
 ## Google Ads API PHP Client Library
 
+go/ads-client-lib-php
+
 This project hosts the PHP client library for the various SOAP-based Ads APIs
 (AdWords and DFP) at Google.
 
@@ -192,6 +194,24 @@ $session = (new AdWordsSessionBuilder())
     ->withSoapLogger(new MyCustomSoapLogger())
     ->withReportDownloaderLogger(new MyCustomReportDownloaderLogger())
     ->build();
+```
+
+### Reporting
+When downloading reports, you can set additional
+[stream context options](http://php.net/manual/en/context.php) using the
+`stream_context` key to suit your needs, e.g., increasing the timeout, as shown
+below. See also
+[Guzzle FAQ](http://docs.guzzlephp.org/en/latest/faq.html#how-can-i-add-custom-stream-context-options)
+for details.
+
+```php
+$options = [
+    'stream_context' => [
+        'http' => ['timeout' => 120]
+    ]
+];
+$requestOptionsFactory = new RequestOptionsFactory($session, $options);
+$reportDownloader = new ReportDownloader($session, $requestOptionsFactory);
 ```
 
 ### Documentation

@@ -28,25 +28,42 @@ use Symfony\Component\Serializer\Encoder\XmlEncoder;
  */
 class RequestOptionsFactory {
 
+  /**
+   * A default timeout for opening streams to download AdWords API reports.
+   * You can override this using the constructor. See README.md for details.
+   */
+  const DEFAULT_TIMEOUT_IN_SECONDS = 120;
+
   private $session;
   private $reportDefinitionSerializer;
   private $oAuth2TokenRefresher;
+  private $options;
 
   /**
    * Creates a factory for request options with the specified AdWords session.
    *
    * @param AdWordsSession $session the session for using the AdWords API
+   * @param string[] $options the additional request options for making
+   *     requests in the form of associative array
    * @param Serializer|null $reportDefinitionSerializer the Symfony serializer
    *     for serializing report definitions
    */
-  public function __construct(AdWordsSession $session,
-      Serializer $reportDefinitionSerializer = null) {
+  public function __construct(
+      AdWordsSession $session,
+      array $options = null,
+      Serializer $reportDefinitionSerializer = null
+  ) {
     $this->session = $session;
     $this->reportDefinitionSerializer = ($reportDefinitionSerializer === null)
         ? new Serializer([new AdWordsNormalizer()],
             [new XmlEncoder()])
         : $reportDefinitionSerializer;
     $this->oAuth2TokenRefresher = new OAuth2TokenRefresher();
+    $this->options = ($options === null) ? [
+        'stream_context' => [
+            'http' => ['timeout' => self::DEFAULT_TIMEOUT_IN_SECONDS]
+        ]
+    ] : $options;
   }
 
   private function createHeaders() {
@@ -95,10 +112,10 @@ class RequestOptionsFactory {
     $context = ['xml_root_node_name' => 'reportDefinition'];
     $params['__rdxml'] = $this->reportDefinitionSerializer->serialize(
         $reportDefinition, 'xml', $context);
-    return [
+    return array_merge($this->options, [
         RequestOptions::HEADERS => $this->createHeaders(),
         RequestOptions::FORM_PARAMS => $params,
-    ];
+    ]);
   }
 
   /**
@@ -114,9 +131,9 @@ class RequestOptionsFactory {
   public function createRequestOptionsWithAwqlQuery($reportDefinition,
       $reportFormat) {
     $params = ['__rdquery' => $reportDefinition, '__fmt' => $reportFormat];
-    return [
+    return array_merge($this->options, [
         RequestOptions::HEADERS => $this->createHeaders(),
         RequestOptions::FORM_PARAMS => $params,
-    ];
+    ]);
   }
 }

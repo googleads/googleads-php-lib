@@ -95,7 +95,7 @@ class ReportDownloaderTest extends PHPUnit_Framework_TestCase {
     $reportDefinition->setDownloadFormat(DownloadFormat::CSV);
 
     $reportDownloader =
-        new ReportDownloader($this->adWordsSession, $httpClient);
+        new ReportDownloader($this->adWordsSession, null, $httpClient);
     $downloadResult = $reportDownloader->downloadReport($reportDefinition);
 
     $this->assertNotNull($downloadResult);
@@ -115,7 +115,7 @@ class ReportDownloaderTest extends PHPUnit_Framework_TestCase {
     $reportQuery = 'SELECT CampaignId, AdGroupId, Id, Criteria, CriteriaType, '
         . 'Impressions, Clicks, Cost FROM CRITERIA_PERFORMANCE_REPORT';
     $reportDownloader =
-        new ReportDownloader($this->adWordsSession, $httpClient);
+        new ReportDownloader($this->adWordsSession, null, $httpClient);
     $downloadResult =
         $reportDownloader->downloadReportWithAwql($reportQuery, 'CSV');
 
@@ -150,7 +150,7 @@ class ReportDownloaderTest extends PHPUnit_Framework_TestCase {
     $reportDefinition->setDownloadFormat(DownloadFormat::CSV);
 
     $reportDownloader =
-        new ReportDownloader($this->adWordsSession, $httpClient);
+        new ReportDownloader($this->adWordsSession, null, $httpClient);
     $responseStream =
         $reportDownloader->downloadReport($reportDefinition);
   }
@@ -174,8 +174,48 @@ class ReportDownloaderTest extends PHPUnit_Framework_TestCase {
     $reportQuery = 'SELECT CampaignId, AdGroupId, Id, Criteria, CriteriaType, '
         . 'Impressions, Clicks, Cost FROM CRITERIA_PERFORMANCE_REPORT';
     $reportDownloader =
-        new ReportDownloader($this->adWordsSession, $httpClient);
+        new ReportDownloader($this->adWordsSession, null, $httpClient);
     $reportDownloadResult =
         $reportDownloader->downloadReportWithAwql($reportQuery, 'CSV');
+  }
+
+  /**
+   * @covers Google\AdsApi\AdWords\Reporting\v201702\ReportDownloader::downloadReportWithAwql
+   */
+  public function testDownloadReportUsingAwqlWithRequestOptionsFactory() {
+    // Setup the Guzzle HTTP client to mock a request to return the report
+    // contents.
+    $fakeReport = ReportingTestProvider::getFakeCriteriaReport();
+    $mockHandler = new MockHandler([new Response(200, [], $fakeReport)]);
+    $handler = HandlerStack::create($mockHandler);
+    $httpClient = new Client(['handler' => $handler]);
+
+    $reportQuery = 'SELECT CampaignId, AdGroupId, Id, Criteria, CriteriaType, '
+        . 'Impressions, Clicks, Cost FROM CRITERIA_PERFORMANCE_REPORT';
+    $reportFormat = 'CSV';
+
+    $requestOptionsFactory = $this
+        ->getMockBuilder(RequestOptionsFactory::class)
+        ->disableOriginalConstructor()
+        ->getMock();
+    $requestOptionsFactory
+        ->method('createRequestOptionsWithAwqlQuery')
+        ->willReturn([
+            '__rdquery' => $reportQuery,
+            '__fmt' => $reportFormat,
+            'stream_context' => [
+                'http' => ['timeout' => 480]
+            ]
+        ]);
+
+    $reportDownloader = new ReportDownloader(
+        $this->adWordsSession,
+        $requestOptionsFactory,
+        $httpClient
+    );
+    $downloadResult =
+        $reportDownloader->downloadReportWithAwql($reportQuery, $reportFormat);
+
+    $this->assertNotNull($downloadResult);
   }
 }

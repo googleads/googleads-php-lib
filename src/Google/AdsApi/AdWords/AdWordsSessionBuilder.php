@@ -134,7 +134,7 @@ final class AdWordsSessionBuilder implements AdsBuilder {
     $this->batchJobsUtilLogger = $this->adsLoggerFactory->createLogger(
         self::$DEFAULT_BJ_UTIL_LOGGER_CHANNEL,
         $configuration->getConfiguration('batchJobsUtilLogFilePath', 'LOGGING'),
-        $configuration->getConfiguration('batchJobsLogLevel', 'LOGGING')
+        $configuration->getConfiguration('batchJobsUtilLogLevel', 'LOGGING')
     );
 
     return $this;

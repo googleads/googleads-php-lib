@@ -22,14 +22,11 @@ use Google\AdsApi\AdWords\BatchJobs\BatchJobUploadStatus;
 use Google\AdsApi\AdWords\BatchJobs\DotRemoverNameConverter;
 use Google\AdsApi\AdWords\v201609\cm\ApiException;
 use Google\AdsApi\AdWords\v201609\cm\MutateResult;
-use Google\AdsApi\AdWords\v201609\cm\Operation;
-use Google\AdsApi\Common\GuzzleLogMessageHandler;
+use Google\AdsApi\Common\GuzzleHttpClientFactory;
+use Google\AdsApi\Common\AdsGuzzleHttpClientFactory;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ServerException;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Middleware;
 use GuzzleHttp\RequestOptions;
-use Psr\Http\Message\RequestInterface;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
 use Symfony\Component\Serializer\Serializer;
@@ -50,6 +47,7 @@ final class BatchJobsDelegate {
   private static $MUTATE_RESULT_CLASS_NAME =
       'Google\AdsApi\AdWords\v201609\cm\MutateResult';
 
+  private $session;
   private $httpClient;
   private $batchJobSerializer;
   private $mutateResultClassName;
@@ -58,26 +56,25 @@ final class BatchJobsDelegate {
    * Creates a `BatchJobsDelegate` object with the specified parameters.
    *
    * @param AdWordsSession $session the session used to connect to AdWords API
-   * @param Client|null $httpClient optional, the Guzzle HTTP client that will
-   *     handle HTTP calls
+   * @param Client|null $httpClient optional, the Guzzle HTTP client whose
+   *     handler stacks this library's logging middleware will be pushed to
    * @param string|null $mutateResultClassName the root class name for
    *     denormalization
+   * @param GuzzleHttpClientFactory|null $httpClientFactory optional, the Guzzle
+   *     HTTP client factory that will generate a client handling HTTP calls
    */
   public function __construct(
       AdWordsSession $session,
       Client $httpClient = null,
-      $mutateResultClassName = null
+      $mutateResultClassName = null,
+      GuzzleHttpClientFactory $httpClientFactory = null
   ) {
-    if ($httpClient === null) {
-      $stack = HandlerStack::create();
-      $stack->before(
-          'http_errors',
-          GuzzleLogMessageHandler::log($session->getBatchJobsUtilLogger())
-      );
-      $this->httpClient = new Client(['handler' => $stack]);
-    } else {
-      $this->httpClient = $httpClient;
-    }
+    $this->session = $session;
+    $this->httpClientFactory = ($httpClientFactory === null)
+        ? new AdsGuzzleHttpClientFactory(
+            $session->getBatchJobsUtilLogger(), $httpClient)
+        : $httpClientFactory;
+    $this->httpClient = $this->httpClientFactory->generateHttpClient();
 
     $this->mutateResultClassName = ($mutateResultClassName === null)
         ? self::$MUTATE_RESULT_CLASS_NAME
@@ -120,7 +117,13 @@ final class BatchJobsDelegate {
     return $this->closeIncrementalUpload(
         $this->uploadIncrementalBatchJobOperations(
             $operations,
-            new BatchJobUploadStatus($uploadUrl)
+            new BatchJobUploadStatus(
+                $uploadUrl,
+                $this->session,
+                0,
+                $this->httpClient,
+                $this->httpClientFactory
+            )
         )
     );
   }
@@ -177,7 +180,10 @@ final class BatchJobsDelegate {
 
     return new BatchJobUploadStatus(
         $batchJobUploadStatus->getResumableUploadUrl(),
-        $batchJobUploadStatus->getTotalContentBytes() + $contentLength
+        $this->session,
+        $batchJobUploadStatus->getTotalContentBytes() + $contentLength,
+        $this->httpClient,
+        $this->httpClientFactory
     );
   }
 
@@ -220,7 +226,10 @@ final class BatchJobsDelegate {
     }
     return new BatchJobUploadStatus(
         $batchJobUploadStatus->getResumableUploadUrl(),
-        $batchJobUploadStatus->getTotalContentBytes() + $contentLength
+        $this->session,
+        $batchJobUploadStatus->getTotalContentBytes() + $contentLength,
+        $this->httpClient,
+        $this->httpClientFactory
     );
   }
 

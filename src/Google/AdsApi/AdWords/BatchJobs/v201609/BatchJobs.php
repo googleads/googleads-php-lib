@@ -42,8 +42,8 @@ final class BatchJobs {
    * Creates a `BatchJobs` object with the specified parameters.
    *
    * @param AdWordsSession $session the session used to connect to AdWords API
-   * @param Client|null $httpClient optional, the Guzzle HTTP client that will
-   *     handle HTTP calls
+   * @param Client|null $httpClient optional, the Guzzle HTTP client whose
+   *     handler stacks this library's logging middleware will be pushed to
    * @param string|null $mutateResultClassName the root class name for
    *     denormalization
    * @param BatchJobsDelegate|null $batchJobsDelegate the batch jobs

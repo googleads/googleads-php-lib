@@ -35,6 +35,8 @@ use PHPUnit_Framework_TestCase;
  */
 class RequestOptionsFactoryTest extends PHPUnit_Framework_TestCase {
 
+  private static $DEFAULT_TIMEOUT_IN_SECONDS = 120;
+
   private $adWordsSession;
   private $requestOptionsFactory;
 
@@ -98,7 +100,10 @@ class RequestOptionsFactoryTest extends PHPUnit_Framework_TestCase {
             'includeZeroImpressions' => 'false',
         ],
         'form_params' => ['__rdxml' => $fakeReportDefinitionPayload],
-        'stream' => true
+        'stream' => true,
+        'stream_context' => [
+            'http' => ['timeout' => self::$DEFAULT_TIMEOUT_IN_SECONDS]
+        ]
     ];
     $actualRequestOptions = $this->requestOptionsFactory
         ->createRequestOptionsWithReportDefinition($reportDefinition);
@@ -108,6 +113,8 @@ class RequestOptionsFactoryTest extends PHPUnit_Framework_TestCase {
         $expectedRequestOptions['form_params']['__rdxml'],
         $actualRequestOptions['form_params']['__rdxml']
     );
+    $this->assertSame($expectedRequestOptions['stream_context'],
+        $actualRequestOptions['stream_context']);
   }
 
   /**
@@ -132,7 +139,10 @@ class RequestOptionsFactoryTest extends PHPUnit_Framework_TestCase {
             '__rdquery' => $reportQuery,
             '__fmt' => 'CSV'
         ],
-        'stream' => true
+        'stream' => true,
+        'stream_context' => [
+            'http' => ['timeout' => self::$DEFAULT_TIMEOUT_IN_SECONDS]
+        ]
     ];
     $actualRequestOptions = $this->requestOptionsFactory
         ->createRequestOptionsWithAwqlQuery($reportQuery, 'CSV');
@@ -142,5 +152,62 @@ class RequestOptionsFactoryTest extends PHPUnit_Framework_TestCase {
         $actualRequestOptions['form_params']['__rdquery']);
     $this->assertSame($expectedRequestOptions['form_params']['__fmt'],
         $actualRequestOptions['form_params']['__fmt']);
+    $this->assertSame($expectedRequestOptions['stream_context'],
+        $actualRequestOptions['stream_context']);
+  }
+
+  /**
+   * @covers Google\AdsApi\AdWords\Reporting\v201609\RequestOptionsFactory::createRequestOptionsWithReportDefinition
+   */
+  public function testCreateRequestOptionsWithAdditionalRequestOptions() {
+    $fakeReportDefinitionPayload =
+        ReportingTestProvider::getFakeReportDefinition();
+    $expectedTimeout = 300;
+    $expectedRequestOptions = [
+        'headers' => [
+            'Authorization' => 'Bearer abc123',
+            'developerToken' => 'ABcdeFGH93KL-NOPQ_STUv',
+            'clientCustomerId' => '123-456-7890',
+            'skipReportHeader' => 'true',
+            'skipColumnHeader' => 'true',
+            'skipReportSummary' => 'false',
+            'useRawEnumValues' => 'true',
+            'includeZeroImpressions' => 'false',
+        ],
+        'form_params' => ['__rdxml' => $fakeReportDefinitionPayload],
+        'stream' => true,
+        'stream_context' => [
+            'http' => ['timeout' => $expectedTimeout]
+        ]
+    ];
+
+    $selector = new Selector();
+    $selector->setFields(['CampaignId', 'AdGroupId', 'Id', 'Criteria',
+        'CriteriaType', 'Impressions', 'Clicks', 'Cost']);
+    $reportDefinition = new ReportDefinition();
+    $reportDefinition->setSelector($selector);
+    $reportDefinition->setReportName('CRITERIA_PERFORMANCE_REPORT');
+    $reportDefinition->setReportType(
+        ReportDefinitionReportType::CRITERIA_PERFORMANCE_REPORT);
+    $reportDefinition->setDownloadFormat(DownloadFormat::CSV);
+
+    $streamContextOptions = [
+        'stream_context' => [
+            'http' => ['timeout' => $expectedTimeout]
+        ]
+    ];
+    $requestOptionsFactory =
+        new RequestOptionsFactory($this->adWordsSession, $streamContextOptions);
+    $actualRequestOptions = $requestOptionsFactory
+        ->createRequestOptionsWithReportDefinition($reportDefinition);
+
+    $this->assertSame($expectedRequestOptions['headers'],
+        $actualRequestOptions['headers']);
+    $this->assertXmlStringEqualsXmlString(
+        $expectedRequestOptions['form_params']['__rdxml'],
+        $actualRequestOptions['form_params']['__rdxml']
+    );
+    $this->assertSame($expectedRequestOptions['stream_context'],
+        $actualRequestOptions['stream_context']);
   }
 }

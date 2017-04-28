@@ -1,3 +1,21 @@
+### 26.0.0
+
+##### AdWords
+
+*   Added support for specifying addtional request options for reporting.
+*   Fixed
+    [issue #246](https://github.com/googleads/googleads-php-lib/issues/246).
+*   Accepted [PR #251](https://github.com/googleads/googleads-php-lib/pull/251).
+*   Accepted [PR #253](https://github.com/googleads/googleads-php-lib/pull/253).
+*   Accepted [PR #256](https://github.com/googleads/googleads-php-lib/pull/256).
+*   Updated AddSiteLinksUsingFeeds examples to use field and constant names
+    that are consistent with the field names of SitelinkFeedItem.
+
+##### Common
+
+*   Added `AdsGuzzleHttpClientFactory` to create Guzzle HTTP clients for
+    non-SOAP calls.
+
 ### 25.4.0
 
 ##### DFP

@@ -59,8 +59,8 @@ class AddSitelinksUsingFeeds {
   const PLACEHOLDER_SITELINKS = 1;
   const PLACEHOLDER_FIELD_SITELINK_LINK_TEXT = 1;
   const PLACEHOLDER_FIELD_SITELINK_FINAL_URL = 5;
-  const PLACEHOLDER_FIELD_LINE_1_TEXT = 3;
-  const PLACEHOLDER_FIELD_LINE_2_TEXT = 4;
+  const PLACEHOLDER_FIELD_LINE_2_TEXT = 3;
+  const PLACEHOLDER_FIELD_LINE_3_TEXT = 4;
 
   public static function runExample(AdWordsServices $adWordsServices,
       AdWordsSession $session, $campaignId) {
@@ -90,18 +90,18 @@ class AddSitelinksUsingFeeds {
     $finalUrlAttribute = new FeedAttribute();
     $finalUrlAttribute->setType(FeedAttributeType::URL_LIST);
     $finalUrlAttribute->setName('Link URL');
-    $line1Attribute = new FeedAttribute();
-    $line1Attribute->setType(FeedAttributeType::STRING);
-    $line1Attribute->setName('Line 1 Description');
     $line2Attribute = new FeedAttribute();
     $line2Attribute->setType(FeedAttributeType::STRING);
-    $line2Attribute->setName('Line 2 Description');
+    $line2Attribute->setName('Line 2');
+    $line3Attribute = new FeedAttribute();
+    $line3Attribute->setType(FeedAttributeType::STRING);
+    $line3Attribute->setName('Line 3');
 
     // Create the feed.
     $sitelinksFeed = new Feed();
     $sitelinksFeed->setName('Feed For Sitelinks #' . uniqid());
     $sitelinksFeed->setAttributes(
-        [$textAttribute, $finalUrlAttribute, $line1Attribute, $line2Attribute]);
+        [$textAttribute, $finalUrlAttribute, $line2Attribute, $line3Attribute]);
     $sitelinksFeed->setOrigin(FeedOrigin::USER);
 
     // Create the feed operation and add it on the server.
@@ -117,13 +117,13 @@ class AddSitelinksUsingFeeds {
     $sitelinksData['linkTextFeedAttributeId'] = $savedAttributes[0]->getId();
     $sitelinksData['linkFinalUrlFeedAttributeId'] =
         $savedAttributes[1]->getId();
-    $sitelinksData['line1FeedAttribute'] = $savedAttributes[2]->getId();
-    $sitelinksData['line2FeedAttribute'] = $savedAttributes[3]->getId();
+    $sitelinksData['line2FeedAttribute'] = $savedAttributes[2]->getId();
+    $sitelinksData['line3FeedAttribute'] = $savedAttributes[3]->getId();
 
     printf(
         "Feed with name '%s', ID %d with linkTextAttributeId %d, "
-        . "linkFinalUrlAttributeId %d, line1AttributeId %d and "
-        . "line2AttributeId %d was created.\n",
+        . "linkFinalUrlAttributeId %d, line2AttributeId %d and "
+        . "line3AttributeId %d was created.\n",
         $savedFeed->getName(),
         $savedFeed->getId(),
         $savedAttributes[0]->getId(),
@@ -150,36 +150,36 @@ class AddSitelinksUsingFeeds {
         $sitelinksData,
         'Home',
         'http://www.example.com',
-        'Home line 1',
-        'Home line 2'
+        'Home line 2',
+        'Home line 3'
     );
     $stores = self::newSitelinkFeedItemAddOperation(
         $sitelinksData,
         'Stores',
         'http://www.example.com/stores',
-        'Stores line 1',
-        'Stores line 2'
+        'Stores line 2',
+        'Stores line 3'
     );
     $onSale = self::newSitelinkFeedItemAddOperation(
         $sitelinksData,
         'On Sale',
         'http://www.example.com/sale',
-        'On Sale line 1',
-        'On Sale line 2'
+        'On Sale line 2',
+        'On Sale line 3'
     );
     $support = self::newSitelinkFeedItemAddOperation(
         $sitelinksData,
         'Support',
         'http://www.example.com/support',
-        'Support line 1',
-        'Support line 2'
+        'Support line 2',
+        'Support line 3'
     );
     $products = self::newSitelinkFeedItemAddOperation(
         $sitelinksData,
         'Products',
         'http://www.example.com/products',
-        'Products line 1',
-        'Products line 2'
+        'Products line 2',
+        'Products line 3'
     );
     // This site link is using geographical targeting by specifying the
     // criterion ID for California.
@@ -187,8 +187,8 @@ class AddSitelinksUsingFeeds {
         $sitelinksData,
         'About Us',
         'http://www.example.com/about',
-        'About Us line 1',
         'About Us line 2',
+        'About Us line 3',
         21137
     );
 
@@ -228,21 +228,21 @@ class AddSitelinksUsingFeeds {
         $sitelinksData['linkFinalUrlFeedAttributeId']);
     $linkFinalUrlFieldMapping->setFieldId(
         self::PLACEHOLDER_FIELD_SITELINK_FINAL_URL);
-    $line1FieldMapping = new AttributeFieldMapping();
-    $line1FieldMapping->setFeedAttributeId(
-        $sitelinksData['line1FeedAttribute']);
-    $line1FieldMapping->setFieldId(self::PLACEHOLDER_FIELD_LINE_1_TEXT);
     $line2FieldMapping = new AttributeFieldMapping();
     $line2FieldMapping->setFeedAttributeId(
         $sitelinksData['line2FeedAttribute']);
     $line2FieldMapping->setFieldId(self::PLACEHOLDER_FIELD_LINE_2_TEXT);
+    $line3FieldMapping = new AttributeFieldMapping();
+    $line3FieldMapping->setFeedAttributeId(
+        $sitelinksData['line3FeedAttribute']);
+    $line3FieldMapping->setFieldId(self::PLACEHOLDER_FIELD_LINE_3_TEXT);
 
     // Create the feed mapping and feed mapping operation.
     $feedMapping = new FeedMapping();
     $feedMapping->setPlaceholderType(self::PLACEHOLDER_SITELINKS);
     $feedMapping->setFeedId($sitelinksData['sitelinksFeedId']);
     $feedMapping->setAttributeFieldMappings([$linkTextFieldMapping,
-        $linkFinalUrlFieldMapping, $line1FieldMapping, $line2FieldMapping]);
+        $linkFinalUrlFieldMapping, $line2FieldMapping, $line3FieldMapping]);
 
     $operation = new FeedMappingOperation();
     $operation->setOperand($feedMapping);
@@ -312,16 +312,16 @@ class AddSitelinksUsingFeeds {
    *     metadata
    * @param string $text the text of the sitelink
    * @param string $finalUrl the final URL of the sitelink
-   * @param string $line1 the first line of the sitelink description
-   * @param string $line2 the second line of the sitelink description
+   * @param string $line2 the first line of the sitelink description
+   * @param string $line3 the second line of the sitelink description
    * @param int|null $locationId the criterion ID of location to be targeted
    */
   private static function newSitelinkFeedItemAddOperation(
       array $sitelinksData,
       $text,
       $finalUrl,
-      $line1,
       $line2,
+      $line3,
       $locationId = null
   ) {
     // Create the feed item attribute values for our text values.
@@ -333,14 +333,14 @@ class AddSitelinksUsingFeeds {
     $linkFinalUrlAttributeValue->setFeedAttributeId(
         $sitelinksData['linkFinalUrlFeedAttributeId']);
     $linkFinalUrlAttributeValue->setStringValues([$finalUrl]);
-    $line1AttributeValue = new FeedItemAttributeValue();
-    $line1AttributeValue->setFeedAttributeId(
-        $sitelinksData['line1FeedAttribute']);
-    $line1AttributeValue->setStringValue($line1);
     $line2AttributeValue = new FeedItemAttributeValue();
     $line2AttributeValue->setFeedAttributeId(
         $sitelinksData['line2FeedAttribute']);
     $line2AttributeValue->setStringValue($line2);
+    $line3AttributeValue = new FeedItemAttributeValue();
+    $line3AttributeValue->setFeedAttributeId(
+        $sitelinksData['line3FeedAttribute']);
+    $line3AttributeValue->setStringValue($line3);
 
     // Create the feed item.
     $item = new FeedItem();
@@ -348,8 +348,8 @@ class AddSitelinksUsingFeeds {
     $item->setAttributeValues([
         $linkTextAttributeValue,
         $linkFinalUrlAttributeValue,
-        $line1AttributeValue,
-        $line2AttributeValue
+        $line2AttributeValue,
+        $line3AttributeValue
     ]);
 
     // OPTIONAL: Use geographical targeting on a feed.

@@ -16,6 +16,9 @@
  */
 namespace Google\AdsApi\AdWords\BatchJobs;
 
+use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\Common\AdsGuzzleHttpClientFactory;
+use Google\AdsApi\Common\GuzzleHttpClientFactory;
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 
@@ -35,13 +38,25 @@ final class BatchJobUploadStatus {
    *
    * @param string $url the resumable upload URL or an upload URL if
    *     $totalContentBytes is 0
+   * @param AdWordsSession $session the session used to connect to AdWords API
    * @param int|null $totalContentBytes the total content bytes uploaded so far
-   * @param Client|null $httpClient optional, the Guzzle HTTP client that will
-   *     handle HTTP calls
+   * @param Client|null $httpClient optional, the Guzzle HTTP client whose
+   *     handler stacks this library's logging middleware will be pushed to
+   * @param GuzzleHttpClientFactory|null $httpClientFactory optional, the Guzzle
+   *     HTTP client factory that will generate a client handling HTTP calls
    */
-  public function __construct($url, $totalContentBytes = null,
-      $httpClient = null) {
-    $this->httpClient = ($httpClient === null) ? new Client() : $httpClient;
+  public function __construct(
+      $url,
+      AdWordsSession $session,
+      $totalContentBytes = null,
+      Client $httpClient = null,
+      GuzzleHttpClientFactory $httpClientFactory = null
+  ) {
+    if ($httpClientFactory === null) {
+      $httpClientFactory = new AdsGuzzleHttpClientFactory(
+          $session->getBatchJobsUtilLogger(), $httpClient);
+    }
+    $this->httpClient = $httpClientFactory->generateHttpClient();
     $this->totalContentBytes =
         ($totalContentBytes === null) ? 0 : $totalContentBytes;
     // If this is the first upload, then issue a request to get the resumable
