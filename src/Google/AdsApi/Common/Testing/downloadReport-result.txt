@@ -1,0 +1,6 @@
+"CRITERIA_PERFORMANCE_REPORT (Apr 4, 2017-Apr 10, 2017)"
+Campaign ID,Ad group ID,Keyword ID,Keyword / Placement,Criteria Type,Impressions,Clicks,Cost
+11111,33333,3000000,Content,KEYWORD,1,2,200000
+2222,44444,300,Parent,PARENT,1,2,700000
+5555,66666,3000000,Content,KEYWORD,1,2,100000
+Total, --, --, --, --,3,6,1000000

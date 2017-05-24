@@ -79,4 +79,20 @@ final class LogMessageScrubbers {
     }
     return $soapXml;
   }
+
+  /**
+   * Scrubs an array of HTTP headers by replacing their values with a redacted
+   * token.
+   *
+   * @param string[] $httpHeaders
+   * @param string[] $headersToScrub which HTTP headers to scrub
+   * @return string[] the list of HTTP headers with any sensitive info removed
+   */
+  public static function scrubHttpHeadersArray(
+      array $httpHeaders, array $headersToScrub) {
+    foreach ($headersToScrub as $header) {
+      $httpHeaders[$header] = self::$REDACTED;
+    }
+    return $httpHeaders;
+  }
 }

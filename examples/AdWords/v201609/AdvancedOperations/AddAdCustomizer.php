@@ -29,8 +29,6 @@ use Google\AdsApi\AdWords\v201609\cm\AdCustomizerFeedService;
 use Google\AdsApi\AdWords\v201609\cm\AdGroupAd;
 use Google\AdsApi\AdWords\v201609\cm\AdGroupAdOperation;
 use Google\AdsApi\AdWords\v201609\cm\AdGroupAdService;
-use Google\AdsApi\AdWords\v201609\cm\AdGroupCriterionOperation;
-use Google\AdsApi\AdWords\v201609\cm\AdGroupCriterionService;
 use Google\AdsApi\AdWords\v201609\cm\ExpandedTextAd;
 use Google\AdsApi\AdWords\v201609\cm\FeedItem;
 use Google\AdsApi\AdWords\v201609\cm\FeedItemAdGroupTargeting;
@@ -206,6 +204,7 @@ class AddAdCustomizer {
   ) {
     $adGroupAdService =
         $adWordsServices->get($session, AdGroupAdService::class);
+    $operations = [];
 
     // Create an expanded text ad that uses ad customization.
     $expandedTextAd = new ExpandedTextAd();

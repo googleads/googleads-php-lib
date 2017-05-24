@@ -26,7 +26,6 @@ use Google\AdsApi\AdWords\v201609\cm\AdGroupAd;
 use Google\AdsApi\AdWords\v201609\cm\AdGroupAdOperation;
 use Google\AdsApi\AdWords\v201609\cm\AdGroupAdService;
 use Google\AdsApi\AdWords\v201609\cm\AdGroupAdStatus;
-use Google\AdsApi\AdWords\v201609\cm\AdType;
 use Google\AdsApi\AdWords\v201609\cm\Operator;
 use Google\AdsApi\Common\OAuth2TokenBuilder;
 

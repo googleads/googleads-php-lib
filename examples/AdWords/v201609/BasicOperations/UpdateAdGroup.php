@@ -24,7 +24,6 @@ use Google\AdsApi\AdWords\AdWordsSessionBuilder;
 use Google\AdsApi\AdWords\v201609\cm\AdGroup;
 use Google\AdsApi\AdWords\v201609\cm\AdGroupOperation;
 use Google\AdsApi\AdWords\v201609\cm\AdGroupService;
-use Google\AdsApi\AdWords\v201609\cm\AdGroupStatus;
 use Google\AdsApi\AdWords\v201609\cm\BiddingStrategyConfiguration;
 use Google\AdsApi\AdWords\v201609\cm\CpcBid;
 use Google\AdsApi\AdWords\v201609\cm\Money;

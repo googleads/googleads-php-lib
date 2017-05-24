@@ -1,3 +1,14 @@
+### 27.0.0
+
+##### DFP
+
+*   Added support and examples for v201705.
+
+##### Common
+
+*   Added GuzzleLogMessageFormatter and refactored the Guzzle logging handler.
+*   Made user agents sent by non-SOAP utilities more informative.
+
 ### 26.0.0
 
 ##### AdWords

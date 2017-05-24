@@ -30,7 +30,7 @@ use Psr\Log\LoggerInterface;
 final class AdsGuzzleHttpClientFactory implements GuzzleHttpClientFactory {
 
   private $logger;
-  private $httpClient;
+  private $messageFormatter;
   private $config;
 
   /**
@@ -38,12 +38,17 @@ final class AdsGuzzleHttpClientFactory implements GuzzleHttpClientFactory {
    * generated HTTP clients.
    *
    * @param LoggerInterface $logger the logger for the generated HTTP clients
+   * @param GuzzleLogMessageFormatter $messageFormatter the Guzzle log
+   *     message formatter
    * @param Client|null $httpClient the user-provided HTTP client
    */
-  public function __construct(LoggerInterface $logger,
-      Client $httpClient = null) {
+  public function __construct(
+      LoggerInterface $logger,
+      GuzzleLogMessageFormatter $messageFormatter,
+      Client $httpClient = null
+  ) {
     $this->logger = $logger;
-    $this->httpClient = $httpClient;
+    $this->messageFormatter = $messageFormatter;
     $this->config = ($httpClient === null) ? [] : $httpClient->getConfig();
   }
 
@@ -63,7 +68,7 @@ final class AdsGuzzleHttpClientFactory implements GuzzleHttpClientFactory {
 
     // Add a logging middleware required by this library.
     $config['handler']->before('http_errors',
-        GuzzleLogMessageHandler::log($this->logger));
+        GuzzleLogMessageHandler::log($this->logger, $this->messageFormatter));
 
     return new Client($config);
   }

@@ -17,7 +17,6 @@
 namespace Google\AdsApi\Common\Util;
 
 use PHPUnit_Framework_TestCase;
-use ReflectionClass;
 
 /**
  * Unit tests for `LogMessageScrubbers`.
@@ -110,5 +109,57 @@ class LogMessageScrubbersTest extends PHPUnit_Framework_TestCase {
     $scrubbedSoapHeaders = LogMessageScrubbers::scrubRequestSoapHeaders(
         $originalSoapXml, []);
     $this->assertSame($originalSoapXml, $scrubbedSoapHeaders);
+  }
+
+  /**
+   * @covers Google\AdsApi\Common\Util\LogMessageScrubbers::scrubHttpHeadersArray
+   */
+  public function testScrubOneHttpHeaderInArray() {
+    $originalHttpHeaders = [
+        'server' => 'https://abc.xyz',
+        'Authorization' => 'Bearer 123.abc.456.xyz',
+        'Bear' => 'Sheep'
+    ];
+    $expectedScrubbedHttpHeaders = [
+        'server' => 'https://abc.xyz',
+        'Authorization' => 'REDACTED',
+        'Bear' => 'Sheep'
+    ];
+    $scrubbedHttpHeaders = LogMessageScrubbers::scrubHttpHeadersArray(
+        $originalHttpHeaders, ['Authorization']);
+    $this->assertSame($expectedScrubbedHttpHeaders, $scrubbedHttpHeaders);
+  }
+
+  /**
+   * @covers Google\AdsApi\Common\Util\LogMessageScrubbers::scrubHttpHeadersArray
+   */
+  public function testScrubTwoHttpHeadersInArray() {
+    $originalHttpHeaders = [
+        'server' => 'https://abc.xyz',
+        'Authorization' => 'Bearer 123.abc.456.xyz',
+        'Bear' => 'Sheep'
+    ];
+    $expectedScrubbedHttpHeaders = [
+        'server' => 'https://abc.xyz',
+        'Authorization' => 'REDACTED',
+        'Bear' => 'REDACTED'
+    ];
+    $scrubbedHttpHeaders = LogMessageScrubbers::scrubHttpHeadersArray(
+        $originalHttpHeaders, ['Authorization', 'Bear']);
+    $this->assertSame($expectedScrubbedHttpHeaders, $scrubbedHttpHeaders);
+  }
+
+  /**
+   * @covers Google\AdsApi\Common\Util\LogMessageScrubbers::scrubHttpHeadersArray
+   */
+  public function testScrubHttpHeadersInArrayNothingToScrubNoOp() {
+    $originalHttpHeaders = [
+        'server' => 'https://abc.xyz',
+        'Authorization' => 'Bearer 123.abc.456.xyz',
+        'Bear' => 'Sheep'
+    ];
+    $scrubbedHttpHeaders = LogMessageScrubbers::scrubHttpHeadersArray(
+        $originalHttpHeaders, []);
+    $this->assertSame($originalHttpHeaders, $scrubbedHttpHeaders);
   }
 }

@@ -35,7 +35,6 @@ use Google\AdsApi\AdWords\v201609\cm\ReportDefinitionReportType;
 use Google\AdsApi\AdWords\v201609\cm\Selector;
 use Google\AdsApi\AdWords\v201609\mcm\ManagedCustomerService;
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\Auth\FetchAuthTokenInterface;
 
 /**
  * This example gets and downloads an Ad Hoc report from an XML report

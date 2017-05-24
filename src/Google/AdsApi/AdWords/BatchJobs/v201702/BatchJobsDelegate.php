@@ -16,6 +16,7 @@
  */
 namespace Google\AdsApi\AdWords\BatchJobs\v201702;
 
+use Google\AdsApi\AdWords\AdWordsGuzzleLogMessageFormatterProvider;
 use Google\AdsApi\AdWords\AdWordsNormalizer;
 use Google\AdsApi\AdWords\AdWordsSession;
 use Google\AdsApi\AdWords\BatchJobs\BatchJobUploadStatus;
@@ -49,6 +50,7 @@ final class BatchJobsDelegate {
 
   private $session;
   private $httpClient;
+  private $httpClientFactory;
   private $batchJobSerializer;
   private $mutateResultClassName;
 
@@ -70,10 +72,17 @@ final class BatchJobsDelegate {
       GuzzleHttpClientFactory $httpClientFactory = null
   ) {
     $this->session = $session;
-    $this->httpClientFactory = ($httpClientFactory === null)
-        ? new AdsGuzzleHttpClientFactory(
-            $session->getBatchJobsUtilLogger(), $httpClient)
-        : $httpClientFactory;
+    if ($httpClientFactory === null) {
+      $logMessageFormatterProvider =
+          new AdWordsGuzzleLogMessageFormatterProvider($session, true);
+      $this->httpClientFactory = new AdsGuzzleHttpClientFactory(
+          $session->getBatchJobsUtilLogger(),
+          $logMessageFormatterProvider->getGuzzleLogMessageFormatter(),
+          $httpClient
+      );
+    } else {
+      $this->httpClientFactory = $httpClientFactory;
+    }
     $this->httpClient = $this->httpClientFactory->generateHttpClient();
 
     $this->mutateResultClassName = ($mutateResultClassName === null)
@@ -157,7 +166,7 @@ final class BatchJobsDelegate {
         $batchJobUploadStatus->getTotalContentBytes() + $contentLength - 1;
     $contentRange = sprintf('bytes %d-%d/*', $lowerBound, $upperBound);
     try {
-      $response = $this->httpClient->request(
+      $this->httpClient->request(
           'PUT',
           $batchJobUploadStatus->getResumableUploadUrl(),
           [
@@ -204,7 +213,7 @@ final class BatchJobsDelegate {
         sprintf('bytes %d-%d/%s', $lowerBound, $upperBound, $totalBytes);
 
     try {
-      $response = $this->httpClient->request(
+      $this->httpClient->request(
           'PUT',
           $batchJobUploadStatus->getResumableUploadUrl(),
           [

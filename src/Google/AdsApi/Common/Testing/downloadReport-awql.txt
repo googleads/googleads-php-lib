@@ -1,0 +1,1 @@
+SELECT CampaignId, AdGroupId, Id, Criteria, CriteriaType, Impressions, Clicks, Cost FROM CRITERIA_PERFORMANCE_REPORT WHERE Status IN [ENABLED, PAUSED] DURING LAST_7_DAYS

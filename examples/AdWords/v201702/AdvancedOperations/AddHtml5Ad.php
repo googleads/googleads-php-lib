@@ -26,7 +26,6 @@ use Google\AdsApi\AdWords\v201702\cm\AdGroupAdOperation;
 use Google\AdsApi\AdWords\v201702\cm\AdGroupAdService;
 use Google\AdsApi\AdWords\v201702\cm\AdGroupAdStatus;
 use Google\AdsApi\AdWords\v201702\cm\Dimensions;
-use Google\AdsApi\AdWords\v201702\cm\Image;
 use Google\AdsApi\AdWords\v201702\cm\MediaBundle;
 use Google\AdsApi\AdWords\v201702\cm\Operator;
 use Google\AdsApi\AdWords\v201702\cm\TemplateAd;

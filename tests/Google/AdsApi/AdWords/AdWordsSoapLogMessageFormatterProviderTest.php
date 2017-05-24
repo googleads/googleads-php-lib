@@ -18,7 +18,6 @@ namespace Google\AdsApi\AdWords;
 
 use Google\AdsApi\Common\Testing\FakeSoapPayloadsAndLogsProvider;
 use PHPUnit_Framework_TestCase;
-use SoapFault;
 
 /**
  * Unit tests for `AdWordsSoapLogMessageFormatterProvider`.

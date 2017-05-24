@@ -16,7 +16,6 @@
  */
 namespace Google\AdsApi\Common;
 
-use DOMException;
 use Google\AdsApi\Common\Util\LogMessageScrubbers;
 use Google\AdsApi\Common\Util\SoapHeaders;
 use SoapFault;

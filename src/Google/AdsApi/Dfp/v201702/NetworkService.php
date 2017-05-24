@@ -34,6 +34,7 @@ class NetworkService extends \Google\AdsApi\Common\AdsSoapClient
       'PublisherQueryLanguageContextError' => 'Google\\AdsApi\\Dfp\\v201702\\PublisherQueryLanguageContextError',
       'PublisherQueryLanguageSyntaxError' => 'Google\\AdsApi\\Dfp\\v201702\\PublisherQueryLanguageSyntaxError',
       'QuotaError' => 'Google\\AdsApi\\Dfp\\v201702\\QuotaError',
+      'RequestError' => 'Google\\AdsApi\\Dfp\\v201702\\RequestError',
       'RequiredCollectionError' => 'Google\\AdsApi\\Dfp\\v201702\\RequiredCollectionError',
       'RequiredError' => 'Google\\AdsApi\\Dfp\\v201702\\RequiredError',
       'RequiredNumberError' => 'Google\\AdsApi\\Dfp\\v201702\\RequiredNumberError',

@@ -47,6 +47,8 @@ class BatchJobsTestProvider {
    * @return FakeCampaignOperation[] the operations to be uploaded by BatchJobs
    */
   public static function getBatchJobOperations() {
+    $operations = [];
+
     $campaign1 = new FakeCampaign();
     $campaign1->setId(-1);
     $campaign1->setName('Test campaign&<>"\'');

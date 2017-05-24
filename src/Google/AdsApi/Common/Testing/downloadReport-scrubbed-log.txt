@@ -1,0 +1,21 @@
+Request:
+POST /api/adwords/reportdownload/v201702 HTTP/1.1
+User-Agent: Test App (AwApi-PHP, googleads-php-lib/25.0.0, PHP/5.5.9, GuzzleHttp/6.0.0, curl/7.52.0)
+Content-Type: application/x-www-form-urlencoded
+Host: adwords.google.com
+Authorization: REDACTED
+developerToken: REDACTED
+clientCustomerId: 111-222-3333
+skipReportHeader: false
+skipColumnHeader: false
+skipReportSummary: false
+useRawEnumValues: true
+includeZeroImpressions: false
+
+__rdquery=SELECT CampaignId, AdGroupId, Id, Criteria, CriteriaType, Impressions, Clicks, Cost FROM CRITERIA_PERFORMANCE_REPORT WHERE Status IN [ENABLED, PAUSED] DURING LAST_7_DAYS&__fmt=CSV
+
+Response:
+REDACTED REPORT DATA
+--------
+Error:
+NULL

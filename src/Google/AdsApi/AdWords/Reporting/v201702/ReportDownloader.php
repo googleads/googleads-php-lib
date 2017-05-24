@@ -16,6 +16,7 @@
  */
 namespace Google\AdsApi\AdWords\Reporting\v201702;
 
+use Google\AdsApi\AdWords\AdWordsGuzzleLogMessageFormatterProvider;
 use Google\AdsApi\AdWords\AdWordsNormalizer;
 use Google\AdsApi\AdWords\AdWordsSession;
 use Google\AdsApi\AdWords\Reporting\ApiErrorFieldNameConverter;
@@ -40,6 +41,7 @@ final class ReportDownloader {
 
   private static $REPORT_DOWNLOAD_URL_PATH =
       '/api/adwords/reportdownload/v201702';
+  private static $REDACTED_DATA_MESSAGE = 'REDACTED REPORT DATA';
 
   private $session;
   private $httpClient;
@@ -66,8 +68,14 @@ final class ReportDownloader {
     $this->session = $session;
 
     if ($httpClientFactory === null) {
+      $logMessageFormatterProvider =
+          new AdWordsGuzzleLogMessageFormatterProvider(
+              $session, false, self::$REDACTED_DATA_MESSAGE);
       $httpClientFactory = new AdsGuzzleHttpClientFactory(
-          $this->session->getReportDownloaderLogger(), $httpClient);
+          $this->session->getReportDownloaderLogger(),
+          $logMessageFormatterProvider->getGuzzleLogMessageFormatter(),
+          $httpClient
+      );
     }
     $this->httpClient = $httpClientFactory->generateHttpClient();
 

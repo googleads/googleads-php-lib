@@ -16,6 +16,7 @@
  */
 namespace Google\AdsApi\AdWords\BatchJobs;
 
+use Google\AdsApi\AdWords\AdWordsGuzzleLogMessageFormatterProvider;
 use Google\AdsApi\AdWords\AdWordsSession;
 use Google\AdsApi\Common\AdsGuzzleHttpClientFactory;
 use Google\AdsApi\Common\GuzzleHttpClientFactory;
@@ -53,8 +54,13 @@ final class BatchJobUploadStatus {
       GuzzleHttpClientFactory $httpClientFactory = null
   ) {
     if ($httpClientFactory === null) {
+      $logMessageFormatterProvider =
+          new AdWordsGuzzleLogMessageFormatterProvider($session, true);
       $httpClientFactory = new AdsGuzzleHttpClientFactory(
-          $session->getBatchJobsUtilLogger(), $httpClient);
+          $session->getBatchJobsUtilLogger(),
+          $logMessageFormatterProvider->getGuzzleLogMessageFormatter(),
+          $httpClient
+      );
     }
     $this->httpClient = $httpClientFactory->generateHttpClient();
     $this->totalContentBytes =

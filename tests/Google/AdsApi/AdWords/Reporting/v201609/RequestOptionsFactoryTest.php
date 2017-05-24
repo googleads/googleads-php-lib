@@ -19,10 +19,13 @@ namespace Google\AdsApi\AdWords\Reporting\v201609;
 use Google\AdsApi\AdWords\AdWordsSessionBuilder;
 use Google\AdsApi\AdWords\ReportSettingsBuilder;
 use Google\AdsApi\AdWords\Testing\Reporting\v201609\ReportingTestProvider;
+use Google\AdsApi\Common\AdsHeaderFormatter;
+use Google\AdsApi\Common\LibraryMetadataProvider;
 use Google\AdsApi\Common\SoapSettingsBuilder;
 use Google\AdsApi\AdWords\v201609\cm\ReportDefinitionReportType;
 use Google\AdsApi\AdWords\v201609\cm\Selector;
 use Google\Auth\FetchAuthTokenInterface;
+use GuzzleHttp\ClientInterface;
 use Monolog\Handler\NullHandler;
 use Monolog\Logger;
 use PHPUnit_Framework_TestCase;
@@ -39,6 +42,7 @@ class RequestOptionsFactoryTest extends PHPUnit_Framework_TestCase {
 
   private $adWordsSession;
   private $requestOptionsFactory;
+  private $libraryMetadataProviderMock;
 
   /**
    * @see PHPUnit_Framework_TestCase::setUp
@@ -58,6 +62,14 @@ class RequestOptionsFactoryTest extends PHPUnit_Framework_TestCase {
         ->useRawEnumValues(true)
         ->includeZeroImpressions(false)
         ->build();
+    $this->libraryMetadataProviderMock = $this->getMock(
+        LibraryMetadataProvider::class);
+    $this->libraryMetadataProviderMock->method('getLibName')
+        ->will($this->returnValue('googleads-php-lib2'));
+    $this->libraryMetadataProviderMock->method('getLibVersion')
+        ->will($this->returnValue('1.0.0-alpha'));
+    $adsHeaderFormatter =
+        new AdsHeaderFormatter(null, $this->libraryMetadataProviderMock);
 
     $this->adWordsSession = (new AdWordsSessionBuilder())
         ->withDeveloperToken('ABcdeFGH93KL-NOPQ_STUv')
@@ -66,6 +78,7 @@ class RequestOptionsFactoryTest extends PHPUnit_Framework_TestCase {
         ->withOAuth2Credential($fetchAuthTokenInterfaceMock)
         ->withReportDownloaderLogger(new Logger('', [new NullHandler()]))
         ->withReportSettings($reportSettings)
+        ->withAdsHeaderFormatter($adsHeaderFormatter)
         ->build();
 
     $this->requestOptionsFactory =
@@ -98,6 +111,7 @@ class RequestOptionsFactoryTest extends PHPUnit_Framework_TestCase {
             'skipReportSummary' => 'false',
             'useRawEnumValues' => 'true',
             'includeZeroImpressions' => 'false',
+            'User-Agent' => $this->getFormattedUserAgent()
         ],
         'form_params' => ['__rdxml' => $fakeReportDefinitionPayload],
         'stream' => true,
@@ -107,14 +121,14 @@ class RequestOptionsFactoryTest extends PHPUnit_Framework_TestCase {
     ];
     $actualRequestOptions = $this->requestOptionsFactory
         ->createRequestOptionsWithReportDefinition($reportDefinition);
-    $this->assertSame($expectedRequestOptions['headers'],
+    $this->assertEquals($expectedRequestOptions['headers'],
         $actualRequestOptions['headers']);
     $this->assertXmlStringEqualsXmlString(
         $expectedRequestOptions['form_params']['__rdxml'],
         $actualRequestOptions['form_params']['__rdxml']
     );
-    $this->assertSame($expectedRequestOptions['stream_context'],
-        $actualRequestOptions['stream_context']);
+    $this->assertSame($expectedRequestOptions['stream_context']['http'],
+        $actualRequestOptions['stream_context']['http']);
   }
 
   /**
@@ -134,6 +148,7 @@ class RequestOptionsFactoryTest extends PHPUnit_Framework_TestCase {
             'skipReportSummary' => 'false',
             'useRawEnumValues' => 'true',
             'includeZeroImpressions' => 'false',
+            'User-Agent' => $this->getFormattedUserAgent()
         ],
         'form_params' => [
             '__rdquery' => $reportQuery,
@@ -146,14 +161,14 @@ class RequestOptionsFactoryTest extends PHPUnit_Framework_TestCase {
     ];
     $actualRequestOptions = $this->requestOptionsFactory
         ->createRequestOptionsWithAwqlQuery($reportQuery, 'CSV');
-    $this->assertSame($expectedRequestOptions['headers'],
+    $this->assertEquals($expectedRequestOptions['headers'],
         $actualRequestOptions['headers']);
     $this->assertSame($expectedRequestOptions['form_params']['__rdquery'],
         $actualRequestOptions['form_params']['__rdquery']);
     $this->assertSame($expectedRequestOptions['form_params']['__fmt'],
         $actualRequestOptions['form_params']['__fmt']);
-    $this->assertSame($expectedRequestOptions['stream_context'],
-        $actualRequestOptions['stream_context']);
+    $this->assertSame($expectedRequestOptions['stream_context']['http'],
+        $actualRequestOptions['stream_context']['http']);
   }
 
   /**
@@ -173,6 +188,7 @@ class RequestOptionsFactoryTest extends PHPUnit_Framework_TestCase {
             'skipReportSummary' => 'false',
             'useRawEnumValues' => 'true',
             'includeZeroImpressions' => 'false',
+            'User-Agent' => $this->getFormattedUserAgent()
         ],
         'form_params' => ['__rdxml' => $fakeReportDefinitionPayload],
         'stream' => true,
@@ -201,7 +217,7 @@ class RequestOptionsFactoryTest extends PHPUnit_Framework_TestCase {
     $actualRequestOptions = $requestOptionsFactory
         ->createRequestOptionsWithReportDefinition($reportDefinition);
 
-    $this->assertSame($expectedRequestOptions['headers'],
+    $this->assertEquals($expectedRequestOptions['headers'],
         $actualRequestOptions['headers']);
     $this->assertXmlStringEqualsXmlString(
         $expectedRequestOptions['form_params']['__rdxml'],
@@ -209,5 +225,25 @@ class RequestOptionsFactoryTest extends PHPUnit_Framework_TestCase {
     );
     $this->assertSame($expectedRequestOptions['stream_context'],
         $actualRequestOptions['stream_context']);
+  }
+
+  private function getFormattedUserAgent() {
+    return sprintf(
+        '%s (AwApi-PHP, %s/%s, PHP/%s, %s)',
+        $this->adWordsSession->getUserAgent(),
+        $this->libraryMetadataProviderMock->getLibName(),
+        $this->libraryMetadataProviderMock->getLibVersion(),
+        PHP_VERSION,
+        $this->formatGuzzleInfo()
+    );
+  }
+
+  private function formatGuzzleInfo() {
+    $guzzleInfoTokens = ['GuzzleHttp/' . ClientInterface::VERSION];
+    if (extension_loaded('curl') && function_exists('curl_version')) {
+      $guzzleInfoTokens[] = 'curl/' . \curl_version()['version'];
+    }
+
+    return implode(', ', $guzzleInfoTokens);
   }
 }

@@ -23,7 +23,6 @@ use Google\AdsApi\AdWords\AdWordsSession;
 use Google\AdsApi\AdWords\AdWordsSessionBuilder;
 use Google\AdsApi\AdWords\v201609\cm\Keyword;
 use Google\AdsApi\AdWords\v201609\cm\Language;
-use Google\AdsApi\AdWords\v201609\cm\Location;
 use Google\AdsApi\AdWords\v201609\cm\NetworkSetting;
 use Google\AdsApi\AdWords\v201609\cm\Paging;
 use Google\AdsApi\AdWords\v201609\o\AttributeType;

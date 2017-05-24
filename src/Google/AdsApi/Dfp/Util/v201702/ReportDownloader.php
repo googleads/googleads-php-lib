@@ -18,6 +18,8 @@ namespace Google\AdsApi\Dfp\Util\v201702;
 
 use Google\AdsApi\Common\AdsGuzzleHttpClientFactory;
 use Google\AdsApi\Common\GuzzleHttpClientFactory;
+use Google\AdsApi\Dfp\DfpGuzzleLogMessageFormatterProvider;
+use Google\AdsApi\Dfp\DfpHeaderHandler;
 use Google\AdsApi\Dfp\v201702\ReportJobStatus;
 use Google\AdsApi\Dfp\v201702\ReportService;
 use GuzzleHttp\Client;
@@ -36,6 +38,8 @@ class ReportDownloader {
    *     status
    */
   const DEFAULT_POLL_SECONDS = 30;
+
+  private static $REDACTED_DATA_MESSAGE = 'REDACTED REPORT DATA';
 
   private $logger;
   private $reportService;
@@ -71,8 +75,13 @@ class ReportDownloader {
         ? self::DEFAULT_POLL_SECONDS : $pollTimeSeconds;
 
     if ($httpClientFactory === null) {
-      $httpClientFactory =
-          new AdsGuzzleHttpClientFactory($this->logger, $httpClient);
+      $logMessageFormatterProvider = new DfpGuzzleLogMessageFormatterProvider(
+          $reportService->getAdsSession(), false, self::$REDACTED_DATA_MESSAGE);
+      $httpClientFactory = new AdsGuzzleHttpClientFactory(
+          $this->logger,
+          $logMessageFormatterProvider->getGuzzleLogMessageFormatter(),
+          $httpClient
+      );
     }
     $this->httpClient = $httpClientFactory->generateHttpClient();
   }
@@ -117,10 +126,20 @@ class ReportDownloader {
 
     if ($filePath !== null) {
       $this->httpClient->request(
-          'GET', $downloadUrl, [RequestOptions::SINK => $filePath]);
+          'GET', $downloadUrl, [
+              RequestOptions::SINK => $filePath,
+              RequestOptions::HEADERS =>
+                  ['User-Agent' => $this->getFormattedUserAgent()]
+          ]
+      );
     } else {
       $response = $this->httpClient->request(
-          'GET', $downloadUrl, [RequestOptions::STREAM => true]);
+          'GET', $downloadUrl, [
+              RequestOptions::STREAM => true,
+              RequestOptions::HEADERS =>
+                  ['User-Agent' => $this->getFormattedUserAgent()]
+          ]
+      );
       return $response->getBody();
     }
   }
@@ -151,5 +170,15 @@ class ReportDownloader {
     }
     return $this->reportService->getReportDownloadURL($this->reportJobId,
         $exportFormat);
+  }
+
+  private function getFormattedUserAgent() {
+    $session = $this->reportService->getAdsSession();
+    return
+        $session->getAdsHeaderFormatter()->formatApplicationNameForGuzzleHeader(
+            $session->getApplicationName(),
+            DfpHeaderHandler::PRODUCT_NAME_FOR_SOAP_HEADER,
+            false
+    );
   }
 }

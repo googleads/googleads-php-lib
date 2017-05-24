@@ -22,7 +22,6 @@ use Google\AdsApi\Common\OAuth2TokenBuilder;
 use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
-use Google\AdsApi\Dfp\Util\v201611\StatementBuilder;
 use Google\AdsApi\Dfp\v201611\AdUnit;
 use Google\AdsApi\Dfp\v201611\AdUnitSize;
 use Google\AdsApi\Dfp\v201611\AdUnitTargetWindow;

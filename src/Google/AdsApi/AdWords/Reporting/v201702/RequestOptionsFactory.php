@@ -16,8 +16,9 @@
  */
 namespace Google\AdsApi\AdWords\Reporting\v201702;
 
-use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\AdWordsHeaderHandler;
 use Google\AdsApi\AdWords\AdWordsNormalizer;
+use Google\AdsApi\AdWords\AdWordsSession;
 use Google\AdsApi\Common\Util\OAuth2TokenRefresher;
 use GuzzleHttp\RequestOptions;
 use Symfony\Component\Serializer\Serializer;
@@ -72,7 +73,13 @@ class RequestOptionsFactory {
             $this->oAuth2TokenRefresher->getOrFetchAccessToken(
                 $this->session->getOAuth2Credential())),
         'developerToken' => $this->session->getDeveloperToken(),
-        'clientCustomerId' => $this->session->getClientCustomerId()
+        'clientCustomerId' => $this->session->getClientCustomerId(),
+        'User-Agent' => $this->session->getAdsHeaderFormatter()
+            ->formatApplicationNameForGuzzleHeader(
+                $this->session->getUserAgent(),
+                AdWordsHeaderHandler::PRODUCT_NAME_FOR_SOAP_HEADER,
+                $this->session->isIncludeUtilitiesInUserAgent()
+            )
     ];
     // Assigns 'true' or 'false' strings based on the boolean values, as the
     // AdWords API reporting expects those strings, but PHP casts boolean
@@ -109,6 +116,7 @@ class RequestOptionsFactory {
    */
   public function createRequestOptionsWithReportDefinition(
       ReportDefinition $reportDefinition) {
+    $params = [];
     $context = ['xml_root_node_name' => 'reportDefinition'];
     $params['__rdxml'] = $this->reportDefinitionSerializer->serialize(
         $reportDefinition, 'xml', $context);

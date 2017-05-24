@@ -17,6 +17,7 @@
 namespace Google\AdsApi\Common;
 
 use Google\AdsApi\Common\AdsUtilityRegistry;
+use GuzzleHttp\ClientInterface;
 
 /**
  * Provides methods related to formatting HTTP and SOAP headers for ads APIs.
@@ -24,14 +25,21 @@ use Google\AdsApi\Common\AdsUtilityRegistry;
 final class AdsHeaderFormatter {
 
   private $adsUtilityRegistry;
+  private $libraryMetadataProvider;
 
   /**
    * @param AdsUtilityRegistry|null $adsUtilityRegistry the ads utility registry
+   * @param LibraryMetadataProvider|null $libraryMetadataProvider the library
+   *     metadata provider
    */
-  public function __construct(AdsUtilityRegistry $adsUtilityRegistry = null) {
+  public function __construct(AdsUtilityRegistry $adsUtilityRegistry = null,
+      LibraryMetadataProvider $libraryMetadataProvider = null
+  ) {
     $this->adsUtilityRegistry = ($adsUtilityRegistry === null)
         ? AdsUtilityRegistry::getInstance()
         : $adsUtilityRegistry;
+    $this->libraryMetadataProvider = ($libraryMetadataProvider === null)
+        ? new LibraryMetadataProvider() : $libraryMetadataProvider;
   }
 
   /**
@@ -41,30 +49,63 @@ final class AdsHeaderFormatter {
    * @param string $applicationName the application name to format
    * @param string $productNameForSoapHeader the ads product API calls are
    *     being made against, formatted to be used in the SOAP header
-   * @param LibraryMetadataProvider $libraryMetadataProvider the library
-   *     metadata provider
    * @param boolean $includeUtilityUsage true if logging of utilities usages is
    *     turned on
    * @return string the formatted application name
    */
-  public function formatApplicationNameForSoapHeader(
-      $applicationName,
-      $productNameForSoapHeader,
-      LibraryMetadataProvider $libraryMetadataProvider,
-      $includeUtilityUsage
-  ) {
+  public function formatApplicationNameForSoapHeader($applicationName,
+      $productNameForSoapHeader, $includeUtilityUsage) {
     $adsUtilities = $this->adsUtilityRegistry->popAllUtilities();
-    $utilUsages = ($includeUtilityUsage === true && count($adsUtilities) > 0)
-        ? ', ' . implode(', ', $adsUtilities) : '';
-
     return sprintf(
         '%s (%sApi-PHP, %s/%s, PHP/%s%s)',
         $applicationName,
         $productNameForSoapHeader,
-        $libraryMetadataProvider->getLibName(),
-        $libraryMetadataProvider->getLibVersion(),
+        $this->libraryMetadataProvider->getLibName(),
+        $this->libraryMetadataProvider->getLibVersion(),
         PHP_VERSION,
-        $utilUsages
+        $this->formatUtilUsages($adsUtilities, $includeUtilityUsage)
     );
+  }
+
+  /**
+   * Formats an application name in a format standard to the ads libraries to
+   * include in the Guzzle HTTP header.
+   *
+   * @param string $applicationName the application name to format
+   * @param string $productName the ads product API calls are being made against
+   * @param boolean $includeUtilityUsage true if logging of utilities usages is
+   *     turned on
+   * @return string the formatted application name
+   */
+  public function formatApplicationNameForGuzzleHeader($applicationName,
+      $productName, $includeUtilityUsage) {
+    $adsUtilities = $this->adsUtilityRegistry->popAllUtilities();
+    return sprintf(
+        '%s (%sApi-PHP, %s/%s, PHP/%s, %s%s)',
+        $applicationName,
+        $productName,
+        $this->libraryMetadataProvider->getLibName(),
+        $this->libraryMetadataProvider->getLibVersion(),
+        PHP_VERSION,
+        $this->formatGuzzleInfo(),
+        $this->formatUtilUsages($adsUtilities, $includeUtilityUsage)
+    );
+  }
+
+  private function formatUtilUsages($adsUtilities, $includeUtilityUsage) {
+    if ($includeUtilityUsage === false || empty($adsUtilities)) {
+      return '';
+    }
+
+    return ', ' . implode(', ', $adsUtilities);
+  }
+
+  private function formatGuzzleInfo() {
+    $guzzleInfoTokens = ['GuzzleHttp/' . ClientInterface::VERSION];
+    if (extension_loaded('curl') && function_exists('curl_version')) {
+      $guzzleInfoTokens[] = 'curl/' . \curl_version()['version'];
+    }
+
+    return implode(', ', $guzzleInfoTokens);
   }
 }

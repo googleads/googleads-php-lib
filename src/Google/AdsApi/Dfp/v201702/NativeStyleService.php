@@ -33,6 +33,7 @@ class NativeStyleService extends \Google\AdsApi\Common\AdsSoapClient
       'CommonError' => 'Google\\AdsApi\\Dfp\\v201702\\CommonError',
       'ContentMetadataKeyHierarchyTargeting' => 'Google\\AdsApi\\Dfp\\v201702\\ContentMetadataKeyHierarchyTargeting',
       'ContentTargeting' => 'Google\\AdsApi\\Dfp\\v201702\\ContentTargeting',
+      'CreativeTemplateError' => 'Google\\AdsApi\\Dfp\\v201702\\CreativeTemplateError',
       'CustomCriteria' => 'Google\\AdsApi\\Dfp\\v201702\\CustomCriteria',
       'CustomCriteriaSet' => 'Google\\AdsApi\\Dfp\\v201702\\CustomCriteriaSet',
       'CustomCriteriaLeaf' => 'Google\\AdsApi\\Dfp\\v201702\\CustomCriteriaLeaf',

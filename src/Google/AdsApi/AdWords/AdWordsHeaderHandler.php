@@ -20,7 +20,6 @@ use Google\AdsApi\Common\AdsHeaderFormatter;
 use Google\AdsApi\Common\AdsHeaderHandler;
 use Google\AdsApi\Common\AdsServiceDescriptor;
 use Google\AdsApi\Common\AdsSession;
-use Google\AdsApi\Common\LibraryMetadataProvider;
 use Google\AdsApi\Common\Util\OAuth2TokenRefresher;
 use Google\AdsApi\Common\Util\Reflection;
 use InvalidArgumentException;
@@ -50,13 +49,11 @@ final class AdWordsHeaderHandler implements AdsHeaderHandler {
    */
   const EXPRESS_SOAP_HEADER_CLASS_NAME = 'express\\ExpressSoapHeader';
 
-  private $libraryMetadataProvider;
   private $adsHeaderFormatter;
   private $reflection;
   private $oAuth2TokenRefresher;
 
   public function __construct() {
-    $this->libraryMetadataProvider = new LibraryMetadataProvider();
     $this->adsHeaderFormatter = new AdsHeaderFormatter();
     $this->reflection = new Reflection();
     $this->oAuth2TokenRefresher = new OAuth2TokenRefresher();
@@ -139,7 +136,6 @@ final class AdWordsHeaderHandler implements AdsHeaderHandler {
     return $this->adsHeaderFormatter->formatApplicationNameForSoapHeader(
         $userAgent,
         self::PRODUCT_NAME_FOR_SOAP_HEADER,
-        $this->libraryMetadataProvider,
         $includeUtilityUsage
     );
   }

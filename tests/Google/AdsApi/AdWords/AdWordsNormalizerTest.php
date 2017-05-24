@@ -16,13 +16,11 @@
  */
 namespace Google\AdsApi\AdWords;
 
-use Google\AdsApi\AdWords\Reporting\ApiErrorFieldNameConverter;
 use Google\AdsApi\AdWords\Testing\AdWordsNormalizerTestProvider;
 use Google\AdsApi\AdWords\Testing\FakeBudget;
 use Google\AdsApi\AdWords\Testing\FakeMoney;
 use Google\AdsApi\AdWords\Testing\FakeMutateResult;
 use PHPUnit_Framework_TestCase;
-use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
 use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
 use Symfony\Component\Serializer\Serializer;

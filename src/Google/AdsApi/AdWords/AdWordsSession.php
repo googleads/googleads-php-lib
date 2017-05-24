@@ -16,6 +16,7 @@
  */
 namespace Google\AdsApi\AdWords;
 
+use Google\AdsApi\Common\AdsHeaderFormatter;
 use Google\AdsApi\Common\AdsSession;
 use Psr\Log\LoggerInterface;
 
@@ -39,6 +40,7 @@ final class AdWordsSession implements AdsSession {
   private $soapLogger;
   private $reportDownloaderLogger;
   private $batchJobsUtilLogger;
+  private $adsHeaderFormatter;
 
   /**
    * Creates an AdWords session from the specified builder.
@@ -60,6 +62,7 @@ final class AdWordsSession implements AdsSession {
     $this->isPartialFailure = $builder->isPartialFailure();
     $this->isIncludeUtilitiesInUserAgent =
         $builder->isIncludeUtilitiesInUserAgent();
+    $this->adsHeaderFormatter = $builder->getAdsHeaderFormatter();
     $this->reportSettings = $builder->getReportSettings();
     $this->soapLogger = $builder->getSoapLogger();
     $this->reportDownloaderLogger = $builder->getReportDownloaderLogger();
@@ -225,5 +228,13 @@ final class AdWordsSession implements AdsSession {
    */
   public function getBatchJobsUtilLogger() {
     return $this->batchJobsUtilLogger;
+  }
+
+  /**
+   * Gets the ads header formatter.
+   * @return AdsHeaderFormatter
+   */
+  public function getAdsHeaderFormatter() {
+    return $this->adsHeaderFormatter;
   }
 }

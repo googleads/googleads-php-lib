@@ -17,7 +17,6 @@
 namespace Google\AdsApi\Common;
 
 use PHPUnit_Framework_TestCase;
-use ReflectionClass;
 
 /**
  * Unit tests for `AdsUtilityRegistry`.

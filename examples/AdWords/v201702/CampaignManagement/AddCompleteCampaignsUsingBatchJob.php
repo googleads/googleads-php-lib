@@ -21,7 +21,6 @@ require '../../../../vendor/autoload.php';
 use Google\AdsApi\AdWords\AdWordsServices;
 use Google\AdsApi\AdWords\AdWordsSession;
 use Google\AdsApi\AdWords\AdWordsSessionBuilder;
-use Google\AdsApi\AdWords\BatchJobs\BatchJobUploadStatus;
 use Google\AdsApi\AdWords\BatchJobs\v201702\BatchJobs;
 use Google\AdsApi\AdWords\v201702\cm\AdGroup;
 use Google\AdsApi\AdWords\v201702\cm\AdGroupOperation;
@@ -54,7 +53,6 @@ use Google\AdsApi\AdWords\v201702\cm\Operator;
 use Google\AdsApi\AdWords\v201702\cm\Predicate;
 use Google\AdsApi\AdWords\v201702\cm\PredicateOperator;
 use Google\AdsApi\AdWords\v201702\cm\Selector;
-use Google\AdsApi\AdWords\v201702\cm\TextAd;
 use Google\AdsApi\Common\OAuth2TokenBuilder;
 use UnexpectedValueException;
 

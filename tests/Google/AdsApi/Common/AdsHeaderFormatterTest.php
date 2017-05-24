@@ -40,13 +40,7 @@ class AdsHeaderFormatterTest extends PHPUnit_Framework_TestCase {
         ->getMock();
     $adsUtilityRegistry->method('popAllUtilities')
         ->will($this->returnValue(['BatchJobHelper', 'ReportDownloader/file']));
-    $this->adsHeaderFormatter = new AdsHeaderFormatter($adsUtilityRegistry);
-  }
 
-  /**
-   * @covers Google\AdsApi\Common\AdsHeaderFormatter::formatApplicationNameForSoapHeader
-   */
-  public function testFormatApplicationNameForSoapHeader() {
     $libraryMetadataProviderMock = $this->getMock(
         LibraryMetadataProvider::class);
     $libraryMetadataProviderMock->expects($this->once())
@@ -56,13 +50,20 @@ class AdsHeaderFormatterTest extends PHPUnit_Framework_TestCase {
         ->method('getLibVersion')
         ->will($this->returnValue('1.0.0-alpha'));
 
+    $this->adsHeaderFormatter = new AdsHeaderFormatter(
+        $adsUtilityRegistry, $libraryMetadataProviderMock);
+  }
+
+  /**
+   * @covers Google\AdsApi\Common\AdsHeaderFormatter::formatApplicationNameForSoapHeader
+   */
+  public function testFormatApplicationNameForSoapHeader() {
     $search = $this->applicationNames
         ->getRegexForFormattedApplicationName('Google report runner');
     $formattedApplicationName = $this->adsHeaderFormatter
         ->formatApplicationNameForSoapHeader(
             'Google report runner',
             'Dfp',
-            $libraryMetadataProviderMock,
             false
         );
     $this->assertRegExp($search, $formattedApplicationName);
@@ -72,23 +73,42 @@ class AdsHeaderFormatterTest extends PHPUnit_Framework_TestCase {
    * @covers Google\AdsApi\Common\AdsHeaderFormatter::formatApplicationNameForSoapHeader
    */
   public function testFormatApplicationNameWithUtilitiesForSoapHeader() {
-    $libraryMetadataProviderMock = $this->getMock(
-        LibraryMetadataProvider::class);
-    $libraryMetadataProviderMock->expects($this->once())
-        ->method('getLibName')
-        ->will($this->returnValue('googleads-php-lib2'));
-    $libraryMetadataProviderMock->expects($this->once())
-        ->method('getLibVersion')
-        ->will($this->returnValue('1.0.0-alpha'));
-
     $search = $this->applicationNames
         ->getRegexForFormattedApplicationName('Google report runner');
-
     $formattedApplicationName = $this->adsHeaderFormatter
         ->formatApplicationNameForSoapHeader(
             'Google report runner',
             'Aw',
-            $libraryMetadataProviderMock,
+            true
+        );
+    $this->assertRegExp($search, $formattedApplicationName);
+  }
+
+  /**
+   * @covers Google\AdsApi\Common\AdsHeaderFormatter::formatApplicationNameForGuzzleHeader
+   */
+  public function testFormatApplicationNameForGuzzleHeader() {
+    $search = $this->applicationNames
+        ->getRegexForFormattedApplicationName('Google report runner');
+    $formattedApplicationName = $this->adsHeaderFormatter
+        ->formatApplicationNameForGuzzleHeader(
+            'Google report runner',
+            'Dfp',
+            false
+        );
+    $this->assertRegExp($search, $formattedApplicationName);
+  }
+
+  /**
+   * @covers Google\AdsApi\Common\AdsHeaderFormatter::formatApplicationNameForGuzzleHeader
+   */
+  public function testFormatApplicationNameWithUtilitiesForGuzzleHeader() {
+    $search = $this->applicationNames
+        ->getRegexForFormattedApplicationName('Google report runner');
+    $formattedApplicationName = $this->adsHeaderFormatter
+        ->formatApplicationNameForGuzzleHeader(
+            'Google report runner',
+            'Aw',
             true
         );
     $this->assertRegExp($search, $formattedApplicationName);

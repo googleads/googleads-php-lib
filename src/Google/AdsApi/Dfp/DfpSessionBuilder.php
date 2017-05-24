@@ -17,6 +17,7 @@
 namespace Google\AdsApi\Dfp;
 
 use Google\AdsApi\Common\AdsBuilder;
+use Google\AdsApi\Common\AdsHeaderFormatter;
 use Google\AdsApi\Common\AdsLoggerFactory;
 use Google\AdsApi\Common\Configuration;
 use Google\AdsApi\Common\ConfigurationLoader;
@@ -25,7 +26,6 @@ use Google\AdsApi\Common\SoapSettingsBuilder;
 use Google\Auth\FetchAuthTokenInterface;
 use InvalidArgumentException;
 use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -62,6 +62,7 @@ final class DfpSessionBuilder implements AdsBuilder {
 
   private $soapLogger;
   private $reportDownloaderLogger;
+  private $adsHeaderFormatter;
 
   public function __construct() {
     $this->adsLoggerFactory = new AdsLoggerFactory();
@@ -189,6 +190,18 @@ final class DfpSessionBuilder implements AdsBuilder {
   }
 
   /**
+   * Includes ads header formatter. This is optional.
+   *
+   * @param AdsHeaderFormatter|null $adsHeaderFormatter
+   * @return AdWordsSessionBuilder this builder
+   */
+  public function withAdsHeaderFormatter(
+      AdsHeaderFormatter $adsHeaderFormatter) {
+    $this->adsHeaderFormatter = $adsHeaderFormatter;
+    return $this;
+  }
+
+  /**
    * @see AdsBuilder::build()
    */
   public function build() {
@@ -217,6 +230,10 @@ final class DfpSessionBuilder implements AdsBuilder {
     if ($this->reportDownloaderLogger === null) {
       $this->reportDownloaderLogger = $this->adsLoggerFactory->createLogger(
           self::$DEFAULT_REPORT_DOWNLOADER_LOGGER_CHANNEL);
+    }
+
+    if ($this->adsHeaderFormatter === null) {
+      $this->adsHeaderFormatter = new AdsHeaderFormatter();
     }
   }
 
@@ -303,5 +320,13 @@ final class DfpSessionBuilder implements AdsBuilder {
    */
   public function getReportDownloaderLogger() {
     return $this->reportDownloaderLogger;
+  }
+
+  /**
+   * Gets ads header formatter.
+   * @return AdsHeaderFormatter
+   */
+  public function getAdsHeaderFormatter() {
+    return $this->adsHeaderFormatter;
   }
 }

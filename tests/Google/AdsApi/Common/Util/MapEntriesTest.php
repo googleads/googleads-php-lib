@@ -19,7 +19,6 @@ namespace Google\AdsApi\Common\Util;
 use Google\AdsApi\Common\Testing\FakeInvalidMapEntry;
 use Google\AdsApi\Common\Testing\FakeMapEntry;
 use PHPUnit_Framework_TestCase;
-use ReflectionClass;
 
 /**
  * Unit tests for `MapEntries`.

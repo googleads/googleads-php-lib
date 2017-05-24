@@ -22,7 +22,6 @@ use Google\AdsApi\AdWords\AdWordsServices;
 use Google\AdsApi\AdWords\AdWordsSession;
 use Google\AdsApi\AdWords\AdWordsSessionBuilder;
 use Google\AdsApi\AdWords\v201609\cm\DataService;
-use Google\AdsApi\AdWords\v201609\cm\Paging;
 use Google\AdsApi\AdWords\v201609\cm\Predicate;
 use Google\AdsApi\AdWords\v201609\cm\PredicateOperator;
 use Google\AdsApi\AdWords\v201609\cm\Selector;
