@@ -771,8 +771,8 @@ if (!class_exists("PremiumFeature", false)) {
 
 if (!class_exists("PremiumRate", false)) {
   /**
-   * A premium rate holding a set of {@link PremiumRateValue} objects with the
-   * same {@link PremiumFeature}.
+   * A premium rate holding a set of {@link PremiumRateValue} objects with the same {@link
+   * PremiumFeature}.
    * @package GoogleApiAdsDfp
    * @subpackage v201608
    */
@@ -938,8 +938,7 @@ if (!class_exists("PremiumRatePage", false)) {
 
 if (!class_exists("PremiumRateValue", false)) {
   /**
-   * A premium of a {@link RateCard} which could be applied to the line item
-   * and charges extra.
+   * A premium of a {@link RateCard} which could be applied to the line item and charges extra.
    * @package GoogleApiAdsDfp
    * @subpackage v201608
    */
@@ -2292,12 +2291,10 @@ if (!class_exists("QuotaErrorReason", false)) {
    * about 5 seconds and then retry the request. Note that this does not
    * guarantee the request will succeed. If it fails again, try increasing the
    * wait time.
-   * <p>
-   * Another way to mitigate this error is to limit requests to 2 per second for
+   * <p>Another way to mitigate this error is to limit requests to 2 per second for
    * Small Business networks, or 8 per second for Premium networks. Once again
    * this does not guarantee that every request will succeed, but may help
    * reduce the number of times you receive this error.
-   * </p>
    * @package GoogleApiAdsDfp
    * @subpackage v201608
    */

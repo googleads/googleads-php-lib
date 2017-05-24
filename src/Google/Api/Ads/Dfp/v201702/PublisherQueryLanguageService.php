@@ -657,8 +657,8 @@ if (!class_exists("CommonError", false)) {
 
 if (!class_exists("ContentMetadataKeyHierarchyTargeting", false)) {
   /**
-   * Represents one or more {@link CustomTargetingValue custom targeting values} from different
-   * {@link CustomTargetingKey custom targeting keys} ANDed together.
+   * Represents one or more {@link CustomTargetingValue custom targeting values} from different {@link
+   * CustomTargetingKey custom targeting keys} ANDed together.
    * @package GoogleApiAdsDfp
    * @subpackage v201702
    */
@@ -5032,12 +5032,10 @@ if (!class_exists("QuotaErrorReason", false)) {
    * about 5 seconds and then retry the request. Note that this does not
    * guarantee the request will succeed. If it fails again, try increasing the
    * wait time.
-   * <p>
-   * Another way to mitigate this error is to limit requests to 2 per second for
+   * <p>Another way to mitigate this error is to limit requests to 2 per second for
    * Small Business networks, or 8 per second for Premium networks. Once again
    * this does not guarantee that every request will succeed, but may help
    * reduce the number of times you receive this error.
-   * </p>
    * @package GoogleApiAdsDfp
    * @subpackage v201702
    */
@@ -6605,13 +6603,11 @@ if (!class_exists("SetValue", false)) {
 if (!class_exists("TargetingValue", false)) {
   /**
    * Contains a {@link Targeting} value.
-   * <p>
-   * <b>This object is experimental!
-   * <code>TargetingValue</code> is an experimental, innovative, and rapidly
-   * changing new feature for DFP. Unfortunately, being on the bleeding edge means that we may make
-   * backwards-incompatible changes to
-   * <code>TargetingValue</code>. We will inform the community when this feature
-   * is no longer experimental.</b>
+   * 
+   * <p><b>This object is experimental! <code>TargetingValue</code> is an experimental, innovative,
+   * and rapidly changing new feature for DFP. Unfortunately, being on the bleeding edge means that we
+   * may make backwards-incompatible changes to <code>TargetingValue</code>. We will inform the
+   * community when this feature is no longer experimental.</b>
    * @package GoogleApiAdsDfp
    * @subpackage v201702
    */

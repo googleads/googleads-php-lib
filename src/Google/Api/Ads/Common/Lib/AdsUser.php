@@ -511,11 +511,20 @@ abstract class AdsUser {
    *     this header
    */
   public function updateClientLibraryUserAgent($applicationName) {
-    $this->SetHeaderValue(
-        $this->GetUserAgentHeaderName(),
-        sprintf("%s (%s)", $applicationName,
-            implode(', ', $this->GetAllClientLibraryUserAgentParts()))
-    );
+    $this->SetHeaderValue($this->GetUserAgentHeaderName(),
+        $this->GetCombinedUserAgent($applicationName));
+  }
+
+  /**
+   * Gets combined user agent including the application name and all user agent
+   * parts of the client library.
+   *
+   * @param string $applicationName The application name that will appear in
+   *     the combined user agent
+   */
+  public function GetCombinedUserAgent($applicationName) {
+    return sprintf('%s (%s)', $applicationName,
+        implode(', ', $this->GetAllClientLibraryUserAgentParts()));
   }
 
   /**

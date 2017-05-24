@@ -533,16 +533,15 @@ if (!class_exists("AvailabilityForecast", false)) {
   /**
    * Describes predicted inventory availability for a {@link ProspectiveLineItem}.
    * 
-   * <p>Inventory has three threshold values along a line of possible inventory.
-   * From least to most, these are:
+   * <p>Inventory has three threshold values along a line of possible inventory. From least to most,
+   * these are:
    * 
    * <dl>
    * <li>Available units -- How many units can be booked without affecting any other line items.
    * Booking more than this number can cause lower and same priority line items to underdeliver.
    * <li>Possible units -- How many units can be booked without affecting any higher priority line
    * items. Booking more than this number can cause the line item to underdeliver.
-   * <li>Matched (forecast) units -- How many units satisfy all specified
-   * criteria.
+   * <li>Matched (forecast) units -- How many units satisfy all specified criteria.
    * </dl>
    * 
    * <p>Underdelivery is caused by overbooking. However, if more impressions are served than are
@@ -1119,8 +1118,8 @@ if (!class_exists("ContendingLineItem", false)) {
 
 if (!class_exists("ContentMetadataKeyHierarchyTargeting", false)) {
   /**
-   * Represents one or more {@link CustomTargetingValue custom targeting values} from different
-   * {@link CustomTargetingKey custom targeting keys} ANDed together.
+   * Represents one or more {@link CustomTargetingValue custom targeting values} from different {@link
+   * CustomTargetingKey custom targeting keys} ANDed together.
    * @package GoogleApiAdsDfp
    * @subpackage v201608
    */
@@ -2894,9 +2893,9 @@ if (!class_exists("GrpDemographicBreakdown", false)) {
 
 if (!class_exists("GrpSettings", false)) {
   /**
-   * {@code GrpSettings} contains information for a line item that will have a target demographic
-   * when serving. This information will be used to set up tracking and enable reporting on the
-   * demographic information.
+   * {@code GrpSettings} contains information for a line item that will have a target demographic when
+   * serving. This information will be used to set up tracking and enable reporting on the demographic
+   * information.
    * @package GoogleApiAdsDfp
    * @subpackage v201608
    */
@@ -5340,8 +5339,8 @@ if (!class_exists("ServerError", false)) {
 
 if (!class_exists("SetTopBoxInfo", false)) {
   /**
-   * Contains data used to display information synchronized with Canoe for set-top box enabled
-   * {@link LineItem line items}.
+   * Contains data used to display information synchronized with Canoe for set-top box enabled {@link
+   * LineItem line items}.
    * @package GoogleApiAdsDfp
    * @subpackage v201608
    */
@@ -8817,12 +8816,10 @@ if (!class_exists("QuotaErrorReason", false)) {
    * about 5 seconds and then retry the request. Note that this does not
    * guarantee the request will succeed. If it fails again, try increasing the
    * wait time.
-   * <p>
-   * Another way to mitigate this error is to limit requests to 2 per second for
+   * <p>Another way to mitigate this error is to limit requests to 2 per second for
    * Small Business networks, or 8 per second for Premium networks. Once again
    * this does not guarantee that every request will succeed, but may help
    * reduce the number of times you receive this error.
-   * </p>
    * @package GoogleApiAdsDfp
    * @subpackage v201608
    */
@@ -9690,8 +9687,8 @@ if (!class_exists("VideoPositionTargetingErrorReason", false)) {
 if (!class_exists("GetAvailabilityForecast", false)) {
   /**
    * Gets the availability forecast for a {@link ProspectiveLineItem}. An availability forecast
-   * reports the maximum number of available units that the line item can book, and the total
-   * number of units matching the line item's targeting.
+   * reports the maximum number of available units that the line item can book, and the total number
+   * of units matching the line item's targeting.
    * 
    * @param lineItem the prospective line item (new or existing) to be forecasted for availability
    * @param forecastOptions options controlling the forecast
@@ -9781,13 +9778,13 @@ if (!class_exists("GetAvailabilityForecastResponse", false)) {
 
 if (!class_exists("GetAvailabilityForecastById", false)) {
   /**
-   * Gets an {@link AvailabilityForecast} for an existing {@link LineItem} object.
-   * An availability forecast reports the maximum number of available units that the line item can
-   * be booked with, and also the total number of units matching the line item's targeting.
+   * Gets an {@link AvailabilityForecast} for an existing {@link LineItem} object. An availability
+   * forecast reports the maximum number of available units that the line item can be booked with,
+   * and also the total number of units matching the line item's targeting.
    * 
-   * <p>Only line items having type {@link LineItemType#SPONSORSHIP} or
-   * {@link LineItemType#STANDARD} are valid. Other types will result in
-   * {@link ReservationDetailsError.Reason#LINE_ITEM_TYPE_NOT_ALLOWED}.
+   * <p>Only line items having type {@link LineItemType#SPONSORSHIP} or {@link
+   * LineItemType#STANDARD} are valid. Other types will result in {@link
+   * ReservationDetailsError.Reason#LINE_ITEM_TYPE_NOT_ALLOWED}.
    * 
    * @param lineItemId the ID of a {@link LineItem} to run the forecast on.
    * @param forecastOptions options controlling the forecast
@@ -9878,9 +9875,9 @@ if (!class_exists("GetAvailabilityForecastByIdResponse", false)) {
 if (!class_exists("GetDeliveryForecast", false)) {
   /**
    * Gets the delivery forecast for a list of {@link ProspectiveLineItem} objects in a single
-   * delivery simulation with line items potentially contending with each other. A delivery
-   * forecast reports the number of units that will be delivered to each line item given the line
-   * item goals and contentions from other line items.
+   * delivery simulation with line items potentially contending with each other. A delivery forecast
+   * reports the number of units that will be delivered to each line item given the line item goals
+   * and contentions from other line items.
    * 
    * @param lineItems line items to be forecasted for delivery
    * @param forecastOptions options controlling the forecast
@@ -11473,8 +11470,8 @@ if (!class_exists("ForecastService", false)) {
     }
     /**
      * Gets the availability forecast for a {@link ProspectiveLineItem}. An availability forecast
-     * reports the maximum number of available units that the line item can book, and the total
-     * number of units matching the line item's targeting.
+     * reports the maximum number of available units that the line item can book, and the total number
+     * of units matching the line item's targeting.
      * 
      * @param lineItem the prospective line item (new or existing) to be forecasted for availability
      * @param forecastOptions options controlling the forecast
@@ -11485,13 +11482,13 @@ if (!class_exists("ForecastService", false)) {
       return $result->rval;
     }
     /**
-     * Gets an {@link AvailabilityForecast} for an existing {@link LineItem} object.
-     * An availability forecast reports the maximum number of available units that the line item can
-     * be booked with, and also the total number of units matching the line item's targeting.
+     * Gets an {@link AvailabilityForecast} for an existing {@link LineItem} object. An availability
+     * forecast reports the maximum number of available units that the line item can be booked with,
+     * and also the total number of units matching the line item's targeting.
      * 
-     * <p>Only line items having type {@link LineItemType#SPONSORSHIP} or
-     * {@link LineItemType#STANDARD} are valid. Other types will result in
-     * {@link ReservationDetailsError.Reason#LINE_ITEM_TYPE_NOT_ALLOWED}.
+     * <p>Only line items having type {@link LineItemType#SPONSORSHIP} or {@link
+     * LineItemType#STANDARD} are valid. Other types will result in {@link
+     * ReservationDetailsError.Reason#LINE_ITEM_TYPE_NOT_ALLOWED}.
      * 
      * @param lineItemId the ID of a {@link LineItem} to run the forecast on.
      * @param forecastOptions options controlling the forecast
@@ -11503,9 +11500,9 @@ if (!class_exists("ForecastService", false)) {
     }
     /**
      * Gets the delivery forecast for a list of {@link ProspectiveLineItem} objects in a single
-     * delivery simulation with line items potentially contending with each other. A delivery
-     * forecast reports the number of units that will be delivered to each line item given the line
-     * item goals and contentions from other line items.
+     * delivery simulation with line items potentially contending with each other. A delivery forecast
+     * reports the number of units that will be delivered to each line item given the line item goals
+     * and contentions from other line items.
      * 
      * @param lineItems line items to be forecasted for delivery
      * @param forecastOptions options controlling the forecast

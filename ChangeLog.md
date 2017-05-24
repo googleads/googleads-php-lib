@@ -1,3 +1,13 @@
+### 18.0.0
+
+DFP:
+  - Added support and examples for v201705.
+  - Removed examples for v201608 (deprecated).
+  - Removed support for v201605 (sunset).
+
+Common:
+  - Made user agents sent by non-SOAP utilities more informative.
+
 ### 17.0.0
 
 AdWords:

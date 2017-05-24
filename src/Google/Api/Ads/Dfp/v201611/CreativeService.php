@@ -1886,12 +1886,11 @@ if (!class_exists("InternalApiError", false)) {
 
 if (!class_exists("InternalRedirectCreative", false)) {
   /**
-   * A {@code Creative} hosted by either DoubleClick for Advertisers (DFA) or DART
-   * for Publishers.
-   * <p>
-   * Similar to third-party creatives, a DoubleClick tag is used to retrieve a
-   * creative asset. However, DoubleClick tags are not sent to the user's browser.
-   * Instead, they are processed internally within the DoubleClick system..
+   * A {@code Creative} hosted by DoubleClick for Advertisers (DFA).
+   * 
+   * <p>Similar to third-party creatives, a DoubleClick tag is used to retrieve a creative asset.
+   * However, DoubleClick tags are not sent to the user's browser. Instead, they are processed
+   * internally within the DoubleClick system..
    * @package GoogleApiAdsDfp
    * @subpackage v201611
    */
@@ -5692,12 +5691,10 @@ if (!class_exists("QuotaErrorReason", false)) {
    * about 5 seconds and then retry the request. Note that this does not
    * guarantee the request will succeed. If it fails again, try increasing the
    * wait time.
-   * <p>
-   * Another way to mitigate this error is to limit requests to 2 per second for
+   * <p>Another way to mitigate this error is to limit requests to 2 per second for
    * Small Business networks, or 8 per second for Premium networks. Once again
    * this does not guarantee that every request will succeed, but may help
    * reduce the number of times you receive this error.
-   * </p>
    * @package GoogleApiAdsDfp
    * @subpackage v201611
    */
@@ -8154,7 +8151,7 @@ if (!class_exists("ImageOverlayCreative", false)) {
   /**
    * An overlay {@code Creative} that displays an image and is served via VAST
    * 2.0 XML. Overlays cover part of the video content they are displayed on
-   * top of. This creative is read only.
+   * top of. This creative is read only prior to v201705.
    * @package GoogleApiAdsDfp
    * @subpackage v201611
    */

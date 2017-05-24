@@ -63,8 +63,8 @@ if (!class_exists("AdExclusionRuleAction", false)) {
 
 if (!class_exists("AdExclusionRule", false)) {
   /**
-   * Represents an inventory blocking rule, which prevents certain ads from being
-   * served to specified ad units.
+   * Represents an inventory blocking rule, which prevents certain ads from being served to specified
+   * ad units.
    * @package GoogleApiAdsDfp
    * @subpackage v201608
    */
@@ -2232,12 +2232,10 @@ if (!class_exists("QuotaErrorReason", false)) {
    * about 5 seconds and then retry the request. Note that this does not
    * guarantee the request will succeed. If it fails again, try increasing the
    * wait time.
-   * <p>
-   * Another way to mitigate this error is to limit requests to 2 per second for
+   * <p>Another way to mitigate this error is to limit requests to 2 per second for
    * Small Business networks, or 8 per second for Premium networks. Once again
    * this does not guarantee that every request will succeed, but may help
    * reduce the number of times you receive this error.
-   * </p>
    * @package GoogleApiAdsDfp
    * @subpackage v201608
    */

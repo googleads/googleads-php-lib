@@ -828,8 +828,8 @@ if (!class_exists("CompanyCreditStatusError", false)) {
 
 if (!class_exists("ContentMetadataKeyHierarchyTargeting", false)) {
   /**
-   * Represents one or more {@link CustomTargetingValue custom targeting values} from different
-   * {@link CustomTargetingKey custom targeting keys} ANDed together.
+   * Represents one or more {@link CustomTargetingValue custom targeting values} from different {@link
+   * CustomTargetingKey custom targeting keys} ANDed together.
    * @package GoogleApiAdsDfp
    * @subpackage v201611
    */
@@ -2454,9 +2454,9 @@ if (!class_exists("Goal", false)) {
 
 if (!class_exists("GrpSettings", false)) {
   /**
-   * {@code GrpSettings} contains information for a line item that will have a target demographic
-   * when serving. This information will be used to set up tracking and enable reporting on the
-   * demographic information.
+   * {@code GrpSettings} contains information for a line item that will have a target demographic when
+   * serving. This information will be used to set up tracking and enable reporting on the demographic
+   * information.
    * @package GoogleApiAdsDfp
    * @subpackage v201611
    */
@@ -5018,8 +5018,8 @@ if (!class_exists("ServerError", false)) {
 
 if (!class_exists("SetTopBoxInfo", false)) {
   /**
-   * Contains data used to display information synchronized with Canoe for set-top box enabled
-   * {@link LineItem line items}.
+   * Contains data used to display information synchronized with Canoe for set-top box enabled {@link
+   * LineItem line items}.
    * @package GoogleApiAdsDfp
    * @subpackage v201611
    */
@@ -8451,12 +8451,10 @@ if (!class_exists("QuotaErrorReason", false)) {
    * about 5 seconds and then retry the request. Note that this does not
    * guarantee the request will succeed. If it fails again, try increasing the
    * wait time.
-   * <p>
-   * Another way to mitigate this error is to limit requests to 2 per second for
+   * <p>Another way to mitigate this error is to limit requests to 2 per second for
    * Small Business networks, or 8 per second for Premium networks. Once again
    * this does not guarantee that every request will succeed, but may help
    * reduce the number of times you receive this error.
-   * </p>
    * @package GoogleApiAdsDfp
    * @subpackage v201611
    */

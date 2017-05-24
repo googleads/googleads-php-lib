@@ -784,8 +784,8 @@ if (!class_exists("CommonError", false)) {
 
 if (!class_exists("ContentMetadataKeyHierarchyTargeting", false)) {
   /**
-   * Represents one or more {@link CustomTargetingValue custom targeting values} from different
-   * {@link CustomTargetingKey custom targeting keys} ANDed together.
+   * Represents one or more {@link CustomTargetingValue custom targeting values} from different {@link
+   * CustomTargetingKey custom targeting keys} ANDed together.
    * @package GoogleApiAdsDfp
    * @subpackage v201608
    */
@@ -3319,8 +3319,7 @@ if (!class_exists("PremiumFeature", false)) {
 
 if (!class_exists("PremiumRateValue", false)) {
   /**
-   * A premium of a {@link RateCard} which could be applied to the line item
-   * and charges extra.
+   * A premium of a {@link RateCard} which could be applied to the line item and charges extra.
    * @package GoogleApiAdsDfp
    * @subpackage v201608
    */
@@ -3553,9 +3552,9 @@ if (!class_exists("ProposalLineItemActionError", false)) {
 
 if (!class_exists("ProposalLineItemConstraints", false)) {
   /**
-   * A {@code PropoalLineItemConstraints} represents all the constraints set for a
-   * {@link ProposalLineItem} and is always readonly. It comes from the {@link Product},
-   * based on which the proposal line item is created.
+   * A {@code PropoalLineItemConstraints} represents all the constraints set for a {@link
+   * ProposalLineItem} and is always readonly. It comes from the {@link Product}, based on which the
+   * proposal line item is created.
    * @package GoogleApiAdsDfp
    * @subpackage v201608
    */
@@ -8166,12 +8165,10 @@ if (!class_exists("QuotaErrorReason", false)) {
    * about 5 seconds and then retry the request. Note that this does not
    * guarantee the request will succeed. If it fails again, try increasing the
    * wait time.
-   * <p>
-   * Another way to mitigate this error is to limit requests to 2 per second for
+   * <p>Another way to mitigate this error is to limit requests to 2 per second for
    * Small Business networks, or 8 per second for Premium networks. Once again
    * this does not guarantee that every request will succeed, but may help
    * reduce the number of times you receive this error.
-   * </p>
    * @package GoogleApiAdsDfp
    * @subpackage v201608
    */

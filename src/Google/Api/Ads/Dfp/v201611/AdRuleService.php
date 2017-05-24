@@ -982,8 +982,8 @@ if (!class_exists("CommonError", false)) {
 
 if (!class_exists("ContentMetadataKeyHierarchyTargeting", false)) {
   /**
-   * Represents one or more {@link CustomTargetingValue custom targeting values} from different
-   * {@link CustomTargetingKey custom targeting keys} ANDed together.
+   * Represents one or more {@link CustomTargetingValue custom targeting values} from different {@link
+   * CustomTargetingKey custom targeting keys} ANDed together.
    * @package GoogleApiAdsDfp
    * @subpackage v201611
    */
@@ -3272,8 +3272,8 @@ if (!class_exists("UniqueError", false)) {
 
 if (!class_exists("UnknownAdRuleSlot", false)) {
   /**
-   * The {@link BaseAdRuleSlot} subtype returned if the actual type is not exposed by the
-   * requested API version.
+   * The {@link BaseAdRuleSlot} subtype returned if the actual type is not exposed by the requested
+   * API version.
    * @package GoogleApiAdsDfp
    * @subpackage v201611
    */
@@ -4626,12 +4626,10 @@ if (!class_exists("QuotaErrorReason", false)) {
    * about 5 seconds and then retry the request. Note that this does not
    * guarantee the request will succeed. If it fails again, try increasing the
    * wait time.
-   * <p>
-   * Another way to mitigate this error is to limit requests to 2 per second for
+   * <p>Another way to mitigate this error is to limit requests to 2 per second for
    * Small Business networks, or 8 per second for Premium networks. Once again
    * this does not guarantee that every request will succeed, but may help
    * reduce the number of times you receive this error.
-   * </p>
    * @package GoogleApiAdsDfp
    * @subpackage v201611
    */

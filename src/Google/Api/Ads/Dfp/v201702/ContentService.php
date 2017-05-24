@@ -545,6 +545,9 @@ if (!class_exists("ContentPage", false)) {
 if (!class_exists("ContentPartnerError", false)) {
   /**
    * The content partner related validation errors.
+   * <p>
+   * This class is deprecated. All companies of type
+   * {@link Company.Type#CONTENT_PARTNER} were changed to {@link Company.Type#PARTNER}.
    * @package GoogleApiAdsDfp
    * @subpackage v201702
    */
@@ -2241,12 +2244,10 @@ if (!class_exists("QuotaErrorReason", false)) {
    * about 5 seconds and then retry the request. Note that this does not
    * guarantee the request will succeed. If it fails again, try increasing the
    * wait time.
-   * <p>
-   * Another way to mitigate this error is to limit requests to 2 per second for
+   * <p>Another way to mitigate this error is to limit requests to 2 per second for
    * Small Business networks, or 8 per second for Premium networks. Once again
    * this does not guarantee that every request will succeed, but may help
    * reduce the number of times you receive this error.
-   * </p>
    * @package GoogleApiAdsDfp
    * @subpackage v201702
    */

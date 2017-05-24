@@ -96,6 +96,9 @@ class ReportDownloader {
     } else {
       $curlUtils->SetOpt($ch, CURLOPT_RETURNTRANSFER, 1);
     }
+    $adsUser = $this->reportService->GetAdsUser();
+    $curlUtils->SetOpt($ch, CURLOPT_USERAGENT,
+        $adsUser->GetCombinedUserAgent($adsUser->GetApplicationName()));
 
     $result = $curlUtils->Exec($ch);
     $httpCode = $curlUtils->GetInfo($ch, CURLINFO_HTTP_CODE);

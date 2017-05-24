@@ -1667,8 +1667,7 @@ if (!class_exists("LineItemOperationError", false)) {
 
 if (!class_exists("LineItemTemplate", false)) {
   /**
-   * Represents the template that populates the fields of a new line item being
-   * created.
+   * Represents the template that populates the fields of a new line item being created.
    * @package GoogleApiAdsDfp
    * @subpackage v201611
    */
@@ -4815,12 +4814,10 @@ if (!class_exists("QuotaErrorReason", false)) {
    * about 5 seconds and then retry the request. Note that this does not
    * guarantee the request will succeed. If it fails again, try increasing the
    * wait time.
-   * <p>
-   * Another way to mitigate this error is to limit requests to 2 per second for
+   * <p>Another way to mitigate this error is to limit requests to 2 per second for
    * Small Business networks, or 8 per second for Premium networks. Once again
    * this does not guarantee that every request will succeed, but may help
    * reduce the number of times you receive this error.
-   * </p>
    * @package GoogleApiAdsDfp
    * @subpackage v201611
    */

@@ -1003,6 +1003,52 @@ if (!class_exists("QuotaError", false)) {
   }
 }
 
+if (!class_exists("RequestError", false)) {
+  /**
+   * Encapsulates the generic errors thrown when there's an error with user
+   * request.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201702
+   */
+  class RequestError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201702";
+    const XSI_TYPE = "RequestError";
+
+    /**
+     * @access public
+     * @var tnsRequestErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $fieldPathElements = null, $trigger = null, $errorString = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->fieldPathElements = $fieldPathElements;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+    }
+
+  }
+}
+
 if (!class_exists("RequiredCollectionError", false)) {
   /**
    * A list of all errors to be used for validating sizes of collections.
@@ -1995,12 +2041,10 @@ if (!class_exists("QuotaErrorReason", false)) {
    * about 5 seconds and then retry the request. Note that this does not
    * guarantee the request will succeed. If it fails again, try increasing the
    * wait time.
-   * <p>
-   * Another way to mitigate this error is to limit requests to 2 per second for
+   * <p>Another way to mitigate this error is to limit requests to 2 per second for
    * Small Business networks, or 8 per second for Premium networks. Once again
    * this does not guarantee that every request will succeed, but may help
    * reduce the number of times you receive this error.
-   * </p>
    * @package GoogleApiAdsDfp
    * @subpackage v201702
    */
@@ -2008,6 +2052,39 @@ if (!class_exists("QuotaErrorReason", false)) {
 
     const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201702";
     const XSI_TYPE = "QuotaError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
+if (!class_exists("RequestErrorReason", false)) {
+  /**
+   * Error reason is unknown.
+   * @package GoogleApiAdsDfp
+   * @subpackage v201702
+   */
+  class RequestErrorReason {
+
+    const WSDL_NAMESPACE = "https://www.google.com/apis/ads/publisher/v201702";
+    const XSI_TYPE = "RequestError.Reason";
 
     /**
      * Gets the namesapce of this class
@@ -2680,6 +2757,7 @@ if (!class_exists("NetworkService", false)) {
       "PublisherQueryLanguageContextError" => "PublisherQueryLanguageContextError",
       "PublisherQueryLanguageSyntaxError" => "PublisherQueryLanguageSyntaxError",
       "QuotaError" => "QuotaError",
+      "RequestError" => "RequestError",
       "RequiredCollectionError" => "RequiredCollectionError",
       "RequiredError" => "RequiredError",
       "RequiredNumberError" => "RequiredNumberError",
@@ -2707,6 +2785,7 @@ if (!class_exists("NetworkService", false)) {
       "PublisherQueryLanguageContextError.Reason" => "PublisherQueryLanguageContextErrorReason",
       "PublisherQueryLanguageSyntaxError.Reason" => "PublisherQueryLanguageSyntaxErrorReason",
       "QuotaError.Reason" => "QuotaErrorReason",
+      "RequestError.Reason" => "RequestErrorReason",
       "RequiredCollectionError.Reason" => "RequiredCollectionErrorReason",
       "RequiredError.Reason" => "RequiredErrorReason",
       "RequiredNumberError.Reason" => "RequiredNumberErrorReason",

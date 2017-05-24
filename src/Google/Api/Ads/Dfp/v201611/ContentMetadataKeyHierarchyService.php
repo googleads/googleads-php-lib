@@ -443,9 +443,9 @@ if (!class_exists("ContentMetadataKeyHierarchyError", false)) {
 
 if (!class_exists("ContentMetadataKeyHierarchyLevel", false)) {
   /**
-   * A {@code ContentMetadataKeyHierarchyLevel} represents one level in a
-   * {@link ContentMetadataKeyHierarchy}. The level consists of a {@link CustomTargetingKey}
-   * and an integer that represents the level's position in the hierarchy.
+   * A {@code ContentMetadataKeyHierarchyLevel} represents one level in a {@link
+   * ContentMetadataKeyHierarchy}. The level consists of a {@link CustomTargetingKey} and an integer
+   * that represents the level's position in the hierarchy.
    * @package GoogleApiAdsDfp
    * @subpackage v201611
    */
@@ -2085,12 +2085,10 @@ if (!class_exists("QuotaErrorReason", false)) {
    * about 5 seconds and then retry the request. Note that this does not
    * guarantee the request will succeed. If it fails again, try increasing the
    * wait time.
-   * <p>
-   * Another way to mitigate this error is to limit requests to 2 per second for
+   * <p>Another way to mitigate this error is to limit requests to 2 per second for
    * Small Business networks, or 8 per second for Premium networks. Once again
    * this does not guarantee that every request will succeed, but may help
    * reduce the number of times you receive this error.
-   * </p>
    * @package GoogleApiAdsDfp
    * @subpackage v201611
    */
@@ -2323,11 +2321,12 @@ if (!class_exists("CreateContentMetadataKeyHierarchies", false)) {
   /**
    * Creates new {@link ContentMetadataKeyHierarchy} objects.
    * 
-   * The following fields are required:
+   * <p>The following fields are required:
+   * 
    * <ul>
-   * <li>{@link ContentMetadataKeyHierarchy#id}</li>
-   * <li>{@link ContentMetadataKeyHierarchy#name}</li>
-   * <li>{@link ContentMetadataKeyHierarchy#hierarchyLevels}</li>
+   * <li>{@link ContentMetadataKeyHierarchy#id}
+   * <li>{@link ContentMetadataKeyHierarchy#name}
+   * <li>{@link ContentMetadataKeyHierarchy#hierarchyLevels}
    * </ul>
    * 
    * @param contentMetadataKeyHierarchies the hierarchies to create
@@ -2517,12 +2516,11 @@ if (!class_exists("GetContentMetadataKeyHierarchiesByStatementResponse", false))
 
 if (!class_exists("PerformContentMetadataKeyHierarchyAction", false)) {
   /**
-   * Performs actions on {@link ContentMetadataKeyHierarchy} objects that match the given
-   * {@link Statement#query}.
+   * Performs actions on {@link ContentMetadataKeyHierarchy} objects that match the given {@link
+   * Statement#query}.
    * 
    * @param contentMetadataKeyHierarchyAction the action to perform
-   * @param filterStatement a Publisher Query Language statement used to filter
-   * a set of hierarchies
+   * @param filterStatement a Publisher Query Language statement used to filter a set of hierarchies
    * @return the result of the action performed
    * @package GoogleApiAdsDfp
    * @subpackage v201611
@@ -3131,11 +3129,12 @@ if (!class_exists("ContentMetadataKeyHierarchyService", false)) {
     /**
      * Creates new {@link ContentMetadataKeyHierarchy} objects.
      * 
-     * The following fields are required:
+     * <p>The following fields are required:
+     * 
      * <ul>
-     * <li>{@link ContentMetadataKeyHierarchy#id}</li>
-     * <li>{@link ContentMetadataKeyHierarchy#name}</li>
-     * <li>{@link ContentMetadataKeyHierarchy#hierarchyLevels}</li>
+     * <li>{@link ContentMetadataKeyHierarchy#id}
+     * <li>{@link ContentMetadataKeyHierarchy#name}
+     * <li>{@link ContentMetadataKeyHierarchy#hierarchyLevels}
      * </ul>
      * 
      * @param contentMetadataKeyHierarchies the hierarchies to create
@@ -3181,12 +3180,11 @@ if (!class_exists("ContentMetadataKeyHierarchyService", false)) {
       return $result->rval;
     }
     /**
-     * Performs actions on {@link ContentMetadataKeyHierarchy} objects that match the given
-     * {@link Statement#query}.
+     * Performs actions on {@link ContentMetadataKeyHierarchy} objects that match the given {@link
+     * Statement#query}.
      * 
      * @param contentMetadataKeyHierarchyAction the action to perform
-     * @param filterStatement a Publisher Query Language statement used to filter
-     * a set of hierarchies
+     * @param filterStatement a Publisher Query Language statement used to filter a set of hierarchies
      * @return the result of the action performed
      */
     public function performContentMetadataKeyHierarchyAction($contentMetadataKeyHierarchyAction, $filterStatement) {

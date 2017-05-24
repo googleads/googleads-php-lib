@@ -293,8 +293,8 @@ if (!class_exists("BaseRateActionError", false)) {
 
 if (!class_exists("BaseRate", false)) {
   /**
-   * A base rate that applies to a product template, product or product package
-   * item belonging to rate card.
+   * A base rate that applies to a product template, product or product package item belonging to rate
+   * card.
    * @package GoogleApiAdsDfp
    * @subpackage v201611
    */
@@ -1802,8 +1802,8 @@ if (!class_exists("String_ValueMapEntry", false)) {
 
 if (!class_exists("UnknownBaseRate", false)) {
   /**
-   * The {@link BaseRate} returned if the actual base rate type is not exposed by
-   * the requested API version.
+   * The {@link BaseRate} returned if the actual base rate type is not exposed by the requested API
+   * version.
    * @package GoogleApiAdsDfp
    * @subpackage v201611
    */
@@ -2416,12 +2416,10 @@ if (!class_exists("QuotaErrorReason", false)) {
    * about 5 seconds and then retry the request. Note that this does not
    * guarantee the request will succeed. If it fails again, try increasing the
    * wait time.
-   * <p>
-   * Another way to mitigate this error is to limit requests to 2 per second for
+   * <p>Another way to mitigate this error is to limit requests to 2 per second for
    * Small Business networks, or 8 per second for Premium networks. Once again
    * this does not guarantee that every request will succeed, but may help
    * reduce the number of times you receive this error.
-   * </p>
    * @package GoogleApiAdsDfp
    * @subpackage v201611
    */

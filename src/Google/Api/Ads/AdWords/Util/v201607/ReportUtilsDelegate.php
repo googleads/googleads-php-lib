@@ -75,7 +75,7 @@ class ReportUtilsDelegate {
     $url = self::GetUrl($user, $options);
     $headers = self::GetHeaders($user, $url, $options);
     $params = self::GetParams($reportDefinition);
-    return self::DownloadReportFromUrl($url, $headers, $params, $path,
+    return self::DownloadReportFromUrl($user, $url, $headers, $params, $path,
         $customCurlOptions);
   }
 
@@ -88,12 +88,13 @@ class ReportUtilsDelegate {
     $url = self::GetUrl($user, $options);
     $headers = self::GetHeaders($user, $url, $options);
     $params = self::GetQueryParams($reportQuery, $reportFormat);
-    return self::DownloadReportFromUrl($url, $headers, $params, $path,
+    return self::DownloadReportFromUrl($user, $url, $headers, $params, $path,
         $customCurlOptions);
   }
 
   /**
    * Downloads a report using the URL provided.
+   * @param AdWordsUser $user the AdWords user that makes this request
    * @param string $url the URL to make the request to
    * @param array $headers the headers to use in the request
    * @param array $params the parameters to pass in the request
@@ -103,8 +104,14 @@ class ReportUtilsDelegate {
    * @param array $customCurlOptions the custom curl options for downloading
    *     reports
    */
-  private static function DownloadReportFromUrl($url, $headers, $params,
-      $path = null, $customCurlOptions = null) {
+  private static function DownloadReportFromUrl(
+      AdWordsUser $user,
+      $url,
+      array $headers,
+      array $params,
+      $path = null,
+      array $customCurlOptions = null
+  ) {
     /*
      * This method should not be static and instantiation of this class should
      * be allowed so we can "inject" CurlUtils, but would break too many things
@@ -115,6 +122,8 @@ class ReportUtilsDelegate {
 
     $curlUtils->SetOpt($ch, CURLOPT_POST, true);
     $curlUtils->SetOpt($ch, CURLINFO_HEADER_OUT, true);
+    $curlUtils->SetOpt($ch, CURLOPT_USERAGENT,
+        $user->GetCombinedUserAgent($user->GetUserAgent()));
 
     $flatHeaders = array();
     foreach($headers as $name => $value) {
