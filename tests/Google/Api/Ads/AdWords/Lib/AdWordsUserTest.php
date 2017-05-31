@@ -73,25 +73,17 @@ class AdWordsUserTest extends PHPUnit_Framework_TestCase {
   }
 
   /**
-   * @expectedException ValidationException
    * @covers AdWordsUser::ValidateUser
    */
-  public function
-      testValidateUserWithNullUserAgentFailsWithValidationException() {
-    $user = new AdWordsUser($this->authIniFilePath, 'devToken', null, null,
-        null, $this->mockOAuth2Credential);
-    $user->validateUser();
-  }
-
-  /**
-   * @expectedException ValidationException
-   * @covers AdWordsUser::ValidateUser
-   */
-  public function
-      testValidateUserWithEmptyUserAgentFailsWithValidationException() {
+  public function testValidateUserWithNullOrEmptyUserAgentDefaultToUnknown() {
     $user = new AdWordsUser($this->authIniFilePath, 'devToken', '', null, null,
         $this->mockOAuth2Credential);
     $user->validateUser();
+    $this->assertEquals($user->GetUserAgent(), 'unknown');
+    $user = new AdWordsUser($this->authIniFilePath, 'devToken', null, null,
+        null, $this->mockOAuth2Credential);
+    $user->validateUser();
+    $this->assertEquals($user->GetUserAgent(), 'unknown');
   }
 
   /**
@@ -99,9 +91,9 @@ class AdWordsUserTest extends PHPUnit_Framework_TestCase {
    * @covers AdWordsUser::ValidateUser
    */
   public function
-      testValidateUserWithDefaultUserAgentFailsWithValidationException() {
+      testValidateUserWithNonAsciiUserAgentFailsWithValidationException() {
     $user = new AdWordsUser($this->authIniFilePath, 'devToken',
-        'INSERT_COMPANY_NAME_HERE', null, null, $this->mockOAuth2Credential);
+        'å∫ç∂´ƒ', null, null, $this->mockOAuth2Credential);
     $user->validateUser();
   }
 

@@ -1,3 +1,95 @@
+### 18.0.0
+
+DFP:
+  - Added support and examples for v201705.
+  - Removed examples for v201608 (deprecated).
+  - Removed support for v201605 (sunset).
+
+Common:
+  - Made user agents sent by non-SOAP utilities more informative.
+
+### 17.0.0
+
+AdWords:
+  - Removed support and examples for v201605. See deprecation schedule at:
+    https://developers.google.com/adwords/api/docs/sunset-dates
+
+### 16.1.0
+
+AdWords:
+  - Added support and examples for v201702.
+  - Fixed
+    [issue #191](https://github.com/googleads/googleads-php-lib/issues/191).
+
+DFP:
+  - Fixed an unmarshalling issue with `ApiError`.
+
+### 16.0.0
+
+AdWords:
+  - Fixed
+    [issue #192](https://github.com/googleads/googleads-php-lib/issues/192).
+
+DFP:
+  - Added support and examples for v201702.
+  - Removed examples for v201605 (deprecated).
+  - Removed support for v201602 (sunset).
+
+Common:
+  - The old ads PHP client library has been deprecated. Please
+    [upgrade](https://github.com/googleads/googleads-php-lib/blob/master/UPGRADING.md)
+    to the new ads PHP client library.
+
+### 15.0.0
+
+AdWords:
+  - Fixed [issue #174](https://github.com/googleads/googleads-php-lib/pull/174).
+  - Fixed [issue #176](https://github.com/googleads/googleads-php-lib/pull/176).
+
+DFP:
+  - Added support and examples for v201611.
+  - Removed examples for v201602 (deprecated).
+  - Removed support for v201508 and v201511 (sunset).
+
+### 14.0.0
+
+AdWords:
+  - Removed support and examples for v201603. See deprecation schedule at:
+    https://developers.google.com/adwords/api/docs/sunset-dates
+
+### 13.1.0
+
+AdWords:
+  - Added support and examples for v201609.
+  - Fixed [issue #156](https://github.com/googleads/googleads-php-lib/issues/156).
+  - Fixed [issue #164](https://github.com/googleads/googleads-php-lib/pull/164).
+
+### 13.0.0
+
+Common:
+  - Fixed
+    [issue #162](https://github.com/googleads/googleads-php-lib/issues/162).
+  - Removed the ability to set the OAuth2 server host as it is not useful.
+
+### 12.0.0
+
+AdWords:
+  - Removed support for v201601.
+  - Fixed [issue #158](https://github.com/googleads/googleads-php-lib/issues/158).
+  - User agent is now optional. If no user agent is specified, 'unknown' will
+    be passed instead. If provided, user agent must contain US-ASCII characters
+    only.
+
+### 11.0.0
+
+DFP:
+  - Added support and examples for v201608.
+  - Removed support for v201505 (sunset).
+  - Removed examples for v201508 and v201511 (deprecated).
+
+Common:
+  - Fixed [issue #155](https://github.com/googleads/googleads-php-lib/pull/155).
+
 ### 10.1.0
 
 AdWords:

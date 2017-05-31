@@ -1,7 +1,11 @@
-## Google Ads API PHP Client Library
+## Old Google Ads API PHP Client Library (deprecated)
 
 This project hosts the PHP client library for the various SOAP-based Ads APIs
 (AdWords and DFP) at Google.
+
+> This is the old, deprecated ads API PHP client library. Please
+> [upgrade](https://github.com/googleads/googleads-php-lib/blob/master/UPGRADING.md)
+> to the new library.
 
 ### Requirements
 
@@ -41,9 +45,9 @@ location on your PHP include path, or add the current directory path of the
  > [issue #4](https://github.com/googleads/googleads-php-lib/issues/4)), there
  > are some class naming conflicts with versioned utilities. E.g.,
  > [src/Google/Api/Ads/AdWords/Util]
- > (https://github.com/googleads/googleads-php-lib/tree/master/src/Google/Api/Ads/AdWords/Util).
+ > (https://github.com/googleads/googleads-php-lib/tree/deprecated/src/Google/Api/Ads/AdWords/Util).
  > Thus, these versioned utility src paths aren't included in the `classmap` of
- > [composer.json](https://github.com/googleads/googleads-php-lib/blob/master/composer.json).
+ > [composer.json](https://github.com/googleads/googleads-php-lib/blob/deprecated/composer.json).
  > So if you use composer, you will need to manually specify the version of the
  > utility files you're using. E.g., if you're using AdWords v201603, then in
  > your project's `composer.json` file, you can add those utility files to your
@@ -58,10 +62,10 @@ location on your PHP include path, or add the current directory path of the
 1. Copy the sample **auth.ini** and **settings.ini** for your product to your
 home directory and fill out the required properties.
 
-  * AdWords - [auth.ini](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/Api/Ads/AdWords/auth.ini),
-[settings.ini](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/Api/Ads/AdWords/settings.ini)
-  * DFP - [auth.ini](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/Api/Ads/Dfp/auth.ini),
-[settings.ini](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/Api/Ads/Dfp/settings.ini)
+  * AdWords - [auth.ini](https://github.com/googleads/googleads-php-lib/blob/deprecated/src/Google/Api/Ads/AdWords/auth.ini),
+[settings.ini](https://github.com/googleads/googleads-php-lib/blob/deprecated/src/Google/Api/Ads/AdWords/settings.ini)
+  * DFP - [auth.ini](https://github.com/googleads/googleads-php-lib/blob/deprecated/src/Google/Api/Ads/Dfp/auth.ini),
+[settings.ini](https://github.com/googleads/googleads-php-lib/blob/deprecated/src/Google/Api/Ads/Dfp/settings.ini)
 
 1. Setup your OAuth2 credentials.
 
@@ -71,16 +75,16 @@ appropriate guide below based on your use case.
 
   **If you're accessing an API using your own credentials...**
 
-  * [Using AdWords](https://github.com/googleads/googleads-php-lib/wiki/API-access-using-own-credentials-(installed-application-flow))
-  * [Using DFP](https://github.com/googleads/googleads-php-lib/wiki/API-access-using-own-credentials-(installed-application-flow))
+  * [Using AdWords](https://github.com/googleads/googleads-php-lib/wiki/%5BDeprecated,-old-library%5D-API-access-using-own-credentials-(installed-application-flow))
+  * [Using DFP](https://github.com/googleads/googleads-php-lib/wiki/%5BDeprecated,-old-library%5D-API-access-using-own-credentials-(installed-application-flow))
 
 ### Basic usage
 
 The best way to learn how to use this library is to review the examples for your
 product.
 
-* [AdWords examples](https://github.com/googleads/googleads-php-lib/tree/master/examples/AdWords)
-* [DFP examples](https://github.com/googleads/googleads-php-lib/tree/master/examples/Dfp)
+* [AdWords examples](https://github.com/googleads/googleads-php-lib/tree/deprecated/examples/AdWords)
+* [DFP examples](https://github.com/googleads/googleads-php-lib/tree/deprecated/examples/Dfp)
 
 > All our examples are meant to be run via the command line and not as a
 > webpage.
@@ -123,8 +127,8 @@ don't want to or can't use it, you can also set the same information using the
 `AdWordsUser` or `DfpUser` constructor. See the example for your product for
 details.
 
-  * AdWords - [CreateAdWordsUserWithoutIniFile.php](https://github.com/googleads/googleads-php-lib/blob/master/examples/AdWords/Auth/CreateAdWordsUserWithoutIniFile.php)
-  * DFP - [CreateDfpUserWithoutIniFile.php](https://github.com/googleads/googleads-php-lib/blob/master/examples/Dfp/Auth/CreateDfpUserWithoutIniFile.php)
+  * AdWords - [CreateAdWordsUserWithoutIniFile.php](https://github.com/googleads/googleads-php-lib/blob/deprecated/examples/AdWords/Auth/CreateAdWordsUserWithoutIniFile.php)
+  * DFP - [CreateDfpUserWithoutIniFile.php](https://github.com/googleads/googleads-php-lib/blob/deprecated/examples/Dfp/Auth/CreateDfpUserWithoutIniFile.php)
 
 
 ### How do I set different client customer IDs than specified in auth.ini?
@@ -141,7 +145,7 @@ $user->SetClientCustomerId('INSERT_CLIENT_CUSTOMER_ID_HERE');
 ### Configuring logging
 
 The client library uses a custom class for all logging purposes that is exposed
-through the [Logger.php](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/Api/Ads/Common/Util/Logger.php)
+through the [Logger.php](https://github.com/googleads/googleads-php-lib/blob/deprecated/src/Google/Api/Ads/Common/Util/Logger.php)
 file. There are two loggers within this class described
 below.
 
@@ -174,8 +178,8 @@ PHPDoc for this library can be found in the
 [gh-pages](https://github.com/googleads/googleads-php-lib/tree/gh-pages) branch
 of this repository and can be viewed at:
 
-* [AdWords](http://googleads.github.io/googleads-php-lib/AdWords)
-* [DFP](http://googleads.github.io/googleads-php-lib/Dfp)
+* [AdWords](http://googleads.github.io/googleads-php-lib/(Deprecated%20-%20old%20library)%20AdWords/)
+* [DFP](http://googleads.github.io/googleads-php-lib/(Deprecated%20-%20old%20library)%20Dfp/)
 
 General AdWords and DFP API documentation can be found on our Developers site.
 

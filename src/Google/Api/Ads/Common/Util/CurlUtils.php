@@ -43,7 +43,6 @@ class CurlUtils {
    * CURLOPT_HEADER - false.
    * CURLOPT_RETURNTRANSFER - true.
    * CURLOPT_ENCODING - 'gzip'.
-   * CURLOPT_USERAGENT - 'curl, gzip'.
    *
    * @param string $url the URL of the resource to connect to
    * @return the cURL handle for the new session
@@ -57,7 +56,6 @@ class CurlUtils {
     $this->SetOpt($ch, CURLOPT_HEADER, false);
     $this->SetOpt($ch, CURLOPT_RETURNTRANSFER, true);
     $this->SetOpt($ch, CURLOPT_ENCODING, 'gzip');
-    $this->SetOpt($ch, CURLOPT_USERAGENT, 'curl, gzip');
 
     // Proxy options.
     if (defined('HTTP_PROXY_HOST') && HTTP_PROXY_HOST != '') {

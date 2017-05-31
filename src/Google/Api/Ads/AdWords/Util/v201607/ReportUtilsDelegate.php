@@ -70,35 +70,48 @@ class ReportUtilsDelegate {
    * @see ReportUtils::DownloadReport
    */
   public static function DownloadReport($reportDefinition, $path = null,
-      AdWordsUser $user, array $options = null) {
+      AdWordsUser $user, array $options = null,
+      array $customCurlOptions = null) {
     $url = self::GetUrl($user, $options);
     $headers = self::GetHeaders($user, $url, $options);
     $params = self::GetParams($reportDefinition);
-    return self::DownloadReportFromUrl($url, $headers, $params, $path);
+    return self::DownloadReportFromUrl($user, $url, $headers, $params, $path,
+        $customCurlOptions);
   }
 
   /**
    * @see ReportUtils::DownloadReportWithAwql
    */
   public static function DownloadReportWithAwql($reportQuery, $path = null,
-      AdWordsUser $user, $reportFormat, array $options = null) {
+      AdWordsUser $user, $reportFormat, array $options = null,
+      array $customCurlOptions = null) {
     $url = self::GetUrl($user, $options);
     $headers = self::GetHeaders($user, $url, $options);
     $params = self::GetQueryParams($reportQuery, $reportFormat);
-    return self::DownloadReportFromUrl($url, $headers, $params, $path);
+    return self::DownloadReportFromUrl($user, $url, $headers, $params, $path,
+        $customCurlOptions);
   }
 
   /**
    * Downloads a report using the URL provided.
+   * @param AdWordsUser $user the AdWords user that makes this request
    * @param string $url the URL to make the request to
    * @param array $headers the headers to use in the request
    * @param array $params the parameters to pass in the request
    * @param string $path the optional path to download the report to
    * @return mixed if path isn't specified the contents of the report,
    *     otherwise the size in bytes of the downloaded report
+   * @param array $customCurlOptions the custom curl options for downloading
+   *     reports
    */
-  private static function DownloadReportFromUrl($url, $headers, $params,
-      $path = null) {
+  private static function DownloadReportFromUrl(
+      AdWordsUser $user,
+      $url,
+      array $headers,
+      array $params,
+      $path = null,
+      array $customCurlOptions = null
+  ) {
     /*
      * This method should not be static and instantiation of this class should
      * be allowed so we can "inject" CurlUtils, but would break too many things
@@ -109,6 +122,8 @@ class ReportUtilsDelegate {
 
     $curlUtils->SetOpt($ch, CURLOPT_POST, true);
     $curlUtils->SetOpt($ch, CURLINFO_HEADER_OUT, true);
+    $curlUtils->SetOpt($ch, CURLOPT_USERAGENT,
+        $user->GetCombinedUserAgent($user->GetUserAgent()));
 
     $flatHeaders = array();
     foreach($headers as $name => $value) {
@@ -124,6 +139,13 @@ class ReportUtilsDelegate {
       $file = fopen($path, 'w');
       $curlUtils->SetOpt($ch, CURLOPT_RETURNTRANSFER, false);
       $curlUtils->SetOpt($ch, CURLOPT_FILE, $file);
+    }
+
+    // Set additional cURL options, e.g., CURLOPT_TIMEOUT, if needed.
+    if ($customCurlOptions !== null) {
+      foreach ($customCurlOptions as $curlOption => $curlValue) {
+        $curlUtils->SetOpt($ch, $curlOption, $curlValue);
+      }
     }
 
     $response = $curlUtils->Exec($ch);

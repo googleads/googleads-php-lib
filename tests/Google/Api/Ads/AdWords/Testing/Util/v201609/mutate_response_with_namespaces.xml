@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<mutateResponse xmlns="https://adwords.google.com/api/adwords/cm/v201609">
+  <rval>
+    <ListReturnValue.Type>CampaignCriterionReturnValue</ListReturnValue.Type>
+    <value>
+      <campaignId>1111</campaignId>
+      <isNegative>false</isNegative>
+      <criterion xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Language">
+        <id>1000</id>
+        <type>LANGUAGE</type>
+        <Criterion.Type>Language</Criterion.Type>
+        <code>en</code>
+        <name>English</name>
+      </criterion>
+      <CampaignCriterion.Type>CampaignCriterion</CampaignCriterion.Type>
+    </value>
+    <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="NegativeCampaignCriterion">
+      <campaignId>2222</campaignId>
+      <isNegative>true</isNegative>
+      <criterion xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Location">
+        <id>2276</id>
+        <type>LOCATION</type>
+        <Criterion.Type>Location</Criterion.Type>
+      </criterion>
+      <CampaignCriterion.Type>NegativeCampaignCriterion</CampaignCriterion.Type>
+    </value>
+  </rval>
+</mutateResponse>

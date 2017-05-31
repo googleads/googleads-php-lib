@@ -50,7 +50,6 @@ abstract class AdsUser {
   private $wsdlCache;
   private $forceHttpVersion;
   private $forceAddXsiTypes;
-  private $authServer;
   private $oauth2Info;
   private $oauth2Handler;
   private $isIncludeUtilitiesInUserAgent;
@@ -260,9 +259,6 @@ abstract class AdsUser {
       $this->Define('HTTP_PROXY_PASSWORD', $proxyPassword);
     }
 
-    // Auth settings.
-    $this->authServer = $this->GetSetting($settingsIni, 'AUTH', 'AUTH_SERVER',
-        'https://accounts.google.com');
     // OAuth2.
     $this->oauth2Handler = $this->GetDefaultOAuth2Handler(
         $this->GetSetting($settingsIni, 'AUTH', 'OAUTH2_HANDLER_CLASS'));
@@ -399,14 +395,6 @@ abstract class AdsUser {
   }
 
   /**
-   * Gets the server used for authentication.
-   * @return string the server used for authentiation
-   */
-  public function GetAuthServer() {
-    return $this->authServer;
-  }
-
-  /**
    * Gets the OAuth2 info for this user.
    * @return array the OAuth2 info for this user
    */
@@ -523,11 +511,20 @@ abstract class AdsUser {
    *     this header
    */
   public function updateClientLibraryUserAgent($applicationName) {
-    $this->SetHeaderValue(
-        $this->GetUserAgentHeaderName(),
-        sprintf("%s (%s)", $applicationName,
-            implode(', ', $this->GetAllClientLibraryUserAgentParts()))
-    );
+    $this->SetHeaderValue($this->GetUserAgentHeaderName(),
+        $this->GetCombinedUserAgent($applicationName));
+  }
+
+  /**
+   * Gets combined user agent including the application name and all user agent
+   * parts of the client library.
+   *
+   * @param string $applicationName The application name that will appear in
+   *     the combined user agent
+   */
+  public function GetCombinedUserAgent($applicationName) {
+    return sprintf('%s (%s)', $applicationName,
+        implode(', ', $this->GetAllClientLibraryUserAgentParts()));
   }
 
   /**
@@ -556,4 +553,3 @@ abstract class AdsUser {
     }
   }
 }
-

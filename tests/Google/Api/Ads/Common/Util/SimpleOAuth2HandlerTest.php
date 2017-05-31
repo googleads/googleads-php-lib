@@ -52,7 +52,7 @@ class SimpleOAuth2HandlerTest extends PHPUnit_Framework_TestCase {
     $response = $this->simpleOAuth2Handler->GetAccessToken($credentials, $code);
 
     $url = $this->simpleOAuth2Handler->lastUrl;
-    $this->assertEquals('https://accounts.google.com/o/oauth2/token', $url);
+    $this->assertEquals('https://www.googleapis.com/oauth2/v4/token', $url);
 
     $params = $this->simpleOAuth2Handler->lastParams;
     $this->assertEquals('TEST_CODE', $params['code']);
@@ -69,20 +69,6 @@ class SimpleOAuth2HandlerTest extends PHPUnit_Framework_TestCase {
     $this->assertNotNull($response['timestamp']);
   }
 
-  public function testGetAccessToken_DifferentServer() {
-    $this->simpleOAuth2Handler =
-        new TestSimpleOAuth2Handler('http://www.foo.com');
-    $credentials = array(
-        'client_id' => 'TEST_CLIENT_ID',
-        'client_secret' => 'TEST_CLIENT_SECRET'
-    );
-    $code = 'TEST_CODE';
-    $response = $this->simpleOAuth2Handler->GetAccessToken($credentials, $code);
-
-    $url = $this->simpleOAuth2Handler->lastUrl;
-    $this->assertEquals('http://www.foo.com/o/oauth2/token', $url);
-  }
-
   /**
    * @expectedException OAuth2Exception
    */
@@ -91,7 +77,7 @@ class SimpleOAuth2HandlerTest extends PHPUnit_Framework_TestCase {
         'client_secret' => 'TEST_CLIENT_SECRET'
     );
     $code = 'TEST_CODE';
-    $response = $this->simpleOAuth2Handler->GetAccessToken($credentials, $code);
+    $this->simpleOAuth2Handler->GetAccessToken($credentials, $code);
   }
 
   /**
@@ -102,7 +88,7 @@ class SimpleOAuth2HandlerTest extends PHPUnit_Framework_TestCase {
         'client_id' => 'TEST_CLIENT_ID'
     );
     $code = 'TEST_CODE';
-    $response = $this->simpleOAuth2Handler->GetAccessToken($credentials, $code);
+    $this->simpleOAuth2Handler->GetAccessToken($credentials, $code);
   }
 
   public function testGetAccessToken_DifferentRedirectUri() {
@@ -119,7 +105,7 @@ class SimpleOAuth2HandlerTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals($redirectUri, $params['redirect_uri']);
   }
 
- public function testRefreshAccessToken() {
+  public function testRefreshAccessToken() {
     $credentials = array(
         'client_id' => 'TEST_CLIENT_ID',
         'client_secret' => 'TEST_CLIENT_SECRET',
@@ -133,7 +119,7 @@ class SimpleOAuth2HandlerTest extends PHPUnit_Framework_TestCase {
     $response = $this->simpleOAuth2Handler->RefreshAccessToken($credentials);
 
     $url = $this->simpleOAuth2Handler->lastUrl;
-    $this->assertEquals('https://accounts.google.com/o/oauth2/token', $url);
+    $this->assertEquals('https://www.googleapis.com/oauth2/v4/token', $url);
 
     $params = $this->simpleOAuth2Handler->lastParams;
     $this->assertEquals('TEST_CLIENT_ID', $params['client_id']);
@@ -149,20 +135,6 @@ class SimpleOAuth2HandlerTest extends PHPUnit_Framework_TestCase {
     $this->assertNotNull($response['timestamp']);
   }
 
-  public function testRefreshAccessToken_DifferentServer() {
-    $this->simpleOAuth2Handler =
-        new TestSimpleOAuth2Handler('http://www.foo.com');
-    $credentials = array(
-        'client_id' => 'TEST_CLIENT_ID',
-        'client_secret' => 'TEST_CLIENT_SECRET',
-        'refresh_token' => 'TEST_REFRESH_TOKEN'
-    );
-    $response = $this->simpleOAuth2Handler->RefreshAccessToken($credentials);
-
-    $url = $this->simpleOAuth2Handler->lastUrl;
-    $this->assertEquals('http://www.foo.com/o/oauth2/token', $url);
-  }
-
   /**
    * @expectedException OAuth2Exception
    */
@@ -171,7 +143,7 @@ class SimpleOAuth2HandlerTest extends PHPUnit_Framework_TestCase {
         'client_secret' => 'TEST_CLIENT_SECRET',
         'refresh_token' => 'TEST_REFRESH_TOKEN'
     );
-    $response = $this->simpleOAuth2Handler->RefreshAccessToken($credentials);
+    $this->simpleOAuth2Handler->RefreshAccessToken($credentials);
   }
 
   /**
@@ -182,7 +154,7 @@ class SimpleOAuth2HandlerTest extends PHPUnit_Framework_TestCase {
         'client_id' => 'TEST_CLIENT_ID',
         'refresh_token' => 'TEST_REFRESH_TOKEN'
     );
-    $response = $this->simpleOAuth2Handler->RefreshAccessToken($credentials);
+    $this->simpleOAuth2Handler->RefreshAccessToken($credentials);
   }
 
   /**
@@ -193,7 +165,7 @@ class SimpleOAuth2HandlerTest extends PHPUnit_Framework_TestCase {
         'client_id' => 'TEST_CLIENT_ID',
         'client_secret' => 'TEST_CLIENT_SECRET'
     );
-    $response = $this->simpleOAuth2Handler->RefreshAccessToken($credentials);
+    $this->simpleOAuth2Handler->RefreshAccessToken($credentials);
   }
 }
 
@@ -202,8 +174,8 @@ class TestSimpleOAuth2Handler extends SimpleOAuth2Handler {
   public $lastParams;
   public $response;
 
-  public function __construct($server = null) {
-    parent::__construct($server);
+  public function __construct() {
+    parent::__construct();
     $this->response = array();
   }
 
@@ -213,4 +185,3 @@ class TestSimpleOAuth2Handler extends SimpleOAuth2Handler {
     return $this->response;
   }
 }
-

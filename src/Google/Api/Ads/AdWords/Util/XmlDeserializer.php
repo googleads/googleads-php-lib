@@ -88,14 +88,20 @@ class XmlDeserializer {
           $typeHint = ($elementObject !== null)
               ? self::GetTypeHint(get_class($elementObject), $childName)
               : null;
+
+          // Type hint is sometimes suffixed by [] to indicate that the member
+          // variable is supposed to be an array.
+          if (substr($typeHint, -strlen('[]')) === '[]') {
+            if (array_key_exists($childName, $result) === false) {
+              $result[$childName] = array();
+            }
+            $typeHint = substr($typeHint, 0, -strlen('[]'));
+          }
           // Call this function recursively on the child node.
           $value = self::ConvertElementToObject($childNode, $typeHint);
           if (!isset($result[$childName])) {
             $result[$childName] = $value;
           } else {
-            if (!is_array($result[$childName])) {
-              $result[$childName] = array($result[$childName]);
-            }
             $result[$childName][] = $value;
           }
         }
@@ -104,6 +110,16 @@ class XmlDeserializer {
 
     // If $result contains no members, $element is a leaf node.
     if (count($result) === 0) {
+      // Return the element object if it was created for this node and the
+      // element class has at least one property to avoid returning enum
+      // classes. (Enum classes are those having no properties).
+      //
+      // If the element object is null or it's an enum class, deserialize its
+      // DOM node value to scalar value.
+      if ($elementObject !== null
+          && count($elementClass->getProperties()) > 0) {
+        return $elementObject;
+      }
       return self::ConvertNodeValueToObject($element->nodeValue);
     }
 
@@ -226,11 +242,9 @@ class XmlDeserializer {
       $prop = $clazz->getProperty($propertyName);
       if (preg_match('/@var\s*(.+)\s/', $prop->getDocComment(),
           $annotations)) {
-        // The type hints are sometimes prefixed with "tns" or suffixed
-        // by [] to indicate that the variable stores array.
-        // They are stripped here to extract only the type names.
+        // The type hints are sometimes prefixed with "tns", which is stripped
+        // here to extract only the type names.
         $typeHint = preg_replace('/^tns/', '', $annotations[1]);
-        $typeHint = preg_replace('/\[\]$/', '', $typeHint);
       }
     }
     return $typeHint;
