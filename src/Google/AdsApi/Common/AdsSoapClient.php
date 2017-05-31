@@ -61,6 +61,10 @@ class AdsSoapClient extends SoapClient {
     if (array_key_exists('classmap', $options)) {
       $this->classmap = $options['classmap'];
     }
+    // SoapClient sets keep alive header by default but does not re-use the
+    // connections. Disabling this to avoid running out of FD handles.
+    $options['keep_alive'] = false;
+
     $this->reflection = new Reflection();
     parent::__construct($wsdl, $options);
   }
