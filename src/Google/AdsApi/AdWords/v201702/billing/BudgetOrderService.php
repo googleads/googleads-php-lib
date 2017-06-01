@@ -93,7 +93,8 @@ class BudgetOrderService extends \Google\AdsApi\Common\AdsSoapClient
 
     /**
      * Gets a list of {@link BudgetOrder}s using the generic selector.
-     * All BudgetOrder fields are returned. Stats are not yet supported.
+     *
+     * fields are returned. Stats are not yet supported.
      *
      * @param \Google\AdsApi\AdWords\v201702\cm\Selector $serviceSelector
      * @return \Google\AdsApi\AdWords\v201702\billing\BudgetOrderPage
@@ -105,8 +106,7 @@ class BudgetOrderService extends \Google\AdsApi\Common\AdsSoapClient
     }
 
     /**
-     * Returns all the open/active BillingAccounts associated with the current
-     * manager.
+     * Returns all the open/active BillingAccounts associated with the current manager.
      *
      * @return \Google\AdsApi\AdWords\v201702\billing\BillingAccount[]
      * @throws \Google\AdsApi\AdWords\v201702\cm\ApiException
@@ -117,7 +117,7 @@ class BudgetOrderService extends \Google\AdsApi\Common\AdsSoapClient
     }
 
     /**
-     * Mutates BudgetOrders, supported operations are:
+     * Adds, updates, or removes budget orders. Supported operations are:
      * <p><code>ADD</code>: Adds a {@link BudgetOrder} to the billing account
      * specified by the billing account ID.</p>
      * <p><code>SET</code>: Sets the start/end date and amount of the
@@ -126,6 +126,7 @@ class BudgetOrderService extends \Google\AdsApi\Common\AdsSoapClient
      * <p class="warning"><b>Warning:</b> The <code>BudgetOrderService</code>
      * is limited to one operation per mutate request. Any attempt to make more
      * than one operation will result in an <code>ApiException</code>.</p>
+     * <p class="note"><b>Note:</b> This action is available only on a whitelist basis.</p>
      * support one operation per mutate call</b>.
      *
      * @param \Google\AdsApi\AdWords\v201702\billing\BudgetOrderOperation[] $operations

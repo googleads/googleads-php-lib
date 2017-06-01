@@ -1,3 +1,16 @@
+### 27.1.0
+
+##### AdWords
+
+*   Added support and examples for v201705.
+*   Removed support for AdWords Express (AWX) API.
+*   Updated AddShoppingCampaign.php to include an option of creating an optional
+    default partition.
+
+##### Common
+
+*   Fixed issues #287 and #298 related to too many open file descriptors.
+
 ### 27.0.0
 
 ##### DFP

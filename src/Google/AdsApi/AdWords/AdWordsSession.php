@@ -31,8 +31,6 @@ final class AdWordsSession implements AdsSession {
   private $oAuth2Credential;
   private $soapSettings;
   private $clientCustomerId;
-  private $expressBusinessId;
-  private $expressPlusPageId;
   private $isValidateOnly;
   private $isPartialFailure;
   private $isIncludeUtilitiesInUserAgent;
@@ -112,42 +110,6 @@ final class AdWordsSession implements AdsSession {
    */
   public function getClientCustomerId() {
     return $this->clientCustomerId;
-  }
-
-  /**
-   * Gets the AdWords Express business ID used by the AdWords Express
-   * PromotionService.
-   * @return string|null
-   */
-  public function getExpressBusinessId() {
-    return $this->expressBusinessId;
-  }
-
-  /**
-   * Sets the AdWords Express business ID used by the AdWords Express
-   * PromotionService.
-   * @param string|null $expressBusinessId
-   */
-  public function setExpressBusinessId($expressBusinessId) {
-    $this->expressBusinessId = $expressBusinessId;
-  }
-
-  /**
-   * Gets the Google+ page ID for the Google My Business location used by the
-   * AdWords Express PromotionService.
-   * @return string|null
-   */
-  public function getExpressPlusPageId() {
-    return $this->expressPlusPageId;
-  }
-
-  /**
-   * Sets the Google+ page ID for the Google My Business location used by the
-   * AdWords Express PromotionService.
-   * @param string|null $expressPlusPageId
-   */
-  public function setExpressPlusPageId($expressPlusPageId) {
-    $this->expressPlusPageId = $expressPlusPageId;
   }
 
   /**

@@ -29,12 +29,6 @@ final class AdWordsServiceDescriptor implements AdsServiceDescriptor {
    */
   const NAMESPACE_PREFIX = 'https://adwords.google.com/api/adwords';
 
-  /**
-   * @var array a list of AdWords services that require the `ExpressSoapHeader`
-   *     to be used
-   */
-  private static $EXPRESS_HEADER_SERVICES = ['PromotionService'];
-
   private $classReflection;
 
   /**
@@ -68,13 +62,5 @@ final class AdWordsServiceDescriptor implements AdsServiceDescriptor {
     $group = array_pop($namespaceParts);
     $version = array_pop($namespaceParts);
     return sprintf('%s/%s/%s', self::NAMESPACE_PREFIX, $group, $version);
-  }
-
-  /**
-   * @return boolean whether or not the `ExpressSoapHeader` needs to be used
-   */
-  public function isExpressHeaderRequired() {
-    return in_array(
-        $this->getServiceName(), self::$EXPRESS_HEADER_SERVICES, true);
   }
 }

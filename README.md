@@ -1,7 +1,5 @@
 ## Google Ads API PHP Client Library
 
-go/ads-client-lib-php
-
 This project hosts the PHP client library for the various SOAP-based Ads APIs
 (AdWords and DFP) at Google.
 

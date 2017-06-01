@@ -96,11 +96,11 @@ final class GuzzleLogMessageFormatter {
    * Formats this log message as a summary line.
    *
    * @param RequestInterface $request the HTTP request
-   * @param ResponseInterface $response the HTTP response
+   * @param ResponseInterface|null $response the HTTP response
    * @return string the formatted summary log message
    */
   public function formatSummary(RequestInterface $request,
-      ResponseInterface $response) {
+      ResponseInterface $response = null) {
     return sprintf(
         '%s %s',
         http_build_query($this->additionalSummaryInfo, '', ' '),

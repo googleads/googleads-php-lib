@@ -62,8 +62,6 @@ final class AdWordsSessionBuilder implements AdsBuilder {
   private $oAuth2Credential;
   private $soapSettings;
   private $clientCustomerId;
-  private $expressBusinessId;
-  private $expressPlusPageId;
   private $isValidateOnly;
   private $isPartialFailure;
   private $isIncludeUtilitiesInUserAgent;

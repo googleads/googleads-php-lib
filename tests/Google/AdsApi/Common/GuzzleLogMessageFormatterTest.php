@@ -99,6 +99,46 @@ class GuzzleLogMessageFormatterTest extends PHPUnit_Framework_TestCase {
   }
 
   /**
+   * @covers Google\AdsApi\Common\GuzzleLogMessageFormatter::formatSummary
+   */
+  public function testFormatSummary_responseIsNull() {
+    $guzzleLogMessageFormatter = new GuzzleLogMessageFormatter(
+        [],
+        ['clientCustomerId' => '111-222-3333'],
+        false,
+        'REDACTED REPORT DATA'
+    );
+    $headers = [
+        'User-Agent' => 'Test App (AwApi-PHP, googleads-php-lib/25.0.0, '
+            . 'PHP/5.5.9, GuzzleHttp/6.0.0, curl/7.52.0)',
+        'Content-Type' => 'application/x-www-form-urlencoded',
+        'Host' => 'adwords.google.com',
+        'Authorization' => 'Bearer 123.abc.456.xyz',
+        'developerToken' => 'ABcdeFGH93KL-NOPQ_STUv',
+        'clientCustomerId' => '111-222-3333',
+        'skipReportHeader' => false,
+        'skipColumnHeader' => false,
+        'skipReportSummary' => false,
+        'useRawEnumValues' => true,
+        'includeZeroImpressions' => false
+    ];
+    $body = http_build_query([
+        '__rdquery' => $this->awql,
+        '__fmt' => 'CSV'
+    ]);
+    $request = new Request(
+        'POST', '/api/adwords/reportdownload/v201702', $headers, $body);
+    $response = null;
+    $this->assertSame(
+        'clientCustomerId=111-222-3333 Test App (AwApi-PHP, googleads-php-lib/'
+            . '25.0.0, PHP/5.5.9, GuzzleHttp/6.0.0, curl/7.52.0)'
+            . ' "POST /api/adwords/reportdownload/v201702 HTTP/1.1"'
+            . ' Status: NULL ',
+        $guzzleLogMessageFormatter->formatSummary($request, $response)
+    );
+  }
+
+  /**
    * @covers Google\AdsApi\Common\GuzzleLogMessageFormatter::formatDetailed
    */
   public function testFormatDetailedWithAwql_redactReportData() {

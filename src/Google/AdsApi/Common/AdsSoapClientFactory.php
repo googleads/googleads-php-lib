@@ -176,6 +176,10 @@ final class AdsSoapClientFactory {
     }
 
     $options['stream_context'] = stream_context_create($contextOptions);
+    // SoapClient sets keep alive header by default but does not re-use the
+    // connections. Disabling this to avoid running out of file descriptor
+    // handles.
+    $options['keep_alive'] = false;
 
     return $options;
   }
