@@ -3629,6 +3629,9 @@ if (!class_exists("ApiException", false)) {
 if (!class_exists("AdGroupBidModifierOperation", false)) {
   /**
    * Operation used to create or mutate a AdGroupBidModifier.
+   * 
+   * <p>If you try to ADD a criterion that already exists, it will be treated as a SET operation
+   * on the existing criterion.
    * @package Google_Api_Ads_AdWords_v201702
    * @subpackage v201702
    */

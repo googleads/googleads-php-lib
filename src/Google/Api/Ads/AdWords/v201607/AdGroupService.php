@@ -1545,7 +1545,10 @@ if (!class_exists("BiddingStrategyConfiguration", false)) {
   /**
    * Encapsulates the information about bids and bidding strategies.
    * 
-   * <p>Bidding Strategy can be set on campaigns, ad groups or ad group criteria.
+   * <p class="note"><b>Note:</b> Starting with v201705, bidding strategies can only be set on
+   * campaigns. In earlier versions, bidding strategies can be set on campaigns, ad groups and ad
+   * group criteria.
+   * 
    * <p>A bidding strategy can be set using one of the following:
    * <ul>
    * <li>{@linkplain BiddingStrategyConfiguration#biddingScheme bidding scheme}</li>
@@ -6644,7 +6647,7 @@ if (!class_exists("TargetOutrankShareBiddingScheme", false)) {
 if (!class_exists("TargetRoasBiddingScheme", false)) {
   /**
    * Target Roas bidding strategy helps you maximize revenue while averaging a specific target
-   * Return On Average Spend (ROAS).
+   * return on average spend (ROAS).
    * 
    * <p>For example: If TargetRoas is 1.5, the strategy will create as much revenue as possible while
    * ensuring that every $1.00 of clicks provides $1.50 in conversion value.

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<reportDefinition>
+  <selector>
+    <fields>CampaignId</fields>
+    <fields>Id</fields>
+    <fields>Impressions</fields>
+    <fields>Clicks</fields>
+    <fields>Cost</fields>
+    <predicates>
+      <field>Conversions</field>
+      <operator>GREATER_THAN</operator>
+      <values>2</values>
+    </predicates>
+    <predicates>
+      <field>AllConversions</field>
+      <operator>LESS_THAN</operator>
+      <values>50.5221</values>
+    </predicates>
+    <predicates>
+      <field>Clicks</field>
+      <operator>GREATER_THAN</operator>
+      <values>3400</values>
+    </predicates>
+    <predicates>
+      <field>AverageCost</field>
+      <operator>LESS_THAN</operator>
+      <values>2050000</values>
+    </predicates>
+  </selector>
+  <reportName>Custom Adgroup Performance Report</reportName>
+  <reportType>ADGROUP_PERFORMANCE_REPORT</reportType>
+  <dateRangeType>LAST_7_DAYS</dateRangeType>
+  <downloadFormat>CSV</downloadFormat>
+</reportDefinition>

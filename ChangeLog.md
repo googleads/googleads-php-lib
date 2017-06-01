@@ -1,3 +1,9 @@
+### 18.1.0
+
+AdWords:
+  - Added support and examples for v201705.
+  - Removed support for AdWords Express (AWX) API.
+
 ### 18.0.0
 
 DFP:

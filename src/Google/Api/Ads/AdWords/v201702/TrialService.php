@@ -3828,8 +3828,8 @@ if (!class_exists("TrialOperation", false)) {
 
 if (!class_exists("TrialPage", false)) {
   /**
-   * Contains a filtered and paged subset of campaign trials as returned by {@link
-   * TrialService#get(com.google.ads.api.services.common.selector.Selector)}.
+   * Contains a filtered and paged subset of campaign trials as returned by
+   * {@link TrialService#get}.
    * @package Google_Api_Ads_AdWords_v201702
    * @subpackage v201702
    */
