@@ -258,12 +258,16 @@ final class BatchJobsDelegate {
           $e->getResponse()->getStatusCode()
       ));
     }
-
-    $mutateResponse = $this->batchJobSerializer->decode(
-        $response->getBody()->getContents(), 'xml');
+    
+    $mutateResponse = trim($response->getBody()->getContents());
+    
     if ($mutateResponse === '') {
       return [];
     }
+
+    $mutateResponse = $this->batchJobSerializer->decode(
+        $mutateResponse, 'xml');
+   
 
     $rval = AdWordsNormalizer::isOneOrMany($mutateResponse['rval'])
         ? [$mutateResponse['rval']] : $mutateResponse['rval'];
