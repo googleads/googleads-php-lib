@@ -80,30 +80,8 @@ class AdsSoapClient extends SoapClient {
   /**
    * @see SoapClient::__soapCall
    */
-  public function __soapCall($function_name, $arguments, $options = null,
+  public function __soapCall($function_name, $arguments, $options = [],
       $input_headers = null, &$output_headers = null) {
-    // Generate the HTTP headers for this API request.
-    $httpHeaders = $this->headerHandler->generateHttpHeaders($this->adsSession);
-    // The context this SOAP client was originally created with. This is the
-    // only way to modify the HTTP headers per SOAP call.
-    $existingStreamContextOptions =
-        stream_context_get_options($this->streamContext);
-    // Flatten headers into a string with each header separated by \r\n. This is
-    // the most reliable way to set multiple HTTP headers in PHP.
-    // See: http://php.net/manual/en/context.http.php
-    $existingStreamContextOptions['http']['header'] = implode("\r\n",
-        // Flatten the HTTP header map to a single dimension array with each
-        // element becoming "[headerName]: [headerValue]".
-        array_map(
-            function ($headerName, $headerValue) {
-              return sprintf('%s: %s', $headerName, $headerValue);
-            },
-            array_keys($httpHeaders),
-            $httpHeaders
-        )
-    );
-    stream_context_set_option(
-        $this->streamContext, $existingStreamContextOptions);
 
     // Generate the SOAP headers for this API request.
     $input_headers[] = $this->headerHandler->generateSoapHeaders(

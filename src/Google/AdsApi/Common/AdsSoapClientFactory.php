@@ -81,7 +81,7 @@ final class AdsSoapClientFactory {
     ];
 
     $soapSettings = $session->getSoapSettings();
-    $options = $this->populateOptions($session, $options, $soapSettings);
+    $options = $this->populateOptions($session, $options, $soapSettings, $headerHandler);
 
     $soapClient = $this->reflection->createInstance(
         $serviceDescriptor->getServiceClass(), $options);
@@ -107,7 +107,7 @@ final class AdsSoapClientFactory {
   }
 
   private function populateOptions(AdsSession $session, array $options,
-      SoapSettings $soapSettings = null) {
+      SoapSettings $soapSettings = null, AdsHeaderHandler $headerHandler) {
     $contextOptions = [];
     if ($soapSettings !== null) {
       // Compression settings.
@@ -174,7 +174,16 @@ final class AdsSoapClientFactory {
         $contextOptions['ssl']['verify_peer'] = false;
       }
     }
-
+    $authHeaders = $headerHandler->generateHttpHeaders($session);
+    if(!empty($authHeaders)) {
+      $contextOptions['http']['header'] = implode("\r\n", array_map(
+        function ($headerName, $headerValue) {
+          return sprintf('%s: %s', $headerName, $headerValue);
+          },
+          array_keys($authHeaders),
+          $authHeaders
+      ));
+    }
     $options['stream_context'] = stream_context_create($contextOptions);
     // SoapClient sets keep alive header by default but does not re-use the
     // connections. Disabling this to avoid running out of file descriptor
