@@ -2414,7 +2414,6 @@ if (!class_exists("NumberRuleItem", false)) {
 if (!class_exists("Rule", false)) {
   /**
    * A client defined rule based on custom parameters sent by web sites.
-   * It consists of rule item groups that are connected by OR.
    * @package Google_Api_Ads_AdWords_v201607
    * @subpackage v201607
    */
@@ -2508,7 +2507,9 @@ if (!class_exists("RuleItem", false)) {
 
 if (!class_exists("RuleItemGroup", false)) {
   /**
-   * A group of rule items that are ANDed together.
+   * A group of rule items that are ANDed together before version V201705.
+   * Starting from version V201705, rule item groups will be grouped together based on
+   * {@link Rule#getRuleType()}.
    * @package Google_Api_Ads_AdWords_v201607
    * @subpackage v201607
    */
