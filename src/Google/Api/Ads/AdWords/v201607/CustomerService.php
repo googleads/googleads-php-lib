@@ -1506,8 +1506,9 @@ if (!class_exists("GetCustomers", false)) {
   /**
    * Returns details of all the customers directly accessible by the user authenticating the call.
    * <p>
-   * Following V201605, if {@code clientCustomerId} is specified in the request header,
-   * only details of that customer will be returned.
+   * Starting with v201607, if {@code clientCustomerId} is specified in the request header,
+   * only details of that customer will be returned. To do this for prior versions, use the
+   * {@code get()} method instead.
    * @package Google_Api_Ads_AdWords_v201607
    * @subpackage v201607
    */
@@ -2917,8 +2918,9 @@ if (!class_exists("CustomerService", false)) {
     /**
      * Returns details of all the customers directly accessible by the user authenticating the call.
      * <p>
-     * Following V201605, if {@code clientCustomerId} is specified in the request header,
-     * only details of that customer will be returned.
+     * Starting with v201607, if {@code clientCustomerId} is specified in the request header,
+     * only details of that customer will be returned. To do this for prior versions, use the
+     * {@code get()} method instead.
      */
     public function getCustomers() {
       $args = new GetCustomers();

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<batchJobMutateResponse xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://adwords.google.com/api/adwords/cm/v201607">
+  <rval>
+    <result xsi:type="ns1:Budget">
+      <budgetId>12345</budgetId>
+      <name>Test Budget</name>
+    </result>
+    <index>0</index>
+  </rval>
+</batchJobMutateResponse>

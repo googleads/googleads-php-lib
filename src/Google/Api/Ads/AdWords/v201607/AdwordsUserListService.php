@@ -1627,6 +1627,43 @@ if (!class_exists("RejectedErrorReason", false)) {
   }
 }
 
+if (!class_exists("RequestErrorReason", false)) {
+  /**
+   * Error reason is unknown.
+   * 
+   * 
+   * 
+   * Errors returned when Authentication failed.
+   * @package Google_Api_Ads_AdWords_v201607
+   * @subpackage v201607
+   */
+  class RequestErrorReason {
+
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201607";
+    const XSI_TYPE = "RequestError.Reason";
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct() {
+    }
+
+  }
+}
+
 if (!class_exists("RequiredErrorReason", false)) {
   /**
    * The reasons for the target error.
@@ -2197,6 +2234,8 @@ if (!class_exists("MutateMembersOperand", false)) {
 if (!class_exists("MutateMembersOperation", false)) {
   /**
    * Operation representing a request to add or remove members from a user list.
+   * The following {@link Operator}s are supported: ADD and REMOVE. The SET operator
+   * is not supported.
    * @package Google_Api_Ads_AdWords_v201607
    * @subpackage v201607
    */
@@ -2375,7 +2414,6 @@ if (!class_exists("NumberRuleItem", false)) {
 if (!class_exists("Rule", false)) {
   /**
    * A client defined rule based on custom parameters sent by web sites.
-   * It consists of rule item groups that are connected by OR.
    * @package Google_Api_Ads_AdWords_v201607
    * @subpackage v201607
    */
@@ -2469,7 +2507,9 @@ if (!class_exists("RuleItem", false)) {
 
 if (!class_exists("RuleItemGroup", false)) {
   /**
-   * A group of rule items that are ANDed together.
+   * A group of rule items that are ANDed together before version V201705.
+   * Starting from version V201705, rule item groups will be grouped together based on
+   * {@link Rule#getRuleType()}.
    * @package Google_Api_Ads_AdWords_v201607
    * @subpackage v201607
    */
@@ -2883,6 +2923,8 @@ if (!class_exists("UserListLogicalRule", false)) {
 if (!class_exists("UserListOperation", false)) {
   /**
    * UserList operations for adding/updating UserList entities.
+   * The following {@link Operator}s are supported: ADD and SET.
+   * The REMOVE operator is not supported.
    * @package Google_Api_Ads_AdWords_v201607
    * @subpackage v201607
    */
@@ -3666,7 +3708,8 @@ if (!class_exists("MutateMembers", false)) {
    * 
    * 
    * Mutate members of user lists by either adding or removing their lists of members.
-   * The following {@link Operator}s are supported: ADD and REMOVE.
+   * The following {@link Operator}s are supported: ADD and REMOVE. The SET operator
+   * is not supported.
    * 
    * <p>Note that operations cannot have same user list id but different operators.
    * 
@@ -4702,6 +4745,56 @@ if (!class_exists("RejectedError", false)) {
   }
 }
 
+if (!class_exists("RequestError", false)) {
+  /**
+   * Encapsulates the generic errors thrown when there's an error with user
+   * request.
+   * 
+   * 
+   * 
+   * Errors returned when Authentication failed.
+   * @package Google_Api_Ads_AdWords_v201607
+   * @subpackage v201607
+   */
+  class RequestError extends ApiError {
+
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201607";
+    const XSI_TYPE = "RequestError";
+
+    /**
+     * @access public
+     * @var tnsRequestErrorReason
+     */
+    public $reason;
+
+    /**
+     * Gets the namesapce of this class
+     * @return string the namespace of this class
+     */
+    public function getNamespace() {
+      return self::WSDL_NAMESPACE;
+    }
+
+    /**
+     * Gets the xsi:type name of this class
+     * @return string the xsi:type name of this class
+     */
+    public function getXsiTypeName() {
+      return self::XSI_TYPE;
+    }
+
+    public function __construct($reason = null, $fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null) {
+      parent::__construct();
+      $this->reason = $reason;
+      $this->fieldPath = $fieldPath;
+      $this->trigger = $trigger;
+      $this->errorString = $errorString;
+      $this->ApiErrorType = $ApiErrorType;
+    }
+
+  }
+}
+
 if (!class_exists("RequiredError", false)) {
   /**
    * Errors due to missing required field.
@@ -5495,6 +5588,7 @@ if (!class_exists("AdwordsUserListService", false)) {
       "RateExceededError" => "RateExceededError",
       "ReadOnlyError" => "ReadOnlyError",
       "RejectedError" => "RejectedError",
+      "RequestError" => "RequestError",
       "RequiredError" => "RequiredError",
       "SelectorError" => "SelectorError",
       "SizeLimitError" => "SizeLimitError",
@@ -5530,6 +5624,7 @@ if (!class_exists("AdwordsUserListService", false)) {
       "RateExceededError.Reason" => "RateExceededErrorReason",
       "ReadOnlyError.Reason" => "ReadOnlyErrorReason",
       "RejectedError.Reason" => "RejectedErrorReason",
+      "RequestError.Reason" => "RequestErrorReason",
       "RequiredError.Reason" => "RequiredErrorReason",
       "SelectorError.Reason" => "SelectorErrorReason",
       "SizeLimitError.Reason" => "SizeLimitErrorReason",
@@ -5647,7 +5742,8 @@ if (!class_exists("AdwordsUserListService", false)) {
      * 
      * 
      * Mutate members of user lists by either adding or removing their lists of members.
-     * The following {@link Operator}s are supported: ADD and REMOVE.
+     * The following {@link Operator}s are supported: ADD and REMOVE. The SET operator
+     * is not supported.
      * 
      * <p>Note that operations cannot have same user list id but different operators.
      * 

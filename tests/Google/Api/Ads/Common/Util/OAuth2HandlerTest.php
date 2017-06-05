@@ -38,12 +38,12 @@ class OAuth2HandlerTest extends PHPUnit_Framework_TestCase {
     date_default_timezone_set('America/New_York');
     $this->scopes = array('TEST_SCOPE');
 
-    $this->oauth2Handler = new TestOAuth2Handler(null, $this->scopes);
+    $this->oauth2Handler = new TestOAuth2Handler($this->scopes);
   }
 
   public function testMultipleScopes() {
     $scopes = array('TEST_SCOPE1', 'TEST_SCOPE2', 'TEST_SCOPE3');
-    $this->oauth2Handler = new TestOAuth2Handler(null, $scopes);
+    $this->oauth2Handler = new TestOAuth2Handler($scopes);
 
     $credentials = array('client_id' => 'TEST_CLIENT_ID');
 
@@ -68,7 +68,6 @@ class OAuth2HandlerTest extends PHPUnit_Framework_TestCase {
   public function testGetAuthorizationUrl() {
     $credentials = array('client_id' => 'TEST_CLIENT_ID');
 
-
     $url = $this->oauth2Handler->GetAuthorizationUrl($credentials);
 
     $urlParts = parse_url($url);
@@ -77,7 +76,7 @@ class OAuth2HandlerTest extends PHPUnit_Framework_TestCase {
     $this->assertFalse(isset($urlParts['port']));
     $this->assertFalse(isset($urlParts['user']));
     $this->assertFalse(isset($urlParts['pass']));
-    $this->assertEquals('/o/oauth2/auth', $urlParts['path']);
+    $this->assertEquals('/o/oauth2/v2/auth', $urlParts['path']);
     $this->assertFalse(isset($urlParts['fragment']));
 
     $params = array();
@@ -87,22 +86,6 @@ class OAuth2HandlerTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals('urn:ietf:wg:oauth:2.0:oob', $params['redirect_uri']);
     $this->assertEquals('TEST_SCOPE', $params['scope']);
     $this->assertEquals('online', $params['access_type']);
-  }
-
-  public function testGetAuthorizationUrl_AlternateServer() {
-    $scheme = 'http';
-    $authServer = 'www.foo.com';
-    $scopes = array('TEST_SCOPE');
-    $this->oauth2Handler = new TestOAuth2Handler(
-        sprintf('%s://%s', $scheme, $authServer), $scopes);
-    $credentials = array('client_id' => 'TEST_CLIENT_ID');
-
-
-    $url = $this->oauth2Handler->GetAuthorizationUrl($credentials);
-
-    $urlParts = parse_url($url);
-    $this->assertEquals($scheme, $urlParts['scheme']);
-    $this->assertEquals($authServer, $urlParts['host']);
   }
 
   /**

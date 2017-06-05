@@ -52,7 +52,7 @@ class AdWordsUser extends AdsUser {
    */
   const USER_AGENT_HEADER_NAME = 'userAgent';
 
-  const DEFAULT_USER_AGENT = 'INSERT_COMPANY_NAME_HERE';
+  const DEFAULT_USER_AGENT = 'unknown';
 
   private $libVersion;
   private $libName;
@@ -278,40 +278,6 @@ class AdWordsUser extends AdsUser {
   }
 
   /**
-   * Gets the AdWords Express business ID required for AdWords Express
-   * PromotionService
-   */
-  public function GetExpressBusinessId() {
-    return $this->GetHeaderValue('expressBusinessId');
-  }
-
-  /**
-   * Sets the AdWords Express business ID required for AdWords Express
-   * PromotionService
-   * @param string AdWords Express business ID
-   */
-  public function SetExpressBusinessId($businessId) {
-    $this->SetHeaderValue('expressBusinessId', $businessId);
-  }
-
-  /**
-   * Gets the Google My Business page ID used by AdWords Express
-   * PromotionService
-   */
-  public function GetExpressPlusPageId() {
-    return $this->GetHeaderValue('pageId');
-  }
-
-  /**
-   * Sets the Google My Business page ID used by AdWords Express
-   * PromotionService
-   * @param string Google My Business page ID
-   */
-  public function SetExpressPlusPageId($pageId) {
-    $this->SetHeaderValue('pageId', $pageId);
-  }
-
-  /**
    * Gets the raw user agent for this user.
    * @return string The raw user agent.
    */
@@ -368,13 +334,11 @@ class AdWordsUser extends AdsUser {
     }
     parent::ValidateOAuth2Info();
 
-    if ($this->GetUserAgent() === null
-        || trim($this->GetUserAgent()) === ''
-        || strpos($this->GetUserAgent(), self::DEFAULT_USER_AGENT) !== false) {
-      throw new ValidationException('userAgent', null,
-          sprintf("The property userAgent is required and cannot be "
-              . "null, the empty string, or the default [%s]",
-              self::DEFAULT_USER_AGENT));
+    if ($this->GetUserAgent() === null || trim($this->GetUserAgent()) === '') {
+      $this->SetUserAgent(self::DEFAULT_USER_AGENT);
+    } else if (mb_check_encoding($this->GetUserAgent(), 'ASCII') === false) {
+      throw new ValidationException('userAgent', $this->GetUserAgent(),
+          'The property userAgent must contain only ASCII characters');
     }
 
     if ($this->GetDeveloperToken() === null) {
@@ -390,7 +354,8 @@ class AdWordsUser extends AdsUser {
    */
   public function GetDefaultOAuth2Handler($className = null) {
     $className = !empty($className) ? $className : self::OAUTH2_HANDLER_CLASS;
-    return new $className($this->GetAuthServer(), $this->GetScopes());
+    $oauth2Handler = new $className($this->GetScopes());
+    return $oauth2Handler;
   }
 
   /**
@@ -409,4 +374,3 @@ class AdWordsUser extends AdsUser {
     }
   }
 }
-

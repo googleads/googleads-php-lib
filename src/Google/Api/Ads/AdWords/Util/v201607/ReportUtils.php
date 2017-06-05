@@ -66,18 +66,21 @@ class ReportUtils {
    *         then the default server will be used
    *     {string} version: the version to make the request against. If
    *         <var>null</var>, then the default version will be used
+   * @param array $customCurlOptions the custom curl options for downloading
+   *     reports
    * @return mixed if path isn't specified the contents of the report,
    *     otherwise the size in bytes of the downloaded report
    */
   public function DownloadReport($reportDefinition, $path = null,
-      AdWordsUser $user, array $options = null) {
+      AdWordsUser $user, array $options = null,
+      array $customCurlOptions = null) {
     if ($path === null || $path === '') {
       $this->adsUtilityRegistry->addUtility(AdsUtility::REPORT_UTILS_STRING);
     } else {
       $this->adsUtilityRegistry->addUtility(AdsUtility::REPORT_UTILS_FILE);
     }
     return ReportUtilsDelegate::DownloadReport($reportDefinition, $path, $user,
-        $options);
+        $options, $customCurlOptions);
   }
 
   /**
@@ -93,17 +96,20 @@ class ReportUtils {
    *         then the default server will be used
    *     {string} version: the version to make the request against. If
    *         <var>null</var>, then the default version will be used
+   * @param array $customCurlOptions the custom curl options for downloading
+   *     reports
    * @return mixed if path isn't specified the contents of the report,
    *     otherwise the size in bytes of the downloaded report
    */
   public function DownloadReportWithAwql($reportQuery, $path = null,
-      AdWordsUser $user, $reportFormat, array $options = null) {
+      AdWordsUser $user, $reportFormat, array $options = null,
+      array $customCurlOptions = null) {
     if ($path === null || $path === '') {
       $this->adsUtilityRegistry->addUtility(AdsUtility::REPORT_UTILS_STRING);
     } else {
       $this->adsUtilityRegistry->addUtility(AdsUtility::REPORT_UTILS_FILE);
     }
     return ReportUtilsDelegate::DownloadReportWithAwql($reportQuery, $path,
-        $user, $reportFormat, $options);
+        $user, $reportFormat, $options, $customCurlOptions);
   }
 }

@@ -1545,7 +1545,10 @@ if (!class_exists("BiddingStrategyConfiguration", false)) {
   /**
    * Encapsulates the information about bids and bidding strategies.
    * 
-   * <p>Bidding Strategy can be set on campaigns, ad groups or ad group criteria.
+   * <p class="note"><b>Note:</b> Starting with v201705, bidding strategies can only be set on
+   * campaigns. In earlier versions, bidding strategies can be set on campaigns, ad groups and ad
+   * group criteria.
+   * 
    * <p>A bidding strategy can be set using one of the following:
    * <ul>
    * <li>{@linkplain BiddingStrategyConfiguration#biddingScheme bidding scheme}</li>
@@ -6504,8 +6507,8 @@ if (!class_exists("PageOnePromotedBiddingScheme", false)) {
 if (!class_exists("TargetCpaBiddingScheme", false)) {
   /**
    * <a href="https://support.google.com/adwords/answer/6268632">Target CPA</a> is an automated bid
-   * strategy that sets bids to help get as many conversions as possible at the target
-   * cost-per-acquisition (CPA) you set.
+   * strategy that sets bids to help get as many conversions as possible at the target cost per
+   * acquisition (CPA) you set.
    * 
    * <p>A {@linkplain #targetCpa target CPA} must be set for the strategy, but can also be optionally
    * set for individual ad groups in the strategy. Ad group targets, if set, will override strategy
@@ -6644,13 +6647,13 @@ if (!class_exists("TargetOutrankShareBiddingScheme", false)) {
 if (!class_exists("TargetRoasBiddingScheme", false)) {
   /**
    * Target Roas bidding strategy helps you maximize revenue while averaging a specific target
-   * Return On Average Spend (ROAS).
+   * return on average spend (ROAS).
    * 
    * <p>For example: If TargetRoas is 1.5, the strategy will create as much revenue as possible while
    * ensuring that every $1.00 of clicks provides $1.50 in conversion value.
    * 
    * <p>Note that campaigns must meet <a
-   * href="//support.google.com/adwords/answer/2471188">specific
+   * href="//support.google.com/adwords/answer/6268637">specific
    * eligibility requirements</a> before they can use the <code>TargetRoasBiddingScheme</code>
    * bidding strategy.
    * <span class="constraint AdxEnabled">This is disabled for AdX.</span>
