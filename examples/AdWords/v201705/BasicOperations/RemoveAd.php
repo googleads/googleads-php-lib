@@ -1,6 +1,6 @@
 <?php
 /**
- * This example removes an ad. To get text ads, run GetTextAds.php.
+ * This example removes an ad. To get text ads, run GetExpandedTextAds.php.
  *
  * Copyright 2016, Google Inc. All Rights Reserved.
  *

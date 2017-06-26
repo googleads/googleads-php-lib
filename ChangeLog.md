@@ -1,3 +1,12 @@
+### 19.0.0
+
+**This is the last release of the deprecated branch.
+Please migrate to the main branch (v27.1.0 or later).**
+
+AdWords:
+  - Removed support and examples for v201607. See deprecation schedule at:
+    https://developers.google.com/adwords/api/docs/sunset-dates
+
 ### 18.1.0
 
 AdWords:
