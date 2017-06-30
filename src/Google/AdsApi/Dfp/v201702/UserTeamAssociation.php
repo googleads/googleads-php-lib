@@ -40,7 +40,8 @@ class UserTeamAssociation extends \Google\AdsApi\Dfp\v201702\UserRecordTeamAssoc
      */
     public function setUserId($userId)
     {
-      $this->userId = $userId;
+      $this->userId = (PHP_INT_SIZE === 4)
+          ? floatval($userId) : $userId;
       return $this;
     }
 

@@ -10,7 +10,7 @@ class SelectiveOptimization
 {
 
     /**
-     * @var long[] $conversionTypeIds
+     * @var int[] $conversionTypeIds
      */
     protected $conversionTypeIds = null;
 
@@ -20,7 +20,7 @@ class SelectiveOptimization
     protected $conversionTypeIdsOps = null;
 
     /**
-     * @param long[] $conversionTypeIds
+     * @param int[] $conversionTypeIds
      * @param \Google\AdsApi\AdWords\v201702\cm\ListOperations $conversionTypeIdsOps
      */
     public function __construct(array $conversionTypeIds = null, $conversionTypeIdsOps = null)
@@ -30,7 +30,7 @@ class SelectiveOptimization
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getConversionTypeIds()
     {
@@ -38,7 +38,7 @@ class SelectiveOptimization
     }
 
     /**
-     * @param long[] $conversionTypeIds
+     * @param int[] $conversionTypeIds
      * @return \Google\AdsApi\AdWords\v201702\cm\SelectiveOptimization
      */
     public function setConversionTypeIds(array $conversionTypeIds)

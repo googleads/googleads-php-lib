@@ -25,7 +25,7 @@ class CreativeSet
     protected $masterCreativeId = null;
 
     /**
-     * @var long[] $companionCreativeIds
+     * @var int[] $companionCreativeIds
      */
     protected $companionCreativeIds = null;
 
@@ -38,7 +38,7 @@ class CreativeSet
      * @param int $id
      * @param string $name
      * @param int $masterCreativeId
-     * @param long[] $companionCreativeIds
+     * @param int[] $companionCreativeIds
      * @param \Google\AdsApi\Dfp\v201702\DateTime $lastModifiedDateTime
      */
     public function __construct($id = null, $name = null, $masterCreativeId = null, array $companionCreativeIds = null, $lastModifiedDateTime = null)
@@ -64,7 +64,8 @@ class CreativeSet
      */
     public function setId($id)
     {
-      $this->id = $id;
+      $this->id = (PHP_INT_SIZE === 4)
+          ? floatval($id) : $id;
       return $this;
     }
 
@@ -100,12 +101,13 @@ class CreativeSet
      */
     public function setMasterCreativeId($masterCreativeId)
     {
-      $this->masterCreativeId = $masterCreativeId;
+      $this->masterCreativeId = (PHP_INT_SIZE === 4)
+          ? floatval($masterCreativeId) : $masterCreativeId;
       return $this;
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getCompanionCreativeIds()
     {
@@ -113,7 +115,7 @@ class CreativeSet
     }
 
     /**
-     * @param long[] $companionCreativeIds
+     * @param int[] $companionCreativeIds
      * @return \Google\AdsApi\Dfp\v201702\CreativeSet
      */
     public function setCompanionCreativeIds(array $companionCreativeIds)

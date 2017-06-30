@@ -25,7 +25,7 @@ class ImageRedirectCreative extends \Google\AdsApi\Dfp\v201702\BaseImageRedirect
      * @param string $name
      * @param \Google\AdsApi\Dfp\v201702\Size $size
      * @param string $previewUrl
-     * @param string $policyViolations
+     * @param string[] $policyViolations
      * @param \Google\AdsApi\Dfp\v201702\AppliedLabel[] $appliedLabels
      * @param \Google\AdsApi\Dfp\v201702\DateTime $lastModifiedDateTime
      * @param \Google\AdsApi\Dfp\v201702\BaseCustomFieldValue[] $customFieldValues
@@ -35,7 +35,7 @@ class ImageRedirectCreative extends \Google\AdsApi\Dfp\v201702\BaseImageRedirect
      * @param string $altText
      * @param string $thirdPartyImpressionUrl
      */
-    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, $policyViolations = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null, $destinationUrl = null, $destinationUrlType = null, $imageUrl = null, $altText = null, $thirdPartyImpressionUrl = null)
+    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, array $policyViolations = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null, $destinationUrl = null, $destinationUrlType = null, $imageUrl = null, $altText = null, $thirdPartyImpressionUrl = null)
     {
       parent::__construct($advertiserId, $id, $name, $size, $previewUrl, $policyViolations, $appliedLabels, $lastModifiedDateTime, $customFieldValues, $destinationUrl, $destinationUrlType, $imageUrl);
       $this->altText = $altText;

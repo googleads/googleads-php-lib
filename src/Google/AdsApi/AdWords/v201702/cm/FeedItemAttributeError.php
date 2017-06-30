@@ -10,7 +10,7 @@ class FeedItemAttributeError
 {
 
     /**
-     * @var long[] $feedAttributeIds
+     * @var int[] $feedAttributeIds
      */
     protected $feedAttributeIds = null;
 
@@ -25,7 +25,7 @@ class FeedItemAttributeError
     protected $errorInformation = null;
 
     /**
-     * @param long[] $feedAttributeIds
+     * @param int[] $feedAttributeIds
      * @param int $validationErrorCode
      * @param string $errorInformation
      */
@@ -37,7 +37,7 @@ class FeedItemAttributeError
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getFeedAttributeIds()
     {
@@ -45,7 +45,7 @@ class FeedItemAttributeError
     }
 
     /**
-     * @param long[] $feedAttributeIds
+     * @param int[] $feedAttributeIds
      * @return \Google\AdsApi\AdWords\v201702\cm\FeedItemAttributeError
      */
     public function setFeedAttributeIds(array $feedAttributeIds)

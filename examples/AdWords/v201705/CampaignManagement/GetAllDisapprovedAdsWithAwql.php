@@ -16,7 +16,7 @@
  */
 namespace Google\AdsApi\Examples\AdWords\v201705\CampaignManagement;
 
-require '../../../../vendor/autoload.php';
+require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\AdWords\AdWordsServices;
 use Google\AdsApi\AdWords\AdWordsSession;
@@ -41,8 +41,10 @@ class GetAllDisapprovedAdsWithAwql {
 
     // Create an AWQL query.
     $query = sprintf(
-        'SELECT Id, PolicySummary WHERE AdGroupId = %d ORDER BY Id',
-        $adGroupId
+        'SELECT Id, PolicySummary WHERE AdGroupId = %d '
+            . ' AND CombinedApprovalStatus = %s ORDER BY Id',
+        $adGroupId,
+        PolicyApprovalStatus::DISAPPROVED
     );
 
     // Create paging controls.
@@ -59,14 +61,8 @@ class GetAllDisapprovedAdsWithAwql {
       if ($page->getEntries() !== null) {
         $totalNumEntries = $page->getTotalNumEntries();
         foreach ($page->getEntries() as $adGroupAd) {
-          $policySummary = $adGroupAd->getPolicySummary();
-          if (PolicyApprovalStatus::DISAPPROVED
-              !== $policySummary->getCombinedApprovalStatus()) {
-            // Skip ad group ads that are not disapproved.
-            continue;
-          }
-
           $disapprovedAdsCount++;
+          $policySummary = $adGroupAd->getPolicySummary();
           printf(
               "Ad with ID %d and type '%s' was disapproved with the following"
                   . " policy topic entries:\n",

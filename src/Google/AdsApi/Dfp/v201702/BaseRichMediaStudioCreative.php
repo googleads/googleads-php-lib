@@ -100,7 +100,7 @@ abstract class BaseRichMediaStudioCreative extends \Google\AdsApi\Dfp\v201702\Cr
      * @param string $name
      * @param \Google\AdsApi\Dfp\v201702\Size $size
      * @param string $previewUrl
-     * @param string $policyViolations
+     * @param string[] $policyViolations
      * @param \Google\AdsApi\Dfp\v201702\AppliedLabel[] $appliedLabels
      * @param \Google\AdsApi\Dfp\v201702\DateTime $lastModifiedDateTime
      * @param \Google\AdsApi\Dfp\v201702\BaseCustomFieldValue[] $customFieldValues
@@ -122,7 +122,7 @@ abstract class BaseRichMediaStudioCreative extends \Google\AdsApi\Dfp\v201702\Cr
      * @param string $sslScanResult
      * @param string $sslManualOverride
      */
-    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, $policyViolations = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null, $studioCreativeId = null, $creativeFormat = null, $artworkType = null, $totalFileSize = null, array $adTagKeys = null, array $customKeyValues = null, $surveyUrl = null, $allImpressionsUrl = null, $richMediaImpressionsUrl = null, $backupImageImpressionsUrl = null, $overrideCss = null, $requiredFlashPluginVersion = null, $duration = null, $billingAttribute = null, array $richMediaStudioChildAssetProperties = null, $sslScanResult = null, $sslManualOverride = null)
+    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, array $policyViolations = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null, $studioCreativeId = null, $creativeFormat = null, $artworkType = null, $totalFileSize = null, array $adTagKeys = null, array $customKeyValues = null, $surveyUrl = null, $allImpressionsUrl = null, $richMediaImpressionsUrl = null, $backupImageImpressionsUrl = null, $overrideCss = null, $requiredFlashPluginVersion = null, $duration = null, $billingAttribute = null, array $richMediaStudioChildAssetProperties = null, $sslScanResult = null, $sslManualOverride = null)
     {
       parent::__construct($advertiserId, $id, $name, $size, $previewUrl, $policyViolations, $appliedLabels, $lastModifiedDateTime, $customFieldValues);
       $this->studioCreativeId = $studioCreativeId;
@@ -158,7 +158,8 @@ abstract class BaseRichMediaStudioCreative extends \Google\AdsApi\Dfp\v201702\Cr
      */
     public function setStudioCreativeId($studioCreativeId)
     {
-      $this->studioCreativeId = $studioCreativeId;
+      $this->studioCreativeId = (PHP_INT_SIZE === 4)
+          ? floatval($studioCreativeId) : $studioCreativeId;
       return $this;
     }
 
@@ -212,7 +213,8 @@ abstract class BaseRichMediaStudioCreative extends \Google\AdsApi\Dfp\v201702\Cr
      */
     public function setTotalFileSize($totalFileSize)
     {
-      $this->totalFileSize = $totalFileSize;
+      $this->totalFileSize = (PHP_INT_SIZE === 4)
+          ? floatval($totalFileSize) : $totalFileSize;
       return $this;
     }
 

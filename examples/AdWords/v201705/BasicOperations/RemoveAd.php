@@ -16,7 +16,7 @@
  */
 namespace Google\AdsApi\Examples\AdWords\v201705\BasicOperations;
 
-require '../../../../vendor/autoload.php';
+require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\AdWords\AdWordsServices;
 use Google\AdsApi\AdWords\AdWordsSession;
@@ -29,7 +29,7 @@ use Google\AdsApi\AdWords\v201705\cm\Operator;
 use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * This example removes an ad. To get text ads, run GetTextAds.php.
+ * This example removes an ad. To get text ads, run GetExpandedTextAds.php.
  */
 class RemoveAd {
 

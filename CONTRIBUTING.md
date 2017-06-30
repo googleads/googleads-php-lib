@@ -33,7 +33,8 @@ patches.
         https://developers.google.com/doubleclick-advertisers/reporting/community
 *   Create an issue on the library issue tracker if there isn't one already. Use
     this issue to co-ordinate the changes with the library maintainer.
-*   Fork the library, make the changes and send a [pull
+*   Fork the library using `git clone https://github.com/googleads/googleads-php-lib.git`,
+    make the changes and send a [pull
     request](https://help.github.com/articles/using-pull-requests).
 *   The library maintainer will work with you to review and apply the patch.
 

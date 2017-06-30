@@ -50,7 +50,8 @@ class ProposalTermsAndConditions
      */
     public function setTermsAndConditionsId($termsAndConditionsId)
     {
-      $this->termsAndConditionsId = $termsAndConditionsId;
+      $this->termsAndConditionsId = (PHP_INT_SIZE === 4)
+          ? floatval($termsAndConditionsId) : $termsAndConditionsId;
       return $this;
     }
 

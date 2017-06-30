@@ -35,6 +35,11 @@ class Label
     protected $LabelType = null;
 
     /**
+     * @var array $parameterMap
+     */
+    private $parameterMap = ['Label.Type' => 'LabelType'];
+
+    /**
      * @param int $id
      * @param string $name
      * @param string $status
@@ -64,7 +69,8 @@ class Label
      */
     public function setId($id)
     {
-      $this->id = $id;
+      $this->id = (PHP_INT_SIZE === 4)
+          ? floatval($id) : $id;
       return $this;
     }
 
@@ -138,6 +144,32 @@ class Label
     {
       $this->LabelType = $LabelType;
       return $this;
+    }
+
+    /**
+     * Getter for a non PHP standard named variables.
+     *
+     * @param string $var variable name to get
+     * @return string variable value
+     */
+    public function __get($var)
+    {
+      if (!array_key_exists($var, $this->parameterMap)) {
+        return null;
+      }
+      return $this->{$this->parameterMap[$var]};
+    }
+
+    /**
+     * Setter for a non PHP standard named variables.
+     *
+     * @param string $var variable name
+     * @param mixed $value variable value to set
+     * @return \Google\AdsApi\AdWords\v201702\cm\Label
+     */
+    public function __set($var, $value)
+    {
+      $this->{$this->parameterMap[$var]} = $value;
     }
 
 }

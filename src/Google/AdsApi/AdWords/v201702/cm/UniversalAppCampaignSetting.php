@@ -35,12 +35,12 @@ class UniversalAppCampaignSetting extends \Google\AdsApi\AdWords\v201702\cm\Sett
     protected $description4 = null;
 
     /**
-     * @var long[] $youtubeVideoMediaIds
+     * @var int[] $youtubeVideoMediaIds
      */
     protected $youtubeVideoMediaIds = null;
 
     /**
-     * @var long[] $imageMediaIds
+     * @var int[] $imageMediaIds
      */
     protected $imageMediaIds = null;
 
@@ -71,8 +71,8 @@ class UniversalAppCampaignSetting extends \Google\AdsApi\AdWords\v201702\cm\Sett
      * @param string $description2
      * @param string $description3
      * @param string $description4
-     * @param long[] $youtubeVideoMediaIds
-     * @param long[] $imageMediaIds
+     * @param int[] $youtubeVideoMediaIds
+     * @param int[] $imageMediaIds
      * @param string $universalAppBiddingStrategyGoalType
      * @param \Google\AdsApi\AdWords\v201702\cm\ListOperations $youtubeVideoMediaIdsOps
      * @param \Google\AdsApi\AdWords\v201702\cm\ListOperations $imageMediaIdsOps
@@ -185,7 +185,7 @@ class UniversalAppCampaignSetting extends \Google\AdsApi\AdWords\v201702\cm\Sett
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getYoutubeVideoMediaIds()
     {
@@ -193,7 +193,7 @@ class UniversalAppCampaignSetting extends \Google\AdsApi\AdWords\v201702\cm\Sett
     }
 
     /**
-     * @param long[] $youtubeVideoMediaIds
+     * @param int[] $youtubeVideoMediaIds
      * @return \Google\AdsApi\AdWords\v201702\cm\UniversalAppCampaignSetting
      */
     public function setYoutubeVideoMediaIds(array $youtubeVideoMediaIds)
@@ -203,7 +203,7 @@ class UniversalAppCampaignSetting extends \Google\AdsApi\AdWords\v201702\cm\Sett
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getImageMediaIds()
     {
@@ -211,7 +211,7 @@ class UniversalAppCampaignSetting extends \Google\AdsApi\AdWords\v201702\cm\Sett
     }
 
     /**
-     * @param long[] $imageMediaIds
+     * @param int[] $imageMediaIds
      * @return \Google\AdsApi\AdWords\v201702\cm\UniversalAppCampaignSetting
      */
     public function setImageMediaIds(array $imageMediaIds)

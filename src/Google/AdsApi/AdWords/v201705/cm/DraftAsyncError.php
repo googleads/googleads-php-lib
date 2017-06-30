@@ -71,7 +71,8 @@ class DraftAsyncError
      */
     public function setBaseCampaignId($baseCampaignId)
     {
-      $this->baseCampaignId = $baseCampaignId;
+      $this->baseCampaignId = (PHP_INT_SIZE === 4)
+          ? floatval($baseCampaignId) : $baseCampaignId;
       return $this;
     }
 
@@ -89,7 +90,8 @@ class DraftAsyncError
      */
     public function setDraftId($draftId)
     {
-      $this->draftId = $draftId;
+      $this->draftId = (PHP_INT_SIZE === 4)
+          ? floatval($draftId) : $draftId;
       return $this;
     }
 
@@ -107,7 +109,8 @@ class DraftAsyncError
      */
     public function setDraftCampaignId($draftCampaignId)
     {
-      $this->draftCampaignId = $draftCampaignId;
+      $this->draftCampaignId = (PHP_INT_SIZE === 4)
+          ? floatval($draftCampaignId) : $draftCampaignId;
       return $this;
     }
 
@@ -143,7 +146,8 @@ class DraftAsyncError
      */
     public function setBaseAdGroupId($baseAdGroupId)
     {
-      $this->baseAdGroupId = $baseAdGroupId;
+      $this->baseAdGroupId = (PHP_INT_SIZE === 4)
+          ? floatval($baseAdGroupId) : $baseAdGroupId;
       return $this;
     }
 
@@ -161,7 +165,8 @@ class DraftAsyncError
      */
     public function setDraftAdGroupId($draftAdGroupId)
     {
-      $this->draftAdGroupId = $draftAdGroupId;
+      $this->draftAdGroupId = (PHP_INT_SIZE === 4)
+          ? floatval($draftAdGroupId) : $draftAdGroupId;
       return $this;
     }
 

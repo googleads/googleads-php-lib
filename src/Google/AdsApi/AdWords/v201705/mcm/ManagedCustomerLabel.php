@@ -43,7 +43,8 @@ class ManagedCustomerLabel
      */
     public function setLabelId($labelId)
     {
-      $this->labelId = $labelId;
+      $this->labelId = (PHP_INT_SIZE === 4)
+          ? floatval($labelId) : $labelId;
       return $this;
     }
 
@@ -61,7 +62,8 @@ class ManagedCustomerLabel
      */
     public function setCustomerId($customerId)
     {
-      $this->customerId = $customerId;
+      $this->customerId = (PHP_INT_SIZE === 4)
+          ? floatval($customerId) : $customerId;
       return $this;
     }
 

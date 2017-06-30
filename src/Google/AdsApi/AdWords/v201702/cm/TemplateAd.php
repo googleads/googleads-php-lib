@@ -98,7 +98,8 @@ class TemplateAd extends \Google\AdsApi\AdWords\v201702\cm\Ad
      */
     public function setTemplateId($templateId)
     {
-      $this->templateId = $templateId;
+      $this->templateId = (PHP_INT_SIZE === 4)
+          ? floatval($templateId) : $templateId;
       return $this;
     }
 
@@ -224,7 +225,8 @@ class TemplateAd extends \Google\AdsApi\AdWords\v201702\cm\Ad
      */
     public function setOriginAdId($originAdId)
     {
-      $this->originAdId = $originAdId;
+      $this->originAdId = (PHP_INT_SIZE === 4)
+          ? floatval($originAdId) : $originAdId;
       return $this;
     }
 

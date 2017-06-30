@@ -64,7 +64,8 @@ class GrpDemographicBreakdown
      */
     public function setAvailableUnits($availableUnits)
     {
-      $this->availableUnits = $availableUnits;
+      $this->availableUnits = (PHP_INT_SIZE === 4)
+          ? floatval($availableUnits) : $availableUnits;
       return $this;
     }
 
@@ -82,7 +83,8 @@ class GrpDemographicBreakdown
      */
     public function setMatchedUnits($matchedUnits)
     {
-      $this->matchedUnits = $matchedUnits;
+      $this->matchedUnits = (PHP_INT_SIZE === 4)
+          ? floatval($matchedUnits) : $matchedUnits;
       return $this;
     }
 

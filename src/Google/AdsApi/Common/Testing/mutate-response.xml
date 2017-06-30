@@ -1,0 +1,23 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Header>
+    <ResponseHeader xmlns="https://adwords.google.com/api/adwords/cm/v201705">
+      <requestId>123abc456xyz</requestId>
+      <serviceName>FeedService</serviceName>
+      <methodName>mutate</methodName>
+      <operations>9</operations>
+      <responseTime>226</responseTime>
+    </ResponseHeader>
+  </soap:Header>
+  <soap:Body>
+    <mutateResponse xmlns="https://adwords.google.com/api/adwords/cm/v201705">
+      <rval>
+        <ListReturnValue.Type>FeedReturnValue</ListReturnValue.Type>
+        <value>
+          <name>my business</name>
+          <status>ENABLED</status>
+          <origin>ADWORDS</origin>
+        </value>
+      </rval>
+    </mutateResponse>
+  </soap:Body>
+</soap:Envelope>

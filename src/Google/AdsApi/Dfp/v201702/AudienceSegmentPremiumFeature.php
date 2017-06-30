@@ -36,7 +36,8 @@ class AudienceSegmentPremiumFeature extends \Google\AdsApi\Dfp\v201702\PremiumFe
      */
     public function setAudienceSegmentId($audienceSegmentId)
     {
-      $this->audienceSegmentId = $audienceSegmentId;
+      $this->audienceSegmentId = (PHP_INT_SIZE === 4)
+          ? floatval($audienceSegmentId) : $audienceSegmentId;
       return $this;
     }
 

@@ -64,7 +64,8 @@ class ProductPackageItem
      */
     public function setId($id)
     {
-      $this->id = $id;
+      $this->id = (PHP_INT_SIZE === 4)
+          ? floatval($id) : $id;
       return $this;
     }
 
@@ -82,7 +83,8 @@ class ProductPackageItem
      */
     public function setProductId($productId)
     {
-      $this->productId = $productId;
+      $this->productId = (PHP_INT_SIZE === 4)
+          ? floatval($productId) : $productId;
       return $this;
     }
 
@@ -100,7 +102,8 @@ class ProductPackageItem
      */
     public function setProductPackageId($productPackageId)
     {
-      $this->productPackageId = $productPackageId;
+      $this->productPackageId = (PHP_INT_SIZE === 4)
+          ? floatval($productPackageId) : $productPackageId;
       return $this;
     }
 

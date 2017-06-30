@@ -25,7 +25,7 @@ class AdExchangeCreative extends \Google\AdsApi\Dfp\v201705\HasHtmlSnippetDynami
      * @param string $name
      * @param \Google\AdsApi\Dfp\v201705\Size $size
      * @param string $previewUrl
-     * @param string $policyViolations
+     * @param string[] $policyViolations
      * @param \Google\AdsApi\Dfp\v201705\AppliedLabel[] $appliedLabels
      * @param \Google\AdsApi\Dfp\v201705\DateTime $lastModifiedDateTime
      * @param \Google\AdsApi\Dfp\v201705\BaseCustomFieldValue[] $customFieldValues
@@ -33,7 +33,7 @@ class AdExchangeCreative extends \Google\AdsApi\Dfp\v201705\HasHtmlSnippetDynami
      * @param boolean $isNativeEligible
      * @param boolean $isInterstitial
      */
-    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, $policyViolations = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null, $codeSnippet = null, $isNativeEligible = null, $isInterstitial = null)
+    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, array $policyViolations = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null, $codeSnippet = null, $isNativeEligible = null, $isInterstitial = null)
     {
       parent::__construct($advertiserId, $id, $name, $size, $previewUrl, $policyViolations, $appliedLabels, $lastModifiedDateTime, $customFieldValues, $codeSnippet);
       $this->isNativeEligible = $isNativeEligible;

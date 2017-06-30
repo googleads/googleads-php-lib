@@ -60,7 +60,7 @@ class Html5Creative extends \Google\AdsApi\Dfp\v201702\Creative
      * @param string $name
      * @param \Google\AdsApi\Dfp\v201702\Size $size
      * @param string $previewUrl
-     * @param string $policyViolations
+     * @param string[] $policyViolations
      * @param \Google\AdsApi\Dfp\v201702\AppliedLabel[] $appliedLabels
      * @param \Google\AdsApi\Dfp\v201702\DateTime $lastModifiedDateTime
      * @param \Google\AdsApi\Dfp\v201702\BaseCustomFieldValue[] $customFieldValues
@@ -74,7 +74,7 @@ class Html5Creative extends \Google\AdsApi\Dfp\v201702\Creative
      * @param boolean $isSafeFrameCompatible
      * @param \Google\AdsApi\Dfp\v201702\CreativeAsset $html5Asset
      */
-    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, $policyViolations = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null, $overrideSize = null, array $thirdPartyImpressionTrackingUrls = null, $thirdPartyClickTrackingUrl = null, $isInterstitial = null, $lockedOrientation = null, $sslScanResult = null, $sslManualOverride = null, $isSafeFrameCompatible = null, $html5Asset = null)
+    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, array $policyViolations = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null, $overrideSize = null, array $thirdPartyImpressionTrackingUrls = null, $thirdPartyClickTrackingUrl = null, $isInterstitial = null, $lockedOrientation = null, $sslScanResult = null, $sslManualOverride = null, $isSafeFrameCompatible = null, $html5Asset = null)
     {
       parent::__construct($advertiserId, $id, $name, $size, $previewUrl, $policyViolations, $appliedLabels, $lastModifiedDateTime, $customFieldValues);
       $this->overrideSize = $overrideSize;

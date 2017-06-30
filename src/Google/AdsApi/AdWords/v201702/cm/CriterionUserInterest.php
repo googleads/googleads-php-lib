@@ -54,7 +54,8 @@ class CriterionUserInterest extends \Google\AdsApi\AdWords\v201702\cm\Criterion
      */
     public function setUserInterestId($userInterestId)
     {
-      $this->userInterestId = $userInterestId;
+      $this->userInterestId = (PHP_INT_SIZE === 4)
+          ? floatval($userInterestId) : $userInterestId;
       return $this;
     }
 
@@ -72,7 +73,8 @@ class CriterionUserInterest extends \Google\AdsApi\AdWords\v201702\cm\Criterion
      */
     public function setUserInterestParentId($userInterestParentId)
     {
-      $this->userInterestParentId = $userInterestParentId;
+      $this->userInterestParentId = (PHP_INT_SIZE === 4)
+          ? floatval($userInterestParentId) : $userInterestParentId;
       return $this;
     }
 

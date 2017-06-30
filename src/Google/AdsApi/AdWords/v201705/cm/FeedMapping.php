@@ -71,7 +71,8 @@ class FeedMapping
      */
     public function setFeedMappingId($feedMappingId)
     {
-      $this->feedMappingId = $feedMappingId;
+      $this->feedMappingId = (PHP_INT_SIZE === 4)
+          ? floatval($feedMappingId) : $feedMappingId;
       return $this;
     }
 
@@ -89,7 +90,8 @@ class FeedMapping
      */
     public function setFeedId($feedId)
     {
-      $this->feedId = $feedId;
+      $this->feedId = (PHP_INT_SIZE === 4)
+          ? floatval($feedId) : $feedId;
       return $this;
     }
 

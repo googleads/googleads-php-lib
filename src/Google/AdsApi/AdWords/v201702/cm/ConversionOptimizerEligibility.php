@@ -15,15 +15,15 @@ class ConversionOptimizerEligibility
     protected $eligible = null;
 
     /**
-     * @var string $rejectionReasons
+     * @var string[] $rejectionReasons
      */
     protected $rejectionReasons = null;
 
     /**
      * @param boolean $eligible
-     * @param string $rejectionReasons
+     * @param string[] $rejectionReasons
      */
-    public function __construct($eligible = null, $rejectionReasons = null)
+    public function __construct($eligible = null, array $rejectionReasons = null)
     {
       $this->eligible = $eligible;
       $this->rejectionReasons = $rejectionReasons;
@@ -48,7 +48,7 @@ class ConversionOptimizerEligibility
     }
 
     /**
-     * @return string
+     * @return string[]
      */
     public function getRejectionReasons()
     {
@@ -56,10 +56,10 @@ class ConversionOptimizerEligibility
     }
 
     /**
-     * @param string $rejectionReasons
+     * @param string[] $rejectionReasons
      * @return \Google\AdsApi\AdWords\v201702\cm\ConversionOptimizerEligibility
      */
-    public function setRejectionReasons($rejectionReasons)
+    public function setRejectionReasons(array $rejectionReasons)
     {
       $this->rejectionReasons = $rejectionReasons;
       return $this;

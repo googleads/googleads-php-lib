@@ -50,7 +50,7 @@ class CustomCreative extends \Google\AdsApi\Dfp\v201702\HasDestinationUrlCreativ
      * @param string $name
      * @param \Google\AdsApi\Dfp\v201702\Size $size
      * @param string $previewUrl
-     * @param string $policyViolations
+     * @param string[] $policyViolations
      * @param \Google\AdsApi\Dfp\v201702\AppliedLabel[] $appliedLabels
      * @param \Google\AdsApi\Dfp\v201702\DateTime $lastModifiedDateTime
      * @param \Google\AdsApi\Dfp\v201702\BaseCustomFieldValue[] $customFieldValues
@@ -64,7 +64,7 @@ class CustomCreative extends \Google\AdsApi\Dfp\v201702\HasDestinationUrlCreativ
      * @param string $sslManualOverride
      * @param boolean $isSafeFrameCompatible
      */
-    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, $policyViolations = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null, $destinationUrl = null, $destinationUrlType = null, $htmlSnippet = null, array $customCreativeAssets = null, $isInterstitial = null, $lockedOrientation = null, $sslScanResult = null, $sslManualOverride = null, $isSafeFrameCompatible = null)
+    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, array $policyViolations = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null, $destinationUrl = null, $destinationUrlType = null, $htmlSnippet = null, array $customCreativeAssets = null, $isInterstitial = null, $lockedOrientation = null, $sslScanResult = null, $sslManualOverride = null, $isSafeFrameCompatible = null)
     {
       parent::__construct($advertiserId, $id, $name, $size, $previewUrl, $policyViolations, $appliedLabels, $lastModifiedDateTime, $customFieldValues, $destinationUrl, $destinationUrlType);
       $this->htmlSnippet = $htmlSnippet;

@@ -15,13 +15,13 @@ class AudienceSegmentCriteria extends \Google\AdsApi\Dfp\v201702\CustomCriteriaL
     protected $operator = null;
 
     /**
-     * @var long[] $audienceSegmentIds
+     * @var int[] $audienceSegmentIds
      */
     protected $audienceSegmentIds = null;
 
     /**
      * @param string $operator
-     * @param long[] $audienceSegmentIds
+     * @param int[] $audienceSegmentIds
      */
     public function __construct($operator = null, array $audienceSegmentIds = null)
     {
@@ -48,7 +48,7 @@ class AudienceSegmentCriteria extends \Google\AdsApi\Dfp\v201702\CustomCriteriaL
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getAudienceSegmentIds()
     {
@@ -56,7 +56,7 @@ class AudienceSegmentCriteria extends \Google\AdsApi\Dfp\v201702\CustomCriteriaL
     }
 
     /**
-     * @param long[] $audienceSegmentIds
+     * @param int[] $audienceSegmentIds
      * @return \Google\AdsApi\Dfp\v201702\AudienceSegmentCriteria
      */
     public function setAudienceSegmentIds(array $audienceSegmentIds)

@@ -10,22 +10,22 @@ class ContentTargeting
 {
 
     /**
-     * @var long[] $targetedContentIds
+     * @var int[] $targetedContentIds
      */
     protected $targetedContentIds = null;
 
     /**
-     * @var long[] $excludedContentIds
+     * @var int[] $excludedContentIds
      */
     protected $excludedContentIds = null;
 
     /**
-     * @var long[] $targetedVideoContentBundleIds
+     * @var int[] $targetedVideoContentBundleIds
      */
     protected $targetedVideoContentBundleIds = null;
 
     /**
-     * @var long[] $excludedVideoContentBundleIds
+     * @var int[] $excludedVideoContentBundleIds
      */
     protected $excludedVideoContentBundleIds = null;
 
@@ -40,10 +40,10 @@ class ContentTargeting
     protected $excludedContentMetadata = null;
 
     /**
-     * @param long[] $targetedContentIds
-     * @param long[] $excludedContentIds
-     * @param long[] $targetedVideoContentBundleIds
-     * @param long[] $excludedVideoContentBundleIds
+     * @param int[] $targetedContentIds
+     * @param int[] $excludedContentIds
+     * @param int[] $targetedVideoContentBundleIds
+     * @param int[] $excludedVideoContentBundleIds
      * @param \Google\AdsApi\Dfp\v201702\ContentMetadataKeyHierarchyTargeting[] $targetedContentMetadata
      * @param \Google\AdsApi\Dfp\v201702\ContentMetadataKeyHierarchyTargeting[] $excludedContentMetadata
      */
@@ -58,7 +58,7 @@ class ContentTargeting
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getTargetedContentIds()
     {
@@ -66,7 +66,7 @@ class ContentTargeting
     }
 
     /**
-     * @param long[] $targetedContentIds
+     * @param int[] $targetedContentIds
      * @return \Google\AdsApi\Dfp\v201702\ContentTargeting
      */
     public function setTargetedContentIds(array $targetedContentIds)
@@ -76,7 +76,7 @@ class ContentTargeting
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getExcludedContentIds()
     {
@@ -84,7 +84,7 @@ class ContentTargeting
     }
 
     /**
-     * @param long[] $excludedContentIds
+     * @param int[] $excludedContentIds
      * @return \Google\AdsApi\Dfp\v201702\ContentTargeting
      */
     public function setExcludedContentIds(array $excludedContentIds)
@@ -94,7 +94,7 @@ class ContentTargeting
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getTargetedVideoContentBundleIds()
     {
@@ -102,7 +102,7 @@ class ContentTargeting
     }
 
     /**
-     * @param long[] $targetedVideoContentBundleIds
+     * @param int[] $targetedVideoContentBundleIds
      * @return \Google\AdsApi\Dfp\v201702\ContentTargeting
      */
     public function setTargetedVideoContentBundleIds(array $targetedVideoContentBundleIds)
@@ -112,7 +112,7 @@ class ContentTargeting
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getExcludedVideoContentBundleIds()
     {
@@ -120,7 +120,7 @@ class ContentTargeting
     }
 
     /**
-     * @param long[] $excludedVideoContentBundleIds
+     * @param int[] $excludedVideoContentBundleIds
      * @return \Google\AdsApi\Dfp\v201702\ContentTargeting
      */
     public function setExcludedVideoContentBundleIds(array $excludedVideoContentBundleIds)

@@ -39,7 +39,8 @@ class MobileDevice extends \Google\AdsApi\Dfp\v201702\Technology
      */
     public function setManufacturerCriterionId($manufacturerCriterionId)
     {
-      $this->manufacturerCriterionId = $manufacturerCriterionId;
+      $this->manufacturerCriterionId = (PHP_INT_SIZE === 4)
+          ? floatval($manufacturerCriterionId) : $manufacturerCriterionId;
       return $this;
     }
 

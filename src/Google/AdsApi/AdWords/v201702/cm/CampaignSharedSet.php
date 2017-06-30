@@ -71,7 +71,8 @@ class CampaignSharedSet
      */
     public function setSharedSetId($sharedSetId)
     {
-      $this->sharedSetId = $sharedSetId;
+      $this->sharedSetId = (PHP_INT_SIZE === 4)
+          ? floatval($sharedSetId) : $sharedSetId;
       return $this;
     }
 
@@ -89,7 +90,8 @@ class CampaignSharedSet
      */
     public function setCampaignId($campaignId)
     {
-      $this->campaignId = $campaignId;
+      $this->campaignId = (PHP_INT_SIZE === 4)
+          ? floatval($campaignId) : $campaignId;
       return $this;
     }
 

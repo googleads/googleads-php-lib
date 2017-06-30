@@ -41,7 +41,8 @@ class LongCreativeTemplateVariable extends \Google\AdsApi\Dfp\v201702\CreativeTe
      */
     public function setDefaultValue($defaultValue)
     {
-      $this->defaultValue = $defaultValue;
+      $this->defaultValue = (PHP_INT_SIZE === 4)
+          ? floatval($defaultValue) : $defaultValue;
       return $this;
     }
 

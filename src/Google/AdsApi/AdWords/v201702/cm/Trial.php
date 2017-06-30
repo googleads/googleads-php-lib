@@ -99,7 +99,8 @@ class Trial
      */
     public function setId($id)
     {
-      $this->id = $id;
+      $this->id = (PHP_INT_SIZE === 4)
+          ? floatval($id) : $id;
       return $this;
     }
 
@@ -117,7 +118,8 @@ class Trial
      */
     public function setBaseCampaignId($baseCampaignId)
     {
-      $this->baseCampaignId = $baseCampaignId;
+      $this->baseCampaignId = (PHP_INT_SIZE === 4)
+          ? floatval($baseCampaignId) : $baseCampaignId;
       return $this;
     }
 
@@ -135,7 +137,8 @@ class Trial
      */
     public function setDraftId($draftId)
     {
-      $this->draftId = $draftId;
+      $this->draftId = (PHP_INT_SIZE === 4)
+          ? floatval($draftId) : $draftId;
       return $this;
     }
 
@@ -153,7 +156,8 @@ class Trial
      */
     public function setBudgetId($budgetId)
     {
-      $this->budgetId = $budgetId;
+      $this->budgetId = (PHP_INT_SIZE === 4)
+          ? floatval($budgetId) : $budgetId;
       return $this;
     }
 
@@ -261,7 +265,8 @@ class Trial
      */
     public function setTrialCampaignId($trialCampaignId)
     {
-      $this->trialCampaignId = $trialCampaignId;
+      $this->trialCampaignId = (PHP_INT_SIZE === 4)
+          ? floatval($trialCampaignId) : $trialCampaignId;
       return $this;
     }
 

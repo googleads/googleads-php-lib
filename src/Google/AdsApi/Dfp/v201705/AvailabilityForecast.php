@@ -113,7 +113,8 @@ class AvailabilityForecast
      */
     public function setLineItemId($lineItemId)
     {
-      $this->lineItemId = $lineItemId;
+      $this->lineItemId = (PHP_INT_SIZE === 4)
+          ? floatval($lineItemId) : $lineItemId;
       return $this;
     }
 
@@ -131,7 +132,8 @@ class AvailabilityForecast
      */
     public function setOrderId($orderId)
     {
-      $this->orderId = $orderId;
+      $this->orderId = (PHP_INT_SIZE === 4)
+          ? floatval($orderId) : $orderId;
       return $this;
     }
 
@@ -167,7 +169,8 @@ class AvailabilityForecast
      */
     public function setAvailableUnits($availableUnits)
     {
-      $this->availableUnits = $availableUnits;
+      $this->availableUnits = (PHP_INT_SIZE === 4)
+          ? floatval($availableUnits) : $availableUnits;
       return $this;
     }
 
@@ -185,7 +188,8 @@ class AvailabilityForecast
      */
     public function setDeliveredUnits($deliveredUnits)
     {
-      $this->deliveredUnits = $deliveredUnits;
+      $this->deliveredUnits = (PHP_INT_SIZE === 4)
+          ? floatval($deliveredUnits) : $deliveredUnits;
       return $this;
     }
 
@@ -203,7 +207,8 @@ class AvailabilityForecast
      */
     public function setMatchedUnits($matchedUnits)
     {
-      $this->matchedUnits = $matchedUnits;
+      $this->matchedUnits = (PHP_INT_SIZE === 4)
+          ? floatval($matchedUnits) : $matchedUnits;
       return $this;
     }
 
@@ -221,7 +226,8 @@ class AvailabilityForecast
      */
     public function setPossibleUnits($possibleUnits)
     {
-      $this->possibleUnits = $possibleUnits;
+      $this->possibleUnits = (PHP_INT_SIZE === 4)
+          ? floatval($possibleUnits) : $possibleUnits;
       return $this;
     }
 
@@ -239,7 +245,8 @@ class AvailabilityForecast
      */
     public function setReservedUnits($reservedUnits)
     {
-      $this->reservedUnits = $reservedUnits;
+      $this->reservedUnits = (PHP_INT_SIZE === 4)
+          ? floatval($reservedUnits) : $reservedUnits;
       return $this;
     }
 

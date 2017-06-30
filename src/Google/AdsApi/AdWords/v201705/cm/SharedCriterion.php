@@ -50,7 +50,8 @@ class SharedCriterion
      */
     public function setSharedSetId($sharedSetId)
     {
-      $this->sharedSetId = $sharedSetId;
+      $this->sharedSetId = (PHP_INT_SIZE === 4)
+          ? floatval($sharedSetId) : $sharedSetId;
       return $this;
     }
 

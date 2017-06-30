@@ -57,7 +57,8 @@ class AdParam
      */
     public function setAdGroupId($adGroupId)
     {
-      $this->adGroupId = $adGroupId;
+      $this->adGroupId = (PHP_INT_SIZE === 4)
+          ? floatval($adGroupId) : $adGroupId;
       return $this;
     }
 
@@ -75,7 +76,8 @@ class AdParam
      */
     public function setCriterionId($criterionId)
     {
-      $this->criterionId = $criterionId;
+      $this->criterionId = (PHP_INT_SIZE === 4)
+          ? floatval($criterionId) : $criterionId;
       return $this;
     }
 

@@ -20,14 +20,14 @@ class ProposalCompanyAssociation
     protected $type = null;
 
     /**
-     * @var long[] $contactIds
+     * @var int[] $contactIds
      */
     protected $contactIds = null;
 
     /**
      * @param int $companyId
      * @param string $type
-     * @param long[] $contactIds
+     * @param int[] $contactIds
      */
     public function __construct($companyId = null, $type = null, array $contactIds = null)
     {
@@ -50,7 +50,8 @@ class ProposalCompanyAssociation
      */
     public function setCompanyId($companyId)
     {
-      $this->companyId = $companyId;
+      $this->companyId = (PHP_INT_SIZE === 4)
+          ? floatval($companyId) : $companyId;
       return $this;
     }
 
@@ -73,7 +74,7 @@ class ProposalCompanyAssociation
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getContactIds()
     {
@@ -81,7 +82,7 @@ class ProposalCompanyAssociation
     }
 
     /**
-     * @param long[] $contactIds
+     * @param int[] $contactIds
      * @return \Google\AdsApi\Dfp\v201702\ProposalCompanyAssociation
      */
     public function setContactIds(array $contactIds)

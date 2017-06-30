@@ -10,13 +10,13 @@ class GeoTargetOperand extends \Google\AdsApi\AdWords\v201702\cm\FunctionArgumen
 {
 
     /**
-     * @var long[] $locations
+     * @var int[] $locations
      */
     protected $locations = null;
 
     /**
      * @param string $FunctionArgumentOperandType
-     * @param long[] $locations
+     * @param int[] $locations
      */
     public function __construct($FunctionArgumentOperandType = null, array $locations = null)
     {
@@ -25,7 +25,7 @@ class GeoTargetOperand extends \Google\AdsApi\AdWords\v201702\cm\FunctionArgumen
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getLocations()
     {
@@ -33,7 +33,7 @@ class GeoTargetOperand extends \Google\AdsApi\AdWords\v201702\cm\FunctionArgumen
     }
 
     /**
-     * @param long[] $locations
+     * @param int[] $locations
      * @return \Google\AdsApi\AdWords\v201702\cm\GeoTargetOperand
      */
     public function setLocations(array $locations)

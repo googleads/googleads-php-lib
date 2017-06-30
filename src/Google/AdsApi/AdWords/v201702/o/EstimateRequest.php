@@ -15,6 +15,11 @@ abstract class EstimateRequest
     protected $EstimateRequestType = null;
 
     /**
+     * @var array $parameterMap
+     */
+    private $parameterMap = ['EstimateRequest.Type' => 'EstimateRequestType'];
+
+    /**
      * @param string $EstimateRequestType
      */
     public function __construct($EstimateRequestType = null)
@@ -38,6 +43,32 @@ abstract class EstimateRequest
     {
       $this->EstimateRequestType = $EstimateRequestType;
       return $this;
+    }
+
+    /**
+     * Getter for a non PHP standard named variables.
+     *
+     * @param string $var variable name to get
+     * @return string variable value
+     */
+    public function __get($var)
+    {
+      if (!array_key_exists($var, $this->parameterMap)) {
+        return null;
+      }
+      return $this->{$this->parameterMap[$var]};
+    }
+
+    /**
+     * Setter for a non PHP standard named variables.
+     *
+     * @param string $var variable name
+     * @param mixed $value variable value to set
+     * @return \Google\AdsApi\AdWords\v201702\o\EstimateRequest
+     */
+    public function __set($var, $value)
+    {
+      $this->{$this->parameterMap[$var]} = $value;
     }
 
 }

@@ -43,7 +43,8 @@ class LongComparisonOperation
      */
     public function setMinimum($minimum)
     {
-      $this->minimum = $minimum;
+      $this->minimum = (PHP_INT_SIZE === 4)
+          ? floatval($minimum) : $minimum;
       return $this;
     }
 
@@ -61,7 +62,8 @@ class LongComparisonOperation
      */
     public function setMaximum($maximum)
     {
-      $this->maximum = $maximum;
+      $this->maximum = (PHP_INT_SIZE === 4)
+          ? floatval($maximum) : $maximum;
       return $this;
     }
 

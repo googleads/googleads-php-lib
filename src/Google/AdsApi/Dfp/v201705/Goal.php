@@ -86,7 +86,8 @@ class Goal
      */
     public function setUnits($units)
     {
-      $this->units = $units;
+      $this->units = (PHP_INT_SIZE === 4)
+          ? floatval($units) : $units;
       return $this;
     }
 

@@ -10,12 +10,12 @@ class DeliveryForecastOptions
 {
 
     /**
-     * @var long[] $ignoredLineItemIds
+     * @var int[] $ignoredLineItemIds
      */
     protected $ignoredLineItemIds = null;
 
     /**
-     * @param long[] $ignoredLineItemIds
+     * @param int[] $ignoredLineItemIds
      */
     public function __construct(array $ignoredLineItemIds = null)
     {
@@ -23,7 +23,7 @@ class DeliveryForecastOptions
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getIgnoredLineItemIds()
     {
@@ -31,7 +31,7 @@ class DeliveryForecastOptions
     }
 
     /**
-     * @param long[] $ignoredLineItemIds
+     * @param int[] $ignoredLineItemIds
      * @return \Google\AdsApi\Dfp\v201702\DeliveryForecastOptions
      */
     public function setIgnoredLineItemIds(array $ignoredLineItemIds)

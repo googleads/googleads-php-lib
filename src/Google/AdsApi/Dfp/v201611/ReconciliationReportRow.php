@@ -183,7 +183,8 @@ class ReconciliationReportRow
      */
     public function setId($id)
     {
-      $this->id = $id;
+      $this->id = (PHP_INT_SIZE === 4)
+          ? floatval($id) : $id;
       return $this;
     }
 
@@ -201,7 +202,8 @@ class ReconciliationReportRow
      */
     public function setReconciliationReportId($reconciliationReportId)
     {
-      $this->reconciliationReportId = $reconciliationReportId;
+      $this->reconciliationReportId = (PHP_INT_SIZE === 4)
+          ? floatval($reconciliationReportId) : $reconciliationReportId;
       return $this;
     }
 
@@ -219,7 +221,8 @@ class ReconciliationReportRow
      */
     public function setLineItemId($lineItemId)
     {
-      $this->lineItemId = $lineItemId;
+      $this->lineItemId = (PHP_INT_SIZE === 4)
+          ? floatval($lineItemId) : $lineItemId;
       return $this;
     }
 
@@ -237,7 +240,8 @@ class ReconciliationReportRow
      */
     public function setCreativeId($creativeId)
     {
-      $this->creativeId = $creativeId;
+      $this->creativeId = (PHP_INT_SIZE === 4)
+          ? floatval($creativeId) : $creativeId;
       return $this;
     }
 
@@ -255,7 +259,8 @@ class ReconciliationReportRow
      */
     public function setOrderId($orderId)
     {
-      $this->orderId = $orderId;
+      $this->orderId = (PHP_INT_SIZE === 4)
+          ? floatval($orderId) : $orderId;
       return $this;
     }
 
@@ -273,7 +278,8 @@ class ReconciliationReportRow
      */
     public function setAdvertiserId($advertiserId)
     {
-      $this->advertiserId = $advertiserId;
+      $this->advertiserId = (PHP_INT_SIZE === 4)
+          ? floatval($advertiserId) : $advertiserId;
       return $this;
     }
 
@@ -291,7 +297,8 @@ class ReconciliationReportRow
      */
     public function setProposalLineItemId($proposalLineItemId)
     {
-      $this->proposalLineItemId = $proposalLineItemId;
+      $this->proposalLineItemId = (PHP_INT_SIZE === 4)
+          ? floatval($proposalLineItemId) : $proposalLineItemId;
       return $this;
     }
 
@@ -309,7 +316,8 @@ class ReconciliationReportRow
      */
     public function setProposalId($proposalId)
     {
-      $this->proposalId = $proposalId;
+      $this->proposalId = (PHP_INT_SIZE === 4)
+          ? floatval($proposalId) : $proposalId;
       return $this;
     }
 
@@ -381,7 +389,8 @@ class ReconciliationReportRow
      */
     public function setLineItemContractedUnitsBought($lineItemContractedUnitsBought)
     {
-      $this->lineItemContractedUnitsBought = $lineItemContractedUnitsBought;
+      $this->lineItemContractedUnitsBought = (PHP_INT_SIZE === 4)
+          ? floatval($lineItemContractedUnitsBought) : $lineItemContractedUnitsBought;
       return $this;
     }
 
@@ -399,7 +408,8 @@ class ReconciliationReportRow
      */
     public function setDfpVolume($dfpVolume)
     {
-      $this->dfpVolume = $dfpVolume;
+      $this->dfpVolume = (PHP_INT_SIZE === 4)
+          ? floatval($dfpVolume) : $dfpVolume;
       return $this;
     }
 
@@ -417,7 +427,8 @@ class ReconciliationReportRow
      */
     public function setThirdPartyVolume($thirdPartyVolume)
     {
-      $this->thirdPartyVolume = $thirdPartyVolume;
+      $this->thirdPartyVolume = (PHP_INT_SIZE === 4)
+          ? floatval($thirdPartyVolume) : $thirdPartyVolume;
       return $this;
     }
 
@@ -435,7 +446,8 @@ class ReconciliationReportRow
      */
     public function setManualVolume($manualVolume)
     {
-      $this->manualVolume = $manualVolume;
+      $this->manualVolume = (PHP_INT_SIZE === 4)
+          ? floatval($manualVolume) : $manualVolume;
       return $this;
     }
 
@@ -453,7 +465,8 @@ class ReconciliationReportRow
      */
     public function setReconciledVolume($reconciledVolume)
     {
-      $this->reconciledVolume = $reconciledVolume;
+      $this->reconciledVolume = (PHP_INT_SIZE === 4)
+          ? floatval($reconciledVolume) : $reconciledVolume;
       return $this;
     }
 

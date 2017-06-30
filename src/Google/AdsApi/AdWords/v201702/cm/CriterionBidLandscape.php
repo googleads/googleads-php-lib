@@ -43,7 +43,8 @@ class CriterionBidLandscape extends \Google\AdsApi\AdWords\v201702\cm\BidLandsca
      */
     public function setCriterionId($criterionId)
     {
-      $this->criterionId = $criterionId;
+      $this->criterionId = (PHP_INT_SIZE === 4)
+          ? floatval($criterionId) : $criterionId;
       return $this;
     }
 

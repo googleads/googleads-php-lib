@@ -117,7 +117,8 @@ abstract class BaseAdRuleSlot
      */
     public function setMinVideoAdDuration($minVideoAdDuration)
     {
-      $this->minVideoAdDuration = $minVideoAdDuration;
+      $this->minVideoAdDuration = (PHP_INT_SIZE === 4)
+          ? floatval($minVideoAdDuration) : $minVideoAdDuration;
       return $this;
     }
 
@@ -135,7 +136,8 @@ abstract class BaseAdRuleSlot
      */
     public function setMaxVideoAdDuration($maxVideoAdDuration)
     {
-      $this->maxVideoAdDuration = $maxVideoAdDuration;
+      $this->maxVideoAdDuration = (PHP_INT_SIZE === 4)
+          ? floatval($maxVideoAdDuration) : $maxVideoAdDuration;
       return $this;
     }
 
@@ -207,7 +209,8 @@ abstract class BaseAdRuleSlot
      */
     public function setMaxBumperDuration($maxBumperDuration)
     {
-      $this->maxBumperDuration = $maxBumperDuration;
+      $this->maxBumperDuration = (PHP_INT_SIZE === 4)
+          ? floatval($maxBumperDuration) : $maxBumperDuration;
       return $this;
     }
 
@@ -225,7 +228,8 @@ abstract class BaseAdRuleSlot
      */
     public function setMinPodDuration($minPodDuration)
     {
-      $this->minPodDuration = $minPodDuration;
+      $this->minPodDuration = (PHP_INT_SIZE === 4)
+          ? floatval($minPodDuration) : $minPodDuration;
       return $this;
     }
 
@@ -243,7 +247,8 @@ abstract class BaseAdRuleSlot
      */
     public function setMaxPodDuration($maxPodDuration)
     {
-      $this->maxPodDuration = $maxPodDuration;
+      $this->maxPodDuration = (PHP_INT_SIZE === 4)
+          ? floatval($maxPodDuration) : $maxPodDuration;
       return $this;
     }
 

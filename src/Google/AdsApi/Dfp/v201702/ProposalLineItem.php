@@ -442,7 +442,8 @@ class ProposalLineItem
      */
     public function setId($id)
     {
-      $this->id = $id;
+      $this->id = (PHP_INT_SIZE === 4)
+          ? floatval($id) : $id;
       return $this;
     }
 
@@ -460,7 +461,8 @@ class ProposalLineItem
      */
     public function setProposalId($proposalId)
     {
-      $this->proposalId = $proposalId;
+      $this->proposalId = (PHP_INT_SIZE === 4)
+          ? floatval($proposalId) : $proposalId;
       return $this;
     }
 
@@ -478,7 +480,8 @@ class ProposalLineItem
      */
     public function setPackageId($packageId)
     {
-      $this->packageId = $packageId;
+      $this->packageId = (PHP_INT_SIZE === 4)
+          ? floatval($packageId) : $packageId;
       return $this;
     }
 
@@ -496,7 +499,8 @@ class ProposalLineItem
      */
     public function setRateCardId($rateCardId)
     {
-      $this->rateCardId = $rateCardId;
+      $this->rateCardId = (PHP_INT_SIZE === 4)
+          ? floatval($rateCardId) : $rateCardId;
       return $this;
     }
 
@@ -514,7 +518,8 @@ class ProposalLineItem
      */
     public function setProductId($productId)
     {
-      $this->productId = $productId;
+      $this->productId = (PHP_INT_SIZE === 4)
+          ? floatval($productId) : $productId;
       return $this;
     }
 
@@ -694,7 +699,8 @@ class ProposalLineItem
      */
     public function setScheduledQuantity($scheduledQuantity)
     {
-      $this->scheduledQuantity = $scheduledQuantity;
+      $this->scheduledQuantity = (PHP_INT_SIZE === 4)
+          ? floatval($scheduledQuantity) : $scheduledQuantity;
       return $this;
     }
 
@@ -712,7 +718,8 @@ class ProposalLineItem
      */
     public function setContractedUnitsBought($contractedUnitsBought)
     {
-      $this->contractedUnitsBought = $contractedUnitsBought;
+      $this->contractedUnitsBought = (PHP_INT_SIZE === 4)
+          ? floatval($contractedUnitsBought) : $contractedUnitsBought;
       return $this;
     }
 
@@ -802,7 +809,8 @@ class ProposalLineItem
      */
     public function setVideoMaxDuration($videoMaxDuration)
     {
-      $this->videoMaxDuration = $videoMaxDuration;
+      $this->videoMaxDuration = (PHP_INT_SIZE === 4)
+          ? floatval($videoMaxDuration) : $videoMaxDuration;
       return $this;
     }
 
@@ -838,7 +846,8 @@ class ProposalLineItem
      */
     public function setDfpLineItemId($dfpLineItemId)
     {
-      $this->dfpLineItemId = $dfpLineItemId;
+      $this->dfpLineItemId = (PHP_INT_SIZE === 4)
+          ? floatval($dfpLineItemId) : $dfpLineItemId;
       return $this;
     }
 

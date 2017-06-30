@@ -25,22 +25,22 @@ class CampaignChangeData
     protected $changedAdGroups = null;
 
     /**
-     * @var long[] $addedCampaignCriteria
+     * @var int[] $addedCampaignCriteria
      */
     protected $addedCampaignCriteria = null;
 
     /**
-     * @var long[] $removedCampaignCriteria
+     * @var int[] $removedCampaignCriteria
      */
     protected $removedCampaignCriteria = null;
 
     /**
-     * @var long[] $changedFeeds
+     * @var int[] $changedFeeds
      */
     protected $changedFeeds = null;
 
     /**
-     * @var long[] $removedFeeds
+     * @var int[] $removedFeeds
      */
     protected $removedFeeds = null;
 
@@ -48,10 +48,10 @@ class CampaignChangeData
      * @param int $campaignId
      * @param string $campaignChangeStatus
      * @param \Google\AdsApi\AdWords\v201702\ch\AdGroupChangeData[] $changedAdGroups
-     * @param long[] $addedCampaignCriteria
-     * @param long[] $removedCampaignCriteria
-     * @param long[] $changedFeeds
-     * @param long[] $removedFeeds
+     * @param int[] $addedCampaignCriteria
+     * @param int[] $removedCampaignCriteria
+     * @param int[] $changedFeeds
+     * @param int[] $removedFeeds
      */
     public function __construct($campaignId = null, $campaignChangeStatus = null, array $changedAdGroups = null, array $addedCampaignCriteria = null, array $removedCampaignCriteria = null, array $changedFeeds = null, array $removedFeeds = null)
     {
@@ -78,7 +78,8 @@ class CampaignChangeData
      */
     public function setCampaignId($campaignId)
     {
-      $this->campaignId = $campaignId;
+      $this->campaignId = (PHP_INT_SIZE === 4)
+          ? floatval($campaignId) : $campaignId;
       return $this;
     }
 
@@ -119,7 +120,7 @@ class CampaignChangeData
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getAddedCampaignCriteria()
     {
@@ -127,7 +128,7 @@ class CampaignChangeData
     }
 
     /**
-     * @param long[] $addedCampaignCriteria
+     * @param int[] $addedCampaignCriteria
      * @return \Google\AdsApi\AdWords\v201702\ch\CampaignChangeData
      */
     public function setAddedCampaignCriteria(array $addedCampaignCriteria)
@@ -137,7 +138,7 @@ class CampaignChangeData
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getRemovedCampaignCriteria()
     {
@@ -145,7 +146,7 @@ class CampaignChangeData
     }
 
     /**
-     * @param long[] $removedCampaignCriteria
+     * @param int[] $removedCampaignCriteria
      * @return \Google\AdsApi\AdWords\v201702\ch\CampaignChangeData
      */
     public function setRemovedCampaignCriteria(array $removedCampaignCriteria)
@@ -155,7 +156,7 @@ class CampaignChangeData
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getChangedFeeds()
     {
@@ -163,7 +164,7 @@ class CampaignChangeData
     }
 
     /**
-     * @param long[] $changedFeeds
+     * @param int[] $changedFeeds
      * @return \Google\AdsApi\AdWords\v201702\ch\CampaignChangeData
      */
     public function setChangedFeeds(array $changedFeeds)
@@ -173,7 +174,7 @@ class CampaignChangeData
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getRemovedFeeds()
     {
@@ -181,7 +182,7 @@ class CampaignChangeData
     }
 
     /**
-     * @param long[] $removedFeeds
+     * @param int[] $removedFeeds
      * @return \Google\AdsApi\AdWords\v201702\ch\CampaignChangeData
      */
     public function setRemovedFeeds(array $removedFeeds)

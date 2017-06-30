@@ -71,7 +71,16 @@ final class DfpSessionBuilder implements AdsBuilder {
   }
 
   /**
-   * @see AdsBuilder::fromFile()
+   * Reads configuration settings from the specified filepath. The filepath is
+   * optional, and if omitted, it will look for the default configuration
+   * filename in the home directory of the user running PHP.
+   *
+   * @see AdsBuilder::DEFAULT_CONFIGURATION_FILENAME
+   *
+   * @param string $path the filepath
+   * @return DfpSessionBuilder this builder populated from the configuration
+   * @throws InvalidArgumentException if the configuration file could not be
+   *     found
    */
   public function fromFile($path = null) {
     if ($path === null) {

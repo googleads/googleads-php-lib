@@ -40,7 +40,7 @@ class RateCard
     protected $pricingModel = null;
 
     /**
-     * @var long[] $appliedTeamIds
+     * @var int[] $appliedTeamIds
      */
     protected $appliedTeamIds = null;
 
@@ -56,7 +56,7 @@ class RateCard
      * @param string $status
      * @param boolean $forMarketplace
      * @param string $pricingModel
-     * @param long[] $appliedTeamIds
+     * @param int[] $appliedTeamIds
      * @param \Google\AdsApi\Dfp\v201702\DateTime $lastModifiedDateTime
      */
     public function __construct($id = null, $name = null, $currencyCode = null, $status = null, $forMarketplace = null, $pricingModel = null, array $appliedTeamIds = null, $lastModifiedDateTime = null)
@@ -85,7 +85,8 @@ class RateCard
      */
     public function setId($id)
     {
-      $this->id = $id;
+      $this->id = (PHP_INT_SIZE === 4)
+          ? floatval($id) : $id;
       return $this;
     }
 
@@ -180,7 +181,7 @@ class RateCard
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getAppliedTeamIds()
     {
@@ -188,7 +189,7 @@ class RateCard
     }
 
     /**
-     * @param long[] $appliedTeamIds
+     * @param int[] $appliedTeamIds
      * @return \Google\AdsApi\Dfp\v201702\RateCard
      */
     public function setAppliedTeamIds(array $appliedTeamIds)

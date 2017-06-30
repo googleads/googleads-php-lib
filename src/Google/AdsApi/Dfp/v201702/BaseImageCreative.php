@@ -25,7 +25,7 @@ abstract class BaseImageCreative extends \Google\AdsApi\Dfp\v201702\HasDestinati
      * @param string $name
      * @param \Google\AdsApi\Dfp\v201702\Size $size
      * @param string $previewUrl
-     * @param string $policyViolations
+     * @param string[] $policyViolations
      * @param \Google\AdsApi\Dfp\v201702\AppliedLabel[] $appliedLabels
      * @param \Google\AdsApi\Dfp\v201702\DateTime $lastModifiedDateTime
      * @param \Google\AdsApi\Dfp\v201702\BaseCustomFieldValue[] $customFieldValues
@@ -34,7 +34,7 @@ abstract class BaseImageCreative extends \Google\AdsApi\Dfp\v201702\HasDestinati
      * @param boolean $overrideSize
      * @param \Google\AdsApi\Dfp\v201702\CreativeAsset $primaryImageAsset
      */
-    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, $policyViolations = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null, $destinationUrl = null, $destinationUrlType = null, $overrideSize = null, $primaryImageAsset = null)
+    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, array $policyViolations = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null, $destinationUrl = null, $destinationUrlType = null, $overrideSize = null, $primaryImageAsset = null)
     {
       parent::__construct($advertiserId, $id, $name, $size, $previewUrl, $policyViolations, $appliedLabels, $lastModifiedDateTime, $customFieldValues, $destinationUrl, $destinationUrlType);
       $this->overrideSize = $overrideSize;

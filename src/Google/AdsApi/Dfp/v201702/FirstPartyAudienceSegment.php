@@ -12,7 +12,7 @@ abstract class FirstPartyAudienceSegment extends \Google\AdsApi\Dfp\v201702\Audi
     /**
      * @param int $id
      * @param string $name
-     * @param long[] $categoryIds
+     * @param int[] $categoryIds
      * @param string $description
      * @param string $status
      * @param int $size

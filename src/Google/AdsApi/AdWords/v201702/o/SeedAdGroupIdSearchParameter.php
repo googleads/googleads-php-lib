@@ -38,7 +38,8 @@ class SeedAdGroupIdSearchParameter extends \Google\AdsApi\AdWords\v201702\o\Sear
      */
     public function setAdGroupId($adGroupId)
     {
-      $this->adGroupId = $adGroupId;
+      $this->adGroupId = (PHP_INT_SIZE === 4)
+          ? floatval($adGroupId) : $adGroupId;
       return $this;
     }
 

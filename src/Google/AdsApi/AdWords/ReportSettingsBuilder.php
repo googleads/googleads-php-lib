@@ -36,18 +36,23 @@ final class ReportSettingsBuilder implements AdsBuilder {
   private $isUseRawEnumValues;
   private $isIncludeZeroImpressions;
 
-  public function __construct() {
-    $this->configurationLoader = new ConfigurationLoader();
-  }
-
   /**
-   * @see AdsBuilder::fromFile()
+   * Create a report settings builder using the user-provided report settings if
+   * it's not null.
+   *
+   * @param null|ReportSettings $reportSettings the report settings to be used
+   *     as starting values.
    */
-  public function fromFile($path = null) {
-    if ($path === null) {
-      $path = self::DEFAULT_CONFIGURATION_FILENAME;
+  public function __construct($reportSettings = null) {
+    $this->configurationLoader = new ConfigurationLoader();
+    if (!is_null($reportSettings)) {
+      $this->isSkipReportHeader = $reportSettings->isSkipReportHeader;
+      $this->isSkipColumnHeader = $reportSettings->isSkipColumnHeader;
+      $this->isSkipReportSummary = $reportSettings->isSkipReportSummary;
+      $this->isUseRawEnumValues = $reportSettings->isUseRawEnumValues;
+      $this->isIncludeZeroImpressions =
+          $reportSettings->isIncludeZeroImpressions;
     }
-    return $this->from($this->configurationLoader->fromFile($path));
   }
 
   /**

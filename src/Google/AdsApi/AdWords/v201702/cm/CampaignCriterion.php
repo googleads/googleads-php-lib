@@ -50,6 +50,11 @@ class CampaignCriterion
     protected $CampaignCriterionType = null;
 
     /**
+     * @var array $parameterMap
+     */
+    private $parameterMap = ['CampaignCriterion.Type' => 'CampaignCriterionType'];
+
+    /**
      * @param int $campaignId
      * @param boolean $isNegative
      * @param \Google\AdsApi\AdWords\v201702\cm\Criterion $criterion
@@ -85,7 +90,8 @@ class CampaignCriterion
      */
     public function setCampaignId($campaignId)
     {
-      $this->campaignId = $campaignId;
+      $this->campaignId = (PHP_INT_SIZE === 4)
+          ? floatval($campaignId) : $campaignId;
       return $this;
     }
 
@@ -175,7 +181,8 @@ class CampaignCriterion
      */
     public function setBaseCampaignId($baseCampaignId)
     {
-      $this->baseCampaignId = $baseCampaignId;
+      $this->baseCampaignId = (PHP_INT_SIZE === 4)
+          ? floatval($baseCampaignId) : $baseCampaignId;
       return $this;
     }
 
@@ -213,6 +220,32 @@ class CampaignCriterion
     {
       $this->CampaignCriterionType = $CampaignCriterionType;
       return $this;
+    }
+
+    /**
+     * Getter for a non PHP standard named variables.
+     *
+     * @param string $var variable name to get
+     * @return string variable value
+     */
+    public function __get($var)
+    {
+      if (!array_key_exists($var, $this->parameterMap)) {
+        return null;
+      }
+      return $this->{$this->parameterMap[$var]};
+    }
+
+    /**
+     * Setter for a non PHP standard named variables.
+     *
+     * @param string $var variable name
+     * @param mixed $value variable value to set
+     * @return \Google\AdsApi\AdWords\v201702\cm\CampaignCriterion
+     */
+    public function __set($var, $value)
+    {
+      $this->{$this->parameterMap[$var]} = $value;
     }
 
 }

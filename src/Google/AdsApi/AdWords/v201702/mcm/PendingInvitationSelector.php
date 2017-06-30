@@ -10,18 +10,18 @@ class PendingInvitationSelector
 {
 
     /**
-     * @var long[] $managerCustomerIds
+     * @var int[] $managerCustomerIds
      */
     protected $managerCustomerIds = null;
 
     /**
-     * @var long[] $clientCustomerIds
+     * @var int[] $clientCustomerIds
      */
     protected $clientCustomerIds = null;
 
     /**
-     * @param long[] $managerCustomerIds
-     * @param long[] $clientCustomerIds
+     * @param int[] $managerCustomerIds
+     * @param int[] $clientCustomerIds
      */
     public function __construct(array $managerCustomerIds = null, array $clientCustomerIds = null)
     {
@@ -30,7 +30,7 @@ class PendingInvitationSelector
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getManagerCustomerIds()
     {
@@ -38,7 +38,7 @@ class PendingInvitationSelector
     }
 
     /**
-     * @param long[] $managerCustomerIds
+     * @param int[] $managerCustomerIds
      * @return \Google\AdsApi\AdWords\v201702\mcm\PendingInvitationSelector
      */
     public function setManagerCustomerIds(array $managerCustomerIds)
@@ -48,7 +48,7 @@ class PendingInvitationSelector
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getClientCustomerIds()
     {
@@ -56,7 +56,7 @@ class PendingInvitationSelector
     }
 
     /**
-     * @param long[] $clientCustomerIds
+     * @param int[] $clientCustomerIds
      * @return \Google\AdsApi\AdWords\v201702\mcm\PendingInvitationSelector
      */
     public function setClientCustomerIds(array $clientCustomerIds)

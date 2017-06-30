@@ -52,7 +52,8 @@ class CampaignEstimate extends \Google\AdsApi\AdWords\v201702\o\Estimate
      */
     public function setCampaignId($campaignId)
     {
-      $this->campaignId = $campaignId;
+      $this->campaignId = (PHP_INT_SIZE === 4)
+          ? floatval($campaignId) : $campaignId;
       return $this;
     }
 

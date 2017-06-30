@@ -10,7 +10,7 @@ class AssetCreativeTemplateVariable extends \Google\AdsApi\Dfp\v201702\CreativeT
 {
 
     /**
-     * @var string $mimeTypes
+     * @var string[] $mimeTypes
      */
     protected $mimeTypes = null;
 
@@ -19,16 +19,16 @@ class AssetCreativeTemplateVariable extends \Google\AdsApi\Dfp\v201702\CreativeT
      * @param string $uniqueName
      * @param string $description
      * @param boolean $isRequired
-     * @param string $mimeTypes
+     * @param string[] $mimeTypes
      */
-    public function __construct($label = null, $uniqueName = null, $description = null, $isRequired = null, $mimeTypes = null)
+    public function __construct($label = null, $uniqueName = null, $description = null, $isRequired = null, array $mimeTypes = null)
     {
       parent::__construct($label, $uniqueName, $description, $isRequired);
       $this->mimeTypes = $mimeTypes;
     }
 
     /**
-     * @return string
+     * @return string[]
      */
     public function getMimeTypes()
     {
@@ -36,10 +36,10 @@ class AssetCreativeTemplateVariable extends \Google\AdsApi\Dfp\v201702\CreativeT
     }
 
     /**
-     * @param string $mimeTypes
+     * @param string[] $mimeTypes
      * @return \Google\AdsApi\Dfp\v201702\AssetCreativeTemplateVariable
      */
-    public function setMimeTypes($mimeTypes)
+    public function setMimeTypes(array $mimeTypes)
     {
       $this->mimeTypes = $mimeTypes;
       return $this;

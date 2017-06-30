@@ -20,20 +20,20 @@ class FeedChangeData
     protected $feedChangeStatus = null;
 
     /**
-     * @var long[] $changedFeedItems
+     * @var int[] $changedFeedItems
      */
     protected $changedFeedItems = null;
 
     /**
-     * @var long[] $removedFeedItems
+     * @var int[] $removedFeedItems
      */
     protected $removedFeedItems = null;
 
     /**
      * @param int $feedId
      * @param string $feedChangeStatus
-     * @param long[] $changedFeedItems
-     * @param long[] $removedFeedItems
+     * @param int[] $changedFeedItems
+     * @param int[] $removedFeedItems
      */
     public function __construct($feedId = null, $feedChangeStatus = null, array $changedFeedItems = null, array $removedFeedItems = null)
     {
@@ -57,7 +57,8 @@ class FeedChangeData
      */
     public function setFeedId($feedId)
     {
-      $this->feedId = $feedId;
+      $this->feedId = (PHP_INT_SIZE === 4)
+          ? floatval($feedId) : $feedId;
       return $this;
     }
 
@@ -80,7 +81,7 @@ class FeedChangeData
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getChangedFeedItems()
     {
@@ -88,7 +89,7 @@ class FeedChangeData
     }
 
     /**
-     * @param long[] $changedFeedItems
+     * @param int[] $changedFeedItems
      * @return \Google\AdsApi\AdWords\v201702\ch\FeedChangeData
      */
     public function setChangedFeedItems(array $changedFeedItems)
@@ -98,7 +99,7 @@ class FeedChangeData
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getRemovedFeedItems()
     {
@@ -106,7 +107,7 @@ class FeedChangeData
     }
 
     /**
-     * @param long[] $removedFeedItems
+     * @param int[] $removedFeedItems
      * @return \Google\AdsApi\AdWords\v201702\ch\FeedChangeData
      */
     public function setRemovedFeedItems(array $removedFeedItems)

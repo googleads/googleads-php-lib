@@ -10,7 +10,7 @@ class MediaBundle extends \Google\AdsApi\AdWords\v201702\cm\Media
 {
 
     /**
-     * @var base64Binary $data
+     * @var string $data
      */
     protected $data = null;
 
@@ -36,7 +36,7 @@ class MediaBundle extends \Google\AdsApi\AdWords\v201702\cm\Media
      * @param int $fileSize
      * @param string $creationTime
      * @param string $MediaType
-     * @param base64Binary $data
+     * @param string $data
      * @param string $mediaBundleUrl
      * @param string $entryPoint
      */
@@ -49,7 +49,7 @@ class MediaBundle extends \Google\AdsApi\AdWords\v201702\cm\Media
     }
 
     /**
-     * @return base64Binary
+     * @return string
      */
     public function getData()
     {
@@ -57,7 +57,7 @@ class MediaBundle extends \Google\AdsApi\AdWords\v201702\cm\Media
     }
 
     /**
-     * @param base64Binary $data
+     * @param string $data
      * @return \Google\AdsApi\AdWords\v201702\cm\MediaBundle
      */
     public function setData($data)

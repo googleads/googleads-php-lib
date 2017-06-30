@@ -100,12 +100,12 @@ class AdUnit
     protected $effectiveAppliedLabels = null;
 
     /**
-     * @var long[] $effectiveTeamIds
+     * @var int[] $effectiveTeamIds
      */
     protected $effectiveTeamIds = null;
 
     /**
-     * @var long[] $appliedTeamIds
+     * @var int[] $appliedTeamIds
      */
     protected $appliedTeamIds = null;
 
@@ -163,8 +163,8 @@ class AdUnit
      * @param \Google\AdsApi\Dfp\v201702\LabelFrequencyCap[] $effectiveLabelFrequencyCaps
      * @param \Google\AdsApi\Dfp\v201702\AppliedLabel[] $appliedLabels
      * @param \Google\AdsApi\Dfp\v201702\AppliedLabel[] $effectiveAppliedLabels
-     * @param long[] $effectiveTeamIds
-     * @param long[] $appliedTeamIds
+     * @param int[] $effectiveTeamIds
+     * @param int[] $appliedTeamIds
      * @param \Google\AdsApi\Dfp\v201702\DateTime $lastModifiedDateTime
      * @param string $smartSizeMode
      * @param int $refreshRate
@@ -452,7 +452,8 @@ class AdUnit
      */
     public function setPartnerId($partnerId)
     {
-      $this->partnerId = $partnerId;
+      $this->partnerId = (PHP_INT_SIZE === 4)
+          ? floatval($partnerId) : $partnerId;
       return $this;
     }
 
@@ -529,7 +530,7 @@ class AdUnit
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getEffectiveTeamIds()
     {
@@ -537,7 +538,7 @@ class AdUnit
     }
 
     /**
-     * @param long[] $effectiveTeamIds
+     * @param int[] $effectiveTeamIds
      * @return \Google\AdsApi\Dfp\v201702\AdUnit
      */
     public function setEffectiveTeamIds(array $effectiveTeamIds)
@@ -547,7 +548,7 @@ class AdUnit
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getAppliedTeamIds()
     {
@@ -555,7 +556,7 @@ class AdUnit
     }
 
     /**
-     * @param long[] $appliedTeamIds
+     * @param int[] $appliedTeamIds
      * @return \Google\AdsApi\Dfp\v201702\AdUnit
      */
     public function setAppliedTeamIds(array $appliedTeamIds)

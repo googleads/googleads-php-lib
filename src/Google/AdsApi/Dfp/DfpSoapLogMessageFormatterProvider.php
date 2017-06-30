@@ -35,6 +35,7 @@ final class DfpSoapLogMessageFormatterProvider
     return new SoapLogMessageFormatter(
         self::$HTTP_HEADERS_TO_SCRUB,
         null,
+        null,
         self::$ADDITIONAL_REQUEST_SUMMARY_HEADERS
     );
   }

@@ -62,7 +62,8 @@ class WebsiteCallMetricsConversion extends \Google\AdsApi\AdWords\v201702\cm\Con
      */
     public function setPhoneCallDuration($phoneCallDuration)
     {
-      $this->phoneCallDuration = $phoneCallDuration;
+      $this->phoneCallDuration = (PHP_INT_SIZE === 4)
+          ? floatval($phoneCallDuration) : $phoneCallDuration;
       return $this;
     }
 

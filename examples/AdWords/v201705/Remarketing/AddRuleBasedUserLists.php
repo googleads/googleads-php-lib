@@ -16,7 +16,7 @@
  */
 namespace Google\AdsApi\Examples\AdWords\v201705\Remarketing;
 
-require '../../../../vendor/autoload.php';
+require __DIR__ . '/../../../../vendor/autoload.php';
 
 use DateTime;
 use Google\AdsApi\AdWords\AdWordsServices;

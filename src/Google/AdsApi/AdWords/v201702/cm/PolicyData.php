@@ -20,6 +20,11 @@ class PolicyData
     protected $PolicyDataType = null;
 
     /**
+     * @var array $parameterMap
+     */
+    private $parameterMap = ['PolicyData.Type' => 'PolicyDataType'];
+
+    /**
      * @param \Google\AdsApi\AdWords\v201702\cm\DisapprovalReason[] $disapprovalReasons
      * @param string $PolicyDataType
      */
@@ -63,6 +68,32 @@ class PolicyData
     {
       $this->PolicyDataType = $PolicyDataType;
       return $this;
+    }
+
+    /**
+     * Getter for a non PHP standard named variables.
+     *
+     * @param string $var variable name to get
+     * @return string variable value
+     */
+    public function __get($var)
+    {
+      if (!array_key_exists($var, $this->parameterMap)) {
+        return null;
+      }
+      return $this->{$this->parameterMap[$var]};
+    }
+
+    /**
+     * Setter for a non PHP standard named variables.
+     *
+     * @param string $var variable name
+     * @param mixed $value variable value to set
+     * @return \Google\AdsApi\AdWords\v201702\cm\PolicyData
+     */
+    public function __set($var, $value)
+    {
+      $this->{$this->parameterMap[$var]} = $value;
     }
 
 }

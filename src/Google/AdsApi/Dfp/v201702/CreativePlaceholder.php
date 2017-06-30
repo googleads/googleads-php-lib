@@ -103,7 +103,8 @@ class CreativePlaceholder
      */
     public function setCreativeTemplateId($creativeTemplateId)
     {
-      $this->creativeTemplateId = $creativeTemplateId;
+      $this->creativeTemplateId = (PHP_INT_SIZE === 4)
+          ? floatval($creativeTemplateId) : $creativeTemplateId;
       return $this;
     }
 

@@ -20,14 +20,14 @@ class InventoryTargeting
     protected $excludedAdUnits = null;
 
     /**
-     * @var long[] $targetedPlacementIds
+     * @var int[] $targetedPlacementIds
      */
     protected $targetedPlacementIds = null;
 
     /**
      * @param \Google\AdsApi\Dfp\v201702\AdUnitTargeting[] $targetedAdUnits
      * @param \Google\AdsApi\Dfp\v201702\AdUnitTargeting[] $excludedAdUnits
-     * @param long[] $targetedPlacementIds
+     * @param int[] $targetedPlacementIds
      */
     public function __construct(array $targetedAdUnits = null, array $excludedAdUnits = null, array $targetedPlacementIds = null)
     {
@@ -73,7 +73,7 @@ class InventoryTargeting
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getTargetedPlacementIds()
     {
@@ -81,7 +81,7 @@ class InventoryTargeting
     }
 
     /**
-     * @param long[] $targetedPlacementIds
+     * @param int[] $targetedPlacementIds
      * @return \Google\AdsApi\Dfp\v201702\InventoryTargeting
      */
     public function setTargetedPlacementIds(array $targetedPlacementIds)

@@ -50,6 +50,11 @@ class AdGroupCriterion
     protected $AdGroupCriterionType = null;
 
     /**
+     * @var array $parameterMap
+     */
+    private $parameterMap = ['AdGroupCriterion.Type' => 'AdGroupCriterionType'];
+
+    /**
      * @param int $adGroupId
      * @param string $criterionUse
      * @param \Google\AdsApi\AdWords\v201702\cm\Criterion $criterion
@@ -85,7 +90,8 @@ class AdGroupCriterion
      */
     public function setAdGroupId($adGroupId)
     {
-      $this->adGroupId = $adGroupId;
+      $this->adGroupId = (PHP_INT_SIZE === 4)
+          ? floatval($adGroupId) : $adGroupId;
       return $this;
     }
 
@@ -175,7 +181,8 @@ class AdGroupCriterion
      */
     public function setBaseCampaignId($baseCampaignId)
     {
-      $this->baseCampaignId = $baseCampaignId;
+      $this->baseCampaignId = (PHP_INT_SIZE === 4)
+          ? floatval($baseCampaignId) : $baseCampaignId;
       return $this;
     }
 
@@ -193,7 +200,8 @@ class AdGroupCriterion
      */
     public function setBaseAdGroupId($baseAdGroupId)
     {
-      $this->baseAdGroupId = $baseAdGroupId;
+      $this->baseAdGroupId = (PHP_INT_SIZE === 4)
+          ? floatval($baseAdGroupId) : $baseAdGroupId;
       return $this;
     }
 
@@ -213,6 +221,32 @@ class AdGroupCriterion
     {
       $this->AdGroupCriterionType = $AdGroupCriterionType;
       return $this;
+    }
+
+    /**
+     * Getter for a non PHP standard named variables.
+     *
+     * @param string $var variable name to get
+     * @return string variable value
+     */
+    public function __get($var)
+    {
+      if (!array_key_exists($var, $this->parameterMap)) {
+        return null;
+      }
+      return $this->{$this->parameterMap[$var]};
+    }
+
+    /**
+     * Setter for a non PHP standard named variables.
+     *
+     * @param string $var variable name
+     * @param mixed $value variable value to set
+     * @return \Google\AdsApi\AdWords\v201702\cm\AdGroupCriterion
+     */
+    public function __set($var, $value)
+    {
+      $this->{$this->parameterMap[$var]} = $value;
     }
 
 }

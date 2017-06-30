@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="https://adwords.google.com/api/adwords/cm/v201705">
+<SOAP-ENV:Header>
+  <ns1:RequestHeader>
+    <ns1:clientCustomerId>123-777-999</ns1:clientCustomerId>
+    <ns1:applicationName>AdWords Testing (AwApi-PHP, googleads-php-lib2/1.0.0-alpha, PHP/5.5.20)</ns1:applicationName>
+  </ns1:RequestHeader>
+</SOAP-ENV:Header>
+<SOAP-ENV:Body>
+  <ns1:mutate>
+    <ns1:operations>
+      <ns1:operator>ADD</ns1:operator>
+      <ns1:operand>
+        <ns1:name>my business</ns1:name>
+        <ns1:origin>ADWORDS</ns1:origin>
+        <ns1:systemFeedGenerationData>
+          <ns1:oAuthInfo>
+            <ns1:httpMethod>GET</ns1:httpMethod>
+            <ns1:httpRequestUrl>https://www.googleapis.com/auth/adwords</ns1:httpRequestUrl>
+            <ns1:httpAuthorizationHeader>Bearer 123abc456xyz</ns1:httpAuthorizationHeader>
+          </ns1:oAuthInfo>
+        </ns1:systemFeedGenerationData>
+      </ns1:operand>
+    </ns1:operations>
+  </ns1:mutate>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

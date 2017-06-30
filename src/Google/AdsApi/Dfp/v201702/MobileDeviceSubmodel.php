@@ -46,7 +46,8 @@ class MobileDeviceSubmodel extends \Google\AdsApi\Dfp\v201702\Technology
      */
     public function setMobileDeviceCriterionId($mobileDeviceCriterionId)
     {
-      $this->mobileDeviceCriterionId = $mobileDeviceCriterionId;
+      $this->mobileDeviceCriterionId = (PHP_INT_SIZE === 4)
+          ? floatval($mobileDeviceCriterionId) : $mobileDeviceCriterionId;
       return $this;
     }
 
@@ -64,7 +65,8 @@ class MobileDeviceSubmodel extends \Google\AdsApi\Dfp\v201702\Technology
      */
     public function setDeviceManufacturerCriterionId($deviceManufacturerCriterionId)
     {
-      $this->deviceManufacturerCriterionId = $deviceManufacturerCriterionId;
+      $this->deviceManufacturerCriterionId = (PHP_INT_SIZE === 4)
+          ? floatval($deviceManufacturerCriterionId) : $deviceManufacturerCriterionId;
       return $this;
     }
 

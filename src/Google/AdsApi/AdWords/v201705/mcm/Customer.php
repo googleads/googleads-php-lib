@@ -99,7 +99,8 @@ class Customer
      */
     public function setCustomerId($customerId)
     {
-      $this->customerId = $customerId;
+      $this->customerId = (PHP_INT_SIZE === 4)
+          ? floatval($customerId) : $customerId;
       return $this;
     }
 

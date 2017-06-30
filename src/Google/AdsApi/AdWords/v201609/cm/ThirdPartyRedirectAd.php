@@ -25,12 +25,12 @@ class ThirdPartyRedirectAd extends \Google\AdsApi\AdWords\v201609\cm\RichMediaAd
     protected $isTagged = null;
 
     /**
-     * @var string $videoTypes
+     * @var string[] $videoTypes
      */
     protected $videoTypes = null;
 
     /**
-     * @var string $expandingDirections
+     * @var string[] $expandingDirections
      */
     protected $expandingDirections = null;
 
@@ -54,14 +54,14 @@ class ThirdPartyRedirectAd extends \Google\AdsApi\AdWords\v201609\cm\RichMediaAd
      * @param int $certifiedVendorFormatId
      * @param string $sourceUrl
      * @param string $richMediaAdType
-     * @param string $adAttributes
+     * @param string[] $adAttributes
      * @param boolean $isCookieTargeted
      * @param boolean $isUserInterestTargeted
      * @param boolean $isTagged
-     * @param string $videoTypes
-     * @param string $expandingDirections
+     * @param string[] $videoTypes
+     * @param string[] $expandingDirections
      */
-    public function __construct($id = null, $url = null, $displayUrl = null, array $finalUrls = null, array $finalMobileUrls = null, array $finalAppUrls = null, $trackingUrlTemplate = null, $urlCustomParameters = null, $type = null, $devicePreference = null, $AdType = null, $name = null, $dimensions = null, $snippet = null, $impressionBeaconUrl = null, $adDuration = null, $certifiedVendorFormatId = null, $sourceUrl = null, $richMediaAdType = null, $adAttributes = null, $isCookieTargeted = null, $isUserInterestTargeted = null, $isTagged = null, $videoTypes = null, $expandingDirections = null)
+    public function __construct($id = null, $url = null, $displayUrl = null, array $finalUrls = null, array $finalMobileUrls = null, array $finalAppUrls = null, $trackingUrlTemplate = null, $urlCustomParameters = null, $type = null, $devicePreference = null, $AdType = null, $name = null, $dimensions = null, $snippet = null, $impressionBeaconUrl = null, $adDuration = null, $certifiedVendorFormatId = null, $sourceUrl = null, $richMediaAdType = null, array $adAttributes = null, $isCookieTargeted = null, $isUserInterestTargeted = null, $isTagged = null, array $videoTypes = null, array $expandingDirections = null)
     {
       parent::__construct($id, $url, $displayUrl, $finalUrls, $finalMobileUrls, $finalAppUrls, $trackingUrlTemplate, $urlCustomParameters, $type, $devicePreference, $AdType, $name, $dimensions, $snippet, $impressionBeaconUrl, $adDuration, $certifiedVendorFormatId, $sourceUrl, $richMediaAdType, $adAttributes);
       $this->isCookieTargeted = $isCookieTargeted;
@@ -126,7 +126,7 @@ class ThirdPartyRedirectAd extends \Google\AdsApi\AdWords\v201609\cm\RichMediaAd
     }
 
     /**
-     * @return string
+     * @return string[]
      */
     public function getVideoTypes()
     {
@@ -134,17 +134,17 @@ class ThirdPartyRedirectAd extends \Google\AdsApi\AdWords\v201609\cm\RichMediaAd
     }
 
     /**
-     * @param string $videoTypes
+     * @param string[] $videoTypes
      * @return \Google\AdsApi\AdWords\v201609\cm\ThirdPartyRedirectAd
      */
-    public function setVideoTypes($videoTypes)
+    public function setVideoTypes(array $videoTypes)
     {
       $this->videoTypes = $videoTypes;
       return $this;
     }
 
     /**
-     * @return string
+     * @return string[]
      */
     public function getExpandingDirections()
     {
@@ -152,10 +152,10 @@ class ThirdPartyRedirectAd extends \Google\AdsApi\AdWords\v201609\cm\RichMediaAd
     }
 
     /**
-     * @param string $expandingDirections
+     * @param string[] $expandingDirections
      * @return \Google\AdsApi\AdWords\v201609\cm\ThirdPartyRedirectAd
      */
-    public function setExpandingDirections($expandingDirections)
+    public function setExpandingDirections(array $expandingDirections)
     {
       $this->expandingDirections = $expandingDirections;
       return $this;

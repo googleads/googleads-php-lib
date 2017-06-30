@@ -10,22 +10,22 @@ class CompetitionSearchParameter extends \Google\AdsApi\AdWords\v201702\o\Search
 {
 
     /**
-     * @var string $levels
+     * @var string[] $levels
      */
     protected $levels = null;
 
     /**
      * @param string $SearchParameterType
-     * @param string $levels
+     * @param string[] $levels
      */
-    public function __construct($SearchParameterType = null, $levels = null)
+    public function __construct($SearchParameterType = null, array $levels = null)
     {
       parent::__construct($SearchParameterType);
       $this->levels = $levels;
     }
 
     /**
-     * @return string
+     * @return string[]
      */
     public function getLevels()
     {
@@ -33,10 +33,10 @@ class CompetitionSearchParameter extends \Google\AdsApi\AdWords\v201702\o\Search
     }
 
     /**
-     * @param string $levels
+     * @param string[] $levels
      * @return \Google\AdsApi\AdWords\v201702\o\CompetitionSearchParameter
      */
-    public function setLevels($levels)
+    public function setLevels(array $levels)
     {
       $this->levels = $levels;
       return $this;

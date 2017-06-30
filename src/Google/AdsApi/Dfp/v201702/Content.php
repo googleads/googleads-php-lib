@@ -55,12 +55,12 @@ class Content
     protected $lastModifiedDateTime = null;
 
     /**
-     * @var long[] $userDefinedCustomTargetingValueIds
+     * @var int[] $userDefinedCustomTargetingValueIds
      */
     protected $userDefinedCustomTargetingValueIds = null;
 
     /**
-     * @var long[] $mappingRuleDefinedCustomTargetingValueIds
+     * @var int[] $mappingRuleDefinedCustomTargetingValueIds
      */
     protected $mappingRuleDefinedCustomTargetingValueIds = null;
 
@@ -79,8 +79,8 @@ class Content
      * @param \Google\AdsApi\Dfp\v201702\DateTime $lastDaiIngestDateTime
      * @param \Google\AdsApi\Dfp\v201702\DateTime $importDateTime
      * @param \Google\AdsApi\Dfp\v201702\DateTime $lastModifiedDateTime
-     * @param long[] $userDefinedCustomTargetingValueIds
-     * @param long[] $mappingRuleDefinedCustomTargetingValueIds
+     * @param int[] $userDefinedCustomTargetingValueIds
+     * @param int[] $mappingRuleDefinedCustomTargetingValueIds
      * @param \Google\AdsApi\Dfp\v201702\CmsContent[] $cmsSources
      */
     public function __construct($id = null, $name = null, $status = null, $statusDefinedBy = null, $daiIngestStatus = null, array $daiIngestErrors = null, $lastDaiIngestDateTime = null, $importDateTime = null, $lastModifiedDateTime = null, array $userDefinedCustomTargetingValueIds = null, array $mappingRuleDefinedCustomTargetingValueIds = null, array $cmsSources = null)
@@ -113,7 +113,8 @@ class Content
      */
     public function setId($id)
     {
-      $this->id = $id;
+      $this->id = (PHP_INT_SIZE === 4)
+          ? floatval($id) : $id;
       return $this;
     }
 
@@ -262,7 +263,7 @@ class Content
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getUserDefinedCustomTargetingValueIds()
     {
@@ -270,7 +271,7 @@ class Content
     }
 
     /**
-     * @param long[] $userDefinedCustomTargetingValueIds
+     * @param int[] $userDefinedCustomTargetingValueIds
      * @return \Google\AdsApi\Dfp\v201702\Content
      */
     public function setUserDefinedCustomTargetingValueIds(array $userDefinedCustomTargetingValueIds)
@@ -280,7 +281,7 @@ class Content
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getMappingRuleDefinedCustomTargetingValueIds()
     {
@@ -288,7 +289,7 @@ class Content
     }
 
     /**
-     * @param long[] $mappingRuleDefinedCustomTargetingValueIds
+     * @param int[] $mappingRuleDefinedCustomTargetingValueIds
      * @return \Google\AdsApi\Dfp\v201702\Content
      */
     public function setMappingRuleDefinedCustomTargetingValueIds(array $mappingRuleDefinedCustomTargetingValueIds)

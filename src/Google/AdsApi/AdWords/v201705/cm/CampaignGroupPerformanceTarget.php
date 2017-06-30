@@ -50,7 +50,8 @@ class CampaignGroupPerformanceTarget
      */
     public function setId($id)
     {
-      $this->id = $id;
+      $this->id = (PHP_INT_SIZE === 4)
+          ? floatval($id) : $id;
       return $this;
     }
 
@@ -68,7 +69,8 @@ class CampaignGroupPerformanceTarget
      */
     public function setCampaignGroupId($campaignGroupId)
     {
-      $this->campaignGroupId = $campaignGroupId;
+      $this->campaignGroupId = (PHP_INT_SIZE === 4)
+          ? floatval($campaignGroupId) : $campaignGroupId;
       return $this;
     }
 

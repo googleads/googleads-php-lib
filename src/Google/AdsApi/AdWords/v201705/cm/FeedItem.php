@@ -134,7 +134,8 @@ class FeedItem
      */
     public function setFeedId($feedId)
     {
-      $this->feedId = $feedId;
+      $this->feedId = (PHP_INT_SIZE === 4)
+          ? floatval($feedId) : $feedId;
       return $this;
     }
 
@@ -152,7 +153,8 @@ class FeedItem
      */
     public function setFeedItemId($feedItemId)
     {
-      $this->feedItemId = $feedItemId;
+      $this->feedItemId = (PHP_INT_SIZE === 4)
+          ? floatval($feedItemId) : $feedItemId;
       return $this;
     }
 

@@ -29,6 +29,7 @@ final class SoapLogMessageFormatter {
 
   private $requestHttpHeadersToScrub;
   private $requestSoapHeadersToScrub;
+  private $requestSoapBodyTagsToScrub;
 
   private $additionalRequestSummaryHeaders;
   private $additionalResponseSummaryHeaders;
@@ -42,6 +43,8 @@ final class SoapLogMessageFormatter {
    *     headers to scrub
    * @param string[]|null $requestSoapHeadersToScrub a list of request SOAP
    *     headers to scrub
+   * @param string[]|null $requestSoapBodyTagsToScrub a list of request SOAP
+   *     body tags to scrub
    * @param string[]|null $additionalRequestSummaryHeaders a list of additional
    *     SOAP request headers to be included in the summary
    * @param string[]|null $additionalResponseSummaryHeaders a list of additional
@@ -52,6 +55,7 @@ final class SoapLogMessageFormatter {
   public function __construct(
       array $requestHttpHeadersToScrub = null,
       array $requestSoapHeadersToScrub = null,
+      array $requestSoapBodyTagsToScrub = null,
       array $additionalRequestSummaryHeaders = null,
       array $additionalResponseSummaryHeaders = null,
       $faultMsgMaxLength = null
@@ -60,6 +64,8 @@ final class SoapLogMessageFormatter {
         $requestHttpHeadersToScrub === null ? [] : $requestHttpHeadersToScrub;
     $this->requestSoapHeadersToScrub =
         $requestSoapHeadersToScrub === null ? [] : $requestSoapHeadersToScrub;
+    $this->requestSoapBodyTagsToScrub =
+        $requestSoapBodyTagsToScrub === null ? [] : $requestSoapBodyTagsToScrub;
     $this->additionalRequestSummaryHeaders =
         $additionalRequestSummaryHeaders === null
             ? []
@@ -132,6 +138,8 @@ final class SoapLogMessageFormatter {
         trim($requestHeaders), $this->requestHttpHeadersToScrub);
     $request = LogMessageScrubbers::scrubRequestSoapHeaders(
         $request, $this->requestSoapHeadersToScrub);
+    $request = LogMessageScrubbers::scrubRequestSoapBodyTags(
+        $request, $this->requestSoapBodyTagsToScrub);
     $responseHeaders = trim($responseHeaders);
     return sprintf(
         "%s\n\n%s\n%s\n\n%s\n",

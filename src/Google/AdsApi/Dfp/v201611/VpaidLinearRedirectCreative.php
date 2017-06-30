@@ -10,7 +10,7 @@ class VpaidLinearRedirectCreative extends \Google\AdsApi\Dfp\v201611\HasDestinat
 {
 
     /**
-     * @var long[] $companionCreativeIds
+     * @var int[] $companionCreativeIds
      */
     protected $companionCreativeIds = null;
 
@@ -60,13 +60,13 @@ class VpaidLinearRedirectCreative extends \Google\AdsApi\Dfp\v201611\HasDestinat
      * @param string $name
      * @param \Google\AdsApi\Dfp\v201611\Size $size
      * @param string $previewUrl
-     * @param string $policyViolations
+     * @param string[] $policyViolations
      * @param \Google\AdsApi\Dfp\v201611\AppliedLabel[] $appliedLabels
      * @param \Google\AdsApi\Dfp\v201611\DateTime $lastModifiedDateTime
      * @param \Google\AdsApi\Dfp\v201611\BaseCustomFieldValue[] $customFieldValues
      * @param string $destinationUrl
      * @param string $destinationUrlType
-     * @param long[] $companionCreativeIds
+     * @param int[] $companionCreativeIds
      * @param \Google\AdsApi\Dfp\v201611\ConversionEvent_TrackingUrlsMapEntry[] $trackingUrls
      * @param string $customParameters
      * @param int $duration
@@ -76,7 +76,7 @@ class VpaidLinearRedirectCreative extends \Google\AdsApi\Dfp\v201611\HasDestinat
      * @param string $sslScanResult
      * @param string $sslManualOverride
      */
-    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, $policyViolations = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null, $destinationUrl = null, $destinationUrlType = null, array $companionCreativeIds = null, array $trackingUrls = null, $customParameters = null, $duration = null, $flashUrl = null, $flashAssetSize = null, $vastPreviewUrl = null, $sslScanResult = null, $sslManualOverride = null)
+    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, array $policyViolations = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null, $destinationUrl = null, $destinationUrlType = null, array $companionCreativeIds = null, array $trackingUrls = null, $customParameters = null, $duration = null, $flashUrl = null, $flashAssetSize = null, $vastPreviewUrl = null, $sslScanResult = null, $sslManualOverride = null)
     {
       parent::__construct($advertiserId, $id, $name, $size, $previewUrl, $policyViolations, $appliedLabels, $lastModifiedDateTime, $customFieldValues, $destinationUrl, $destinationUrlType);
       $this->companionCreativeIds = $companionCreativeIds;
@@ -91,7 +91,7 @@ class VpaidLinearRedirectCreative extends \Google\AdsApi\Dfp\v201611\HasDestinat
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getCompanionCreativeIds()
     {
@@ -99,7 +99,7 @@ class VpaidLinearRedirectCreative extends \Google\AdsApi\Dfp\v201611\HasDestinat
     }
 
     /**
-     * @param long[] $companionCreativeIds
+     * @param int[] $companionCreativeIds
      * @return \Google\AdsApi\Dfp\v201611\VpaidLinearRedirectCreative
      */
     public function setCompanionCreativeIds(array $companionCreativeIds)

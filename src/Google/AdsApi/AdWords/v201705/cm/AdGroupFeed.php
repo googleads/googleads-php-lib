@@ -78,7 +78,8 @@ class AdGroupFeed
      */
     public function setFeedId($feedId)
     {
-      $this->feedId = $feedId;
+      $this->feedId = (PHP_INT_SIZE === 4)
+          ? floatval($feedId) : $feedId;
       return $this;
     }
 
@@ -96,7 +97,8 @@ class AdGroupFeed
      */
     public function setAdGroupId($adGroupId)
     {
-      $this->adGroupId = $adGroupId;
+      $this->adGroupId = (PHP_INT_SIZE === 4)
+          ? floatval($adGroupId) : $adGroupId;
       return $this;
     }
 
@@ -168,7 +170,8 @@ class AdGroupFeed
      */
     public function setBaseCampaignId($baseCampaignId)
     {
-      $this->baseCampaignId = $baseCampaignId;
+      $this->baseCampaignId = (PHP_INT_SIZE === 4)
+          ? floatval($baseCampaignId) : $baseCampaignId;
       return $this;
     }
 
@@ -186,7 +189,8 @@ class AdGroupFeed
      */
     public function setBaseAdGroupId($baseAdGroupId)
     {
-      $this->baseAdGroupId = $baseAdGroupId;
+      $this->baseAdGroupId = (PHP_INT_SIZE === 4)
+          ? floatval($baseAdGroupId) : $baseAdGroupId;
       return $this;
     }
 

@@ -33,6 +33,10 @@ class SoapLogMessageFormatterTest extends PHPUnit_Framework_TestCase {
   private $requestSoapXmlMock;
   private $responseHttpHeadersMock;
   private $responseSoapXmlMock;
+  private $mutateRequestHttpHeadersMock;
+  private $mutateRequestSoapXmlMock;
+  private $mutateResponseHttpHeadersMock;
+  private $mutateResponseSoapXmlMock;
 
   /**
    * @see PHPUnit_Framework_TestCase::setUp
@@ -47,6 +51,15 @@ class SoapLogMessageFormatterTest extends PHPUnit_Framework_TestCase {
         ::getFakeGetCreativesResponseHttpHeaders();
     $this->responseSoapXmlMock = FakeSoapPayloadsAndLogsProvider
         ::getFakeGetCreativesResponse();
+
+    $this->mutateRequestHttpHeadersMock = FakeSoapPayloadsAndLogsProvider
+        ::getFakeMutateRequestHttpHeaders();
+    $this->mutateRequestSoapXmlMock = FakeSoapPayloadsAndLogsProvider
+        ::getFakeMutateRequest();
+    $this->mutateResponseHttpHeadersMock = FakeSoapPayloadsAndLogsProvider
+        ::getFakeMutateResponseHttpHeaders();
+    $this->mutateResponseSoapXmlMock = FakeSoapPayloadsAndLogsProvider
+        ::getFakeMutateResponse();
   }
 
   /**
@@ -95,6 +108,7 @@ class SoapLogMessageFormatterTest extends PHPUnit_Framework_TestCase {
         null,
         null,
         null,
+        null,
         34
     );
     $this->assertSame(
@@ -134,16 +148,17 @@ class SoapLogMessageFormatterTest extends PHPUnit_Framework_TestCase {
   public function testFormatDetailedWithScrubbing() {
     $soapLogMessageFormatter = new SoapLogMessageFormatter(
         ['Authorization'],
-        ['networkCode', 'clientCustomerId']
+        ['networkCode', 'clientCustomerId'],
+        ['httpAuthorizationHeader']
     );
     $actualDetailedLog = $soapLogMessageFormatter->formatDetailed(
-        $this->requestHttpHeadersMock,
-        $this->requestSoapXmlMock,
-        $this->responseHttpHeadersMock,
-        $this->responseSoapXmlMock
+        $this->mutateRequestHttpHeadersMock,
+        $this->mutateRequestSoapXmlMock,
+        $this->mutateResponseHttpHeadersMock,
+        $this->mutateResponseSoapXmlMock
     );
     $expectedDetailedLog =
-        FakeSoapPayloadsAndLogsProvider::getScrubbedFakeSoapXmlLog();
+        FakeSoapPayloadsAndLogsProvider::getScrubbedFakeMutateSoapXmlLog();
     $this->assertSame(trim($expectedDetailedLog), trim($actualDetailedLog));
   }
 }

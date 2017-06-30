@@ -100,6 +100,11 @@ abstract class ConversionTracker
     protected $ConversionTrackerType = null;
 
     /**
+     * @var array $parameterMap
+     */
+    private $parameterMap = ['ConversionTracker.Type' => 'ConversionTrackerType'];
+
+    /**
      * @param int $id
      * @param int $originalConversionTypeId
      * @param string $name
@@ -155,7 +160,8 @@ abstract class ConversionTracker
      */
     public function setId($id)
     {
-      $this->id = $id;
+      $this->id = (PHP_INT_SIZE === 4)
+          ? floatval($id) : $id;
       return $this;
     }
 
@@ -173,7 +179,8 @@ abstract class ConversionTracker
      */
     public function setOriginalConversionTypeId($originalConversionTypeId)
     {
-      $this->originalConversionTypeId = $originalConversionTypeId;
+      $this->originalConversionTypeId = (PHP_INT_SIZE === 4)
+          ? floatval($originalConversionTypeId) : $originalConversionTypeId;
       return $this;
     }
 
@@ -263,7 +270,8 @@ abstract class ConversionTracker
      */
     public function setConversionTypeOwnerCustomerId($conversionTypeOwnerCustomerId)
     {
-      $this->conversionTypeOwnerCustomerId = $conversionTypeOwnerCustomerId;
+      $this->conversionTypeOwnerCustomerId = (PHP_INT_SIZE === 4)
+          ? floatval($conversionTypeOwnerCustomerId) : $conversionTypeOwnerCustomerId;
       return $this;
     }
 
@@ -463,6 +471,32 @@ abstract class ConversionTracker
     {
       $this->ConversionTrackerType = $ConversionTrackerType;
       return $this;
+    }
+
+    /**
+     * Getter for a non PHP standard named variables.
+     *
+     * @param string $var variable name to get
+     * @return string variable value
+     */
+    public function __get($var)
+    {
+      if (!array_key_exists($var, $this->parameterMap)) {
+        return null;
+      }
+      return $this->{$this->parameterMap[$var]};
+    }
+
+    /**
+     * Setter for a non PHP standard named variables.
+     *
+     * @param string $var variable name
+     * @param mixed $value variable value to set
+     * @return \Google\AdsApi\AdWords\v201702\cm\ConversionTracker
+     */
+    public function __set($var, $value)
+    {
+      $this->{$this->parameterMap[$var]} = $value;
     }
 
 }

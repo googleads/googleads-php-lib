@@ -1,0 +1,69 @@
+POST /api/adwords/cm/v201705/FeedService?wsdl HTTP/1.1
+Host: adwords.google.com
+Connection: close
+User-Agent: PHP-SOAP/5.5.38
+Content-Type: text/xml; charset=utf-8
+SOAPAction: ""
+Content-Length: 1451
+Authorization: REDACTED
+
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="https://adwords.google.com/api/adwords/cm/v201705">
+<SOAP-ENV:Header>
+  <ns1:RequestHeader>
+    <ns1:clientCustomerId>REDACTED</ns1:clientCustomerId>
+    <ns1:applicationName>AdWords Testing (AwApi-PHP, googleads-php-lib2/1.0.0-alpha, PHP/5.5.20)</ns1:applicationName>
+  </ns1:RequestHeader>
+</SOAP-ENV:Header>
+<SOAP-ENV:Body>
+  <ns1:mutate>
+    <ns1:operations>
+      <ns1:operator>ADD</ns1:operator>
+      <ns1:operand>
+        <ns1:name>my business</ns1:name>
+        <ns1:origin>ADWORDS</ns1:origin>
+        <ns1:systemFeedGenerationData>
+          <ns1:oAuthInfo>
+            <ns1:httpMethod>GET</ns1:httpMethod>
+            <ns1:httpRequestUrl>https://www.googleapis.com/auth/adwords</ns1:httpRequestUrl>
+            <ns1:httpAuthorizationHeader>REDACTED</ns1:httpAuthorizationHeader>
+          </ns1:oAuthInfo>
+        </ns1:systemFeedGenerationData>
+      </ns1:operand>
+    </ns1:operations>
+  </ns1:mutate>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
+
+HTTP/1.1 200 OK
+Content-Type: text/xml; charset=UTF-8
+Content-Encoding: gzip
+Date: Mon, 12 Oct 2015 16:09:17 GMT
+Expires: Mon, 12 Oct 2015 16:09:17 GMT
+Cache-Control: private, max-age=0
+Content-Length: 1005
+Server: GSE
+
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Header>
+    <ResponseHeader xmlns="https://adwords.google.com/api/adwords/cm/v201705">
+      <requestId>123abc456xyz</requestId>
+      <serviceName>FeedService</serviceName>
+      <methodName>mutate</methodName>
+      <operations>9</operations>
+      <responseTime>226</responseTime>
+    </ResponseHeader>
+  </soap:Header>
+  <soap:Body>
+    <mutateResponse xmlns="https://adwords.google.com/api/adwords/cm/v201705">
+      <rval>
+        <ListReturnValue.Type>FeedReturnValue</ListReturnValue.Type>
+        <value>
+          <name>my business</name>
+          <status>ENABLED</status>
+          <origin>ADWORDS</origin>
+        </value>
+      </rval>
+    </mutateResponse>
+  </soap:Body>
+</soap:Envelope>

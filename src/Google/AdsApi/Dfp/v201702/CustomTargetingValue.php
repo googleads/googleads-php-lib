@@ -71,7 +71,8 @@ class CustomTargetingValue
      */
     public function setCustomTargetingKeyId($customTargetingKeyId)
     {
-      $this->customTargetingKeyId = $customTargetingKeyId;
+      $this->customTargetingKeyId = (PHP_INT_SIZE === 4)
+          ? floatval($customTargetingKeyId) : $customTargetingKeyId;
       return $this;
     }
 
@@ -89,7 +90,8 @@ class CustomTargetingValue
      */
     public function setId($id)
     {
-      $this->id = $id;
+      $this->id = (PHP_INT_SIZE === 4)
+          ? floatval($id) : $id;
       return $this;
     }
 

@@ -86,7 +86,8 @@ class MutateResult
      */
     public function setIndex($index)
     {
-      $this->index = $index;
+      $this->index = (PHP_INT_SIZE === 4)
+          ? floatval($index) : $index;
       return $this;
     }
 

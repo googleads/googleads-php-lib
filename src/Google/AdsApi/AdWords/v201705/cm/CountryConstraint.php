@@ -10,7 +10,7 @@ class CountryConstraint extends \Google\AdsApi\AdWords\v201705\cm\PolicyTopicCon
 {
 
     /**
-     * @var long[] $constrainedCountries
+     * @var int[] $constrainedCountries
      */
     protected $constrainedCountries = null;
 
@@ -22,7 +22,7 @@ class CountryConstraint extends \Google\AdsApi\AdWords\v201705\cm\PolicyTopicCon
     /**
      * @param string $constraintType
      * @param string $PolicyTopicConstraintType
-     * @param long[] $constrainedCountries
+     * @param int[] $constrainedCountries
      * @param int $totalTargetedCountries
      */
     public function __construct($constraintType = null, $PolicyTopicConstraintType = null, array $constrainedCountries = null, $totalTargetedCountries = null)
@@ -33,7 +33,7 @@ class CountryConstraint extends \Google\AdsApi\AdWords\v201705\cm\PolicyTopicCon
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getConstrainedCountries()
     {
@@ -41,7 +41,7 @@ class CountryConstraint extends \Google\AdsApi\AdWords\v201705\cm\PolicyTopicCon
     }
 
     /**
-     * @param long[] $constrainedCountries
+     * @param int[] $constrainedCountries
      * @return \Google\AdsApi\AdWords\v201705\cm\CountryConstraint
      */
     public function setConstrainedCountries(array $constrainedCountries)

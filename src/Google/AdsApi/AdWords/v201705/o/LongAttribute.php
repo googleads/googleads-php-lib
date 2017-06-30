@@ -38,7 +38,8 @@ class LongAttribute extends \Google\AdsApi\AdWords\v201705\o\Attribute
      */
     public function setValue($value)
     {
-      $this->value = $value;
+      $this->value = (PHP_INT_SIZE === 4)
+          ? floatval($value) : $value;
       return $this;
     }
 

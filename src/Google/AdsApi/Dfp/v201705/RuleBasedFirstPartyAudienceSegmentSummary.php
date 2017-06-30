@@ -27,7 +27,7 @@ class RuleBasedFirstPartyAudienceSegmentSummary extends \Google\AdsApi\Dfp\v2017
     /**
      * @param int $id
      * @param string $name
-     * @param long[] $categoryIds
+     * @param int[] $categoryIds
      * @param string $description
      * @param string $status
      * @param int $size

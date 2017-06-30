@@ -20,50 +20,50 @@ class AdGroupChangeData
     protected $adGroupChangeStatus = null;
 
     /**
-     * @var long[] $changedAds
+     * @var int[] $changedAds
      */
     protected $changedAds = null;
 
     /**
-     * @var long[] $changedCriteria
+     * @var int[] $changedCriteria
      */
     protected $changedCriteria = null;
 
     /**
-     * @var long[] $removedCriteria
+     * @var int[] $removedCriteria
      */
     protected $removedCriteria = null;
 
     /**
-     * @var long[] $changedFeeds
+     * @var int[] $changedFeeds
      */
     protected $changedFeeds = null;
 
     /**
-     * @var long[] $removedFeeds
+     * @var int[] $removedFeeds
      */
     protected $removedFeeds = null;
 
     /**
-     * @var long[] $changedAdGroupBidModifierCriteria
+     * @var int[] $changedAdGroupBidModifierCriteria
      */
     protected $changedAdGroupBidModifierCriteria = null;
 
     /**
-     * @var long[] $removedAdGroupBidModifierCriteria
+     * @var int[] $removedAdGroupBidModifierCriteria
      */
     protected $removedAdGroupBidModifierCriteria = null;
 
     /**
      * @param int $adGroupId
      * @param string $adGroupChangeStatus
-     * @param long[] $changedAds
-     * @param long[] $changedCriteria
-     * @param long[] $removedCriteria
-     * @param long[] $changedFeeds
-     * @param long[] $removedFeeds
-     * @param long[] $changedAdGroupBidModifierCriteria
-     * @param long[] $removedAdGroupBidModifierCriteria
+     * @param int[] $changedAds
+     * @param int[] $changedCriteria
+     * @param int[] $removedCriteria
+     * @param int[] $changedFeeds
+     * @param int[] $removedFeeds
+     * @param int[] $changedAdGroupBidModifierCriteria
+     * @param int[] $removedAdGroupBidModifierCriteria
      */
     public function __construct($adGroupId = null, $adGroupChangeStatus = null, array $changedAds = null, array $changedCriteria = null, array $removedCriteria = null, array $changedFeeds = null, array $removedFeeds = null, array $changedAdGroupBidModifierCriteria = null, array $removedAdGroupBidModifierCriteria = null)
     {
@@ -92,7 +92,8 @@ class AdGroupChangeData
      */
     public function setAdGroupId($adGroupId)
     {
-      $this->adGroupId = $adGroupId;
+      $this->adGroupId = (PHP_INT_SIZE === 4)
+          ? floatval($adGroupId) : $adGroupId;
       return $this;
     }
 
@@ -115,7 +116,7 @@ class AdGroupChangeData
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getChangedAds()
     {
@@ -123,7 +124,7 @@ class AdGroupChangeData
     }
 
     /**
-     * @param long[] $changedAds
+     * @param int[] $changedAds
      * @return \Google\AdsApi\AdWords\v201702\ch\AdGroupChangeData
      */
     public function setChangedAds(array $changedAds)
@@ -133,7 +134,7 @@ class AdGroupChangeData
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getChangedCriteria()
     {
@@ -141,7 +142,7 @@ class AdGroupChangeData
     }
 
     /**
-     * @param long[] $changedCriteria
+     * @param int[] $changedCriteria
      * @return \Google\AdsApi\AdWords\v201702\ch\AdGroupChangeData
      */
     public function setChangedCriteria(array $changedCriteria)
@@ -151,7 +152,7 @@ class AdGroupChangeData
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getRemovedCriteria()
     {
@@ -159,7 +160,7 @@ class AdGroupChangeData
     }
 
     /**
-     * @param long[] $removedCriteria
+     * @param int[] $removedCriteria
      * @return \Google\AdsApi\AdWords\v201702\ch\AdGroupChangeData
      */
     public function setRemovedCriteria(array $removedCriteria)
@@ -169,7 +170,7 @@ class AdGroupChangeData
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getChangedFeeds()
     {
@@ -177,7 +178,7 @@ class AdGroupChangeData
     }
 
     /**
-     * @param long[] $changedFeeds
+     * @param int[] $changedFeeds
      * @return \Google\AdsApi\AdWords\v201702\ch\AdGroupChangeData
      */
     public function setChangedFeeds(array $changedFeeds)
@@ -187,7 +188,7 @@ class AdGroupChangeData
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getRemovedFeeds()
     {
@@ -195,7 +196,7 @@ class AdGroupChangeData
     }
 
     /**
-     * @param long[] $removedFeeds
+     * @param int[] $removedFeeds
      * @return \Google\AdsApi\AdWords\v201702\ch\AdGroupChangeData
      */
     public function setRemovedFeeds(array $removedFeeds)
@@ -205,7 +206,7 @@ class AdGroupChangeData
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getChangedAdGroupBidModifierCriteria()
     {
@@ -213,7 +214,7 @@ class AdGroupChangeData
     }
 
     /**
-     * @param long[] $changedAdGroupBidModifierCriteria
+     * @param int[] $changedAdGroupBidModifierCriteria
      * @return \Google\AdsApi\AdWords\v201702\ch\AdGroupChangeData
      */
     public function setChangedAdGroupBidModifierCriteria(array $changedAdGroupBidModifierCriteria)
@@ -223,7 +224,7 @@ class AdGroupChangeData
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getRemovedAdGroupBidModifierCriteria()
     {
@@ -231,7 +232,7 @@ class AdGroupChangeData
     }
 
     /**
-     * @param long[] $removedAdGroupBidModifierCriteria
+     * @param int[] $removedAdGroupBidModifierCriteria
      * @return \Google\AdsApi\AdWords\v201702\ch\AdGroupChangeData
      */
     public function setRemovedAdGroupBidModifierCriteria(array $removedAdGroupBidModifierCriteria)

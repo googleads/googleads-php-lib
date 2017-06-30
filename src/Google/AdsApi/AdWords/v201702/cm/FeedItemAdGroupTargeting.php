@@ -36,7 +36,8 @@ class FeedItemAdGroupTargeting
      */
     public function setTargetingAdGroupId($TargetingAdGroupId)
     {
-      $this->TargetingAdGroupId = $TargetingAdGroupId;
+      $this->TargetingAdGroupId = (PHP_INT_SIZE === 4)
+          ? floatval($TargetingAdGroupId) : $TargetingAdGroupId;
       return $this;
     }
 

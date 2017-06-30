@@ -38,7 +38,8 @@ class LongValue extends \Google\AdsApi\AdWords\v201702\cm\NumberValue
      */
     public function setNumber($number)
     {
-      $this->number = $number;
+      $this->number = (PHP_INT_SIZE === 4)
+          ? floatval($number) : $number;
       return $this;
     }
 

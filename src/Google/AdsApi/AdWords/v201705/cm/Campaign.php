@@ -197,7 +197,8 @@ class Campaign
      */
     public function setId($id)
     {
-      $this->id = $id;
+      $this->id = (PHP_INT_SIZE === 4)
+          ? floatval($id) : $id;
       return $this;
     }
 
@@ -215,7 +216,8 @@ class Campaign
      */
     public function setCampaignGroupId($campaignGroupId)
     {
-      $this->campaignGroupId = $campaignGroupId;
+      $this->campaignGroupId = (PHP_INT_SIZE === 4)
+          ? floatval($campaignGroupId) : $campaignGroupId;
       return $this;
     }
 
@@ -521,7 +523,8 @@ class Campaign
      */
     public function setBaseCampaignId($baseCampaignId)
     {
-      $this->baseCampaignId = $baseCampaignId;
+      $this->baseCampaignId = (PHP_INT_SIZE === 4)
+          ? floatval($baseCampaignId) : $baseCampaignId;
       return $this;
     }
 

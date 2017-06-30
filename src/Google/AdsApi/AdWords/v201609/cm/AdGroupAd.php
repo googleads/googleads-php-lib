@@ -106,7 +106,8 @@ class AdGroupAd
      */
     public function setAdGroupId($adGroupId)
     {
-      $this->adGroupId = $adGroupId;
+      $this->adGroupId = (PHP_INT_SIZE === 4)
+          ? floatval($adGroupId) : $adGroupId;
       return $this;
     }
 
@@ -250,7 +251,8 @@ class AdGroupAd
      */
     public function setBaseCampaignId($baseCampaignId)
     {
-      $this->baseCampaignId = $baseCampaignId;
+      $this->baseCampaignId = (PHP_INT_SIZE === 4)
+          ? floatval($baseCampaignId) : $baseCampaignId;
       return $this;
     }
 
@@ -268,7 +270,8 @@ class AdGroupAd
      */
     public function setBaseAdGroupId($baseAdGroupId)
     {
-      $this->baseAdGroupId = $baseAdGroupId;
+      $this->baseAdGroupId = (PHP_INT_SIZE === 4)
+          ? floatval($baseAdGroupId) : $baseAdGroupId;
       return $this;
     }
 

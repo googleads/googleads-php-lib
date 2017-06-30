@@ -15,12 +15,12 @@ class RequestApprovalProgressAction extends \Google\AdsApi\Dfp\v201702\ProgressA
     protected $approverId = null;
 
     /**
-     * @var long[] $eligibleApproverUserIds
+     * @var int[] $eligibleApproverUserIds
      */
     protected $eligibleApproverUserIds = null;
 
     /**
-     * @var long[] $eligibleApproverTeamIds
+     * @var int[] $eligibleApproverTeamIds
      */
     protected $eligibleApproverTeamIds = null;
 
@@ -38,8 +38,8 @@ class RequestApprovalProgressAction extends \Google\AdsApi\Dfp\v201702\ProgressA
      * @param \Google\AdsApi\Dfp\v201702\DateTime $evaluationTime
      * @param string $evaluationStatus
      * @param int $approverId
-     * @param long[] $eligibleApproverUserIds
-     * @param long[] $eligibleApproverTeamIds
+     * @param int[] $eligibleApproverUserIds
+     * @param int[] $eligibleApproverTeamIds
      * @param string $comment
      * @param string $approvalStatus
      */
@@ -67,12 +67,13 @@ class RequestApprovalProgressAction extends \Google\AdsApi\Dfp\v201702\ProgressA
      */
     public function setApproverId($approverId)
     {
-      $this->approverId = $approverId;
+      $this->approverId = (PHP_INT_SIZE === 4)
+          ? floatval($approverId) : $approverId;
       return $this;
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getEligibleApproverUserIds()
     {
@@ -80,7 +81,7 @@ class RequestApprovalProgressAction extends \Google\AdsApi\Dfp\v201702\ProgressA
     }
 
     /**
-     * @param long[] $eligibleApproverUserIds
+     * @param int[] $eligibleApproverUserIds
      * @return \Google\AdsApi\Dfp\v201702\RequestApprovalProgressAction
      */
     public function setEligibleApproverUserIds(array $eligibleApproverUserIds)
@@ -90,7 +91,7 @@ class RequestApprovalProgressAction extends \Google\AdsApi\Dfp\v201702\ProgressA
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getEligibleApproverTeamIds()
     {
@@ -98,7 +99,7 @@ class RequestApprovalProgressAction extends \Google\AdsApi\Dfp\v201702\ProgressA
     }
 
     /**
-     * @param long[] $eligibleApproverTeamIds
+     * @param int[] $eligibleApproverTeamIds
      * @return \Google\AdsApi\Dfp\v201702\RequestApprovalProgressAction
      */
     public function setEligibleApproverTeamIds(array $eligibleApproverTeamIds)

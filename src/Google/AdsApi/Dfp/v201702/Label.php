@@ -30,7 +30,7 @@ class Label
     protected $isActive = null;
 
     /**
-     * @var string $types
+     * @var string[] $types
      */
     protected $types = null;
 
@@ -39,9 +39,9 @@ class Label
      * @param string $name
      * @param string $description
      * @param boolean $isActive
-     * @param string $types
+     * @param string[] $types
      */
-    public function __construct($id = null, $name = null, $description = null, $isActive = null, $types = null)
+    public function __construct($id = null, $name = null, $description = null, $isActive = null, array $types = null)
     {
       $this->id = $id;
       $this->name = $name;
@@ -64,7 +64,8 @@ class Label
      */
     public function setId($id)
     {
-      $this->id = $id;
+      $this->id = (PHP_INT_SIZE === 4)
+          ? floatval($id) : $id;
       return $this;
     }
 
@@ -123,7 +124,7 @@ class Label
     }
 
     /**
-     * @return string
+     * @return string[]
      */
     public function getTypes()
     {
@@ -131,10 +132,10 @@ class Label
     }
 
     /**
-     * @param string $types
+     * @param string[] $types
      * @return \Google\AdsApi\Dfp\v201702\Label
      */
-    public function setTypes($types)
+    public function setTypes(array $types)
     {
       $this->types = $types;
       return $this;

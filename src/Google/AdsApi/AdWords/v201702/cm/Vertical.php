@@ -54,7 +54,8 @@ class Vertical extends \Google\AdsApi\AdWords\v201702\cm\Criterion
      */
     public function setVerticalId($verticalId)
     {
-      $this->verticalId = $verticalId;
+      $this->verticalId = (PHP_INT_SIZE === 4)
+          ? floatval($verticalId) : $verticalId;
       return $this;
     }
 
@@ -72,7 +73,8 @@ class Vertical extends \Google\AdsApi\AdWords\v201702\cm\Criterion
      */
     public function setVerticalParentId($verticalParentId)
     {
-      $this->verticalParentId = $verticalParentId;
+      $this->verticalParentId = (PHP_INT_SIZE === 4)
+          ? floatval($verticalParentId) : $verticalParentId;
       return $this;
     }
 

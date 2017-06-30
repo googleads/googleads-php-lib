@@ -99,7 +99,8 @@ class ImageAd extends \Google\AdsApi\AdWords\v201702\cm\Ad
      */
     public function setAdToCopyImageFrom($adToCopyImageFrom)
     {
-      $this->adToCopyImageFrom = $adToCopyImageFrom;
+      $this->adToCopyImageFrom = (PHP_INT_SIZE === 4)
+          ? floatval($adToCopyImageFrom) : $adToCopyImageFrom;
       return $this;
     }
 

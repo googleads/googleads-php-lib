@@ -25,7 +25,7 @@ class VastRedirectCreative extends \Google\AdsApi\Dfp\v201702\Creative
     protected $duration = null;
 
     /**
-     * @var long[] $companionCreativeIds
+     * @var int[] $companionCreativeIds
      */
     protected $companionCreativeIds = null;
 
@@ -55,20 +55,20 @@ class VastRedirectCreative extends \Google\AdsApi\Dfp\v201702\Creative
      * @param string $name
      * @param \Google\AdsApi\Dfp\v201702\Size $size
      * @param string $previewUrl
-     * @param string $policyViolations
+     * @param string[] $policyViolations
      * @param \Google\AdsApi\Dfp\v201702\AppliedLabel[] $appliedLabels
      * @param \Google\AdsApi\Dfp\v201702\DateTime $lastModifiedDateTime
      * @param \Google\AdsApi\Dfp\v201702\BaseCustomFieldValue[] $customFieldValues
      * @param string $vastXmlUrl
      * @param string $vastRedirectType
      * @param int $duration
-     * @param long[] $companionCreativeIds
+     * @param int[] $companionCreativeIds
      * @param \Google\AdsApi\Dfp\v201702\ConversionEvent_TrackingUrlsMapEntry[] $trackingUrls
      * @param string $vastPreviewUrl
      * @param string $sslScanResult
      * @param string $sslManualOverride
      */
-    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, $policyViolations = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null, $vastXmlUrl = null, $vastRedirectType = null, $duration = null, array $companionCreativeIds = null, array $trackingUrls = null, $vastPreviewUrl = null, $sslScanResult = null, $sslManualOverride = null)
+    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, array $policyViolations = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null, $vastXmlUrl = null, $vastRedirectType = null, $duration = null, array $companionCreativeIds = null, array $trackingUrls = null, $vastPreviewUrl = null, $sslScanResult = null, $sslManualOverride = null)
     {
       parent::__construct($advertiserId, $id, $name, $size, $previewUrl, $policyViolations, $appliedLabels, $lastModifiedDateTime, $customFieldValues);
       $this->vastXmlUrl = $vastXmlUrl;
@@ -136,7 +136,7 @@ class VastRedirectCreative extends \Google\AdsApi\Dfp\v201702\Creative
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getCompanionCreativeIds()
     {
@@ -144,7 +144,7 @@ class VastRedirectCreative extends \Google\AdsApi\Dfp\v201702\Creative
     }
 
     /**
-     * @param long[] $companionCreativeIds
+     * @param int[] $companionCreativeIds
      * @return \Google\AdsApi\Dfp\v201702\VastRedirectCreative
      */
     public function setCompanionCreativeIds(array $companionCreativeIds)

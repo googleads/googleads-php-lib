@@ -421,7 +421,8 @@ class LineItemSummary
      */
     public function setOrderId($orderId)
     {
-      $this->orderId = $orderId;
+      $this->orderId = (PHP_INT_SIZE === 4)
+          ? floatval($orderId) : $orderId;
       return $this;
     }
 
@@ -439,7 +440,8 @@ class LineItemSummary
      */
     public function setId($id)
     {
-      $this->id = $id;
+      $this->id = (PHP_INT_SIZE === 4)
+          ? floatval($id) : $id;
       return $this;
     }
 
@@ -799,7 +801,8 @@ class LineItemSummary
      */
     public function setContractedUnitsBought($contractedUnitsBought)
     {
-      $this->contractedUnitsBought = $contractedUnitsBought;
+      $this->contractedUnitsBought = (PHP_INT_SIZE === 4)
+          ? floatval($contractedUnitsBought) : $contractedUnitsBought;
       return $this;
     }
 
@@ -1357,7 +1360,8 @@ class LineItemSummary
      */
     public function setVideoMaxDuration($videoMaxDuration)
     {
-      $this->videoMaxDuration = $videoMaxDuration;
+      $this->videoMaxDuration = (PHP_INT_SIZE === 4)
+          ? floatval($videoMaxDuration) : $videoMaxDuration;
       return $this;
     }
 

@@ -41,16 +41,6 @@ final class SoapSettingsBuilder implements AdsBuilder {
   }
 
   /**
-   * @see AdsBuilder::fromFile()
-   */
-  public function fromFile($path = null) {
-    if ($path === null) {
-      $path = self::DEFAULT_CONFIGURATION_FILENAME;
-    }
-    return $this->from($this->configurationLoader->fromFile($path));
-  }
-
-  /**
    * @see AdsBuilder::from()
    */
   public function from(Configuration $configuration) {

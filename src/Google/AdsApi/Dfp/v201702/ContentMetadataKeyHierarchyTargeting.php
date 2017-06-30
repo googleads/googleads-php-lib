@@ -10,12 +10,12 @@ class ContentMetadataKeyHierarchyTargeting
 {
 
     /**
-     * @var long[] $customTargetingValueIds
+     * @var int[] $customTargetingValueIds
      */
     protected $customTargetingValueIds = null;
 
     /**
-     * @param long[] $customTargetingValueIds
+     * @param int[] $customTargetingValueIds
      */
     public function __construct(array $customTargetingValueIds = null)
     {
@@ -23,7 +23,7 @@ class ContentMetadataKeyHierarchyTargeting
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getCustomTargetingValueIds()
     {
@@ -31,7 +31,7 @@ class ContentMetadataKeyHierarchyTargeting
     }
 
     /**
-     * @param long[] $customTargetingValueIds
+     * @param int[] $customTargetingValueIds
      * @return \Google\AdsApi\Dfp\v201702\ContentMetadataKeyHierarchyTargeting
      */
     public function setCustomTargetingValueIds(array $customTargetingValueIds)

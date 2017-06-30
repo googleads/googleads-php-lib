@@ -57,7 +57,8 @@ class AdUrlUpgrade
      */
     public function setAdId($adId)
     {
-      $this->adId = $adId;
+      $this->adId = (PHP_INT_SIZE === 4)
+          ? floatval($adId) : $adId;
       return $this;
     }
 

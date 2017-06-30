@@ -10,7 +10,7 @@ class MobileApplicationTargeting
 {
 
     /**
-     * @var long[] $mobileApplicationIds
+     * @var int[] $mobileApplicationIds
      */
     protected $mobileApplicationIds = null;
 
@@ -20,7 +20,7 @@ class MobileApplicationTargeting
     protected $isTargeted = null;
 
     /**
-     * @param long[] $mobileApplicationIds
+     * @param int[] $mobileApplicationIds
      * @param boolean $isTargeted
      */
     public function __construct(array $mobileApplicationIds = null, $isTargeted = null)
@@ -30,7 +30,7 @@ class MobileApplicationTargeting
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getMobileApplicationIds()
     {
@@ -38,7 +38,7 @@ class MobileApplicationTargeting
     }
 
     /**
-     * @param long[] $mobileApplicationIds
+     * @param int[] $mobileApplicationIds
      * @return \Google\AdsApi\Dfp\v201702\MobileApplicationTargeting
      */
     public function setMobileApplicationIds(array $mobileApplicationIds)

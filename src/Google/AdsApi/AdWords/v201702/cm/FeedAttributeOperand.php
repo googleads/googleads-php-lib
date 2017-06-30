@@ -45,7 +45,8 @@ class FeedAttributeOperand extends \Google\AdsApi\AdWords\v201702\cm\FunctionArg
      */
     public function setFeedId($feedId)
     {
-      $this->feedId = $feedId;
+      $this->feedId = (PHP_INT_SIZE === 4)
+          ? floatval($feedId) : $feedId;
       return $this;
     }
 
@@ -63,7 +64,8 @@ class FeedAttributeOperand extends \Google\AdsApi\AdWords\v201702\cm\FunctionArg
      */
     public function setFeedAttributeId($feedAttributeId)
     {
-      $this->feedAttributeId = $feedAttributeId;
+      $this->feedAttributeId = (PHP_INT_SIZE === 4)
+          ? floatval($feedAttributeId) : $feedAttributeId;
       return $this;
     }
 

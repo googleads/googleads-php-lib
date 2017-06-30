@@ -96,7 +96,8 @@ class Placement extends \Google\AdsApi\Dfp\v201702\SiteTargetingInfo
      */
     public function setId($id)
     {
-      $this->id = $id;
+      $this->id = (PHP_INT_SIZE === 4)
+          ? floatval($id) : $id;
       return $this;
     }
 

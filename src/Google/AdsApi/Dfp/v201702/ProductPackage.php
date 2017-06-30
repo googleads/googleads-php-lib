@@ -35,7 +35,7 @@ class ProductPackage
     protected $isArchived = null;
 
     /**
-     * @var long[] $rateCardIds
+     * @var int[] $rateCardIds
      */
     protected $rateCardIds = null;
 
@@ -55,7 +55,7 @@ class ProductPackage
      * @param string $notes
      * @param string $status
      * @param boolean $isArchived
-     * @param long[] $rateCardIds
+     * @param int[] $rateCardIds
      * @param \Google\AdsApi\Dfp\v201702\BaseCustomFieldValue[] $customFieldValues
      * @param \Google\AdsApi\Dfp\v201702\DateTime $lastModifiedDateTime
      */
@@ -85,7 +85,8 @@ class ProductPackage
      */
     public function setId($id)
     {
-      $this->id = $id;
+      $this->id = (PHP_INT_SIZE === 4)
+          ? floatval($id) : $id;
       return $this;
     }
 
@@ -162,7 +163,7 @@ class ProductPackage
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getRateCardIds()
     {
@@ -170,7 +171,7 @@ class ProductPackage
     }
 
     /**
-     * @param long[] $rateCardIds
+     * @param int[] $rateCardIds
      * @return \Google\AdsApi\Dfp\v201702\ProductPackage
      */
     public function setRateCardIds(array $rateCardIds)

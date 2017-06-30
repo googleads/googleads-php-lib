@@ -15,7 +15,7 @@ class CustomCriteria extends \Google\AdsApi\Dfp\v201702\CustomCriteriaLeaf
     protected $keyId = null;
 
     /**
-     * @var long[] $valueIds
+     * @var int[] $valueIds
      */
     protected $valueIds = null;
 
@@ -26,7 +26,7 @@ class CustomCriteria extends \Google\AdsApi\Dfp\v201702\CustomCriteriaLeaf
 
     /**
      * @param int $keyId
-     * @param long[] $valueIds
+     * @param int[] $valueIds
      * @param string $operator
      */
     public function __construct($keyId = null, array $valueIds = null, $operator = null)
@@ -50,12 +50,13 @@ class CustomCriteria extends \Google\AdsApi\Dfp\v201702\CustomCriteriaLeaf
      */
     public function setKeyId($keyId)
     {
-      $this->keyId = $keyId;
+      $this->keyId = (PHP_INT_SIZE === 4)
+          ? floatval($keyId) : $keyId;
       return $this;
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getValueIds()
     {
@@ -63,7 +64,7 @@ class CustomCriteria extends \Google\AdsApi\Dfp\v201702\CustomCriteriaLeaf
     }
 
     /**
-     * @param long[] $valueIds
+     * @param int[] $valueIds
      * @return \Google\AdsApi\Dfp\v201702\CustomCriteria
      */
     public function setValueIds(array $valueIds)

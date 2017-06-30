@@ -68,7 +68,8 @@ class CriterionUserList extends \Google\AdsApi\AdWords\v201609\cm\Criterion
      */
     public function setUserListId($userListId)
     {
-      $this->userListId = $userListId;
+      $this->userListId = (PHP_INT_SIZE === 4)
+          ? floatval($userListId) : $userListId;
       return $this;
     }
 

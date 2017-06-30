@@ -60,7 +60,7 @@ class TemplateCreative extends \Google\AdsApi\Dfp\v201702\Creative
      * @param string $name
      * @param \Google\AdsApi\Dfp\v201702\Size $size
      * @param string $previewUrl
-     * @param string $policyViolations
+     * @param string[] $policyViolations
      * @param \Google\AdsApi\Dfp\v201702\AppliedLabel[] $appliedLabels
      * @param \Google\AdsApi\Dfp\v201702\DateTime $lastModifiedDateTime
      * @param \Google\AdsApi\Dfp\v201702\BaseCustomFieldValue[] $customFieldValues
@@ -74,7 +74,7 @@ class TemplateCreative extends \Google\AdsApi\Dfp\v201702\Creative
      * @param string $sslManualOverride
      * @param string $lockedOrientation
      */
-    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, $policyViolations = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null, $creativeTemplateId = null, $isInterstitial = null, $isNativeEligible = null, $isSafeFrameCompatible = null, $destinationUrl = null, array $creativeTemplateVariableValues = null, $sslScanResult = null, $sslManualOverride = null, $lockedOrientation = null)
+    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, array $policyViolations = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null, $creativeTemplateId = null, $isInterstitial = null, $isNativeEligible = null, $isSafeFrameCompatible = null, $destinationUrl = null, array $creativeTemplateVariableValues = null, $sslScanResult = null, $sslManualOverride = null, $lockedOrientation = null)
     {
       parent::__construct($advertiserId, $id, $name, $size, $previewUrl, $policyViolations, $appliedLabels, $lastModifiedDateTime, $customFieldValues);
       $this->creativeTemplateId = $creativeTemplateId;
@@ -102,7 +102,8 @@ class TemplateCreative extends \Google\AdsApi\Dfp\v201702\Creative
      */
     public function setCreativeTemplateId($creativeTemplateId)
     {
-      $this->creativeTemplateId = $creativeTemplateId;
+      $this->creativeTemplateId = (PHP_INT_SIZE === 4)
+          ? floatval($creativeTemplateId) : $creativeTemplateId;
       return $this;
     }
 

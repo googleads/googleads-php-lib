@@ -35,12 +35,12 @@ class AdExclusionRule
     protected $isBlockAll = null;
 
     /**
-     * @var long[] $blockedLabelIds
+     * @var int[] $blockedLabelIds
      */
     protected $blockedLabelIds = null;
 
     /**
-     * @var long[] $allowedLabelIds
+     * @var int[] $allowedLabelIds
      */
     protected $allowedLabelIds = null;
 
@@ -55,8 +55,8 @@ class AdExclusionRule
      * @param boolean $isActive
      * @param \Google\AdsApi\Dfp\v201702\InventoryTargeting $inventoryTargeting
      * @param boolean $isBlockAll
-     * @param long[] $blockedLabelIds
-     * @param long[] $allowedLabelIds
+     * @param int[] $blockedLabelIds
+     * @param int[] $allowedLabelIds
      * @param string $type
      */
     public function __construct($id = null, $name = null, $isActive = null, $inventoryTargeting = null, $isBlockAll = null, array $blockedLabelIds = null, array $allowedLabelIds = null, $type = null)
@@ -85,7 +85,8 @@ class AdExclusionRule
      */
     public function setId($id)
     {
-      $this->id = $id;
+      $this->id = (PHP_INT_SIZE === 4)
+          ? floatval($id) : $id;
       return $this;
     }
 
@@ -162,7 +163,7 @@ class AdExclusionRule
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getBlockedLabelIds()
     {
@@ -170,7 +171,7 @@ class AdExclusionRule
     }
 
     /**
-     * @param long[] $blockedLabelIds
+     * @param int[] $blockedLabelIds
      * @return \Google\AdsApi\Dfp\v201702\AdExclusionRule
      */
     public function setBlockedLabelIds(array $blockedLabelIds)
@@ -180,7 +181,7 @@ class AdExclusionRule
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getAllowedLabelIds()
     {
@@ -188,7 +189,7 @@ class AdExclusionRule
     }
 
     /**
-     * @param long[] $allowedLabelIds
+     * @param int[] $allowedLabelIds
      * @return \Google\AdsApi\Dfp\v201702\AdExclusionRule
      */
     public function setAllowedLabelIds(array $allowedLabelIds)

@@ -132,6 +132,57 @@ class RequestOptionsFactoryTest extends PHPUnit_Framework_TestCase {
   }
 
   /**
+   * @covers Google\AdsApi\AdWords\Reporting\v201609\RequestOptionsFactory::createRequestOptionsWithReportDefinition
+   */
+  public function
+      testCreateRequestOptionsWithReportDefinition_overrideReportSettings() {
+    $fakeReportDefinitionPayload =
+        ReportingTestProvider::getFakeReportDefinition();
+    $selector = new Selector();
+    $selector->setFields(['CampaignId', 'AdGroupId', 'Id', 'Criteria',
+        'CriteriaType', 'Impressions', 'Clicks', 'Cost']);
+    $reportDefinition = new ReportDefinition();
+    $reportDefinition->setSelector($selector);
+    $reportDefinition->setReportName('CRITERIA_PERFORMANCE_REPORT');
+    $reportDefinition->setReportType(
+        ReportDefinitionReportType::CRITERIA_PERFORMANCE_REPORT);
+    $reportDefinition->setDownloadFormat(DownloadFormat::CSV);
+
+    $expectedRequestOptions = [
+        'headers' => [
+            'Authorization' => 'Bearer abc123',
+            'developerToken' => 'ABcdeFGH93KL-NOPQ_STUv',
+            'clientCustomerId' => '123-456-7890',
+            'skipReportHeader' => 'false',
+            'skipColumnHeader' => 'false',
+            'skipReportSummary' => 'false',
+            'useRawEnumValues' => 'false',
+            'User-Agent' => $this->getFormattedUserAgent()
+        ],
+        'form_params' => ['__rdxml' => $fakeReportDefinitionPayload],
+        'stream' => true,
+        'stream_context' => [
+            'http' => ['timeout' => self::$DEFAULT_TIMEOUT_IN_SECONDS]
+        ]
+    ];
+    $reportSettingsOverride = (new ReportSettingsBuilder())
+        ->skipReportHeader(false)
+        ->skipColumnHeader(false)
+        ->build();
+    $actualRequestOptions = $this->requestOptionsFactory
+        ->createRequestOptionsWithReportDefinition(
+            $reportDefinition, $reportSettingsOverride);
+    $this->assertEquals($expectedRequestOptions['headers'],
+        $actualRequestOptions['headers']);
+    $this->assertXmlStringEqualsXmlString(
+        $expectedRequestOptions['form_params']['__rdxml'],
+        $actualRequestOptions['form_params']['__rdxml']
+    );
+    $this->assertSame($expectedRequestOptions['stream_context']['http'],
+        $actualRequestOptions['stream_context']['http']);
+  }
+
+  /**
    * @covers Google\AdsApi\AdWords\Reporting\v201609\RequestOptionsFactory::createRequestOptionsWithAwqlQuery
    */
   public function testCreateRequestOptionsWithAwqlQuery() {
@@ -161,6 +212,52 @@ class RequestOptionsFactoryTest extends PHPUnit_Framework_TestCase {
     ];
     $actualRequestOptions = $this->requestOptionsFactory
         ->createRequestOptionsWithAwqlQuery($reportQuery, 'CSV');
+    $this->assertEquals($expectedRequestOptions['headers'],
+        $actualRequestOptions['headers']);
+    $this->assertSame($expectedRequestOptions['form_params']['__rdquery'],
+        $actualRequestOptions['form_params']['__rdquery']);
+    $this->assertSame($expectedRequestOptions['form_params']['__fmt'],
+        $actualRequestOptions['form_params']['__fmt']);
+    $this->assertSame($expectedRequestOptions['stream_context']['http'],
+        $actualRequestOptions['stream_context']['http']);
+  }
+
+  /**
+   * @covers Google\AdsApi\AdWords\Reporting\v201609\RequestOptionsFactory::createRequestOptionsWithAwqlQuery
+   */
+  public function testCreateRequestOptionsWithAwqlQuery_overrideReportSettings() {
+    $reportQuery = 'SELECT CampaignId, AdGroupId, Id, Criteria, CriteriaType, '
+        . 'Impressions, Clicks, Cost FROM CRITERIA_PERFORMANCE_REPORT';
+
+    $expectedRequestOptions = [
+        'headers' => [
+            'Authorization' => 'Bearer abc123',
+            'developerToken' => 'ABcdeFGH93KL-NOPQ_STUv',
+            'clientCustomerId' => '123-456-7890',
+            'skipReportHeader' => 'false',
+            'skipColumnHeader' => 'false',
+            'skipReportSummary' => 'true',
+            'useRawEnumValues' => 'false',
+            'includeZeroImpressions' => 'true',
+            'User-Agent' => $this->getFormattedUserAgent()
+        ],
+        'form_params' => [
+            '__rdquery' => $reportQuery,
+            '__fmt' => 'CSV'
+        ],
+        'stream' => true,
+        'stream_context' => [
+            'http' => ['timeout' => self::$DEFAULT_TIMEOUT_IN_SECONDS]
+        ]
+    ];
+    $reportSettingsOverride = (new ReportSettingsBuilder())
+        ->useRawEnumValues(false)
+        ->skipReportSummary(true)
+        ->includeZeroImpressions(true)
+        ->build();
+    $actualRequestOptions = $this->requestOptionsFactory
+        ->createRequestOptionsWithAwqlQuery(
+            $reportQuery, 'CSV', $reportSettingsOverride);
     $this->assertEquals($expectedRequestOptions['headers'],
         $actualRequestOptions['headers']);
     $this->assertSame($expectedRequestOptions['form_params']['__rdquery'],

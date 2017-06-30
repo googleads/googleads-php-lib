@@ -204,7 +204,8 @@ class ProductTemplate
      */
     public function setId($id)
     {
-      $this->id = $id;
+      $this->id = (PHP_INT_SIZE === 4)
+          ? floatval($id) : $id;
       return $this;
     }
 
@@ -348,7 +349,8 @@ class ProductTemplate
      */
     public function setCreatorId($creatorId)
     {
-      $this->creatorId = $creatorId;
+      $this->creatorId = (PHP_INT_SIZE === 4)
+          ? floatval($creatorId) : $creatorId;
       return $this;
     }
 
@@ -618,7 +620,8 @@ class ProductTemplate
      */
     public function setVideoMaxDuration($videoMaxDuration)
     {
-      $this->videoMaxDuration = $videoMaxDuration;
+      $this->videoMaxDuration = (PHP_INT_SIZE === 4)
+          ? floatval($videoMaxDuration) : $videoMaxDuration;
       return $this;
     }
 

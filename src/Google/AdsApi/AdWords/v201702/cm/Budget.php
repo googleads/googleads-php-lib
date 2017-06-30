@@ -78,7 +78,8 @@ class Budget
      */
     public function setBudgetId($budgetId)
     {
-      $this->budgetId = $budgetId;
+      $this->budgetId = (PHP_INT_SIZE === 4)
+          ? floatval($budgetId) : $budgetId;
       return $this;
     }
 

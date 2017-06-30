@@ -112,6 +112,50 @@ class LogMessageScrubbersTest extends PHPUnit_Framework_TestCase {
   }
 
   /**
+   * @covers Google\AdsApi\Common\Util\LogMessageScrubbers::scrubRequestSoapBodyTags
+   */
+  public function testScrubOneSoapBodyTag() {
+    $originalSoapXml = '<xml><SOAP-ENV:Body>'
+        . '<httpAuthorizationHeader>Bearer 1234xyz</httpAuthorizationHeader>'
+        . '</SOAP-ENV:Body></xml>';
+    $expectedSoapXml = '<xml><SOAP-ENV:Body>'
+        . '<httpAuthorizationHeader>REDACTED</httpAuthorizationHeader>'
+        . '</SOAP-ENV:Body></xml>';
+    $scrubbedSoapHeaders = LogMessageScrubbers::scrubRequestSoapBodyTags(
+        $originalSoapXml, ['httpAuthorizationHeader']);
+    $this->assertSame($expectedSoapXml, $scrubbedSoapHeaders);
+  }
+
+  /**
+   * @covers Google\AdsApi\Common\Util\LogMessageScrubbers::scrubRequestSoapBodyTags
+   */
+  public function testScrubTwoSoapBodyTags() {
+    $originalSoapXml = '<xml><SOAP-ENV:Body>'
+        . '<httpAuthorizationHeader>Bearer 1234xyz</httpAuthorizationHeader>'
+        . '<sensitiveTag>Secret!</sensitiveTag>'
+        . '</SOAP-ENV:Body></xml>';
+    $expectedSoapXml = '<xml><SOAP-ENV:Body>'
+        . '<httpAuthorizationHeader>REDACTED</httpAuthorizationHeader>'
+        . '<sensitiveTag>REDACTED</sensitiveTag>'
+        . '</SOAP-ENV:Body></xml>';
+    $scrubbedSoapHeaders = LogMessageScrubbers::scrubRequestSoapBodyTags(
+        $originalSoapXml, ['httpAuthorizationHeader', 'sensitiveTag']);
+    $this->assertSame($expectedSoapXml, $scrubbedSoapHeaders);
+  }
+
+  /**
+   * @covers Google\AdsApi\Common\Util\LogMessageScrubbers::scrubRequestSoapBodyTags
+   */
+  public function testScrubSoapBodyTagsNothingToScrubNoOp() {
+    $originalSoapXml = '<xml><SOAP-ENV:Body>'
+        . '<httpAuthorizationHeader>Bearer 1234xyz</httpAuthorizationHeader>'
+        . '</SOAP-ENV:Body></xml>';
+    $scrubbedSoapHeaders = LogMessageScrubbers::scrubRequestSoapBodyTags(
+        $originalSoapXml, []);
+    $this->assertSame($originalSoapXml, $scrubbedSoapHeaders);
+  }
+
+  /**
    * @covers Google\AdsApi\Common\Util\LogMessageScrubbers::scrubHttpHeadersArray
    */
   public function testScrubOneHttpHeaderInArray() {

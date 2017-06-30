@@ -107,7 +107,8 @@ class RichMediaStudioChildAssetProperty
      */
     public function setTotalFileSize($totalFileSize)
     {
-      $this->totalFileSize = $totalFileSize;
+      $this->totalFileSize = (PHP_INT_SIZE === 4)
+          ? floatval($totalFileSize) : $totalFileSize;
       return $this;
     }
 

@@ -36,7 +36,15 @@ final class LogMessageScrubbers {
    *     '<developerToken>value</developerToken>'
    */
   private static $SOAP_REQUEST_HEADER_TAG_REGEX =
-      '/(<(?:[^:]+:)?RequestHeader(?:\s[^>]*)?>.*<(?:[^:]+:)?%s(?:\s[^>]*)?>).*(<\/(?:[^:]+:)?%s\s*>.*<\/(?:[^:]+:)?RequestHeader\s*>)/sU';
+      '/(<(?:[^:]+:)?RequestHeader(?:\s[^>]*)?>.*<(?:[^:]+:)?%1$s(?:\s[^>]*)?>).*(<\/(?:[^:]+:)?%1$s\s*>.*<\/(?:[^:]+:)?RequestHeader\s*>)/sU';
+
+  /**
+   * @var string regex template for finding a SOAP XML tag in a SOAP body;
+   *     e.g., find '<httpAuthorizationHeader>' and '</httpAuthorizationHeader>'
+   *     from '<httpAuthorizationHeader>value</httpAuthorizationHeader>'
+   */
+  private static $SOAP_REQUEST_BODY_TAG_REGEX =
+      '/(<SOAP-ENV:Body>.*<(?:[^:]+:)?%1$s(?:\s[^>]*)?>).*(<\/(?:[^:]+:)?%1$s\s*>.*<\/SOAP-ENV:Body>)/sU';
 
   /**
    * @var string text to use for redacted information
@@ -62,7 +70,7 @@ final class LogMessageScrubbers {
   }
 
   /**
-   * Scrubs the specified header values, replacing all occurrences in the
+   * Scrubs the specified header values, replacing their occurrences in the
    * specified request SOAP XML with a redacted token.
    *
    * @param string $soapXml
@@ -73,7 +81,26 @@ final class LogMessageScrubbers {
   public static function scrubRequestSoapHeaders(
       $soapXml, array $headersToScrub) {
     foreach ($headersToScrub as $header) {
-      $regex = sprintf(self::$SOAP_REQUEST_HEADER_TAG_REGEX, $header, $header);
+      $regex = sprintf(self::$SOAP_REQUEST_HEADER_TAG_REGEX, $header);
+      $soapXml =
+          preg_replace($regex, '\1' . self::$REDACTED . '\2', $soapXml, 1);
+    }
+    return $soapXml;
+  }
+
+  /**
+   * Scrubs the values of specified tags, replacing their occurrences in the
+   * specified request SOAP XML with a redacted token.
+   *
+   * @param string $soapXml
+   * @param string[] $tagsToScrub which SOAP tags to scrub
+   * @return string the SOAP XML with any sensitive info removed from its
+   *     headers
+   */
+  public static function scrubRequestSoapBodyTags(
+      $soapXml, array $tagsToScrub) {
+    foreach ($tagsToScrub as $tag) {
+      $regex = sprintf(self::$SOAP_REQUEST_BODY_TAG_REGEX, $tag);
       $soapXml =
           preg_replace($regex, '\1' . self::$REDACTED . '\2', $soapXml, 1);
     }

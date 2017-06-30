@@ -15,15 +15,15 @@ class ListOperations
     protected $clear = null;
 
     /**
-     * @var string $operators
+     * @var string[] $operators
      */
     protected $operators = null;
 
     /**
      * @param boolean $clear
-     * @param string $operators
+     * @param string[] $operators
      */
-    public function __construct($clear = null, $operators = null)
+    public function __construct($clear = null, array $operators = null)
     {
       $this->clear = $clear;
       $this->operators = $operators;
@@ -48,7 +48,7 @@ class ListOperations
     }
 
     /**
-     * @return string
+     * @return string[]
      */
     public function getOperators()
     {
@@ -56,10 +56,10 @@ class ListOperations
     }
 
     /**
-     * @param string $operators
+     * @param string[] $operators
      * @return \Google\AdsApi\AdWords\v201702\cm\ListOperations
      */
-    public function setOperators($operators)
+    public function setOperators(array $operators)
     {
       $this->operators = $operators;
       return $this;

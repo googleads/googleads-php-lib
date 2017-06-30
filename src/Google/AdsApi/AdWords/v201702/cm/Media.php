@@ -65,6 +65,11 @@ class Media
     protected $MediaType = null;
 
     /**
+     * @var array $parameterMap
+     */
+    private $parameterMap = ['Media.Type' => 'MediaType'];
+
+    /**
      * @param int $mediaId
      * @param string $type
      * @param int $referenceId
@@ -106,7 +111,8 @@ class Media
      */
     public function setMediaId($mediaId)
     {
-      $this->mediaId = $mediaId;
+      $this->mediaId = (PHP_INT_SIZE === 4)
+          ? floatval($mediaId) : $mediaId;
       return $this;
     }
 
@@ -142,7 +148,8 @@ class Media
      */
     public function setReferenceId($referenceId)
     {
-      $this->referenceId = $referenceId;
+      $this->referenceId = (PHP_INT_SIZE === 4)
+          ? floatval($referenceId) : $referenceId;
       return $this;
     }
 
@@ -250,7 +257,8 @@ class Media
      */
     public function setFileSize($fileSize)
     {
-      $this->fileSize = $fileSize;
+      $this->fileSize = (PHP_INT_SIZE === 4)
+          ? floatval($fileSize) : $fileSize;
       return $this;
     }
 
@@ -288,6 +296,32 @@ class Media
     {
       $this->MediaType = $MediaType;
       return $this;
+    }
+
+    /**
+     * Getter for a non PHP standard named variables.
+     *
+     * @param string $var variable name to get
+     * @return string variable value
+     */
+    public function __get($var)
+    {
+      if (!array_key_exists($var, $this->parameterMap)) {
+        return null;
+      }
+      return $this->{$this->parameterMap[$var]};
+    }
+
+    /**
+     * Setter for a non PHP standard named variables.
+     *
+     * @param string $var variable name
+     * @param mixed $value variable value to set
+     * @return \Google\AdsApi\AdWords\v201702\cm\Media
+     */
+    public function __set($var, $value)
+    {
+      $this->{$this->parameterMap[$var]} = $value;
     }
 
 }

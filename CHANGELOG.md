@@ -1,3 +1,28 @@
+### 28.0.0
+
+##### AdWords
+
+*   Added support for redacting access tokens in SOAP body.
+*   Added support for overriding report settings in each report download
+    request.
+*   Fixed
+    [issue #247](https://github.com/googleads/googleads-php-lib/issues/247).
+
+##### Common
+
+*   Fixed
+    [issue #226](https://github.com/googleads/googleads-php-lib/issues/226).
+*   Fixed
+    [issue #244](https://github.com/googleads/googleads-php-lib/issues/244).
+*   Fixed
+    [issue #254](https://github.com/googleads/googleads-php-lib/issues/254).
+*   Fixed
+    [issue #261](https://github.com/googleads/googleads-php-lib/issues/261).
+*   Fixed
+    [issue #292](https://github.com/googleads/googleads-php-lib/issues/292).
+*   Fixed
+    [issue #306](https://github.com/googleads/googleads-php-lib/issues/306).
+
 ### 27.1.0
 
 ##### AdWords

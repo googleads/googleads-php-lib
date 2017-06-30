@@ -109,7 +109,8 @@ class ConstantOperand extends \Google\AdsApi\AdWords\v201702\cm\FunctionArgument
      */
     public function setLongValue($longValue)
     {
-      $this->longValue = $longValue;
+      $this->longValue = (PHP_INT_SIZE === 4)
+          ? floatval($longValue) : $longValue;
       return $this;
     }
 

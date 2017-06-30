@@ -36,7 +36,8 @@ class AssignAdUnitsToPlacement extends \Google\AdsApi\Dfp\v201702\AdUnitAction
      */
     public function setPlacementId($placementId)
     {
-      $this->placementId = $placementId;
+      $this->placementId = (PHP_INT_SIZE === 4)
+          ? floatval($placementId) : $placementId;
       return $this;
     }
 

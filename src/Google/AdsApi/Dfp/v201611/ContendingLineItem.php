@@ -43,7 +43,8 @@ class ContendingLineItem
      */
     public function setLineItemId($lineItemId)
     {
-      $this->lineItemId = $lineItemId;
+      $this->lineItemId = (PHP_INT_SIZE === 4)
+          ? floatval($lineItemId) : $lineItemId;
       return $this;
     }
 
@@ -61,7 +62,8 @@ class ContendingLineItem
      */
     public function setContendingImpressions($contendingImpressions)
     {
-      $this->contendingImpressions = $contendingImpressions;
+      $this->contendingImpressions = (PHP_INT_SIZE === 4)
+          ? floatval($contendingImpressions) : $contendingImpressions;
       return $this;
     }
 

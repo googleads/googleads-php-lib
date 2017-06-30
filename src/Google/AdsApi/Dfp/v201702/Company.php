@@ -75,7 +75,7 @@ class Company
     protected $primaryContactId = null;
 
     /**
-     * @var long[] $appliedTeamIds
+     * @var int[] $appliedTeamIds
      */
     protected $appliedTeamIds = null;
 
@@ -103,7 +103,7 @@ class Company
      * @param \Google\AdsApi\Dfp\v201702\CompanySettings $settings
      * @param \Google\AdsApi\Dfp\v201702\AppliedLabel[] $appliedLabels
      * @param int $primaryContactId
-     * @param long[] $appliedTeamIds
+     * @param int[] $appliedTeamIds
      * @param int $thirdPartyCompanyId
      * @param \Google\AdsApi\Dfp\v201702\DateTime $lastModifiedDateTime
      */
@@ -141,7 +141,8 @@ class Company
      */
     public function setId($id)
     {
-      $this->id = $id;
+      $this->id = (PHP_INT_SIZE === 4)
+          ? floatval($id) : $id;
       return $this;
     }
 
@@ -357,12 +358,13 @@ class Company
      */
     public function setPrimaryContactId($primaryContactId)
     {
-      $this->primaryContactId = $primaryContactId;
+      $this->primaryContactId = (PHP_INT_SIZE === 4)
+          ? floatval($primaryContactId) : $primaryContactId;
       return $this;
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getAppliedTeamIds()
     {
@@ -370,7 +372,7 @@ class Company
     }
 
     /**
-     * @param long[] $appliedTeamIds
+     * @param int[] $appliedTeamIds
      * @return \Google\AdsApi\Dfp\v201702\Company
      */
     public function setAppliedTeamIds(array $appliedTeamIds)

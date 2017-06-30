@@ -15,7 +15,7 @@ class ManagedCustomerServiceError extends \Google\AdsApi\AdWords\v201609\cm\ApiE
     protected $reason = null;
 
     /**
-     * @var long[] $customerIds
+     * @var int[] $customerIds
      */
     protected $customerIds = null;
 
@@ -25,7 +25,7 @@ class ManagedCustomerServiceError extends \Google\AdsApi\AdWords\v201609\cm\ApiE
      * @param string $errorString
      * @param string $ApiErrorType
      * @param string $reason
-     * @param long[] $customerIds
+     * @param int[] $customerIds
      */
     public function __construct($fieldPath = null, $trigger = null, $errorString = null, $ApiErrorType = null, $reason = null, array $customerIds = null)
     {
@@ -53,7 +53,7 @@ class ManagedCustomerServiceError extends \Google\AdsApi\AdWords\v201609\cm\ApiE
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getCustomerIds()
     {
@@ -61,7 +61,7 @@ class ManagedCustomerServiceError extends \Google\AdsApi\AdWords\v201609\cm\ApiE
     }
 
     /**
-     * @param long[] $customerIds
+     * @param int[] $customerIds
      * @return \Google\AdsApi\AdWords\v201609\mcm\ManagedCustomerServiceError
      */
     public function setCustomerIds(array $customerIds)

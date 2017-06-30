@@ -15,19 +15,19 @@ class CustomerSyncSelector
     protected $dateTimeRange = null;
 
     /**
-     * @var long[] $campaignIds
+     * @var int[] $campaignIds
      */
     protected $campaignIds = null;
 
     /**
-     * @var long[] $feedIds
+     * @var int[] $feedIds
      */
     protected $feedIds = null;
 
     /**
      * @param \Google\AdsApi\AdWords\v201702\cm\DateTimeRange $dateTimeRange
-     * @param long[] $campaignIds
-     * @param long[] $feedIds
+     * @param int[] $campaignIds
+     * @param int[] $feedIds
      */
     public function __construct($dateTimeRange = null, array $campaignIds = null, array $feedIds = null)
     {
@@ -55,7 +55,7 @@ class CustomerSyncSelector
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getCampaignIds()
     {
@@ -63,7 +63,7 @@ class CustomerSyncSelector
     }
 
     /**
-     * @param long[] $campaignIds
+     * @param int[] $campaignIds
      * @return \Google\AdsApi\AdWords\v201702\ch\CustomerSyncSelector
      */
     public function setCampaignIds(array $campaignIds)
@@ -73,7 +73,7 @@ class CustomerSyncSelector
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getFeedIds()
     {
@@ -81,7 +81,7 @@ class CustomerSyncSelector
     }
 
     /**
-     * @param long[] $feedIds
+     * @param int[] $feedIds
      * @return \Google\AdsApi\AdWords\v201702\ch\CustomerSyncSelector
      */
     public function setFeedIds(array $feedIds)

@@ -72,7 +72,8 @@ class ProductPartition extends \Google\AdsApi\AdWords\v201705\cm\Criterion
      */
     public function setParentCriterionId($parentCriterionId)
     {
-      $this->parentCriterionId = $parentCriterionId;
+      $this->parentCriterionId = (PHP_INT_SIZE === 4)
+          ? floatval($parentCriterionId) : $parentCriterionId;
       return $this;
     }
 

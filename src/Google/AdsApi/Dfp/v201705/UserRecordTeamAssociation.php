@@ -50,7 +50,8 @@ abstract class UserRecordTeamAssociation
      */
     public function setTeamId($teamId)
     {
-      $this->teamId = $teamId;
+      $this->teamId = (PHP_INT_SIZE === 4)
+          ? floatval($teamId) : $teamId;
       return $this;
     }
 

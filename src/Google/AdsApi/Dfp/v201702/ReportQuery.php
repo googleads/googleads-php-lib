@@ -10,7 +10,7 @@ class ReportQuery
 {
 
     /**
-     * @var string $dimensions
+     * @var string[] $dimensions
      */
     protected $dimensions = null;
 
@@ -20,22 +20,22 @@ class ReportQuery
     protected $adUnitView = null;
 
     /**
-     * @var string $columns
+     * @var string[] $columns
      */
     protected $columns = null;
 
     /**
-     * @var string $dimensionAttributes
+     * @var string[] $dimensionAttributes
      */
     protected $dimensionAttributes = null;
 
     /**
-     * @var long[] $customFieldIds
+     * @var int[] $customFieldIds
      */
     protected $customFieldIds = null;
 
     /**
-     * @var long[] $contentMetadataKeyHierarchyCustomTargetingKeyIds
+     * @var int[] $contentMetadataKeyHierarchyCustomTargetingKeyIds
      */
     protected $contentMetadataKeyHierarchyCustomTargetingKeyIds = null;
 
@@ -70,12 +70,12 @@ class ReportQuery
     protected $includeZeroSalesRows = null;
 
     /**
-     * @param string $dimensions
+     * @param string[] $dimensions
      * @param string $adUnitView
-     * @param string $columns
-     * @param string $dimensionAttributes
-     * @param long[] $customFieldIds
-     * @param long[] $contentMetadataKeyHierarchyCustomTargetingKeyIds
+     * @param string[] $columns
+     * @param string[] $dimensionAttributes
+     * @param int[] $customFieldIds
+     * @param int[] $contentMetadataKeyHierarchyCustomTargetingKeyIds
      * @param \Google\AdsApi\Dfp\v201702\Date $startDate
      * @param \Google\AdsApi\Dfp\v201702\Date $endDate
      * @param string $dateRangeType
@@ -83,7 +83,7 @@ class ReportQuery
      * @param boolean $useSalesLocalTimeZone
      * @param boolean $includeZeroSalesRows
      */
-    public function __construct($dimensions = null, $adUnitView = null, $columns = null, $dimensionAttributes = null, array $customFieldIds = null, array $contentMetadataKeyHierarchyCustomTargetingKeyIds = null, $startDate = null, $endDate = null, $dateRangeType = null, $statement = null, $useSalesLocalTimeZone = null, $includeZeroSalesRows = null)
+    public function __construct(array $dimensions = null, $adUnitView = null, array $columns = null, array $dimensionAttributes = null, array $customFieldIds = null, array $contentMetadataKeyHierarchyCustomTargetingKeyIds = null, $startDate = null, $endDate = null, $dateRangeType = null, $statement = null, $useSalesLocalTimeZone = null, $includeZeroSalesRows = null)
     {
       $this->dimensions = $dimensions;
       $this->adUnitView = $adUnitView;
@@ -100,7 +100,7 @@ class ReportQuery
     }
 
     /**
-     * @return string
+     * @return string[]
      */
     public function getDimensions()
     {
@@ -108,10 +108,10 @@ class ReportQuery
     }
 
     /**
-     * @param string $dimensions
+     * @param string[] $dimensions
      * @return \Google\AdsApi\Dfp\v201702\ReportQuery
      */
-    public function setDimensions($dimensions)
+    public function setDimensions(array $dimensions)
     {
       $this->dimensions = $dimensions;
       return $this;
@@ -136,7 +136,7 @@ class ReportQuery
     }
 
     /**
-     * @return string
+     * @return string[]
      */
     public function getColumns()
     {
@@ -144,17 +144,17 @@ class ReportQuery
     }
 
     /**
-     * @param string $columns
+     * @param string[] $columns
      * @return \Google\AdsApi\Dfp\v201702\ReportQuery
      */
-    public function setColumns($columns)
+    public function setColumns(array $columns)
     {
       $this->columns = $columns;
       return $this;
     }
 
     /**
-     * @return string
+     * @return string[]
      */
     public function getDimensionAttributes()
     {
@@ -162,17 +162,17 @@ class ReportQuery
     }
 
     /**
-     * @param string $dimensionAttributes
+     * @param string[] $dimensionAttributes
      * @return \Google\AdsApi\Dfp\v201702\ReportQuery
      */
-    public function setDimensionAttributes($dimensionAttributes)
+    public function setDimensionAttributes(array $dimensionAttributes)
     {
       $this->dimensionAttributes = $dimensionAttributes;
       return $this;
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getCustomFieldIds()
     {
@@ -180,7 +180,7 @@ class ReportQuery
     }
 
     /**
-     * @param long[] $customFieldIds
+     * @param int[] $customFieldIds
      * @return \Google\AdsApi\Dfp\v201702\ReportQuery
      */
     public function setCustomFieldIds(array $customFieldIds)
@@ -190,7 +190,7 @@ class ReportQuery
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getContentMetadataKeyHierarchyCustomTargetingKeyIds()
     {
@@ -198,7 +198,7 @@ class ReportQuery
     }
 
     /**
-     * @param long[] $contentMetadataKeyHierarchyCustomTargetingKeyIds
+     * @param int[] $contentMetadataKeyHierarchyCustomTargetingKeyIds
      * @return \Google\AdsApi\Dfp\v201702\ReportQuery
      */
     public function setContentMetadataKeyHierarchyCustomTargetingKeyIds(array $contentMetadataKeyHierarchyCustomTargetingKeyIds)

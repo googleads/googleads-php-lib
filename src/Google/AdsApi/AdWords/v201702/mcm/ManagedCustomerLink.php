@@ -64,7 +64,8 @@ class ManagedCustomerLink
      */
     public function setManagerCustomerId($managerCustomerId)
     {
-      $this->managerCustomerId = $managerCustomerId;
+      $this->managerCustomerId = (PHP_INT_SIZE === 4)
+          ? floatval($managerCustomerId) : $managerCustomerId;
       return $this;
     }
 
@@ -82,7 +83,8 @@ class ManagedCustomerLink
      */
     public function setClientCustomerId($clientCustomerId)
     {
-      $this->clientCustomerId = $clientCustomerId;
+      $this->clientCustomerId = (PHP_INT_SIZE === 4)
+          ? floatval($clientCustomerId) : $clientCustomerId;
       return $this;
     }
 

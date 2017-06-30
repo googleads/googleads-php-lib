@@ -10,12 +10,12 @@ class DeliveryData
 {
 
     /**
-     * @var long[] $units
+     * @var int[] $units
      */
     protected $units = null;
 
     /**
-     * @param long[] $units
+     * @param int[] $units
      */
     public function __construct(array $units = null)
     {
@@ -23,7 +23,7 @@ class DeliveryData
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getUnits()
     {
@@ -31,7 +31,7 @@ class DeliveryData
     }
 
     /**
-     * @param long[] $units
+     * @param int[] $units
      * @return \Google\AdsApi\Dfp\v201702\DeliveryData
      */
     public function setUnits(array $units)

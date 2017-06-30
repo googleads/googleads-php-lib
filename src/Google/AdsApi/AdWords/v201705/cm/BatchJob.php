@@ -78,7 +78,8 @@ class BatchJob
      */
     public function setId($id)
     {
-      $this->id = $id;
+      $this->id = (PHP_INT_SIZE === 4)
+          ? floatval($id) : $id;
       return $this;
     }
 
@@ -186,7 +187,8 @@ class BatchJob
      */
     public function setDiskUsageQuotaBalance($diskUsageQuotaBalance)
     {
-      $this->diskUsageQuotaBalance = $diskUsageQuotaBalance;
+      $this->diskUsageQuotaBalance = (PHP_INT_SIZE === 4)
+          ? floatval($diskUsageQuotaBalance) : $diskUsageQuotaBalance;
       return $this;
     }
 

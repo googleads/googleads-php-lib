@@ -117,7 +117,8 @@ class PerformanceTarget
      */
     public function setVolumeTargetValue($volumeTargetValue)
     {
-      $this->volumeTargetValue = $volumeTargetValue;
+      $this->volumeTargetValue = (PHP_INT_SIZE === 4)
+          ? floatval($volumeTargetValue) : $volumeTargetValue;
       return $this;
     }
 

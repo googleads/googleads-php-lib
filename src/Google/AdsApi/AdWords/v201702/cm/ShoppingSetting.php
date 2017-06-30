@@ -59,7 +59,8 @@ class ShoppingSetting extends \Google\AdsApi\AdWords\v201702\cm\Setting
      */
     public function setMerchantId($merchantId)
     {
-      $this->merchantId = $merchantId;
+      $this->merchantId = (PHP_INT_SIZE === 4)
+          ? floatval($merchantId) : $merchantId;
       return $this;
     }
 

@@ -20,7 +20,7 @@ class AudienceSegment
     protected $name = null;
 
     /**
-     * @var long[] $categoryIds
+     * @var int[] $categoryIds
      */
     protected $categoryIds = null;
 
@@ -67,7 +67,7 @@ class AudienceSegment
     /**
      * @param int $id
      * @param string $name
-     * @param long[] $categoryIds
+     * @param int[] $categoryIds
      * @param string $description
      * @param string $status
      * @param int $size
@@ -106,7 +106,8 @@ class AudienceSegment
      */
     public function setId($id)
     {
-      $this->id = $id;
+      $this->id = (PHP_INT_SIZE === 4)
+          ? floatval($id) : $id;
       return $this;
     }
 
@@ -129,7 +130,7 @@ class AudienceSegment
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getCategoryIds()
     {
@@ -137,7 +138,7 @@ class AudienceSegment
     }
 
     /**
-     * @param long[] $categoryIds
+     * @param int[] $categoryIds
      * @return \Google\AdsApi\Dfp\v201702\AudienceSegment
      */
     public function setCategoryIds(array $categoryIds)
@@ -196,7 +197,8 @@ class AudienceSegment
      */
     public function setSize($size)
     {
-      $this->size = $size;
+      $this->size = (PHP_INT_SIZE === 4)
+          ? floatval($size) : $size;
       return $this;
     }
 
@@ -214,7 +216,8 @@ class AudienceSegment
      */
     public function setMobileWebSize($mobileWebSize)
     {
-      $this->mobileWebSize = $mobileWebSize;
+      $this->mobileWebSize = (PHP_INT_SIZE === 4)
+          ? floatval($mobileWebSize) : $mobileWebSize;
       return $this;
     }
 
@@ -232,7 +235,8 @@ class AudienceSegment
      */
     public function setIdfaSize($idfaSize)
     {
-      $this->idfaSize = $idfaSize;
+      $this->idfaSize = (PHP_INT_SIZE === 4)
+          ? floatval($idfaSize) : $idfaSize;
       return $this;
     }
 
@@ -250,7 +254,8 @@ class AudienceSegment
      */
     public function setAdIdSize($adIdSize)
     {
-      $this->adIdSize = $adIdSize;
+      $this->adIdSize = (PHP_INT_SIZE === 4)
+          ? floatval($adIdSize) : $adIdSize;
       return $this;
     }
 

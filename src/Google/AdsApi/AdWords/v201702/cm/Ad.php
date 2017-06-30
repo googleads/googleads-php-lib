@@ -70,6 +70,11 @@ class Ad
     protected $AdType = null;
 
     /**
+     * @var array $parameterMap
+     */
+    private $parameterMap = ['Ad.Type' => 'AdType'];
+
+    /**
      * @param int $id
      * @param string $url
      * @param string $displayUrl
@@ -113,7 +118,8 @@ class Ad
      */
     public function setId($id)
     {
-      $this->id = $id;
+      $this->id = (PHP_INT_SIZE === 4)
+          ? floatval($id) : $id;
       return $this;
     }
 
@@ -293,7 +299,8 @@ class Ad
      */
     public function setDevicePreference($devicePreference)
     {
-      $this->devicePreference = $devicePreference;
+      $this->devicePreference = (PHP_INT_SIZE === 4)
+          ? floatval($devicePreference) : $devicePreference;
       return $this;
     }
 
@@ -313,6 +320,32 @@ class Ad
     {
       $this->AdType = $AdType;
       return $this;
+    }
+
+    /**
+     * Getter for a non PHP standard named variables.
+     *
+     * @param string $var variable name to get
+     * @return string variable value
+     */
+    public function __get($var)
+    {
+      if (!array_key_exists($var, $this->parameterMap)) {
+        return null;
+      }
+      return $this->{$this->parameterMap[$var]};
+    }
+
+    /**
+     * Setter for a non PHP standard named variables.
+     *
+     * @param string $var variable name
+     * @param mixed $value variable value to set
+     * @return \Google\AdsApi\AdWords\v201702\cm\Ad
+     */
+    public function __set($var, $value)
+    {
+      $this->{$this->parameterMap[$var]} = $value;
     }
 
 }

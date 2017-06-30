@@ -100,6 +100,11 @@ class UserList
     protected $UserListType = null;
 
     /**
+     * @var array $parameterMap
+     */
+    private $parameterMap = ['UserList.Type' => 'UserListType'];
+
+    /**
      * @param int $id
      * @param boolean $isReadOnly
      * @param string $name
@@ -155,7 +160,8 @@ class UserList
      */
     public function setId($id)
     {
-      $this->id = $id;
+      $this->id = (PHP_INT_SIZE === 4)
+          ? floatval($id) : $id;
       return $this;
     }
 
@@ -299,7 +305,8 @@ class UserList
      */
     public function setMembershipLifeSpan($membershipLifeSpan)
     {
-      $this->membershipLifeSpan = $membershipLifeSpan;
+      $this->membershipLifeSpan = (PHP_INT_SIZE === 4)
+          ? floatval($membershipLifeSpan) : $membershipLifeSpan;
       return $this;
     }
 
@@ -317,7 +324,8 @@ class UserList
      */
     public function setSize($size)
     {
-      $this->size = $size;
+      $this->size = (PHP_INT_SIZE === 4)
+          ? floatval($size) : $size;
       return $this;
     }
 
@@ -353,7 +361,8 @@ class UserList
      */
     public function setSizeForSearch($sizeForSearch)
     {
-      $this->sizeForSearch = $sizeForSearch;
+      $this->sizeForSearch = (PHP_INT_SIZE === 4)
+          ? floatval($sizeForSearch) : $sizeForSearch;
       return $this;
     }
 
@@ -463,6 +472,32 @@ class UserList
     {
       $this->UserListType = $UserListType;
       return $this;
+    }
+
+    /**
+     * Getter for a non PHP standard named variables.
+     *
+     * @param string $var variable name to get
+     * @return string variable value
+     */
+    public function __get($var)
+    {
+      if (!array_key_exists($var, $this->parameterMap)) {
+        return null;
+      }
+      return $this->{$this->parameterMap[$var]};
+    }
+
+    /**
+     * Setter for a non PHP standard named variables.
+     *
+     * @param string $var variable name
+     * @param mixed $value variable value to set
+     * @return \Google\AdsApi\AdWords\v201702\rm\UserList
+     */
+    public function __set($var, $value)
+    {
+      $this->{$this->parameterMap[$var]} = $value;
     }
 
 }

@@ -85,6 +85,11 @@ class ExtensionFeedItem
     protected $ExtensionFeedItemType = null;
 
     /**
+     * @var array $parameterMap
+     */
+    private $parameterMap = ['ExtensionFeedItem.Type' => 'ExtensionFeedItemType'];
+
+    /**
      * @param int $feedId
      * @param int $feedItemId
      * @param string $status
@@ -134,7 +139,8 @@ class ExtensionFeedItem
      */
     public function setFeedId($feedId)
     {
-      $this->feedId = $feedId;
+      $this->feedId = (PHP_INT_SIZE === 4)
+          ? floatval($feedId) : $feedId;
       return $this;
     }
 
@@ -152,7 +158,8 @@ class ExtensionFeedItem
      */
     public function setFeedItemId($feedItemId)
     {
-      $this->feedItemId = $feedItemId;
+      $this->feedItemId = (PHP_INT_SIZE === 4)
+          ? floatval($feedItemId) : $feedItemId;
       return $this;
     }
 
@@ -388,6 +395,32 @@ class ExtensionFeedItem
     {
       $this->ExtensionFeedItemType = $ExtensionFeedItemType;
       return $this;
+    }
+
+    /**
+     * Getter for a non PHP standard named variables.
+     *
+     * @param string $var variable name to get
+     * @return string variable value
+     */
+    public function __get($var)
+    {
+      if (!array_key_exists($var, $this->parameterMap)) {
+        return null;
+      }
+      return $this->{$this->parameterMap[$var]};
+    }
+
+    /**
+     * Setter for a non PHP standard named variables.
+     *
+     * @param string $var variable name
+     * @param mixed $value variable value to set
+     * @return \Google\AdsApi\AdWords\v201702\cm\ExtensionFeedItem
+     */
+    public function __set($var, $value)
+    {
+      $this->{$this->parameterMap[$var]} = $value;
     }
 
 }

@@ -118,7 +118,8 @@ class SoapResponseHeader
      */
     public function setOperations($operations)
     {
-      $this->operations = $operations;
+      $this->operations = (PHP_INT_SIZE === 4)
+          ? floatval($operations) : $operations;
       return $this;
     }
 
@@ -136,7 +137,8 @@ class SoapResponseHeader
      */
     public function setResponseTime($responseTime)
     {
-      $this->responseTime = $responseTime;
+      $this->responseTime = (PHP_INT_SIZE === 4)
+          ? floatval($responseTime) : $responseTime;
       return $this;
     }
 

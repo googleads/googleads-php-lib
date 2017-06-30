@@ -63,7 +63,8 @@ class LocationExtensionOperand extends \Google\AdsApi\AdWords\v201609\cm\Functio
      */
     public function setLocationId($locationId)
     {
-      $this->locationId = $locationId;
+      $this->locationId = (PHP_INT_SIZE === 4)
+          ? floatval($locationId) : $locationId;
       return $this;
     }
 

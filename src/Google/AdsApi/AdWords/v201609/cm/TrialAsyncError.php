@@ -71,7 +71,8 @@ class TrialAsyncError
      */
     public function setTrialId($trialId)
     {
-      $this->trialId = $trialId;
+      $this->trialId = (PHP_INT_SIZE === 4)
+          ? floatval($trialId) : $trialId;
       return $this;
     }
 
@@ -107,7 +108,8 @@ class TrialAsyncError
      */
     public function setTrialCampaignId($trialCampaignId)
     {
-      $this->trialCampaignId = $trialCampaignId;
+      $this->trialCampaignId = (PHP_INT_SIZE === 4)
+          ? floatval($trialCampaignId) : $trialCampaignId;
       return $this;
     }
 
@@ -125,7 +127,8 @@ class TrialAsyncError
      */
     public function setTrialAdGroupId($trialAdGroupId)
     {
-      $this->trialAdGroupId = $trialAdGroupId;
+      $this->trialAdGroupId = (PHP_INT_SIZE === 4)
+          ? floatval($trialAdGroupId) : $trialAdGroupId;
       return $this;
     }
 
@@ -143,7 +146,8 @@ class TrialAsyncError
      */
     public function setBaseCampaignId($baseCampaignId)
     {
-      $this->baseCampaignId = $baseCampaignId;
+      $this->baseCampaignId = (PHP_INT_SIZE === 4)
+          ? floatval($baseCampaignId) : $baseCampaignId;
       return $this;
     }
 
@@ -161,7 +165,8 @@ class TrialAsyncError
      */
     public function setBaseAdGroupId($baseAdGroupId)
     {
-      $this->baseAdGroupId = $baseAdGroupId;
+      $this->baseAdGroupId = (PHP_INT_SIZE === 4)
+          ? floatval($baseAdGroupId) : $baseAdGroupId;
       return $this;
     }
 

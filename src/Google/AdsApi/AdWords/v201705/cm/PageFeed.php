@@ -10,12 +10,12 @@ class PageFeed
 {
 
     /**
-     * @var long[] $feedIds
+     * @var int[] $feedIds
      */
     protected $feedIds = null;
 
     /**
-     * @param long[] $feedIds
+     * @param int[] $feedIds
      */
     public function __construct(array $feedIds = null)
     {
@@ -23,7 +23,7 @@ class PageFeed
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getFeedIds()
     {
@@ -31,7 +31,7 @@ class PageFeed
     }
 
     /**
-     * @param long[] $feedIds
+     * @param int[] $feedIds
      * @return \Google\AdsApi\AdWords\v201705\cm\PageFeed
      */
     public function setFeedIds(array $feedIds)

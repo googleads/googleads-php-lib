@@ -16,7 +16,7 @@
  */
 namespace Google\AdsApi\Examples\AdWords\v201705\Reporting;
 
-require '../../../../vendor/autoload.php';
+require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\AdWords\AdWordsSession;
 use Google\AdsApi\AdWords\AdWordsSessionBuilder;
@@ -59,8 +59,14 @@ class DownloadCriteriaReportWithSelector {
 
     // Download report.
     $reportDownloader = new ReportDownloader($session);
-    $reportDownloadResult =
-        $reportDownloader->downloadReport($reportDefinition);
+    // Optional: If you need to adjust report settings just for this one
+    // request, you can create and supply the settings override here. Otherwise,
+    // default values from the configuration file (adsapi_php.ini) are used.
+    $reportSettingsOverride = (new ReportSettingsBuilder())
+        ->includeZeroImpressions(false)
+        ->build();
+    $reportDownloadResult = $reportDownloader->downloadReport(
+        $reportDefinition, $reportSettingsOverride);
     $reportDownloadResult->saveToFile($filePath);
     printf("Report with name '%s' was downloaded to '%s'.\n",
         $reportDefinition->getReportName(), $filePath);
@@ -72,13 +78,6 @@ class DownloadCriteriaReportWithSelector {
         ->fromFile()
         ->build();
 
-    // See: ReportSettingsBuilder for more options (e.g., suppress headers)
-    // or set them in your adsapi_php.ini file.
-    $reportSettings = (new ReportSettingsBuilder())
-        ->fromFile()
-        ->includeZeroImpressions(false)
-        ->build();
-
     // See: AdWordsSessionBuilder for setting a client customer ID that is
     // different from that specified in your adsapi_php.ini file.
     // Construct an API session configured from a properties file and the OAuth2
@@ -86,7 +85,6 @@ class DownloadCriteriaReportWithSelector {
     $session = (new AdWordsSessionBuilder())
         ->fromFile()
         ->withOAuth2Credential($oAuth2Credential)
-        ->withReportSettings($reportSettings)
         ->build();
 
     $filePath = sprintf(

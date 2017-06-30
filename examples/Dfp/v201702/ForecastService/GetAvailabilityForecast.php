@@ -16,7 +16,7 @@
  */
 namespace Google\AdsApi\Examples\Dfp\v201702\ForecastService;
 
-require '../../../../vendor/autoload.php';
+require __DIR__ . '/../../../../vendor/autoload.php';
 
 use DateTime;
 use DateTimeZone;

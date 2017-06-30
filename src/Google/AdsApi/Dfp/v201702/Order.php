@@ -70,7 +70,7 @@ class Order
     protected $advertiserId = null;
 
     /**
-     * @var long[] $advertiserContactIds
+     * @var int[] $advertiserContactIds
      */
     protected $advertiserContactIds = null;
 
@@ -80,7 +80,7 @@ class Order
     protected $agencyId = null;
 
     /**
-     * @var long[] $agencyContactIds
+     * @var int[] $agencyContactIds
      */
     protected $agencyContactIds = null;
 
@@ -95,7 +95,7 @@ class Order
     protected $traffickerId = null;
 
     /**
-     * @var long[] $secondaryTraffickerIds
+     * @var int[] $secondaryTraffickerIds
      */
     protected $secondaryTraffickerIds = null;
 
@@ -105,7 +105,7 @@ class Order
     protected $salespersonId = null;
 
     /**
-     * @var long[] $secondarySalespersonIds
+     * @var int[] $secondarySalespersonIds
      */
     protected $secondarySalespersonIds = null;
 
@@ -150,7 +150,7 @@ class Order
     protected $isProgrammatic = null;
 
     /**
-     * @var long[] $appliedTeamIds
+     * @var int[] $appliedTeamIds
      */
     protected $appliedTeamIds = null;
 
@@ -177,14 +177,14 @@ class Order
      * @param string $poNumber
      * @param string $currencyCode
      * @param int $advertiserId
-     * @param long[] $advertiserContactIds
+     * @param int[] $advertiserContactIds
      * @param int $agencyId
-     * @param long[] $agencyContactIds
+     * @param int[] $agencyContactIds
      * @param int $creatorId
      * @param int $traffickerId
-     * @param long[] $secondaryTraffickerIds
+     * @param int[] $secondaryTraffickerIds
      * @param int $salespersonId
-     * @param long[] $secondarySalespersonIds
+     * @param int[] $secondarySalespersonIds
      * @param int $totalImpressionsDelivered
      * @param int $totalClicksDelivered
      * @param int $totalViewableImpressionsDelivered
@@ -193,7 +193,7 @@ class Order
      * @param \Google\AdsApi\Dfp\v201702\AppliedLabel[] $effectiveAppliedLabels
      * @param string $lastModifiedByApp
      * @param boolean $isProgrammatic
-     * @param long[] $appliedTeamIds
+     * @param int[] $appliedTeamIds
      * @param \Google\AdsApi\Dfp\v201702\DateTime $lastModifiedDateTime
      * @param \Google\AdsApi\Dfp\v201702\BaseCustomFieldValue[] $customFieldValues
      */
@@ -246,7 +246,8 @@ class Order
      */
     public function setId($id)
     {
-      $this->id = $id;
+      $this->id = (PHP_INT_SIZE === 4)
+          ? floatval($id) : $id;
       return $this;
     }
 
@@ -444,12 +445,13 @@ class Order
      */
     public function setAdvertiserId($advertiserId)
     {
-      $this->advertiserId = $advertiserId;
+      $this->advertiserId = (PHP_INT_SIZE === 4)
+          ? floatval($advertiserId) : $advertiserId;
       return $this;
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getAdvertiserContactIds()
     {
@@ -457,7 +459,7 @@ class Order
     }
 
     /**
-     * @param long[] $advertiserContactIds
+     * @param int[] $advertiserContactIds
      * @return \Google\AdsApi\Dfp\v201702\Order
      */
     public function setAdvertiserContactIds(array $advertiserContactIds)
@@ -480,12 +482,13 @@ class Order
      */
     public function setAgencyId($agencyId)
     {
-      $this->agencyId = $agencyId;
+      $this->agencyId = (PHP_INT_SIZE === 4)
+          ? floatval($agencyId) : $agencyId;
       return $this;
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getAgencyContactIds()
     {
@@ -493,7 +496,7 @@ class Order
     }
 
     /**
-     * @param long[] $agencyContactIds
+     * @param int[] $agencyContactIds
      * @return \Google\AdsApi\Dfp\v201702\Order
      */
     public function setAgencyContactIds(array $agencyContactIds)
@@ -516,7 +519,8 @@ class Order
      */
     public function setCreatorId($creatorId)
     {
-      $this->creatorId = $creatorId;
+      $this->creatorId = (PHP_INT_SIZE === 4)
+          ? floatval($creatorId) : $creatorId;
       return $this;
     }
 
@@ -534,12 +538,13 @@ class Order
      */
     public function setTraffickerId($traffickerId)
     {
-      $this->traffickerId = $traffickerId;
+      $this->traffickerId = (PHP_INT_SIZE === 4)
+          ? floatval($traffickerId) : $traffickerId;
       return $this;
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getSecondaryTraffickerIds()
     {
@@ -547,7 +552,7 @@ class Order
     }
 
     /**
-     * @param long[] $secondaryTraffickerIds
+     * @param int[] $secondaryTraffickerIds
      * @return \Google\AdsApi\Dfp\v201702\Order
      */
     public function setSecondaryTraffickerIds(array $secondaryTraffickerIds)
@@ -570,12 +575,13 @@ class Order
      */
     public function setSalespersonId($salespersonId)
     {
-      $this->salespersonId = $salespersonId;
+      $this->salespersonId = (PHP_INT_SIZE === 4)
+          ? floatval($salespersonId) : $salespersonId;
       return $this;
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getSecondarySalespersonIds()
     {
@@ -583,7 +589,7 @@ class Order
     }
 
     /**
-     * @param long[] $secondarySalespersonIds
+     * @param int[] $secondarySalespersonIds
      * @return \Google\AdsApi\Dfp\v201702\Order
      */
     public function setSecondarySalespersonIds(array $secondarySalespersonIds)
@@ -606,7 +612,8 @@ class Order
      */
     public function setTotalImpressionsDelivered($totalImpressionsDelivered)
     {
-      $this->totalImpressionsDelivered = $totalImpressionsDelivered;
+      $this->totalImpressionsDelivered = (PHP_INT_SIZE === 4)
+          ? floatval($totalImpressionsDelivered) : $totalImpressionsDelivered;
       return $this;
     }
 
@@ -624,7 +631,8 @@ class Order
      */
     public function setTotalClicksDelivered($totalClicksDelivered)
     {
-      $this->totalClicksDelivered = $totalClicksDelivered;
+      $this->totalClicksDelivered = (PHP_INT_SIZE === 4)
+          ? floatval($totalClicksDelivered) : $totalClicksDelivered;
       return $this;
     }
 
@@ -642,7 +650,8 @@ class Order
      */
     public function setTotalViewableImpressionsDelivered($totalViewableImpressionsDelivered)
     {
-      $this->totalViewableImpressionsDelivered = $totalViewableImpressionsDelivered;
+      $this->totalViewableImpressionsDelivered = (PHP_INT_SIZE === 4)
+          ? floatval($totalViewableImpressionsDelivered) : $totalViewableImpressionsDelivered;
       return $this;
     }
 
@@ -737,7 +746,7 @@ class Order
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getAppliedTeamIds()
     {
@@ -745,7 +754,7 @@ class Order
     }
 
     /**
-     * @param long[] $appliedTeamIds
+     * @param int[] $appliedTeamIds
      * @return \Google\AdsApi\Dfp\v201702\Order
      */
     public function setAppliedTeamIds(array $appliedTeamIds)

@@ -172,7 +172,8 @@ class PromotionFeedItem extends \Google\AdsApi\AdWords\v201705\cm\ExtensionFeedI
      */
     public function setPercentOff($percentOff)
     {
-      $this->percentOff = $percentOff;
+      $this->percentOff = (PHP_INT_SIZE === 4)
+          ? floatval($percentOff) : $percentOff;
       return $this;
     }
 

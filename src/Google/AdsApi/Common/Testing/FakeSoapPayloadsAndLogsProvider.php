@@ -102,4 +102,64 @@ class FakeSoapPayloadsAndLogsProvider {
     return file_get_contents(dirname(__FILE__) . DIRECTORY_SEPARATOR
         . 'createAdUnits-refs-replaced-request.xml');
   }
+
+  /**
+   * Gets a fake SOAP XML log for a mutate request.
+   *
+   * @return string
+   */
+  public static function getFakeMutateSoapXmlLog() {
+    return file_get_contents(dirname(__FILE__) . DIRECTORY_SEPARATOR
+        . 'mutate-expected-soapxmllog.txt');
+  }
+
+  /**
+   * Gets a scrubbed fake SOAP XML log for a mutate request.
+   *
+   * @return string
+   */
+  public static function getScrubbedFakeMutateSoapXmlLog() {
+    return file_get_contents(dirname(__FILE__) . DIRECTORY_SEPARATOR
+        . 'mutate-scrubbed-soapxmllog.txt');
+  }
+
+  /**
+   * Gets a fake SOAP mutate request for an API call.
+   *
+   * @return string
+   */
+  public static function getFakeMutateRequest() {
+    return file_get_contents(dirname(__FILE__) . DIRECTORY_SEPARATOR
+        . 'mutate-request.xml');
+  }
+
+  /**
+   * Gets fake HTTP headers from the mutate request.
+   *
+   * @return string
+   */
+  public static function getFakeMutateRequestHttpHeaders() {
+    return file_get_contents(dirname(__FILE__) . DIRECTORY_SEPARATOR
+        . 'mutate-request-httpheaders.txt');
+  }
+
+  /**
+   * Gets a fake SOAP response for a mutate request.
+   *
+   * @return string
+   */
+  public static function getFakeMutateResponse() {
+    return file_get_contents(dirname(__FILE__) . DIRECTORY_SEPARATOR
+        . 'mutate-response.xml');
+  }
+
+  /**
+   * Gets fake HTTP headers from the response of a mutate request.
+   *
+   * @return string
+   */
+  public static function getFakeMutateResponseHttpHeaders() {
+    return file_get_contents(dirname(__FILE__) . DIRECTORY_SEPARATOR
+        . 'mutate-response-httpheaders.txt');
+  }
 }

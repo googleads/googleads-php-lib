@@ -10,7 +10,7 @@ class FlashRedirectOverlayCreative extends \Google\AdsApi\Dfp\v201702\BaseFlashR
 {
 
     /**
-     * @var long[] $companionCreativeIds
+     * @var int[] $companionCreativeIds
      */
     protected $companionCreativeIds = null;
 
@@ -50,7 +50,7 @@ class FlashRedirectOverlayCreative extends \Google\AdsApi\Dfp\v201702\BaseFlashR
      * @param string $name
      * @param \Google\AdsApi\Dfp\v201702\Size $size
      * @param string $previewUrl
-     * @param string $policyViolations
+     * @param string[] $policyViolations
      * @param \Google\AdsApi\Dfp\v201702\AppliedLabel[] $appliedLabels
      * @param \Google\AdsApi\Dfp\v201702\DateTime $lastModifiedDateTime
      * @param \Google\AdsApi\Dfp\v201702\BaseCustomFieldValue[] $customFieldValues
@@ -61,7 +61,7 @@ class FlashRedirectOverlayCreative extends \Google\AdsApi\Dfp\v201702\BaseFlashR
      * @param string $fallbackPreviewUrl
      * @param string $sslScanResult
      * @param string $sslManualOverride
-     * @param long[] $companionCreativeIds
+     * @param int[] $companionCreativeIds
      * @param \Google\AdsApi\Dfp\v201702\ConversionEvent_TrackingUrlsMapEntry[] $trackingUrls
      * @param string $customParameters
      * @param string $apiFramework
@@ -69,7 +69,7 @@ class FlashRedirectOverlayCreative extends \Google\AdsApi\Dfp\v201702\BaseFlashR
      * @param \Google\AdsApi\Dfp\v201702\Size $flashAssetSize
      * @param string $vastPreviewUrl
      */
-    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, $policyViolations = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null, $destinationUrl = null, $destinationUrlType = null, $flashUrl = null, $fallbackUrl = null, $fallbackPreviewUrl = null, $sslScanResult = null, $sslManualOverride = null, array $companionCreativeIds = null, array $trackingUrls = null, $customParameters = null, $apiFramework = null, $duration = null, $flashAssetSize = null, $vastPreviewUrl = null)
+    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, array $policyViolations = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null, $destinationUrl = null, $destinationUrlType = null, $flashUrl = null, $fallbackUrl = null, $fallbackPreviewUrl = null, $sslScanResult = null, $sslManualOverride = null, array $companionCreativeIds = null, array $trackingUrls = null, $customParameters = null, $apiFramework = null, $duration = null, $flashAssetSize = null, $vastPreviewUrl = null)
     {
       parent::__construct($advertiserId, $id, $name, $size, $previewUrl, $policyViolations, $appliedLabels, $lastModifiedDateTime, $customFieldValues, $destinationUrl, $destinationUrlType, $flashUrl, $fallbackUrl, $fallbackPreviewUrl, $sslScanResult, $sslManualOverride);
       $this->companionCreativeIds = $companionCreativeIds;
@@ -82,7 +82,7 @@ class FlashRedirectOverlayCreative extends \Google\AdsApi\Dfp\v201702\BaseFlashR
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getCompanionCreativeIds()
     {
@@ -90,7 +90,7 @@ class FlashRedirectOverlayCreative extends \Google\AdsApi\Dfp\v201702\BaseFlashR
     }
 
     /**
-     * @param long[] $companionCreativeIds
+     * @param int[] $companionCreativeIds
      * @return \Google\AdsApi\Dfp\v201702\FlashRedirectOverlayCreative
      */
     public function setCompanionCreativeIds(array $companionCreativeIds)

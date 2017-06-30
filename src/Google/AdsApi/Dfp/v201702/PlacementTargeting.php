@@ -10,12 +10,12 @@ class PlacementTargeting
 {
 
     /**
-     * @var long[] $targetedPlacementIds
+     * @var int[] $targetedPlacementIds
      */
     protected $targetedPlacementIds = null;
 
     /**
-     * @param long[] $targetedPlacementIds
+     * @param int[] $targetedPlacementIds
      */
     public function __construct(array $targetedPlacementIds = null)
     {
@@ -23,7 +23,7 @@ class PlacementTargeting
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getTargetedPlacementIds()
     {
@@ -31,7 +31,7 @@ class PlacementTargeting
     }
 
     /**
-     * @param long[] $targetedPlacementIds
+     * @param int[] $targetedPlacementIds
      * @return \Google\AdsApi\Dfp\v201702\PlacementTargeting
      */
     public function setTargetedPlacementIds(array $targetedPlacementIds)

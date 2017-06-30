@@ -35,12 +35,12 @@ class FeedItemAttributeValue
     protected $stringValue = null;
 
     /**
-     * @var long[] $integerValues
+     * @var int[] $integerValues
      */
     protected $integerValues = null;
 
     /**
-     * @var double[] $doubleValues
+     * @var float[] $doubleValues
      */
     protected $doubleValues = null;
 
@@ -65,8 +65,8 @@ class FeedItemAttributeValue
      * @param float $doubleValue
      * @param boolean $booleanValue
      * @param string $stringValue
-     * @param long[] $integerValues
-     * @param double[] $doubleValues
+     * @param int[] $integerValues
+     * @param float[] $doubleValues
      * @param boolean[] $booleanValues
      * @param string[] $stringValues
      * @param \Google\AdsApi\AdWords\v201702\cm\MoneyWithCurrency $moneyWithCurrencyValue
@@ -99,7 +99,8 @@ class FeedItemAttributeValue
      */
     public function setFeedAttributeId($feedAttributeId)
     {
-      $this->feedAttributeId = $feedAttributeId;
+      $this->feedAttributeId = (PHP_INT_SIZE === 4)
+          ? floatval($feedAttributeId) : $feedAttributeId;
       return $this;
     }
 
@@ -117,7 +118,8 @@ class FeedItemAttributeValue
      */
     public function setIntegerValue($integerValue)
     {
-      $this->integerValue = $integerValue;
+      $this->integerValue = (PHP_INT_SIZE === 4)
+          ? floatval($integerValue) : $integerValue;
       return $this;
     }
 
@@ -176,7 +178,7 @@ class FeedItemAttributeValue
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getIntegerValues()
     {
@@ -184,7 +186,7 @@ class FeedItemAttributeValue
     }
 
     /**
-     * @param long[] $integerValues
+     * @param int[] $integerValues
      * @return \Google\AdsApi\AdWords\v201702\cm\FeedItemAttributeValue
      */
     public function setIntegerValues(array $integerValues)
@@ -194,7 +196,7 @@ class FeedItemAttributeValue
     }
 
     /**
-     * @return double[]
+     * @return float[]
      */
     public function getDoubleValues()
     {
@@ -202,7 +204,7 @@ class FeedItemAttributeValue
     }
 
     /**
-     * @param double[] $doubleValues
+     * @param float[] $doubleValues
      * @return \Google\AdsApi\AdWords\v201702\cm\FeedItemAttributeValue
      */
     public function setDoubleValues(array $doubleValues)

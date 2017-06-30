@@ -25,7 +25,7 @@ class TargetingIdeaSelector
     protected $requestType = null;
 
     /**
-     * @var string $requestedAttributeTypes
+     * @var string[] $requestedAttributeTypes
      */
     protected $requestedAttributeTypes = null;
 
@@ -48,12 +48,12 @@ class TargetingIdeaSelector
      * @param \Google\AdsApi\AdWords\v201702\o\SearchParameter[] $searchParameters
      * @param string $ideaType
      * @param string $requestType
-     * @param string $requestedAttributeTypes
+     * @param string[] $requestedAttributeTypes
      * @param \Google\AdsApi\AdWords\v201702\cm\Paging $paging
      * @param string $localeCode
      * @param string $currencyCode
      */
-    public function __construct(array $searchParameters = null, $ideaType = null, $requestType = null, $requestedAttributeTypes = null, $paging = null, $localeCode = null, $currencyCode = null)
+    public function __construct(array $searchParameters = null, $ideaType = null, $requestType = null, array $requestedAttributeTypes = null, $paging = null, $localeCode = null, $currencyCode = null)
     {
       $this->searchParameters = $searchParameters;
       $this->ideaType = $ideaType;
@@ -119,7 +119,7 @@ class TargetingIdeaSelector
     }
 
     /**
-     * @return string
+     * @return string[]
      */
     public function getRequestedAttributeTypes()
     {
@@ -127,10 +127,10 @@ class TargetingIdeaSelector
     }
 
     /**
-     * @param string $requestedAttributeTypes
+     * @param string[] $requestedAttributeTypes
      * @return \Google\AdsApi\AdWords\v201702\o\TargetingIdeaSelector
      */
-    public function setRequestedAttributeTypes($requestedAttributeTypes)
+    public function setRequestedAttributeTypes(array $requestedAttributeTypes)
     {
       $this->requestedAttributeTypes = $requestedAttributeTypes;
       return $this;

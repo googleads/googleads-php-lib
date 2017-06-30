@@ -61,7 +61,8 @@ class SoapResponseHeader
      */
     public function setResponseTime($responseTime)
     {
-      $this->responseTime = $responseTime;
+      $this->responseTime = (PHP_INT_SIZE === 4)
+          ? floatval($responseTime) : $responseTime;
       return $this;
     }
 

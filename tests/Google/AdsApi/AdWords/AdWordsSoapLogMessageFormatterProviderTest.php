@@ -41,11 +41,11 @@ class AdWordsSoapLogMessageFormatterProviderTest
         (new AdWordsSoapLogMessageFormatterProvider())
             ->getSoapLogMessageFormatter();
     $this->requestHttpHeadersMock = FakeSoapPayloadsAndLogsProvider
-        ::getFakeGetCreativesRequestHttpHeaders();
+        ::getFakeMutateRequestHttpHeaders();
     $this->requestSoapXmlMock = FakeSoapPayloadsAndLogsProvider
-        ::getFakeGetCreativesRequest();
+        ::getFakeMutateRequest();
     $this->responseSoapXmlMock = FakeSoapPayloadsAndLogsProvider
-        ::getFakeGetCreativesResponse();
+        ::getFakeMutateResponse();
   }
 
   /**
@@ -53,13 +53,13 @@ class AdWordsSoapLogMessageFormatterProviderTest
    */
   public function testGetSoapLogMessageFormatterFormatsSummaryWithCCIdAndOps() {
     $this->assertSame(
-        'clientCustomerId=123-777-999 operations=9 service=CreativeService '
-            . 'method=getCreativesByStatement responseTime=226 '
-            . 'requestId=123abc456xyz server=ads.google.com isFault=0 '
+        'clientCustomerId=123-777-999 operations=9 service=FeedService '
+            . 'method=mutate responseTime=226 '
+            . 'requestId=123abc456xyz server=adwords.google.com isFault=0 '
             . 'faultMessage=',
         $this->adWordsSoapLogMessageFormatter->formatSummary(
-            'CreativeService',
-            'getCreativesByStatement',
+            'FeedService',
+            'mutate',
             $this->requestHttpHeadersMock,
             $this->requestSoapXmlMock,
             $this->responseSoapXmlMock

@@ -120,7 +120,7 @@ class Proposal
     protected $secondarySalespeople = null;
 
     /**
-     * @var long[] $salesPlannerIds
+     * @var int[] $salesPlannerIds
      */
     protected $salesPlannerIds = null;
 
@@ -130,17 +130,17 @@ class Proposal
     protected $primaryTraffickerId = null;
 
     /**
-     * @var long[] $secondaryTraffickerIds
+     * @var int[] $secondaryTraffickerIds
      */
     protected $secondaryTraffickerIds = null;
 
     /**
-     * @var long[] $sellerContactIds
+     * @var int[] $sellerContactIds
      */
     protected $sellerContactIds = null;
 
     /**
-     * @var long[] $appliedTeamIds
+     * @var int[] $appliedTeamIds
      */
     protected $appliedTeamIds = null;
 
@@ -287,11 +287,11 @@ class Proposal
      * @param \Google\AdsApi\Dfp\v201702\Money $budget
      * @param \Google\AdsApi\Dfp\v201702\SalespersonSplit $primarySalesperson
      * @param \Google\AdsApi\Dfp\v201702\SalespersonSplit[] $secondarySalespeople
-     * @param long[] $salesPlannerIds
+     * @param int[] $salesPlannerIds
      * @param int $primaryTraffickerId
-     * @param long[] $secondaryTraffickerIds
-     * @param long[] $sellerContactIds
-     * @param long[] $appliedTeamIds
+     * @param int[] $secondaryTraffickerIds
+     * @param int[] $sellerContactIds
+     * @param int[] $appliedTeamIds
      * @param \Google\AdsApi\Dfp\v201702\BaseCustomFieldValue[] $customFieldValues
      * @param \Google\AdsApi\Dfp\v201702\AppliedLabel[] $appliedLabels
      * @param \Google\AdsApi\Dfp\v201702\AppliedLabel[] $effectiveAppliedLabels
@@ -386,7 +386,8 @@ class Proposal
      */
     public function setId($id)
     {
-      $this->id = $id;
+      $this->id = (PHP_INT_SIZE === 4)
+          ? floatval($id) : $id;
       return $this;
     }
 
@@ -422,7 +423,8 @@ class Proposal
      */
     public function setDfpOrderId($dfpOrderId)
     {
-      $this->dfpOrderId = $dfpOrderId;
+      $this->dfpOrderId = (PHP_INT_SIZE === 4)
+          ? floatval($dfpOrderId) : $dfpOrderId;
       return $this;
     }
 
@@ -602,7 +604,8 @@ class Proposal
      */
     public function setProbabilityOfClose($probabilityOfClose)
     {
-      $this->probabilityOfClose = $probabilityOfClose;
+      $this->probabilityOfClose = (PHP_INT_SIZE === 4)
+          ? floatval($probabilityOfClose) : $probabilityOfClose;
       return $this;
     }
 
@@ -769,7 +772,7 @@ class Proposal
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getSalesPlannerIds()
     {
@@ -777,7 +780,7 @@ class Proposal
     }
 
     /**
-     * @param long[] $salesPlannerIds
+     * @param int[] $salesPlannerIds
      * @return \Google\AdsApi\Dfp\v201702\Proposal
      */
     public function setSalesPlannerIds(array $salesPlannerIds)
@@ -800,12 +803,13 @@ class Proposal
      */
     public function setPrimaryTraffickerId($primaryTraffickerId)
     {
-      $this->primaryTraffickerId = $primaryTraffickerId;
+      $this->primaryTraffickerId = (PHP_INT_SIZE === 4)
+          ? floatval($primaryTraffickerId) : $primaryTraffickerId;
       return $this;
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getSecondaryTraffickerIds()
     {
@@ -813,7 +817,7 @@ class Proposal
     }
 
     /**
-     * @param long[] $secondaryTraffickerIds
+     * @param int[] $secondaryTraffickerIds
      * @return \Google\AdsApi\Dfp\v201702\Proposal
      */
     public function setSecondaryTraffickerIds(array $secondaryTraffickerIds)
@@ -823,7 +827,7 @@ class Proposal
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getSellerContactIds()
     {
@@ -831,7 +835,7 @@ class Proposal
     }
 
     /**
-     * @param long[] $sellerContactIds
+     * @param int[] $sellerContactIds
      * @return \Google\AdsApi\Dfp\v201702\Proposal
      */
     public function setSellerContactIds(array $sellerContactIds)
@@ -841,7 +845,7 @@ class Proposal
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getAppliedTeamIds()
     {
@@ -849,7 +853,7 @@ class Proposal
     }
 
     /**
-     * @param long[] $appliedTeamIds
+     * @param int[] $appliedTeamIds
      * @return \Google\AdsApi\Dfp\v201702\Proposal
      */
     public function setAppliedTeamIds(array $appliedTeamIds)
@@ -926,7 +930,8 @@ class Proposal
      */
     public function setAdvertiserDiscount($advertiserDiscount)
     {
-      $this->advertiserDiscount = $advertiserDiscount;
+      $this->advertiserDiscount = (PHP_INT_SIZE === 4)
+          ? floatval($advertiserDiscount) : $advertiserDiscount;
       return $this;
     }
 
@@ -944,7 +949,8 @@ class Proposal
      */
     public function setProposalDiscount($proposalDiscount)
     {
-      $this->proposalDiscount = $proposalDiscount;
+      $this->proposalDiscount = (PHP_INT_SIZE === 4)
+          ? floatval($proposalDiscount) : $proposalDiscount;
       return $this;
     }
 
@@ -980,7 +986,8 @@ class Proposal
      */
     public function setExchangeRate($exchangeRate)
     {
-      $this->exchangeRate = $exchangeRate;
+      $this->exchangeRate = (PHP_INT_SIZE === 4)
+          ? floatval($exchangeRate) : $exchangeRate;
       return $this;
     }
 
@@ -1016,7 +1023,8 @@ class Proposal
      */
     public function setAgencyCommission($agencyCommission)
     {
-      $this->agencyCommission = $agencyCommission;
+      $this->agencyCommission = (PHP_INT_SIZE === 4)
+          ? floatval($agencyCommission) : $agencyCommission;
       return $this;
     }
 
@@ -1034,7 +1042,8 @@ class Proposal
      */
     public function setValueAddedTax($valueAddedTax)
     {
-      $this->valueAddedTax = $valueAddedTax;
+      $this->valueAddedTax = (PHP_INT_SIZE === 4)
+          ? floatval($valueAddedTax) : $valueAddedTax;
       return $this;
     }
 

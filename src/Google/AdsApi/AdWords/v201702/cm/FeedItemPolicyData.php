@@ -40,7 +40,7 @@ class FeedItemPolicyData extends \Google\AdsApi\AdWords\v201702\cm\PolicyData
     protected $qualityApprovalStatus = null;
 
     /**
-     * @var string $qualityDisapprovalReasons
+     * @var string[] $qualityDisapprovalReasons
      */
     protected $qualityDisapprovalReasons = null;
 
@@ -53,9 +53,9 @@ class FeedItemPolicyData extends \Google\AdsApi\AdWords\v201702\cm\PolicyData
      * @param string $approvalStatus
      * @param \Google\AdsApi\AdWords\v201702\cm\FeedItemAttributeError[] $validationErrors
      * @param string $qualityApprovalStatus
-     * @param string $qualityDisapprovalReasons
+     * @param string[] $qualityDisapprovalReasons
      */
-    public function __construct(array $disapprovalReasons = null, $PolicyDataType = null, $placeholderType = null, $feedMappingId = null, $validationStatus = null, $approvalStatus = null, array $validationErrors = null, $qualityApprovalStatus = null, $qualityDisapprovalReasons = null)
+    public function __construct(array $disapprovalReasons = null, $PolicyDataType = null, $placeholderType = null, $feedMappingId = null, $validationStatus = null, $approvalStatus = null, array $validationErrors = null, $qualityApprovalStatus = null, array $qualityDisapprovalReasons = null)
     {
       parent::__construct($disapprovalReasons, $PolicyDataType);
       $this->placeholderType = $placeholderType;
@@ -99,7 +99,8 @@ class FeedItemPolicyData extends \Google\AdsApi\AdWords\v201702\cm\PolicyData
      */
     public function setFeedMappingId($feedMappingId)
     {
-      $this->feedMappingId = $feedMappingId;
+      $this->feedMappingId = (PHP_INT_SIZE === 4)
+          ? floatval($feedMappingId) : $feedMappingId;
       return $this;
     }
 
@@ -176,7 +177,7 @@ class FeedItemPolicyData extends \Google\AdsApi\AdWords\v201702\cm\PolicyData
     }
 
     /**
-     * @return string
+     * @return string[]
      */
     public function getQualityDisapprovalReasons()
     {
@@ -184,10 +185,10 @@ class FeedItemPolicyData extends \Google\AdsApi\AdWords\v201702\cm\PolicyData
     }
 
     /**
-     * @param string $qualityDisapprovalReasons
+     * @param string[] $qualityDisapprovalReasons
      * @return \Google\AdsApi\AdWords\v201702\cm\FeedItemPolicyData
      */
-    public function setQualityDisapprovalReasons($qualityDisapprovalReasons)
+    public function setQualityDisapprovalReasons(array $qualityDisapprovalReasons)
     {
       $this->qualityDisapprovalReasons = $qualityDisapprovalReasons;
       return $this;

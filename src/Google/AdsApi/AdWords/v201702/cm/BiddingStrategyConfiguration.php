@@ -71,7 +71,8 @@ class BiddingStrategyConfiguration
      */
     public function setBiddingStrategyId($biddingStrategyId)
     {
-      $this->biddingStrategyId = $biddingStrategyId;
+      $this->biddingStrategyId = (PHP_INT_SIZE === 4)
+          ? floatval($biddingStrategyId) : $biddingStrategyId;
       return $this;
     }
 

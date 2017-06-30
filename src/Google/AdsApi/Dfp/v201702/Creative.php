@@ -35,7 +35,7 @@ abstract class Creative
     protected $previewUrl = null;
 
     /**
-     * @var string $policyViolations
+     * @var string[] $policyViolations
      */
     protected $policyViolations = null;
 
@@ -60,12 +60,12 @@ abstract class Creative
      * @param string $name
      * @param \Google\AdsApi\Dfp\v201702\Size $size
      * @param string $previewUrl
-     * @param string $policyViolations
+     * @param string[] $policyViolations
      * @param \Google\AdsApi\Dfp\v201702\AppliedLabel[] $appliedLabels
      * @param \Google\AdsApi\Dfp\v201702\DateTime $lastModifiedDateTime
      * @param \Google\AdsApi\Dfp\v201702\BaseCustomFieldValue[] $customFieldValues
      */
-    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, $policyViolations = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null)
+    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, array $policyViolations = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null)
     {
       $this->advertiserId = $advertiserId;
       $this->id = $id;
@@ -92,7 +92,8 @@ abstract class Creative
      */
     public function setAdvertiserId($advertiserId)
     {
-      $this->advertiserId = $advertiserId;
+      $this->advertiserId = (PHP_INT_SIZE === 4)
+          ? floatval($advertiserId) : $advertiserId;
       return $this;
     }
 
@@ -110,7 +111,8 @@ abstract class Creative
      */
     public function setId($id)
     {
-      $this->id = $id;
+      $this->id = (PHP_INT_SIZE === 4)
+          ? floatval($id) : $id;
       return $this;
     }
 
@@ -169,7 +171,7 @@ abstract class Creative
     }
 
     /**
-     * @return string
+     * @return string[]
      */
     public function getPolicyViolations()
     {
@@ -177,10 +179,10 @@ abstract class Creative
     }
 
     /**
-     * @param string $policyViolations
+     * @param string[] $policyViolations
      * @return \Google\AdsApi\Dfp\v201702\Creative
      */
-    public function setPolicyViolations($policyViolations)
+    public function setPolicyViolations(array $policyViolations)
     {
       $this->policyViolations = $policyViolations;
       return $this;

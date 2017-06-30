@@ -123,7 +123,7 @@ class WorkflowRequestService extends \Google\AdsApi\Common\AdsSoapClient
      * </tr>
      * </table>
      *
-     * <p>The {@code type} filter is required.
+     * <p>The {@code type} filter is required in v201705 and earlier.
      *
      * @param \Google\AdsApi\Dfp\v201611\Statement $filterStatement
      * @return \Google\AdsApi\Dfp\v201611\WorkflowRequestPage

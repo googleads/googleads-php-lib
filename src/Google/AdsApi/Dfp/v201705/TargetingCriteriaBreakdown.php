@@ -89,7 +89,8 @@ class TargetingCriteriaBreakdown
      */
     public function setTargetingCriteriaId($targetingCriteriaId)
     {
-      $this->targetingCriteriaId = $targetingCriteriaId;
+      $this->targetingCriteriaId = (PHP_INT_SIZE === 4)
+          ? floatval($targetingCriteriaId) : $targetingCriteriaId;
       return $this;
     }
 
@@ -143,7 +144,8 @@ class TargetingCriteriaBreakdown
      */
     public function setAvailableUnits($availableUnits)
     {
-      $this->availableUnits = $availableUnits;
+      $this->availableUnits = (PHP_INT_SIZE === 4)
+          ? floatval($availableUnits) : $availableUnits;
       return $this;
     }
 
@@ -161,7 +163,8 @@ class TargetingCriteriaBreakdown
      */
     public function setMatchedUnits($matchedUnits)
     {
-      $this->matchedUnits = $matchedUnits;
+      $this->matchedUnits = (PHP_INT_SIZE === 4)
+          ? floatval($matchedUnits) : $matchedUnits;
       return $this;
     }
 

@@ -20,7 +20,7 @@ class ActivityGroup
     protected $name = null;
 
     /**
-     * @var long[] $companyIds
+     * @var int[] $companyIds
      */
     protected $companyIds = null;
 
@@ -42,7 +42,7 @@ class ActivityGroup
     /**
      * @param int $id
      * @param string $name
-     * @param long[] $companyIds
+     * @param int[] $companyIds
      * @param int $impressionsLookback
      * @param int $clicksLookback
      * @param string $status
@@ -94,7 +94,7 @@ class ActivityGroup
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getCompanyIds()
     {
@@ -102,7 +102,7 @@ class ActivityGroup
     }
 
     /**
-     * @param long[] $companyIds
+     * @param int[] $companyIds
      * @return \Google\AdsApi\Dfp\v201702\ActivityGroup
      */
     public function setCompanyIds(array $companyIds)

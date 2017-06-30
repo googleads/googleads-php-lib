@@ -16,7 +16,7 @@
  */
 namespace Google\AdsApi\Examples\AdWords\v201705\CampaignManagement;
 
-require '../../../../vendor/autoload.php';
+require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\AdWords\AdWordsServices;
 use Google\AdsApi\AdWords\AdWordsSession;
@@ -52,7 +52,10 @@ class GetAllDisapprovedAds {
     $selector->setOrdering([new OrderBy('Id', SortOrder::ASCENDING)]);
     // Create the predicate to get only disapproved ads.
     $selector->setPredicates([
-        new Predicate('AdGroupId', PredicateOperator::IN, [$adGroupId])]);
+        new Predicate('AdGroupId', PredicateOperator::IN, [$adGroupId]),
+        new Predicate('CombinedApprovalStatus', PredicateOperator::EQUALS,
+            [PolicyApprovalStatus::DISAPPROVED])
+    ]);
     $selector->setPaging(new Paging(0, self::PAGE_LIMIT));
 
     $totalNumEntries = 0;
@@ -66,14 +69,8 @@ class GetAllDisapprovedAds {
       if ($page->getEntries() !== null) {
         $totalNumEntries = $page->getTotalNumEntries();
         foreach ($page->getEntries() as $adGroupAd) {
-          $policySummary = $adGroupAd->getPolicySummary();
-          if (PolicyApprovalStatus::DISAPPROVED
-              !== $policySummary->getCombinedApprovalStatus()) {
-            // Skip ad group ads that are not disapproved.
-            continue;
-          }
-
           $disapprovedAdsCount++;
+          $policySummary = $adGroupAd->getPolicySummary();
           printf(
               "Ad with ID %d and type '%s' was disapproved with the following"
                   . " policy topic entries:\n",

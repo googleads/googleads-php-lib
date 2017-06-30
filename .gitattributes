@@ -1,0 +1,5 @@
+/.gitattributes export-ignore
+/UPGRADING.md export-ignore
+/examples export-ignore
+/tests export-ignore
+/phpunit.xml.dist export-ignore

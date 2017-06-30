@@ -20,7 +20,7 @@ class ImageRedirectOverlayCreative extends \Google\AdsApi\Dfp\v201702\BaseImageR
     protected $duration = null;
 
     /**
-     * @var long[] $companionCreativeIds
+     * @var int[] $companionCreativeIds
      */
     protected $companionCreativeIds = null;
 
@@ -45,7 +45,7 @@ class ImageRedirectOverlayCreative extends \Google\AdsApi\Dfp\v201702\BaseImageR
      * @param string $name
      * @param \Google\AdsApi\Dfp\v201702\Size $size
      * @param string $previewUrl
-     * @param string $policyViolations
+     * @param string[] $policyViolations
      * @param \Google\AdsApi\Dfp\v201702\AppliedLabel[] $appliedLabels
      * @param \Google\AdsApi\Dfp\v201702\DateTime $lastModifiedDateTime
      * @param \Google\AdsApi\Dfp\v201702\BaseCustomFieldValue[] $customFieldValues
@@ -54,12 +54,12 @@ class ImageRedirectOverlayCreative extends \Google\AdsApi\Dfp\v201702\BaseImageR
      * @param string $imageUrl
      * @param \Google\AdsApi\Dfp\v201702\Size $assetSize
      * @param int $duration
-     * @param long[] $companionCreativeIds
+     * @param int[] $companionCreativeIds
      * @param \Google\AdsApi\Dfp\v201702\ConversionEvent_TrackingUrlsMapEntry[] $trackingUrls
      * @param string $customParameters
      * @param string $vastPreviewUrl
      */
-    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, $policyViolations = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null, $destinationUrl = null, $destinationUrlType = null, $imageUrl = null, $assetSize = null, $duration = null, array $companionCreativeIds = null, array $trackingUrls = null, $customParameters = null, $vastPreviewUrl = null)
+    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, array $policyViolations = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null, $destinationUrl = null, $destinationUrlType = null, $imageUrl = null, $assetSize = null, $duration = null, array $companionCreativeIds = null, array $trackingUrls = null, $customParameters = null, $vastPreviewUrl = null)
     {
       parent::__construct($advertiserId, $id, $name, $size, $previewUrl, $policyViolations, $appliedLabels, $lastModifiedDateTime, $customFieldValues, $destinationUrl, $destinationUrlType, $imageUrl);
       $this->assetSize = $assetSize;
@@ -107,7 +107,7 @@ class ImageRedirectOverlayCreative extends \Google\AdsApi\Dfp\v201702\BaseImageR
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getCompanionCreativeIds()
     {
@@ -115,7 +115,7 @@ class ImageRedirectOverlayCreative extends \Google\AdsApi\Dfp\v201702\BaseImageR
     }
 
     /**
-     * @param long[] $companionCreativeIds
+     * @param int[] $companionCreativeIds
      * @return \Google\AdsApi\Dfp\v201702\ImageRedirectOverlayCreative
      */
     public function setCompanionCreativeIds(array $companionCreativeIds)

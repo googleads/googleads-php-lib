@@ -15,7 +15,7 @@ class CreativeAsset
     protected $assetId = null;
 
     /**
-     * @var base64Binary $assetByteArray
+     * @var string $assetByteArray
      */
     protected $assetByteArray = null;
 
@@ -51,7 +51,7 @@ class CreativeAsset
 
     /**
      * @param int $assetId
-     * @param base64Binary $assetByteArray
+     * @param string $assetByteArray
      * @param string $fileName
      * @param int $fileSize
      * @param string $assetUrl
@@ -85,12 +85,13 @@ class CreativeAsset
      */
     public function setAssetId($assetId)
     {
-      $this->assetId = $assetId;
+      $this->assetId = (PHP_INT_SIZE === 4)
+          ? floatval($assetId) : $assetId;
       return $this;
     }
 
     /**
-     * @return base64Binary
+     * @return string
      */
     public function getAssetByteArray()
     {
@@ -98,7 +99,7 @@ class CreativeAsset
     }
 
     /**
-     * @param base64Binary $assetByteArray
+     * @param string $assetByteArray
      * @return \Google\AdsApi\Dfp\v201702\CreativeAsset
      */
     public function setAssetByteArray($assetByteArray)
@@ -139,7 +140,8 @@ class CreativeAsset
      */
     public function setFileSize($fileSize)
     {
-      $this->fileSize = $fileSize;
+      $this->fileSize = (PHP_INT_SIZE === 4)
+          ? floatval($fileSize) : $fileSize;
       return $this;
     }
 

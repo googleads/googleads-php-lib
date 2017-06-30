@@ -27,6 +27,7 @@ final class AdWordsSoapLogMessageFormatterProvider
 
   private static $HTTP_HEADERS_TO_SCRUB = ['Authorization'];
   private static $SOAP_HEADERS_TO_SCRUB = ['developerToken'];
+  private static $SOAP_BODY_TAGS_TO_SCRUB = ['httpAuthorizationHeader'];
   private static $ADDITIONAL_REQUEST_SUMMARY_HEADERS = ['clientCustomerId'];
   private static $ADDITIONAL_RESPONSE_SUMMARY_HEADERS = ['operations'];
 
@@ -37,6 +38,7 @@ final class AdWordsSoapLogMessageFormatterProvider
     return new SoapLogMessageFormatter(
         self::$HTTP_HEADERS_TO_SCRUB,
         self::$SOAP_HEADERS_TO_SCRUB,
+        self::$SOAP_BODY_TAGS_TO_SCRUB,
         self::$ADDITIONAL_REQUEST_SUMMARY_HEADERS,
         self::$ADDITIONAL_RESPONSE_SUMMARY_HEADERS
     );

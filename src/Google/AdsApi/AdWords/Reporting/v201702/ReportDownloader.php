@@ -19,6 +19,7 @@ namespace Google\AdsApi\AdWords\Reporting\v201702;
 use Google\AdsApi\AdWords\AdWordsGuzzleLogMessageFormatterProvider;
 use Google\AdsApi\AdWords\AdWordsNormalizer;
 use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\ReportSettings;
 use Google\AdsApi\AdWords\Reporting\ApiErrorFieldNameConverter;
 use Google\AdsApi\AdWords\Reporting\ReportDownloadResult;
 use Google\AdsApi\AdWords\v201702\cm\ApiError;
@@ -93,13 +94,17 @@ final class ReportDownloader {
    *
    * @param ReportDefinition $reportDefinition the report definition to
    *     download
+   * @param null|ReportSettings $reportSettingsOverride the report settings used
+   *     to override the report settings of the AdWords session for this request
    * @return ReportDownloadResult the report download result
    * @throws ApiException if there are errors during downloading reports
    */
-  public function downloadReport(ReportDefinition $reportDefinition) {
+  public function downloadReport(ReportDefinition $reportDefinition,
+      ReportSettings $reportSettingsOverride = null) {
     return $this->makeReportRequest(
         $this->requestOptionsFactory
-            ->createRequestOptionsWithReportDefinition($reportDefinition)
+            ->createRequestOptionsWithReportDefinition(
+                $reportDefinition, $reportSettingsOverride)
     );
   }
 
@@ -108,13 +113,17 @@ final class ReportDownloader {
    *
    * @param string $reportQuery the query to use for the report
    * @param string $reportFormat the report format to request
+   * @param null|ReportSettings $reportSettingsOverride the report settings used
+   *     to override the report settings of the AdWords session for this request
    * @return ReportDownloadResult the report download result
    * @throws ApiException if there are errors during downloading reports
    */
-  public function downloadReportWithAwql($reportQuery, $reportFormat) {
+  public function downloadReportWithAwql($reportQuery, $reportFormat,
+      ReportSettings $reportSettingsOverride = null) {
     return $this->makeReportRequest(
         $this->requestOptionsFactory
-            ->createRequestOptionsWithAwqlQuery($reportQuery, $reportFormat)
+            ->createRequestOptionsWithAwqlQuery(
+                $reportQuery, $reportFormat, $reportSettingsOverride)
     );
   }
 

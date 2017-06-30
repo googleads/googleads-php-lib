@@ -17,7 +17,7 @@ class NonRuleBasedFirstPartyAudienceSegment extends \Google\AdsApi\Dfp\v201702\F
     /**
      * @param int $id
      * @param string $name
-     * @param long[] $categoryIds
+     * @param int[] $categoryIds
      * @param string $description
      * @param string $status
      * @param int $size

@@ -75,7 +75,8 @@ class AlternativeUnitTypeForecast
      */
     public function setMatchedUnits($matchedUnits)
     {
-      $this->matchedUnits = $matchedUnits;
+      $this->matchedUnits = (PHP_INT_SIZE === 4)
+          ? floatval($matchedUnits) : $matchedUnits;
       return $this;
     }
 
@@ -93,7 +94,8 @@ class AlternativeUnitTypeForecast
      */
     public function setAvailableUnits($availableUnits)
     {
-      $this->availableUnits = $availableUnits;
+      $this->availableUnits = (PHP_INT_SIZE === 4)
+          ? floatval($availableUnits) : $availableUnits;
       return $this;
     }
 
@@ -111,7 +113,8 @@ class AlternativeUnitTypeForecast
      */
     public function setPossibleUnits($possibleUnits)
     {
-      $this->possibleUnits = $possibleUnits;
+      $this->possibleUnits = (PHP_INT_SIZE === 4)
+          ? floatval($possibleUnits) : $possibleUnits;
       return $this;
     }
 

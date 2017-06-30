@@ -16,7 +16,7 @@
  */
 namespace Google\AdsApi\Examples\Dfp\v201705\ProductTemplateService;
 
-require '../../../../vendor/autoload.php';
+require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
 use Google\AdsApi\Dfp\DfpServices;

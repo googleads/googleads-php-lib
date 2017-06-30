@@ -36,7 +36,8 @@ class FeedItemCampaignTargeting
      */
     public function setTargetingCampaignId($TargetingCampaignId)
     {
-      $this->TargetingCampaignId = $TargetingCampaignId;
+      $this->TargetingCampaignId = (PHP_INT_SIZE === 4)
+          ? floatval($TargetingCampaignId) : $TargetingCampaignId;
       return $this;
     }
 

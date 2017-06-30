@@ -10,7 +10,7 @@ class Image extends \Google\AdsApi\AdWords\v201702\cm\Media
 {
 
     /**
-     * @var base64Binary $data
+     * @var string $data
      */
     protected $data = null;
 
@@ -26,7 +26,7 @@ class Image extends \Google\AdsApi\AdWords\v201702\cm\Media
      * @param int $fileSize
      * @param string $creationTime
      * @param string $MediaType
-     * @param base64Binary $data
+     * @param string $data
      */
     public function __construct($mediaId = null, $type = null, $referenceId = null, array $dimensions = null, array $urls = null, $mimeType = null, $sourceUrl = null, $name = null, $fileSize = null, $creationTime = null, $MediaType = null, $data = null)
     {
@@ -35,7 +35,7 @@ class Image extends \Google\AdsApi\AdWords\v201702\cm\Media
     }
 
     /**
-     * @return base64Binary
+     * @return string
      */
     public function getData()
     {
@@ -43,7 +43,7 @@ class Image extends \Google\AdsApi\AdWords\v201702\cm\Media
     }
 
     /**
-     * @param base64Binary $data
+     * @param string $data
      * @return \Google\AdsApi\AdWords\v201702\cm\Image
      */
     public function setData($data)

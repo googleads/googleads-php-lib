@@ -1,0 +1,8 @@
+POST /api/adwords/cm/v201705/FeedService?wsdl HTTP/1.1
+Host: adwords.google.com
+Connection: close
+User-Agent: PHP-SOAP/5.5.38
+Content-Type: text/xml; charset=utf-8
+SOAPAction: ""
+Content-Length: 1451
+Authorization: Bearer 123abc456xyz

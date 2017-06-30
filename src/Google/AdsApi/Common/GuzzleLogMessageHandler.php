@@ -47,10 +47,12 @@ final class GuzzleLogMessageHandler {
 
               $logResponse =
                   ($response !== null && $response->getBody()->isSeekable())
-                      ? $response : $logResponse = null;
-              // formatDetailed() can produce long log messages so it should
-              // be called only when needed.
-              if ($logger->isHandling(Logger::DEBUG)) {
+                      ? $response : null;
+
+              if (!$logger instanceof Logger
+                  || $logger->isHandling(Logger::DEBUG)) {
+                // formatDetailed() can produce long log messages so check
+                // if it handles DEBUG level when possible.
                 $logger->debug(
                     $messageFormatter->formatDetailed($request, $logResponse));
               }
@@ -78,10 +80,12 @@ final class GuzzleLogMessageHandler {
 
               $logResponse =
                   ($response !== null && $response->getBody()->isSeekable())
-                      ? $response : $logResponse = null;
-              // formatDetailed() can produce long log messages so it should
-              // be called only when needed.
-              if ($logger->isHandling(Logger::NOTICE)) {
+                      ? $response : null;
+
+              if (!$logger instanceof Logger
+                  || $logger->isHandling(Logger::NOTICE)) {
+                // formatDetailed() can produce long log messages so check
+                // if it handles NOTICE level when possible.
                 $logger->notice($messageFormatter->formatDetailed(
                     $request, $logResponse, $reason));
               }

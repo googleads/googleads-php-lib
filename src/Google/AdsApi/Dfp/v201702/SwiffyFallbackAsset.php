@@ -15,7 +15,7 @@ class SwiffyFallbackAsset
     protected $asset = null;
 
     /**
-     * @var string $html5Features
+     * @var string[] $html5Features
      */
     protected $html5Features = null;
 
@@ -26,10 +26,10 @@ class SwiffyFallbackAsset
 
     /**
      * @param \Google\AdsApi\Dfp\v201702\CreativeAsset $asset
-     * @param string $html5Features
+     * @param string[] $html5Features
      * @param string[] $localizedInfoMessages
      */
-    public function __construct($asset = null, $html5Features = null, array $localizedInfoMessages = null)
+    public function __construct($asset = null, array $html5Features = null, array $localizedInfoMessages = null)
     {
       $this->asset = $asset;
       $this->html5Features = $html5Features;
@@ -55,7 +55,7 @@ class SwiffyFallbackAsset
     }
 
     /**
-     * @return string
+     * @return string[]
      */
     public function getHtml5Features()
     {
@@ -63,10 +63,10 @@ class SwiffyFallbackAsset
     }
 
     /**
-     * @param string $html5Features
+     * @param string[] $html5Features
      * @return \Google\AdsApi\Dfp\v201702\SwiffyFallbackAsset
      */
-    public function setHtml5Features($html5Features)
+    public function setHtml5Features(array $html5Features)
     {
       $this->html5Features = $html5Features;
       return $this;

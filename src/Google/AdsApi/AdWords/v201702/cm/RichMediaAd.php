@@ -50,7 +50,7 @@ abstract class RichMediaAd extends \Google\AdsApi\AdWords\v201702\cm\Ad
     protected $richMediaAdType = null;
 
     /**
-     * @var string $adAttributes
+     * @var string[] $adAttributes
      */
     protected $adAttributes = null;
 
@@ -75,9 +75,9 @@ abstract class RichMediaAd extends \Google\AdsApi\AdWords\v201702\cm\Ad
      * @param int $certifiedVendorFormatId
      * @param string $sourceUrl
      * @param string $richMediaAdType
-     * @param string $adAttributes
+     * @param string[] $adAttributes
      */
-    public function __construct($id = null, $url = null, $displayUrl = null, array $finalUrls = null, array $finalMobileUrls = null, array $finalAppUrls = null, $trackingUrlTemplate = null, $urlCustomParameters = null, array $urlData = null, $type = null, $devicePreference = null, $AdType = null, $name = null, $dimensions = null, $snippet = null, $impressionBeaconUrl = null, $adDuration = null, $certifiedVendorFormatId = null, $sourceUrl = null, $richMediaAdType = null, $adAttributes = null)
+    public function __construct($id = null, $url = null, $displayUrl = null, array $finalUrls = null, array $finalMobileUrls = null, array $finalAppUrls = null, $trackingUrlTemplate = null, $urlCustomParameters = null, array $urlData = null, $type = null, $devicePreference = null, $AdType = null, $name = null, $dimensions = null, $snippet = null, $impressionBeaconUrl = null, $adDuration = null, $certifiedVendorFormatId = null, $sourceUrl = null, $richMediaAdType = null, array $adAttributes = null)
     {
       parent::__construct($id, $url, $displayUrl, $finalUrls, $finalMobileUrls, $finalAppUrls, $trackingUrlTemplate, $urlCustomParameters, $urlData, $type, $devicePreference, $AdType);
       $this->name = $name;
@@ -195,7 +195,8 @@ abstract class RichMediaAd extends \Google\AdsApi\AdWords\v201702\cm\Ad
      */
     public function setCertifiedVendorFormatId($certifiedVendorFormatId)
     {
-      $this->certifiedVendorFormatId = $certifiedVendorFormatId;
+      $this->certifiedVendorFormatId = (PHP_INT_SIZE === 4)
+          ? floatval($certifiedVendorFormatId) : $certifiedVendorFormatId;
       return $this;
     }
 
@@ -236,7 +237,7 @@ abstract class RichMediaAd extends \Google\AdsApi\AdWords\v201702\cm\Ad
     }
 
     /**
-     * @return string
+     * @return string[]
      */
     public function getAdAttributes()
     {
@@ -244,10 +245,10 @@ abstract class RichMediaAd extends \Google\AdsApi\AdWords\v201702\cm\Ad
     }
 
     /**
-     * @param string $adAttributes
+     * @param string[] $adAttributes
      * @return \Google\AdsApi\AdWords\v201702\cm\RichMediaAd
      */
-    public function setAdAttributes($adAttributes)
+    public function setAdAttributes(array $adAttributes)
     {
       $this->adAttributes = $adAttributes;
       return $this;

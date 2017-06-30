@@ -85,7 +85,7 @@ class CustomizableAttributes
     protected $isAllCustomTargetingKeysCustomizable = null;
 
     /**
-     * @var long[] $customizableCustomTargetingKeyIds
+     * @var int[] $customizableCustomTargetingKeyIds
      */
     protected $customizableCustomTargetingKeyIds = null;
 
@@ -125,7 +125,7 @@ class CustomizableAttributes
      * @param boolean $allowMobileDeviceAndManufacturerTargetingCustomization
      * @param boolean $allowAudienceSegmentTargetingCustomization
      * @param boolean $isAllCustomTargetingKeysCustomizable
-     * @param long[] $customizableCustomTargetingKeyIds
+     * @param int[] $customizableCustomTargetingKeyIds
      * @param boolean $allowDaypartTargetingCustomization
      * @param boolean $allowFrequencyCapsCustomization
      * @param boolean $allowDeliverySettingsCustomization
@@ -426,7 +426,7 @@ class CustomizableAttributes
     }
 
     /**
-     * @return long[]
+     * @return int[]
      */
     public function getCustomizableCustomTargetingKeyIds()
     {
@@ -434,7 +434,7 @@ class CustomizableAttributes
     }
 
     /**
-     * @param long[] $customizableCustomTargetingKeyIds
+     * @param int[] $customizableCustomTargetingKeyIds
      * @return \Google\AdsApi\Dfp\v201702\CustomizableAttributes
      */
     public function setCustomizableCustomTargetingKeyIds(array $customizableCustomTargetingKeyIds)

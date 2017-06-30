@@ -45,7 +45,8 @@ class AdGroupEstimate extends \Google\AdsApi\AdWords\v201702\o\Estimate
      */
     public function setAdGroupId($adGroupId)
     {
-      $this->adGroupId = $adGroupId;
+      $this->adGroupId = (PHP_INT_SIZE === 4)
+          ? floatval($adGroupId) : $adGroupId;
       return $this;
     }
 

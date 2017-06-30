@@ -134,7 +134,8 @@ class AdRule
      */
     public function setAdRuleId($adRuleId)
     {
-      $this->adRuleId = $adRuleId;
+      $this->adRuleId = (PHP_INT_SIZE === 4)
+          ? floatval($adRuleId) : $adRuleId;
       return $this;
     }
 
