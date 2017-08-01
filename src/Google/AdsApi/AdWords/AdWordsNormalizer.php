@@ -175,7 +175,19 @@ final class AdWordsNormalizer extends GetSetMethodNormalizer {
             $typeHint);
       }
 
-      $needsRecursiveDenormalization = !is_scalar($value);
+      // Some properties are arrays which contain only scalar types.
+      // In this case we do not need to denormalize array elements recursively.
+      $scalarTypeHintsInArray = [
+          'bool[]',
+          'boolean[]',
+          'float[]',
+          'double[]',
+          'int[]',
+          'integer[]',
+          'string[]',
+      ];
+      $needsRecursiveDenormalization = !is_scalar($value)
+          && !in_array($typeHint, $scalarTypeHintsInArray);
       // If the type hint of this value is an array and there's only one
       // element, then we need to wrap it in an array, as the decoder would
       // not have done so.
