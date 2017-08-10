@@ -91,4 +91,40 @@ class SoapHeadersTest extends PHPUnit_Framework_TestCase {
         SoapHeaders::getSoapHeaderValue($responseXml, 'requestId')
     );
   }
+
+  /**
+   * @covers Google\AdsApi\Common\Util\SoapHeaders::getSoapResponseHeaderValues
+   */
+  public function testGetSoapResponseHeaderValuesEmptyXml() {
+    $this->assertSame(
+        [],
+        SoapHeaders::getSoapResponseHeaderValues('')
+    );
+  }
+
+  /**
+   * @covers Google\AdsApi\Common\Util\SoapHeaders::getSoapResponseHeaderValues
+   */
+  public function testGetSoapResponseHeaderValuesNullXml() {
+    $this->assertSame(
+        [],
+        SoapHeaders::getSoapResponseHeaderValues(null)
+    );
+  }
+
+  /**
+   * @covers Google\AdsApi\Common\Util\SoapHeaders::getSoapResponseHeaderValues
+   */
+  public function testGetSoapResponseHeaderValues() {
+    $responseXml =
+        FakeSoapPayloadsAndLogsProvider::getFakeGetCreativesResponse();
+    $this->assertSame(
+        [
+            'requestId' => '123abc456xyz',
+            'responseTime' => '226',
+            'operations' => '9'
+        ],
+        SoapHeaders::getSoapResponseHeaderValues($responseXml)
+    );
+  }
 }

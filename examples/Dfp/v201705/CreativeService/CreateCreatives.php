@@ -49,17 +49,16 @@ class CreateCreatives {
 
     // Set the size of the image creative.
     $size = new Size();
-    $size->setWidth(300);
-    $size->setHeight(250);
+    $size->setWidth(600);
+    $size->setHeight(315);
     $size->setIsAspectRatio(false);
     $imageCreative->setSize($size);
 
     // Set the creative's asset.
     $creativeAsset = new CreativeAsset();
     $creativeAsset->setFileName(300);
-    $creativeAsset->setAssetByteArray(file_get_contents(
-        'http://www.google.com/intl/en/adwords/select/images/samples/inline.jpg'
-    ));
+    $creativeAsset->setAssetByteArray(
+        file_get_contents('https://goo.gl/3b9Wfh'));
     $imageCreative->setPrimaryImageAsset($creativeAsset);
 
     // Create the image creatives on the server.

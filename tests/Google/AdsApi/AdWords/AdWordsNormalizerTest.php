@@ -17,6 +17,7 @@
 namespace Google\AdsApi\AdWords;
 
 use Google\AdsApi\AdWords\Testing\AdWordsNormalizerTestProvider;
+use Google\AdsApi\AdWords\Testing\FakeAd;
 use Google\AdsApi\AdWords\Testing\FakeBudget;
 use Google\AdsApi\AdWords\Testing\FakeMoney;
 use Google\AdsApi\AdWords\Testing\FakeMutateResult;
@@ -162,6 +163,25 @@ class AdWordsNormalizerTest extends PHPUnit_Framework_TestCase {
 
     $this->assertSame($expectedMoney->getMicroAmount(),
         $actualMoney->getMicroAmount());
+  }
+
+  /**
+   * @covers Google\AdsApi\AdWords\AdWordsNormalizer::denormalize
+   */
+  public function testDenormalizeObjectWithArrayOfScalars() {
+    $expectedAd = AdWordsNormalizerTestProvider::getFakeAdWithOneFinalUrl();
+    $actualAd = $this->serializer->denormalize(
+        AdWordsNormalizerTestProvider::getNormalizedFakeAdWithOneFinalUrl(),
+        FakeAd::class
+    );
+    $this->assertSame($expectedAd->getFinalUrls(), $actualAd->getFinalUrls());
+
+    $expectedAd = AdWordsNormalizerTestProvider::getFakeAdWithManyFinalUrls();
+    $actualAd = $this->serializer->denormalize(
+        AdWordsNormalizerTestProvider::getNormalizedFakeAdWithManyFinalUrls(),
+        FakeAd::class
+    );
+    $this->assertSame($expectedAd->getFinalUrls(), $actualAd->getFinalUrls());
   }
 
   /**

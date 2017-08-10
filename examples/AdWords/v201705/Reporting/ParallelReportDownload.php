@@ -97,8 +97,15 @@ class ParallelReportDownload {
       do {
         $retryCount++;
         try {
-          $reportDownloadResult =
-              $reportDownloader->downloadReport($reportDefinition);
+          // Optional: If you need to adjust report settings just for this one
+          // request, you can create and supply the settings override here.
+          // Otherwise, default values from the configuration file
+          // (adsapi_php.ini) are used.
+          $reportSettingsOverride = (new ReportSettingsBuilder())
+              ->includeZeroImpressions(false)
+              ->build();
+          $reportDownloadResult = $reportDownloader->downloadReport(
+              $reportDefinition, $reportSettingsOverride);
           $reportDownloadResult->saveToFile($filePath);
           printf(
               "Report for client customer ID %d successfully downloaded to: "
@@ -192,19 +199,11 @@ class ParallelReportDownload {
         ->fromFile()
         ->build();
 
-    // See: ReportSettingsBuilder for more options (e.g., suppress headers)
-    // or set them in your adsapi_php.ini file.
-    $reportSettings = (new ReportSettingsBuilder())
-        ->fromFile()
-        ->includeZeroImpressions(false)
-        ->build();
-
     // See: AdWordsSessionBuilder for setting a client customer ID that is
     // different from that specified in your adsapi_php.ini file.
     $sessionBuilder = (new AdWordsSessionBuilder())
         ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->withReportSettings($reportSettings);
+        ->withOAuth2Credential($oAuth2Credential);
 
     self::runExample(new AdWordsServices(), $sessionBuilder,
         sys_get_temp_dir());

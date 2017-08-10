@@ -61,12 +61,17 @@ class GetAccountHierarchy {
         $totalNumEntries = $page->getTotalNumEntries();
         if ($page->getLinks() !== null) {
           foreach ($page->getLinks() as $link) {
-            $customerIdsToChildLinks[$link->getManagerCustomerId()][] = $link;
-            $customerIdsToParentLinks[$link->getClientCustomerId()] = $link;
+            // Cast the indexes to string to avoid the issue when 32-bit PHP
+            // automatically changes the IDs that are larger than the 32-bit max
+            // integer value to negative numbers.
+            $managerCustomerId = strval($link->getManagerCustomerId());
+            $customerIdsToChildLinks[$managerCustomerId][] = $link;
+            $clientCustomerId = strval($link->getClientCustomerId());
+            $customerIdsToParentLinks[$clientCustomerId] = $link;
           }
         }
         foreach ($page->getEntries() as $account) {
-          $customerIdsToAccounts[$account->getCustomerId()] = $account;
+          $customerIdsToAccounts[strval($account->getCustomerId())] = $account;
         }
       }
 
@@ -118,9 +123,9 @@ class GetAccountHierarchy {
     printf("%s, %s\n", $customerId, $account->getName());
 
     if (array_key_exists($customerId, $customerIdsToChildLinks)) {
-      foreach ($customerIdsToChildLinks[$customerId] as $childLink) {
+      foreach ($customerIdsToChildLinks[strval($customerId)] as $childLink) {
         $childAccount =
-            $customerIdsToAccounts[$childLink->getClientCustomerId()];
+            $customerIdsToAccounts[strval($childLink->getClientCustomerId())];
         self::printAccountHierarchy($childAccount, $customerIdsToAccounts,
             $customerIdsToChildLinks, $depth + 1);
       }

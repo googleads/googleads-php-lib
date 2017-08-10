@@ -17,6 +17,7 @@
 namespace Google\AdsApi\Common;
 
 use Google\AdsApi\Common\Util\Reflection;
+use Google\AdsApi\Common\Util\SoapHeaders;
 use Google\AdsApi\Common\Util\SoapRequests;
 use ReflectionException;
 use SoapClient;
@@ -45,6 +46,8 @@ class AdsSoapClient extends SoapClient {
   private $serviceDescriptor;
   private $soapCallTimeout;
   private $reflection;
+  private $lastSoapFault;
+  private $lastResponseHeaderValues;
 
   /**
    * Creates a new instance of this SOAP client to interface with the specified
@@ -114,8 +117,9 @@ class AdsSoapClient extends SoapClient {
       ini_set('default_socket_timeout', $this->soapCallTimeout);
       $response = parent::__soapCall($function_name, $arguments, $options,
           $input_headers, $output_headers);
+      $this->processResponse($function_name);
     } catch (SoapFault $soapFault) {
-      $this->logSoapCall($function_name, $soapFault);
+      $this->processResponse($function_name, $soapFault);
 
       // If there's no detail, just throw the SOAP fault.
       if (!isset($soapFault->detail)) {
@@ -135,7 +139,6 @@ class AdsSoapClient extends SoapClient {
       ini_restore('default_socket_timeout');
     }
 
-    $this->logSoapCall($function_name);
     return $response;
   }
 
@@ -181,6 +184,14 @@ class AdsSoapClient extends SoapClient {
     }, $apiErrors));
 
     return $apiException;
+  }
+
+  private function processResponse($methodName, $soapFault = null) {
+    $this->lastResponseHeaderValues =
+        SoapHeaders::getSoapResponseHeaderValues($this->__getLastResponse());
+    $this->lastSoapFault = $soapFault;
+
+    $this->logSoapCall($methodName, $soapFault);
   }
 
   private function logSoapCall($methodName, SoapFault $soapFault = null) {
@@ -320,5 +331,33 @@ class AdsSoapClient extends SoapClient {
    */
   public function setSoapCallTimeout($soapCallTimeout) {
     $this->soapCallTimeout = $soapCallTimeout;
+  }
+
+  /**
+   * Returns true if there was a SOAP fault during the last call.
+   *
+   * @return boolean true if there was a SOAP fault
+   */
+  public function isLastSoapFault() {
+    return !is_null($this->lastSoapFault);
+  }
+
+  /**
+   * Gets the SOAP fault message if there was any.
+   *
+   * @return string the SOAP fault message
+   */
+  public function getLastSoapFaultMessage() {
+    return ($this->isLastSoapFault()) ?
+        $this->lastSoapFault->getMessage() : null;
+  }
+
+  /**
+   * Gets the last SOAP response header values as an associative array.
+   *
+   * @return array the SOAP response header values
+   */
+  public function getLastResponseHeaderValues() {
+    return $this->lastResponseHeaderValues;
   }
 }

@@ -1,3 +1,15 @@
+### 28.1.0
+
+##### AdWords
+
+*   Added support and examples for v201708.
+*   Fixed
+    [issue #331](https://github.com/googleads/googleads-php-lib/issues/331).
+
+##### Common
+
+*   Added a getter for SOAP response header values and SOAP fault message.
+
 ### 28.0.0
 
 ##### AdWords

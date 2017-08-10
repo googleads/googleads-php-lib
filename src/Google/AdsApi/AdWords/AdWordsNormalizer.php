@@ -175,7 +175,6 @@ final class AdWordsNormalizer extends GetSetMethodNormalizer {
             $typeHint);
       }
 
-      $needsRecursiveDenormalization = !is_scalar($value);
       // If the type hint of this value is an array and there's only one
       // element, then we need to wrap it in an array, as the decoder would
       // not have done so.
@@ -184,7 +183,7 @@ final class AdWordsNormalizer extends GetSetMethodNormalizer {
         $value = [$value];
       }
 
-      if ($needsRecursiveDenormalization === true) {
+      if (self::needsRecursiveDenormalization($value)) {
         $value = $this->serializer->denormalize(
             $value, $typeHint, $format, $context);
       }
@@ -282,5 +281,27 @@ final class AdWordsNormalizer extends GetSetMethodNormalizer {
     return (count($array) === 0)
         ? false
         : array_keys($array) !== range(0, count($array) - 1);
+  }
+
+  private static function needsRecursiveDenormalization($value) {
+    // Scalar and null values don't need more denormalization.
+    if (is_scalar($value) || is_null($value)) {
+      return false;
+    }
+
+    // Check if this is a representation of an object. Recursive
+    // denormalization is needed in such a case.
+    if (self::isOneOrMany($value)) {
+      return true;
+    }
+
+    // Check if all members of the array are scalar values.
+    foreach ($value as $element) {
+      if (!is_scalar($element)) {
+        return true;
+      }
+    }
+
+    return false;
   }
 }

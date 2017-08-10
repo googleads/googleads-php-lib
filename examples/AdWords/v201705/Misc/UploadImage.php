@@ -39,7 +39,7 @@ class UploadImage {
 
     // Create an image and add it to the images list.
     $image = new Image();
-    $image->setData(file_get_contents('http://goo.gl/HJM3L'));
+    $image->setData(file_get_contents('https://goo.gl/3b9Wfh'));
     $image->setType(MediaMediaType::IMAGE);
     $images = [$image];
 

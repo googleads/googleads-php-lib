@@ -24,6 +24,7 @@ use XMLReader;
 final class SoapHeaders {
 
   private static $SOAP_HEADER_NODE_NAME = 'Header';
+  private static $SOAP_RESPONSE_HEADER_NODE_NAME = 'ResponseHeader';
 
   /**
    * Gets the value of the specified SOAP header from the specified SOAP request
@@ -55,5 +56,34 @@ final class SoapHeaders {
     }
     $xmlReader->close();
     return $headerValue;
+  }
+
+  public static function getSoapResponseHeaderValues($xml) {
+    $headerValues = [];
+
+    if ($xml === null || $xml === '') {
+      return $headerValues;
+    }
+
+    $foundOpenTag = false;
+    $xmlReader = new XMLReader();
+    $xmlReader->xml($xml);
+    while ($xmlReader->read()) {
+      if ($xmlReader->nodeType === XMLReader::ELEMENT
+          && $xmlReader->localName === self::$SOAP_RESPONSE_HEADER_NODE_NAME) {
+        $foundOpenTag = true;
+        continue;
+      } else if ($xmlReader->nodeType === XMLReader::END_ELEMENT
+          && $xmlReader->localName === self::$SOAP_RESPONSE_HEADER_NODE_NAME) {
+        break;
+      } else if ($foundOpenTag && $xmlReader->nodeType === XMLReader::ELEMENT) {
+        $headerName = $xmlReader->localName;
+        $xmlReader->read();
+        $headerValues[$headerName] = $xmlReader->value;
+      }
+    }
+    $xmlReader->close();
+
+    return $headerValues;
   }
 }

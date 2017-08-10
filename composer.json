@@ -13,6 +13,7 @@
     "symfony/serializer": "^2.8.0 || ^3.0.3"
   },
   "require-dev": {
+    "php": ">=5.5.17",
     "phpunit/phpunit": "^4.8"
   },
   "suggest": {
