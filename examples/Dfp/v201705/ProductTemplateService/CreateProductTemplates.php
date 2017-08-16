@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-namespace Google\AdsApi\Examples\Dfp\v201611\ProductTemplateService;
+namespace Google\AdsApi\Examples\Dfp\v201705\ProductTemplateService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
 
@@ -22,25 +22,25 @@ use Google\AdsApi\Common\OAuth2TokenBuilder;
 use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
-use Google\AdsApi\Dfp\v201611\AdUnitTargeting;
-use Google\AdsApi\Dfp\v201611\Browser;
-use Google\AdsApi\Dfp\v201611\BrowserTargeting;
-use Google\AdsApi\Dfp\v201611\CreativePlaceholder;
-use Google\AdsApi\Dfp\v201611\CustomizableAttributes;
-use Google\AdsApi\Dfp\v201611\DeliveryRateType;
-use Google\AdsApi\Dfp\v201611\GeoTargeting;
-use Google\AdsApi\Dfp\v201611\LineItemType;
-use Google\AdsApi\Dfp\v201611\Location;
-use Google\AdsApi\Dfp\v201611\NetworkService;
-use Google\AdsApi\Dfp\v201611\ProductSegmentation;
-use Google\AdsApi\Dfp\v201611\ProductTemplate;
-use Google\AdsApi\Dfp\v201611\ProductTemplateService;
-use Google\AdsApi\Dfp\v201611\ProductType;
-use Google\AdsApi\Dfp\v201611\RateType;
-use Google\AdsApi\Dfp\v201611\RoadblockingType;
-use Google\AdsApi\Dfp\v201611\Size;
-use Google\AdsApi\Dfp\v201611\Targeting;
-use Google\AdsApi\Dfp\v201611\TechnologyTargeting;
+use Google\AdsApi\Dfp\v201705\AdUnitTargeting;
+use Google\AdsApi\Dfp\v201705\Browser;
+use Google\AdsApi\Dfp\v201705\BrowserTargeting;
+use Google\AdsApi\Dfp\v201705\CreativePlaceholder;
+use Google\AdsApi\Dfp\v201705\CustomizableAttributes;
+use Google\AdsApi\Dfp\v201705\DeliveryRateType;
+use Google\AdsApi\Dfp\v201705\GeoTargeting;
+use Google\AdsApi\Dfp\v201705\LineItemType;
+use Google\AdsApi\Dfp\v201705\Location;
+use Google\AdsApi\Dfp\v201705\NetworkService;
+use Google\AdsApi\Dfp\v201705\ProductSegmentation;
+use Google\AdsApi\Dfp\v201705\ProductTemplate;
+use Google\AdsApi\Dfp\v201705\ProductTemplateService;
+use Google\AdsApi\Dfp\v201705\ProductType;
+use Google\AdsApi\Dfp\v201705\RateType;
+use Google\AdsApi\Dfp\v201705\RoadblockingType;
+use Google\AdsApi\Dfp\v201705\Size;
+use Google\AdsApi\Dfp\v201705\Targeting;
+use Google\AdsApi\Dfp\v201705\TechnologyTargeting;
 
 /**
  * Creates product templates.

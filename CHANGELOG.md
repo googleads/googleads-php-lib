@@ -1,3 +1,15 @@
+### 29.0.0
+
+##### DFP
+
+*   Added support and examples for v201708.
+*   Removed examples for v201611.
+
+##### Common
+
+*   Fixed
+    [issue #320](https://github.com/googleads/googleads-php-lib/issues/320).
+
 ### 28.1.0
 
 ##### AdWords

@@ -24,7 +24,7 @@ use Google\AdsApi\Common\OAuth2TokenBuilder;
 use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
-use Google\AdsApi\Dfp\Util\v201611\DfpDateTimes;
+use Google\AdsApi\Dfp\Util\v201702\DfpDateTimes;
 use Google\AdsApi\Dfp\v201702\AdExchangeEnvironment;
 use Google\AdsApi\Dfp\v201702\Goal;
 use Google\AdsApi\Dfp\v201702\LineItemType;
