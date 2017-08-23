@@ -19,6 +19,7 @@ namespace Google\AdsApi\AdWords\Reporting;
 use Google\AdsApi\Common\AdsUtility;
 use Google\AdsApi\Common\AdsUtilityRegistry;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\StreamInterface;
 use RuntimeException;
 
 /**
