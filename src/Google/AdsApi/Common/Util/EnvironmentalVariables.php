@@ -33,18 +33,21 @@ class EnvironmentalVariables {
    */
   public function getHome() {
     $home = null;
+    $envHome = getenv('HOME');
+    $envHomeDrive = getenv('HOMEDRIVE');
+    $envHomePath = getenv('HOMEPATH');
 
-    if (!empty(getenv('HOME'))) {
+    if (!empty($envHome)) {
       // Try the environmental variables.
-      $home = getenv('HOME');
+      $home = $envHome;
     } else if (!empty($_SERVER['HOME'])) {
       // If not in the environment variables, check the superglobal $_SERVER as
       // a last resort.
       $home = $_SERVER['HOME'];
-    } else if(!empty(getenv('HOMEDRIVE')) && !empty(getenv('HOMEPATH'))) {
+    } else if(!empty($envHomeDrive) && !empty($envHomePath)) {
       // If the 'HOME' environmental variable wasn't found, we may be on
       // Windows.
-      $home = getenv('HOMEDRIVE') . getenv('HOMEPATH');
+      $home = $envHomeDrive . $envHomePath;
     } else if(!empty($_SERVER['HOMEDRIVE']) && !empty($_SERVER['HOMEPATH'])) {
       $home = $_SERVER['HOMEDRIVE'] . $_SERVER['HOMEPATH'];
     }
