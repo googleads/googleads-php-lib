@@ -41,6 +41,8 @@ use PHPUnit_Framework_TestCase;
  */
 class AdWordsServicesIntegrationTest extends PHPUnit_Framework_TestCase {
 
+  private static $WSDL_FILE_DIR;
+
   private $applicationNames;
   private $adWordsSession;
   private $campaignServiceMock;
@@ -51,6 +53,7 @@ class AdWordsServicesIntegrationTest extends PHPUnit_Framework_TestCase {
    * @see PHPUnit_Framework_TestCase::setUp
    */
   protected function setUp() {
+    self::$WSDL_FILE_DIR = __DIR__ . '/../../../../';
     $this->applicationNames = new ApplicationNames();
 
     $fetchAuthTokenInterfaceMock = $this
@@ -68,7 +71,10 @@ class AdWordsServicesIntegrationTest extends PHPUnit_Framework_TestCase {
     // using a partial mock.
     $this->campaignServiceMock = $this
         ->getMockBuilder(CampaignService::class)
-        ->setMethods(['__doRequest'])
+        ->setMethods(['__doRequest', '__construct'])
+        ->setConstructorArgs([
+            [], self::$WSDL_FILE_DIR
+                .'src/Google/AdsApi/AdWords/Testing/campaign-service.wsdl'])
         ->getMock();
     // "Inject" the mock campaign service.
     $this->reflectionMock = $this

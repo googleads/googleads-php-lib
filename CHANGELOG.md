@@ -1,3 +1,12 @@
+### 30.0.0
+
+##### AdWords
+
+*   Removed support and examples for v201609. See deprecation schedule at:
+    https://developers.google.com/adwords/api/docs/sunset-dates
+*   Fixed
+    [issue #349](https://github.com/googleads/googleads-php-lib/issues/349).
+
 ### 29.0.0
 
 ##### DFP

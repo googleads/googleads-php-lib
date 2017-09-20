@@ -95,12 +95,16 @@ final class AdWordsNormalizer extends GetSetMethodNormalizer {
       $data['@xsi:type'] = 'ns1:' . $reflClass->getShortName();
     }
 
-    foreach ($reflClass->getMethods(\ReflectionMethod::IS_PUBLIC)
-        as $reflMethod) {
-      if (strpos($reflMethod->name, 'get') !== 0) {
+    foreach ($reflClass->getProperties(
+        \ReflectionProperty::IS_PROTECTED | \ReflectionProperty::IS_PRIVATE)
+            as $reflProperty) {
+      $methodName = 'get' . ucfirst($reflProperty->getName());
+      if (!$reflClass->hasMethod($methodName)
+          || !$reflClass->getMethod($methodName)->isPublic()) {
         continue;
       }
 
+      $reflMethod = $reflClass->getMethod($methodName);
       $attributeValue = $reflMethod->invoke($object);
 
       if ($attributeValue !== null) {
@@ -116,7 +120,7 @@ final class AdWordsNormalizer extends GetSetMethodNormalizer {
         $attributeValue =
             $this->serializer->normalize($attributeValue, $format, $context);
 
-        $attribute = lcfirst(substr($reflMethod->name, 3));
+        $attribute = $reflProperty->getName();
         if ($this->nameConverter) {
           $attribute = $this->nameConverter->normalize($attribute);
         }

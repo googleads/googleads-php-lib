@@ -21,7 +21,6 @@ require __DIR__ . '/../../../../vendor/autoload.php';
 use Google\AdsApi\AdWords\AdWordsServices;
 use Google\AdsApi\AdWords\AdWordsSession;
 use Google\AdsApi\AdWords\AdWordsSessionBuilder;
-use Google\AdsApi\AdWords\v201708\cm\Keyword;
 use Google\AdsApi\AdWords\v201708\cm\Language;
 use Google\AdsApi\AdWords\v201708\cm\NetworkSetting;
 use Google\AdsApi\AdWords\v201708\cm\Paging;
@@ -31,6 +30,7 @@ use Google\AdsApi\AdWords\v201708\o\LanguageSearchParameter;
 use Google\AdsApi\AdWords\v201708\o\NetworkSearchParameter;
 use Google\AdsApi\AdWords\v201708\o\RelatedToQuerySearchParameter;
 use Google\AdsApi\AdWords\v201708\o\RequestType;
+use Google\AdsApi\AdWords\v201708\o\SeedAdGroupIdSearchParameter;
 use Google\AdsApi\AdWords\v201708\o\TargetingIdeaSelector;
 use Google\AdsApi\AdWords\v201708\o\TargetingIdeaService;
 use Google\AdsApi\Common\OAuth2TokenBuilder;
@@ -41,10 +41,13 @@ use Google\AdsApi\Common\Util\MapEntries;
  */
 class GetKeywordIdeas {
 
+  // If you do not want to use an existing ad group to seed your request, you
+  // can set this to null.
+  const AD_GROUP_ID = 'INSERT_AD_GROUP_ID_HERE';
   const PAGE_LIMIT = 500;
 
   public static function runExample(AdWordsServices $adWordsServices,
-      AdWordsSession $session) {
+      AdWordsSession $session, $adGroupId) {
     $targetingIdeaService =
         $adWordsServices->get($session, TargetingIdeaService::class);
 
@@ -55,15 +58,22 @@ class GetKeywordIdeas {
     $selector->setRequestedAttributeTypes([
         AttributeType::KEYWORD_TEXT,
         AttributeType::SEARCH_VOLUME,
+        AttributeType::AVERAGE_CPC,
+        AttributeType::COMPETITION,
         AttributeType::CATEGORY_PRODUCTS_AND_SERVICES
     ]);
 
+    $paging = new Paging();
+    $paging->setStartIndex(0);
+    $paging->setNumberResults(10);
+    $selector->setPaging($paging);
+
     $searchParameters = [];
-    // Create seed keyword.
-    $keyword = 'mars cruise';
     // Create related to query search parameter.
     $relatedToQuerySearchParameter = new RelatedToQuerySearchParameter();
-    $relatedToQuerySearchParameter->setQueries([$keyword]);
+    $relatedToQuerySearchParameter->setQueries([
+        'bakery', 'pastries', 'birthday cake'
+    ]);
     $searchParameters[] = $relatedToQuerySearchParameter;
 
     // Create language search parameter (optional).
@@ -86,44 +96,52 @@ class GetKeywordIdeas {
     $networkSearchParameter->setNetworkSetting($networkSetting);
     $searchParameters[] = $networkSearchParameter;
 
+    // Optional: Use an existing ad group to generate ideas.
+    if (!empty($adGroupId)) {
+      $seedAdGroupIdSearchParameter = new SeedAdGroupIdSearchParameter();
+      $seedAdGroupIdSearchParameter->setAdGroupId($adGroupId);
+      $searchParameters[] = $seedAdGroupIdSearchParameter;
+    }
     $selector->setSearchParameters($searchParameters);
     $selector->setPaging(new Paging(0, self::PAGE_LIMIT));
 
-    $totalNumEntries = 0;
-    do {
-      // Retrieve targeting ideas one page at a time, continuing to request
-      // pages until all of them have been retrieved.
-      $page = $targetingIdeaService->get($selector);
+    // Get keyword ideas.
+    $page = $targetingIdeaService->get($selector);
 
-      // Print out some information for each targeting idea.
-      if ($page->getEntries() !== null) {
-        $totalNumEntries = $page->getTotalNumEntries();
-        foreach ($page->getEntries() as $targetingIdea) {
-          $data = MapEntries::toAssociativeArray($targetingIdea->getData());
-          $keyword = $data[AttributeType::KEYWORD_TEXT]->getValue();
-          $searchVolume =
-              ($data[AttributeType::SEARCH_VOLUME]->getValue() !== null)
-              ? $data[AttributeType::SEARCH_VOLUME]->getValue() : 0;
-          $categoryIds =
-              ($data[AttributeType::CATEGORY_PRODUCTS_AND_SERVICES]->getValue()
-                  === null)
-              ? $categoryIds = '' : implode(', ', $data[
-                  AttributeType::CATEGORY_PRODUCTS_AND_SERVICES]->getValue());
-          printf(
-              "Keyword idea with text '%s', category IDs (%d) and average "
-                  . "monthly search volume %d was found.\n",
-              $keyword,
-              $categoryIds,
-              $searchVolume
-          );
-        }
+    // Print out some information for each targeting idea.
+    $entries = $page->getEntries();
+    if ($entries !== null) {
+      foreach ($entries as $targetingIdea) {
+        $data = MapEntries::toAssociativeArray($targetingIdea->getData());
+        $keyword = $data[AttributeType::KEYWORD_TEXT]->getValue();
+        $searchVolume =
+            ($data[AttributeType::SEARCH_VOLUME]->getValue() !== null)
+            ? $data[AttributeType::SEARCH_VOLUME]->getValue() : 0;
+        $averageCpc = $data[AttributeType::AVERAGE_CPC]->getValue();
+        $competition = $data[AttributeType::COMPETITION]->getValue();
+        $categoryIds =
+            ($data[AttributeType::CATEGORY_PRODUCTS_AND_SERVICES]->getValue()
+                === null)
+            ? $categoryIds = '' : implode(
+                ', ',
+                $data[AttributeType::CATEGORY_PRODUCTS_AND_SERVICES]->getValue()
+            );
+        printf(
+            "Keyword with text '%s', average monthly search volume %d, "
+                . "average CPC %d, and competition %.2f "
+                . "was found with categories: %s\n",
+            $keyword,
+            $searchVolume,
+            ($averageCpc === null) ? 0 : $averageCpc->getMicroAmount(),
+            $competition,
+            $categoryIds
+        );
       }
+    }
 
-      $selector->getPaging()->setStartIndex(
-          $selector->getPaging()->getStartIndex() + self::PAGE_LIMIT);
-    } while ($selector->getPaging()->getStartIndex() < $totalNumEntries);
-
-    printf("Number of results found: %d\n", $totalNumEntries);
+    if (empty($entries)) {
+      print "No related keywords were found.\n";
+    }
   }
 
   public static function main() {
@@ -138,7 +156,7 @@ class GetKeywordIdeas {
         ->fromFile()
         ->withOAuth2Credential($oAuth2Credential)
         ->build();
-    self::runExample(new AdWordsServices(), $session);
+    self::runExample(new AdWordsServices(), $session, self::AD_GROUP_ID);
   }
 }
 

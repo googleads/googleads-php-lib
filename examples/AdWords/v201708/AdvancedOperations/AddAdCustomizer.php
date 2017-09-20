@@ -75,7 +75,6 @@ class AddAdCustomizer {
       AdWordsSession $session, $feedName) {
     $adCustomizerFeedService =
         $adWordsServices->get($session, AdCustomizerFeedService::class);
-
     $nameAttribute = new AdCustomizerFeedAttribute();
     $nameAttribute->setName('Name');
     $nameAttribute->setType(AdCustomizerFeedAttributeType::STRING);
@@ -101,8 +100,24 @@ class AddAdCustomizer {
     $result = $adCustomizerFeedService->mutate($operations);
     $addedFeed = $result->getValue()[0];
 
-    printf("Created ad customizer feed with ID %d and name '%s'.\n",
-        $addedFeed->getFeedId(), $addedFeed->getFeedName());
+    printf(
+        "Created ad customizer feed with ID %d, name '%s'"
+            . " and attributes:\n",
+        $addedFeed->getFeedId(),
+        $addedFeed->getFeedName()
+    );
+    if (empty($addedFeed)) {
+      print "  No attributes\n";
+    } else {
+      foreach ($addedFeed->getFeedAttributes() as $feedAttribute) {
+        printf(
+            "  ID: %d, name: '%s', type: %s\n",
+            $feedAttribute->getId(),
+            $feedAttribute->getName(),
+            $feedAttribute->getType()
+        );
+      }
+    }
 
     return $addedFeed;
   }

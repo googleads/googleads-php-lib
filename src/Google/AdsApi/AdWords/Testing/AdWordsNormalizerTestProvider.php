@@ -127,7 +127,7 @@ class AdWordsNormalizerTestProvider {
    */
   public static function getNormalizedOperandWithEmptyBudget() {
     return [
-        'fakeBudget' => []
+        'FakeBudget' => []
     ];
   }
 
