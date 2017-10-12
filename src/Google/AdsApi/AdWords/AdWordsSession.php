@@ -29,6 +29,7 @@ final class AdWordsSession implements AdsSession {
   private $userAgent;
   private $endpoint;
   private $oAuth2Credential;
+  private $connectionSettings;
   private $soapSettings;
   private $clientCustomerId;
   private $isValidateOnly;
@@ -54,6 +55,7 @@ final class AdWordsSession implements AdsSession {
     $this->userAgent = $builder->getUserAgent();
     $this->endpoint = $builder->getEndpoint();
     $this->oAuth2Credential = $builder->getOAuth2Credential();
+    $this->connectionSettings = $builder->getConnectionSettings();
     $this->soapSettings = $builder->getSoapSettings();
     $this->clientCustomerId = $builder->getClientCustomerId();
     $this->isValidateOnly = $builder->isValidateOnly();
@@ -95,6 +97,13 @@ final class AdWordsSession implements AdsSession {
    */
   public function getOAuth2Credential() {
     return $this->oAuth2Credential;
+  }
+
+  /**
+   * @see AdsSession::getConnectionSettings()
+   */
+  public function getConnectionSettings() {
+    return $this->connectionSettings;
   }
 
   /**

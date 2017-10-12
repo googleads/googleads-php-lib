@@ -26,10 +26,6 @@ final class SoapSettings {
 
   private $compressionLevel;
   private $wsdlCacheType;
-  private $proxyHost;
-  private $proxyPort;
-  private $proxyUser;
-  private $proxyPassword;
   private $sslVerify;
   private $sslCaFile;
 
@@ -45,10 +41,6 @@ final class SoapSettings {
   public function __construct(SoapSettingsBuilder $builder) {
     $this->compressionLevel = $builder->getCompressionLevel();
     $this->wsdlCacheType = $builder->getWsdlCacheType();
-    $this->proxyHost = $builder->getProxyHost();
-    $this->proxyPort = $builder->getProxyPort();
-    $this->proxyUser = $builder->getProxyUser();
-    $this->proxyPassword = $builder->getProxyPassword();
     $this->sslVerify = $builder->getSslVerify();
     $this->sslCaFile = $builder->getSslCaFile();
   }
@@ -67,38 +59,6 @@ final class SoapSettings {
    */
   public function getWsdlCacheType() {
     return $this->wsdlCacheType;
-  }
-
-  /**
-   * Gets the proxy host.
-   * @return string|null
-   */
-  public function getProxyHost() {
-    return $this->proxyHost;
-  }
-
-  /**
-   * Gets the proxy port.
-   * @return int|null
-   */
-  public function getProxyPort() {
-    return $this->proxyPort;
-  }
-
-  /**
-   * Gets the proxy user.
-   * @return string|null
-   */
-  public function getProxyUser() {
-    return $this->proxyUser;
-  }
-
-  /**
-   * Gets the proxy password.
-   * @return string|null
-   */
-  public function getProxyPassword() {
-    return $this->proxyPassword;
   }
 
   /**

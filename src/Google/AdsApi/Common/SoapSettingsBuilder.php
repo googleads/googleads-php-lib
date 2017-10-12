@@ -29,10 +29,6 @@ final class SoapSettingsBuilder implements AdsBuilder {
 
   private $compressionLevel;
   private $wsdlCacheType;
-  private $proxyHost;
-  private $proxyPort;
-  private $proxyUser;
-  private $proxyPassword;
   private $sslVerify;
   private $sslCaFile;
 
@@ -54,17 +50,6 @@ final class SoapSettingsBuilder implements AdsBuilder {
     if ($wsdlCacheType !== null) {
       $this->wsdlCacheType = intval($wsdlCacheType);
     }
-
-    $this->proxyHost = $configuration->getConfiguration('host', 'PROXY');
-
-    $proxyPort = $configuration->getConfiguration('port', 'PROXY');
-    if ($proxyPort !== null) {
-      $this->proxyPort = intval($proxyPort);
-    }
-
-    $this->proxyUser = $configuration->getConfiguration('user', 'PROXY');
-    $this->proxyPassword =
-        $configuration->getConfiguration('password', 'PROXY');
 
     return $this;
   }
@@ -97,50 +82,6 @@ final class SoapSettingsBuilder implements AdsBuilder {
    */
   public function withWsdlCacheType($wsdlCacheType) {
     $this->wsdlCacheType = $wsdlCacheType;
-    return $this;
-  }
-
-  /**
-   * Includes proxy host. This is optional and defaults to `null`.
-   *
-   * @param string|null $proxyHost
-   * @return SoapSettingsBuilder this builder
-   */
-  public function withProxyHost($proxyHost) {
-    $this->proxyHost = $proxyHost;
-    return $this;
-  }
-
-  /**
-   * Includes proxy port. This is optional and defaults to `null`.
-   *
-   * @param int|null $proxyPort
-   * @return SoapSettingsBuilder this builder
-   */
-  public function withProxyPort($proxyPort) {
-    $this->proxyPort = $proxyPort;
-    return $this;
-  }
-
-  /**
-   * Includes proxy user. This is optional and defaults to `null`.
-   *
-   * @param string|null $proxyUser
-   * @return SoapSettingsBuilder this builder
-   */
-  public function withProxyUser($proxyUser) {
-    $this->proxyUser = $proxyUser;
-    return $this;
-  }
-
-  /**
-   * Includes proxy password. This is optional and defaults to `null`.
-   *
-   * @param string|null $proxyPassword
-   * @return SoapSettingsBuilder this builder
-   */
-  public function withProxyPassword($proxyPassword) {
-    $this->proxyPassword = $proxyPassword;
     return $this;
   }
 
@@ -220,38 +161,6 @@ final class SoapSettingsBuilder implements AdsBuilder {
    */
   public function getWsdlCacheType() {
     return $this->wsdlCacheType;
-  }
-
-  /**
-   * Gets the proxy host.
-   * @return string|null
-   */
-  public function getProxyHost() {
-    return $this->proxyHost;
-  }
-
-  /**
-   * Gets the proxy port.
-   * @return int|null
-   */
-  public function getProxyPort() {
-    return $this->proxyPort;
-  }
-
-  /**
-   * Gets the proxy user.
-   * @return string|null
-   */
-  public function getProxyUser() {
-    return $this->proxyUser;
-  }
-
-  /**
-   * Gets the proxy password.
-   * @return string|null
-   */
-  public function getProxyPassword() {
-    return $this->proxyPassword;
   }
 
   /**

@@ -124,22 +124,22 @@ class ReportDownloader {
   public function downloadReport($exportFormat, $filePath = null) {
     $downloadUrl = $this->getDownloadUrl($exportFormat);
 
+    $requestOptions = [];
+    $requestOptions[RequestOptions::HEADERS] = [
+        'User-Agent' => $this->getFormattedUserAgent()
+    ];
+    $proxy = $this->reportService->getAdsSession()->getConnectionSettings()
+        ->getProxyUrl();
+    if (!empty($proxy)) {
+      $requestOptions[RequestOptions::PROXY] = ['https' => $proxy];
+    }
     if ($filePath !== null) {
-      $this->httpClient->request(
-          'GET', $downloadUrl, [
-              RequestOptions::SINK => $filePath,
-              RequestOptions::HEADERS =>
-                  ['User-Agent' => $this->getFormattedUserAgent()]
-          ]
-      );
+      $requestOptions[RequestOptions::SINK] = $filePath;
+      $this->httpClient->request('GET', $downloadUrl, $requestOptions);
     } else {
+      $requestOptions[RequestOptions::STREAM] = true;
       $response = $this->httpClient->request(
-          'GET', $downloadUrl, [
-              RequestOptions::STREAM => true,
-              RequestOptions::HEADERS =>
-                  ['User-Agent' => $this->getFormattedUserAgent()]
-          ]
-      );
+          'GET', $downloadUrl, $requestOptions);
       return $response->getBody();
     }
   }

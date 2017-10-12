@@ -17,7 +17,6 @@
 namespace Google\AdsApi\Common\Util;
 
 use Google\Auth\FetchAuthTokenInterface;
-use Google\Auth\OAuth2;
 
 /**
  * Provides functionality with retrieving OAuth2 access tokens using an OAuth2
@@ -39,7 +38,7 @@ final class OAuth2TokenRefresher {
    * @param int|null $refreshWindowSeconds optional, the access token refresh
    *     window, in seconds
    */
-  public function __construct($refreshWindowSeconds = null) {
+  public function __construct($refreshWindowSeconds =  null) {
     $this->refreshWindowSeconds = $refreshWindowSeconds === null
         ? self::DEFAULT_REFRESH_WINDOW_SECONDS
         : $refreshWindowSeconds;
@@ -52,12 +51,17 @@ final class OAuth2TokenRefresher {
    *
    * @param FetchAuthTokenInterface $fetchAuthTokenInterface the underlying
    *     OAuth2 access token fetcher
+   * @param callable|null $httpHandler the HTTP handler for making requests
+   *     to refresh OAuth2 credentials
    * @return string
    */
   public function getOrFetchAccessToken(
-      FetchAuthTokenInterface $fetchAuthTokenInterface) {
+      FetchAuthTokenInterface $fetchAuthTokenInterface,
+      callable $httpHandler = null
+  ) {
     if ($this->shouldFetchAccessToken($fetchAuthTokenInterface)) {
-      return $fetchAuthTokenInterface->fetchAuthToken()['access_token'];
+      return $fetchAuthTokenInterface->fetchAuthToken($httpHandler)
+          ['access_token'];
     }
 
     return $fetchAuthTokenInterface->getLastReceivedToken()['access_token'];

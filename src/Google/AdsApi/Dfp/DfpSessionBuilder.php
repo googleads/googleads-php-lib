@@ -21,6 +21,8 @@ use Google\AdsApi\Common\AdsHeaderFormatter;
 use Google\AdsApi\Common\AdsLoggerFactory;
 use Google\AdsApi\Common\Configuration;
 use Google\AdsApi\Common\ConfigurationLoader;
+use Google\AdsApi\Common\ConnectionSettings;
+use Google\AdsApi\Common\ConnectionSettingsBuilder;
 use Google\AdsApi\Common\SoapSettings;
 use Google\AdsApi\Common\SoapSettingsBuilder;
 use Google\Auth\FetchAuthTokenInterface;
@@ -52,12 +54,14 @@ final class DfpSessionBuilder implements AdsBuilder {
 
   private $adsLoggerFactory;
   private $configurationLoader;
+  private $connectionSettingsBuilder;
   private $soapSettingsBuilder;
 
   private $networkCode;
   private $applicationName;
   private $endpoint;
   private $oAuth2Credential;
+  private $connectionSettings;
   private $soapSettings;
 
   private $soapLogger;
@@ -67,6 +71,7 @@ final class DfpSessionBuilder implements AdsBuilder {
   public function __construct() {
     $this->adsLoggerFactory = new AdsLoggerFactory();
     $this->configurationLoader = new ConfigurationLoader();
+    $this->connectionSettingsBuilder = new ConnectionSettingsBuilder();
     $this->soapSettingsBuilder = new SoapSettingsBuilder();
   }
 
@@ -97,6 +102,9 @@ final class DfpSessionBuilder implements AdsBuilder {
     $this->applicationName =
         $configuration->getConfiguration('applicationName', 'DFP');
     $this->endpoint = $configuration->getConfiguration('endpoint', 'DFP');
+
+    $this->connectionSettings =
+        $this->connectionSettingsBuilder->from($configuration)->build();
     $this->soapSettings =
         $this->soapSettingsBuilder->from($configuration)->build();
 
@@ -163,6 +171,18 @@ final class DfpSessionBuilder implements AdsBuilder {
   }
 
   /**
+   * Includes connection settings. This is optional.
+   *
+   * @param ConnectionSettings|null $connectionSettings
+   * @return AdWordsSessionBuilder this builder
+   */
+  public function withConnectionSettings(
+      ConnectionSettings $connectionSettings) {
+    $this->connectionSettings = $connectionSettings;
+    return $this;
+  }
+
+  /**
    * Includes SOAP settings. This is optional.
    *
    * @see SoapSettingsBuilder::defaultOptionals()
@@ -225,6 +245,10 @@ final class DfpSessionBuilder implements AdsBuilder {
   public function defaultOptionals() {
     if ($this->endpoint === null) {
       $this->endpoint = self::DEFAULT_ENDPOINT;
+    }
+
+    if ($this->connectionSettings === null) {
+      $this->connectionSettings = (new ConnectionSettingsBuilder())->build();
     }
 
     if ($this->soapSettings === null) {
@@ -305,6 +329,14 @@ final class DfpSessionBuilder implements AdsBuilder {
    */
   public function getOAuth2Credential() {
     return $this->oAuth2Credential;
+  }
+
+  /**
+   * Gets the connection settings.
+   * @return ConnectionSettings
+   */
+  public function getConnectionSettings() {
+    return $this->connectionSettings;
   }
 
   /**

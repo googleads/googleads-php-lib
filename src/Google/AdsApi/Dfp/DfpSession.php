@@ -28,6 +28,7 @@ final class DfpSession implements AdsSession {
   private $applicationName;
   private $endpoint;
   private $oAuth2Credential;
+  private $connectionSettings;
   private $soapSettings;
   private $soapLogger;
   private $reportDownloaderLogger;
@@ -47,6 +48,7 @@ final class DfpSession implements AdsSession {
     $this->applicationName = $builder->getApplicationName();
     $this->endpoint = $builder->getEndpoint();
     $this->oAuth2Credential = $builder->getOAuth2Credential();
+    $this->connectionSettings = $builder->getConnectionSettings();
     $this->soapSettings = $builder->getSoapSettings();
     $this->adsHeaderFormatter = $builder->getAdsHeaderFormatter();
     $this->soapLogger = $builder->getSoapLogger();
@@ -81,6 +83,13 @@ final class DfpSession implements AdsSession {
    */
   public function getOAuth2Credential() {
     return $this->oAuth2Credential;
+  }
+
+  /**
+   * @see AdsSession::getConnectionSettings()
+   */
+  public function getConnectionSettings() {
+    return $this->connectionSettings;
   }
 
   /**

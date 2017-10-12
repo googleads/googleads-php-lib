@@ -20,10 +20,11 @@ use Google\AdsApi\AdWords\AdWordsHeaderHandler;
 use Google\AdsApi\AdWords\AdWordsNormalizer;
 use Google\AdsApi\AdWords\AdWordsSession;
 use Google\AdsApi\AdWords\ReportSettings;
+use Google\AdsApi\Common\AdsGuzzleProxyHttpHandler;
 use Google\AdsApi\Common\Util\OAuth2TokenRefresher;
 use GuzzleHttp\RequestOptions;
-use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Serializer;
 
 /**
  * Creates request options for downloading reports.
@@ -40,6 +41,7 @@ class RequestOptionsFactory {
   private $reportDefinitionSerializer;
   private $oAuth2TokenRefresher;
   private $options;
+  private $httpHandler;
 
   /**
    * Creates a factory for request options with the specified AdWords session.
@@ -66,6 +68,7 @@ class RequestOptionsFactory {
             'http' => ['timeout' => self::DEFAULT_TIMEOUT_IN_SECONDS]
         ]
     ] : $options;
+    $this->httpHandler = new AdsGuzzleProxyHttpHandler($session);
   }
 
   private function createHeaders(
@@ -73,14 +76,16 @@ class RequestOptionsFactory {
     $headers = [
         'Authorization' => 'Bearer ' . urlencode(
             $this->oAuth2TokenRefresher->getOrFetchAccessToken(
-                $this->session->getOAuth2Credential())),
+                $this->session->getOAuth2Credential(), $this->httpHandler)),
         'developerToken' => $this->session->getDeveloperToken(),
         'clientCustomerId' => $this->session->getClientCustomerId(),
         'User-Agent' => $this->session->getAdsHeaderFormatter()
             ->formatApplicationNameForGuzzleHeader(
                 $this->session->getUserAgent(),
                 AdWordsHeaderHandler::PRODUCT_NAME_FOR_SOAP_HEADER,
-                $this->session->isIncludeUtilitiesInUserAgent()
+                $this->session->isIncludeUtilitiesInUserAgent(),
+                $this->session->getConnectionSettings()
+                    ->isReportingGzipEnabled()
             )
     ];
 

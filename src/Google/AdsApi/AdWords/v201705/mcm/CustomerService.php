@@ -80,6 +80,9 @@ class CustomerService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * Returns details of all the customers directly accessible by the user authenticating the call.
      * <p>
+     * Note: This method will return only test accounts if the developer token used has not been
+     * approved.
+     * <p>
      * Starting with v201607, if {@code clientCustomerId} is specified in the request header,
      * only details of that customer will be returned. To do this for prior versions, use the
      * {@code get()} method instead.

@@ -113,4 +113,20 @@ class AdsHeaderFormatterTest extends PHPUnit_Framework_TestCase {
         );
     $this->assertRegExp($search, $formattedApplicationName);
   }
+
+  /**
+   * @covers Google\AdsApi\Common\AdsHeaderFormatter::formatApplicationNameForGuzzleHeader
+   */
+  public function testFormatApplicationNameWithGzip() {
+    $search = $this->applicationNames
+        ->getRegexForFormattedApplicationName('Google report runner');
+    $formattedApplicationName = $this->adsHeaderFormatter
+        ->formatApplicationNameForGuzzleHeader(
+            'Google report runner',
+            'Aw',
+            false,
+            true
+        );
+    $this->assertRegExp($search, $formattedApplicationName);
+  }
 }

@@ -106,13 +106,13 @@ class EstimateKeywordTraffic {
     // Set targeting criteria. Only locations and languages are supported.
     $unitedStates = new Location();
     $unitedStates->setId(2840);
-    $campaignEstimateRequest->setCriteria([$unitedStates]);
 
     // See http://code.google.com/apis/adwords/docs/appendix/languagecodes.html
     // for a detailed list of language codes.
     $english = new Language();
     $english->setId(1000);
-    $campaignEstimateRequest->setCriteria([$english]);
+
+    $campaignEstimateRequest->setCriteria([$unitedStates, $english]);
 
     // Create selector.
     $selector = new TrafficEstimatorSelector();

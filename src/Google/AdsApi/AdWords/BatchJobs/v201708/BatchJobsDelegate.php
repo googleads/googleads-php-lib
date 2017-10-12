@@ -22,7 +22,6 @@ use Google\AdsApi\AdWords\AdWordsSession;
 use Google\AdsApi\AdWords\BatchJobs\BatchJobUploadStatus;
 use Google\AdsApi\AdWords\BatchJobs\DotRemoverNameConverter;
 use Google\AdsApi\AdWords\v201708\cm\ApiException;
-use Google\AdsApi\AdWords\v201708\cm\MutateResult;
 use Google\AdsApi\Common\GuzzleHttpClientFactory;
 use Google\AdsApi\Common\AdsGuzzleHttpClientFactory;
 use GuzzleHttp\Client;
@@ -166,17 +165,22 @@ final class BatchJobsDelegate {
         $batchJobUploadStatus->getTotalContentBytes() + $contentLength - 1;
     $contentRange = sprintf('bytes %d-%d/*', $lowerBound, $upperBound);
     try {
+      $requestOptions = [];
+      $requestOptions[RequestOptions::BODY] = $serializedContent;
+      $requestOptions[RequestOptions::HEADERS] = [
+          'Content-Length' => $contentLength,
+          'Content-Range' => $contentRange,
+          'Content-Type' => 'application/xml'
+      ];
+      $proxy = $this->session->getConnectionSettings()->getProxyUrl();
+      if (!empty($proxy)) {
+        $requestOptions[RequestOptions::PROXY] = ['https' => $proxy];
+      }
+
       $this->httpClient->request(
           'PUT',
           $batchJobUploadStatus->getResumableUploadUrl(),
-          [
-              RequestOptions::BODY => $serializedContent,
-              RequestOptions::HEADERS => [
-                  'Content-Length' => $contentLength,
-                  'Content-Range' => $contentRange,
-                  'Content-Type' => 'application/xml'
-              ]
-          ]
+          $requestOptions
       );
     } catch (ServerException $e) {
       throw new ApiException(sprintf(
@@ -213,17 +217,21 @@ final class BatchJobsDelegate {
         sprintf('bytes %d-%d/%s', $lowerBound, $upperBound, $totalBytes);
 
     try {
+      $requestOptions = [];
+      $requestOptions[RequestOptions::BODY] = $content;
+      $requestOptions[RequestOptions::HEADERS] = [
+          'Content-Length' => $contentLength,
+          'Content-Range' => $contentRange,
+          'Content-Type' => 'application/xml'
+      ];
+      $proxy = $this->session->getConnectionSettings()->getProxyUrl();
+      if (!empty($proxy)) {
+        $requestOptions[RequestOptions::PROXY] = ['https' => $proxy];
+      }
       $this->httpClient->request(
           'PUT',
           $batchJobUploadStatus->getResumableUploadUrl(),
-          [
-              RequestOptions::BODY => $content,
-              RequestOptions::HEADERS => [
-                  'Content-Length' => $contentLength,
-                  'Content-Range' => $contentRange,
-                  'Content-Type' => 'application/xml'
-              ]
-          ]
+          $requestOptions
       );
     } catch (ServerException $e) {
       throw new ApiException(sprintf(
@@ -247,9 +255,14 @@ final class BatchJobsDelegate {
    */
   public function downloadBatchJobResults($downloadUrl) {
     try {
-      $response = $this->httpClient->request('GET', $downloadUrl, [
-          RequestOptions::HEADERS => ['Accept-Encoding' => 'gzip']
-      ]);
+      $requestOptions = [];
+      $requestOptions[RequestOptions::HEADERS] = ['Accept-Encoding' => 'gzip'];
+      $proxy = $this->session->getConnectionSettings()->getProxyUrl();
+      if (!empty($proxy)) {
+        $requestOptions[RequestOptions::PROXY] = ['https' => $proxy];
+      }
+      $response = $this->httpClient->request(
+          'GET', $downloadUrl, $requestOptions);
     } catch (ServerException $e) {
       throw new ApiException(sprintf(
           'Failed response status from batch download URL, error message: %s,'

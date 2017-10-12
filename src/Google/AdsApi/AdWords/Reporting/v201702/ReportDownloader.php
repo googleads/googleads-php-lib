@@ -137,6 +137,15 @@ final class ReportDownloader {
    */
   private function makeReportRequest(array $requestOptions) {
     $requestOptions[RequestOptions::STREAM] = true;
+    $proxy = $this->session->getConnectionSettings()->getProxyUrl();
+    if (!empty($proxy)) {
+      $requestOptions[RequestOptions::PROXY] = ['https' => $proxy];
+    }
+    if ($this->session->getConnectionSettings()->isReportingGzipEnabled()
+        === true) {
+      $requestOptions[RequestOptions::DECODE_CONTENT] = 'gzip';
+    }
+
     try {
       $response = $this->httpClient->request(
           'POST',

@@ -75,20 +75,27 @@ final class AdsHeaderFormatter {
    * @param string $productName the ads product API calls are being made against
    * @param boolean $includeUtilityUsage true if logging of utilities usages is
    *     turned on
+   * @param null|boolean $isReportingGzipEnabled true if the user agent should
+   *     include "gzip" to indicate that this request should be gzip-compressed
    * @return string the formatted application name
    */
-  public function formatApplicationNameForGuzzleHeader($applicationName,
-      $productName, $includeUtilityUsage) {
+  public function formatApplicationNameForGuzzleHeader(
+      $applicationName,
+      $productName,
+      $includeUtilityUsage,
+      $isReportingGzipEnabled = null
+  ) {
     $adsUtilities = $this->adsUtilityRegistry->popAllUtilities();
     return sprintf(
-        '%s (%sApi-PHP, %s/%s, PHP/%s, %s%s)',
+        '%s (%sApi-PHP, %s/%s, PHP/%s, %s%s%s)',
         $applicationName,
         $productName,
         $this->libraryMetadataProvider->getLibName(),
         $this->libraryMetadataProvider->getLibVersion(),
         PHP_VERSION,
         $this->formatGuzzleInfo(),
-        $this->formatUtilUsages($adsUtilities, $includeUtilityUsage)
+        $this->formatUtilUsages($adsUtilities, $includeUtilityUsage),
+        $isReportingGzipEnabled === true ? ', gzip' : ''
     );
   }
 

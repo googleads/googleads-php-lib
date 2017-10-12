@@ -109,15 +109,19 @@ class OfflineDataUploadService extends \Google\AdsApi\Common\AdsSoapClient
     }
 
     /**
-     * Uploads offline data for each entry in operations. Some operations can fail for upload level
-     * errors like invalid {@code UploadMetadata}. Check {@code OfflineDataUploadReturnValue} for
-     * partial failure list.
+     * Applies a list of mutate operations (i.e. add, set) to offline data upload:
      *
-     * <p><b>Note:</b> Operation might possibly succeed even with errors in {@code OfflineData}. Data
-     * errors are reported in {@link OfflineDataUpload#partialDataErrors}
+     * <p>Add - uploads offline data for each entry in operations. Some operations can fail for upload
+     * level errors like invalid {@code UploadMetadata}. Check {@code OfflineDataUploadReturnValue}
+     * for partial failure list.
      *
-     * <p><b>Note:</b> Supports only the {@code ADD} operator. ({@code SET} and {@code REMOVE} are not
-     * supported.
+     * <p>Set - updates the upload result for each upload. It is for internal use only.
+     *
+     * <p><b>Note:</b> Add operation might possibly succeed even with errors in {@code OfflineData}.
+     * Data errors are reported in {@link OfflineDataUpload#partialDataErrors}
+     *
+     * <p><b>Note:</b> Supports only the {@code ADD} operator. {@code SET} operator is internally used
+     * only.({@code REMOVE} is not supported).
      *
      * @param \Google\AdsApi\AdWords\v201708\rm\OfflineDataUploadOperation[] $operations
      * @return \Google\AdsApi\AdWords\v201708\rm\OfflineDataUploadReturnValue

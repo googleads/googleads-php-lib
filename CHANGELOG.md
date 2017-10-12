@@ -1,3 +1,22 @@
+### 31.0.0
+
+##### AdWords
+
+*   Added support and examples for v201710.
+*   Added an option for setting transparent HTTP gzip compression for reporting
+    in `adsapi_php.ini`.
+
+##### DFP
+
+*   Added UpdateLineItems and UpdateOrders examples.
+
+##### Common
+
+*   Removed the PROXY section in `adsapi_php.ini`. Use "proxy" under CONNECTION
+    instead.
+*   Added proxy support for non-SOAP utilities and OAuth authentication. See
+    the CONNECTION section in `adsapi_php.ini` for details.
+
 ### 30.0.0
 
 ##### AdWords

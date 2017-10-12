@@ -21,6 +21,8 @@ use Google\AdsApi\Common\AdsHeaderFormatter;
 use Google\AdsApi\Common\AdsLoggerFactory;
 use Google\AdsApi\Common\Configuration;
 use Google\AdsApi\Common\ConfigurationLoader;
+use Google\AdsApi\Common\ConnectionSettings;
+use Google\AdsApi\Common\ConnectionSettingsBuilder;
 use Google\AdsApi\Common\SoapSettings;
 use Google\AdsApi\Common\SoapSettingsBuilder;
 use Google\Auth\FetchAuthTokenInterface;
@@ -54,6 +56,7 @@ final class AdWordsSessionBuilder implements AdsBuilder {
   private $adsLoggerFactory;
   private $configurationLoader;
   private $soapSettingsBuilder;
+  private $connectionSettingsBuilder;
   private $reportSettingsBuilder;
 
   private $developerToken;
@@ -61,6 +64,7 @@ final class AdWordsSessionBuilder implements AdsBuilder {
   private $endpoint;
   private $oAuth2Credential;
   private $soapSettings;
+  private $connectionSettings;
   private $clientCustomerId;
   private $isValidateOnly;
   private $isPartialFailure;
@@ -76,6 +80,7 @@ final class AdWordsSessionBuilder implements AdsBuilder {
     $this->adsLoggerFactory = new AdsLoggerFactory();
     $this->configurationLoader = new ConfigurationLoader();
     $this->soapSettingsBuilder = new SoapSettingsBuilder();
+    $this->connectionSettingsBuilder = new ConnectionSettingsBuilder();
     $this->reportSettingsBuilder = new ReportSettingsBuilder();
   }
 
@@ -107,6 +112,8 @@ final class AdWordsSessionBuilder implements AdsBuilder {
     $this->userAgent = $configuration->getConfiguration('userAgent', 'ADWORDS');
     $this->endpoint = $configuration->getConfiguration('endpoint', 'ADWORDS');
 
+    $this->connectionSettings =
+        $this->connectionSettingsBuilder->from($configuration)->build();
     $this->soapSettings =
         $this->soapSettingsBuilder->from($configuration)->build();
 
@@ -191,6 +198,18 @@ final class AdWordsSessionBuilder implements AdsBuilder {
   public function withOAuth2Credential(
       FetchAuthTokenInterface $oAuth2Credential) {
     $this->oAuth2Credential = $oAuth2Credential;
+    return $this;
+  }
+
+  /**
+   * Includes connection settings. This is optional.
+   *
+   * @param ConnectionSettings|null $connectionSettings
+   * @return AdWordsSessionBuilder this builder
+   */
+  public function withConnectionSettings(
+      ConnectionSettings $connectionSettings) {
+    $this->connectionSettings = $connectionSettings;
     return $this;
   }
 
@@ -346,6 +365,10 @@ final class AdWordsSessionBuilder implements AdsBuilder {
       $this->reportSettings = (new ReportSettingsBuilder())->build();
     }
 
+    if ($this->connectionSettings === null) {
+      $this->connectionSettings = (new ConnectionSettingsBuilder())->build();
+    }
+
     if ($this->soapSettings === null) {
       $this->soapSettings = (new SoapSettingsBuilder())->build();
     }
@@ -421,6 +444,14 @@ final class AdWordsSessionBuilder implements AdsBuilder {
    */
   public function getOAuth2Credential() {
     return $this->oAuth2Credential;
+  }
+
+  /**
+   * Gets the connection settings.
+   * @return ConnectionSettings
+   */
+  public function getConnectionSettings() {
+    return $this->connectionSettings;
   }
 
   /**

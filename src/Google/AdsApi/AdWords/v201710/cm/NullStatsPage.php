@@ -1,0 +1,21 @@
+<?php
+
+namespace Google\AdsApi\AdWords\v201710\cm;
+
+
+/**
+ * This file was generated from WSDL. DO NOT EDIT.
+ */
+abstract class NullStatsPage extends \Google\AdsApi\AdWords\v201710\cm\Page
+{
+
+    /**
+     * @param int $totalNumEntries
+     * @param string $PageType
+     */
+    public function __construct($totalNumEntries = null, $PageType = null)
+    {
+      parent::__construct($totalNumEntries, $PageType);
+    }
+
+}

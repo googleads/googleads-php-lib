@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<ns1:mutate xmlns:ns1="https://adwords.google.com/api/adwords/cm/v201710" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <operations xsi:type="ns1:FakeCampaignOperation">
+    <operand>
+      <id>-1</id>
+      <name><![CDATA[Test campaign&<>"']]></name>
+      <isServing>true</isServing>
+    </operand>
+    <operator>ADD</operator>
+  </operations>
+  <operations xsi:type="ns1:FakeCampaignOperation">
+    <operand>
+      <id>-2</id>
+      <name><![CDATA[Test campaign 2 &<>"']]></name>
+      <isServing>false</isServing>
+    </operand>
+    <operator>SET</operator>
+  </operations>
+</ns1:mutate>

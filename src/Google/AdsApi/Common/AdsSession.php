@@ -47,4 +47,10 @@ interface AdsSession {
    * @return SoapSettings the non-null SOAP settings
    */
   public function getSoapSettings();
+
+  /**
+   * Gets the connection settings to apply to API requests.
+   * @return ConnectionSettings the non-null connection settings
+   */
+  public function getConnectionSettings();
 }

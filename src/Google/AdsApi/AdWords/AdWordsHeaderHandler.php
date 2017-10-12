@@ -16,13 +16,13 @@
  */
 namespace Google\AdsApi\AdWords;
 
+use Google\AdsApi\Common\AdsGuzzleProxyHttpHandler;
 use Google\AdsApi\Common\AdsHeaderFormatter;
 use Google\AdsApi\Common\AdsHeaderHandler;
 use Google\AdsApi\Common\AdsServiceDescriptor;
 use Google\AdsApi\Common\AdsSession;
 use Google\AdsApi\Common\Util\OAuth2TokenRefresher;
 use Google\AdsApi\Common\Util\Reflection;
-use InvalidArgumentException;
 use ReflectionClass;
 use SoapHeader;
 
@@ -57,10 +57,11 @@ final class AdWordsHeaderHandler implements AdsHeaderHandler {
    * @see AdsHeaderHandler::generateHttpHeaders()
    */
   public function generateHttpHeaders(AdsSession $session) {
+    $httpHandler = new AdsGuzzleProxyHttpHandler($session);
     $httpHeaders = ['Authorization' => sprintf(
         'Bearer %s',
         urlencode($this->oAuth2TokenRefresher->getOrFetchAccessToken(
-            $session->getOAuth2Credential()))
+            $session->getOAuth2Credential(), $httpHandler))
     )];
     return $httpHeaders;
   }

@@ -125,17 +125,19 @@ final class AdsSoapClientFactory {
       }
 
       // Proxy settings.
-      if ($soapSettings->getProxyHost() !== null) {
-        $options['proxy_host'] = $soapSettings->getProxyHost();
+      list($proxyLogin, $proxyPassword, $proxyHost, $proxyPort) =
+          $session->getConnectionSettings()->getProxyParts();
+      if (!empty($proxyHost)) {
+        $options['proxy_host'] = $proxyHost;
       }
-      if ($soapSettings->getProxyPort() !== null) {
-        $options['proxy_port'] = $soapSettings->getProxyPort();
+      if (!empty($proxyPort)) {
+        $options['proxy_port'] = $proxyPort;
       }
-      if ($soapSettings->getProxyUser() !== null) {
-        $options['proxy_login'] = $soapSettings->getProxyUser();
+      if (!empty($proxyLogin)) {
+        $options['proxy_login'] = $proxyLogin;
       }
-      if ($soapSettings->getProxyPassword() !== null) {
-        $options['proxy_password'] = $soapSettings->getProxyPassword();
+      if (!empty($proxyPassword)) {
+        $options['proxy_password'] = $proxyPassword;
       }
 
       // SSL settings.
