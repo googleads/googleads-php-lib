@@ -11,7 +11,7 @@ This project hosts the PHP client library for the various SOAP-based Ads APIs
 > guide](https://github.com/googleads/googleads-php-lib/blob/master/UPGRADING.md)
 > first.
 
-[![PHP version](https://badge.fury.io/ph/googleads%2Fgoogleads-php-lib.svg)](https://badge.fury.io/ph/googleads%2Fgoogleads-php-lib)
+[![PHP version](https://badge.fury.io/ph/googleads%2Fgoogleads-php-lib.svg)](https://badge.fury.io/ph/googleads%2Fgoogleads-php-lib) [![Build Status](https://travis-ci.org/googleads/googleads-php-lib.svg?branch=master)](https://travis-ci.org/google-ads/googleads-php-lib)
 
 ### Getting started
 
