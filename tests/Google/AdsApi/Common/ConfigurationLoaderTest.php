@@ -18,7 +18,7 @@ namespace Google\AdsApi\Common;
 
 use Google\AdsApi\Common\Testing\ConfigurationLoaderTestProvider;
 use Google\AdsApi\Common\Util\EnvironmentalVariables;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for `ConfigurationLoader`.
@@ -26,12 +26,12 @@ use PHPUnit_Framework_TestCase;
  * @see ConfigurationLoader
  * @small
  */
-class ConfigurationLoaderTest extends PHPUnit_Framework_TestCase {
+class ConfigurationLoaderTest extends TestCase {
 
   private $configurationLoader;
 
   /**
-   * @see PHPUnit_Framework_TestCase::setUp
+   * @see PHPUnit\Framework\TestCase::setUp
    */
   protected function setUp() {
     $environmentalVariablesMock = $this

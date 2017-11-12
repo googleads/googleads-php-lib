@@ -20,7 +20,7 @@ use Google\AdsApi\Common\Testing\FakeHttpPayloadsAndLogsProvider;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for `GuzzleLogMessageFormatter`.
@@ -28,7 +28,7 @@ use PHPUnit_Framework_TestCase;
  * @see GuzzleLogMessageFormatter
  * @small
  */
-class GuzzleLogMessageFormatterTest extends PHPUnit_Framework_TestCase {
+class GuzzleLogMessageFormatterTest extends TestCase {
 
   private $guzzleLogMessageFormatter;
   private $reportDownloadResult;
@@ -40,7 +40,7 @@ class GuzzleLogMessageFormatterTest extends PHPUnit_Framework_TestCase {
   private $reportDownloadLogOfReportDefinition;
 
   /**
-   * @see PHPUnit_Framework_TestCase::setUp
+   * @see PHPUnit\Framework\TestCase::setUp
    */
   protected function setUp() {
     $this->reportDownloadResult = FakeHttpPayloadsAndLogsProvider

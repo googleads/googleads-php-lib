@@ -17,7 +17,7 @@
 namespace Google\AdsApi\Common\Util;
 
 use Google\AdsApi\Common\Testing\FakeSoapPayloadsAndLogsProvider;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for `SoapRequests`.
@@ -25,7 +25,7 @@ use PHPUnit_Framework_TestCase;
  * @see SoapRequests
  * @small
  */
-class SoapRequestsTest extends PHPUnit_Framework_TestCase {
+class SoapRequestsTest extends TestCase {
 
   /**
    * @covers Google\AdsApi\Common\Util\SoapRequests::replaceReferences

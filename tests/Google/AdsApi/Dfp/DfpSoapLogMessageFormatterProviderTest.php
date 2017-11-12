@@ -17,7 +17,7 @@
 namespace Google\AdsApi\Dfp;
 
 use Google\AdsApi\Common\Testing\FakeSoapPayloadsAndLogsProvider;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for `DfpSoapLogMessageFormatterProvider`.
@@ -26,7 +26,7 @@ use PHPUnit_Framework_TestCase;
  * @small
  */
 class DfpSoapLogMessageFormatterProviderTest
-    extends PHPUnit_Framework_TestCase {
+    extends TestCase {
 
   private $dfpSoapLogMessageFormatter;
   private $requestHttpHeadersMock;
@@ -34,7 +34,7 @@ class DfpSoapLogMessageFormatterProviderTest
   private $responseSoapXmlMock;
 
   /**
-   * @see PHPUnit_Framework_TestCase::setUp
+   * @see PHPUnit\Framework\TestCase::setUp
    */
   protected function setUp() {
     $this->dfpSoapLogMessageFormatter =

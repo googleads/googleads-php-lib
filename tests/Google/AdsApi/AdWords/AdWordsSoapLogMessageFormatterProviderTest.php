@@ -17,7 +17,7 @@
 namespace Google\AdsApi\AdWords;
 
 use Google\AdsApi\Common\Testing\FakeSoapPayloadsAndLogsProvider;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for `AdWordsSoapLogMessageFormatterProvider`.
@@ -26,7 +26,7 @@ use PHPUnit_Framework_TestCase;
  * @small
  */
 class AdWordsSoapLogMessageFormatterProviderTest
-    extends PHPUnit_Framework_TestCase {
+    extends TestCase {
 
   private $adWordsSoapLogMessageFormatter;
   private $requestHttpHeadersMock;
@@ -34,7 +34,7 @@ class AdWordsSoapLogMessageFormatterProviderTest
   private $responseSoapXmlMock;
 
   /**
-   * @see PHPUnit_Framework_TestCase::setUp
+   * @see PHPUnit\Framework\TestCase::setUp
    */
   protected function setUp() {
     $this->adWordsSoapLogMessageFormatter =

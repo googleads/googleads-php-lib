@@ -17,7 +17,7 @@
 namespace Google\AdsApi\Common;
 
 use Google\AdsApi\Common\Testing\AdsBuildersTestProvider;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for `SoapSettingsBuilder`.
@@ -25,12 +25,12 @@ use PHPUnit_Framework_TestCase;
  * @see SoapSettingsBuilder
  * @small
  */
-class SoapSettingsBuilderTest extends PHPUnit_Framework_TestCase {
+class SoapSettingsBuilderTest extends TestCase {
 
   private $soapSettingsBuilder;
 
   /**
-   * @see PHPUnit_Framework_TestCase::setUp
+   * @see PHPUnit\Framework\TestCase::setUp
    */
   protected function setUp() {
     $this->soapSettingsBuilder = new SoapSettingsBuilder();

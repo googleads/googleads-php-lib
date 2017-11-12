@@ -16,7 +16,7 @@
  */
 namespace Google\AdsApi\Common;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for `ConnectionSettingsBuilder`.
@@ -24,12 +24,12 @@ use PHPUnit_Framework_TestCase;
  * @see ConnectionSettingsBuilder
  * @small
  */
-class ConnectionSettingsBuilderTest extends PHPUnit_Framework_TestCase {
+class ConnectionSettingsBuilderTest extends TestCase {
 
   private $connectionSettingsBuilder;
 
   /**
-   * @see PHPUnit_Framework_TestCase::setUp
+   * @see PHPUnit\Framework\TestCase::setUp
    */
   protected function setUp() {
     $this->connectionSettingsBuilder = new ConnectionSettingsBuilder();

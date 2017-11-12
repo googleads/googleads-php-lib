@@ -16,7 +16,7 @@
  */
 namespace Google\AdsApi\Common;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for `ConnectionSettings`.
@@ -24,7 +24,7 @@ use PHPUnit_Framework_TestCase;
  * @see ConnectionSettings
  * @small
  */
-class ConnectionSettingsTest extends PHPUnit_Framework_TestCase {
+class ConnectionSettingsTest extends TestCase {
 
   /**
    * @param array $value the array of proxies to evaluate

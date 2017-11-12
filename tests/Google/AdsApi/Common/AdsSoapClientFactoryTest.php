@@ -17,7 +17,7 @@
 namespace Google\AdsApi\Common;
 
 use Google\AdsApi\Common\Util\Reflection;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for `AdsSoapClientFactory`.
@@ -25,7 +25,7 @@ use PHPUnit_Framework_TestCase;
  * @see AdsSoapClientFactory
  * @small
  */
-class AdsSoapClientFactoryTest extends PHPUnit_Framework_TestCase {
+class AdsSoapClientFactoryTest extends TestCase {
 
   /**
    * @covers Google\AdsApi\Common\AdsSoapClientFactory::generateSoapClient

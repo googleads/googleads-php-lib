@@ -21,7 +21,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -30,13 +30,13 @@ use Psr\Log\LoggerInterface;
  * @see AdWordsSessionBuilder
  * @small
  */
-class AdWordsSessionBuilderTest extends PHPUnit_Framework_TestCase {
+class AdWordsSessionBuilderTest extends TestCase {
 
   private $adWordsSessionBuilder;
   private $fetchAuthTokenInterfaceMock;
 
   /**
-   * @see PHPUnit_Framework_TestCase::setUp
+   * @see PHPUnit\Framework\TestCase::setUp
    */
   protected function setUp() {
     $this->adWordsSessionBuilder = new AdWordsSessionBuilder();

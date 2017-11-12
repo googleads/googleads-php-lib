@@ -27,7 +27,7 @@ use Google\AdsApi\Common\Util\Reflection;
 use Google\Auth\FetchAuthTokenInterface;
 use Monolog\Handler\NullHandler;
 use Monolog\Logger;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Integration test for `AdWordsServices`.
@@ -39,7 +39,7 @@ use PHPUnit_Framework_TestCase;
  * @see AdWordsServices
  * @large
  */
-class AdWordsServicesIntegrationTest extends PHPUnit_Framework_TestCase {
+class AdWordsServicesIntegrationTest extends TestCase {
 
   private static $WSDL_FILE_DIR;
 
@@ -50,7 +50,7 @@ class AdWordsServicesIntegrationTest extends PHPUnit_Framework_TestCase {
   private $adWordsServices;
 
   /**
-   * @see PHPUnit_Framework_TestCase::setUp
+   * @see PHPUnit\Framework\TestCase::setUp
    */
   protected function setUp() {
     self::$WSDL_FILE_DIR = __DIR__ . '/../../../../';

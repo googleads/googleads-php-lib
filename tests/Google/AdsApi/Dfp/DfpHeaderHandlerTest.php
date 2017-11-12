@@ -17,7 +17,7 @@
 namespace Google\AdsApi\Dfp;
 
 use Google\Auth\FetchAuthTokenInterface;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for `DfpHeaderHandler`.
@@ -25,13 +25,13 @@ use PHPUnit_Framework_TestCase;
  * @see DfpHeaderHandler
  * @small
  */
-class DfpHeaderHandlerTest extends PHPUnit_Framework_TestCase {
+class DfpHeaderHandlerTest extends TestCase {
 
   private $dfpHeaderHandler;
   private $dfpSessionBuilder;
 
   /**
-   * @see PHPUnit_Framework_TestCase::setUp
+   * @see PHPUnit\Framework\TestCase::setUp
    */
   protected function setUp() {
     $this->dfpHeaderHandler = new DfpHeaderHandler();

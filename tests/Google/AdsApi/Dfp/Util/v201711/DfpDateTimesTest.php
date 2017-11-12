@@ -20,7 +20,7 @@ use DateTime;
 use DateTimeZone;
 use Google\AdsApi\Dfp\v201711\Date;
 use Google\AdsApi\Dfp\v201711\DateTime as DfpDateTime;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for `DfpDateTimes`.
@@ -28,7 +28,7 @@ use PHPUnit_Framework_TestCase;
  * @see DfpDateTimes
  * @small
  */
-class DfpDateTimesTest extends PHPUnit_Framework_TestCase {
+class DfpDateTimesTest extends TestCase {
 
   const TIME_ZONE_ID1 = 'America/New_York';
   const TIME_ZONE_ID2 = 'PST8PDT';
@@ -50,7 +50,7 @@ class DfpDateTimesTest extends PHPUnit_Framework_TestCase {
   private $stringDateTimeWithTimeZone3;
 
   /**
-   * @see PHPUnit_Framework_TestCase::setUp
+   * @see PHPUnit\Framework\TestCase::setUp
    */
   protected function setUp() {
     $this->stringDateTime1 = '1983-06-02T08:30:15';

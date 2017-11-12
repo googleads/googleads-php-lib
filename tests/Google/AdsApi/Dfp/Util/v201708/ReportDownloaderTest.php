@@ -28,7 +28,7 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use Monolog\Handler\NullHandler;
 use Monolog\Logger;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for `ReportDownloader`.
@@ -36,13 +36,13 @@ use PHPUnit_Framework_TestCase;
  * @see ReportDownloader
  * @small
  */
-class ReportDownloaderTest extends PHPUnit_Framework_TestCase {
+class ReportDownloaderTest extends TestCase {
 
   private $dfpSession;
   private $reportServiceMock;
 
   /**
-   * @see PHPUnit_Framework_TestCase::setUp
+   * @see PHPUnit\Framework\TestCase::setUp
    */
   protected function setUp() {
     $fetchAuthTokenInterfaceStub = $this

@@ -17,7 +17,7 @@
 namespace Google\AdsApi\Common;
 
 use Google\AdsApi\Common\Testing\ApplicationNames;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Tests for `AdsHeaderFormatter`.
@@ -25,13 +25,13 @@ use PHPUnit_Framework_TestCase;
  * @see AdsHeaderFormatter
  * @small
  */
-class AdsHeaderFormatterTest extends PHPUnit_Framework_TestCase {
+class AdsHeaderFormatterTest extends TestCase {
 
   private $applicationNames;
   private $adsHeaderFormatter;
 
   /**
-   * @see PHPUnit_Framework_TestCase::setUp
+   * @see PHPUnit\Framework\TestCase::setUp
    */
   protected function setUp() {
     $this->applicationNames = new ApplicationNames();

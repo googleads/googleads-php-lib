@@ -21,7 +21,7 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use Monolog\Handler\NullHandler;
 use Monolog\Logger;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for `AdsGuzzleHttpClientFactory`.
@@ -29,7 +29,7 @@ use PHPUnit_Framework_TestCase;
  * @see AdsGuzzleHttpClientFactory
  * @small
  */
-class AdsGuzzleHttpClientFactoryTest extends PHPUnit_Framework_TestCase {
+class AdsGuzzleHttpClientFactoryTest extends TestCase {
 
   /**
    * @covers Google\AdsApi\Common\GuzzleHttpClientFactory::generateHttpClient

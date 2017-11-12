@@ -28,7 +28,7 @@ use Google\Auth\FetchAuthTokenInterface;
 use GuzzleHttp\ClientInterface;
 use Monolog\Handler\NullHandler;
 use Monolog\Logger;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for `RequestOptionsFactory`.
@@ -36,7 +36,7 @@ use PHPUnit_Framework_TestCase;
  * @see RequestOptionsFactory
  * @small
  */
-class RequestOptionsFactoryTest extends PHPUnit_Framework_TestCase {
+class RequestOptionsFactoryTest extends TestCase {
 
   private static $DEFAULT_TIMEOUT_IN_SECONDS = 120;
 
@@ -45,7 +45,7 @@ class RequestOptionsFactoryTest extends PHPUnit_Framework_TestCase {
   private $libraryMetadataProviderMock;
 
   /**
-   * @see PHPUnit_Framework_TestCase::setUp
+   * @see PHPUnit\Framework\TestCase::setUp
    */
   protected function setUp() {
     $fetchAuthTokenInterfaceMock = $this

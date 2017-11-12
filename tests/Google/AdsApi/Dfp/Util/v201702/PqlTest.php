@@ -32,7 +32,7 @@ use Google\AdsApi\Dfp\v201702\Targeting;
 use Google\AdsApi\Dfp\v201702\TargetingValue;
 use Google\AdsApi\Dfp\v201702\TextValue;
 use Google\AdsApi\Dfp\v201702\Value;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Tests for `Pql`.
@@ -40,7 +40,7 @@ use PHPUnit_Framework_TestCase;
  * @see Pql
  * @small
  */
-class PqlTest extends PHPUnit_Framework_TestCase {
+class PqlTest extends TestCase {
 
   const TIME_ZONE_ID1 = 'Asia/Shanghai';
 
@@ -68,7 +68,7 @@ class PqlTest extends PHPUnit_Framework_TestCase {
   private $targeting1;
 
   /**
-   * @see PHPUnit_Framework_TestCase::setUp
+   * @see PHPUnit\Framework\TestCase::setUp
    */
   protected function setUp() {
     $this->column1 = new ColumnType('Id');

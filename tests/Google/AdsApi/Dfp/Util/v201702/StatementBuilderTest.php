@@ -16,7 +16,7 @@
  */
 namespace Google\AdsApi\Dfp\Util\v201702;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Tests for `StatementBuilder`.
@@ -24,7 +24,7 @@ use PHPUnit_Framework_TestCase;
  * @see StatementBuilder
  * @small
  */
-class StatementBuilderTest extends PHPUnit_Framework_TestCase {
+class StatementBuilderTest extends TestCase {
 
   /**
    * @covers Google\AdsApi\Dfp\Util\v201702\StatementBuilder::toStatement
