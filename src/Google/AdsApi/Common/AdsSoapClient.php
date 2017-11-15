@@ -37,6 +37,9 @@ class AdsSoapClient extends SoapClient {
     'ApiExceptionFault' => 'ApiException'
   ];
 
+  private static $RESOURCES_WSDLS_PATH_FORMAT =
+      '%1$s%2$s..%2$s..%2$s..%2$s..%2$sresources%2$swsdls';
+
   private $wsdlUri;
   private $classmap;
   private $streamContext;
@@ -65,7 +68,12 @@ class AdsSoapClient extends SoapClient {
       $this->classmap = $options['classmap'];
     }
     $this->reflection = new Reflection();
-    parent::__construct($wsdl, $options);
+
+    $localWsdlPath = self::getLocalWsdlPath($wsdl);
+    parent::__construct(
+        file_exists($localWsdlPath) ? $localWsdlPath : $wsdl,
+        $options
+    );
   }
 
   /**
@@ -359,5 +367,17 @@ class AdsSoapClient extends SoapClient {
    */
   public function getLastResponseHeaderValues() {
     return $this->lastResponseHeaderValues;
+  }
+
+  /**
+   * Gets the path to stored WSDLs from the provided live WSDL URI.
+   */
+  private function getLocalWsdlPath($wsdl) {
+    $resourcesWsdlsPath = sprintf(
+        self::$RESOURCES_WSDLS_PATH_FORMAT,
+        __DIR__,
+        DIRECTORY_SEPARATOR
+    );
+    return $resourcesWsdlsPath . parse_url($wsdl, PHP_URL_PATH);
   }
 }

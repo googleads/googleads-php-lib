@@ -101,6 +101,7 @@ class AdRuleService extends \Google\AdsApi\Common\AdsSoapClient
       'SoapResponseHeader' => 'Google\\AdsApi\\Dfp\\v201708\\SoapResponseHeader',
       'Statement' => 'Google\\AdsApi\\Dfp\\v201708\\Statement',
       'StatementError' => 'Google\\AdsApi\\Dfp\\v201708\\StatementError',
+      'StringFormatError' => 'Google\\AdsApi\\Dfp\\v201708\\StringFormatError',
       'StringLengthError' => 'Google\\AdsApi\\Dfp\\v201708\\StringLengthError',
       'String_ValueMapEntry' => 'Google\\AdsApi\\Dfp\\v201708\\String_ValueMapEntry',
       'Targeting' => 'Google\\AdsApi\\Dfp\\v201708\\Targeting',

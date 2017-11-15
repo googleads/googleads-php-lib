@@ -24,6 +24,7 @@ use Google\AdsApi\AdWords\AdWordsSessionBuilder;
 use Google\AdsApi\AdWords\v201710\cm\AdGroupAd;
 use Google\AdsApi\AdWords\v201710\cm\AdGroupAdOperation;
 use Google\AdsApi\AdWords\v201710\cm\AdGroupAdService;
+use Google\AdsApi\AdWords\v201710\cm\ApiError;
 use Google\AdsApi\AdWords\v201710\cm\ApiException;
 use Google\AdsApi\AdWords\v201710\cm\ExemptionRequest;
 use Google\AdsApi\AdWords\v201710\cm\ExpandedTextAd;
@@ -45,30 +46,52 @@ class HandlePolicyViolationError {
     $adGroupAdService =
         $adWordsServices->get($session, AdGroupAdService::class);
 
+    $operations = [];
+
     // Create text ad that violates an exemptable policy.
-    $expandedTextAd = new ExpandedTextAd();
-    $expandedTextAd->setHeadlinePart1('Mars Cruise !!!');
-    $expandedTextAd->setHeadlinePart2('Visit the Red Planet in style.');
-    $expandedTextAd->setDescription('Low-gravity fun for everyone!');
-    $expandedTextAd->setFinalUrls(['http://www.example.com']);
+    $exemptableExpandedTextAd = new ExpandedTextAd();
+    $exemptableExpandedTextAd->setHeadlinePart1('Mars Cruise !!!');
+    $exemptableExpandedTextAd->setHeadlinePart2('Best space cruise line.');
+    $exemptableExpandedTextAd->setDescription(
+        'Visit the Red Planet in style.');
+    $exemptableExpandedTextAd->setFinalUrls(['http://www.example.com']);
 
     // Create ad group ad.
-    $adGroupAd = new AdGroupAd();
-    $adGroupAd->setAdGroupId($adGroupId);
-    $adGroupAd->setAd($expandedTextAd);
+    $exemptableAdGroupAd = new AdGroupAd();
+    $exemptableAdGroupAd->setAdGroupId($adGroupId);
+    $exemptableAdGroupAd->setAd($exemptableExpandedTextAd);
 
     // Create ad group ad operation and add it to the list.
-    $operations = [];
-    $operation = new AdGroupAdOperation();
-    $operation->setOperand($adGroupAd);
-    $operation->setOperator(Operator::ADD);
-    $operations[] = $operation;
+    $exemptableOperation = new AdGroupAdOperation();
+    $exemptableOperation->setOperand($exemptableAdGroupAd);
+    $exemptableOperation->setOperator(Operator::ADD);
+    $operations[] = $exemptableOperation;
 
+    // Create text ad that violates a non-exemptable policy.
+    $nonExemptableExpandedTextAd = new ExpandedTextAd();
+    $nonExemptableExpandedTextAd->setHeadlinePart1(
+        'Mars Cruise with too long of a headline.');
+    $nonExemptableExpandedTextAd->setHeadlinePart2('Best space cruise line.');
+    $nonExemptableExpandedTextAd->setDescription(
+        'Visit the Red Planet in style.');
+    $nonExemptableExpandedTextAd->setFinalUrls(['http://www.example.com']);
+
+    // Create ad group ad.
+    $nonExemptableAdGroupAd = new AdGroupAd();
+    $nonExemptableAdGroupAd->setAdGroupId($adGroupId);
+    $nonExemptableAdGroupAd->setAd($nonExemptableExpandedTextAd);
+
+    // Create ad group ad operation and add it to the list.
+    $nonExemptableOperation = new AdGroupAdOperation();
+    $nonExemptableOperation->setOperand($nonExemptableAdGroupAd);
+    $nonExemptableOperation->setOperator(Operator::ADD);
+    $operations[] = $nonExemptableOperation;
+
+    $operationIndicesToRetryBucket = [];
     try {
-      // Try creating an ad group ad on the server.
-      $result = $adGroupAdService->mutate($operations);
+      // Validate the ads.
+      $adGroupAdService->mutate($operations);
     } catch (ApiException $apiException) {
-      $operationIndicesToRemove = [];
       foreach ($apiException->getErrors() as $error) {
         // Get the index of the failed operation from the error's field path
         // elements.
@@ -87,63 +110,81 @@ class HandlePolicyViolationError {
         }
         $operationIndex = $firstFieldPathElement->getIndex();
         $operation = $operations[$operationIndex];
-        if ($error instanceof PolicyViolationError) {
-          printf("Ad with headline part 1 '%s' violated %s policy '%s'.\n",
-              $operation->getOperand()->getAd()->getHeadlinePart1(),
-              $error->getIsExemptable() ? 'exemptable' : 'non-exemptable',
-              $error->getExternalPolicyName()
-          );
-          if ($error->getIsExemptable() === true) {
-            // Add exemption request to the operation.
-            printf(
-                "Adding exemption request for policy name '%s' on text "
-                    ."'%s'.\n",
-                $error->getKey()->getPolicyName(),
-                $error->getKey()->getViolatingText()
-            );
-            $operation->setExemptionRequests(
-                [new ExemptionRequest($error->getKey())]);
-          } else {
-            // Remove non-exemptable operation.
-          print "Removing non-exemptable operation from the request.\n";
-            $operationIndicesToRemove[] = $operationIndex;
-          }
+        if (self::handleApiError($error, $operationIndex, $operation)) {
+          // Store the index of operations we want to retry as indices of the
+          // bucket.
+          $operationIndicesToRetryBucket[$operationIndex] = 1;
         } else {
-          // Non-policy error returned.
-          printf(
-              "Ad with headline part 1 '%s' created non-policy error '%s'.\n",
-              $operation->getOperand()->getAd()->getHeadlinePart1(),
-              $error->getErrorString()
-          );
-          print "Removing the operation causing non-policy error from the "
-              . "request.\n";
-          $operationIndicesToRemove[] = $operationIndex;
+          printf("Removing operation with non-exemptable error at index %d.\n",
+              $operationIndex);
         }
       }
-      $operationIndicesToRemove = array_unique($operationIndicesToRemove);
-      rsort($operationIndicesToRemove, SORT_NUMERIC);
-      foreach ($operationIndicesToRemove as $operationIndex) {
-        unset($operations[$operationIndex]);
+      $operationsToRetry = [];
+      foreach (array_keys($operationIndicesToRetryBucket)
+          as $operationIndexToRetry) {
+        $operationsToRetry[] = $operations[$operationIndexToRetry];
       }
     }
 
-    if (count($operations) > 0) {
+    if (count($operationsToRetry) > 0) {
       // Make the mutate request to really add an ad group ad.
       $session->setValidateOnly(false);
-      $result = $adGroupAdService->mutate($operations);
+      $result = $adGroupAdService->mutate($operationsToRetry);
 
       // Print out some information about the created ad group ad.
       foreach ($result->getValue() as $adGroupAd) {
         printf(
-            "Expanded text ad with headline part 1 '%s' and ID '%s' was added."
+            "Expanded text ad with headline '%s - %s' and ID '%s' was added."
                 . "\n",
             $adGroupAd->getAd()->getHeadlinePart1(),
+            $adGroupAd->getAd()->getHeadlinePart2(),
             $adGroupAd->getAd()->getId()
         );
       }
     } else {
-      print "All the operations were invalid with non-exemptable errors.\n";
+      print "No ads were added.\n";
     }
+  }
+
+  /**
+   * Checks the given error and performs the appropriate action based on
+   * whether it is an exemptable policy violation error.
+   */
+  private static function handleApiError(ApiError $apiError, $operationIndex,
+      AdGroupAdOperation $operation) {
+    $isExemptableError = false;
+    $policyViolationError = null;
+
+    $expandedTextAd = $operation->getOperand()->getAd();
+    if ($apiError instanceof PolicyViolationError) {
+      printf("Ad with headline '%s - %s' violated %s policy '%s'.\n",
+          $expandedTextAd->getHeadlinePart1(),
+          $expandedTextAd->getHeadlinePart2(),
+          $apiError->getIsExemptable() ? 'exemptable' : 'non-exemptable',
+          $apiError->getExternalPolicyName()
+      );
+      $isExemptableError = $apiError->getIsExemptable();
+    }
+
+    if ($isExemptableError) {
+      // Add exemption request to the operation.
+      printf(
+          "Adding exemption request for policy name '%s' on text "
+              ."'%s' to operation at index %d.\n",
+          $apiError->getKey()->getPolicyName(),
+          $apiError->getKey()->getViolatingText(),
+          $operationIndex
+      );
+      if ($operation->getExemptionRequests() === null) {
+        $exemptionRequests = [];
+      } else {
+        $exemptionRequests = $operation->getExemptionRequest();
+      }
+      $exemptionRequests[] = new ExemptionRequest($apiError->getKey());
+      $operation->setExemptionRequests($exemptionRequests);
+    }
+
+    return $isExemptableError;
   }
 
   public static function main() {

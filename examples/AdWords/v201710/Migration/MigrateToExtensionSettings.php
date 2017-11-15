@@ -52,6 +52,8 @@ use Google\AdsApi\Common\OAuth2TokenBuilder;
  */
 class MigrateToExtensionSettings {
 
+  const PAGE_LIMIT = 500;
+
   // The placeholder type for sitelinks. See
   // https://developers.google.com/adwords/api/docs/appendix/placeholders
   // for the list of all supported placeholder types.
@@ -144,10 +146,30 @@ class MigrateToExtensionSettings {
   private static function getFeeds(AdWordsServices $adWordsServices,
       AdWordsSession $session) {
     $feedService = $adWordsServices->get($session, FeedService::class);
-    $page = $feedService->query('SELECT Id, Name, Attributes WHERE '
-        . 'Origin="USER" AND FeedStatus="ENABLED"');
 
-    return $page->getEntries();
+    // Create paging controls.
+    $totalNumEntries = 0;
+    $offset = 0;
+    $query = 'SELECT Id, Name, Attributes WHERE Origin="USER" AND '
+        . 'FeedStatus="ENABLED"';
+    $feeds = [];
+    do {
+      $pageQuery = sprintf('%s LIMIT %d,%d', $query, $offset, self::PAGE_LIMIT);
+
+      // Make the query request.
+      $page = $feedService->query($pageQuery);
+
+      if ($page->getEntries() !== null) {
+        $totalNumEntries = $page->getTotalNumEntries();
+        foreach ($page->getEntries() as $feed) {
+          $feeds[] = $feed;
+        }
+      }
+      // Advance the paging offset.
+      $offset += self::PAGE_LIMIT;
+    } while ($offset < $totalNumEntries);
+
+    return $feeds;
   }
 
   /**
@@ -156,13 +178,31 @@ class MigrateToExtensionSettings {
   private static function getFeedItems(AdWordsServices $adWordsServices,
       AdWordsSession $session, $feedId) {
     $feedItemService = $adWordsServices->get($session, FeedItemService::class);
-    $page = $feedItemService->query(sprintf(
-        'SELECT FeedItemId, AttributeValues, Scheduling WHERE '
-            . 'Status = "ENABLED" AND FeedId = %d',
-        $feedId
-    ));
 
-    return $page->getEntries();
+    // Create paging controls.
+    $totalNumEntries = 0;
+    $offset = 0;
+    $query = sprintf('SELECT FeedItemId, AttributeValues, Scheduling WHERE '
+        . 'Status = "ENABLED" AND FeedId = %d',
+        $feedId);
+    $feedItems = [];
+    do {
+      $pageQuery = sprintf('%s LIMIT %d,%d', $query, $offset, self::PAGE_LIMIT);
+
+      // Make the query request.
+      $page = $feedItemService->query($pageQuery);
+
+      if ($page->getEntries() !== null) {
+        $totalNumEntries = $page->getTotalNumEntries();
+        foreach ($page->getEntries() as $feedItem) {
+          $feedItems[] = $feedItem;
+        }
+      }
+      // Advance the paging offset.
+      $offset += self::PAGE_LIMIT;
+    } while ($offset < $totalNumEntries);
+
+    return $feedItems;
   }
 
   /**

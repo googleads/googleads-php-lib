@@ -48,6 +48,7 @@ class TeamService extends \Google\AdsApi\Common\AdsSoapClient
       'SoapResponseHeader' => 'Google\\AdsApi\\Dfp\\v201705\\SoapResponseHeader',
       'Statement' => 'Google\\AdsApi\\Dfp\\v201705\\Statement',
       'StatementError' => 'Google\\AdsApi\\Dfp\\v201705\\StatementError',
+      'StringFormatError' => 'Google\\AdsApi\\Dfp\\v201705\\StringFormatError',
       'StringLengthError' => 'Google\\AdsApi\\Dfp\\v201705\\StringLengthError',
       'String_ValueMapEntry' => 'Google\\AdsApi\\Dfp\\v201705\\String_ValueMapEntry',
       'TeamAction' => 'Google\\AdsApi\\Dfp\\v201705\\TeamAction',

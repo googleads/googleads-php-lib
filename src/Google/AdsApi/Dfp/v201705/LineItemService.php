@@ -147,6 +147,7 @@ class LineItemService extends \Google\AdsApi\Common\AdsSoapClient
       'Statement' => 'Google\\AdsApi\\Dfp\\v201705\\Statement',
       'StatementError' => 'Google\\AdsApi\\Dfp\\v201705\\StatementError',
       'Stats' => 'Google\\AdsApi\\Dfp\\v201705\\Stats',
+      'StringFormatError' => 'Google\\AdsApi\\Dfp\\v201705\\StringFormatError',
       'StringLengthError' => 'Google\\AdsApi\\Dfp\\v201705\\StringLengthError',
       'String_ValueMapEntry' => 'Google\\AdsApi\\Dfp\\v201705\\String_ValueMapEntry',
       'Targeting' => 'Google\\AdsApi\\Dfp\\v201705\\Targeting',

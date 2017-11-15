@@ -38,8 +38,14 @@ class DownloadCriteriaReportWithAwql {
 
     // Download report as a string.
     $reportDownloader = new ReportDownloader($session);
+    // Optional: If you need to adjust report settings just for this one
+    // request, you can create and supply the settings override here. Otherwise,
+    // default values from the configuration file (adsapi_php.ini) are used.
+    $reportSettingsOverride = (new ReportSettingsBuilder())
+        ->includeZeroImpressions(false)
+        ->build();
     $reportDownloadResult = $reportDownloader->downloadReportWithAwql(
-        $reportQuery, $reportFormat);
+        $reportQuery, $reportFormat, $reportSettingsOverride);
     print "Report was downloaded and printed below:\n";
     print $reportDownloadResult->getAsString();
   }
@@ -50,13 +56,6 @@ class DownloadCriteriaReportWithAwql {
         ->fromFile()
         ->build();
 
-    // See: ReportSettingsBuilder for more options (e.g., suppress headers)
-    // or set them in your adsapi_php.ini file.
-    $reportSettings = (new ReportSettingsBuilder())
-        ->fromFile()
-        ->includeZeroImpressions(false)
-        ->build();
-
     // See: AdWordsSessionBuilder for setting a client customer ID that is
     // different from that specified in your adsapi_php.ini file.
     // Construct an API session configured from a properties file and the OAuth2
@@ -64,7 +63,6 @@ class DownloadCriteriaReportWithAwql {
     $session = (new AdWordsSessionBuilder())
         ->fromFile()
         ->withOAuth2Credential($oAuth2Credential)
-        ->withReportSettings($reportSettings)
         ->build();
 
     self::runExample($session, DownloadFormat::CSV);

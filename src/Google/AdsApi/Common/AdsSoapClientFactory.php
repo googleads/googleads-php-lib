@@ -121,7 +121,11 @@ final class AdsSoapClientFactory {
 
       // WSDL caching settings.
       if ($soapSettings->getWsdlCacheType() !== null) {
-        $options['cache_wsdl'] = $soapSettings->getWsdlCacheType();
+        trigger_error(
+            "WSDL caching is already deprecated in favor of WSDLs "
+                . "bundled with this library.\n",
+            E_USER_WARNING
+        );
       }
 
       // Proxy settings.

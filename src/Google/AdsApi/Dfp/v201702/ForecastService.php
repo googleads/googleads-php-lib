@@ -14,6 +14,7 @@ class ForecastService extends \Google\AdsApi\Common\AdsSoapClient
      */
     private static $classmap = array (
       'ObjectValue' => 'Google\\AdsApi\\Dfp\\v201702\\ObjectValue',
+      'AdRuleSlotError' => 'Google\\AdsApi\\Dfp\\v201702\\AdRuleSlotError',
       'AdUnitCodeError' => 'Google\\AdsApi\\Dfp\\v201702\\AdUnitCodeError',
       'AdUnitTargeting' => 'Google\\AdsApi\\Dfp\\v201702\\AdUnitTargeting',
       'AlternativeUnitTypeForecast' => 'Google\\AdsApi\\Dfp\\v201702\\AlternativeUnitTypeForecast',
@@ -146,6 +147,7 @@ class ForecastService extends \Google\AdsApi\Common\AdsSoapClient
       'SoapResponseHeader' => 'Google\\AdsApi\\Dfp\\v201702\\SoapResponseHeader',
       'StatementError' => 'Google\\AdsApi\\Dfp\\v201702\\StatementError',
       'Stats' => 'Google\\AdsApi\\Dfp\\v201702\\Stats',
+      'StringFormatError' => 'Google\\AdsApi\\Dfp\\v201702\\StringFormatError',
       'StringLengthError' => 'Google\\AdsApi\\Dfp\\v201702\\StringLengthError',
       'TargetingCriteriaBreakdown' => 'Google\\AdsApi\\Dfp\\v201702\\TargetingCriteriaBreakdown',
       'Targeting' => 'Google\\AdsApi\\Dfp\\v201702\\Targeting',

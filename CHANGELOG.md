@@ -1,3 +1,24 @@
+### 32.0.0
+
+##### AdWords
+
+*   Fixed
+    [issue #378](https://github.com/googleads/googleads-php-lib/issues/378).
+
+##### DFP
+
+*   Added support and examples for v201711.
+*   Added CdnConfigurationService and examples.
+*   Removed support for v201611.
+*   Removed examples for v201702.
+
+##### Common
+
+*   Included WSDL files for all SOAP services and they're now used for making
+    SOAP calls instead of live WSDLs. Therefore, the WSDL caching feature is
+    deprecated (`wsdlCache` in `adsapi_php.ini` is now ignored). The feature
+    will be removed completely in the next major release.
+
 ### 31.0.0
 
 ##### AdWords

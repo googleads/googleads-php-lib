@@ -58,6 +58,7 @@ class CompanyService extends \Google\AdsApi\Common\AdsSoapClient
       'SoapResponseHeader' => 'Google\\AdsApi\\Dfp\\v201702\\SoapResponseHeader',
       'Statement' => 'Google\\AdsApi\\Dfp\\v201702\\Statement',
       'StatementError' => 'Google\\AdsApi\\Dfp\\v201702\\StatementError',
+      'StringFormatError' => 'Google\\AdsApi\\Dfp\\v201702\\StringFormatError',
       'StringLengthError' => 'Google\\AdsApi\\Dfp\\v201702\\StringLengthError',
       'String_ValueMapEntry' => 'Google\\AdsApi\\Dfp\\v201702\\String_ValueMapEntry',
       'TeamError' => 'Google\\AdsApi\\Dfp\\v201702\\TeamError',

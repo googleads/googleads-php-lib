@@ -16,7 +16,7 @@
  */
 namespace Google\AdsApi\Examples\Auth;
 
-require '../../vendor/autoload.php';
+require __DIR__ . '/../../vendor/autoload.php';
 
 use Google\Auth\CredentialsLoader;
 use Google\Auth\OAuth2;

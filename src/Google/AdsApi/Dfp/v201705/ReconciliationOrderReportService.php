@@ -53,6 +53,7 @@ class ReconciliationOrderReportService extends \Google\AdsApi\Common\AdsSoapClie
       'SoapResponseHeader' => 'Google\\AdsApi\\Dfp\\v201705\\SoapResponseHeader',
       'Statement' => 'Google\\AdsApi\\Dfp\\v201705\\Statement',
       'StatementError' => 'Google\\AdsApi\\Dfp\\v201705\\StatementError',
+      'StringFormatError' => 'Google\\AdsApi\\Dfp\\v201705\\StringFormatError',
       'StringLengthError' => 'Google\\AdsApi\\Dfp\\v201705\\StringLengthError',
       'String_ValueMapEntry' => 'Google\\AdsApi\\Dfp\\v201705\\String_ValueMapEntry',
       'TextValue' => 'Google\\AdsApi\\Dfp\\v201705\\TextValue',

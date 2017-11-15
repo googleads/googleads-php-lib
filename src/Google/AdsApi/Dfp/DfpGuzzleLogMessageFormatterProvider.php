@@ -38,13 +38,13 @@ final class DfpGuzzleLogMessageFormatterProvider
    * @param DfpSession $session the DFP session that makes a Guzzle HTTP call
    * @param bool $shouldLogResponsePayload whether the formatter should
    *     show the response payload in the log
-   * @param string $redactedResponsePayloadMessage the substitution message
+   * @param string|null $redactedResponsePayloadMessage the substitution message
    *     to use in case the response payload is redacted
    */
   public function __construct(
       DfpSession $session,
       $shouldLogResponsePayload,
-      $redactedResponsePayloadMessage) {
+      $redactedResponsePayloadMessage = null) {
     $this->session = $session;
     $this->shouldLogResponsePayload = $shouldLogResponsePayload;
     $this->redactedResponsePayloadMessage = $redactedResponsePayloadMessage;

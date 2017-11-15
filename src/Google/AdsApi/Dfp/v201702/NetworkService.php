@@ -43,6 +43,7 @@ class NetworkService extends \Google\AdsApi\Common\AdsSoapClient
       'SoapRequestHeader' => 'Google\\AdsApi\\Dfp\\v201702\\SoapRequestHeader',
       'SoapResponseHeader' => 'Google\\AdsApi\\Dfp\\v201702\\SoapResponseHeader',
       'StatementError' => 'Google\\AdsApi\\Dfp\\v201702\\StatementError',
+      'StringFormatError' => 'Google\\AdsApi\\Dfp\\v201702\\StringFormatError',
       'StringLengthError' => 'Google\\AdsApi\\Dfp\\v201702\\StringLengthError',
       'TypeError' => 'Google\\AdsApi\\Dfp\\v201702\\TypeError',
       'UniqueError' => 'Google\\AdsApi\\Dfp\\v201702\\UniqueError',

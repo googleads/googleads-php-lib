@@ -180,7 +180,7 @@ DFP utilities have minor changes, most remain the same.
 
 |                  | Old library                                                                                                                                   | New library
 ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- | -----------
-Date times utility | Called [DateTimeUtils](https://github.com/googleads/googleads-php-lib/blob/deprecated/src/Google/Api/Ads/Dfp/Util/v201611/DateTimeUtils.php). | Split and renamed to [DfpDateTimes](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/AdsApi/Dfp/Util/v201611/DfpDateTimes.php) and [DfpDates](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/AdsApi/Dfp/Util/v201611/DfpDates.php), some obsolete methods removed.
+Date times utility | Called [DateTimeUtils](https://github.com/googleads/googleads-php-lib/blob/deprecated/src/Google/Api/Ads/Dfp/Util/v201711/DateTimeUtils.php). | Split and renamed to [DfpDateTimes](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/AdsApi/Dfp/Util/v201711/DfpDateTimes.php) and [DfpDates](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/AdsApi/Dfp/Util/v201711/DfpDates.php), some obsolete methods removed.
 Report downloader  | Uses Curl ext.                                                                                                                                | Uses Guzzle.
 
 ## Examples
