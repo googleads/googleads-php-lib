@@ -38,10 +38,10 @@ and fill out the required properties before downloading the library.
 This library determines the home directory of your computer by using
 [`EnvironmentalVariables::getHome()`](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/AdsApi/Common/Util/EnvironmentalVariables.php#L34).
 
-    *   [AdWords
-        adsapi_php.ini](https://github.com/googleads/googleads-php-lib/blob/master/examples/AdWords/adsapi_php.ini)
-    *   [DFP
-        adsapi_php.ini](https://github.com/googleads/googleads-php-lib/blob/master/examples/Dfp/adsapi_php.ini)
+*   [AdWords
+     adsapi_php.ini](https://github.com/googleads/googleads-php-lib/blob/master/examples/AdWords/adsapi_php.ini)
+*   [DFP
+     adsapi_php.ini](https://github.com/googleads/googleads-php-lib/blob/master/examples/Dfp/adsapi_php.ini)
 
 ### Downloading this library
 
@@ -341,8 +341,7 @@ failed to load external entity
 "https://adwords.google.com/api/adwords/cm/v201710/CampaignService?wsdl
 ```
 
-To remedy, see [Steps for troubleshooting CA file issues
-](https://github.com/googleads/googleads-php-lib/wiki/Steps-for-troubleshooting-CA-file-issues).
+To remedy, see [Steps for troubleshooting CA file issues](https://github.com/googleads/googleads-php-lib/wiki/Steps-for-troubleshooting-CA-file-issues).
 
 ### Documentation
 
