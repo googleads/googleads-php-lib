@@ -88,8 +88,7 @@ class AddDraft {
     $operations[] = $operation;
 
     // Create a campaign criterion on the server.
-    $campaignCriterion =
-        $campaignCriterionService->mutate($operations)->getValue()[0];
+    $campaignCriterionService->mutate($operations);
 
     printf("Draft updated to include criteria in the campaign with ID %d.\n",
         $draft->getDraftCampaignId());

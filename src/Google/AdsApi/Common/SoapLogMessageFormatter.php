@@ -88,6 +88,7 @@ final class SoapLogMessageFormatter {
    * @param string $request the SOAP request
    * @param string $response the SOAP response for the request
    * @param SoapFault|null $soapFault a SOAP fault if the request failed
+   * @return string the formatted summary log message
    */
   public function formatSummary($serviceName, $methodName, $requestHeaders,
       $request, $response, $soapFault = null) {
@@ -131,6 +132,7 @@ final class SoapLogMessageFormatter {
    * @param string $request the SOAP request
    * @param string $responseHeaders the HTTP headers from the response
    * @param string $response the SOAP response for the request
+   * @return string the formatted detailed log message
    */
   public function formatDetailed(
       $requestHeaders, $request, $responseHeaders, $response) {

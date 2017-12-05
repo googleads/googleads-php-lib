@@ -21,7 +21,6 @@ require __DIR__ . '/../../../../vendor/autoload.php';
 use Google\AdsApi\AdWords\AdWordsServices;
 use Google\AdsApi\AdWords\AdWordsSession;
 use Google\AdsApi\AdWords\AdWordsSessionBuilder;
-use Google\AdsApi\AdWords\ReportSettings;
 use Google\AdsApi\AdWords\ReportSettingsBuilder;
 use Google\AdsApi\AdWords\Reporting\v201702\DownloadFormat;
 use Google\AdsApi\AdWords\Reporting\v201702\ReportDefinition;
@@ -178,6 +177,7 @@ class ParallelReportDownload {
         PredicateOperator::EQUALS, ['false'])]);
 
     $customerIds = [];
+    $totalNumEntries = 0;
     do {
       $page = $managedCustomerService->get($selector);
       if ($page->getEntries() !== null) {

@@ -39,7 +39,7 @@ final class FakeMoney extends FakeComparableValue {
   }
 
   /**
-   * @param string
+   * @return string
    */
   private function getType() {
     return $this->type;

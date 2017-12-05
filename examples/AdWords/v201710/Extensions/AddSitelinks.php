@@ -25,6 +25,7 @@ use Google\AdsApi\AdWords\v201710\cm\CampaignExtensionSetting;
 use Google\AdsApi\AdWords\v201710\cm\CampaignExtensionSettingOperation;
 use Google\AdsApi\AdWords\v201710\cm\CampaignExtensionSettingService;
 use Google\AdsApi\AdWords\v201710\cm\ExtensionSetting;
+use Google\AdsApi\AdWords\v201710\cm\FeedItemDevicePreference;
 use Google\AdsApi\AdWords\v201710\cm\FeedItemGeoRestriction;
 use Google\AdsApi\AdWords\v201710\cm\FeedItemScheduling;
 use Google\AdsApi\AdWords\v201710\cm\FeedItemSchedule;
@@ -98,7 +99,7 @@ class AddSitelinks {
     $sitelink3->setSitelinkText('Wifi available');
     $sitelink3->setSitelinkFinalUrls(
         new UrlList(['http://www.example.com/mobile/wifi']));
-    $sitelink3->setDevicePreference(30001);
+    $sitelink3->setDevicePreference(new FeedItemDevicePreference(30001));
     // Target this sitelink only when the ad is triggered by the keyword
     // "free wifi".
     $keyword = new Keyword();

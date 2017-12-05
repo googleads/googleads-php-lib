@@ -22,7 +22,6 @@ use Google\AdsApi\AdWords\AdWordsServices;
 use Google\AdsApi\AdWords\AdWordsSession;
 use Google\AdsApi\AdWords\AdWordsSessionBuilder;
 use Google\AdsApi\AdWords\v201708\cm\AdGroupAdService;
-use Google\AdsApi\AdWords\v201708\cm\ApprovalStatus;
 use Google\AdsApi\AdWords\v201708\cm\OrderBy;
 use Google\AdsApi\AdWords\v201708\cm\Paging;
 use Google\AdsApi\AdWords\v201708\cm\Predicate;

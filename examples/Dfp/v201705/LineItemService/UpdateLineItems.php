@@ -18,12 +18,12 @@ namespace Google\AdsApi\Examples\Dfp\v201705\LineItemService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
 
+use Google\AdsApi\Common\OAuth2TokenBuilder;
 use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
+use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201705\StatementBuilder;
-use Google\AdsApi\Dfp\v201705\LineItem;
 use Google\AdsApi\Dfp\v201705\LineItemService;
-use Google\AdsApi\Dfp\v201705\LineItemType;
 
 /**
  * Updates line items.

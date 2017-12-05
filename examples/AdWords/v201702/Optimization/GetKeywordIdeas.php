@@ -21,7 +21,6 @@ require __DIR__ . '/../../../../vendor/autoload.php';
 use Google\AdsApi\AdWords\AdWordsServices;
 use Google\AdsApi\AdWords\AdWordsSession;
 use Google\AdsApi\AdWords\AdWordsSessionBuilder;
-use Google\AdsApi\AdWords\v201702\cm\Keyword;
 use Google\AdsApi\AdWords\v201702\cm\Language;
 use Google\AdsApi\AdWords\v201702\cm\NetworkSetting;
 use Google\AdsApi\AdWords\v201702\cm\Paging;

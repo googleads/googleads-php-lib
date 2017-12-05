@@ -45,9 +45,11 @@ class DfpDateTimesTest extends PHPUnit_Framework_TestCase {
   private $stringDateTime1;
   private $stringDateTime2;
   private $stringDateTime3;
+  private $stringDateTime4;
   private $stringDateTimeWithTimeZone1;
   private $stringDateTimeWithTimeZone2;
   private $stringDateTimeWithTimeZone3;
+  private $stringDateTimeWithTimeZone4;
 
   /**
    * @see PHPUnit_Framework_TestCase::setUp

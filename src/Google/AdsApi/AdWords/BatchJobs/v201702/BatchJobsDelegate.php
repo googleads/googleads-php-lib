@@ -22,7 +22,6 @@ use Google\AdsApi\AdWords\AdWordsSession;
 use Google\AdsApi\AdWords\BatchJobs\BatchJobUploadStatus;
 use Google\AdsApi\AdWords\BatchJobs\DotRemoverNameConverter;
 use Google\AdsApi\AdWords\v201702\cm\ApiException;
-use Google\AdsApi\AdWords\v201702\cm\MutateResult;
 use Google\AdsApi\Common\GuzzleHttpClientFactory;
 use Google\AdsApi\Common\AdsGuzzleHttpClientFactory;
 use GuzzleHttp\Client;

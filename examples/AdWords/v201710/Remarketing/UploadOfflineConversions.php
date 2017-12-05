@@ -30,8 +30,7 @@ use Google\AdsApi\Common\OAuth2TokenBuilder;
 /**
  * This code example imports offline conversion values for specific clicks to
  * your account. To get Google Click ID for a click, run
- * CLICK_PERFORMANCE_REPORT. To set up a conversion tracker, run the
- * AddConversionTracker.php example.
+ * CLICK_PERFORMANCE_REPORT.
  */
 class UploadOfflineConversions {
 

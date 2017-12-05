@@ -28,8 +28,11 @@ use Google\AdsApi\AdWords\v201710\rm\OfflineData;
 use Google\AdsApi\AdWords\v201710\rm\OfflineDataUpload;
 use Google\AdsApi\AdWords\v201710\rm\OfflineDataUploadOperation;
 use Google\AdsApi\AdWords\v201710\rm\OfflineDataUploadService;
+use Google\AdsApi\AdWords\v201710\rm\OfflineDataUploadType;
 use Google\AdsApi\AdWords\v201710\rm\OfflineDataUploadUserIdentifierType;
 use Google\AdsApi\AdWords\v201710\rm\StoreSalesTransaction;
+use Google\AdsApi\AdWords\v201710\rm\ThirdPartyUploadMetadata;
+use Google\AdsApi\AdWords\v201710\rm\UploadMetadata;
 use Google\AdsApi\AdWords\v201710\rm\UserIdentifier;
 use Google\AdsApi\Common\OAuth2TokenBuilder;
 
@@ -47,6 +50,16 @@ class UploadOfflineData {
   // to.
   const CONVERSION_NAME = 'INSERT_CONVERSION_NAME';
 
+  // For times, use the format yyyyMMdd HHmmss tz. For more details on formats,
+  // see:
+  // https://developers.google.com/adwords/api/docs/appendix/codes-formats#date-and-time-formats
+  // For time zones, see:
+  // https://developers.google.com/adwords/api/docs/appendix/codes-formats#timezone-ids
+  const ADVERTISER_UPLOAD_TIME = 'INSERT_ADVERTISER_UPLOAD_TIME';
+
+  const BRIDGE_MAP_VERSION_ID = 'INSERT_BRIDGE_MAP_VERSION_ID';
+  const PARTNER_ID = 'INSERT_PARTNER_ID';
+
   // Insert email addresses below for creating user identifiers.
   private static $EMAIL_ADDRESSES = ['EMAIL_ADDRESS_1', 'EMAIL_ADDRESS_2'];
 
@@ -55,7 +68,10 @@ class UploadOfflineData {
       AdWordsSession $session,
       $conversionName,
       $externalUploadId,
-      array $emailAddresses
+      array $emailAddresses,
+      $advertiserUploadTime,
+      $bridgeMapVersionId,
+      $partnerId
   ) {
     $offlineDataUploadService =
         $adWordsServices->get($session, OfflineDataUploadService::class);
@@ -111,9 +127,23 @@ class UploadOfflineData {
     $offlineDataUpload->setExternalUploadId($externalUploadId);
     $offlineDataUpload->setOfflineDataList([$offlineData1, $offlineData2]);
 
-    // Optional: You can set the type of this upload.
-    // $offlineDataUpload->setUploadType(
-    //     OfflineDataUploadType::STORE_SALES_UPLOAD_FIRST_PARTY);
+    // Set the type and metadata of this upload.
+    $offlineDataUpload->setUploadType(
+        OfflineDataUploadType::STORE_SALES_UPLOAD_THIRD_PARTY);
+    $thirdPartyUploadMetadata = new ThirdPartyUploadMetadata();
+    $thirdPartyUploadMetadata->setLoyaltyRate(1.0);
+    $thirdPartyUploadMetadata->setTransactionUploadRate(1.0);
+    $thirdPartyUploadMetadata->setAdvertiserUploadTime($advertiserUploadTime);
+    $thirdPartyUploadMetadata->setValidTransactionRate(1.0);
+    $thirdPartyUploadMetadata->setPartnerMatchRate(1.0);
+    $thirdPartyUploadMetadata->setPartnerUploadRate(1.0);
+    $thirdPartyUploadMetadata->setBridgeMapVersionId($bridgeMapVersionId);
+    $thirdPartyUploadMetadata->setPartnerId($partnerId);
+
+    $uploadMetadata = new UploadMetadata();
+    $uploadMetadata->setStoreSalesUploadCommonMetadata(
+        $thirdPartyUploadMetadata);
+    $offlineDataUpload->setUploadMetadata($uploadMetadata);
 
     // Create an offline data upload operation.
     $offlineDataUploadOperation = new OfflineDataUploadOperation();
@@ -217,8 +247,11 @@ class UploadOfflineData {
         new AdWordsServices(),
         $session,
         self::CONVERSION_NAME,
-        self::EXTERNAL_UPLOAD_ID,
-        self::$EMAIL_ADDRESSES
+        intval(self::EXTERNAL_UPLOAD_ID),
+        self::$EMAIL_ADDRESSES,
+        self::ADVERTISER_UPLOAD_TIME,
+        self::BRIDGE_MAP_VERSION_ID,
+        intval(self::PARTNER_ID)
     );
   }
 }

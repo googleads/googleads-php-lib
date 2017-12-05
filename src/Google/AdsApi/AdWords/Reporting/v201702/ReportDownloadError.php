@@ -30,7 +30,7 @@ final class ReportDownloadError extends ApiError {
    * @param string|null $trigger the data that caused the error
    * @param string|null $errorString a simple string representation of the
    *     error
-   * @param string|null $ApiErrorType a string indicating that this instance is
+   * @param string|null $apiErrorType a string indicating that this instance is
    *     a subtype of ApiError
    */
   public function __construct(

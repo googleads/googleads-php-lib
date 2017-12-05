@@ -40,8 +40,8 @@ interface AdsHeaderHandler {
    * @param AdsSession $session session information to use for the headers
    * @param AdsServiceDescriptor $adsServiceDescriptor descriptor for the
    *     ads API service the headers are being generated for
-   * @return SoapHeader the SOAP headers
-   * @throws InvalidArgumentException if an invalid combination of headers are
+   * @return \SoapHeader the SOAP headers
+   * @throws \InvalidArgumentException if an invalid combination of headers are
    *     set
    */
   public function generateSoapHeaders(AdsSession $session,

@@ -114,7 +114,6 @@ class AddPrices {
         [$priceFeedItem]);
 
     // Create a customer extension setting operation and add it to the list.
-    $operations = [];
     $operation = new CustomerExtensionSettingOperation();
     $operation->setOperator(Operator::ADD);
     $operation->setOperand($customerExtensionSetting);
@@ -139,6 +138,7 @@ class AddPrices {
    * @param string $currencyCode the 3-character currency code
    * @param string $priceUnit the unit of shown price
    * @param string|null $finalMobileUrl the mobile final URL of price table row
+   * @return PriceTableRow the created price table row
    */
   private static function createPriceTableRow(
       $header,

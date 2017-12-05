@@ -16,7 +16,6 @@
  */
 namespace Google\AdsApi\AdWords;
 
-use Google\AdsApi\AdWords\AdWordsSessionBuilder;
 use Google\AdsApi\Common\Testing\FakeHttpPayloadsAndLogsProvider;
 use Google\Auth\FetchAuthTokenInterface;
 use GuzzleHttp\Psr7\Request;

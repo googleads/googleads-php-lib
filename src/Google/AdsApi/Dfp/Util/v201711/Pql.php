@@ -148,6 +148,9 @@ class Pql {
    * Combines the first and second result sets, if and only if, the columns
    * of both result sets match.
    *
+   * @param ResultSet $first the first result set
+   * @param ResultSet $second the second result set
+   * @return ResultSet the combined result set
    * @throws InvalidArgumentException if the result sets to combine do not have
    *     identical column headers
    */
@@ -163,10 +166,44 @@ class Pql {
     }
 
     $combinedRows = $first->getRows();
-    if ($second->getRows() !== null) {
+    if (!empty($second->getRows())) {
       $combinedRows = array_merge($combinedRows, $second->getRows());
     }
 
     return new ResultSet($first->getColumnTypes(), $combinedRows);
+  }
+
+
+  /**
+   * Gets the result set as a two dimension string array, which can be
+   * transformed to a CSV using {@see CsvFiles} such as
+   * <pre>
+   * <code>
+   * $combinedResultSet = Pql::combineResultSet($resultSet1, $resultSet2);
+   * //...
+   * $combinedResultSet = Pql::combineResultSet(
+   *     $combinedResultSet,
+   *     $resultSet3);
+   * CsvFiles::writeCsv(
+   *     Pql::resultSetTo2DimensionStringArray($combinedResultSet),
+   *     $filePath);
+   * </code>
+   * </pre>
+   *
+   * @param ResultSet $resultSet the result set to convert to a CSV compatible
+   *     format
+   * @return string[][] a 2 dimension array of strings representing the result
+   *     set
+   */
+  public static function resultSetTo2DimensionStringArray(
+      ResultSet $resultSet) {
+    $array2D = [];
+    $array2D[] = self::getColumnLabels($resultSet);
+    if (!is_null($resultSet->getRows())) {
+      foreach ($resultSet->getRows() as $row) {
+        $array2D[] = self::getRowStringValues($row);
+      }
+    }
+    return $array2D;
   }
 }

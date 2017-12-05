@@ -24,6 +24,7 @@ use Google\AdsApi\Dfp\v201705\ReportJobStatus;
 use Google\AdsApi\Dfp\v201705\ReportService;
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
+use Psr\Http\Message\StreamInterface;
 use UnexpectedValueException;
 
 /**
@@ -54,7 +55,7 @@ class ReportDownloader {
    * @param ReportService $reportService
    * @param int $reportJobId
    * @param int|null $pollTimeSeconds optional, specify the time to sleep, in
-   *     seconds, when polling for a report's tatus
+   *     seconds, when polling for a report's status
    * @param Client|null $httpClient optional, the Guzzle HTTP client whose
    *     handler stacks this library's logging middleware will be pushed to
    * @param GuzzleHttpClientFactory|null $httpClientFactory optional, the Guzzle

@@ -23,7 +23,6 @@ use Google\AdsApi\AdWords\AdWordsSession;
 use Google\AdsApi\AdWords\AdWordsSessionBuilder;
 use Google\AdsApi\AdWords\Shopping\v201702\ProductPartitions;
 use Google\AdsApi\AdWords\v201702\cm\AdGroupCriterionService;
-use Google\AdsApi\AdWords\v201702\cm\Criterion;
 use Google\AdsApi\AdWords\v201702\cm\ProductBiddingCategory;
 use Google\AdsApi\AdWords\v201702\cm\ProductBrand;
 use Google\AdsApi\AdWords\v201702\cm\ProductCanonicalCondition;
@@ -40,9 +39,6 @@ class AddProductPartitionTree {
 
   public static function runExample(AdWordsServices $adWordsServices,
       AdWordsSession $session, $adGroupId) {
-    $adGroupCriterionService =
-        $adWordsServices->get($session, AdGroupCriterionService::class);
-
     // The most trivial partition tree has only a unit node as the root:
     //   $productPartitions->createBiddableUnit(null, null, 100000);
 

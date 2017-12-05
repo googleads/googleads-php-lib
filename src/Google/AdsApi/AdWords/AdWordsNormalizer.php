@@ -202,9 +202,9 @@ final class AdWordsNormalizer extends GetSetMethodNormalizer {
   /**
    * Gets type from the PHP document block's `@return` tag.
    *
-   * @param DocBlock $docBlock the document block to get its @return type
+   * @param DocBlock $docBlock the document block to get its `@return` type
    * @return string|null the class name of the attribute or null if there
-   *     exists no @return tag in the document block
+   *     exists no `@return` tag in the document block
    */
   private function getReturnType(DocBlock $docBlock) {
     // The @return tag will be present for each getter method of generated

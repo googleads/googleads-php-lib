@@ -4144,7 +4144,7 @@
                 The resulting custom targeting tree would be of the form:
                 &lt;/p&gt;
                 &lt;br/&gt;
-                &lt;img src="http://chart.apis.google.com/chart?cht=gv&amp;chl=digraph{customTargeting_LogicalOperator_OR-%3ECustomCriteriaSet_LogicalOperator_AND_1-%3ECustomCriteria_1;CustomCriteriaSet_LogicalOperator_AND_1-%3Eellipsis1;customTargeting_LogicalOperator_OR-%3Eellipsis2;ellipsis1[label=%22...%22,shape=none,fontsize=32];ellipsis2[label=%22...%22,shape=none,fontsize=32]}&amp;chs=450x200"/&gt;
+                &lt;img src="https://chart.apis.google.com/chart?cht=gv&amp;chl=digraph{customTargeting_LogicalOperator_OR-%3ECustomCriteriaSet_LogicalOperator_AND_1-%3ECustomCriteria_1;CustomCriteriaSet_LogicalOperator_AND_1-%3Eellipsis1;customTargeting_LogicalOperator_OR-%3Eellipsis2;ellipsis1[label=%22...%22,shape=none,fontsize=32];ellipsis2[label=%22...%22,shape=none,fontsize=32]}&amp;chs=450x200"/&gt;
               </documentation>
             </annotation>
           </element>
@@ -9629,16 +9629,6 @@
           <documentation>
             Creates new {@link ProposalLineItem} objects.
             
-            For each proposal line item, the following fields are required:
-            &lt;ul&gt;
-            &lt;li&gt;{@link ProposalLineItem#proposalId}&lt;/li&gt;
-            &lt;li&gt;{@link ProposalLineItem#rateCardId}&lt;/li&gt;
-            &lt;li&gt;{@link ProposalLineItem#productId}&lt;/li&gt;
-            &lt;li&gt;{@link ProposalLineItem#name}&lt;/li&gt;
-            &lt;li&gt;{@link ProposalLineItem#startDateTime}&lt;/li&gt;
-            &lt;li&gt;{@link ProposalLineItem#endDateTime}&lt;/li&gt;
-            &lt;/ul&gt;
-            
             @param proposalLineItems the proposal line items to create
             @return the created proposal line items with their IDs filled in
           </documentation>
@@ -9853,16 +9843,6 @@
     <wsdl:operation name="createProposalLineItems">
       <wsdl:documentation>
         Creates new {@link ProposalLineItem} objects.
-        
-        For each proposal line item, the following fields are required:
-        &lt;ul&gt;
-        &lt;li&gt;{@link ProposalLineItem#proposalId}&lt;/li&gt;
-        &lt;li&gt;{@link ProposalLineItem#rateCardId}&lt;/li&gt;
-        &lt;li&gt;{@link ProposalLineItem#productId}&lt;/li&gt;
-        &lt;li&gt;{@link ProposalLineItem#name}&lt;/li&gt;
-        &lt;li&gt;{@link ProposalLineItem#startDateTime}&lt;/li&gt;
-        &lt;li&gt;{@link ProposalLineItem#endDateTime}&lt;/li&gt;
-        &lt;/ul&gt;
         
         @param proposalLineItems the proposal line items to create
         @return the created proposal line items with their IDs filled in

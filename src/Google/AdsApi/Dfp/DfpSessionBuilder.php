@@ -27,7 +27,6 @@ use Google\AdsApi\Common\SoapSettings;
 use Google\AdsApi\Common\SoapSettingsBuilder;
 use Google\Auth\FetchAuthTokenInterface;
 use InvalidArgumentException;
-use Monolog\Logger;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -174,7 +173,7 @@ final class DfpSessionBuilder implements AdsBuilder {
    * Includes connection settings. This is optional.
    *
    * @param ConnectionSettings|null $connectionSettings
-   * @return AdWordsSessionBuilder this builder
+   * @return DfpSessionBuilder this builder
    */
   public function withConnectionSettings(
       ConnectionSettings $connectionSettings) {
@@ -222,7 +221,7 @@ final class DfpSessionBuilder implements AdsBuilder {
    * Includes ads header formatter. This is optional.
    *
    * @param AdsHeaderFormatter|null $adsHeaderFormatter
-   * @return AdWordsSessionBuilder this builder
+   * @return DfpSessionBuilder this builder
    */
   public function withAdsHeaderFormatter(
       AdsHeaderFormatter $adsHeaderFormatter) {

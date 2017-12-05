@@ -36,9 +36,10 @@ class AdsSoapClientTest extends PHPUnit_Framework_TestCase {
         ->disableOriginalConstructor()
         ->getMock();
 
-    $expectedResultSuffix = sprintf(
-        'src%1$sGoogle%1$sAdsApi%1$sCommon%1$s'
-            . '..%1$s..%1$s..%1$s..%1$sresources%1$swsdls',
+    $expectedResultRegex = sprintf(
+        '|src%1$sGoogle%1$sAdsApi%1$sCommon%1$s'
+            . '\.\.%1$s\.\.%1$s\.\.%1$s\.\.%1$sresources%1$swsdls'
+            . '%1$sapi%1$sadwords%1$scm%1$sv201710%1$sMockService\.wsdl$|',
         DIRECTORY_SEPARATOR
     );
 
@@ -47,6 +48,12 @@ class AdsSoapClientTest extends PHPUnit_Framework_TestCase {
     $method->setAccessible(true);
     $actualResult = $method->invokeArgs($adsSoapClientMock, [$fakeLiveWsdlUri]);
 
-    $this->assertContains($expectedResultSuffix, $actualResult);
+    $this->assertRegExp($expectedResultRegex, $actualResult);
+    if (DIRECTORY_SEPARATOR === '\\') {
+      $this->assertNotContains('/', $actualResult);
+    }
+    if (DIRECTORY_SEPARATOR === '/') {
+      $this->assertNotContains('\\', $actualResult);
+    }
   }
 }

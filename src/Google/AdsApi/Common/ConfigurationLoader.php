@@ -49,6 +49,7 @@ final class ConfigurationLoader {
    *
    * @param string $configIniFilePath the filepath to the *.ini file
    * @throws InvalidArgumentException if the config file could not be found
+   * @return Configuration the created configuration
    */
   public function fromFile($configIniFilePath) {
     if (!file_exists($configIniFilePath)) {
@@ -83,6 +84,7 @@ final class ConfigurationLoader {
    * Creates a configuration from an *.ini string.
    *
    * @param string $iniString
+   * @return Configuration the created configuration
    */
   public function fromString($iniString) {
     return new Configuration(parse_ini_string($iniString, true));

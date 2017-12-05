@@ -148,6 +148,9 @@ class Pql {
    * Combines the first and second result sets, if and only if, the columns
    * of both result sets match.
    *
+   * @param ResultSet $first the first result set
+   * @param ResultSet $second the second result set
+   * @return ResultSet the combined result set
    * @throws InvalidArgumentException if the result sets to combine do not have
    *     identical column headers
    */

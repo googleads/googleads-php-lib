@@ -53,6 +53,7 @@ class AdWordsServicesIntegrationTest extends PHPUnit_Framework_TestCase {
    * @see PHPUnit_Framework_TestCase::setUp
    */
   protected function setUp() {
+    error_reporting(E_ALL & ~E_USER_NOTICE);
     self::$WSDL_FILE_DIR = __DIR__ . '/../../../../';
     $this->applicationNames = new ApplicationNames();
 
@@ -74,7 +75,7 @@ class AdWordsServicesIntegrationTest extends PHPUnit_Framework_TestCase {
         ->setMethods(['__doRequest', '__construct'])
         ->setConstructorArgs([
             [], self::$WSDL_FILE_DIR
-                .'src/Google/AdsApi/AdWords/Testing/campaign-service.wsdl'])
+                . 'src/Google/AdsApi/AdWords/Testing/campaign-service.wsdl'])
         ->getMock();
     // "Inject" the mock campaign service.
     $this->reflectionMock = $this
@@ -200,7 +201,7 @@ class AdWordsServicesIntegrationTest extends PHPUnit_Framework_TestCase {
     // SOAP XML response.
     $selector = new Selector();
     $selector->setFields(['Id', 'Name', 'Status', 'StartDate', 'EndDate']);
-    $page = $campaignService->get($selector);
+    $campaignService->get($selector);
   }
 
   /**

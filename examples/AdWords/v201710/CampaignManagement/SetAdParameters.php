@@ -45,20 +45,20 @@ class SetAdParameters {
     $adParam1 = new AdParam($adGroupId, $keywordId, '100', 1);
     $adParam2 = new AdParam($adGroupId, $keywordId, '$40', 2);
 
-    $adParamOperation1s = [];
+    $adParamOperations = [];
 
     $adParamOperation1 = new AdParamOperation();
     $adParamOperation1->setOperand($adParam1);
     $adParamOperation1->setOperator(Operator::SET);
-    $operations[] = $adParamOperation1;
+    $adParamOperations[] = $adParamOperation1;
 
     $adParamOperation2 = new AdParamOperation();
     $adParamOperation2->setOperand($adParam2);
     $adParamOperation2->setOperator(Operator::SET);
-    $operations[] = $adParamOperation2;
+    $adParamOperations[] = $adParamOperation2;
 
     // Add ad params on the server.
-    $adParams = $adParamService->mutate($operations);
+    $adParams = $adParamService->mutate($adParamOperations);
 
     // Print out some information about added ad parameters.
     foreach ($adParams as $adParam) {

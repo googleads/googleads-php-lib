@@ -26,6 +26,7 @@ use Google\AdsApi\AdWords\v201702\cm\AdGroupCriterionService;
 use Google\AdsApi\AdWords\v201702\cm\BiddableAdGroupCriterion;
 use Google\AdsApi\AdWords\v201702\cm\Criterion;
 use Google\AdsApi\AdWords\v201702\cm\Operator;
+use Google\AdsApi\AdWords\v201702\cm\UrlList;
 use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
@@ -52,7 +53,8 @@ class UpdateKeyword {
     $adGroupCriterion->setCriterion(new Criterion($criterionId));
 
     // Update final URL.
-    $adGroupCriterion->setFinalUrls(['http://www.example.com/new']);
+    $adGroupCriterion->setFinalUrls(
+        new UrlList(['http://www.example.com/new']));
 
     // Create ad group criterion operation and add it to the list.
     $operation = new AdGroupCriterionOperation();

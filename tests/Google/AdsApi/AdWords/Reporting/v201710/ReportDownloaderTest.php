@@ -151,8 +151,7 @@ class ReportDownloaderTest extends PHPUnit_Framework_TestCase {
 
     $reportDownloader =
         new ReportDownloader($this->adWordsSession, null, $httpClient);
-    $responseStream =
-        $reportDownloader->downloadReport($reportDefinition);
+    $reportDownloader->downloadReport($reportDefinition);
   }
 
   /**

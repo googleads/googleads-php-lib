@@ -18,6 +18,7 @@ namespace Google\AdsApi\Dfp;
 
 use Google\AdsApi\Common\AdsHeaderFormatter;
 use Google\AdsApi\Common\AdsSession;
+use Psr\Log\LoggerInterface;
 
 /**
  * A session for using the DFP API.

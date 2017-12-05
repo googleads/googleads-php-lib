@@ -52,6 +52,7 @@ class GetAccountChanges {
 
     // Get an array of all campaign IDs.
     $campaignIds = [];
+    $totalNumEntries = 0;
     do {
       $page = $campaignService->get($selector);
 

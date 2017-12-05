@@ -226,9 +226,6 @@ class AddShoppingCampaignForShowcaseAds {
   /** Creates the product partition tree for the ad group. */
   private static function createProductPartitions(
       AdWordsServices $adWordsServices, AdWordsSession $session, $adGroupId) {
-    $adGroupCriterionService =
-        $adWordsServices->get($session, AdGroupCriterionService::class);
-
     $operations = [];
 
     $root = ProductPartitions::createSubdivision();

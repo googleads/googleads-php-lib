@@ -1297,8 +1297,7 @@
               <documentation>
                 The probability to close this {@code Proposal}. This percentage value is in
                 terms of millipercent, and should be multiples of 10 with the range from 0 to
-                100000. This attribute is required and will be used to calculate the revenue
-                in reporting.
+                100000. This attribute will be used to calculate the revenue in reporting.
                 &lt;span class="constraint Applicable"&gt;This attribute is applicable when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, using sales management.&lt;/li&gt;&lt;li&gt;not using programmatic, using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
                 &lt;span class="constraint Required"&gt;This attribute is required when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, using sales management.&lt;/li&gt;&lt;li&gt;not using programmatic, using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
               </documentation>

@@ -64,7 +64,7 @@ class ValidateTextAd {
     $operations[] = $operation;
 
     try {
-      $result = $adGroupAdService->mutate($operations);
+      $adGroupAdService->mutate($operations);
       printf("The expanded text ad is valid.\n");
     } catch (ApiException $e) {
       $errors = $e->getErrors();

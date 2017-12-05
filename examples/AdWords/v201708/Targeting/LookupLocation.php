@@ -71,7 +71,7 @@ class LookupLocation {
           }
           $parentLocationsString = implode(', ', $parentLocations);
         } else {
-          $parentLocations = 'N/A';
+          $parentLocationsString = 'N/A';
         }
         printf(
             "The search term '%s' returned the location '%s' of type '%s' "

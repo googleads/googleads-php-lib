@@ -39,6 +39,7 @@ class AdsSoapClient extends SoapClient {
 
   private static $RESOURCES_WSDLS_PATH_FORMAT =
       '%1$s%2$s..%2$s..%2$s..%2$s..%2$sresources%2$swsdls';
+  private static $WSDL_FILE_EXTENSION = '.wsdl';
 
   private $wsdlUri;
   private $classmap;
@@ -70,10 +71,13 @@ class AdsSoapClient extends SoapClient {
     $this->reflection = new Reflection();
 
     $localWsdlPath = self::getLocalWsdlPath($wsdl);
-    parent::__construct(
-        file_exists($localWsdlPath) ? $localWsdlPath : $wsdl,
-        $options
-    );
+    if (!file_exists($localWsdlPath)) {
+      trigger_error("Local WSDLs bundled with this library were not found.\n",
+          E_USER_NOTICE);
+      parent::__construct($wsdl, $options);
+      return;
+    }
+    parent::__construct($localWsdlPath, $options);
   }
 
   /**
@@ -378,6 +382,16 @@ class AdsSoapClient extends SoapClient {
         __DIR__,
         DIRECTORY_SEPARATOR
     );
-    return $resourcesWsdlsPath . parse_url($wsdl, PHP_URL_PATH);
+    // parse_url() returns the path part of any URLs, which may be composed of
+    // many sub-paths delimited by forward slashes. We replace them with
+    // DIRECTORY_SEPARATOR (which works with any OSs) here to get paths to local
+    // WSDLs.
+    $wsdlFilePath = str_replace(
+        '/',
+        DIRECTORY_SEPARATOR,
+        parse_url($wsdl, PHP_URL_PATH)
+    );
+
+    return $resourcesWsdlsPath . $wsdlFilePath . self::$WSDL_FILE_EXTENSION;
   }
 }

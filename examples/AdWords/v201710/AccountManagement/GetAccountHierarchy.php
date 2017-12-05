@@ -25,6 +25,7 @@ use Google\AdsApi\AdWords\v201710\cm\OrderBy;
 use Google\AdsApi\AdWords\v201710\cm\Paging;
 use Google\AdsApi\AdWords\v201710\cm\Selector;
 use Google\AdsApi\AdWords\v201710\cm\SortOrder;
+use Google\AdsApi\AdWords\v201710\mcm\ManagedCustomer;
 use Google\AdsApi\AdWords\v201710\mcm\ManagedCustomerService;
 use Google\AdsApi\Common\OAuth2TokenBuilder;
 

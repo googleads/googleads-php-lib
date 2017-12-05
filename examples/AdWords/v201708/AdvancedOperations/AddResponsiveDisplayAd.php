@@ -25,7 +25,6 @@ use Google\AdsApi\AdWords\v201708\cm\AdGroupAd;
 use Google\AdsApi\AdWords\v201708\cm\AdGroupAdOperation;
 use Google\AdsApi\AdWords\v201708\cm\AdGroupAdService;
 use Google\AdsApi\AdWords\v201708\cm\AdGroupAdStatus;
-use Google\AdsApi\AdWords\v201708\cm\DisplayAdFormatSetting;
 use Google\AdsApi\AdWords\v201708\cm\DynamicSettings;
 use Google\AdsApi\AdWords\v201708\cm\Image;
 use Google\AdsApi\AdWords\v201708\cm\MediaMediaType;

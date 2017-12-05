@@ -53,7 +53,6 @@ class AddProductScope {
     // This set of dimensions is for demonstration purposes only. It would be
     // extremely unlikely that you want to include so many dimensions in your
     // product scope.
-    $dimensions = [];
     $productBrand = new ProductBrand();
     $productBrand->setValue('Nexus');
 
@@ -107,8 +106,7 @@ class AddProductScope {
 
     // Create the campaign criterion on the server and print out some
     // information.
-    $campaignCrtierion =
-        $campaignCriterionService->mutate($operations)->getValue()[0];
+    $campaignCriterionService->mutate($operations)->getValue()[0];
     printf("Created a ProductScope criterion with ID %d.\n",
         $campaignCriterion->getCriterion()->getId());
   }

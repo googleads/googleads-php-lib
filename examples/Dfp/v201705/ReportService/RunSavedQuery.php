@@ -26,7 +26,6 @@ use Google\AdsApi\Dfp\Util\v201705\ReportDownloader;
 use Google\AdsApi\Dfp\Util\v201705\StatementBuilder;
 use Google\AdsApi\Dfp\v201705\ExportFormat;
 use Google\AdsApi\Dfp\v201705\ReportJob;
-use Google\AdsApi\Dfp\v201705\ReportQuery;
 use Google\AdsApi\Dfp\v201705\ReportQueryAdUnitView;
 use Google\AdsApi\Dfp\v201705\ReportService;
 use UnexpectedValueException;

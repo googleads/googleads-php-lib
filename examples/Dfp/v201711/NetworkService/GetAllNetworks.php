@@ -27,7 +27,7 @@ use Google\AdsApi\Dfp\v201711\NetworkService;
 /**
  * This example gets all networks.
  *
- * <p>It is meant to be run from a command line (not as a webpage) and requires
+ * It is meant to be run from a command line (not as a webpage) and requires
  * that you've setup an `adsapi_php.ini` file in your home directory with your
  * API credentials and settings. See README.md for more info.
  */

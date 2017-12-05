@@ -30,7 +30,6 @@ use PHPUnit_Framework_TestCase;
  */
 class GuzzleLogMessageFormatterTest extends PHPUnit_Framework_TestCase {
 
-  private $guzzleLogMessageFormatter;
   private $reportDownloadResult;
   private $scrubbedReportDownloadLog;
   private $reportDownloadLogWithErrors;

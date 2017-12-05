@@ -67,8 +67,8 @@ final class AdsSoapClientFactory {
    *     generate HTTP and SOAP headers
    * @param AdsServiceDescriptor $serviceDescriptor descriptor for the service
    *     the SOAP client is being generated to interface with
-   * @return SoapClient a SOAP client
-   * @throws UnexpectedValueException if the SOAP client could not be generated
+   * @return \SoapClient a SOAP client
+   * @throws \UnexpectedValueException if the SOAP client could not be generated
    */
   public function generateSoapClient(AdsSession $session,
       AdsHeaderHandler $headerHandler,

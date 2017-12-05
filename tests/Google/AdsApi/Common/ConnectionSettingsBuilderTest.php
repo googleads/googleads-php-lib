@@ -136,7 +136,7 @@ class ConnectionSettingsBuilderTest extends PHPUnit_Framework_TestCase {
    * @expectedException \InvalidArgumentException
    */
   public function testValidateFails() {
-    $connectionSettings = $this->connectionSettingsBuilder
+    $this->connectionSettingsBuilder
         ->withProxyUrl('       ')
         ->build();
   }

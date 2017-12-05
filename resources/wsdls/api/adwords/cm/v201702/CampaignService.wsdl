@@ -398,6 +398,10 @@
             <annotation>
               <documentation>
                 Amount of budget in the local currency for the account.
+                
+                This value represents an average daily budget amount; the actual daily costs might
+                vary. See &lt;a href="https://support.google.com/adwords/answer/1704443"&gt;Charges
+                and your daily budget&lt;/a&gt;.
                 &lt;span class="constraint Selectable"&gt;This field can be selected using the value "Amount".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
                 &lt;span class="constraint InRange"&gt;This field must be greater than or equal to 1.&lt;/span&gt;
                 &lt;span class="constraint ReadOnly"&gt;This field is read only and will be ignored when sent to the API for the following {@link Operator}s: REMOVE.&lt;/span&gt;

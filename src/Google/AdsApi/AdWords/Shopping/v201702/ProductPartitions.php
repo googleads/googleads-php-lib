@@ -216,6 +216,7 @@ final class ProductPartitions {
    *     API server
    * @param int $adGroupId the ID of ad group whose members will be presented
    *     hierarchically
+   * @return string the representation of the ad group criteria
    */
   public static function showAdGroupTree(AdWordsServices $adWordsServices,
       AdWordsSession $session, $adGroupId) {

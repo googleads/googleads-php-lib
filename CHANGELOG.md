@@ -1,3 +1,32 @@
+### 32.1.0
+
+##### DFP
+
+*   Added examples for v201711:
+    *   InventoryService\GetAdUnitHierarchy
+    *   InventoryService\GetTopLevelAdUnits
+    *   LineItemService\CreateLineItemsWithCustomCriteria
+    *   NetworkService\GetCurrentNetwork
+    *   NetworkService\MakeTestNetwork
+    *   PublisherQueryLanguageService\GetAllLineItems
+    *   PublisherQueryLanguageService\GetAllProgrammaticBuyers
+    *   PublisherQueryLanguageService\GetGeoTargets
+    *   ReportService\RunReachReport
+    *   ReportService\RunReportWithCustomFields
+    *   TeamService\UpdateTeams
+    *   UserService\GetCurrentUser
+    *   UserService\UpdateUsers
+
+*   Added utility class `CsvFiles` for v201711.
+
+##### Common
+
+*   Fixed
+    [issue #399](https://github.com/googleads/googleads-php-lib/issues/399).
+*   Fixed the issue that a wrong path to local WSDL files was specified in
+    `AdsSoapClient`.
+*   Accepted [PR #401](https://github.com/googleads/googleads-php-lib/pull/401).
+
 ### 32.0.0
 
 ##### AdWords

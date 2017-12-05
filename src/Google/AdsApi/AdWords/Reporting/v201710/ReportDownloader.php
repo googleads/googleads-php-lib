@@ -22,7 +22,6 @@ use Google\AdsApi\AdWords\AdWordsSession;
 use Google\AdsApi\AdWords\ReportSettings;
 use Google\AdsApi\AdWords\Reporting\ApiErrorFieldNameConverter;
 use Google\AdsApi\AdWords\Reporting\ReportDownloadResult;
-use Google\AdsApi\AdWords\v201710\cm\ApiError;
 use Google\AdsApi\AdWords\v201710\cm\ApiException;
 use Google\AdsApi\Common\AdsGuzzleHttpClientFactory;
 use Google\AdsApi\Common\GuzzleHttpClientFactory;

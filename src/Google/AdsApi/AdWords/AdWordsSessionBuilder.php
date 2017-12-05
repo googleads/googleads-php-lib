@@ -27,7 +27,6 @@ use Google\AdsApi\Common\SoapSettings;
 use Google\AdsApi\Common\SoapSettingsBuilder;
 use Google\Auth\FetchAuthTokenInterface;
 use InvalidArgumentException;
-use Monolog\Logger;
 use Psr\Log\LoggerInterface;
 
 /**
