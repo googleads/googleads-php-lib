@@ -18,7 +18,7 @@ namespace Google\AdsApi\Common;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -28,10 +28,10 @@ use Psr\Http\Message\ResponseInterface;
  * @see AdsGuzzleProxyHttpHandler
  * @small
  */
-class AdsGuzzleProxyHttpHandlerTest extends PHPUnit_Framework_TestCase {
+class AdsGuzzleProxyHttpHandlerTest extends TestCase {
 
   /**
-   * @see PHPUnit_Framework_TestCase::setUp
+   * @see PHPUnit\Framework\TestCase::setUp
    */
   protected function setUp() {
     $this->mockRequest =

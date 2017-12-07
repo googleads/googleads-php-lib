@@ -17,7 +17,7 @@
 namespace Google\AdsApi\Common;
 
 use Google\AdsApi\Common\Testing\FakeSoapPayloadsAndLogsProvider;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use SoapFault;
 
 /**
@@ -26,7 +26,7 @@ use SoapFault;
  * @see SoapLogMessageFormatter
  * @small
  */
-class SoapLogMessageFormatterTest extends PHPUnit_Framework_TestCase {
+class SoapLogMessageFormatterTest extends TestCase {
 
   private $soapLogMessageFormatter;
   private $requestHttpHeadersMock;
@@ -39,7 +39,7 @@ class SoapLogMessageFormatterTest extends PHPUnit_Framework_TestCase {
   private $mutateResponseSoapXmlMock;
 
   /**
-   * @see PHPUnit_Framework_TestCase::setUp
+   * @see PHPUnit\Framework\TestCase::setUp
    */
   protected function setUp() {
     $this->soapLogMessageFormatter = new SoapLogMessageFormatter();

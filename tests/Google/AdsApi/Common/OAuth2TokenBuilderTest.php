@@ -19,7 +19,7 @@ namespace Google\AdsApi\Common;
 use Google\AdsApi\Common\Testing\AdsBuildersTestProvider;
 use Google\Auth\Credentials\ServiceAccountCredentials;
 use Google\Auth\Credentials\UserRefreshCredentials;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for `OAuth2TokenBuilder`.
@@ -27,13 +27,13 @@ use PHPUnit_Framework_TestCase;
  * @see OAuth2TokenBuilder
  * @small
  */
-class OAuth2TokenBuilderTest extends PHPUnit_Framework_TestCase {
+class OAuth2TokenBuilderTest extends TestCase {
 
   private $oAuth2TokenBuilder;
   private $jsonKeyFilePath;
 
   /**
-   * @see PHPUnit_Framework_TestCase::setUp
+   * @see PHPUnit\Framework\TestCase::setUp
    */
   protected function setUp() {
     $this->oAuth2TokenBuilder = new OAuth2TokenBuilder();

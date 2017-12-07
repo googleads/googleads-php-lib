@@ -17,7 +17,7 @@
 namespace Google\AdsApi\Common\Util;
 
 use Google\AdsApi\Common\Testing\FakeSoapPayloadsAndLogsProvider;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for `SoapHeaders`.
@@ -25,7 +25,7 @@ use PHPUnit_Framework_TestCase;
  * @see SoapHeaders
  * @small
  */
-class SoapHeadersTest extends PHPUnit_Framework_TestCase {
+class SoapHeadersTest extends TestCase {
 
   /**
    * @covers Google\AdsApi\Common\Util\SoapHeaders::getSoapHeaderValue

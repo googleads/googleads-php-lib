@@ -17,7 +17,7 @@
 namespace Google\AdsApi\Dfp\Util\v201702;
 
 use Google\AdsApi\Dfp\v201702\Date;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for `DfpDates`.
@@ -25,7 +25,7 @@ use PHPUnit_Framework_TestCase;
  * @see DfpDates
  * @group small
  */
-class DfpDatesTest extends PHPUnit_Framework_TestCase {
+class DfpDatesTest extends TestCase {
 
   private $dfpDate1;
   private $dfpDate2;
@@ -36,7 +36,7 @@ class DfpDatesTest extends PHPUnit_Framework_TestCase {
   private $stringDate3;
 
   /**
-   * @see PHPUnit_Framework_TestCase::setUp
+   * @see PHPUnit\Framework\TestCase::setUp
    */
   protected function setUp() {
     $this->stringDate1 = '1983-06-02';

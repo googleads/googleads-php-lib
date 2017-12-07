@@ -17,7 +17,7 @@
 namespace Google\AdsApi\Common\Util;
 
 use Google\Auth\FetchAuthTokenInterface;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for `OAuth2TokenRefresher`.
@@ -25,13 +25,13 @@ use PHPUnit_Framework_TestCase;
  * @see OAuth2TokenRefresher
  * @small
  */
-class OAuth2TokenRefresherTest extends PHPUnit_Framework_TestCase {
+class OAuth2TokenRefresherTest extends TestCase {
 
   private $fetchAuthTokenInterfaceMock;
   private $oAuth2TokenRefresher;
 
   /**
-   * @see PHPUnit_Framework_TestCase::setUp
+   * @see PHPUnit\Framework\TestCase::setUp
    */
   protected function setUp() {
     $this->fetchAuthTokenInterfaceMock = $this

@@ -17,7 +17,7 @@
 namespace Google\AdsApi\AdWords;
 
 use Google\Auth\FetchAuthTokenInterface;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for `AdWordsHeaderHandler`.
@@ -25,13 +25,13 @@ use PHPUnit_Framework_TestCase;
  * @see AdWordsHeaderHandler
  * @small
  */
-class AdWordsHeaderHandlerTest extends PHPUnit_Framework_TestCase {
+class AdWordsHeaderHandlerTest extends TestCase {
 
   private $adWordsHeaderHandler;
   private $adWordsSessionBuilder;
 
   /**
-   * @see PHPUnit_Framework_TestCase::setUp
+   * @see PHPUnit\Framework\TestCase::setUp
    */
   protected function setUp() {
     $this->adWordsHeaderHandler = new AdWordsHeaderHandler();

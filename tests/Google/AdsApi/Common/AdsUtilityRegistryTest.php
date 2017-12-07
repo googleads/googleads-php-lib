@@ -16,7 +16,7 @@
  */
 namespace Google\AdsApi\Common;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for `AdsUtilityRegistry`.
@@ -24,12 +24,12 @@ use PHPUnit_Framework_TestCase;
  * @see AdsUtilityRegistry
  * @small
  */
-class AdsUtilityRegistryTest extends PHPUnit_Framework_TestCase {
+class AdsUtilityRegistryTest extends TestCase {
 
   private $adsUtilityRegistry;
 
   /**
-   * @see PHPUnit_Framework_TestCase::setUp
+   * @see PHPUnit\Framework\TestCase::setUp
    */
   public function setUp() {
     $this->adsUtilityRegistry = AdsUtilityRegistry::getInstance();

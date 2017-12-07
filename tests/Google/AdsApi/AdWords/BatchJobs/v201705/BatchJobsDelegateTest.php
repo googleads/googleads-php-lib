@@ -30,7 +30,7 @@ use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use Monolog\Handler\NullHandler;
 use Monolog\Logger;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for `BatchJobsDelegate`.
@@ -38,7 +38,7 @@ use PHPUnit_Framework_TestCase;
  * @see BatchJobsDelegate
  * @small
  */
-class BatchJobsDelegateTest extends PHPUnit_Framework_TestCase {
+class BatchJobsDelegateTest extends TestCase {
 
   private static $DUMMY_UPLOAD_URL = 'https://www.googleapis.com/upload';
   private static $DUMMY_RESUMABLE_UPLOAD_URL =
@@ -50,7 +50,7 @@ class BatchJobsDelegateTest extends PHPUnit_Framework_TestCase {
   private $adWordsSession;
 
   /**
-   * @see PHPUnit_Framework_TestCase::setUp
+   * @see PHPUnit\Framework\TestCase::setUp
    */
   protected function setUp() {
     $fetchAuthTokenInterfaceStub = $this

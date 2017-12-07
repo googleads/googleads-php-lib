@@ -16,7 +16,7 @@
  */
 namespace Google\AdsApi\Common\Util;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for `EnvironmentalVariables`.
@@ -24,12 +24,12 @@ use PHPUnit_Framework_TestCase;
  * @see EnvironmentalVariables
  * @small
  */
-class EnvironmentalVariablesTest extends PHPUnit_Framework_TestCase {
+class EnvironmentalVariablesTest extends TestCase {
 
   private $environmentalVariables;
 
   /**
-   * @see PHPUnit_Framework_TestCase::setUp
+   * @see PHPUnit\Framework\TestCase::setUp
    */
   protected function setUp() {
     $this->environmentalVariables = new EnvironmentalVariables();

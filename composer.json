@@ -14,7 +14,7 @@
   },
   "require-dev": {
     "php": ">=5.5.17",
-    "phpunit/phpunit": "^4.8"
+    "phpunit/phpunit": "^4.8.35"
   },
   "suggest": {
     "php-64bit": ">=5.5.9"

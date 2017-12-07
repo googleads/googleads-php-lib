@@ -21,7 +21,7 @@ use Google\AdsApi\AdWords\Testing\FakeAd;
 use Google\AdsApi\AdWords\Testing\FakeBudget;
 use Google\AdsApi\AdWords\Testing\FakeMoney;
 use Google\AdsApi\AdWords\Testing\FakeMutateResult;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
 use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
 use Symfony\Component\Serializer\Serializer;
@@ -32,12 +32,12 @@ use Symfony\Component\Serializer\Serializer;
  * @see AdWordsNormalizer
  * @small
  */
-class AdWordsNormalizerTest extends PHPUnit_Framework_TestCase {
+class AdWordsNormalizerTest extends TestCase {
 
   private $serializer;
 
   /**
-   * @see PHPUnit_Framework_TestCase::setUp
+   * @see PHPUnit\Framework\TestCase::setUp
    */
   protected function setUp() {
     $this->serializer = new Serializer(

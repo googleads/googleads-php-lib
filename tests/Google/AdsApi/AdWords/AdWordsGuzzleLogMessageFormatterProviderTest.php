@@ -20,7 +20,7 @@ use Google\AdsApi\Common\Testing\FakeHttpPayloadsAndLogsProvider;
 use Google\Auth\FetchAuthTokenInterface;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for `AdWordsGuzzleLogMessageFormatterProvider`.
@@ -29,14 +29,14 @@ use PHPUnit_Framework_TestCase;
  * @small
  */
 class AdWordsGuzzleLogMessageFormatterProviderTest
-    extends PHPUnit_Framework_TestCase {
+    extends TestCase {
 
   private $adWordsGuzzleLogMessageFormatter;
   private $reportDownloadResult;
   private $awql;
 
   /**
-   * @see PHPUnit_Framework_TestCase::setUp
+   * @see PHPUnit\Framework\TestCase::setUp
    */
   protected function setUp() {
     $fetchAuthTokenInterfaceStub = $this

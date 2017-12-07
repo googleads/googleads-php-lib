@@ -18,7 +18,7 @@ namespace Google\AdsApi\Common;
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for `AdsLoggerFactory`.
@@ -26,12 +26,12 @@ use PHPUnit_Framework_TestCase;
  * @see AdsLoggerFactory
  * @small
  */
-class AdsLoggerFactoryTest extends PHPUnit_Framework_TestCase {
+class AdsLoggerFactoryTest extends TestCase {
 
   private $adsLoggerFactory;
 
   /**
-   * @see PHPUnit_Framework_TestCase::setUp
+   * @see PHPUnit\Framework\TestCase::setUp
    */
   protected function setUp() {
     $this->adsLoggerFactory = new AdsLoggerFactory();

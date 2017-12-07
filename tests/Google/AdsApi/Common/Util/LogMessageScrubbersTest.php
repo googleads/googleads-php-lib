@@ -16,7 +16,7 @@
  */
 namespace Google\AdsApi\Common\Util;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for `LogMessageScrubbers`.
@@ -24,7 +24,7 @@ use PHPUnit_Framework_TestCase;
  * @see LogMessageScrubbers
  * @small
  */
-class LogMessageScrubbersTest extends PHPUnit_Framework_TestCase {
+class LogMessageScrubbersTest extends TestCase {
 
   /**
    * @covers Google\AdsApi\Common\Util\LogMessageScrubbers::scrubRequestHttpHeaders

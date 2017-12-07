@@ -18,7 +18,7 @@ namespace Google\AdsApi\AdWords\Reporting;
 
 use Google\AdsApi\AdWords\Testing\Reporting\ReportDownloadResultTestProvider;
 use GuzzleHttp\Psr7\Response;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
 /**
@@ -27,13 +27,13 @@ use RuntimeException;
  * @see ReportDownloadResultDelegate
  * @small
  */
-class ReportDownloadResultDelegateTest extends PHPUnit_Framework_TestCase {
+class ReportDownloadResultDelegateTest extends TestCase {
 
   private $fakeReport;
   private $reportDownloadResultDelegate;
 
   /**
-   * @see PHPUnit_Framework_TestCase::setUp
+   * @see PHPUnit\Framework\TestCase::setUp
    */
   protected function setUp() {
     $this->fakeReport =
