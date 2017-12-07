@@ -16,7 +16,7 @@
  */
 namespace Google\AdsApi\Dfp\Util\v201711;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for `CsvFiles`.
@@ -24,7 +24,7 @@ use PHPUnit_Framework_TestCase;
  * @see CsvFiles
  * @group small
  */
-class CsvFilesTest extends PHPUnit_Framework_TestCase {
+class CsvFilesTest extends TestCase {
 
   const IN_MEMORY_FILE_PATH = 'php://temp/maxmemory:1024';
   private $resultSet;
@@ -86,12 +86,12 @@ class CsvFilesTest extends PHPUnit_Framework_TestCase {
 
     // Verify that the data is consistent after writing and reading CSV.
     $expectedRowCount = count($this->resultSet);
-    $this->assertEquals($expectedRowCount, count($actualData));
+    $this->assertCount($expectedRowCount, $actualData);
     for ($i = 0; $i < $expectedRowCount; $i++) {
       $expectedRow = $this->resultSet[$i];
       $actualRow = $actualData[$i];
       $expectedFieldCount = count($expectedRow);
-      $this->assertEquals($expectedFieldCount, count($actualRow));
+      $this->assertCount($expectedFieldCount, $actualRow);
       for ($j = 0; $j < $expectedFieldCount; $j++) {
         $this->assertEquals($expectedRow[$j], $actualRow[$j],
             sprintf("Mismatch found at row %d, col %d\n", $i, $j));

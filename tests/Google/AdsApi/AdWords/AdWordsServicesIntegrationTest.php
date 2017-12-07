@@ -124,7 +124,7 @@ class AdWordsServicesIntegrationTest extends TestCase {
     // Check that the campaign service (which is a SOAP client) has deserialized
     // the SOAP XML response to the Campaign object correctly.
     $actualCampaigns = $page->getEntries();
-    $this->assertSame(count($expectedCampaigns), count($actualCampaigns));
+    $this->assertCount(count($expectedCampaigns), $actualCampaigns);
 
     for ($i = 0; $i < count($actualCampaigns); $i++) {
       $expectedCampaign = $expectedCampaigns[$i];

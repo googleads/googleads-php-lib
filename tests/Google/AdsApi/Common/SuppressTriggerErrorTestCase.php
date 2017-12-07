@@ -16,12 +16,12 @@
  */
 namespace Google\AdsApi\Common;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * A test case that needs suppression of trigger_error().
  */
-class SuppressTriggerErrorTestCase extends PHPUnit_Framework_TestCase {
+class SuppressTriggerErrorTestCase extends TestCase {
 
   /**
    * @see PHPUnit_Framework_TestCase::setUp
