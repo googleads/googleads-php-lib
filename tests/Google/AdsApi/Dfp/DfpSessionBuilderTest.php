@@ -102,8 +102,8 @@ class DfpSessionBuilderTest extends TestCase {
     $this->assertSame('12345678', $dfpSession->getNetworkCode());
     $this->assertSame(
         'google report runner', $dfpSession->getApplicationName());
-    $this->assertTrue(
-        filter_var($dfpSession->getEndpoint(), FILTER_VALIDATE_URL) !== false);
+    $this->assertNotFalse(
+        filter_var($dfpSession->getEndpoint(), FILTER_VALIDATE_URL));
     $this->assertNotNull($dfpSession->getSoapSettings());
   }
 
@@ -224,8 +224,8 @@ class DfpSessionBuilderTest extends TestCase {
     $this->assertSame('12345678', $dfpSession->getNetworkCode());
     $this->assertSame(
         'Google report runner', $dfpSession->getApplicationName());
-    $this->assertTrue(
-        filter_var($dfpSession->getEndpoint(), FILTER_VALIDATE_URL) !== false);
+    $this->assertNotFalse(
+        filter_var($dfpSession->getEndpoint(), FILTER_VALIDATE_URL));
     $this->assertInstanceOf(FetchAuthTokenInterface::class,
         $dfpSession->getOAuth2Credential());
     $this->assertNotNull($dfpSession->getSoapSettings());

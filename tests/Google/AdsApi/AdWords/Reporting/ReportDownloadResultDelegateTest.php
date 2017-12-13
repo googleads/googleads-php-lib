@@ -82,7 +82,7 @@ class ReportDownloadResultDelegateTest extends TestCase {
         tempnam(sys_get_temp_dir(), 'criteria-report-')
     );
     $this->reportDownloadResultDelegate->saveToFile($filePath);
-    $this->assertSame($this->fakeReport, file_get_contents($filePath));
+    $this->assertStringEqualsFile($filePath, $this->fakeReport);
   }
 
   /**

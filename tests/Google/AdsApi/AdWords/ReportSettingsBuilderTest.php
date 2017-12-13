@@ -17,7 +17,7 @@
 namespace Google\AdsApi\Common;
 
 use Google\AdsApi\AdWords\ReportSettingsBuilder;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for `ReportSettingsBuilder`.
@@ -25,7 +25,7 @@ use PHPUnit_Framework_TestCase;
  * @see ReportSettingsBuilder
  * @small
  */
-class ReportSettingsBuilderTest extends PHPUnit_Framework_TestCase {
+class ReportSettingsBuilderTest extends TestCase {
 
   private $reportSettingsBuilder;
 

@@ -122,8 +122,8 @@ class AdWordsSessionBuilderTest extends TestCase {
     $this->assertSame(
         'ABcdeFGH93KL-NOPQ_STUv', $adWordsSession->getDeveloperToken());
     $this->assertSame('report downloader', $adWordsSession->getUserAgent());
-    $this->assertTrue(filter_var(
-        $adWordsSession->getEndpoint(), FILTER_VALIDATE_URL) !== false);
+    $this->assertNotFalse(filter_var(
+        $adWordsSession->getEndpoint(), FILTER_VALIDATE_URL));
     $this->assertNull($adWordsSession->getClientCustomerId());
     $this->assertNotNull($adWordsSession->isPartialFailure());
     $this->assertNotNull($adWordsSession->isIncludeUtilitiesInUserAgent());
@@ -268,8 +268,8 @@ class AdWordsSessionBuilderTest extends TestCase {
         $adWordsSession->getOAuth2Credential());
     $this->assertInstanceOf(
         LoggerInterface::class, $adWordsSession->getSoapLogger());
-    $this->assertTrue(filter_var(
-        $adWordsSession->getEndpoint(), FILTER_VALIDATE_URL) !== false);
+    $this->assertNotFalse(filter_var(
+        $adWordsSession->getEndpoint(), FILTER_VALIDATE_URL));
     $this->assertNull($adWordsSession->getClientCustomerId());
     $this->assertNotNull($adWordsSession->isPartialFailure());
     $this->assertNotNull($adWordsSession->isIncludeUtilitiesInUserAgent());

@@ -16,7 +16,7 @@
  */
 namespace Google\AdsApi\Common;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Unit tests for `AdsSoapClient`.
@@ -24,7 +24,7 @@ use PHPUnit_Framework_TestCase;
  * @see AdsSoapClient
  * @small
  */
-class AdsSoapClientTest extends PHPUnit_Framework_TestCase {
+class AdsSoapClientTest extends TestCase {
 
   /**
    * @covers Google\AdsApi\Common\AdsSoapClient::getLocalWsdlPath
