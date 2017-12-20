@@ -241,7 +241,9 @@ final class ProductPartitions {
       if ($page->getEntries() !== null) {
         $totalNumEntries = $page->getTotalNumEntries();
         foreach ($page->getEntries() as $adGroupCriterion) {
-          $children[$adGroupCriterion->getCriterion()->getId()] = [];
+          if (!array_key_exists($adGroupCriterion->getCriterion()->getId(), $children)) {
+            $children[$adGroupCriterion->getCriterion()->getId()] = [];
+          }
 
           if ($adGroupCriterion->getCriterion()->getParentCriterionId()
               !== null) {
