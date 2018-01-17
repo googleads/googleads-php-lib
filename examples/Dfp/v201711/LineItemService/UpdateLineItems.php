@@ -93,4 +93,4 @@ class UpdateLineItems {
   }
 }
 
-CreateLineItems::main();
+UpdateLineItems::main();
