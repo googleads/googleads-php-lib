@@ -40,7 +40,7 @@ require_once 'Google/Api/Ads/AdWords/v201705/FeedItemService.php';
 if (!class_exists("ErrorList", false)) {
   class ErrorList {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "ErrorList";
 
     /**
@@ -73,7 +73,7 @@ if (!class_exists("ErrorList", false)) {
 if (!class_exists("MutateResult", false)) {
   class MutateResult {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "MutateResult";
 
     /**
@@ -119,7 +119,7 @@ if (!class_exists("MutateResult", false)) {
 if (!class_exists("Operand", false)) {
   class Operand {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "Operand";
 
     /**
@@ -273,7 +273,7 @@ if (!class_exists("Operand", false)) {
 if (!class_exists("BatchJobOpsMutate", false)) {
   class BatchJobOpsMutate {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "";
 
     /**
@@ -306,7 +306,7 @@ if (!class_exists("BatchJobOpsMutate", false)) {
 if (!class_exists("BatchJobOpsMutateResponse", false)) {
   class BatchJobOpsMutateResponse {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "";
 
     /**

@@ -40,7 +40,7 @@ if (!class_exists("ApiError", false)) {
    */
   class ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "ApiError";
 
     /**
@@ -140,7 +140,7 @@ if (!class_exists("ApplicationException", false)) {
    */
   class ApplicationException {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "ApplicationException";
 
     /**
@@ -219,7 +219,7 @@ if (!class_exists("LabelAttribute", false)) {
    */
   class LabelAttribute {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "LabelAttribute";
 
     /**
@@ -291,7 +291,7 @@ if (!class_exists("AuthenticationError", false)) {
    */
   class AuthenticationError extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "AuthenticationError";
 
     /**
@@ -337,7 +337,7 @@ if (!class_exists("AuthorizationError", false)) {
    */
   class AuthorizationError extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "AuthorizationError";
 
     /**
@@ -383,7 +383,7 @@ if (!class_exists("BiddingErrors", false)) {
    */
   class BiddingErrors extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "BiddingErrors";
 
     /**
@@ -430,7 +430,7 @@ if (!class_exists("BiddingScheme", false)) {
    */
   class BiddingScheme {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "BiddingScheme";
 
     /**
@@ -524,7 +524,7 @@ if (!class_exists("BiddingStrategyConfiguration", false)) {
    */
   class BiddingStrategyConfiguration {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "BiddingStrategyConfiguration";
 
     /**
@@ -606,7 +606,7 @@ if (!class_exists("Bids", false)) {
    */
   class Bids {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "Bids";
 
     /**
@@ -678,7 +678,7 @@ if (!class_exists("Budget", false)) {
    */
   class Budget {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "Budget";
 
     /**
@@ -760,7 +760,7 @@ if (!class_exists("BudgetError", false)) {
    */
   class BudgetError extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "BudgetError";
 
     /**
@@ -806,7 +806,7 @@ if (!class_exists("Campaign", false)) {
    */
   class Campaign {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "Campaign";
 
     /**
@@ -1007,7 +1007,7 @@ if (!class_exists("CampaignError", false)) {
    */
   class CampaignError extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "CampaignError";
 
     /**
@@ -1053,7 +1053,7 @@ if (!class_exists("CampaignLabel", false)) {
    */
   class CampaignLabel {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "CampaignLabel";
 
     /**
@@ -1100,7 +1100,7 @@ if (!class_exists("DisplayAttribute", false)) {
    */
   class DisplayAttribute extends LabelAttribute {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "DisplayAttribute";
 
     /**
@@ -1149,7 +1149,7 @@ if (!class_exists("ClientTermsError", false)) {
    */
   class ClientTermsError extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "ClientTermsError";
 
     /**
@@ -1195,7 +1195,7 @@ if (!class_exists("ComparableValue", false)) {
    */
   class ComparableValue {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "ComparableValue";
 
     /**
@@ -1267,7 +1267,7 @@ if (!class_exists("ConversionOptimizerEligibility", false)) {
    */
   class ConversionOptimizerEligibility {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "ConversionOptimizerEligibility";
 
     /**
@@ -1314,7 +1314,7 @@ if (!class_exists("CpaBid", false)) {
    */
   class CpaBid extends Bids {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "CpaBid";
 
     /**
@@ -1363,7 +1363,7 @@ if (!class_exists("CpcBid", false)) {
    */
   class CpcBid extends Bids {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "CpcBid";
 
     /**
@@ -1412,7 +1412,7 @@ if (!class_exists("CpmBid", false)) {
    */
   class CpmBid extends Bids {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "CpmBid";
 
     /**
@@ -1461,7 +1461,7 @@ if (!class_exists("CustomParameter", false)) {
    */
   class CustomParameter {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "CustomParameter";
 
     /**
@@ -1517,7 +1517,7 @@ if (!class_exists("CustomParameters", false)) {
    */
   class CustomParameters {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "CustomParameters";
 
     /**
@@ -1564,7 +1564,7 @@ if (!class_exists("DatabaseError", false)) {
    */
   class DatabaseError extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "DatabaseError";
 
     /**
@@ -1610,7 +1610,7 @@ if (!class_exists("DateError", false)) {
    */
   class DateError extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "DateError";
 
     /**
@@ -1657,7 +1657,7 @@ if (!class_exists("DateRange", false)) {
    */
   class DateRange {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "DateRange";
 
     /**
@@ -1704,7 +1704,7 @@ if (!class_exists("DateRangeError", false)) {
    */
   class DateRangeError extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "DateRangeError";
 
     /**
@@ -1750,7 +1750,7 @@ if (!class_exists("DistinctError", false)) {
    */
   class DistinctError extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "DistinctError";
 
     /**
@@ -1800,7 +1800,7 @@ if (!class_exists("EnhancedCpcBiddingScheme", false)) {
    */
   class EnhancedCpcBiddingScheme extends BiddingScheme {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "EnhancedCpcBiddingScheme";
 
     /**
@@ -1835,7 +1835,7 @@ if (!class_exists("EntityAccessDenied", false)) {
    */
   class EntityAccessDenied extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "EntityAccessDenied";
 
     /**
@@ -1882,7 +1882,7 @@ if (!class_exists("EntityCountLimitExceeded", false)) {
    */
   class EntityCountLimitExceeded extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "EntityCountLimitExceeded";
 
     /**
@@ -1957,7 +1957,7 @@ if (!class_exists("EntityNotFound", false)) {
    */
   class EntityNotFound extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "EntityNotFound";
 
     /**
@@ -2003,7 +2003,7 @@ if (!class_exists("FieldPathElement", false)) {
    */
   class FieldPathElement {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "FieldPathElement";
 
     /**
@@ -2051,7 +2051,7 @@ if (!class_exists("ForwardCompatibilityError", false)) {
    */
   class ForwardCompatibilityError extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "ForwardCompatibilityError";
 
     /**
@@ -2098,7 +2098,7 @@ if (!class_exists("FrequencyCap", false)) {
    */
   class FrequencyCap {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "FrequencyCap";
 
     /**
@@ -2152,7 +2152,7 @@ if (!class_exists("IdError", false)) {
    */
   class IdError extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "IdError";
 
     /**
@@ -2200,7 +2200,7 @@ if (!class_exists("InternalApiError", false)) {
    */
   class InternalApiError extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "InternalApiError";
 
     /**
@@ -2247,7 +2247,7 @@ if (!class_exists("Label", false)) {
    */
   class Label {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "Label";
 
     /**
@@ -2347,7 +2347,7 @@ if (!class_exists("ListError", false)) {
    */
   class ListError extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "ListError";
 
     /**
@@ -2401,7 +2401,7 @@ if (!class_exists("ListOperations", false)) {
    */
   class ListOperations {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "ListOperations";
 
     /**
@@ -2448,7 +2448,7 @@ if (!class_exists("ListReturnValue", false)) {
    */
   class ListReturnValue {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "ListReturnValue";
 
     /**
@@ -2521,7 +2521,7 @@ if (!class_exists("ManualCpcBiddingScheme", false)) {
    */
   class ManualCpcBiddingScheme extends BiddingScheme {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "ManualCpcBiddingScheme";
 
     /**
@@ -2564,7 +2564,7 @@ if (!class_exists("ManualCpmBiddingScheme", false)) {
    */
   class ManualCpmBiddingScheme extends BiddingScheme {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "ManualCpmBiddingScheme";
 
     /**
@@ -2599,7 +2599,7 @@ if (!class_exists("Money", false)) {
    */
   class Money extends ComparableValue {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "Money";
 
     /**
@@ -2641,7 +2641,7 @@ if (!class_exists("NetworkSetting", false)) {
    */
   class NetworkSetting {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "NetworkSetting";
 
     /**
@@ -2702,7 +2702,7 @@ if (!class_exists("NewEntityCreationError", false)) {
    */
   class NewEntityCreationError extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "NewEntityCreationError";
 
     /**
@@ -2748,7 +2748,7 @@ if (!class_exists("NotEmptyError", false)) {
    */
   class NotEmptyError extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "NotEmptyError";
 
     /**
@@ -2794,7 +2794,7 @@ if (!class_exists("NullError", false)) {
    */
   class NullError extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "NullError";
 
     /**
@@ -2840,7 +2840,7 @@ if (!class_exists("NumberValue", false)) {
    */
   class NumberValue extends ComparableValue {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "NumberValue";
 
     /**
@@ -2876,7 +2876,7 @@ if (!class_exists("Operation", false)) {
    */
   class Operation {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "Operation";
 
     /**
@@ -2955,7 +2955,7 @@ if (!class_exists("OperationAccessDenied", false)) {
    */
   class OperationAccessDenied extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "OperationAccessDenied";
 
     /**
@@ -3001,7 +3001,7 @@ if (!class_exists("OperatorError", false)) {
    */
   class OperatorError extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "OperatorError";
 
     /**
@@ -3047,7 +3047,7 @@ if (!class_exists("OrderBy", false)) {
    */
   class OrderBy {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "OrderBy";
 
     /**
@@ -3094,7 +3094,7 @@ if (!class_exists("Page", false)) {
    */
   class Page {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "Page";
 
     /**
@@ -3173,7 +3173,7 @@ if (!class_exists("PageFeed", false)) {
    */
   class PageFeed {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "PageFeed";
 
     /**
@@ -3215,7 +3215,7 @@ if (!class_exists("PageOnePromotedBiddingScheme", false)) {
    */
   class PageOnePromotedBiddingScheme extends BiddingScheme {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "PageOnePromotedBiddingScheme";
 
     /**
@@ -3294,7 +3294,7 @@ if (!class_exists("Paging", false)) {
    */
   class Paging {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "Paging";
 
     /**
@@ -3341,7 +3341,7 @@ if (!class_exists("PolicyTopicConstraint", false)) {
    */
   class PolicyTopicConstraint {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "PolicyTopicConstraint";
 
     /**
@@ -3420,7 +3420,7 @@ if (!class_exists("PolicyTopicEntry", false)) {
    */
   class PolicyTopicEntry {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "PolicyTopicEntry";
 
     /**
@@ -3488,7 +3488,7 @@ if (!class_exists("PolicyTopicEvidence", false)) {
    */
   class PolicyTopicEvidence {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "PolicyTopicEvidence";
 
     /**
@@ -3535,7 +3535,7 @@ if (!class_exists("Predicate", false)) {
    */
   class Predicate {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "Predicate";
 
     /**
@@ -3589,7 +3589,7 @@ if (!class_exists("QueryError", false)) {
    */
   class QueryError extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "QueryError";
 
     /**
@@ -3642,7 +3642,7 @@ if (!class_exists("QuotaCheckError", false)) {
    */
   class QuotaCheckError extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "QuotaCheckError";
 
     /**
@@ -3688,7 +3688,7 @@ if (!class_exists("RangeError", false)) {
    */
   class RangeError extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "RangeError";
 
     /**
@@ -3734,7 +3734,7 @@ if (!class_exists("RateExceededError", false)) {
    */
   class RateExceededError extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "RateExceededError";
 
     /**
@@ -3801,7 +3801,7 @@ if (!class_exists("ReadOnlyError", false)) {
    */
   class ReadOnlyError extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "ReadOnlyError";
 
     /**
@@ -3847,7 +3847,7 @@ if (!class_exists("RegionCodeError", false)) {
    */
   class RegionCodeError extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "RegionCodeError";
 
     /**
@@ -3893,7 +3893,7 @@ if (!class_exists("RejectedError", false)) {
    */
   class RejectedError extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "RejectedError";
 
     /**
@@ -3940,7 +3940,7 @@ if (!class_exists("RequestError", false)) {
    */
   class RequestError extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "RequestError";
 
     /**
@@ -3986,7 +3986,7 @@ if (!class_exists("RequiredError", false)) {
    */
   class RequiredError extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "RequiredError";
 
     /**
@@ -4033,7 +4033,7 @@ if (!class_exists("SelectiveOptimization", false)) {
    */
   class SelectiveOptimization {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "SelectiveOptimization";
 
     /**
@@ -4080,7 +4080,7 @@ if (!class_exists("Selector", false)) {
    */
   class Selector {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "Selector";
 
     /**
@@ -4148,7 +4148,7 @@ if (!class_exists("SelectorError", false)) {
    */
   class SelectorError extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "SelectorError";
 
     /**
@@ -4194,7 +4194,7 @@ if (!class_exists("Setting", false)) {
    */
   class Setting {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "Setting";
 
     /**
@@ -4266,7 +4266,7 @@ if (!class_exists("SettingError", false)) {
    */
   class SettingError extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "SettingError";
 
     /**
@@ -4313,7 +4313,7 @@ if (!class_exists("ShoppingSetting", false)) {
    */
   class ShoppingSetting extends Setting {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "ShoppingSetting";
 
     /**
@@ -4383,7 +4383,7 @@ if (!class_exists("SizeLimitError", false)) {
    */
   class SizeLimitError extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "SizeLimitError";
 
     /**
@@ -4429,7 +4429,7 @@ if (!class_exists("SoapRequestHeader", false)) {
    */
   class SoapRequestHeader {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "SoapHeader";
 
     /**
@@ -4497,7 +4497,7 @@ if (!class_exists("SoapResponseHeader", false)) {
    */
   class SoapResponseHeader {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "SoapResponseHeader";
 
     /**
@@ -4565,7 +4565,7 @@ if (!class_exists("StatsQueryError", false)) {
    */
   class StatsQueryError extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "StatsQueryError";
 
     /**
@@ -4611,7 +4611,7 @@ if (!class_exists("StringFormatError", false)) {
    */
   class StringFormatError extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "StringFormatError";
 
     /**
@@ -4658,7 +4658,7 @@ if (!class_exists("StringLengthError", false)) {
    */
   class StringLengthError extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "StringLengthError";
 
     /**
@@ -4705,7 +4705,7 @@ if (!class_exists("String_StringMapEntry", false)) {
    */
   class String_StringMapEntry {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "String_StringMapEntry";
 
     /**
@@ -4763,7 +4763,7 @@ if (!class_exists("TargetCpaBiddingScheme", false)) {
    */
   class TargetCpaBiddingScheme extends BiddingScheme {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "TargetCpaBiddingScheme";
 
     /**
@@ -4822,7 +4822,7 @@ if (!class_exists("TargetOutrankShareBiddingScheme", false)) {
    */
   class TargetOutrankShareBiddingScheme extends BiddingScheme {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "TargetOutrankShareBiddingScheme";
 
     /**
@@ -4896,7 +4896,7 @@ if (!class_exists("TargetingSettingDetail", false)) {
    */
   class TargetingSettingDetail {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "TargetingSettingDetail";
 
     /**
@@ -4953,7 +4953,7 @@ if (!class_exists("TargetRoasBiddingScheme", false)) {
    */
   class TargetRoasBiddingScheme extends BiddingScheme {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "TargetRoasBiddingScheme";
 
     /**
@@ -5011,7 +5011,7 @@ if (!class_exists("TargetSpendBiddingScheme", false)) {
    */
   class TargetSpendBiddingScheme extends BiddingScheme {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "TargetSpendBiddingScheme";
 
     /**
@@ -5068,7 +5068,7 @@ if (!class_exists("TargetingSetting", false)) {
    */
   class TargetingSetting extends Setting {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "TargetingSetting";
 
     /**
@@ -5110,7 +5110,7 @@ if (!class_exists("TrackingSetting", false)) {
    */
   class TrackingSetting extends Setting {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "TrackingSetting";
 
     /**
@@ -5153,7 +5153,7 @@ if (!class_exists("UniversalAppCampaignAdsPolicyDecisions", false)) {
    */
   class UniversalAppCampaignAdsPolicyDecisions {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "UniversalAppCampaignAdsPolicyDecisions";
 
     /**
@@ -5207,7 +5207,7 @@ if (!class_exists("UrlError", false)) {
    */
   class UrlError extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "UrlError";
 
     /**
@@ -5253,7 +5253,7 @@ if (!class_exists("VanityPharma", false)) {
    */
   class VanityPharma {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "VanityPharma";
 
     /**
@@ -5300,7 +5300,7 @@ if (!class_exists("AdServingOptimizationStatus", false)) {
    */
   class AdServingOptimizationStatus {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "AdServingOptimizationStatus";
 
     /**
@@ -5333,7 +5333,7 @@ if (!class_exists("AdvertisingChannelSubType", false)) {
    */
   class AdvertisingChannelSubType {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "AdvertisingChannelSubType";
 
     /**
@@ -5366,7 +5366,7 @@ if (!class_exists("AdvertisingChannelType", false)) {
    */
   class AdvertisingChannelType {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "AdvertisingChannelType";
 
     /**
@@ -5399,7 +5399,7 @@ if (!class_exists("AdxErrorReason", false)) {
    */
   class AdxErrorReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "AdxError.Reason";
 
     /**
@@ -5432,7 +5432,7 @@ if (!class_exists("AuthenticationErrorReason", false)) {
    */
   class AuthenticationErrorReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "AuthenticationError.Reason";
 
     /**
@@ -5465,7 +5465,7 @@ if (!class_exists("AuthorizationErrorReason", false)) {
    */
   class AuthorizationErrorReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "AuthorizationError.Reason";
 
     /**
@@ -5499,7 +5499,7 @@ if (!class_exists("BidSource", false)) {
    */
   class BidSource {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "BidSource";
 
     /**
@@ -5532,7 +5532,7 @@ if (!class_exists("BiddingErrorsReason", false)) {
    */
   class BiddingErrorsReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "BiddingErrors.Reason";
 
     /**
@@ -5565,7 +5565,7 @@ if (!class_exists("BiddingStrategySource", false)) {
    */
   class BiddingStrategySource {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "BiddingStrategySource";
 
     /**
@@ -5599,7 +5599,7 @@ if (!class_exists("BiddingStrategyType", false)) {
    */
   class BiddingStrategyType {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "BiddingStrategyType";
 
     /**
@@ -5632,7 +5632,7 @@ if (!class_exists("BudgetBudgetDeliveryMethod", false)) {
    */
   class BudgetBudgetDeliveryMethod {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "Budget.BudgetDeliveryMethod";
 
     /**
@@ -5665,7 +5665,7 @@ if (!class_exists("BudgetBudgetStatus", false)) {
    */
   class BudgetBudgetStatus {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "Budget.BudgetStatus";
 
     /**
@@ -5698,7 +5698,7 @@ if (!class_exists("BudgetErrorReason", false)) {
    */
   class BudgetErrorReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "BudgetError.Reason";
 
     /**
@@ -5731,7 +5731,7 @@ if (!class_exists("CampaignErrorReason", false)) {
    */
   class CampaignErrorReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "CampaignError.Reason";
 
     /**
@@ -5764,7 +5764,7 @@ if (!class_exists("CampaignStatus", false)) {
    */
   class CampaignStatus {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "CampaignStatus";
 
     /**
@@ -5798,7 +5798,7 @@ if (!class_exists("CampaignTrialType", false)) {
    */
   class CampaignTrialType {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "CampaignTrialType";
 
     /**
@@ -5832,7 +5832,7 @@ if (!class_exists("ClientTermsErrorReason", false)) {
    */
   class ClientTermsErrorReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "ClientTermsError.Reason";
 
     /**
@@ -5865,7 +5865,7 @@ if (!class_exists("ConversionOptimizerEligibilityRejectionReason", false)) {
    */
   class ConversionOptimizerEligibilityRejectionReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "ConversionOptimizerEligibility.RejectionReason";
 
     /**
@@ -5898,7 +5898,7 @@ if (!class_exists("CriterionTypeGroup", false)) {
    */
   class CriterionTypeGroup {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "CriterionTypeGroup";
 
     /**
@@ -5931,7 +5931,7 @@ if (!class_exists("DatabaseErrorReason", false)) {
    */
   class DatabaseErrorReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "DatabaseError.Reason";
 
     /**
@@ -5964,7 +5964,7 @@ if (!class_exists("DateErrorReason", false)) {
    */
   class DateErrorReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "DateError.Reason";
 
     /**
@@ -5997,7 +5997,7 @@ if (!class_exists("DateRangeErrorReason", false)) {
    */
   class DateRangeErrorReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "DateRangeError.Reason";
 
     /**
@@ -6030,7 +6030,7 @@ if (!class_exists("DistinctErrorReason", false)) {
    */
   class DistinctErrorReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "DistinctError.Reason";
 
     /**
@@ -6063,7 +6063,7 @@ if (!class_exists("EntityAccessDeniedReason", false)) {
    */
   class EntityAccessDeniedReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "EntityAccessDenied.Reason";
 
     /**
@@ -6096,7 +6096,7 @@ if (!class_exists("EntityCountLimitExceededReason", false)) {
    */
   class EntityCountLimitExceededReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "EntityCountLimitExceeded.Reason";
 
     /**
@@ -6130,7 +6130,7 @@ if (!class_exists("EntityNotFoundReason", false)) {
    */
   class EntityNotFoundReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "EntityNotFound.Reason";
 
     /**
@@ -6163,7 +6163,7 @@ if (!class_exists("ForwardCompatibilityErrorReason", false)) {
    */
   class ForwardCompatibilityErrorReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "ForwardCompatibilityError.Reason";
 
     /**
@@ -6196,7 +6196,7 @@ if (!class_exists("GeoTargetTypeSettingNegativeGeoTargetType", false)) {
    */
   class GeoTargetTypeSettingNegativeGeoTargetType {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "GeoTargetTypeSetting.NegativeGeoTargetType";
 
     /**
@@ -6229,7 +6229,7 @@ if (!class_exists("GeoTargetTypeSettingPositiveGeoTargetType", false)) {
    */
   class GeoTargetTypeSettingPositiveGeoTargetType {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "GeoTargetTypeSetting.PositiveGeoTargetType";
 
     /**
@@ -6262,7 +6262,7 @@ if (!class_exists("IdErrorReason", false)) {
    */
   class IdErrorReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "IdError.Reason";
 
     /**
@@ -6295,7 +6295,7 @@ if (!class_exists("InternalApiErrorReason", false)) {
    */
   class InternalApiErrorReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "InternalApiError.Reason";
 
     /**
@@ -6328,7 +6328,7 @@ if (!class_exists("LabelStatus", false)) {
    */
   class LabelStatus {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "Label.Status";
 
     /**
@@ -6361,7 +6361,7 @@ if (!class_exists("Level", false)) {
    */
   class Level {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "Level";
 
     /**
@@ -6394,7 +6394,7 @@ if (!class_exists("ListErrorReason", false)) {
    */
   class ListErrorReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "ListError.Reason";
 
     /**
@@ -6427,7 +6427,7 @@ if (!class_exists("ListOperationsListOperator", false)) {
    */
   class ListOperationsListOperator {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "ListOperations.ListOperator";
 
     /**
@@ -6460,7 +6460,7 @@ if (!class_exists("NewEntityCreationErrorReason", false)) {
    */
   class NewEntityCreationErrorReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "NewEntityCreationError.Reason";
 
     /**
@@ -6493,7 +6493,7 @@ if (!class_exists("NotEmptyErrorReason", false)) {
    */
   class NotEmptyErrorReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "NotEmptyError.Reason";
 
     /**
@@ -6526,7 +6526,7 @@ if (!class_exists("NullErrorReason", false)) {
    */
   class NullErrorReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "NullError.Reason";
 
     /**
@@ -6559,7 +6559,7 @@ if (!class_exists("OperationAccessDeniedReason", false)) {
    */
   class OperationAccessDeniedReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "OperationAccessDenied.Reason";
 
     /**
@@ -6592,7 +6592,7 @@ if (!class_exists("Operator", false)) {
    */
   class Operator {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "Operator";
 
     /**
@@ -6625,7 +6625,7 @@ if (!class_exists("OperatorErrorReason", false)) {
    */
   class OperatorErrorReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "OperatorError.Reason";
 
     /**
@@ -6658,7 +6658,7 @@ if (!class_exists("PageOnePromotedBiddingSchemeStrategyGoal", false)) {
    */
   class PageOnePromotedBiddingSchemeStrategyGoal {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "PageOnePromotedBiddingScheme.StrategyGoal";
 
     /**
@@ -6691,7 +6691,7 @@ if (!class_exists("PolicyTopicConstraintPolicyTopicConstraintType", false)) {
    */
   class PolicyTopicConstraintPolicyTopicConstraintType {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "PolicyTopicConstraint.PolicyTopicConstraintType";
 
     /**
@@ -6724,7 +6724,7 @@ if (!class_exists("PolicyTopicEntryType", false)) {
    */
   class PolicyTopicEntryType {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "PolicyTopicEntryType";
 
     /**
@@ -6757,7 +6757,7 @@ if (!class_exists("PolicyTopicEvidenceType", false)) {
    */
   class PolicyTopicEvidenceType {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "PolicyTopicEvidenceType";
 
     /**
@@ -6790,7 +6790,7 @@ if (!class_exists("PredicateOperator", false)) {
    */
   class PredicateOperator {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "Predicate.Operator";
 
     /**
@@ -6823,7 +6823,7 @@ if (!class_exists("QueryErrorReason", false)) {
    */
   class QueryErrorReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "QueryError.Reason";
 
     /**
@@ -6857,7 +6857,7 @@ if (!class_exists("QuotaCheckErrorReason", false)) {
    */
   class QuotaCheckErrorReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "QuotaCheckError.Reason";
 
     /**
@@ -6890,7 +6890,7 @@ if (!class_exists("RangeErrorReason", false)) {
    */
   class RangeErrorReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "RangeError.Reason";
 
     /**
@@ -6923,7 +6923,7 @@ if (!class_exists("RateExceededErrorReason", false)) {
    */
   class RateExceededErrorReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "RateExceededError.Reason";
 
     /**
@@ -6956,7 +6956,7 @@ if (!class_exists("ReadOnlyErrorReason", false)) {
    */
   class ReadOnlyErrorReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "ReadOnlyError.Reason";
 
     /**
@@ -6989,7 +6989,7 @@ if (!class_exists("RegionCodeErrorReason", false)) {
    */
   class RegionCodeErrorReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "RegionCodeError.Reason";
 
     /**
@@ -7022,7 +7022,7 @@ if (!class_exists("RejectedErrorReason", false)) {
    */
   class RejectedErrorReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "RejectedError.Reason";
 
     /**
@@ -7055,7 +7055,7 @@ if (!class_exists("RequestErrorReason", false)) {
    */
   class RequestErrorReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "RequestError.Reason";
 
     /**
@@ -7088,7 +7088,7 @@ if (!class_exists("RequiredErrorReason", false)) {
    */
   class RequiredErrorReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "RequiredError.Reason";
 
     /**
@@ -7121,7 +7121,7 @@ if (!class_exists("SelectorErrorReason", false)) {
    */
   class SelectorErrorReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "SelectorError.Reason";
 
     /**
@@ -7154,7 +7154,7 @@ if (!class_exists("ServingStatus", false)) {
    */
   class ServingStatus {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "ServingStatus";
 
     /**
@@ -7187,7 +7187,7 @@ if (!class_exists("SettingErrorReason", false)) {
    */
   class SettingErrorReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "SettingError.Reason";
 
     /**
@@ -7220,7 +7220,7 @@ if (!class_exists("ShoppingPurchasePlatform", false)) {
    */
   class ShoppingPurchasePlatform {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "ShoppingPurchasePlatform";
 
     /**
@@ -7253,7 +7253,7 @@ if (!class_exists("SizeLimitErrorReason", false)) {
    */
   class SizeLimitErrorReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "SizeLimitError.Reason";
 
     /**
@@ -7286,7 +7286,7 @@ if (!class_exists("SortOrder", false)) {
    */
   class SortOrder {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "SortOrder";
 
     /**
@@ -7319,7 +7319,7 @@ if (!class_exists("StatsQueryErrorReason", false)) {
    */
   class StatsQueryErrorReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "StatsQueryError.Reason";
 
     /**
@@ -7352,7 +7352,7 @@ if (!class_exists("StringFormatErrorReason", false)) {
    */
   class StringFormatErrorReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "StringFormatError.Reason";
 
     /**
@@ -7385,7 +7385,7 @@ if (!class_exists("StringLengthErrorReason", false)) {
    */
   class StringLengthErrorReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "StringLengthError.Reason";
 
     /**
@@ -7418,7 +7418,7 @@ if (!class_exists("TimeUnit", false)) {
    */
   class TimeUnit {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "TimeUnit";
 
     /**
@@ -7452,7 +7452,7 @@ if (!class_exists("UniversalAppBiddingStrategyGoalType", false)) {
    */
   class UniversalAppBiddingStrategyGoalType {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "UniversalAppBiddingStrategyGoalType";
 
     /**
@@ -7485,7 +7485,7 @@ if (!class_exists("UniversalAppCampaignAsset", false)) {
    */
   class UniversalAppCampaignAsset {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "UniversalAppCampaignAsset";
 
     /**
@@ -7518,7 +7518,7 @@ if (!class_exists("UrlErrorReason", false)) {
    */
   class UrlErrorReason {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "UrlError.Reason";
 
     /**
@@ -7551,7 +7551,7 @@ if (!class_exists("VanityPharmaDisplayUrlMode", false)) {
    */
   class VanityPharmaDisplayUrlMode {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "VanityPharmaDisplayUrlMode";
 
     /**
@@ -7586,7 +7586,7 @@ if (!class_exists("VanityPharmaText", false)) {
    */
   class VanityPharmaText {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "VanityPharmaText";
 
     /**
@@ -7627,7 +7627,7 @@ if (!class_exists("CampaignServiceGet", false)) {
    */
   class CampaignServiceGet {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "";
 
     /**
@@ -7667,7 +7667,7 @@ if (!class_exists("CampaignServiceGetResponse", false)) {
    */
   class CampaignServiceGetResponse {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "";
 
     /**
@@ -7723,7 +7723,7 @@ if (!class_exists("CampaignServiceMutate", false)) {
    */
   class CampaignServiceMutate {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "";
 
     /**
@@ -7763,7 +7763,7 @@ if (!class_exists("CampaignServiceMutateResponse", false)) {
    */
   class CampaignServiceMutateResponse {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "";
 
     /**
@@ -7824,7 +7824,7 @@ if (!class_exists("MutateLabel", false)) {
    */
   class MutateLabel {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "";
 
     /**
@@ -7864,7 +7864,7 @@ if (!class_exists("MutateLabelResponse", false)) {
    */
   class MutateLabelResponse {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "";
 
     /**
@@ -7913,7 +7913,7 @@ if (!class_exists("Query", false)) {
    */
   class Query {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "";
 
     /**
@@ -7953,7 +7953,7 @@ if (!class_exists("QueryResponse", false)) {
    */
   class QueryResponse {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "";
 
     /**
@@ -7993,7 +7993,7 @@ if (!class_exists("AdxError", false)) {
    */
   class AdxError extends ApiError {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "AdxError";
 
     /**
@@ -8039,7 +8039,7 @@ if (!class_exists("ApiException", false)) {
    */
   class ApiException extends ApplicationException {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "ApiException";
 
     /**
@@ -8082,7 +8082,7 @@ if (!class_exists("CampaignLabelOperation", false)) {
    */
   class CampaignLabelOperation extends Operation {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "CampaignLabelOperation";
 
     /**
@@ -8125,7 +8125,7 @@ if (!class_exists("CampaignLabelReturnValue", false)) {
    */
   class CampaignLabelReturnValue extends ListReturnValue {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "CampaignLabelReturnValue";
 
     /**
@@ -8174,7 +8174,7 @@ if (!class_exists("TextLabel", false)) {
    */
   class TextLabel extends Label {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "TextLabel";
 
     /**
@@ -8216,7 +8216,7 @@ if (!class_exists("CampaignOperation", false)) {
    */
   class CampaignOperation extends Operation {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "CampaignOperation";
 
     /**
@@ -8260,7 +8260,7 @@ if (!class_exists("CampaignPage", false)) {
    */
   class CampaignPage extends Page {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "CampaignPage";
 
     /**
@@ -8303,7 +8303,7 @@ if (!class_exists("CampaignReturnValue", false)) {
    */
   class CampaignReturnValue extends ListReturnValue {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "CampaignReturnValue";
 
     /**
@@ -8352,7 +8352,7 @@ if (!class_exists("CountryConstraint", false)) {
    */
   class CountryConstraint extends PolicyTopicConstraint {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "CountryConstraint";
 
     /**
@@ -8402,7 +8402,7 @@ if (!class_exists("DoubleValue", false)) {
    */
   class DoubleValue extends NumberValue {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "DoubleValue";
 
     /**
@@ -8444,7 +8444,7 @@ if (!class_exists("DynamicSearchAdsSetting", false)) {
    */
   class DynamicSearchAdsSetting extends Setting {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "DynamicSearchAdsSetting";
 
     /**
@@ -8532,7 +8532,7 @@ if (!class_exists("GeoTargetTypeSetting", false)) {
    */
   class GeoTargetTypeSetting extends Setting {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "GeoTargetTypeSetting";
 
     /**
@@ -8581,7 +8581,7 @@ if (!class_exists("LongValue", false)) {
    */
   class LongValue extends NumberValue {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "LongValue";
 
     /**
@@ -8624,7 +8624,7 @@ if (!class_exists("UniversalAppCampaignSetting", false)) {
    */
   class UniversalAppCampaignSetting extends Setting {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "UniversalAppCampaignSetting";
 
     /**
@@ -8737,7 +8737,7 @@ if (!class_exists("RealTimeBiddingSetting", false)) {
    */
   class RealTimeBiddingSetting extends Setting {
 
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
     const XSI_TYPE = "RealTimeBiddingSetting";
 
     /**
@@ -8780,14 +8780,14 @@ if (!class_exists("CampaignService", false)) {
   class CampaignService extends AdWordsSoapClient {
 
     const SERVICE_NAME = "CampaignService";
-    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201705";
-    const ENDPOINT = "https://adwords.google.com/api/adwords/cm/v201705/CampaignService";
+    const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
+    const ENDPOINT = "https://adwords.google.com/api/adwords/cm/v201710/CampaignService";
 
     /**
      * The endpoint of the service
      * @var string
      */
-    public static $endpoint = "https://adwords.google.com/api/adwords/cm/v201705/CampaignService";
+    public static $endpoint = "https://adwords.google.com/api/adwords/cm/v201710/CampaignService";
     /**
      * Default class map for wsdl=>php
      * @access private
