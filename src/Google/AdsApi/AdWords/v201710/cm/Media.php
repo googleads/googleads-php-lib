@@ -111,7 +111,7 @@ class Media
      */
     public function setMediaId($mediaId)
     {
-      $this->mediaId = (PHP_INT_SIZE === 4)
+      $this->mediaId = (!is_null(mediaId) && PHP_INT_SIZE === 4)
           ? floatval($mediaId) : $mediaId;
       return $this;
     }
@@ -148,7 +148,7 @@ class Media
      */
     public function setReferenceId($referenceId)
     {
-      $this->referenceId = (PHP_INT_SIZE === 4)
+      $this->referenceId = (!is_null(referenceId) && PHP_INT_SIZE === 4)
           ? floatval($referenceId) : $referenceId;
       return $this;
     }
@@ -257,7 +257,7 @@ class Media
      */
     public function setFileSize($fileSize)
     {
-      $this->fileSize = (PHP_INT_SIZE === 4)
+      $this->fileSize = (!is_null(fileSize) && PHP_INT_SIZE === 4)
           ? floatval($fileSize) : $fileSize;
       return $this;
     }

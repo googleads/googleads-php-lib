@@ -1,3 +1,29 @@
+### 33.0.0
+
+##### AdWords
+
+*   Accepted [PR #429](https://github.com/googleads/googleads-php-lib/pull/429).
+*   Removed support and examples for v201702. See deprecation schedule at:
+    https://developers.google.com/adwords/api/docs/sunset-dates
+
+##### DFP
+
+*   Accepted [PR #438](https://github.com/googleads/googleads-php-lib/pull/438).
+*   Added support and examples for v201802.
+*   Removed support for v201702.
+*   Removed examples for v201705.
+
+##### Common
+
+*   Fixed [issue
+    #194](https://github.com/googleads/googleads-php-lib/issues/194).
+*   Accepted [PR #396](https://github.com/googleads/googleads-php-lib/pull/396).
+*   Accepted [PR #415](https://github.com/googleads/googleads-php-lib/pull/415).
+*   Accepted [PR #421](https://github.com/googleads/googleads-php-lib/pull/421).
+*   Accepted [PR #422](https://github.com/googleads/googleads-php-lib/pull/422).
+*   Fixed
+    [issue #426](https://github.com/googleads/googleads-php-lib/issues/426).
+
 ### 32.1.0
 
 ##### DFP

@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\AdWords\v201710\Reporting;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -28,49 +29,53 @@ use Google\AdsApi\Common\OAuth2TokenBuilder;
 /**
  * This example gets the fields available in a campaign report.
  */
-class GetReportFields {
+class GetReportFields
+{
 
-  const PAGE_LIMIT = 500;
+    const PAGE_LIMIT = 500;
 
-  public static function runExample(AdWordsServices $adWordsServices,
-      AdWordsSession $session) {
-    $reportDefinitionService =
-        $adWordsServices->get($session, ReportDefinitionService::class);
+    public static function runExample(
+        AdWordsServices $adWordsServices,
+        AdWordsSession $session
+    ) {
+        $reportDefinitionService = $adWordsServices->get($session, ReportDefinitionService::class);
 
-    // The type of the report to get fields for.
-    $reportType = ReportDefinitionReportType::CAMPAIGN_PERFORMANCE_REPORT;
+        // The type of the report to get fields for.
+        $reportType = ReportDefinitionReportType::CAMPAIGN_PERFORMANCE_REPORT;
 
-    // Get report fields of the report type.
-    $reportDefinitionFields =
-        $reportDefinitionService->getReportFields($reportType);
+        // Get report fields of the report type.
+        $reportDefinitionFields = $reportDefinitionService->getReportFields($reportType);
 
-    printf("The report type '%s' contains the following fields:\n",
-        $reportType);
-    foreach ($reportDefinitionFields as $reportDefinitionField) {
-      printf('  %s (%s)', $reportDefinitionField->getFieldName(),
-          $reportDefinitionField->getFieldType());
-      if ($reportDefinitionField->getEnumValues() !== null) {
-        printf(' := [%s]',
-            implode(', ', $reportDefinitionField->getEnumValues()));
-      }
-      print "\n";
+        printf(
+            "The report type '%s' contains the following fields:\n",
+            $reportType
+        );
+        foreach ($reportDefinitionFields as $reportDefinitionField) {
+            printf(
+                '  %s (%s)',
+                $reportDefinitionField->getFieldName(),
+                $reportDefinitionField->getFieldType()
+            );
+            if ($reportDefinitionField->getEnumValues() !== null) {
+                printf(
+                    ' := [%s]',
+                    implode(', ', $reportDefinitionField->getEnumValues())
+                );
+            }
+            print "\n";
+        }
     }
-  }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new AdWordsSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
-    self::runExample(new AdWordsServices(), $session);
-  }
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new AdWordsSessionBuilder())->fromFile()->withOAuth2Credential($oAuth2Credential)->build();
+        self::runExample(new AdWordsServices(), $session);
+    }
 }
 
 GetReportFields::main();

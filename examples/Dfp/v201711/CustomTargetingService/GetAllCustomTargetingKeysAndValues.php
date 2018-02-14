@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\CustomTargetingService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -32,125 +33,129 @@ use Google\AdsApi\Dfp\v201711\CustomTargetingService;
  * that you've setup an `adsapi_php.ini` file in your home directory with your
  * API credentials and settings. See README.md for more info.
  */
-class GetAllCustomTargetingKeysAndValues {
+class GetAllCustomTargetingKeysAndValues
+{
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session) {
-    $customTargetingService =
-        $dfpServices->get($session, CustomTargetingService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session
+    ) {
+        $customTargetingService = $dfpServices->get($session, CustomTargetingService::class);
 
-    // Get all custom targeting keys.
-    $customTargetingKeyIds =
-        self::getAllCustomTargetingKeyIds($dfpServices, $session);
+        // Get all custom targeting keys.
+        $customTargetingKeyIds = self::getAllCustomTargetingKeyIds($dfpServices, $session);
 
-    // Create a statement to get all custom targeting values for a custom
-    // targeting key.
-    $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
-    $statementBuilder = (new StatementBuilder())
-        ->where('customTargetingKeyId = :customTargetingKeyId')
-        ->orderBy('id ASC')
-        ->limit($pageSize);
+        // Create a statement to get all custom targeting values for a custom
+        // targeting key.
+        $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
+        $statementBuilder =
+            (new StatementBuilder())->where('customTargetingKeyId = :customTargetingKeyId')
+                ->orderBy('id ASC')
+                ->limit($pageSize);
 
-    // For each key, retrieve all its values.
-    $totalValueCounter = 0;
-    foreach ($customTargetingKeyIds as $customTargetingKeyId) {
-      // Set the custom targeting key ID to select from.
-      $statementBuilder->withBindVariableValue(
-          'customTargetingKeyId', $customTargetingKeyId);
-
-      // Retrieve a small amount of custom targeting values at a time, paging
-      // through until all custom targeting values have been retrieved.
-      $totalResultSetSize = 0;
-      $statementBuilder->offset(0);
-      do {
-        $page = $customTargetingService->getCustomTargetingValuesByStatement(
-            $statementBuilder->toStatement());
-
-        // Print out some information for each custom targeting value.
-        if ($page->getResults() !== null) {
-          $totalResultSetSize = $page->getTotalResultSetSize();
-          foreach ($page->getResults() as $customTargetingValue) {
-            printf(
-                "%d) Custom targeting value with ID %d, name '%s', display "
-                    . "name '%s', belonging to key with ID %d was found.\n",
-                $totalValueCounter++,
-                $customTargetingValue->getId(),
-                $customTargetingValue->getName(),
-                $customTargetingValue->getDisplayName(),
-                $customTargetingValue->getCustomTargetingKeyId()
+        // For each key, retrieve all its values.
+        $totalValueCounter = 0;
+        foreach ($customTargetingKeyIds as $customTargetingKeyId) {
+            // Set the custom targeting key ID to select from.
+            $statementBuilder->withBindVariableValue(
+                'customTargetingKeyId',
+                $customTargetingKeyId
             );
-          }
+
+            // Retrieve a small amount of custom targeting values at a time, paging
+            // through until all custom targeting values have been retrieved.
+            $totalResultSetSize = 0;
+            $statementBuilder->offset(0);
+            do {
+                $page = $customTargetingService->getCustomTargetingValuesByStatement(
+                    $statementBuilder->toStatement()
+                );
+
+                // Print out some information for each custom targeting value.
+                if ($page->getResults() !== null) {
+                    $totalResultSetSize = $page->getTotalResultSetSize();
+                    foreach ($page->getResults() as $customTargetingValue) {
+                        printf(
+                            "%d) Custom targeting value with ID %d, name '%s', display "
+                            . "name '%s', belonging to key with ID %d was found.\n",
+                            $totalValueCounter++,
+                            $customTargetingValue->getId(),
+                            $customTargetingValue->getName(),
+                            $customTargetingValue->getDisplayName(),
+                            $customTargetingValue->getCustomTargetingKeyId()
+                        );
+                    }
+                }
+
+                $statementBuilder->increaseOffsetBy($pageSize);
+            } while ($statementBuilder->getOffset() < $totalResultSetSize);
         }
 
-        $statementBuilder->increaseOffsetBy($pageSize);
-      } while ($statementBuilder->getOffset() < $totalResultSetSize);
+        printf("Number of values found: %d\n", $totalValueCounter);
     }
 
-    printf("Number of values found: %d\n", $totalValueCounter);
-  }
+    /**
+     * Gets all custom targeting key IDs.
+     */
+    private static function getAllCustomTargetingKeyIds(
+        DfpServices $dfpServices,
+        DfpSession $session
+    ) {
+        $customTargetingKeyIds = [];
 
-  /**
-   * Gets all custom targeting key IDs.
-   */
-  private static function getAllCustomTargetingKeyIds(DfpServices $dfpServices,
-      DfpSession $session) {
-    $customTargetingKeyIds = [];
+        $customTargetingService = $dfpServices->get($session, CustomTargetingService::class);
 
-    $customTargetingService =
-        $dfpServices->get($session, CustomTargetingService::class);
+        // Create a statement to get all custom targeting keys.
+        $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
+        $statementBuilder = (new StatementBuilder())->orderBy('id ASC')
+            ->limit($pageSize);
 
-    // Create a statement to get all custom targeting keys.
-    $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
-    $statementBuilder = (new StatementBuilder())
-        ->orderBy('id ASC')
-        ->limit($pageSize);
+        // Retrieve a small amount of custom targeting keys at a time, paging
+        // through until all custom targeting keys have been retrieved.
+        $totalResultSetSize = 0;
+        do {
+            $page = $customTargetingService->getCustomTargetingKeysByStatement(
+                $statementBuilder->toStatement()
+            );
 
-    // Retrieve a small amount of custom targeting keys at a time, paging
-    // through until all custom targeting keys have been retrieved.
-    $totalResultSetSize = 0;
-    do {
-      $page = $customTargetingService->getCustomTargetingKeysByStatement(
-          $statementBuilder->toStatement());
+            if ($page->getResults() !== null) {
+                $totalResultSetSize = $page->getTotalResultSetSize();
+                $i = $page->getStartIndex();
+                foreach ($page->getResults() as $customTargetingKey) {
+                    printf(
+                        "%d) Custom targeting key with ID %d, name '%s', and display "
+                        . "name '%s' was found.\n",
+                        $i++,
+                        $customTargetingKey->getId(),
+                        $customTargetingKey->getName(),
+                        $customTargetingKey->getDisplayName()
+                    );
+                    $customTargetingKeyIds[] = $customTargetingKey->getId();
+                }
+            }
 
-      if ($page->getResults() !== null) {
-        $totalResultSetSize = $page->getTotalResultSetSize();
-        $i = $page->getStartIndex();
-        foreach ($page->getResults() as $customTargetingKey) {
-          printf(
-              "%d) Custom targeting key with ID %d, name '%s', and display "
-                  . "name '%s' was found.\n",
-              $i++,
-              $customTargetingKey->getId(),
-              $customTargetingKey->getName(),
-              $customTargetingKey->getDisplayName()
-          );
-          $customTargetingKeyIds[] = $customTargetingKey->getId();
-        }
-      }
+            $statementBuilder->increaseOffsetBy($pageSize);
+        } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-      $statementBuilder->increaseOffsetBy($pageSize);
-    } while ($statementBuilder->getOffset() < $totalResultSetSize);
+        printf("Number of keys found: %d\n\n", $totalResultSetSize);
 
-    printf("Number of keys found: %d\n\n", $totalResultSetSize);
+        return $customTargetingKeyIds;
+    }
 
-    return $customTargetingKeyIds;
-  }
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
-
-    self::runExample(new DfpServices(), $session);
-  }
+        self::runExample(new DfpServices(), $session);
+    }
 }
 
 GetAllCustomTargetingKeysAndValues::main();

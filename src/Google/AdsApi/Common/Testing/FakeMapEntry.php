@@ -14,18 +14,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Common\Testing;
 
 /**
  * Fake map entry class for `MapEntriesTest`.
+ *
  * @see Google\AdsApi\Common\Util\MapEntriesTest
  */
-class FakeMapEntry {
-  public $key;
-  public $value;
+class FakeMapEntry
+{
+    public $key;
+    public $value;
 
-  public function __construct($key, $value) {
-    $this->key = $key;
-    $this->value = $value;
-  }
+    public function __construct($key, $value)
+    {
+        $this->key = $key;
+        $this->value = $value;
+    }
 }

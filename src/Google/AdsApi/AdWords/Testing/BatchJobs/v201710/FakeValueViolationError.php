@@ -14,26 +14,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\AdWords\Testing\BatchJobs\v201710;
 
 /**
  * A fake value violation class for testing purpose.
  */
-class FakeValueViolationError extends FakePolicyViolationError {
+class FakeValueViolationError extends FakePolicyViolationError
+{
 
-  protected $value;
+    protected $value;
 
-  /**
-   * @return float
-   */
-  public function getValue() {
-    return $this->value;
-  }
+    /**
+     * @return float
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
 
-  /**
-   * @param float $value
-   */
-  public function setValue($value) {
-    $this->value = $value;
-  }
+    /**
+     * @param float $value
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+    }
 }

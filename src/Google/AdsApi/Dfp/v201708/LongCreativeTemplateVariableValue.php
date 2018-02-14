@@ -38,7 +38,7 @@ class LongCreativeTemplateVariableValue extends \Google\AdsApi\Dfp\v201708\BaseC
      */
     public function setValue($value)
     {
-      $this->value = (PHP_INT_SIZE === 4)
+      $this->value = (!is_null(value) && PHP_INT_SIZE === 4)
           ? floatval($value) : $value;
       return $this;
     }

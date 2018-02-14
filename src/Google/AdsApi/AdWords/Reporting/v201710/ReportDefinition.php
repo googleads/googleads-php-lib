@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\AdWords\Reporting\v201710;
 
 use Google\AdsApi\AdWords\v201710\cm\Selector;
@@ -22,136 +23,147 @@ use Google\AdsApi\AdWords\v201710\cm\Selector;
  * Represents a report definition containing its details, such as name, type,
  * date range.
  */
-final class ReportDefinition {
+final class ReportDefinition
+{
 
-  private $selector;
-  private $reportName;
-  private $reportType;
-  private $dateRangeType;
-  private $downloadFormat;
+    private $selector;
+    private $reportName;
+    private $reportType;
+    private $dateRangeType;
+    private $downloadFormat;
 
-  /**
-   * Creates a report definition instance with the specified properties.
-   *
-   * @param Selector $selector
-   * @param string $reportName
-   * @param string $reportType
-   * @param string $dateRangeType
-   * @param string $downloadFormat
-   */
-  public function __construct(
-      Selector $selector = null,
-      $reportName = null,
-      $reportType = null,
-      $dateRangeType = null,
-      $downloadFormat = null
-  ) {
-    $this->selector = $selector;
-    $this->reportName = $reportName;
-    $this->reportType = $reportType;
-    $this->dateRangeType = $dateRangeType;
-    $this->downloadFormat = $downloadFormat;
-  }
+    /**
+     * Creates a report definition instance with the specified properties.
+     *
+     * @param Selector $selector
+     * @param string $reportName
+     * @param string $reportType
+     * @param string $dateRangeType
+     * @param string $downloadFormat
+     */
+    public function __construct(
+        Selector $selector = null,
+        $reportName = null,
+        $reportType = null,
+        $dateRangeType = null,
+        $downloadFormat = null
+    ) {
+        $this->selector = $selector;
+        $this->reportName = $reportName;
+        $this->reportType = $reportType;
+        $this->dateRangeType = $dateRangeType;
+        $this->downloadFormat = $downloadFormat;
+    }
 
-  /**
-   * Gets the selector of the report definition.
-   *
-   * @see
-   *     https://developers.google.com/adwords/api/docs/appendix/selectorfields#v201710
-   * @return Selector
-   */
-  public function getSelector() {
-    return $this->selector;
-  }
+    /**
+     * Gets the selector of the report definition.
+     *
+     * @see
+     *     https://developers.google.com/adwords/api/docs/appendix/selectorfields#v201710
+     * @return Selector
+     */
+    public function getSelector()
+    {
+        return $this->selector;
+    }
 
-  /**
-   * Sets the selector of the report definition.
-   *
-   * @see
-   *     https://developers.google.com/adwords/api/docs/appendix/selectorfields#v201710
-   * @param Selector $selector
-   */
-  public function setSelector(Selector $selector) {
-    $this->selector = $selector;
-  }
+    /**
+     * Sets the selector of the report definition.
+     *
+     * @see
+     *     https://developers.google.com/adwords/api/docs/appendix/selectorfields#v201710
+     * @param Selector $selector
+     */
+    public function setSelector(Selector $selector)
+    {
+        $this->selector = $selector;
+    }
 
-  /**
-   * Gets the report name.
-   *
-   * @return string
-   */
-  public function getReportName() {
-    return $this->reportName;
-  }
+    /**
+     * Gets the report name.
+     *
+     * @return string
+     */
+    public function getReportName()
+    {
+        return $this->reportName;
+    }
 
-  /**
-   * Sets the report name.
-   *
-   * @param string $reportName
-   */
-  public function setReportName($reportName) {
-    $this->reportName = $reportName;
-  }
+    /**
+     * Sets the report name.
+     *
+     * @param string $reportName
+     */
+    public function setReportName($reportName)
+    {
+        $this->reportName = $reportName;
+    }
 
-  /**
-   * Gets the report type.
-   *
-   * @return string
-   */
-  public function getReportType() {
-    return $this->reportType;
-  }
+    /**
+     * Gets the report type.
+     *
+     * @return string
+     */
+    public function getReportType()
+    {
+        return $this->reportType;
+    }
 
-  /**
-   * Sets the report type.
-   *
-   * @param string $reportType
-   */
-  public function setReportType($reportType) {
-    $this->reportType = $reportType;
-  }
+    /**
+     * Sets the report type.
+     *
+     * @param string $reportType
+     */
+    public function setReportType($reportType)
+    {
+        $this->reportType = $reportType;
+    }
 
-  /**
-   * Gets the date range type.
-   *
-   * @see
-   *     https://developers.google.com/adwords/api/docs/guides/reporting#xml-schema-definition
-   * @return string
-   */
-  public function getDateRangeType() {
-    return $this->dateRangeType;
-  }
+    /**
+     * Gets the date range type.
+     *
+     * @see
+     *     https://developers.google.com/adwords/api/docs/guides/reporting#xml-schema-definition
+     * @return string
+     */
+    public function getDateRangeType()
+    {
+        return $this->dateRangeType;
+    }
 
-  /**
-   * Sets the date range type.
-   *
-   * @see
-   *     https://developers.google.com/adwords/api/docs/guides/reporting#xml-schema-definition
-   * @param string $dateRangeType
-   */
-  public function setDateRangeType($dateRangeType) {
-    $this->dateRangeType = $dateRangeType;
-  }
+    /**
+     * Sets the date range type.
+     *
+     * @see
+     *     https://developers.google.com/adwords/api/docs/guides/reporting#xml-schema-definition
+     * @param string $dateRangeType
+     */
+    public function setDateRangeType($dateRangeType)
+    {
+        $this->dateRangeType = $dateRangeType;
+    }
 
-  /**
-   * Gets the download format.
-   *
-   * @see
-   *     https://developers.google.com/adwords/api/docs/guides/reporting#supported-download-formats
-   * @return string
-   */
-  public function getDownloadFormat() {
-    return $this->downloadFormat;
-  }
+    /**
+     * Gets the download format.
+     *
+     * @see
+     *     https://developers.google.com/adwords/api/docs/guides/reporting#supported-download-formats
+     * @return string
+     */
+    public function getDownloadFormat()
+    {
+        return $this->downloadFormat;
+    }
 
-  /**
-   * Sets the download format.
-   *
-   * @see
-   *     https://developers.google.com/adwords/api/docs/guides/reporting#supported-download-formats
-   * @param string $downloadFormat
-   */
-  public function setDownloadFormat($downloadFormat) {
-    $this->downloadFormat = $downloadFormat;
-  }
+    /**
+     * Sets the download format.
+     *
+     * @see
+     *     https://developers.google.com/adwords/api/docs/guides/reporting#supported-download-formats
+     * @param string $downloadFormat
+     */
+    public function setDownloadFormat($downloadFormat)
+    {
+        $this->downloadFormat = $downloadFormat;
+    }
 }

@@ -1,0 +1,4620 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated file, do not edit -->
+<!-- Copyright 2018 Google Inc. All Rights Reserved -->
+<wsdl:definitions
+  targetNamespace="https://www.google.com/apis/ads/publisher/v201802"
+  xmlns:tns="https://www.google.com/apis/ads/publisher/v201802"
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <schema elementFormDefault="qualified" jaxb:version="1.0"
+      targetNamespace="https://www.google.com/apis/ads/publisher/v201802"
+      xmlns="http://www.w3.org/2001/XMLSchema"
+      xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:tns="https://www.google.com/apis/ads/publisher/v201802">
+      <annotation>
+        <appinfo>
+          <jaxb:globalBindings typesafeEnumMaxMembers="999999"/>
+        </appinfo>
+      </annotation>
+      <complexType abstract="true" name="ObjectValue">
+        <annotation>
+          <documentation>
+            Contains an object value.
+            &lt;p&gt;
+            &lt;b&gt;This object is experimental!
+            &lt;code&gt;ObjectValue&lt;/code&gt; is an experimental, innovative, and rapidly
+            changing new feature for DFP. Unfortunately, being on the bleeding edge means that we may make
+            backwards-incompatible changes to
+            &lt;code&gt;ObjectValue&lt;/code&gt;. We will inform the community when this feature
+            is no longer experimental.&lt;/b&gt;
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ActivateAdRules">
+        <annotation>
+          <documentation>
+            The action used for resuming {@link AdRule} objects.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:AdRuleAction">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType abstract="true" name="AdRuleAction">
+        <annotation>
+          <documentation>
+            Represents the actions that can be performed on {@link AdRule} objects.
+          </documentation>
+        </annotation>
+        <sequence/>
+      </complexType>
+      <complexType name="AdRuleDateError">
+        <annotation>
+          <documentation>
+            Lists all errors associated with ad rule start and end dates.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:AdRuleDateError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="AdRule">
+        <annotation>
+          <documentation>
+            An {@link AdRule} contains data that the ad server will use to generate a playlist of video ads.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="adRuleId" type="xsd:long">
+            <annotation>
+              <documentation>
+                The unique ID of the {@link AdRule}. This value is readonly and is assigned by Google.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
+            <annotation>
+              <documentation>
+                The unique name of the {@link AdRule}. This attribute is required to create an
+                ad rule and has a maximum length of 255 characters.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="priority" type="xsd:int">
+            <annotation>
+              <documentation>
+                The priority of the {@link AdRule}. This attribute is required and can range
+                from 1 to 1000, with 1 being the highest possible priority.
+                
+                &lt;p&gt;Changing an ad rule's priority can affect the priorities of other ad
+                rules. For example, increasing an ad rule's priority from 5 to 1 will
+                shift the ad rules that were previously in priority positions 1 through 4
+                down one.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="targeting" type="tns:Targeting">
+            <annotation>
+              <documentation>
+                The targeting criteria of the {@link AdRule}. This attribute is required.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="startDateTime" type="tns:DateTime">
+            <annotation>
+              <documentation>
+                This {@link AdRule} object's start date and time. This attribute is required and must be
+                a date in the future for new ad rules.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="startDateTimeType" type="tns:StartDateTimeType">
+            <annotation>
+              <documentation>
+                Specifies whether to start using the {@link AdRule} right away, in an hour, etc.
+                This attribute is optional and defaults to {@link StartDateTimeType#USE_START_DATE_TIME}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="endDateTime" type="tns:DateTime">
+            <annotation>
+              <documentation>
+                This {@link AdRule} object's end date and time. This attribute is required unless
+                {@code unlimitedEndDateTime} is set to {@code true}. If specified, it
+                must be after the {@code startDateTime}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0"
+            name="unlimitedEndDateTime" type="xsd:boolean">
+            <annotation>
+              <documentation>
+                Specifies whether the {@link AdRule} has an end time. This attribute is optional
+                and defaults to false.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="status" type="tns:AdRuleStatus">
+            <annotation>
+              <documentation>
+                The {@link AdRuleStatus} of the ad rule. This attribute is read-only and
+                defaults to {@link AdRuleStatus#INACTIVE}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0"
+            name="frequencyCapBehavior" type="tns:FrequencyCapBehavior">
+            <annotation>
+              <documentation>
+                The {@link FrequencyCapBehavior} of the {@link AdRule}. This attribute is
+                optional and defaults to {@link FrequencyCapBehavior#DEFER}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0"
+            name="maxImpressionsPerLineItemPerStream" type="xsd:int">
+            <annotation>
+              <documentation>
+                This {@link AdRule} object's frequency cap for the maximum impressions per stream.
+                This attribute is optional and defaults to 0.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0"
+            name="maxImpressionsPerLineItemPerPod" type="xsd:int">
+            <annotation>
+              <documentation>
+                This {@link AdRule} object's frequency cap for the maximum impressions per pod. This
+                attribute is optional and defaults to 0.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="preroll" type="tns:BaseAdRuleSlot">
+            <annotation>
+              <documentation>
+                This {@link AdRule} object's pre-roll slot. This attribute is required.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="midroll" type="tns:BaseAdRuleSlot">
+            <annotation>
+              <documentation>
+                This {@link AdRule} object's mid-roll slot. This attribute is required.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="postroll" type="tns:BaseAdRuleSlot">
+            <annotation>
+              <documentation>
+                This {@link AdRule} object's post-roll slot. This attribute is required.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="AdRuleFrequencyCapError">
+        <annotation>
+          <documentation>
+            Errors related to ad rule frequency caps
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:AdRuleFrequencyCapError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="NoPoddingAdRuleSlot">
+        <annotation>
+          <documentation>
+            An ad rule slot with no podding. It is defined by a {@link BaseAdRuleSlot#maxVideoAdDuration}.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:BaseAdRuleSlot">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="OptimizedPoddingAdRuleSlot">
+        <annotation>
+          <documentation>
+            Ad rule slot with optimized podding. Optimized pods are defined by a
+            {@link BaseAdRuleSlot#maxPodDuration} and a {@link BaseAdRuleSlot#maxAdsInPod}, and the ad
+            server chooses the best ads for the alloted duration.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:BaseAdRuleSlot">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="AdRulePage">
+        <annotation>
+          <documentation>
+            Captures a page of {@link AdRule} objects.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="totalResultSetSize" type="xsd:int">
+            <annotation>
+              <documentation>
+                The size of the total result set to which this page belongs.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="startIndex" type="xsd:int">
+            <annotation>
+              <documentation>
+                The absolute index in the total result set on which this page begins.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="results" type="tns:AdRule">
+            <annotation>
+              <documentation>
+                The collection of ad rules contained within this page.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="AdRulePriorityError">
+        <annotation>
+          <documentation>
+            Errors associated with ad rule priorities.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:AdRulePriorityError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType abstract="true" name="BaseAdRuleSlot">
+        <annotation>
+          <documentation>
+            Simple object representing an ad slot within an {@link AdRule}. Ad rule slots
+            contain information about the types/number of ads to display, as well
+            as additional information on how the ad server will generate playlists.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="slotBehavior" type="tns:AdRuleSlotBehavior">
+            <annotation>
+              <documentation>
+                The {@link AdRuleSlotBehavior} for video ads for this slot. This
+                attribute is optional and defaults to {@link AdRuleSlotBehavior#DEFER}.
+                
+                &lt;p&gt;Indicates whether video ads are allowed for this slot, or if the
+                decision is deferred to a lower-priority ad rule.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="minVideoAdDuration" type="xsd:long">
+            <annotation>
+              <documentation>
+                The minimum duration in milliseconds of video ads within this slot. This
+                attribute is optional and defaults to 0.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="maxVideoAdDuration" type="xsd:long">
+            <annotation>
+              <documentation>
+                The maximum duration in milliseconds of video ads within this slot. This
+                attribute is optional and defaults to 0.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0"
+            name="videoMidrollFrequencyType" type="tns:MidrollFrequencyType">
+            <annotation>
+              <documentation>
+                The frequency type for video ads in this ad rule slot. This attribute
+                is required for mid-rolls, but if this is not a mid-roll, the value is set to
+                {@link MidrollFrequencyType#NONE}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0"
+            name="videoMidrollFrequency" type="xsd:string">
+            <annotation>
+              <documentation>
+                The mid-roll frequency of this ad rule slot for video ads. This attribute is
+                required for mid-rolls, but if {@link MidrollFrequencyType} is set to
+                {@link MidrollFrequencyType#NONE}, this value should be ignored. For example,
+                if this slot has a frequency type of {@link MidrollFrequencyType#EVERY_N_SECONDS}
+                and {@code #videoMidrollFrequency} = "60", this would mean " play a mid-roll every 60
+                seconds."
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="bumper" type="tns:AdRuleSlotBumper">
+            <annotation>
+              <documentation>
+                The {@link AdRuleSlotBumper} for this slot. This attribute is optional and
+                defaults to {@link AdRuleSlotBumper#NONE}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="maxBumperDuration" type="xsd:long">
+            <annotation>
+              <documentation>
+                The maximum duration of bumper ads within this slot. This attribute is
+                optional and defaults to 0.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="minPodDuration" type="xsd:long">
+            <annotation>
+              <documentation>
+                The minimum pod duration in milliseconds for this slot. This attribute is
+                optional and defaults to 0.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="maxPodDuration" type="xsd:long">
+            <annotation>
+              <documentation>
+                The maximum pod duration in milliseconds for this slot. This attribute is
+                optional and defaults to 0.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="maxAdsInPod" type="xsd:int">
+            <annotation>
+              <documentation>
+                The maximum number of ads allowed in a pod in this slot. This attribute is
+                optional and defaults to 0.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="AdRuleSlotError">
+        <annotation>
+          <documentation>
+            Errors related to ad rule slots.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:AdRuleSlotError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="StandardPoddingAdRuleSlot">
+        <annotation>
+          <documentation>
+            An ad rule slot with standard podding. A standard pod is a series of video ads played
+            back to back. Standard pods are defined by a {@link BaseAdRuleSlot#maxAdsInPod} and a
+            {@link BaseAdRuleSlot#maxVideoAdDuration}.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:BaseAdRuleSlot">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="AdRuleTargetingError">
+        <annotation>
+          <documentation>
+            Lists all errors associated with ad rule targeting.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:AdRuleTargetingError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="AdUnitTargeting">
+        <annotation>
+          <documentation>
+            Represents targeted or excluded ad units.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="adUnitId" type="xsd:string">
+            <annotation>
+              <documentation>
+                Included or excluded ad unit id.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="includeDescendants" type="xsd:boolean">
+            <annotation>
+              <documentation>
+                Whether or not all descendants are included (or excluded) as part of
+                including (or excluding) this ad unit. By default, the value is {@code
+                true} which means targeting this ad unit will target all of its
+                descendants.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType abstract="true" name="ApiError">
+        <annotation>
+          <documentation>
+            The API error base class that provides details about an error that occurred
+            while processing a service request.
+            
+            &lt;p&gt;The OGNL field path is provided for parsers to identify the request data
+            element that may have caused the error.&lt;/p&gt;
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="fieldPath" type="xsd:string">
+            <annotation>
+              <documentation>
+                The OGNL field path to identify cause of error.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="fieldPathElements" type="tns:FieldPathElement">
+            <annotation>
+              <documentation>
+                A parsed copy of the field path. For example, the field path "operations[1].operand"
+                corresponds to this list: {FieldPathElement(field = "operations", index = 1),
+                FieldPathElement(field = "operand", index = null)}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="trigger" type="xsd:string">
+            <annotation>
+              <documentation>
+                The data that caused the error.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="errorString" type="xsd:string">
+            <annotation>
+              <documentation>
+                A simple string representation of the error and reason.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="ApiException">
+        <annotation>
+          <documentation>
+            Exception class for holding a list of service errors.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApplicationException">
+            <sequence>
+              <element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:ApiError">
+                <annotation>
+                  <documentation>
+                    List of errors.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="TechnologyTargeting">
+        <annotation>
+          <documentation>
+            Provides {@link LineItem} objects the ability to target or exclude
+            technologies.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0"
+            name="bandwidthGroupTargeting" type="tns:BandwidthGroupTargeting">
+            <annotation>
+              <documentation>
+                The bandwidth groups being targeted by the {@link LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="browserTargeting" type="tns:BrowserTargeting">
+            <annotation>
+              <documentation>
+                The browsers being targeted by the {@link LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0"
+            name="browserLanguageTargeting" type="tns:BrowserLanguageTargeting">
+            <annotation>
+              <documentation>
+                The languages of browsers being targeted by the {@link LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0"
+            name="deviceCapabilityTargeting" type="tns:DeviceCapabilityTargeting">
+            <annotation>
+              <documentation>
+                The device capabilities being targeted by the {@link LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0"
+            name="deviceCategoryTargeting" type="tns:DeviceCategoryTargeting">
+            <annotation>
+              <documentation>
+                The device categories being targeted by the {@link LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0"
+            name="deviceManufacturerTargeting" type="tns:DeviceManufacturerTargeting">
+            <annotation>
+              <documentation>
+                The device manufacturers being targeted by the {@link LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0"
+            name="mobileCarrierTargeting" type="tns:MobileCarrierTargeting">
+            <annotation>
+              <documentation>
+                The mobile carriers being targeted by the {@link LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0"
+            name="mobileDeviceTargeting" type="tns:MobileDeviceTargeting">
+            <annotation>
+              <documentation>
+                The mobile devices being targeted by the {@link LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0"
+            name="mobileDeviceSubmodelTargeting" type="tns:MobileDeviceSubmodelTargeting">
+            <annotation>
+              <documentation>
+                The mobile device submodels being targeted by the {@link LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0"
+            name="operatingSystemTargeting" type="tns:OperatingSystemTargeting">
+            <annotation>
+              <documentation>
+                The operating systems being targeted by the {@link LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0"
+            name="operatingSystemVersionTargeting" type="tns:OperatingSystemVersionTargeting">
+            <annotation>
+              <documentation>
+                The operating system versions being targeted by the {@link LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="ApiVersionError">
+        <annotation>
+          <documentation>
+            Errors related to the usage of API versions.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ApiVersionError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ApplicationException">
+        <annotation>
+          <documentation>
+            Base class for exceptions.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="message" type="xsd:string">
+            <annotation>
+              <documentation>
+                Error message.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="AuthenticationError">
+        <annotation>
+          <documentation>
+            An error for an exception that occurred when authenticating.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:AuthenticationError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="BandwidthGroup">
+        <annotation>
+          <documentation>
+            Represents a group of bandwidths that are logically organized by some well
+            known generic names such as 'Cable' or 'DSL'.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Technology">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="BandwidthGroupTargeting">
+        <annotation>
+          <documentation>
+            Represents bandwidth groups that are being targeted or excluded by the
+            {@link LineItem}.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="isTargeted" type="xsd:boolean">
+            <annotation>
+              <documentation>
+                Indicates whether bandwidth groups should be targeted or excluded. This
+                attribute is optional and defaults to {@code true}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="bandwidthGroups" type="tns:Technology">
+            <annotation>
+              <documentation>
+                The bandwidth groups that are being targeted or excluded by the
+                {@link LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="BooleanValue">
+        <annotation>
+          <documentation>
+            Contains a boolean value.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="xsd:boolean">
+                <annotation>
+                  <documentation>
+                    The boolean value.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="Browser">
+        <annotation>
+          <documentation>
+            Represents an internet browser.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Technology">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="majorVersion" type="xsd:string">
+                <annotation>
+                  <documentation>
+                    Browser major version.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0" name="minorVersion" type="xsd:string">
+                <annotation>
+                  <documentation>
+                    Browser minor version.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="BrowserLanguage">
+        <annotation>
+          <documentation>
+            Represents a Browser's language.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Technology">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="BrowserLanguageTargeting">
+        <annotation>
+          <documentation>
+            Represents browser languages that are being targeted or excluded by the
+            {@link LineItem}.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="isTargeted" type="xsd:boolean">
+            <annotation>
+              <documentation>
+                Indicates whether browsers languages should be targeted or excluded. This
+                attribute is optional and defaults to {@code true}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="browserLanguages" type="tns:Technology">
+            <annotation>
+              <documentation>
+                Browser languages that are being targeted or excluded by the
+                {@link LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="BrowserTargeting">
+        <annotation>
+          <documentation>
+            Represents browsers that are being targeted or excluded by the
+            {@link LineItem}.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="isTargeted" type="xsd:boolean">
+            <annotation>
+              <documentation>
+                Indicates whether browsers should be targeted or excluded. This attribute
+                is optional and defaults to {@code true}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="browsers" type="tns:Technology">
+            <annotation>
+              <documentation>
+                Browsers that are being targeted or excluded by the {@link LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="CollectionSizeError">
+        <annotation>
+          <documentation>
+            Error for the size of the collection being too large
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CollectionSizeError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="CommonError">
+        <annotation>
+          <documentation>
+            A place for common errors that can be used across services.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CommonError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ContentMetadataKeyHierarchyTargeting">
+        <annotation>
+          <documentation>
+            Represents one or more {@link CustomTargetingValue custom targeting values} from different {@link
+            CustomTargetingKey custom targeting keys} ANDed together.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="customTargetingValueIds" type="xsd:long">
+            <annotation>
+              <documentation>
+                The list of IDs of the targeted {@link CustomTargetingValue} objects that are ANDed together.
+                &lt;p&gt;Targeting values do not need to be in the order of the hierarchy levels. For example,
+                if the hierarchy is "show &gt; season &gt; genre" the values could be
+                "season=3, show=30rock, genre=comedy."
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="ContentMetadataTargetingError">
+        <annotation>
+          <documentation>
+            Lists all errors related to {@link ContentMetadataTargeting}.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ContentMetadataTargetingError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ContentTargeting">
+        <annotation>
+          <documentation>
+            Used to target {@link LineItem}s to specific videos on a publisher's site.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="targetedContentIds" type="xsd:long">
+            <annotation>
+              <documentation>
+                The IDs of content being targeted by the {@code LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="excludedContentIds" type="xsd:long">
+            <annotation>
+              <documentation>
+                The IDs of content being excluded by the {@code LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="targetedVideoContentBundleIds" type="xsd:long">
+            <annotation>
+              <documentation>
+                A list of video content bundles, represented by {@link ContentBundle} IDs, that are being
+                targeted by the {@code LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="excludedVideoContentBundleIds" type="xsd:long">
+            <annotation>
+              <documentation>
+                A list of video content bundles, represented by {@link ContentBundle} IDs, that are being
+                excluded by the {@code LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="targetedContentMetadata" type="tns:ContentMetadataKeyHierarchyTargeting">
+            <annotation>
+              <documentation>
+                A list of content metadata within hierarchies that are being targeted by the {@code LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="excludedContentMetadata" type="tns:ContentMetadataKeyHierarchyTargeting">
+            <annotation>
+              <documentation>
+                A list of content metadata within hierarchies that are being excluded by the {@code LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="CustomCriteria">
+        <annotation>
+          <documentation>
+            A {@link CustomCriteria} object is used to perform custom criteria targeting
+            on custom targeting keys of type {@link CustomTargetingKey.Type#PREDEFINED}
+            or {@link CustomTargetingKey.Type#FREEFORM}.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:CustomCriteriaLeaf">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="keyId" type="xsd:long">
+                <annotation>
+                  <documentation>
+                    The {@link CustomTargetingKey#id} of the {@link CustomTargetingKey} object
+                    that was created using {@link CustomTargetingService}. This attribute is
+                    required.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="unbounded" minOccurs="0"
+                name="valueIds" type="xsd:long">
+                <annotation>
+                  <documentation>
+                    The ids of {@link CustomTargetingValue} objects to target the custom
+                    targeting key with id {@link CustomCriteria#keyId}. This attribute is
+                    required.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0" name="operator" type="tns:CustomCriteria.ComparisonOperator">
+                <annotation>
+                  <documentation>
+                    The comparison operator. This attribute is required.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="CustomCriteriaSet">
+        <annotation>
+          <documentation>
+            A {@link CustomCriteriaSet} comprises of a set of {@link CustomCriteriaNode}
+            objects combined by the
+            {@link CustomCriteriaSet.LogicalOperator#logicalOperator}. The custom
+            criteria targeting tree is subject to the rules defined on
+            {@link Targeting#customTargeting}.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:CustomCriteriaNode">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0"
+                name="logicalOperator" type="tns:CustomCriteriaSet.LogicalOperator">
+                <annotation>
+                  <documentation>
+                    The logical operator to be applied to {@link CustomCriteriaSet#children}.
+                    This attribute is required.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="unbounded" minOccurs="0"
+                name="children" type="tns:CustomCriteriaNode">
+                <annotation>
+                  <documentation>
+                    The custom criteria. This attribute is required.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="CustomTargetingError">
+        <annotation>
+          <documentation>
+            Lists all errors related to {@link CustomTargetingKey} and
+            {@link CustomTargetingValue} objects.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CustomTargetingError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType abstract="true" name="CustomCriteriaLeaf">
+        <annotation>
+          <documentation>
+            A {@link CustomCriteriaLeaf} object represents a generic leaf of {@link CustomCriteria} tree
+            structure.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:CustomCriteriaNode">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType abstract="true" name="CustomCriteriaNode">
+        <annotation>
+          <documentation>
+            A {@link CustomCriteriaNode} is a node in the custom targeting tree. A custom
+            criteria node can either be a {@link CustomCriteriaSet} (a non-leaf node) or
+            a {@link CustomCriteria} (a leaf node). The custom criteria targeting tree is
+            subject to the rules defined on {@link Targeting#customTargeting}.
+          </documentation>
+        </annotation>
+        <sequence/>
+      </complexType>
+      <complexType name="AudienceSegmentCriteria">
+        <annotation>
+          <documentation>
+            An {@link AudienceSegmentCriteria} object is used to target {@link AudienceSegment} objects.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:CustomCriteriaLeaf">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="operator" type="tns:AudienceSegmentCriteria.ComparisonOperator">
+                <annotation>
+                  <documentation>
+                    The comparison operator. This attribute is required.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="unbounded" minOccurs="0"
+                name="audienceSegmentIds" type="xsd:long">
+                <annotation>
+                  <documentation>
+                    The ids of {@link AudienceSegment} objects used to target audience segments. This attribute is
+                    required.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="Date">
+        <annotation>
+          <documentation>
+            Represents a date.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="year" type="xsd:int">
+            <annotation>
+              <documentation>
+                Year (e.g., 2009)
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="month" type="xsd:int">
+            <annotation>
+              <documentation>
+                Month (1..12)
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="day" type="xsd:int">
+            <annotation>
+              <documentation>
+                Day (1..31)
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="DateTime">
+        <annotation>
+          <documentation>
+            Represents a date combined with the time of day.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="date" type="tns:Date"/>
+          <element maxOccurs="1" minOccurs="0" name="hour" type="xsd:int"/>
+          <element maxOccurs="1" minOccurs="0" name="minute" type="xsd:int"/>
+          <element maxOccurs="1" minOccurs="0" name="second" type="xsd:int"/>
+          <element maxOccurs="1" minOccurs="0" name="timeZoneID" type="xsd:string"/>
+        </sequence>
+      </complexType>
+      <complexType name="DateTimeValue">
+        <annotation>
+          <documentation>
+            Contains a date-time value.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="tns:DateTime">
+                <annotation>
+                  <documentation>
+                    The {@code DateTime} value.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DateValue">
+        <annotation>
+          <documentation>
+            Contains a date value.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="tns:Date">
+                <annotation>
+                  <documentation>
+                    The {@code Date} value.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DayPart">
+        <annotation>
+          <documentation>
+            {@code DayPart} represents a time-period within a day of the week which is
+            targeted by a {@link LineItem}.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="dayOfWeek" type="tns:DayOfWeek">
+            <annotation>
+              <documentation>
+                Day of the week the target applies to. This field is required.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="startTime" type="tns:TimeOfDay">
+            <annotation>
+              <documentation>
+                Represents the start time of the targeted period (inclusive).
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="endTime" type="tns:TimeOfDay">
+            <annotation>
+              <documentation>
+                Represents the end time of the targeted period (exclusive).
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="DayPartTargeting">
+        <annotation>
+          <documentation>
+            Modify the delivery times of line items for particular days of the week. By
+            default, line items are served at all days and times.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="dayParts" type="tns:DayPart">
+            <annotation>
+              <documentation>
+                Specifies days of the week and times at which a {@code LineItem} will be
+                delivered.
+                &lt;p&gt;
+                If targeting all days and times, this value will be ignored.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="timeZone" type="tns:DeliveryTimeZone">
+            <annotation>
+              <documentation>
+                Specifies the time zone to be used for delivering {@link LineItem} objects.
+                This attribute is optional and defaults to
+                {@link DeliveryTimeZone#BROWSER}.
+                &lt;p&gt;
+                Setting this has no effect if targeting all days and times.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="DeactivateAdRules">
+        <annotation>
+          <documentation>
+            The action used for pausing {@link AdRule} objects.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:AdRuleAction">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DeleteAdRules">
+        <annotation>
+          <documentation>
+            The action used for deleting {@link AdRule} objects.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:AdRuleAction">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DeviceCapability">
+        <annotation>
+          <documentation>
+            Represents a capability of a physical device.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Technology">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DeviceCapabilityTargeting">
+        <annotation>
+          <documentation>
+            Represents device capabilities that are being targeted or excluded by the {@link LineItem}.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="targetedDeviceCapabilities" type="tns:Technology">
+            <annotation>
+              <documentation>
+                Device capabilities that are being targeted by the {@link LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="excludedDeviceCapabilities" type="tns:Technology">
+            <annotation>
+              <documentation>
+                Device capabilities that are being excluded by the {@link LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="DeviceCategory">
+        <annotation>
+          <documentation>
+            Represents the category of a device.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Technology">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DeviceCategoryTargeting">
+        <annotation>
+          <documentation>
+            Represents device categories that are being targeted or excluded by the {@link LineItem}.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="targetedDeviceCategories" type="tns:Technology">
+            <annotation>
+              <documentation>
+                Device categories that are being targeted by the {@link LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="excludedDeviceCategories" type="tns:Technology">
+            <annotation>
+              <documentation>
+                Device categories that are being excluded by the {@link LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="DeviceManufacturer">
+        <annotation>
+          <documentation>
+            Represents a mobile device's manufacturer.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Technology">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DeviceManufacturerTargeting">
+        <annotation>
+          <documentation>
+            Represents device manufacturer that are being targeted or excluded by the
+            {@link LineItem}.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="isTargeted" type="xsd:boolean">
+            <annotation>
+              <documentation>
+                Indicates whether device manufacturers should be targeted or excluded. This
+                attribute is optional and defaults to {@code true}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="deviceManufacturers" type="tns:Technology">
+            <annotation>
+              <documentation>
+                Device manufacturers that are being targeted or excluded by the
+                {@link LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="FeatureError">
+        <annotation>
+          <documentation>
+            Errors related to feature management.  If you attempt using a feature that is not available to
+            the current network you'll receive a FeatureError with the missing feature as the trigger.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:FeatureError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="FieldPathElement">
+        <annotation>
+          <documentation>
+            A segment of a field path. Each dot in a field path defines a new segment.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="field" type="xsd:string">
+            <annotation>
+              <documentation>
+                The name of a field in lower camelcase. (e.g. "biddingStrategy")
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="index" type="xsd:int">
+            <annotation>
+              <documentation>
+                For list fields, this is a 0-indexed position in the list. Null for non-list fields.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="GeoTargeting">
+        <annotation>
+          <documentation>
+            Provides line items the ability to target geographical locations. By default,
+            line items target all countries and their subdivisions. With geographical
+            targeting, you can target line items to specific countries, regions, metro
+            areas, and cities. You can also exclude the same.
+            &lt;p&gt;
+            The following rules apply for geographical targeting:
+            &lt;/p&gt;
+            &lt;ul&gt;
+            &lt;li&gt;You cannot target and exclude the same location.&lt;/li&gt;
+            &lt;li&gt;You cannot target a child whose parent has been excluded. For example, if the state
+            of Illinois has been excluded, then you cannot target Chicago.&lt;/li&gt;
+            &lt;li&gt;You must not target a location if you are also targeting its parent.
+            For example, if you are targeting New York City, you must not have the state of New
+            York as one of the targeted locations.&lt;/li&gt;
+            &lt;li&gt;You cannot explicitly define inclusions or exclusions that are already implicit. For example,
+            if you explicitly include California, you implicitly exclude all other states. You therefore
+            cannot explicitly exclude Florida, because it is already implicitly excluded. Conversely if you
+            explicitly exclude Florida, you cannot excplicitly include California.&lt;/li&gt;
+            &lt;/ul&gt;
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="targetedLocations" type="tns:Location">
+            <annotation>
+              <documentation>
+                The geographical locations being targeted by the {@link LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="excludedLocations" type="tns:Location">
+            <annotation>
+              <documentation>
+                The geographical locations being excluded by the {@link LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="InternalApiError">
+        <annotation>
+          <documentation>
+            Indicates that a server-side error has occured. {@code InternalApiError}s
+            are generally not the result of an invalid request or message sent by the
+            client.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:InternalApiError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="InventoryTargeting">
+        <annotation>
+          <documentation>
+            A collection of targeted and excluded ad units and placements.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="targetedAdUnits" type="tns:AdUnitTargeting">
+            <annotation>
+              <documentation>
+                A list of targeted {@link AdUnitTargeting}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="excludedAdUnits" type="tns:AdUnitTargeting">
+            <annotation>
+              <documentation>
+                A list of excluded {@link AdUnitTargeting}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="targetedPlacementIds" type="xsd:long">
+            <annotation>
+              <documentation>
+                A list of targeted {@link Placement} ids.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="InventoryTargetingError">
+        <annotation>
+          <documentation>
+            Lists all inventory errors caused by associating a line item with a targeting
+            expression.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:InventoryTargetingError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="Location">
+        <annotation>
+          <documentation>
+            A {@link Location} represents a geographical entity that can be targeted. If
+            a location type is not available because of the API version you are using,
+            the location will be represented as just the base class, otherwise it will be
+            sub-classed correctly.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
+            <annotation>
+              <documentation>
+                Uniquely identifies each {@code Location}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="type" type="xsd:string">
+            <annotation>
+              <documentation>
+                The location type for this geographical entity (ex. "COUNTRY", "CITY", "STATE", "COUNTY", etc.)
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="canonicalParentId" type="xsd:int">
+            <annotation>
+              <documentation>
+                The nearest location parent's ID for this geographical entity.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="displayName" type="xsd:string">
+            <annotation>
+              <documentation>
+                The localized name of the geographical entity.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="MobileApplicationTargeting">
+        <annotation>
+          <documentation>
+            Provides line items the ability to target or exclude users' mobile applications.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="mobileApplicationIds" type="xsd:long">
+            <annotation>
+              <documentation>
+                The {@link MobileApplication#id IDs} that are being targeted or excluded by the
+                {@link LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="isTargeted" type="xsd:boolean">
+            <annotation>
+              <documentation>
+                Indicates whether mobile apps should be targeted or excluded. This attribute is optional
+                and defaults to {@code true}.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="MobileCarrier">
+        <annotation>
+          <documentation>
+            Represents a mobile carrier.
+            Carrier targeting is only available to DFP mobile publishers.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Technology">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="MobileCarrierTargeting">
+        <annotation>
+          <documentation>
+            Represents mobile carriers that are being targeted or excluded by the {@link LineItem}.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="isTargeted" type="xsd:boolean">
+            <annotation>
+              <documentation>
+                Indicates whether mobile carriers should be targeted or excluded. This
+                attribute is optional and defaults to {@code true}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="mobileCarriers" type="tns:Technology">
+            <annotation>
+              <documentation>
+                Mobile carriers that are being targeted or excluded by the
+                {@link LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="MobileDevice">
+        <annotation>
+          <documentation>
+            Represents a Mobile Device.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Technology">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0"
+                name="manufacturerCriterionId" type="xsd:long">
+                <annotation>
+                  <documentation>
+                    Manufacturer Id.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="MobileDeviceSubmodel">
+        <annotation>
+          <documentation>
+            Represents a mobile device submodel.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Technology">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0"
+                name="mobileDeviceCriterionId" type="xsd:long">
+                <annotation>
+                  <documentation>
+                    The mobile device id.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0"
+                name="deviceManufacturerCriterionId" type="xsd:long">
+                <annotation>
+                  <documentation>
+                    The device manufacturer id.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="MobileDeviceSubmodelTargeting">
+        <annotation>
+          <documentation>
+            Represents mobile devices that are being targeted or excluded by the {@link LineItem}.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="targetedMobileDeviceSubmodels" type="tns:Technology">
+            <annotation>
+              <documentation>
+                Mobile device submodels that are being targeted by the {@link LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="excludedMobileDeviceSubmodels" type="tns:Technology">
+            <annotation>
+              <documentation>
+                Mobile device submodels that are being excluded by the {@link LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="MobileDeviceTargeting">
+        <annotation>
+          <documentation>
+            Represents mobile devices that are being targeted or excluded by the {@link LineItem}.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="targetedMobileDevices" type="tns:Technology">
+            <annotation>
+              <documentation>
+                Mobile devices that are being targeted by the {@link LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="excludedMobileDevices" type="tns:Technology">
+            <annotation>
+              <documentation>
+                Mobile devices that are being excluded by the {@link LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="NotNullError">
+        <annotation>
+          <documentation>
+            Caused by supplying a null value for an attribute that cannot be null.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:NotNullError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="NumberValue">
+        <annotation>
+          <documentation>
+            Contains a numeric value.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="xsd:string">
+                <annotation>
+                  <documentation>
+                    The numeric value represented as a string.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="OperatingSystem">
+        <annotation>
+          <documentation>
+            Represents an Operating System, such as Linux, Mac OS or Windows.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Technology">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="OperatingSystemTargeting">
+        <annotation>
+          <documentation>
+            Represents operating systems that are being targeted or excluded by the
+            {@link LineItem}.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="isTargeted" type="xsd:boolean">
+            <annotation>
+              <documentation>
+                Indicates whether operating systems should be targeted or excluded. This
+                attribute is optional and defaults to {@code true}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="operatingSystems" type="tns:Technology">
+            <annotation>
+              <documentation>
+                Operating systems that are being targeted or excluded by the
+                {@link LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="OperatingSystemVersion">
+        <annotation>
+          <documentation>
+            Represents a specific version of an operating system.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Technology">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="majorVersion" type="xsd:int">
+                <annotation>
+                  <documentation>
+                    The operating system major version.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0" name="minorVersion" type="xsd:int">
+                <annotation>
+                  <documentation>
+                    The operating system minor version.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0" name="microVersion" type="xsd:int">
+                <annotation>
+                  <documentation>
+                    The operating system micro version.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="OperatingSystemVersionTargeting">
+        <annotation>
+          <documentation>
+            Represents operating system versions that are being targeted or excluded by the {@link LineItem}.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="targetedOperatingSystemVersions" type="tns:Technology">
+            <annotation>
+              <documentation>
+                Operating system versions that are being targeted by the
+                {@link LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="excludedOperatingSystemVersions" type="tns:Technology">
+            <annotation>
+              <documentation>
+                Operating system versions that are being excluded by the
+                {@link LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="ParseError">
+        <annotation>
+          <documentation>
+            Lists errors related to parsing.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ParseError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="PermissionError">
+        <annotation>
+          <documentation>
+            Errors related to incorrect permission.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:PermissionError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="PoddingError">
+        <annotation>
+          <documentation>
+            Errors related to podding fields in ad rule slots.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:PoddingError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="PublisherQueryLanguageContextError">
+        <annotation>
+          <documentation>
+            An error that occurs while executing a PQL query contained in
+            a {@link Statement} object.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:PublisherQueryLanguageContextError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="PublisherQueryLanguageSyntaxError">
+        <annotation>
+          <documentation>
+            An error that occurs while parsing a PQL query contained in a
+            {@link Statement} object.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:PublisherQueryLanguageSyntaxError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="QuotaError">
+        <annotation>
+          <documentation>
+            Describes a client-side error on which a user is attempting
+            to perform an action to which they have no quota remaining.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:QuotaError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RequiredCollectionError">
+        <annotation>
+          <documentation>
+            A list of all errors to be used for validating sizes of collections.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RequiredCollectionError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RequiredError">
+        <annotation>
+          <documentation>
+            Errors due to missing required field.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RequiredError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RequiredNumberError">
+        <annotation>
+          <documentation>
+            A list of all errors to be used in conjunction with required number
+            validators.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RequiredNumberError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ServerError">
+        <annotation>
+          <documentation>
+            Errors related to the server.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ServerError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="SetValue">
+        <annotation>
+          <documentation>
+            Contains a set of {@link Value Values}. May not contain duplicates.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="unbounded" minOccurs="0" name="values" type="tns:Value">
+                <annotation>
+                  <documentation>
+                    The values. They must all be the same type of {@code Value} and not contain duplicates.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="SoapRequestHeader">
+        <annotation>
+          <documentation>
+            Represents the SOAP request header used by API requests.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="networkCode" type="xsd:string">
+            <annotation>
+              <documentation>
+                The network code to use in the context of a request.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="applicationName" type="xsd:string">
+            <annotation>
+              <documentation>
+                The name of client library application.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="SoapResponseHeader">
+        <annotation>
+          <documentation>
+            Represents the SOAP request header used by API responses.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="requestId" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="responseTime" type="xsd:long"/>
+        </sequence>
+      </complexType>
+      <complexType name="Statement">
+        <annotation>
+          <documentation>
+            Captures the {@code WHERE}, {@code ORDER BY} and {@code LIMIT} clauses of a
+            PQL query. Statements are typically used to retrieve objects of a predefined
+            domain type, which makes SELECT clause unnecessary.
+            &lt;p&gt;
+            An example query text might be {@code "WHERE status = 'ACTIVE' ORDER BY id
+            LIMIT 30"}.
+            &lt;/p&gt;
+            &lt;p&gt;
+            Statements support bind variables. These are substitutes for literals
+            and can be thought of as input parameters to a PQL query.
+            &lt;/p&gt;
+            &lt;p&gt;
+            An example of such a query might be {@code "WHERE id = :idValue"}.
+            &lt;/p&gt;
+            &lt;p&gt;
+            Statements also support use of the LIKE keyword. This provides partial and
+            wildcard string matching.
+            &lt;/p&gt;
+            &lt;p&gt;
+            An example of such a query might be {@code "WHERE name LIKE 'startswith%'"}.
+            &lt;/p&gt;
+            The value for the variable idValue must then be set with an object of type
+            {@link Value}, e.g., {@link NumberValue}, {@link TextValue} or
+            {@link BooleanValue}.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="query" type="xsd:string">
+            <annotation>
+              <documentation>
+                Holds the query in PQL syntax. The syntax is:&lt;br&gt;
+                &lt;code&gt;[WHERE &lt;condition&gt; {[AND | OR] &lt;condition&gt; ...}]&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;[ORDER BY &lt;property&gt; [ASC | DESC]]&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;[LIMIT {[&lt;offset&gt;,] &lt;count&gt;} | {&lt;count&gt; OFFSET &lt;offset&gt;}]&lt;/code&gt;&lt;br&gt;
+                &lt;p&gt;
+                &lt;code&gt;&lt;condition&gt;&lt;/code&gt;&lt;br&gt;
+                &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                &lt;code&gt;:= &lt;property&gt; {&lt; | &lt;= | &gt; | &gt;= | = | != } &lt;value&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;&lt;condition&gt;&lt;/code&gt;&lt;br&gt;
+                &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                &lt;code&gt;:= &lt;property&gt; {&lt; | &lt;= | &gt; | &gt;= | = | != } &lt;bind variable&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;&lt;condition&gt; := &lt;property&gt; IN &lt;list&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;&lt;condition&gt; := &lt;property&gt; IS NULL&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;&lt;condition&gt; := &lt;property&gt; LIKE &lt;wildcard%match&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;&lt;bind variable&gt; := :&lt;name&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;/p&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="values" type="tns:String_ValueMapEntry">
+            <annotation>
+              <documentation>
+                Holds keys and values for bind variables and their values. The key is the
+                name of the bind variable. The value is the literal value of the variable.
+                &lt;p&gt;
+                In the example {@code "WHERE status = :bindStatus ORDER BY id LIMIT 30"},
+                the bind variable, represented by {@code :bindStatus} is named {@code
+                bindStatus}, which would also be the parameter map key. The bind variable's
+                value would be represented by a parameter map value of type
+                {@link TextValue}. The final result, for example, would be an entry of
+                {@code "bindStatus" =&gt; StringParam("ACTIVE")}.
+                &lt;/p&gt;
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="StatementError">
+        <annotation>
+          <documentation>
+            An error that occurs while parsing {@link Statement} objects.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:StatementError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="StringFormatError">
+        <annotation>
+          <documentation>
+            A list of error code for reporting invalid content of input strings.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:StringFormatError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="StringLengthError">
+        <annotation>
+          <documentation>
+            Errors for Strings which do not meet given length constraints.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:StringLengthError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="String_ValueMapEntry">
+        <annotation>
+          <documentation>
+            This represents an entry in a map with a key of type String
+            and value of type Value.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="key" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="value" type="tns:Value"/>
+        </sequence>
+      </complexType>
+      <complexType name="Targeting">
+        <annotation>
+          <documentation>
+            Contains targeting criteria for {@link LineItem} objects. See
+            {@link LineItem#targeting}.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="geoTargeting" type="tns:GeoTargeting">
+            <annotation>
+              <documentation>
+                Specifies what geographical locations are targeted by the {@link LineItem}.
+                This attribute is optional.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="inventoryTargeting" type="tns:InventoryTargeting">
+            <annotation>
+              <documentation>
+                Specifies what inventory is targeted by the {@link LineItem}. This attribute is required. The
+                line item must target at least one ad unit or placement.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="dayPartTargeting" type="tns:DayPartTargeting">
+            <annotation>
+              <documentation>
+                Specifies the days of the week and times that are targeted by the
+                {@link LineItem}. This attribute is optional.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0"
+            name="technologyTargeting" type="tns:TechnologyTargeting">
+            <annotation>
+              <documentation>
+                Specifies the browsing technologies that are targeted by the
+                {@link LineItem}. This attribute is optional.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="customTargeting" type="tns:CustomCriteriaSet">
+            <annotation>
+              <documentation>
+                Specifies the collection of custom criteria that is targeted by the
+                {@link LineItem}.
+                &lt;p&gt;
+                Once the {@link LineItem} is updated or modified with custom targeting, the
+                server may return a normalized, but equivalent representation of the custom
+                targeting expression.
+                &lt;p&gt;
+                {@code customTargeting} will have up to three levels of expressions
+                including itself.
+                &lt;/p&gt;
+                &lt;p&gt;
+                The top level {@code CustomCriteriaSet} i.e. the {@code customTargeting}
+                object can only contain a {@link CustomCriteriaSet.LogicalOperator#OR} of
+                all its children.
+                &lt;/p&gt;
+                &lt;p&gt;
+                The second level of {@code CustomCriteriaSet} objects can only contain
+                {@link CustomCriteriaSet.LogicalOperator#AND} of all their children. If
+                a {@link CustomCriteria} is placed on this level, the server will wrap it
+                in a {@link CustomCriteriaSet}.
+                &lt;/p&gt;
+                &lt;p&gt;
+                The third level can only comprise of {@link CustomCriteria} objects.
+                &lt;/p&gt;
+                &lt;p&gt;
+                The resulting custom targeting tree would be of the form:
+                &lt;/p&gt;
+                &lt;br/&gt;
+                &lt;img src="https://chart.apis.google.com/chart?cht=gv&amp;chl=digraph{customTargeting_LogicalOperator_OR-%3ECustomCriteriaSet_LogicalOperator_AND_1-%3ECustomCriteria_1;CustomCriteriaSet_LogicalOperator_AND_1-%3Eellipsis1;customTargeting_LogicalOperator_OR-%3Eellipsis2;ellipsis1[label=%22...%22,shape=none,fontsize=32];ellipsis2[label=%22...%22,shape=none,fontsize=32]}&amp;chs=450x200"/&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0"
+            name="userDomainTargeting" type="tns:UserDomainTargeting">
+            <annotation>
+              <documentation>
+                Specifies the domains or subdomains that are targeted or excluded by the
+                {@link LineItem}. Users visiting from an IP address associated with
+                those domains will be targeted or excluded. This attribute is optional.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="contentTargeting" type="tns:ContentTargeting">
+            <annotation>
+              <documentation>
+                Specifies the video categories and individual videos targeted by the
+                {@link LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0"
+            name="videoPositionTargeting" type="tns:VideoPositionTargeting">
+            <annotation>
+              <documentation>
+                Specifies targeting against video position types.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0"
+            name="mobileApplicationTargeting" type="tns:MobileApplicationTargeting">
+            <annotation>
+              <documentation>
+                Specifies targeting against mobile applications.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="Technology">
+        <annotation>
+          <documentation>
+            Represents a technology entity that can be targeted.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
+            <annotation>
+              <documentation>
+                The unique ID of the {@code Technology}. This value is required for
+                all forms of {@code TechnologyTargeting}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
+            <annotation>
+              <documentation>
+                The name of the technology being targeting. This value is read-only and is
+                assigned by Google.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="TextValue">
+        <annotation>
+          <documentation>
+            Contains a string value.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="xsd:string">
+                <annotation>
+                  <documentation>
+                    The string value.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="TimeOfDay">
+        <annotation>
+          <documentation>
+            Represents a specific time in a day.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="hour" type="xsd:int">
+            <annotation>
+              <documentation>
+                Hour in 24 hour time (0..24). This field must be between 0 and 24,
+                inclusive. This field is required.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="minute" type="tns:MinuteOfHour">
+            <annotation>
+              <documentation>
+                Minutes in an hour. Currently, only 0, 15, 30, and 45 are supported. This
+                field is required.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="UniqueError">
+        <annotation>
+          <documentation>
+            An error for a field which must satisfy a uniqueness constraint
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="UnknownAdRuleSlot">
+        <annotation>
+          <documentation>
+            The {@link BaseAdRuleSlot} subtype returned if the actual type is not exposed by the requested
+            API version.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:BaseAdRuleSlot">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="UpdateResult">
+        <annotation>
+          <documentation>
+            Represents the result of performing an action on objects.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="numChanges" type="xsd:int">
+            <annotation>
+              <documentation>
+                The number of objects that were changed as a result of performing the
+                action.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="UserDomainTargeting">
+        <annotation>
+          <documentation>
+            Provides line items the ability to target or exclude users visiting their
+            websites from a list of domains or subdomains.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="domains" type="xsd:string">
+            <annotation>
+              <documentation>
+                The domains or subdomains that are being targeted or excluded by the
+                {@link LineItem}. This attribute is required and the maximum length of each
+                domain is 67 characters.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="targeted" type="xsd:boolean">
+            <annotation>
+              <documentation>
+                Indicates whether domains should be targeted or excluded. This attribute is
+                optional and defaults to {@code true}.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType abstract="true" name="Value">
+        <annotation>
+          <documentation>
+            {@code Value} represents a value.
+          </documentation>
+        </annotation>
+        <sequence/>
+      </complexType>
+      <complexType name="VideoPosition">
+        <annotation>
+          <documentation>
+            Represents a targetable position within a video. A video ad can be targeted
+            to a position (pre-roll, all mid-rolls, or post-roll), or to a specific mid-roll index.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="positionType" type="tns:VideoPosition.Type">
+            <annotation>
+              <documentation>
+                The type of video position (pre-roll, mid-roll, or post-roll).
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="midrollIndex" type="xsd:int">
+            <annotation>
+              <documentation>
+                The index of the mid-roll to target.  Only valid if the {@link positionType} is
+                {@link VideoPositionType#MIDROLL}, otherwise this field will be ignored.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="VideoPositionTargeting">
+        <annotation>
+          <documentation>
+            Represents positions within and around a video where ads can be targeted to.
+            &lt;p&gt;
+            Example positions could be {@code pre-roll} (before the video plays),
+            {@code post-roll} (after a video has completed playback) and
+            {@code mid-roll} (during video playback).
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="targetedPositions" type="tns:VideoPositionTarget">
+            <annotation>
+              <documentation>
+                The {@link VideoTargetingPosition} objects being targeted by the
+                video {@link LineItem}.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="VideoPositionWithinPod">
+        <annotation>
+          <documentation>
+            Represents a targetable position within a pod within a video stream. A video ad can be targeted
+            to any position in the pod (first, second, third ... last).  If there is only 1 ad in a pod,
+            either first or last will target that position.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="index" type="xsd:int">
+            <annotation>
+              <documentation>
+                The specific index of the pod. The index is defined as:
+                &lt;ul&gt;&lt;li&gt;1 = first&lt;/li&gt;
+                &lt;li&gt;2 = second&lt;/li&gt;
+                &lt;li&gt;3 = third&lt;/li&gt;
+                &lt;li&gt;....&lt;/li&gt;
+                &lt;li&gt;100 = last&lt;/li&gt;&lt;/ul&gt;
+                100 will always be the last position. For example, for a pod with 5 positions, 100 would
+                target position 5. Multiple targets against the index 100 can exist.&lt;br&gt;
+                Positions over 100 are not supported.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="VideoPositionTarget">
+        <annotation>
+          <documentation>
+            Represents the options for targetable positions within a video.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="videoPosition" type="tns:VideoPosition">
+            <annotation>
+              <documentation>
+                The video position to target.  This attribute is required.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="videoBumperType" type="tns:VideoBumperType">
+            <annotation>
+              <documentation>
+                The video bumper type to target.  To target a video position or a pod position,
+                this value must be null.  To target a bumper position this value must be populated
+                and the line item must have a bumper type.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0"
+            name="videoPositionWithinPod" type="tns:VideoPositionWithinPod">
+            <annotation>
+              <documentation>
+                The video position within a pod to target.  To target a video position or a bumper
+                position, this value must be null.  To target a position within a pod this value must
+                be populated.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <simpleType name="AdRuleDateError.Reason">
+        <annotation>
+          <documentation>
+            Describes reasons for {@code AdRuleDateError}s.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="START_DATE_TIME_IS_IN_PAST">
+            <annotation>
+              <documentation>
+                Cannot create a new ad rule with a start date in the past.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="END_DATE_TIME_IS_IN_PAST">
+            <annotation>
+              <documentation>
+                Cannot update an existing ad rule that has already completely passed with
+                a new end date that is still in the past.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="END_DATE_TIME_NOT_AFTER_START_TIME">
+            <annotation>
+              <documentation>
+                End date must be after the start date.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="END_DATE_TIME_TOO_LATE">
+            <annotation>
+              <documentation>
+                {@code DateTime}s after 1 January 2037 are not supported.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="AdRuleFrequencyCapError.Reason">
+        <annotation>
+          <documentation>
+            Describes reason for {@code AdRuleFrequencyCapError}s.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="NO_FREQUENCY_CAPS_SPECIFIED_WHEN_FREQUENCY_CAPS_TURNED_ON">
+            <annotation>
+              <documentation>
+                The ad rule specifies that frequency caps should be turned on, but then
+                none of the frequency caps have actually been set.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FREQUENCY_CAPS_SPECIFIED_WHEN_FREQUENCY_CAPS_TURNED_OFF">
+            <annotation>
+              <documentation>
+                The ad rule specifies that frequency caps should not be turned on, but
+                then some frequency caps were actually set.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="AdRulePriorityError.Reason">
+        <annotation>
+          <documentation>
+            Reasons for an {@code AdRulePriorityError}.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="DUPLICATE_PRIORITY">
+            <annotation>
+              <documentation>
+                Ad rules must have unique priorities.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PRIORITIES_NOT_SEQUENTIAL">
+            <annotation>
+              <documentation>
+                One or more priorities are missing.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="AdRuleSlotBehavior">
+        <annotation>
+          <documentation>
+            The types of behaviors for ads within a {@link BaseAdRuleSlot ad rule slot}.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="ALWAYS_SHOW">
+            <annotation>
+              <documentation>
+                This ad rule always includes this slot's ads.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NEVER_SHOW">
+            <annotation>
+              <documentation>
+                This ad rule never includes this slot's ads.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DEFER">
+            <annotation>
+              <documentation>
+                Defer to lower priority rules. This ad rule doesn't specify guidelines for this slot's ads.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="AdRuleSlotBumper">
+        <annotation>
+          <documentation>
+            Types of bumper ads on an ad rule slot.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="NONE">
+            <annotation>
+              <documentation>
+                Do not show a bumper ad.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="BEFORE">
+            <annotation>
+              <documentation>
+                Show a bumper ad before the slot's other ads.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="AFTER">
+            <annotation>
+              <documentation>
+                Show a bumper ad after the slot's other ads.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="BEFORE_AND_AFTER">
+            <annotation>
+              <documentation>
+                Show a bumper before and after the slot's other ads.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="AdRuleSlotError.Reason">
+        <annotation>
+          <documentation>
+            Describes reason for {@code AdRuleSlotError}s.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="DIFFERENT_STATUS_THAN_AD_RULE">
+            <annotation>
+              <documentation>
+                Has a different status than the ad rule to which it belongs.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_VIDEO_AD_DURATION_RANGE">
+            <annotation>
+              <documentation>
+                Min video ad duration is greater than max video ad duration.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_VIDEO_MIDROLL_FREQUENCY_TYPE">
+            <annotation>
+              <documentation>
+                Video mid-roll frequency type other than NONE for pre-roll or post-roll.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MALFORMED_VIDEO_MIDROLL_FREQUENCY_CSV">
+            <annotation>
+              <documentation>
+                Invalid format for video mid-roll frequency when expecting a CSV list of
+                numbers. Valid formats are the following:&lt;ul&gt;
+                &lt;li&gt;empty
+                &lt;li&gt; comma-separated list of numbers (time milliseconds or cue points)
+                &lt;li&gt;a single number (every n milliseconds or cue points, or one
+                specific time / cue point)
+                &lt;/ul&gt;
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MALFORMED_VIDEO_MIDROLL_FREQUENCY_SINGLE_NUMBER">
+            <annotation>
+              <documentation>
+                Invalid format for video mid-roll frequency when expecting a single
+                number only, e.g., every n seconds or every n cue points.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_OVERLAY_AD_DURATION_RANGE">
+            <annotation>
+              <documentation>
+                Min overlay ad duration is greater than max overlay ad duration.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_OVERLAY_MIDROLL_FREQUENCY_TYPE">
+            <annotation>
+              <documentation>
+                Overlay mid-roll frequency type other than NONE for pre-roll or
+                post-roll.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MALFORMED_OVERLAY_MIDROLL_FREQUENCY_CSV">
+            <annotation>
+              <documentation>
+                Invalid format for overlay mid-roll frequency for list of numbers. See
+                valid formats above.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MALFORMED_OVERLAY_MIDROLL_FREQUENCY_SINGLE_NUMBER">
+            <annotation>
+              <documentation>
+                Invalid format for overlay mid-roll frequency for a single number.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_BUMPER_MAX_DURATION">
+            <annotation>
+              <documentation>
+                Non-positive bumper duration when expecting a positive number.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="AdRuleStatus">
+        <annotation>
+          <documentation>
+            Represents the status of ad rules and ad rule slots.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="ACTIVE">
+            <annotation>
+              <documentation>
+                Created and ready to be served. Is user-visible.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INACTIVE">
+            <annotation>
+              <documentation>
+                Paused, user-visible.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DELETED">
+            <annotation>
+              <documentation>
+                Marked as deleted, not user-visible.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="AdRuleTargetingError.Reason">
+        <annotation>
+          <documentation>
+            Describes reasons for {@code AdRuleTargetingError ad rule targeting errors}.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="VIDEO_POSITION_TARGETING_NOT_ALLOWED">
+            <annotation>
+              <documentation>
+                Cannot target video positions.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="ApiVersionError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="UPDATE_TO_NEWER_VERSION">
+            <annotation>
+              <documentation>
+                Indicates that the operation is not allowed in the version the request
+                was made in.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="AuthenticationError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="AMBIGUOUS_SOAP_REQUEST_HEADER">
+            <annotation>
+              <documentation>
+                The SOAP message contains a request header with an ambiguous definition
+                of the authentication header fields. This means either the {@code
+                authToken} and {@code oAuthToken} fields were both null or both were
+                specified. Exactly one value should be specified with each request.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_EMAIL">
+            <annotation>
+              <documentation>
+                The login provided is invalid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="AUTHENTICATION_FAILED">
+            <annotation>
+              <documentation>
+                Tried to authenticate with provided information, but failed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_OAUTH_SIGNATURE">
+            <annotation>
+              <documentation>
+                The OAuth provided is invalid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_SERVICE">
+            <annotation>
+              <documentation>
+                The specified service to use was not recognized.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_SOAP_REQUEST_HEADER">
+            <annotation>
+              <documentation>
+                The SOAP message is missing a request header with an {@code authToken}
+                and optional {@code networkCode}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_AUTHENTICATION_HTTP_HEADER">
+            <annotation>
+              <documentation>
+                The HTTP request is missing a request header with an {@code authToken}
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_AUTHENTICATION">
+            <annotation>
+              <documentation>
+                The request is missing an {@code authToken}
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NOT_WHITELISTED_FOR_API_ACCESS">
+            <annotation>
+              <documentation>
+                The customer is not whitelisted for API access.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NO_NETWORKS_TO_ACCESS">
+            <annotation>
+              <documentation>
+                The user is not associated with any network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NETWORK_NOT_FOUND">
+            <annotation>
+              <documentation>
+                No network for the given {@code networkCode} was found.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NETWORK_CODE_REQUIRED">
+            <annotation>
+              <documentation>
+                The user has access to more than one network, but did not provide a
+                {@code networkCode}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CONNECTION_ERROR">
+            <annotation>
+              <documentation>
+                An error happened on the server side during connection to authentication
+                service.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="GOOGLE_ACCOUNT_ALREADY_ASSOCIATED_WITH_NETWORK">
+            <annotation>
+              <documentation>
+                The user tried to create a test network using an account that already is
+                associated with a network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNDER_INVESTIGATION">
+            <annotation>
+              <documentation>
+                The account is blocked and under investigation by the collections team. Please contact
+                Google for more information.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="CollectionSizeError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="TOO_LARGE"/>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="CommonError.Reason">
+        <annotation>
+          <documentation>
+            Describes reasons for common errors
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="NOT_FOUND">
+            <annotation>
+              <documentation>
+                Indicates that an attempt was made to retrieve an entity that does not
+                exist.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ALREADY_EXISTS">
+            <annotation>
+              <documentation>
+                Indicates that an attempt was made to create an entity that already
+                exists.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NOT_APPLICABLE">
+            <annotation>
+              <documentation>
+                Indicates that a value is not applicable for given use case.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DUPLICATE_OBJECT">
+            <annotation>
+              <documentation>
+                Indicates that two elements in the collection were identical.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_UPDATE">
+            <annotation>
+              <documentation>
+                Indicates that an attempt was made to change an immutable field.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CONCURRENT_MODIFICATION">
+            <annotation>
+              <documentation>
+                Indicates that another request attempted to update the same data in the same network
+                at about the same time. Please wait and try the request again.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="ContentMetadataTargetingError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the metadata targeting error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="VALUES_DO_NOT_BELONG_TO_A_HIERARCHY">
+            <annotation>
+              <documentation>
+                One or more of the values specified in a {@code ContentMetadataHierarchyTargeting}
+                do not belong to the keys defined in any of the hierarchies on the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="CustomCriteria.ComparisonOperator">
+        <annotation>
+          <documentation>
+            Specifies the available comparison operators.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="IS"/>
+          <enumeration value="IS_NOT"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="CustomCriteriaSet.LogicalOperator">
+        <annotation>
+          <documentation>
+            Specifies the available logical operators.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="AND"/>
+          <enumeration value="OR"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="CustomTargetingError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="KEY_NOT_FOUND">
+            <annotation>
+              <documentation>
+                Requested {@link CustomTargetingKey} is not found.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="KEY_COUNT_TOO_LARGE">
+            <annotation>
+              <documentation>
+                Number of {@link CustomTargetingKey} objects created exceeds the limit
+                allowed for the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="KEY_NAME_DUPLICATE">
+            <annotation>
+              <documentation>
+                {@link CustomTargetingKey} with the same {@link CustomTargetingKey#name}
+                already exists.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="KEY_NAME_EMPTY">
+            <annotation>
+              <documentation>
+                {@link CustomTargetingKey#name} is empty.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="KEY_NAME_INVALID_LENGTH">
+            <annotation>
+              <documentation>
+                {@link CustomTargetingKey#name} is too long.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="KEY_NAME_INVALID_CHARS">
+            <annotation>
+              <documentation>
+                {@link CustomTargetingKey#name} contains unsupported or reserved
+                characters.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="KEY_NAME_RESERVED">
+            <annotation>
+              <documentation>
+                {@link CustomTargetingKey#name} matches one of the reserved custom
+                targeting key names.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="KEY_DISPLAY_NAME_INVALID_LENGTH">
+            <annotation>
+              <documentation>
+                {@link CustomTargetingKey#displayName} is too long.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="VALUE_NOT_FOUND">
+            <annotation>
+              <documentation>
+                Requested {@link CustomTargetingValue} is not found.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="GET_VALUES_BY_STATEMENT_MUST_CONTAIN_KEY_ID">
+            <annotation>
+              <documentation>
+                The {@code WHERE} clause in the {@link Statement#query} must always
+                contain {@link CustomTargetingValue#customTargetingKeyId} as one of its
+                columns in a way that it is AND'ed with the rest of the query.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="VALUE_COUNT_FOR_KEY_TOO_LARGE">
+            <annotation>
+              <documentation>
+                The number of {@link CustomTargetingValue} objects associated with a
+                {@link CustomTargetingKey} exceeds the network limit. This is only
+                applicable for keys of type {@code CustomTargetingKey.Type#PREDEFINED}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="VALUE_NAME_DUPLICATE">
+            <annotation>
+              <documentation>
+                {@link CustomTargetingValue} with the same
+                {@link CustomTargetingValue#name} already exists.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="VALUE_NAME_EMPTY">
+            <annotation>
+              <documentation>
+                {@link CustomTargetingValue#name} is empty.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="VALUE_NAME_INVALID_LENGTH">
+            <annotation>
+              <documentation>
+                {@link CustomTargetingValue#name} is too long.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="VALUE_NAME_INVALID_CHARS">
+            <annotation>
+              <documentation>
+                {@link CustomTargetingValue#name} contains unsupported or reserved
+                characters.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="VALUE_DISPLAY_NAME_INVALID_LENGTH">
+            <annotation>
+              <documentation>
+                {@link CustomTargetingValue#displayName} is too long.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="VALUE_MATCH_TYPE_NOT_ALLOWED">
+            <annotation>
+              <documentation>
+                Only DFP Premium networks can have {@link CustomTargetingValue#matchType}
+                other than {@link CustomTargetingValue.MatchType#EXACT}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="VALUE_MATCH_TYPE_NOT_EXACT_FOR_PREDEFINED_KEY">
+            <annotation>
+              <documentation>
+                You can only create {@link CustomTargetingValue} objects with match type
+                {@link CustomTargetingValue.MatchType#EXACT} when associating
+                with {@link CustomTargetingKey} objects of type
+                {@link CustomTargetingKey.Type#PREDEFINED}
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="SUFFIX_MATCH_TYPE_NOT_ALLOWED">
+            <annotation>
+              <documentation>
+                {@link CustomTargetingValue} object cannot have match type of
+                {@link CustomTargetingValue.MatchType#SUFFIX} when adding a
+                {@link CustomTargetingValue} to a line item.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CONTAINS_MATCH_TYPE_NOT_ALLOWED">
+            <annotation>
+              <documentation>
+                {@link CustomTargetingValue} object cannot have match type of
+                {@link CustomTargetingValue.MatchType#CONTAINS} when adding a
+                {@link CustomTargetingValue} to targeting expression of a line item.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="KEY_WITH_MISSING_VALUES">
+            <annotation>
+              <documentation>
+                The {@link CustomTargetingKey} does not have any
+                {@link CustomTargetingValue} associated with it.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_OR_DIFFERENT_KEYS">
+            <annotation>
+              <documentation>
+                {@link CustomCriteriaSet.LogicalOperator#OR} operation cannot be applied
+                to values with different keys.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_TARGETING_EXPRESSION">
+            <annotation>
+              <documentation>
+                Targeting expression is invalid. This can happen if the sequence of
+                operators is wrong, or a node contains invalid number of children.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DELETED_KEY_CANNOT_BE_USED_FOR_TARGETING">
+            <annotation>
+              <documentation>
+                The key has been deleted. {@link CustomCriteria} cannot have deleted
+                keys.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DELETED_VALUE_CANNOT_BE_USED_FOR_TARGETING">
+            <annotation>
+              <documentation>
+                The value has been deleted. {@link CustomCriteria} cannot have deleted
+                values.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="VIDEO_BROWSE_BY_KEY_CANNOT_BE_USED_FOR_CUSTOM_TARGETING">
+            <annotation>
+              <documentation>
+                The key is set as the video browse-by key, which cannot be used for
+                custom targeting.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_DELETE_CUSTOM_KEY_USED_IN_CONTENT_METADATA_MAPPING">
+            <annotation>
+              <documentation>
+                Only active custom-criteria keys are supported in content metadata mapping.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_DELETE_CUSTOM_VALUE_USED_IN_CONTENT_METADATA_MAPPING">
+            <annotation>
+              <documentation>
+                Only active custom-criteria values are supported in content metadata mapping.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_DELETE_CUSTOM_KEY_USED_IN_PARTNER_ASSIGNMENT_TARGETING">
+            <annotation>
+              <documentation>
+                Cannot delete a custom criteria key that is targeted by an active partner assignment.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_DELETE_CUSTOM_VALUE_USED_IN_PARTNER_ASSIGNMENT_TARGETING">
+            <annotation>
+              <documentation>
+                Cannot delete a custom criteria value that is targeted by an active partner assignment.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_TARGET_AUDIENCE_SEGMENT">
+            <annotation>
+              <documentation>
+                {@link AudienceSegment} object cannot be targeted.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_TARGET_INACTIVE_AUDIENCE_SEGMENT">
+            <annotation>
+              <documentation>
+                Inactive {@link AudienceSegment} object cannot be targeted.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_AUDIENCE_SEGMENTS">
+            <annotation>
+              <documentation>
+                Targeted {@link AudienceSegment} object is not valid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ONLY_APPROVED_AUDIENCE_SEGMENTS_CAN_BE_TARGETED">
+            <annotation>
+              <documentation>
+                Targeted {@link AudienceSegment} objects have not been approved.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="AudienceSegmentCriteria.ComparisonOperator">
+        <annotation>
+          <documentation>
+            Specifies the available comparison operators.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="IS"/>
+          <enumeration value="IS_NOT"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="DayOfWeek">
+        <annotation>
+          <documentation>
+            Days of the week.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="MONDAY">
+            <annotation>
+              <documentation>
+                The day of week named Monday.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TUESDAY">
+            <annotation>
+              <documentation>
+                The day of week named Tuesday.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="WEDNESDAY">
+            <annotation>
+              <documentation>
+                The day of week named Wednesday.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="THURSDAY">
+            <annotation>
+              <documentation>
+                The day of week named Thursday.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FRIDAY">
+            <annotation>
+              <documentation>
+                The day of week named Friday.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="SATURDAY">
+            <annotation>
+              <documentation>
+                The day of week named Saturday.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="SUNDAY">
+            <annotation>
+              <documentation>
+                The day of week named Sunday.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="DeliveryTimeZone">
+        <annotation>
+          <documentation>
+            Represents the time zone to be used for {@link DayPartTargeting}.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="PUBLISHER">
+            <annotation>
+              <documentation>
+                Use the time zone of the publisher.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="BROWSER">
+            <annotation>
+              <documentation>
+                Use the time zone of the browser.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="FeatureError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="MISSING_FEATURE">
+            <annotation>
+              <documentation>
+                A feature is being used that is not enabled on the current network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="FrequencyCapBehavior">
+        <annotation>
+          <documentation>
+            Types of behavior for frequency caps within ad rules.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="TURN_ON">
+            <annotation>
+              <documentation>
+                Turn on at least one of the frequency caps.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TURN_OFF">
+            <annotation>
+              <documentation>
+                Turn off all frequency caps.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DEFER">
+            <annotation>
+              <documentation>
+                Defer frequency cap decisions to the next ad rule in priority order.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="InternalApiError.Reason">
+        <annotation>
+          <documentation>
+            The single reason for the internal API error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNEXPECTED_INTERNAL_API_ERROR">
+            <annotation>
+              <documentation>
+                API encountered an unexpected internal error.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TRANSIENT_ERROR">
+            <annotation>
+              <documentation>
+                A temporary error occurred during the request. Please retry.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The cause of the error is not known or only defined in newer versions.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DOWNTIME">
+            <annotation>
+              <documentation>
+                The API is currently unavailable for a planned downtime.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ERROR_GENERATING_RESPONSE">
+            <annotation>
+              <documentation>
+                Mutate succeeded but server was unable to build response. Client should not retry mutate.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="InventoryTargetingError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="AT_LEAST_ONE_PLACEMENT_OR_INVENTORY_UNIT_REQUIRED">
+            <annotation>
+              <documentation>
+                At least one placement or inventory unit is required
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVENTORY_CANNOT_BE_TARGETED_AND_EXCLUDED">
+            <annotation>
+              <documentation>
+                The same inventory unit or placement cannot be targeted and excluded at
+                the same time
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVENTORY_UNIT_CANNOT_BE_TARGETED_IF_ANCESTOR_IS_TARGETED">
+            <annotation>
+              <documentation>
+                A child inventory unit cannot be targeted if its ancestor inventory unit
+                is also targeted.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVENTORY_UNIT_CANNOT_BE_TARGETED_IF_ANCESTOR_IS_EXCLUDED">
+            <annotation>
+              <documentation>
+                A child inventory unit cannot be targeted if its ancestor inventory unit
+                is excluded.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVENTORY_UNIT_CANNOT_BE_EXCLUDED_IF_ANCESTOR_IS_EXCLUDED">
+            <annotation>
+              <documentation>
+                A child inventory unit cannot be excluded if its ancestor inventory unit
+                is also excluded.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="EXPLICITLY_TARGETED_INVENTORY_UNIT_CANNOT_BE_TARGETED">
+            <annotation>
+              <documentation>
+                An explicitly targeted inventory unit cannot be targeted.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="EXPLICITLY_TARGETED_INVENTORY_UNIT_CANNOT_BE_EXCLUDED">
+            <annotation>
+              <documentation>
+                An explicitly targeted inventory unit cannot be excluded.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="SELF_ONLY_INVENTORY_UNIT_NOT_ALLOWED">
+            <annotation>
+              <documentation>
+                A landing page-only ad unit cannot be targeted.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="SELF_ONLY_INVENTORY_UNIT_WITHOUT_DESCENDANTS">
+            <annotation>
+              <documentation>
+                A landing page-only ad unit cannot be targeted if it doesn't have any
+                children.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="YOUTUBE_AUDIENCE_SEGMENTS_CAN_ONLY_BE_TARGETED_WITH_YOUTUBE_SHARED_INVENTORY">
+            <annotation>
+              <documentation>
+                Audience segments shared from YouTube can only be targeted with inventory shared
+                from YouTube for cross selling.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="MidrollFrequencyType">
+        <annotation>
+          <documentation>
+            Frequency types for mid-roll {@link BaseAdRuleSlot ad rule slots}.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="NONE">
+            <annotation>
+              <documentation>
+                The ad rule slot is not a mid-roll and hence {@code MidrollFrequency}
+                should be ignored.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="EVERY_N_SECONDS">
+            <annotation>
+              <documentation>
+                {@code MidrollFrequency} is a time interval and mentioned as a single
+                numeric value in seconds. For example, "100" would mean "play a
+                mid-roll every 100 seconds".
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FIXED_TIME">
+            <annotation>
+              <documentation>
+                {@code MidrollFrequency} is a comma-delimited list of points in time
+                (in seconds) when an ad should play. For example, "100,300" would mean
+                "play an ad at 100 seconds and 300 seconds".
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="EVERY_N_CUEPOINTS">
+            <annotation>
+              <documentation>
+                {@code MidrollFrequency} is a cue point interval and is a single integer
+                value, such as "5", which means "play a mid-roll every 5th cue point".
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FIXED_CUE_POINTS">
+            <annotation>
+              <documentation>
+                Same as {@link #FIXED_TIME}, except the values represent the ordinal cue
+                points ("1,3,5", for example).
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="MinuteOfHour">
+        <annotation>
+          <documentation>
+            Minutes in an hour. Currently, only 0, 15, 30, and 45 are supported. This
+            field is required.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="ZERO">
+            <annotation>
+              <documentation>
+                Zero minutes past hour.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FIFTEEN">
+            <annotation>
+              <documentation>
+                Fifteen minutes past hour.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="THIRTY">
+            <annotation>
+              <documentation>
+                Thirty minutes past hour.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FORTY_FIVE">
+            <annotation>
+              <documentation>
+                Forty-five minutes past hour.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="NotNullError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="ARG1_NULL">
+            <annotation>
+              <documentation>
+                Assuming that a method will not have more than 3 arguments, if it does,
+                return NULL
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ARG2_NULL"/>
+          <enumeration value="ARG3_NULL"/>
+          <enumeration value="NULL"/>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="ParseError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNPARSABLE">
+            <annotation>
+              <documentation>
+                Indicates an error in parsing an attribute.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="PermissionError.Reason">
+        <annotation>
+          <documentation>
+            Describes reasons for permission errors.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="PERMISSION_DENIED">
+            <annotation>
+              <documentation>
+                User does not have the required permission for the request.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="PoddingError.Reason">
+        <annotation>
+          <documentation>
+            Describes reason for {@code PoddingError}s.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="INVALID_PODDING_TYPE_NONE">
+            <annotation>
+              <documentation>
+                Invalid podding type NONE, but has podding fields filled in. Podding types are defined in
+                {@link com.google.ads.publisher.domain.entity.adrule.export.PoddingType}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_PODDING_TYPE_STANDARD">
+            <annotation>
+              <documentation>
+                Invalid podding type STANDARD, but doesn't specify the max ads in pod and max ad duration
+                podding fields.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_OPTIMIZED_POD_WITHOUT_DURATION">
+            <annotation>
+              <documentation>
+                Invalid podding type OPTIMIZED, but doesn't specify pod duration.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_OPTIMIZED_POD_WITHOUT_ADS">
+            <annotation>
+              <documentation>
+                Invalid optimized pod that does not specify a valid max ads in pod, which must either be a
+                positive number or -1 to signify that there is no maximum.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_POD_DURATION_RANGE">
+            <annotation>
+              <documentation>
+                Min pod ad duration is greater than max pod ad duration.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="PublisherQueryLanguageContextError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNEXECUTABLE">
+            <annotation>
+              <documentation>
+                Indicates that there was an error executing the PQL.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="PublisherQueryLanguageSyntaxError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNPARSABLE">
+            <annotation>
+              <documentation>
+                Indicates that there was a PQL syntax error.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="QuotaError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="EXCEEDED_QUOTA">
+            <annotation>
+              <documentation>
+                The number of requests made per second is too high and has exceeded the
+                allowable limit. The recommended approach to handle this error is to wait
+                about 5 seconds and then retry the request. Note that this does not
+                guarantee the request will succeed. If it fails again, try increasing the
+                wait time.
+                &lt;p&gt;Another way to mitigate this error is to limit requests to 2 per second for
+                Small Business networks, or 8 per second for Premium networks. Once again
+                this does not guarantee that every request will succeed, but may help
+                reduce the number of times you receive this error.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="REPORT_JOB_LIMIT">
+            <annotation>
+              <documentation>
+                This user has exceeded the allowed number of new report requests per hour
+                (this includes both reports run via the UI and reports
+                run via {@link ReportService#runReportJob}).
+                The recommended approach to handle this error is to wait about 10 minutes
+                and then retry the request. Note that this does not guarantee the request
+                will succeed. If it fails again, try increasing the wait time.
+                &lt;p&gt;Another way to mitigate this error is to limit the number of new report
+                requests to 250 per hour per user. Once again, this does not guarantee that
+                every request will succeed, but may help reduce the number of times you
+                receive this error.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="RequiredCollectionError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="REQUIRED">
+            <annotation>
+              <documentation>
+                A required collection is missing.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TOO_LARGE">
+            <annotation>
+              <documentation>
+                Collection size is too large.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TOO_SMALL">
+            <annotation>
+              <documentation>
+                Collection size is too small.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="RequiredError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="REQUIRED">
+            <annotation>
+              <documentation>
+                Missing required field.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="RequiredNumberError.Reason">
+        <annotation>
+          <documentation>
+            Describes reasons for a number to be invalid.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="REQUIRED"/>
+          <enumeration value="TOO_LARGE"/>
+          <enumeration value="TOO_SMALL"/>
+          <enumeration value="TOO_LARGE_WITH_DETAILS"/>
+          <enumeration value="TOO_SMALL_WITH_DETAILS"/>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="ServerError.Reason">
+        <annotation>
+          <documentation>
+            Describes reasons for server errors
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="SERVER_ERROR">
+            <annotation>
+              <documentation>
+                Indicates that an unexpected error occured.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="SERVER_BUSY">
+            <annotation>
+              <documentation>
+                Indicates that the server is currently experiencing a high load. Please
+                wait and try your request again.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="StartDateTimeType">
+        <annotation>
+          <documentation>
+            Specifies the start type to use for an entity with a start date time field.
+            For example, a {@link LineItem} or {@link LineItemCreativeAssociation}.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="USE_START_DATE_TIME">
+            <annotation>
+              <documentation>
+                Use the value in {@link #startDateTime}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="IMMEDIATELY">
+            <annotation>
+              <documentation>
+                The entity will start serving immediately. {@link #startDateTime} in the
+                request is ignored and will be set to the current time. Additionally,
+                {@link #startDateTimeType} will be set to
+                {@link StartDateTimeType#USE_START_DATE_TIME}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ONE_HOUR_FROM_NOW">
+            <annotation>
+              <documentation>
+                The entity will start serving one hour from now. {@link #startDateTime}
+                in the request is ignored and will be set to one hour from the current
+                time. Additionally, {@link #startDateTimeType} will be set to
+                {@link StartDateTimeType#USE_START_DATE_TIME}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="StatementError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="VARIABLE_NOT_BOUND_TO_VALUE">
+            <annotation>
+              <documentation>
+                A bind variable has not been bound to a value.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="StringFormatError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNKNOWN"/>
+          <enumeration value="ILLEGAL_CHARS">
+            <annotation>
+              <documentation>
+                The input string value contains disallowed characters.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_FORMAT">
+            <annotation>
+              <documentation>
+                The input string value is invalid for the associated field.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="StringLengthError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="TOO_LONG"/>
+          <enumeration value="TOO_SHORT"/>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="VideoBumperType">
+        <annotation>
+          <documentation>
+            Represents the options for targetable bumper positions, surrounding an ad
+            pod, within a video stream. This includes before and after the supported ad
+            pod positions, {@link VideoPositionType#PREROLL},
+            {@link VideoPositionType#MIDROLL}, and {@link VideoPositionType#POSTROLL}.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="BEFORE">
+            <annotation>
+              <documentation>
+                Represents the bumper position before the ad pod.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="AFTER">
+            <annotation>
+              <documentation>
+                Represents the bumper position after the ad pod.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="VideoPosition.Type">
+        <annotation>
+          <documentation>
+            Represents a targetable position within a video.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="PREROLL">
+            <annotation>
+              <documentation>
+                The position defined as showing before the video starts playing.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MIDROLL">
+            <annotation>
+              <documentation>
+                The position defined as showing within the middle of the playing video.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="POSTROLL">
+            <annotation>
+              <documentation>
+                The position defined as showing after the video is completed.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <element name="createAdRules">
+        <annotation>
+          <documentation>
+            Creates new {@link AdRule} objects.
+            
+            @param adRules the ad rules to create
+            @return the created ad rules with their IDs filled in
+          </documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" minOccurs="0" name="adRules" type="tns:AdRule"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="createAdRulesResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" minOccurs="0" name="rval" type="tns:AdRule"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ApiExceptionFault" type="tns:ApiException">
+        <annotation>
+          <documentation>
+            A fault element of type ApiException.
+          </documentation>
+        </annotation>
+      </element>
+      <element name="getAdRulesByStatement">
+        <annotation>
+          <documentation>
+            Gets an {@link AdRulePage} of {@link AdRule} objects that satisfy the given {@link
+            Statement#query}. The following fields are supported for filtering:
+            
+            &lt;table&gt;
+            &lt;tr&gt;
+            &lt;th scope="col"&gt;PQL Property&lt;/th&gt; &lt;th scope="col"&gt;Object Property&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code id}&lt;/td&gt;
+            &lt;td&gt;{@link AdRule#id} ({@link AdRule#adRuleId} beginning in v201702)&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code name}&lt;/td&gt;
+            &lt;td&gt;{@link AdRule#name}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code priority}&lt;/td&gt;
+            &lt;td&gt;{@link AdRule#priority}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code status}&lt;/td&gt;
+            &lt;td&gt;{@link AdRule#status}&lt;/td&gt;
+            &lt;/table&gt;
+            
+            @param filterStatement a Publisher Query Language statement used to filter a set of ad rules
+            @return the ad rules that match the given filter
+            @throws ApiException if the ID of the active network does not exist or there is a backend error
+          </documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="statement" type="tns:Statement"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="getAdRulesByStatementResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="rval" type="tns:AdRulePage"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="performAdRuleAction">
+        <annotation>
+          <documentation>
+            Performs actions on {@link AdRule} objects that match the given
+            {@link Statement#query}.
+            
+            @param adRuleAction the action to perform
+            @param filterStatement a Publisher Query Language statement used to filter
+            a set of ad rules
+            @return the result of the action performed
+          </documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="adRuleAction" type="tns:AdRuleAction"/>
+            <element maxOccurs="1" minOccurs="0" name="filterStatement" type="tns:Statement"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="performAdRuleActionResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="rval" type="tns:UpdateResult"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="updateAdRules">
+        <annotation>
+          <documentation>
+            Updates the specified {@link AdRule} objects.
+            
+            @param adRules the ad rules to update
+            @return the updated ad rules
+            @throws ApiException if there is an error updating the ad rules
+          </documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" minOccurs="0" name="adRules" type="tns:AdRule"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="updateAdRulesResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" minOccurs="0" name="rval" type="tns:AdRule"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="RequestHeader" type="tns:SoapRequestHeader"/>
+      <element name="ResponseHeader" type="tns:SoapResponseHeader"/>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="RequestHeader">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"/>
+  </wsdl:message>
+  <wsdl:message name="ResponseHeader">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"/>
+  </wsdl:message>
+  <wsdl:message name="createAdRulesRequest">
+    <wsdl:part element="tns:createAdRules" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="createAdRulesResponse">
+    <wsdl:part element="tns:createAdRulesResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ApiException">
+    <wsdl:part element="tns:ApiExceptionFault" name="ApiException"/>
+  </wsdl:message>
+  <wsdl:message name="getAdRulesByStatementRequest">
+    <wsdl:part element="tns:getAdRulesByStatement" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getAdRulesByStatementResponse">
+    <wsdl:part element="tns:getAdRulesByStatementResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="performAdRuleActionRequest">
+    <wsdl:part element="tns:performAdRuleAction" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="performAdRuleActionResponse">
+    <wsdl:part element="tns:performAdRuleActionResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="updateAdRulesRequest">
+    <wsdl:part element="tns:updateAdRules" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="updateAdRulesResponse">
+    <wsdl:part element="tns:updateAdRulesResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="AdRuleServiceInterface">
+    <wsdl:documentation>
+      Provides methods for creating, updating and retrieving {@link AdRule} objects.
+      
+      &lt;p&gt;Ad rules contain data that the ad server uses to generate a playlist of
+      video ads.
+    </wsdl:documentation>
+    <wsdl:operation name="createAdRules">
+      <wsdl:documentation>
+        Creates new {@link AdRule} objects.
+        
+        @param adRules the ad rules to create
+        @return the created ad rules with their IDs filled in
+      </wsdl:documentation>
+      <wsdl:input message="tns:createAdRulesRequest" name="createAdRulesRequest"/>
+      <wsdl:output message="tns:createAdRulesResponse" name="createAdRulesResponse"/>
+      <wsdl:fault message="tns:ApiException" name="ApiException"/>
+    </wsdl:operation>
+    <wsdl:operation name="getAdRulesByStatement">
+      <wsdl:documentation>
+        Gets an {@link AdRulePage} of {@link AdRule} objects that satisfy the given {@link
+        Statement#query}. The following fields are supported for filtering:
+        
+        &lt;table&gt;
+        &lt;tr&gt;
+        &lt;th scope="col"&gt;PQL Property&lt;/th&gt; &lt;th scope="col"&gt;Object Property&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code id}&lt;/td&gt;
+        &lt;td&gt;{@link AdRule#id} ({@link AdRule#adRuleId} beginning in v201702)&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code name}&lt;/td&gt;
+        &lt;td&gt;{@link AdRule#name}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code priority}&lt;/td&gt;
+        &lt;td&gt;{@link AdRule#priority}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code status}&lt;/td&gt;
+        &lt;td&gt;{@link AdRule#status}&lt;/td&gt;
+        &lt;/table&gt;
+        
+        @param filterStatement a Publisher Query Language statement used to filter a set of ad rules
+        @return the ad rules that match the given filter
+        @throws ApiException if the ID of the active network does not exist or there is a backend error
+      </wsdl:documentation>
+      <wsdl:input message="tns:getAdRulesByStatementRequest" name="getAdRulesByStatementRequest"/>
+      <wsdl:output message="tns:getAdRulesByStatementResponse" name="getAdRulesByStatementResponse"/>
+      <wsdl:fault message="tns:ApiException" name="ApiException"/>
+    </wsdl:operation>
+    <wsdl:operation name="performAdRuleAction">
+      <wsdl:documentation>
+        Performs actions on {@link AdRule} objects that match the given
+        {@link Statement#query}.
+        
+        @param adRuleAction the action to perform
+        @param filterStatement a Publisher Query Language statement used to filter
+        a set of ad rules
+        @return the result of the action performed
+      </wsdl:documentation>
+      <wsdl:input message="tns:performAdRuleActionRequest" name="performAdRuleActionRequest"/>
+      <wsdl:output message="tns:performAdRuleActionResponse" name="performAdRuleActionResponse"/>
+      <wsdl:fault message="tns:ApiException" name="ApiException"/>
+    </wsdl:operation>
+    <wsdl:operation name="updateAdRules">
+      <wsdl:documentation>
+        Updates the specified {@link AdRule} objects.
+        
+        @param adRules the ad rules to update
+        @return the updated ad rules
+        @throws ApiException if there is an error updating the ad rules
+      </wsdl:documentation>
+      <wsdl:input message="tns:updateAdRulesRequest" name="updateAdRulesRequest"/>
+      <wsdl:output message="tns:updateAdRulesResponse" name="updateAdRulesResponse"/>
+      <wsdl:fault message="tns:ApiException" name="ApiException"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AdRuleServiceSoapBinding" type="tns:AdRuleServiceInterface">
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="createAdRules">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="createAdRulesRequest">
+        <wsdlsoap:header message="tns:RequestHeader"
+          part="RequestHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createAdRulesResponse">
+        <wsdlsoap:header message="tns:ResponseHeader"
+          part="ResponseHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ApiException">
+        <wsdlsoap:fault name="ApiException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAdRulesByStatement">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getAdRulesByStatementRequest">
+        <wsdlsoap:header message="tns:RequestHeader"
+          part="RequestHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAdRulesByStatementResponse">
+        <wsdlsoap:header message="tns:ResponseHeader"
+          part="ResponseHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ApiException">
+        <wsdlsoap:fault name="ApiException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="performAdRuleAction">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="performAdRuleActionRequest">
+        <wsdlsoap:header message="tns:RequestHeader"
+          part="RequestHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="performAdRuleActionResponse">
+        <wsdlsoap:header message="tns:ResponseHeader"
+          part="ResponseHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ApiException">
+        <wsdlsoap:fault name="ApiException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateAdRules">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="updateAdRulesRequest">
+        <wsdlsoap:header message="tns:RequestHeader"
+          part="RequestHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateAdRulesResponse">
+        <wsdlsoap:header message="tns:ResponseHeader"
+          part="ResponseHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ApiException">
+        <wsdlsoap:fault name="ApiException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AdRuleService">
+    <wsdl:port binding="tns:AdRuleServiceSoapBinding" name="AdRuleServiceInterfacePort">
+      <wsdlsoap:address location="https://ads.google.com/apis/ads/publisher/v201802/AdRuleService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

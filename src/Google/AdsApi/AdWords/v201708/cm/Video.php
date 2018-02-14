@@ -83,7 +83,7 @@ class Video extends \Google\AdsApi\AdWords\v201708\cm\Media
      */
     public function setDurationMillis($durationMillis)
     {
-      $this->durationMillis = (PHP_INT_SIZE === 4)
+      $this->durationMillis = (!is_null(durationMillis) && PHP_INT_SIZE === 4)
           ? floatval($durationMillis) : $durationMillis;
       return $this;
     }

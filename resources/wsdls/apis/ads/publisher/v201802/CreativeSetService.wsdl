@@ -1,0 +1,3369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated file, do not edit -->
+<!-- Copyright 2018 Google Inc. All Rights Reserved -->
+<wsdl:definitions
+  targetNamespace="https://www.google.com/apis/ads/publisher/v201802"
+  xmlns:tns="https://www.google.com/apis/ads/publisher/v201802"
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <schema elementFormDefault="qualified" jaxb:version="1.0"
+      targetNamespace="https://www.google.com/apis/ads/publisher/v201802"
+      xmlns="http://www.w3.org/2001/XMLSchema"
+      xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:tns="https://www.google.com/apis/ads/publisher/v201802">
+      <annotation>
+        <appinfo>
+          <jaxb:globalBindings typesafeEnumMaxMembers="999999"/>
+        </appinfo>
+      </annotation>
+      <complexType abstract="true" name="ObjectValue">
+        <annotation>
+          <documentation>
+            Contains an object value.
+            &lt;p&gt;
+            &lt;b&gt;This object is experimental!
+            &lt;code&gt;ObjectValue&lt;/code&gt; is an experimental, innovative, and rapidly
+            changing new feature for DFP. Unfortunately, being on the bleeding edge means that we may make
+            backwards-incompatible changes to
+            &lt;code&gt;ObjectValue&lt;/code&gt;. We will inform the community when this feature
+            is no longer experimental.&lt;/b&gt;
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType abstract="true" name="ApiError">
+        <annotation>
+          <documentation>
+            The API error base class that provides details about an error that occurred
+            while processing a service request.
+            
+            &lt;p&gt;The OGNL field path is provided for parsers to identify the request data
+            element that may have caused the error.&lt;/p&gt;
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="fieldPath" type="xsd:string">
+            <annotation>
+              <documentation>
+                The OGNL field path to identify cause of error.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="fieldPathElements" type="tns:FieldPathElement">
+            <annotation>
+              <documentation>
+                A parsed copy of the field path. For example, the field path "operations[1].operand"
+                corresponds to this list: {FieldPathElement(field = "operations", index = 1),
+                FieldPathElement(field = "operand", index = null)}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="trigger" type="xsd:string">
+            <annotation>
+              <documentation>
+                The data that caused the error.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="errorString" type="xsd:string">
+            <annotation>
+              <documentation>
+                A simple string representation of the error and reason.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="ApiException">
+        <annotation>
+          <documentation>
+            Exception class for holding a list of service errors.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApplicationException">
+            <sequence>
+              <element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:ApiError">
+                <annotation>
+                  <documentation>
+                    List of errors.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ApiVersionError">
+        <annotation>
+          <documentation>
+            Errors related to the usage of API versions.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ApiVersionError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ApplicationException">
+        <annotation>
+          <documentation>
+            Base class for exceptions.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="message" type="xsd:string">
+            <annotation>
+              <documentation>
+                Error message.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="AssetError">
+        <annotation>
+          <documentation>
+            Lists all errors associated with assets.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:AssetError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="AuthenticationError">
+        <annotation>
+          <documentation>
+            An error for an exception that occurred when authenticating.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:AuthenticationError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="BooleanValue">
+        <annotation>
+          <documentation>
+            Contains a boolean value.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="xsd:boolean">
+                <annotation>
+                  <documentation>
+                    The boolean value.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="CollectionSizeError">
+        <annotation>
+          <documentation>
+            Error for the size of the collection being too large
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CollectionSizeError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="CommonError">
+        <annotation>
+          <documentation>
+            A place for common errors that can be used across services.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CommonError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="CreativeAssetMacroError">
+        <annotation>
+          <documentation>
+            Lists all errors associated with creative asset macros.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CreativeAssetMacroError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="CreativeError">
+        <annotation>
+          <documentation>
+            Lists all errors associated with creatives.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CreativeError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="CreativeSet">
+        <annotation>
+          <documentation>
+            A creative set is comprised of a master creative and its companion creatives.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
+            <annotation>
+              <documentation>
+                Uniquely identifies the {@code CreativeSet}. This attribute is
+                read-only and is assigned by Google when a creative set is created.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
+            <annotation>
+              <documentation>
+                The name of the creative set. This attribute is required and has a
+                maximum length of 255 characters.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="masterCreativeId" type="xsd:long">
+            <annotation>
+              <documentation>
+                The ID of the master creative associated with this creative set. This attribute is required.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="companionCreativeIds" type="xsd:long">
+            <annotation>
+              <documentation>
+                The IDs of the companion creatives associated with this creative set. This attribute is
+                required.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0"
+            name="lastModifiedDateTime" type="tns:DateTime">
+            <annotation>
+              <documentation>
+                The date and time this creative set was last modified.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="CreativeSetError">
+        <annotation>
+          <documentation>
+            Errors relating to creative sets &amp; subclasses.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CreativeSetError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="CreativeSetPage">
+        <annotation>
+          <documentation>
+            Captures a page of {@link CreativeSet} objects.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="totalResultSetSize" type="xsd:int">
+            <annotation>
+              <documentation>
+                The size of the total result set to which this page belongs.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="startIndex" type="xsd:int">
+            <annotation>
+              <documentation>
+                The absolute index in the total result set on which this page begins.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="results" type="tns:CreativeSet">
+            <annotation>
+              <documentation>
+                The collection of creative sets contained within this page.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="CreativeTemplateError">
+        <annotation>
+          <documentation>
+            A catch-all error that lists all generic errors associated with CreativeTemplate.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CreativeTemplateError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="CreativeTemplateOperationError">
+        <annotation>
+          <documentation>
+            An error that can occur while performing an operation on a creative template.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CreativeTemplateOperationError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="CustomCreativeError">
+        <annotation>
+          <documentation>
+            Lists all errors associated with custom creatives.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CustomCreativeError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="CustomFieldValueError">
+        <annotation>
+          <documentation>
+            Errors specific to editing custom field values
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CustomFieldValueError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="Date">
+        <annotation>
+          <documentation>
+            Represents a date.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="year" type="xsd:int">
+            <annotation>
+              <documentation>
+                Year (e.g., 2009)
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="month" type="xsd:int">
+            <annotation>
+              <documentation>
+                Month (1..12)
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="day" type="xsd:int">
+            <annotation>
+              <documentation>
+                Day (1..31)
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="DateTime">
+        <annotation>
+          <documentation>
+            Represents a date combined with the time of day.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="date" type="tns:Date"/>
+          <element maxOccurs="1" minOccurs="0" name="hour" type="xsd:int"/>
+          <element maxOccurs="1" minOccurs="0" name="minute" type="xsd:int"/>
+          <element maxOccurs="1" minOccurs="0" name="second" type="xsd:int"/>
+          <element maxOccurs="1" minOccurs="0" name="timeZoneID" type="xsd:string"/>
+        </sequence>
+      </complexType>
+      <complexType name="DateTimeValue">
+        <annotation>
+          <documentation>
+            Contains a date-time value.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="tns:DateTime">
+                <annotation>
+                  <documentation>
+                    The {@code DateTime} value.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DateValue">
+        <annotation>
+          <documentation>
+            Contains a date value.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="tns:Date">
+                <annotation>
+                  <documentation>
+                    The {@code Date} value.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="EntityLimitReachedError">
+        <annotation>
+          <documentation>
+            An error that occurs when creating an entity if the limit on the number of allowed entities for
+            a network has already been reached.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:EntityLimitReachedError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="FeatureError">
+        <annotation>
+          <documentation>
+            Errors related to feature management.  If you attempt using a feature that is not available to
+            the current network you'll receive a FeatureError with the missing feature as the trigger.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:FeatureError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="FieldPathElement">
+        <annotation>
+          <documentation>
+            A segment of a field path. Each dot in a field path defines a new segment.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="field" type="xsd:string">
+            <annotation>
+              <documentation>
+                The name of a field in lower camelcase. (e.g. "biddingStrategy")
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="index" type="xsd:int">
+            <annotation>
+              <documentation>
+                For list fields, this is a 0-indexed position in the list. Null for non-list fields.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="FileError">
+        <annotation>
+          <documentation>
+            A list of all errors to be used for problems related to files.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:FileError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="HtmlBundleProcessorError">
+        <annotation>
+          <documentation>
+            Lists all errors associated with html5 file processing.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:HtmlBundleProcessorError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ImageError">
+        <annotation>
+          <documentation>
+            Lists all errors associated with images.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ImageError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="InternalApiError">
+        <annotation>
+          <documentation>
+            Indicates that a server-side error has occured. {@code InternalApiError}s
+            are generally not the result of an invalid request or message sent by the
+            client.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:InternalApiError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="InvalidPhoneNumberError">
+        <annotation>
+          <documentation>
+            Lists all errors associated with phone numbers.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:InvalidPhoneNumberError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="InvalidUrlError">
+        <annotation>
+          <documentation>
+            Lists all errors associated with URLs.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:InvalidUrlError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="LabelEntityAssociationError">
+        <annotation>
+          <documentation>
+            Errors specific to creating label entity associations.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:LabelEntityAssociationError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="NotNullError">
+        <annotation>
+          <documentation>
+            Caused by supplying a null value for an attribute that cannot be null.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:NotNullError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="NullError">
+        <annotation>
+          <documentation>
+            Errors associated with violation of a NOT NULL check.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:NullError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="NumberValue">
+        <annotation>
+          <documentation>
+            Contains a numeric value.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="xsd:string">
+                <annotation>
+                  <documentation>
+                    The numeric value represented as a string.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ParseError">
+        <annotation>
+          <documentation>
+            Lists errors related to parsing.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ParseError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="PermissionError">
+        <annotation>
+          <documentation>
+            Errors related to incorrect permission.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:PermissionError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="PublisherQueryLanguageContextError">
+        <annotation>
+          <documentation>
+            An error that occurs while executing a PQL query contained in
+            a {@link Statement} object.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:PublisherQueryLanguageContextError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="PublisherQueryLanguageSyntaxError">
+        <annotation>
+          <documentation>
+            An error that occurs while parsing a PQL query contained in a
+            {@link Statement} object.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:PublisherQueryLanguageSyntaxError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="QuotaError">
+        <annotation>
+          <documentation>
+            Describes a client-side error on which a user is attempting
+            to perform an action to which they have no quota remaining.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:QuotaError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RangeError">
+        <annotation>
+          <documentation>
+            A list of all errors associated with the Range constraint.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RangeError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RequiredCollectionError">
+        <annotation>
+          <documentation>
+            A list of all errors to be used for validating sizes of collections.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RequiredCollectionError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RequiredError">
+        <annotation>
+          <documentation>
+            Errors due to missing required field.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RequiredError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RequiredNumberError">
+        <annotation>
+          <documentation>
+            A list of all errors to be used in conjunction with required number
+            validators.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RequiredNumberError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RequiredSizeError">
+        <annotation>
+          <documentation>
+            A list of all errors to be used for validating {@link Size}.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RequiredSizeError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RichMediaStudioCreativeError">
+        <annotation>
+          <documentation>
+            Lists all errors associated with Rich Media Studio creatives.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RichMediaStudioCreativeError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ServerError">
+        <annotation>
+          <documentation>
+            Errors related to the server.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ServerError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="SetTopBoxCreativeError">
+        <annotation>
+          <documentation>
+            Errors associated with {@link SetTopBoxCreative set-top box creatives}.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:SetTopBoxCreativeError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="SetValue">
+        <annotation>
+          <documentation>
+            Contains a set of {@link Value Values}. May not contain duplicates.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="unbounded" minOccurs="0" name="values" type="tns:Value">
+                <annotation>
+                  <documentation>
+                    The values. They must all be the same type of {@code Value} and not contain duplicates.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="SoapRequestHeader">
+        <annotation>
+          <documentation>
+            Represents the SOAP request header used by API requests.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="networkCode" type="xsd:string">
+            <annotation>
+              <documentation>
+                The network code to use in the context of a request.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="applicationName" type="xsd:string">
+            <annotation>
+              <documentation>
+                The name of client library application.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="SoapResponseHeader">
+        <annotation>
+          <documentation>
+            Represents the SOAP request header used by API responses.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="requestId" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="responseTime" type="xsd:long"/>
+        </sequence>
+      </complexType>
+      <complexType name="Statement">
+        <annotation>
+          <documentation>
+            Captures the {@code WHERE}, {@code ORDER BY} and {@code LIMIT} clauses of a
+            PQL query. Statements are typically used to retrieve objects of a predefined
+            domain type, which makes SELECT clause unnecessary.
+            &lt;p&gt;
+            An example query text might be {@code "WHERE status = 'ACTIVE' ORDER BY id
+            LIMIT 30"}.
+            &lt;/p&gt;
+            &lt;p&gt;
+            Statements support bind variables. These are substitutes for literals
+            and can be thought of as input parameters to a PQL query.
+            &lt;/p&gt;
+            &lt;p&gt;
+            An example of such a query might be {@code "WHERE id = :idValue"}.
+            &lt;/p&gt;
+            &lt;p&gt;
+            Statements also support use of the LIKE keyword. This provides partial and
+            wildcard string matching.
+            &lt;/p&gt;
+            &lt;p&gt;
+            An example of such a query might be {@code "WHERE name LIKE 'startswith%'"}.
+            &lt;/p&gt;
+            The value for the variable idValue must then be set with an object of type
+            {@link Value}, e.g., {@link NumberValue}, {@link TextValue} or
+            {@link BooleanValue}.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="query" type="xsd:string">
+            <annotation>
+              <documentation>
+                Holds the query in PQL syntax. The syntax is:&lt;br&gt;
+                &lt;code&gt;[WHERE &lt;condition&gt; {[AND | OR] &lt;condition&gt; ...}]&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;[ORDER BY &lt;property&gt; [ASC | DESC]]&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;[LIMIT {[&lt;offset&gt;,] &lt;count&gt;} | {&lt;count&gt; OFFSET &lt;offset&gt;}]&lt;/code&gt;&lt;br&gt;
+                &lt;p&gt;
+                &lt;code&gt;&lt;condition&gt;&lt;/code&gt;&lt;br&gt;
+                &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                &lt;code&gt;:= &lt;property&gt; {&lt; | &lt;= | &gt; | &gt;= | = | != } &lt;value&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;&lt;condition&gt;&lt;/code&gt;&lt;br&gt;
+                &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                &lt;code&gt;:= &lt;property&gt; {&lt; | &lt;= | &gt; | &gt;= | = | != } &lt;bind variable&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;&lt;condition&gt; := &lt;property&gt; IN &lt;list&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;&lt;condition&gt; := &lt;property&gt; IS NULL&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;&lt;condition&gt; := &lt;property&gt; LIKE &lt;wildcard%match&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;&lt;bind variable&gt; := :&lt;name&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;/p&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="values" type="tns:String_ValueMapEntry">
+            <annotation>
+              <documentation>
+                Holds keys and values for bind variables and their values. The key is the
+                name of the bind variable. The value is the literal value of the variable.
+                &lt;p&gt;
+                In the example {@code "WHERE status = :bindStatus ORDER BY id LIMIT 30"},
+                the bind variable, represented by {@code :bindStatus} is named {@code
+                bindStatus}, which would also be the parameter map key. The bind variable's
+                value would be represented by a parameter map value of type
+                {@link TextValue}. The final result, for example, would be an entry of
+                {@code "bindStatus" =&gt; StringParam("ACTIVE")}.
+                &lt;/p&gt;
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="StatementError">
+        <annotation>
+          <documentation>
+            An error that occurs while parsing {@link Statement} objects.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:StatementError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="StringFormatError">
+        <annotation>
+          <documentation>
+            A list of error code for reporting invalid content of input strings.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:StringFormatError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="StringLengthError">
+        <annotation>
+          <documentation>
+            Errors for Strings which do not meet given length constraints.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:StringLengthError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="String_ValueMapEntry">
+        <annotation>
+          <documentation>
+            This represents an entry in a map with a key of type String
+            and value of type Value.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="key" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="value" type="tns:Value"/>
+        </sequence>
+      </complexType>
+      <complexType name="SwiffyConversionError">
+        <annotation>
+          <documentation>
+            Error for converting flash to swiffy asset.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:SwiffyConversionError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="TemplateInstantiatedCreativeError">
+        <annotation>
+          <documentation>
+            Lists all errors associated with template instantiated creatives.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:TemplateInstantiatedCreativeError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="TextValue">
+        <annotation>
+          <documentation>
+            Contains a string value.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="xsd:string">
+                <annotation>
+                  <documentation>
+                    The string value.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="TypeError">
+        <annotation>
+          <documentation>
+            An error for a field which is an invalid type.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="UniqueError">
+        <annotation>
+          <documentation>
+            An error for a field which must satisfy a uniqueness constraint
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType abstract="true" name="Value">
+        <annotation>
+          <documentation>
+            {@code Value} represents a value.
+          </documentation>
+        </annotation>
+        <sequence/>
+      </complexType>
+      <simpleType name="ApiVersionError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="UPDATE_TO_NEWER_VERSION">
+            <annotation>
+              <documentation>
+                Indicates that the operation is not allowed in the version the request
+                was made in.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="AssetError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="NON_UNIQUE_NAME">
+            <annotation>
+              <documentation>
+                An asset name must be unique across advertiser.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FILE_NAME_TOO_LONG">
+            <annotation>
+              <documentation>
+                The file name is too long.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FILE_SIZE_TOO_LARGE">
+            <annotation>
+              <documentation>
+                The file size is too large.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_REQUIRED_DYNAMIC_ALLOCATION_CLIENT">
+            <annotation>
+              <documentation>
+                Required client code is not present in the code snippet.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_REQUIRED_DYNAMIC_ALLOCATION_HEIGHT">
+            <annotation>
+              <documentation>
+                Required height is not present in the code snippet.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_REQUIRED_DYNAMIC_ALLOCATION_WIDTH">
+            <annotation>
+              <documentation>
+                Required width is not present in the code snippet.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_REQUIRED_DYNAMIC_ALLOCATION_FORMAT">
+            <annotation>
+              <documentation>
+                Required format is not present in the mobile code snippet.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_CODE_SNIPPET_PARAMETER_VALUE">
+            <annotation>
+              <documentation>
+                The parameter value in the code snippet is invalid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_ASSET_ID">
+            <annotation>
+              <documentation>
+                Invalid asset Id.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="AuthenticationError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="AMBIGUOUS_SOAP_REQUEST_HEADER">
+            <annotation>
+              <documentation>
+                The SOAP message contains a request header with an ambiguous definition
+                of the authentication header fields. This means either the {@code
+                authToken} and {@code oAuthToken} fields were both null or both were
+                specified. Exactly one value should be specified with each request.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_EMAIL">
+            <annotation>
+              <documentation>
+                The login provided is invalid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="AUTHENTICATION_FAILED">
+            <annotation>
+              <documentation>
+                Tried to authenticate with provided information, but failed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_OAUTH_SIGNATURE">
+            <annotation>
+              <documentation>
+                The OAuth provided is invalid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_SERVICE">
+            <annotation>
+              <documentation>
+                The specified service to use was not recognized.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_SOAP_REQUEST_HEADER">
+            <annotation>
+              <documentation>
+                The SOAP message is missing a request header with an {@code authToken}
+                and optional {@code networkCode}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_AUTHENTICATION_HTTP_HEADER">
+            <annotation>
+              <documentation>
+                The HTTP request is missing a request header with an {@code authToken}
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_AUTHENTICATION">
+            <annotation>
+              <documentation>
+                The request is missing an {@code authToken}
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NOT_WHITELISTED_FOR_API_ACCESS">
+            <annotation>
+              <documentation>
+                The customer is not whitelisted for API access.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NO_NETWORKS_TO_ACCESS">
+            <annotation>
+              <documentation>
+                The user is not associated with any network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NETWORK_NOT_FOUND">
+            <annotation>
+              <documentation>
+                No network for the given {@code networkCode} was found.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NETWORK_CODE_REQUIRED">
+            <annotation>
+              <documentation>
+                The user has access to more than one network, but did not provide a
+                {@code networkCode}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CONNECTION_ERROR">
+            <annotation>
+              <documentation>
+                An error happened on the server side during connection to authentication
+                service.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="GOOGLE_ACCOUNT_ALREADY_ASSOCIATED_WITH_NETWORK">
+            <annotation>
+              <documentation>
+                The user tried to create a test network using an account that already is
+                associated with a network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNDER_INVESTIGATION">
+            <annotation>
+              <documentation>
+                The account is blocked and under investigation by the collections team. Please contact
+                Google for more information.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="CollectionSizeError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="TOO_LARGE"/>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="CommonError.Reason">
+        <annotation>
+          <documentation>
+            Describes reasons for common errors
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="NOT_FOUND">
+            <annotation>
+              <documentation>
+                Indicates that an attempt was made to retrieve an entity that does not
+                exist.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ALREADY_EXISTS">
+            <annotation>
+              <documentation>
+                Indicates that an attempt was made to create an entity that already
+                exists.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NOT_APPLICABLE">
+            <annotation>
+              <documentation>
+                Indicates that a value is not applicable for given use case.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DUPLICATE_OBJECT">
+            <annotation>
+              <documentation>
+                Indicates that two elements in the collection were identical.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_UPDATE">
+            <annotation>
+              <documentation>
+                Indicates that an attempt was made to change an immutable field.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CONCURRENT_MODIFICATION">
+            <annotation>
+              <documentation>
+                Indicates that another request attempted to update the same data in the same network
+                at about the same time. Please wait and try the request again.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="CreativeAssetMacroError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="INVALID_MACRO_NAME">
+            <annotation>
+              <documentation>
+                Invalid macro name specified. Macro names must start with an alpha
+                character and consist only of alpha-numeric characters and underscores
+                and be between 1 and 64 characters.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="CreativeError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="FLASH_AND_FALLBACK_URL_ARE_SAME">
+            <annotation>
+              <documentation>
+                {@link FlashRedirectCreative#flashUrl} and
+                {@link FlashRedirectCreative#fallbackUrl} are the same. The fallback URL
+                is used when the flash URL does not work and must be different from it.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_INTERNAL_REDIRECT_URL">
+            <annotation>
+              <documentation>
+                The internal redirect URL was invalid. The URL must have the following
+                syntax http://ad.doubleclick.net/ad/sitename/;sz=size.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DESTINATION_URL_REQUIRED">
+            <annotation>
+              <documentation>
+                {@link HasDestinationUrlCreative#destinationUrl} is required.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DESTINATION_URL_NOT_EMPTY">
+            <annotation>
+              <documentation>
+                {@link HasDestinationUrlCreative#destinationUrl} must be empty when its type is
+                {@link DestinationUrlType#NONE}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DESTINATION_URL_TYPE_NOT_SUPPORTED">
+            <annotation>
+              <documentation>
+                The provided {@link DestinationUrlType} is not supported for the creative type it is
+                being used on.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_CREATE_OR_UPDATE_LEGACY_DFP_CREATIVE">
+            <annotation>
+              <documentation>
+                Cannot create or update legacy DART For Publishers creative.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_CREATE_OR_UPDATE_LEGACY_DFP_MOBILE_CREATIVE">
+            <annotation>
+              <documentation>
+                Cannot create or update legacy mobile creative.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_FEATURE">
+            <annotation>
+              <documentation>
+                The user is missing a necessary feature.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_COMPANY_TYPE">
+            <annotation>
+              <documentation>
+                Company type should be one of Advertisers, House Advertisers and
+                Ad Networks.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_ADSENSE_CREATIVE_SIZE">
+            <annotation>
+              <documentation>
+                Invalid size for AdSense dynamic allocation creative.
+                Only valid AFC sizes are allowed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_AD_EXCHANGE_CREATIVE_SIZE">
+            <annotation>
+              <documentation>
+                Invalid size for Ad Exchange dynamic allocation creative.
+                Only valid Ad Exchange sizes are allowed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DUPLICATE_ASSET_IN_CREATIVE">
+            <annotation>
+              <documentation>
+                Assets associated with the same creative must be unique.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CREATIVE_ASSET_CANNOT_HAVE_ID_AND_BYTE_ARRAY">
+            <annotation>
+              <documentation>
+                A creative asset cannot contain an asset ID and a byte array.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_CREATE_OR_UPDATE_UNSUPPORTED_CREATIVE">
+            <annotation>
+              <documentation>
+                Cannot create or update unsupported creative.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_CREATE_PROGRAMMATIC_CREATIVES">
+            <annotation>
+              <documentation>
+                Cannot create programmatic creatives.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_SIZE_FOR_THIRD_PARTY_IMPRESSION_TRACKER">
+            <annotation>
+              <documentation>
+                A creative must have valid size to use the third-party impression tracker.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="CreativeSetError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="VIDEO_FEATURE_REQUIRED">
+            <annotation>
+              <documentation>
+                The 'video' feature is required but not enabled.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_CREATE_OR_UPDATE_VIDEO_CREATIVES">
+            <annotation>
+              <documentation>
+                Video creatives (including overlays, VAST redirects, etc..) cannot be created
+                or updated through the API.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ROADBLOCK_FEATURE_REQUIRED">
+            <annotation>
+              <documentation>
+                The 'roadblock' feature is required but not enabled.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MASTER_CREATIVE_CANNOT_BE_COMPANION">
+            <annotation>
+              <documentation>
+                A master creative cannot be a companion creative in the same creative set.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_ADVERTISER">
+            <annotation>
+              <documentation>
+                Creatives in a creative set must be for the same advertiser.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UPDATE_MASTER_CREATIVE_NOT_ALLOWED">
+            <annotation>
+              <documentation>
+                Updating a master creative in a creative set is not allowed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MASTER_CREATIVE_CANNOT_BELONG_TO_MULTIPLE_VIDEO_CREATIVE_SETS">
+            <annotation>
+              <documentation>
+                A master creative must belong to only one video creative set.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="CreativeTemplateError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="CANNOT_PARSE_CREATIVE_TEMPLATE">
+            <annotation>
+              <documentation>
+                The XML of the creative template definition is malformed and cannot be parsed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="VARIABLE_DUPLICATE_UNIQUE_NAME">
+            <annotation>
+              <documentation>
+                A creative template has multiple variables with the same uniqueName.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="VARIABLE_INVALID_UNIQUE_NAME">
+            <annotation>
+              <documentation>
+                The creative template contains a variable with invalid characters. Valid
+                characters are letters, numbers, spaces, forward slashes, dashes,
+                and underscores.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="LIST_CHOICE_DUPLICATE_VALUE">
+            <annotation>
+              <documentation>
+                Multiple choices for a CreativeTemplateListStringVariable have the same value.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="LIST_CHOICE_NEEDS_DEFAULT">
+            <annotation>
+              <documentation>
+                The choices for a CreativeTemplateListStringVariable do not contain the
+                default value.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="LIST_CHOICES_EMPTY">
+            <annotation>
+              <documentation>
+                There are no choices specified for the list variable.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NO_TARGET_PLATFORMS">
+            <annotation>
+              <documentation>
+                No target platform is assigned to a creative template.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MULTIPLE_TARGET_PLATFORMS">
+            <annotation>
+              <documentation>
+                More than one target platform is assigned to a single creative template.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNRECOGNIZED_PLACEHOLDER">
+            <annotation>
+              <documentation>
+                The formatter contains a placeholder which is not defined as a variable.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PLACEHOLDERS_NOT_IN_FORMATTER">
+            <annotation>
+              <documentation>
+                There are variables defined which are not being used in the formatter.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_INTERSTITIAL_MACRO">
+            <annotation>
+              <documentation>
+                The creative template is interstitial, but the formatter doesn't contain
+                an interstitial macro.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="CreativeTemplateOperationError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="NOT_ALLOWED">
+            <annotation>
+              <documentation>
+                The current user is not allowed to modify this creative template.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NOT_APPLICABLE">
+            <annotation>
+              <documentation>
+                The operation is not applicable to the current state.
+                (e.g. Trying to activate an active creative template)
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="CustomCreativeError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="DUPLICATE_MACRO_NAME_FOR_CREATIVE">
+            <annotation>
+              <documentation>
+                Macros associated with a single custom creative must have unique names.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="SNIPPET_REFERENCES_MISSING_MACRO">
+            <annotation>
+              <documentation>
+                The file macro referenced in the snippet does not exist.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNRECOGNIZED_MACRO">
+            <annotation>
+              <documentation>
+                The macro referenced in the snippet is not valid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CUSTOM_CREATIVE_NOT_ALLOWED">
+            <annotation>
+              <documentation>
+                Custom creatives are not allowed in this context.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_INTERSTITIAL_MACRO">
+            <annotation>
+              <documentation>
+                The custom creative is an interstitial, but the snippet is missing an
+                interstitial macro.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DUPLICATE_ASSET_IN_MACROS">
+            <annotation>
+              <documentation>
+                Macros associated with the same custom creative cannot share the same
+                asset.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="CustomFieldValueError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="CUSTOM_FIELD_NOT_FOUND">
+            <annotation>
+              <documentation>
+                An attempt was made to modify or create a {@link CustomFieldValue} for
+                a {@link CustomField} that does not exist.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CUSTOM_FIELD_INACTIVE">
+            <annotation>
+              <documentation>
+                An attempt was made to create a new value for a custom field
+                that is inactive.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CUSTOM_FIELD_OPTION_NOT_FOUND">
+            <annotation>
+              <documentation>
+                An attempt was made to modify or create a {@link CustomFieldValue} corresponding
+                to a {@link CustomFieldOption} that could not be found.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="EntityLimitReachedError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the entity limit reached error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="CUSTOM_TARGETING_VALUES_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of custom targeting values exceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="AD_EXCLUSION_RULES_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of ad exclusion rules exceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FIRST_PARTY_AUDIENCE_SEGMENTS_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of first party audience segments exceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PLACEMENTS_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of active placements exceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="LINE_ITEMS_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of line items excceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="FeatureError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="MISSING_FEATURE">
+            <annotation>
+              <documentation>
+                A feature is being used that is not enabled on the current network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="FileError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="MISSING_CONTENTS">
+            <annotation>
+              <documentation>
+                The provided byte array is empty.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="SIZE_TOO_LARGE">
+            <annotation>
+              <documentation>
+                The provided file is larger than the maximum size defined for the
+                network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="HtmlBundleProcessorError.Reason">
+        <annotation>
+          <documentation>
+            Error reasons that may arise during HTML5 bundle processing.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="CANNOT_EXTRACT_FILES_FROM_BUNDLE">
+            <annotation>
+              <documentation>
+                Cannot extract files from HTML5 bundle.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CLICK_TAG_HARD_CODED">
+            <annotation>
+              <documentation>
+                Bundle cannot have hard-coded click tag url(s).
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CLICK_TAG_IN_GWD_UNUPPORTED">
+            <annotation>
+              <documentation>
+                Bundles created using GWD (Google Web Designer) cannot have click tags. GWD-published
+                bundles should use exit events instead of defining var {@code clickTAG}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CLICK_TAG_NOT_IN_PRIMARY_HTML">
+            <annotation>
+              <documentation>
+                Click tag detected outside of primary HTML file.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CLICK_TAG_INVALID">
+            <annotation>
+              <documentation>
+                Click tag or exit function has invalid name or url.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FILE_SIZE_TOO_LARGE">
+            <annotation>
+              <documentation>
+                HTML5 bundle or total size of extracted files cannot be more than 1000 KB.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FILES_TOO_MANY">
+            <annotation>
+              <documentation>
+                HTML5 bundle cannot have more than 50 files.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FLASH_UNSUPPORTED">
+            <annotation>
+              <documentation>
+                Flash files in HTML5 bundles are not supported. Any file with a .swf or .flv extension
+                causes this error.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="GWD_COMPONENTS_UNSUPPORTED">
+            <annotation>
+              <documentation>
+                The HTML5 bundle contains unsupported GWD component(s).
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="GWD_ENABLER_METHODS_UNSUPPORTED">
+            <annotation>
+              <documentation>
+                The HTML5 bundle contains Unsupported GWD Enabler method(s).
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="GWD_PROPERTIES_INVALID">
+            <annotation>
+              <documentation>
+                GWD properties are invalid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="LINKED_FILES_NOT_FOUND">
+            <annotation>
+              <documentation>
+                The HTML5 bundle contains broken relative file reference(s).
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PRIMARY_HTML_MISSING">
+            <annotation>
+              <documentation>
+                No primary HTML file detected.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PRIMARY_HTML_UNDETERMINED">
+            <annotation>
+              <documentation>
+                Multiple HTML files are detected. One of them should be named as {@code index.html}
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="SVG_BLOCK_INVALID">
+            <annotation>
+              <documentation>
+                An SVG block could not be parsed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="ImageError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="INVALID_IMAGE">
+            <annotation>
+              <documentation>
+                The file's format is invalid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_SIZE">
+            <annotation>
+              <documentation>
+                {@link Size#width} and {@link Size#height} cannot be negative.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNEXPECTED_SIZE">
+            <annotation>
+              <documentation>
+                The actual image size does not match the expected image size.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="OVERLAY_SIZE_TOO_LARGE">
+            <annotation>
+              <documentation>
+                The size of the asset is larger than that of the overlay creative.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ANIMATED_NOT_ALLOWED">
+            <annotation>
+              <documentation>
+                Animated images are not allowed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ANIMATION_TOO_LONG">
+            <annotation>
+              <documentation>
+                Animation length exceeded the allowed policy limit.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CMYK_JPEG_NOT_ALLOWED">
+            <annotation>
+              <documentation>
+                Images in CMYK color formats are not allowed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FLASH_NOT_ALLOWED">
+            <annotation>
+              <documentation>
+                Flash files are not allowed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FLASH_WITHOUT_CLICKTAG">
+            <annotation>
+              <documentation>
+                If {@link FlashCreative#clickTagRequired} is {@code true}, then the flash
+                file is required to have a click tag embedded in it.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ANIMATED_VISUAL_EFFECT">
+            <annotation>
+              <documentation>
+                Animated visual effect is not allowed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FLASH_ERROR">
+            <annotation>
+              <documentation>
+                An error was encountered in the flash file.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="LAYOUT_PROBLEM">
+            <annotation>
+              <documentation>
+                Incorrect image layout.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FLASH_HAS_NETWORK_OBJECTS">
+            <annotation>
+              <documentation>
+                Flash files with network objects are not allowed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FLASH_HAS_NETWORK_METHODS">
+            <annotation>
+              <documentation>
+                Flash files with network methods are not allowed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FLASH_HAS_URL">
+            <annotation>
+              <documentation>
+                Flash files with hard-coded click thru URLs are not allowed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FLASH_HAS_MOUSE_TRACKING">
+            <annotation>
+              <documentation>
+                Flash files with mouse tracking are not allowed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FLASH_HAS_RANDOM_NUM">
+            <annotation>
+              <documentation>
+                Flash files that generate or use random numbers are not allowed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FLASH_SELF_TARGETS">
+            <annotation>
+              <documentation>
+                Flash files with self targets are not allowed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FLASH_BAD_GETURL_TARGET">
+            <annotation>
+              <documentation>
+                Flash file contains a bad geturl target.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FLASH_VERSION_NOT_SUPPORTED">
+            <annotation>
+              <documentation>
+                Flash or ActionScript version in the submitted file is not supported.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FILE_TOO_LARGE">
+            <annotation>
+              <documentation>
+                The uploaded file is too large.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="SYSTEM_ERROR">
+            <annotation>
+              <documentation>
+                A system error occurred, please try again.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNEXPECTED_PRIMARY_ASSET_DENSITY">
+            <annotation>
+              <documentation>
+                The image density for a primary asset was not one of the expected image densities.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DUPLICATE_ASSET_DENSITY">
+            <annotation>
+              <documentation>
+                Two or more assets have the same image density.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_DEFAULT_ASSET">
+            <annotation>
+              <documentation>
+                The creative does not contain a primary asset. (For high-density creatives, the primary
+                asset must be a standard image file with 1x density.)
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="InternalApiError.Reason">
+        <annotation>
+          <documentation>
+            The single reason for the internal API error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNEXPECTED_INTERNAL_API_ERROR">
+            <annotation>
+              <documentation>
+                API encountered an unexpected internal error.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TRANSIENT_ERROR">
+            <annotation>
+              <documentation>
+                A temporary error occurred during the request. Please retry.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The cause of the error is not known or only defined in newer versions.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DOWNTIME">
+            <annotation>
+              <documentation>
+                The API is currently unavailable for a planned downtime.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ERROR_GENERATING_RESPONSE">
+            <annotation>
+              <documentation>
+                Mutate succeeded but server was unable to build response. Client should not retry mutate.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="InvalidPhoneNumberError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="INVALID_FORMAT">
+            <annotation>
+              <documentation>
+                The phone number is invalid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TOO_SHORT">
+            <annotation>
+              <documentation>
+                The phone number is too short.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="InvalidUrlError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="ILLEGAL_CHARACTERS">
+            <annotation>
+              <documentation>
+                The URL contains invalid characters.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_FORMAT">
+            <annotation>
+              <documentation>
+                The format of the URL is not allowed. This could occur for a number of
+                reasons. For example, if an invalid scheme is specified (like "ftp://")
+                or if a port is specified when not required, or if a query was specified
+                when not required.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INSECURE_SCHEME">
+            <annotation>
+              <documentation>
+                URL contains insecure scheme.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NO_SCHEME">
+            <annotation>
+              <documentation>
+                The URL does not contain a scheme.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="LabelEntityAssociationError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="DUPLICATE_ASSOCIATION">
+            <annotation>
+              <documentation>
+                The label has already been attached to the entity.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_ASSOCIATION">
+            <annotation>
+              <documentation>
+                A label is being applied to an entity that does not support that entity
+                type.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DUPLICATE_ASSOCIATION_WITH_NEGATION">
+            <annotation>
+              <documentation>
+                The same label is being applied and negated to the same entity.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="NotNullError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="ARG1_NULL">
+            <annotation>
+              <documentation>
+                Assuming that a method will not have more than 3 arguments, if it does,
+                return NULL
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ARG2_NULL"/>
+          <enumeration value="ARG3_NULL"/>
+          <enumeration value="NULL"/>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="NullError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the validation error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="NULL_CONTENT">
+            <annotation>
+              <documentation>
+                Specified list/container must not contain any null elements
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="ParseError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNPARSABLE">
+            <annotation>
+              <documentation>
+                Indicates an error in parsing an attribute.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="PermissionError.Reason">
+        <annotation>
+          <documentation>
+            Describes reasons for permission errors.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="PERMISSION_DENIED">
+            <annotation>
+              <documentation>
+                User does not have the required permission for the request.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="PublisherQueryLanguageContextError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNEXECUTABLE">
+            <annotation>
+              <documentation>
+                Indicates that there was an error executing the PQL.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="PublisherQueryLanguageSyntaxError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNPARSABLE">
+            <annotation>
+              <documentation>
+                Indicates that there was a PQL syntax error.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="QuotaError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="EXCEEDED_QUOTA">
+            <annotation>
+              <documentation>
+                The number of requests made per second is too high and has exceeded the
+                allowable limit. The recommended approach to handle this error is to wait
+                about 5 seconds and then retry the request. Note that this does not
+                guarantee the request will succeed. If it fails again, try increasing the
+                wait time.
+                &lt;p&gt;Another way to mitigate this error is to limit requests to 2 per second for
+                Small Business networks, or 8 per second for Premium networks. Once again
+                this does not guarantee that every request will succeed, but may help
+                reduce the number of times you receive this error.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="REPORT_JOB_LIMIT">
+            <annotation>
+              <documentation>
+                This user has exceeded the allowed number of new report requests per hour
+                (this includes both reports run via the UI and reports
+                run via {@link ReportService#runReportJob}).
+                The recommended approach to handle this error is to wait about 10 minutes
+                and then retry the request. Note that this does not guarantee the request
+                will succeed. If it fails again, try increasing the wait time.
+                &lt;p&gt;Another way to mitigate this error is to limit the number of new report
+                requests to 250 per hour per user. Once again, this does not guarantee that
+                every request will succeed, but may help reduce the number of times you
+                receive this error.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="RangeError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="TOO_HIGH"/>
+          <enumeration value="TOO_LOW"/>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="RequiredCollectionError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="REQUIRED">
+            <annotation>
+              <documentation>
+                A required collection is missing.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TOO_LARGE">
+            <annotation>
+              <documentation>
+                Collection size is too large.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TOO_SMALL">
+            <annotation>
+              <documentation>
+                Collection size is too small.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="RequiredError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="REQUIRED">
+            <annotation>
+              <documentation>
+                Missing required field.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="RequiredNumberError.Reason">
+        <annotation>
+          <documentation>
+            Describes reasons for a number to be invalid.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="REQUIRED"/>
+          <enumeration value="TOO_LARGE"/>
+          <enumeration value="TOO_SMALL"/>
+          <enumeration value="TOO_LARGE_WITH_DETAILS"/>
+          <enumeration value="TOO_SMALL_WITH_DETAILS"/>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="RequiredSizeError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="REQUIRED">
+            <annotation>
+              <documentation>
+                {@link Creative#size} or {@link LineItem#creativeSizes} is
+                missing.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NOT_ALLOWED">
+            <annotation>
+              <documentation>
+                {@link LineItemCreativeAssociation#sizes} must be a subset of
+                {@link LineItem#creativeSizes}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="RichMediaStudioCreativeError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="CREATION_NOT_ALLOWED">
+            <annotation>
+              <documentation>
+                Only DoubleClick Rich Media Studio can create a {@code RichMediaStudioCreative}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UKNOWN_ERROR">
+            <annotation>
+              <documentation>
+                Unknown error
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_CODE_GENERATION_REQUEST">
+            <annotation>
+              <documentation>
+                Invalid request indicating missing/invalid request parameters.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_CREATIVE_OBJECT">
+            <annotation>
+              <documentation>
+                Invalid creative object.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="STUDIO_CONNECTION_ERROR">
+            <annotation>
+              <documentation>
+                Unable to connect to Rich Media Studio to save the creative. Please try again later.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PUSHDOWN_DURATION_NOT_ALLOWED">
+            <annotation>
+              <documentation>
+                The push down duration is not allowed
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_POSITION">
+            <annotation>
+              <documentation>
+                The position is invalid
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_Z_INDEX">
+            <annotation>
+              <documentation>
+                The Z-index is invalid
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_PUSHDOWN_DURATION">
+            <annotation>
+              <documentation>
+                The push-down duration is invalid
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="ServerError.Reason">
+        <annotation>
+          <documentation>
+            Describes reasons for server errors
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="SERVER_ERROR">
+            <annotation>
+              <documentation>
+                Indicates that an unexpected error occured.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="SERVER_BUSY">
+            <annotation>
+              <documentation>
+                Indicates that the server is currently experiencing a high load. Please
+                wait and try your request again.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="SetTopBoxCreativeError.Reason">
+        <annotation>
+          <documentation>
+            Error reasons for set-top box creatives.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="EXTERNAL_ASSET_ID_IMMUTABLE">
+            <annotation>
+              <documentation>
+                Set-top box creative external asset IDs are immutable after creation.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="EXTERNAL_ASSET_ID_REQUIRED">
+            <annotation>
+              <documentation>
+                Set-top box creatives require an external asset ID.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PROVIDER_ID_IMMUTABLE">
+            <annotation>
+              <documentation>
+                Set-top box creative provider IDs are immutable after creation.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_THIRD_PARTY_TRACKING_URL_EVENT_TYPE">
+            <annotation>
+              <documentation>
+                An invalid tracking URL event type was set on the set-top box creative.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="StatementError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="VARIABLE_NOT_BOUND_TO_VALUE">
+            <annotation>
+              <documentation>
+                A bind variable has not been bound to a value.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="StringFormatError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNKNOWN"/>
+          <enumeration value="ILLEGAL_CHARS">
+            <annotation>
+              <documentation>
+                The input string value contains disallowed characters.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_FORMAT">
+            <annotation>
+              <documentation>
+                The input string value is invalid for the associated field.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="StringLengthError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="TOO_LONG"/>
+          <enumeration value="TOO_SHORT"/>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="SwiffyConversionError.Reason">
+        <annotation>
+          <documentation>
+            Error reason for {@link SwiffyConversionError}.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="SERVER_ERROR">
+            <annotation>
+              <documentation>
+                Indicates the Swiffy service has an internal error that prevents the flash
+                asset being converted.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_FLASH_FILE">
+            <annotation>
+              <documentation>
+                Indicates the uploaded flash asset is not a valid flash file.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNSUPPORTED_FLASH">
+            <annotation>
+              <documentation>
+                Indicates the Swiffy service currently does not support converting this
+                flash asset.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="TemplateInstantiatedCreativeError.Reason">
+        <annotation>
+          <documentation>
+            The reason for the error
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="INACTIVE_CREATIVE_TEMPLATE">
+            <annotation>
+              <documentation>
+                A new creative cannot be created from an inactive creative template.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FILE_TYPE_NOT_ALLOWED">
+            <annotation>
+              <documentation>
+                An uploaded file type is not allowed
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <element name="createCreativeSet">
+        <annotation>
+          <documentation>
+            Creates a new {@link CreativeSet}.
+            
+            @param creativeSet the creative set to create
+            @return the creative set with its ID filled in
+          </documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="creativeSet" type="tns:CreativeSet"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="createCreativeSetResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="rval" type="tns:CreativeSet"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ApiExceptionFault" type="tns:ApiException">
+        <annotation>
+          <documentation>
+            A fault element of type ApiException.
+          </documentation>
+        </annotation>
+      </element>
+      <element name="getCreativeSetsByStatement">
+        <annotation>
+          <documentation>
+            Gets a {@link CreativeSetPage} of {@link CreativeSet} objects that satisfy the
+            given {@link Statement#query}. The following fields are supported for
+            filtering:
+            
+            &lt;table&gt;
+            &lt;tr&gt;
+            &lt;th scope="col"&gt;PQL Property&lt;/th&gt; &lt;th scope="col"&gt;Object Property&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code id}&lt;/td&gt;
+            &lt;td&gt;{@link CreativeSet#id}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code name}&lt;/td&gt;
+            &lt;td&gt;{@link CreativeSet#name}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code masterCreativeId}&lt;/td&gt;
+            &lt;td&gt;{@link CreativeSet#masterCreativeId}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code lastModifiedDateTime}&lt;/td&gt;
+            &lt;td&gt;{@link CreativeSet#lastModifiedDateTime}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;/table&gt;
+            
+            @param statement a Publisher Query Language statement used to filter
+            a set of creative sets
+            @return the creative sets that match the given filter
+          </documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="statement" type="tns:Statement"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="getCreativeSetsByStatementResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="rval" type="tns:CreativeSetPage"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="updateCreativeSet">
+        <annotation>
+          <documentation>
+            Updates the specified {@link CreativeSet}.
+            
+            @param creativeSet the creative set to update
+            @return the updated creative set
+          </documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="creativeSet" type="tns:CreativeSet"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="updateCreativeSetResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="rval" type="tns:CreativeSet"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="RequestHeader" type="tns:SoapRequestHeader"/>
+      <element name="ResponseHeader" type="tns:SoapResponseHeader"/>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="RequestHeader">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"/>
+  </wsdl:message>
+  <wsdl:message name="ResponseHeader">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"/>
+  </wsdl:message>
+  <wsdl:message name="createCreativeSetRequest">
+    <wsdl:part element="tns:createCreativeSet" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="createCreativeSetResponse">
+    <wsdl:part element="tns:createCreativeSetResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ApiException">
+    <wsdl:part element="tns:ApiExceptionFault" name="ApiException"/>
+  </wsdl:message>
+  <wsdl:message name="getCreativeSetsByStatementRequest">
+    <wsdl:part element="tns:getCreativeSetsByStatement" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getCreativeSetsByStatementResponse">
+    <wsdl:part element="tns:getCreativeSetsByStatementResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="updateCreativeSetRequest">
+    <wsdl:part element="tns:updateCreativeSet" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="updateCreativeSetResponse">
+    <wsdl:part element="tns:updateCreativeSetResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="CreativeSetServiceInterface">
+    <wsdl:documentation>
+      Provides methods for adding, updating and retrieving {@link CreativeSet}
+      objects.
+    </wsdl:documentation>
+    <wsdl:operation name="createCreativeSet">
+      <wsdl:documentation>
+        Creates a new {@link CreativeSet}.
+        
+        @param creativeSet the creative set to create
+        @return the creative set with its ID filled in
+      </wsdl:documentation>
+      <wsdl:input message="tns:createCreativeSetRequest" name="createCreativeSetRequest"/>
+      <wsdl:output message="tns:createCreativeSetResponse" name="createCreativeSetResponse"/>
+      <wsdl:fault message="tns:ApiException" name="ApiException"/>
+    </wsdl:operation>
+    <wsdl:operation name="getCreativeSetsByStatement">
+      <wsdl:documentation>
+        Gets a {@link CreativeSetPage} of {@link CreativeSet} objects that satisfy the
+        given {@link Statement#query}. The following fields are supported for
+        filtering:
+        
+        &lt;table&gt;
+        &lt;tr&gt;
+        &lt;th scope="col"&gt;PQL Property&lt;/th&gt; &lt;th scope="col"&gt;Object Property&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code id}&lt;/td&gt;
+        &lt;td&gt;{@link CreativeSet#id}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code name}&lt;/td&gt;
+        &lt;td&gt;{@link CreativeSet#name}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code masterCreativeId}&lt;/td&gt;
+        &lt;td&gt;{@link CreativeSet#masterCreativeId}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code lastModifiedDateTime}&lt;/td&gt;
+        &lt;td&gt;{@link CreativeSet#lastModifiedDateTime}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;/table&gt;
+        
+        @param statement a Publisher Query Language statement used to filter
+        a set of creative sets
+        @return the creative sets that match the given filter
+      </wsdl:documentation>
+      <wsdl:input message="tns:getCreativeSetsByStatementRequest" name="getCreativeSetsByStatementRequest"/>
+      <wsdl:output message="tns:getCreativeSetsByStatementResponse" name="getCreativeSetsByStatementResponse"/>
+      <wsdl:fault message="tns:ApiException" name="ApiException"/>
+    </wsdl:operation>
+    <wsdl:operation name="updateCreativeSet">
+      <wsdl:documentation>
+        Updates the specified {@link CreativeSet}.
+        
+        @param creativeSet the creative set to update
+        @return the updated creative set
+      </wsdl:documentation>
+      <wsdl:input message="tns:updateCreativeSetRequest" name="updateCreativeSetRequest"/>
+      <wsdl:output message="tns:updateCreativeSetResponse" name="updateCreativeSetResponse"/>
+      <wsdl:fault message="tns:ApiException" name="ApiException"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CreativeSetServiceSoapBinding" type="tns:CreativeSetServiceInterface">
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="createCreativeSet">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="createCreativeSetRequest">
+        <wsdlsoap:header message="tns:RequestHeader"
+          part="RequestHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createCreativeSetResponse">
+        <wsdlsoap:header message="tns:ResponseHeader"
+          part="ResponseHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ApiException">
+        <wsdlsoap:fault name="ApiException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getCreativeSetsByStatement">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getCreativeSetsByStatementRequest">
+        <wsdlsoap:header message="tns:RequestHeader"
+          part="RequestHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getCreativeSetsByStatementResponse">
+        <wsdlsoap:header message="tns:ResponseHeader"
+          part="ResponseHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ApiException">
+        <wsdlsoap:fault name="ApiException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateCreativeSet">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="updateCreativeSetRequest">
+        <wsdlsoap:header message="tns:RequestHeader"
+          part="RequestHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateCreativeSetResponse">
+        <wsdlsoap:header message="tns:ResponseHeader"
+          part="ResponseHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ApiException">
+        <wsdlsoap:fault name="ApiException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CreativeSetService">
+    <wsdl:port binding="tns:CreativeSetServiceSoapBinding" name="CreativeSetServiceInterfacePort">
+      <wsdlsoap:address location="https://ads.google.com/apis/ads/publisher/v201802/CreativeSetService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

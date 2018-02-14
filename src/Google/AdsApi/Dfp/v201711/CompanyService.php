@@ -39,6 +39,7 @@ class CompanyService extends \Google\AdsApi\Common\AdsSoapClient
       'FieldPathElement' => 'Google\\AdsApi\\Dfp\\v201711\\FieldPathElement',
       'InternalApiError' => 'Google\\AdsApi\\Dfp\\v201711\\InternalApiError',
       'InvalidEmailError' => 'Google\\AdsApi\\Dfp\\v201711\\InvalidEmailError',
+      'InvalidUrlError' => 'Google\\AdsApi\\Dfp\\v201711\\InvalidUrlError',
       'LabelEntityAssociationError' => 'Google\\AdsApi\\Dfp\\v201711\\LabelEntityAssociationError',
       'NetworkError' => 'Google\\AdsApi\\Dfp\\v201711\\NetworkError',
       'NotNullError' => 'Google\\AdsApi\\Dfp\\v201711\\NotNullError',

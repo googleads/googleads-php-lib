@@ -90,7 +90,7 @@ class CampaignCriterion
      */
     public function setCampaignId($campaignId)
     {
-      $this->campaignId = (PHP_INT_SIZE === 4)
+      $this->campaignId = (!is_null(campaignId) && PHP_INT_SIZE === 4)
           ? floatval($campaignId) : $campaignId;
       return $this;
     }
@@ -181,7 +181,7 @@ class CampaignCriterion
      */
     public function setBaseCampaignId($baseCampaignId)
     {
-      $this->baseCampaignId = (PHP_INT_SIZE === 4)
+      $this->baseCampaignId = (!is_null(baseCampaignId) && PHP_INT_SIZE === 4)
           ? floatval($baseCampaignId) : $baseCampaignId;
       return $this;
     }

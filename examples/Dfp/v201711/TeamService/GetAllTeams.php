@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\TeamService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -32,61 +33,62 @@ use Google\AdsApi\Dfp\v201711\TeamService;
  * that you've setup an `adsapi_php.ini` file in your home directory with your
  * API credentials and settings. See README.md for more info.
  */
-class GetAllTeams {
+class GetAllTeams
+{
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session) {
-    $teamService =
-        $dfpServices->get($session, TeamService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session
+    ) {
+        $teamService = $dfpServices->get($session, TeamService::class);
 
-    // Create a statement to select teams.
-    $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
-    $statementBuilder = (new StatementBuilder())
-        ->orderBy('id ASC')
-        ->limit($pageSize);
+        // Create a statement to select teams.
+        $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
+        $statementBuilder = (new StatementBuilder())->orderBy('id ASC')
+            ->limit($pageSize);
 
-    // Retrieve a small amount of teams at a time, paging
-    // through until all teams have been retrieved.
-    $totalResultSetSize = 0;
-    do {
-      $page = $teamService->getTeamsByStatement(
-          $statementBuilder->toStatement());
+        // Retrieve a small amount of teams at a time, paging
+        // through until all teams have been retrieved.
+        $totalResultSetSize = 0;
+        do {
+            $page = $teamService->getTeamsByStatement(
+                $statementBuilder->toStatement()
+            );
 
-      // Print out some information for each team.
-      if ($page->getResults() !== null) {
-        $totalResultSetSize = $page->getTotalResultSetSize();
-        $i = $page->getStartIndex();
-        foreach ($page->getResults() as $team) {
-          printf(
-              "%d) Team with ID %d and name '%s' was found.\n",
-              $i++,
-              $team->getId(),
-              $team->getName()
-          );
-        }
-      }
+            // Print out some information for each team.
+            if ($page->getResults() !== null) {
+                $totalResultSetSize = $page->getTotalResultSetSize();
+                $i = $page->getStartIndex();
+                foreach ($page->getResults() as $team) {
+                    printf(
+                        "%d) Team with ID %d and name '%s' was found.\n",
+                        $i++,
+                        $team->getId(),
+                        $team->getName()
+                    );
+                }
+            }
 
-      $statementBuilder->increaseOffsetBy($pageSize);
-    } while ($statementBuilder->getOffset() < $totalResultSetSize);
+            $statementBuilder->increaseOffsetBy($pageSize);
+        } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-    printf("Number of results found: %d\n", $totalResultSetSize);
-  }
+        printf("Number of results found: %d\n", $totalResultSetSize);
+    }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(new DfpServices(), $session);
-  }
+        self::runExample(new DfpServices(), $session);
+    }
 }
 
 GetAllTeams::main();

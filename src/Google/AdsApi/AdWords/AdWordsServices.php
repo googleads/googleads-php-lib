@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\AdWords;
 
 use Google\AdsApi\Common\AdsServices;
@@ -23,36 +24,40 @@ use Google\AdsApi\Common\AdsSoapClientFactory;
 /**
  * Entry point for accessing the AdWords API's services.
  */
-final class AdWordsServices implements AdsServices {
+final class AdWordsServices implements AdsServices
+{
 
-  private $adsSoapClientFactory;
-  private $adsHeaderHandler;
+    private $adsSoapClientFactory;
+    private $adsHeaderHandler;
 
-  /**
-   * @param AdsSoapClientFactory $adsSoapClientFactory
-   * @param AdWordsHeaderHandler $adWordsHeaderHandler
-   */
-  public function __construct(
-      AdsSoapClientFactory $adsSoapClientFactory = null,
-      AdWordsHeaderHandler $adWordsHeaderHandler = null) {
-    $this->adsSoapClientFactory = ($adsSoapClientFactory === null)
-        ? new AdsSoapClientFactory(
-            (new AdWordsSoapLogMessageFormatterProvider())
-                ->getSoapLogMessageFormatter())
-        : $adsSoapClientFactory;
-    $this->adsHeaderHandler = ($adWordsHeaderHandler === null)
-        ? new AdWordsHeaderHandler()
-        : $adWordsHeaderHandler;
-  }
+    /**
+     * @param AdsSoapClientFactory $adsSoapClientFactory
+     * @param AdWordsHeaderHandler $adWordsHeaderHandler
+     */
+    public function __construct(
+        AdsSoapClientFactory $adsSoapClientFactory = null,
+        AdWordsHeaderHandler $adWordsHeaderHandler = null
+    ) {
+        $this->adsSoapClientFactory = ($adsSoapClientFactory === null)
+            ? new AdsSoapClientFactory(
+                (new AdWordsSoapLogMessageFormatterProvider())
+                    ->getSoapLogMessageFormatter()
+            )
+            : $adsSoapClientFactory;
+        $this->adsHeaderHandler = ($adWordsHeaderHandler === null)
+            ? new AdWordsHeaderHandler()
+            : $adWordsHeaderHandler;
+    }
 
-  /**
-   * @see AdsServices::get()
-   */
-  public function get(AdsSession $session, $class) {
-    return $this->adsSoapClientFactory->generateSoapClient(
-        $session,
-        $this->adsHeaderHandler,
-        new AdWordsServiceDescriptor($class)
-    );
-  }
+    /**
+     * @see AdsServices::get()
+     */
+    public function get(AdsSession $session, $class)
+    {
+        return $this->adsSoapClientFactory->generateSoapClient(
+            $session,
+            $this->adsHeaderHandler,
+            new AdWordsServiceDescriptor($class)
+        );
+    }
 }

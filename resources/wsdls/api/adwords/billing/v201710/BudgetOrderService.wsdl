@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2017 Google Inc. All Rights Reserved -->
+<!-- Copyright 2018 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://adwords.google.com/api/adwords/billing/v201710"
   xmlns:tns="https://adwords.google.com/api/adwords/billing/v201710"
@@ -1285,7 +1285,7 @@
       <simpleType name="AuthorizationError.Reason">
         <annotation>
           <documentation>
-            The reasons for the database error.
+            The reasons for the authorization error.
           </documentation>
         </annotation>
         <restriction base="xsd:string">
@@ -2465,7 +2465,7 @@
                 
                 This number will be printed in the monthly invoices.
                 &lt;span class="constraint Selectable"&gt;This field can be selected using the value "PoNumber".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
-                &lt;span class="constraint StringLength"&gt;The length of this string should be between 0 and 30, inclusive, (trimmed).&lt;/span&gt;
+                &lt;span class="constraint StringLength"&gt;The length of this string should be between 0 and 80, inclusive, (trimmed).&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -2477,7 +2477,7 @@
                 
                 This name will be printed in the monthly invoices.
                 &lt;span class="constraint Selectable"&gt;This field can be selected using the value "BudgetOrderName".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
-                &lt;span class="constraint StringLength"&gt;The length of this string should be between 0 and 40, inclusive, (trimmed).&lt;/span&gt;
+                &lt;span class="constraint StringLength"&gt;The length of this string should be between 0 and 150, inclusive, (trimmed).&lt;/span&gt;
               </documentation>
             </annotation>
           </element>

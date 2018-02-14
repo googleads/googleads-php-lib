@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\PlacementService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -32,61 +33,62 @@ use Google\AdsApi\Dfp\v201711\PlacementService;
  * that you've setup an `adsapi_php.ini` file in your home directory with your
  * API credentials and settings. See README.md for more info.
  */
-class GetAllPlacements {
+class GetAllPlacements
+{
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session) {
-    $placementService =
-        $dfpServices->get($session, PlacementService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session
+    ) {
+        $placementService = $dfpServices->get($session, PlacementService::class);
 
-    // Create a statement to select placements.
-    $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
-    $statementBuilder = (new StatementBuilder())
-        ->orderBy('id ASC')
-        ->limit($pageSize);
+        // Create a statement to select placements.
+        $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
+        $statementBuilder = (new StatementBuilder())->orderBy('id ASC')
+            ->limit($pageSize);
 
-    // Retrieve a small amount of placements at a time, paging
-    // through until all placements have been retrieved.
-    $totalResultSetSize = 0;
-    do {
-      $page = $placementService->getPlacementsByStatement(
-          $statementBuilder->toStatement());
+        // Retrieve a small amount of placements at a time, paging
+        // through until all placements have been retrieved.
+        $totalResultSetSize = 0;
+        do {
+            $page = $placementService->getPlacementsByStatement(
+                $statementBuilder->toStatement()
+            );
 
-      // Print out some information for each placement.
-      if ($page->getResults() !== null) {
-        $totalResultSetSize = $page->getTotalResultSetSize();
-        $i = $page->getStartIndex();
-        foreach ($page->getResults() as $placement) {
-          printf(
-              "%d) Placement with ID %d and name '%s' was found.\n",
-              $i++,
-              $placement->getId(),
-              $placement->getName()
-          );
-        }
-      }
+            // Print out some information for each placement.
+            if ($page->getResults() !== null) {
+                $totalResultSetSize = $page->getTotalResultSetSize();
+                $i = $page->getStartIndex();
+                foreach ($page->getResults() as $placement) {
+                    printf(
+                        "%d) Placement with ID %d and name '%s' was found.\n",
+                        $i++,
+                        $placement->getId(),
+                        $placement->getName()
+                    );
+                }
+            }
 
-      $statementBuilder->increaseOffsetBy($pageSize);
-    } while ($statementBuilder->getOffset() < $totalResultSetSize);
+            $statementBuilder->increaseOffsetBy($pageSize);
+        } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-    printf("Number of results found: %d\n", $totalResultSetSize);
-  }
+        printf("Number of results found: %d\n", $totalResultSetSize);
+    }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(new DfpServices(), $session);
-  }
+        self::runExample(new DfpServices(), $session);
+    }
 }
 
 GetAllPlacements::main();

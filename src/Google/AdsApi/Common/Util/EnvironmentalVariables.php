@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Common\Util;
 
 use UnexpectedValueException;
@@ -22,37 +23,39 @@ use UnexpectedValueException;
  * Provides methods for obtaining environmental variables in a
  * platform-independant manner.
  */
-class EnvironmentalVariables {
+class EnvironmentalVariables
+{
 
-  /**
-   * Attempts to find the home directory of the user running the PHP script.
-   *
-   * @return string the path to the home directory with any trailing directory
-   *     separators removed
-   * @throws UnexpectedValueException if a home directory could not be found
-   */
-  public function getHome() {
-    $home = null;
+    /**
+     * Attempts to find the home directory of the user running the PHP script.
+     *
+     * @return string the path to the home directory with any trailing directory
+     *     separators removed
+     * @throws UnexpectedValueException if a home directory could not be found
+     */
+    public function getHome()
+    {
+        $home = null;
 
-    if (!empty(getenv('HOME'))) {
-      // Try the environmental variables.
-      $home = getenv('HOME');
-    } else if (!empty($_SERVER['HOME'])) {
-      // If not in the environment variables, check the superglobal $_SERVER as
-      // a last resort.
-      $home = $_SERVER['HOME'];
-    } else if(!empty(getenv('HOMEDRIVE')) && !empty(getenv('HOMEPATH'))) {
-      // If the 'HOME' environmental variable wasn't found, we may be on
-      // Windows.
-      $home = getenv('HOMEDRIVE') . getenv('HOMEPATH');
-    } else if(!empty($_SERVER['HOMEDRIVE']) && !empty($_SERVER['HOMEPATH'])) {
-      $home = $_SERVER['HOMEDRIVE'] . $_SERVER['HOMEPATH'];
+        if (!empty(getenv('HOME'))) {
+            // Try the environmental variables.
+            $home = getenv('HOME');
+        } else if (!empty($_SERVER['HOME'])) {
+            // If not in the environment variables, check the superglobal $_SERVER as
+            // a last resort.
+            $home = $_SERVER['HOME'];
+        } else if (!empty(getenv('HOMEDRIVE')) && !empty(getenv('HOMEPATH'))) {
+            // If the 'HOME' environmental variable wasn't found, we may be on
+            // Windows.
+            $home = getenv('HOMEDRIVE') . getenv('HOMEPATH');
+        } else if (!empty($_SERVER['HOMEDRIVE']) && !empty($_SERVER['HOMEPATH'])) {
+            $home = $_SERVER['HOMEDRIVE'] . $_SERVER['HOMEPATH'];
+        }
+
+        if ($home === null) {
+            throw new UnexpectedValueException('Could not locate home directory.');
+        }
+
+        return rtrim($home, '\\/');
     }
-
-    if ($home === null) {
-      throw new UnexpectedValueException('Could not locate home directory.');
-    }
-
-    return rtrim($home, '\\/');
-  }
 }

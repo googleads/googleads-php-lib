@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2017 Google Inc. All Rights Reserved -->
+<!-- Copyright 2018 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://adwords.google.com/api/adwords/cm/v201705"
   xmlns:tns="https://adwords.google.com/api/adwords/cm/v201705"
@@ -323,7 +323,7 @@
                 ID of the base adgroup from which this draft/trial adgroup was created. For
                 base adgroups this is equal to the adgroup ID.  If the adgroup was created
                 in the draft or trial and has no corresponding base adgroup, this field is null.
-                This field is readonly and only returned on get requests.
+                This field is readonly and will be ignored when sent to the API.
               </documentation>
             </annotation>
           </element>
@@ -2492,7 +2492,7 @@
               <documentation>
                 Selective optimization setting for this campaign, which includes a set of conversion
                 types to optimize this campaign towards.
-                &lt;span class="constraint CampaignType"&gt;This field may only be set for campaign channel subtype UNIVERSAL_APP_CAMPAIGN.&lt;/span&gt;
+                &lt;span class="constraint CampaignType"&gt;This field may only be set for campaign channel type MULTI_CHANNEL.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may not be set.&lt;/span&gt;
               </documentation>
             </annotation>
@@ -5441,7 +5441,7 @@
             <annotation>
               <documentation>
                 Type of media object. Required when using {@link MediaService#upload} to upload a new media
-                file.
+                file. MEDIA_BUNDLE, ICON, IMAGE, and DYNAMIC_IMAGE are the supported MediaTypes to upload.
                 &lt;span class="constraint ReadOnly"&gt;This field is read only and will be ignored when sent to the API for the following {@link Operator}s: REMOVE and SET.&lt;/span&gt;
               </documentation>
             </annotation>
@@ -11624,7 +11624,7 @@
       <simpleType name="AuthorizationError.Reason">
         <annotation>
           <documentation>
-            The reasons for the database error.
+            The reasons for the authorization error.
           </documentation>
         </annotation>
         <restriction base="xsd:string">

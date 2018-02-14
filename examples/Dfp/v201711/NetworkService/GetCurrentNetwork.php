@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\NetworkService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -31,34 +32,39 @@ use Google\AdsApi\Dfp\v201711\NetworkService;
  * that you've setup an `adsapi_php.ini` file in your home directory with your
  * API credentials and settings. See README.md for more info.
  */
-class GetCurrentNetwork {
+class GetCurrentNetwork
+{
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session) {
-    $networkService = $dfpServices->get($session, NetworkService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session
+    ) {
+        $networkService = $dfpServices->get($session, NetworkService::class);
 
-    // Get the current network.
-    $network = $networkService->getCurrentNetwork();
+        // Get the current network.
+        $network = $networkService->getCurrentNetwork();
 
-    printf("Current network has network code '%s' and display name '%s'.\n",
-        $network->getNetworkCode(), $network->getDisplayName());
-  }
+        printf(
+            "Current network has network code '%s' and display name '%s'.\n",
+            $network->getNetworkCode(),
+            $network->getDisplayName()
+        );
+    }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(new DfpServices(), $session);
-  }
+        self::runExample(new DfpServices(), $session);
+    }
 }
 
 GetCurrentNetwork::main();

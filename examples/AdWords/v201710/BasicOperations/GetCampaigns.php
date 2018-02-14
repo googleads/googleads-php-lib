@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\AdWords\v201710\BasicOperations;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -31,59 +32,59 @@ use Google\AdsApi\Common\OAuth2TokenBuilder;
 /**
  * This example gets all campaigns. To add a campaign, run AddCampaign.php.
  */
-class GetCampaigns {
+class GetCampaigns
+{
 
-  const PAGE_LIMIT = 500;
+    const PAGE_LIMIT = 500;
 
-  public static function runExample(AdWordsServices $adWordsServices,
-      AdWordsSession $session) {
-    $campaignService = $adWordsServices->get($session, CampaignService::class);
+    public static function runExample(
+        AdWordsServices $adWordsServices,
+        AdWordsSession $session
+    ) {
+        $campaignService = $adWordsServices->get($session, CampaignService::class);
 
-    // Create selector.
-    $selector = new Selector();
-    $selector->setFields(['Id', 'Name']);
-    $selector->setOrdering([new OrderBy('Name', SortOrder::ASCENDING)]);
-    $selector->setPaging(new Paging(0, self::PAGE_LIMIT));
+        // Create selector.
+        $selector = new Selector();
+        $selector->setFields(['Id', 'Name']);
+        $selector->setOrdering([new OrderBy('Name', SortOrder::ASCENDING)]);
+        $selector->setPaging(new Paging(0, self::PAGE_LIMIT));
 
-    $totalNumEntries = 0;
-    do {
-      // Make the get request.
-      $page = $campaignService->get($selector);
+        $totalNumEntries = 0;
+        do {
+            // Make the get request.
+            $page = $campaignService->get($selector);
 
-      // Display results.
-      if ($page->getEntries() !== null) {
-        $totalNumEntries = $page->getTotalNumEntries();
-        foreach ($page->getEntries() as $campaign) {
-          printf(
-              "Campaign with ID %d and name '%s' was found.\n",
-              $campaign->getId(),
-              $campaign->getName()
-          );
-        }
-      }
+            // Display results.
+            if ($page->getEntries() !== null) {
+                $totalNumEntries = $page->getTotalNumEntries();
+                foreach ($page->getEntries() as $campaign) {
+                    printf(
+                        "Campaign with ID %d and name '%s' was found.\n",
+                        $campaign->getId(),
+                        $campaign->getName()
+                    );
+                }
+            }
 
-      // Advance the paging index.
-      $selector->getPaging()->setStartIndex(
-          $selector->getPaging()->getStartIndex() + self::PAGE_LIMIT);
-    } while ($selector->getPaging()->getStartIndex() < $totalNumEntries);
+            // Advance the paging index.
+            $selector->getPaging()->setStartIndex(
+                $selector->getPaging()->getStartIndex() + self::PAGE_LIMIT
+            );
+        } while ($selector->getPaging()->getStartIndex() < $totalNumEntries);
 
-    printf("Number of results found: %d\n", $totalNumEntries);
-  }
+        printf("Number of results found: %d\n", $totalNumEntries);
+    }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new AdWordsSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
-    self::runExample(new AdWordsServices(), $session);
-  }
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new AdWordsSessionBuilder())->fromFile()->withOAuth2Credential($oAuth2Credential)->build();
+        self::runExample(new AdWordsServices(), $session);
+    }
 }
 
 GetCampaigns::main();

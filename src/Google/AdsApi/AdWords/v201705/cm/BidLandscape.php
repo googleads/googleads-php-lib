@@ -66,7 +66,7 @@ abstract class BidLandscape extends \Google\AdsApi\AdWords\v201705\cm\DataEntry
      */
     public function setCampaignId($campaignId)
     {
-      $this->campaignId = (PHP_INT_SIZE === 4)
+      $this->campaignId = (!is_null(campaignId) && PHP_INT_SIZE === 4)
           ? floatval($campaignId) : $campaignId;
       return $this;
     }
@@ -85,7 +85,7 @@ abstract class BidLandscape extends \Google\AdsApi\AdWords\v201705\cm\DataEntry
      */
     public function setAdGroupId($adGroupId)
     {
-      $this->adGroupId = (PHP_INT_SIZE === 4)
+      $this->adGroupId = (!is_null(adGroupId) && PHP_INT_SIZE === 4)
           ? floatval($adGroupId) : $adGroupId;
       return $this;
     }

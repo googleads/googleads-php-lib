@@ -14,26 +14,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\AdWords\Testing;
 
 /**
  * A fake ComparableValue class for testing purpose.
  */
-abstract class FakeComparableValue {
+abstract class FakeComparableValue
+{
 
-  protected $ComparableValueType = null;
+    protected $ComparableValueType = null;
 
-  /**
-   * @return string
-   */
-  public function getComparableValueType() {
-    return $this->ComparableValueType;
-  }
+    /**
+     * @return string
+     */
+    public function getComparableValueType()
+    {
+        return $this->ComparableValueType;
+    }
 
-  /**
-   * @param string $ComparableValueType
-   */
-  public function setComparableValueType($ComparableValueType) {
-    $this->ComparableValueType = $ComparableValueType;
-  }
+    /**
+     * @param string $ComparableValueType
+     */
+    public function setComparableValueType($ComparableValueType)
+    {
+        $this->ComparableValueType = $ComparableValueType;
+    }
 }

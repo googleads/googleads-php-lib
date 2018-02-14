@@ -125,7 +125,7 @@ class Ad
      */
     public function setId($id)
     {
-      $this->id = (PHP_INT_SIZE === 4)
+      $this->id = (!is_null(id) && PHP_INT_SIZE === 4)
           ? floatval($id) : $id;
       return $this;
     }
@@ -324,7 +324,7 @@ class Ad
      */
     public function setDevicePreference($devicePreference)
     {
-      $this->devicePreference = (PHP_INT_SIZE === 4)
+      $this->devicePreference = (!is_null(devicePreference) && PHP_INT_SIZE === 4)
           ? floatval($devicePreference) : $devicePreference;
       return $this;
     }

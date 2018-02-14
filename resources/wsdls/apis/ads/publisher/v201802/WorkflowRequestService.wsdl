@@ -1,0 +1,2685 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated file, do not edit -->
+<!-- Copyright 2018 Google Inc. All Rights Reserved -->
+<wsdl:definitions
+  targetNamespace="https://www.google.com/apis/ads/publisher/v201802"
+  xmlns:tns="https://www.google.com/apis/ads/publisher/v201802"
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <schema elementFormDefault="qualified" jaxb:version="1.0"
+      targetNamespace="https://www.google.com/apis/ads/publisher/v201802"
+      xmlns="http://www.w3.org/2001/XMLSchema"
+      xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:tns="https://www.google.com/apis/ads/publisher/v201802">
+      <annotation>
+        <appinfo>
+          <jaxb:globalBindings typesafeEnumMaxMembers="999999"/>
+        </appinfo>
+      </annotation>
+      <complexType abstract="true" name="ObjectValue">
+        <annotation>
+          <documentation>
+            Contains an object value.
+            &lt;p&gt;
+            &lt;b&gt;This object is experimental!
+            &lt;code&gt;ObjectValue&lt;/code&gt; is an experimental, innovative, and rapidly
+            changing new feature for DFP. Unfortunately, being on the bleeding edge means that we may make
+            backwards-incompatible changes to
+            &lt;code&gt;ObjectValue&lt;/code&gt;. We will inform the community when this feature
+            is no longer experimental.&lt;/b&gt;
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType abstract="true" name="ApiError">
+        <annotation>
+          <documentation>
+            The API error base class that provides details about an error that occurred
+            while processing a service request.
+            
+            &lt;p&gt;The OGNL field path is provided for parsers to identify the request data
+            element that may have caused the error.&lt;/p&gt;
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="fieldPath" type="xsd:string">
+            <annotation>
+              <documentation>
+                The OGNL field path to identify cause of error.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="fieldPathElements" type="tns:FieldPathElement">
+            <annotation>
+              <documentation>
+                A parsed copy of the field path. For example, the field path "operations[1].operand"
+                corresponds to this list: {FieldPathElement(field = "operations", index = 1),
+                FieldPathElement(field = "operand", index = null)}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="trigger" type="xsd:string">
+            <annotation>
+              <documentation>
+                The data that caused the error.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="errorString" type="xsd:string">
+            <annotation>
+              <documentation>
+                A simple string representation of the error and reason.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="ApiException">
+        <annotation>
+          <documentation>
+            Exception class for holding a list of service errors.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApplicationException">
+            <sequence>
+              <element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:ApiError">
+                <annotation>
+                  <documentation>
+                    List of errors.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ApiVersionError">
+        <annotation>
+          <documentation>
+            Errors related to the usage of API versions.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ApiVersionError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ApplicationException">
+        <annotation>
+          <documentation>
+            Base class for exceptions.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="message" type="xsd:string">
+            <annotation>
+              <documentation>
+                Error message.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="ApproveWorkflowApprovalRequests">
+        <annotation>
+          <documentation>
+            The action used to approve {@link WorkflowApprovalRequest workflow approval requests}.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:WorkflowRequestAction">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="comment" type="xsd:string">
+                <annotation>
+                  <documentation>
+                    The comment of the {@link ApproveWorkflowApprovalRequests} action. This field is optional.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="AuthenticationError">
+        <annotation>
+          <documentation>
+            An error for an exception that occurred when authenticating.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:AuthenticationError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType abstract="true" name="WorkflowRequest">
+        <annotation>
+          <documentation>
+            A {@code WorkflowRequest} represents a workflow action unit that requires external or manual
+            interference.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
+            <annotation>
+              <documentation>
+                The unique ID of the workflow request. This attribute is readonly and is assigned by Google.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="workflowRuleName" type="xsd:string">
+            <annotation>
+              <documentation>
+                The name of the workflow rule that generated the request. This attribute is readonly and is
+                assigned by Google.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="entityId" type="xsd:long">
+            <annotation>
+              <documentation>
+                The ID of entity associated to this workflow request.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="entityType" type="tns:WorkflowEntityType">
+            <annotation>
+              <documentation>
+                The {@link WorkflowEntityType} associated to this workflow request.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="type" type="tns:WorkflowRequestType">
+            <annotation>
+              <documentation>
+                The {@link WorkflowRequestType} of this workflow request. This attribute is readonly and is
+                assigned by Google.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="BooleanValue">
+        <annotation>
+          <documentation>
+            Contains a boolean value.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="xsd:boolean">
+                <annotation>
+                  <documentation>
+                    The boolean value.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="CollectionSizeError">
+        <annotation>
+          <documentation>
+            Error for the size of the collection being too large
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CollectionSizeError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="CommonError">
+        <annotation>
+          <documentation>
+            A place for common errors that can be used across services.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CommonError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="CustomTargetingError">
+        <annotation>
+          <documentation>
+            Lists all errors related to {@link CustomTargetingKey} and
+            {@link CustomTargetingValue} objects.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CustomTargetingError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="Date">
+        <annotation>
+          <documentation>
+            Represents a date.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="year" type="xsd:int">
+            <annotation>
+              <documentation>
+                Year (e.g., 2009)
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="month" type="xsd:int">
+            <annotation>
+              <documentation>
+                Month (1..12)
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="day" type="xsd:int">
+            <annotation>
+              <documentation>
+                Day (1..31)
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="DateTime">
+        <annotation>
+          <documentation>
+            Represents a date combined with the time of day.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="date" type="tns:Date"/>
+          <element maxOccurs="1" minOccurs="0" name="hour" type="xsd:int"/>
+          <element maxOccurs="1" minOccurs="0" name="minute" type="xsd:int"/>
+          <element maxOccurs="1" minOccurs="0" name="second" type="xsd:int"/>
+          <element maxOccurs="1" minOccurs="0" name="timeZoneID" type="xsd:string"/>
+        </sequence>
+      </complexType>
+      <complexType name="DateTimeValue">
+        <annotation>
+          <documentation>
+            Contains a date-time value.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="tns:DateTime">
+                <annotation>
+                  <documentation>
+                    The {@code DateTime} value.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DateValue">
+        <annotation>
+          <documentation>
+            Contains a date value.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="tns:Date">
+                <annotation>
+                  <documentation>
+                    The {@code Date} value.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="SkipWorkflowExternalConditionRequests">
+        <annotation>
+          <documentation>
+            The action to skip {@link WorkflowExternalConditionRequest workflow external condition requests}.
+            Doing so means that the rule did not trigger.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:WorkflowRequestAction">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="FeatureError">
+        <annotation>
+          <documentation>
+            Errors related to feature management.  If you attempt using a feature that is not available to
+            the current network you'll receive a FeatureError with the missing feature as the trigger.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:FeatureError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="FieldPathElement">
+        <annotation>
+          <documentation>
+            A segment of a field path. Each dot in a field path defines a new segment.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="field" type="xsd:string">
+            <annotation>
+              <documentation>
+                The name of a field in lower camelcase. (e.g. "biddingStrategy")
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="index" type="xsd:int">
+            <annotation>
+              <documentation>
+                For list fields, this is a 0-indexed position in the list. Null for non-list fields.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="ForecastError">
+        <annotation>
+          <documentation>
+            Errors that can result from a forecast request.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ForecastError.Reason">
+                <annotation>
+                  <documentation>
+                    The reason for the forecast error.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="InternalApiError">
+        <annotation>
+          <documentation>
+            Indicates that a server-side error has occured. {@code InternalApiError}s
+            are generally not the result of an invalid request or message sent by the
+            client.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:InternalApiError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="LineItemOperationError">
+        <annotation>
+          <documentation>
+            Lists all errors for executing operations on line items
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:LineItemOperationError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="NotNullError">
+        <annotation>
+          <documentation>
+            Caused by supplying a null value for an attribute that cannot be null.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:NotNullError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="NumberValue">
+        <annotation>
+          <documentation>
+            Contains a numeric value.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="xsd:string">
+                <annotation>
+                  <documentation>
+                    The numeric value represented as a string.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ParseError">
+        <annotation>
+          <documentation>
+            Lists errors related to parsing.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ParseError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="TriggerWorkflowExternalConditionRequests">
+        <annotation>
+          <documentation>
+            The action to trigger {@link WorkflowExternalConditionRequest workflow external condition
+            requests}.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:WorkflowRequestAction">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="PermissionError">
+        <annotation>
+          <documentation>
+            Errors related to incorrect permission.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:PermissionError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ProposalActionError">
+        <annotation>
+          <documentation>
+            Lists all errors associated with performing actions on {@link Proposal} objects.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ProposalActionError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ProposalLineItemActionError">
+        <annotation>
+          <documentation>
+            Lists all errors for executing operations on proposal line items.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ProposalLineItemActionError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="PublisherQueryLanguageContextError">
+        <annotation>
+          <documentation>
+            An error that occurs while executing a PQL query contained in
+            a {@link Statement} object.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:PublisherQueryLanguageContextError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="PublisherQueryLanguageSyntaxError">
+        <annotation>
+          <documentation>
+            An error that occurs while parsing a PQL query contained in a
+            {@link Statement} object.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:PublisherQueryLanguageSyntaxError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="QuotaError">
+        <annotation>
+          <documentation>
+            Describes a client-side error on which a user is attempting
+            to perform an action to which they have no quota remaining.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:QuotaError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RejectWorkflowApprovalRequests">
+        <annotation>
+          <documentation>
+            The action used to reject {@link WorkflowApprovalRequest workflow approval requests}.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:WorkflowRequestAction">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="comment" type="xsd:string">
+                <annotation>
+                  <documentation>
+                    The comment of the {@link RejectWorkflowApprovalRequests} action. This field is optional.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RequiredCollectionError">
+        <annotation>
+          <documentation>
+            A list of all errors to be used for validating sizes of collections.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RequiredCollectionError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RequiredError">
+        <annotation>
+          <documentation>
+            Errors due to missing required field.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RequiredError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ServerError">
+        <annotation>
+          <documentation>
+            Errors related to the server.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ServerError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="SetValue">
+        <annotation>
+          <documentation>
+            Contains a set of {@link Value Values}. May not contain duplicates.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="unbounded" minOccurs="0" name="values" type="tns:Value">
+                <annotation>
+                  <documentation>
+                    The values. They must all be the same type of {@code Value} and not contain duplicates.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="SoapRequestHeader">
+        <annotation>
+          <documentation>
+            Represents the SOAP request header used by API requests.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="networkCode" type="xsd:string">
+            <annotation>
+              <documentation>
+                The network code to use in the context of a request.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="applicationName" type="xsd:string">
+            <annotation>
+              <documentation>
+                The name of client library application.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="SoapResponseHeader">
+        <annotation>
+          <documentation>
+            Represents the SOAP request header used by API responses.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="requestId" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="responseTime" type="xsd:long"/>
+        </sequence>
+      </complexType>
+      <complexType name="Statement">
+        <annotation>
+          <documentation>
+            Captures the {@code WHERE}, {@code ORDER BY} and {@code LIMIT} clauses of a
+            PQL query. Statements are typically used to retrieve objects of a predefined
+            domain type, which makes SELECT clause unnecessary.
+            &lt;p&gt;
+            An example query text might be {@code "WHERE status = 'ACTIVE' ORDER BY id
+            LIMIT 30"}.
+            &lt;/p&gt;
+            &lt;p&gt;
+            Statements support bind variables. These are substitutes for literals
+            and can be thought of as input parameters to a PQL query.
+            &lt;/p&gt;
+            &lt;p&gt;
+            An example of such a query might be {@code "WHERE id = :idValue"}.
+            &lt;/p&gt;
+            &lt;p&gt;
+            Statements also support use of the LIKE keyword. This provides partial and
+            wildcard string matching.
+            &lt;/p&gt;
+            &lt;p&gt;
+            An example of such a query might be {@code "WHERE name LIKE 'startswith%'"}.
+            &lt;/p&gt;
+            The value for the variable idValue must then be set with an object of type
+            {@link Value}, e.g., {@link NumberValue}, {@link TextValue} or
+            {@link BooleanValue}.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="query" type="xsd:string">
+            <annotation>
+              <documentation>
+                Holds the query in PQL syntax. The syntax is:&lt;br&gt;
+                &lt;code&gt;[WHERE &lt;condition&gt; {[AND | OR] &lt;condition&gt; ...}]&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;[ORDER BY &lt;property&gt; [ASC | DESC]]&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;[LIMIT {[&lt;offset&gt;,] &lt;count&gt;} | {&lt;count&gt; OFFSET &lt;offset&gt;}]&lt;/code&gt;&lt;br&gt;
+                &lt;p&gt;
+                &lt;code&gt;&lt;condition&gt;&lt;/code&gt;&lt;br&gt;
+                &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                &lt;code&gt;:= &lt;property&gt; {&lt; | &lt;= | &gt; | &gt;= | = | != } &lt;value&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;&lt;condition&gt;&lt;/code&gt;&lt;br&gt;
+                &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                &lt;code&gt;:= &lt;property&gt; {&lt; | &lt;= | &gt; | &gt;= | = | != } &lt;bind variable&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;&lt;condition&gt; := &lt;property&gt; IN &lt;list&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;&lt;condition&gt; := &lt;property&gt; IS NULL&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;&lt;condition&gt; := &lt;property&gt; LIKE &lt;wildcard%match&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;&lt;bind variable&gt; := :&lt;name&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;/p&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="values" type="tns:String_ValueMapEntry">
+            <annotation>
+              <documentation>
+                Holds keys and values for bind variables and their values. The key is the
+                name of the bind variable. The value is the literal value of the variable.
+                &lt;p&gt;
+                In the example {@code "WHERE status = :bindStatus ORDER BY id LIMIT 30"},
+                the bind variable, represented by {@code :bindStatus} is named {@code
+                bindStatus}, which would also be the parameter map key. The bind variable's
+                value would be represented by a parameter map value of type
+                {@link TextValue}. The final result, for example, would be an entry of
+                {@code "bindStatus" =&gt; StringParam("ACTIVE")}.
+                &lt;/p&gt;
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="StatementError">
+        <annotation>
+          <documentation>
+            An error that occurs while parsing {@link Statement} objects.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:StatementError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="StringFormatError">
+        <annotation>
+          <documentation>
+            A list of error code for reporting invalid content of input strings.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:StringFormatError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="StringLengthError">
+        <annotation>
+          <documentation>
+            Errors for Strings which do not meet given length constraints.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:StringLengthError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="String_ValueMapEntry">
+        <annotation>
+          <documentation>
+            This represents an entry in a map with a key of type String
+            and value of type Value.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="key" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="value" type="tns:Value"/>
+        </sequence>
+      </complexType>
+      <complexType name="TextValue">
+        <annotation>
+          <documentation>
+            Contains a string value.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="xsd:string">
+                <annotation>
+                  <documentation>
+                    The string value.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="UpdateResult">
+        <annotation>
+          <documentation>
+            Represents the result of performing an action on objects.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="numChanges" type="xsd:int">
+            <annotation>
+              <documentation>
+                The number of objects that were changed as a result of performing the
+                action.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType abstract="true" name="Value">
+        <annotation>
+          <documentation>
+            {@code Value} represents a value.
+          </documentation>
+        </annotation>
+        <sequence/>
+      </complexType>
+      <complexType name="WorkflowActionError">
+        <annotation>
+          <documentation>
+            Lists all errors associated with performing actions within {@link WorkflowAction}.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:WorkflowActionError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="WorkflowApprovalRequest">
+        <annotation>
+          <documentation>
+            A {@code WorkflowApprovalRequest} represents a workflow action unit that requires user approval.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:WorkflowRequest">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="status" type="tns:WorkflowApprovalRequestStatus">
+                <annotation>
+                  <documentation>
+                    The status of the {@code WorkflowApprovalRequest}. This attribute is readonly.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="WorkflowExternalConditionRequest">
+        <annotation>
+          <documentation>
+            A {@code WorkflowExternalConditionRequest} represents a workflow condition that requires external
+            system to determine the result.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:WorkflowRequest">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="status" type="tns:WorkflowEvaluationStatus">
+                <annotation>
+                  <documentation>
+                    The status of the {@code WorkflowExternalConditionRequest}. This attribute is readonly.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType abstract="true" name="WorkflowRequestAction">
+        <annotation>
+          <documentation>
+            Represents the actions that can be performed on {@link WorkflowRequest} objects.
+          </documentation>
+        </annotation>
+        <sequence/>
+      </complexType>
+      <complexType name="WorkflowRequestError">
+        <annotation>
+          <documentation>
+            Lists errors associated with {@link WorkflowRequest workflow requests}.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:WorkflowRequestError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="WorkflowRequestPage">
+        <annotation>
+          <documentation>
+            Captures a page of {@link WorkflowRequest} objects.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="results" type="tns:WorkflowRequest">
+            <annotation>
+              <documentation>
+                The collection of workflow requests contained within this page.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="startIndex" type="xsd:int">
+            <annotation>
+              <documentation>
+                The absolute index in the total result set on which this page begins.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="totalResultSetSize" type="xsd:int">
+            <annotation>
+              <documentation>
+                The size of the total result set to which this page belongs.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <simpleType name="ApiVersionError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="UPDATE_TO_NEWER_VERSION">
+            <annotation>
+              <documentation>
+                Indicates that the operation is not allowed in the version the request
+                was made in.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="WorkflowApprovalRequestStatus">
+        <annotation>
+          <documentation>
+            The status of the workflow approval request.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="PENDING_APPROVAL">
+            <annotation>
+              <documentation>
+                The request is pending approval.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="APPROVED">
+            <annotation>
+              <documentation>
+                The workflow approval request has been approved.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="REJECTED">
+            <annotation>
+              <documentation>
+                The workflow approval request has been rejected.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="RETRACTED">
+            <annotation>
+              <documentation>
+                The workflow request was retracted because the proposal was retracted.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NOT_APPLICABLE">
+            <annotation>
+              <documentation>
+                The entity might have a non-applicable status in several scenarios:
+                &lt;li&gt;The {@link User} is not an approver when querying the {@code ApprovalStatus} of an action.
+                &lt;li&gt;The {@link User} is not an approver of any actions within the
+                {@link Proposal#workflowProgress}.
+                &lt;li&gt;Querying for the {@code ApprovalStatus} for a {@link ProposalStatus#DRAFT}
+                {@link Proposal}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API
+                version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="AuthenticationError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="AMBIGUOUS_SOAP_REQUEST_HEADER">
+            <annotation>
+              <documentation>
+                The SOAP message contains a request header with an ambiguous definition
+                of the authentication header fields. This means either the {@code
+                authToken} and {@code oAuthToken} fields were both null or both were
+                specified. Exactly one value should be specified with each request.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_EMAIL">
+            <annotation>
+              <documentation>
+                The login provided is invalid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="AUTHENTICATION_FAILED">
+            <annotation>
+              <documentation>
+                Tried to authenticate with provided information, but failed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_OAUTH_SIGNATURE">
+            <annotation>
+              <documentation>
+                The OAuth provided is invalid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_SERVICE">
+            <annotation>
+              <documentation>
+                The specified service to use was not recognized.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_SOAP_REQUEST_HEADER">
+            <annotation>
+              <documentation>
+                The SOAP message is missing a request header with an {@code authToken}
+                and optional {@code networkCode}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_AUTHENTICATION_HTTP_HEADER">
+            <annotation>
+              <documentation>
+                The HTTP request is missing a request header with an {@code authToken}
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_AUTHENTICATION">
+            <annotation>
+              <documentation>
+                The request is missing an {@code authToken}
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NOT_WHITELISTED_FOR_API_ACCESS">
+            <annotation>
+              <documentation>
+                The customer is not whitelisted for API access.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NO_NETWORKS_TO_ACCESS">
+            <annotation>
+              <documentation>
+                The user is not associated with any network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NETWORK_NOT_FOUND">
+            <annotation>
+              <documentation>
+                No network for the given {@code networkCode} was found.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NETWORK_CODE_REQUIRED">
+            <annotation>
+              <documentation>
+                The user has access to more than one network, but did not provide a
+                {@code networkCode}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CONNECTION_ERROR">
+            <annotation>
+              <documentation>
+                An error happened on the server side during connection to authentication
+                service.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="GOOGLE_ACCOUNT_ALREADY_ASSOCIATED_WITH_NETWORK">
+            <annotation>
+              <documentation>
+                The user tried to create a test network using an account that already is
+                associated with a network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNDER_INVESTIGATION">
+            <annotation>
+              <documentation>
+                The account is blocked and under investigation by the collections team. Please contact
+                Google for more information.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="CollectionSizeError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="TOO_LARGE"/>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="CommonError.Reason">
+        <annotation>
+          <documentation>
+            Describes reasons for common errors
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="NOT_FOUND">
+            <annotation>
+              <documentation>
+                Indicates that an attempt was made to retrieve an entity that does not
+                exist.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ALREADY_EXISTS">
+            <annotation>
+              <documentation>
+                Indicates that an attempt was made to create an entity that already
+                exists.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NOT_APPLICABLE">
+            <annotation>
+              <documentation>
+                Indicates that a value is not applicable for given use case.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DUPLICATE_OBJECT">
+            <annotation>
+              <documentation>
+                Indicates that two elements in the collection were identical.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_UPDATE">
+            <annotation>
+              <documentation>
+                Indicates that an attempt was made to change an immutable field.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CONCURRENT_MODIFICATION">
+            <annotation>
+              <documentation>
+                Indicates that another request attempted to update the same data in the same network
+                at about the same time. Please wait and try the request again.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="CustomTargetingError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="KEY_NOT_FOUND">
+            <annotation>
+              <documentation>
+                Requested {@link CustomTargetingKey} is not found.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="KEY_COUNT_TOO_LARGE">
+            <annotation>
+              <documentation>
+                Number of {@link CustomTargetingKey} objects created exceeds the limit
+                allowed for the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="KEY_NAME_DUPLICATE">
+            <annotation>
+              <documentation>
+                {@link CustomTargetingKey} with the same {@link CustomTargetingKey#name}
+                already exists.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="KEY_NAME_EMPTY">
+            <annotation>
+              <documentation>
+                {@link CustomTargetingKey#name} is empty.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="KEY_NAME_INVALID_LENGTH">
+            <annotation>
+              <documentation>
+                {@link CustomTargetingKey#name} is too long.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="KEY_NAME_INVALID_CHARS">
+            <annotation>
+              <documentation>
+                {@link CustomTargetingKey#name} contains unsupported or reserved
+                characters.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="KEY_NAME_RESERVED">
+            <annotation>
+              <documentation>
+                {@link CustomTargetingKey#name} matches one of the reserved custom
+                targeting key names.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="KEY_DISPLAY_NAME_INVALID_LENGTH">
+            <annotation>
+              <documentation>
+                {@link CustomTargetingKey#displayName} is too long.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="VALUE_NOT_FOUND">
+            <annotation>
+              <documentation>
+                Requested {@link CustomTargetingValue} is not found.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="GET_VALUES_BY_STATEMENT_MUST_CONTAIN_KEY_ID">
+            <annotation>
+              <documentation>
+                The {@code WHERE} clause in the {@link Statement#query} must always
+                contain {@link CustomTargetingValue#customTargetingKeyId} as one of its
+                columns in a way that it is AND'ed with the rest of the query.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="VALUE_COUNT_FOR_KEY_TOO_LARGE">
+            <annotation>
+              <documentation>
+                The number of {@link CustomTargetingValue} objects associated with a
+                {@link CustomTargetingKey} exceeds the network limit. This is only
+                applicable for keys of type {@code CustomTargetingKey.Type#PREDEFINED}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="VALUE_NAME_DUPLICATE">
+            <annotation>
+              <documentation>
+                {@link CustomTargetingValue} with the same
+                {@link CustomTargetingValue#name} already exists.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="VALUE_NAME_EMPTY">
+            <annotation>
+              <documentation>
+                {@link CustomTargetingValue#name} is empty.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="VALUE_NAME_INVALID_LENGTH">
+            <annotation>
+              <documentation>
+                {@link CustomTargetingValue#name} is too long.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="VALUE_NAME_INVALID_CHARS">
+            <annotation>
+              <documentation>
+                {@link CustomTargetingValue#name} contains unsupported or reserved
+                characters.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="VALUE_DISPLAY_NAME_INVALID_LENGTH">
+            <annotation>
+              <documentation>
+                {@link CustomTargetingValue#displayName} is too long.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="VALUE_MATCH_TYPE_NOT_ALLOWED">
+            <annotation>
+              <documentation>
+                Only DFP Premium networks can have {@link CustomTargetingValue#matchType}
+                other than {@link CustomTargetingValue.MatchType#EXACT}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="VALUE_MATCH_TYPE_NOT_EXACT_FOR_PREDEFINED_KEY">
+            <annotation>
+              <documentation>
+                You can only create {@link CustomTargetingValue} objects with match type
+                {@link CustomTargetingValue.MatchType#EXACT} when associating
+                with {@link CustomTargetingKey} objects of type
+                {@link CustomTargetingKey.Type#PREDEFINED}
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="SUFFIX_MATCH_TYPE_NOT_ALLOWED">
+            <annotation>
+              <documentation>
+                {@link CustomTargetingValue} object cannot have match type of
+                {@link CustomTargetingValue.MatchType#SUFFIX} when adding a
+                {@link CustomTargetingValue} to a line item.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CONTAINS_MATCH_TYPE_NOT_ALLOWED">
+            <annotation>
+              <documentation>
+                {@link CustomTargetingValue} object cannot have match type of
+                {@link CustomTargetingValue.MatchType#CONTAINS} when adding a
+                {@link CustomTargetingValue} to targeting expression of a line item.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="KEY_WITH_MISSING_VALUES">
+            <annotation>
+              <documentation>
+                The {@link CustomTargetingKey} does not have any
+                {@link CustomTargetingValue} associated with it.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_OR_DIFFERENT_KEYS">
+            <annotation>
+              <documentation>
+                {@link CustomCriteriaSet.LogicalOperator#OR} operation cannot be applied
+                to values with different keys.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_TARGETING_EXPRESSION">
+            <annotation>
+              <documentation>
+                Targeting expression is invalid. This can happen if the sequence of
+                operators is wrong, or a node contains invalid number of children.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DELETED_KEY_CANNOT_BE_USED_FOR_TARGETING">
+            <annotation>
+              <documentation>
+                The key has been deleted. {@link CustomCriteria} cannot have deleted
+                keys.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DELETED_VALUE_CANNOT_BE_USED_FOR_TARGETING">
+            <annotation>
+              <documentation>
+                The value has been deleted. {@link CustomCriteria} cannot have deleted
+                values.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="VIDEO_BROWSE_BY_KEY_CANNOT_BE_USED_FOR_CUSTOM_TARGETING">
+            <annotation>
+              <documentation>
+                The key is set as the video browse-by key, which cannot be used for
+                custom targeting.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_DELETE_CUSTOM_KEY_USED_IN_CONTENT_METADATA_MAPPING">
+            <annotation>
+              <documentation>
+                Only active custom-criteria keys are supported in content metadata mapping.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_DELETE_CUSTOM_VALUE_USED_IN_CONTENT_METADATA_MAPPING">
+            <annotation>
+              <documentation>
+                Only active custom-criteria values are supported in content metadata mapping.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_DELETE_CUSTOM_KEY_USED_IN_PARTNER_ASSIGNMENT_TARGETING">
+            <annotation>
+              <documentation>
+                Cannot delete a custom criteria key that is targeted by an active partner assignment.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_DELETE_CUSTOM_VALUE_USED_IN_PARTNER_ASSIGNMENT_TARGETING">
+            <annotation>
+              <documentation>
+                Cannot delete a custom criteria value that is targeted by an active partner assignment.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_TARGET_AUDIENCE_SEGMENT">
+            <annotation>
+              <documentation>
+                {@link AudienceSegment} object cannot be targeted.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_TARGET_INACTIVE_AUDIENCE_SEGMENT">
+            <annotation>
+              <documentation>
+                Inactive {@link AudienceSegment} object cannot be targeted.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_AUDIENCE_SEGMENTS">
+            <annotation>
+              <documentation>
+                Targeted {@link AudienceSegment} object is not valid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ONLY_APPROVED_AUDIENCE_SEGMENTS_CAN_BE_TARGETED">
+            <annotation>
+              <documentation>
+                Targeted {@link AudienceSegment} objects have not been approved.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="FeatureError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="MISSING_FEATURE">
+            <annotation>
+              <documentation>
+                A feature is being used that is not enabled on the current network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="ForecastError.Reason">
+        <annotation>
+          <documentation>
+            Reason why a forecast could not be retrieved.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="SERVER_NOT_AVAILABLE">
+            <annotation>
+              <documentation>
+                The forecast could not be retrieved due to a server side
+                connection problem. Please try again soon.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INTERNAL_ERROR">
+            <annotation>
+              <documentation>
+                There was an unexpected internal error.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NO_FORECAST_YET">
+            <annotation>
+              <documentation>
+                The forecast could not be retrieved because there is not
+                enough forecasting data available yet. It may take up to one week before
+                enough data is available.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NOT_ENOUGH_INVENTORY">
+            <annotation>
+              <documentation>
+                There's not enough inventory for the requested reservation.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="SUCCESS">
+            <annotation>
+              <documentation>
+                No error from forecast.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ZERO_LENGTH_RESERVATION">
+            <annotation>
+              <documentation>
+                The requested reservation is of zero length.  No forecast is returned.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="EXCEEDED_QUOTA">
+            <annotation>
+              <documentation>
+                The number of requests made per second is too high and has exceeded the
+                allowable limit. The recommended approach to handle this error is to wait
+                about 5 seconds and then retry the request. Note that this does not
+                guarantee the request will succeed. If it fails again, try increasing the
+                wait time.
+                &lt;p&gt;
+                Another way to mitigate this error is to limit requests to 2 per second.
+                Once again this does not guarantee that every request will succeed, but
+                may help reduce the number of times you receive this error.
+                &lt;/p&gt;
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="InternalApiError.Reason">
+        <annotation>
+          <documentation>
+            The single reason for the internal API error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNEXPECTED_INTERNAL_API_ERROR">
+            <annotation>
+              <documentation>
+                API encountered an unexpected internal error.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TRANSIENT_ERROR">
+            <annotation>
+              <documentation>
+                A temporary error occurred during the request. Please retry.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The cause of the error is not known or only defined in newer versions.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DOWNTIME">
+            <annotation>
+              <documentation>
+                The API is currently unavailable for a planned downtime.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ERROR_GENERATING_RESPONSE">
+            <annotation>
+              <documentation>
+                Mutate succeeded but server was unable to build response. Client should not retry mutate.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="LineItemOperationError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="NOT_ALLOWED">
+            <annotation>
+              <documentation>
+                The operation is not allowed due to lack of permissions.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NOT_APPLICABLE">
+            <annotation>
+              <documentation>
+                The operation is not applicable for the current state of the
+                {@link LineItem}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="HAS_COMPLETED">
+            <annotation>
+              <documentation>
+                The {@link LineItem} is completed. A {@link LineItemAction} cannot
+                be applied to a line item that is completed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="HAS_NO_ACTIVE_CREATIVES">
+            <annotation>
+              <documentation>
+                The {@link LineItem} has no active creatives. A line item cannot be
+                activated with no active creatives.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_ACTIVATE_LEGACY_DFP_LINE_ITEM">
+            <annotation>
+              <documentation>
+                A {@link LineItem} of type {@link LineItemType#LEGACY_DFP} cannot be
+                Activated.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_DELETE_DELIVERED_LINE_ITEM">
+            <annotation>
+              <documentation>
+                Deleting an {@link LineItem} that has delivered is not allowed
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_RESERVE_COMPANY_CREDIT_STATUS_NOT_ACTIVE">
+            <annotation>
+              <documentation>
+                Reservation cannot be made for line item because the
+                {@link LineItem#advertiserId} it is associated with has
+                {@link Company#creditStatus} that is not {@code ACTIVE}
+                or {@code ON_HOLD}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_ACTIVATE_INVALID_COMPANY_CREDIT_STATUS">
+            <annotation>
+              <documentation>
+                Cannot activate line item  because the {@link LineItem#advertiserId}
+                it is associated with has {@link Company#creditStatus} that is not
+                {@code ACTIVE}, {@code INACTIVE}, or {@code ON_HOLD}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="NotNullError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="ARG1_NULL">
+            <annotation>
+              <documentation>
+                Assuming that a method will not have more than 3 arguments, if it does,
+                return NULL
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ARG2_NULL"/>
+          <enumeration value="ARG3_NULL"/>
+          <enumeration value="NULL"/>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="ParseError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNPARSABLE">
+            <annotation>
+              <documentation>
+                Indicates an error in parsing an attribute.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="PermissionError.Reason">
+        <annotation>
+          <documentation>
+            Describes reasons for permission errors.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="PERMISSION_DENIED">
+            <annotation>
+              <documentation>
+                User does not have the required permission for the request.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="ProposalActionError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="NOT_APPLICABLE">
+            <annotation>
+              <documentation>
+                The operation is not applicable to the current state.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="IS_ARCHIVED">
+            <annotation>
+              <documentation>
+                The operation cannot be applied because the proposal is archived.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="ProposalLineItemActionError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="NOT_APPLICABLE">
+            <annotation>
+              <documentation>
+                The operation is not applicable to the current state.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PROPOSAL_NOT_EDITABLE">
+            <annotation>
+              <documentation>
+                The operation is not applicable because the containing proposal is not editable.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_SELECTIVELY_ARCHIVE_PROPOSAL_LINE_ITEMS_FROM_MANDATORY_PRODUCTS">
+            <annotation>
+              <documentation>
+                The archive operation is not applicable because it would cause some mandatory products
+                to have no unarchived proposal line items in the package.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_SELECTIVELY_UNARCHIVE_PROPOSAL_LINE_ITEMS_FROM_MANDATORY_PRODUCTS">
+            <annotation>
+              <documentation>
+                The unarchive operation is not applicable because it would cause some mandatory products
+                to have no unarchived proposal line items in the package.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_UNARCHIVE_SOLD_PROGRAMMATIC_PROPOSAL_LINE_ITEM">
+            <annotation>
+              <documentation>
+                Sold programmatic {@link ProposalLineItem} cannot be unarchived.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="PublisherQueryLanguageContextError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNEXECUTABLE">
+            <annotation>
+              <documentation>
+                Indicates that there was an error executing the PQL.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="PublisherQueryLanguageSyntaxError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNPARSABLE">
+            <annotation>
+              <documentation>
+                Indicates that there was a PQL syntax error.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="QuotaError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="EXCEEDED_QUOTA">
+            <annotation>
+              <documentation>
+                The number of requests made per second is too high and has exceeded the
+                allowable limit. The recommended approach to handle this error is to wait
+                about 5 seconds and then retry the request. Note that this does not
+                guarantee the request will succeed. If it fails again, try increasing the
+                wait time.
+                &lt;p&gt;Another way to mitigate this error is to limit requests to 2 per second for
+                Small Business networks, or 8 per second for Premium networks. Once again
+                this does not guarantee that every request will succeed, but may help
+                reduce the number of times you receive this error.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="REPORT_JOB_LIMIT">
+            <annotation>
+              <documentation>
+                This user has exceeded the allowed number of new report requests per hour
+                (this includes both reports run via the UI and reports
+                run via {@link ReportService#runReportJob}).
+                The recommended approach to handle this error is to wait about 10 minutes
+                and then retry the request. Note that this does not guarantee the request
+                will succeed. If it fails again, try increasing the wait time.
+                &lt;p&gt;Another way to mitigate this error is to limit the number of new report
+                requests to 250 per hour per user. Once again, this does not guarantee that
+                every request will succeed, but may help reduce the number of times you
+                receive this error.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="RequiredCollectionError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="REQUIRED">
+            <annotation>
+              <documentation>
+                A required collection is missing.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TOO_LARGE">
+            <annotation>
+              <documentation>
+                Collection size is too large.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TOO_SMALL">
+            <annotation>
+              <documentation>
+                Collection size is too small.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="RequiredError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="REQUIRED">
+            <annotation>
+              <documentation>
+                Missing required field.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="ServerError.Reason">
+        <annotation>
+          <documentation>
+            Describes reasons for server errors
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="SERVER_ERROR">
+            <annotation>
+              <documentation>
+                Indicates that an unexpected error occured.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="SERVER_BUSY">
+            <annotation>
+              <documentation>
+                Indicates that the server is currently experiencing a high load. Please
+                wait and try your request again.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="StatementError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="VARIABLE_NOT_BOUND_TO_VALUE">
+            <annotation>
+              <documentation>
+                A bind variable has not been bound to a value.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="StringFormatError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNKNOWN"/>
+          <enumeration value="ILLEGAL_CHARS">
+            <annotation>
+              <documentation>
+                The input string value contains disallowed characters.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_FORMAT">
+            <annotation>
+              <documentation>
+                The input string value is invalid for the associated field.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="StringLengthError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="TOO_LONG"/>
+          <enumeration value="TOO_SHORT"/>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="WorkflowActionError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="NOT_APPLICABLE">
+            <annotation>
+              <documentation>
+                The action does not exist or is not applicable to the current state.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="WORKFLOW_DEFINITION_NOT_FOUND">
+            <annotation>
+              <documentation>
+                Means there's no workflow definition found for the entity.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="EMPTY_ACTION_LIST">
+            <annotation>
+              <documentation>
+                Means no action is given, when user approve/reject a proposal, the action id list cannot be
+                empty.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NOT_ACTION_APPROVER">
+            <annotation>
+              <documentation>
+                Means the user is not an approver of this action.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="WORKFLOW_ALREADY_COMPLETED">
+            <annotation>
+              <documentation>
+                Means the workflow is already completed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="WORKFLOW_ALREADY_FAILED">
+            <annotation>
+              <documentation>
+                Means the workflow is already failed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="WORKFLOW_ALREADY_CANCELED">
+            <annotation>
+              <documentation>
+                Means the workflow is already canceled.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ACTION_COMPLETED">
+            <annotation>
+              <documentation>
+                Means the action is already completed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ACTION_FAILED">
+            <annotation>
+              <documentation>
+                Means the action is already failed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ACTION_CANCELED">
+            <annotation>
+              <documentation>
+                Means the action is already canceled.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ACTION_NOT_ACTIVE">
+            <annotation>
+              <documentation>
+                Means the action currently is not active.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="WorkflowEntityType">
+        <annotation>
+          <documentation>
+            The entity types that workflows can be applied to.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="PROPOSAL">
+            <annotation>
+              <documentation>
+                Represents a {@link Proposal}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API
+                version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="WorkflowRequestError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="REQUEST_ALREADY_PROCESSED">
+            <annotation>
+              <documentation>
+                The request has already been processed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="WORKFLOW_NOT_IN_PROGRESS">
+            <annotation>
+              <documentation>
+                The workflow is not in progress.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_REQUEST_ID">
+            <annotation>
+              <documentation>
+                The request ID is invalid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_ACTION">
+            <annotation>
+              <documentation>
+                The action could not be performed on a request of that type.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="WorkflowRequestType">
+        <annotation>
+          <documentation>
+            Types of a workflow request.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="WORKFLOW_APPROVAL_REQUEST">
+            <annotation>
+              <documentation>
+                This is a request for an approval action. Either by a frontend user or an API request.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="WORKFLOW_EXTERNAL_CONDITION_REQUEST">
+            <annotation>
+              <documentation>
+                This is an external condition request. It is pending an external system to determine whether an
+                action should trigger or not.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="WorkflowEvaluationStatus">
+        <annotation>
+          <documentation>
+            The status of a workflow rule during workflow execution.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="PENDING">
+            <annotation>
+              <documentation>
+                The workflow external condition is pending evaluation.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TRIGGERED">
+            <annotation>
+              <documentation>
+                The workflow external condition has been triggered.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NOT_TRIGGERED">
+            <annotation>
+              <documentation>
+                The workflow external condition has not been triggered.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANCELLED">
+            <annotation>
+              <documentation>
+                The associated proposal was retracted, this rule is no longer valid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <element name="getWorkflowRequestsByStatement">
+        <annotation>
+          <documentation>
+            Gets a list of {@link WorkflowRequest} objects that satisfy the given {@link Statement#query}.
+            The following fields are supported for filtering:
+            
+            &lt;table&gt;
+            &lt;tr&gt;
+            &lt;th scope="col"&gt;PQL Property&lt;/th&gt;
+            &lt;th scope="col"&gt;Object Property&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code id}&lt;/td&gt;
+            &lt;td&gt;{@link WorkflowRequest#id}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code workflowRuleName}&lt;/td&gt;
+            &lt;td&gt;{@link WorkflowRequest#workflowRuleName}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code entityType}&lt;/td&gt;
+            &lt;td&gt;{@link WorkflowRequest#entityType}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code entityId}&lt;/td&gt;
+            &lt;td&gt;{@link WorkflowRequest#entityId}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code approvalStatus}&lt;/td&gt;
+            &lt;td&gt;{@link WorkflowApprovalRequest#status}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code conditionStatus}&lt;/td&gt;
+            &lt;td&gt;{@link WorkflowExternalConditionRequest#status}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code type}&lt;/td&gt;
+            &lt;td&gt;{@link WorkflowRequest#type}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;/table&gt;
+            
+            &lt;p&gt;The {@code type} filter is required in v201705 and earlier.
+            
+            @param filterStatement a Publisher Query Language statement used to filter a set of workflow
+            requests belonging to an entity
+            @return the workflow requests that match the given filter
+          </documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="filterStatement" type="tns:Statement"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="getWorkflowRequestsByStatementResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="rval" type="tns:WorkflowRequestPage"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ApiExceptionFault" type="tns:ApiException">
+        <annotation>
+          <documentation>
+            A fault element of type ApiException.
+          </documentation>
+        </annotation>
+      </element>
+      <element name="performWorkflowRequestAction">
+        <annotation>
+          <documentation>
+            Perform actions on {@link WorkflowRequest} objects that match the given
+            {@link Statement#query}.
+            
+            @param action the action to perform
+            @param filterStatement a Publisher Query Language statement used to filter a set of workflow
+            requests
+            @return the result of the action performed
+          </documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="action" type="tns:WorkflowRequestAction"/>
+            <element maxOccurs="1" minOccurs="0" name="filterStatement" type="tns:Statement"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="performWorkflowRequestActionResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="rval" type="tns:UpdateResult"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="RequestHeader" type="tns:SoapRequestHeader"/>
+      <element name="ResponseHeader" type="tns:SoapResponseHeader"/>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="RequestHeader">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"/>
+  </wsdl:message>
+  <wsdl:message name="ResponseHeader">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"/>
+  </wsdl:message>
+  <wsdl:message name="getWorkflowRequestsByStatementRequest">
+    <wsdl:part element="tns:getWorkflowRequestsByStatement" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getWorkflowRequestsByStatementResponse">
+    <wsdl:part element="tns:getWorkflowRequestsByStatementResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ApiException">
+    <wsdl:part element="tns:ApiExceptionFault" name="ApiException"/>
+  </wsdl:message>
+  <wsdl:message name="performWorkflowRequestActionRequest">
+    <wsdl:part element="tns:performWorkflowRequestAction" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="performWorkflowRequestActionResponse">
+    <wsdl:part element="tns:performWorkflowRequestActionResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="WorkflowRequestServiceInterface">
+    <wsdl:documentation>
+      Provides methods to retrieve and perform actions on {@link WorkflowRequest} objects
+      
+      &lt;p&gt;To use this service, you need to have the new sales management solution enabled on your
+      network. If you do not see a "Sales" tab in &lt;a href="https://www.google.com/dfp"&gt;DoubleClick for
+      Publishers (DFP)&lt;/a&gt;, you will not be able to use this service.
+    </wsdl:documentation>
+    <wsdl:operation name="getWorkflowRequestsByStatement">
+      <wsdl:documentation>
+        Gets a list of {@link WorkflowRequest} objects that satisfy the given {@link Statement#query}.
+        The following fields are supported for filtering:
+        
+        &lt;table&gt;
+        &lt;tr&gt;
+        &lt;th scope="col"&gt;PQL Property&lt;/th&gt;
+        &lt;th scope="col"&gt;Object Property&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code id}&lt;/td&gt;
+        &lt;td&gt;{@link WorkflowRequest#id}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code workflowRuleName}&lt;/td&gt;
+        &lt;td&gt;{@link WorkflowRequest#workflowRuleName}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code entityType}&lt;/td&gt;
+        &lt;td&gt;{@link WorkflowRequest#entityType}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code entityId}&lt;/td&gt;
+        &lt;td&gt;{@link WorkflowRequest#entityId}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code approvalStatus}&lt;/td&gt;
+        &lt;td&gt;{@link WorkflowApprovalRequest#status}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code conditionStatus}&lt;/td&gt;
+        &lt;td&gt;{@link WorkflowExternalConditionRequest#status}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code type}&lt;/td&gt;
+        &lt;td&gt;{@link WorkflowRequest#type}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;/table&gt;
+        
+        &lt;p&gt;The {@code type} filter is required in v201705 and earlier.
+        
+        @param filterStatement a Publisher Query Language statement used to filter a set of workflow
+        requests belonging to an entity
+        @return the workflow requests that match the given filter
+      </wsdl:documentation>
+      <wsdl:input message="tns:getWorkflowRequestsByStatementRequest" name="getWorkflowRequestsByStatementRequest"/>
+      <wsdl:output message="tns:getWorkflowRequestsByStatementResponse" name="getWorkflowRequestsByStatementResponse"/>
+      <wsdl:fault message="tns:ApiException" name="ApiException"/>
+    </wsdl:operation>
+    <wsdl:operation name="performWorkflowRequestAction">
+      <wsdl:documentation>
+        Perform actions on {@link WorkflowRequest} objects that match the given
+        {@link Statement#query}.
+        
+        @param action the action to perform
+        @param filterStatement a Publisher Query Language statement used to filter a set of workflow
+        requests
+        @return the result of the action performed
+      </wsdl:documentation>
+      <wsdl:input message="tns:performWorkflowRequestActionRequest" name="performWorkflowRequestActionRequest"/>
+      <wsdl:output message="tns:performWorkflowRequestActionResponse" name="performWorkflowRequestActionResponse"/>
+      <wsdl:fault message="tns:ApiException" name="ApiException"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WorkflowRequestServiceSoapBinding" type="tns:WorkflowRequestServiceInterface">
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getWorkflowRequestsByStatement">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getWorkflowRequestsByStatementRequest">
+        <wsdlsoap:header message="tns:RequestHeader"
+          part="RequestHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getWorkflowRequestsByStatementResponse">
+        <wsdlsoap:header message="tns:ResponseHeader"
+          part="ResponseHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ApiException">
+        <wsdlsoap:fault name="ApiException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="performWorkflowRequestAction">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="performWorkflowRequestActionRequest">
+        <wsdlsoap:header message="tns:RequestHeader"
+          part="RequestHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="performWorkflowRequestActionResponse">
+        <wsdlsoap:header message="tns:ResponseHeader"
+          part="ResponseHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ApiException">
+        <wsdlsoap:fault name="ApiException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WorkflowRequestService">
+    <wsdl:port binding="tns:WorkflowRequestServiceSoapBinding" name="WorkflowRequestServiceInterfacePort">
+      <wsdlsoap:address location="https://ads.google.com/apis/ads/publisher/v201802/WorkflowRequestService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\AdWords\Testing\BatchJobs;
 
 use Google\AdsApi\Common\GuzzleHttpClientFactory;
@@ -26,34 +27,37 @@ use GuzzleHttp\HandlerStack;
  *
  * @see Client
  */
-class SimpleGuzzleHttpClientFactory implements GuzzleHttpClientFactory {
+class SimpleGuzzleHttpClientFactory implements GuzzleHttpClientFactory
+{
 
-  private $httpClient;
-  private $config;
+    private $httpClient;
+    private $config;
 
-  /**
-   * Creates a new instance of this factory.
-   *
-   * @param Client|null $httpClient the user-provided HTTP client
-   */
-  public function __construct(Client $httpClient = null) {
-    $this->httpClient = $httpClient;
-    $this->config = ($httpClient === null) ? [] : $httpClient->getConfig();
-  }
-
-  /**
-   * Generates a Guzzle HTTP client for making HTTP calls by using configs of
-   * the user-provided client.
-   *
-   * @return Client the Guzzle HTTP client
-   */
-  public function generateHttpClient() {
-    $config = $this->config;
-    if (!array_key_exists('handler', $config)
-       || $config['handler'] === null) {
-      $config['handler'] = HandlerStack::create();
+    /**
+     * Creates a new instance of this factory.
+     *
+     * @param Client|null $httpClient the user-provided HTTP client
+     */
+    public function __construct(Client $httpClient = null)
+    {
+        $this->httpClient = $httpClient;
+        $this->config = ($httpClient === null) ? [] : $httpClient->getConfig();
     }
 
-    return new Client($config);
-  }
+    /**
+     * Generates a Guzzle HTTP client for making HTTP calls by using configs of
+     * the user-provided client.
+     *
+     * @return Client the Guzzle HTTP client
+     */
+    public function generateHttpClient()
+    {
+        $config = $this->config;
+        if (!array_key_exists('handler', $config)
+            || $config['handler'] === null) {
+            $config['handler'] = HandlerStack::create();
+        }
+
+        return new Client($config);
+    }
 }

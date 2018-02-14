@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\ReconciliationOrderReportService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -32,65 +33,69 @@ use Google\AdsApi\Dfp\v201711\ReconciliationOrderReportService;
  * that you've setup an `adsapi_php.ini` file in your home directory with your
  * API credentials and settings. See README.md for more info.
  */
-class GetReconciliationOrderReportsForReconciliationReport {
+class GetReconciliationOrderReportsForReconciliationReport
+{
 
-  const RECONCILIATION_REPORT_ID = 'INSERT_RECONCILIATION_REPORT_ID_HERE';
+    const RECONCILIATION_REPORT_ID = 'INSERT_RECONCILIATION_REPORT_ID_HERE';
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session, $reconciliationReportId) {
-    $reconciliationOrderReportService =
-        $dfpServices->get($session, ReconciliationOrderReportService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session,
+        $reconciliationReportId
+    ) {
+        $reconciliationOrderReportService =
+            $dfpServices->get($session, ReconciliationOrderReportService::class);
 
-    // Create a statement to select reconciliation order reports.
-    $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
-    $statementBuilder = (new StatementBuilder())
-        ->where('reconciliationReportId = :reconciliationReportId')
-        ->orderBy('id ASC')
-        ->limit($pageSize)
-        ->withBindVariableValue('reconciliationReportId', $reconciliationReportId);
+        // Create a statement to select reconciliation order reports.
+        $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
+        $statementBuilder =
+            (new StatementBuilder())->where('reconciliationReportId = :reconciliationReportId')
+                ->orderBy('id ASC')
+                ->limit($pageSize)
+                ->withBindVariableValue('reconciliationReportId', $reconciliationReportId);
 
-    // Retrieve a small amount of reconciliation order reports at a time, paging
-    // through until all reconciliation order reports have been retrieved.
-    $totalResultSetSize = 0;
-    do {
-      $page = $reconciliationOrderReportService->getReconciliationOrderReportsByStatement(
-          $statementBuilder->toStatement());
+        // Retrieve a small amount of reconciliation order reports at a time, paging
+        // through until all reconciliation order reports have been retrieved.
+        $totalResultSetSize = 0;
+        do {
+            $page = $reconciliationOrderReportService->getReconciliationOrderReportsByStatement(
+                $statementBuilder->toStatement()
+            );
 
-      // Print out some information for each reconciliation order report.
-      if ($page->getResults() !== null) {
-        $totalResultSetSize = $page->getTotalResultSetSize();
-        $i = $page->getStartIndex();
-        foreach ($page->getResults() as $reconciliationOrderReport) {
-          printf(
-              "%d) Reconciliation order report with ID %d and status '%s' was found.\n",
-              $i++,
-              $reconciliationOrderReport->getId(),
-              $reconciliationOrderReport->getStatus()
-          );
-        }
-      }
+            // Print out some information for each reconciliation order report.
+            if ($page->getResults() !== null) {
+                $totalResultSetSize = $page->getTotalResultSetSize();
+                $i = $page->getStartIndex();
+                foreach ($page->getResults() as $reconciliationOrderReport) {
+                    printf(
+                        "%d) Reconciliation order report with ID %d and status '%s' was found.\n",
+                        $i++,
+                        $reconciliationOrderReport->getId(),
+                        $reconciliationOrderReport->getStatus()
+                    );
+                }
+            }
 
-      $statementBuilder->increaseOffsetBy($pageSize);
-    } while ($statementBuilder->getOffset() < $totalResultSetSize);
+            $statementBuilder->increaseOffsetBy($pageSize);
+        } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-    printf("Number of results found: %d\n", $totalResultSetSize);
-  }
+        printf("Number of results found: %d\n", $totalResultSetSize);
+    }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(new DfpServices(), $session, intval(self::RECONCILIATION_REPORT_ID));
-  }
+        self::runExample(new DfpServices(), $session, intval(self::RECONCILIATION_REPORT_ID));
+    }
 }
 
 GetReconciliationOrderReportsForReconciliationReport::main();

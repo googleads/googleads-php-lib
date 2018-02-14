@@ -1,0 +1,2561 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated file, do not edit -->
+<!-- Copyright 2018 Google Inc. All Rights Reserved -->
+<wsdl:definitions
+  targetNamespace="https://www.google.com/apis/ads/publisher/v201802"
+  xmlns:tns="https://www.google.com/apis/ads/publisher/v201802"
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <schema elementFormDefault="qualified" jaxb:version="1.0"
+      targetNamespace="https://www.google.com/apis/ads/publisher/v201802"
+      xmlns="http://www.w3.org/2001/XMLSchema"
+      xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:tns="https://www.google.com/apis/ads/publisher/v201802">
+      <annotation>
+        <appinfo>
+          <jaxb:globalBindings typesafeEnumMaxMembers="999999"/>
+        </appinfo>
+      </annotation>
+      <complexType abstract="true" name="ObjectValue">
+        <annotation>
+          <documentation>
+            Contains an object value.
+            &lt;p&gt;
+            &lt;b&gt;This object is experimental!
+            &lt;code&gt;ObjectValue&lt;/code&gt; is an experimental, innovative, and rapidly
+            changing new feature for DFP. Unfortunately, being on the bleeding edge means that we may make
+            backwards-incompatible changes to
+            &lt;code&gt;ObjectValue&lt;/code&gt;. We will inform the community when this feature
+            is no longer experimental.&lt;/b&gt;
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ActivateProductPackages">
+        <annotation>
+          <documentation>
+            The action used to activate product packages.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ProductPackageAction">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType abstract="true" name="ApiError">
+        <annotation>
+          <documentation>
+            The API error base class that provides details about an error that occurred
+            while processing a service request.
+            
+            &lt;p&gt;The OGNL field path is provided for parsers to identify the request data
+            element that may have caused the error.&lt;/p&gt;
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="fieldPath" type="xsd:string">
+            <annotation>
+              <documentation>
+                The OGNL field path to identify cause of error.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="fieldPathElements" type="tns:FieldPathElement">
+            <annotation>
+              <documentation>
+                A parsed copy of the field path. For example, the field path "operations[1].operand"
+                corresponds to this list: {FieldPathElement(field = "operations", index = 1),
+                FieldPathElement(field = "operand", index = null)}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="trigger" type="xsd:string">
+            <annotation>
+              <documentation>
+                The data that caused the error.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="errorString" type="xsd:string">
+            <annotation>
+              <documentation>
+                A simple string representation of the error and reason.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="ApiException">
+        <annotation>
+          <documentation>
+            Exception class for holding a list of service errors.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApplicationException">
+            <sequence>
+              <element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:ApiError">
+                <annotation>
+                  <documentation>
+                    List of errors.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ApiVersionError">
+        <annotation>
+          <documentation>
+            Errors related to the usage of API versions.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ApiVersionError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ApplicationException">
+        <annotation>
+          <documentation>
+            Base class for exceptions.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="message" type="xsd:string">
+            <annotation>
+              <documentation>
+                Error message.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="ArchiveProductPackages">
+        <annotation>
+          <documentation>
+            The action used to archive product packages.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ProductPackageAction">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="AuthenticationError">
+        <annotation>
+          <documentation>
+            An error for an exception that occurred when authenticating.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:AuthenticationError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType abstract="true" name="BaseCustomFieldValue">
+        <annotation>
+          <documentation>
+            The value of a {@link CustomField} for a particular entity.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="customFieldId" type="xsd:long">
+            <annotation>
+              <documentation>
+                Id of the {@code CustomField} to which this value belongs. This attribute
+                is required.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="BaseRateError">
+        <annotation>
+          <documentation>
+            An error having to do with {@link BaseRate}.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:BaseRateError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="BooleanValue">
+        <annotation>
+          <documentation>
+            Contains a boolean value.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="xsd:boolean">
+                <annotation>
+                  <documentation>
+                    The boolean value.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="CollectionSizeError">
+        <annotation>
+          <documentation>
+            Error for the size of the collection being too large
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CollectionSizeError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="CommonError">
+        <annotation>
+          <documentation>
+            A place for common errors that can be used across services.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CommonError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="CustomFieldValue">
+        <annotation>
+          <documentation>
+            The value of a {@link CustomField} that does not have a {@link CustomField#dataType}
+            of {@link CustomFieldDataType#DROP_DOWN}.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:BaseCustomFieldValue">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="tns:Value">
+                <annotation>
+                  <documentation>
+                    The value for this field. The appropriate type of {@code Value} is
+                    determined by the {@link CustomField#dataType} of the {@code CustomField}
+                    that this conforms to.
+                    
+                    &lt;table&gt;
+                    &lt;tr&gt;&lt;th&gt;{@link CustomFieldDataType}&lt;/th&gt;&lt;th&gt;{@link Value} type&lt;/th&gt;&lt;/tr&gt;
+                    &lt;tr&gt;&lt;td&gt;{@link CustomFieldDataType#STRING STRING}&lt;/td&gt;&lt;td&gt;{@link TextValue}&lt;/td&gt;&lt;/tr&gt;
+                    &lt;tr&gt;&lt;td&gt;{@link CustomFieldDataType#NUMBER NUMBER}&lt;/td&gt;&lt;td&gt;{@link NumberValue}&lt;/td&gt;&lt;/tr&gt;
+                    &lt;tr&gt;&lt;td&gt;{@link CustomFieldDataType#TOGGLE TOGGLE}&lt;/td&gt;&lt;td&gt;{@link BooleanValue}&lt;/td&gt;&lt;/tr&gt;
+                    &lt;/table&gt;
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="Date">
+        <annotation>
+          <documentation>
+            Represents a date.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="year" type="xsd:int">
+            <annotation>
+              <documentation>
+                Year (e.g., 2009)
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="month" type="xsd:int">
+            <annotation>
+              <documentation>
+                Month (1..12)
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="day" type="xsd:int">
+            <annotation>
+              <documentation>
+                Day (1..31)
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="DateTime">
+        <annotation>
+          <documentation>
+            Represents a date combined with the time of day.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="date" type="tns:Date"/>
+          <element maxOccurs="1" minOccurs="0" name="hour" type="xsd:int"/>
+          <element maxOccurs="1" minOccurs="0" name="minute" type="xsd:int"/>
+          <element maxOccurs="1" minOccurs="0" name="second" type="xsd:int"/>
+          <element maxOccurs="1" minOccurs="0" name="timeZoneID" type="xsd:string"/>
+        </sequence>
+      </complexType>
+      <complexType name="DateTimeValue">
+        <annotation>
+          <documentation>
+            Contains a date-time value.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="tns:DateTime">
+                <annotation>
+                  <documentation>
+                    The {@code DateTime} value.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DateValue">
+        <annotation>
+          <documentation>
+            Contains a date value.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="tns:Date">
+                <annotation>
+                  <documentation>
+                    The {@code Date} value.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DeactivateProductPackages">
+        <annotation>
+          <documentation>
+            The action used to de-activate product packages.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ProductPackageAction">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DropDownCustomFieldValue">
+        <annotation>
+          <documentation>
+            A {@link CustomFieldValue} for a {@link CustomField} that has a {@link CustomField#dataType}
+            of {@link CustomFieldDataType#DROP_DOWN}
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:BaseCustomFieldValue">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0"
+                name="customFieldOptionId" type="xsd:long">
+                <annotation>
+                  <documentation>
+                    The {@link CustomFieldOption#id ID} of the {@link CustomFieldOption} for
+                    this value.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="EntityChildrenLimitReachedError">
+        <annotation>
+          <documentation>
+            Lists errors relating to having too many children on an entity.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:EntityChildrenLimitReachedError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="EntityLimitReachedError">
+        <annotation>
+          <documentation>
+            An error that occurs when creating an entity if the limit on the number of allowed entities for
+            a network has already been reached.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:EntityLimitReachedError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="FeatureError">
+        <annotation>
+          <documentation>
+            Errors related to feature management.  If you attempt using a feature that is not available to
+            the current network you'll receive a FeatureError with the missing feature as the trigger.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:FeatureError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="FieldPathElement">
+        <annotation>
+          <documentation>
+            A segment of a field path. Each dot in a field path defines a new segment.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="field" type="xsd:string">
+            <annotation>
+              <documentation>
+                The name of a field in lower camelcase. (e.g. "biddingStrategy")
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="index" type="xsd:int">
+            <annotation>
+              <documentation>
+                For list fields, this is a 0-indexed position in the list. Null for non-list fields.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="InternalApiError">
+        <annotation>
+          <documentation>
+            Indicates that a server-side error has occured. {@code InternalApiError}s
+            are generally not the result of an invalid request or message sent by the
+            client.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:InternalApiError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="NotNullError">
+        <annotation>
+          <documentation>
+            Caused by supplying a null value for an attribute that cannot be null.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:NotNullError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="NullError">
+        <annotation>
+          <documentation>
+            Errors associated with violation of a NOT NULL check.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:NullError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="NumberValue">
+        <annotation>
+          <documentation>
+            Contains a numeric value.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="xsd:string">
+                <annotation>
+                  <documentation>
+                    The numeric value represented as a string.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ParseError">
+        <annotation>
+          <documentation>
+            Lists errors related to parsing.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ParseError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="PermissionError">
+        <annotation>
+          <documentation>
+            Errors related to incorrect permission.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:PermissionError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType abstract="true" name="ProductPackageAction">
+        <annotation>
+          <documentation>
+            Represents the actions that can be performed on product packages.
+          </documentation>
+        </annotation>
+        <sequence/>
+      </complexType>
+      <complexType name="ProductPackageActionError">
+        <annotation>
+          <documentation>
+            Lists all errors for executing operations on product packages.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ProductPackageActionError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ProductPackage">
+        <annotation>
+          <documentation>
+            A {@code ProductPackage} represents a group of products which will be sold together.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
+            <annotation>
+              <documentation>
+                Uniquely identifies the {@code ProductPackage}.
+                
+                &lt;p&gt;This attribute is read-only and is assigned by Google when a {@code ProductPackage}
+                is created.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
+            <annotation>
+              <documentation>
+                The name of the {@code ProductPackage}.
+                
+                &lt;p&gt;This attribute is required and has maximum length of 255 characters.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="notes" type="xsd:string">
+            <annotation>
+              <documentation>
+                The notes of the {@code ProductPackage}.
+                
+                &lt;p&gt;This attribute has maximum length of 511 characters.
+                
+                &lt;p&gt;This attribute is optional.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="status" type="tns:ProductPackageStatus">
+            <annotation>
+              <documentation>
+                The status of the {@code ProductPackage}.
+                
+                &lt;p&gt;This attribute is read-only and is assigned by Google.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="isArchived" type="xsd:boolean">
+            <annotation>
+              <documentation>
+                The archival status of the {@code ProductPackage}.
+                
+                &lt;p&gt;This attribute is read-only and is assigned by Google.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="rateCardIds" type="xsd:long">
+            <annotation>
+              <documentation>
+                {@link RateCard} IDs associated with the {@code ProductPackage}.
+                
+                &lt;p&gt;This attribute is optional.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="customFieldValues" type="tns:BaseCustomFieldValue">
+            <annotation>
+              <documentation>
+                The {@link CustomFieldValue} objects associated with this {@code ProductPackage}.
+                
+                &lt;p&gt;This attribute is optional.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0"
+            name="lastModifiedDateTime" type="tns:DateTime">
+            <annotation>
+              <documentation>
+                The date and time this {@code ProductPackage} was last modified.
+                
+                &lt;p&gt;This attribute is read-only and is assigned by Google when a {@code ProductPackage}
+                is updated.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="ProductPackageItemError">
+        <annotation>
+          <documentation>
+            Lists all errors associated with product package items.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ProductPackageItemError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ProductPackagePage">
+        <annotation>
+          <documentation>
+            Captures a page of {@link ProductPackageDto} objects.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="totalResultSetSize" type="xsd:int">
+            <annotation>
+              <documentation>
+                The size of the total result set to which this page belongs.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="startIndex" type="xsd:int">
+            <annotation>
+              <documentation>
+                The absolute index in the total result set on which this page begins.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="results" type="tns:ProductPackage">
+            <annotation>
+              <documentation>
+                The collection of product packages contained within this page.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="ProductPackageRateCardAssociationError">
+        <annotation>
+          <documentation>
+            Lists all errors associated with product packages rate card associations.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ProductPackageRateCardAssociationError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="PublisherQueryLanguageContextError">
+        <annotation>
+          <documentation>
+            An error that occurs while executing a PQL query contained in
+            a {@link Statement} object.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:PublisherQueryLanguageContextError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="PublisherQueryLanguageSyntaxError">
+        <annotation>
+          <documentation>
+            An error that occurs while parsing a PQL query contained in a
+            {@link Statement} object.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:PublisherQueryLanguageSyntaxError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="QuotaError">
+        <annotation>
+          <documentation>
+            Describes a client-side error on which a user is attempting
+            to perform an action to which they have no quota remaining.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:QuotaError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RangeError">
+        <annotation>
+          <documentation>
+            A list of all errors associated with the Range constraint.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RangeError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RateCardError">
+        <annotation>
+          <documentation>
+            An error having to do with {@link RateCard}.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RateCardError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RequiredCollectionError">
+        <annotation>
+          <documentation>
+            A list of all errors to be used for validating sizes of collections.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RequiredCollectionError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RequiredError">
+        <annotation>
+          <documentation>
+            Errors due to missing required field.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RequiredError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ServerError">
+        <annotation>
+          <documentation>
+            Errors related to the server.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ServerError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="SetValue">
+        <annotation>
+          <documentation>
+            Contains a set of {@link Value Values}. May not contain duplicates.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="unbounded" minOccurs="0" name="values" type="tns:Value">
+                <annotation>
+                  <documentation>
+                    The values. They must all be the same type of {@code Value} and not contain duplicates.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="SoapRequestHeader">
+        <annotation>
+          <documentation>
+            Represents the SOAP request header used by API requests.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="networkCode" type="xsd:string">
+            <annotation>
+              <documentation>
+                The network code to use in the context of a request.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="applicationName" type="xsd:string">
+            <annotation>
+              <documentation>
+                The name of client library application.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="SoapResponseHeader">
+        <annotation>
+          <documentation>
+            Represents the SOAP request header used by API responses.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="requestId" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="responseTime" type="xsd:long"/>
+        </sequence>
+      </complexType>
+      <complexType name="Statement">
+        <annotation>
+          <documentation>
+            Captures the {@code WHERE}, {@code ORDER BY} and {@code LIMIT} clauses of a
+            PQL query. Statements are typically used to retrieve objects of a predefined
+            domain type, which makes SELECT clause unnecessary.
+            &lt;p&gt;
+            An example query text might be {@code "WHERE status = 'ACTIVE' ORDER BY id
+            LIMIT 30"}.
+            &lt;/p&gt;
+            &lt;p&gt;
+            Statements support bind variables. These are substitutes for literals
+            and can be thought of as input parameters to a PQL query.
+            &lt;/p&gt;
+            &lt;p&gt;
+            An example of such a query might be {@code "WHERE id = :idValue"}.
+            &lt;/p&gt;
+            &lt;p&gt;
+            Statements also support use of the LIKE keyword. This provides partial and
+            wildcard string matching.
+            &lt;/p&gt;
+            &lt;p&gt;
+            An example of such a query might be {@code "WHERE name LIKE 'startswith%'"}.
+            &lt;/p&gt;
+            The value for the variable idValue must then be set with an object of type
+            {@link Value}, e.g., {@link NumberValue}, {@link TextValue} or
+            {@link BooleanValue}.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="query" type="xsd:string">
+            <annotation>
+              <documentation>
+                Holds the query in PQL syntax. The syntax is:&lt;br&gt;
+                &lt;code&gt;[WHERE &lt;condition&gt; {[AND | OR] &lt;condition&gt; ...}]&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;[ORDER BY &lt;property&gt; [ASC | DESC]]&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;[LIMIT {[&lt;offset&gt;,] &lt;count&gt;} | {&lt;count&gt; OFFSET &lt;offset&gt;}]&lt;/code&gt;&lt;br&gt;
+                &lt;p&gt;
+                &lt;code&gt;&lt;condition&gt;&lt;/code&gt;&lt;br&gt;
+                &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                &lt;code&gt;:= &lt;property&gt; {&lt; | &lt;= | &gt; | &gt;= | = | != } &lt;value&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;&lt;condition&gt;&lt;/code&gt;&lt;br&gt;
+                &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                &lt;code&gt;:= &lt;property&gt; {&lt; | &lt;= | &gt; | &gt;= | = | != } &lt;bind variable&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;&lt;condition&gt; := &lt;property&gt; IN &lt;list&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;&lt;condition&gt; := &lt;property&gt; IS NULL&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;&lt;condition&gt; := &lt;property&gt; LIKE &lt;wildcard%match&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;&lt;bind variable&gt; := :&lt;name&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;/p&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="values" type="tns:String_ValueMapEntry">
+            <annotation>
+              <documentation>
+                Holds keys and values for bind variables and their values. The key is the
+                name of the bind variable. The value is the literal value of the variable.
+                &lt;p&gt;
+                In the example {@code "WHERE status = :bindStatus ORDER BY id LIMIT 30"},
+                the bind variable, represented by {@code :bindStatus} is named {@code
+                bindStatus}, which would also be the parameter map key. The bind variable's
+                value would be represented by a parameter map value of type
+                {@link TextValue}. The final result, for example, would be an entry of
+                {@code "bindStatus" =&gt; StringParam("ACTIVE")}.
+                &lt;/p&gt;
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="StatementError">
+        <annotation>
+          <documentation>
+            An error that occurs while parsing {@link Statement} objects.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:StatementError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="StringFormatError">
+        <annotation>
+          <documentation>
+            A list of error code for reporting invalid content of input strings.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:StringFormatError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="StringLengthError">
+        <annotation>
+          <documentation>
+            Errors for Strings which do not meet given length constraints.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:StringLengthError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="String_ValueMapEntry">
+        <annotation>
+          <documentation>
+            This represents an entry in a map with a key of type String
+            and value of type Value.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="key" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="value" type="tns:Value"/>
+        </sequence>
+      </complexType>
+      <complexType name="TextValue">
+        <annotation>
+          <documentation>
+            Contains a string value.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="xsd:string">
+                <annotation>
+                  <documentation>
+                    The string value.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="UnarchiveProductPackages">
+        <annotation>
+          <documentation>
+            The action used to un-archive product packages.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ProductPackageAction">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="UniqueError">
+        <annotation>
+          <documentation>
+            An error for a field which must satisfy a uniqueness constraint
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="UpdateResult">
+        <annotation>
+          <documentation>
+            Represents the result of performing an action on objects.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="numChanges" type="xsd:int">
+            <annotation>
+              <documentation>
+                The number of objects that were changed as a result of performing the
+                action.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType abstract="true" name="Value">
+        <annotation>
+          <documentation>
+            {@code Value} represents a value.
+          </documentation>
+        </annotation>
+        <sequence/>
+      </complexType>
+      <simpleType name="ApiVersionError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="UPDATE_TO_NEWER_VERSION">
+            <annotation>
+              <documentation>
+                Indicates that the operation is not allowed in the version the request
+                was made in.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="AuthenticationError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="AMBIGUOUS_SOAP_REQUEST_HEADER">
+            <annotation>
+              <documentation>
+                The SOAP message contains a request header with an ambiguous definition
+                of the authentication header fields. This means either the {@code
+                authToken} and {@code oAuthToken} fields were both null or both were
+                specified. Exactly one value should be specified with each request.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_EMAIL">
+            <annotation>
+              <documentation>
+                The login provided is invalid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="AUTHENTICATION_FAILED">
+            <annotation>
+              <documentation>
+                Tried to authenticate with provided information, but failed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_OAUTH_SIGNATURE">
+            <annotation>
+              <documentation>
+                The OAuth provided is invalid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_SERVICE">
+            <annotation>
+              <documentation>
+                The specified service to use was not recognized.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_SOAP_REQUEST_HEADER">
+            <annotation>
+              <documentation>
+                The SOAP message is missing a request header with an {@code authToken}
+                and optional {@code networkCode}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_AUTHENTICATION_HTTP_HEADER">
+            <annotation>
+              <documentation>
+                The HTTP request is missing a request header with an {@code authToken}
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_AUTHENTICATION">
+            <annotation>
+              <documentation>
+                The request is missing an {@code authToken}
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NOT_WHITELISTED_FOR_API_ACCESS">
+            <annotation>
+              <documentation>
+                The customer is not whitelisted for API access.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NO_NETWORKS_TO_ACCESS">
+            <annotation>
+              <documentation>
+                The user is not associated with any network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NETWORK_NOT_FOUND">
+            <annotation>
+              <documentation>
+                No network for the given {@code networkCode} was found.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NETWORK_CODE_REQUIRED">
+            <annotation>
+              <documentation>
+                The user has access to more than one network, but did not provide a
+                {@code networkCode}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CONNECTION_ERROR">
+            <annotation>
+              <documentation>
+                An error happened on the server side during connection to authentication
+                service.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="GOOGLE_ACCOUNT_ALREADY_ASSOCIATED_WITH_NETWORK">
+            <annotation>
+              <documentation>
+                The user tried to create a test network using an account that already is
+                associated with a network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNDER_INVESTIGATION">
+            <annotation>
+              <documentation>
+                The account is blocked and under investigation by the collections team. Please contact
+                Google for more information.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="BaseRateError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="INVALID_CURRENCY_CODE">
+            <annotation>
+              <documentation>
+                The currency code is invalid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PRODUCT_TEMPLATE_ARCHIVED">
+            <annotation>
+              <documentation>
+                Cannot create or activate a base rate if the product template is
+                archived.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PRODUCT_PACKAGE_ITEM_ARCHIVED">
+            <annotation>
+              <documentation>
+                Cannot create or activate a product package item base rate if the product
+                package item is archived.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_QUERY_ON_MULTIPLE_TYPES">
+            <annotation>
+              <documentation>
+                The PQL statement can only contain one of {@code productTemplateId},
+                {@code productId} or {@code productPackageItemId}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PRODUCT_PACKAGE_RATE_CARD_ASSOCIATION_MISSING">
+            <annotation>
+              <documentation>
+                Product package must be associated with the rate card of the product
+                package item base rate.
+                &lt;p&gt;See {@link ProductPackage#rateCardIds}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNSUPPORTED_OPERATION">
+            <annotation>
+              <documentation>
+                Indicates that the requested operation is not supported.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PRODUCT_PACKAGE_ACTIVE">
+            <annotation>
+              <documentation>
+                Cannot delete a product package item base rate when its product package
+                is active.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PRODUCT_TEMPLATE_BASE_RATE_NOT_FOUND">
+            <annotation>
+              <documentation>
+                Cannot create a base rate to a product if its product template does not
+                have a base rate on this rate card.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PRODUCT_BASE_RATE_EXISTS">
+            <annotation>
+              <documentation>
+                Cannot delete a base rate on a product template if its products still
+                have base rates on this rate card.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_RATE_CARD_CHANNEL">
+            <annotation>
+              <documentation>
+                Marketplace {@link RateCard rate cards} should only have Marketplace
+                {@link Product}/{@link ProductTemplate} {@link BaseRate base rates}.
+                
+                Non-Marketplace {@link RateCard rate cards} should use traditional base rates.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ZERO_MARKETPLACE_RATE_NOT_SUPPORTED">
+            <annotation>
+              <documentation>
+                Marketplace does not support {@link BaseRate base rates} with zero-value rates.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested
+                API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="CollectionSizeError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="TOO_LARGE"/>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="CommonError.Reason">
+        <annotation>
+          <documentation>
+            Describes reasons for common errors
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="NOT_FOUND">
+            <annotation>
+              <documentation>
+                Indicates that an attempt was made to retrieve an entity that does not
+                exist.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ALREADY_EXISTS">
+            <annotation>
+              <documentation>
+                Indicates that an attempt was made to create an entity that already
+                exists.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NOT_APPLICABLE">
+            <annotation>
+              <documentation>
+                Indicates that a value is not applicable for given use case.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DUPLICATE_OBJECT">
+            <annotation>
+              <documentation>
+                Indicates that two elements in the collection were identical.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_UPDATE">
+            <annotation>
+              <documentation>
+                Indicates that an attempt was made to change an immutable field.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CONCURRENT_MODIFICATION">
+            <annotation>
+              <documentation>
+                Indicates that another request attempted to update the same data in the same network
+                at about the same time. Please wait and try the request again.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="EntityChildrenLimitReachedError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the entity children limit reached error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="LINE_ITEM_LIMIT_FOR_ORDER_REACHED">
+            <annotation>
+              <documentation>
+                The number of line items on the order exceeds the max number of line items allowed per order
+                in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CREATIVE_ASSOCIATION_LIMIT_FOR_LINE_ITEM_REACHED">
+            <annotation>
+              <documentation>
+                The number of creatives associated with the line item exceeds the max number of creatives
+                allowed to be associated with a line item in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="AD_UNIT_LIMIT_FOR_PLACEMENT_REACHED">
+            <annotation>
+              <documentation>
+                The number of ad units on the placement exceeds the max number of ad units
+                allowed per placement in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TARGETING_EXPRESSION_LIMIT_FOR_LINE_ITEM_REACHED">
+            <annotation>
+              <documentation>
+                The number of targeting expressions on the line item exceeds the max number of targeting
+                expressions allowed per line item in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CUSTOM_TARGETING_VALUES_FOR_KEY_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of custom targeting values for the free-form or predefined custom targeting key
+                exceeds the max number allowed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TARGETING_EXPRESSION_LIMIT_FOR_CREATIVES_ON_LINE_ITEM_REACHED">
+            <annotation>
+              <documentation>
+                The total number of targeting expressions on the creatives for the line item exceeds
+                the max number allowed per line item in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ATTACHMENT_LIMIT_FOR_PROPOSAL_REACHED">
+            <annotation>
+              <documentation>
+                The number of attachments added to the proposal exceeds the max number
+                allowed per proposal in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PROPOSAL_LINE_ITEM_LIMIT_FOR_PROPOSAL_REACHED">
+            <annotation>
+              <documentation>
+                The number of proposal line items on the proposal exceeds the max number
+                allowed per proposal in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PRODUCT_LIMIT_FOR_PRODUCT_PACKAGE_REACHED">
+            <annotation>
+              <documentation>
+                The number of product package items on the product package exceeds the max number
+                allowed per product package in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PRODUCT_TEMPLATE_AND_PRODUCT_BASE_RATE_LIMIT_FOR_RATE_CARD_REACHED">
+            <annotation>
+              <documentation>
+                The number of product template and product base rates on the rate card (including excluded
+                product base rates) exceeds the max number allowed per rate card in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PRODUCT_PACKAGE_ITEM_BASE_RATE_LIMIT_FOR_RATE_CARD_REACHED">
+            <annotation>
+              <documentation>
+                The number of product package item base rates on the rate card exceeds the max number
+                allowed per rate card in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PREMIUM_LIMIT_FOR_RATE_CARD_REACHED">
+            <annotation>
+              <documentation>
+                The number of premiums of the rate card exceeds the max number allowed per rate card
+                in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="AD_UNIT_LIMIT_FOR_AD_EXCLUSION_RULE_TARGETING_REACHED">
+            <annotation>
+              <documentation>
+                The number of ad units on {@link AdExclusionRule#inventoryTargeting} exceeds the max number
+                of ad units allowed per ad exclusion rule inventory targeting in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NATIVE_STYLE_LIMIT_FOR_NATIVE_AD_FORMAT_REACHED">
+            <annotation>
+              <documentation>
+                The number of native styles under the native creative template exceeds the
+                max number of native styles allowed per native creative template in the
+                network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="EntityLimitReachedError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the entity limit reached error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="CUSTOM_TARGETING_VALUES_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of custom targeting values exceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="AD_EXCLUSION_RULES_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of ad exclusion rules exceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FIRST_PARTY_AUDIENCE_SEGMENTS_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of first party audience segments exceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PLACEMENTS_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of active placements exceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="LINE_ITEMS_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of line items excceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="FeatureError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="MISSING_FEATURE">
+            <annotation>
+              <documentation>
+                A feature is being used that is not enabled on the current network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="InternalApiError.Reason">
+        <annotation>
+          <documentation>
+            The single reason for the internal API error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNEXPECTED_INTERNAL_API_ERROR">
+            <annotation>
+              <documentation>
+                API encountered an unexpected internal error.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TRANSIENT_ERROR">
+            <annotation>
+              <documentation>
+                A temporary error occurred during the request. Please retry.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The cause of the error is not known or only defined in newer versions.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DOWNTIME">
+            <annotation>
+              <documentation>
+                The API is currently unavailable for a planned downtime.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ERROR_GENERATING_RESPONSE">
+            <annotation>
+              <documentation>
+                Mutate succeeded but server was unable to build response. Client should not retry mutate.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="NotNullError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="ARG1_NULL">
+            <annotation>
+              <documentation>
+                Assuming that a method will not have more than 3 arguments, if it does,
+                return NULL
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ARG2_NULL"/>
+          <enumeration value="ARG3_NULL"/>
+          <enumeration value="NULL"/>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="NullError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the validation error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="NULL_CONTENT">
+            <annotation>
+              <documentation>
+                Specified list/container must not contain any null elements
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="ParseError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNPARSABLE">
+            <annotation>
+              <documentation>
+                Indicates an error in parsing an attribute.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="PermissionError.Reason">
+        <annotation>
+          <documentation>
+            Describes reasons for permission errors.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="PERMISSION_DENIED">
+            <annotation>
+              <documentation>
+                User does not have the required permission for the request.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="ProductPackageActionError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the {@link ProductPackageActionError}.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="ACTIVATE_WITH_INACTIVE_MANDATORY_PRODUCT">
+            <annotation>
+              <documentation>
+                The activate operation is not applicable if there's any inactive mandatory product.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NOT_APPLICABLE">
+            <annotation>
+              <documentation>
+                The operation is not applicable to the current state.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="ProductPackageItemError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the {@link ProductPackageItemError}.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="ARCHIVED_PRODUCT_NOT_ALLOWED">
+            <annotation>
+              <documentation>
+                Add a archived product to product package is not allowed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INACTIVE_MANDATORY_PRODUCT_NOT_ALLOWED">
+            <annotation>
+              <documentation>
+                Inactive mandatory product is not allowed in active product package.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="ProductPackageRateCardAssociationError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the {@link ProductPackageError}.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="INVALID_RATE_CARD_ID">
+            <annotation>
+              <documentation>
+                The id of associated rate card is invalid or invisible to user.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_PRODUCT_PACKAGE_ID">
+            <annotation>
+              <documentation>
+                The id of associated package is invalid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="ProductPackageStatus">
+        <annotation>
+          <documentation>
+            Describes the different statuses for {@code ProductPackage}.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="ACTIVE"/>
+          <enumeration value="INACTIVE"/>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="PublisherQueryLanguageContextError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNEXECUTABLE">
+            <annotation>
+              <documentation>
+                Indicates that there was an error executing the PQL.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="PublisherQueryLanguageSyntaxError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNPARSABLE">
+            <annotation>
+              <documentation>
+                Indicates that there was a PQL syntax error.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="QuotaError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="EXCEEDED_QUOTA">
+            <annotation>
+              <documentation>
+                The number of requests made per second is too high and has exceeded the
+                allowable limit. The recommended approach to handle this error is to wait
+                about 5 seconds and then retry the request. Note that this does not
+                guarantee the request will succeed. If it fails again, try increasing the
+                wait time.
+                &lt;p&gt;Another way to mitigate this error is to limit requests to 2 per second for
+                Small Business networks, or 8 per second for Premium networks. Once again
+                this does not guarantee that every request will succeed, but may help
+                reduce the number of times you receive this error.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="REPORT_JOB_LIMIT">
+            <annotation>
+              <documentation>
+                This user has exceeded the allowed number of new report requests per hour
+                (this includes both reports run via the UI and reports
+                run via {@link ReportService#runReportJob}).
+                The recommended approach to handle this error is to wait about 10 minutes
+                and then retry the request. Note that this does not guarantee the request
+                will succeed. If it fails again, try increasing the wait time.
+                &lt;p&gt;Another way to mitigate this error is to limit the number of new report
+                requests to 250 per hour per user. Once again, this does not guarantee that
+                every request will succeed, but may help reduce the number of times you
+                receive this error.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="RangeError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="TOO_HIGH"/>
+          <enumeration value="TOO_LOW"/>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="RateCardError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="INVALID_CURRENCY_CODE">
+            <annotation>
+              <documentation>
+                The currency code is invalid and does not follow ISO 4217.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_PRICING_MODEL">
+            <annotation>
+              <documentation>
+                The {@link PricingModel} is invalid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PRODUCT_PACKAGE_NOT_APPLICABLE_ON_MARKETPLACE_RATE_CARD">
+            <annotation>
+              <documentation>
+                Marketplace {@link RateCard} cannot have {@link ProductPackage} association.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNSUPPORTED_CURRENCY_CODE">
+            <annotation>
+              <documentation>
+                The currency code is not supported by current network. A supported currency can be either
+                {@link Network#currencyCode} or one of {@link Network#secondaryCurrencyCodes}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNCHANGEABLE_CURRENCY_CODE">
+            <annotation>
+              <documentation>
+                The currency code is unchangeable as long as there is any proposal line item created
+                with the rate card.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNCHANGEABLE_PRICING_MODEL">
+            <annotation>
+              <documentation>
+                The {@link PricingModel} cannot be changed after {@link ProposalLineItem proposal line
+                items} have been created using the {@link RateCard}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MARKETPLACE_RATE_CARD_NOT_UNIQUE">
+            <annotation>
+              <documentation>
+                Only one Marketplace {@link RateCard} per {@link Network} is allowed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NOT_ACCEPT_DEALS_SALES_ON_LEGAL_AGREEMENT">
+            <annotation>
+              <documentation>
+                Legal agreement must be accepted before activating the Marketplace {@link RateCard}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="RequiredCollectionError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="REQUIRED">
+            <annotation>
+              <documentation>
+                A required collection is missing.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TOO_LARGE">
+            <annotation>
+              <documentation>
+                Collection size is too large.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TOO_SMALL">
+            <annotation>
+              <documentation>
+                Collection size is too small.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="RequiredError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="REQUIRED">
+            <annotation>
+              <documentation>
+                Missing required field.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="ServerError.Reason">
+        <annotation>
+          <documentation>
+            Describes reasons for server errors
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="SERVER_ERROR">
+            <annotation>
+              <documentation>
+                Indicates that an unexpected error occured.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="SERVER_BUSY">
+            <annotation>
+              <documentation>
+                Indicates that the server is currently experiencing a high load. Please
+                wait and try your request again.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="StatementError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="VARIABLE_NOT_BOUND_TO_VALUE">
+            <annotation>
+              <documentation>
+                A bind variable has not been bound to a value.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="StringFormatError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNKNOWN"/>
+          <enumeration value="ILLEGAL_CHARS">
+            <annotation>
+              <documentation>
+                The input string value contains disallowed characters.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_FORMAT">
+            <annotation>
+              <documentation>
+                The input string value is invalid for the associated field.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="StringLengthError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="TOO_LONG"/>
+          <enumeration value="TOO_SHORT"/>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <element name="createProductPackages">
+        <annotation>
+          <documentation>
+            Creates new {@link ProductPackage} objects.
+            
+            @param productPackages the product packages to create
+            @return the persisted product packages with their ID filled in
+          </documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" minOccurs="0"
+              name="productPackages" type="tns:ProductPackage"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="createProductPackagesResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" minOccurs="0" name="rval" type="tns:ProductPackage"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ApiExceptionFault" type="tns:ApiException">
+        <annotation>
+          <documentation>
+            A fault element of type ApiException.
+          </documentation>
+        </annotation>
+      </element>
+      <element name="getProductPackagesByStatement">
+        <annotation>
+          <documentation>
+            Gets a {@link ProductPackagePage} of {@link ProductPackage} objects
+            that satisfy the filtering criteria specified by given {@link Statement#query}.
+            The following fields are supported for filtering:
+            
+            &lt;table&gt;
+            &lt;tr&gt;
+            &lt;th scope="col"&gt;PQL Property&lt;/th&gt; &lt;th scope="col"&gt;Object Property&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code id}&lt;/td&gt;
+            &lt;td&gt;{@link ProductPackage#id}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code name}&lt;/td&gt;
+            &lt;td&gt;{@link ProductPackage#name}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code notes}&lt;/td&gt;
+            &lt;td&gt;{@link ProductPackage#notes}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code status}&lt;/td&gt;
+            &lt;td&gt;{@link ProductPackage#status}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code isArchived}&lt;/td&gt;
+            &lt;td&gt;{@link ProductPackage#isArchived}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code lastModifiedDateTime}&lt;/td&gt;
+            &lt;td&gt;{@link ProductPackage#lastModifiedDateTime}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;/table&gt;
+            
+            @param statement a Publisher Query Language statement which specifies the
+            filtering criteria over product packages
+            @return the product packages that match the given statement
+          </documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="statement" type="tns:Statement"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="getProductPackagesByStatementResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="rval" type="tns:ProductPackagePage"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="performProductPackageAction">
+        <annotation>
+          <documentation>
+            Performs actions on {@link ProductPackage} objects that match the given {@link
+            Statement#query}.
+            
+            @param action the action to perform
+            @param statement a Publisher Query Language statement used to filter a set of product packages
+            @return the result of the action performed
+          </documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="action" type="tns:ProductPackageAction"/>
+            <element maxOccurs="1" minOccurs="0" name="statement" type="tns:Statement"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="performProductPackageActionResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="rval" type="tns:UpdateResult"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="updateProductPackages">
+        <annotation>
+          <documentation>
+            Updates the specified {@link ProductPackage} objects.
+            
+            @param productPackages the product packages to update
+            @return the updated product packages
+          </documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" minOccurs="0"
+              name="productPackages" type="tns:ProductPackage"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="updateProductPackagesResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" minOccurs="0" name="rval" type="tns:ProductPackage"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="RequestHeader" type="tns:SoapRequestHeader"/>
+      <element name="ResponseHeader" type="tns:SoapResponseHeader"/>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="RequestHeader">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"/>
+  </wsdl:message>
+  <wsdl:message name="ResponseHeader">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"/>
+  </wsdl:message>
+  <wsdl:message name="createProductPackagesRequest">
+    <wsdl:part element="tns:createProductPackages" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="createProductPackagesResponse">
+    <wsdl:part element="tns:createProductPackagesResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ApiException">
+    <wsdl:part element="tns:ApiExceptionFault" name="ApiException"/>
+  </wsdl:message>
+  <wsdl:message name="getProductPackagesByStatementRequest">
+    <wsdl:part element="tns:getProductPackagesByStatement" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getProductPackagesByStatementResponse">
+    <wsdl:part element="tns:getProductPackagesByStatementResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="performProductPackageActionRequest">
+    <wsdl:part element="tns:performProductPackageAction" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="performProductPackageActionResponse">
+    <wsdl:part element="tns:performProductPackageActionResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="updateProductPackagesRequest">
+    <wsdl:part element="tns:updateProductPackages" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="updateProductPackagesResponse">
+    <wsdl:part element="tns:updateProductPackagesResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="ProductPackageServiceInterface">
+    <wsdl:documentation>
+      Provides methods for updating and retrieving {@link ProductPackage} objects.
+      
+      &lt;p&gt;A {@link ProductPackage} represents a group of products which will be sold together.
+      
+      &lt;p&gt;To use this service, you need to have the new sales management solution enabled on your
+      network. If you do not see a "Sales" tab in &lt;a href="https://www.google.com/dfp"&gt;DoubleClick for
+      Publishers (DFP)&lt;/a&gt;, you will not be able to use this service.
+    </wsdl:documentation>
+    <wsdl:operation name="createProductPackages">
+      <wsdl:documentation>
+        Creates new {@link ProductPackage} objects.
+        
+        @param productPackages the product packages to create
+        @return the persisted product packages with their ID filled in
+      </wsdl:documentation>
+      <wsdl:input message="tns:createProductPackagesRequest" name="createProductPackagesRequest"/>
+      <wsdl:output message="tns:createProductPackagesResponse" name="createProductPackagesResponse"/>
+      <wsdl:fault message="tns:ApiException" name="ApiException"/>
+    </wsdl:operation>
+    <wsdl:operation name="getProductPackagesByStatement">
+      <wsdl:documentation>
+        Gets a {@link ProductPackagePage} of {@link ProductPackage} objects
+        that satisfy the filtering criteria specified by given {@link Statement#query}.
+        The following fields are supported for filtering:
+        
+        &lt;table&gt;
+        &lt;tr&gt;
+        &lt;th scope="col"&gt;PQL Property&lt;/th&gt; &lt;th scope="col"&gt;Object Property&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code id}&lt;/td&gt;
+        &lt;td&gt;{@link ProductPackage#id}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code name}&lt;/td&gt;
+        &lt;td&gt;{@link ProductPackage#name}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code notes}&lt;/td&gt;
+        &lt;td&gt;{@link ProductPackage#notes}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code status}&lt;/td&gt;
+        &lt;td&gt;{@link ProductPackage#status}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code isArchived}&lt;/td&gt;
+        &lt;td&gt;{@link ProductPackage#isArchived}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code lastModifiedDateTime}&lt;/td&gt;
+        &lt;td&gt;{@link ProductPackage#lastModifiedDateTime}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;/table&gt;
+        
+        @param statement a Publisher Query Language statement which specifies the
+        filtering criteria over product packages
+        @return the product packages that match the given statement
+      </wsdl:documentation>
+      <wsdl:input message="tns:getProductPackagesByStatementRequest" name="getProductPackagesByStatementRequest"/>
+      <wsdl:output message="tns:getProductPackagesByStatementResponse" name="getProductPackagesByStatementResponse"/>
+      <wsdl:fault message="tns:ApiException" name="ApiException"/>
+    </wsdl:operation>
+    <wsdl:operation name="performProductPackageAction">
+      <wsdl:documentation>
+        Performs actions on {@link ProductPackage} objects that match the given {@link
+        Statement#query}.
+        
+        @param action the action to perform
+        @param statement a Publisher Query Language statement used to filter a set of product packages
+        @return the result of the action performed
+      </wsdl:documentation>
+      <wsdl:input message="tns:performProductPackageActionRequest" name="performProductPackageActionRequest"/>
+      <wsdl:output message="tns:performProductPackageActionResponse" name="performProductPackageActionResponse"/>
+      <wsdl:fault message="tns:ApiException" name="ApiException"/>
+    </wsdl:operation>
+    <wsdl:operation name="updateProductPackages">
+      <wsdl:documentation>
+        Updates the specified {@link ProductPackage} objects.
+        
+        @param productPackages the product packages to update
+        @return the updated product packages
+      </wsdl:documentation>
+      <wsdl:input message="tns:updateProductPackagesRequest" name="updateProductPackagesRequest"/>
+      <wsdl:output message="tns:updateProductPackagesResponse" name="updateProductPackagesResponse"/>
+      <wsdl:fault message="tns:ApiException" name="ApiException"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ProductPackageServiceSoapBinding" type="tns:ProductPackageServiceInterface">
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="createProductPackages">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="createProductPackagesRequest">
+        <wsdlsoap:header message="tns:RequestHeader"
+          part="RequestHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createProductPackagesResponse">
+        <wsdlsoap:header message="tns:ResponseHeader"
+          part="ResponseHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ApiException">
+        <wsdlsoap:fault name="ApiException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getProductPackagesByStatement">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getProductPackagesByStatementRequest">
+        <wsdlsoap:header message="tns:RequestHeader"
+          part="RequestHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getProductPackagesByStatementResponse">
+        <wsdlsoap:header message="tns:ResponseHeader"
+          part="ResponseHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ApiException">
+        <wsdlsoap:fault name="ApiException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="performProductPackageAction">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="performProductPackageActionRequest">
+        <wsdlsoap:header message="tns:RequestHeader"
+          part="RequestHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="performProductPackageActionResponse">
+        <wsdlsoap:header message="tns:ResponseHeader"
+          part="ResponseHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ApiException">
+        <wsdlsoap:fault name="ApiException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateProductPackages">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="updateProductPackagesRequest">
+        <wsdlsoap:header message="tns:RequestHeader"
+          part="RequestHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateProductPackagesResponse">
+        <wsdlsoap:header message="tns:ResponseHeader"
+          part="ResponseHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ApiException">
+        <wsdlsoap:fault name="ApiException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProductPackageService">
+    <wsdl:port binding="tns:ProductPackageServiceSoapBinding" name="ProductPackageServiceInterfacePort">
+      <wsdlsoap:address location="https://ads.google.com/apis/ads/publisher/v201802/ProductPackageService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

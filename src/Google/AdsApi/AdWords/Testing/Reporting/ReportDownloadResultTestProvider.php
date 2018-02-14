@@ -14,20 +14,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\AdWords\Testing\Reporting;
 
 /**
  * Provides test data for AdWords report download results.
  */
-class ReportDownloadResultTestProvider {
+class ReportDownloadResultTestProvider
+{
 
-  /**
-   * Gets the contents of a fake AdWords campaign report for testing.
-   *
-   * @return string
-   */
-  public static function getFakeCampaignReport() {
-    return file_get_contents(
-        dirname(__FILE__) . DIRECTORY_SEPARATOR . 'campaign-report.csv');
-  }
+    /**
+     * Gets the contents of a fake AdWords campaign report for testing.
+     *
+     * @return string
+     */
+    public static function getFakeCampaignReport()
+    {
+        return file_get_contents(
+            dirname(__FILE__) . DIRECTORY_SEPARATOR . 'campaign-report.csv'
+        );
+    }
 }

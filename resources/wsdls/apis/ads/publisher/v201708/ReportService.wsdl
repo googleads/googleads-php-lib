@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2017 Google Inc. All Rights Reserved -->
+<!-- Copyright 2018 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v201708"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v201708"
@@ -821,6 +821,8 @@
               <documentation>
                 Whether or not the saved query is compatible with the current API version.
                 This will be {@code true} if and only if {@link SavedQuery#reportQuery} is non-null.
+                A saved query will be incompatible with the API if it uses columns, dimensions, or other
+                reporting features from the UI that are not available in the {@link ReportQuery} entity.
               </documentation>
             </annotation>
           </element>
@@ -1912,6 +1914,8 @@
                 
                 &lt;p&gt;&lt;b&gt;This experimental column only works with Ad Exchange web properties linked with an active
                 status.&lt;/b&gt;
+                
+                &lt;p&gt;This field is deprecated and will be removed in v201805.
               </documentation>
             </annotation>
           </enumeration>
@@ -1920,6 +1924,8 @@
               <documentation>
                 Impressions generated for mediation requests.  This includes third-party network and
                 Ad Exchange impressions for mediation.
+                
+                &lt;p&gt;This field is deprecated and will be removed in v201805.
               </documentation>
             </annotation>
           </enumeration>
@@ -1928,6 +1934,8 @@
               <documentation>
                 Estimated revenue generated for mediation requests.  This combines estimated revenue from
                 third-parties along with Ad Exchange.
+                
+                &lt;p&gt;This field is deprecated and will be removed in v201805.
               </documentation>
             </annotation>
           </enumeration>
@@ -1935,6 +1943,8 @@
             <annotation>
               <documentation>
                 The average estimated cost-per-thousand-impressions earned from mediation ads.
+                
+                &lt;p&gt;This field is deprecated and will be removed in v201805.
               </documentation>
             </annotation>
           </enumeration>
@@ -1949,6 +1959,8 @@
             <annotation>
               <documentation>
                 Mediation fill rate indicating how often a network fills an ad request.
+                
+                &lt;p&gt;This field is deprecated and will be removed in v201805.
               </documentation>
             </annotation>
           </enumeration>
@@ -1956,6 +1968,8 @@
             <annotation>
               <documentation>
                 Mediation passbacks recorded when a network does not fill an ad request.
+                
+                &lt;p&gt;This field is deprecated and will be removed in v201805.
               </documentation>
             </annotation>
           </enumeration>
@@ -3368,6 +3382,16 @@
               </documentation>
             </annotation>
           </enumeration>
+          <enumeration value="AUDIENCE_EXTENSION_COST">
+            <annotation>
+              <documentation>
+                Cost for audience extension
+                ie. cost the publisher had to pay in order to buy the inventory.
+                
+                &lt;p&gt;This field is deprecated and will be removed in v201805.
+              </documentation>
+            </annotation>
+          </enumeration>
           <enumeration value="VIEW_THROUGH_CONVERSIONS">
             <annotation>
               <documentation>
@@ -4750,6 +4774,13 @@
               <documentation>
                 Breaks down reporting data by month and year in the network time zone. Can
                 be used to filter on month using ISO 4601 format 'YYYY-MM'.
+                
+                &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; In v201802 and later, this dimension is compatible with the following
+                time zone types:
+                &lt;ul&gt;
+                &lt;li&gt; {@link TimeZoneType.PUBLISHER}
+                &lt;li&gt; {@link TimeZoneType.PROPOSAL_LOCAL}
+                &lt;/ul&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4758,6 +4789,13 @@
               <documentation>
                 Breaks down reporting data by week of the year in the network time zone.
                 Cannot be used for filtering.
+                
+                &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; In v201802 and later, this dimension is compatible with the following
+                time zone types:
+                &lt;ul&gt;
+                &lt;li&gt; {@link TimeZoneType.PUBLISHER}
+                &lt;li&gt; {@link TimeZoneType.PROPOSAL_LOCAL}
+                &lt;/ul&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4766,6 +4804,13 @@
               <documentation>
                 Breaks down reporting data by date in the network time zone. Can be used to
                 filter by date using ISO 8601's format 'YYYY-MM-DD'".
+                
+                &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; In v201802 and later, this dimension is compatible with the following
+                time zone types:
+                &lt;ul&gt;
+                &lt;li&gt; {@link TimeZoneType.PUBLISHER}
+                &lt;li&gt; {@link TimeZoneType.PROPOSAL_LOCAL}
+                &lt;/ul&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4815,6 +4860,8 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by aggregated demand channel type.
+                
+                &lt;p&gt;This field is deprecated and will be removed in v201805.
               </documentation>
             </annotation>
           </enumeration>
@@ -5390,6 +5437,8 @@
               <documentation>
                 Breaks down reporting data by mediation group ID.  A mediation group is an abstraction of
                 inventory used in the DFP Mediation.
+                
+                &lt;p&gt;This field is deprecated and will be removed in v201805.
               </documentation>
             </annotation>
           </enumeration>
@@ -5398,6 +5447,8 @@
               <documentation>
                 Breaks down reporting data by mediation group name.  A mediation group is an abstraction of
                 inventory used in the DFP Mediation.
+                
+                &lt;p&gt;This field is deprecated and will be removed in v201805.
               </documentation>
             </annotation>
           </enumeration>
@@ -5405,6 +5456,8 @@
             <annotation>
               <documentation>
                 Breaks down mapped Ad Exchange web property data by mediation network.
+                
+                &lt;p&gt;This field is deprecated and will be removed in v201805.
               </documentation>
             </annotation>
           </enumeration>
@@ -5412,6 +5465,8 @@
             <annotation>
               <documentation>
                 Breaks down mapped Ad Exchange web property data by Ad Exchange network tag name.
+                
+                &lt;p&gt;This field is deprecated and will be removed in v201805.
               </documentation>
             </annotation>
           </enumeration>
@@ -5886,7 +5941,13 @@
           <enumeration value="AD_EXCHANGE_DATE">
             <annotation>
               <documentation>
-                Breaks down mapped Ad Exchange web property data by Ad Exchange date.
+                Breaks down mapped Ad Exchange web property data by Ad Exchange date, in Ad Exchange timezone.
+                
+                &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; In v201802 and later, this dimension is compatible with the following
+                time zone types:
+                &lt;ul&gt;
+                &lt;li&gt; {@link TimeZoneType.AD_EXCHANGE}
+                &lt;/ul&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5999,7 +6060,13 @@
           <enumeration value="AD_EXCHANGE_MONTH">
             <annotation>
               <documentation>
-                Breaks down mapped Ad Exchange web property data by Ad Exchange month.
+                Breaks down mapped Ad Exchange web property data by Ad Exchange month, in Ad Exchange timezone.
+                
+                &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; In v201802 and later, this dimension is compatible with the following
+                time zone types:
+                &lt;ul&gt;
+                &lt;li&gt; {@link TimeZoneType.AD_EXCHANGE}
+                &lt;/ul&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6083,7 +6150,13 @@
           <enumeration value="AD_EXCHANGE_WEEK">
             <annotation>
               <documentation>
-                Breaks down mapped Ad Exchange web property data by Ad Exchange week.
+                Breaks down mapped Ad Exchange web property data by Ad Exchange week, in Ad Exchange timezone.
+                
+                &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; In v201802 and later, this dimension is compatible with the following
+                time zone types:
+                &lt;ul&gt;
+                &lt;li&gt; {@link TimeZoneType.AD_EXCHANGE}
+                &lt;/ul&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7695,8 +7768,19 @@
           <enumeration value="COLUMNS_NOT_SUPPORTED_FOR_REQUESTED_DIMENSIONS">
             <annotation>
               <documentation>
-                Not all {@link Column} objects requested are supported for the given set
+                The provided report violates one or more constraints, which govern incompatibilities and
+                requirements between different report properties. Some reasons for constraint violations
+                include:
+                &lt;ul&gt;
+                &lt;li&gt; Not all {@link Column} objects requested are supported for the given set
                 of {@link Dimension} objects.
+                &lt;li&gt; The report's date range is not compatible with the given set of {@link Column}
+                objects.
+                &lt;li&gt; The report's {@link TimeZoneType} is not compatible with the given set of
+                {@link Column} and {@link Dimension} objects (version 201802 and later).
+                &lt;li&gt; The report's currency is not compatible with the given set of {@link Column} objects
+                (version 201802 and later).
+                &lt;/ul&gt;
               </documentation>
             </annotation>
           </enumeration>

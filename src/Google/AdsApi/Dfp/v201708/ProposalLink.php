@@ -71,7 +71,7 @@ class ProposalLink
      */
     public function setId($id)
     {
-      $this->id = (PHP_INT_SIZE === 4)
+      $this->id = (!is_null(id) && PHP_INT_SIZE === 4)
           ? floatval($id) : $id;
       return $this;
     }
@@ -108,7 +108,7 @@ class ProposalLink
      */
     public function setCreatorId($creatorId)
     {
-      $this->creatorId = (PHP_INT_SIZE === 4)
+      $this->creatorId = (!is_null(creatorId) && PHP_INT_SIZE === 4)
           ? floatval($creatorId) : $creatorId;
       return $this;
     }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2017 Google Inc. All Rights Reserved -->
+<!-- Copyright 2018 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://adwords.google.com/api/adwords/cm/v201710"
   xmlns:tns="https://adwords.google.com/api/adwords/cm/v201710"
@@ -1432,7 +1432,7 @@
       <simpleType name="AuthorizationError.Reason">
         <annotation>
           <documentation>
-            The reasons for the database error.
+            The reasons for the authorization error.
           </documentation>
         </annotation>
         <restriction base="xsd:string">
@@ -3308,9 +3308,9 @@
           <enumeration value="CREATION_FAILED">
             <annotation>
               <documentation>
-                The materializer failed to create the materialized campaign. More details about
-                the errors are available through getErrors in the TrialService API.The
-                advertiser cannot set this status directly.
+                The trial campaign failed to create. More details about the errors are available
+                through getErrors in the TrialService API.The advertiser cannot set this status
+                directly.
               </documentation>
             </annotation>
           </enumeration>

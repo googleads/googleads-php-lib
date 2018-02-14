@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2017 Google Inc. All Rights Reserved -->
+<!-- Copyright 2018 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://adwords.google.com/api/adwords/cm/v201705"
   xmlns:tns="https://adwords.google.com/api/adwords/cm/v201705"
@@ -1043,7 +1043,7 @@
                 
                 &lt;p&gt;This field is only editable for Adwords Conversions and Upload Conversions, but has a system
                 defined default for other types of conversions. The allowed range of values for this window
-                depends on the type of conversion and may expand, but 7-90 days is the currently-allowed
+                depends on the type of conversion and may expand, but 1-90 days is the currently allowed
                 range.
                 &lt;span class="constraint Selectable"&gt;This field can be selected using the value "CtcLookbackWindow".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
               </documentation>
@@ -1814,7 +1814,7 @@
       <simpleType name="AuthorizationError.Reason">
         <annotation>
           <documentation>
-            The reasons for the database error.
+            The reasons for the authorization error.
           </documentation>
         </annotation>
         <restriction base="xsd:string">

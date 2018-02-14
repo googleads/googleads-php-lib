@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2017 Google Inc. All Rights Reserved -->
+<!-- Copyright 2018 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v201711"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v201711"
@@ -2997,6 +2997,7 @@
                 associated with, which is used in its pacing and budgeting. {@link Goal#units} must be greater
                 than 0 when the proposal line item turns into a line item, {@link Goal#goalType} and {@link
                 Goal#unitType} are readonly.
+                For a Preferred deal {@code ProposalLineItem}, the goal type can only be {@link GoalType#NONE}.
                 This attribute is required.
               </documentation>
             </annotation>
@@ -3046,6 +3047,8 @@
                 The strategy for delivering ads over the course of the {@code ProposalLineItem}'s
                 duration. This attribute is optional and default value is
                 {@link DeliveryRateType#EVENLY}.
+                For a Preferred deal {@code ProposalLineItem}, the value can only be
+                {@link DeliveryRateType#FRONTLOADED}.
               </documentation>
             </annotation>
           </element>
@@ -3121,6 +3124,7 @@
                 &lt;ul&gt;
                 &lt;li&gt;{@link LineItemType#SPONSORSHIP}&lt;/li&gt;
                 &lt;li&gt;{@link LineItemType#STANDARD}&lt;/li&gt;
+                &lt;li&gt;{@link LineItemType#PREFERRED_DEAL}&lt;/li&gt;
                 &lt;/ul&gt;
                 This attribute is required.
               </documentation>

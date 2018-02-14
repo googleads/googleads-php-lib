@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2017 Google Inc. All Rights Reserved -->
+<!-- Copyright 2018 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://adwords.google.com/api/adwords/rm/v201710"
   xmlns:tns="https://adwords.google.com/api/adwords/rm/v201710"
@@ -41,6 +41,27 @@
           <extension base="tns:ApiError">
             <sequence>
               <element maxOccurs="1" minOccurs="0" name="reason" type="tns:AuthorizationError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="CollectionSizeError">
+        <annotation>
+          <documentation>
+            Errors associated with the size of the given collection being
+            out of bounds.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CollectionSizeError.Reason">
                 <annotation>
                   <documentation>
                     The error reason represented by an enum.
@@ -1216,7 +1237,7 @@
       <simpleType name="AuthorizationError.Reason">
         <annotation>
           <documentation>
-            The reasons for the database error.
+            The reasons for the authorization error.
           </documentation>
         </annotation>
         <restriction base="xsd:string">
@@ -1269,6 +1290,17 @@
               </documentation>
             </annotation>
           </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="CollectionSizeError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="TOO_FEW"/>
+          <enumeration value="TOO_MANY"/>
         </restriction>
       </simpleType>
       <simpleType name="DatabaseError.Reason">
@@ -2201,27 +2233,6 @@
           <jaxb:globalBindings typesafeEnumMaxMembers="999999"/>
         </appinfo>
       </annotation>
-      <complexType name="CollectionSizeError">
-        <annotation>
-          <documentation>
-            Errors associated with the size of the given collection being
-            out of bounds.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="cm:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CollectionSizeError.Reason">
-                <annotation>
-                  <documentation>
-                    The error reason represented by an enum.
-                  </documentation>
-                </annotation>
-              </element>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
       <complexType name="CurrencyCodeError">
         <annotation>
           <documentation>
@@ -2338,7 +2349,7 @@
             name="offlineDataList" type="tns:OfflineData">
             <annotation>
               <documentation>
-                List of offline data in this upload. For Web API, each offlineDataList can have at most 50
+                List of offline data in this upload. For AdWords API, each offlineDataList can have at most 50
                 OfflineData.
                 &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
               </documentation>
@@ -2466,7 +2477,7 @@
           <element maxOccurs="1" minOccurs="0" name="transactionAmount" type="tns:MoneyWithCurrency">
             <annotation>
               <documentation>
-                Transaction amount.
+                Transaction amount. We support the ISO 4217 3-character currency code. For example: USD, EUR.
                 &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
               </documentation>
             </annotation>
@@ -2491,7 +2502,8 @@
           <element maxOccurs="1" minOccurs="0" name="loyaltyRate" type="xsd:double">
             <annotation>
               <documentation>
-                The fraction of store transactions that are loyalty transactions. Range (0.0 to 1.0]
+                This is the fraction of overall sales which you can associate with a customer loyalty program.
+                The fraction needs to be between 0 and 1 (excluding 0).
                 &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
               </documentation>
             </annotation>
@@ -2500,7 +2512,10 @@
             name="transactionUploadRate" type="xsd:double">
             <annotation>
               <documentation>
-                The fraction of loyalty transactions that are uploaded. Range (0.0 to 1.0]
+                This is the ratio of sales you?re uploading compared to the overall sales that you can
+                associate with a customer. The fraction needs to be between 0 and 1. For example, if you upload
+                half the sales that you are able to associate with a customer, your Transaction Upload Rate
+                would be 0.5 (excluding 0).
                 &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
               </documentation>
             </annotation>
@@ -2521,6 +2536,8 @@
         <annotation>
           <documentation>
             Metadata for a Third party Store Sales upload.
+            Note: This is a whitelisted only product. Please contact your Google business development
+            representative for details on upload configuration.
           </documentation>
         </annotation>
         <complexContent>
@@ -2569,7 +2586,7 @@
                 name="bridgeMapVersionId" type="xsd:string">
                 <annotation>
                   <documentation>
-                    Indicates the version of the bridge map.
+                    Indicates the version of partnerIds to be used for uploads.
                     &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
                   </documentation>
                 </annotation>
@@ -2577,7 +2594,7 @@
               <element maxOccurs="1" minOccurs="0" name="partnerId" type="xsd:int">
                 <annotation>
                   <documentation>
-                    The id of the third party uploading the transaction feed.
+                    The ID of the third party partner uploading the transaction feed.
                     &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
                   </documentation>
                 </annotation>
@@ -2622,17 +2639,6 @@
           </element>
         </sequence>
       </complexType>
-      <simpleType name="CollectionSizeError.Reason">
-        <annotation>
-          <documentation>
-            The reasons for the target error.
-          </documentation>
-        </annotation>
-        <restriction base="xsd:string">
-          <enumeration value="TOO_FEW"/>
-          <enumeration value="TOO_MANY"/>
-        </restriction>
-      </simpleType>
       <simpleType name="CurrencyCodeError.Reason">
         <annotation>
           <documentation>
@@ -2982,7 +2988,7 @@
             
             &lt;p&gt;Set - updates the upload result for each upload. It is for internal use only.
             
-            &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; For Web API, one ADD request can have at most 2000 operations.
+            &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; For AdWords API, one ADD request can have at most 2000 operations.
             
             &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; Add operation might possibly succeed even with errors in {@code OfflineData}.
             Data errors are reported in {@link OfflineDataUpload#partialDataErrors}
@@ -3072,7 +3078,7 @@
         
         &lt;p&gt;Set - updates the upload result for each upload. It is for internal use only.
         
-        &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; For Web API, one ADD request can have at most 2000 operations.
+        &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; For AdWords API, one ADD request can have at most 2000 operations.
         
         &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; Add operation might possibly succeed even with errors in {@code OfflineData}.
         Data errors are reported in {@link OfflineDataUpload#partialDataErrors}

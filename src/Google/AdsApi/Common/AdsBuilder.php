@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Common;
 
 /**
@@ -21,39 +22,42 @@ namespace Google\AdsApi\Common;
  *
  * @see Configuration
  */
-interface AdsBuilder {
+interface AdsBuilder
+{
 
-  /**
-   * @var string the default filename for the configuration file for this
-   *     library
-   */
-  const DEFAULT_CONFIGURATION_FILENAME = 'adsapi_php.ini';
+    /**
+     * @var string the default filename for the configuration file for this
+     *     library
+     */
+    const DEFAULT_CONFIGURATION_FILENAME = 'adsapi_php.ini';
 
-  /**
-   * Populates this builder from the specified configuration object.
-   *
-   * @param Configuration $configuration the configuration
-   * @return AdsBuilder this builder populated from the configuration
-   */
-  public function from(Configuration $configuration);
+    /**
+     * Populates this builder from the specified configuration object.
+     *
+     * @param Configuration $configuration the configuration
+     * @return AdsBuilder this builder populated from the configuration
+     */
+    public function from(Configuration $configuration);
 
-  /**
-   * Creates a new instance of the data object being populated. This method
-   * should call defaultOptionals() and validate().
-   * @return mixed the data object
-   * @throws \InvalidArgumentException if there are any validation errors
-   */
-  public function build();
+    /**
+     * Creates a new instance of the data object being populated. This method
+     * should call defaultOptionals() and validate().
+     *
+     * @return mixed the data object
+     * @throws \InvalidArgumentException if there are any validation errors
+     */
+    public function build();
 
-  /**
-   * Sets all optional fields to their default if they are `null`.
-   */
-  public function defaultOptionals();
+    /**
+     * Sets all optional fields to their default if they are `null`.
+     */
+    public function defaultOptionals();
 
-  /**
-   * Checks that required fields have been included and all included
-   * fields are valid (e.g., URIs are valid).
-   * @throws \InvalidArgumentException if there are any validation errors
-   */
-  public function validate();
+    /**
+     * Checks that required fields have been included and all included
+     * fields are valid (e.g., URIs are valid).
+     *
+     * @throws \InvalidArgumentException if there are any validation errors
+     */
+    public function validate();
 }

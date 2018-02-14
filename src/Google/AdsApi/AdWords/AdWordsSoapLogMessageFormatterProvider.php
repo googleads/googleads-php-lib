@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\AdWords;
 
 use Google\AdsApi\Common\SoapLogMessageFormatter;
@@ -22,25 +23,26 @@ use Google\AdsApi\Common\SoapLogMessageFormatterProvider;
 /**
  * Provides a SOAP log message formatter for AdWords.
  */
-final class AdWordsSoapLogMessageFormatterProvider
-    implements SoapLogMessageFormatterProvider {
+final class AdWordsSoapLogMessageFormatterProvider implements SoapLogMessageFormatterProvider
+{
 
-  private static $HTTP_HEADERS_TO_SCRUB = ['Authorization'];
-  private static $SOAP_HEADERS_TO_SCRUB = ['developerToken'];
-  private static $SOAP_BODY_TAGS_TO_SCRUB = ['httpAuthorizationHeader'];
-  private static $ADDITIONAL_REQUEST_SUMMARY_HEADERS = ['clientCustomerId'];
-  private static $ADDITIONAL_RESPONSE_SUMMARY_HEADERS = ['operations'];
+    private static $HTTP_HEADERS_TO_SCRUB = ['Authorization'];
+    private static $SOAP_HEADERS_TO_SCRUB = ['developerToken'];
+    private static $SOAP_BODY_TAGS_TO_SCRUB = ['httpAuthorizationHeader'];
+    private static $ADDITIONAL_REQUEST_SUMMARY_HEADERS = ['clientCustomerId'];
+    private static $ADDITIONAL_RESPONSE_SUMMARY_HEADERS = ['operations'];
 
-  /**
-   * @see SoapLogMessageFormatterProvider::getSoapLogMessageFormatter
-   */
-  public function getSoapLogMessageFormatter() {
-    return new SoapLogMessageFormatter(
-        self::$HTTP_HEADERS_TO_SCRUB,
-        self::$SOAP_HEADERS_TO_SCRUB,
-        self::$SOAP_BODY_TAGS_TO_SCRUB,
-        self::$ADDITIONAL_REQUEST_SUMMARY_HEADERS,
-        self::$ADDITIONAL_RESPONSE_SUMMARY_HEADERS
-    );
-  }
+    /**
+     * @see SoapLogMessageFormatterProvider::getSoapLogMessageFormatter
+     */
+    public function getSoapLogMessageFormatter()
+    {
+        return new SoapLogMessageFormatter(
+            self::$HTTP_HEADERS_TO_SCRUB,
+            self::$SOAP_HEADERS_TO_SCRUB,
+            self::$SOAP_BODY_TAGS_TO_SCRUB,
+            self::$ADDITIONAL_REQUEST_SUMMARY_HEADERS,
+            self::$ADDITIONAL_RESPONSE_SUMMARY_HEADERS
+        );
+    }
 }

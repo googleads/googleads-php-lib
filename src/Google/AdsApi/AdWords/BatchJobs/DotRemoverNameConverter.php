@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\AdWords\BatchJobs;
 
 use Symfony\Component\Serializer\NameConverter\NameConverterInterface;
@@ -23,21 +24,24 @@ use Symfony\Component\Serializer\NameConverter\NameConverterInterface;
  * variable names. This is needed because variables with dots in the names are
  * not valid in PHP.
  */
-class DotRemoverNameConverter implements NameConverterInterface {
+class DotRemoverNameConverter implements NameConverterInterface
+{
 
-  /**
-   * @see NameConverterInterface::normalize()
-   */
-  public function normalize($propertyName) {
-    return $propertyName;
-  }
+    /**
+     * @see NameConverterInterface::normalize()
+     */
+    public function normalize($propertyName)
+    {
+        return $propertyName;
+    }
 
-  /**
-   * Remove dots in the property name during denormalization.
-   *
-   * @see NameConverterInterface::denormalize()
-   */
-  public function denormalize($propertyName) {
-    return str_replace('.', '', $propertyName);
-  }
+    /**
+     * Remove dots in the property name during denormalization.
+     *
+     * @see NameConverterInterface::denormalize()
+     */
+    public function denormalize($propertyName)
+    {
+        return str_replace('.', '', $propertyName);
+    }
 }

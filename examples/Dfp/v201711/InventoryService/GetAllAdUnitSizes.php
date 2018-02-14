@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\InventoryService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -32,46 +33,48 @@ use Google\AdsApi\Dfp\v201711\InventoryService;
  * that you've setup an `adsapi_php.ini` file in your home directory with your
  * API credentials and settings. See README.md for more info.
  */
-class GetAllAdUnitSizes {
+class GetAllAdUnitSizes
+{
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session) {
-    $inventoryService =
-        $dfpServices->get($session, InventoryService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session
+    ) {
+        $inventoryService = $dfpServices->get($session, InventoryService::class);
 
-    // Create a statement to select all ad unit sizes.
-    $statementBuilder = new StatementBuilder();
+        // Create a statement to select all ad unit sizes.
+        $statementBuilder = new StatementBuilder();
 
-    $adUnitSizes = $inventoryService->getAdUnitSizesByStatement(
-        $statementBuilder->toStatement());
+        $adUnitSizes = $inventoryService->getAdUnitSizesByStatement(
+            $statementBuilder->toStatement()
+        );
 
-    // Print out some information for each ad unit size.
-    foreach ($adUnitSizes as $i => $adUnitSize) {
-      printf(
-          "%d) Ad unit size with dimensions %s was found.\n",
-          $i,
-          $adUnitSize->getFullDisplayString()
-      );
+        // Print out some information for each ad unit size.
+        foreach ($adUnitSizes as $i => $adUnitSize) {
+            printf(
+                "%d) Ad unit size with dimensions %s was found.\n",
+                $i,
+                $adUnitSize->getFullDisplayString()
+            );
+        }
+
+        printf("Number of results found: %d\n", count($adUnitSizes));
     }
 
-    printf("Number of results found: %d\n", count($adUnitSizes));
-  }
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
-
-    self::runExample(new DfpServices(), $session);
-  }
+        self::runExample(new DfpServices(), $session);
+    }
 }
 
 GetAllAdUnitSizes::main();

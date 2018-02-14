@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\ExchangeRateService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -32,63 +33,64 @@ use Google\AdsApi\Dfp\v201711\ExchangeRateService;
  * that you've setup an `adsapi_php.ini` file in your home directory with your
  * API credentials and settings. See README.md for more info.
  */
-class GetAllExchangeRates {
+class GetAllExchangeRates
+{
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session) {
-    $exchangeRateService =
-        $dfpServices->get($session, ExchangeRateService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session
+    ) {
+        $exchangeRateService = $dfpServices->get($session, ExchangeRateService::class);
 
-    // Create a statement to select exchange rates.
-    $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
-    $statementBuilder = (new StatementBuilder())
-        ->orderBy('id ASC')
-        ->limit($pageSize);
+        // Create a statement to select exchange rates.
+        $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
+        $statementBuilder = (new StatementBuilder())->orderBy('id ASC')
+            ->limit($pageSize);
 
-    // Retrieve a small amount of exchange rates at a time, paging
-    // through until all exchange rates have been retrieved.
-    $totalResultSetSize = 0;
-    do {
-      $page = $exchangeRateService->getExchangeRatesByStatement(
-          $statementBuilder->toStatement());
+        // Retrieve a small amount of exchange rates at a time, paging
+        // through until all exchange rates have been retrieved.
+        $totalResultSetSize = 0;
+        do {
+            $page = $exchangeRateService->getExchangeRatesByStatement(
+                $statementBuilder->toStatement()
+            );
 
-      // Print out some information for each exchange rate.
-      if ($page->getResults() !== null) {
-        $totalResultSetSize = $page->getTotalResultSetSize();
-        $i = $page->getStartIndex();
-        foreach ($page->getResults() as $exchangeRate) {
-          printf(
-              "%d) Exchange rate with ID %d, currency code '%s', direction '%s', and exchange rate %d was found.\n",
-              $i++,
-              $exchangeRate->getId(),
-              $exchangeRate->getCurrencyCode(),
-              $exchangeRate->getDirection(),
-              $exchangeRate->getExchangeRate()
-          );
-        }
-      }
+            // Print out some information for each exchange rate.
+            if ($page->getResults() !== null) {
+                $totalResultSetSize = $page->getTotalResultSetSize();
+                $i = $page->getStartIndex();
+                foreach ($page->getResults() as $exchangeRate) {
+                    printf(
+                        "%d) Exchange rate with ID %d, currency code '%s', direction '%s', and exchange rate %d was found.\n",
+                        $i++,
+                        $exchangeRate->getId(),
+                        $exchangeRate->getCurrencyCode(),
+                        $exchangeRate->getDirection(),
+                        $exchangeRate->getExchangeRate()
+                    );
+                }
+            }
 
-      $statementBuilder->increaseOffsetBy($pageSize);
-    } while ($statementBuilder->getOffset() < $totalResultSetSize);
+            $statementBuilder->increaseOffsetBy($pageSize);
+        } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-    printf("Number of results found: %d\n", $totalResultSetSize);
-  }
+        printf("Number of results found: %d\n", $totalResultSetSize);
+    }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(new DfpServices(), $session);
-  }
+        self::runExample(new DfpServices(), $session);
+    }
 }
 
 GetAllExchangeRates::main();

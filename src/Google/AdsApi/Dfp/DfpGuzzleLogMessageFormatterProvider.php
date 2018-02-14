@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Dfp;
 
 use Google\AdsApi\Common\GuzzleLogMessageFormatter;
@@ -22,43 +23,45 @@ use Google\AdsApi\Common\GuzzleLogMessageFormatterProvider;
 /**
  * Provides a Guzzle log message formatter for DFP.
  */
-final class DfpGuzzleLogMessageFormatterProvider
-    implements GuzzleLogMessageFormatterProvider {
+final class DfpGuzzleLogMessageFormatterProvider implements GuzzleLogMessageFormatterProvider
+{
 
-  private static $HTTP_HEADERS_TO_SCRUB = ['Authorization'];
+    private static $HTTP_HEADERS_TO_SCRUB = ['Authorization'];
 
-  private $session;
-  private $shouldLogResponsePayload;
-  private $redactedResponsePayloadMessage;
+    private $session;
+    private $shouldLogResponsePayload;
+    private $redactedResponsePayloadMessage;
 
-  /**
-   * Creates a new DFP Guzzle log message formatter provider with the
-   * specified settings.
-   *
-   * @param DfpSession $session the DFP session that makes a Guzzle HTTP call
-   * @param bool $shouldLogResponsePayload whether the formatter should
-   *     show the response payload in the log
-   * @param string|null $redactedResponsePayloadMessage the substitution message
-   *     to use in case the response payload is redacted
-   */
-  public function __construct(
-      DfpSession $session,
-      $shouldLogResponsePayload,
-      $redactedResponsePayloadMessage = null) {
-    $this->session = $session;
-    $this->shouldLogResponsePayload = $shouldLogResponsePayload;
-    $this->redactedResponsePayloadMessage = $redactedResponsePayloadMessage;
-  }
+    /**
+     * Creates a new DFP Guzzle log message formatter provider with the
+     * specified settings.
+     *
+     * @param DfpSession $session the DFP session that makes a Guzzle HTTP call
+     * @param bool $shouldLogResponsePayload whether the formatter should
+     *     show the response payload in the log
+     * @param string|null $redactedResponsePayloadMessage the substitution message
+     *     to use in case the response payload is redacted
+     */
+    public function __construct(
+        DfpSession $session,
+        $shouldLogResponsePayload,
+        $redactedResponsePayloadMessage = null
+    ) {
+        $this->session = $session;
+        $this->shouldLogResponsePayload = $shouldLogResponsePayload;
+        $this->redactedResponsePayloadMessage = $redactedResponsePayloadMessage;
+    }
 
-  /**
-   * @see GuzzleLogMessageFormatterProvider::getGuzzleLogMessageFormatter
-   */
-  public function getGuzzleLogMessageFormatter() {
-    return new GuzzleLogMessageFormatter(
-        self::$HTTP_HEADERS_TO_SCRUB,
-        ['networkCode' => $this->session->getNetworkCode()],
-        $this->shouldLogResponsePayload,
-        $this->redactedResponsePayloadMessage
-    );
-  }
+    /**
+     * @see GuzzleLogMessageFormatterProvider::getGuzzleLogMessageFormatter
+     */
+    public function getGuzzleLogMessageFormatter()
+    {
+        return new GuzzleLogMessageFormatter(
+            self::$HTTP_HEADERS_TO_SCRUB,
+            ['networkCode' => $this->session->getNetworkCode()],
+            $this->shouldLogResponsePayload,
+            $this->redactedResponsePayloadMessage
+        );
+    }
 }

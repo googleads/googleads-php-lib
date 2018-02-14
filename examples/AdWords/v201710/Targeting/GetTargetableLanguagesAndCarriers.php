@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\AdWords\v201710\Targeting;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -27,50 +28,51 @@ use Google\AdsApi\Common\OAuth2TokenBuilder;
 /**
  * This example gets all language and carrier criteria available for targeting.
  */
-class GetTargetableLanguagesAndCarriers {
+class GetTargetableLanguagesAndCarriers
+{
 
-  const PAGE_LIMIT = 500;
+    const PAGE_LIMIT = 500;
 
-  public static function runExample(AdWordsServices $adWordsServices,
-      AdWordsSession $session) {
-    $constantDataService =
-        $adWordsServices->get($session, ConstantDataService::class);
+    public static function runExample(
+        AdWordsServices $adWordsServices,
+        AdWordsSession $session
+    ) {
+        $constantDataService = $adWordsServices->get($session, ConstantDataService::class);
 
-    // Retrieve language criteria.
-    $languages = $constantDataService->getLanguageCriterion();
-    foreach ($languages as $language) {
-      printf("Language with name '%s' and ID %d was found.\n",
-          $language->getName(), $language->getId());
+        // Retrieve language criteria.
+        $languages = $constantDataService->getLanguageCriterion();
+        foreach ($languages as $language) {
+            printf(
+                "Language with name '%s' and ID %d was found.\n",
+                $language->getName(),
+                $language->getId()
+            );
+        }
+
+        print "\n";
+
+        // Retrieve carrier criteria.
+        $carriers = $constantDataService->getCarrierCriterion();
+        foreach ($carriers as $carrier) {
+            printf(
+                "Carrier with name '%s', country code '%s', and ID %d was found.\n",
+                $carrier->getName(),
+                $carrier->getCountryCode(),
+                $carrier->getId()
+            );
+        }
     }
 
-    print "\n";
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()->build();
 
-    // Retrieve carrier criteria.
-    $carriers = $constantDataService->getCarrierCriterion();
-    foreach ($carriers as $carrier) {
-      printf(
-          "Carrier with name '%s', country code '%s', and ID %d was found.\n",
-          $carrier->getName(),
-          $carrier->getCountryCode(),
-          $carrier->getId()
-      );
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new AdWordsSessionBuilder())->fromFile()->withOAuth2Credential($oAuth2Credential)->build();
+        self::runExample(new AdWordsServices(), $session);
     }
-  }
-
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
-
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new AdWordsSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
-    self::runExample(new AdWordsServices(), $session);
-  }
 }
 
 GetTargetableLanguagesAndCarriers::main();

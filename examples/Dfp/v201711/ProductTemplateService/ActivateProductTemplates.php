@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\ProductTemplateService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -33,86 +34,96 @@ use Google\AdsApi\Dfp\v201711\ProductTemplateService;
  * requires that you've setup an `adsapi_php.ini` file in your home directory
  * with your API credentials and settings. See `README.md` for more info.
  */
-class ActivateProductTemplates {
+class ActivateProductTemplates
+{
 
-  const PRODUCT_TEMPLATE_ID = 'INSERT_PRODUCT_TEMPLATE_ID_HERE';
+    const PRODUCT_TEMPLATE_ID = 'INSERT_PRODUCT_TEMPLATE_ID_HERE';
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session, $productTemplateId) {
-    $productTemplateService =
-        $dfpServices->get($session, ProductTemplateService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session,
+        $productTemplateId
+    ) {
+        $productTemplateService = $dfpServices->get($session, ProductTemplateService::class);
 
-    // Create a statement to select the product templates to activate.
-    $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
-    $statementBuilder = (new StatementBuilder())
-        ->where('id = :id')
-        ->orderBy('id ASC')
-        ->limit($pageSize)
-        ->withBindVariableValue('id', $productTemplateId);
+        // Create a statement to select the product templates to activate.
+        $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
+        $statementBuilder = (new StatementBuilder())->where('id = :id')
+            ->orderBy('id ASC')
+            ->limit($pageSize)
+            ->withBindVariableValue('id', $productTemplateId);
 
-    // Retrieve a small amount of product templates at a time, paging
-    // through until all product templates have been retrieved.
-    $totalResultSetSize = 0;
-    do {
-      $page = $productTemplateService->getProductTemplatesByStatement(
-          $statementBuilder->toStatement());
+        // Retrieve a small amount of product templates at a time, paging
+        // through until all product templates have been retrieved.
+        $totalResultSetSize = 0;
+        do {
+            $page = $productTemplateService->getProductTemplatesByStatement(
+                $statementBuilder->toStatement()
+            );
 
-      // Print out some information for the product templates to be
-      // activated.
-      if ($page->getResults() !== null) {
-        $totalResultSetSize = $page->getTotalResultSetSize();
-        $i = $page->getStartIndex();
-        foreach ($page->getResults() as $productTemplate) {
-          printf(
-              "%d) Product template with ID %d " .
-                  "and name '%s' will be activated.\n",
-              $i++,
-              $productTemplate->getId(),
-              $productTemplate->getName()
-          );
+            // Print out some information for the product templates to be
+            // activated.
+            if ($page->getResults() !== null) {
+                $totalResultSetSize = $page->getTotalResultSetSize();
+                $i = $page->getStartIndex();
+                foreach ($page->getResults() as $productTemplate) {
+                    printf(
+                        "%d) Product template with ID %d and name '%s' will be activated.\n",
+                        $i++,
+                        $productTemplate->getId(),
+                        $productTemplate->getName()
+                    );
+                }
+            }
+
+            $statementBuilder->increaseOffsetBy($pageSize);
+        } while ($statementBuilder->getOffset() < $totalResultSetSize);
+
+        printf(
+            "Total number of product templates to be activated: %d\n",
+            $totalResultSetSize
+        );
+
+        if ($totalResultSetSize > 0) {
+            // Remove limit and offset from statement so we can reuse the statement.
+            $statementBuilder->removeLimitAndOffset();
+
+            // Create and perform action.
+            $action = new ActivateProductTemplatesAction();
+            $result = $productTemplateService->performProductTemplateAction(
+                $action,
+                $statementBuilder->toStatement()
+            );
+
+            if ($result !== null && $result->getNumChanges() > 0) {
+                printf(
+                    "Number of product templates activated: %d\n",
+                    $result->getNumChanges()
+                );
+            } else {
+                printf("No product templates were activated.\n");
+            }
         }
-      }
-
-      $statementBuilder->increaseOffsetBy($pageSize);
-    } while ($statementBuilder->getOffset() < $totalResultSetSize);
-
-    printf("Total number of product templates to be activated: %d\n",
-        $totalResultSetSize);
-
-    if ($totalResultSetSize > 0) {
-      // Remove limit and offset from statement so we can reuse the statement.
-      $statementBuilder->removeLimitAndOffset();
-
-      // Create and perform action.
-      $action = new ActivateProductTemplatesAction();
-      $result = $productTemplateService->performProductTemplateAction($action,
-          $statementBuilder->toStatement());
-
-      if ($result !== null && $result->getNumChanges() > 0) {
-        printf("Number of product templates activated: %d\n",
-            $result->getNumChanges());
-      } else {
-        printf("No product templates were activated.\n");
-      }
     }
-  }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(
-        new DfpServices(), $session, intval(self::PRODUCT_TEMPLATE_ID));
-  }
+        self::runExample(
+            new DfpServices(),
+            $session,
+            intval(self::PRODUCT_TEMPLATE_ID)
+        );
+    }
 }
 
 ActivateProductTemplates::main();

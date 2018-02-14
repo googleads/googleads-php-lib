@@ -14,20 +14,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Dfp\Testing;
 
 /**
  * Provides test data for DFP report downloader tests.
  */
-class ReportDownloaderTestProvider {
+class ReportDownloaderTestProvider
+{
 
-  /**
-   * Gets the contents of a fake DFP report for testing.
-   *
-   * @return string
-   */
-  public static function getFakeReport() {
-    return file_get_contents(dirname(__FILE__) . DIRECTORY_SEPARATOR
-        . 'inventory-report-A1bc23.csv.gz');
-  }
+    /**
+     * Gets the contents of a fake DFP report for testing.
+     *
+     * @return string
+     */
+    public static function getFakeReport()
+    {
+        return file_get_contents(
+            dirname(__FILE__)
+            . DIRECTORY_SEPARATOR
+            . 'inventory-report-A1bc23.csv.gz'
+        );
+    }
 }

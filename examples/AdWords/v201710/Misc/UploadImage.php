@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\AdWords\v201710\Misc;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -30,49 +31,46 @@ use Google\AdsApi\Common\Util\MapEntries;
 /**
  * This example uploads an image.
  */
-class UploadImage {
+class UploadImage
+{
 
-  public static function runExample(AdWordsServices $adWordsServices,
-      AdWordsSession $session) {
-    $mediaService =
-        $adWordsServices->get($session, MediaService::class);
+    public static function runExample(
+        AdWordsServices $adWordsServices,
+        AdWordsSession $session
+    ) {
+        $mediaService = $adWordsServices->get($session, MediaService::class);
 
-    // Create an image and add it to the images list.
-    $image = new Image();
-    $image->setData(file_get_contents('http://goo.gl/HJM3L'));
-    $image->setType(MediaMediaType::IMAGE);
-    $images = [$image];
+        // Create an image and add it to the images list.
+        $image = new Image();
+        $image->setData(file_get_contents('http://goo.gl/HJM3L'));
+        $image->setType(MediaMediaType::IMAGE);
+        $images = [$image];
 
-    // Upload the image to the server.
-    $result = $mediaService->upload($images);
+        // Upload the image to the server.
+        $result = $mediaService->upload($images);
 
-    // Print out some information about the uploaded image.
-    $image = $result[0];
-    $dimensions = MapEntries::toAssociativeArray($image->getDimensions());
-    printf(
-        "Image with dimensions '%dx%d', MIME type '%s', and id %d was "
-            . "uploaded.\n",
-        $dimensions['FULL']->getWidth(),
-        $dimensions['FULL']->getHeight(),
-        $image->getMimeType(),
-        $image->getMediaId()
-    );
-  }
+        // Print out some information about the uploaded image.
+        $image = $result[0];
+        $dimensions = MapEntries::toAssociativeArray($image->getDimensions());
+        printf(
+            "Image with dimensions '%dx%d', MIME type '%s', and id %d was uploaded.\n",
+            $dimensions['FULL']->getWidth(),
+            $dimensions['FULL']->getHeight(),
+            $image->getMimeType(),
+            $image->getMediaId()
+        );
+    }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new AdWordsSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
-    self::runExample(new AdWordsServices(), $session);
-  }
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new AdWordsSessionBuilder())->fromFile()->withOAuth2Credential($oAuth2Credential)->build();
+        self::runExample(new AdWordsServices(), $session);
+    }
 }
 
 UploadImage::main();

@@ -14,40 +14,48 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\AdWords\Testing\Reporting\v201710;
 
 /**
  * Provides test data for AdWords reporting tests.
  */
-class ReportingTestProvider {
+class ReportingTestProvider
+{
 
-  /**
-   * Gets the contents of a fake AdWords criteria report for testing.
-   *
-   * @return string
-   */
-  public static function getFakeCriteriaReport() {
-    return file_get_contents(
-        dirname(__FILE__) . DIRECTORY_SEPARATOR . 'criteria-report.csv');
-  }
+    /**
+     * Gets the contents of a fake AdWords criteria report for testing.
+     *
+     * @return string
+     */
+    public static function getFakeCriteriaReport()
+    {
+        return file_get_contents(
+            dirname(__FILE__) . DIRECTORY_SEPARATOR . 'criteria-report.csv'
+        );
+    }
 
-  /**
-   * Gets the contents of a fake AdWords report error response for testing.
-   *
-   * @return string
-   */
-  public static function getFakeReportErrorResponse() {
-    return file_get_contents(
-        dirname(__FILE__) . DIRECTORY_SEPARATOR . 'api-report-error.xml');
-  }
+    /**
+     * Gets the contents of a fake AdWords report error response for testing.
+     *
+     * @return string
+     */
+    public static function getFakeReportErrorResponse()
+    {
+        return file_get_contents(
+            dirname(__FILE__) . DIRECTORY_SEPARATOR . 'api-report-error.xml'
+        );
+    }
 
-  /**
-   * Gets the contents of a fake AdWords report definition for testing.
-   *
-   * @return string
-   */
-  public static function getFakeReportDefinition() {
-    return file_get_contents(
-        dirname(__FILE__) . DIRECTORY_SEPARATOR . 'report-definition.xml');
-  }
+    /**
+     * Gets the contents of a fake AdWords report definition for testing.
+     *
+     * @return string
+     */
+    public static function getFakeReportDefinition()
+    {
+        return file_get_contents(
+            dirname(__FILE__) . DIRECTORY_SEPARATOR . 'report-definition.xml'
+        );
+    }
 }

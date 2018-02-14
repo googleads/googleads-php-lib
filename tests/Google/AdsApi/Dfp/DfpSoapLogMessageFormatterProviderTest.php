@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Dfp;
 
 use Google\AdsApi\Common\Testing\FakeSoapPayloadsAndLogsProvider;
@@ -25,45 +26,46 @@ use PHPUnit\Framework\TestCase;
  * @see DfpSoapLogMessageFormatterProvider
  * @small
  */
-class DfpSoapLogMessageFormatterProviderTest
-    extends TestCase {
+class DfpSoapLogMessageFormatterProviderTest extends TestCase
+{
 
-  private $dfpSoapLogMessageFormatter;
-  private $requestHttpHeadersMock;
-  private $requestSoapXmlMock;
-  private $responseSoapXmlMock;
+    private $dfpSoapLogMessageFormatter;
+    private $requestHttpHeadersMock;
+    private $requestSoapXmlMock;
+    private $responseSoapXmlMock;
 
-  /**
-   * @see PHPUnit\Framework\TestCase::setUp
-   */
-  protected function setUp() {
-    $this->dfpSoapLogMessageFormatter =
-        (new DfpSoapLogMessageFormatterProvider())
-            ->getSoapLogMessageFormatter();;
-    $this->requestHttpHeadersMock = FakeSoapPayloadsAndLogsProvider
-        ::getFakeGetCreativesRequestHttpHeaders();
-    $this->requestSoapXmlMock = FakeSoapPayloadsAndLogsProvider
-        ::getFakeGetCreativesRequest();
-    $this->responseSoapXmlMock = FakeSoapPayloadsAndLogsProvider
-        ::getFakeGetCreativesResponse();
-  }
+    /**
+     * @see PHPUnit\Framework\TestCase::setUp
+     */
+    protected function setUp()
+    {
+        $this->dfpSoapLogMessageFormatter =
+            (new DfpSoapLogMessageFormatterProvider())->getSoapLogMessageFormatter();
+        $this->requestHttpHeadersMock =
+            FakeSoapPayloadsAndLogsProvider::getFakeGetCreativesRequestHttpHeaders();
+        $this->requestSoapXmlMock =
+            FakeSoapPayloadsAndLogsProvider::getFakeGetCreativesRequest();
+        $this->responseSoapXmlMock =
+            FakeSoapPayloadsAndLogsProvider::getFakeGetCreativesResponse();
+    }
 
-  /**
-   * @covers Google\AdsApi\Dfp\DfpSoapLogMessageFormatterProvider::getSoapLogMessageFormatter
-   */
-  public function testGetSoapLogMessageFormatterFormatsSummaryWithNetCode() {
-    $this->assertSame(
-        'networkCode=888888 service=CreativeService '
+    /**
+     * @covers Google\AdsApi\Dfp\DfpSoapLogMessageFormatterProvider::getSoapLogMessageFormatter
+     */
+    public function testGetSoapLogMessageFormatterFormatsSummaryWithNetCode()
+    {
+        $this->assertSame(
+            'networkCode=888888 service=CreativeService '
             . 'method=getCreativesByStatement responseTime=226 '
             . 'requestId=123abc456xyz server=ads.google.com isFault=0 '
             . 'faultMessage=',
-        $this->dfpSoapLogMessageFormatter->formatSummary(
-            'CreativeService',
-            'getCreativesByStatement',
-            $this->requestHttpHeadersMock,
-            $this->requestSoapXmlMock,
-            $this->responseSoapXmlMock
-        )
-    );
-  }
+            $this->dfpSoapLogMessageFormatter->formatSummary(
+                'CreativeService',
+                'getCreativesByStatement',
+                $this->requestHttpHeadersMock,
+                $this->requestSoapXmlMock,
+                $this->responseSoapXmlMock
+            )
+        );
+    }
 }

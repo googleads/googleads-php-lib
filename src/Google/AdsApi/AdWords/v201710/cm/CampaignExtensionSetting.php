@@ -50,7 +50,7 @@ class CampaignExtensionSetting
      */
     public function setCampaignId($campaignId)
     {
-      $this->campaignId = (PHP_INT_SIZE === 4)
+      $this->campaignId = (!is_null(campaignId) && PHP_INT_SIZE === 4)
           ? floatval($campaignId) : $campaignId;
       return $this;
     }

@@ -83,7 +83,7 @@ class SimilarUserList extends \Google\AdsApi\AdWords\v201710\rm\UserList
      */
     public function setSeedUserListId($seedUserListId)
     {
-      $this->seedUserListId = (PHP_INT_SIZE === 4)
+      $this->seedUserListId = (!is_null(seedUserListId) && PHP_INT_SIZE === 4)
           ? floatval($seedUserListId) : $seedUserListId;
       return $this;
     }
@@ -156,7 +156,7 @@ class SimilarUserList extends \Google\AdsApi\AdWords\v201710\rm\UserList
      */
     public function setSeedListSize($seedListSize)
     {
-      $this->seedListSize = (PHP_INT_SIZE === 4)
+      $this->seedListSize = (!is_null(seedListSize) && PHP_INT_SIZE === 4)
           ? floatval($seedListSize) : $seedListSize;
       return $this;
     }

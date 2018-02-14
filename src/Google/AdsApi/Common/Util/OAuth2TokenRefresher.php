@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Common\Util;
 
 use Google\Auth\FetchAuthTokenInterface;
@@ -22,72 +23,80 @@ use Google\Auth\FetchAuthTokenInterface;
  * Provides functionality with retrieving OAuth2 access tokens using an OAuth2
  * token fetcher, handling refreshing the token if it's about to expire.
  */
-final class OAuth2TokenRefresher {
+final class OAuth2TokenRefresher
+{
 
-  /**
-   * @var int the threshold, in seconds, that an existing access token's time to
-   *     expire needs to be under for a new token to be requested
-   */
-  const DEFAULT_REFRESH_WINDOW_SECONDS = 60;
+    /**
+     * @var int the threshold, in seconds, that an existing access token's time to
+     *     expire needs to be under for a new token to be requested
+     */
+    const DEFAULT_REFRESH_WINDOW_SECONDS = 60;
 
-  private $refreshWindowSeconds;
+    private $refreshWindowSeconds;
 
-  /**
-   * Creates an OAuth2 token refresher with an optional, custom refresh window.
-   *
-   * @param int|null $refreshWindowSeconds optional, the access token refresh
-   *     window, in seconds
-   */
-  public function __construct($refreshWindowSeconds =  null) {
-    $this->refreshWindowSeconds = $refreshWindowSeconds === null
-        ? self::DEFAULT_REFRESH_WINDOW_SECONDS
-        : $refreshWindowSeconds;
-  }
-
-  /**
-   * Gets the existing access token, or fetches a new one if an existing one is
-   * about to expire within the refresh window, or fetches a new one if there is
-   * no existing access token.
-   *
-   * @param FetchAuthTokenInterface $fetchAuthTokenInterface the underlying
-   *     OAuth2 access token fetcher
-   * @param callable|null $httpHandler the HTTP handler for making requests
-   *     to refresh OAuth2 credentials
-   * @return string
-   */
-  public function getOrFetchAccessToken(
-      FetchAuthTokenInterface $fetchAuthTokenInterface,
-      callable $httpHandler = null
-  ) {
-    if ($this->shouldFetchAccessToken($fetchAuthTokenInterface)) {
-      return $fetchAuthTokenInterface->fetchAuthToken($httpHandler)
-          ['access_token'];
+    /**
+     * Creates an OAuth2 token refresher with an optional, custom refresh window.
+     *
+     * @param int|null $refreshWindowSeconds optional, the access token refresh
+     *     window, in seconds
+     */
+    public function __construct($refreshWindowSeconds = null)
+    {
+        $this->refreshWindowSeconds =
+            $refreshWindowSeconds === null ? self::DEFAULT_REFRESH_WINDOW_SECONDS
+                : $refreshWindowSeconds;
     }
 
-    return $fetchAuthTokenInterface->getLastReceivedToken()['access_token'];
-  }
+    /**
+     * Gets the existing access token, or fetches a new one if an existing one is
+     * about to expire within the refresh window, or fetches a new one if there is
+     * no existing access token.
+     *
+     * @param FetchAuthTokenInterface $fetchAuthTokenInterface the underlying
+     *     OAuth2 access token fetcher
+     * @param callable|null $httpHandler the HTTP handler for making requests
+     *     to refresh OAuth2 credentials
+     * @return string
+     */
+    public function getOrFetchAccessToken(
+        FetchAuthTokenInterface $fetchAuthTokenInterface,
+        callable $httpHandler = null
+    ) {
+        if ($this->shouldFetchAccessToken($fetchAuthTokenInterface)) {
+            return $fetchAuthTokenInterface->fetchAuthToken($httpHandler)
+            ['access_token'];
+        }
 
-  private function shouldFetchAccessToken(
-      FetchAuthTokenInterface $fetchAuthTokenInterface) {
-    $token = $fetchAuthTokenInterface->getLastReceivedToken();
-    return $token === null
-        || ($token['expires_at'] !== null
-            && $token['expires_at'] - time() <= $this->refreshWindowSeconds);
-  }
+        return $fetchAuthTokenInterface->getLastReceivedToken()['access_token'];
+    }
 
-  /**
-   * Gets the access token refresh window in seconds.
-   * @return int
-   */
-  public function getAccessTokenRefreshWindow() {
-    return $this->refreshWindowSeconds;
-  }
+    private function shouldFetchAccessToken(
+        FetchAuthTokenInterface $fetchAuthTokenInterface
+    ) {
+        $token = $fetchAuthTokenInterface->getLastReceivedToken();
 
-  /**
-   * Sets the access token refresh window in seconds.
-   * @param int $refreshWindowSeconds
-   */
-  public function setAccessTokenRefreshWindow($refreshWindowSeconds) {
-    $this->refreshWindowSeconds = $refreshWindowSeconds;
-  }
+        return $token === null
+            || ($token['expires_at'] !== null
+                && $token['expires_at'] - time() <= $this->refreshWindowSeconds);
+    }
+
+    /**
+     * Gets the access token refresh window in seconds.
+     *
+     * @return int
+     */
+    public function getAccessTokenRefreshWindow()
+    {
+        return $this->refreshWindowSeconds;
+    }
+
+    /**
+     * Sets the access token refresh window in seconds.
+     *
+     * @param int $refreshWindowSeconds
+     */
+    public function setAccessTokenRefreshWindow($refreshWindowSeconds)
+    {
+        $this->refreshWindowSeconds = $refreshWindowSeconds;
+    }
 }

@@ -46,7 +46,7 @@ class ProductTemplateBaseRate extends \Google\AdsApi\Dfp\v201708\BaseRate
      */
     public function setProductTemplateId($productTemplateId)
     {
-      $this->productTemplateId = (PHP_INT_SIZE === 4)
+      $this->productTemplateId = (!is_null(productTemplateId) && PHP_INT_SIZE === 4)
           ? floatval($productTemplateId) : $productTemplateId;
       return $this;
     }

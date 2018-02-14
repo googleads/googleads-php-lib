@@ -52,7 +52,7 @@ class KeywordEstimate extends \Google\AdsApi\AdWords\v201705\o\Estimate
      */
     public function setCriterionId($criterionId)
     {
-      $this->criterionId = (PHP_INT_SIZE === 4)
+      $this->criterionId = (!is_null(criterionId) && PHP_INT_SIZE === 4)
           ? floatval($criterionId) : $criterionId;
       return $this;
     }

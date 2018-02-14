@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\PublisherQueryLanguageService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -37,75 +38,77 @@ use Google\AdsApi\Dfp\v201711\PublisherQueryLanguageService;
  * @see
  *     https://developers.google.com/doubleclick-publishers/docs/reference/v201711/PublisherQueryLanguageService#Line_Item
  */
-class GetLineItemsNamedLike {
+class GetLineItemsNamedLike
+{
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session) {
-    $pqlService =
-        $dfpServices->get($session, PublisherQueryLanguageService::class);
+    public static function runExample(DfpServices $dfpServices, DfpSession $session)
+    {
+        $pqlService = $dfpServices->get($session, PublisherQueryLanguageService::class);
 
-    // Create statement to select line items whose names begin with "line item".
-    $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
-    $statementBuilder = (new StatementBuilder())
-        ->select('Id, Name, Status')
-        ->from('Line_Item')
-        ->where('Name LIKE \'line item%\'')
-        ->orderBy('Id ASC')
-        ->limit($pageSize);
+        // Create statement to select line items whose names begin with "line item".
+        $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
+        $statementBuilder = (new StatementBuilder())->select('Id, Name, Status')
+            ->from('Line_Item')
+            ->where(
+                'Name LIKE \'line item%\''
+            )
+            ->orderBy('Id ASC')
+            ->limit($pageSize);
 
-    // Default for result sets.
-    $combinedResultSet = null;
-    $resultSet = null;
-    $i = 0;
+        // Default for result sets.
+        $combinedResultSet = null;
+        $resultSet = null;
+        $i = 0;
 
-    do {
-      // Get line items like 'line item%'.
-      $resultSet = $pqlService->select($statementBuilder->toStatement());
+        do {
+            // Get line items like 'line item%'.
+            $resultSet = $pqlService->select($statementBuilder->toStatement());
 
-      // Combine result sets with previous ones.
-      $combinedResultSet = $combinedResultSet === null
-          ? $resultSet
-          : Pql::combineResultSets($combinedResultSet, $resultSet);
+            // Combine result sets with previous ones.
+            $combinedResultSet = $combinedResultSet === null
+                ? $resultSet
+                : Pql::combineResultSets(
+                    $combinedResultSet,
+                    $resultSet
+                );
 
-      printf(
-          "%d) %d line items beginning at offset %d were found.\n",
-          $i++,
-          $resultSet->getRows() !== null ? count($resultSet->getRows()) : 0,
-          $statementBuilder->getOffset()
-      );
+            printf(
+                "%d) %d line items beginning at offset %d were found.\n",
+                $i++,
+                $resultSet->getRows() !== null ? count($resultSet->getRows()) : 0,
+                $statementBuilder->getOffset()
+            );
 
-      $statementBuilder->increaseOffsetBy($pageSize);
-    } while ($resultSet->getRows() !== null
+            $statementBuilder->increaseOffsetBy($pageSize);
+        } while ($resultSet->getRows() !== null
         && count($resultSet->getRows()) > 0);
 
-    // Write to system temp directory by default.
-    $filePath = sprintf(
-        '%s.csv',
-        tempnam(sys_get_temp_dir(), 'line-items-named-like-')
-    );
+        // Write to system temp directory by default.
+        $filePath = sprintf(
+            '%s.csv',
+            tempnam(sys_get_temp_dir(), 'line-items-named-like-')
+        );
 
-    $fp = fopen($filePath, 'w');
-    // Write the result set to a CSV.
-    fputcsv($fp, Pql::getColumnLabels($combinedResultSet));
-    foreach ($combinedResultSet->getRows() as $row) {
-      fputcsv($fp, Pql::getRowStringValues($row));
+        $fp = fopen($filePath, 'w');
+        // Write the result set to a CSV.
+        fputcsv($fp, Pql::getColumnLabels($combinedResultSet));
+        foreach ($combinedResultSet->getRows() as $row) {
+            fputcsv($fp, Pql::getRowStringValues($row));
+        }
+        fclose($fp);
+
+        printf("Line items saved to %s\n", $filePath);
     }
-    fclose($fp);
 
-    printf("Line items saved to %s\n", $filePath);
-  }
-
-  public static function main() {
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
-    self::runExample(new DfpServices(), $session);
-  }
+    public static function main()
+    {
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
+        self::runExample(new DfpServices(), $session);
+    }
 }
 
 GetLineItemsNamedLike::main();
-

@@ -198,16 +198,15 @@ DFP examples location     | [Examples](https://github.com/googleads/googleads-ph
 
 ## PHPDoc
 
-The old library provided PHPDoc pages under
+The old library does not provide PHPDoc pages anymore. The new library provides
+PHPDoc pages under
 [gh-pages](https://github.com/googleads/googleads-php-lib/tree/gh-pages) on
-GitHub. The new library does not provide these yet. See
-[issue #194](https://github.com/googleads/googleads-php-lib/issues/194) to track
-progress on this.
+GitHub.
 
-|              | Old library                                                                                          | New library
--------------- | ---------------------------------------------------------------------------------------------------- | -----------
-AdWords PHPDoc | [PHPDoc](http://googleads.github.io/googleads-php-lib/\(Deprecated%20-%20old%20library\)%20AdWords/) | TBD
-DFP PHPDoc     | [PHPDoc](http://googleads.github.io/googleads-php-lib/\(Deprecated%20-%20old%20library\)%20Dfp/)     | TBD
+|              | Old library    | New library
+-------------- | -------------- | -----------
+AdWords PHPDoc | Already sunset | [PHPDoc](http://googleads.github.io/googleads-php-lib/AdWords/)
+DFP PHPDoc     | Already sunset | [PHPDoc](http://googleads.github.io/googleads-php-lib/Dfp/)
 
 ## Questions?
 

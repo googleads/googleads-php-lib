@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\AdWords\v201708\CampaignManagement;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -24,9 +25,9 @@ use Google\AdsApi\AdWords\AdWordsSessionBuilder;
 use Google\AdsApi\AdWords\v201708\cm\AdGroupAdService;
 use Google\AdsApi\AdWords\v201708\cm\OrderBy;
 use Google\AdsApi\AdWords\v201708\cm\Paging;
+use Google\AdsApi\AdWords\v201708\cm\PolicyApprovalStatus;
 use Google\AdsApi\AdWords\v201708\cm\Predicate;
 use Google\AdsApi\AdWords\v201708\cm\PredicateOperator;
-use Google\AdsApi\AdWords\v201708\cm\PolicyApprovalStatus;
 use Google\AdsApi\AdWords\v201708\cm\Selector;
 use Google\AdsApi\AdWords\v201708\cm\SortOrder;
 use Google\AdsApi\Common\OAuth2TokenBuilder;
@@ -35,79 +36,85 @@ use Google\AdsApi\Common\OAuth2TokenBuilder;
  * This example gets all disapproved ads in an ad group. To get ad groups, run
  * BasicOperation/GetAdGroups.php.
  */
-class GetAllDisapprovedAds {
+class GetAllDisapprovedAds
+{
 
-  const AD_GROUP_ID = 'INSERT_AD_GROUP_ID_HERE';
-  const PAGE_LIMIT = 500;
+    const AD_GROUP_ID = 'INSERT_AD_GROUP_ID_HERE';
+    const PAGE_LIMIT = 500;
 
-  public static function runExample(AdWordsServices $adWordsServices,
-      AdWordsSession $session, $adGroupId) {
-    $adGroupAdService =
-        $adWordsServices->get($session, AdGroupAdService::class);
+    public static function runExample(
+        AdWordsServices $adWordsServices,
+        AdWordsSession $session,
+        $adGroupId
+    ) {
+        $adGroupAdService = $adWordsServices->get($session, AdGroupAdService::class);
 
-    // Create a selector to select all ads for the specified ad group.
-    $selector = new Selector();
-    $selector->setFields(['Id', 'PolicySummary']);
-    $selector->setOrdering([new OrderBy('Id', SortOrder::ASCENDING)]);
-    // Create the predicate to get only disapproved ads.
-    $selector->setPredicates([
-        new Predicate('AdGroupId', PredicateOperator::IN, [$adGroupId]),
-        new Predicate('CombinedApprovalStatus', PredicateOperator::EQUALS,
-            [PolicyApprovalStatus::DISAPPROVED])
-    ]);
-    $selector->setPaging(new Paging(0, self::PAGE_LIMIT));
+        // Create a selector to select all ads for the specified ad group.
+        $selector = new Selector();
+        $selector->setFields(['Id', 'PolicySummary']);
+        $selector->setOrdering([new OrderBy('Id', SortOrder::ASCENDING)]);
+        // Create the predicate to get only disapproved ads.
+        $selector->setPredicates(
+            [
+                new Predicate('AdGroupId', PredicateOperator::IN, [$adGroupId]),
+                new Predicate(
+                    'CombinedApprovalStatus',
+                    PredicateOperator::EQUALS,
+                    [PolicyApprovalStatus::DISAPPROVED]
+                )
+            ]
+        );
+        $selector->setPaging(new Paging(0, self::PAGE_LIMIT));
 
-    $totalNumEntries = 0;
-    $disapprovedAdsCount = 0;
-    do {
-      // Retrieve ad group ads one page at a time, continuing to request pages
-      // until all ad group ads have been retrieved.
-      $page = $adGroupAdService->get($selector);
+        $totalNumEntries = 0;
+        $disapprovedAdsCount = 0;
+        do {
+            // Retrieve ad group ads one page at a time, continuing to request pages
+            // until all ad group ads have been retrieved.
+            $page = $adGroupAdService->get($selector);
 
-      // Print out some information for each ad group ad.
-      if ($page->getEntries() !== null) {
-        $totalNumEntries = $page->getTotalNumEntries();
-        foreach ($page->getEntries() as $adGroupAd) {
-          $disapprovedAdsCount++;
-          $policySummary = $adGroupAd->getPolicySummary();
-          printf(
-              "Ad with ID %d and type '%s' was disapproved with the following"
-                  . " policy topic entries:\n",
-              $adGroupAd->getAd()->getId(),
-              $adGroupAd->getAd()->getType()
-          );
-          foreach ($policySummary->getPolicyTopicEntries()
-              as $policyTopicEntry) {
-            printf(
-                "  topic id: %s, topic name: '%s'\n",
-                $policyTopicEntry->getPolicyTopicId(),
-                $policyTopicEntry->getPolicyTopicName()
+            // Print out some information for each ad group ad.
+            if ($page->getEntries() !== null) {
+                $totalNumEntries = $page->getTotalNumEntries();
+                foreach ($page->getEntries() as $adGroupAd) {
+                    $disapprovedAdsCount++;
+                    $policySummary = $adGroupAd->getPolicySummary();
+                    printf(
+                        "Ad with ID %d and type '%s' was disapproved with the following policy topic entries:\n",
+                        $adGroupAd->getAd()->getId(),
+                        $adGroupAd->getAd()->getType()
+                    );
+                    foreach ($policySummary->getPolicyTopicEntries() as $policyTopicEntry) {
+                        printf(
+                            "  topic id: %s, topic name: '%s'\n",
+                            $policyTopicEntry->getPolicyTopicId(),
+                            $policyTopicEntry->getPolicyTopicName()
+                        );
+                    }
+                }
+            }
+
+            $selector->getPaging()->setStartIndex(
+                $selector->getPaging()->getStartIndex() + self::PAGE_LIMIT
             );
-          }
-        }
-      }
+        } while ($selector->getPaging()->getStartIndex() < $totalNumEntries);
+        printf("%d disapproved ads were found.\n", $disapprovedAdsCount);
+    }
 
-      $selector->getPaging()->setStartIndex(
-          $selector->getPaging()->getStartIndex() + self::PAGE_LIMIT);
-    } while ($selector->getPaging()->getStartIndex() < $totalNumEntries);
-    printf("%d disapproved ads were found.\n", $disapprovedAdsCount);
-  }
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()->build();
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
-
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new AdWordsSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
-    self::runExample(
-        new AdWordsServices(), $session, intval(self::AD_GROUP_ID));
-  }
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new AdWordsSessionBuilder())->fromFile()->withOAuth2Credential($oAuth2Credential)->build();
+        self::runExample(
+            new AdWordsServices(),
+            $session,
+            intval(self::AD_GROUP_ID)
+        );
+    }
 }
 
 GetAllDisapprovedAds::main();

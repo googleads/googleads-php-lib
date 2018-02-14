@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\AdWords;
 
 use Google\Auth\FetchAuthTokenInterface;
@@ -25,38 +26,41 @@ use PHPUnit\Framework\TestCase;
  * @see AdWordsHeaderHandler
  * @small
  */
-class AdWordsHeaderHandlerTest extends TestCase {
+class AdWordsHeaderHandlerTest extends TestCase
+{
 
-  private $adWordsHeaderHandler;
-  private $adWordsSessionBuilder;
+    private $adWordsHeaderHandler;
+    private $adWordsSessionBuilder;
 
-  /**
-   * @see PHPUnit\Framework\TestCase::setUp
-   */
-  protected function setUp() {
-    $this->adWordsHeaderHandler = new AdWordsHeaderHandler();
+    /**
+     * @see PHPUnit\Framework\TestCase::setUp
+     */
+    protected function setUp()
+    {
+        $this->adWordsHeaderHandler = new AdWordsHeaderHandler();
 
-    $fetchAuthTokenInterfaceMock = $this
-        ->getMockBuilder(FetchAuthTokenInterface::class)
-        ->disableOriginalConstructor()
-        ->getMock();
-    $fetchAuthTokenInterfaceMock->expects($this->once())
-        ->method('fetchAuthToken')
-        ->will($this->returnValue(['access_token' => 'abc123']));
-    $this->adWordsSessionBuilder = (new AdWordsSessionBuilder())
-        ->withDeveloperToken('ABcdeFGH93KL-NOPQ_STUv')
-        ->withUserAgent('report downloader')
-        ->withOAuth2Credential($fetchAuthTokenInterfaceMock);
-  }
+        $fetchAuthTokenInterfaceMock = $this
+            ->getMockBuilder(FetchAuthTokenInterface::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $fetchAuthTokenInterfaceMock->expects($this->once())
+            ->method('fetchAuthToken')
+            ->will($this->returnValue(['access_token' => 'abc123']));
+        $this->adWordsSessionBuilder = (new AdWordsSessionBuilder())
+            ->withDeveloperToken('ABcdeFGH93KL-NOPQ_STUv')
+            ->withUserAgent('report downloader')
+            ->withOAuth2Credential($fetchAuthTokenInterfaceMock);
+    }
 
-  /**
-   * @covers Google\AdsApi\AdWords\AdWordsHeaderHandler::generateHttpHeaders
-   */
-  public function testGenerateHttpHeaders() {
-    $expectedHttpHeaders = ['Authorization' => 'Bearer abc123'];
-    $adWordsSession = $this->adWordsSessionBuilder->build();
-    $httpHeaders =
-        $this->adWordsHeaderHandler->generateHttpHeaders($adWordsSession);
-    $this->assertSame($expectedHttpHeaders, $httpHeaders);
-  }
+    /**
+     * @covers Google\AdsApi\AdWords\AdWordsHeaderHandler::generateHttpHeaders
+     */
+    public function testGenerateHttpHeaders()
+    {
+        $expectedHttpHeaders = ['Authorization' => 'Bearer abc123'];
+        $adWordsSession = $this->adWordsSessionBuilder->build();
+        $httpHeaders =
+            $this->adWordsHeaderHandler->generateHttpHeaders($adWordsSession);
+        $this->assertSame($expectedHttpHeaders, $httpHeaders);
+    }
 }

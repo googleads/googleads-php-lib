@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\CreativeService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -34,62 +35,66 @@ use Google\AdsApi\Dfp\v201711\Size;
  * requires that you've setup an `adsapi_php.ini` file in your home directory
  * with your API credentials and settings. See `README.md` for more info.
  */
-class CreateCreatives {
+class CreateCreatives
+{
 
-  const ADVERTISER_ID = 'INSERT_ADVERTISER_ID_HERE';
+    const ADVERTISER_ID = 'INSERT_ADVERTISER_ID_HERE';
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session, $advertiserId) {
-    $creativeService = $dfpServices->get($session, CreativeService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session,
+        $advertiserId
+    ) {
+        $creativeService = $dfpServices->get($session, CreativeService::class);
 
-    $imageCreative = new ImageCreative();
-    $imageCreative->setName('Image creative #'. uniqid());
-    $imageCreative->setAdvertiserId($advertiserId);
-    $imageCreative->setDestinationUrl('http://google.com');
+        $imageCreative = new ImageCreative();
+        $imageCreative->setName('Image creative #' . uniqid());
+        $imageCreative->setAdvertiserId($advertiserId);
+        $imageCreative->setDestinationUrl('http://google.com');
 
-    // Set the size of the image creative.
-    $size = new Size();
-    $size->setWidth(600);
-    $size->setHeight(315);
-    $size->setIsAspectRatio(false);
-    $imageCreative->setSize($size);
+        // Set the size of the image creative.
+        $size = new Size();
+        $size->setWidth(600);
+        $size->setHeight(315);
+        $size->setIsAspectRatio(false);
+        $imageCreative->setSize($size);
 
-    // Set the creative's asset.
-    $creativeAsset = new CreativeAsset();
-    $creativeAsset->setFileName(300);
-    $creativeAsset->setAssetByteArray(
-        file_get_contents('https://goo.gl/3b9Wfh'));
-    $imageCreative->setPrimaryImageAsset($creativeAsset);
+        // Set the creative's asset.
+        $creativeAsset = new CreativeAsset();
+        $creativeAsset->setFileName(300);
+        $creativeAsset->setAssetByteArray(
+            file_get_contents('https://goo.gl/3b9Wfh')
+        );
+        $imageCreative->setPrimaryImageAsset($creativeAsset);
 
-    // Create the image creatives on the server.
-    $results = $creativeService->createCreatives([$imageCreative]);
+        // Create the image creatives on the server.
+        $results = $creativeService->createCreatives([$imageCreative]);
 
-    // Print out some information for each created image creative.
-    foreach ($results as $i => $imageCreative) {
-      printf(
-          "%d) Image creative with ID %d and name '%s' was created.\n",
-          $i,
-          $imageCreative->getId(),
-          $imageCreative->getName()
-      );
+        // Print out some information for each created image creative.
+        foreach ($results as $i => $imageCreative) {
+            printf(
+                "%d) Image creative with ID %d and name '%s' was created.\n",
+                $i,
+                $imageCreative->getId(),
+                $imageCreative->getName()
+            );
+        }
     }
-  }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(new DfpServices(), $session, intval(self::ADVERTISER_ID));
-  }
+        self::runExample(new DfpServices(), $session, intval(self::ADVERTISER_ID));
+    }
 }
 
 CreateCreatives::main();

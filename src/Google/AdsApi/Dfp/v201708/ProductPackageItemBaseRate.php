@@ -46,7 +46,7 @@ class ProductPackageItemBaseRate extends \Google\AdsApi\Dfp\v201708\BaseRate
      */
     public function setProductPackageItemId($productPackageItemId)
     {
-      $this->productPackageItemId = (PHP_INT_SIZE === 4)
+      $this->productPackageItemId = (!is_null(productPackageItemId) && PHP_INT_SIZE === 4)
           ? floatval($productPackageItemId) : $productPackageItemId;
       return $this;
     }

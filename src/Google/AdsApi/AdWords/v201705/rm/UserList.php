@@ -160,7 +160,7 @@ class UserList
      */
     public function setId($id)
     {
-      $this->id = (PHP_INT_SIZE === 4)
+      $this->id = (!is_null(id) && PHP_INT_SIZE === 4)
           ? floatval($id) : $id;
       return $this;
     }
@@ -305,7 +305,7 @@ class UserList
      */
     public function setMembershipLifeSpan($membershipLifeSpan)
     {
-      $this->membershipLifeSpan = (PHP_INT_SIZE === 4)
+      $this->membershipLifeSpan = (!is_null(membershipLifeSpan) && PHP_INT_SIZE === 4)
           ? floatval($membershipLifeSpan) : $membershipLifeSpan;
       return $this;
     }
@@ -324,7 +324,7 @@ class UserList
      */
     public function setSize($size)
     {
-      $this->size = (PHP_INT_SIZE === 4)
+      $this->size = (!is_null(size) && PHP_INT_SIZE === 4)
           ? floatval($size) : $size;
       return $this;
     }
@@ -361,7 +361,7 @@ class UserList
      */
     public function setSizeForSearch($sizeForSearch)
     {
-      $this->sizeForSearch = (PHP_INT_SIZE === 4)
+      $this->sizeForSearch = (!is_null(sizeForSearch) && PHP_INT_SIZE === 4)
           ? floatval($sizeForSearch) : $sizeForSearch;
       return $this;
     }

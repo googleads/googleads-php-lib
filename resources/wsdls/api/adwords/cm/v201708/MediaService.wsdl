@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2017 Google Inc. All Rights Reserved -->
+<!-- Copyright 2018 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://adwords.google.com/api/adwords/cm/v201708"
   xmlns:tns="https://adwords.google.com/api/adwords/cm/v201708"
@@ -1184,7 +1184,7 @@
             <annotation>
               <documentation>
                 Type of media object. Required when using {@link MediaService#upload} to upload a new media
-                file.
+                file. MEDIA_BUNDLE, ICON, IMAGE, and DYNAMIC_IMAGE are the supported MediaTypes to upload.
                 &lt;span class="constraint Selectable"&gt;This field can be selected using the value "Type".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
                 &lt;span class="constraint ReadOnly"&gt;This field is read only and will be ignored when sent to the API for the following {@link Operator}s: REMOVE and SET.&lt;/span&gt;
               </documentation>
@@ -1527,7 +1527,7 @@
       <simpleType name="AuthorizationError.Reason">
         <annotation>
           <documentation>
-            The reasons for the database error.
+            The reasons for the authorization error.
           </documentation>
         </annotation>
         <restriction base="xsd:string">

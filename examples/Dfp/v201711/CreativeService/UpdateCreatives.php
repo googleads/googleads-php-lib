@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\CreativeService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -29,54 +30,60 @@ use Google\AdsApi\Dfp\v201711\HasDestinationUrlCreative;
 /**
  * This example updates a single creative's destination URL.
  */
-class UpdateCreatives {
+class UpdateCreatives
+{
 
-  // Set the ID of the creative to update.
-  const CREATIVE_ID = 'INSERT_CREATIVE_ID_HERE';
+    // Set the ID of the creative to update.
+    const CREATIVE_ID = 'INSERT_CREATIVE_ID_HERE';
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session, $creativeId) {
-    $creativeService = $dfpServices->get($session, CreativeService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session,
+        $creativeId
+    ) {
+        $creativeService = $dfpServices->get($session, CreativeService::class);
 
-    // Create a statement to select a single creative by ID.
-    $statementBuilder = (new StatementBuilder())
-        ->where('id = :id')
-        ->orderBy('id ASC')
-        ->limit(1)
-        ->withBindVariableValue('id', $creativeId);
+        // Create a statement to select a single creative by ID.
+        $statementBuilder = (new StatementBuilder())->where('id = :id')
+            ->orderBy('id ASC')
+            ->limit(1)
+            ->withBindVariableValue('id', $creativeId);
 
-    // Get the creative.
-    $page = $creativeService->getCreativesByStatement(
-        $statementBuilder->toStatement());
-    $creative = $page->getResults()[0];
+        // Get the creative.
+        $page = $creativeService->getCreativesByStatement(
+            $statementBuilder->toStatement()
+        );
+        $creative = $page->getResults()[0];
 
-    // Only update the destination URL if it has one.
-    if ($creative instanceof HasDestinationUrlCreative) {
-      // Update the destination URL of the creative.
-      $creative->setDestinationUrl('https://news.google.com');
+        // Only update the destination URL if it has one.
+        if ($creative instanceof HasDestinationUrlCreative) {
+            // Update the destination URL of the creative.
+            $creative->setDestinationUrl('https://news.google.com');
 
-      // Update the creative on the server.
-      $creatives = $creativeService->updateCreatives([$creative]);
+            // Update the creative on the server.
+            $creatives = $creativeService->updateCreatives([$creative]);
 
-      foreach ($creatives as $updatedCreative) {
-        printf("Creative with ID %d and name '%s' was updated.\n",
-            $updatedCreative->getId(), $updatedCreative->getName());
-      }
-    } else {
-      printf("No creatives were updated.\n");
+            foreach ($creatives as $updatedCreative) {
+                printf(
+                    "Creative with ID %d and name '%s' was updated.\n",
+                    $updatedCreative->getId(),
+                    $updatedCreative->getName()
+                );
+            }
+        } else {
+            printf("No creatives were updated.\n");
+        }
     }
-  }
 
-  public static function main() {
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
-    self::runExample(new DfpServices(), $session, intval(self::CREATIVE_ID));
-  }
+    public static function main()
+    {
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
+        self::runExample(new DfpServices(), $session, intval(self::CREATIVE_ID));
+    }
 }
 
 UpdateCreatives::main();

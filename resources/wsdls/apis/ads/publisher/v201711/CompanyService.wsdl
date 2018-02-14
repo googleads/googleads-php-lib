@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2017 Google Inc. All Rights Reserved -->
+<!-- Copyright 2018 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v201711"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v201711"
@@ -708,6 +708,20 @@
           <extension base="tns:ApiError">
             <sequence>
               <element maxOccurs="1" minOccurs="0" name="reason" type="tns:InvalidEmailError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="InvalidUrlError">
+        <annotation>
+          <documentation>
+            Lists all errors associated with URLs.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:InvalidUrlError.Reason"/>
             </sequence>
           </extension>
         </complexContent>
@@ -2130,6 +2144,48 @@
             <annotation>
               <documentation>
                 The value is not a valid email address.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="InvalidUrlError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="ILLEGAL_CHARACTERS">
+            <annotation>
+              <documentation>
+                The URL contains invalid characters.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_FORMAT">
+            <annotation>
+              <documentation>
+                The format of the URL is not allowed. This could occur for a number of
+                reasons. For example, if an invalid scheme is specified (like "ftp://")
+                or if a port is specified when not required, or if a query was specified
+                when not required.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INSECURE_SCHEME">
+            <annotation>
+              <documentation>
+                URL contains insecure scheme.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NO_SCHEME">
+            <annotation>
+              <documentation>
+                The URL does not contain a scheme.
               </documentation>
             </annotation>
           </enumeration>

@@ -71,7 +71,7 @@ class CampaignFeed
      */
     public function setFeedId($feedId)
     {
-      $this->feedId = (PHP_INT_SIZE === 4)
+      $this->feedId = (!is_null(feedId) && PHP_INT_SIZE === 4)
           ? floatval($feedId) : $feedId;
       return $this;
     }
@@ -90,7 +90,7 @@ class CampaignFeed
      */
     public function setCampaignId($campaignId)
     {
-      $this->campaignId = (PHP_INT_SIZE === 4)
+      $this->campaignId = (!is_null(campaignId) && PHP_INT_SIZE === 4)
           ? floatval($campaignId) : $campaignId;
       return $this;
     }
@@ -163,7 +163,7 @@ class CampaignFeed
      */
     public function setBaseCampaignId($baseCampaignId)
     {
-      $this->baseCampaignId = (PHP_INT_SIZE === 4)
+      $this->baseCampaignId = (!is_null(baseCampaignId) && PHP_INT_SIZE === 4)
           ? floatval($baseCampaignId) : $baseCampaignId;
       return $this;
     }

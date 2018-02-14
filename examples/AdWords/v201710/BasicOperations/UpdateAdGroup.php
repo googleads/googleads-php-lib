@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\AdWords\v201710\BasicOperations;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -31,65 +32,87 @@ use Google\AdsApi\AdWords\v201710\cm\Operator;
 use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * This example updates the default bid of an ad group. To get ad groups, run
- * GetAdGroups.php.
+ * This example updates the CPC bid and status for a given ad group. To get ad
+ * groups, run GetAdGroups.php.
  */
-class UpdateAdGroup {
+class UpdateAdGroup
+{
 
-  const AD_GROUP_ID = 'INSERT_AD_GROUP_ID_HERE';
-  const MICROS_PER_DOLLAR = 1000000;
+    const AD_GROUP_ID = 'INSERT_AD_GROUP_ID_HERE';
 
-  public static function runExample(AdWordsServices $adWordsServices,
-      AdWordsSession $session, $adGroupId) {
-    $adGroupService = $adWordsServices->get($session, AdGroupService::class);
+    // Set this to a micro amount of the CPC bid if you want to update it.
+    // Leave this to null if you don't want to update.
+    const CPC_BID_MICRO_AMOUNT = null;
 
-    $operations = [];
-    // Create ad group object.
-    $adGroup = new AdGroup();
-    $adGroup->setId($adGroupId);
+    public static function runExample(
+        AdWordsServices $adWordsServices,
+        AdWordsSession $session,
+        $adGroupId,
+        $cpcBidMicroAmount
+    ) {
+        $adGroupService = $adWordsServices->get($session, AdGroupService::class);
 
-    // Update the bid.
-    $bid = new CpcBid();
-    $money = new Money();
-    $money->setMicroAmount(intval(0.75 * self::MICROS_PER_DOLLAR));
-    $bid->setBid($money);
-    $biddingStrategyConfiguration = new BiddingStrategyConfiguration();
-    $biddingStrategyConfiguration->setBids([$bid]);
-    $adGroup->setBiddingStrategyConfiguration($biddingStrategyConfiguration);
+        $operations = [];
+        // Create ad group with the specified ID.
+        $adGroup = new AdGroup();
+        $adGroup->setId($adGroupId);
 
-    // Create ad group operation and add it to the list.
-    $operation = new AdGroupOperation();
-    $operation->setOperand($adGroup);
-    $operation->setOperator(Operator::SET);
-    $operations[] = $operation;
+        // Update the CPC bid if specified.
+        if (!is_null($cpcBidMicroAmount)) {
+            $bid = new CpcBid();
+            $money = new Money();
+            $money->setMicroAmount($cpcBidMicroAmount);
+            $bid->setBid($money);
+            $biddingStrategyConfiguration = new BiddingStrategyConfiguration();
+            $biddingStrategyConfiguration->setBids([$bid]);
+            $adGroup->setBiddingStrategyConfiguration($biddingStrategyConfiguration);
+        }
 
-    // Update the ad group on the server.
-    $result = $adGroupService->mutate($operations);
+        // Create ad group operation and add it to the list.
+        $operation = new AdGroupOperation();
+        $operation->setOperand($adGroup);
+        $operation->setOperator(Operator::SET);
+        $operations[] = $operation;
 
-    $adGroup = $result->getValue()[0];
-    $bid = $adGroup->getBiddingStrategyConfiguration()->getBids()[0]->getBid();
-    printf(
-        "Ad group with ID %d has updated default bid to %f in your currency.\n",
-        $adGroup->getId(),
-        $bid->getMicroAmount() / self::MICROS_PER_DOLLAR
-    );
-  }
+        // Update the ad group on the server.
+        $result = $adGroupService->mutate($operations);
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+        $adGroup = $result->getValue()[0];
+        $biddingStrategyConfiguration = $adGroup->getBiddingStrategyConfiguration();
+        // Find the CpcBid in the bidding strategy configuration's bids collection.
+        $cpcBidMicros = null;
+        if (!empty($biddingStrategyConfiguration)
+            && !empty($biddingStrategyConfiguration->getBids())) {
+            foreach ($biddingStrategyConfiguration->getBids() as $bid) {
+                if ($bid instanceof CpcBid) {
+                    $cpcBidMicros = $bid->getBid()->getMicroAmount();
+                }
+            }
+        }
+        printf(
+            "Ad group with ID %d and name '%s' updated to have status '%s' and CPC bid %d.\n",
+            $adGroup->getId(),
+            $adGroup->getName(),
+            $adGroup->getStatus(),
+            $cpcBidMicros
+        );
+    }
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new AdWordsSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
-    self::runExample(
-        new AdWordsServices(), $session, intval(self::AD_GROUP_ID));
-  }
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()->build();
+
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new AdWordsSessionBuilder())->fromFile()->withOAuth2Credential($oAuth2Credential)->build();
+        self::runExample(
+            new AdWordsServices(),
+            $session,
+            intval(self::AD_GROUP_ID),
+            is_null(self::CPC_BID_MICRO_AMOUNT) ? null : intval(self::CPC_BID_MICRO_AMOUNT)
+        );
+    }
 }
 
 UpdateAdGroup::main();

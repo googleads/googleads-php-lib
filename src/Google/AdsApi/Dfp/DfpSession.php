@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Dfp;
 
 use Google\AdsApi\Common\AdsHeaderFormatter;
@@ -23,103 +24,118 @@ use Psr\Log\LoggerInterface;
 /**
  * A session for using the DFP API.
  */
-final class DfpSession implements AdsSession {
+final class DfpSession implements AdsSession
+{
 
-  private $networkCode;
-  private $applicationName;
-  private $endpoint;
-  private $oAuth2Credential;
-  private $connectionSettings;
-  private $soapSettings;
-  private $soapLogger;
-  private $reportDownloaderLogger;
-  private $adsHeaderFormatter;
+    private $networkCode;
+    private $applicationName;
+    private $endpoint;
+    private $oAuth2Credential;
+    private $connectionSettings;
+    private $soapSettings;
+    private $soapLogger;
+    private $reportDownloaderLogger;
+    private $adsHeaderFormatter;
 
-  /**
-   * Creates a DFP session from the specified builder.
-   *
-   * Do not use this constructor, instances should be created by using the
-   * `DfpSessionBuilder` instead.
-   *
-   * @param DfpSessionBuilder $builder the builder to create an instance of this
-   *     session from
-   */
-  public function __construct(DfpSessionBuilder $builder) {
-    $this->networkCode = $builder->getNetworkCode();
-    $this->applicationName = $builder->getApplicationName();
-    $this->endpoint = $builder->getEndpoint();
-    $this->oAuth2Credential = $builder->getOAuth2Credential();
-    $this->connectionSettings = $builder->getConnectionSettings();
-    $this->soapSettings = $builder->getSoapSettings();
-    $this->adsHeaderFormatter = $builder->getAdsHeaderFormatter();
-    $this->soapLogger = $builder->getSoapLogger();
-    $this->reportDownloaderLogger = $builder->getReportDownloaderLogger();
-  }
+    /**
+     * Creates a DFP session from the specified builder.
+     *
+     * Do not use this constructor, instances should be created by using the
+     * `DfpSessionBuilder` instead.
+     *
+     * @param DfpSessionBuilder $builder the builder to create an instance of this
+     *     session from
+     */
+    public function __construct(DfpSessionBuilder $builder)
+    {
+        $this->networkCode = $builder->getNetworkCode();
+        $this->applicationName = $builder->getApplicationName();
+        $this->endpoint = $builder->getEndpoint();
+        $this->oAuth2Credential = $builder->getOAuth2Credential();
+        $this->connectionSettings = $builder->getConnectionSettings();
+        $this->soapSettings = $builder->getSoapSettings();
+        $this->adsHeaderFormatter = $builder->getAdsHeaderFormatter();
+        $this->soapLogger = $builder->getSoapLogger();
+        $this->reportDownloaderLogger = $builder->getReportDownloaderLogger();
+    }
 
-  /**
-   * Gets the network code.
-   * @return string
-   */
-  public function getNetworkCode() {
-    return $this->networkCode;
-  }
+    /**
+     * Gets the network code.
+     *
+     * @return string
+     */
+    public function getNetworkCode()
+    {
+        return $this->networkCode;
+    }
 
-  /**
-   * Gets the application name.
-   * @return string
-   */
-  public function getApplicationName() {
-    return $this->applicationName;
-  }
+    /**
+     * Gets the application name.
+     *
+     * @return string
+     */
+    public function getApplicationName()
+    {
+        return $this->applicationName;
+    }
 
-  /**
-   * @see AdsSession::getEndpoint()
-   */
-  public function getEndpoint() {
-    return $this->endpoint;
-  }
+    /**
+     * @see AdsSession::getEndpoint()
+     */
+    public function getEndpoint()
+    {
+        return $this->endpoint;
+    }
 
-  /**
-   * @see AdsSession::getOAuth2Credential()
-   */
-  public function getOAuth2Credential() {
-    return $this->oAuth2Credential;
-  }
+    /**
+     * @see AdsSession::getOAuth2Credential()
+     */
+    public function getOAuth2Credential()
+    {
+        return $this->oAuth2Credential;
+    }
 
-  /**
-   * @see AdsSession::getConnectionSettings()
-   */
-  public function getConnectionSettings() {
-    return $this->connectionSettings;
-  }
+    /**
+     * @see AdsSession::getConnectionSettings()
+     */
+    public function getConnectionSettings()
+    {
+        return $this->connectionSettings;
+    }
 
-  /**
-   * @see AdsSession::getSoapSettings()
-   */
-  public function getSoapSettings() {
-    return $this->soapSettings;
-  }
+    /**
+     * @see AdsSession::getSoapSettings()
+     */
+    public function getSoapSettings()
+    {
+        return $this->soapSettings;
+    }
 
-  /**
-   * @see AdsSession::getSoapLogger()
-   */
-  public function getSoapLogger() {
-    return $this->soapLogger;
-  }
+    /**
+     * @see AdsSession::getSoapLogger()
+     */
+    public function getSoapLogger()
+    {
+        return $this->soapLogger;
+    }
 
-  /**
-   * Gets the report downloader logger.
-   * @return LoggerInterface
-   */
-  public function getReportDownloaderLogger() {
-    return $this->reportDownloaderLogger;
-  }
+    /**
+     * Gets the report downloader logger.
+     *
+     * @return LoggerInterface
+     */
+    public function getReportDownloaderLogger()
+    {
+        return $this->reportDownloaderLogger;
+    }
 
-  /**
-   * Gets the ads header formatter.
-   * @return AdsHeaderFormatter
-   */
-  public function getAdsHeaderFormatter() {
-    return $this->adsHeaderFormatter;
-  }
+    /**
+     * Gets the ads header formatter.
+     *
+     * @return AdsHeaderFormatter
+     */
+    public function getAdsHeaderFormatter()
+    {
+        return $this->adsHeaderFormatter;
+    }
 }

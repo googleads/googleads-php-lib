@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\ExchangeRateService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -32,67 +33,69 @@ use Google\AdsApi\Dfp\v201711\ExchangeRateService;
  * that you've setup an `adsapi_php.ini` file in your home directory with your
  * API credentials and settings. See README.md for more info.
  */
-class GetExchangeRatesForCurrencyCode {
+class GetExchangeRatesForCurrencyCode
+{
 
-  const CURRENCY_CODE = 'INSERT_CURRENCY_CODE_HERE';
+    const CURRENCY_CODE = 'INSERT_CURRENCY_CODE_HERE';
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session, $currencyCode) {
-    $exchangeRateService =
-        $dfpServices->get($session, ExchangeRateService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session,
+        $currencyCode
+    ) {
+        $exchangeRateService = $dfpServices->get($session, ExchangeRateService::class);
 
-    // Create a statement to select exchange rates.
-    $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
-    $statementBuilder = (new StatementBuilder())
-        ->where('currencyCode = :currencyCode')
-        ->orderBy('id ASC')
-        ->limit($pageSize)
-        ->withBindVariableValue('currencyCode', $currencyCode);
+        // Create a statement to select exchange rates.
+        $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
+        $statementBuilder = (new StatementBuilder())->where('currencyCode = :currencyCode')
+            ->orderBy('id ASC')
+            ->limit($pageSize)
+            ->withBindVariableValue('currencyCode', $currencyCode);
 
-    // Retrieve a small amount of exchange rates at a time, paging
-    // through until all exchange rates have been retrieved.
-    $totalResultSetSize = 0;
-    do {
-      $page = $exchangeRateService->getExchangeRatesByStatement(
-          $statementBuilder->toStatement());
+        // Retrieve a small amount of exchange rates at a time, paging
+        // through until all exchange rates have been retrieved.
+        $totalResultSetSize = 0;
+        do {
+            $page = $exchangeRateService->getExchangeRatesByStatement(
+                $statementBuilder->toStatement()
+            );
 
-      // Print out some information for each exchange rate.
-      if ($page->getResults() !== null) {
-        $totalResultSetSize = $page->getTotalResultSetSize();
-        $i = $page->getStartIndex();
-        foreach ($page->getResults() as $exchangeRate) {
-          printf(
-              "%d) Exchange rate with ID %d, currency code '%s', and exchange "
-                  . "rate %.2f was found.\n",
-              $i++,
-              $exchangeRate->getId(),
-              $exchangeRate->getCurrencyCode(),
-              $exchangeRate->getExchangeRate() / 10000000000
-          );
-        }
-      }
+            // Print out some information for each exchange rate.
+            if ($page->getResults() !== null) {
+                $totalResultSetSize = $page->getTotalResultSetSize();
+                $i = $page->getStartIndex();
+                foreach ($page->getResults() as $exchangeRate) {
+                    printf(
+                        "%d) Exchange rate with ID %d, currency code '%s', and exchange "
+                        . "rate %.2f was found.\n",
+                        $i++,
+                        $exchangeRate->getId(),
+                        $exchangeRate->getCurrencyCode(),
+                        $exchangeRate->getExchangeRate() / 10000000000
+                    );
+                }
+            }
 
-      $statementBuilder->increaseOffsetBy($pageSize);
-    } while ($statementBuilder->getOffset() < $totalResultSetSize);
+            $statementBuilder->increaseOffsetBy($pageSize);
+        } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-    printf("Number of results found: %d\n", $totalResultSetSize);
-  }
+        printf("Number of results found: %d\n", $totalResultSetSize);
+    }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(new DfpServices(), $session, self::CURRENCY_CODE);
-  }
+        self::runExample(new DfpServices(), $session, self::CURRENCY_CODE);
+    }
 }
 
 GetExchangeRatesForCurrencyCode::main();

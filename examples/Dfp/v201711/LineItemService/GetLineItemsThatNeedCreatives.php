@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\LineItemService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -32,63 +33,65 @@ use Google\AdsApi\Dfp\v201711\LineItemService;
  * that you've setup an `adsapi_php.ini` file in your home directory with your
  * API credentials and settings. See README.md for more info.
  */
-class GetLineItemsThatNeedCreatives {
+class GetLineItemsThatNeedCreatives
+{
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session) {
-    $lineItemService =
-        $dfpServices->get($session, LineItemService::class);
+    public static function runExample(DfpServices $dfpServices, DfpSession $session)
+    {
+        $lineItemService = $dfpServices->get($session, LineItemService::class);
 
-    // Create a statement to select line items.
-    $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
-    $statementBuilder = (new StatementBuilder())
-        ->where('isMissingCreatives = :isMissingCreatives')
-        ->orderBy('id ASC')
-        ->limit($pageSize)
-        ->withBindVariableValue('isMissingCreatives', true);
+        // Create a statement to select line items.
+        $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
+        $statementBuilder =
+            (new StatementBuilder())->where('isMissingCreatives = :isMissingCreatives')
+                ->orderBy(
+                    'id ASC'
+                )
+                ->limit($pageSize)
+                ->withBindVariableValue('isMissingCreatives', true);
 
-    // Retrieve a small amount of line items at a time, paging
-    // through until all line items have been retrieved.
-    $totalResultSetSize = 0;
-    do {
-      $page = $lineItemService->getLineItemsByStatement(
-          $statementBuilder->toStatement());
+        // Retrieve a small amount of line items at a time, paging
+        // through until all line items have been retrieved.
+        $totalResultSetSize = 0;
+        do {
+            $page = $lineItemService->getLineItemsByStatement(
+                $statementBuilder->toStatement()
+            );
 
-      // Print out some information for each line item.
-      if ($page->getResults() !== null) {
-        $totalResultSetSize = $page->getTotalResultSetSize();
-        $i = $page->getStartIndex();
-        foreach ($page->getResults() as $lineItem) {
-          printf(
-              "%d) Line item with ID %d and name '%s' was found.\n",
-              $i++,
-              $lineItem->getId(),
-              $lineItem->getName()
-          );
-        }
-      }
+            // Print out some information for each line item.
+            if ($page->getResults() !== null) {
+                $totalResultSetSize = $page->getTotalResultSetSize();
+                $i = $page->getStartIndex();
+                foreach ($page->getResults() as $lineItem) {
+                    printf(
+                        "%d) Line item with ID %d and name '%s' was found.\n",
+                        $i++,
+                        $lineItem->getId(),
+                        $lineItem->getName()
+                    );
+                }
+            }
 
-      $statementBuilder->increaseOffsetBy($pageSize);
-    } while ($statementBuilder->getOffset() < $totalResultSetSize);
+            $statementBuilder->increaseOffsetBy($pageSize);
+        } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-    printf("Number of results found: %d\n", $totalResultSetSize);
-  }
+        printf("Number of results found: %d\n", $totalResultSetSize);
+    }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(new DfpServices(), $session);
-  }
+        self::runExample(new DfpServices(), $session);
+    }
 }
 
 GetLineItemsThatNeedCreatives::main();

@@ -39,9 +39,9 @@ This library determines the home directory of your computer by using
 [`EnvironmentalVariables::getHome()`](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/AdsApi/Common/Util/EnvironmentalVariables.php#L34).
 
 *   [AdWords
-     adsapi_php.ini](https://github.com/googleads/googleads-php-lib/blob/master/examples/AdWords/adsapi_php.ini)
+    adsapi_php.ini](https://github.com/googleads/googleads-php-lib/blob/master/examples/AdWords/adsapi_php.ini)
 *   [DFP
-     adsapi_php.ini](https://github.com/googleads/googleads-php-lib/blob/master/examples/Dfp/adsapi_php.ini)
+    adsapi_php.ini](https://github.com/googleads/googleads-php-lib/blob/master/examples/Dfp/adsapi_php.ini)
 
 ### Downloading this library
 
@@ -345,9 +345,12 @@ To remedy, see [Steps for troubleshooting CA file issues](https://github.com/goo
 
 ### Documentation
 
-> PHPDoc is not yet available for the new ads API PHP library. Follow the
-> [PHPDoc issue](https://github.com/googleads/googleads-php-lib/issues/194) for
-> updates.
+PHPDoc for this library can be found in the
+[gh-pages](https://github.com/googleads/googleads-php-lib/tree/gh-pages) branch
+of this repository and can be viewed at:
+
+* [AdWords](http://googleads.github.io/googleads-php-lib/AdWords/)
+* [DFP](http://googleads.github.io/googleads-php-lib/Dfp/)
 
 General AdWords and DFP API documentation can be found on our Google Developers
 site:
@@ -355,6 +358,22 @@ site:
 *   [AdWords API documentation](https://developers.google.com/adwords/api)
 *   [DFP API
     documentation](https://developers.google.com/doubleclick-publishers)
+
+### Coding Style
+
+We use PSR-2 as a coding style standard. Assuming that you're at the root
+directory of your project, to check for coding style violations,
+run
+
+```
+vendor/bin/phpcs src --standard=phpcs_ruleset.xml -np
+```
+
+To automatically fix (fixable) coding style violations, run
+
+```
+vendor/bin/phpcbf src --standard=phpcs_ruleset.xml
+```
 
 ### Getting support
 

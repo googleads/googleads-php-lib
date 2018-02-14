@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\AdWords\v201710\CampaignManagement;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -38,79 +39,78 @@ use Google\AdsApi\Common\OAuth2TokenBuilder;
  * See the Campaign Drafts and Experiments guide for more information:
  * https://developers.google.com/adwords/api/docs/guides/campaign-drafts-experiments
  */
-class GraduateTrial {
+class GraduateTrial
+{
 
-  const TRIAL_ID = 'INSERT_TRIAL_ID_HERE';
+    const TRIAL_ID = 'INSERT_TRIAL_ID_HERE';
 
-  public static function runExample(AdWordsServices $adWordsServices,
-      AdWordsSession $session, $trialId) {
-    $trialService = $adWordsServices->get($session, TrialService::class);
-    $budgetService =
-        $adWordsServices->get($session, BudgetService::class);
+    public static function runExample(
+        AdWordsServices $adWordsServices,
+        AdWordsSession $session,
+        $trialId
+    ) {
+        $trialService = $adWordsServices->get($session, TrialService::class);
+        $budgetService = $adWordsServices->get($session, BudgetService::class);
 
-    // To graduate a trial, you must specify a different budget from the base
-    // campaign. The base campaign (in order to have had a trial based on it)
-    // must have a non-shared budget, so it cannot be shared with the new
-    // independent campaign created by graduation.
-    $budget = new Budget();
-    $budget->setName('Trial Budget #' . uniqid());
-    $money = new Money();
-    $money->setMicroAmount(50000000);
-    $budget->setAmount($money);
-    $budget->setDeliveryMethod(BudgetBudgetDeliveryMethod::STANDARD);
+        // To graduate a trial, you must specify a different budget from the base
+        // campaign. The base campaign (in order to have had a trial based on it)
+        // must have a non-shared budget, so it cannot be shared with the new
+        // independent campaign created by graduation.
+        $budget = new Budget();
+        $budget->setName('Trial Budget #' . uniqid());
+        $money = new Money();
+        $money->setMicroAmount(50000000);
+        $budget->setAmount($money);
+        $budget->setDeliveryMethod(BudgetBudgetDeliveryMethod::STANDARD);
 
-    // Create a budget operation and add it to the operations list.
-    $operations = [];
-    $operation = new BudgetOperation();
-    $operation->setOperand($budget);
-    $operation->setOperator(Operator::ADD);
-    $operations[] = $operation;
+        // Create a budget operation and add it to the operations list.
+        $operations = [];
+        $operation = new BudgetOperation();
+        $operation->setOperand($budget);
+        $operation->setOperator(Operator::ADD);
+        $operations[] = $operation;
 
-    // Create the budget on the server.
-    $budget = $budgetService->mutate($operations)->getValue()[0];
+        // Create the budget on the server.
+        $budget = $budgetService->mutate($operations)->getValue()[0];
 
-    // Create a trial.
-    $trial = new Trial();
-    $trial->setId($trialId);
-    $trial->setBudgetId($budget->getBudgetId());
-    $trial->setStatus(TrialStatus::GRADUATED);
+        // Create a trial.
+        $trial = new Trial();
+        $trial->setId($trialId);
+        $trial->setBudgetId($budget->getBudgetId());
+        $trial->setStatus(TrialStatus::GRADUATED);
 
-    // Create a trial operation and add it to the operations list.
-    $operations = [];
-    $operation = new TrialOperation();
-    $operation->setOperand($trial);
-    $operation->setOperator(Operator::SET);
-    $operations[] = $operation;
+        // Create a trial operation and add it to the operations list.
+        $operations = [];
+        $operation = new TrialOperation();
+        $operation->setOperand($trial);
+        $operation->setOperator(Operator::SET);
+        $operations[] = $operation;
 
-    // Update the trial on the server.
-    $trial = $trialService->mutate($operations)->getValue()[0];
+        // Update the trial on the server.
+        $trial = $trialService->mutate($operations)->getValue()[0];
 
-    // Graduation is a synchronous operation, so the campaign is already ready.
-    // If you promote instead, make sure to see the polling scheme demonstrated
-    // in AddTrial.php to wait for the asynchronous operation to finish.
-    printf(
-        "Trial with ID %d graduated. Campaign with ID %d was given a new budget"
+        // Graduation is a synchronous operation, so the campaign is already ready.
+        // If you promote instead, make sure to see the polling scheme demonstrated
+        // in AddTrial.php to wait for the asynchronous operation to finish.
+        printf(
+            "Trial with ID %d graduated. Campaign with ID %d was given a new budget"
             . " ID %d and is no longer dependent on this trial.\n",
-        $trial->getId(),
-        $trial->getTrialCampaignId(),
-        $budget->getBudgetId()
-    );
-  }
+            $trial->getId(),
+            $trial->getTrialCampaignId(),
+            $budget->getBudgetId()
+        );
+    }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new AdWordsSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
-    self::runExample(new AdWordsServices(), $session, intval(self::TRIAL_ID));
-  }
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new AdWordsSessionBuilder())->fromFile()->withOAuth2Credential($oAuth2Credential)->build();
+        self::runExample(new AdWordsServices(), $session, intval(self::TRIAL_ID));
+    }
 }
 
 GraduateTrial::main();

@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\TeamService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -32,47 +33,48 @@ use Google\AdsApi\Dfp\v201711\TeamService;
  * requires that you've setup an `adsapi_php.ini` file in your home directory
  * with your API credentials and settings. See `README.md` for more info.
  */
-class CreateTeams {
+class CreateTeams
+{
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session) {
-    $teamService =
-        $dfpServices->get($session, TeamService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session
+    ) {
+        $teamService = $dfpServices->get($session, TeamService::class);
 
-    $team = new Team();
-    $team->setName('Team #' . uniqid());
-    $team->setHasAllCompanies(false);
-    $team->setHasAllInventory(false);
+        $team = new Team();
+        $team->setName('Team #' . uniqid());
+        $team->setHasAllCompanies(false);
+        $team->setHasAllInventory(false);
 
-    // Create the team on the server.
-    $results = $teamService->createTeams([$team]);
+        // Create the team on the server.
+        $results = $teamService->createTeams([$team]);
 
-    // Print out some information for each created team.
-    foreach ($results as $i => $team) {
-      printf(
-          "%d) Team with ID %d and name '%s' was created.\n",
-          $i,
-          $team->getId(),
-          $team->getName()
-      );
+        // Print out some information for each created team.
+        foreach ($results as $i => $team) {
+            printf(
+                "%d) Team with ID %d and name '%s' was created.\n",
+                $i,
+                $team->getId(),
+                $team->getName()
+            );
+        }
     }
-  }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(new DfpServices(), $session);
-  }
+        self::runExample(new DfpServices(), $session);
+    }
 }
 
 CreateTeams::main();

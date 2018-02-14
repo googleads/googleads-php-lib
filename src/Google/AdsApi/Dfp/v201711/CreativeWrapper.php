@@ -85,7 +85,7 @@ class CreativeWrapper
      */
     public function setId($id)
     {
-      $this->id = (PHP_INT_SIZE === 4)
+      $this->id = (!is_null(id) && PHP_INT_SIZE === 4)
           ? floatval($id) : $id;
       return $this;
     }
@@ -104,7 +104,7 @@ class CreativeWrapper
      */
     public function setLabelId($labelId)
     {
-      $this->labelId = (PHP_INT_SIZE === 4)
+      $this->labelId = (!is_null(labelId) && PHP_INT_SIZE === 4)
           ? floatval($labelId) : $labelId;
       return $this;
     }

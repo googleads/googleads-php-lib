@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\InventoryService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -32,61 +33,62 @@ use Google\AdsApi\Dfp\v201711\InventoryService;
  * that you've setup an `adsapi_php.ini` file in your home directory with your
  * API credentials and settings. See README.md for more info.
  */
-class GetAllAdUnits {
+class GetAllAdUnits
+{
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session) {
-    $inventoryService =
-        $dfpServices->get($session, InventoryService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session
+    ) {
+        $inventoryService = $dfpServices->get($session, InventoryService::class);
 
-    // Create a statement to select ad units.
-    $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
-    $statementBuilder = (new StatementBuilder())
-        ->orderBy('id ASC')
-        ->limit($pageSize);
+        // Create a statement to select ad units.
+        $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
+        $statementBuilder = (new StatementBuilder())->orderBy('id ASC')
+            ->limit($pageSize);
 
-    // Retrieve a small amount of ad units at a time, paging
-    // through until all ad units have been retrieved.
-    $totalResultSetSize = 0;
-    do {
-      $page = $inventoryService->getAdUnitsByStatement(
-          $statementBuilder->toStatement());
+        // Retrieve a small amount of ad units at a time, paging
+        // through until all ad units have been retrieved.
+        $totalResultSetSize = 0;
+        do {
+            $page = $inventoryService->getAdUnitsByStatement(
+                $statementBuilder->toStatement()
+            );
 
-      // Print out some information for each ad unit.
-      if ($page->getResults() !== null) {
-        $totalResultSetSize = $page->getTotalResultSetSize();
-        $i = $page->getStartIndex();
-        foreach ($page->getResults() as $adUnit) {
-          printf(
-              "%d) Ad unit with ID '%s' and name '%s' was found.\n",
-              $i++,
-              $adUnit->getId(),
-              $adUnit->getName()
-          );
-        }
-      }
+            // Print out some information for each ad unit.
+            if ($page->getResults() !== null) {
+                $totalResultSetSize = $page->getTotalResultSetSize();
+                $i = $page->getStartIndex();
+                foreach ($page->getResults() as $adUnit) {
+                    printf(
+                        "%d) Ad unit with ID '%s' and name '%s' was found.\n",
+                        $i++,
+                        $adUnit->getId(),
+                        $adUnit->getName()
+                    );
+                }
+            }
 
-      $statementBuilder->increaseOffsetBy($pageSize);
-    } while ($statementBuilder->getOffset() < $totalResultSetSize);
+            $statementBuilder->increaseOffsetBy($pageSize);
+        } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-    printf("Number of results found: %d\n", $totalResultSetSize);
-  }
+        printf("Number of results found: %d\n", $totalResultSetSize);
+    }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(new DfpServices(), $session);
-  }
+        self::runExample(new DfpServices(), $session);
+    }
 }
 
 GetAllAdUnits::main();

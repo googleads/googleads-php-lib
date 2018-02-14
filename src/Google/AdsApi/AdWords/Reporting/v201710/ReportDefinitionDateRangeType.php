@@ -14,24 +14,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\AdWords\Reporting\v201710;
 
 /**
  * Supported report date range types.
  */
-final class ReportDefinitionDateRangeType {
-  const TODAY = 'TODAY';
-  const YESTERDAY = 'YESTERDAY';
-  const LAST_7_DAYS = 'LAST_7_DAYS';
-  const LAST_WEEK = 'LAST_WEEK';
-  const LAST_BUSINESS_WEEK = 'LAST_BUSINESS_WEEK';
-  const THIS_MONTH = 'THIS_MONTH';
-  const LAST_MONTH = 'LAST_MONTH';
-  const ALL_TIME = 'ALL_TIME';
-  const CUSTOM_DATE = 'CUSTOM_DATE';
-  const LAST_14_DAYS = 'LAST_14_DAYS';
-  const LAST_30_DAYS = 'LAST_30_DAYS';
-  const THIS_WEEK_SUN_TODAY = 'THIS_WEEK_SUN_TODAY';
-  const THIS_WEEK_MON_TODAY = 'THIS_WEEK_MON_TODAY';
-  const LAST_WEEK_SUN_SAT = 'LAST_WEEK_SUN_SAT';
+final class ReportDefinitionDateRangeType
+{
+    const TODAY = 'TODAY';
+    const YESTERDAY = 'YESTERDAY';
+    const LAST_7_DAYS = 'LAST_7_DAYS';
+    const LAST_WEEK = 'LAST_WEEK';
+    const LAST_BUSINESS_WEEK = 'LAST_BUSINESS_WEEK';
+    const THIS_MONTH = 'THIS_MONTH';
+    const LAST_MONTH = 'LAST_MONTH';
+    const ALL_TIME = 'ALL_TIME';
+    const CUSTOM_DATE = 'CUSTOM_DATE';
+    const LAST_14_DAYS = 'LAST_14_DAYS';
+    const LAST_30_DAYS = 'LAST_30_DAYS';
+    const THIS_WEEK_SUN_TODAY = 'THIS_WEEK_SUN_TODAY';
+    const THIS_WEEK_MON_TODAY = 'THIS_WEEK_MON_TODAY';
+    const LAST_WEEK_SUN_SAT = 'LAST_WEEK_SUN_SAT';
 }

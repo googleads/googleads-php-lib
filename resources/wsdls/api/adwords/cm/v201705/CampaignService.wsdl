@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2017 Google Inc. All Rights Reserved -->
+<!-- Copyright 2018 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://adwords.google.com/api/adwords/cm/v201705"
   xmlns:tns="https://adwords.google.com/api/adwords/cm/v201705"
@@ -302,7 +302,7 @@
 &lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, MANUAL_CPM, TARGET_SPEND, ENHANCED_CPC, TARGET_CPA, TARGET_ROAS for campaign channel type DISPLAY.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, TARGET_CPA for campaign channel type DISPLAY with campaign channel subtype DISPLAY_MOBILE_APP.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, NONE, PAGE_ONE_PROMOTED, TARGET_CPA, TARGET_OUTRANK_SHARE, TARGET_ROAS, TARGET_SPEND for campaign channel subtype SEARCH_MOBILE_APP.&lt;/span&gt;
-&lt;span class="constraint CampaignType"&gt;This field may only be set to the values: TARGET_CPA, TARGET_ROAS for campaign channel subtype UNIVERSAL_APP_CAMPAIGN.&lt;/span&gt;
+&lt;span class="constraint CampaignType"&gt;This field may only be set to the values: TARGET_CPA, TARGET_ROAS for campaign channel type MULTI_CHANNEL.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -730,7 +730,7 @@
                 Selective optimization setting for this campaign, which includes a set of conversion
                 types to optimize this campaign towards.
                 &lt;span class="constraint Selectable"&gt;This field can be selected using the value "SelectiveOptimization".&lt;/span&gt;
-                &lt;span class="constraint CampaignType"&gt;This field may only be set for campaign channel subtype UNIVERSAL_APP_CAMPAIGN.&lt;/span&gt;
+                &lt;span class="constraint CampaignType"&gt;This field may only be set for campaign channel type MULTI_CHANNEL.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may not be set.&lt;/span&gt;
               </documentation>
             </annotation>
@@ -3753,7 +3753,7 @@
       <simpleType name="AuthorizationError.Reason">
         <annotation>
           <documentation>
-            The reasons for the database error.
+            The reasons for the authorization error.
           </documentation>
         </annotation>
         <restriction base="xsd:string">

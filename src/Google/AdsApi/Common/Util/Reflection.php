@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Common\Util;
 
 use ReflectionClass;
@@ -21,21 +22,24 @@ use ReflectionClass;
 /**
  * Encapsulates common reflection use cases to make them easier to use.
  */
-class Reflection {
+class Reflection
+{
 
-  /**
-   * Creates a new instance of the specified class name.
-   *
-   * @param string $className the fully qualified class name
-   * @param mixed $args,... a variable number of arguments to pass to the class
-   *     constructor
-   * @return mixed the created object instance
-   * @throws \ReflectionException if the object instance could not be created
-   */
-  public function createInstance($className, $args = null) {
-    $reflectionClass = new ReflectionClass($className);
-    $args = func_get_args();
-    array_shift($args);
-    return $reflectionClass->newInstanceArgs($args);
-  }
+    /**
+     * Creates a new instance of the specified class name.
+     *
+     * @param string $className the fully qualified class name
+     * @param mixed $args a variable number of arguments to pass to the class
+     *     constructor
+     * @return mixed the created object instance
+     * @throws \ReflectionException if the object instance could not be created
+     */
+    public function createInstance($className, $args = null)
+    {
+        $reflectionClass = new ReflectionClass($className);
+        $args = func_get_args();
+        array_shift($args);
+
+        return $reflectionClass->newInstanceArgs($args);
+    }
 }

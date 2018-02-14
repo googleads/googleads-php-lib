@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\AdWords\v201710\Misc;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -30,49 +31,46 @@ use Google\AdsApi\Common\Util\MapEntries;
 /**
  * This example uploads an HTML5 zip file as a MediaBundle.
  */
-class UploadImageBundle {
+class UploadImageBundle
+{
 
-  public static function runExample(AdWordsServices $adWordsServices,
-      AdWordsSession $session) {
-    $mediaService =
-        $adWordsServices->get($session, MediaService::class);
+    public static function runExample(
+        AdWordsServices $adWordsServices,
+        AdWordsSession $session
+    ) {
+        $mediaService = $adWordsServices->get($session, MediaService::class);
 
-    // Create HTML5 media and add it to the list.
-    $html5Zip = new MediaBundle();
-    $html5Zip->setData(file_get_contents('https://goo.gl/9Y7qI2'));
-    $html5Zip->setType(MediaMediaType::MEDIA_BUNDLE);
-    $mediaBundles = [$html5Zip];
+        // Create HTML5 media and add it to the list.
+        $html5Zip = new MediaBundle();
+        $html5Zip->setData(file_get_contents('https://goo.gl/9Y7qI2'));
+        $html5Zip->setType(MediaMediaType::MEDIA_BUNDLE);
+        $mediaBundles = [$html5Zip];
 
-    // Upload the media bundle to the server.
-    $result = $mediaService->upload($mediaBundles);
+        // Upload the media bundle to the server.
+        $result = $mediaService->upload($mediaBundles);
 
-    // Print out some information about the uploaded image.
-    $mediaBundle = $result[0];
-    $dimensions = MapEntries::toAssociativeArray($mediaBundle->getDimensions());
-    printf(
-        "HTML5 media with ID %d, dimensions '%dx%d', MIME type '%s' was "
-            . "uploaded.\n",
-        $mediaBundle->getMediaId(),
-        $dimensions['FULL']->getWidth(),
-        $dimensions['FULL']->getHeight(),
-        $mediaBundle->getMimeType()
-    );
-  }
+        // Print out some information about the uploaded image.
+        $mediaBundle = $result[0];
+        $dimensions = MapEntries::toAssociativeArray($mediaBundle->getDimensions());
+        printf(
+            "HTML5 media with ID %d, dimensions '%dx%d', MIME type '%s' was uploaded.\n",
+            $mediaBundle->getMediaId(),
+            $dimensions['FULL']->getWidth(),
+            $dimensions['FULL']->getHeight(),
+            $mediaBundle->getMimeType()
+        );
+    }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new AdWordsSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
-    self::runExample(new AdWordsServices(), $session);
-  }
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new AdWordsSessionBuilder())->fromFile()->withOAuth2Credential($oAuth2Credential)->build();
+        self::runExample(new AdWordsServices(), $session);
+    }
 }
 
 UploadImageBundle::main();

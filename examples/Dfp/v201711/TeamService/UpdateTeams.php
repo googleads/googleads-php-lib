@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\TeamService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -32,55 +33,58 @@ use Google\AdsApi\Dfp\v201711\TeamService;
  * requires that you've setup an `adsapi_php.ini` file in your home directory
  * with your API credentials and settings. See `README.md` for more info.
  */
-class UpdateTeams {
+class UpdateTeams
+{
 
-  const TEAM_ID = 'INSERT_TEAM_ID_HERE';
+    const TEAM_ID = 'INSERT_TEAM_ID_HERE';
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session, $teamId) {
-    $teamService = $dfpServices->get($session, TeamService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session,
+        $teamId
+    ) {
+        $teamService = $dfpServices->get($session, TeamService::class);
 
-    // Create a statement to only select a single team by ID.
-    $statementBuilder = new StatementBuilder();
-    $statementBuilder->where('id = :id');
-    $statementBuilder->orderBy('id ASC');
-    $statementBuilder->limit(1);
-    $statementBuilder->withBindVariableValue('id', $teamId);
+        // Create a statement to only select a single team by ID.
+        $statementBuilder = new StatementBuilder();
+        $statementBuilder->where('id = :id');
+        $statementBuilder->orderBy('id ASC');
+        $statementBuilder->limit(1);
+        $statementBuilder->withBindVariableValue('id', $teamId);
 
-    // Get the team.
-    $page = $teamService->getTeamsByStatement($statementBuilder->toStatement());
-    $team = $page->getResults()[0];
+        // Get the team.
+        $page = $teamService->getTeamsByStatement($statementBuilder->toStatement());
+        $team = $page->getResults()[0];
 
-    $newDescription = $team->getDescription() . ' - UPDATED';
-    $team->setDescription($newDescription);
+        $newDescription = $team->getDescription() . ' - UPDATED';
+        $team->setDescription($newDescription);
 
-    // Update the team on the server.
-    $teams = $teamService->updateTeams([$team]);
+        // Update the team on the server.
+        $teams = $teamService->updateTeams([$team]);
 
-    foreach ($teams as $updatedTeam) {
-      printf(
-          "Team with ID %d and name '%s' was updated.\n",
-          $updatedTeam->getId(),
-          $updatedTeam->getName()
-      );
+        foreach ($teams as $updatedTeam) {
+            printf(
+                "Team with ID %d and name '%s' was updated.\n",
+                $updatedTeam->getId(),
+                $updatedTeam->getName()
+            );
+        }
     }
-  }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a `adsapi_php.ini` file and the
-    // OAuth2 credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a `adsapi_php.ini` file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(new DfpServices(), $session, intval(self::TEAM_ID));
-  }
+        self::runExample(new DfpServices(), $session, intval(self::TEAM_ID));
+    }
 }
 
 UpdateTeams::main();

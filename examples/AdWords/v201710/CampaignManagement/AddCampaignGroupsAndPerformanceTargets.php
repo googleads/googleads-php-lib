@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\AdWords\v201710\CampaignManagement;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -43,142 +44,154 @@ use Google\AdsApi\Common\OAuth2TokenBuilder;
  * that group. To get campaigns, run GetCampaigns.php. To download reports, run
  * DownloadCriteriaReportWithAwql.php.
  */
-class AddCampaignGroupsAndPerformanceTargets {
+class AddCampaignGroupsAndPerformanceTargets
+{
 
-  const CAMPAIGN_ID_1 = 'INSERT_CAMPAIGN_ID_1_HERE';
-  const CAMPAIGN_ID_2 = 'INSERT_CAMPAIGN_ID_2_HERE';
+    const CAMPAIGN_ID_1 = 'INSERT_CAMPAIGN_ID_1_HERE';
+    const CAMPAIGN_ID_2 = 'INSERT_CAMPAIGN_ID_2_HERE';
 
-  public static function runExample(
-      AdWordsServices $adWordsServices, AdWordsSession $session, $campaignIds) {
-    $campaignGroup = self::createCampaignGroup($adWordsServices, $session);
-    self::addCampaignsToGroup($adWordsServices, $session, $campaignGroup,
-        $campaignIds);
-    self::createPerformanceTarget($adWordsServices, $session, $campaignGroup);
-  }
-
-  private static function createCampaignGroup(
-      AdWordsServices $adWordsServices, AdWordsSession $session) {
-    $campaignGroupService =
-        $adWordsServices->get($session, CampaignGroupService::class);
-
-    // Create the campaign group.
-    $campaignGroup = new CampaignGroup();
-    $campaignGroup->setName('Mars campaign group #' . uniqid());
-
-    // Create the operation.
-    $operation = new CampaignGroupOperation();
-    $operation->setOperand($campaignGroup);
-    $operation->setOperator(Operator::ADD);
-
-    $campaignGroup =
-        $campaignGroupService->mutate([$operation])->getValue()[0];
-    printf("Campaign group with ID %d and name '%s' was created.\n",
-        $campaignGroup->getId(), $campaignGroup->getName());
-
-    return $campaignGroup;
-  }
-
-  private static function addCampaignsToGroup(
-      AdWordsServices $adWordsServices,
-      AdWordsSession $session,
-      $campaignGroup,
-      $campaignIds
-  ) {
-    $campaignService = $adWordsServices->get($session, CampaignService::class);
-
-    $operations = [];
-    foreach ($campaignIds as $campaignId) {
-      $campaign = new Campaign();
-      $campaign->setId($campaignId);
-      $campaign->setCampaignGroupId($campaignGroup->getId());
-
-      $operation = new CampaignOperation();
-      $operation->setOperand($campaign);
-      $operation->setOperator(Operator::SET);
-      $operations[] = $operation;
+    public static function runExample(
+        AdWordsServices $adWordsServices,
+        AdWordsSession $session,
+        $campaignIds
+    ) {
+        $campaignGroup = self::createCampaignGroup($adWordsServices, $session);
+        self::addCampaignsToGroup(
+            $adWordsServices,
+            $session,
+            $campaignGroup,
+            $campaignIds
+        );
+        self::createPerformanceTarget($adWordsServices, $session, $campaignGroup);
     }
 
-    $campaigns = $campaignService->mutate($operations)->getValue();
-    printf("The following campaign IDs were added to the campaign group with"
-        . " ID %d:\n", $campaignGroup->getId());
-    foreach ($campaigns as $campaign) {
-      printf("\t%d\n", $campaign->getId());
+    private static function createCampaignGroup(
+        AdWordsServices $adWordsServices,
+        AdWordsSession $session
+    ) {
+        $campaignGroupService = $adWordsServices->get($session, CampaignGroupService::class);
+
+        // Create the campaign group.
+        $campaignGroup = new CampaignGroup();
+        $campaignGroup->setName('Mars campaign group #' . uniqid());
+
+        // Create the operation.
+        $operation = new CampaignGroupOperation();
+        $operation->setOperand($campaignGroup);
+        $operation->setOperator(Operator::ADD);
+
+        $campaignGroup = $campaignGroupService->mutate([$operation])->getValue()[0];
+        printf(
+            "Campaign group with ID %d and name '%s' was created.\n",
+            $campaignGroup->getId(),
+            $campaignGroup->getName()
+        );
+
+        return $campaignGroup;
     }
-  }
 
-  private static function createPerformanceTarget(
-      AdWordsServices $adWordsServices,
-      AdWordsSession $session,
-      CampaignGroup $campaignGroup
-  ) {
-    $campaignGroupPerformanceTargetService = $adWordsServices->get(
-        $session, CampaignGroupPerformanceTargetService::class);
+    private static function addCampaignsToGroup(
+        AdWordsServices $adWordsServices,
+        AdWordsSession $session,
+        $campaignGroup,
+        $campaignIds
+    ) {
+        $campaignService = $adWordsServices->get($session, CampaignService::class);
 
-    // Create the performance target.
-    $performanceTarget = new PerformanceTarget();
-    // Keep the CPC for the campaigns < $3.
-    $performanceTarget->setEfficiencyTargetType(
-        EfficiencyTargetType::CPC_LESS_THAN_OR_EQUAL_TO);
-    $performanceTarget->setEfficiencyTargetValue(3000000);
+        $operations = [];
+        foreach ($campaignIds as $campaignId) {
+            $campaign = new Campaign();
+            $campaign->setId($campaignId);
+            $campaign->setCampaignGroupId($campaignGroup->getId());
 
-    // Keep the maximum spend under $50.
-    $performanceTarget->setSpendTargetType(SpendTargetType::MAXIMUM);
-    $maxSpend = new Money();
-    $maxSpend->setMicroAmount(500000000);
-    $performanceTarget->setSpendTarget($maxSpend);
+            $operation = new CampaignOperation();
+            $operation->setOperand($campaign);
+            $operation->setOperator(Operator::SET);
+            $operations[] = $operation;
+        }
 
-    // Aim for at least 3000 clicks.
-    $performanceTarget->setVolumeTargetValue(3000);
-    $performanceTarget->setVolumeGoalType(VolumeGoalType::MAXIMIZE_CLICKS);
+        $campaigns = $campaignService->mutate($operations)->getValue();
+        printf(
+            "The following campaign IDs were added to the campaign group with ID %d:\n",
+            $campaignGroup->getId()
+        );
+        foreach ($campaigns as $campaign) {
+            printf("\t%d\n", $campaign->getId());
+        }
+    }
 
-    // Start the performance target today, and run it for the next 90 days.
-    $startDate = date('Ymd', strtotime('now'));
-    $endDate =  date('Ymd', strtotime('+90 day'));
+    private static function createPerformanceTarget(
+        AdWordsServices $adWordsServices,
+        AdWordsSession $session,
+        CampaignGroup $campaignGroup
+    ) {
+        $campaignGroupPerformanceTargetService = $adWordsServices->get(
+            $session,
+            CampaignGroupPerformanceTargetService::class
+        );
 
-    $performanceTarget->setStartDate($startDate);
-    $performanceTarget->setEndDate($endDate);
+        // Create the performance target.
+        $performanceTarget = new PerformanceTarget();
+        // Keep the CPC for the campaigns < $3.
+        $performanceTarget->setEfficiencyTargetType(
+            EfficiencyTargetType::CPC_LESS_THAN_OR_EQUAL_TO
+        );
+        $performanceTarget->setEfficiencyTargetValue(3000000);
 
-    // Create the campaign group performance target.
-    $campaignGroupPerformanceTarget = new CampaignGroupPerformanceTarget();
-    $campaignGroupPerformanceTarget->setCampaignGroupId(
-        $campaignGroup->getId());
-    $campaignGroupPerformanceTarget->setPerformanceTarget($performanceTarget);
+        // Keep the maximum spend under $50.
+        $performanceTarget->setSpendTargetType(SpendTargetType::MAXIMUM);
+        $maxSpend = new Money();
+        $maxSpend->setMicroAmount(500000000);
+        $performanceTarget->setSpendTarget($maxSpend);
 
-    // Create the operation.
-    $operation = new CampaignGroupPerformanceTargetOperation();
-    $operation->setOperand($campaignGroupPerformanceTarget);
-    $operation->setOperator(Operator::ADD);
+        // Aim for at least 3000 clicks.
+        $performanceTarget->setVolumeTargetValue(3000);
+        $performanceTarget->setVolumeGoalType(VolumeGoalType::MAXIMIZE_CLICKS);
 
-    $campaignGroupPerformanceTarget = $campaignGroupPerformanceTargetService
-        ->mutate([$operation])->getValue()[0];
+        // Start the performance target today, and run it for the next 90 days.
+        $startDate = date('Ymd', strtotime('now'));
+        $endDate = date('Ymd', strtotime('+90 day'));
 
-    // Display the results.
-    printf(
-        "Campaign group performance target with ID %d was added for campaign"
-            . " group ID %d.\n",
-        $campaignGroupPerformanceTarget->getId(),
-        $campaignGroupPerformanceTarget->getCampaignGroupId()
-    );
-  }
+        $performanceTarget->setStartDate($startDate);
+        $performanceTarget->setEndDate($endDate);
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+        // Create the campaign group performance target.
+        $campaignGroupPerformanceTarget = new CampaignGroupPerformanceTarget();
+        $campaignGroupPerformanceTarget->setCampaignGroupId(
+            $campaignGroup->getId()
+        );
+        $campaignGroupPerformanceTarget->setPerformanceTarget($performanceTarget);
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new AdWordsSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
-    self::runExample(
-        new AdWordsServices(),
-        $session,
-        [intval(self::CAMPAIGN_ID_1), intval(self::CAMPAIGN_ID_2)]
-    );
-  }
+        // Create the operation.
+        $operation = new CampaignGroupPerformanceTargetOperation();
+        $operation->setOperand($campaignGroupPerformanceTarget);
+        $operation->setOperator(Operator::ADD);
+
+        $campaignGroupPerformanceTarget = $campaignGroupPerformanceTargetService->mutate([$operation])->getValue()[0];
+
+        // Display the results.
+        printf(
+            "Campaign group performance target with ID %d was added for campaign group ID %d.\n",
+            $campaignGroupPerformanceTarget->getId(),
+            $campaignGroupPerformanceTarget->getCampaignGroupId()
+        );
+    }
+
+
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()->build();
+
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new AdWordsSessionBuilder())->fromFile()->withOAuth2Credential($oAuth2Credential)->build();
+        self::runExample(
+            new AdWordsServices(),
+            $session,
+            [intval(self::CAMPAIGN_ID_1), intval(self::CAMPAIGN_ID_2)]
+        );
+    }
 }
 
 AddCampaignGroupsAndPerformanceTargets::main();

@@ -14,58 +14,66 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\AdWords\Testing;
 
 /**
  * A fake Budget class for testing purpose.
  */
-final class FakeBudget {
+final class FakeBudget
+{
 
-  const TYPE = 'ADWORDS_OBJECT';
+    const TYPE = 'ADWORDS_OBJECT';
 
-  protected $budgetId = null;
-  protected $name = null;
-  protected $amount = null;
+    protected $budgetId = null;
+    protected $name = null;
+    protected $amount = null;
 
-  /**
-   * @return int
-   */
-  public function getBudgetId() {
-    return $this->budgetId;
-  }
+    /**
+     * @return int
+     */
+    public function getBudgetId()
+    {
+        return $this->budgetId;
+    }
 
-  /**
-   * @param int $budgetId
-   */
-  public function setBudgetId($budgetId) {
-    $this->budgetId = $budgetId;
-  }
+    /**
+     * @param int $budgetId
+     */
+    public function setBudgetId($budgetId)
+    {
+        $this->budgetId = $budgetId;
+    }
 
-  /**
-   * @return string
-   */
-  public function getName() {
-    return $this->name;
-  }
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
 
-  /**
-   * @param string $name
-   */
-  public function setName($name) {
-    $this->name = $name;
-  }
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
 
-  /**
-   * @return \Google\AdsApi\AdWords\Testing\FakeMoney
-   */
-  public function getAmount() {
-    return $this->amount;
-  }
+    /**
+     * @return \Google\AdsApi\AdWords\Testing\FakeMoney
+     */
+    public function getAmount()
+    {
+        return $this->amount;
+    }
 
-  /**
-   * @param \Google\AdsApi\AdWords\Testing\FakeMoney $amount
-   */
-  public function setAmount($amount) {
-    $this->amount = $amount;
-  }
+    /**
+     * @param \Google\AdsApi\AdWords\Testing\FakeMoney $amount
+     */
+    public function setAmount($amount)
+    {
+        $this->amount = $amount;
+    }
 }

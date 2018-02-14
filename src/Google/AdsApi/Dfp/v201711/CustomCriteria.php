@@ -50,7 +50,7 @@ class CustomCriteria extends \Google\AdsApi\Dfp\v201711\CustomCriteriaLeaf
      */
     public function setKeyId($keyId)
     {
-      $this->keyId = (PHP_INT_SIZE === 4)
+      $this->keyId = (!is_null(keyId) && PHP_INT_SIZE === 4)
           ? floatval($keyId) : $keyId;
       return $this;
     }

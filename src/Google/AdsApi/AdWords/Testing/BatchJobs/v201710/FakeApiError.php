@@ -14,56 +14,64 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\AdWords\Testing\BatchJobs\v201710;
 
 /**
  * A fake API error class for testing purpose.
  */
-class FakeApiError {
+class FakeApiError
+{
 
-  protected $fieldPath;
-  protected $trigger;
-  protected $errorString;
+    protected $fieldPath;
+    protected $trigger;
+    protected $errorString;
 
-  /**
-   * @return string
-   */
-  public function getFieldPath() {
-    return $this->fieldPath;
-  }
+    /**
+     * @return string
+     */
+    public function getFieldPath()
+    {
+        return $this->fieldPath;
+    }
 
-  /**
-   * @param string $fieldPath
-   */
-  public function setFieldPath($fieldPath) {
-    $this->fieldPath = $fieldPath;
-  }
+    /**
+     * @param string $fieldPath
+     */
+    public function setFieldPath($fieldPath)
+    {
+        $this->fieldPath = $fieldPath;
+    }
 
-  /**
-   * @return string
-   */
-  public function getTrigger() {
-    return $this->trigger;
-  }
+    /**
+     * @return string
+     */
+    public function getTrigger()
+    {
+        return $this->trigger;
+    }
 
-  /**
-   * @param string $trigger
-   */
-  public function setTrigger($trigger) {
-    $this->trigger = $trigger;
-  }
+    /**
+     * @param string $trigger
+     */
+    public function setTrigger($trigger)
+    {
+        $this->trigger = $trigger;
+    }
 
-  /**
-   * @return string
-   */
-  public function getErrorString() {
-    return $this->errorString;
-  }
+    /**
+     * @return string
+     */
+    public function getErrorString()
+    {
+        return $this->errorString;
+    }
 
-  /**
-   * @param string $errorString
-   */
-  public function setErrorString($errorString) {
-    $this->errorString = $errorString;
-  }
+    /**
+     * @param string $errorString
+     */
+    public function setErrorString($errorString)
+    {
+        $this->errorString = $errorString;
+    }
 }

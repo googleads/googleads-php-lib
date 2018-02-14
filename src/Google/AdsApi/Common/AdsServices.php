@@ -14,19 +14,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Common;
 
 /**
  * Entry point for accessing an ads API's services.
  */
-interface AdsServices {
+interface AdsServices
+{
 
-  /**
-   * Gets the specified ads API service with the specified session.
-   *
-   * @param AdsSession $session the session to use with the ads API service
-   * @param string $class the fully qualified class name of the service
-   * @return AdsSoapClient the ads API service
-   */
-  public function get(AdsSession $session, $class);
+    /**
+     * Gets the specified ads API service with the specified session.
+     *
+     * @param AdsSession $session the session to use with the ads API service
+     * @param string $class the fully qualified class name of the service
+     * @return AdsSoapClient the ads API service
+     */
+    public function get(AdsSession $session, $class);
 }

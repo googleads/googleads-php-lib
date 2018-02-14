@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Dfp;
 
 use Google\AdsApi\Common\AdsServices;
@@ -23,36 +24,35 @@ use Google\AdsApi\Common\AdsSoapClientFactory;
 /**
  * Entry point for accessing the DFP API's services.
  */
-final class DfpServices implements AdsServices {
+final class DfpServices implements AdsServices
+{
 
-  private $adsSoapClientFactory;
-  private $adsHeaderHandler;
+    private $adsSoapClientFactory;
+    private $adsHeaderHandler;
 
-  /**
-   * @param AdsSoapClientFactory|null $adsSoapClientFactory
-   * @param DfpHeaderHandler|null $dfpHeaderHandler
-   */
-  public function __construct(
-      AdsSoapClientFactory $adsSoapClientFactory = null,
-      DfpHeaderHandler $dfpHeaderHandler = null) {
-    $this->adsSoapClientFactory = ($adsSoapClientFactory === null)
-        ? new AdsSoapClientFactory(
-            (new DfpSoapLogMessageFormatterProvider())
-                ->getSoapLogMessageFormatter())
-        : $adsSoapClientFactory;
-    $this->adsHeaderHandler = ($dfpHeaderHandler === null)
-        ? new DfpHeaderHandler()
-        : $dfpHeaderHandler;
-  }
+    /**
+     * @param AdsSoapClientFactory|null $adsSoapClientFactory
+     * @param DfpHeaderHandler|null $dfpHeaderHandler
+     */
+    public function __construct(
+        AdsSoapClientFactory $adsSoapClientFactory = null,
+        DfpHeaderHandler $dfpHeaderHandler = null
+    ) {
+        $this->adsSoapClientFactory = ($adsSoapClientFactory === null)
+            ? new AdsSoapClientFactory((new DfpSoapLogMessageFormatterProvider())->getSoapLogMessageFormatter())
+            : $adsSoapClientFactory;
+        $this->adsHeaderHandler = ($dfpHeaderHandler === null) ? new DfpHeaderHandler() : $dfpHeaderHandler;
+    }
 
-  /**
-   * @see AdsServices::get()
-   */
-  public function get(AdsSession $session, $class) {
-    return $this->adsSoapClientFactory->generateSoapClient(
-        $session,
-        $this->adsHeaderHandler,
-        new DfpServiceDescriptor($class)
-    );
-  }
+    /**
+     * @see AdsServices::get()
+     */
+    public function get(AdsSession $session, $class)
+    {
+        return $this->adsSoapClientFactory->generateSoapClient(
+            $session,
+            $this->adsHeaderHandler,
+            new DfpServiceDescriptor($class)
+        );
+    }
 }

@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\AdWords\v201710\BasicOperations;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -34,79 +35,81 @@ use Google\AdsApi\Common\OAuth2TokenBuilder;
  * This example adds demographic target criteria to an ad group.
  * To get ad groups, run AddAdGroup.php.
  */
-class AddDemographicTargetingCriteria {
+class AddDemographicTargetingCriteria
+{
 
-  const AD_GROUP_ID = 'INSERT_AD_GROUP_ID_HERE';
+    const AD_GROUP_ID = 'INSERT_AD_GROUP_ID_HERE';
 
-  public static function runExample(AdWordsServices $adWordsServices,
-      AdWordsSession $session, $adGroupId) {
-    $adGroupCriterionService =
-        $adWordsServices->get($session, AdGroupCriterionService::class);
+    public static function runExample(
+        AdWordsServices $adWordsServices,
+        AdWordsSession $session,
+        $adGroupId
+    ) {
+        $adGroupCriterionService = $adWordsServices->get($session, AdGroupCriterionService::class);
 
-    $operations = [];
+        $operations = [];
 
-    // Create biddable ad group criterion for gender.
-    $genderTarget = new Gender();
-    // ID for "male" criterion. The IDs can be found here:
-    // https://developers.google.com/adwords/api/docs/appendix/genders
-    $genderTarget->setId(10);
-    $genderBiddableAdGroupCriterion = new BiddableAdGroupCriterion();
-    $genderBiddableAdGroupCriterion->setAdGroupId($adGroupId);
-    $genderBiddableAdGroupCriterion->setCriterion($genderTarget);
+        // Create biddable ad group criterion for gender.
+        $genderTarget = new Gender();
+        // ID for "male" criterion. The IDs can be found here:
+        // https://developers.google.com/adwords/api/docs/appendix/genders
+        $genderTarget->setId(10);
+        $genderBiddableAdGroupCriterion = new BiddableAdGroupCriterion();
+        $genderBiddableAdGroupCriterion->setAdGroupId($adGroupId);
+        $genderBiddableAdGroupCriterion->setCriterion($genderTarget);
 
-    // Create an ad group criterion operation and add it to the list.
-    $genderBiddableAdGroupCriterionOperation = new AdGroupCriterionOperation();
-    $genderBiddableAdGroupCriterionOperation->setOperand(
-        $genderBiddableAdGroupCriterion);
-    $genderBiddableAdGroupCriterionOperation->setOperator(Operator::ADD);
-    $operations[] = $genderBiddableAdGroupCriterionOperation;
+        // Create an ad group criterion operation and add it to the list.
+        $genderBiddableAdGroupCriterionOperation = new AdGroupCriterionOperation();
+        $genderBiddableAdGroupCriterionOperation->setOperand(
+            $genderBiddableAdGroupCriterion
+        );
+        $genderBiddableAdGroupCriterionOperation->setOperator(Operator::ADD);
+        $operations[] = $genderBiddableAdGroupCriterionOperation;
 
-    // Create negative ad group criterion for age range.
-    $ageRangeNegative = new AgeRange();
-    // Criterion ID for age 18 to 24. The IDs can be found here:
-    // https://developers.google.com/adwords/api/docs/appendix/ages
-    $ageRangeNegative->setId(503001);
-    $ageRangeNegativeAdGroupCriterion = new NegativeAdGroupCriterion();
-    $ageRangeNegativeAdGroupCriterion->setAdGroupId($adGroupId);
-    $ageRangeNegativeAdGroupCriterion->setCriterion($ageRangeNegative);
+        // Create negative ad group criterion for age range.
+        $ageRangeNegative = new AgeRange();
+        // Criterion ID for age 18 to 24. The IDs can be found here:
+        // https://developers.google.com/adwords/api/docs/appendix/ages
+        $ageRangeNegative->setId(503001);
+        $ageRangeNegativeAdGroupCriterion = new NegativeAdGroupCriterion();
+        $ageRangeNegativeAdGroupCriterion->setAdGroupId($adGroupId);
+        $ageRangeNegativeAdGroupCriterion->setCriterion($ageRangeNegative);
 
-    // Create an ad group criterion operation and add it to the list.
-    $ageRangeNegativeAdGroupCriterionOperation =
-        new AdGroupCriterionOperation();
-    $ageRangeNegativeAdGroupCriterionOperation->setOperand(
-        $ageRangeNegativeAdGroupCriterion);
-    $ageRangeNegativeAdGroupCriterionOperation->setOperator(Operator::ADD);
-    $operations[] = $ageRangeNegativeAdGroupCriterionOperation;
+        // Create an ad group criterion operation and add it to the list.
+        $ageRangeNegativeAdGroupCriterionOperation = new AdGroupCriterionOperation();
+        $ageRangeNegativeAdGroupCriterionOperation->setOperand(
+            $ageRangeNegativeAdGroupCriterion
+        );
+        $ageRangeNegativeAdGroupCriterionOperation->setOperator(Operator::ADD);
+        $operations[] = $ageRangeNegativeAdGroupCriterionOperation;
 
-    // Create the ad group criteria on the server and print out some information
-    // for each created ad group criterion.
-    $result = $adGroupCriterionService->mutate($operations);
-    foreach ($result->getValue() as $adGroupCriterion) {
-      printf(
-          "Ad group criterion with ad group ID %d, criterion ID %d "
-              . "and type '%s' was added.\n",
-          $adGroupCriterion->getAdGroupId(),
-          $adGroupCriterion->getCriterion()->getId(),
-          $adGroupCriterion->getCriterion()->getType()
-      );
+        // Create the ad group criteria on the server and print out some information
+        // for each created ad group criterion.
+        $result = $adGroupCriterionService->mutate($operations);
+        foreach ($result->getValue() as $adGroupCriterion) {
+            printf(
+                "Ad group criterion with ad group ID %d, criterion ID %d and type '%s' was added.\n",
+                $adGroupCriterion->getAdGroupId(),
+                $adGroupCriterion->getCriterion()->getId(),
+                $adGroupCriterion->getCriterion()->getType()
+            );
+        }
     }
-  }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new AdWordsSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
-    self::runExample(
-        new AdWordsServices(), $session, intval(self::AD_GROUP_ID));
-  }
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new AdWordsSessionBuilder())->fromFile()->withOAuth2Credential($oAuth2Credential)->build();
+        self::runExample(
+            new AdWordsServices(),
+            $session,
+            intval(self::AD_GROUP_ID)
+        );
+    }
 }
 
 AddDemographicTargetingCriteria::main();

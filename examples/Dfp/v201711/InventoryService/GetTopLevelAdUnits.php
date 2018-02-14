@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\InventoryService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -34,69 +35,72 @@ use Google\AdsApi\Dfp\v201711\NetworkService;
  * requires that you've setup an `adsapi_php.ini` file in your home directory
  * with your API credentials and settings. See `README.md` for more info.
  */
-class GetTopLevelAdUnits {
+class GetTopLevelAdUnits
+{
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session) {
-    $inventoryService =
-        $dfpServices->get($session, InventoryService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session
+    ) {
+        $inventoryService = $dfpServices->get($session, InventoryService::class);
 
-    // Get the NetworkService.
-    $networkService =
-        $dfpServices->get($session, NetworkService::class);
+        // Get the NetworkService.
+        $networkService = $dfpServices->get($session, NetworkService::class);
 
-    // Set the parent ad unit's ID for all children ad units to be fetched from.
-    $parentAdUnitId = $networkService->getCurrentNetwork()
-        ->getEffectiveRootAdUnitId();
+        // Set the parent ad unit's ID for all children ad units to be fetched from.
+        $parentAdUnitId = $networkService->getCurrentNetwork()
+            ->getEffectiveRootAdUnitId();
 
-    // Create a statement to select ad units under the parent ad unit.
-    $statementBuilder = new StatementBuilder();
-    $statementBuilder->where('parentId = :parentId');
-    $statementBuilder->orderBy('id ASC');
-    $statementBuilder->limit(StatementBuilder::SUGGESTED_PAGE_LIMIT);
-    $statementBuilder->withBindVariableValue('parentId', $parentAdUnitId);
+        // Create a statement to select ad units under the parent ad unit.
+        $statementBuilder = new StatementBuilder();
+        $statementBuilder->where('parentId = :parentId');
+        $statementBuilder->orderBy('id ASC');
+        $statementBuilder->limit(StatementBuilder::SUGGESTED_PAGE_LIMIT);
+        $statementBuilder->withBindVariableValue('parentId', $parentAdUnitId);
 
-    // Get ad units by statement.
-    $page = $inventoryService->getAdUnitsByStatement(
-         $statementBuilder->toStatement());
-    $totalResultSetSize = $page->getTotalResultSetSize();
-    $adUnits = $page->getResults();
-
-    while (!empty($adUnits)) {
-      $i = $page->getStartIndex();
-      foreach ($page->getResults() as $adUnit) {
-        printf(
-            "%d) Ad unit with ID '%s' and name '%s' was found.\n",
-            $i++,
-            $adUnit->getId(),
-            $adUnit->getName()
+        // Get ad units by statement.
+        $page = $inventoryService->getAdUnitsByStatement(
+            $statementBuilder->toStatement()
         );
-      }
-      $statementBuilder->increaseOffsetBy(
-          StatementBuilder::SUGGESTED_PAGE_LIMIT);
-      $page = $inventoryService->getAdUnitsByStatement(
-          $statementBuilder->toStatement());
-      $adUnits = $page->getResults();
+        $totalResultSetSize = $page->getTotalResultSetSize();
+        $adUnits = $page->getResults();
+
+        while (!empty($adUnits)) {
+            $i = $page->getStartIndex();
+            foreach ($page->getResults() as $adUnit) {
+                printf(
+                    "%d) Ad unit with ID '%s' and name '%s' was found.\n",
+                    $i++,
+                    $adUnit->getId(),
+                    $adUnit->getName()
+                );
+            }
+            $statementBuilder->increaseOffsetBy(
+                StatementBuilder::SUGGESTED_PAGE_LIMIT
+            );
+            $page = $inventoryService->getAdUnitsByStatement(
+                $statementBuilder->toStatement()
+            );
+            $adUnits = $page->getResults();
+        }
+
+        printf("Number of results found: %d\n", $totalResultSetSize);
     }
 
-    printf("Number of results found: %d\n", $totalResultSetSize);
-  }
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
-
-    self::runExample(new DfpServices(), $session);
-  }
+        self::runExample(new DfpServices(), $session);
+    }
 }
 
 GetTopLevelAdUnits::main();

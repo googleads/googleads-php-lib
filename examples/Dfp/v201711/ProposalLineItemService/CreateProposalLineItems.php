@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\ProposalLineItemService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -48,102 +49,111 @@ use Google\AdsApi\Dfp\v201711\UnitType;
  * requires that you've setup an `adsapi_php.ini` file in your home directory
  * with your API credentials and settings. See `README.md` for more info.
  */
-class CreateProposalLineItems {
+class CreateProposalLineItems
+{
 
-  // Set the proposal, product, and rate card ID to use when creating the
-  // proposal line item.
-  const PROPOSAL_ID = 'INSERT_PROPOSAL_ID_HERE';
-  const PRODUCT_ID = 'INSERT_PRODUCT_ID_HERE';
-  const RATE_CARD_ID = 'INSERT_RATE_CARD_ID_HERE';
+    // Set the proposal, product, and rate card ID to use when creating the
+    // proposal line item.
+    const PROPOSAL_ID = 'INSERT_PROPOSAL_ID_HERE';
+    const PRODUCT_ID = 'INSERT_PRODUCT_ID_HERE';
+    const RATE_CARD_ID = 'INSERT_RATE_CARD_ID_HERE';
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session, $proposalId, $productId, $rateCardId) {
-    $proposalLineItemService =
-        $dfpServices->get($session, ProposalLineItemService::class);
-    $networkService = $dfpServices->get($session, NetworkService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session,
+        $proposalId,
+        $productId,
+        $rateCardId
+    ) {
+        $proposalLineItemService = $dfpServices->get($session, ProposalLineItemService::class);
+        $networkService = $dfpServices->get($session, NetworkService::class);
 
-    // Create a standard proposal line item.
-    $proposalLineItem = new ProposalLineItem();
-    $proposalLineItem->setName('Proposal line item #' . uniqid());
-    $proposalLineItem->setLineItemType(LineItemType::STANDARD);
+        // Create a standard proposal line item.
+        $proposalLineItem = new ProposalLineItem();
+        $proposalLineItem->setName('Proposal line item #' . uniqid());
+        $proposalLineItem->setLineItemType(LineItemType::STANDARD);
 
-    $proposalLineItem->setProposalId($proposalId);
-    $proposalLineItem->setRateCardId($rateCardId);
-    $proposalLineItem->setProductId($productId);
+        $proposalLineItem->setProposalId($proposalId);
+        $proposalLineItem->setRateCardId($rateCardId);
+        $proposalLineItem->setProductId($productId);
 
-    // Set the length of the proposal line item to run.
-    $proposalLineItem->setStartDateTime(DfpDateTimes::fromDateTime(
-        new DateTime('now', new DateTimeZone('America/New_York'))));
-    $proposalLineItem->setEndDateTime(DfpDateTimes::fromDateTime(
-        new DateTime('+1 month', new DateTimeZone('America/New_York'))));
+        // Set the length of the proposal line item to run.
+        $proposalLineItem->setStartDateTime(
+            DfpDateTimes::fromDateTime(
+                new DateTime('now', new DateTimeZone('America/New_York'))
+            )
+        );
+        $proposalLineItem->setEndDateTime(
+            DfpDateTimes::fromDateTime(
+                new DateTime('+1 month', new DateTimeZone('America/New_York'))
+            )
+        );
 
-    // Set delivery specifications for the proposal line item.
-    $proposalLineItem->setDeliveryRateType(DeliveryRateType::EVENLY);
-    $proposalLineItem->setCreativeRotationType(CreativeRotationType::OPTIMIZED);
+        // Set delivery specifications for the proposal line item.
+        $proposalLineItem->setDeliveryRateType(DeliveryRateType::EVENLY);
+        $proposalLineItem->setCreativeRotationType(CreativeRotationType::OPTIMIZED);
 
-    // Set billing specifications for the proposal line item.
-    $proposalLineItem->setBillingCap(BillingCap::CAPPED_CUMULATIVE);
-    $proposalLineItem->setBillingSource(BillingSource::THIRD_PARTY_VOLUME);
+        // Set billing specifications for the proposal line item.
+        $proposalLineItem->setBillingCap(BillingCap::CAPPED_CUMULATIVE);
+        $proposalLineItem->setBillingSource(BillingSource::THIRD_PARTY_VOLUME);
 
-    // Create ad unit targeting for the root ad unit (i.e. the whole network).
-    $rootAdUnitId =
-        $networkService->getCurrentNetwork()->getEffectiveRootAdUnitId();
-    $inventoryTargeting = new InventoryTargeting();
-    $adUnitTargeting = new AdUnitTargeting();
-    $adUnitTargeting->setAdUnitId($rootAdUnitId);
-    $adUnitTargeting->setIncludeDescendants(true);
-    $inventoryTargeting->setTargetedAdUnits([$adUnitTargeting]);
-    $targeting = new Targeting();
-    $targeting->setInventoryTargeting($inventoryTargeting);
-    $proposalLineItem->setTargeting($targeting);
+        // Create ad unit targeting for the root ad unit (i.e. the whole network).
+        $rootAdUnitId = $networkService->getCurrentNetwork()
+            ->getEffectiveRootAdUnitId();
+        $inventoryTargeting = new InventoryTargeting();
+        $adUnitTargeting = new AdUnitTargeting();
+        $adUnitTargeting->setAdUnitId($rootAdUnitId);
+        $adUnitTargeting->setIncludeDescendants(true);
+        $inventoryTargeting->setTargetedAdUnits([$adUnitTargeting]);
+        $targeting = new Targeting();
+        $targeting->setInventoryTargeting($inventoryTargeting);
+        $proposalLineItem->setTargeting($targeting);
 
-    // Set pricing for the proposal line item for 1000 impressions at a CPM of
-    // $2 for a total value of $2.
-    $goal = new Goal();
-    $goal->setUnits(1000);
-    $goal->setUnitType(UnitType::IMPRESSIONS);
-    $proposalLineItem->setGoal($goal);
+        // Set pricing for the proposal line item for 1000 impressions at a CPM of
+        // $2 for a total value of $2.
+        $goal = new Goal();
+        $goal->setUnits(1000);
+        $goal->setUnitType(UnitType::IMPRESSIONS);
+        $proposalLineItem->setGoal($goal);
 
-    $proposalLineItem->setNetCost(new Money('USD', 2000000));
-    $proposalLineItem->setNetRate(new Money('USD', 2000000));
-    $proposalLineItem->setRateType(RateType::CPM);
+        $proposalLineItem->setNetCost(new Money('USD', 2000000));
+        $proposalLineItem->setNetRate(new Money('USD', 2000000));
+        $proposalLineItem->setRateType(RateType::CPM);
 
-    // Create the proposal line items on the server.
-    $results =
-        $proposalLineItemService->createProposalLineItems([$proposalLineItem]);
+        // Create the proposal line items on the server.
+        $results = $proposalLineItemService->createProposalLineItems([$proposalLineItem]);
 
-    // Print out some information for each created proposal line item.
-    foreach ($results as $i => $proposalLineItem) {
-      printf(
-          "%d) Proposal line item with ID %d and name '%s' was created.\n",
-          $i,
-          $proposalLineItem->getId(),
-          $proposalLineItem->getName()
-      );
+        // Print out some information for each created proposal line item.
+        foreach ($results as $i => $proposalLineItem) {
+            printf(
+                "%d) Proposal line item with ID %d and name '%s' was created.\n",
+                $i,
+                $proposalLineItem->getId(),
+                $proposalLineItem->getName()
+            );
+        }
     }
-  }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(
-        new DfpServices(),
-        $session,
-        intval(self::PROPOSAL_ID),
-        intval(self::PRODUCT_ID),
-        intval(self::RATE_CARD_ID)
-    );
-  }
+        self::runExample(
+            new DfpServices(),
+            $session,
+            intval(self::PROPOSAL_ID),
+            intval(self::PRODUCT_ID),
+            intval(self::RATE_CARD_ID)
+        );
+    }
 }
 
 CreateProposalLineItems::main();

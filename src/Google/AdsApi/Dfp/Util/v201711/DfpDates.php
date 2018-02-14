@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Dfp\Util\v201711;
 
 use Google\AdsApi\Dfp\v201711\Date;
@@ -21,23 +22,27 @@ use Google\AdsApi\Dfp\v201711\Date;
 /**
  * Static utility methods for working with DFP `Date` objects.
  */
-final class DfpDates {
+final class DfpDates
+{
 
-  private function __construct() {}
+    private function __construct()
+    {
+    }
 
-  /**
-   * Returns string representation of the specified DFP date in `yyyy-MM-dd`
-   * format.
-   *
-   * @param Date $dfpDate
-   * @return string
-   */
-  public static function toDateString(Date $dfpDate) {
-    return sprintf(
-        '%d-%02d-%02d',
-        $dfpDate->getYear(),
-        $dfpDate->getMonth(),
-        $dfpDate->getDay()
-    );
-  }
+    /**
+     * Returns string representation of the specified DFP date in `yyyy-MM-dd`
+     * format.
+     *
+     * @param Date $dfpDate
+     * @return string
+     */
+    public static function toDateString(Date $dfpDate)
+    {
+        return sprintf(
+            '%d-%02d-%02d',
+            $dfpDate->getYear(),
+            $dfpDate->getMonth(),
+            $dfpDate->getDay()
+        );
+    }
 }

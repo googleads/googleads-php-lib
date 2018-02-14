@@ -1,0 +1,2873 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated file, do not edit -->
+<!-- Copyright 2018 Google Inc. All Rights Reserved -->
+<wsdl:definitions
+  targetNamespace="https://www.google.com/apis/ads/publisher/v201802"
+  xmlns:tns="https://www.google.com/apis/ads/publisher/v201802"
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <schema elementFormDefault="qualified" jaxb:version="1.0"
+      targetNamespace="https://www.google.com/apis/ads/publisher/v201802"
+      xmlns="http://www.w3.org/2001/XMLSchema"
+      xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:tns="https://www.google.com/apis/ads/publisher/v201802">
+      <annotation>
+        <appinfo>
+          <jaxb:globalBindings typesafeEnumMaxMembers="999999"/>
+        </appinfo>
+      </annotation>
+      <complexType abstract="true" name="ObjectValue">
+        <annotation>
+          <documentation>
+            Contains an object value.
+            &lt;p&gt;
+            &lt;b&gt;This object is experimental!
+            &lt;code&gt;ObjectValue&lt;/code&gt; is an experimental, innovative, and rapidly
+            changing new feature for DFP. Unfortunately, being on the bleeding edge means that we may make
+            backwards-incompatible changes to
+            &lt;code&gt;ObjectValue&lt;/code&gt;. We will inform the community when this feature
+            is no longer experimental.&lt;/b&gt;
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ActivateAudienceSegments">
+        <annotation>
+          <documentation>
+            Action that can be performed on {@link FirstPartyAudienceSegment} objects to activate them.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:AudienceSegmentAction">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="AdUnitTargeting">
+        <annotation>
+          <documentation>
+            Represents targeted or excluded ad units.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="adUnitId" type="xsd:string">
+            <annotation>
+              <documentation>
+                Included or excluded ad unit id.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="includeDescendants" type="xsd:boolean">
+            <annotation>
+              <documentation>
+                Whether or not all descendants are included (or excluded) as part of
+                including (or excluding) this ad unit. By default, the value is {@code
+                true} which means targeting this ad unit will target all of its
+                descendants.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType abstract="true" name="ApiError">
+        <annotation>
+          <documentation>
+            The API error base class that provides details about an error that occurred
+            while processing a service request.
+            
+            &lt;p&gt;The OGNL field path is provided for parsers to identify the request data
+            element that may have caused the error.&lt;/p&gt;
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="fieldPath" type="xsd:string">
+            <annotation>
+              <documentation>
+                The OGNL field path to identify cause of error.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="fieldPathElements" type="tns:FieldPathElement">
+            <annotation>
+              <documentation>
+                A parsed copy of the field path. For example, the field path "operations[1].operand"
+                corresponds to this list: {FieldPathElement(field = "operations", index = 1),
+                FieldPathElement(field = "operand", index = null)}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="trigger" type="xsd:string">
+            <annotation>
+              <documentation>
+                The data that caused the error.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="errorString" type="xsd:string">
+            <annotation>
+              <documentation>
+                A simple string representation of the error and reason.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="ApiException">
+        <annotation>
+          <documentation>
+            Exception class for holding a list of service errors.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApplicationException">
+            <sequence>
+              <element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:ApiError">
+                <annotation>
+                  <documentation>
+                    List of errors.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ApiVersionError">
+        <annotation>
+          <documentation>
+            Errors related to the usage of API versions.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ApiVersionError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ApplicationException">
+        <annotation>
+          <documentation>
+            Base class for exceptions.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="message" type="xsd:string">
+            <annotation>
+              <documentation>
+                Error message.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="ApproveAudienceSegments">
+        <annotation>
+          <documentation>
+            Action that can be performed on {@link ThirdPartyAudienceSegment} objects to approve them.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:AudienceSegmentAction">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="AudienceSegmentDataProvider">
+        <annotation>
+          <documentation>
+            Data provider that owns this segment. For a {@link FirstPartyAudienceSegment}, it would be the
+            publisher network. For a {@link SharedAudienceSegment} or a {@link ThirdPartyAudienceSegment}, it
+            would be the entity that provides that {@link AudienceSegment}.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
+            <annotation>
+              <documentation>
+                Name of the data provider. This attribute is readonly and is assigned by Google.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="AudienceSegmentPage">
+        <annotation>
+          <documentation>
+            Represents a page of {@link AudienceSegment} objects.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="totalResultSetSize" type="xsd:int">
+            <annotation>
+              <documentation>
+                The size of the total result set to which this page belongs.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="startIndex" type="xsd:int">
+            <annotation>
+              <documentation>
+                The absolute index in the total result set on which this page begins.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="results" type="tns:AudienceSegment">
+            <annotation>
+              <documentation>
+                The collection of audience segments contained within this page.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="AuthenticationError">
+        <annotation>
+          <documentation>
+            An error for an exception that occurred when authenticating.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:AuthenticationError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType abstract="true" name="FirstPartyAudienceSegment">
+        <annotation>
+          <documentation>
+            A {@link FirstPartyAudienceSegment} is an {@link AudienceSegment} owned by the publisher network.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:AudienceSegment">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="BooleanValue">
+        <annotation>
+          <documentation>
+            Contains a boolean value.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="xsd:boolean">
+                <annotation>
+                  <documentation>
+                    The boolean value.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="CollectionSizeError">
+        <annotation>
+          <documentation>
+            Error for the size of the collection being too large
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CollectionSizeError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="CommonError">
+        <annotation>
+          <documentation>
+            A place for common errors that can be used across services.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CommonError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="CustomCriteria">
+        <annotation>
+          <documentation>
+            A {@link CustomCriteria} object is used to perform custom criteria targeting
+            on custom targeting keys of type {@link CustomTargetingKey.Type#PREDEFINED}
+            or {@link CustomTargetingKey.Type#FREEFORM}.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:CustomCriteriaLeaf">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="keyId" type="xsd:long">
+                <annotation>
+                  <documentation>
+                    The {@link CustomTargetingKey#id} of the {@link CustomTargetingKey} object
+                    that was created using {@link CustomTargetingService}. This attribute is
+                    required.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="unbounded" minOccurs="0"
+                name="valueIds" type="xsd:long">
+                <annotation>
+                  <documentation>
+                    The ids of {@link CustomTargetingValue} objects to target the custom
+                    targeting key with id {@link CustomCriteria#keyId}. This attribute is
+                    required.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0" name="operator" type="tns:CustomCriteria.ComparisonOperator">
+                <annotation>
+                  <documentation>
+                    The comparison operator. This attribute is required.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="CustomCriteriaSet">
+        <annotation>
+          <documentation>
+            A {@link CustomCriteriaSet} comprises of a set of {@link CustomCriteriaNode}
+            objects combined by the
+            {@link CustomCriteriaSet.LogicalOperator#logicalOperator}. The custom
+            criteria targeting tree is subject to the rules defined on
+            {@link Targeting#customTargeting}.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:CustomCriteriaNode">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0"
+                name="logicalOperator" type="tns:CustomCriteriaSet.LogicalOperator">
+                <annotation>
+                  <documentation>
+                    The logical operator to be applied to {@link CustomCriteriaSet#children}.
+                    This attribute is required.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="unbounded" minOccurs="0"
+                name="children" type="tns:CustomCriteriaNode">
+                <annotation>
+                  <documentation>
+                    The custom criteria. This attribute is required.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType abstract="true" name="CustomCriteriaLeaf">
+        <annotation>
+          <documentation>
+            A {@link CustomCriteriaLeaf} object represents a generic leaf of {@link CustomCriteria} tree
+            structure.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:CustomCriteriaNode">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType abstract="true" name="CustomCriteriaNode">
+        <annotation>
+          <documentation>
+            A {@link CustomCriteriaNode} is a node in the custom targeting tree. A custom
+            criteria node can either be a {@link CustomCriteriaSet} (a non-leaf node) or
+            a {@link CustomCriteria} (a leaf node). The custom criteria targeting tree is
+            subject to the rules defined on {@link Targeting#customTargeting}.
+          </documentation>
+        </annotation>
+        <sequence/>
+      </complexType>
+      <complexType name="AudienceSegmentCriteria">
+        <annotation>
+          <documentation>
+            An {@link AudienceSegmentCriteria} object is used to target {@link AudienceSegment} objects.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:CustomCriteriaLeaf">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="operator" type="tns:AudienceSegmentCriteria.ComparisonOperator">
+                <annotation>
+                  <documentation>
+                    The comparison operator. This attribute is required.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="unbounded" minOccurs="0"
+                name="audienceSegmentIds" type="xsd:long">
+                <annotation>
+                  <documentation>
+                    The ids of {@link AudienceSegment} objects used to target audience segments. This attribute is
+                    required.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="Date">
+        <annotation>
+          <documentation>
+            Represents a date.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="year" type="xsd:int">
+            <annotation>
+              <documentation>
+                Year (e.g., 2009)
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="month" type="xsd:int">
+            <annotation>
+              <documentation>
+                Month (1..12)
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="day" type="xsd:int">
+            <annotation>
+              <documentation>
+                Day (1..31)
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="DateTime">
+        <annotation>
+          <documentation>
+            Represents a date combined with the time of day.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="date" type="tns:Date"/>
+          <element maxOccurs="1" minOccurs="0" name="hour" type="xsd:int"/>
+          <element maxOccurs="1" minOccurs="0" name="minute" type="xsd:int"/>
+          <element maxOccurs="1" minOccurs="0" name="second" type="xsd:int"/>
+          <element maxOccurs="1" minOccurs="0" name="timeZoneID" type="xsd:string"/>
+        </sequence>
+      </complexType>
+      <complexType name="DateTimeValue">
+        <annotation>
+          <documentation>
+            Contains a date-time value.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="tns:DateTime">
+                <annotation>
+                  <documentation>
+                    The {@code DateTime} value.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DateValue">
+        <annotation>
+          <documentation>
+            Contains a date value.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="tns:Date">
+                <annotation>
+                  <documentation>
+                    The {@code Date} value.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DeactivateAudienceSegments">
+        <annotation>
+          <documentation>
+            Action that can be performed on {@link FirstPartyAudienceSegment} objects to deactivate them.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:AudienceSegmentAction">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="EntityChildrenLimitReachedError">
+        <annotation>
+          <documentation>
+            Lists errors relating to having too many children on an entity.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:EntityChildrenLimitReachedError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="EntityLimitReachedError">
+        <annotation>
+          <documentation>
+            An error that occurs when creating an entity if the limit on the number of allowed entities for
+            a network has already been reached.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:EntityLimitReachedError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ThirdPartyAudienceSegment">
+        <annotation>
+          <documentation>
+            A {@link ThirdPartyAudienceSegment} is an {@link AudienceSegment} owned by a data provider and
+            licensed to the DFP publisher.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:AudienceSegment">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="approvalStatus" type="tns:ThirdPartyAudienceSegment.AudienceSegmentApprovalStatus">
+                <annotation>
+                  <documentation>
+                    Specifies if the publisher has approved or rejected the segment.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0" name="cost" type="tns:Money">
+                <annotation>
+                  <documentation>
+                    Specifies CPM cost for the given segment. This attribute is readonly and is assigned by the
+                    data provider.
+                    
+                    &lt;p&gt; The CPM cost comes from the active pricing, if there is one;
+                    otherwise it comes from the latest pricing.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0" name="licenseType" type="tns:ThirdPartyAudienceSegment.LicenseType">
+                <annotation>
+                  <documentation>
+                    Specifies the license type of the external segment. This attribute is read-only.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0" name="startDateTime" type="tns:DateTime">
+                <annotation>
+                  <documentation>
+                    Specifies the date and time at which this segment becomes available for use. This attribute is
+                    readonly and is assigned by the data provider.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0" name="endDateTime" type="tns:DateTime">
+                <annotation>
+                  <documentation>
+                    Specifies the date and time at which this segment ceases to be available for use. This
+                    attribute is readonly and is assigned by the data provider.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="FeatureError">
+        <annotation>
+          <documentation>
+            Errors related to feature management.  If you attempt using a feature that is not available to
+            the current network you'll receive a FeatureError with the missing feature as the trigger.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:FeatureError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="FieldPathElement">
+        <annotation>
+          <documentation>
+            A segment of a field path. Each dot in a field path defines a new segment.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="field" type="xsd:string">
+            <annotation>
+              <documentation>
+                The name of a field in lower camelcase. (e.g. "biddingStrategy")
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="index" type="xsd:int">
+            <annotation>
+              <documentation>
+                For list fields, this is a 0-indexed position in the list. Null for non-list fields.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="InternalApiError">
+        <annotation>
+          <documentation>
+            Indicates that a server-side error has occured. {@code InternalApiError}s
+            are generally not the result of an invalid request or message sent by the
+            client.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:InternalApiError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="InventoryTargeting">
+        <annotation>
+          <documentation>
+            A collection of targeted and excluded ad units and placements.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="targetedAdUnits" type="tns:AdUnitTargeting">
+            <annotation>
+              <documentation>
+                A list of targeted {@link AdUnitTargeting}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="excludedAdUnits" type="tns:AdUnitTargeting">
+            <annotation>
+              <documentation>
+                A list of excluded {@link AdUnitTargeting}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="targetedPlacementIds" type="xsd:long">
+            <annotation>
+              <documentation>
+                A list of targeted {@link Placement} ids.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="Money">
+        <annotation>
+          <documentation>
+            Represents a money amount.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="currencyCode" type="xsd:string">
+            <annotation>
+              <documentation>
+                Three letter currency code in string format.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="microAmount" type="xsd:long">
+            <annotation>
+              <documentation>
+                Money values are always specified in terms of micros which are a millionth
+                of the fundamental currency unit. For US dollars, $1 is 1,000,000 micros.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="NonRuleBasedFirstPartyAudienceSegment">
+        <annotation>
+          <documentation>
+            A {@link NonRuleBasedFirstPartyAudienceSegment} is a {@link FirstPartyAudienceSegment} owned by
+            the publisher network. It doesn't contain a rule. Cookies are usually added to this segment via
+            cookie upload.
+            
+            &lt;p&gt;These segments are created by data management platforms or Google Analytics. They cannot be
+            created using the DFP API.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:FirstPartyAudienceSegment">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0"
+                name="membershipExpirationDays" type="xsd:int">
+                <annotation>
+                  <documentation>
+                    Specifies the number of days after which a user's cookie will be removed from the audience
+                    segment due to inactivity. This attribute is required and can be between 1 and 540.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="NotNullError">
+        <annotation>
+          <documentation>
+            Caused by supplying a null value for an attribute that cannot be null.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:NotNullError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="NumberValue">
+        <annotation>
+          <documentation>
+            Contains a numeric value.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="xsd:string">
+                <annotation>
+                  <documentation>
+                    The numeric value represented as a string.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ParseError">
+        <annotation>
+          <documentation>
+            Lists errors related to parsing.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ParseError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="PermissionError">
+        <annotation>
+          <documentation>
+            Errors related to incorrect permission.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:PermissionError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="PopulateAudienceSegments">
+        <annotation>
+          <documentation>
+            Action that can be performed on {@link FirstPartyAudienceSegment} objects to populate them based
+            on last 30 days of traffic.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:AudienceSegmentAction">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="PublisherQueryLanguageContextError">
+        <annotation>
+          <documentation>
+            An error that occurs while executing a PQL query contained in
+            a {@link Statement} object.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:PublisherQueryLanguageContextError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="PublisherQueryLanguageSyntaxError">
+        <annotation>
+          <documentation>
+            An error that occurs while parsing a PQL query contained in a
+            {@link Statement} object.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:PublisherQueryLanguageSyntaxError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="FirstPartyAudienceSegmentRule">
+        <annotation>
+          <documentation>
+            Rule of a {@link FirstPartyAudienceSegment} that defines user's eligibility criteria to be part
+            of a segment.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="inventoryRule" type="tns:InventoryTargeting">
+            <annotation>
+              <documentation>
+                Specifies the inventory (i.e. ad units and placements) that are part of the rule of a
+                {@link FirstPartyAudienceSegment}. This attribute is required.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="customCriteriaRule" type="tns:CustomCriteriaSet">
+            <annotation>
+              <documentation>
+                Specifies the collection of custom criteria that are part of the rule of a
+                {@link FirstPartyAudienceSegment}.
+                
+                &lt;p&gt;
+                Once the {@link FirstPartyAudienceSegment} is updated or modified with custom criteria, the
+                server may return a normalized, but equivalent representation of the custom criteria rule.
+                &lt;/p&gt;
+                
+                &lt;ul&gt;
+                {@code customCriteriaRule} will have up to three levels including itself.
+                &lt;li&gt;
+                The top level {@link CustomCriteriaSet} i.e. the {@code customTargeting} object can only
+                contain a {@link CustomCriteriaSet.LogicalOperator#OR} of all its children.
+                &lt;li&gt;
+                The second level of {@link CustomCriteriaSet} objects can only contain
+                {@link CustomCriteriaSet.LogicalOperator#AND} of all their children. If a
+                {@link CustomCriteria} is placed on this level, the server will wrap it in a
+                {@link CustomCriteriaSet}.
+                &lt;li&gt;
+                The third level can only comprise of {@link CustomCriteria} objects.
+                &lt;/ul&gt;
+                
+                &lt;p&gt;
+                The resulting custom criteria rule would be of the form: &lt;br&gt;
+                &lt;img
+                src="https://chart.apis.google.com/chart?cht=gv&amp;chl=digraph{customTargeting_LogicalOperator_OR-%3ECustomCriteriaSet_LogicalOperator_AND_1-%3ECustomCriteria_1;CustomCriteriaSet_LogicalOperator_AND_1-%3Eellipsis1;customTargeting_LogicalOperator_OR-%3Eellipsis2;ellipsis1[label=%22...%22,shape=none,fontsize=32];ellipsis2[label=%22...%22,shape=none,fontsize=32]}&amp;chs=450x200"/&gt;
+                &lt;/p&gt;
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="QuotaError">
+        <annotation>
+          <documentation>
+            Describes a client-side error on which a user is attempting
+            to perform an action to which they have no quota remaining.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:QuotaError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RejectAudienceSegments">
+        <annotation>
+          <documentation>
+            Action that can be performed on {@link ThirdPartyAudienceSegment} objects to reject them.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:AudienceSegmentAction">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RequiredCollectionError">
+        <annotation>
+          <documentation>
+            A list of all errors to be used for validating sizes of collections.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RequiredCollectionError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RequiredError">
+        <annotation>
+          <documentation>
+            Errors due to missing required field.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RequiredError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RuleBasedFirstPartyAudienceSegment">
+        <annotation>
+          <documentation>
+            A {@link RuleBasedFirstPartyAudienceSegment} is a {@link FirstPartyAudienceSegment} owned by the
+            publisher network. It contains a rule.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:RuleBasedFirstPartyAudienceSegmentSummary">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="rule" type="tns:FirstPartyAudienceSegmentRule">
+                <annotation>
+                  <documentation>
+                    Specifies the rule of the segment which determines user's eligibility criteria to be part of
+                    the segment. This attribute is required.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RuleBasedFirstPartyAudienceSegmentSummary">
+        <annotation>
+          <documentation>
+            A {@link RuleBasedFirstPartyAudienceSegmentSummary} is a {@link FirstPartyAudienceSegment} owned
+            by the publisher network.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:FirstPartyAudienceSegment">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="pageViews" type="xsd:int">
+                <annotation>
+                  <documentation>
+                    Specifies the number of times a user's cookie must match the segment rule before it's
+                    associated with the audience segment. This is used in combination with
+                    {@link FirstPartyAudienceSegment#recencyDays} to determine eligibility of the association. This
+                    attribute is required and can be between 1 and 12.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0" name="recencyDays" type="xsd:int">
+                <annotation>
+                  <documentation>
+                    Specifies the number of days within which a user's cookie must match the segment rule before
+                    it's associated with the audience segment. This is used in combination with
+                    {@link FirstPartyAudienceSegment#pageViews} to determine eligibility of the association. This
+                    attribute is required only if {@link FirstPartyAudienceSegment#pageViews} is greater than 1.
+                    When required, it can be between 1 and 90.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0"
+                name="membershipExpirationDays" type="xsd:int">
+                <annotation>
+                  <documentation>
+                    Specifies the number of days after which a user's cookie will be removed from the audience
+                    segment due to inactivity. This attribute is required and can be between 1 and 540.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType abstract="true" name="AudienceSegmentAction">
+        <annotation>
+          <documentation>
+            Action that can be performed on {@link AudienceSegment} objects.
+          </documentation>
+        </annotation>
+        <sequence/>
+      </complexType>
+      <complexType name="AudienceSegment">
+        <annotation>
+          <documentation>
+            An {@link AudienceSegment} represents audience segment object.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
+            <annotation>
+              <documentation>
+                Id of the {@link AudienceSegment}. This attribute is readonly and is populated by Google.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
+            <annotation>
+              <documentation>
+                Name of the {@link AudienceSegment}. This attribute is required and has a maximum length of 255
+                characters.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="categoryIds" type="xsd:long">
+            <annotation>
+              <documentation>
+                The ids of the categories this segment belongs to. This field is optional, it may be empty.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="description" type="xsd:string">
+            <annotation>
+              <documentation>
+                Description of the {@link AudienceSegment}. This attribute is optional and has a maximum
+                length of 8192 characters.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="status" type="tns:AudienceSegment.Status">
+            <annotation>
+              <documentation>
+                Status of the {@link AudienceSegment}. This controls whether the given segment is available for
+                targeting or not. During creation this attribute is optional and defaults to {@code ACTIVE}.
+                This attribute is readonly for updates.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="size" type="xsd:long">
+            <annotation>
+              <documentation>
+                Number of unique identifiers in the {@link AudienceSegment}. This attribute is readonly and is
+                populated by Google.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="mobileWebSize" type="xsd:long">
+            <annotation>
+              <documentation>
+                Number of unique identifiers in the {@link AudienceSegment} for mobile web.
+                This attribute is read-only.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="idfaSize" type="xsd:long">
+            <annotation>
+              <documentation>
+                Number of unique IDFA identifiers in the {@link AudienceSegment}.
+                This attribute is read-only.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="adIdSize" type="xsd:long">
+            <annotation>
+              <documentation>
+                Number of unique AdID identifiers in the {@link AudienceSegment}.
+                This attribute is read-only.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="ppidSize" type="xsd:long">
+            <annotation>
+              <documentation>
+                Number of unique PPID (publisher provided identifiers) in the {@link AudienceSegment}.
+                This attribute is read-only.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="dataProvider" type="tns:AudienceSegmentDataProvider">
+            <annotation>
+              <documentation>
+                Owner data provider of this segment. This attribute is readonly and is assigned by Google.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="type" type="tns:AudienceSegment.Type">
+            <annotation>
+              <documentation>
+                Type of the segment. This attribute is readonly and is assigned by Google.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="AudienceSegmentError">
+        <annotation>
+          <documentation>
+            Errors that could occur on audience segment related requests.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:AudienceSegmentError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ServerError">
+        <annotation>
+          <documentation>
+            Errors related to the server.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ServerError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="SetValue">
+        <annotation>
+          <documentation>
+            Contains a set of {@link Value Values}. May not contain duplicates.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="unbounded" minOccurs="0" name="values" type="tns:Value">
+                <annotation>
+                  <documentation>
+                    The values. They must all be the same type of {@code Value} and not contain duplicates.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="SharedAudienceSegment">
+        <annotation>
+          <documentation>
+            A {@link SharedAudienceSegment} is an {@link AudienceSegment} owned by another entity and shared
+            with the publisher network.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:AudienceSegment">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="SoapRequestHeader">
+        <annotation>
+          <documentation>
+            Represents the SOAP request header used by API requests.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="networkCode" type="xsd:string">
+            <annotation>
+              <documentation>
+                The network code to use in the context of a request.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="applicationName" type="xsd:string">
+            <annotation>
+              <documentation>
+                The name of client library application.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="SoapResponseHeader">
+        <annotation>
+          <documentation>
+            Represents the SOAP request header used by API responses.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="requestId" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="responseTime" type="xsd:long"/>
+        </sequence>
+      </complexType>
+      <complexType name="Statement">
+        <annotation>
+          <documentation>
+            Captures the {@code WHERE}, {@code ORDER BY} and {@code LIMIT} clauses of a
+            PQL query. Statements are typically used to retrieve objects of a predefined
+            domain type, which makes SELECT clause unnecessary.
+            &lt;p&gt;
+            An example query text might be {@code "WHERE status = 'ACTIVE' ORDER BY id
+            LIMIT 30"}.
+            &lt;/p&gt;
+            &lt;p&gt;
+            Statements support bind variables. These are substitutes for literals
+            and can be thought of as input parameters to a PQL query.
+            &lt;/p&gt;
+            &lt;p&gt;
+            An example of such a query might be {@code "WHERE id = :idValue"}.
+            &lt;/p&gt;
+            &lt;p&gt;
+            Statements also support use of the LIKE keyword. This provides partial and
+            wildcard string matching.
+            &lt;/p&gt;
+            &lt;p&gt;
+            An example of such a query might be {@code "WHERE name LIKE 'startswith%'"}.
+            &lt;/p&gt;
+            The value for the variable idValue must then be set with an object of type
+            {@link Value}, e.g., {@link NumberValue}, {@link TextValue} or
+            {@link BooleanValue}.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="query" type="xsd:string">
+            <annotation>
+              <documentation>
+                Holds the query in PQL syntax. The syntax is:&lt;br&gt;
+                &lt;code&gt;[WHERE &lt;condition&gt; {[AND | OR] &lt;condition&gt; ...}]&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;[ORDER BY &lt;property&gt; [ASC | DESC]]&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;[LIMIT {[&lt;offset&gt;,] &lt;count&gt;} | {&lt;count&gt; OFFSET &lt;offset&gt;}]&lt;/code&gt;&lt;br&gt;
+                &lt;p&gt;
+                &lt;code&gt;&lt;condition&gt;&lt;/code&gt;&lt;br&gt;
+                &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                &lt;code&gt;:= &lt;property&gt; {&lt; | &lt;= | &gt; | &gt;= | = | != } &lt;value&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;&lt;condition&gt;&lt;/code&gt;&lt;br&gt;
+                &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                &lt;code&gt;:= &lt;property&gt; {&lt; | &lt;= | &gt; | &gt;= | = | != } &lt;bind variable&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;&lt;condition&gt; := &lt;property&gt; IN &lt;list&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;&lt;condition&gt; := &lt;property&gt; IS NULL&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;&lt;condition&gt; := &lt;property&gt; LIKE &lt;wildcard%match&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;&lt;bind variable&gt; := :&lt;name&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;/p&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="values" type="tns:String_ValueMapEntry">
+            <annotation>
+              <documentation>
+                Holds keys and values for bind variables and their values. The key is the
+                name of the bind variable. The value is the literal value of the variable.
+                &lt;p&gt;
+                In the example {@code "WHERE status = :bindStatus ORDER BY id LIMIT 30"},
+                the bind variable, represented by {@code :bindStatus} is named {@code
+                bindStatus}, which would also be the parameter map key. The bind variable's
+                value would be represented by a parameter map value of type
+                {@link TextValue}. The final result, for example, would be an entry of
+                {@code "bindStatus" =&gt; StringParam("ACTIVE")}.
+                &lt;/p&gt;
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="StatementError">
+        <annotation>
+          <documentation>
+            An error that occurs while parsing {@link Statement} objects.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:StatementError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="StringFormatError">
+        <annotation>
+          <documentation>
+            A list of error code for reporting invalid content of input strings.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:StringFormatError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="StringLengthError">
+        <annotation>
+          <documentation>
+            Errors for Strings which do not meet given length constraints.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:StringLengthError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="String_ValueMapEntry">
+        <annotation>
+          <documentation>
+            This represents an entry in a map with a key of type String
+            and value of type Value.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="key" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="value" type="tns:Value"/>
+        </sequence>
+      </complexType>
+      <complexType name="TextValue">
+        <annotation>
+          <documentation>
+            Contains a string value.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="xsd:string">
+                <annotation>
+                  <documentation>
+                    The string value.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="TypeError">
+        <annotation>
+          <documentation>
+            An error for a field which is an invalid type.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="UpdateResult">
+        <annotation>
+          <documentation>
+            Represents the result of performing an action on objects.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="numChanges" type="xsd:int">
+            <annotation>
+              <documentation>
+                The number of objects that were changed as a result of performing the
+                action.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType abstract="true" name="Value">
+        <annotation>
+          <documentation>
+            {@code Value} represents a value.
+          </documentation>
+        </annotation>
+        <sequence/>
+      </complexType>
+      <simpleType name="ApiVersionError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="UPDATE_TO_NEWER_VERSION">
+            <annotation>
+              <documentation>
+                Indicates that the operation is not allowed in the version the request
+                was made in.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="AuthenticationError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="AMBIGUOUS_SOAP_REQUEST_HEADER">
+            <annotation>
+              <documentation>
+                The SOAP message contains a request header with an ambiguous definition
+                of the authentication header fields. This means either the {@code
+                authToken} and {@code oAuthToken} fields were both null or both were
+                specified. Exactly one value should be specified with each request.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_EMAIL">
+            <annotation>
+              <documentation>
+                The login provided is invalid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="AUTHENTICATION_FAILED">
+            <annotation>
+              <documentation>
+                Tried to authenticate with provided information, but failed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_OAUTH_SIGNATURE">
+            <annotation>
+              <documentation>
+                The OAuth provided is invalid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_SERVICE">
+            <annotation>
+              <documentation>
+                The specified service to use was not recognized.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_SOAP_REQUEST_HEADER">
+            <annotation>
+              <documentation>
+                The SOAP message is missing a request header with an {@code authToken}
+                and optional {@code networkCode}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_AUTHENTICATION_HTTP_HEADER">
+            <annotation>
+              <documentation>
+                The HTTP request is missing a request header with an {@code authToken}
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_AUTHENTICATION">
+            <annotation>
+              <documentation>
+                The request is missing an {@code authToken}
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NOT_WHITELISTED_FOR_API_ACCESS">
+            <annotation>
+              <documentation>
+                The customer is not whitelisted for API access.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NO_NETWORKS_TO_ACCESS">
+            <annotation>
+              <documentation>
+                The user is not associated with any network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NETWORK_NOT_FOUND">
+            <annotation>
+              <documentation>
+                No network for the given {@code networkCode} was found.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NETWORK_CODE_REQUIRED">
+            <annotation>
+              <documentation>
+                The user has access to more than one network, but did not provide a
+                {@code networkCode}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CONNECTION_ERROR">
+            <annotation>
+              <documentation>
+                An error happened on the server side during connection to authentication
+                service.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="GOOGLE_ACCOUNT_ALREADY_ASSOCIATED_WITH_NETWORK">
+            <annotation>
+              <documentation>
+                The user tried to create a test network using an account that already is
+                associated with a network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNDER_INVESTIGATION">
+            <annotation>
+              <documentation>
+                The account is blocked and under investigation by the collections team. Please contact
+                Google for more information.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="CollectionSizeError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="TOO_LARGE"/>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="CommonError.Reason">
+        <annotation>
+          <documentation>
+            Describes reasons for common errors
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="NOT_FOUND">
+            <annotation>
+              <documentation>
+                Indicates that an attempt was made to retrieve an entity that does not
+                exist.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ALREADY_EXISTS">
+            <annotation>
+              <documentation>
+                Indicates that an attempt was made to create an entity that already
+                exists.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NOT_APPLICABLE">
+            <annotation>
+              <documentation>
+                Indicates that a value is not applicable for given use case.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DUPLICATE_OBJECT">
+            <annotation>
+              <documentation>
+                Indicates that two elements in the collection were identical.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_UPDATE">
+            <annotation>
+              <documentation>
+                Indicates that an attempt was made to change an immutable field.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CONCURRENT_MODIFICATION">
+            <annotation>
+              <documentation>
+                Indicates that another request attempted to update the same data in the same network
+                at about the same time. Please wait and try the request again.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="CustomCriteria.ComparisonOperator">
+        <annotation>
+          <documentation>
+            Specifies the available comparison operators.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="IS"/>
+          <enumeration value="IS_NOT"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="CustomCriteriaSet.LogicalOperator">
+        <annotation>
+          <documentation>
+            Specifies the available logical operators.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="AND"/>
+          <enumeration value="OR"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="AudienceSegmentCriteria.ComparisonOperator">
+        <annotation>
+          <documentation>
+            Specifies the available comparison operators.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="IS"/>
+          <enumeration value="IS_NOT"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="EntityChildrenLimitReachedError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the entity children limit reached error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="LINE_ITEM_LIMIT_FOR_ORDER_REACHED">
+            <annotation>
+              <documentation>
+                The number of line items on the order exceeds the max number of line items allowed per order
+                in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CREATIVE_ASSOCIATION_LIMIT_FOR_LINE_ITEM_REACHED">
+            <annotation>
+              <documentation>
+                The number of creatives associated with the line item exceeds the max number of creatives
+                allowed to be associated with a line item in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="AD_UNIT_LIMIT_FOR_PLACEMENT_REACHED">
+            <annotation>
+              <documentation>
+                The number of ad units on the placement exceeds the max number of ad units
+                allowed per placement in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TARGETING_EXPRESSION_LIMIT_FOR_LINE_ITEM_REACHED">
+            <annotation>
+              <documentation>
+                The number of targeting expressions on the line item exceeds the max number of targeting
+                expressions allowed per line item in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CUSTOM_TARGETING_VALUES_FOR_KEY_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of custom targeting values for the free-form or predefined custom targeting key
+                exceeds the max number allowed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TARGETING_EXPRESSION_LIMIT_FOR_CREATIVES_ON_LINE_ITEM_REACHED">
+            <annotation>
+              <documentation>
+                The total number of targeting expressions on the creatives for the line item exceeds
+                the max number allowed per line item in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ATTACHMENT_LIMIT_FOR_PROPOSAL_REACHED">
+            <annotation>
+              <documentation>
+                The number of attachments added to the proposal exceeds the max number
+                allowed per proposal in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PROPOSAL_LINE_ITEM_LIMIT_FOR_PROPOSAL_REACHED">
+            <annotation>
+              <documentation>
+                The number of proposal line items on the proposal exceeds the max number
+                allowed per proposal in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PRODUCT_LIMIT_FOR_PRODUCT_PACKAGE_REACHED">
+            <annotation>
+              <documentation>
+                The number of product package items on the product package exceeds the max number
+                allowed per product package in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PRODUCT_TEMPLATE_AND_PRODUCT_BASE_RATE_LIMIT_FOR_RATE_CARD_REACHED">
+            <annotation>
+              <documentation>
+                The number of product template and product base rates on the rate card (including excluded
+                product base rates) exceeds the max number allowed per rate card in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PRODUCT_PACKAGE_ITEM_BASE_RATE_LIMIT_FOR_RATE_CARD_REACHED">
+            <annotation>
+              <documentation>
+                The number of product package item base rates on the rate card exceeds the max number
+                allowed per rate card in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PREMIUM_LIMIT_FOR_RATE_CARD_REACHED">
+            <annotation>
+              <documentation>
+                The number of premiums of the rate card exceeds the max number allowed per rate card
+                in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="AD_UNIT_LIMIT_FOR_AD_EXCLUSION_RULE_TARGETING_REACHED">
+            <annotation>
+              <documentation>
+                The number of ad units on {@link AdExclusionRule#inventoryTargeting} exceeds the max number
+                of ad units allowed per ad exclusion rule inventory targeting in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NATIVE_STYLE_LIMIT_FOR_NATIVE_AD_FORMAT_REACHED">
+            <annotation>
+              <documentation>
+                The number of native styles under the native creative template exceeds the
+                max number of native styles allowed per native creative template in the
+                network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="EntityLimitReachedError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the entity limit reached error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="CUSTOM_TARGETING_VALUES_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of custom targeting values exceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="AD_EXCLUSION_RULES_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of ad exclusion rules exceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FIRST_PARTY_AUDIENCE_SEGMENTS_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of first party audience segments exceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PLACEMENTS_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of active placements exceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="LINE_ITEMS_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of line items excceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="ThirdPartyAudienceSegment.AudienceSegmentApprovalStatus">
+        <annotation>
+          <documentation>
+            Approval status values for {@link ThirdPartyAudienceSegment} objects.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNAPPROVED">
+            <annotation>
+              <documentation>
+                Specifies that this segment is waiting to be approved or rejected. It cannot be targeted.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="APPROVED">
+            <annotation>
+              <documentation>
+                Specifies that this segment is approved and can be targeted.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="REJECTED">
+            <annotation>
+              <documentation>
+                Specifies that this segment is rejected and cannot be targeted.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="ThirdPartyAudienceSegment.LicenseType">
+        <annotation>
+          <documentation>
+            Specifies the license type of a {@link ThirdPartyAudienceSegment}.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="DIRECT_LICENSE">
+            <annotation>
+              <documentation>
+                A direct license is the result of a direct contract between the data provider
+                and the publisher.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="GLOBAL_LICENSE">
+            <annotation>
+              <documentation>
+                A global license is the result of an agreement between Google and the data provider, which
+                agrees to license their audience segments to all the publishers and/or advertisers
+                of the Doubleclick ecosystem.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="FeatureError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="MISSING_FEATURE">
+            <annotation>
+              <documentation>
+                A feature is being used that is not enabled on the current network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="InternalApiError.Reason">
+        <annotation>
+          <documentation>
+            The single reason for the internal API error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNEXPECTED_INTERNAL_API_ERROR">
+            <annotation>
+              <documentation>
+                API encountered an unexpected internal error.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TRANSIENT_ERROR">
+            <annotation>
+              <documentation>
+                A temporary error occurred during the request. Please retry.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The cause of the error is not known or only defined in newer versions.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DOWNTIME">
+            <annotation>
+              <documentation>
+                The API is currently unavailable for a planned downtime.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ERROR_GENERATING_RESPONSE">
+            <annotation>
+              <documentation>
+                Mutate succeeded but server was unable to build response. Client should not retry mutate.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="NotNullError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="ARG1_NULL">
+            <annotation>
+              <documentation>
+                Assuming that a method will not have more than 3 arguments, if it does,
+                return NULL
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ARG2_NULL"/>
+          <enumeration value="ARG3_NULL"/>
+          <enumeration value="NULL"/>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="ParseError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNPARSABLE">
+            <annotation>
+              <documentation>
+                Indicates an error in parsing an attribute.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="PermissionError.Reason">
+        <annotation>
+          <documentation>
+            Describes reasons for permission errors.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="PERMISSION_DENIED">
+            <annotation>
+              <documentation>
+                User does not have the required permission for the request.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="PublisherQueryLanguageContextError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNEXECUTABLE">
+            <annotation>
+              <documentation>
+                Indicates that there was an error executing the PQL.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="PublisherQueryLanguageSyntaxError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNPARSABLE">
+            <annotation>
+              <documentation>
+                Indicates that there was a PQL syntax error.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="QuotaError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="EXCEEDED_QUOTA">
+            <annotation>
+              <documentation>
+                The number of requests made per second is too high and has exceeded the
+                allowable limit. The recommended approach to handle this error is to wait
+                about 5 seconds and then retry the request. Note that this does not
+                guarantee the request will succeed. If it fails again, try increasing the
+                wait time.
+                &lt;p&gt;Another way to mitigate this error is to limit requests to 2 per second for
+                Small Business networks, or 8 per second for Premium networks. Once again
+                this does not guarantee that every request will succeed, but may help
+                reduce the number of times you receive this error.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="REPORT_JOB_LIMIT">
+            <annotation>
+              <documentation>
+                This user has exceeded the allowed number of new report requests per hour
+                (this includes both reports run via the UI and reports
+                run via {@link ReportService#runReportJob}).
+                The recommended approach to handle this error is to wait about 10 minutes
+                and then retry the request. Note that this does not guarantee the request
+                will succeed. If it fails again, try increasing the wait time.
+                &lt;p&gt;Another way to mitigate this error is to limit the number of new report
+                requests to 250 per hour per user. Once again, this does not guarantee that
+                every request will succeed, but may help reduce the number of times you
+                receive this error.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="RequiredCollectionError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="REQUIRED">
+            <annotation>
+              <documentation>
+                A required collection is missing.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TOO_LARGE">
+            <annotation>
+              <documentation>
+                Collection size is too large.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TOO_SMALL">
+            <annotation>
+              <documentation>
+                Collection size is too small.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="RequiredError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="REQUIRED">
+            <annotation>
+              <documentation>
+                Missing required field.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="AudienceSegment.Type">
+        <annotation>
+          <documentation>
+            Specifies types for {@link AudienceSegment} objects.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="FIRST_PARTY">
+            <annotation>
+              <documentation>
+                First party segments created and owned by the publisher.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="SHARED">
+            <annotation>
+              <documentation>
+                First party segments shared by other clients.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="THIRD_PARTY">
+            <annotation>
+              <documentation>
+                Third party segments licensed by the publisher from data providers. This doesn't include
+                Google-provided licensed segments.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="AudienceSegment.Status">
+        <annotation>
+          <documentation>
+            Specifies the statuses for {@link AudienceSegment} objects.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="ACTIVE">
+            <annotation>
+              <documentation>
+                Active status means this audience segment is available for targeting.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INACTIVE">
+            <annotation>
+              <documentation>
+                Inactive status means this audience segment is not available for targeting.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="AudienceSegmentError.Reason">
+        <annotation>
+          <documentation>
+            Reason of the given {@link AudienceSegmentError}.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="FIRST_PARTY_AUDIENCE_SEGMENT_NOT_SUPPORTED">
+            <annotation>
+              <documentation>
+                First party audience segment is not supported.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ONLY_RULE_BASED_FIRST_PARTY_AUDIENCE_SEGMENTS_CAN_BE_CREATED">
+            <annotation>
+              <documentation>
+                Only rule-based first-party audience segments can be created.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="AUDIENCE_SEGMENT_ID_NOT_FOUND">
+            <annotation>
+              <documentation>
+                Audience segment for the given id is not found.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_AUDIENCE_SEGMENT_RULE">
+            <annotation>
+              <documentation>
+                Audience segment rule is invalid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="AUDIENCE_SEGMENT_RULE_TOO_LONG">
+            <annotation>
+              <documentation>
+                Audience segment rule contains too many ad units and/or custom criteria.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_AUDIENCE_SEGMENT_NAME">
+            <annotation>
+              <documentation>
+                Audience segment name is invalid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DUPLICATE_AUDIENCE_SEGMENT_NAME">
+            <annotation>
+              <documentation>
+                Audience segment with this name already exists.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_AUDIENCE_SEGMENT_DESCRIPTION">
+            <annotation>
+              <documentation>
+                Audience segment description is invalid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_AUDIENCE_SEGMENT_PAGEVIEWS">
+            <annotation>
+              <documentation>
+                Audience segment pageviews value is invalid. It must be between 1 and 12.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_AUDIENCE_SEGMENT_RECENCY">
+            <annotation>
+              <documentation>
+                Audience segment recency value is invalid. It must be between 1 and 90 if pageviews &gt; 1.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_AUDIENCE_SEGMENT_MEMBERSHIP_EXPIRATION">
+            <annotation>
+              <documentation>
+                Audience segment membership expiration value is invalid. It must be between 1 and 180.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_AUDIENCE_SEGMENT_CUSTOM_KEY_NAME">
+            <annotation>
+              <documentation>
+                The given custom key cannot be part of audience segment rule due to unsupported characters.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_AUDIENCE_SEGMENT_CUSTOM_VALUE_NAME">
+            <annotation>
+              <documentation>
+                The given custom value cannot be part of audience segment rule due to unsupported characters.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_AUDIENCE_SEGMENT_CUSTOM_VALUE_MATCH_TYPE">
+            <annotation>
+              <documentation>
+                Broad-match custom value cannot be part of audience segment rule.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_NESTED_FIRST_PARTY_AUDIENCE_SEGMENT">
+            <annotation>
+              <documentation>
+                Audience segment rule cannot contain itself.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_NESTED_THIRD_PARTY_AUDIENCE_SEGMENT">
+            <annotation>
+              <documentation>
+                Audience segment rule cannot contain a nested third-party segment.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INACTIVE_NESTED_AUDIENCE_SEGMENT">
+            <annotation>
+              <documentation>
+                Audience segment rule cannot contain a nested inactive segment.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="AUDIENCE_SEGMENT_GLOBAL_LICENSE_ERROR">
+            <annotation>
+              <documentation>
+                An error occured when purchasing global licenses.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="ServerError.Reason">
+        <annotation>
+          <documentation>
+            Describes reasons for server errors
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="SERVER_ERROR">
+            <annotation>
+              <documentation>
+                Indicates that an unexpected error occured.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="SERVER_BUSY">
+            <annotation>
+              <documentation>
+                Indicates that the server is currently experiencing a high load. Please
+                wait and try your request again.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="StatementError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="VARIABLE_NOT_BOUND_TO_VALUE">
+            <annotation>
+              <documentation>
+                A bind variable has not been bound to a value.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="StringFormatError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNKNOWN"/>
+          <enumeration value="ILLEGAL_CHARS">
+            <annotation>
+              <documentation>
+                The input string value contains disallowed characters.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_FORMAT">
+            <annotation>
+              <documentation>
+                The input string value is invalid for the associated field.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="StringLengthError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="TOO_LONG"/>
+          <enumeration value="TOO_SHORT"/>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <element name="createAudienceSegments">
+        <annotation>
+          <documentation>
+            Creates new {@link RuleBasedFirstPartyAudienceSegment} objects.
+            
+            @param segments first-party audience segments to create
+            @return created first-party audience segments
+          </documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" minOccurs="0" name="segments" type="tns:FirstPartyAudienceSegment"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="createAudienceSegmentsResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" minOccurs="0" name="rval" type="tns:FirstPartyAudienceSegment"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ApiExceptionFault" type="tns:ApiException">
+        <annotation>
+          <documentation>
+            A fault element of type ApiException.
+          </documentation>
+        </annotation>
+      </element>
+      <element name="getAudienceSegmentsByStatement">
+        <annotation>
+          <documentation>
+            Gets an {@link AudienceSegmentPage} of {@link AudienceSegment} objects that satisfy the given
+            {@link Statement#query}. The following fields are supported for filtering:
+            
+            &lt;table&gt;
+            &lt;tr&gt;
+            &lt;th scope="col"&gt;PQL Property&lt;/th&gt;
+            &lt;th scope="col"&gt;Object Property&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code id}&lt;/td&gt;
+            &lt;td&gt;{@link AudienceSegment#id}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code name}&lt;/td&gt;
+            &lt;td&gt;{@link AudienceSegment#name}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code status}&lt;/td&gt;
+            &lt;td&gt;{@link AudienceSegment#status}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code type}&lt;/td&gt;
+            &lt;td&gt;{@link AudienceSegment#type}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code size}&lt;/td&gt;
+            &lt;td&gt;{@link AudienceSegment#size}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code dataProviderName}&lt;/td&gt;
+            &lt;td&gt;{@link AudienceSegmentDataProvider#name}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code approvalStatus}&lt;/td&gt;
+            &lt;td&gt;{@link ThirdPartyAudienceSegment#approvalStatus}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code cost}&lt;/td&gt;
+            &lt;td&gt;{@link ThirdPartyAudienceSegment#cost}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code startDateTime}&lt;/td&gt;
+            &lt;td&gt;{@link ThirdPartyAudienceSegment#startDateTime}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code endDateTime}&lt;/td&gt;
+            &lt;td&gt;{@link ThirdPartyAudienceSegment#endDateTime}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;/table&gt;
+            
+            @param filterStatement a Publisher Query Language statement used to filter a set of audience
+            segments
+            @return the audience segments that match the given filter
+          </documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="filterStatement" type="tns:Statement"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="getAudienceSegmentsByStatementResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="rval" type="tns:AudienceSegmentPage"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="performAudienceSegmentAction">
+        <annotation>
+          <documentation>
+            Performs the given {@link AudienceSegmentAction} on the set of segments identified by the given
+            statement.
+            
+            @param action {@link AudienceSegmentAction} to perform
+            @param filterStatement a Publisher Query Language statement used to filter a set of audience
+            segments
+            @return {@link UpdateResult} indicating the result
+          </documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="action" type="tns:AudienceSegmentAction"/>
+            <element maxOccurs="1" minOccurs="0" name="filterStatement" type="tns:Statement"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="performAudienceSegmentActionResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="rval" type="tns:UpdateResult"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="updateAudienceSegments">
+        <annotation>
+          <documentation>
+            Updates the given {@link RuleBasedFirstPartyAudienceSegment} objects.
+            
+            @param segments first-party audience segments to update
+            @return updated first-party audience segments
+          </documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" minOccurs="0" name="segments" type="tns:FirstPartyAudienceSegment"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="updateAudienceSegmentsResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" minOccurs="0" name="rval" type="tns:FirstPartyAudienceSegment"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="RequestHeader" type="tns:SoapRequestHeader"/>
+      <element name="ResponseHeader" type="tns:SoapResponseHeader"/>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="RequestHeader">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"/>
+  </wsdl:message>
+  <wsdl:message name="ResponseHeader">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"/>
+  </wsdl:message>
+  <wsdl:message name="createAudienceSegmentsRequest">
+    <wsdl:part element="tns:createAudienceSegments" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="createAudienceSegmentsResponse">
+    <wsdl:part element="tns:createAudienceSegmentsResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ApiException">
+    <wsdl:part element="tns:ApiExceptionFault" name="ApiException"/>
+  </wsdl:message>
+  <wsdl:message name="getAudienceSegmentsByStatementRequest">
+    <wsdl:part element="tns:getAudienceSegmentsByStatement" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getAudienceSegmentsByStatementResponse">
+    <wsdl:part element="tns:getAudienceSegmentsByStatementResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="performAudienceSegmentActionRequest">
+    <wsdl:part element="tns:performAudienceSegmentAction" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="performAudienceSegmentActionResponse">
+    <wsdl:part element="tns:performAudienceSegmentActionResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="updateAudienceSegmentsRequest">
+    <wsdl:part element="tns:updateAudienceSegments" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="updateAudienceSegmentsResponse">
+    <wsdl:part element="tns:updateAudienceSegmentsResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="AudienceSegmentServiceInterface">
+    <wsdl:documentation>
+      Provides operations for creating, updating and retrieving {@link AudienceSegment} objects.
+    </wsdl:documentation>
+    <wsdl:operation name="createAudienceSegments">
+      <wsdl:documentation>
+        Creates new {@link RuleBasedFirstPartyAudienceSegment} objects.
+        
+        @param segments first-party audience segments to create
+        @return created first-party audience segments
+      </wsdl:documentation>
+      <wsdl:input message="tns:createAudienceSegmentsRequest" name="createAudienceSegmentsRequest"/>
+      <wsdl:output message="tns:createAudienceSegmentsResponse" name="createAudienceSegmentsResponse"/>
+      <wsdl:fault message="tns:ApiException" name="ApiException"/>
+    </wsdl:operation>
+    <wsdl:operation name="getAudienceSegmentsByStatement">
+      <wsdl:documentation>
+        Gets an {@link AudienceSegmentPage} of {@link AudienceSegment} objects that satisfy the given
+        {@link Statement#query}. The following fields are supported for filtering:
+        
+        &lt;table&gt;
+        &lt;tr&gt;
+        &lt;th scope="col"&gt;PQL Property&lt;/th&gt;
+        &lt;th scope="col"&gt;Object Property&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code id}&lt;/td&gt;
+        &lt;td&gt;{@link AudienceSegment#id}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code name}&lt;/td&gt;
+        &lt;td&gt;{@link AudienceSegment#name}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code status}&lt;/td&gt;
+        &lt;td&gt;{@link AudienceSegment#status}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code type}&lt;/td&gt;
+        &lt;td&gt;{@link AudienceSegment#type}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code size}&lt;/td&gt;
+        &lt;td&gt;{@link AudienceSegment#size}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code dataProviderName}&lt;/td&gt;
+        &lt;td&gt;{@link AudienceSegmentDataProvider#name}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code approvalStatus}&lt;/td&gt;
+        &lt;td&gt;{@link ThirdPartyAudienceSegment#approvalStatus}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code cost}&lt;/td&gt;
+        &lt;td&gt;{@link ThirdPartyAudienceSegment#cost}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code startDateTime}&lt;/td&gt;
+        &lt;td&gt;{@link ThirdPartyAudienceSegment#startDateTime}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code endDateTime}&lt;/td&gt;
+        &lt;td&gt;{@link ThirdPartyAudienceSegment#endDateTime}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;/table&gt;
+        
+        @param filterStatement a Publisher Query Language statement used to filter a set of audience
+        segments
+        @return the audience segments that match the given filter
+      </wsdl:documentation>
+      <wsdl:input message="tns:getAudienceSegmentsByStatementRequest" name="getAudienceSegmentsByStatementRequest"/>
+      <wsdl:output message="tns:getAudienceSegmentsByStatementResponse" name="getAudienceSegmentsByStatementResponse"/>
+      <wsdl:fault message="tns:ApiException" name="ApiException"/>
+    </wsdl:operation>
+    <wsdl:operation name="performAudienceSegmentAction">
+      <wsdl:documentation>
+        Performs the given {@link AudienceSegmentAction} on the set of segments identified by the given
+        statement.
+        
+        @param action {@link AudienceSegmentAction} to perform
+        @param filterStatement a Publisher Query Language statement used to filter a set of audience
+        segments
+        @return {@link UpdateResult} indicating the result
+      </wsdl:documentation>
+      <wsdl:input message="tns:performAudienceSegmentActionRequest" name="performAudienceSegmentActionRequest"/>
+      <wsdl:output message="tns:performAudienceSegmentActionResponse" name="performAudienceSegmentActionResponse"/>
+      <wsdl:fault message="tns:ApiException" name="ApiException"/>
+    </wsdl:operation>
+    <wsdl:operation name="updateAudienceSegments">
+      <wsdl:documentation>
+        Updates the given {@link RuleBasedFirstPartyAudienceSegment} objects.
+        
+        @param segments first-party audience segments to update
+        @return updated first-party audience segments
+      </wsdl:documentation>
+      <wsdl:input message="tns:updateAudienceSegmentsRequest" name="updateAudienceSegmentsRequest"/>
+      <wsdl:output message="tns:updateAudienceSegmentsResponse" name="updateAudienceSegmentsResponse"/>
+      <wsdl:fault message="tns:ApiException" name="ApiException"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AudienceSegmentServiceSoapBinding" type="tns:AudienceSegmentServiceInterface">
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="createAudienceSegments">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="createAudienceSegmentsRequest">
+        <wsdlsoap:header message="tns:RequestHeader"
+          part="RequestHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createAudienceSegmentsResponse">
+        <wsdlsoap:header message="tns:ResponseHeader"
+          part="ResponseHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ApiException">
+        <wsdlsoap:fault name="ApiException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAudienceSegmentsByStatement">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getAudienceSegmentsByStatementRequest">
+        <wsdlsoap:header message="tns:RequestHeader"
+          part="RequestHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAudienceSegmentsByStatementResponse">
+        <wsdlsoap:header message="tns:ResponseHeader"
+          part="ResponseHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ApiException">
+        <wsdlsoap:fault name="ApiException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="performAudienceSegmentAction">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="performAudienceSegmentActionRequest">
+        <wsdlsoap:header message="tns:RequestHeader"
+          part="RequestHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="performAudienceSegmentActionResponse">
+        <wsdlsoap:header message="tns:ResponseHeader"
+          part="ResponseHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ApiException">
+        <wsdlsoap:fault name="ApiException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateAudienceSegments">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="updateAudienceSegmentsRequest">
+        <wsdlsoap:header message="tns:RequestHeader"
+          part="RequestHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateAudienceSegmentsResponse">
+        <wsdlsoap:header message="tns:ResponseHeader"
+          part="ResponseHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ApiException">
+        <wsdlsoap:fault name="ApiException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AudienceSegmentService">
+    <wsdl:port binding="tns:AudienceSegmentServiceSoapBinding" name="AudienceSegmentServiceInterfacePort">
+      <wsdlsoap:address location="https://ads.google.com/apis/ads/publisher/v201802/AudienceSegmentService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

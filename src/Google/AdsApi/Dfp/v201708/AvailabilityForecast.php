@@ -113,7 +113,7 @@ class AvailabilityForecast
      */
     public function setLineItemId($lineItemId)
     {
-      $this->lineItemId = (PHP_INT_SIZE === 4)
+      $this->lineItemId = (!is_null(lineItemId) && PHP_INT_SIZE === 4)
           ? floatval($lineItemId) : $lineItemId;
       return $this;
     }
@@ -132,7 +132,7 @@ class AvailabilityForecast
      */
     public function setOrderId($orderId)
     {
-      $this->orderId = (PHP_INT_SIZE === 4)
+      $this->orderId = (!is_null(orderId) && PHP_INT_SIZE === 4)
           ? floatval($orderId) : $orderId;
       return $this;
     }
@@ -169,7 +169,7 @@ class AvailabilityForecast
      */
     public function setAvailableUnits($availableUnits)
     {
-      $this->availableUnits = (PHP_INT_SIZE === 4)
+      $this->availableUnits = (!is_null(availableUnits) && PHP_INT_SIZE === 4)
           ? floatval($availableUnits) : $availableUnits;
       return $this;
     }
@@ -188,7 +188,7 @@ class AvailabilityForecast
      */
     public function setDeliveredUnits($deliveredUnits)
     {
-      $this->deliveredUnits = (PHP_INT_SIZE === 4)
+      $this->deliveredUnits = (!is_null(deliveredUnits) && PHP_INT_SIZE === 4)
           ? floatval($deliveredUnits) : $deliveredUnits;
       return $this;
     }
@@ -207,7 +207,7 @@ class AvailabilityForecast
      */
     public function setMatchedUnits($matchedUnits)
     {
-      $this->matchedUnits = (PHP_INT_SIZE === 4)
+      $this->matchedUnits = (!is_null(matchedUnits) && PHP_INT_SIZE === 4)
           ? floatval($matchedUnits) : $matchedUnits;
       return $this;
     }
@@ -226,7 +226,7 @@ class AvailabilityForecast
      */
     public function setPossibleUnits($possibleUnits)
     {
-      $this->possibleUnits = (PHP_INT_SIZE === 4)
+      $this->possibleUnits = (!is_null(possibleUnits) && PHP_INT_SIZE === 4)
           ? floatval($possibleUnits) : $possibleUnits;
       return $this;
     }
@@ -245,7 +245,7 @@ class AvailabilityForecast
      */
     public function setReservedUnits($reservedUnits)
     {
-      $this->reservedUnits = (PHP_INT_SIZE === 4)
+      $this->reservedUnits = (!is_null(reservedUnits) && PHP_INT_SIZE === 4)
           ? floatval($reservedUnits) : $reservedUnits;
       return $this;
     }

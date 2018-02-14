@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\UserService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -32,59 +33,64 @@ use Google\AdsApi\Dfp\v201711\UserService;
  * requires that you've setup an `adsapi_php.ini` file in your home directory
  * with your API credentials and settings. See `README.md` for more info.
  */
-class CreateUsers {
+class CreateUsers
+{
 
-  // Set the email address, name, and role of the user to create.
-  const USER_EMAIL = 'INSERT_USER_EMAIL_ADDRESS_HERE';
-  const USER_NAME = 'INSERT_USER_NAME_HERE';
-  // Roles can be obtained by running GetAllRoles.php.
-  const USER_ROLE_ID = 'INSERT_USER_ROLE_ID_HERE';
+    // Set the email address, name, and role of the user to create.
+    const USER_EMAIL = 'INSERT_USER_EMAIL_ADDRESS_HERE';
+    const USER_NAME = 'INSERT_USER_NAME_HERE';
+    // Roles can be obtained by running GetAllRoles.php.
+    const USER_ROLE_ID = 'INSERT_USER_ROLE_ID_HERE';
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session, $userEmail, $userName, $userRoleId) {
-    $userService = $dfpServices->get($session, UserService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session,
+        $userEmail,
+        $userName,
+        $userRoleId
+    ) {
+        $userService = $dfpServices->get($session, UserService::class);
 
-    $user = new User();
-    $user->setName('User #' . uniqid());
-    $user->setEmail($userEmail);
-    $user->setName($userName);
-    $user->setRoleId($userRoleId);
+        $user = new User();
+        $user->setName('User #' . uniqid());
+        $user->setEmail($userEmail);
+        $user->setName($userName);
+        $user->setRoleId($userRoleId);
 
-    // Create the users on the server.
-    $results = $userService->createUsers([$user]);
+        // Create the users on the server.
+        $results = $userService->createUsers([$user]);
 
-    // Print out some information for each created user.
-    foreach ($results as $i => $user) {
-      printf(
-          "%d) User with ID %d and name '%s' was created.\n",
-          $i,
-          $user->getId(),
-          $user->getName()
-      );
+        // Print out some information for each created user.
+        foreach ($results as $i => $user) {
+            printf(
+                "%d) User with ID %d and name '%s' was created.\n",
+                $i,
+                $user->getId(),
+                $user->getName()
+            );
+        }
     }
-  }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(
-        new DfpServices(),
-        $session,
-        self::USER_EMAIL,
-        self::USER_NAME,
-        intval(self::USER_ROLE_ID)
-    );
-  }
+        self::runExample(
+            new DfpServices(),
+            $session,
+            self::USER_EMAIL,
+            self::USER_NAME,
+            intval(self::USER_ROLE_ID)
+        );
+    }
 }
 
 CreateUsers::main();

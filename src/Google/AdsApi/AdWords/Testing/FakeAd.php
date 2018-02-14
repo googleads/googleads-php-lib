@@ -14,26 +14,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\AdWords\Testing;
 
 /**
  * A fake Ad class for testing purpose.
  */
-final class FakeAd {
+final class FakeAd
+{
 
-  protected $finalUrls = null;
+    protected $finalUrls = null;
 
-  /**
-   * @return string[]
-   */
-  public function getFinalUrls() {
-    return $this->finalUrls;
-  }
+    /**
+     * @return string[]
+     */
+    public function getFinalUrls()
+    {
+        return $this->finalUrls;
+    }
 
-  /**
-   * @param string[] $finalUrls
-   */
-  public function setFinalUrls($finalUrls) {
-    $this->finalUrls = $finalUrls;
-  }
+    /**
+     * @param string[] $finalUrls
+     */
+    public function setFinalUrls($finalUrls)
+    {
+        $this->finalUrls = $finalUrls;
+    }
 }

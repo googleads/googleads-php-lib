@@ -47,7 +47,7 @@ class LocationGroups extends \Google\AdsApi\AdWords\v201710\cm\Criterion
      */
     public function setFeedId($feedId)
     {
-      $this->feedId = (PHP_INT_SIZE === 4)
+      $this->feedId = (!is_null(feedId) && PHP_INT_SIZE === 4)
           ? floatval($feedId) : $feedId;
       return $this;
     }

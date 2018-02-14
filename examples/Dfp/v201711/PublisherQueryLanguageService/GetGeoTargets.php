@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\PublisherQueryLanguageService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -39,84 +40,93 @@ use Google\AdsApi\Dfp\v201711\PublisherQueryLanguageService;
  * requires that you've setup an `adsapi_php.ini` file in your home directory
  * with your API credentials and settings. See `README.md` for more info.
  */
-class GetGeoTargets {
+class GetGeoTargets
+{
 
-  // Set the type of geo target.
-  const GEO_TARGET_TYPE = 'City';
-  const COUNTRY_CODE = 'US';
+    // Set the type of geo target.
+    const GEO_TARGET_TYPE = 'City';
+    const COUNTRY_CODE = 'US';
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session, $type, $countryCode) {
-    $pqlService =
-        $dfpServices->get($session, PublisherQueryLanguageService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session,
+        $type,
+        $countryCode
+    ) {
+        $pqlService = $dfpServices->get($session, PublisherQueryLanguageService::class);
 
-    // Create statement to select all targetable cities.
-    $statementBuilder = new StatementBuilder();
-    $statementBuilder->select('Id, Name, CanonicalParentId, ParentIds,'
-        . ' CountryCode');
-    $statementBuilder->from('Geo_Target');
-    $statementBuilder->where('Type = :type and CountryCode = :countryCode '
-        . ' and Targetable = true');
-    $statementBuilder->orderBy('CountryCode ASC, Name ASC');
-    $statementBuilder->offset(0);
-    $statementBuilder->limit(StatementBuilder::SUGGESTED_PAGE_LIMIT);
-    $statementBuilder->withBindVariableValue('type', $type);
-    $statementBuilder->withBindVariableValue('countryCode', $countryCode);
+        // Create statement to select all targetable cities.
+        $statementBuilder = new StatementBuilder();
+        $statementBuilder->select(
+            'Id, Name, CanonicalParentId, ParentIds, CountryCode'
+        );
+        $statementBuilder->from('Geo_Target');
+        $statementBuilder->where(
+            'Type = :type and CountryCode = :countryCode  and Targetable = true'
+        );
+        $statementBuilder->orderBy('CountryCode ASC, Name ASC');
+        $statementBuilder->offset(0);
+        $statementBuilder->limit(StatementBuilder::SUGGESTED_PAGE_LIMIT);
+        $statementBuilder->withBindVariableValue('type', $type);
+        $statementBuilder->withBindVariableValue('countryCode', $countryCode);
 
-    // Default for result sets.
-    $combinedResultSet = null;
-    $i = 0;
+        // Default for result sets.
+        $combinedResultSet = null;
+        $i = 0;
 
-    do {
-      // Get all cities.
-      $resultSet = $pqlService->select($statementBuilder->toStatement());
+        do {
+            // Get all cities.
+            $resultSet = $pqlService->select($statementBuilder->toStatement());
 
-      // Combine result sets with previous ones.
-      $combinedResultSet = is_null($combinedResultSet)
-          ? $resultSet
-          : Pql::combineResultSets($combinedResultSet, $resultSet);
+            // Combine result sets with previous ones.
+            $combinedResultSet = is_null($combinedResultSet)
+                ? $resultSet
+                : Pql::combineResultSets(
+                    $combinedResultSet,
+                    $resultSet
+                );
 
-      $rows = $resultSet->getRows();
+            $rows = $resultSet->getRows();
 
-      printf(
-          "%d) %d geo targets beginning at offset %d were found.\n",
-          $i++,
-          is_null($rows) ? 0 : count($rows),
-          $statementBuilder->getOffset()
-      );
+            printf(
+                "%d) %d geo targets beginning at offset %d were found.\n",
+                $i++,
+                is_null($rows) ? 0 : count($rows),
+                $statementBuilder->getOffset()
+            );
 
-      $statementBuilder->increaseOffsetBy(
-          StatementBuilder::SUGGESTED_PAGE_LIMIT);
+            $statementBuilder->increaseOffsetBy(
+                StatementBuilder::SUGGESTED_PAGE_LIMIT
+            );
 
-      $rows = $resultSet->getRows();
-    } while (!empty($rows));
+            $rows = $resultSet->getRows();
+        } while (!empty($rows));
 
-    // Change to your file location.
-    $filePath = tempnam(sys_get_temp_dir(), $type . '-') . '.csv';
+        // Change to your file location.
+        $filePath = tempnam(sys_get_temp_dir(), $type . '-') . '.csv';
 
-    CsvFiles::writeCsv(
-        Pql::resultSetTo2DimensionStringArray($combinedResultSet),
-        $filePath
-    );
+        CsvFiles::writeCsv(
+            Pql::resultSetTo2DimensionStringArray($combinedResultSet),
+            $filePath
+        );
 
-    printf("Geo targets saved to: %s\n", $filePath);
-  }
+        printf("Geo targets saved to: %s\n", $filePath);
+    }
 
-  public static function main() {
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
-    self::runExample(
-        new DfpServices(),
-        $session,
-        self::GEO_TARGET_TYPE,
-        self::COUNTRY_CODE
-    );
-  }
+    public static function main()
+    {
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
+        self::runExample(
+            new DfpServices(),
+            $session,
+            self::GEO_TARGET_TYPE,
+            self::COUNTRY_CODE
+        );
+    }
 }
 
 GetGeoTargets::main();

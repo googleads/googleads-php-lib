@@ -14,16 +14,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\AdWords\Reporting\v201710;
 
 /**
  * Supported report downloaded formats.
  */
-final class DownloadFormat {
-  const CSVFOREXCEL = 'CSVFOREXCEL';
-  const CSV = 'CSV';
-  const TSV = 'TSV';
-  const XML = 'XML';
-  const GZIPPED_CSV = 'GZIPPED_CSV';
-  const GZIPPED_XML = 'GZIPPED_XML';
+final class DownloadFormat
+{
+    const CSVFOREXCEL = 'CSVFOREXCEL';
+    const CSV = 'CSV';
+    const TSV = 'TSV';
+    const XML = 'XML';
+    const GZIPPED_CSV = 'GZIPPED_CSV';
+    const GZIPPED_XML = 'GZIPPED_XML';
 }

@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\AdWords\v201710\Remarketing;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -34,101 +35,102 @@ use Google\AdsApi\Common\OAuth2TokenBuilder;
  * This example adds an AdWords conversion tracker and an upload conversion
  * tracker.
  */
-class AddConversionTrackers {
+class AddConversionTrackers
+{
 
-  public static function runExample(AdWordsServices $adWordsServices,
-      AdWordsSession $session) {
-    $conversionTrackerService =
-        $adWordsServices->get($session, ConversionTrackerService::class);
-    $conversionTrackers = [];
+    public static function runExample(
+        AdWordsServices $adWordsServices,
+        AdWordsSession $session
+    ) {
+        $conversionTrackerService = $adWordsServices->get($session, ConversionTrackerService::class);
+        $conversionTrackers = [];
 
-    // Create an AdWords conversion tracker.
-    $adWordsConversionTracker = new AdWordsConversionTracker();
-    $adWordsConversionTracker->setName(
-        'Interplanetary Cruise Conversion #' . uniqid());
+        // Create an AdWords conversion tracker.
+        $adWordsConversionTracker = new AdWordsConversionTracker();
+        $adWordsConversionTracker->setName(
+            'Interplanetary Cruise Conversion #' . uniqid()
+        );
 
-    // Set additional settings (optional).
-    $adWordsConversionTracker->setStatus(ConversionTrackerStatus::ENABLED);
-    $adWordsConversionTracker->setCategory(
-        ConversionTrackerCategory::DEFAULT_VALUE);
-    $adWordsConversionTracker->setViewthroughLookbackWindow(15);
-    $adWordsConversionTracker->setDefaultRevenueValue(23.41);
-    $adWordsConversionTracker->setAlwaysUseDefaultRevenueValue(true);
-    $conversionTrackers[] = $adWordsConversionTracker;
+        // Set additional settings (optional).
+        $adWordsConversionTracker->setStatus(ConversionTrackerStatus::ENABLED);
+        $adWordsConversionTracker->setCategory(
+            ConversionTrackerCategory::DEFAULT_VALUE
+        );
+        $adWordsConversionTracker->setViewthroughLookbackWindow(15);
+        $adWordsConversionTracker->setDefaultRevenueValue(23.41);
+        $adWordsConversionTracker->setAlwaysUseDefaultRevenueValue(true);
+        $conversionTrackers[] = $adWordsConversionTracker;
 
-    // Create an upload conversion for offline conversion imports.
-    $uploadConversion = new UploadConversion();
-    // Set an appropriate category. This field is optional, and will be set to
-    // DEFAULT if not mentioned.
-    $uploadConversion->setCategory(ConversionTrackerCategory::LEAD);
-    $uploadConversion->setName('Upload Conversion # ' . uniqid());
-    $uploadConversion->setViewthroughLookbackWindow(30);
-    $uploadConversion->setCtcLookbackWindow(90);
+        // Create an upload conversion for offline conversion imports.
+        $uploadConversion = new UploadConversion();
+        // Set an appropriate category. This field is optional, and will be set to
+        // DEFAULT if not mentioned.
+        $uploadConversion->setCategory(ConversionTrackerCategory::LEAD);
+        $uploadConversion->setName('Upload Conversion # ' . uniqid());
+        $uploadConversion->setViewthroughLookbackWindow(30);
+        $uploadConversion->setCtcLookbackWindow(90);
 
-    // Optional: Set the default currency code to use for conversions
-    // that do not specify a conversion currency. This must be an ISO 4217
-    // 3-character currency code such as "EUR" or "USD".
-    // If this field is not set on this UploadConversion, AdWords will use
-    // the account's currency.
-    $uploadConversion->setDefaultRevenueCurrencyCode('EUR');
+        // Optional: Set the default currency code to use for conversions
+        // that do not specify a conversion currency. This must be an ISO 4217
+        // 3-character currency code such as "EUR" or "USD".
+        // If this field is not set on this UploadConversion, AdWords will use
+        // the account's currency.
+        $uploadConversion->setDefaultRevenueCurrencyCode('EUR');
 
-    // Optional: Set the default revenue value to use for conversions
-    // that do not specify a conversion value. Note that this value
-    // should NOT be in micros.
-    $uploadConversion->setDefaultRevenueValue(2.50);
+        // Optional: Set the default revenue value to use for conversions
+        // that do not specify a conversion value. Note that this value
+        // should NOT be in micros.
+        $uploadConversion->setDefaultRevenueValue(2.50);
 
-    // Optional: To upload fractional conversion credits, mark the upload
-    // conversion as externally attributed. See
-    // https://developers.google.com/adwords/api/docs/guides/conversion-tracking#importing_externally_attributed_conversions
-    // to learn more about importing externally attributed conversions.
+        // Optional: To upload fractional conversion credits, mark the upload
+        // conversion as externally attributed. See
+        // https://developers.google.com/adwords/api/docs/guides/conversion-tracking#importing_externally_attributed_conversions
+        // to learn more about importing externally attributed conversions.
 
-    // uploadConversion->setIsExternallyAttributed(true);
+        // uploadConversion->setIsExternallyAttributed(true);
 
-    $conversionTrackers[] = $uploadConversion;
+        $conversionTrackers[] = $uploadConversion;
 
-    // Create conversion tracker operations and add them to the list.
-    $operations = [];
-    foreach ($conversionTrackers as $conversionTracker) {
-      $operation = new ConversionTrackerOperation();
-      $operation->setOperand($conversionTracker);
-      $operation->setOperator(Operator::ADD);
-      $operations[] = $operation;
+        // Create conversion tracker operations and add them to the list.
+        $operations = [];
+        foreach ($conversionTrackers as $conversionTracker) {
+            $operation = new ConversionTrackerOperation();
+            $operation->setOperand($conversionTracker);
+            $operation->setOperator(Operator::ADD);
+            $operations[] = $operation;
+        }
+
+        // Create the conversion trackers on the server.
+        $result = $conversionTrackerService->mutate($operations);
+
+        // Print out some information about created trackers.
+        foreach ($result->getValue() as $conversionTracker) {
+            printf(
+                "Conversion with ID %d, name '%s', status '%s' and category '%s' was added.\n",
+                $conversionTracker->getId(),
+                $conversionTracker->getName(),
+                $conversionTracker->getStatus(),
+                $conversionTracker->getCategory()
+            );
+            if ($conversionTracker instanceof AdWordsConversionTracker) {
+                printf(
+                    "Conversion tracker snippet:\n%s\n",
+                    $conversionTracker->getSnippet()
+                );
+            }
+        }
     }
 
-    // Create the conversion trackers on the server.
-    $result = $conversionTrackerService->mutate($operations);
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()->build();
 
-    // Print out some information about created trackers.
-    foreach ($result->getValue() as $conversionTracker) {
-      printf(
-          "Conversion with ID %d, name '%s', status '%s' and category '%s'"
-              . " was added.\n",
-          $conversionTracker->getId(),
-          $conversionTracker->getName(),
-          $conversionTracker->getStatus(),
-          $conversionTracker->getCategory()
-      );
-      if ($conversionTracker instanceof AdWordsConversionTracker) {
-        printf("Conversion tracker snippet:\n%s\n",
-            $conversionTracker->getSnippet());
-      }
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new AdWordsSessionBuilder())->fromFile()->withOAuth2Credential($oAuth2Credential)->build();
+        self::runExample(new AdWordsServices(), $session);
     }
-  }
-
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
-
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new AdWordsSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
-    self::runExample(new AdWordsServices(), $session);
-  }
 }
 
 AddConversionTrackers::main();

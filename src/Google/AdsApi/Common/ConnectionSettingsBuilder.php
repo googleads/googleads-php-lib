@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Common;
 
 /**
@@ -21,99 +22,118 @@ namespace Google\AdsApi\Common;
  *
  * @see ConnectionSettings
  */
-final class ConnectionSettingsBuilder implements AdsBuilder {
+final class ConnectionSettingsBuilder implements AdsBuilder
+{
 
-  private $configurationLoader;
+    private $configurationLoader;
 
-  private $proxyUrl;
-  private $isReportingGzipEnabled;
+    private $proxyUrl;
+    private $isReportingGzipEnabled;
 
-  public function __construct() {
-    $this->configurationLoader = new ConfigurationLoader();
-  }
-
-  /**
-   * @see AdsBuilder::from()
-   */
-  public function from(Configuration $configuration) {
-    $this->proxyUrl = $configuration->getConfiguration('proxy', 'CONNECTION');
-    $isReportingGzipEnabled =
-        $configuration->getConfiguration('enableReportingGzip', 'CONNECTION');
-    if ($isReportingGzipEnabled !== null) {
-      $this->isReportingGzipEnabled = boolval($isReportingGzipEnabled);
+    public function __construct()
+    {
+        $this->configurationLoader = new ConfigurationLoader();
     }
 
-    return $this;
-  }
+    /**
+     * @see AdsBuilder::from()
+     */
+    public function from(Configuration $configuration)
+    {
+        $this->proxyUrl = $configuration->getConfiguration('proxy', 'CONNECTION');
+        $isReportingGzipEnabled =
+            $configuration->getConfiguration('enableReportingGzip', 'CONNECTION');
+        if ($isReportingGzipEnabled !== null) {
+            $this->isReportingGzipEnabled = boolval($isReportingGzipEnabled);
+        }
 
-  /**
-   * Includes proxy URL. This is optional and defaults to `null`.
-   *
-   * @param string|null $proxyUrl
-   * @return ConnectionSettingsBuilder this builder
-   */
-  public function withProxyUrl($proxyUrl) {
-    $this->proxyUrl = $proxyUrl;
-    return $this;
-  }
-
-  /**
-   * Whether gzip compression should be enabled for all reporting requests.
-   * This is optional and defaults to false.
-   *
-   * @param boolean|null $isReportingGzipEnabled
-   * @return ConnectionSettingsBuilder this builder
-   */
-  public function enableReportingGzip($isReportingGzipEnabled) {
-    $this->isReportingGzipEnabled = $isReportingGzipEnabled;
-    return $this;
-  }
-
-  /**
-   * @see AdsBuilder::build()
-   */
-  public function build() {
-    $this->defaultOptionals();
-    $this->validate();
-    return new ConnectionSettings($this);
-  }
-
-  /**
-   * @see AdsBuilder::defaultOptionals()
-   */
-  public function defaultOptionals() {
-    if ($this->isReportingGzipEnabled === null) {
-      $this->isReportingGzipEnabled = false;
+        return $this;
     }
-  }
 
-  /**
-   * @see AdsBuilder::validate()
-   */
-  public function validate() {
-    if (!empty($this->proxyUrl)) {
-      preg_match(
-          ConnectionSettings::PROXY_REGEX_PATTERN, $this->proxyUrl, $matches);
-      if (empty($matches)) {
-        throw new \InvalidArgumentException(
-            'Your specified proxy format is invalid.');
-      }
+    /**
+     * Includes proxy URL. This is optional and defaults to `null`.
+     *
+     * @param string|null $proxyUrl
+     * @return ConnectionSettingsBuilder this builder
+     */
+    public function withProxyUrl($proxyUrl)
+    {
+        $this->proxyUrl = $proxyUrl;
+
+        return $this;
     }
-  }
 
-  /**
-   * Gets the proxy URL.
-   * @return string|null
-   */
-  public function getProxyUrl() {
-    return $this->proxyUrl;
-  }
+    /**
+     * Whether gzip compression should be enabled for all reporting requests.
+     * This is optional and defaults to false.
+     *
+     * @param boolean|null $isReportingGzipEnabled
+     * @return ConnectionSettingsBuilder this builder
+     */
+    public function enableReportingGzip($isReportingGzipEnabled)
+    {
+        $this->isReportingGzipEnabled = $isReportingGzipEnabled;
 
-  /**
-   * Whether gzip compression is enabled for reporting requests.
-   * @return boolean|null
-   */
-  public function isReportingGzipEnabled() {
-    return $this->isReportingGzipEnabled;
-  }
+        return $this;
+    }
+
+    /**
+     * @see AdsBuilder::build()
+     */
+    public function build()
+    {
+        $this->defaultOptionals();
+        $this->validate();
+
+        return new ConnectionSettings($this);
+    }
+
+    /**
+     * @see AdsBuilder::defaultOptionals()
+     */
+    public function defaultOptionals()
+    {
+        if ($this->isReportingGzipEnabled === null) {
+            $this->isReportingGzipEnabled = false;
+        }
+    }
+
+    /**
+     * @see AdsBuilder::validate()
+     */
+    public function validate()
+    {
+        if (!empty($this->proxyUrl)) {
+            preg_match(
+                ConnectionSettings::PROXY_REGEX_PATTERN,
+                $this->proxyUrl,
+                $matches
+            );
+            if (empty($matches)) {
+                throw new \InvalidArgumentException(
+                    'Your specified proxy format is invalid.'
+                );
+            }
+        }
+    }
+
+    /**
+     * Gets the proxy URL.
+     *
+     * @return string|null
+     */
+    public function getProxyUrl()
+    {
+        return $this->proxyUrl;
+    }
+
+    /**
+     * Whether gzip compression is enabled for reporting requests.
+     *
+     * @return boolean|null
+     */
+    public function isReportingGzipEnabled()
+    {
+        return $this->isReportingGzipEnabled;
+    }
 }

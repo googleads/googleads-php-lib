@@ -50,7 +50,7 @@ class AdGroupCriterionLabel
      */
     public function setAdGroupId($adGroupId)
     {
-      $this->adGroupId = (PHP_INT_SIZE === 4)
+      $this->adGroupId = (!is_null(adGroupId) && PHP_INT_SIZE === 4)
           ? floatval($adGroupId) : $adGroupId;
       return $this;
     }
@@ -69,7 +69,7 @@ class AdGroupCriterionLabel
      */
     public function setCriterionId($criterionId)
     {
-      $this->criterionId = (PHP_INT_SIZE === 4)
+      $this->criterionId = (!is_null(criterionId) && PHP_INT_SIZE === 4)
           ? floatval($criterionId) : $criterionId;
       return $this;
     }
@@ -88,7 +88,7 @@ class AdGroupCriterionLabel
      */
     public function setLabelId($labelId)
     {
-      $this->labelId = (PHP_INT_SIZE === 4)
+      $this->labelId = (!is_null(labelId) && PHP_INT_SIZE === 4)
           ? floatval($labelId) : $labelId;
       return $this;
     }

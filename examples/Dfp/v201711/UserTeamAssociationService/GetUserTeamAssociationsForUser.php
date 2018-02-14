@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\UserTeamAssociationService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -32,65 +33,68 @@ use Google\AdsApi\Dfp\v201711\UserTeamAssociationService;
  * that you've setup an `adsapi_php.ini` file in your home directory with your
  * API credentials and settings. See README.md for more info.
  */
-class GetUserTeamAssociationsForUser {
+class GetUserTeamAssociationsForUser
+{
 
-  const USER_ID = 'INSERT_USER_ID_HERE';
+    const USER_ID = 'INSERT_USER_ID_HERE';
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session, $userId) {
-    $userTeamAssociationService =
-        $dfpServices->get($session, UserTeamAssociationService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session,
+        $userId
+    ) {
+        $userTeamAssociationService =
+            $dfpServices->get($session, UserTeamAssociationService::class);
 
-    // Create a statement to select user team associations.
-    $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
-    $statementBuilder = (new StatementBuilder())
-        ->where('userId = :userId')
-        ->orderBy('userId ASC, teamId ASC')
-        ->limit($pageSize)
-        ->withBindVariableValue('userId', $userId);
+        // Create a statement to select user team associations.
+        $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
+        $statementBuilder = (new StatementBuilder())->where('userId = :userId')
+            ->orderBy('userId ASC, teamId ASC')
+            ->limit($pageSize)
+            ->withBindVariableValue('userId', $userId);
 
-    // Retrieve a small amount of user team associations at a time, paging
-    // through until all user team associations have been retrieved.
-    $totalResultSetSize = 0;
-    do {
-      $page = $userTeamAssociationService->getUserTeamAssociationsByStatement(
-          $statementBuilder->toStatement());
+        // Retrieve a small amount of user team associations at a time, paging
+        // through until all user team associations have been retrieved.
+        $totalResultSetSize = 0;
+        do {
+            $page = $userTeamAssociationService->getUserTeamAssociationsByStatement(
+                $statementBuilder->toStatement()
+            );
 
-      // Print out some information for each user team association.
-      if ($page->getResults() !== null) {
-        $totalResultSetSize = $page->getTotalResultSetSize();
-        $i = $page->getStartIndex();
-        foreach ($page->getResults() as $userTeamAssociation) {
-          printf(
-              "%d) User team association with user ID %d and team ID %d was found.\n",
-              $i++,
-              $userTeamAssociation->getUserId(),
-              $userTeamAssociation->getTeamId()
-          );
-        }
-      }
+            // Print out some information for each user team association.
+            if ($page->getResults() !== null) {
+                $totalResultSetSize = $page->getTotalResultSetSize();
+                $i = $page->getStartIndex();
+                foreach ($page->getResults() as $userTeamAssociation) {
+                    printf(
+                        "%d) User team association with user ID %d and team ID %d was found.\n",
+                        $i++,
+                        $userTeamAssociation->getUserId(),
+                        $userTeamAssociation->getTeamId()
+                    );
+                }
+            }
 
-      $statementBuilder->increaseOffsetBy($pageSize);
-    } while ($statementBuilder->getOffset() < $totalResultSetSize);
+            $statementBuilder->increaseOffsetBy($pageSize);
+        } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-    printf("Number of results found: %d\n", $totalResultSetSize);
-  }
+        printf("Number of results found: %d\n", $totalResultSetSize);
+    }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(new DfpServices(), $session, intval(self::USER_ID));
-  }
+        self::runExample(new DfpServices(), $session, intval(self::USER_ID));
+    }
 }
 
 GetUserTeamAssociationsForUser::main();

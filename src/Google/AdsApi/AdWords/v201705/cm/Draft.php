@@ -71,7 +71,7 @@ class Draft
      */
     public function setDraftId($draftId)
     {
-      $this->draftId = (PHP_INT_SIZE === 4)
+      $this->draftId = (!is_null(draftId) && PHP_INT_SIZE === 4)
           ? floatval($draftId) : $draftId;
       return $this;
     }
@@ -90,7 +90,7 @@ class Draft
      */
     public function setBaseCampaignId($baseCampaignId)
     {
-      $this->baseCampaignId = (PHP_INT_SIZE === 4)
+      $this->baseCampaignId = (!is_null(baseCampaignId) && PHP_INT_SIZE === 4)
           ? floatval($baseCampaignId) : $baseCampaignId;
       return $this;
     }
@@ -145,7 +145,7 @@ class Draft
      */
     public function setDraftCampaignId($draftCampaignId)
     {
-      $this->draftCampaignId = (PHP_INT_SIZE === 4)
+      $this->draftCampaignId = (!is_null(draftCampaignId) && PHP_INT_SIZE === 4)
           ? floatval($draftCampaignId) : $draftCampaignId;
       return $this;
     }

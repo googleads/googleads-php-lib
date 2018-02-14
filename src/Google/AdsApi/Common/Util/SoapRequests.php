@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Common\Util;
 
 use DOMDocument;
@@ -23,92 +24,96 @@ use DOMXPath;
 /**
  * Static utility methods for working with SOAP requests.
  */
-final class SoapRequests {
+final class SoapRequests
+{
 
-  /**
-   * Iterates through all nodes with an 'href' attribute in the specified
-   * request SOAP XML string and replaces them with the node they are
-   * referencing.
-   *
-   * If replacement fails in any way, return the original request so any issues
-   * bubble up.
-   *
-   * @param string $request
-   * @return string the request SOAP XML string with references replaced
-   */
-  public static function replaceReferences($request) {
-    $requestDom = new DOMDocument();
-    try {
-      set_error_handler([self::class, 'handleLoadXmlWarnings']);
-      $requestDom->loadXML($request);
-    } catch (DOMException $e) {
-      return $request;
-    } finally {
-      restore_error_handler();
-    }
-
-    $xpath = new DOMXPath($requestDom);
-    $references = $xpath->query('//*[@href]');
-    // Cache of referenced element IDs to their nodes.
-    $referencedElementsCache = [];
-
-    // Replace each reference.
-    foreach ($references as $reference) {
-      // References begin with a hash, e,g., #ref1, remove the hash sign.
-      $id = substr($reference->getAttribute('href'), 1);
-
-      // If we haven't seen this referenced node before we need to find it and
-      // cache it.
-      if (!array_key_exists($id, $referencedElementsCache)) {
-        $referencedElements = $xpath->query(sprintf("//*[@id='%s']", $id));
-        // There may be more than one element with the same ID if we replaced
-        // a reference to an element that has a child node that something else
-        // is referencing.
-        if ($referencedElements->length > 0) {
-          $referencedElementsCache[$id] = $referencedElements->item(0);
-        } else {
-          // If for some reason we can't find it, it's probably a malformed SOAP
-          // request XML and we skip this reference so the issue bubbles up.
-          continue;
+    /**
+     * Iterates through all nodes with an 'href' attribute in the specified
+     * request SOAP XML string and replaces them with the node they are
+     * referencing.
+     *
+     * If replacement fails in any way, return the original request so any
+     * issues bubble up.
+     *
+     * @param string $request
+     * @return string the request SOAP XML string with references replaced
+     */
+    public static function replaceReferences($request)
+    {
+        $requestDom = new DOMDocument();
+        try {
+            set_error_handler([self::class, 'handleLoadXmlWarnings']);
+            $requestDom->loadXML($request);
+        } catch (DOMException $e) {
+            return $request;
+        } finally {
+            restore_error_handler();
         }
-      }
 
-      // Deep copy all the nodes from the referenced element.
-      foreach ($referencedElementsCache[$id]->childNodes as $childNode) {
-        $reference->appendChild($childNode->cloneNode(true));
-      }
-      $reference->removeAttribute('href');
-    }
+        $xpath = new DOMXPath($requestDom);
+        $references = $xpath->query('//*[@href]');
+        // Cache of referenced element IDs to their nodes.
+        $referencedElementsCache = [];
 
-    // Once all references are replaced, remove the obsolete ID tags from each
-    // referenced element.
-    foreach (array_keys($referencedElementsCache) as $id) {
-      // For the same reason stated above, there may be more than one element
-      // with the same ID due to replacement.
-      $referencedElements = $xpath->query(sprintf("//*[@id='%s']", $id));
-      foreach ($referencedElements as $referencedElement) {
-        $referencedElement->removeAttribute('id');
-      }
-    }
+        // Replace each reference.
+        foreach ($references as $reference) {
+            // References begin with a hash, e,g., #ref1, remove the hash sign.
+            $id = substr($reference->getAttribute('href'), 1);
 
-    return $requestDom->saveXML();
-  }
+            // If we haven't seen this referenced node before we need to find it and
+            // cache it.
+            if (!array_key_exists($id, $referencedElementsCache)) {
+                $referencedElements = $xpath->query(sprintf("//*[@id='%s']", $id));
+                // There may be more than one element with the same ID if we replaced
+                // a reference to an element that has a child node that something else
+                // is referencing.
+                if ($referencedElements->length > 0) {
+                    $referencedElementsCache[$id] = $referencedElements->item(0);
+                } else {
+                    // If for some reason we can't find it, it's probably a malformed SOAP
+                    // request XML and we skip this reference so the issue bubbles up.
+                    continue;
+                }
+            }
 
-  /**
-   * Translates warnings generated by `DOMDocument::loadXML` into a
-   * DOMException.
-   *
-   * @see http://php.net/manual/en/function.set-error-handler.php#refsect1-function.set-error-handler-parameters
-   * @throws DOMException if `DOMDocument::loadXML` generated an `E_WARNING`
-   */
-  public static function handleLoadXmlWarnings($errno, $errstr) {
-    switch ($errno) {
-      case E_WARNING:
-        if (strpos($errstr, 'DOMDocument::loadXML()') !== false) {
-          throw new DOMException($errstr);
+            // Deep copy all the nodes from the referenced element.
+            foreach ($referencedElementsCache[$id]->childNodes as $childNode) {
+                $reference->appendChild($childNode->cloneNode(true));
+            }
+            $reference->removeAttribute('href');
         }
-      default:
-        return false;
+
+        // Once all references are replaced, remove the obsolete ID tags from each
+        // referenced element.
+        foreach (array_keys($referencedElementsCache) as $id) {
+            // For the same reason stated above, there may be more than one element
+            // with the same ID due to replacement.
+            $referencedElements = $xpath->query(sprintf("//*[@id='%s']", $id));
+            foreach ($referencedElements as $referencedElement) {
+                $referencedElement->removeAttribute('id');
+            }
+        }
+
+        return $requestDom->saveXML();
     }
-  }
+
+    /**
+     * Translates warnings generated by `DOMDocument::loadXML` into a
+     * DOMException.
+     *
+     * @see http://php.net/manual/en/function.set-error-handler.php#refsect1-function.set-error-handler-parameters
+     * @throws DOMException if `DOMDocument::loadXML` generated an `E_WARNING`
+     */
+    public static function handleLoadXmlWarnings($errno, $errstr)
+    {
+        switch ($errno) {
+            case E_WARNING:
+                if (strpos($errstr, 'DOMDocument::loadXML()') !== false) {
+                    throw new DOMException($errstr);
+                }
+                break;
+            default:
+                return false;
+        }
+    }
 }

@@ -14,26 +14,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\AdWords\Testing\BatchJobs\v201710;
 
 /**
  * A fake operation class for testing purpose.
  */
-abstract class FakeOperation {
+abstract class FakeOperation
+{
 
-  protected $operator;
+    protected $operator;
 
-  /**
-   * @return string
-   */
-  public function getOperator() {
-    return $this->operator;
-  }
+    /**
+     * @return string
+     */
+    public function getOperator()
+    {
+        return $this->operator;
+    }
 
-  /**
-   * @param string $operator
-   */
-  public function setOperator($operator) {
-    $this->operator = $operator;
-  }
+    /**
+     * @param string $operator
+     */
+    public function setOperator($operator)
+    {
+        $this->operator = $operator;
+    }
 }

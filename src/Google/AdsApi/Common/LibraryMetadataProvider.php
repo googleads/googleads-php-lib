@@ -14,36 +14,42 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Common;
 
 /**
  * Provides information about this library, such as its version and name.
  */
-class LibraryMetadataProvider {
+class LibraryMetadataProvider
+{
 
-  private $libName;
-  private $libVersion;
+    private $libName;
+    private $libVersion;
 
-  public function __construct() {
-    $buildIni =
-        parse_ini_file(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'build.ini');
-    $this->libName = $buildIni['LIB_NAME'];
-    $this->libVersion = $buildIni['LIB_VERSION'];
-  }
+    public function __construct()
+    {
+        $buildIni = parse_ini_file(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'build.ini');
+        $this->libName = $buildIni['LIB_NAME'];
+        $this->libVersion = $buildIni['LIB_VERSION'];
+    }
 
-  /**
-   * Gets this library's name.
-   * @return string this library's name
-   */
-  public function getLibName() {
-    return $this->libName;
-  }
+    /**
+     * Gets this library's name.
+     *
+     * @return string this library's name
+     */
+    public function getLibName()
+    {
+        return $this->libName;
+    }
 
-  /**
-   * Gets this library's version.
-   * @return string this library's version
-   */
-  public function getLibVersion() {
-    return $this->libVersion;
-  }
+    /**
+     * Gets this library's version.
+     *
+     * @return string this library's version
+     */
+    public function getLibVersion()
+    {
+        return $this->libVersion;
+    }
 }

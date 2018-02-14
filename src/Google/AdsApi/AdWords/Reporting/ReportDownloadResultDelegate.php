@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\AdWords\Reporting;
 
 use Psr\Http\Message\ResponseInterface;
@@ -21,44 +22,54 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * A delegate of `ReportDownloadResult`, which shouldn't be used directly.
  */
-final class ReportDownloadResultDelegate {
+final class ReportDownloadResultDelegate
+{
 
-  private $response;
+    private $response;
 
-  /**
-   * Creates a report download result delegate with the Guzzle response
-   * containing the report.
-   *
-   * @param ResponseInterface $response
-   */
-  public function __construct(ResponseInterface $response) {
-    $this->response = $response;
-  }
+    /**
+     * Creates a report download result delegate with the Guzzle response
+     * containing the report.
+     *
+     * @param ResponseInterface $response
+     */
+    public function __construct(ResponseInterface $response)
+    {
+        $this->response = $response;
+    }
 
-  /**
-   * @see ReportDownloadResult::getStream
-   */
-  public function getStream() {
-    return $this->response->getBody();
-  }
+    /**
+     * @see ReportDownloadResult::getStream
+     */
+    public function getStream()
+    {
+        return $this->response->getBody();
+    }
 
-  /**
-   * @see ReportDownloadResult::getAsString
-   */
-  public function getAsString() {
-    $result = $this->response->getBody()->getContents();
-    $this->response->getBody()->close();
-    return $result;
-  }
+    /**
+     * @see ReportDownloadResult::getAsString
+     */
+    public function getAsString()
+    {
+        $result = $this->response->getBody()->getContents();
+        $this->response->getBody()->close();
 
-  /**
-   * @see ReportDownloadResult::saveToFile
-   */
-  public function saveToFile($filePath) {
-    $destStream = \GuzzleHttp\Psr7\stream_for(
-        \GuzzleHttp\Psr7\try_fopen($filePath, 'wb'));
-    \GuzzleHttp\Psr7\copy_to_stream($this->response->getBody(), $destStream);
-    $destStream->close();
-    $this->response->getBody()->close();
-  }
+        return $result;
+    }
+
+    /**
+     * @see ReportDownloadResult::saveToFile
+     */
+    public function saveToFile($filePath)
+    {
+        $destStream = \GuzzleHttp\Psr7\stream_for(
+            \GuzzleHttp\Psr7\try_fopen($filePath, 'wb')
+        );
+        \GuzzleHttp\Psr7\copy_to_stream(
+            $this->response->getBody(),
+            $destStream
+        );
+        $destStream->close();
+        $this->response->getBody()->close();
+    }
 }

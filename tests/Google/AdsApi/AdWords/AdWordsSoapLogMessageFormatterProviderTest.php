@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\AdWords;
 
 use Google\AdsApi\Common\Testing\FakeSoapPayloadsAndLogsProvider;
@@ -25,45 +26,47 @@ use PHPUnit\Framework\TestCase;
  * @see AdWordsSoapLogMessageFormatterProvider
  * @small
  */
-class AdWordsSoapLogMessageFormatterProviderTest
-    extends TestCase {
+class AdWordsSoapLogMessageFormatterProviderTest extends TestCase
+{
 
-  private $adWordsSoapLogMessageFormatter;
-  private $requestHttpHeadersMock;
-  private $requestSoapXmlMock;
-  private $responseSoapXmlMock;
+    private $adWordsSoapLogMessageFormatter;
+    private $requestHttpHeadersMock;
+    private $requestSoapXmlMock;
+    private $responseSoapXmlMock;
 
-  /**
-   * @see PHPUnit\Framework\TestCase::setUp
-   */
-  protected function setUp() {
-    $this->adWordsSoapLogMessageFormatter =
-        (new AdWordsSoapLogMessageFormatterProvider())
-            ->getSoapLogMessageFormatter();
-    $this->requestHttpHeadersMock = FakeSoapPayloadsAndLogsProvider
-        ::getFakeMutateRequestHttpHeaders();
-    $this->requestSoapXmlMock = FakeSoapPayloadsAndLogsProvider
-        ::getFakeMutateRequest();
-    $this->responseSoapXmlMock = FakeSoapPayloadsAndLogsProvider
-        ::getFakeMutateResponse();
-  }
+    /**
+     * @see PHPUnit\Framework\TestCase::setUp
+     */
+    protected function setUp()
+    {
+        $this->adWordsSoapLogMessageFormatter =
+            (new AdWordsSoapLogMessageFormatterProvider())
+                ->getSoapLogMessageFormatter();
+        $this->requestHttpHeadersMock = FakeSoapPayloadsAndLogsProvider
+            ::getFakeMutateRequestHttpHeaders();
+        $this->requestSoapXmlMock = FakeSoapPayloadsAndLogsProvider
+            ::getFakeMutateRequest();
+        $this->responseSoapXmlMock = FakeSoapPayloadsAndLogsProvider
+            ::getFakeMutateResponse();
+    }
 
-  /**
-   * @covers Google\AdsApi\AdWords\AdWordsSoapLogMessageFormatterProvider::getSoapLogMessageFormatter
-   */
-  public function testGetSoapLogMessageFormatterFormatsSummaryWithCCIdAndOps() {
-    $this->assertSame(
-        'clientCustomerId=123-777-999 operations=9 service=FeedService '
+    /**
+     * @covers Google\AdsApi\AdWords\AdWordsSoapLogMessageFormatterProvider::getSoapLogMessageFormatter
+     */
+    public function testGetSoapLogMessageFormatterFormatsSummaryWithCCIdAndOps()
+    {
+        $this->assertSame(
+            'clientCustomerId=123-777-999 operations=9 service=FeedService '
             . 'method=mutate responseTime=226 '
             . 'requestId=123abc456xyz server=adwords.google.com isFault=0 '
             . 'faultMessage=',
-        $this->adWordsSoapLogMessageFormatter->formatSummary(
-            'FeedService',
-            'mutate',
-            $this->requestHttpHeadersMock,
-            $this->requestSoapXmlMock,
-            $this->responseSoapXmlMock
-        )
-    );
-  }
+            $this->adWordsSoapLogMessageFormatter->formatSummary(
+                'FeedService',
+                'mutate',
+                $this->requestHttpHeadersMock,
+                $this->requestSoapXmlMock,
+                $this->responseSoapXmlMock
+            )
+        );
+    }
 }

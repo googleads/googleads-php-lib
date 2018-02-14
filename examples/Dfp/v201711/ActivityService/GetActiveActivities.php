@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\ActivityService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -23,8 +24,8 @@ use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201711\StatementBuilder;
-use Google\AdsApi\Dfp\v201711\ActivityStatus;
 use Google\AdsApi\Dfp\v201711\ActivityService;
+use Google\AdsApi\Dfp\v201711\ActivityStatus;
 
 /**
  * This example gets all active activities.
@@ -33,64 +34,65 @@ use Google\AdsApi\Dfp\v201711\ActivityService;
  * that you've setup an `adsapi_php.ini` file in your home directory with your
  * API credentials and settings. See README.md for more info.
  */
-class GetActiveActivities {
+class GetActiveActivities
+{
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session) {
-    $activityService =
-        $dfpServices->get($session, ActivityService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session
+    ) {
+        $activityService = $dfpServices->get($session, ActivityService::class);
 
-    // Create a statement to select activities.
-    $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
-    $statementBuilder = (new StatementBuilder())
-        ->where('status = :status')
-        ->orderBy('id ASC')
-        ->limit($pageSize)
-        ->withBindVariableValue('status', ActivityStatus::ACTIVE);
+        // Create a statement to select activities.
+        $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
+        $statementBuilder = (new StatementBuilder())->where('status = :status')
+            ->orderBy('id ASC')
+            ->limit($pageSize)
+            ->withBindVariableValue('status', ActivityStatus::ACTIVE);
 
-    // Retrieve a small amount of activities at a time, paging
-    // through until all activities have been retrieved.
-    $totalResultSetSize = 0;
-    do {
-      $page = $activityService->getActivitiesByStatement(
-          $statementBuilder->toStatement());
+        // Retrieve a small amount of activities at a time, paging
+        // through until all activities have been retrieved.
+        $totalResultSetSize = 0;
+        do {
+            $page = $activityService->getActivitiesByStatement(
+                $statementBuilder->toStatement()
+            );
 
-      // Print out some information for each activity.
-      if ($page->getResults() !== null) {
-        $totalResultSetSize = $page->getTotalResultSetSize();
-        $i = $page->getStartIndex();
-        foreach ($page->getResults() as $activity) {
-          printf(
-              "%d) Activity with ID %d, name '%s', and type '%s' was found.\n",
-              $i++,
-              $activity->getId(),
-              $activity->getName(),
-              $activity->getType()
-          );
-        }
-      }
+            // Print out some information for each activity.
+            if ($page->getResults() !== null) {
+                $totalResultSetSize = $page->getTotalResultSetSize();
+                $i = $page->getStartIndex();
+                foreach ($page->getResults() as $activity) {
+                    printf(
+                        "%d) Activity with ID %d, name '%s', and type '%s' was found.\n",
+                        $i++,
+                        $activity->getId(),
+                        $activity->getName(),
+                        $activity->getType()
+                    );
+                }
+            }
 
-      $statementBuilder->increaseOffsetBy($pageSize);
-    } while ($statementBuilder->getOffset() < $totalResultSetSize);
+            $statementBuilder->increaseOffsetBy($pageSize);
+        } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-    printf("Number of results found: %d\n", $totalResultSetSize);
-  }
+        printf("Number of results found: %d\n", $totalResultSetSize);
+    }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(new DfpServices(), $session);
-  }
+        self::runExample(new DfpServices(), $session);
+    }
 }
 
 GetActiveActivities::main();

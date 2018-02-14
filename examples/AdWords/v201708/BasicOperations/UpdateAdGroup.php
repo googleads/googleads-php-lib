@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\AdWords\v201708\BasicOperations;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -34,62 +35,65 @@ use Google\AdsApi\Common\OAuth2TokenBuilder;
  * This example updates the default bid of an ad group. To get ad groups, run
  * GetAdGroups.php.
  */
-class UpdateAdGroup {
+class UpdateAdGroup
+{
 
-  const AD_GROUP_ID = 'INSERT_AD_GROUP_ID_HERE';
-  const MICROS_PER_DOLLAR = 1000000;
+    const AD_GROUP_ID = 'INSERT_AD_GROUP_ID_HERE';
+    const MICROS_PER_DOLLAR = 1000000;
 
-  public static function runExample(AdWordsServices $adWordsServices,
-      AdWordsSession $session, $adGroupId) {
-    $adGroupService = $adWordsServices->get($session, AdGroupService::class);
+    public static function runExample(
+        AdWordsServices $adWordsServices,
+        AdWordsSession $session,
+        $adGroupId
+    ) {
+        $adGroupService = $adWordsServices->get($session, AdGroupService::class);
 
-    $operations = [];
-    // Create ad group object.
-    $adGroup = new AdGroup();
-    $adGroup->setId($adGroupId);
+        $operations = [];
+        // Create ad group object.
+        $adGroup = new AdGroup();
+        $adGroup->setId($adGroupId);
 
-    // Update the bid.
-    $bid = new CpcBid();
-    $money = new Money();
-    $money->setMicroAmount(intval(0.75 * self::MICROS_PER_DOLLAR));
-    $bid->setBid($money);
-    $biddingStrategyConfiguration = new BiddingStrategyConfiguration();
-    $biddingStrategyConfiguration->setBids([$bid]);
-    $adGroup->setBiddingStrategyConfiguration($biddingStrategyConfiguration);
+        // Update the bid.
+        $bid = new CpcBid();
+        $money = new Money();
+        $money->setMicroAmount(intval(0.75 * self::MICROS_PER_DOLLAR));
+        $bid->setBid($money);
+        $biddingStrategyConfiguration = new BiddingStrategyConfiguration();
+        $biddingStrategyConfiguration->setBids([$bid]);
+        $adGroup->setBiddingStrategyConfiguration($biddingStrategyConfiguration);
 
-    // Create ad group operation and add it to the list.
-    $operation = new AdGroupOperation();
-    $operation->setOperand($adGroup);
-    $operation->setOperator(Operator::SET);
-    $operations[] = $operation;
+        // Create ad group operation and add it to the list.
+        $operation = new AdGroupOperation();
+        $operation->setOperand($adGroup);
+        $operation->setOperator(Operator::SET);
+        $operations[] = $operation;
 
-    // Update the ad group on the server.
-    $result = $adGroupService->mutate($operations);
+        // Update the ad group on the server.
+        $result = $adGroupService->mutate($operations);
 
-    $adGroup = $result->getValue()[0];
-    $bid = $adGroup->getBiddingStrategyConfiguration()->getBids()[0]->getBid();
-    printf(
-        "Ad group with ID %d has updated default bid to %f in your currency.\n",
-        $adGroup->getId(),
-        $bid->getMicroAmount() / self::MICROS_PER_DOLLAR
-    );
-  }
+        $adGroup = $result->getValue()[0];
+        $bid = $adGroup->getBiddingStrategyConfiguration()->getBids()[0]->getBid();
+        printf(
+            "Ad group with ID %d has updated default bid to %f in your currency.\n",
+            $adGroup->getId(),
+            $bid->getMicroAmount() / self::MICROS_PER_DOLLAR
+        );
+    }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new AdWordsSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
-    self::runExample(
-        new AdWordsServices(), $session, intval(self::AD_GROUP_ID));
-  }
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new AdWordsSessionBuilder())->fromFile()->withOAuth2Credential($oAuth2Credential)->build();
+        self::runExample(
+            new AdWordsServices(),
+            $session,
+            intval(self::AD_GROUP_ID)
+        );
+    }
 }
 
 UpdateAdGroup::main();

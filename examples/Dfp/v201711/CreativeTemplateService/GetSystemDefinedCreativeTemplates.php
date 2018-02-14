@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\CreativeTemplateService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -23,8 +24,8 @@ use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201711\StatementBuilder;
-use Google\AdsApi\Dfp\v201711\CreativeTemplateType;
 use Google\AdsApi\Dfp\v201711\CreativeTemplateService;
+use Google\AdsApi\Dfp\v201711\CreativeTemplateType;
 
 /**
  * This example gets all system defined creative templates.
@@ -33,63 +34,64 @@ use Google\AdsApi\Dfp\v201711\CreativeTemplateService;
  * that you've setup an `adsapi_php.ini` file in your home directory with your
  * API credentials and settings. See README.md for more info.
  */
-class GetSystemDefinedCreativeTemplates {
+class GetSystemDefinedCreativeTemplates
+{
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session) {
-    $creativeTemplateService =
-        $dfpServices->get($session, CreativeTemplateService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session
+    ) {
+        $creativeTemplateService = $dfpServices->get($session, CreativeTemplateService::class);
 
-    // Create a statement to select creative templates.
-    $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
-    $statementBuilder = (new StatementBuilder())
-        ->where('type = :type')
-        ->orderBy('id ASC')
-        ->limit($pageSize)
-        ->withBindVariableValue('type', CreativeTemplateType::SYSTEM_DEFINED);
+        // Create a statement to select creative templates.
+        $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
+        $statementBuilder = (new StatementBuilder())->where('type = :type')
+            ->orderBy('id ASC')
+            ->limit($pageSize)
+            ->withBindVariableValue('type', CreativeTemplateType::SYSTEM_DEFINED);
 
-    // Retrieve a small amount of creative templates at a time, paging
-    // through until all creative templates have been retrieved.
-    $totalResultSetSize = 0;
-    do {
-      $page = $creativeTemplateService->getCreativeTemplatesByStatement(
-          $statementBuilder->toStatement());
+        // Retrieve a small amount of creative templates at a time, paging
+        // through until all creative templates have been retrieved.
+        $totalResultSetSize = 0;
+        do {
+            $page = $creativeTemplateService->getCreativeTemplatesByStatement(
+                $statementBuilder->toStatement()
+            );
 
-      // Print out some information for each creative template.
-      if ($page->getResults() !== null) {
-        $totalResultSetSize = $page->getTotalResultSetSize();
-        $i = $page->getStartIndex();
-        foreach ($page->getResults() as $creativeTemplate) {
-          printf(
-              "%d) Creative template with ID %d and name '%s' was found.\n",
-              $i++,
-              $creativeTemplate->getId(),
-              $creativeTemplate->getName()
-          );
-        }
-      }
+            // Print out some information for each creative template.
+            if ($page->getResults() !== null) {
+                $totalResultSetSize = $page->getTotalResultSetSize();
+                $i = $page->getStartIndex();
+                foreach ($page->getResults() as $creativeTemplate) {
+                    printf(
+                        "%d) Creative template with ID %d and name '%s' was found.\n",
+                        $i++,
+                        $creativeTemplate->getId(),
+                        $creativeTemplate->getName()
+                    );
+                }
+            }
 
-      $statementBuilder->increaseOffsetBy($pageSize);
-    } while ($statementBuilder->getOffset() < $totalResultSetSize);
+            $statementBuilder->increaseOffsetBy($pageSize);
+        } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-    printf("Number of results found: %d\n", $totalResultSetSize);
-  }
+        printf("Number of results found: %d\n", $totalResultSetSize);
+    }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(new DfpServices(), $session);
-  }
+        self::runExample(new DfpServices(), $session);
+    }
 }
 
 GetSystemDefinedCreativeTemplates::main();

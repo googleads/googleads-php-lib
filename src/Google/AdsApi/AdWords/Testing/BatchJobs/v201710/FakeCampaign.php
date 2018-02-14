@@ -14,71 +14,81 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\AdWords\Testing\BatchJobs\v201710;
 
 /**
  * A fake campaign class for testing purpose.
  */
-class FakeCampaign {
+class FakeCampaign
+{
 
-  protected $id;
-  protected $name;
-  protected $isServing;
-  protected $OperandType;
+    protected $id;
+    protected $name;
+    protected $isServing;
+    protected $OperandType;
 
-  /**
-   * @return int
-   */
-  public function getId() {
-    return $this->id;
-  }
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
-  /**
-   * @param int $id
-   */
-  public function setId($id) {
-    $this->id = $id;
-  }
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
 
-  /**
-   * @return string
-   */
-  public function getName() {
-    return $this->name;
-  }
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
 
-  /**
-   * @param string $name
-   */
-  public function setName($name) {
-    $this->name = $name;
-  }
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
 
-  /**
-   * @return bool
-   */
-  public function getIsServing() {
-    return $this->isServing;
-  }
+    /**
+     * @return bool
+     */
+    public function getIsServing()
+    {
+        return $this->isServing;
+    }
 
-  /**
-   * @param bool $isServing
-   */
-  public function setIsServing($isServing) {
-    $this->isServing = $isServing;
-  }
+    /**
+     * @param bool $isServing
+     */
+    public function setIsServing($isServing)
+    {
+        $this->isServing = $isServing;
+    }
 
-  /**
-   * @return string
-   */
-  public function getOperandType() {
-    return $this->OperandType;
-  }
+    /**
+     * @return string
+     */
+    public function getOperandType()
+    {
+        return $this->OperandType;
+    }
 
-  /**
-   * @param string $OperandType
-   */
-  public function setOperandType($OperandType) {
-    $this->OperandType = $OperandType;
-  }
+    /**
+     * @param string $OperandType
+     */
+    public function setOperandType($OperandType)
+    {
+        $this->OperandType = $OperandType;
+    }
 }

@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\AdWords\v201710\CampaignManagement;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -33,66 +34,72 @@ use Google\AdsApi\Common\OAuth2TokenBuilder;
  * This example validates a text ad without creating it using the validateOnly
  * mode, which can be useful when checking for policy violations.
  */
-class ValidateTextAd {
+class ValidateTextAd
+{
 
-  const AD_GROUP_ID = 'INSERT_AD_GROUP_ID_HERE';
+    const AD_GROUP_ID = 'INSERT_AD_GROUP_ID_HERE';
 
-  public static function runExample(AdWordsServices $adWordsServices,
-      AdWordsSession $session, $adGroupId) {
-    $session->setValidateOnly(true);
-    $adGroupAdService =
-        $adWordsServices->get($session, AdGroupAdService::class);
+    public static function runExample(
+        AdWordsServices $adWordsServices,
+        AdWordsSession $session,
+        $adGroupId
+    ) {
+        $session->setValidateOnly(true);
+        $adGroupAdService = $adWordsServices->get($session, AdGroupAdService::class);
 
-    $operations = [];
-    // Create invalid expanded text ad.
-    $expandedTextAd = new ExpandedTextAd();
-    $expandedTextAd->setHeadlinePart1('Luxury Cruise to Mars !!!');
-    $expandedTextAd->setHeadlinePart2('Visit the Red Planet in style.');
-    $expandedTextAd->setDescription(
-        'Low-gravity fun for all astronauts in orbit.');
-    $expandedTextAd->setFinalUrls(['http://www.example.com']);
+        $operations = [];
+        // Create invalid expanded text ad.
+        $expandedTextAd = new ExpandedTextAd();
+        $expandedTextAd->setHeadlinePart1('Luxury Cruise to Mars !!!');
+        $expandedTextAd->setHeadlinePart2('Visit the Red Planet in style.');
+        $expandedTextAd->setDescription(
+            'Low-gravity fun for all astronauts in orbit.'
+        );
+        $expandedTextAd->setFinalUrls(['http://www.example.com']);
 
-    // Create ad group ad.
-    $adGroupAd = new AdGroupAd();
-    $adGroupAd->setAdGroupId($adGroupId);
-    $adGroupAd->setAd($expandedTextAd);
+        // Create ad group ad.
+        $adGroupAd = new AdGroupAd();
+        $adGroupAd->setAdGroupId($adGroupId);
+        $adGroupAd->setAd($expandedTextAd);
 
-    // Create ad group ad operation and add it to the list.
-    $operation = new AdGroupAdOperation();
-    $operation->setOperand($adGroupAd);
-    $operation->setOperator(Operator::ADD);
-    $operations[] = $operation;
+        // Create ad group ad operation and add it to the list.
+        $operation = new AdGroupAdOperation();
+        $operation->setOperand($adGroupAd);
+        $operation->setOperator(Operator::ADD);
+        $operations[] = $operation;
 
-    try {
-      $adGroupAdService->mutate($operations);
-      printf("The expanded text ad is valid.\n");
-    } catch (ApiException $e) {
-      $errors = $e->getErrors();
-      if (count($errors) > 0) {
-        printf("The expanded text ad is invalid for the following reasons:\n");
-        foreach ($errors as $error) {
-          printf("  %s @ %s\n", $error->getErrorString(),
-              $error->getFieldPath());
+        try {
+            $adGroupAdService->mutate($operations);
+            printf("The expanded text ad is valid.\n");
+        } catch (ApiException $e) {
+            $errors = $e->getErrors();
+            if (count($errors) > 0) {
+                printf("The expanded text ad is invalid for the following reasons:\n");
+                foreach ($errors as $error) {
+                    printf(
+                        "  %s @ %s\n",
+                        $error->getErrorString(),
+                        $error->getFieldPath()
+                    );
+                }
+            }
         }
-      }
     }
-  }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new AdWordsSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
-    self::runExample(
-        new AdWordsServices(), $session, intval(self::AD_GROUP_ID));
-  }
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new AdWordsSessionBuilder())->fromFile()->withOAuth2Credential($oAuth2Credential)->build();
+        self::runExample(
+            new AdWordsServices(),
+            $session,
+            intval(self::AD_GROUP_ID)
+        );
+    }
 }
 
 ValidateTextAd::main();

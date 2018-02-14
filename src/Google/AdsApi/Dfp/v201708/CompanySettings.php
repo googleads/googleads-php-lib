@@ -125,7 +125,7 @@ class CompanySettings
      */
     public function setAdvertiserDiscount($advertiserDiscount)
     {
-      $this->advertiserDiscount = (PHP_INT_SIZE === 4)
+      $this->advertiserDiscount = (!is_null(advertiserDiscount) && PHP_INT_SIZE === 4)
           ? floatval($advertiserDiscount) : $advertiserDiscount;
       return $this;
     }
@@ -144,7 +144,7 @@ class CompanySettings
      */
     public function setValueAddedTax($valueAddedTax)
     {
-      $this->valueAddedTax = (PHP_INT_SIZE === 4)
+      $this->valueAddedTax = (!is_null(valueAddedTax) && PHP_INT_SIZE === 4)
           ? floatval($valueAddedTax) : $valueAddedTax;
       return $this;
     }
@@ -163,7 +163,7 @@ class CompanySettings
      */
     public function setAgencyCommission($agencyCommission)
     {
-      $this->agencyCommission = (PHP_INT_SIZE === 4)
+      $this->agencyCommission = (!is_null(agencyCommission) && PHP_INT_SIZE === 4)
           ? floatval($agencyCommission) : $agencyCommission;
       return $this;
     }

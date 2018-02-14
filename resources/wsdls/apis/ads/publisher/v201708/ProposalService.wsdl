@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2017 Google Inc. All Rights Reserved -->
+<!-- Copyright 2018 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v201708"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v201708"
@@ -1453,8 +1453,8 @@
             name="sellerContactIds" type="xsd:long">
             <annotation>
               <documentation>
-                {@link User users} who are the seller's contacts. This attribute is optional.
-                &lt;span class="constraint Applicable"&gt;This attribute is applicable when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, using sales management.&lt;/li&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
+                {@link User users} who are the seller's contacts.
+                &lt;span class="constraint Applicable"&gt;This attribute is applicable when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, using sales management.&lt;/li&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;li&gt;using preferred deals, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
               </documentation>
             </annotation>
           </element>

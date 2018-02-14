@@ -50,7 +50,7 @@ class MutateMembersOperand
      */
     public function setUserListId($userListId)
     {
-      $this->userListId = (PHP_INT_SIZE === 4)
+      $this->userListId = (!is_null(userListId) && PHP_INT_SIZE === 4)
           ? floatval($userListId) : $userListId;
       return $this;
     }

@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\SuggestedAdUnitService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -32,65 +33,67 @@ use Google\AdsApi\Dfp\v201711\SuggestedAdUnitService;
  * that you've setup an `adsapi_php.ini` file in your home directory with your
  * API credentials and settings. See README.md for more info.
  */
-class GetHighlyRequestedSuggestedAdUnits {
+class GetHighlyRequestedSuggestedAdUnits
+{
 
-  const NUM_REQUESTS = 'INSERT_NUM_REQUESTS_HERE';
+    const NUM_REQUESTS = 'INSERT_NUM_REQUESTS_HERE';
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session, $numRequests) {
-    $suggestedAdUnitService =
-        $dfpServices->get($session, SuggestedAdUnitService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session,
+        $numRequests
+    ) {
+        $suggestedAdUnitService = $dfpServices->get($session, SuggestedAdUnitService::class);
 
-    // Create a statement to select suggested ad units.
-    $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
-    $statementBuilder = (new StatementBuilder())
-        ->where('numRequests >= :numRequests')
-        ->orderBy('id ASC')
-        ->limit($pageSize)
-        ->withBindVariableValue('numRequests', $numRequests);
+        // Create a statement to select suggested ad units.
+        $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
+        $statementBuilder = (new StatementBuilder())->where('numRequests >= :numRequests')
+            ->orderBy('id ASC')
+            ->limit($pageSize)
+            ->withBindVariableValue('numRequests', $numRequests);
 
-    // Retrieve a small amount of suggested ad units at a time, paging
-    // through until all suggested ad units have been retrieved.
-    $totalResultSetSize = 0;
-    do {
-      $page = $suggestedAdUnitService->getSuggestedAdUnitsByStatement(
-          $statementBuilder->toStatement());
+        // Retrieve a small amount of suggested ad units at a time, paging
+        // through until all suggested ad units have been retrieved.
+        $totalResultSetSize = 0;
+        do {
+            $page = $suggestedAdUnitService->getSuggestedAdUnitsByStatement(
+                $statementBuilder->toStatement()
+            );
 
-      // Print out some information for each suggested ad unit.
-      if ($page->getResults() !== null) {
-        $totalResultSetSize = $page->getTotalResultSetSize();
-        $i = $page->getStartIndex();
-        foreach ($page->getResults() as $suggestedAdUnit) {
-          printf(
-              "%d) Suggested ad unit with ID '%s' and num requests %d was found.\n",
-              $i++,
-              $suggestedAdUnit->getId(),
-              $suggestedAdUnit->getNumRequests()
-          );
-        }
-      }
+            // Print out some information for each suggested ad unit.
+            if ($page->getResults() !== null) {
+                $totalResultSetSize = $page->getTotalResultSetSize();
+                $i = $page->getStartIndex();
+                foreach ($page->getResults() as $suggestedAdUnit) {
+                    printf(
+                        "%d) Suggested ad unit with ID '%s' and num requests %d was found.\n",
+                        $i++,
+                        $suggestedAdUnit->getId(),
+                        $suggestedAdUnit->getNumRequests()
+                    );
+                }
+            }
 
-      $statementBuilder->increaseOffsetBy($pageSize);
-    } while ($statementBuilder->getOffset() < $totalResultSetSize);
+            $statementBuilder->increaseOffsetBy($pageSize);
+        } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-    printf("Number of results found: %d\n", $totalResultSetSize);
-  }
+        printf("Number of results found: %d\n", $totalResultSetSize);
+    }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(new DfpServices(), $session, intval(self::NUM_REQUESTS));
-  }
+        self::runExample(new DfpServices(), $session, intval(self::NUM_REQUESTS));
+    }
 }
 
 GetHighlyRequestedSuggestedAdUnits::main();

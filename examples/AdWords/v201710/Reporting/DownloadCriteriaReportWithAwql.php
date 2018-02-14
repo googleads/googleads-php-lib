@@ -14,59 +14,59 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\AdWords\v201710\Reporting;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\AdWords\AdWordsSession;
 use Google\AdsApi\AdWords\AdWordsSessionBuilder;
-use Google\AdsApi\AdWords\Reporting\v201710\ReportDownloader;
 use Google\AdsApi\AdWords\Reporting\v201710\DownloadFormat;
+use Google\AdsApi\AdWords\Reporting\v201710\ReportDownloader;
 use Google\AdsApi\AdWords\ReportSettingsBuilder;
 use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
  * Downloads CRITERIA_PERFORMANCE_REPORT for the specified client customer ID.
  */
-class DownloadCriteriaReportWithAwql {
+class DownloadCriteriaReportWithAwql
+{
 
-  public static function runExample(AdWordsSession $session, $reportFormat) {
-    // Create report query to get the data for last 7 days.
-    $reportQuery = 'SELECT CampaignId, AdGroupId, Id, Criteria, CriteriaType, '
-        . 'Impressions, Clicks, Cost FROM CRITERIA_PERFORMANCE_REPORT '
-        . 'WHERE Status IN [ENABLED, PAUSED] DURING LAST_7_DAYS';
+    public static function runExample(AdWordsSession $session, $reportFormat)
+    {
+        // Create report query to get the data for last 7 days.
+        $reportQuery = 'SELECT CampaignId, AdGroupId, Id, Criteria, CriteriaType, '
+            . 'Impressions, Clicks, Cost FROM CRITERIA_PERFORMANCE_REPORT '
+            . 'WHERE Status IN [ENABLED, PAUSED] DURING LAST_7_DAYS';
 
-    // Download report as a string.
-    $reportDownloader = new ReportDownloader($session);
-    // Optional: If you need to adjust report settings just for this one
-    // request, you can create and supply the settings override here. Otherwise,
-    // default values from the configuration file (adsapi_php.ini) are used.
-    $reportSettingsOverride = (new ReportSettingsBuilder())
-        ->includeZeroImpressions(false)
-        ->build();
-    $reportDownloadResult = $reportDownloader->downloadReportWithAwql(
-        $reportQuery, $reportFormat, $reportSettingsOverride);
-    print "Report was downloaded and printed below:\n";
-    print $reportDownloadResult->getAsString();
-  }
+        // Download report as a string.
+        $reportDownloader = new ReportDownloader($session);
+        // Optional: If you need to adjust report settings just for this one
+        // request, you can create and supply the settings override here. Otherwise,
+        // default values from the configuration file (adsapi_php.ini) are used.
+        $reportSettingsOverride = (new ReportSettingsBuilder())->includeZeroImpressions(false)->build();
+        $reportDownloadResult = $reportDownloader->downloadReportWithAwql(
+            $reportQuery,
+            $reportFormat,
+            $reportSettingsOverride
+        );
+        print "Report was downloaded and printed below:\n";
+        print $reportDownloadResult->getAsString();
+    }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()->build();
 
-    // See: AdWordsSessionBuilder for setting a client customer ID that is
-    // different from that specified in your adsapi_php.ini file.
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new AdWordsSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // See: AdWordsSessionBuilder for setting a client customer ID that is
+        // different from that specified in your adsapi_php.ini file.
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new AdWordsSessionBuilder())->fromFile()->withOAuth2Credential($oAuth2Credential)->build();
 
-    self::runExample($session, DownloadFormat::CSV);
-  }
+        self::runExample($session, DownloadFormat::CSV);
+    }
 }
 
 DownloadCriteriaReportWithAwql::main();

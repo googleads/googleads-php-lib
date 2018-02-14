@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\AdWords\v201710\AdvancedOperations;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -40,98 +41,107 @@ use Google\AdsApi\Common\OAuth2TokenBuilder;
  * This example creates a shared list of negative broad match keywords, then
  * attaches them to a campaign.
  */
-class CreateAndAttachSharedKeywordSet  {
+class CreateAndAttachSharedKeywordSet
+{
 
-  const CAMPAIGN_ID = 'INSERT_CAMPAIGN_ID_HERE';
+    const CAMPAIGN_ID = 'INSERT_CAMPAIGN_ID_HERE';
 
-  public static function runExample(AdWordsServices $adWordsServices,
-      AdWordsSession $session, $campaignId) {
-    $sharedSetService = $adWordsServices->get($session,
-        SharedSetService::class);
-    $keywords = ['mars cruise', 'mars hotels'];
+    public static function runExample(
+        AdWordsServices $adWordsServices,
+        AdWordsSession $session,
+        $campaignId
+    ) {
+        $sharedSetService = $adWordsServices->get(
+            $session,
+            SharedSetService::class
+        );
+        $keywords = ['mars cruise', 'mars hotels'];
 
-    // Create the shared negative keyword set.
-    $sharedSet = new SharedSet();
-    $sharedSet->setName('Negative keyword list #' . uniqid());
-    $sharedSet->setType(SharedSetType::NEGATIVE_KEYWORDS);
+        // Create the shared negative keyword set.
+        $sharedSet = new SharedSet();
+        $sharedSet->setName('Negative keyword list #' . uniqid());
+        $sharedSet->setType(SharedSetType::NEGATIVE_KEYWORDS);
 
-    $sharedSetOperation = new SharedSetOperation();
-    $sharedSetOperation->setOperator(Operator::ADD);
-    $sharedSetOperation->setOperand($sharedSet);
+        $sharedSetOperation = new SharedSetOperation();
+        $sharedSetOperation->setOperator(Operator::ADD);
+        $sharedSetOperation->setOperand($sharedSet);
 
-    // Create the shared set on the server and print out some information.
-    $sharedSet =
-        $sharedSetService->mutate([$sharedSetOperation])->getValue()[0];
-    printf("Shared set with ID %d and name '%s' was successfully added.\n",
-        $sharedSet->getSharedSetId(), $sharedSet->getName());
+        // Create the shared set on the server and print out some information.
+        $sharedSet = $sharedSetService->mutate([$sharedSetOperation])->getValue()[0];
+        printf(
+            "Shared set with ID %d and name '%s' was successfully added.\n",
+            $sharedSet->getSharedSetId(),
+            $sharedSet->getName()
+        );
 
-    $sharedCriterionService = $adWordsServices->get($session,
-        SharedCriterionService::class);
+        $sharedCriterionService = $adWordsServices->get(
+            $session,
+            SharedCriterionService::class
+        );
 
-    // Add negative keywords to the shared set.
-    $operations = [];
-    foreach ($keywords as $keyword) {
-      $keywordCriterion = new Keyword();
-      $keywordCriterion->setText($keyword);
-      $keywordCriterion->setMatchType(KeywordMatchType::BROAD);
+        // Add negative keywords to the shared set.
+        $operations = [];
+        foreach ($keywords as $keyword) {
+            $keywordCriterion = new Keyword();
+            $keywordCriterion->setText($keyword);
+            $keywordCriterion->setMatchType(KeywordMatchType::BROAD);
 
-      $sharedCriterion = new SharedCriterion();
-      $sharedCriterion->setCriterion($keywordCriterion);
-      $sharedCriterion->setNegative(true);
-      $sharedCriterion->setSharedSetId($sharedSet->getSharedSetId());
+            $sharedCriterion = new SharedCriterion();
+            $sharedCriterion->setCriterion($keywordCriterion);
+            $sharedCriterion->setNegative(true);
+            $sharedCriterion->setSharedSetId($sharedSet->getSharedSetId());
 
-      $sharedCriterionOperation = new SharedCriterionOperation();
-      $sharedCriterionOperation->setOperator(Operator::ADD);
-      $sharedCriterionOperation->setOperand($sharedCriterion);
+            $sharedCriterionOperation = new SharedCriterionOperation();
+            $sharedCriterionOperation->setOperator(Operator::ADD);
+            $sharedCriterionOperation->setOperand($sharedCriterion);
 
-      $operations[] = $sharedCriterionOperation;
+            $operations[] = $sharedCriterionOperation;
+        }
+
+        $result = $sharedCriterionService->mutate($operations);
+        foreach ($result->getValue() as $sharedCriterion) {
+            printf(
+                "Added shared criterion ID %d with text '%s' to shared set with ID %d.\n",
+                $sharedCriterion->getCriterion()->getId(),
+                $sharedCriterion->getCriterion()->getText(),
+                $sharedCriterion->getSharedSetId()
+            );
+        }
+
+        $campaignSharedSetService = $adWordsServices->get(
+            $session,
+            CampaignSharedSetService::class
+        );
+        $campaignSharedSet = new CampaignSharedSet();
+        $campaignSharedSet->setCampaignId($campaignId);
+        $campaignSharedSet->setSharedSetId($sharedSet->getSharedSetId());
+
+        $campaignSharedOperation = new CampaignSharedSetOperation();
+        $campaignSharedOperation->setOperator(Operator::ADD);
+        $campaignSharedOperation->setOperand($campaignSharedSet);
+
+        $campaignSharedSet = $campaignSharedSetService->mutate([$campaignSharedOperation])->getValue()[0];
+        printf(
+            "Shared set ID %d was attached to campaign ID %d.\n",
+            $campaignSharedSet->getSharedSetId(),
+            $campaignSharedSet->getCampaignId()
+        );
     }
 
-    $result = $sharedCriterionService->mutate($operations);
-    foreach ($result->getValue() as $sharedCriterion) {
-      printf(
-          "Added shared criterion ID %d with text '%s' to shared set with"
-              . " ID %d.\n",
-          $sharedCriterion->getCriterion()->getId(),
-          $sharedCriterion->getCriterion()->getText(),
-          $sharedCriterion->getSharedSetId()
-      );
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()->build();
+
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new AdWordsSessionBuilder())->fromFile()->withOAuth2Credential($oAuth2Credential)->build();
+        self::runExample(
+            new AdWordsServices(),
+            $session,
+            intval(self::CAMPAIGN_ID)
+        );
     }
-
-    $campaignSharedSetService = $adWordsServices->get($session,
-        CampaignSharedSetService::class);
-    $campaignSharedSet = new CampaignSharedSet();
-    $campaignSharedSet->setCampaignId($campaignId);
-    $campaignSharedSet->setSharedSetId($sharedSet->getSharedSetId());
-
-    $campaignSharedOperation = new CampaignSharedSetOperation();
-    $campaignSharedOperation->setOperator(Operator::ADD);
-    $campaignSharedOperation->setOperand($campaignSharedSet);
-
-    $campaignSharedSet = $campaignSharedSetService
-        ->mutate([$campaignSharedOperation])->getValue()[0];
-    printf(
-        "Shared set ID %d was attached to campaign ID %d.\n",
-        $campaignSharedSet->getSharedSetId(),
-        $campaignSharedSet->getCampaignId()
-    );
-  }
-
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
-
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new AdWordsSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
-    self::runExample(
-        new AdWordsServices(), $session, intval(self::CAMPAIGN_ID));
-  }
 }
 
-CreateAndAttachSharedKeywordSet ::main();
+CreateAndAttachSharedKeywordSet::main();

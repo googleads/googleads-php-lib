@@ -60,7 +60,7 @@ class MapEntriesTest extends TestCase {
       array $expectedMapEntries, array $map) {
     $actualMapEntries =
         MapEntries::fromAssociativeArray($map, FakeMapEntry::class);
-    $this->assertCount(count($expectedMapEntries), $actualMapEntries);
+    $this->assertSame(count($expectedMapEntries), count($actualMapEntries));
 
     foreach ($actualMapEntries as $i => $actualMapEntry) {
       $this->assertSame(

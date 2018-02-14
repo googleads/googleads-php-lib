@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\CreativeWrapperService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -23,8 +24,8 @@ use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201711\StatementBuilder;
-use Google\AdsApi\Dfp\v201711\CreativeWrapperStatus;
 use Google\AdsApi\Dfp\v201711\CreativeWrapperService;
+use Google\AdsApi\Dfp\v201711\CreativeWrapperStatus;
 
 /**
  * This example gets all active creative wrappers.
@@ -33,63 +34,64 @@ use Google\AdsApi\Dfp\v201711\CreativeWrapperService;
  * that you've setup an `adsapi_php.ini` file in your home directory with your
  * API credentials and settings. See README.md for more info.
  */
-class GetActiveCreativeWrappers {
+class GetActiveCreativeWrappers
+{
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session) {
-    $creativeWrapperService =
-        $dfpServices->get($session, CreativeWrapperService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session
+    ) {
+        $creativeWrapperService = $dfpServices->get($session, CreativeWrapperService::class);
 
-    // Create a statement to select creative wrappers.
-    $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
-    $statementBuilder = (new StatementBuilder())
-        ->where('status = :status')
-        ->orderBy('id ASC')
-        ->limit($pageSize)
-        ->withBindVariableValue('status', CreativeWrapperStatus::ACTIVE);
+        // Create a statement to select creative wrappers.
+        $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
+        $statementBuilder = (new StatementBuilder())->where('status = :status')
+            ->orderBy('id ASC')
+            ->limit($pageSize)
+            ->withBindVariableValue('status', CreativeWrapperStatus::ACTIVE);
 
-    // Retrieve a small amount of creative wrappers at a time, paging
-    // through until all creative wrappers have been retrieved.
-    $totalResultSetSize = 0;
-    do {
-      $page = $creativeWrapperService->getCreativeWrappersByStatement(
-          $statementBuilder->toStatement());
+        // Retrieve a small amount of creative wrappers at a time, paging
+        // through until all creative wrappers have been retrieved.
+        $totalResultSetSize = 0;
+        do {
+            $page = $creativeWrapperService->getCreativeWrappersByStatement(
+                $statementBuilder->toStatement()
+            );
 
-      // Print out some information for each creative wrapper.
-      if ($page->getResults() !== null) {
-        $totalResultSetSize = $page->getTotalResultSetSize();
-        $i = $page->getStartIndex();
-        foreach ($page->getResults() as $creativeWrapper) {
-          printf(
-              "%d) Creative wrapper with ID %d and label ID %d was found.\n",
-              $i++,
-              $creativeWrapper->getId(),
-              $creativeWrapper->getLabelId()
-          );
-        }
-      }
+            // Print out some information for each creative wrapper.
+            if ($page->getResults() !== null) {
+                $totalResultSetSize = $page->getTotalResultSetSize();
+                $i = $page->getStartIndex();
+                foreach ($page->getResults() as $creativeWrapper) {
+                    printf(
+                        "%d) Creative wrapper with ID %d and label ID %d was found.\n",
+                        $i++,
+                        $creativeWrapper->getId(),
+                        $creativeWrapper->getLabelId()
+                    );
+                }
+            }
 
-      $statementBuilder->increaseOffsetBy($pageSize);
-    } while ($statementBuilder->getOffset() < $totalResultSetSize);
+            $statementBuilder->increaseOffsetBy($pageSize);
+        } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-    printf("Number of results found: %d\n", $totalResultSetSize);
-  }
+        printf("Number of results found: %d\n", $totalResultSetSize);
+    }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(new DfpServices(), $session);
-  }
+        self::runExample(new DfpServices(), $session);
+    }
 }
 
 GetActiveCreativeWrappers::main();

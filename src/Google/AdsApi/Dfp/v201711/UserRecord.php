@@ -64,7 +64,7 @@ class UserRecord
      */
     public function setId($id)
     {
-      $this->id = (PHP_INT_SIZE === 4)
+      $this->id = (!is_null(id) && PHP_INT_SIZE === 4)
           ? floatval($id) : $id;
       return $this;
     }
@@ -119,7 +119,7 @@ class UserRecord
      */
     public function setRoleId($roleId)
     {
-      $this->roleId = (PHP_INT_SIZE === 4)
+      $this->roleId = (!is_null(roleId) && PHP_INT_SIZE === 4)
           ? floatval($roleId) : $roleId;
       return $this;
     }

@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\AdWords\v201710\Misc;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -36,71 +37,79 @@ use Google\AdsApi\Common\Util\MapEntries;
  * This example gets all images and videos. To upload an image, run
  * UploadImage.php. To upload a video, see http://goo.gl/Uqn0l.
  */
-class GetAllImagesAndVideos {
+class GetAllImagesAndVideos
+{
 
-  const PAGE_LIMIT = 500;
+    const PAGE_LIMIT = 500;
 
-  public static function runExample(AdWordsServices $adWordsServices,
-      AdWordsSession $session) {
-    $mediaService = $adWordsServices->get($session, MediaService::class);
+    public static function runExample(
+        AdWordsServices $adWordsServices,
+        AdWordsSession $session
+    ) {
+        $mediaService = $adWordsServices->get($session, MediaService::class);
 
-    // Create selector.
-    $selector = new Selector();
-    $selector->setFields(['MediaId', 'Width', 'Height', 'MimeType', 'Name']);
-    $selector->setOrdering([new OrderBy('MediaId', SortOrder::ASCENDING)]);
-    $selector->setPredicates([new Predicate('Type', PredicateOperator::IN,
-        [MediaMediaType::IMAGE, MediaMediaType::VIDEO])]);
-    $selector->setPaging(new Paging(0, self::PAGE_LIMIT));
+        // Create selector.
+        $selector = new Selector();
+        $selector->setFields(['MediaId', 'Width', 'Height', 'MimeType', 'Name']);
+        $selector->setOrdering([new OrderBy('MediaId', SortOrder::ASCENDING)]);
+        $selector->setPredicates(
+            [
+                new Predicate(
+                    'Type',
+                    PredicateOperator::IN,
+                    [MediaMediaType::IMAGE, MediaMediaType::VIDEO]
+                )
+            ]
+        );
+        $selector->setPaging(new Paging(0, self::PAGE_LIMIT));
 
-    $totalNumEntries = 0;
-    do {
-      // Make the get request.
-      $page = $mediaService->get($selector);
+        $totalNumEntries = 0;
+        do {
+            // Make the get request.
+            $page = $mediaService->get($selector);
 
-      // Display results.
-      if ($page->getEntries() !== null) {
-        $totalNumEntries = $page->getTotalNumEntries();
-        foreach ($page->getEntries() as $media) {
-          if ($media->getType() === MediaMediaType::IMAGE) {
-            $dimensions =
-                MapEntries::toAssociativeArray($media->getDimensions());
-            printf(
-                "Image with dimensions %dx%d, MIME type '%s', and ID %d "
-                    . "was found.\n",
-                $dimensions['FULL']->getWidth(),
-                $dimensions['FULL']->getHeight(),
-                $media->getMimeType(),
-                $media->getMediaId()
+            // Display results.
+            if ($page->getEntries() !== null) {
+                $totalNumEntries = $page->getTotalNumEntries();
+                foreach ($page->getEntries() as $media) {
+                    if ($media->getType() === MediaMediaType::IMAGE) {
+                        $dimensions = MapEntries::toAssociativeArray($media->getDimensions());
+                        printf(
+                            "Image with dimensions %dx%d, MIME type '%s', and ID %d was found.\n",
+                            $dimensions['FULL']->getWidth(),
+                            $dimensions['FULL']->getHeight(),
+                            $media->getMimeType(),
+                            $media->getMediaId()
+                        );
+                    } elseif ($media->getType() === MediaMediaType::VIDEO) {
+                        printf(
+                            "Video with name '%s' and ID %d was found.\n",
+                            $media->getName(),
+                            $media->getMediaId()
+                        );
+                    }
+                }
+            }
+
+            // Advance the paging index.
+            $selector->getPaging()->setStartIndex(
+                $selector->getPaging()->getStartIndex() + self::PAGE_LIMIT
             );
-          } else if ($media->getType() === MediaMediaType::VIDEO) {
-            printf("Video with name '%s' and ID %d was found.\n",
-                $media->getName(), $media->getMediaId());
-          }
-        }
-      }
+        } while ($selector->getPaging()->getStartIndex() < $totalNumEntries);
 
-      // Advance the paging index.
-      $selector->getPaging()->setStartIndex(
-          $selector->getPaging()->getStartIndex() + self::PAGE_LIMIT);
-    } while ($selector->getPaging()->getStartIndex() < $totalNumEntries);
+        printf("Number of results found: %d\n", $totalNumEntries);
+    }
 
-    printf("Number of results found: %d\n", $totalNumEntries);
-  }
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()->build();
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
-
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new AdWordsSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
-    self::runExample(new AdWordsServices(), $session);
-  }
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new AdWordsSessionBuilder())->fromFile()->withOAuth2Credential($oAuth2Credential)->build();
+        self::runExample(new AdWordsServices(), $session);
+    }
 }
 
 GetAllImagesAndVideos::main();

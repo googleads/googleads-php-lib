@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Common;
 
 use GuzzleHttp\ClientInterface;
@@ -21,97 +22,107 @@ use GuzzleHttp\ClientInterface;
 /**
  * Provides methods related to formatting HTTP and SOAP headers for ads APIs.
  */
-final class AdsHeaderFormatter {
+final class AdsHeaderFormatter
+{
 
-  private $adsUtilityRegistry;
-  private $libraryMetadataProvider;
+    private $adsUtilityRegistry;
+    private $libraryMetadataProvider;
 
-  /**
-   * @param AdsUtilityRegistry|null $adsUtilityRegistry the ads utility registry
-   * @param LibraryMetadataProvider|null $libraryMetadataProvider the library
-   *     metadata provider
-   */
-  public function __construct(AdsUtilityRegistry $adsUtilityRegistry = null,
-      LibraryMetadataProvider $libraryMetadataProvider = null
-  ) {
-    $this->adsUtilityRegistry = ($adsUtilityRegistry === null)
-        ? AdsUtilityRegistry::getInstance()
-        : $adsUtilityRegistry;
-    $this->libraryMetadataProvider = ($libraryMetadataProvider === null)
-        ? new LibraryMetadataProvider() : $libraryMetadataProvider;
-  }
+    /**
+     * @param AdsUtilityRegistry|null $adsUtilityRegistry the ads utility registry
+     * @param LibraryMetadataProvider|null $libraryMetadataProvider the library
+     *     metadata provider
+     */
+    public function __construct(
+        AdsUtilityRegistry $adsUtilityRegistry = null,
+        LibraryMetadataProvider $libraryMetadataProvider = null
+    ) {
+        $this->adsUtilityRegistry =
+            ($adsUtilityRegistry === null) ? AdsUtilityRegistry::getInstance()
+                : $adsUtilityRegistry;
+        $this->libraryMetadataProvider =
+            ($libraryMetadataProvider === null) ? new LibraryMetadataProvider()
+                : $libraryMetadataProvider;
+    }
 
-  /**
-   * Formats an application name in a format standard to the ads libraries to
-   * include in the SOAP header.
-   *
-   * @param string $applicationName the application name to format
-   * @param string $productNameForSoapHeader the ads product API calls are
-   *     being made against, formatted to be used in the SOAP header
-   * @param boolean $includeUtilityUsage true if logging of utilities usages is
-   *     turned on
-   * @return string the formatted application name
-   */
-  public function formatApplicationNameForSoapHeader($applicationName,
-      $productNameForSoapHeader, $includeUtilityUsage) {
-    $adsUtilities = $this->adsUtilityRegistry->popAllUtilities();
-    return sprintf(
-        '%s (%sApi-PHP, %s/%s, PHP/%s%s)',
+    /**
+     * Formats an application name in a format standard to the ads libraries to
+     * include in the SOAP header.
+     *
+     * @param string $applicationName the application name to format
+     * @param string $productNameForSoapHeader the ads product API calls are
+     *     being made against, formatted to be used in the SOAP header
+     * @param boolean $includeUtilityUsage true if logging of utilities usages is
+     *     turned on
+     * @return string the formatted application name
+     */
+    public function formatApplicationNameForSoapHeader(
         $applicationName,
         $productNameForSoapHeader,
-        $this->libraryMetadataProvider->getLibName(),
-        $this->libraryMetadataProvider->getLibVersion(),
-        PHP_VERSION,
-        $this->formatUtilUsages($adsUtilities, $includeUtilityUsage)
-    );
-  }
+        $includeUtilityUsage
+    ) {
+        $adsUtilities = $this->adsUtilityRegistry->popAllUtilities();
 
-  /**
-   * Formats an application name in a format standard to the ads libraries to
-   * include in the Guzzle HTTP header.
-   *
-   * @param string $applicationName the application name to format
-   * @param string $productName the ads product API calls are being made against
-   * @param boolean $includeUtilityUsage true if logging of utilities usages is
-   *     turned on
-   * @param null|boolean $isReportingGzipEnabled true if the user agent should
-   *     include "gzip" to indicate that this request should be gzip-compressed
-   * @return string the formatted application name
-   */
-  public function formatApplicationNameForGuzzleHeader(
-      $applicationName,
-      $productName,
-      $includeUtilityUsage,
-      $isReportingGzipEnabled = null
-  ) {
-    $adsUtilities = $this->adsUtilityRegistry->popAllUtilities();
-    return sprintf(
-        '%s (%sApi-PHP, %s/%s, PHP/%s, %s%s%s)',
+        return sprintf(
+            '%s (%sApi-PHP, %s/%s, PHP/%s%s)',
+            $applicationName,
+            $productNameForSoapHeader,
+            $this->libraryMetadataProvider->getLibName(),
+            $this->libraryMetadataProvider->getLibVersion(),
+            PHP_VERSION,
+            $this->formatUtilUsages($adsUtilities, $includeUtilityUsage)
+        );
+    }
+
+    /**
+     * Formats an application name in a format standard to the ads libraries to
+     * include in the Guzzle HTTP header.
+     *
+     * @param string $applicationName the application name to format
+     * @param string $productName the ads product API calls are being made against
+     * @param boolean $includeUtilityUsage true if logging of utilities usages is
+     *     turned on
+     * @param null|boolean $isReportingGzipEnabled true if the user agent should
+     *     include "gzip" to indicate that this request should be gzip-compressed
+     * @return string the formatted application name
+     */
+    public function formatApplicationNameForGuzzleHeader(
         $applicationName,
         $productName,
-        $this->libraryMetadataProvider->getLibName(),
-        $this->libraryMetadataProvider->getLibVersion(),
-        PHP_VERSION,
-        $this->formatGuzzleInfo(),
-        $this->formatUtilUsages($adsUtilities, $includeUtilityUsage),
-        $isReportingGzipEnabled === true ? ', gzip' : ''
-    );
-  }
+        $includeUtilityUsage,
+        $isReportingGzipEnabled = null
+    ) {
+        $adsUtilities = $this->adsUtilityRegistry->popAllUtilities();
 
-  private function formatUtilUsages($adsUtilities, $includeUtilityUsage) {
-    if ($includeUtilityUsage === false || empty($adsUtilities)) {
-      return '';
+        return sprintf(
+            '%s (%sApi-PHP, %s/%s, PHP/%s, %s%s%s)',
+            $applicationName,
+            $productName,
+            $this->libraryMetadataProvider->getLibName(),
+            $this->libraryMetadataProvider->getLibVersion(),
+            PHP_VERSION,
+            $this->formatGuzzleInfo(),
+            $this->formatUtilUsages($adsUtilities, $includeUtilityUsage),
+            $isReportingGzipEnabled === true ? ', gzip' : ''
+        );
     }
 
-    return ', ' . implode(', ', $adsUtilities);
-  }
+    private function formatUtilUsages($adsUtilities, $includeUtilityUsage)
+    {
+        if ($includeUtilityUsage === false || empty($adsUtilities)) {
+            return '';
+        }
 
-  private function formatGuzzleInfo() {
-    $guzzleInfoTokens = ['GuzzleHttp/' . ClientInterface::VERSION];
-    if (extension_loaded('curl') && function_exists('curl_version')) {
-      $guzzleInfoTokens[] = 'curl/' . \curl_version()['version'];
+        return ', ' . implode(', ', $adsUtilities);
     }
 
-    return implode(', ', $guzzleInfoTokens);
-  }
+    private function formatGuzzleInfo()
+    {
+        $guzzleInfoTokens = ['GuzzleHttp/' . ClientInterface::VERSION];
+        if (extension_loaded('curl') && function_exists('curl_version')) {
+            $guzzleInfoTokens[] = 'curl/' . \curl_version()['version'];
+        }
+
+        return implode(', ', $guzzleInfoTokens);
+    }
 }

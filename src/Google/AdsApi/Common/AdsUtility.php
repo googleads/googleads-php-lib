@@ -14,14 +14,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Common;
 
 /**
  * Utilities whose usage can be logged.
  */
-final class AdsUtility {
-  const BATCH_JOBS = 'BatchJobHelper';
-  const REPORT_DOWNLOADER_FILE = 'ReportDownloader/file';
-  const REPORT_DOWNLOADER_STREAM = 'ReportDownloader/stream';
-  const REPORT_DOWNLOADER_STRING = 'ReportDownloader/string';
+final class AdsUtility
+{
+    const BATCH_JOBS = 'BatchJobHelper';
+    const REPORT_DOWNLOADER_FILE = 'ReportDownloader/file';
+    const REPORT_DOWNLOADER_STREAM = 'ReportDownloader/stream';
+    const REPORT_DOWNLOADER_STRING = 'ReportDownloader/string';
 }

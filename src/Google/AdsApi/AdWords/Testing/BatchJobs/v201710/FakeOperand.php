@@ -14,27 +14,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\AdWords\Testing\BatchJobs\v201710;
 
 /**
  * A fake operand for testing purpose.
  */
-class FakeOperand {
+class FakeOperand
+{
 
-  protected $Campaign;
+    protected $Campaign;
 
-  /**
-   * @return \Google\AdsApi\AdWords\Testing\BatchJobs\v201710\FakeCampaign
-   */
-  public function getCampaign() {
-    return $this->Campaign;
-  }
+    /**
+     * @return \Google\AdsApi\AdWords\Testing\BatchJobs\v201710\FakeCampaign
+     */
+    public function getCampaign()
+    {
+        return $this->Campaign;
+    }
 
-  /**
-   * @param \Google\AdsApi\AdWords\Testing\BatchJobs\v201710\FakeCampaign
-   *     $Campaign
-   */
-  public function setCampaign($Campaign) {
-    $this->Campaign = $Campaign;
-  }
+    /**
+     * @param \Google\AdsApi\AdWords\Testing\BatchJobs\v201710\FakeCampaign
+     *     $Campaign
+     */
+    public function setCampaign($Campaign)
+    {
+        $this->Campaign = $Campaign;
+    }
 }

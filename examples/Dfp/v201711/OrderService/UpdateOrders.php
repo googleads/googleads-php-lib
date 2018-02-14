@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\OrderService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -32,59 +33,62 @@ use Google\AdsApi\Dfp\v201711\OrderService;
  * that you've setup an `adsapi_php.ini` file in your home directory with your
  * API credentials and settings. See README.md for more info.
  */
-class UpdateOrders {
+class UpdateOrders
+{
 
-  // Set the ID of the order to update.
-  const ORDER_ID = 'INSERT_ORDER_ID_HERE';
+    // Set the ID of the order to update.
+    const ORDER_ID = 'INSERT_ORDER_ID_HERE';
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session, $orderId) {
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session,
+        $orderId
+    ) {
 
-    $orderService = $dfpServices->get($session, OrderService::class);
+        $orderService = $dfpServices->get($session, OrderService::class);
 
-    // Create a statement to only select a single order by ID.
-    $statementBuilder = new StatementBuilder();
-    $statementBuilder->Where('id = :id');
-    $statementBuilder->OrderBy('id ASC');
-    $statementBuilder->Limit(1);
-    $statementBuilder->WithBindVariableValue('id', $orderId);
+        // Create a statement to only select a single order by ID.
+        $statementBuilder = new StatementBuilder();
+        $statementBuilder->Where('id = :id');
+        $statementBuilder->OrderBy('id ASC');
+        $statementBuilder->Limit(1);
+        $statementBuilder->WithBindVariableValue('id', $orderId);
 
-    // Get the order.
-    $page =
-        $orderService->getOrdersByStatement($statementBuilder->toStatement());
+        // Get the order.
+        $page = $orderService->getOrdersByStatement($statementBuilder->toStatement());
 
-    $order = $page->getResults()[0];
+        $order = $page->getResults()[0];
 
-    // Update the order's notes.
-    $order->setNotes('Spoke to advertiser. All is well.');
+        // Update the order's notes.
+        $order->setNotes('Spoke to advertiser. All is well.');
 
-    // Update the order on the server.
-    $orders = $orderService->updateOrders([$order]);
+        // Update the order on the server.
+        $orders = $orderService->updateOrders([$order]);
 
-    foreach ($orders as $updatedOrder) {
-      printf("Order with ID %d and name '%s' was updated.%s",
-          $updatedOrder->getId(),
-          $updatedOrder->getName(),
-          PHP_EOL
-      );
+        foreach ($orders as $updatedOrder) {
+            printf(
+                "Order with ID %d and name '%s' was updated.%s",
+                $updatedOrder->getId(),
+                $updatedOrder->getName(),
+                PHP_EOL
+            );
+        }
     }
-  }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(new DfpServices(), $session, self::ORDER_ID);
-  }
+        self::runExample(new DfpServices(), $session, self::ORDER_ID);
+    }
 }
 
 UpdateOrders::main();

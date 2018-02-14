@@ -14,27 +14,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\AdWords\Testing\BatchJobs\v201710;
 
 /**
  * A fake error list for testing purpose.
  */
-class FakeErrorList {
+class FakeErrorList
+{
 
-  protected $errors;
+    protected $errors;
 
-  /**
-   * @return \Google\AdsApi\AdWords\Testing\BatchJobs\v201710\FakeApiError[]
-   */
-  public function getErrors() {
-    return $this->errors;
-  }
+    /**
+     * @return \Google\AdsApi\AdWords\Testing\BatchJobs\v201710\FakeApiError[]
+     */
+    public function getErrors()
+    {
+        return $this->errors;
+    }
 
-  /**
-   * @param \Google\AdsApi\AdWords\Testing\BatchJobs\v201710\FakeApiError[]
-   *     $errors
-   */
-  public function setErrors($errors) {
-    $this->errors = $errors;
-  }
+    /**
+     * @param \Google\AdsApi\AdWords\Testing\BatchJobs\v201710\FakeApiError[]
+     *     $errors
+     */
+    public function setErrors($errors)
+    {
+        $this->errors = $errors;
+    }
 }

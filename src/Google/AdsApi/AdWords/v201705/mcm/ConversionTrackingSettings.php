@@ -50,7 +50,7 @@ class ConversionTrackingSettings
      */
     public function setEffectiveConversionTrackingId($effectiveConversionTrackingId)
     {
-      $this->effectiveConversionTrackingId = (PHP_INT_SIZE === 4)
+      $this->effectiveConversionTrackingId = (!is_null(effectiveConversionTrackingId) && PHP_INT_SIZE === 4)
           ? floatval($effectiveConversionTrackingId) : $effectiveConversionTrackingId;
       return $this;
     }

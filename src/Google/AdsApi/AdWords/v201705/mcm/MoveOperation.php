@@ -64,7 +64,7 @@ class MoveOperation extends \Google\AdsApi\AdWords\v201705\cm\Operation
      */
     public function setOldManagerCustomerId($oldManagerCustomerId)
     {
-      $this->oldManagerCustomerId = (PHP_INT_SIZE === 4)
+      $this->oldManagerCustomerId = (!is_null(oldManagerCustomerId) && PHP_INT_SIZE === 4)
           ? floatval($oldManagerCustomerId) : $oldManagerCustomerId;
       return $this;
     }

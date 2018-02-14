@@ -78,7 +78,7 @@ class OfflineDataUpload
      */
     public function setExternalUploadId($externalUploadId)
     {
-      $this->externalUploadId = (PHP_INT_SIZE === 4)
+      $this->externalUploadId = (!is_null(externalUploadId) && PHP_INT_SIZE === 4)
           ? floatval($externalUploadId) : $externalUploadId;
       return $this;
     }

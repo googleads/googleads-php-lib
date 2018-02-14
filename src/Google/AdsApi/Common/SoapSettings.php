@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Common;
 
 /**
@@ -22,58 +23,68 @@ namespace Google\AdsApi\Common;
  *
  * @see http://php.net/manual/en/soapclient.soapclient.php
  */
-final class SoapSettings {
+final class SoapSettings
+{
 
-  private $compressionLevel;
-  private $wsdlCacheType;
-  private $sslVerify;
-  private $sslCaFile;
+    private $compressionLevel;
+    private $wsdlCacheType;
+    private $sslVerify;
+    private $sslCaFile;
 
-  /**
-   * Creates a SOAP settings from the specified builder.
-   *
-   * Do not use this constructor, instances should be created by using the
-   * `SoapSettingsBuilder` instead.
-   *
-   * @param SoapSettingsBuilder $builder the builder to create an instance of
-   *     this SOAP settings from
-   */
-  public function __construct(SoapSettingsBuilder $builder) {
-    $this->compressionLevel = $builder->getCompressionLevel();
-    $this->wsdlCacheType = $builder->getWsdlCacheType();
-    $this->sslVerify = $builder->getSslVerify();
-    $this->sslCaFile = $builder->getSslCaFile();
-  }
+    /**
+     * Creates a SOAP settings from the specified builder.
+     *
+     * Do not use this constructor, instances should be created by using the
+     * `SoapSettingsBuilder` instead.
+     *
+     * @param SoapSettingsBuilder $builder the builder to create an instance of
+     *     this SOAP settings from
+     */
+    public function __construct(SoapSettingsBuilder $builder)
+    {
+        $this->compressionLevel = $builder->getCompressionLevel();
+        $this->wsdlCacheType = $builder->getWsdlCacheType();
+        $this->sslVerify = $builder->getSslVerify();
+        $this->sslCaFile = $builder->getSslCaFile();
+    }
 
-  /**
-   * Gets the gzip compression level.
-   * @return int|null
-   */
-  public function getCompressionLevel() {
-    return $this->compressionLevel;
-  }
+    /**
+     * Gets the gzip compression level.
+     *
+     * @return int|null
+     */
+    public function getCompressionLevel()
+    {
+        return $this->compressionLevel;
+    }
 
-  /**
-   * Gets the type of WSDL caching in use.
-   * @return int|null
-   */
-  public function getWsdlCacheType() {
-    return $this->wsdlCacheType;
-  }
+    /**
+     * Gets the type of WSDL caching in use.
+     *
+     * @return int|null
+     */
+    public function getWsdlCacheType()
+    {
+        return $this->wsdlCacheType;
+    }
 
-  /**
-   * Gets whether SSL verification is enabled.
-   * @return boolean
-   */
-  public function getSslVerify() {
-    return $this->sslVerify;
-  }
+    /**
+     * Gets whether SSL verification is enabled.
+     *
+     * @return boolean
+     */
+    public function getSslVerify()
+    {
+        return $this->sslVerify;
+    }
 
-  /**
-   * Gets the SSL CA file.
-   * @return string|null
-   */
-  public function getSslCaFile() {
-    return $this->sslCaFile;
-  }
+    /**
+     * Gets the SSL CA file.
+     *
+     * @return string|null
+     */
+    public function getSslCaFile()
+    {
+        return $this->sslCaFile;
+    }
 }

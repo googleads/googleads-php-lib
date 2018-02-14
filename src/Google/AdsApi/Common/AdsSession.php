@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Common;
 
 use Google\Auth\FetchAuthTokenInterface;
@@ -22,35 +23,41 @@ use Psr\Log\LoggerInterface;
 /**
  * A session for using an ads API.
  */
-interface AdsSession {
+interface AdsSession
+{
 
-  /**
-   * Gets the PSR-3 compliant logger that logs SOAP messages for this session.
-   * @return LoggerInterface the non-null logger
-   */
-  public function getSoapLogger();
+    /**
+     * Gets the PSR-3 compliant logger that logs SOAP messages for this session.
+     *
+     * @return LoggerInterface the non-null logger
+     */
+    public function getSoapLogger();
 
-  /**
-   * Gets the server endpoint to make API requests against.
-   * @return string the non-null server endpoint
-   */
-  public function getEndpoint();
+    /**
+     * Gets the server endpoint to make API requests against.
+     *
+     * @return string the non-null server endpoint
+     */
+    public function getEndpoint();
 
-  /**
-   * Gets the Google OAuth2 credential for authenticating API requests.
-   * @return FetchAuthTokenInterface the non-null Google OAuth2 credential
-   */
-  public function getOAuth2Credential();
+    /**
+     * Gets the Google OAuth2 credential for authenticating API requests.
+     *
+     * @return FetchAuthTokenInterface the non-null Google OAuth2 credential
+     */
+    public function getOAuth2Credential();
 
-  /**
-   * Gets the SOAP settings to apply to API requests.
-   * @return SoapSettings the non-null SOAP settings
-   */
-  public function getSoapSettings();
+    /**
+     * Gets the SOAP settings to apply to API requests.
+     *
+     * @return SoapSettings the non-null SOAP settings
+     */
+    public function getSoapSettings();
 
-  /**
-   * Gets the connection settings to apply to API requests.
-   * @return ConnectionSettings the non-null connection settings
-   */
-  public function getConnectionSettings();
+    /**
+     * Gets the connection settings to apply to API requests.
+     *
+     * @return ConnectionSettings the non-null connection settings
+     */
+    public function getConnectionSettings();
 }

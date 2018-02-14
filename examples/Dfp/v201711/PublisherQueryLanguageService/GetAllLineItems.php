@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\PublisherQueryLanguageService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -38,66 +39,72 @@ use Google\AdsApi\Dfp\v201711\PublisherQueryLanguageService;
  * requires that you've setup an `adsapi_php.ini` file in your home directory
  * with your API credentials and settings. See `README.md` for more info.
  */
-class GetAllLineItems {
+class GetAllLineItems
+{
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session) {
-    $pqlService =
-        $dfpServices->get($session, PublisherQueryLanguageService::class);
+    public static function runExample(DfpServices $dfpServices, DfpSession $session)
+    {
+        $pqlService = $dfpServices->get($session, PublisherQueryLanguageService::class);
 
-    // Create statement to select all line items.
-    $statementBuilder = new StatementBuilder();
-    $statementBuilder->select('Id, Name, Status');
-    $statementBuilder->from('Line_Item');
-    $statementBuilder->orderBy('Id ASC');
-    $statementBuilder->offset(0);
-    $statementBuilder->limit(StatementBuilder::SUGGESTED_PAGE_LIMIT);
+        // Create statement to select all line items.
+        $statementBuilder = new StatementBuilder();
+        $statementBuilder->select('Id, Name, Status');
+        $statementBuilder->from('Line_Item');
+        $statementBuilder->orderBy('Id ASC');
+        $statementBuilder->offset(0);
+        $statementBuilder->limit(StatementBuilder::SUGGESTED_PAGE_LIMIT);
 
-    // Default for result sets.
-    $combinedResultSet = null;
-    $i = 0;
+        // Default for result sets.
+        $combinedResultSet = null;
+        $i = 0;
 
-    do {
-      // Get all line items.
-      $resultSet = $pqlService->select($statementBuilder->toStatement());
+        do {
+            // Get all line items.
+            $resultSet = $pqlService->select($statementBuilder->toStatement());
 
-      // Combine result sets with previous ones.
-      $combinedResultSet = is_null($combinedResultSet)
-          ? $resultSet
-          : Pql::combineResultSets($combinedResultSet, $resultSet);
+            // Combine result sets with previous ones.
+            $combinedResultSet = is_null($combinedResultSet)
+                ? $resultSet
+                : Pql::combineResultSets(
+                    $combinedResultSet,
+                    $resultSet
+                );
 
-      $rows = $resultSet->getRows();
+            $rows = $resultSet->getRows();
 
-      printf("%d) %d line items beginning at offset %d were found.\n",
-          $i++,
-          is_null($rows) ? 0 : count($rows),
-          $statementBuilder->getOffset());
+            printf(
+                "%d) %d line items beginning at offset %d were found.\n",
+                $i++,
+                is_null($rows) ? 0 : count($rows),
+                $statementBuilder->getOffset()
+            );
 
-      $statementBuilder->increaseOffsetBy(
-          StatementBuilder::SUGGESTED_PAGE_LIMIT);
-      $rows = $resultSet->getRows();
-    } while (!empty($rows));
+            $statementBuilder->increaseOffsetBy(
+                StatementBuilder::SUGGESTED_PAGE_LIMIT
+            );
+            $rows = $resultSet->getRows();
+        } while (!empty($rows));
 
-    // Change to your file location.
-    $filePath = tempnam(sys_get_temp_dir(), 'Line-Items-') . '.csv';
+        // Change to your file location.
+        $filePath = tempnam(sys_get_temp_dir(), 'Line-Items-') . '.csv';
 
-    CsvFiles::writeCsv(
-        Pql::resultSetTo2DimensionStringArray($combinedResultSet),
-        $filePath);
+        CsvFiles::writeCsv(
+            Pql::resultSetTo2DimensionStringArray($combinedResultSet),
+            $filePath
+        );
 
-    printf("Line items saved to: %s\n", $filePath);
-  }
+        printf("Line items saved to: %s\n", $filePath);
+    }
 
-  public static function main() {
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
-    self::runExample(new DfpServices(), $session);
-  }
+    public static function main()
+    {
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
+        self::runExample(new DfpServices(), $session);
+    }
 }
 
 GetAllLineItems::main();

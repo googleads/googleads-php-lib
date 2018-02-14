@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Dfp\Util\v201711;
 
 use InvalidArgumentException;
@@ -21,57 +22,58 @@ use InvalidArgumentException;
 /**
  * A utility class for processing and handling CSV files.
  */
-class CsvFiles {
+class CsvFiles
+{
 
-
-  /**
-   * This class is meant to be used statically.
-   */
-  private function __construct() {
-  }
-
-
-  /**
-   * Writes the CSV data to a file located at `$fileName`.
-   *
-   * @param array $csvData the CSV data including the header
-   * @param string $fileName the file to write the CSV data to
-   * @throws InvalidArgumentException if `$csvData` is null or
-   *     `$fileName` is null
-   */
-  public static function writeCsv(array $csvData, $fileName) {
-    if (is_null($fileName)) {
-      throw new InvalidArgumentException('File name is null.');
+    /**
+     * This class is meant to be used statically.
+     */
+    private function __construct()
+    {
     }
 
-    $handle = null;
+    /**
+     * Writes the CSV data to a file located at `$fileName`.
+     *
+     * @param array $csvData the CSV data including the header
+     * @param string $fileName the file to write the CSV data to
+     * @throws InvalidArgumentException if `$csvData` is null or
+     *     `$fileName` is null
+     */
+    public static function writeCsv(array $csvData, $fileName)
+    {
+        if (is_null($fileName)) {
+            throw new InvalidArgumentException('File name is null.');
+        }
 
-    try {
-      $handle = fopen($fileName, 'w');
-      self::writeCsvToStream($csvData, $handle);
-    } finally {
-      if (isset($handle)) {
-        fclose($handle);
-      }
-    }
-  }
+        $handle = null;
 
-  /**
-   * Writes the CSV data to a stream handle.
-   *
-   * @param array $csvData the CSV data including the header
-   * @param resource $handle the stream handle to write the CSV data to
-   * @throws InvalidArgumentException if `$csvData` is null or
-   *     `$fileName` is null
-   */
-  public static function writeCsvToStream(array $csvData, $handle) {
-    if (is_null($handle)) {
-      throw new InvalidArgumentException('File handle is null.');
+        try {
+            $handle = fopen($fileName, 'w');
+            self::writeCsvToStream($csvData, $handle);
+        } finally {
+            if (isset($handle)) {
+                fclose($handle);
+            }
+        }
     }
 
-    foreach ($csvData as $line) {
-      fputcsv($handle, $line);
+    /**
+     * Writes the CSV data to a stream handle.
+     *
+     * @param array $csvData the CSV data including the header
+     * @param resource $handle the stream handle to write the CSV data to
+     * @throws InvalidArgumentException if `$csvData` is null or
+     *     `$fileName` is null
+     */
+    public static function writeCsvToStream(array $csvData, $handle)
+    {
+        if (is_null($handle)) {
+            throw new InvalidArgumentException('File handle is null.');
+        }
+
+        foreach ($csvData as $line) {
+            fputcsv($handle, $line);
+        }
     }
-  }
 }
-

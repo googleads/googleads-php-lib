@@ -14,18 +14,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Common;
 
 /**
  * Provides a Guzzle log message formatter.
  */
-interface GuzzleLogMessageFormatterProvider {
+interface GuzzleLogMessageFormatterProvider
+{
 
-  /**
-   * Configures and returns a Guzzle log message formatter appropriate for the
-   * ads API it is being used for.
-   *
-   * @return GuzzleLogMessageFormatter
-   */
-  public function getGuzzleLogMessageFormatter();
+    /**
+     * Configures and returns a Guzzle log message formatter appropriate for the
+     * ads API it is being used for.
+     *
+     * @return GuzzleLogMessageFormatter
+     */
+    public function getGuzzleLogMessageFormatter();
 }

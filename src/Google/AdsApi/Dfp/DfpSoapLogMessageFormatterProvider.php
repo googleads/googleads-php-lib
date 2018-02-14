@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Dfp;
 
 use Google\AdsApi\Common\SoapLogMessageFormatter;
@@ -22,21 +23,22 @@ use Google\AdsApi\Common\SoapLogMessageFormatterProvider;
 /**
  * Provides SOAP log message formatters for DFP.
  */
-final class DfpSoapLogMessageFormatterProvider
-    implements SoapLogMessageFormatterProvider {
+final class DfpSoapLogMessageFormatterProvider implements SoapLogMessageFormatterProvider
+{
 
-  private static $HTTP_HEADERS_TO_SCRUB = ['Authorization'];
-  private static $ADDITIONAL_REQUEST_SUMMARY_HEADERS = ['networkCode'];
+    private static $HTTP_HEADERS_TO_SCRUB = ['Authorization'];
+    private static $ADDITIONAL_REQUEST_SUMMARY_HEADERS = ['networkCode'];
 
-  /**
-   * @see SoapLogMessageFormatterProvider::getSoapLogMessageFormatter
-   */
-  public function getSoapLogMessageFormatter() {
-    return new SoapLogMessageFormatter(
-        self::$HTTP_HEADERS_TO_SCRUB,
-        null,
-        null,
-        self::$ADDITIONAL_REQUEST_SUMMARY_HEADERS
-    );
-  }
+    /**
+     * @see SoapLogMessageFormatterProvider::getSoapLogMessageFormatter
+     */
+    public function getSoapLogMessageFormatter()
+    {
+        return new SoapLogMessageFormatter(
+            self::$HTTP_HEADERS_TO_SCRUB,
+            null,
+            null,
+            self::$ADDITIONAL_REQUEST_SUMMARY_HEADERS
+        );
+    }
 }

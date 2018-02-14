@@ -205,16 +205,6 @@ class ProposalLineItemService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * Creates new {@link ProposalLineItem} objects.
      *
-     * For each proposal line item, the following fields are required:
-     * <ul>
-     * <li>{@link ProposalLineItem#proposalId}</li>
-     * <li>{@link ProposalLineItem#rateCardId}</li>
-     * <li>{@link ProposalLineItem#productId}</li>
-     * <li>{@link ProposalLineItem#name}</li>
-     * <li>{@link ProposalLineItem#startDateTime}</li>
-     * <li>{@link ProposalLineItem#endDateTime}</li>
-     * </ul>
-     *
      * @param \Google\AdsApi\Dfp\v201711\ProposalLineItem[] $proposalLineItems
      * @return \Google\AdsApi\Dfp\v201711\ProposalLineItem[]
      * @throws \Google\AdsApi\Dfp\v201711\ApiException

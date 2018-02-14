@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\ReconciliationOrderReportService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -33,90 +34,96 @@ use Google\AdsApi\Dfp\v201711\SubmitReconciliationOrderReports as SubmitReconcil
  * requires that you've setup an `adsapi_php.ini` file in your home directory
  * with your API credentials and settings. See `README.md` for more info.
  */
-class SubmitReconciliationOrderReports {
+class SubmitReconciliationOrderReports
+{
 
-  const RECONCILIATION_ORDER_REPORT_ID =
-      'INSERT_RECONCILIATION_ORDER_REPORT_ID_HERE';
+    const RECONCILIATION_ORDER_REPORT_ID = 'INSERT_RECONCILIATION_ORDER_REPORT_ID_HERE';
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session, $reconciliationOrderReportId) {
-    $reconciliationOrderReportService =
-        $dfpServices->get($session, ReconciliationOrderReportService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session,
+        $reconciliationOrderReportId
+    ) {
+        $reconciliationOrderReportService =
+            $dfpServices->get($session, ReconciliationOrderReportService::class);
 
-    // Create a statement to select the reconciliation order reports to submit.
-    $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
-    $statementBuilder = (new StatementBuilder())
-        ->where('id = :id')
-        ->orderBy('id ASC')
-        ->limit($pageSize)
-        ->withBindVariableValue('id', $reconciliationOrderReportId);
+        // Create a statement to select the reconciliation order reports to submit.
+        $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
+        $statementBuilder = (new StatementBuilder())->where('id = :id')
+            ->orderBy('id ASC')
+            ->limit($pageSize)
+            ->withBindVariableValue('id', $reconciliationOrderReportId);
 
-    // Retrieve a small amount of reconciliation order reports at a time, paging
-    // through until all reconciliation order reports have been retrieved.
-    $totalResultSetSize = 0;
-    do {
-      $page = $reconciliationOrderReportService
-          ->getReconciliationOrderReportsByStatement(
-              $statementBuilder->toStatement());
+        // Retrieve a small amount of reconciliation order reports at a time, paging
+        // through until all reconciliation order reports have been retrieved.
+        $totalResultSetSize = 0;
+        do {
+            $page = $reconciliationOrderReportService->getReconciliationOrderReportsByStatement(
+                $statementBuilder->toStatement()
+            );
 
-      // Print out some information for the reconciliation order reports to be
-      // submitted.
-      if ($page->getResults() !== null) {
-        $totalResultSetSize = $page->getTotalResultSetSize();
-        $i = $page->getStartIndex();
-        foreach ($page->getResults() as $reconciliationOrderReport) {
-          printf(
-              "%d) Reconciliation order report with ID %d will be submitted.\n",
-              $i++,
-              $reconciliationOrderReport->getId()
-          );
+            // Print out some information for the reconciliation order reports to be
+            // submitted.
+            if ($page->getResults() !== null) {
+                $totalResultSetSize = $page->getTotalResultSetSize();
+                $i = $page->getStartIndex();
+                foreach ($page->getResults() as $reconciliationOrderReport) {
+                    printf(
+                        "%d) Reconciliation order report with ID %d will be submitted.\n",
+                        $i++,
+                        $reconciliationOrderReport->getId()
+                    );
+                }
+            }
+
+            $statementBuilder->increaseOffsetBy($pageSize);
+        } while ($statementBuilder->getOffset() < $totalResultSetSize);
+
+        printf(
+            "Total number of reconciliation order reports to be submitted: %d\n",
+            $totalResultSetSize
+        );
+
+        if ($totalResultSetSize > 0) {
+            // Remove limit and offset from statement so we can reuse the statement.
+            $statementBuilder->removeLimitAndOffset();
+
+            // Create and perform action.
+            $action = new SubmitReconciliationOrderReportsAction();
+            $result = $reconciliationOrderReportService->performReconciliationOrderReportAction(
+                $action,
+                $statementBuilder->toStatement()
+            );
+
+            if ($result !== null && $result->getNumChanges() > 0) {
+                printf(
+                    "Number of reconciliation order reports submitted: %d\n",
+                    $result->getNumChanges()
+                );
+            } else {
+                printf("No reconciliation order reports were submitted.\n");
+            }
         }
-      }
-
-      $statementBuilder->increaseOffsetBy($pageSize);
-    } while ($statementBuilder->getOffset() < $totalResultSetSize);
-
-    printf("Total number of reconciliation order reports to be submitted: %d\n",
-        $totalResultSetSize);
-
-    if ($totalResultSetSize > 0) {
-      // Remove limit and offset from statement so we can reuse the statement.
-      $statementBuilder->removeLimitAndOffset();
-
-      // Create and perform action.
-      $action = new SubmitReconciliationOrderReportsAction();
-      $result = $reconciliationOrderReportService
-          ->performReconciliationOrderReportAction(
-              $action, $statementBuilder->toStatement());
-
-      if ($result !== null && $result->getNumChanges() > 0) {
-        printf("Number of reconciliation order reports submitted: %d\n",
-            $result->getNumChanges());
-      } else {
-        printf("No reconciliation order reports were submitted.\n");
-      }
     }
-  }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(
-        new DfpServices(),
-        $session,
-        intval(self::RECONCILIATION_ORDER_REPORT_ID)
-    );
-  }
+        self::runExample(
+            new DfpServices(),
+            $session,
+            intval(self::RECONCILIATION_ORDER_REPORT_ID)
+        );
+    }
 }
 
 SubmitReconciliationOrderReports::main();

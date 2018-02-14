@@ -14,36 +14,40 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Common;
 
 /**
  * Handles how HTTP and SOAP headers are set for ads API requests.
  */
-interface AdsHeaderHandler {
+interface AdsHeaderHandler
+{
 
-  /**
-   * @var string the name of SOAP header for ads API requests
-   */
-  const SOAP_HEADER_NAME = 'RequestHeader';
+    /**
+     * @var string the name of SOAP header for ads API requests
+     */
+    const SOAP_HEADER_NAME = 'RequestHeader';
 
-  /**
-   * Generates the required HTTP headers for the ads API request.
-   *
-   * @param AdsSession $session session information to use for the headers
-   * @return array the HTTP headers
-   */
-  public function generateHttpHeaders(AdsSession $session);
+    /**
+     * Generates the required HTTP headers for the ads API request.
+     *
+     * @param AdsSession $session session information to use for the headers
+     * @return array the HTTP headers
+     */
+    public function generateHttpHeaders(AdsSession $session);
 
-  /**
-   * Sets the required SOAP headers for the ads API request.
-   *
-   * @param AdsSession $session session information to use for the headers
-   * @param AdsServiceDescriptor $adsServiceDescriptor descriptor for the
-   *     ads API service the headers are being generated for
-   * @return \SoapHeader the SOAP headers
-   * @throws \InvalidArgumentException if an invalid combination of headers are
-   *     set
-   */
-  public function generateSoapHeaders(AdsSession $session,
-      AdsServiceDescriptor $adsServiceDescriptor);
+    /**
+     * Sets the required SOAP headers for the ads API request.
+     *
+     * @param AdsSession $session session information to use for the headers
+     * @param AdsServiceDescriptor $adsServiceDescriptor descriptor for the
+     *     ads API service the headers are being generated for
+     * @return \SoapHeader the SOAP headers
+     * @throws \InvalidArgumentException if an invalid combination of headers are
+     *     set
+     */
+    public function generateSoapHeaders(
+        AdsSession $session,
+        AdsServiceDescriptor $adsServiceDescriptor
+    );
 }

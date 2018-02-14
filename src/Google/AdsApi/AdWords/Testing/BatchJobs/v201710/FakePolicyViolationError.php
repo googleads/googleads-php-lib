@@ -14,41 +14,47 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\AdWords\Testing\BatchJobs\v201710;
 
 /**
  * A fake policy violation error class for testing purpose.
  */
-class FakePolicyViolationError extends FakeApiError {
+class FakePolicyViolationError extends FakeApiError
+{
 
-  protected $key;
-  protected $isExemptable;
+    protected $key;
+    protected $isExemptable;
 
-  /**
-   * @return int
-   */
-  public function getKey() {
-    return $this->key;
-  }
+    /**
+     * @return int
+     */
+    public function getKey()
+    {
+        return $this->key;
+    }
 
-  /**
-   * @param int $key
-   */
-  public function setKey($key) {
-    $this->key = $key;
-  }
+    /**
+     * @param int $key
+     */
+    public function setKey($key)
+    {
+        $this->key = $key;
+    }
 
-  /**
-   * @return bool
-   */
-  public function getIsExemptable() {
-    return $this->isExemptable;
-  }
+    /**
+     * @return bool
+     */
+    public function getIsExemptable()
+    {
+        return $this->isExemptable;
+    }
 
-  /**
-   * @param bool $isExemptable
-   */
-  public function setIsExemptable($isExemptable) {
-    $this->isExemptable = $isExemptable;
-  }
+    /**
+     * @param bool $isExemptable
+     */
+    public function setIsExemptable($isExemptable)
+    {
+        $this->isExemptable = $isExemptable;
+    }
 }

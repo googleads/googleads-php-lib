@@ -85,7 +85,7 @@ class CreativeAsset
      */
     public function setAssetId($assetId)
     {
-      $this->assetId = (PHP_INT_SIZE === 4)
+      $this->assetId = (!is_null(assetId) && PHP_INT_SIZE === 4)
           ? floatval($assetId) : $assetId;
       return $this;
     }
@@ -140,7 +140,7 @@ class CreativeAsset
      */
     public function setFileSize($fileSize)
     {
-      $this->fileSize = (PHP_INT_SIZE === 4)
+      $this->fileSize = (!is_null(fileSize) && PHP_INT_SIZE === 4)
           ? floatval($fileSize) : $fileSize;
       return $this;
     }

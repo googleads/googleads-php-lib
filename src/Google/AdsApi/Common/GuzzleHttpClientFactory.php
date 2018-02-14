@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Common;
 
 use GuzzleHttp\Client;
@@ -21,12 +22,13 @@ use GuzzleHttp\Client;
 /**
  * Generates a Guzzle HTTP client.
  */
-interface GuzzleHttpClientFactory {
+interface GuzzleHttpClientFactory
+{
 
-  /**
-   * Configures and returns a Guzzle HTTP client appropriate for the domain.
-   *
-   * @return Client the Guzzle HTTP client
-   */
-  public function generateHttpClient();
+    /**
+     * Configures and returns a Guzzle HTTP client appropriate for the domain.
+     *
+     * @return Client the Guzzle HTTP client
+     */
+    public function generateHttpClient();
 }

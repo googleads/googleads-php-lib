@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\AdWords\v201705\BasicOperations;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -33,62 +34,66 @@ use Google\AdsApi\Common\OAuth2TokenBuilder;
  * This example updates the final URL of a keyword. To get keywords, run
  * GetKeywords.php.
  */
-class UpdateKeyword {
+class UpdateKeyword
+{
 
-  const AD_GROUP_ID = 'INSERT_AD_GROUP_ID_HERE';
-  const CRITERION_ID = 'INSERT_KEYWORD_CRITERION_ID_HERE';
+    const AD_GROUP_ID = 'INSERT_AD_GROUP_ID_HERE';
+    const CRITERION_ID = 'INSERT_KEYWORD_CRITERION_ID_HERE';
 
-  public static function runExample(AdWordsServices $adWordsServices,
-      AdWordsSession $session, $adGroupId, $criterionId) {
-    $adGroupCriterionService =
-        $adWordsServices->get($session, AdGroupCriterionService::class);
+    public static function runExample(
+        AdWordsServices $adWordsServices,
+        AdWordsSession $session,
+        $adGroupId,
+        $criterionId
+    ) {
+        $adGroupCriterionService = $adWordsServices->get($session, AdGroupCriterionService::class);
 
-    $operations = [];
+        $operations = [];
 
-    // Create ad group criterion.
-    $adGroupCriterion = new BiddableAdGroupCriterion();
-    $adGroupCriterion->setAdGroupId($adGroupId);
-    // Create criterion using an existing ID. Use the base class Criterion
-    // instead of Keyword to avoid having to set keyword-specific fields.
-    $adGroupCriterion->setCriterion(new Criterion($criterionId));
+        // Create ad group criterion.
+        $adGroupCriterion = new BiddableAdGroupCriterion();
+        $adGroupCriterion->setAdGroupId($adGroupId);
+        // Create criterion using an existing ID. Use the base class Criterion
+        // instead of Keyword to avoid having to set keyword-specific fields.
+        $adGroupCriterion->setCriterion(new Criterion($criterionId));
 
-    // Update final URL.
-    $adGroupCriterion->setFinalUrls(
-        new UrlList(['http://www.example.com/new']));
+        // Update final URL.
+        $adGroupCriterion->setFinalUrls(
+            new UrlList(['http://www.example.com/new'])
+        );
 
-    // Create ad group criterion operation and add it to the list.
-    $operation = new AdGroupCriterionOperation();
-    $operation->setOperand($adGroupCriterion);
-    $operation->setOperator(Operator::SET);
-    $operations[] = $operation;
+        // Create ad group criterion operation and add it to the list.
+        $operation = new AdGroupCriterionOperation();
+        $operation->setOperand($adGroupCriterion);
+        $operation->setOperator(Operator::SET);
+        $operations[] = $operation;
 
-    // Update the keyword on the server.
-    $result = $adGroupCriterionService->mutate($operations);
+        // Update the keyword on the server.
+        $result = $adGroupCriterionService->mutate($operations);
 
-    $adGroupCriterion = $result->getValue()[0];
-    printf(
-        "Keyword with ID %d has updated final URL '%s'.\n",
-        $adGroupCriterion->getCriterion()->getId(),
-        $adGroupCriterion->getFinalUrls()->getUrls()[0]
-    );
-  }
+        $adGroupCriterion = $result->getValue()[0];
+        printf(
+            "Keyword with ID %d has updated final URL '%s'.\n",
+            $adGroupCriterion->getCriterion()->getId(),
+            $adGroupCriterion->getFinalUrls()->getUrls()[0]
+        );
+    }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new AdWordsSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
-    self::runExample(
-        new AdWordsServices(), $session, intval(self::AD_GROUP_ID),
-            intval(self::CRITERION_ID));
-  }
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new AdWordsSessionBuilder())->fromFile()->withOAuth2Credential($oAuth2Credential)->build();
+        self::runExample(
+            new AdWordsServices(),
+            $session,
+            intval(self::AD_GROUP_ID),
+            intval(self::CRITERION_ID)
+        );
+    }
 }
 
 UpdateKeyword::main();

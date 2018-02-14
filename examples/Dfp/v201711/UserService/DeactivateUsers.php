@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\UserService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -33,84 +34,90 @@ use Google\AdsApi\Dfp\v201711\UserService;
  * requires that you've setup an `adsapi_php.ini` file in your home directory
  * with your API credentials and settings. See `README.md` for more info.
  */
-class DeactivateUsers {
+class DeactivateUsers
+{
 
-  const USER_ID = 'INSERT_USER_ID_HERE';
+    const USER_ID = 'INSERT_USER_ID_HERE';
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session, $userId) {
-    $userService = $dfpServices->get($session, UserService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session,
+        $userId
+    ) {
+        $userService = $dfpServices->get($session, UserService::class);
 
-    // Create a statement to select the users to deactivate.
-    $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
-    $statementBuilder = (new StatementBuilder())
-        ->where('id = :id')
-        ->orderBy('id ASC')
-        ->limit($pageSize)
-        ->withBindVariableValue('id', $userId);
+        // Create a statement to select the users to deactivate.
+        $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
+        $statementBuilder = (new StatementBuilder())->where('id = :id')
+            ->orderBy('id ASC')
+            ->limit($pageSize)
+            ->withBindVariableValue('id', $userId);
 
-    // Retrieve a small amount of users at a time, paging through until all
-    // users have been retrieved.
-    $totalResultSetSize = 0;
-    do {
-      $page = $userService->getUsersByStatement(
-          $statementBuilder->toStatement());
+        // Retrieve a small amount of users at a time, paging through until all
+        // users have been retrieved.
+        $totalResultSetSize = 0;
+        do {
+            $page = $userService->getUsersByStatement(
+                $statementBuilder->toStatement()
+            );
 
-      // Print out some information for the users to be deactivated.
-      if ($page->getResults() !== null) {
-        $totalResultSetSize = $page->getTotalResultSetSize();
-        $i = $page->getStartIndex();
-        foreach ($page->getResults() as $user) {
-          printf(
-              "%d) User with ID %d, " .
-                  "email '%s', " .
-                  "and role '%s' will be deactivated.\n",
-              $i++,
-              $user->getId(),
-              $user->getEmail(),
-              $user->getRoleName()
-          );
+            // Print out some information for the users to be deactivated.
+            if ($page->getResults() !== null) {
+                $totalResultSetSize = $page->getTotalResultSetSize();
+                $i = $page->getStartIndex();
+                foreach ($page->getResults() as $user) {
+                    printf(
+                        "%d) User with ID %d, email '%s', "
+                        . "and role '%s' will be deactivated.\n",
+                        $i++,
+                        $user->getId(),
+                        $user->getEmail(),
+                        $user->getRoleName()
+                    );
+                }
+            }
+
+            $statementBuilder->increaseOffsetBy($pageSize);
+        } while ($statementBuilder->getOffset() < $totalResultSetSize);
+
+        printf(
+            "Total number of users to be deactivated: %d\n",
+            $totalResultSetSize
+        );
+
+        if ($totalResultSetSize > 0) {
+            // Remove limit and offset from statement so we can reuse the statement.
+            $statementBuilder->removeLimitAndOffset();
+
+            // Create and perform action.
+            $action = new DeactivateUsersAction();
+            $result = $userService->performUserAction(
+                $action,
+                $statementBuilder->toStatement()
+            );
+
+            if ($result !== null && $result->getNumChanges() > 0) {
+                printf("Number of users deactivated: %d\n", $result->getNumChanges());
+            } else {
+                printf("No users were deactivated.\n");
+            }
         }
-      }
-
-      $statementBuilder->increaseOffsetBy($pageSize);
-    } while ($statementBuilder->getOffset() < $totalResultSetSize);
-
-    printf(
-        "Total number of users to be deactivated: %d\n", $totalResultSetSize);
-
-    if ($totalResultSetSize > 0) {
-      // Remove limit and offset from statement so we can reuse the statement.
-      $statementBuilder->removeLimitAndOffset();
-
-      // Create and perform action.
-      $action = new DeactivateUsersAction();
-      $result = $userService->performUserAction($action,
-          $statementBuilder->toStatement());
-
-      if ($result !== null && $result->getNumChanges() > 0) {
-        printf("Number of users deactivated: %d\n", $result->getNumChanges());
-      } else {
-        printf("No users were deactivated.\n");
-      }
     }
-  }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(new DfpServices(), $session, intval(self::USER_ID));
-  }
+        self::runExample(new DfpServices(), $session, intval(self::USER_ID));
+    }
 }
 
 DeactivateUsers::main();

@@ -99,7 +99,7 @@ class FeedItemAttributeValue
      */
     public function setFeedAttributeId($feedAttributeId)
     {
-      $this->feedAttributeId = (PHP_INT_SIZE === 4)
+      $this->feedAttributeId = (!is_null(feedAttributeId) && PHP_INT_SIZE === 4)
           ? floatval($feedAttributeId) : $feedAttributeId;
       return $this;
     }
@@ -118,7 +118,7 @@ class FeedItemAttributeValue
      */
     public function setIntegerValue($integerValue)
     {
-      $this->integerValue = (PHP_INT_SIZE === 4)
+      $this->integerValue = (!is_null(integerValue) && PHP_INT_SIZE === 4)
           ? floatval($integerValue) : $integerValue;
       return $this;
     }

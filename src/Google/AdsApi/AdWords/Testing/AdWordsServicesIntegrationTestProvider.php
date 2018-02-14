@@ -14,42 +14,54 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\AdWords\Testing;
 
 /**
  * Provides test data for `AdWordsServicesIntegrationTest`.
+ *
  * @see Google\AdsApi\AdWords\AdWordsServicesIntegrationTest
  */
-class AdWordsServicesIntegrationTestProvider {
+class AdWordsServicesIntegrationTestProvider
+{
 
-  /**
-   * Gets a fake SOAP response to an AdWords API call to get campaigns.
-   *
-   * @return string
-   */
-  public static function getFakeGetCampaignsResponse() {
-    return file_get_contents(
-        dirname(__FILE__) . DIRECTORY_SEPARATOR . 'get-campaigns-response.xml');
-  }
+    /**
+     * Gets a fake SOAP response to an AdWords API call to get campaigns.
+     *
+     * @return string
+     */
+    public static function getFakeGetCampaignsResponse()
+    {
+        return file_get_contents(
+            dirname(__FILE__) . DIRECTORY_SEPARATOR
+            . 'get-campaigns-response.xml'
+        );
+    }
 
-  /**
-   * Gets a fake SOAP fault response to an AdWords API call to get campaigns.
-   *
-   * @return string
-   */
-  public static function getFakeGetCampaignsSoapFault() {
-    return file_get_contents(dirname(__FILE__) . DIRECTORY_SEPARATOR
-        . 'get-campaigns-soapfault.xml');
-  }
+    /**
+     * Gets a fake SOAP fault response to an AdWords API call to get campaigns.
+     *
+     * @return string
+     */
+    public static function getFakeGetCampaignsSoapFault()
+    {
+        return file_get_contents(
+            dirname(__FILE__) . DIRECTORY_SEPARATOR
+            . 'get-campaigns-soapfault.xml'
+        );
+    }
 
-  /**
-   * Gets a fake SOAP response to an AdWords API call to get campaigns with
-   * `validateOnly` enabled.
-   *
-   * @return string
-   */
-  public static function getFakeGetCampaignsValidateOnlyResponse() {
-    return file_get_contents(dirname(__FILE__) . DIRECTORY_SEPARATOR
-        . 'get-campaigns-response-validate-only.xml');
-  }
+    /**
+     * Gets a fake SOAP response to an AdWords API call to get campaigns with
+     * `validateOnly` enabled.
+     *
+     * @return string
+     */
+    public static function getFakeGetCampaignsValidateOnlyResponse()
+    {
+        return file_get_contents(
+            dirname(__FILE__) . DIRECTORY_SEPARATOR
+            . 'get-campaigns-response-validate-only.xml'
+        );
+    }
 }

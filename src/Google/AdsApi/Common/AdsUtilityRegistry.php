@@ -14,48 +14,57 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Common;
 
 /**
  * Stores and registers usage of ads utilities.
  */
-class AdsUtilityRegistry {
+class AdsUtilityRegistry
+{
 
-  private $adsUtilities = [];
-  private static $INSTANCE = null;
+    private $adsUtilities = [];
+    private static $INSTANCE = null;
 
-  private function __construct() {}
-
-  /**
-   * Gets a singleton instance of AdsUtilityRegistry.
-   *
-   * @return AdsUtilityRegistry the ads utility registry
-   */
-  public static function getInstance() {
-    if (self::$INSTANCE === null) {
-      self::$INSTANCE = new AdsUtilityRegistry();
+    private function __construct()
+    {
     }
-    return self::$INSTANCE;
-  }
 
-  /**
-   * Adds a new ads utility to the ads utilities list.
-   *
-   * @param string $adsUtility the name of ads utility that has been used
-   */
-  public function addUtility($adsUtility) {
-    $this->adsUtilities[] = $adsUtility;
-  }
+    /**
+     * Gets a singleton instance of AdsUtilityRegistry.
+     *
+     * @return AdsUtilityRegistry the ads utility registry
+     */
+    public static function getInstance()
+    {
+        if (self::$INSTANCE === null) {
+            self::$INSTANCE = new AdsUtilityRegistry();
+        }
 
-  /**
-   * Gets all utilities in the registry and clear the registry.
-   *
-   * @return string[] the list of registered ads utilities
-   */
-  public function popAllUtilities() {
-    $currentUtilities = $this->adsUtilities;
-    sort($currentUtilities, SORT_STRING);
-    $this->adsUtilities = [];
-    return $currentUtilities;
-  }
+        return self::$INSTANCE;
+    }
+
+    /**
+     * Adds a new ads utility to the ads utilities list.
+     *
+     * @param string $adsUtility the name of ads utility that has been used
+     */
+    public function addUtility($adsUtility)
+    {
+        $this->adsUtilities[] = $adsUtility;
+    }
+
+    /**
+     * Gets all utilities in the registry and clear the registry.
+     *
+     * @return string[] the list of registered ads utilities
+     */
+    public function popAllUtilities()
+    {
+        $currentUtilities = $this->adsUtilities;
+        sort($currentUtilities, SORT_STRING);
+        $this->adsUtilities = [];
+
+        return $currentUtilities;
+    }
 }

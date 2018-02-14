@@ -14,49 +14,53 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Common;
 
 /**
  * Holds and helps retrieve configuration data loaded from an *.ini file.
  */
-class Configuration {
+class Configuration
+{
 
-  private $config;
+    private $config;
 
-  /**
-   * Creates a new configuration from the specified associative array of
-   * settings loaded from an *.ini file.
-   *
-   * @param array $iniFileContents an associative array of settings
-   */
-  public function __construct(array $iniFileContents) {
-    $this->config = $iniFileContents;
-  }
-
-  /**
-   * Gets the value for the specified setting name.
-   *
-   * @param string $name the setting name
-   * @param string $section optional, the name of the section containing the
-   *     setting
-   * @return string|null the value of the setting, or null if it doesn't exist
-   */
-  public function getConfiguration($name, $section = null) {
-    $configValue = null;
-
-    if ($section === null) {
-      if (array_key_exists($name, $this->config)) {
-        $configValue = $this->config[$name];
-      }
-    } else {
-      if (array_key_exists($section, $this->config)) {
-        $sectionSettings = $this->config[$section];
-        if (array_key_exists($name, $sectionSettings)) {
-          $configValue = $sectionSettings[$name];
-        }
-      }
+    /**
+     * Creates a new configuration from the specified associative array of
+     * settings loaded from an *.ini file.
+     *
+     * @param array $iniFileContents an associative array of settings
+     */
+    public function __construct(array $iniFileContents)
+    {
+        $this->config = $iniFileContents;
     }
 
-    return $configValue;
-  }
+    /**
+     * Gets the value for the specified setting name.
+     *
+     * @param string $name the setting name
+     * @param string $section optional, the name of the section containing the
+     *     setting
+     * @return string|null the value of the setting, or null if it doesn't exist
+     */
+    public function getConfiguration($name, $section = null)
+    {
+        $configValue = null;
+
+        if ($section === null) {
+            if (array_key_exists($name, $this->config)) {
+                $configValue = $this->config[$name];
+            }
+        } else {
+            if (array_key_exists($section, $this->config)) {
+                $sectionSettings = $this->config[$section];
+                if (array_key_exists($name, $sectionSettings)) {
+                    $configValue = $sectionSettings[$name];
+                }
+            }
+        }
+
+        return $configValue;
+    }
 }

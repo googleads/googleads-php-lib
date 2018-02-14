@@ -14,31 +14,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Common\Testing;
 
 /**
  * Provides testing data for the `ConfigurationLoaderTest`.
+ *
  * @see Google\AdsApi\Common\ConfigurationLoaderTest
  */
-class ConfigurationLoaderTestProvider {
+class ConfigurationLoaderTestProvider
+{
 
-  /**
-   * Gets the absolute filepath to the fake INI file used for
-   * `ConfigurationLoader` tests.
-   *
-   * @return string
-   */
-  public static function getFilePathForTestIniFile() {
-    return dirname(__FILE__) . DIRECTORY_SEPARATOR . 'adsapi_php.ini';
-  }
+    /**
+     * Gets the absolute filepath to the fake INI file used for
+     * `ConfigurationLoader` tests.
+     *
+     * @return string
+     */
+    public static function getFilePathForTestIniFile()
+    {
+        return dirname(__FILE__) . DIRECTORY_SEPARATOR . 'adsapi_php.ini';
+    }
 
-  /**
-   * Gets the absolute filepath to the fake home directory for
-   * `ConfigurationLoader` tests.
-   *
-   * @return string
-   */
-  public static function getFilePathToFakeHome() {
-    return dirname(__FILE__) . DIRECTORY_SEPARATOR . 'fakehome';
-  }
+    /**
+     * Gets the absolute filepath to the fake home directory for
+     * `ConfigurationLoader` tests.
+     *
+     * @return string
+     */
+    public static function getFilePathToFakeHome()
+    {
+        return dirname(__FILE__) . DIRECTORY_SEPARATOR . 'fakehome';
+    }
 }

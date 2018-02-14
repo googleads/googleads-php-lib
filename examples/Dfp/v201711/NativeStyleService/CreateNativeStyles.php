@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\NativeStyleService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -33,9 +34,10 @@ use Google\AdsApi\Dfp\v201711\Size;
  * requires that you've setup an `adsapi_php.ini` file in your home directory
  * with your API credentials and settings. See `README.md` for more info.
  */
-class CreateNativeStyles {
+class CreateNativeStyles
+{
 
-  private static $HTML_SNIPPET = <<<HTML
+    private static $HTML_SNIPPET = <<<HTML
 <div id="adunit" style="overflow: hidden;">
   <img src="[%Thirdpartyimpressiontracker%]" style="display:none">
   <div class="attribution">Ad</div>
@@ -67,7 +69,7 @@ class CreateNativeStyles {
 </div>
 HTML;
 
-  private static $CSS_SNIPPET = <<<CSS
+    private static $CSS_SNIPPET = <<<CSS
 body {
     background-color: rgba(255, 255, 255, 1);
     font-family: "Roboto-Regular", sans-serif;
@@ -149,62 +151,61 @@ body {
 }
 CSS;
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session) {
-    $nativeStyleService =
-        $dfpServices->get($session, NativeStyleService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session
+    ) {
+        $nativeStyleService = $dfpServices->get($session, NativeStyleService::class);
 
-    $nativeStyle = new NativeStyle();
-    $nativeStyle->setName('Native style #'. uniqid());
-    $nativeStyle->setHtmlSnippet(self::$HTML_SNIPPET);
-    $nativeStyle->setCssSnippet(self::$CSS_SNIPPET);
+        $nativeStyle = new NativeStyle();
+        $nativeStyle->setName('Native style #' . uniqid());
+        $nativeStyle->setHtmlSnippet(self::$HTML_SNIPPET);
+        $nativeStyle->setCssSnippet(self::$CSS_SNIPPET);
 
-    // This is the creative template ID for the system-defined native app
-    // install ad format, which we will create the native style from. Use
-    // CreativeTemplateService.getCreativeTemplatesByStatement() and
-    // CreativeTemplate.isNativeEligible to get other native ad formats
-    // availablein your network.
-    $nativeStyle->setCreativeTemplateId(10004400);
+        // This is the creative template ID for the system-defined native app
+        // install ad format, which we will create the native style from. Use
+        // CreativeTemplateService.getCreativeTemplatesByStatement() and
+        // CreativeTemplate.isNativeEligible to get other native ad formats
+        // availablein your network.
+        $nativeStyle->setCreativeTemplateId(10004400);
 
-    // Set the size of the native style.
-    $size = new Size();
-    $size->setWidth(300);
-    $size->setHeight(345);
-    $size->setIsAspectRatio(false);
-    $nativeStyle->setSize($size);
+        // Set the size of the native style.
+        $size = new Size();
+        $size->setWidth(300);
+        $size->setHeight(345);
+        $size->setIsAspectRatio(false);
+        $nativeStyle->setSize($size);
 
-    // Create the native styles on the server.
-    $results = $nativeStyleService->createNativeStyles([$nativeStyle]);
+        // Create the native styles on the server.
+        $results = $nativeStyleService->createNativeStyles([$nativeStyle]);
 
-    // Print out some information for each created native style.
-    foreach ($results as $i => $nativeStyle) {
-      printf(
-          "%d) Native style with ID %d, " .
-              "name '%s', " .
-              "and creative template ID %d was created.\n",
-          $i,
-          $nativeStyle->getId(),
-          $nativeStyle->getName(),
-          $nativeStyle->getCreativeTemplateId()
-      );
+        // Print out some information for each created native style.
+        foreach ($results as $i => $nativeStyle) {
+            printf(
+                "%d) Native style with ID %d, name '%s', "
+                . "and creative template ID %d was created.\n",
+                $i,
+                $nativeStyle->getId(),
+                $nativeStyle->getName(),
+                $nativeStyle->getCreativeTemplateId()
+            );
+        }
     }
-  }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(new DfpServices(), $session);
-  }
+        self::runExample(new DfpServices(), $session);
+    }
 }
 
 CreateNativeStyles::main();

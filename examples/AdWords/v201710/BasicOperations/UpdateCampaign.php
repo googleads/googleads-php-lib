@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\AdWords\v201710\BasicOperations;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -32,54 +33,56 @@ use Google\AdsApi\Common\OAuth2TokenBuilder;
  * This example updates the status of a campaign to PAUSED. To get
  * campaigns, run GetCampaigns.php.
  */
-class UpdateCampaign {
+class UpdateCampaign
+{
 
-  const CAMPAIGN_ID = 'INSERT_CAMPAIGN_ID_HERE';
+    const CAMPAIGN_ID = 'INSERT_CAMPAIGN_ID_HERE';
 
-  public static function runExample(AdWordsServices $adWordsServices,
-      AdWordsSession $session, $campaignId) {
-    $campaignService = $adWordsServices->get($session, CampaignService::class);
+    public static function runExample(
+        AdWordsServices $adWordsServices,
+        AdWordsSession $session,
+        $campaignId
+    ) {
+        $campaignService = $adWordsServices->get($session, CampaignService::class);
 
-    $operations = [];
-    // Create a campaign with PAUSED status.
-    $campaign = new Campaign();
-    $campaign->setId($campaignId);
-    $campaign->setStatus(CampaignStatus::PAUSED);
+        $operations = [];
+        // Create a campaign with PAUSED status.
+        $campaign = new Campaign();
+        $campaign->setId($campaignId);
+        $campaign->setStatus(CampaignStatus::PAUSED);
 
-    // Create a campaign operation and add it to the list.
-    $operation = new CampaignOperation();
-    $operation->setOperand($campaign);
-    $operation->setOperator(Operator::SET);
-    $operations[] = $operation;
+        // Create a campaign operation and add it to the list.
+        $operation = new CampaignOperation();
+        $operation->setOperand($campaign);
+        $operation->setOperator(Operator::SET);
+        $operations[] = $operation;
 
-    // Update the campaign on the server.
-    $result = $campaignService->mutate($operations);
+        // Update the campaign on the server.
+        $result = $campaignService->mutate($operations);
 
-    $campaign = $result->getValue()[0];
-    printf(
-        "Campaign with ID %d, name '%s', and budget delivery method '%s' was"
-            . " updated.\n",
-        $campaign->getId(),
-        $campaign->getName(),
-        $campaign->getBudget()->getDeliveryMethod()
-    );
-  }
+        $campaign = $result->getValue()[0];
+        printf(
+            "Campaign with ID %d, name '%s', and budget delivery method '%s' was updated.\n",
+            $campaign->getId(),
+            $campaign->getName(),
+            $campaign->getBudget()->getDeliveryMethod()
+        );
+    }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new AdWordsSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
-    self::runExample(
-        new AdWordsServices(), $session, intval(self::CAMPAIGN_ID));
-  }
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new AdWordsSessionBuilder())->fromFile()->withOAuth2Credential($oAuth2Credential)->build();
+        self::runExample(
+            new AdWordsServices(),
+            $session,
+            intval(self::CAMPAIGN_ID)
+        );
+    }
 }
 
 UpdateCampaign::main();

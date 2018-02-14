@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\AdWords\v201710\BasicOperations;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -31,56 +32,59 @@ use Google\AdsApi\Common\OAuth2TokenBuilder;
 /**
  * This example removes an ad. To get text ads, run GetExpandedTextAds.php.
  */
-class RemoveAd {
+class RemoveAd
+{
 
-  const AD_GROUP_ID = 'INSERT_AD_GROUP_ID_HERE';
-  const AD_ID = 'INSERT_AD_ID_HERE';
+    const AD_GROUP_ID = 'INSERT_AD_GROUP_ID_HERE';
+    const AD_ID = 'INSERT_AD_ID_HERE';
 
-  public static function runExample(AdWordsServices $adWordsServices,
-      AdWordsSession $session, $adGroupId, $adId) {
-    $adGroupAdService =
-        $adWordsServices->get($session, AdGroupAdService::class);
+    public static function runExample(
+        AdWordsServices $adWordsServices,
+        AdWordsSession $session,
+        $adGroupId,
+        $adId
+    ) {
+        $adGroupAdService = $adWordsServices->get($session, AdGroupAdService::class);
 
-    $operations = [];
-    // Create ad using an existing ID. Use the base class Ad instead of TextAd
-    // to avoid having to set ad-specific fields.
-    $ad = new Ad();
-    $ad->setId($adId);
+        $operations = [];
+        // Create ad using an existing ID. Use the base class Ad instead of TextAd
+        // to avoid having to set ad-specific fields.
+        $ad = new Ad();
+        $ad->setId($adId);
 
-    // Create ad group ad.
-    $adGroupAd = new AdGroupAd();
-    $adGroupAd->setAdGroupId($adGroupId);
-    $adGroupAd->setAd($ad);
+        // Create ad group ad.
+        $adGroupAd = new AdGroupAd();
+        $adGroupAd->setAdGroupId($adGroupId);
+        $adGroupAd->setAd($ad);
 
-    // Create ad group ad operation and add it to the list.
-    $operation = new AdGroupAdOperation();
-    $operation->setOperand($adGroupAd);
-    $operation->setOperator(Operator::REMOVE);
-    $operations[] = $operation;
+        // Create ad group ad operation and add it to the list.
+        $operation = new AdGroupAdOperation();
+        $operation->setOperand($adGroupAd);
+        $operation->setOperator(Operator::REMOVE);
+        $operations[] = $operation;
 
-    // Remove the ad on the server.
-    $result = $adGroupAdService->mutate($operations);
+        // Remove the ad on the server.
+        $result = $adGroupAdService->mutate($operations);
 
-    $adGroupAd = $result->getValue()[0];
-    printf("Ad with ID %d was removed.\n", $adGroupAd->getAd()->getId());
-  }
+        $adGroupAd = $result->getValue()[0];
+        printf("Ad with ID %d was removed.\n", $adGroupAd->getAd()->getId());
+    }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new AdWordsSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
-    self::runExample(
-        new AdWordsServices(), $session, intval(self::AD_GROUP_ID),
-            intval(self::AD_ID));
-  }
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new AdWordsSessionBuilder())->fromFile()->withOAuth2Credential($oAuth2Credential)->build();
+        self::runExample(
+            new AdWordsServices(),
+            $session,
+            intval(self::AD_GROUP_ID),
+            intval(self::AD_ID)
+        );
+    }
 }
 
 RemoveAd::main();

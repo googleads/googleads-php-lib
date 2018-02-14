@@ -14,18 +14,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Common;
 
 /**
  * Provides a SOAP log message formatter.
  */
-interface SoapLogMessageFormatterProvider {
+interface SoapLogMessageFormatterProvider
+{
 
-  /**
-   * Configures and returns a SOAP log message formatter appropriate for the
-   * ads API it is being used for.
-   *
-   * @return SoapLogMessageFormatter
-   */
-  public function getSoapLogMessageFormatter();
+    /**
+     * Configures and returns a SOAP log message formatter appropriate for the
+     * ads API it is being used for.
+     *
+     * @return SoapLogMessageFormatter
+     */
+    public function getSoapLogMessageFormatter();
 }

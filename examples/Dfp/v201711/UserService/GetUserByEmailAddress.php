@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\UserService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -32,64 +33,67 @@ use Google\AdsApi\Dfp\v201711\UserService;
  * that you've setup an `adsapi_php.ini` file in your home directory with your
  * API credentials and settings. See README.md for more info.
  */
-class GetUserByEmailAddress {
+class GetUserByEmailAddress
+{
 
-  const EMAIL_ADDRESS = 'INSERT_EMAIL_ADDRESS_HERE';
+    const EMAIL_ADDRESS = 'INSERT_EMAIL_ADDRESS_HERE';
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session, $emailAddress) {
-    $userService = $dfpServices->get($session, UserService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session,
+        $emailAddress
+    ) {
+        $userService = $dfpServices->get($session, UserService::class);
 
-    // Create a statement to select users.
-    $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
-    $statementBuilder = (new StatementBuilder())
-        ->where('email = :email')
-        ->orderBy('id ASC')
-        ->limit($pageSize)
-        ->withBindVariableValue('email', $emailAddress);
+        // Create a statement to select users.
+        $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
+        $statementBuilder = (new StatementBuilder())->where('email = :email')
+            ->orderBy('id ASC')
+            ->limit($pageSize)
+            ->withBindVariableValue('email', $emailAddress);
 
-    // Retrieve a small amount of users at a time, paging
-    // through until all users have been retrieved.
-    $totalResultSetSize = 0;
-    do {
-      $page = $userService->getUsersByStatement(
-          $statementBuilder->toStatement());
+        // Retrieve a small amount of users at a time, paging
+        // through until all users have been retrieved.
+        $totalResultSetSize = 0;
+        do {
+            $page = $userService->getUsersByStatement(
+                $statementBuilder->toStatement()
+            );
 
-      // Print out some information for each user.
-      if ($page->getResults() !== null) {
-        $totalResultSetSize = $page->getTotalResultSetSize();
-        $i = $page->getStartIndex();
-        foreach ($page->getResults() as $user) {
-          printf(
-              "%d) User with ID %d and name '%s' was found.\n",
-              $i++,
-              $user->getId(),
-              $user->getName()
-          );
-        }
-      }
+            // Print out some information for each user.
+            if ($page->getResults() !== null) {
+                $totalResultSetSize = $page->getTotalResultSetSize();
+                $i = $page->getStartIndex();
+                foreach ($page->getResults() as $user) {
+                    printf(
+                        "%d) User with ID %d and name '%s' was found.\n",
+                        $i++,
+                        $user->getId(),
+                        $user->getName()
+                    );
+                }
+            }
 
-      $statementBuilder->increaseOffsetBy($pageSize);
-    } while ($statementBuilder->getOffset() < $totalResultSetSize);
+            $statementBuilder->increaseOffsetBy($pageSize);
+        } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-    printf("Number of results found: %d\n", $totalResultSetSize);
-  }
+        printf("Number of results found: %d\n", $totalResultSetSize);
+    }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(new DfpServices(), $session, self::EMAIL_ADDRESS);
-  }
+        self::runExample(new DfpServices(), $session, self::EMAIL_ADDRESS);
+    }
 }
 
 GetUserByEmailAddress::main();

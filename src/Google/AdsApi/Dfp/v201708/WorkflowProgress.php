@@ -89,7 +89,7 @@ class WorkflowProgress
      */
     public function setSubmitterId($submitterId)
     {
-      $this->submitterId = (PHP_INT_SIZE === 4)
+      $this->submitterId = (!is_null(submitterId) && PHP_INT_SIZE === 4)
           ? floatval($submitterId) : $submitterId;
       return $this;
     }

@@ -64,7 +64,7 @@ class Stats
      */
     public function setImpressionsDelivered($impressionsDelivered)
     {
-      $this->impressionsDelivered = (PHP_INT_SIZE === 4)
+      $this->impressionsDelivered = (!is_null(impressionsDelivered) && PHP_INT_SIZE === 4)
           ? floatval($impressionsDelivered) : $impressionsDelivered;
       return $this;
     }
@@ -83,7 +83,7 @@ class Stats
      */
     public function setClicksDelivered($clicksDelivered)
     {
-      $this->clicksDelivered = (PHP_INT_SIZE === 4)
+      $this->clicksDelivered = (!is_null(clicksDelivered) && PHP_INT_SIZE === 4)
           ? floatval($clicksDelivered) : $clicksDelivered;
       return $this;
     }
@@ -102,7 +102,7 @@ class Stats
      */
     public function setVideoCompletionsDelivered($videoCompletionsDelivered)
     {
-      $this->videoCompletionsDelivered = (PHP_INT_SIZE === 4)
+      $this->videoCompletionsDelivered = (!is_null(videoCompletionsDelivered) && PHP_INT_SIZE === 4)
           ? floatval($videoCompletionsDelivered) : $videoCompletionsDelivered;
       return $this;
     }
@@ -121,7 +121,7 @@ class Stats
      */
     public function setVideoStartsDelivered($videoStartsDelivered)
     {
-      $this->videoStartsDelivered = (PHP_INT_SIZE === 4)
+      $this->videoStartsDelivered = (!is_null(videoStartsDelivered) && PHP_INT_SIZE === 4)
           ? floatval($videoStartsDelivered) : $videoStartsDelivered;
       return $this;
     }
@@ -140,7 +140,7 @@ class Stats
      */
     public function setViewableImpressionsDelivered($viewableImpressionsDelivered)
     {
-      $this->viewableImpressionsDelivered = (PHP_INT_SIZE === 4)
+      $this->viewableImpressionsDelivered = (!is_null(viewableImpressionsDelivered) && PHP_INT_SIZE === 4)
           ? floatval($viewableImpressionsDelivered) : $viewableImpressionsDelivered;
       return $this;
     }

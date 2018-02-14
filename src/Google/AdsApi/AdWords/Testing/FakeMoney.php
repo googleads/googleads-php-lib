@@ -14,34 +14,39 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\AdWords\Testing;
 
 /**
  * A fake Money class for testing purpose.
  */
-final class FakeMoney extends FakeComparableValue {
+final class FakeMoney extends FakeComparableValue
+{
 
-  protected $microAmount = null;
-  protected $type = null;
+    protected $microAmount = null;
+    protected $type = null;
 
-  /**
-   * @return int
-   */
-  public function getMicroAmount() {
-    return $this->microAmount;
-  }
+    /**
+     * @return int
+     */
+    public function getMicroAmount()
+    {
+        return $this->microAmount;
+    }
 
-  /**
-   * @param int $microAmount
-   */
-  public function setMicroAmount($microAmount) {
-    $this->microAmount = $microAmount;
-  }
+    /**
+     * @param int $microAmount
+     */
+    public function setMicroAmount($microAmount)
+    {
+        $this->microAmount = $microAmount;
+    }
 
-  /**
-   * @return string
-   */
-  private function getType() {
-    return $this->type;
-  }
+    /**
+     * @return string
+     */
+    private function getType()
+    {
+        return $this->type;
+    }
 }

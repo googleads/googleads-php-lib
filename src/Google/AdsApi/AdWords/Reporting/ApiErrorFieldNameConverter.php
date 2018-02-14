@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\AdWords\Reporting;
 
 use Symfony\Component\Serializer\NameConverter\NameConverterInterface;
@@ -24,22 +25,25 @@ use Symfony\Component\Serializer\NameConverter\NameConverterInterface;
  * API error object, but we want to be able to deserialize into the same object
  * for code re-use.
  */
-class ApiErrorFieldNameConverter implements NameConverterInterface {
+class ApiErrorFieldNameConverter implements NameConverterInterface
+{
 
-  /**
-   * @see NameConverterInterface::normalize()
-   */
-  public function normalize($propertyName) {
-    return $propertyName;
-  }
+    /**
+     * @see NameConverterInterface::normalize()
+     */
+    public function normalize($propertyName)
+    {
+        return $propertyName;
+    }
 
-  /**
-   * Converts the `type` field of `ApiError` in serialized string to
-   * `errorString` during denormalization.
-   *
-   * @see NameConverterInterface::denormalize()
-   */
-  public function denormalize($propertyName) {
-    return ($propertyName === 'type') ? 'errorString' : $propertyName;
-  }
+    /**
+     * Converts the `type` field of `ApiError` in serialized string to
+     * `errorString` during denormalization.
+     *
+     * @see NameConverterInterface::denormalize()
+     */
+    public function denormalize($propertyName)
+    {
+        return ($propertyName === 'type') ? 'errorString' : $propertyName;
+    }
 }

@@ -14,26 +14,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\AdWords\Testing;
 
 /**
  * A fake MutateResult class for testing purpose.
  */
-final class FakeMutateResult {
+final class FakeMutateResult
+{
 
-  protected $result = null;
+    protected $result = null;
 
-  /**
-   * @return \Google\AdsApi\AdWords\Testing\FakeOperand[]
-   */
-  public function getResult() {
-    return $this->result;
-  }
+    /**
+     * @return \Google\AdsApi\AdWords\Testing\FakeOperand[]
+     */
+    public function getResult()
+    {
+        return $this->result;
+    }
 
-  /**
-   * @param \Google\AdsApi\AdWords\Testing\FakeOperand[] $result
-   */
-  public function setResult($result) {
-    $this->result = $result;
-  }
+    /**
+     * @param \Google\AdsApi\AdWords\Testing\FakeOperand[] $result
+     */
+    public function setResult($result)
+    {
+        $this->result = $result;
+    }
 }

@@ -64,7 +64,7 @@ class ExchangeRate
      */
     public function setId($id)
     {
-      $this->id = (PHP_INT_SIZE === 4)
+      $this->id = (!is_null(id) && PHP_INT_SIZE === 4)
           ? floatval($id) : $id;
       return $this;
     }
@@ -137,7 +137,7 @@ class ExchangeRate
      */
     public function setExchangeRate($exchangeRate)
     {
-      $this->exchangeRate = (PHP_INT_SIZE === 4)
+      $this->exchangeRate = (!is_null(exchangeRate) && PHP_INT_SIZE === 4)
           ? floatval($exchangeRate) : $exchangeRate;
       return $this;
     }

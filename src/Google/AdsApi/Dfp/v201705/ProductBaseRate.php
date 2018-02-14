@@ -46,7 +46,7 @@ class ProductBaseRate extends \Google\AdsApi\Dfp\v201705\BaseRate
      */
     public function setProductId($productId)
     {
-      $this->productId = (PHP_INT_SIZE === 4)
+      $this->productId = (!is_null(productId) && PHP_INT_SIZE === 4)
           ? floatval($productId) : $productId;
       return $this;
     }

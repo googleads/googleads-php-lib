@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\ProductTemplateService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -44,97 +45,98 @@ use Google\AdsApi\Dfp\v201711\Size;
  * requires that you've setup an `adsapi_php.ini` file in your home directory
  * with your API credentials and settings. See `README.md` for more info.
  */
-class CreateProgrammaticProductTemplates {
+class CreateProgrammaticProductTemplates
+{
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session) {
-    $productTemplateService =
-        $dfpServices->get($session, ProductTemplateService::class);
-    $networkService = $dfpServices->get($session, NetworkService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session
+    ) {
+        $productTemplateService = $dfpServices->get($session, ProductTemplateService::class);
+        $networkService = $dfpServices->get($session, NetworkService::class);
 
-    // Create a product template that will have standard proposal line items and
-    // be trafficked in DFP.
-    $productTemplate = new ProductTemplate();
-    $productTemplate->setName('Product template #' . uniqid());
-    $productTemplate->setLineItemType(LineItemType::STANDARD);
-    $productTemplate->setProductType(ProductType::DFP);
-    $productTemplate->setDescription('This product template creates standard '
-        . 'programmatic proposal line items targeting all ad units with '
-        . 'product segmentation on geo targeting.');
-    $productTemplate->setRateType(RateType::CPM);
+        // Create a product template that will have standard proposal line items and
+        // be trafficked in DFP.
+        $productTemplate = new ProductTemplate();
+        $productTemplate->setName('Product template #' . uniqid());
+        $productTemplate->setLineItemType(LineItemType::STANDARD);
+        $productTemplate->setProductType(ProductType::DFP);
+        $productTemplate->setDescription(
+            'This product template creates standard '
+            . 'programmatic proposal line items targeting all ad units with '
+            . 'product segmentation on geo targeting.'
+        );
+        $productTemplate->setRateType(RateType::CPM);
 
-    // Set required Marketplace information.
-    $marketplaceInfo = new ProductTemplateMarketplaceInfo();
-    $marketplaceInfo->setAdExchangeEnvironment(AdExchangeEnvironment::DISPLAY);
-    $productTemplate->setProductTemplateMarketplaceInfo($marketplaceInfo);
+        // Set required Marketplace information.
+        $marketplaceInfo = new ProductTemplateMarketplaceInfo();
+        $marketplaceInfo->setAdExchangeEnvironment(AdExchangeEnvironment::DISPLAY);
+        $productTemplate->setProductTemplateMarketplaceInfo($marketplaceInfo);
 
-    // Set the name macro which will be used to generate the names of the
-    // products. This will create a segmentation based on the line item type, ad
-    // unit, and location.
-    $productTemplate->setNameMacro(
-        '<line-item-type> - <ad-unit> - <template-name> - <location>');
+        // Set the name macro which will be used to generate the names of the
+        // products. This will create a segmentation based on the line item type, ad
+        // unit, and location.
+        $productTemplate->setNameMacro(
+            '<line-item-type> - <ad-unit> - <template-name> - <location>'
+        );
 
-    // Set the size of creatives that can be associated with the product template.
-    $creativePlaceholder = new CreativePlaceholder();
-    $creativePlaceholder->setSize(new Size(728, 90, false));
-    $productTemplate->setCreativePlaceholders([$creativePlaceholder]);
+        // Set the size of creatives that can be associated with the product template.
+        $creativePlaceholder = new CreativePlaceholder();
+        $creativePlaceholder->setSize(new Size(728, 90, false));
+        $productTemplate->setCreativePlaceholders([$creativePlaceholder]);
 
-    // Create ad unit targeting for the root ad unit (i.e. the whole network).
-    $rootAdUnitId =
-        $networkService->getCurrentNetwork()->getEffectiveRootAdUnitId();
-    $adUnitTargeting = new AdUnitTargeting();
-    $adUnitTargeting->setAdUnitId($rootAdUnitId);
-    $adUnitTargeting->setIncludeDescendants(true);
+        // Create ad unit targeting for the root ad unit (i.e. the whole network).
+        $rootAdUnitId = $networkService->getCurrentNetwork()
+            ->getEffectiveRootAdUnitId();
+        $adUnitTargeting = new AdUnitTargeting();
+        $adUnitTargeting->setAdUnitId($rootAdUnitId);
+        $adUnitTargeting->setIncludeDescendants(true);
 
-    // Create geo targeting for the US.
-    $countryLocation = new Location();
-    $countryLocation->setId(2840);
+        // Create geo targeting for the US.
+        $countryLocation = new Location();
+        $countryLocation->setId(2840);
 
-    // Create geo targeting for Hong Kong.
-    $regionLocation = new Location();
-    $regionLocation->setId(2344);
+        // Create geo targeting for Hong Kong.
+        $regionLocation = new Location();
+        $regionLocation->setId(2344);
 
-    $geoTargeting = new GeoTargeting();
-    $geoTargeting
-        ->setTargetedLocations([$countryLocation, $regionLocation]);
+        $geoTargeting = new GeoTargeting();
+        $geoTargeting->setTargetedLocations([$countryLocation, $regionLocation]);
 
-    // Add geo as product segmentation.
-    $productSegmentation = new ProductSegmentation();
-    $productSegmentation->setAdUnitSegments([$adUnitTargeting]);
-    $productSegmentation->setGeoSegment($geoTargeting);
-    $productTemplate->setProductSegmentation($productSegmentation);
+        // Add geo as product segmentation.
+        $productSegmentation = new ProductSegmentation();
+        $productSegmentation->setAdUnitSegments([$adUnitTargeting]);
+        $productSegmentation->setGeoSegment($geoTargeting);
+        $productTemplate->setProductSegmentation($productSegmentation);
 
-    // Create the product templates on the server.
-    $results =
-        $productTemplateService->createProductTemplates([$productTemplate]);
+        // Create the product templates on the server.
+        $results = $productTemplateService->createProductTemplates([$productTemplate]);
 
-    // Print out some information for each created product template.
-    foreach ($results as $i => $productTemplate) {
-      printf(
-          "%d) Programmatic product template with ID %d and name '%s' was "
-              . "created.\n",
-          $i,
-          $productTemplate->getId(),
-          $productTemplate->getName()
-      );
+        // Print out some information for each created product template.
+        foreach ($results as $i => $productTemplate) {
+            printf(
+                "%d) Programmatic product template with ID %d and name '%s' was created.\n",
+                $i,
+                $productTemplate->getId(),
+                $productTemplate->getName()
+            );
+        }
     }
-  }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(new DfpServices(), $session);
-  }
+        self::runExample(new DfpServices(), $session);
+    }
 }
 
 CreateProgrammaticProductTemplates::main();

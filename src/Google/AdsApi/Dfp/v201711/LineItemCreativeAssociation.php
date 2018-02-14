@@ -127,7 +127,7 @@ class LineItemCreativeAssociation
      */
     public function setLineItemId($lineItemId)
     {
-      $this->lineItemId = (PHP_INT_SIZE === 4)
+      $this->lineItemId = (!is_null(lineItemId) && PHP_INT_SIZE === 4)
           ? floatval($lineItemId) : $lineItemId;
       return $this;
     }
@@ -146,7 +146,7 @@ class LineItemCreativeAssociation
      */
     public function setCreativeId($creativeId)
     {
-      $this->creativeId = (PHP_INT_SIZE === 4)
+      $this->creativeId = (!is_null(creativeId) && PHP_INT_SIZE === 4)
           ? floatval($creativeId) : $creativeId;
       return $this;
     }
@@ -165,7 +165,7 @@ class LineItemCreativeAssociation
      */
     public function setCreativeSetId($creativeSetId)
     {
-      $this->creativeSetId = (PHP_INT_SIZE === 4)
+      $this->creativeSetId = (!is_null(creativeSetId) && PHP_INT_SIZE === 4)
           ? floatval($creativeSetId) : $creativeSetId;
       return $this;
     }

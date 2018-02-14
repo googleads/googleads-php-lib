@@ -117,6 +117,8 @@ class OfflineDataUploadService extends \Google\AdsApi\Common\AdsSoapClient
      *
      * <p>Set - updates the upload result for each upload. It is for internal use only.
      *
+     * <p><b>Note:</b> For AdWords API, one ADD request can have at most 2000 operations.
+     *
      * <p><b>Note:</b> Add operation might possibly succeed even with errors in {@code OfflineData}.
      * Data errors are reported in {@link OfflineDataUpload#partialDataErrors}
      *

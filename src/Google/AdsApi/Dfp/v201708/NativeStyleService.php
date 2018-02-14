@@ -58,6 +58,7 @@ class NativeStyleService extends \Google\AdsApi\Common\AdsSoapClient
       'GeoTargeting' => 'Google\\AdsApi\\Dfp\\v201708\\GeoTargeting',
       'ImageError' => 'Google\\AdsApi\\Dfp\\v201708\\ImageError',
       'InternalApiError' => 'Google\\AdsApi\\Dfp\\v201708\\InternalApiError',
+      'InvalidUrlError' => 'Google\\AdsApi\\Dfp\\v201708\\InvalidUrlError',
       'InventoryTargeting' => 'Google\\AdsApi\\Dfp\\v201708\\InventoryTargeting',
       'Location' => 'Google\\AdsApi\\Dfp\\v201708\\Location',
       'MobileApplicationTargeting' => 'Google\\AdsApi\\Dfp\\v201708\\MobileApplicationTargeting',

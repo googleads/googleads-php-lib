@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\RateCardService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -32,64 +33,65 @@ use Google\AdsApi\Dfp\v201711\RateCardService;
  * that you've setup an `adsapi_php.ini` file in your home directory with your
  * API credentials and settings. See README.md for more info.
  */
-class GetMarketplaceRateCards {
+class GetMarketplaceRateCards
+{
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session) {
-    $rateCardService =
-        $dfpServices->get($session, RateCardService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session
+    ) {
+        $rateCardService = $dfpServices->get($session, RateCardService::class);
 
-    // Create a statement to select rate cards.
-    $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
-    $statementBuilder = (new StatementBuilder())
-        ->where('forMarketplace = :forMarketplace')
-        ->orderBy('id ASC')
-        ->limit($pageSize)
-        ->withBindVariableValue('forMarketplace', true);
+        // Create a statement to select rate cards.
+        $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
+        $statementBuilder = (new StatementBuilder())->where('forMarketplace = :forMarketplace')
+            ->orderBy('id ASC')
+            ->limit($pageSize)
+            ->withBindVariableValue('forMarketplace', true);
 
-    // Retrieve a small amount of rate cards at a time, paging
-    // through until all rate cards have been retrieved.
-    $totalResultSetSize = 0;
-    do {
-      $page = $rateCardService->getRateCardsByStatement(
-          $statementBuilder->toStatement());
+        // Retrieve a small amount of rate cards at a time, paging
+        // through until all rate cards have been retrieved.
+        $totalResultSetSize = 0;
+        do {
+            $page = $rateCardService->getRateCardsByStatement(
+                $statementBuilder->toStatement()
+            );
 
-      // Print out some information for each rate card.
-      if ($page->getResults() !== null) {
-        $totalResultSetSize = $page->getTotalResultSetSize();
-        $i = $page->getStartIndex();
-        foreach ($page->getResults() as $rateCard) {
-          printf(
-              "%d) Rate card with ID %d, name '%s', and currency code '%s' was found.\n",
-              $i++,
-              $rateCard->getId(),
-              $rateCard->getName(),
-              $rateCard->getCurrencyCode()
-          );
-        }
-      }
+            // Print out some information for each rate card.
+            if ($page->getResults() !== null) {
+                $totalResultSetSize = $page->getTotalResultSetSize();
+                $i = $page->getStartIndex();
+                foreach ($page->getResults() as $rateCard) {
+                    printf(
+                        "%d) Rate card with ID %d, name '%s', and currency code '%s' was found.\n",
+                        $i++,
+                        $rateCard->getId(),
+                        $rateCard->getName(),
+                        $rateCard->getCurrencyCode()
+                    );
+                }
+            }
 
-      $statementBuilder->increaseOffsetBy($pageSize);
-    } while ($statementBuilder->getOffset() < $totalResultSetSize);
+            $statementBuilder->increaseOffsetBy($pageSize);
+        } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-    printf("Number of results found: %d\n", $totalResultSetSize);
-  }
+        printf("Number of results found: %d\n", $totalResultSetSize);
+    }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(new DfpServices(), $session);
-  }
+        self::runExample(new DfpServices(), $session);
+    }
 }
 
 GetMarketplaceRateCards::main();

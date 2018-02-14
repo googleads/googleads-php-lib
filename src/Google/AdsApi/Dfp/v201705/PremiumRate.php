@@ -64,7 +64,7 @@ class PremiumRate
      */
     public function setId($id)
     {
-      $this->id = (PHP_INT_SIZE === 4)
+      $this->id = (!is_null(id) && PHP_INT_SIZE === 4)
           ? floatval($id) : $id;
       return $this;
     }
@@ -83,7 +83,7 @@ class PremiumRate
      */
     public function setRateCardId($rateCardId)
     {
-      $this->rateCardId = (PHP_INT_SIZE === 4)
+      $this->rateCardId = (!is_null(rateCardId) && PHP_INT_SIZE === 4)
           ? floatval($rateCardId) : $rateCardId;
       return $this;
     }

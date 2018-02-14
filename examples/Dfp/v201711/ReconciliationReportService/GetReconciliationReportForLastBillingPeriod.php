@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\ReconciliationReportService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -36,76 +37,80 @@ use Google\AdsApi\Dfp\v201711\ReconciliationReportService;
  * that you've setup an `adsapi_php.ini` file in your home directory with your
  * API credentials and settings. See README.md for more info.
  */
-class GetReconciliationReportForLastBillingPeriod {
+class GetReconciliationReportForLastBillingPeriod
+{
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session) {
-    $reconciliationReportService =
-        $dfpServices->get($session, ReconciliationReportService::class);
+    public static function runExample(DfpServices $dfpServices, DfpSession $session)
+    {
+        $reconciliationReportService =
+            $dfpServices->get($session, ReconciliationReportService::class);
 
-    $networkService = $dfpServices->get($session, NetworkService::class);
-    $network = $networkService->getCurrentNetwork();
+        $networkService = $dfpServices->get($session, NetworkService::class);
+        $network = $networkService->getCurrentNetwork();
 
-    // Create a statement to select reconciliation reports.
-    $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
-    $statementBuilder = (new StatementBuilder())
-        ->where('startDate = :startDate')
-        ->orderBy('id ASC')
-        ->limit($pageSize)
-        ->withBindVariableValue(
-            'startDate',
-            DfpDateTimes::fromDateTime(
-                new DateTime(
-                    'first day of last month',
-                    new DateTimeZone($network->getTimeZone())
+        // Create a statement to select reconciliation reports.
+        $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
+        $statementBuilder = (new StatementBuilder())->where('startDate = :startDate')
+            ->orderBy('id ASC')
+            ->limit(
+                $pageSize
+            )
+            ->withBindVariableValue(
+                'startDate',
+                DfpDateTimes::fromDateTime(
+                    new DateTime(
+                        'first day of last month',
+                        new DateTimeZone($network->getTimeZone())
+                    )
                 )
-            )->getDate()
-        );
+                    ->getDate()
+            );
 
-    // Retrieve a small amount of reconciliation reports at a time, paging
-    // through until all reconciliation reports have been retrieved.
-    $totalResultSetSize = 0;
-    do {
-      $page = $reconciliationReportService->getReconciliationReportsByStatement(
-          $statementBuilder->toStatement());
+        // Retrieve a small amount of reconciliation reports at a time, paging
+        // through until all reconciliation reports have been retrieved.
+        $totalResultSetSize = 0;
+        do {
+            $page = $reconciliationReportService->getReconciliationReportsByStatement(
+                $statementBuilder->toStatement()
+            );
 
-      // Print out some information for each reconciliation report.
-      if ($page->getResults() !== null) {
-        $totalResultSetSize = $page->getTotalResultSetSize();
-        $i = $page->getStartIndex();
-        foreach ($page->getResults() as $reconciliationReport) {
-          printf(
-              "%d) Reconciliation report with ID %d for month %d/%d was "
-                  . "found.\n",
-              $i++,
-              $reconciliationReport->getId(),
-              $reconciliationReport->getStartDate()->getMonth(),
-              $reconciliationReport->getStartDate()->getYear()
-          );
-        }
-      }
+            // Print out some information for each reconciliation report.
+            if ($page->getResults() !== null) {
+                $totalResultSetSize = $page->getTotalResultSetSize();
+                $i = $page->getStartIndex();
+                foreach ($page->getResults() as $reconciliationReport) {
+                    printf(
+                        "%d) Reconciliation report with ID %d for month %d/%d was found.\n",
+                        $i++,
+                        $reconciliationReport->getId(),
+                        $reconciliationReport->getStartDate()
+                            ->getMonth(),
+                        $reconciliationReport->getStartDate()
+                            ->getYear()
+                    );
+                }
+            }
 
-      $statementBuilder->increaseOffsetBy($pageSize);
-    } while ($statementBuilder->getOffset() < $totalResultSetSize);
+            $statementBuilder->increaseOffsetBy($pageSize);
+        } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-    printf("Number of results found: %d\n", $totalResultSetSize);
-  }
+        printf("Number of results found: %d\n", $totalResultSetSize);
+    }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(new DfpServices(), $session);
-  }
+        self::runExample(new DfpServices(), $session);
+    }
 }
 
 GetReconciliationReportForLastBillingPeriod::main();

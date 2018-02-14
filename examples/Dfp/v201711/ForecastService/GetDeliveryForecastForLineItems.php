@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\ForecastService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -28,49 +29,66 @@ use Google\AdsApi\Dfp\v201711\ForecastService;
 /**
  * Gets a delivery forecast for existing line items.
  */
-class GetDeliveryForecastForLineItems {
+class GetDeliveryForecastForLineItems
+{
 
-  // Set the IDs of the line items to get a forecast for.
-  const LINE_ITEM_ID_1 = 'INSERT_LINE_ITEM_ID_HERE';
-  const LINE_ITEM_ID_2 = 'INSERT_LINE_ITEM_ID_HERE';
+    // Set the IDs of the line items to get a forecast for.
+    const LINE_ITEM_ID_1 = 'INSERT_LINE_ITEM_ID_HERE';
+    const LINE_ITEM_ID_2 = 'INSERT_LINE_ITEM_ID_HERE';
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session, $lineItemId1, $lineItemId2) {
-    $forecastService = $dfpServices->get($session, ForecastService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session,
+        $lineItemId1,
+        $lineItemId2
+    ) {
+        $forecastService = $dfpServices->get($session, ForecastService::class);
 
-    // Get forecast for the line items with no options set.
-    $forecast = $forecastService->getDeliveryForecastByIds(
-        [$lineItemId1, $lineItemId2], new DeliveryForecastOptions());
+        // Get forecast for the line items with no options set.
+        $forecast = $forecastService->getDeliveryForecastByIds(
+            [$lineItemId1, $lineItemId2],
+            new DeliveryForecastOptions()
+        );
 
-    // Print out forecast results.
-    foreach ($forecast->getLineItemDeliveryForecasts() as $lineItemForecast) {
-      $unitType = strtolower($lineItemForecast->getUnitType());
-      printf("Forecast for line item ID %d:\n",
-          $lineItemForecast->getLineItemId());
-      printf("    %d %s matched\n",
-          $lineItemForecast->getMatchedUnits(), $unitType);
-      printf("    %d %s delivered\n",
-          $lineItemForecast->getDeliveredUnits(), $unitType);
-      printf("    %d %s predicted\n",
-          $lineItemForecast->getPredictedDeliveryUnits(), $unitType);
+        // Print out forecast results.
+        foreach ($forecast->getLineItemDeliveryForecasts() as $lineItemForecast) {
+            $unitType = strtolower($lineItemForecast->getUnitType());
+            printf(
+                "Forecast for line item ID %d:\n",
+                $lineItemForecast->getLineItemId()
+            );
+            printf(
+                "    %d %s matched\n",
+                $lineItemForecast->getMatchedUnits(),
+                $unitType
+            );
+            printf(
+                "    %d %s delivered\n",
+                $lineItemForecast->getDeliveredUnits(),
+                $unitType
+            );
+            printf(
+                "    %d %s predicted\n",
+                $lineItemForecast->getPredictedDeliveryUnits(),
+                $unitType
+            );
+        }
     }
-  }
 
-  public static function main() {
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
-    self::runExample(
-        new DfpServices(),
-        $session,
-        intval(self::LINE_ITEM_ID_1),
-        intval(self::LINE_ITEM_ID_2)
-    );
-  }
+    public static function main()
+    {
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
+        self::runExample(
+            new DfpServices(),
+            $session,
+            intval(self::LINE_ITEM_ID_1),
+            intval(self::LINE_ITEM_ID_2)
+        );
+    }
 }
 
 GetDeliveryForecastForLineItems::main();

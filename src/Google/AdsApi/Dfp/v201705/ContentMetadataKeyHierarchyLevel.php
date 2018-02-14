@@ -43,7 +43,7 @@ class ContentMetadataKeyHierarchyLevel
      */
     public function setCustomTargetingKeyId($customTargetingKeyId)
     {
-      $this->customTargetingKeyId = (PHP_INT_SIZE === 4)
+      $this->customTargetingKeyId = (!is_null(customTargetingKeyId) && PHP_INT_SIZE === 4)
           ? floatval($customTargetingKeyId) : $customTargetingKeyId;
       return $this;
     }

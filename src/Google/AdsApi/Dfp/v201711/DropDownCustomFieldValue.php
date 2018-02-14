@@ -38,7 +38,7 @@ class DropDownCustomFieldValue extends \Google\AdsApi\Dfp\v201711\BaseCustomFiel
      */
     public function setCustomFieldOptionId($customFieldOptionId)
     {
-      $this->customFieldOptionId = (PHP_INT_SIZE === 4)
+      $this->customFieldOptionId = (!is_null(customFieldOptionId) && PHP_INT_SIZE === 4)
           ? floatval($customFieldOptionId) : $customFieldOptionId;
       return $this;
     }

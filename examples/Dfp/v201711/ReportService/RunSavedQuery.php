@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\ReportService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -33,68 +34,71 @@ use UnexpectedValueException;
 /**
  * This example retrieves and runs a saved report query.
  */
-class RunSavedQuery {
+class RunSavedQuery
+{
 
-  const SAVED_QUERY_ID = 'INSERT_SAVED_QUERY_ID_HERE';
+    const SAVED_QUERY_ID = 'INSERT_SAVED_QUERY_ID_HERE';
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session, $savedQueryId) {
-    $reportService = $dfpServices->get($session, ReportService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session,
+        $savedQueryId
+    ) {
+        $reportService = $dfpServices->get($session, ReportService::class);
 
-    // Create statement to retrieve the saved query.
-    $statementBuilder = (new StatementBuilder())
-        ->where('id = :id')
-        ->orderBy('id ASC')
-        ->limit(1)
-        ->withBindVariableValue('id', $savedQueryId);
+        // Create statement to retrieve the saved query.
+        $statementBuilder = (new StatementBuilder())->where('id = :id')
+            ->orderBy('id ASC')
+            ->limit(1)
+            ->withBindVariableValue('id', $savedQueryId);
 
-    $savedQueryPage = $reportService->getSavedQueriesByStatement(
-        $statementBuilder->toStatement());
-    $savedQuery = $savedQueryPage->getResults()[0];
+        $savedQueryPage = $reportService->getSavedQueriesByStatement(
+            $statementBuilder->toStatement()
+        );
+        $savedQuery = $savedQueryPage->getResults()[0];
 
-    if ($savedQuery->getIsCompatibleWithApiVersion() === false) {
-      throw new UnexpectedValueException(
-          'The saved query is not compatible with this API version.');
+        if ($savedQuery->getIsCompatibleWithApiVersion() === false) {
+            throw new UnexpectedValueException(
+                'The saved query is not compatible with this API version.'
+            );
+        }
+
+        // Optionally modify the query.
+        $reportQuery = $savedQuery->getReportQuery();
+        $reportQuery->setAdUnitView(ReportQueryAdUnitView::HIERARCHICAL);
+
+        // Create report job using the saved query.
+        $reportJob = new ReportJob();
+        $reportJob->setReportQuery($reportQuery);
+
+        $reportJob = $reportService->runReportJob($reportJob);
+
+        // Create report downloader to poll report's status and download when ready.
+        $reportDownloader = new ReportDownloader($reportService, $reportJob->getId());
+        if ($reportDownloader->waitForReportToFinish()) {
+            // Write to system temp directory by default.
+            $filePath = sprintf(
+                '%s.csv.gz',
+                tempnam(sys_get_temp_dir(), 'saved-report-')
+            );
+            printf("Downloading report to %s ...\n", $filePath);
+            // Download the report.
+            $reportDownloader->downloadReport(ExportFormat::CSV_DUMP, $filePath);
+            print "done.\n";
+        } else {
+            print "Report failed.\n";
+        }
     }
 
-    // Optionally modify the query.
-    $reportQuery = $savedQuery->getReportQuery();
-    $reportQuery->setAdUnitView(ReportQueryAdUnitView::HIERARCHICAL);
-
-    // Create report job using the saved query.
-    $reportJob = new ReportJob();
-    $reportJob->setReportQuery($reportQuery);
-
-    $reportJob = $reportService->runReportJob($reportJob);
-
-    // Create report downloader to poll report's status and download when ready.
-    $reportDownloader =
-        new ReportDownloader($reportService, $reportJob->getId());
-    if ($reportDownloader->waitForReportToFinish()) {
-      // Write to system temp directory by default.
-      $filePath = sprintf(
-          '%s.csv.gz',
-          tempnam(sys_get_temp_dir(), 'saved-report-')
-      );
-      printf("Downloading report to %s ...\n", $filePath);
-      // Download the report.
-      $reportDownloader->downloadReport(ExportFormat::CSV_DUMP, $filePath);
-      print "done.\n";
-    } else {
-      print "Report failed.\n";
+    public static function main()
+    {
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
+        self::runExample(new DfpServices(), $session, intval(self::SAVED_QUERY_ID));
     }
-  }
-
-  public static function main() {
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
-    self::runExample(new DfpServices(), $session, intval(self::SAVED_QUERY_ID));
-  }
 }
 
 RunSavedQuery::main();

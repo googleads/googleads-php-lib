@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\PlacementService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -33,83 +34,92 @@ use Google\AdsApi\Dfp\v201711\PlacementService;
  * requires that you've setup an `adsapi_php.ini` file in your home directory
  * with your API credentials and settings. See `README.md` for more info.
  */
-class DeactivatePlacements {
+class DeactivatePlacements
+{
 
-  const PLACEMENT_ID = 'INSERT_PLACEMENT_ID_HERE';
+    const PLACEMENT_ID = 'INSERT_PLACEMENT_ID_HERE';
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session, $placementId) {
-    $placementService = $dfpServices->get($session, PlacementService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session,
+        $placementId
+    ) {
+        $placementService = $dfpServices->get($session, PlacementService::class);
 
-    // Create a statement to select the placements to deactivate.
-    $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
-    $statementBuilder = (new StatementBuilder())
-        ->where('id = :id')
-        ->orderBy('id ASC')
-        ->limit($pageSize)
-        ->withBindVariableValue('id', $placementId);
+        // Create a statement to select the placements to deactivate.
+        $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
+        $statementBuilder = (new StatementBuilder())->where('id = :id')
+            ->orderBy('id ASC')
+            ->limit($pageSize)
+            ->withBindVariableValue('id', $placementId);
 
-    // Retrieve a small amount of placements at a time, paging
-    // through until all placements have been retrieved.
-    $totalResultSetSize = 0;
-    do {
-      $page = $placementService->getPlacementsByStatement(
-          $statementBuilder->toStatement());
+        // Retrieve a small amount of placements at a time, paging
+        // through until all placements have been retrieved.
+        $totalResultSetSize = 0;
+        do {
+            $page = $placementService->getPlacementsByStatement(
+                $statementBuilder->toStatement()
+            );
 
-      // Print out some information for the placements to be
-      // deactivated.
-      if ($page->getResults() !== null) {
-        $totalResultSetSize = $page->getTotalResultSetSize();
-        $i = $page->getStartIndex();
-        foreach ($page->getResults() as $placement) {
-          printf(
-              "%d) Placement with ID %d and name '%s' will be deactivated.\n",
-              $i++,
-              $placement->getId(),
-              $placement->getName()
-          );
-        }
-      }
+            // Print out some information for the placements to be
+            // deactivated.
+            if ($page->getResults() !== null) {
+                $totalResultSetSize = $page->getTotalResultSetSize();
+                $i = $page->getStartIndex();
+                foreach ($page->getResults() as $placement) {
+                    printf(
+                        "%d) Placement with ID %d and name '%s' will be deactivated.\n",
+                        $i++,
+                        $placement->getId(),
+                        $placement->getName()
+                    );
+                }
+            }
 
-      $statementBuilder->increaseOffsetBy($pageSize);
-    } while ($statementBuilder->getOffset() < $totalResultSetSize);
+            $statementBuilder->increaseOffsetBy($pageSize);
+        } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-    printf("Total number of placements to be deactivated: %d\n",
-        $totalResultSetSize);
-
-    if ($totalResultSetSize > 0) {
-      // Remove limit and offset from statement so we can reuse the statement.
-      $statementBuilder->removeLimitAndOffset();
-
-      // Create and perform action.
-      $action = new DeactivatePlacementsAction();
-      $result = $placementService->performPlacementAction($action,
-          $statementBuilder->toStatement());
-
-      if ($result !== null && $result->getNumChanges() > 0) {
         printf(
-            "Number of placements deactivated: %d\n", $result->getNumChanges());
-      } else {
-        printf("No placements were deactivated.\n");
-      }
+            "Total number of placements to be deactivated: %d\n",
+            $totalResultSetSize
+        );
+
+        if ($totalResultSetSize > 0) {
+            // Remove limit and offset from statement so we can reuse the statement.
+            $statementBuilder->removeLimitAndOffset();
+
+            // Create and perform action.
+            $action = new DeactivatePlacementsAction();
+            $result = $placementService->performPlacementAction(
+                $action,
+                $statementBuilder->toStatement()
+            );
+
+            if ($result !== null && $result->getNumChanges() > 0) {
+                printf(
+                    "Number of placements deactivated: %d\n",
+                    $result->getNumChanges()
+                );
+            } else {
+                printf("No placements were deactivated.\n");
+            }
+        }
     }
-  }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(new DfpServices(), $session, intval(self::PLACEMENT_ID));
-  }
+        self::runExample(new DfpServices(), $session, intval(self::PLACEMENT_ID));
+    }
 }
 
 DeactivatePlacements::main();

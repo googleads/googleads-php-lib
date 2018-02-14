@@ -183,7 +183,7 @@ class LiveStreamEvent
      */
     public function setId($id)
     {
-      $this->id = (PHP_INT_SIZE === 4)
+      $this->id = (!is_null(id) && PHP_INT_SIZE === 4)
           ? floatval($id) : $id;
       return $this;
     }
@@ -328,7 +328,7 @@ class LiveStreamEvent
      */
     public function setTotalEstimatedConcurrentUsers($totalEstimatedConcurrentUsers)
     {
-      $this->totalEstimatedConcurrentUsers = (PHP_INT_SIZE === 4)
+      $this->totalEstimatedConcurrentUsers = (!is_null(totalEstimatedConcurrentUsers) && PHP_INT_SIZE === 4)
           ? floatval($totalEstimatedConcurrentUsers) : $totalEstimatedConcurrentUsers;
       return $this;
     }
@@ -527,7 +527,7 @@ class LiveStreamEvent
      */
     public function setAdHolidayDuration($adHolidayDuration)
     {
-      $this->adHolidayDuration = (PHP_INT_SIZE === 4)
+      $this->adHolidayDuration = (!is_null(adHolidayDuration) && PHP_INT_SIZE === 4)
           ? floatval($adHolidayDuration) : $adHolidayDuration;
       return $this;
     }
@@ -564,7 +564,7 @@ class LiveStreamEvent
      */
     public function setDefaultAdBreakDuration($defaultAdBreakDuration)
     {
-      $this->defaultAdBreakDuration = (PHP_INT_SIZE === 4)
+      $this->defaultAdBreakDuration = (!is_null(defaultAdBreakDuration) && PHP_INT_SIZE === 4)
           ? floatval($defaultAdBreakDuration) : $defaultAdBreakDuration;
       return $this;
     }

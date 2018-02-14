@@ -92,7 +92,7 @@ abstract class Creative
      */
     public function setAdvertiserId($advertiserId)
     {
-      $this->advertiserId = (PHP_INT_SIZE === 4)
+      $this->advertiserId = (!is_null(advertiserId) && PHP_INT_SIZE === 4)
           ? floatval($advertiserId) : $advertiserId;
       return $this;
     }
@@ -111,7 +111,7 @@ abstract class Creative
      */
     public function setId($id)
     {
-      $this->id = (PHP_INT_SIZE === 4)
+      $this->id = (!is_null(id) && PHP_INT_SIZE === 4)
           ? floatval($id) : $id;
       return $this;
     }

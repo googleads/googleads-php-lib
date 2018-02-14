@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\CdnConfigurationService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -38,105 +39,114 @@ use Google\AdsApi\Dfp\v201711\SourceContentConfiguration;
  * requires that you've setup an `adsapi_php.ini` file in your home directory
  * with your API credentials and settings. See `README.md` for more info.
  */
-class CreateCdnConfigurations {
+class CreateCdnConfigurations
+{
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session) {
-    $cdnConfigurationService =
-        $dfpServices->get($session, CdnConfigurationService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session
+    ) {
+        $cdnConfigurationService = $dfpServices->get($session, CdnConfigurationService::class);
 
-    // Make CDN Configuration objects.
-    // Only LIVE_STREAM_SOURCE_CONTENT is currently supported by the API.
+        // Make CDN Configuration objects.
+        // Only LIVE_STREAM_SOURCE_CONTENT is currently supported by the API.
 
-    // Basic example with no security policies.
-    $noneSecurityPolicy = new SecurityPolicySettings(
-        SecurityPolicyType::NONE);
+        // Basic example with no security policies.
+        $noneSecurityPolicy = new SecurityPolicySettings(
+            SecurityPolicyType::NONE
+        );
 
-    $ingestSettings = new MediaLocationSettings();
-    $ingestSettings->setUrlPrefix('ingest1.com');
-    $ingestSettings->setSecurityPolicy($noneSecurityPolicy);
+        $ingestSettings = new MediaLocationSettings();
+        $ingestSettings->setUrlPrefix('ingest1.com');
+        $ingestSettings->setSecurityPolicy($noneSecurityPolicy);
 
-    $deliverySettings = new MediaLocationSettings();
-    $deliverySettings->setUrlPrefix('delivery1.com');
-    $deliverySettings->setSecurityPolicy($noneSecurityPolicy);
+        $deliverySettings = new MediaLocationSettings();
+        $deliverySettings->setUrlPrefix('delivery1.com');
+        $deliverySettings->setSecurityPolicy($noneSecurityPolicy);
 
-    $sourceConfig = new SourceContentConfiguration();
-    $sourceConfig->setIngestSettings($ingestSettings);
-    $sourceConfig->setDefaultDeliverySettings($deliverySettings);
+        $sourceConfig = new SourceContentConfiguration();
+        $sourceConfig->setIngestSettings($ingestSettings);
+        $sourceConfig->setDefaultDeliverySettings($deliverySettings);
 
-    $cdnConfigWithoutSecurityPolicy = new CdnConfiguration();
-    $cdnConfigWithoutSecurityPolicy->setName('ApiConfig1');
-    $cdnConfigWithoutSecurityPolicy->setCdnConfigurationType(
-        CdnConfigurationType::LIVE_STREAM_SOURCE_CONTENT);
-    $cdnConfigWithoutSecurityPolicy->setSourceContentConfiguration(
-        $sourceConfig);
+        $cdnConfigWithoutSecurityPolicy = new CdnConfiguration();
+        $cdnConfigWithoutSecurityPolicy->setName('ApiConfig1');
+        $cdnConfigWithoutSecurityPolicy->setCdnConfigurationType(
+            CdnConfigurationType::LIVE_STREAM_SOURCE_CONTENT
+        );
+        $cdnConfigWithoutSecurityPolicy->setSourceContentConfiguration(
+            $sourceConfig
+        );
 
-    // Complex example with security policies
-    $ingestSecurityPolicy = new SecurityPolicySettings(
-        SecurityPolicyType::AKAMAI);
-    $ingestSecurityPolicy->setDisableServerSideUrlSigning(false);
-    $ingestSecurityPolicy->setTokenAuthenticationKey('abc123');
+        // Complex example with security policies
+        $ingestSecurityPolicy = new SecurityPolicySettings(
+            SecurityPolicyType::AKAMAI
+        );
+        $ingestSecurityPolicy->setDisableServerSideUrlSigning(false);
+        $ingestSecurityPolicy->setTokenAuthenticationKey('abc123');
 
-    $securedIngestSettings = new MediaLocationSettings();
-    $securedIngestSettings->setUrlPrefix('ingest1.com');
-    $securedIngestSettings->setSecurityPolicy($ingestSecurityPolicy);
+        $securedIngestSettings = new MediaLocationSettings();
+        $securedIngestSettings->setUrlPrefix('ingest1.com');
+        $securedIngestSettings->setSecurityPolicy($ingestSecurityPolicy);
 
-    $deliverySecurityPolicy = new SecurityPolicySettings(
-        SecurityPolicyType::AKAMAI);
-    $deliverySecurityPolicy->setDisableServerSideUrlSigning(true);
-    $deliverySecurityPolicy->setOriginForwardingType(
-        OriginForwardingType::CONVENTIONAL);
-    $deliverySecurityPolicy->setOriginPathPrefix('/path/to/my/origin');
+        $deliverySecurityPolicy = new SecurityPolicySettings(
+            SecurityPolicyType::AKAMAI
+        );
+        $deliverySecurityPolicy->setDisableServerSideUrlSigning(true);
+        $deliverySecurityPolicy->setOriginForwardingType(
+            OriginForwardingType::CONVENTIONAL
+        );
+        $deliverySecurityPolicy->setOriginPathPrefix('/path/to/my/origin');
 
-    $securedDeliverySettings = new MediaLocationSettings();
-    $securedDeliverySettings->setUrlPrefix('delivery1.com');
-    $securedDeliverySettings->setSecurityPolicy($deliverySecurityPolicy);
+        $securedDeliverySettings = new MediaLocationSettings();
+        $securedDeliverySettings->setUrlPrefix('delivery1.com');
+        $securedDeliverySettings->setSecurityPolicy($deliverySecurityPolicy);
 
-    $securedSourceConfig = new SourceContentConfiguration();
-    $securedSourceConfig->setIngestSettings($securedIngestSettings);
-    $securedSourceConfig->setDefaultDeliverySettings($securedDeliverySettings);
+        $securedSourceConfig = new SourceContentConfiguration();
+        $securedSourceConfig->setIngestSettings($securedIngestSettings);
+        $securedSourceConfig->setDefaultDeliverySettings($securedDeliverySettings);
 
-    $cdnConfigWithSecurityPolicy = new CdnConfiguration();
-    $cdnConfigWithSecurityPolicy->setName('ApiConfig2');
-    $cdnConfigWithSecurityPolicy->setCdnConfigurationType(
-        CdnConfigurationType::LIVE_STREAM_SOURCE_CONTENT);
-    $cdnConfigWithSecurityPolicy->setSourceContentConfiguration(
-        $securedSourceConfig);
+        $cdnConfigWithSecurityPolicy = new CdnConfiguration();
+        $cdnConfigWithSecurityPolicy->setName('ApiConfig2');
+        $cdnConfigWithSecurityPolicy->setCdnConfigurationType(
+            CdnConfigurationType::LIVE_STREAM_SOURCE_CONTENT
+        );
+        $cdnConfigWithSecurityPolicy->setSourceContentConfiguration(
+            $securedSourceConfig
+        );
 
+        // Create the CdnConfiguration on the server.
+        $results = $cdnConfigurationService->createCdnConfigurations(
+            [
+                $cdnConfigWithoutSecurityPolicy,
+                $cdnConfigWithSecurityPolicy
+            ]
+        );
 
-    // Create the CdnConfiguration on the server.
-    $results = $cdnConfigurationService->createCdnConfigurations([
-        $cdnConfigWithoutSecurityPolicy,
-        $cdnConfigWithSecurityPolicy
-    ]);
-
-    // Print out some information for each created CdnConfiguration.
-    foreach ($results as $i => $cdnConfiguration) {
-      printf(
-          "%d) CDN configuration with ID %d "
-              . "and name '%s' was created.\n",
-          $i,
-          $cdnConfiguration->getId(),
-          $cdnConfiguration->getName()
-      );
+        // Print out some information for each created CdnConfiguration.
+        foreach ($results as $i => $cdnConfiguration) {
+            printf(
+                "%d) CDN configuration with ID %d and name '%s' was created.\n",
+                $i,
+                $cdnConfiguration->getId(),
+                $cdnConfiguration->getName()
+            );
+        }
     }
-  }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(new DfpServices(), $session);
-  }
+        self::runExample(new DfpServices(), $session);
+    }
 }
 
 CreateCdnConfigurations::main();

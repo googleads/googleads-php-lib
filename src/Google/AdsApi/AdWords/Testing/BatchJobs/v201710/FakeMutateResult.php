@@ -14,58 +14,66 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\AdWords\Testing\BatchJobs\v201710;
 
 /**
  * A fake mutate result for testing purpose.
  */
-class FakeMutateResult {
+class FakeMutateResult
+{
 
-  protected $errorList;
-  protected $index;
-  protected $result;
+    protected $errorList;
+    protected $index;
+    protected $result;
 
-  /**
-   * @return \Google\AdsApi\AdWords\Testing\BatchJobs\v201710\FakeErrorList
-   */
-  public function getErrorList() {
-    return $this->errorList;
-  }
+    /**
+     * @return \Google\AdsApi\AdWords\Testing\BatchJobs\v201710\FakeErrorList
+     */
+    public function getErrorList()
+    {
+        return $this->errorList;
+    }
 
-  /**
-   * @param \Google\AdsApi\AdWords\Testing\BatchJobs\v201710\FakeErrorList
-   *     $errorList
-   */
-  public function setErrorList($errorList) {
-    $this->errorList = $errorList;
-  }
+    /**
+     * @param \Google\AdsApi\AdWords\Testing\BatchJobs\v201710\FakeErrorList
+     *     $errorList
+     */
+    public function setErrorList($errorList)
+    {
+        $this->errorList = $errorList;
+    }
 
-  /**
-   * @return int
-   */
-  public function getIndex() {
-    return $this->index;
-  }
+    /**
+     * @return int
+     */
+    public function getIndex()
+    {
+        return $this->index;
+    }
 
-  /**
-   * @param int $index
-   */
-  public function setIndex($index) {
-    $this->index = $index;
-  }
+    /**
+     * @param int $index
+     */
+    public function setIndex($index)
+    {
+        $this->index = $index;
+    }
 
-  /**
-   * @return \Google\AdsApi\AdWords\Testing\BatchJobs\v201710\FakeOperand
-   */
-  public function getResult() {
-    return $this->result;
-  }
+    /**
+     * @return \Google\AdsApi\AdWords\Testing\BatchJobs\v201710\FakeOperand
+     */
+    public function getResult()
+    {
+        return $this->result;
+    }
 
-  /**
-   * @param \Google\AdsApi\AdWords\Testing\BatchJobs\v201710\FakeOperand
-   *     $result
-   */
-  public function setResult($result) {
-    $this->result = $result;
-  }
+    /**
+     * @param \Google\AdsApi\AdWords\Testing\BatchJobs\v201710\FakeOperand
+     *     $result
+     */
+    public function setResult($result)
+    {
+        $this->result = $result;
+    }
 }

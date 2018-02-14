@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\ReportService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -38,59 +39,72 @@ use Google\AdsApi\Dfp\v201711\ReportService;
  * requires that you've setup an `adsapi_php.ini` file in your home directory
  * with your API credentials and settings. See `README.md` for more info.
  */
-class RunReachReport {
+class RunReachReport
+{
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session) {
-    $reportService = $dfpServices->get($session, ReportService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session
+    ) {
+        $reportService = $dfpServices->get($session, ReportService::class);
 
-    // Create report query.
-    $reportQuery = new ReportQuery();
-    $reportQuery->setDimensions([Dimension::LINE_ITEM_ID,
-        Dimension::LINE_ITEM_NAME]);
-    $reportQuery->setColumns([Column::REACH_FREQUENCY,
-        Column::REACH_AVERAGE_REVENUE, Column::REACH]);
+        // Create report query.
+        $reportQuery = new ReportQuery();
+        $reportQuery->setDimensions(
+            [
+                Dimension::LINE_ITEM_ID,
+                Dimension::LINE_ITEM_NAME
+            ]
+        );
+        $reportQuery->setColumns(
+            [
+                Column::REACH_FREQUENCY,
+                Column::REACH_AVERAGE_REVENUE,
+                Column::REACH
+            ]
+        );
 
-    // Set the dynamic date range type or a custom start and end date that is
-    // the beginning of the week (Sunday) to the end of the week (Saturday), or
-    // the first of the month to the end of the month.
-    $reportQuery->setDateRangeType(DateRangeType::REACH_LIFETIME);
+        // Set the dynamic date range type or a custom start and end date that is
+        // the beginning of the week (Sunday) to the end of the week (Saturday), or
+        // the first of the month to the end of the month.
+        $reportQuery->setDateRangeType(DateRangeType::REACH_LIFETIME);
 
-    // Create report job.
-    $reportJob = new ReportJob();
-    $reportJob->setReportQuery($reportQuery);
+        // Create report job.
+        $reportJob = new ReportJob();
+        $reportJob->setReportQuery($reportQuery);
 
-    // Run report job.
-    $reportJob = $reportService->runReportJob($reportJob);
+        // Run report job.
+        $reportJob = $reportService->runReportJob($reportJob);
 
-    // Create report downloader to poll report's status and download when ready.
-    $reportDownloader = new ReportDownloader($reportService,
-        $reportJob->getId());
-    if ($reportDownloader->waitForReportToFinish()) {
-      // Write to system temp directory by default.
-      $filePath = sprintf(
-          '%s.csv.gz',
-          tempnam(sys_get_temp_dir(), 'reach-report-')
-      );
-      printf("Downloading report to %s ...\n", $filePath);
-      // Download the report.
-      $reportDownloader->downloadReport(ExportFormat::CSV_DUMP, $filePath);
-      print "Done.\n";
-    } else {
-      print "Report failed.\n";
+        // Create report downloader to poll report's status and download when ready.
+        $reportDownloader = new ReportDownloader(
+            $reportService,
+            $reportJob->getId()
+        );
+        if ($reportDownloader->waitForReportToFinish()) {
+            // Write to system temp directory by default.
+            $filePath = sprintf(
+                '%s.csv.gz',
+                tempnam(sys_get_temp_dir(), 'reach-report-')
+            );
+            printf("Downloading report to %s ...\n", $filePath);
+            // Download the report.
+            $reportDownloader->downloadReport(ExportFormat::CSV_DUMP, $filePath);
+            print "Done.\n";
+        } else {
+            print "Report failed.\n";
+        }
     }
-  }
 
-  public static function main() {
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
-    self::runExample(new DfpServices(), $session);
-  }
+    public static function main()
+    {
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
+        self::runExample(new DfpServices(), $session);
+    }
 }
 
 RunReachReport::main();

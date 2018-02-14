@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Dfp;
 
 use Google\Auth\FetchAuthTokenInterface;
@@ -25,38 +26,40 @@ use PHPUnit\Framework\TestCase;
  * @see DfpHeaderHandler
  * @small
  */
-class DfpHeaderHandlerTest extends TestCase {
+class DfpHeaderHandlerTest extends TestCase
+{
 
-  private $dfpHeaderHandler;
-  private $dfpSessionBuilder;
+    private $dfpHeaderHandler;
+    private $dfpSessionBuilder;
 
-  /**
-   * @see PHPUnit\Framework\TestCase::setUp
-   */
-  protected function setUp() {
-    $this->dfpHeaderHandler = new DfpHeaderHandler();
-    $this->dfpSessionBuilder = new DfpSessionBuilder();
+    /**
+     * @see PHPUnit\Framework\TestCase::setUp
+     */
+    protected function setUp()
+    {
+        $this->dfpHeaderHandler = new DfpHeaderHandler();
+        $this->dfpSessionBuilder = new DfpSessionBuilder();
 
-    $fetchAuthTokenInterfaceMock = $this
-        ->getMockBuilder(FetchAuthTokenInterface::class)
-        ->disableOriginalConstructor()
-        ->getMock();
-    $fetchAuthTokenInterfaceMock->expects($this->once())
-        ->method('fetchAuthToken')
-        ->will($this->returnValue(['access_token' => 'abc123']));
-    $this->dfpSessionBuilder
-        ->withNetworkCode('12345678')
-        ->withApplicationName('Google report runner')
-        ->withOAuth2Credential($fetchAuthTokenInterfaceMock);
-  }
+        $fetchAuthTokenInterfaceMock =
+            $this->getMockBuilder(FetchAuthTokenInterface::class)
+                ->disableOriginalConstructor()->getMock();
+        $fetchAuthTokenInterfaceMock->expects($this->once())
+            ->method('fetchAuthToken')
+            ->will($this->returnValue(['access_token' => 'abc123']));
+        $this->dfpSessionBuilder->withNetworkCode('12345678')
+            ->withApplicationName('Google report runner')
+            ->withOAuth2Credential($fetchAuthTokenInterfaceMock);
+    }
 
-  /**
-   * @covers Google\AdsApi\Dfp\DfpHeaderHandler::generateHttpHeaders
-   */
-  public function testGenerateHttpHeaders() {
-    $expectedHttpHeaders = ['Authorization' => 'Bearer abc123'];
-    $dfpSession = $this->dfpSessionBuilder->build();
-    $httpHeaders = $this->dfpHeaderHandler->generateHttpHeaders($dfpSession);
-    $this->assertSame($expectedHttpHeaders, $httpHeaders);
-  }
+    /**
+     * @covers Google\AdsApi\Dfp\DfpHeaderHandler::generateHttpHeaders
+     */
+    public function testGenerateHttpHeaders()
+    {
+        $expectedHttpHeaders = ['Authorization' => 'Bearer abc123'];
+        $dfpSession = $this->dfpSessionBuilder->build();
+        $httpHeaders =
+            $this->dfpHeaderHandler->generateHttpHeaders($dfpSession);
+        $this->assertSame($expectedHttpHeaders, $httpHeaders);
+    }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2017 Google Inc. All Rights Reserved -->
+<!-- Copyright 2018 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://adwords.google.com/api/adwords/mcm/v201705"
   xmlns:tns="https://adwords.google.com/api/adwords/mcm/v201705"
@@ -61,6 +61,27 @@
           <extension base="tns:ApiError">
             <sequence>
               <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ClientTermsError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="CollectionSizeError">
+        <annotation>
+          <documentation>
+            Errors associated with the size of the given collection being
+            out of bounds.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CollectionSizeError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
             </sequence>
           </extension>
         </complexContent>
@@ -1099,7 +1120,7 @@
       <simpleType name="AuthorizationError.Reason">
         <annotation>
           <documentation>
-            The reasons for the database error.
+            The reasons for the authorization error.
           </documentation>
         </annotation>
         <restriction base="xsd:string">
@@ -1169,6 +1190,17 @@
               </documentation>
             </annotation>
           </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="CollectionSizeError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="TOO_FEW"/>
+          <enumeration value="TOO_MANY"/>
         </restriction>
       </simpleType>
       <simpleType name="DatabaseError.Reason">
@@ -2099,27 +2131,6 @@
           <jaxb:globalBindings typesafeEnumMaxMembers="999999"/>
         </appinfo>
       </annotation>
-      <complexType name="CollectionSizeError">
-        <annotation>
-          <documentation>
-            Errors associated with the size of the given collection being
-            out of bounds.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="cm:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CollectionSizeError.Reason">
-                <annotation>
-                  <documentation>
-                    The error reason represented by an enum.
-                  </documentation>
-                </annotation>
-              </element>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
       <complexType name="CurrencyCodeError">
         <annotation>
           <documentation>
@@ -2243,17 +2254,6 @@
           </element>
         </sequence>
       </complexType>
-      <simpleType name="CollectionSizeError.Reason">
-        <annotation>
-          <documentation>
-            The reasons for the target error.
-          </documentation>
-        </annotation>
-        <restriction base="xsd:string">
-          <enumeration value="TOO_FEW"/>
-          <enumeration value="TOO_MANY"/>
-        </restriction>
-      </simpleType>
       <simpleType name="CurrencyCodeError.Reason">
         <annotation>
           <documentation>

@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\AdWords;
 
 use Google\AdsApi\Common\GuzzleLogMessageFormatter;
@@ -22,44 +23,47 @@ use Google\AdsApi\Common\GuzzleLogMessageFormatterProvider;
 /**
  * Provides a Guzzle log message formatter for AdWords.
  */
-final class AdWordsGuzzleLogMessageFormatterProvider
-    implements GuzzleLogMessageFormatterProvider {
+final class AdWordsGuzzleLogMessageFormatterProvider implements
+    GuzzleLogMessageFormatterProvider
+{
 
-  private static $HTTP_HEADERS_TO_SCRUB = ['Authorization', 'developerToken'];
+    private static $HTTP_HEADERS_TO_SCRUB = ['Authorization', 'developerToken'];
 
-  private $session;
-  private $shouldLogResponsePayload;
-  private $redactedResponsePayloadMessage;
+    private $session;
+    private $shouldLogResponsePayload;
+    private $redactedResponsePayloadMessage;
 
-  /**
-   * Creates a new AdWords Guzzle log message formatter provider with the
-   * specified settings.
-   *
-   * @param AdWordsSession $session the AdWords session that makes a Guzzle HTTP
-   *     call
-   * @param bool $shouldLogResponsePayload whether the formatter should
-   *     show the response payload in the log
-   * @param string|null $redactedResponsePayloadMessage the substitution message
-   *     to use in case the response payload is redacted
-   */
-  public function __construct(
-      AdWordsSession $session,
-      $shouldLogResponsePayload,
-      $redactedResponsePayloadMessage = null) {
-    $this->session = $session;
-    $this->shouldLogResponsePayload = $shouldLogResponsePayload;
-    $this->redactedResponsePayloadMessage = $redactedResponsePayloadMessage;
-  }
+    /**
+     * Creates a new AdWords Guzzle log message formatter provider with the
+     * specified settings.
+     *
+     * @param AdWordsSession $session the AdWords session that makes a Guzzle
+     *     HTTP call
+     * @param bool $shouldLogResponsePayload whether the formatter should
+     *     show the response payload in the log
+     * @param string|null $redactedResponsePayloadMessage the substitution
+     *     message to use in case the response payload is redacted
+     */
+    public function __construct(
+        AdWordsSession $session,
+        $shouldLogResponsePayload,
+        $redactedResponsePayloadMessage = null
+    ) {
+        $this->session = $session;
+        $this->shouldLogResponsePayload = $shouldLogResponsePayload;
+        $this->redactedResponsePayloadMessage = $redactedResponsePayloadMessage;
+    }
 
-  /**
-   * @see GuzzleLogMessageFormatterProvider::getGuzzleLogMessageFormatter
-   */
-  public function getGuzzleLogMessageFormatter() {
-    return new GuzzleLogMessageFormatter(
-        self::$HTTP_HEADERS_TO_SCRUB,
-        ['clientCustomerId' => $this->session->getClientCustomerId()],
-        $this->shouldLogResponsePayload,
-        $this->redactedResponsePayloadMessage
-    );
-  }
+    /**
+     * @see GuzzleLogMessageFormatterProvider::getGuzzleLogMessageFormatter
+     */
+    public function getGuzzleLogMessageFormatter()
+    {
+        return new GuzzleLogMessageFormatter(
+            self::$HTTP_HEADERS_TO_SCRUB,
+            ['clientCustomerId' => $this->session->getClientCustomerId()],
+            $this->shouldLogResponsePayload,
+            $this->redactedResponsePayloadMessage
+        );
+    }
 }

@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\AdWords\v201710\CampaignManagement;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -34,76 +35,83 @@ use Google\AdsApi\Common\OAuth2TokenBuilder;
  * This example gets all campaigns with a specific label. To add a label to
  * campaigns, run AddCampaignLabels.php.
  */
-class GetCampaignsByLabel {
+class GetCampaignsByLabel
+{
 
-  const LABEL_ID = 'INSERT_LABEL_ID_HERE';
-  const PAGE_LIMIT = 500;
+    const LABEL_ID = 'INSERT_LABEL_ID_HERE';
+    const PAGE_LIMIT = 500;
 
-  public static function runExample(AdWordsServices $adWordsServices,
-      AdWordsSession $session, $labelId) {
-    $campaignService =
-        $adWordsServices->get($session, CampaignService::class);
+    public static function runExample(
+        AdWordsServices $adWordsServices,
+        AdWordsSession $session,
+        $labelId
+    ) {
+        $campaignService = $adWordsServices->get($session, CampaignService::class);
 
-    // Create a selector to select all campaigns by the specified label.
-    $selector = new Selector();
-    $selector->setFields(['Id', 'Name', 'Labels']);
-    // Labels filtering is performed by ID. You can use CONTAINS_ANY to select
-    // campaigns with any of the label IDs, CONTAINS_ALL to select campaigns
-    // with all of the label IDs, or CONTAINS_NONE to select campaigns with none
-    // of the label IDs.
-    $selector->setPredicates([
-        new Predicate('Labels', PredicateOperator::CONTAINS_ANY, [$labelId])
-    ]);
-    $selector->setOrdering([new OrderBy('Name', SortOrder::ASCENDING)]);
-    $selector->setPaging(new Paging(0, self::PAGE_LIMIT));
+        // Create a selector to select all campaigns by the specified label.
+        $selector = new Selector();
+        $selector->setFields(['Id', 'Name', 'Labels']);
+        // Labels filtering is performed by ID. You can use CONTAINS_ANY to select
+        // campaigns with any of the label IDs, CONTAINS_ALL to select campaigns
+        // with all of the label IDs, or CONTAINS_NONE to select campaigns with none
+        // of the label IDs.
+        $selector->setPredicates(
+            [
+                new Predicate('Labels', PredicateOperator::CONTAINS_ANY, [$labelId])
+            ]
+        );
+        $selector->setOrdering([new OrderBy('Name', SortOrder::ASCENDING)]);
+        $selector->setPaging(new Paging(0, self::PAGE_LIMIT));
 
-    $totalNumEntries = 0;
-    do {
-      // Retrieve campaigns one page at a time, continuing to request
-      // pages until all campaigns have been retrieved.
-      $page = $campaignService->get($selector);
+        $totalNumEntries = 0;
+        do {
+            // Retrieve campaigns one page at a time, continuing to request
+            // pages until all campaigns have been retrieved.
+            $page = $campaignService->get($selector);
 
-      // Print out some information for each campaign.
-      if ($page->getEntries() !== null) {
-        $totalNumEntries = $page->getTotalNumEntries();
-        foreach ($page->getEntries() as $campaign) {
-          printf(
-              "Campaign with name '%s' and ID %d and labels '%s'"
-                  . " was found.\n",
-              $campaign->getName(),
-              $campaign->getId(),
-              implode(', ', array_map(
-                  function($label) {
-                    return sprintf('%d/%s', $label->getId(), $label->getName());
-                  },
-                  $campaign->getLabels()
-              ))
-          );
-        }
-      }
+            // Print out some information for each campaign.
+            if ($page->getEntries() !== null) {
+                $totalNumEntries = $page->getTotalNumEntries();
+                foreach ($page->getEntries() as $campaign) {
+                    printf(
+                        "Campaign with name '%s' and ID %d and labels '%s' was found.\n",
+                        $campaign->getName(),
+                        $campaign->getId(),
+                        implode(
+                            ', ',
+                            array_map(
+                                function ($label) {
+                                    return sprintf('%d/%s', $label->getId(), $label->getName());
+                                },
+                                $campaign->getLabels()
+                            )
+                        )
+                    );
+                }
+            }
 
-      $selector->getPaging()->setStartIndex(
-          $selector->getPaging()->getStartIndex() + self::PAGE_LIMIT);
-    } while ($selector->getPaging()->getStartIndex() < $totalNumEntries);
+            $selector->getPaging()->setStartIndex(
+                $selector->getPaging()->getStartIndex() + self::PAGE_LIMIT
+            );
+        } while ($selector->getPaging()->getStartIndex() < $totalNumEntries);
 
-    printf("Number of results found: %d\n", $totalNumEntries);
-  }
+        printf("Number of results found: %d\n", $totalNumEntries);
+    }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new AdWordsSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
-    self::runExample(
-        new AdWordsServices(), $session, intval(self::LABEL_ID));
-  }
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new AdWordsSessionBuilder())->fromFile()->withOAuth2Credential($oAuth2Credential)->build();
+        self::runExample(
+            new AdWordsServices(),
+            $session,
+            intval(self::LABEL_ID)
+        );
+    }
 }
 
 GetCampaignsByLabel::main();

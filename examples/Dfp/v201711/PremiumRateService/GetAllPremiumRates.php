@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\PremiumRateService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -32,62 +33,63 @@ use Google\AdsApi\Dfp\v201711\PremiumRateService;
  * that you've setup an `adsapi_php.ini` file in your home directory with your
  * API credentials and settings. See README.md for more info.
  */
-class GetAllPremiumRates {
+class GetAllPremiumRates
+{
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session) {
-    $premiumRateService =
-        $dfpServices->get($session, PremiumRateService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session
+    ) {
+        $premiumRateService = $dfpServices->get($session, PremiumRateService::class);
 
-    // Create a statement to select premium rates.
-    $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
-    $statementBuilder = (new StatementBuilder())
-        ->orderBy('id ASC')
-        ->limit($pageSize);
+        // Create a statement to select premium rates.
+        $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
+        $statementBuilder = (new StatementBuilder())->orderBy('id ASC')
+            ->limit($pageSize);
 
-    // Retrieve a small amount of premium rates at a time, paging
-    // through until all premium rates have been retrieved.
-    $totalResultSetSize = 0;
-    do {
-      $page = $premiumRateService->getPremiumRatesByStatement(
-          $statementBuilder->toStatement());
+        // Retrieve a small amount of premium rates at a time, paging
+        // through until all premium rates have been retrieved.
+        $totalResultSetSize = 0;
+        do {
+            $page = $premiumRateService->getPremiumRatesByStatement(
+                $statementBuilder->toStatement()
+            );
 
-      // Print out some information for each premium rate.
-      if ($page->getResults() !== null) {
-        $totalResultSetSize = $page->getTotalResultSetSize();
-        $i = $page->getStartIndex();
-        foreach ($page->getResults() as $premiumRate) {
-          printf(
-              "%d) Premium rate with ID %d, premium feature '%s', and rate card id %d was found.\n",
-              $i++,
-              $premiumRate->getId(),
-              (new \ReflectionObject($premiumRate))->getShortName(),
-              $premiumRate->getRateCardId()
-          );
-        }
-      }
+            // Print out some information for each premium rate.
+            if ($page->getResults() !== null) {
+                $totalResultSetSize = $page->getTotalResultSetSize();
+                $i = $page->getStartIndex();
+                foreach ($page->getResults() as $premiumRate) {
+                    printf(
+                        "%d) Premium rate with ID %d, premium feature '%s', and rate card id %d was found.\n",
+                        $i++,
+                        $premiumRate->getId(),
+                        (new \ReflectionObject($premiumRate))->getShortName(),
+                        $premiumRate->getRateCardId()
+                    );
+                }
+            }
 
-      $statementBuilder->increaseOffsetBy($pageSize);
-    } while ($statementBuilder->getOffset() < $totalResultSetSize);
+            $statementBuilder->increaseOffsetBy($pageSize);
+        } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-    printf("Number of results found: %d\n", $totalResultSetSize);
-  }
+        printf("Number of results found: %d\n", $totalResultSetSize);
+    }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(new DfpServices(), $session);
-  }
+        self::runExample(new DfpServices(), $session);
+    }
 }
 
 GetAllPremiumRates::main();

@@ -14,25 +14,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Common;
 
 /**
  * Provides metadata about an ads API service.
  */
-interface AdsServiceDescriptor {
+interface AdsServiceDescriptor
+{
 
-  /**
-   * @return string the name of the service
-   */
-  public function getServiceName();
+    /**
+     * @return string the name of the service
+     */
+    public function getServiceName();
 
-  /**
-   * @return string the fully qualified class name of the service
-   */
-  public function getServiceClass();
+    /**
+     * @return string the fully qualified class name of the service
+     */
+    public function getServiceClass();
 
-  /**
-   * @return string the SOAP namespace of the service
-   */
-  public function getSoapNamespace();
+    /**
+     * @return string the SOAP namespace of the service
+     */
+    public function getSoapNamespace();
 }

@@ -14,16 +14,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\AdWords;
 
 use InvalidArgumentException;
-use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactoryInterface;
-use Symfony\Component\Serializer\NameConverter\NameConverterInterface;
-use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
-use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
-use UnexpectedValueException;
 use phpDocumentor\Reflection\DocBlock;
 use phpDocumentor\Reflection\DocBlockFactory;
+use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactoryInterface;
+use Symfony\Component\Serializer\NameConverter\NameConverterInterface;
+use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
+use UnexpectedValueException;
 
 /**
  * Provides recursive normalization and denormalization for AdWords objects for
@@ -69,243 +69,282 @@ use phpDocumentor\Reflection\DocBlockFactory;
  * function transform($value, $type);
  * ```
  */
-final class AdWordsNormalizer extends GetSetMethodNormalizer {
+final class AdWordsNormalizer extends GetSetMethodNormalizer
+{
 
-  private $docBlockFactory;
+    private $docBlockFactory;
 
-  /**
-   * @see GetSetMethodNormalizer::__construct()
-   */
-  public function __construct(
-      ClassMetadataFactoryInterface $classMetadataFactory = null,
-      NameConverterInterface $nameConverter = null
-  ) {
-    parent::__construct($classMetadataFactory, $nameConverter);
-    $this->docBlockFactory = DocBlockFactory::createInstance();
-  }
-
-  /**
-   * @see GetSetMethodNormalizer::normalize()
-   */
-  public function normalize($object, $format = null, array $context = []) {
-    $data = [];
-    $reflClass = new \ReflectionClass($object);
-    if ($reflClass->getParentClass() !== false) {
-      // xsi:type is needed when the object is a subclass.
-      $data['@xsi:type'] = 'ns1:' . $reflClass->getShortName();
+    /**
+     * @see GetSetMethodNormalizer::__construct()
+     */
+    public function __construct(
+        ClassMetadataFactoryInterface $classMetadataFactory = null,
+        NameConverterInterface $nameConverter = null
+    ) {
+        parent::__construct($classMetadataFactory, $nameConverter);
+        $this->docBlockFactory = DocBlockFactory::createInstance();
     }
 
-    foreach ($reflClass->getProperties(
-        \ReflectionProperty::IS_PROTECTED | \ReflectionProperty::IS_PRIVATE)
-            as $reflProperty) {
-      $methodName = 'get' . ucfirst($reflProperty->getName());
-      if (!$reflClass->hasMethod($methodName)
-          || !$reflClass->getMethod($methodName)->isPublic()) {
-        continue;
-      }
-
-      $reflMethod = $reflClass->getMethod($methodName);
-      $attributeValue = $reflMethod->invoke($object);
-
-      if ($attributeValue !== null) {
-        if (array_key_exists('normalize', $this->callbacks)) {
-          $attributeValue = call_user_func(
-              $this->callbacks['normalize'],
-              $attributeValue,
-              $this->getReturnType(
-                  $this->docBlockFactory->create($reflMethod->getDocComment()))
-          );
+    /**
+     * @see GetSetMethodNormalizer::normalize()
+     */
+    public function normalize($object, $format = null, array $context = [])
+    {
+        $data = [];
+        $reflClass = new \ReflectionClass($object);
+        if ($reflClass->getParentClass() !== false) {
+            // xsi:type is needed when the object is a subclass.
+            $data['@xsi:type'] = 'ns1:' . $reflClass->getShortName();
         }
 
-        $attributeValue =
-            $this->serializer->normalize($attributeValue, $format, $context);
+        foreach ($reflClass->getProperties(
+            \ReflectionProperty::IS_PROTECTED | \ReflectionProperty::IS_PRIVATE
+        ) as $reflProperty) {
+            $methodName = 'get' . ucfirst($reflProperty->getName());
+            if (!$reflClass->hasMethod($methodName)
+                || !$reflClass->getMethod($methodName)->isPublic()) {
+                continue;
+            }
 
-        $attribute = $reflProperty->getName();
-        if ($this->nameConverter) {
-          $attribute = $this->nameConverter->normalize($attribute);
+            $reflMethod = $reflClass->getMethod($methodName);
+            $attributeValue = $reflMethod->invoke($object);
+
+            if ($attributeValue !== null) {
+                if (array_key_exists('normalize', $this->callbacks)) {
+                    $attributeValue = call_user_func(
+                        $this->callbacks['normalize'],
+                        $attributeValue,
+                        $this->getReturnType(
+                            $this->docBlockFactory->create(
+                                $reflMethod->getDocComment()
+                            )
+                        )
+                    );
+                }
+
+                $attributeValue =
+                    $this->serializer->normalize(
+                        $attributeValue,
+                        $format,
+                        $context
+                    );
+
+                $attribute = $reflProperty->getName();
+                if ($this->nameConverter) {
+                    $attribute = $this->nameConverter->normalize($attribute);
+                }
+                $data[$attribute] = $attributeValue;
+            }
         }
-        $data[$attribute] = $attributeValue;
-      }
+
+        return $data;
     }
 
-    return $data;
-  }
-
-  /**
-   * @see GetSetMethodNormalizer::denormalize()
-   * @throws UnexpectedValueException if the getter of an attribute is not found
-   */
-  public function denormalize($data, $class, $format = null,
-      array $context = []) {
-
-    // If xsi:type is present, we need to use it as the class to deserialize to,
-    // since it may be a child class of the provided $class with more fields.
-    if (array_key_exists('@xsi:type', $data)) {
-      // All classes supported by BatchJobService are always in the "cm" group.
-      $class =
-          $this->getAdWordsNamespacePrefix($class) . '\\' . $data['@xsi:type'];
+    /**
+     * Gets type from the PHP document block's `@return` tag.
+     *
+     * @param DocBlock $docBlock the document block to get its `@return` type
+     * @return string|null the class name of the attribute or null if there
+     *     exists no `@return` tag in the document block
+     */
+    private function getReturnType(DocBlock $docBlock)
+    {
+        // The @return tag will be present for each getter method of generated
+        // classes. There is always only one tag for each getter.
+        return ($docBlock->hasTag('return')) ?
+            strval($docBlock->getTags()[0]->getType()) : null;
     }
 
-    $reflClass = new \ReflectionClass($class);
-    $denormalizedObject = $reflClass->newInstance();
+    /**
+     * @see GetSetMethodNormalizer::denormalize()
+     * @throws UnexpectedValueException if the getter of an attribute is not
+     *     found
+     */
+    public function denormalize(
+        $data,
+        $class,
+        $format = null,
+        array $context = []
+    ) {
 
-    foreach ($data as $attribute => $value) {
-      // Exclude attributes starting with '@', which indicates that their
-      // values are to be used as the XML attribute in the encoding step.
-      if (substr($attribute, 0, 1) === '@') {
-        continue;
-      }
+        // If xsi:type is present, we need to use it as the class to deserialize to,
+        // since it may be a child class of the provided $class with more fields.
+        if (array_key_exists('@xsi:type', $data)) {
+            // All classes supported by BatchJobService are always in the "cm" group.
+            $class =
+                $this->getAdWordsNamespacePrefix($class) . '\\'
+                . $data['@xsi:type'];
+        }
 
-      if ($this->nameConverter) {
-        $attribute = $this->nameConverter->denormalize($attribute);
-      }
+        $reflClass = new \ReflectionClass($class);
+        $denormalizedObject = $reflClass->newInstance();
 
-      if (!$reflClass->hasMethod('get' . ucfirst($attribute))) {
-        throw new UnexpectedValueException(sprintf(
-            'Getter for the attribute "%s" not found. Denormalization cannot'
-                . ' be completed.',
-            $attribute
-        ));
-      }
+        foreach ($data as $attribute => $value) {
+            // Exclude attributes starting with '@', which indicates that their
+            // values are to be used as the XML attribute in the encoding step.
+            if (substr($attribute, 0, 1) === '@') {
+                continue;
+            }
 
-      // Get the type of this attribute using PHP document block of its getter.
-      $getter = $reflClass->getMethod('get' . ucfirst($attribute));
-      $typeHint =
-          $this->getReturnType(
-              $this->docBlockFactory->create($getter->getDocComment()));
+            if ($this->nameConverter) {
+                $attribute = $this->nameConverter->denormalize($attribute);
+            }
 
-      if (array_key_exists('denormalize', $this->callbacks)) {
-        $value = call_user_func($this->callbacks['denormalize'], $value,
-            $typeHint);
-      }
+            if (!$reflClass->hasMethod('get' . ucfirst($attribute))) {
+                throw new UnexpectedValueException(
+                    sprintf(
+                        'Getter for the attribute "%s" not found. Denormalization cannot'
+                        . ' be completed.',
+                        $attribute
+                    )
+                );
+            }
 
-      // If the type hint of this value is an array and there's only one
-      // element, then we need to wrap it in an array, as the decoder would
-      // not have done so.
-      if (substr($typeHint, -2) === '[]'
-          && (is_scalar($value) || self::isOneOrMany($value))) {
-        $value = [$value];
-      }
+            // Get the type of this attribute using PHP document block of its getter.
+            $getter = $reflClass->getMethod('get' . ucfirst($attribute));
+            $typeHint =
+                $this->getReturnType(
+                    $this->docBlockFactory->create($getter->getDocComment())
+                );
 
-      if (self::needsRecursiveDenormalization($value)) {
-        $value = $this->serializer->denormalize(
-            $value, $typeHint, $format, $context);
-      }
+            if (array_key_exists('denormalize', $this->callbacks)) {
+                $value = call_user_func(
+                    $this->callbacks['denormalize'],
+                    $value,
+                    $typeHint
+                );
+            }
 
-      $reflMethod = $reflClass->getMethod('set' . ucfirst($attribute));
-      $reflMethod->invoke($denormalizedObject, $value);
+            // If the type hint of this value is an array and there's only one
+            // element, then we need to wrap it in an array, as the decoder would
+            // not have done so.
+            if (substr($typeHint, -2) === '[]'
+                && (is_scalar($value) || self::isOneOrMany($value))) {
+                $value = [$value];
+            }
+
+            if (self::needsRecursiveDenormalization($value)) {
+                $value = $this->serializer->denormalize(
+                    $value,
+                    $typeHint,
+                    $format,
+                    $context
+                );
+            }
+
+            $reflMethod = $reflClass->getMethod('set' . ucfirst($attribute));
+            $reflMethod->invoke($denormalizedObject, $value);
+        }
+
+        return $denormalizedObject;
     }
 
-    return $denormalizedObject;
-  }
+    /**
+     * Gets the AdWords namespace prefix of the given FQCN.
+     *
+     * @param string $class the FQCN of class to get its namespace prefix
+     * @return string the namespace prefix of $class
+     */
+    private function getAdWordsNamespacePrefix($class)
+    {
+        // Fully qualified class name will be in the format:
+        // Google\AdsApi\AdWords\{subDirectories}\{apiVersion}\{group}\
+        // {className}.
+        $tokens = explode('\\', $class);
+        array_splice($tokens, -1, 1);
 
-  /**
-   * Gets type from the PHP document block's `@return` tag.
-   *
-   * @param DocBlock $docBlock the document block to get its `@return` type
-   * @return string|null the class name of the attribute or null if there
-   *     exists no `@return` tag in the document block
-   */
-  private function getReturnType(DocBlock $docBlock) {
-    // The @return tag will be present for each getter method of generated
-    // classes. There is always only one tag for each getter.
-    return ($docBlock->hasTag('return')) ?
-        strval($docBlock->getTags()[0]->getType()) : null;
-  }
-
-  /**
-   * Gets the AdWords namespace prefix of the given FQCN.
-   *
-   * @param string $class the FQCN of class to get its namespace prefix
-   * @return string the namespace prefix of $class
-   */
-  private function getAdWordsNamespacePrefix($class) {
-    // Fully qualified class name will be in the format:
-    // Google\AdsApi\AdWords\{subDirectories}\{apiVersion}\{group}\
-    // {className}.
-    $tokens = explode('\\', $class);
-    array_splice($tokens , -1, 1);
-    // Retain the tokens only upto {group}.
-    return implode('\\', $tokens);
-  }
-
-  /**
-   * @see AbstractNormalizer::setCallbacks()
-   */
-  public function setCallbacks(array $callbacks) {
-    if (count($callbacks) > 2) {
-      throw new InvalidArgumentException(sprintf(
-          'More than two callbacks found. Only two callbacks, normalize and'
-              . ' denormalize are allowed.'
-      ));
+        // Retain the tokens only upto {group}.
+        return implode('\\', $tokens);
     }
 
-    foreach ($callbacks as $attribute => $callback) {
-      if (!is_callable($callback)) {
-        throw new InvalidArgumentException(sprintf(
-            'The given callback for attribute "%s" is not callable.',
-            $attribute
-        ));
-      }
-      if ($attribute !== 'normalize' && $attribute !== 'denormalize') {
-        throw new InvalidArgumentException(sprintf(
-            'The given callback "%s" is not supported.',
-            $attribute
-        ));
-      }
-      $reflectionFunction = new \ReflectionFunction($callback);
-      if ($reflectionFunction->getNumberOfRequiredParameters() !== 2) {
-        throw new InvalidArgumentException(sprintf(
-            'Callback "%s" does not meet the expected method signature.',
-            $attribute
-        ));
-      }
-    }
-    $this->callbacks = $callbacks;
-
-    return $this;
-  }
-
-  /**
-   * Whether the specified array represents one object or contains a list of
-   * objects. This is used after deserialization as XML lists repeat elements
-   * so when there is only one element in a list, deserialization doesn't
-   * understand that it's a list of objects. If we know something is supposed to
-   * be a list this is used to tell us that a single object needs to be wrapped
-   * in an array.
-   *
-   * We do this by checking to see whether the specified array has only
-   * sequential numeric keys. If not, then it's an object.
-   *
-   * @param array $array
-   * @return bool true if this array represents one object, false if it's a list
-   *     of objects or empty
-   */
-  public static function isOneOrMany(array $array) {
-    return (count($array) === 0)
-        ? false
-        : array_keys($array) !== range(0, count($array) - 1);
-  }
-
-  private static function needsRecursiveDenormalization($value) {
-    // Scalar and null values don't need more denormalization.
-    if (is_scalar($value) || is_null($value)) {
-      return false;
+    /**
+     * Whether the specified array represents one object or contains a list of
+     * objects. This is used after deserialization as XML lists repeat elements
+     * so when there is only one element in a list, deserialization doesn't
+     * understand that it's a list of objects. If we know something is supposed
+     * to be a list this is used to tell us that a single object needs to be
+     * wrapped in an array.
+     *
+     * We do this by checking to see whether the specified array has only
+     * sequential numeric keys. If not, then it's an object.
+     *
+     * @param array $array
+     * @return bool true if this array represents one object, false if it's a
+     *     list of objects or empty
+     */
+    public static function isOneOrMany(array $array)
+    {
+        return (count($array) === 0)
+            ? false
+            : array_keys($array) !== range(0, count($array) - 1);
     }
 
-    // Check if this is a representation of an object. Recursive
-    // denormalization is needed in such a case.
-    if (self::isOneOrMany($value)) {
-      return true;
+    private static function needsRecursiveDenormalization($value)
+    {
+        // Scalar and null values don't need more denormalization.
+        if (is_scalar($value) || is_null($value)) {
+            return false;
+        }
+
+        // Check if this is a representation of an object. Recursive
+        // denormalization is needed in such a case.
+        if (self::isOneOrMany($value)) {
+            return true;
+        }
+
+        // Check if all members of the array are scalar values.
+        foreach ($value as $element) {
+            if (!is_scalar($element)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
-    // Check if all members of the array are scalar values.
-    foreach ($value as $element) {
-      if (!is_scalar($element)) {
-        return true;
-      }
-    }
+    /**
+     * @see AbstractNormalizer::setCallbacks()
+     */
+    public function setCallbacks(array $callbacks)
+    {
+        if (count($callbacks) > 2) {
+            throw new InvalidArgumentException(
+                sprintf(
+                    'More than two callbacks found. Only two callbacks, normalize and'
+                    . ' denormalize are allowed.'
+                )
+            );
+        }
 
-    return false;
-  }
+        foreach ($callbacks as $attribute => $callback) {
+            if (!is_callable($callback)) {
+                throw new InvalidArgumentException(
+                    sprintf(
+                        'The given callback for attribute "%s" is not callable.',
+                        $attribute
+                    )
+                );
+            }
+            if ($attribute !== 'normalize' && $attribute !== 'denormalize') {
+                throw new InvalidArgumentException(
+                    sprintf(
+                        'The given callback "%s" is not supported.',
+                        $attribute
+                    )
+                );
+            }
+            $reflectionFunction = new \ReflectionFunction($callback);
+            if ($reflectionFunction->getNumberOfRequiredParameters() !== 2) {
+                throw new InvalidArgumentException(
+                    sprintf(
+                        'Callback "%s" does not meet the expected method signature.',
+                        $attribute
+                    )
+                );
+            }
+        }
+        $this->callbacks = $callbacks;
+
+        return $this;
+    }
 }

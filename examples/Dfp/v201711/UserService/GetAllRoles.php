@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\UserService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -31,42 +32,44 @@ use Google\AdsApi\Dfp\v201711\UserService;
  * that you've setup an `adsapi_php.ini` file in your home directory with your
  * API credentials and settings. See README.md for more info.
  */
-class GetAllRoles {
+class GetAllRoles
+{
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session) {
-    $userService = $dfpServices->get($session, UserService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session
+    ) {
+        $userService = $dfpServices->get($session, UserService::class);
 
-    $roles = $userService->getAllRoles();
+        $roles = $userService->getAllRoles();
 
-    // Print out some information for each role.
-    foreach ($roles as $i => $role) {
-      printf(
-          "%d) Role with ID %d and name '%s' was found.\n",
-          $i,
-          $role->getId(),
-          $role->getName()
-      );
+        // Print out some information for each role.
+        foreach ($roles as $i => $role) {
+            printf(
+                "%d) Role with ID %d and name '%s' was found.\n",
+                $i,
+                $role->getId(),
+                $role->getName()
+            );
+        }
+
+        printf("Number of results found: %d\n", count($roles));
     }
 
-    printf("Number of results found: %d\n", count($roles));
-  }
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
-
-    self::runExample(new DfpServices(), $session);
-  }
+        self::runExample(new DfpServices(), $session);
+    }
 }
 
 GetAllRoles::main();

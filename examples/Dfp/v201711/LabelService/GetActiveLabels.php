@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\LabelService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -32,63 +33,64 @@ use Google\AdsApi\Dfp\v201711\LabelService;
  * that you've setup an `adsapi_php.ini` file in your home directory with your
  * API credentials and settings. See README.md for more info.
  */
-class GetActiveLabels {
+class GetActiveLabels
+{
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session) {
-    $labelService =
-        $dfpServices->get($session, LabelService::class);
+    public static function runExample(DfpServices $dfpServices, DfpSession $session)
+    {
+        $labelService = $dfpServices->get($session, LabelService::class);
 
-    // Create a statement to select labels.
-    $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
-    $statementBuilder = (new StatementBuilder())
-        ->where('isActive = :isActive')
-        ->orderBy('id ASC')
-        ->limit($pageSize)
-        ->withBindVariableValue('isActive', true);
+        // Create a statement to select labels.
+        $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
+        $statementBuilder = (new StatementBuilder())->where('isActive = :isActive')
+            ->orderBy('id ASC')
+            ->limit(
+                $pageSize
+            )
+            ->withBindVariableValue('isActive', true);
 
-    // Retrieve a small amount of labels at a time, paging
-    // through until all labels have been retrieved.
-    $totalResultSetSize = 0;
-    do {
-      $page = $labelService->getLabelsByStatement(
-          $statementBuilder->toStatement());
+        // Retrieve a small amount of labels at a time, paging
+        // through until all labels have been retrieved.
+        $totalResultSetSize = 0;
+        do {
+            $page = $labelService->getLabelsByStatement(
+                $statementBuilder->toStatement()
+            );
 
-      // Print out some information for each label.
-      if ($page->getResults() !== null) {
-        $totalResultSetSize = $page->getTotalResultSetSize();
-        $i = $page->getStartIndex();
-        foreach ($page->getResults() as $label) {
-          printf(
-              "%d) Label with ID %d and name '%s' was found.\n",
-              $i++,
-              $label->getId(),
-              $label->getName()
-          );
-        }
-      }
+            // Print out some information for each label.
+            if ($page->getResults() !== null) {
+                $totalResultSetSize = $page->getTotalResultSetSize();
+                $i = $page->getStartIndex();
+                foreach ($page->getResults() as $label) {
+                    printf(
+                        "%d) Label with ID %d and name '%s' was found.\n",
+                        $i++,
+                        $label->getId(),
+                        $label->getName()
+                    );
+                }
+            }
 
-      $statementBuilder->increaseOffsetBy($pageSize);
-    } while ($statementBuilder->getOffset() < $totalResultSetSize);
+            $statementBuilder->increaseOffsetBy($pageSize);
+        } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-    printf("Number of results found: %d\n", $totalResultSetSize);
-  }
+        printf("Number of results found: %d\n", $totalResultSetSize);
+    }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(new DfpServices(), $session);
-  }
+        self::runExample(new DfpServices(), $session);
+    }
 }
 
 GetActiveLabels::main();

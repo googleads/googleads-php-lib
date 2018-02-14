@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\AdWords\v201710\AccountManagement;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -33,56 +34,58 @@ use Google\AdsApi\Common\OAuth2TokenBuilder;
  * This example accepts a pending invitation to link your AdWords account to a
  * Google Merchant Center account.
  */
-class AcceptServiceLink {
+class AcceptServiceLink
+{
 
-  const SERVICE_LINK_ID = 'INSERT_SERVICE_LINK_ID_HERE';
+    const SERVICE_LINK_ID = 'INSERT_SERVICE_LINK_ID_HERE';
 
-  public static function runExample(AdWordsServices $adWordsServices,
-      AdWordsSession $session, $serviceLinkId) {
-    $customerService = $adWordsServices->get($session, CustomerService::class);
+    public static function runExample(
+        AdWordsServices $adWordsServices,
+        AdWordsSession $session,
+        $serviceLinkId
+    ) {
+        $customerService = $adWordsServices->get($session, CustomerService::class);
 
-    // Create service link.
-    $serviceLink = new ServiceLink();
-    $serviceLink->setServiceLinkId($serviceLinkId);
-    $serviceLink->setServiceType(ServiceType::MERCHANT_CENTER);
-    $serviceLink->setLinkStatus(ServiceLinkLinkStatus::ACTIVE);
+        // Create service link.
+        $serviceLink = new ServiceLink();
+        $serviceLink->setServiceLinkId($serviceLinkId);
+        $serviceLink->setServiceType(ServiceType::MERCHANT_CENTER);
+        $serviceLink->setLinkStatus(ServiceLinkLinkStatus::ACTIVE);
 
-    // Create a service link operation and add it to the list.
-    $operations = [];
-    $operation = new ServiceLinkOperation();
-    $operation->setOperator(Operator::SET);
-    $operation->setOperand($serviceLink);
-    $operations[] = $operation;
+        // Create a service link operation and add it to the list.
+        $operations = [];
+        $operation = new ServiceLinkOperation();
+        $operation->setOperator(Operator::SET);
+        $operation->setOperand($serviceLink);
+        $operations[] = $operation;
 
-    // Accept service links on the server and print out some information about
-    // accepted service links.
-    $serviceLinks = $customerService->mutateServiceLinks($operations);
-    foreach ($serviceLinks as $serviceLink) {
-      printf(
-          "Service link with service link ID %d and type '%s' updated to status"
-              . ": %s.\n",
-          $serviceLink->getServiceLinkId(),
-          $serviceLink->getServiceType(),
-          $serviceLink->getLinkStatus()
-      );
+        // Accept service links on the server and print out some information about
+        // accepted service links.
+        $serviceLinks = $customerService->mutateServiceLinks($operations);
+        foreach ($serviceLinks as $serviceLink) {
+            printf(
+                "Service link with service link ID %d and type '%s' updated to status: %s.\n",
+                $serviceLink->getServiceLinkId(),
+                $serviceLink->getServiceType(),
+                $serviceLink->getLinkStatus()
+            );
+        }
     }
-  }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new AdWordsSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
-    self::runExample(
-        new AdWordsServices(), $session, intval(self::SERVICE_LINK_ID));
-  }
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new AdWordsSessionBuilder())->fromFile()->withOAuth2Credential($oAuth2Credential)->build();
+        self::runExample(
+            new AdWordsServices(),
+            $session,
+            intval(self::SERVICE_LINK_ID)
+        );
+    }
 }
 
 AcceptServiceLink::main();

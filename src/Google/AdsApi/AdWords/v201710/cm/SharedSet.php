@@ -71,7 +71,7 @@ class SharedSet
      */
     public function setSharedSetId($sharedSetId)
     {
-      $this->sharedSetId = (PHP_INT_SIZE === 4)
+      $this->sharedSetId = (!is_null(sharedSetId) && PHP_INT_SIZE === 4)
           ? floatval($sharedSetId) : $sharedSetId;
       return $this;
     }

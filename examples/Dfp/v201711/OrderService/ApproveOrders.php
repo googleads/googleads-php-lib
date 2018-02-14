@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\OrderService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -33,83 +34,87 @@ use Google\AdsApi\Dfp\v201711\OrderService;
  * requires that you've setup an `adsapi_php.ini` file in your home directory
  * with your API credentials and settings. See `README.md` for more info.
  */
-class ApproveOrders {
+class ApproveOrders
+{
 
-  const ORDER_ID = 'INSERT_ORDER_ID_HERE';
+    const ORDER_ID = 'INSERT_ORDER_ID_HERE';
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session, $orderId) {
-    $orderService = $dfpServices->get($session, OrderService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session,
+        $orderId
+    ) {
+        $orderService = $dfpServices->get($session, OrderService::class);
 
-    // Create a statement to select the orders to approve.
-    $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
-    $statementBuilder = (new StatementBuilder())
-        ->where('id = :id')
-        ->orderBy('id ASC')
-        ->limit($pageSize)
-        ->withBindVariableValue('id', $orderId);
+        // Create a statement to select the orders to approve.
+        $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
+        $statementBuilder = (new StatementBuilder())->where('id = :id')
+            ->orderBy('id ASC')
+            ->limit($pageSize)
+            ->withBindVariableValue('id', $orderId);
 
-    // Retrieve a small amount of orders at a time, paging through until all
-    // orders have been retrieved.
-    $totalResultSetSize = 0;
-    do {
-      $page = $orderService->getOrdersByStatement(
-          $statementBuilder->toStatement());
+        // Retrieve a small amount of orders at a time, paging through until all
+        // orders have been retrieved.
+        $totalResultSetSize = 0;
+        do {
+            $page = $orderService->getOrdersByStatement(
+                $statementBuilder->toStatement()
+            );
 
-      // Print out some information for the orders to be approved.
-      if ($page->getResults() !== null) {
-        $totalResultSetSize = $page->getTotalResultSetSize();
-        $i = $page->getStartIndex();
-        foreach ($page->getResults() as $order) {
-          printf(
-              "%d) Order with ID %d, " .
-                  "name '%s', " .
-                  "and advertiser ID %d will be approved.\n",
-              $i++,
-              $order->getId(),
-              $order->getName(),
-              $order->getAdvertiserId()
-          );
+            // Print out some information for the orders to be approved.
+            if ($page->getResults() !== null) {
+                $totalResultSetSize = $page->getTotalResultSetSize();
+                $i = $page->getStartIndex();
+                foreach ($page->getResults() as $order) {
+                    printf(
+                        "%d) Order with ID %d, name '%s', "
+                        . "and advertiser ID %d will be approved.\n",
+                        $i++,
+                        $order->getId(),
+                        $order->getName(),
+                        $order->getAdvertiserId()
+                    );
+                }
+            }
+
+            $statementBuilder->increaseOffsetBy($pageSize);
+        } while ($statementBuilder->getOffset() < $totalResultSetSize);
+
+        printf("Total number of orders to be approved: %d\n", $totalResultSetSize);
+
+        if ($totalResultSetSize > 0) {
+            // Remove limit and offset from statement so we can reuse the statement.
+            $statementBuilder->removeLimitAndOffset();
+
+            // Create and perform action.
+            $action = new ApproveOrdersAction();
+            $result = $orderService->performOrderAction(
+                $action,
+                $statementBuilder->toStatement()
+            );
+
+            if ($result !== null && $result->getNumChanges() > 0) {
+                printf("Number of orders approved: %d\n", $result->getNumChanges());
+            } else {
+                printf("No orders were approved.\n");
+            }
         }
-      }
-
-      $statementBuilder->increaseOffsetBy($pageSize);
-    } while ($statementBuilder->getOffset() < $totalResultSetSize);
-
-    printf("Total number of orders to be approved: %d\n", $totalResultSetSize);
-
-    if ($totalResultSetSize > 0) {
-      // Remove limit and offset from statement so we can reuse the statement.
-      $statementBuilder->removeLimitAndOffset();
-
-      // Create and perform action.
-      $action = new ApproveOrdersAction();
-      $result = $orderService->performOrderAction($action,
-          $statementBuilder->toStatement());
-
-      if ($result !== null && $result->getNumChanges() > 0) {
-        printf("Number of orders approved: %d\n", $result->getNumChanges());
-      } else {
-        printf("No orders were approved.\n");
-      }
     }
-  }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(new DfpServices(), $session, intval(self::ORDER_ID));
-  }
+        self::runExample(new DfpServices(), $session, intval(self::ORDER_ID));
+    }
 }
 
 ApproveOrders::main();

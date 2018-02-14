@@ -124,7 +124,7 @@ class BidLandscapeLandscapePoint
      */
     public function setClicks($clicks)
     {
-      $this->clicks = (PHP_INT_SIZE === 4)
+      $this->clicks = (!is_null(clicks) && PHP_INT_SIZE === 4)
           ? floatval($clicks) : $clicks;
       return $this;
     }
@@ -161,7 +161,7 @@ class BidLandscapeLandscapePoint
      */
     public function setImpressions($impressions)
     {
-      $this->impressions = (PHP_INT_SIZE === 4)
+      $this->impressions = (!is_null(impressions) && PHP_INT_SIZE === 4)
           ? floatval($impressions) : $impressions;
       return $this;
     }
@@ -180,7 +180,7 @@ class BidLandscapeLandscapePoint
      */
     public function setPromotedImpressions($promotedImpressions)
     {
-      $this->promotedImpressions = (PHP_INT_SIZE === 4)
+      $this->promotedImpressions = (!is_null(promotedImpressions) && PHP_INT_SIZE === 4)
           ? floatval($promotedImpressions) : $promotedImpressions;
       return $this;
     }
@@ -235,7 +235,7 @@ class BidLandscapeLandscapePoint
      */
     public function setTotalLocalImpressions($totalLocalImpressions)
     {
-      $this->totalLocalImpressions = (PHP_INT_SIZE === 4)
+      $this->totalLocalImpressions = (!is_null(totalLocalImpressions) && PHP_INT_SIZE === 4)
           ? floatval($totalLocalImpressions) : $totalLocalImpressions;
       return $this;
     }
@@ -254,7 +254,7 @@ class BidLandscapeLandscapePoint
      */
     public function setTotalLocalClicks($totalLocalClicks)
     {
-      $this->totalLocalClicks = (PHP_INT_SIZE === 4)
+      $this->totalLocalClicks = (!is_null(totalLocalClicks) && PHP_INT_SIZE === 4)
           ? floatval($totalLocalClicks) : $totalLocalClicks;
       return $this;
     }
@@ -291,7 +291,7 @@ class BidLandscapeLandscapePoint
      */
     public function setTotalLocalPromotedImpressions($totalLocalPromotedImpressions)
     {
-      $this->totalLocalPromotedImpressions = (PHP_INT_SIZE === 4)
+      $this->totalLocalPromotedImpressions = (!is_null(totalLocalPromotedImpressions) && PHP_INT_SIZE === 4)
           ? floatval($totalLocalPromotedImpressions) : $totalLocalPromotedImpressions;
       return $this;
     }

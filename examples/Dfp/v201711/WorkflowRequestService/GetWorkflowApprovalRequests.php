@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\WorkflowRequestService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -23,74 +24,76 @@ use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201711\StatementBuilder;
-use Google\AdsApi\Dfp\v201711\WorkflowRequestType;
 use Google\AdsApi\Dfp\v201711\WorkflowRequestService;
+use Google\AdsApi\Dfp\v201711\WorkflowRequestType;
 
 /**
- * This example gets workflow approval requests. Workflow approval requests must be approved or rejected for a workflow to finish.
+ * This example gets workflow approval requests. Workflow approval requests must be approved or
+ * rejected for a workflow to finish.
  *
  * <p>It is meant to be run from a command line (not as a webpage) and requires
  * that you've setup an `adsapi_php.ini` file in your home directory with your
  * API credentials and settings. See README.md for more info.
  */
-class GetWorkflowApprovalRequests {
+class GetWorkflowApprovalRequests
+{
 
-  public static function runExample(DfpServices $dfpServices,
-      DfpSession $session) {
-    $workflowRequestService =
-        $dfpServices->get($session, WorkflowRequestService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session
+    ) {
+        $workflowRequestService = $dfpServices->get($session, WorkflowRequestService::class);
 
-    // Create a statement to select workflow requests.
-    $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
-    $statementBuilder = (new StatementBuilder())
-        ->where('type = :type')
-        ->orderBy('id ASC')
-        ->limit($pageSize)
-        ->withBindVariableValue('type', WorkflowRequestType::WORKFLOW_APPROVAL_REQUEST);
+        // Create a statement to select workflow requests.
+        $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
+        $statementBuilder = (new StatementBuilder())->where('type = :type')
+            ->orderBy('id ASC')
+            ->limit($pageSize)
+            ->withBindVariableValue('type', WorkflowRequestType::WORKFLOW_APPROVAL_REQUEST);
 
-    // Retrieve a small amount of workflow requests at a time, paging
-    // through until all workflow requests have been retrieved.
-    $totalResultSetSize = 0;
-    do {
-      $page = $workflowRequestService->getWorkflowRequestsByStatement(
-          $statementBuilder->toStatement());
+        // Retrieve a small amount of workflow requests at a time, paging
+        // through until all workflow requests have been retrieved.
+        $totalResultSetSize = 0;
+        do {
+            $page = $workflowRequestService->getWorkflowRequestsByStatement(
+                $statementBuilder->toStatement()
+            );
 
-      // Print out some information for each workflow request.
-      if ($page->getResults() !== null) {
-        $totalResultSetSize = $page->getTotalResultSetSize();
-        $i = $page->getStartIndex();
-        foreach ($page->getResults() as $workflowRequest) {
-          printf(
-              "%d) Workflow request with ID %d, entity type '%s', and entity ID %d was found.\n",
-              $i++,
-              $workflowRequest->getId(),
-              $workflowRequest->getEntityType(),
-              $workflowRequest->getEntityId()
-          );
-        }
-      }
+            // Print out some information for each workflow request.
+            if ($page->getResults() !== null) {
+                $totalResultSetSize = $page->getTotalResultSetSize();
+                $i = $page->getStartIndex();
+                foreach ($page->getResults() as $workflowRequest) {
+                    printf(
+                        "%d) Workflow request with ID %d, entity type '%s', and entity ID %d was found.\n",
+                        $i++,
+                        $workflowRequest->getId(),
+                        $workflowRequest->getEntityType(),
+                        $workflowRequest->getEntityId()
+                    );
+                }
+            }
 
-      $statementBuilder->increaseOffsetBy($pageSize);
-    } while ($statementBuilder->getOffset() < $totalResultSetSize);
+            $statementBuilder->increaseOffsetBy($pageSize);
+        } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-    printf("Number of results found: %d\n", $totalResultSetSize);
-  }
+        printf("Number of results found: %d\n", $totalResultSetSize);
+    }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(new DfpServices(), $session);
-  }
+        self::runExample(new DfpServices(), $session);
+    }
 }
 
 GetWorkflowApprovalRequests::main();

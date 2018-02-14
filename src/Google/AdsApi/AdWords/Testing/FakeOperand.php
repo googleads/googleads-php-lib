@@ -14,41 +14,47 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\AdWords\Testing;
 
 /**
  * A fake Operand class for testing purpose.
  */
-final class FakeOperand {
+final class FakeOperand
+{
 
-  protected $FakeBudget = null;
-  protected $type = null;
+    protected $FakeBudget = null;
+    protected $type = null;
 
-  /**
-   * @return \Google\AdsApi\AdWords\Testing\FakeBudget
-   */
-  public function getFakeBudget() {
-    return $this->FakeBudget;
-  }
+    /**
+     * @return \Google\AdsApi\AdWords\Testing\FakeBudget
+     */
+    public function getFakeBudget()
+    {
+        return $this->FakeBudget;
+    }
 
-  /**
-   * @param \Google\AdsApi\AdWords\Testing\FakeBudget $FakeBudget
-   */
-  public function setFakeBudget($FakeBudget) {
-    $this->FakeBudget = $FakeBudget;
-  }
+    /**
+     * @param \Google\AdsApi\AdWords\Testing\FakeBudget $FakeBudget
+     */
+    public function setFakeBudget($FakeBudget)
+    {
+        $this->FakeBudget = $FakeBudget;
+    }
 
-  /**
-   * @return string
-   */
-  private function getType() {
-    return $this->type;
-  }
+    /**
+     * @return string
+     */
+    private function getType()
+    {
+        return $this->type;
+    }
 
-  /**
-   * @param string
-   */
-  public function setType($type) {
-    $this->type = $type;
-  }
+    /**
+     * @param string
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
 }

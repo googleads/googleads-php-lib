@@ -96,7 +96,7 @@ class SuggestedAdUnit
      */
     public function setNumRequests($numRequests)
     {
-      $this->numRequests = (PHP_INT_SIZE === 4)
+      $this->numRequests = (!is_null(numRequests) && PHP_INT_SIZE === 4)
           ? floatval($numRequests) : $numRequests;
       return $this;
     }

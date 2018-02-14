@@ -43,7 +43,7 @@ class AppliedLabel
      */
     public function setLabelId($labelId)
     {
-      $this->labelId = (PHP_INT_SIZE === 4)
+      $this->labelId = (!is_null(labelId) && PHP_INT_SIZE === 4)
           ? floatval($labelId) : $labelId;
       return $this;
     }

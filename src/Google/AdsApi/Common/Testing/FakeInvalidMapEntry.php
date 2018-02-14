@@ -14,15 +14,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Common\Testing;
 
 /**
  * Fake invalid map entry class for `MapEntriesTest`.
+ *
  * @see Google\AdsApi\Common\Util\MapEntriesTest
  */
-class FakeInvalidMapEntry {
-  public $hey;
-  public $ho;
-  public $lets;
-  public $go;
+class FakeInvalidMapEntry
+{
+    public $hey;
+    public $ho;
+    public $lets;
+    public $go;
 }

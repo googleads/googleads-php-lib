@@ -14,29 +14,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Common\Testing;
 
 /**
  * Provides test data for various `AdsBuilder` tests.
  */
-class AdsBuildersTestProvider {
+class AdsBuildersTestProvider
+{
 
-  /**
-   * Gets the filepath to a fake CA certs file for testing.
-   *
-   * @return string
-   */
-  public static function getFakeCertsFilePath() {
-    return dirname(__FILE__) . DIRECTORY_SEPARATOR . 'ca-certificates.crt';
-  }
+    /**
+     * Gets the filepath to a fake CA certs file for testing.
+     *
+     * @return string
+     */
+    public static function getFakeCertsFilePath()
+    {
+        return dirname(__FILE__) . DIRECTORY_SEPARATOR . 'ca-certificates.crt';
+    }
 
-  /**
-   * Gets the filepath to a fake JSON key file for testing.
-   *
-   * @return string
-   */
-  public static function getFakeJsonKeyFilePath() {
-    return
-        dirname(__FILE__) . DIRECTORY_SEPARATOR . 'API-Project-abc123xyz.json';
-  }
+    /**
+     * Gets the filepath to a fake JSON key file for testing.
+     *
+     * @return string
+     */
+    public static function getFakeJsonKeyFilePath()
+    {
+        return dirname(__FILE__) . DIRECTORY_SEPARATOR . 'API-Project-abc123xyz.json';
+    }
 }

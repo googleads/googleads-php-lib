@@ -36,7 +36,7 @@ abstract class BaseCustomFieldValue
      */
     public function setCustomFieldId($customFieldId)
     {
-      $this->customFieldId = (PHP_INT_SIZE === 4)
+      $this->customFieldId = (!is_null(customFieldId) && PHP_INT_SIZE === 4)
           ? floatval($customFieldId) : $customFieldId;
       return $this;
     }

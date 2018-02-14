@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Dfp;
 
 use Google\AdsApi\Common\AdsServiceDescriptor;
@@ -22,43 +23,49 @@ use ReflectionClass;
 /**
  * Metadata for a DFP API service.
  */
-final class DfpServiceDescriptor implements AdsServiceDescriptor {
+final class DfpServiceDescriptor implements AdsServiceDescriptor
+{
 
-  /**
-   * @var string the SOAP namespace prefix for DFP API services
-   */
-  const NAMESPACE_PREFIX = 'https://www.google.com/apis/ads/publisher';
+    /**
+     * @var string the SOAP namespace prefix for DFP API services
+     */
+    const NAMESPACE_PREFIX = 'https://www.google.com/apis/ads/publisher';
 
-  private $classReflection;
+    private $classReflection;
 
-  /**
-   * Creates a new instance of this service descriptor for the specified class.
-   *
-   * @param string $class the fully qualified class name of the service
-   */
-  public function __construct($class) {
-    $this->classReflection = new ReflectionClass($class);
-  }
+    /**
+     * Creates a new instance of this service descriptor for the specified class.
+     *
+     * @param string $class the fully qualified class name of the service
+     */
+    public function __construct($class)
+    {
+        $this->classReflection = new ReflectionClass($class);
+    }
 
-  /**
-   * @see AdsServiceDescriptor::getServiceName()
-   */
-  public function getServiceName() {
-    return $this->classReflection->getShortName();
-  }
+    /**
+     * @see AdsServiceDescriptor::getServiceName()
+     */
+    public function getServiceName()
+    {
+        return $this->classReflection->getShortName();
+    }
 
-  /**
-   * @see AdsServiceDescriptor::getServiceClass()
-   */
-  public function getServiceClass() {
-    return $this->classReflection->getName();
-  }
+    /**
+     * @see AdsServiceDescriptor::getServiceClass()
+     */
+    public function getServiceClass()
+    {
+        return $this->classReflection->getName();
+    }
 
-  /**
-   * @see AdsServiceDescriptor::getSoapNamespace()
-   */
-  public function getSoapNamespace() {
-    $namespaceParts = explode('\\', $this->classReflection->getNamespaceName());
-    return self::NAMESPACE_PREFIX . '/' . array_pop($namespaceParts);
-  }
+    /**
+     * @see AdsServiceDescriptor::getSoapNamespace()
+     */
+    public function getSoapNamespace()
+    {
+        $namespaceParts = explode('\\', $this->classReflection->getNamespaceName());
+
+        return self::NAMESPACE_PREFIX . '/' . array_pop($namespaceParts);
+    }
 }

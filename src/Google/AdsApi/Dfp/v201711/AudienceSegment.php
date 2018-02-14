@@ -106,7 +106,7 @@ class AudienceSegment
      */
     public function setId($id)
     {
-      $this->id = (PHP_INT_SIZE === 4)
+      $this->id = (!is_null(id) && PHP_INT_SIZE === 4)
           ? floatval($id) : $id;
       return $this;
     }
@@ -197,7 +197,7 @@ class AudienceSegment
      */
     public function setSize($size)
     {
-      $this->size = (PHP_INT_SIZE === 4)
+      $this->size = (!is_null(size) && PHP_INT_SIZE === 4)
           ? floatval($size) : $size;
       return $this;
     }
@@ -216,7 +216,7 @@ class AudienceSegment
      */
     public function setMobileWebSize($mobileWebSize)
     {
-      $this->mobileWebSize = (PHP_INT_SIZE === 4)
+      $this->mobileWebSize = (!is_null(mobileWebSize) && PHP_INT_SIZE === 4)
           ? floatval($mobileWebSize) : $mobileWebSize;
       return $this;
     }
@@ -235,7 +235,7 @@ class AudienceSegment
      */
     public function setIdfaSize($idfaSize)
     {
-      $this->idfaSize = (PHP_INT_SIZE === 4)
+      $this->idfaSize = (!is_null(idfaSize) && PHP_INT_SIZE === 4)
           ? floatval($idfaSize) : $idfaSize;
       return $this;
     }
@@ -254,7 +254,7 @@ class AudienceSegment
      */
     public function setAdIdSize($adIdSize)
     {
-      $this->adIdSize = (PHP_INT_SIZE === 4)
+      $this->adIdSize = (!is_null(adIdSize) && PHP_INT_SIZE === 4)
           ? floatval($adIdSize) : $adIdSize;
       return $this;
     }

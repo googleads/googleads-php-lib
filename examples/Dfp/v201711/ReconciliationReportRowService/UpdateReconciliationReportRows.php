@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\ReconciliationReportRowService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -33,84 +34,91 @@ use Google\AdsApi\Dfp\v201711\ReconciliationReportRowService;
  * that you've setup an `adsapi_php.ini` file in your home directory with your
  * API credentials and settings. See README.md for more info.
  */
-class UpdateReconciliationReportRows {
+class UpdateReconciliationReportRows
+{
 
-  const RECONCILIATION_REPORT_ID = 'INSERT_RECONCILIATION_REPORT_ID_HERE';
-  const RECONCILIATION_REPORT_ROW_ID =
-      'INSERT_RECONCILIATION_REPORT_ROW_ID_HERE';
+    const RECONCILIATION_REPORT_ID = 'INSERT_RECONCILIATION_REPORT_ID_HERE';
+    const RECONCILIATION_REPORT_ROW_ID = 'INSERT_RECONCILIATION_REPORT_ROW_ID_HERE';
 
-  public static function runExample(
-      DfpServices $dfpServices,
-      DfpSession $session,
-      $reconciliationReportId,
-      $reconciliationReportRowId
-  ) {
-    $reconciliationReportRowService = $dfpServices->get(
-        $session, ReconciliationReportRowService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session,
+        $reconciliationReportId,
+        $reconciliationReportRowId
+    ) {
+        $reconciliationReportRowService = $dfpServices->get(
+            $session,
+            ReconciliationReportRowService::class
+        );
 
-    // Create a statement to select the reconciliation report rows to update.
-    $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
-    $statementBuilder = (new StatementBuilder())
-        ->where('reconciliationReportId = :reconciliationReportId AND id = '
-            . ':reconciliationReportRowId')
-        ->orderBy('id ASC')
-        ->limit($pageSize)
-        ->withBindVariableValue(
-            'reconciliationReportId', $reconciliationReportId)
-        ->withBindVariableValue(
-            'reconciliationReportRowId', $reconciliationReportRowId);
+        // Create a statement to select the reconciliation report rows to update.
+        $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
+        $statementBuilder = (new StatementBuilder())->where(
+            'reconciliationReportId = :reconciliationReportId AND id = '
+            . ':reconciliationReportRowId'
+        )
+            ->orderBy('id ASC')
+            ->limit($pageSize)
+            ->withBindVariableValue(
+                'reconciliationReportId',
+                $reconciliationReportId
+            )
+            ->withBindVariableValue(
+                'reconciliationReportRowId',
+                $reconciliationReportRowId
+            );
 
-    $page = $reconciliationReportRowService
-        ->getReconciliationReportRowsByStatement(
-            $statementBuilder->toStatement());
-    $row = $page->getResults()[0];
+        $page = $reconciliationReportRowService->getReconciliationReportRowsByStatement(
+            $statementBuilder->toStatement()
+        );
+        $row = $page->getResults()[0];
 
-    // Set a comment on the reconciliation report row.
-    $row->setComments('Third party volume didn\'t match DFP - we agreed to '
-        . 'split the difference');
+        // Set a comment on the reconciliation report row.
+        $row->setComments(
+            'Third party volume didn\'t match DFP - we agreed to split the difference'
+        );
 
-    // Set and use a manual volume for billing.
-    $row->setManualVolume(
-        ($row->getDfpVolume() + $row->getThirdPartyVolume()) / 2);
-    $row->setReconciliationSource(BillFrom::MANUAL);
+        // Set and use a manual volume for billing.
+        $row->setManualVolume(
+            ($row->getDfpVolume() + $row->getThirdPartyVolume()) / 2
+        );
+        $row->setReconciliationSource(BillFrom::MANUAL);
 
-    // Update the reconciliation report rows on the server.
-    $updatedRows =
-        $reconciliationReportRowService->updateReconciliationReportRows([$row]);
+        // Update the reconciliation report rows on the server.
+        $updatedRows = $reconciliationReportRowService->updateReconciliationReportRows([$row]);
 
-    // Print out some information for each updated reconciliation report row.
-    foreach ($updatedRows as $reconciliationReportRow) {
-      printf(
-          "Reconciliation report row with ID %d for line item ID %d and "
-              . "creative ID %d was updated with manual volume %d.\n",
-          $reconciliationReportRow->getId(),
-          $reconciliationReportRow->getLineItemId(),
-          $reconciliationReportRow->getCreativeId(),
-          $reconciliationReportRow->getManualVolume()
-      );
+        // Print out some information for each updated reconciliation report row.
+        foreach ($updatedRows as $reconciliationReportRow) {
+            printf(
+                "Reconciliation report row with ID %d for line item ID %d and "
+                . "creative ID %d was updated with manual volume %d.\n",
+                $reconciliationReportRow->getId(),
+                $reconciliationReportRow->getLineItemId(),
+                $reconciliationReportRow->getCreativeId(),
+                $reconciliationReportRow->getManualVolume()
+            );
+        }
     }
-  }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(
-        new DfpServices(),
-        $session,
-        intval(self::RECONCILIATION_REPORT_ID),
-        intval(self::RECONCILIATION_REPORT_ROW_ID)
-    );
-  }
+        self::runExample(
+            new DfpServices(),
+            $session,
+            intval(self::RECONCILIATION_REPORT_ID),
+            intval(self::RECONCILIATION_REPORT_ROW_ID)
+        );
+    }
 }
 
 UpdateReconciliationReportRows::main();

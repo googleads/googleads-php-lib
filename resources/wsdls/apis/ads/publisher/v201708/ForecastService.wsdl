@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2017 Google Inc. All Rights Reserved -->
+<!-- Copyright 2018 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v201708"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v201708"
@@ -7150,7 +7150,7 @@
           <enumeration value="SYSTEM_ERROR">
             <annotation>
               <documentation>
-                A system error occured, please try again.
+                A system error occurred, please try again.
               </documentation>
             </annotation>
           </enumeration>
@@ -10286,16 +10286,15 @@
   </wsdl:message>
   <wsdl:portType name="ForecastServiceInterface">
     <wsdl:documentation>
-      Provides methods for estimating traffic (clicks/impressions) for line items.
-      Forecasts can be provided for {@link LineItem} objects that exist in the
-      system or which have not had an ID set yet.
+      Provides methods for estimating traffic (clicks/impressions) for line items. Forecasts can be
+      provided for {@link LineItem} objects that exist in the system or which have not had an ID set
+      yet.
       
       &lt;h4&gt;Test network behavior&lt;/h4&gt;
       
-      &lt;p&gt;Test networks are unable to provide forecasts that would be
-      comparable to the production environment because forecasts require traffic
-      history. For test networks, a consistent behavior can be expected
-      for forecast requests, according to the following rules:
+      &lt;p&gt;Test networks are unable to provide forecasts that would be comparable to the production
+      environment because forecasts require traffic history. For test networks, a consistent behavior
+      can be expected for forecast requests, according to the following rules:
       
       &lt;table&gt;
       &lt;tr&gt;

@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\Dfp\v201711\UserService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -33,60 +34,67 @@ use Google\AdsApi\Dfp\v201711\UserService;
  * requires that you've setup an `adsapi_php.ini` file in your home directory
  * with your API credentials and settings. See `README.md` for more info.
  */
-class UpdateUsers {
+class UpdateUsers
+{
 
-  const USER_ID = 'INSERT_USER_ID_HERE';
-  const ROLE_ID = 'INSERT_ROLE_ID_HERE';
+    const USER_ID = 'INSERT_USER_ID_HERE';
+    const ROLE_ID = 'INSERT_ROLE_ID_HERE';
 
-  public static function runExample(
-      DfpServices $dfpServices,
-      DfpSession $session,
-      $userId,
-      $roleId
-  ) {
-    $userService = $dfpServices->get($session, UserService::class);
+    public static function runExample(
+        DfpServices $dfpServices,
+        DfpSession $session,
+        $userId,
+        $roleId
+    ) {
+        $userService = $dfpServices->get($session, UserService::class);
 
-    // Create a statement to only select a single user by ID.
-    $statementBuilder = new StatementBuilder();
-    $statementBuilder->where('id = :id');
-    $statementBuilder->orderBy('id ASC');
-    $statementBuilder->limit(1);
-    $statementBuilder->withBindVariableValue('id', $userId);
+        // Create a statement to only select a single user by ID.
+        $statementBuilder = new StatementBuilder();
+        $statementBuilder->where('id = :id');
+        $statementBuilder->orderBy('id ASC');
+        $statementBuilder->limit(1);
+        $statementBuilder->withBindVariableValue('id', $userId);
 
-    // Get the user.
-    $page = $userService->getUsersByStatement($statementBuilder->toStatement());
+        // Get the user.
+        $page = $userService->getUsersByStatement($statementBuilder->toStatement());
 
-    $user = $page->getResults()[0];
+        $user = $page->getResults()[0];
 
-    // Set the role of the user to a salesperson.
-    // To determine what other roles exist, run GetAllRoles.java.
-    $user->setRoleId($roleId);
+        // Set the role of the user to a salesperson.
+        // To determine what other roles exist, run GetAllRoles.java.
+        $user->setRoleId($roleId);
 
-    // Update the user on the server.
-    $users = $userService->updateUsers([$user]);
+        // Update the user on the server.
+        $users = $userService->updateUsers([$user]);
 
-    foreach ($users as $updatedUser) {
-      printf("User with ID %d and name '%s' was updated.\n",
-          $updatedUser->getId(), $updatedUser->getName());
+        foreach ($users as $updatedUser) {
+            printf(
+                "User with ID %d and name '%s' was updated.\n",
+                $updatedUser->getId(),
+                $updatedUser->getName()
+            );
+        }
     }
-  }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
+            ->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new DfpSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new DfpSessionBuilder())->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
-    self::runExample(new DfpServices(), $session, intval(self::USER_ID),
-        intval(self::ROLE_ID));
-  }
+        self::runExample(
+            new DfpServices(),
+            $session,
+            intval(self::USER_ID),
+            intval(self::ROLE_ID)
+        );
+    }
 }
 
 UpdateUsers::main();

@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\AdWords\v201710\BasicOperations;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -33,62 +34,65 @@ use Google\AdsApi\Common\OAuth2TokenBuilder;
  * This example pauses an ad. To get expanded text ads, run
  * GetExpandedTextAds.php.
  */
-class PauseAd {
+class PauseAd
+{
 
-  const AD_GROUP_ID = 'INSERT_AD_GROUP_ID_HERE';
-  const AD_ID = 'INSERT_AD_ID_HERE';
+    const AD_GROUP_ID = 'INSERT_AD_GROUP_ID_HERE';
+    const AD_ID = 'INSERT_AD_ID_HERE';
 
-  public static function runExample(AdWordsServices $adWordsServices,
-      AdWordsSession $session, $adGroupId, $adId) {
-    $adGroupAdService =
-        $adWordsServices->get($session, AdGroupAdService::class);
+    public static function runExample(
+        AdWordsServices $adWordsServices,
+        AdWordsSession $session,
+        $adGroupId,
+        $adId
+    ) {
+        $adGroupAdService = $adWordsServices->get($session, AdGroupAdService::class);
 
-    $operations = [];
-    // Create ad using an existing ID. Use the base class Ad instead of TextAd
-    // to avoid having to set ad-specific fields.
-    $ad = new Ad();
-    $ad->setId($adId);
+        $operations = [];
+        // Create ad using an existing ID. Use the base class Ad instead of TextAd
+        // to avoid having to set ad-specific fields.
+        $ad = new Ad();
+        $ad->setId($adId);
 
-    // Create ad group ad.
-    $adGroupAd = new AdGroupAd();
-    $adGroupAd->setAdGroupId($adGroupId);
-    $adGroupAd->setAd($ad);
+        // Create ad group ad.
+        $adGroupAd = new AdGroupAd();
+        $adGroupAd->setAdGroupId($adGroupId);
+        $adGroupAd->setAd($ad);
 
-    // Update the status to PAUSED.
-    $adGroupAd->setStatus(AdGroupAdStatus::PAUSED);
+        // Update the status to PAUSED.
+        $adGroupAd->setStatus(AdGroupAdStatus::PAUSED);
 
-    // Create ad group ad operation and add it to the list.
-    $operation = new AdGroupAdOperation();
-    $operation->setOperand($adGroupAd);
-    $operation->setOperator(Operator::SET);
-    $operations[] = $operation;
+        // Create ad group ad operation and add it to the list.
+        $operation = new AdGroupAdOperation();
+        $operation->setOperand($adGroupAd);
+        $operation->setOperator(Operator::SET);
+        $operations[] = $operation;
 
-    // Pause the ad on the server.
-    $adGroupAd = $adGroupAdService->mutate($operations)->getValue()[0];
-    printf(
-        "Ad of type '%s' with ID %d has updated status '%s'.\n",
-        $adGroupAd->getAd()->getType(),
-        $adGroupAd->getAd()->getId(),
-        $adGroupAd->getStatus()
-    );
-  }
+        // Pause the ad on the server.
+        $adGroupAd = $adGroupAdService->mutate($operations)->getValue()[0];
+        printf(
+            "Ad of type '%s' with ID %d has updated status '%s'.\n",
+            $adGroupAd->getAd()->getType(),
+            $adGroupAd->getAd()->getId(),
+            $adGroupAd->getStatus()
+        );
+    }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()->build();
 
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new AdWordsSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
-    self::runExample(
-        new AdWordsServices(), $session, intval(self::AD_GROUP_ID),
-            intval(self::AD_ID));
-  }
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new AdWordsSessionBuilder())->fromFile()->withOAuth2Credential($oAuth2Credential)->build();
+        self::runExample(
+            new AdWordsServices(),
+            $session,
+            intval(self::AD_GROUP_ID),
+            intval(self::AD_ID)
+        );
+    }
 }
 
 PauseAd::main();

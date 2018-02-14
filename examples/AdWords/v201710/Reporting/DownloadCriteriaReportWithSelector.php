@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Examples\AdWords\v201710\Reporting;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
@@ -34,65 +35,82 @@ use Google\AdsApi\Common\OAuth2TokenBuilder;
 /**
  * Downloads CRITERIA_PERFORMANCE_REPORT for the specified client customer ID.
  */
-class DownloadCriteriaReportWithSelector {
+class DownloadCriteriaReportWithSelector
+{
 
-  public static function runExample(AdWordsSession $session, $filePath) {
-    // Create selector.
-    $selector = new Selector();
-    $selector->setFields(['CampaignId', 'AdGroupId', 'Id', 'Criteria',
-        'CriteriaType', 'Impressions', 'Clicks', 'Cost']);
+    public static function runExample(AdWordsSession $session, $filePath)
+    {
+        // Create selector.
+        $selector = new Selector();
+        $selector->setFields(
+            [
+                'CampaignId',
+                'AdGroupId',
+                'Id',
+                'Criteria',
+                'CriteriaType',
+                'Impressions',
+                'Clicks',
+                'Cost'
+            ]
+        );
 
-    // Use a predicate to filter out paused criteria (this is optional).
-    $selector->setPredicates([
-        new Predicate('Status', PredicateOperator::NOT_IN, ['PAUSED'])]);
+        // Use a predicate to filter out paused criteria (this is optional).
+        $selector->setPredicates(
+            [
+                new Predicate('Status', PredicateOperator::NOT_IN, ['PAUSED'])
+            ]
+        );
 
-    // Create report definition.
-    $reportDefinition = new ReportDefinition();
-    $reportDefinition->setSelector($selector);
-    $reportDefinition->setReportName(
-        'Criteria performance report #' . uniqid());
-    $reportDefinition->setDateRangeType(
-        ReportDefinitionDateRangeType::LAST_7_DAYS);
-    $reportDefinition->setReportType(
-        ReportDefinitionReportType::CRITERIA_PERFORMANCE_REPORT);
-    $reportDefinition->setDownloadFormat(DownloadFormat::CSV);
+        // Create report definition.
+        $reportDefinition = new ReportDefinition();
+        $reportDefinition->setSelector($selector);
+        $reportDefinition->setReportName(
+            'Criteria performance report #' . uniqid()
+        );
+        $reportDefinition->setDateRangeType(
+            ReportDefinitionDateRangeType::LAST_7_DAYS
+        );
+        $reportDefinition->setReportType(
+            ReportDefinitionReportType::CRITERIA_PERFORMANCE_REPORT
+        );
+        $reportDefinition->setDownloadFormat(DownloadFormat::CSV);
 
-    // Download report.
-    $reportDownloader = new ReportDownloader($session);
-    // Optional: If you need to adjust report settings just for this one
-    // request, you can create and supply the settings override here. Otherwise,
-    // default values from the configuration file (adsapi_php.ini) are used.
-    $reportSettingsOverride = (new ReportSettingsBuilder())
-        ->includeZeroImpressions(false)
-        ->build();
-    $reportDownloadResult = $reportDownloader->downloadReport(
-        $reportDefinition, $reportSettingsOverride);
-    $reportDownloadResult->saveToFile($filePath);
-    printf("Report with name '%s' was downloaded to '%s'.\n",
-        $reportDefinition->getReportName(), $filePath);
-  }
+        // Download report.
+        $reportDownloader = new ReportDownloader($session);
+        // Optional: If you need to adjust report settings just for this one
+        // request, you can create and supply the settings override here. Otherwise,
+        // default values from the configuration file (adsapi_php.ini) are used.
+        $reportSettingsOverride = (new ReportSettingsBuilder())->includeZeroImpressions(false)->build();
+        $reportDownloadResult = $reportDownloader->downloadReport(
+            $reportDefinition,
+            $reportSettingsOverride
+        );
+        $reportDownloadResult->saveToFile($filePath);
+        printf(
+            "Report with name '%s' was downloaded to '%s'.\n",
+            $reportDefinition->getReportName(),
+            $filePath
+        );
+    }
 
-  public static function main() {
-    // Generate a refreshable OAuth2 credential for authentication.
-    $oAuth2Credential = (new OAuth2TokenBuilder())
-        ->fromFile()
-        ->build();
+    public static function main()
+    {
+        // Generate a refreshable OAuth2 credential for authentication.
+        $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()->build();
 
-    // See: AdWordsSessionBuilder for setting a client customer ID that is
-    // different from that specified in your adsapi_php.ini file.
-    // Construct an API session configured from a properties file and the OAuth2
-    // credentials above.
-    $session = (new AdWordsSessionBuilder())
-        ->fromFile()
-        ->withOAuth2Credential($oAuth2Credential)
-        ->build();
+        // See: AdWordsSessionBuilder for setting a client customer ID that is
+        // different from that specified in your adsapi_php.ini file.
+        // Construct an API session configured from a properties file and the
+        // OAuth2 credentials above.
+        $session = (new AdWordsSessionBuilder())->fromFile()->withOAuth2Credential($oAuth2Credential)->build();
 
-    $filePath = sprintf(
-        '%s.csv',
-        tempnam(sys_get_temp_dir(), 'criteria-report-')
-    );
-    self::runExample($session, $filePath);
-  }
+        $filePath = sprintf(
+            '%s.csv',
+            tempnam(sys_get_temp_dir(), 'criteria-report-')
+        );
+        self::runExample($session, $filePath);
+    }
 }
 
 DownloadCriteriaReportWithSelector::main();

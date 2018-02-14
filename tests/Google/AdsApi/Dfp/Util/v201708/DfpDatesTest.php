@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 namespace Google\AdsApi\Dfp\Util\v201708;
 
 use Google\AdsApi\Dfp\v201708\Date;
@@ -25,38 +26,47 @@ use PHPUnit\Framework\TestCase;
  * @see DfpDates
  * @group small
  */
-class DfpDatesTest extends TestCase {
+class DfpDatesTest extends TestCase
+{
 
-  private $dfpDate1;
-  private $dfpDate2;
-  private $dfpDate3;
+    private $dfpDate1;
+    private $dfpDate2;
+    private $dfpDate3;
 
-  private $stringDate1;
-  private $stringDate2;
-  private $stringDate3;
+    private $stringDate1;
+    private $stringDate2;
+    private $stringDate3;
 
-  /**
-   * @see PHPUnit\Framework\TestCase::setUp
-   */
-  protected function setUp() {
-    $this->stringDate1 = '1983-06-02';
-    $this->stringDate2 = '2014-12-31';
-    $this->stringDate3 = '1999-09-23';
+    /**
+     * @see PHPUnit\Framework\TestCase::setUp
+     */
+    protected function setUp()
+    {
+        $this->stringDate1 = '1983-06-02';
+        $this->stringDate2 = '2014-12-31';
+        $this->stringDate3 = '1999-09-23';
 
-    $this->dfpDate1 = new Date(1983, 6, 2);
-    $this->dfpDate2 = new Date(2014, 12, 31);
-    $this->dfpDate3 = new Date(1999, 9, 23);
-  }
+        $this->dfpDate1 = new Date(1983, 6, 2);
+        $this->dfpDate2 = new Date(2014, 12, 31);
+        $this->dfpDate3 = new Date(1999, 9, 23);
+    }
 
-  /**
-   * @covers Google\AdsApi\Dfp\Util\v201708\DfpDates::toDateString
-   */
-  public function testToDateString() {
-    $this->assertSame($this->stringDate1,
-        DfpDates::toDateString($this->dfpDate1));
-    $this->assertSame($this->stringDate2,
-        DfpDates::toDateString($this->dfpDate2));
-    $this->assertSame($this->stringDate3,
-        DfpDates::toDateString($this->dfpDate3));
-  }
+    /**
+     * @covers Google\AdsApi\Dfp\Util\v201708\DfpDates::toDateString
+     */
+    public function testToDateString()
+    {
+        $this->assertSame(
+            $this->stringDate1,
+            DfpDates::toDateString($this->dfpDate1)
+        );
+        $this->assertSame(
+            $this->stringDate2,
+            DfpDates::toDateString($this->dfpDate2)
+        );
+        $this->assertSame(
+            $this->stringDate3,
+            DfpDates::toDateString($this->dfpDate3)
+        );
+    }
 }
