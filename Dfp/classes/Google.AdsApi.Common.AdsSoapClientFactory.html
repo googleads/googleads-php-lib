@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>Dfp API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">Dfp API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Google.html">\Google</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">279</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-44357554"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-44357554" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-784715567"></a>
+                                <a href="../namespaces/Google.html" style="margin-left: 30px; padding-left: 0">Google</a>
+            </div>
+            <div id="namespace-784715567" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1174844971"></a>
+                                <a href="../namespaces/Google.AdsApi.html" style="margin-left: 30px; padding-left: 0">AdsApi</a>
+            </div>
+            <div id="namespace-1174844971" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-175591326"></a>
+                                <a href="../namespaces/Google.AdsApi.Common.html" style="margin-left: 30px; padding-left: 0">Common</a>
+            </div>
+            <div id="namespace-175591326" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-818289218"></a>
+                                <a href="../namespaces/Google.AdsApi.Common.Testing.html" style="margin-left: 30px; padding-left: 0">Testing</a>
+            </div>
+            <div id="namespace-818289218" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.Testing.AdsBuildersTestProvider.html">AdsBuildersTestProvider</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.Testing.ApplicationNames.html">ApplicationNames</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.Testing.ConfigurationLoaderTestProvider.html">ConfigurationLoaderTestProvider</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.Testing.FakeHttpPayloadsAndLogsProvider.html">FakeHttpPayloadsAndLogsProvider</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.Testing.FakeInvalidMapEntry.html">FakeInvalidMapEntry</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.Testing.FakeMapEntry.html">FakeMapEntry</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.Testing.FakeSoapPayloadsAndLogsProvider.html">FakeSoapPayloadsAndLogsProvider</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1235870639"></a>
+                                <a href="../namespaces/Google.AdsApi.Common.Util.html" style="margin-left: 30px; padding-left: 0">Util</a>
+            </div>
+            <div id="namespace-1235870639" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.Util.EnvironmentalVariables.html">EnvironmentalVariables</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.Util.LogMessageScrubbers.html">LogMessageScrubbers</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.Util.MapEntries.html">MapEntries</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.Util.OAuth2TokenRefresher.html">OAuth2TokenRefresher</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.Util.Reflection.html">Reflection</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.Util.SoapHeaders.html">SoapHeaders</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.Util.SoapRequests.html">SoapRequests</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Google.AdsApi.Common.AdsBuilder.html">AdsBuilder</a></li>
+                                                    <li class="interface"><a href="../classes/Google.AdsApi.Common.AdsHeaderHandler.html">AdsHeaderHandler</a></li>
+                                                    <li class="interface"><a href="../classes/Google.AdsApi.Common.AdsServiceDescriptor.html">AdsServiceDescriptor</a></li>
+                                                    <li class="interface"><a href="../classes/Google.AdsApi.Common.AdsServices.html">AdsServices</a></li>
+                                                    <li class="interface"><a href="../classes/Google.AdsApi.Common.AdsSession.html">AdsSession</a></li>
+                                                    <li class="interface"><a href="../classes/Google.AdsApi.Common.GuzzleHttpClientFactory.html">GuzzleHttpClientFactory</a></li>
+                                                    <li class="interface"><a href="../classes/Google.AdsApi.Common.GuzzleLogMessageFormatterProvider.html">GuzzleLogMessageFormatterProvider</a></li>
+                                                    <li class="interface"><a href="../classes/Google.AdsApi.Common.SoapLogMessageFormatterProvider.html">SoapLogMessageFormatterProvider</a></li>
+                                                                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.AdsGuzzleHttpClientFactory.html">AdsGuzzleHttpClientFactory</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.AdsGuzzleProxyHttpHandler.html">AdsGuzzleProxyHttpHandler</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.AdsHeaderFormatter.html">AdsHeaderFormatter</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.AdsLoggerFactory.html">AdsLoggerFactory</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.AdsSoapClient.html">AdsSoapClient</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.AdsSoapClientFactory.html">AdsSoapClientFactory</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.AdsUtility.html">AdsUtility</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.AdsUtilityRegistry.html">AdsUtilityRegistry</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.Configuration.html">Configuration</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.ConfigurationLoader.html">ConfigurationLoader</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.ConnectionSettings.html">ConnectionSettings</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.ConnectionSettingsBuilder.html">ConnectionSettingsBuilder</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.GuzzleLogMessageFormatter.html">GuzzleLogMessageFormatter</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.GuzzleLogMessageHandler.html">GuzzleLogMessageHandler</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.LibraryMetadataProvider.html">LibraryMetadataProvider</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.OAuth2TokenBuilder.html">OAuth2TokenBuilder</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.SoapLogMessageFormatter.html">SoapLogMessageFormatter</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.SoapSettings.html">SoapSettings</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.SoapSettingsBuilder.html">SoapSettingsBuilder</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-994068426"></a>
+                                <a href="../namespaces/Google.AdsApi.Dfp.html" style="margin-left: 30px; padding-left: 0">Dfp</a>
+            </div>
+            <div id="namespace-994068426" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1476219084"></a>
+                                <a href="../namespaces/Google.AdsApi.Dfp.Util.html" style="margin-left: 30px; padding-left: 0">Util</a>
+            </div>
+            <div id="namespace-1476219084" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-739157824"></a>
+                                <a href="../namespaces/Google.AdsApi.Dfp.Util.v201705.html" style="margin-left: 30px; padding-left: 0">v201705</a>
+            </div>
+            <div id="namespace-739157824" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201705.DfpDates.html">DfpDates</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201705.DfpDateTimes.html">DfpDateTimes</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201705.Pql.html">Pql</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201705.ReportDownloader.html">ReportDownloader</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201705.StatementBuilder.html">StatementBuilder</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1439129637"></a>
+                                <a href="../namespaces/Google.AdsApi.Dfp.Util.v201708.html" style="margin-left: 30px; padding-left: 0">v201708</a>
+            </div>
+            <div id="namespace-1439129637" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201708.DfpDates.html">DfpDates</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201708.DfpDateTimes.html">DfpDateTimes</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201708.Pql.html">Pql</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201708.ReportDownloader.html">ReportDownloader</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201708.StatementBuilder.html">StatementBuilder</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-308049927"></a>
+                                <a href="../namespaces/Google.AdsApi.Dfp.Util.v201711.html" style="margin-left: 30px; padding-left: 0">v201711</a>
+            </div>
+            <div id="namespace-308049927" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201711.CsvFiles.html">CsvFiles</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201711.DfpDates.html">DfpDates</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201711.DfpDateTimes.html">DfpDateTimes</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201711.Pql.html">Pql</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201711.ReportDownloader.html">ReportDownloader</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201711.StatementBuilder.html">StatementBuilder</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1318406455"></a>
+                                <a href="../namespaces/Google.AdsApi.Dfp.Util.v201802.html" style="margin-left: 30px; padding-left: 0">v201802</a>
+            </div>
+            <div id="namespace-1318406455" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201802.CsvFiles.html">CsvFiles</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201802.DfpDates.html">DfpDates</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201802.DfpDateTimes.html">DfpDateTimes</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201802.Pql.html">Pql</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201802.ReportDownloader.html">ReportDownloader</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201802.StatementBuilder.html">StatementBuilder</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.DfpGuzzleLogMessageFormatterProvider.html">DfpGuzzleLogMessageFormatterProvider</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.DfpHeaderHandler.html">DfpHeaderHandler</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.DfpServiceDescriptor.html">DfpServiceDescriptor</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.DfpServices.html">DfpServices</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.DfpSession.html">DfpSession</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.DfpSessionBuilder.html">DfpSessionBuilder</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.DfpSoapLogMessageFormatterProvider.html">DfpSoapLogMessageFormatterProvider</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Google.AdsApi.Common.html">\Google\AdsApi\Common</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Google\AdsApi\Common</small>AdsSoapClientFactory</h1>
+                    <p><em>Creates SOAP clients that interface with ads APIs. These SOAP clients extend
+`AdsSoapClient`. For example, the DFP `LineItemService` or the AdWords
+`CampaignService`.</em></p>
+                    
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Google.AdsApi.Common.AdsSoapClientFactory.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/Google.AdsApi.Common.AdsSoapClientFactory.html#method_generateSoapClient" class="">generateSoapClient()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Google.AdsApi.Common.AdsSoapClientFactory.html#constant_DEFAULT_SOAP_CALL_TIMEOUT" class="">DEFAULT_SOAP_CALL_TIMEOUT</a><br />
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <a href="../classes/Google.AdsApi.Common.AdsSoapClientFactory.html#method_populateOptions" class="">populateOptions()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Google.AdsApi.Common.AdsSoapClientFactory.html#property_reflection" class="">$reflection</a><br />
+                                                                    <a href="../classes/Google.AdsApi.Common.AdsSoapClientFactory.html#property_soapLogMessageFormatter" class="">$soapLogMessageFormatter</a><br />
+                                                                    <a href="../classes/Google.AdsApi.Common.AdsSoapClientFactory.html#property_soapCallTimeout" class="">$soapCallTimeout</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                                                <span class="label label-info">final</span>
+                    
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Common.AdsSoapClientFactory.html"><div class="path-wrapper">Common/AdsSoapClientFactory.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\Google\AdsApi\Common\AdsSoapClientFactory</div>
+                            </dd>
+
+                        
+                        
+                        
+                                                                            <dt>See also</dt>
+                                                                                        <dd><a href="../classes/Google.AdsApi.Common.AdsSoapClient.html"><span class="namespace-wrapper">\Google\AdsApi\Common\AdsSoapClient</span></a></dd>
+                                                    
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                        </table>
+                </aside>
+            </div>
+
+                                    <a id="constants" name="constants"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Constants</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_DEFAULT_SOAP_CALL_TIMEOUT" name="constant_DEFAULT_SOAP_CALL_TIMEOUT" class="anchor"></a>
+            <article id="constant_DEFAULT_SOAP_CALL_TIMEOUT" class="constant">
+                <h3 class="">DEFAULT_SOAP_CALL_TIMEOUT</h3>
+                <pre class="signature">DEFAULT_SOAP_CALL_TIMEOUT</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_reflection" name="property_reflection" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$reflection</h3>
+                <pre class="signature">$reflection : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_soapLogMessageFormatter" name="property_soapLogMessageFormatter" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$soapLogMessageFormatter</h3>
+                <pre class="signature">$soapLogMessageFormatter : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_soapCallTimeout" name="property_soapCallTimeout" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$soapCallTimeout</h3>
+                <pre class="signature">$soapCallTimeout : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(\Google\AdsApi\Common\SoapLogMessageFormatter  <span class="argument">$soapLogMessageFormatter</span>, \Google\AdsApi\Common\Util\Reflection|null  <span class="argument">$reflection = null</span>, integer|null  <span class="argument">$soapCallTimeout = null</span>) </pre>
+                <p><em>Creates a new instance of this factory with the specified SOAP log
+formatter.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Google.AdsApi.Common.SoapLogMessageFormatter.html">\Google\AdsApi\Common\SoapLogMessageFormatter</a></td>
+                                <td>$soapLogMessageFormatter </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/Google.AdsApi.Common.Util.Reflection.html">\Google\AdsApi\Common\Util\Reflection</a>|null</td>
+                                <td>$reflection </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer|null</td>
+                                <td>$soapCallTimeout </td>
+                                <td><p>the time in seconds to wait for a SOAP
+call to connect to the service and respond before timing out</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_generateSoapClient" name="method_generateSoapClient" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">generateSoapClient()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">generateSoapClient(\Google\AdsApi\Common\AdsSession  <span class="argument">$session</span>, \Google\AdsApi\Common\AdsHeaderHandler  <span class="argument">$headerHandler</span>, \Google\AdsApi\Common\AdsServiceDescriptor  <span class="argument">$serviceDescriptor</span>) : \SoapClient</pre>
+                <p><em>Generates a SOAP client that interfaces with the specified service using
+configuration data from the specified ads session.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Google.AdsApi.Common.AdsSession.html">\Google\AdsApi\Common\AdsSession</a></td>
+                                <td>$session </td>
+                                <td><p>the session to read configuration information
+from</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/Google.AdsApi.Common.AdsHeaderHandler.html">\Google\AdsApi\Common\AdsHeaderHandler</a></td>
+                                <td>$headerHandler </td>
+                                <td><p>the header handler that will
+generate HTTP and SOAP headers</p></td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/Google.AdsApi.Common.AdsServiceDescriptor.html">\Google\AdsApi\Common\AdsServiceDescriptor</a></td>
+                                <td>$serviceDescriptor </td>
+                                <td><p>descriptor for the service
+the SOAP client is being generated to interface with</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\UnexpectedValueException</dt>
+                            <dd><p>if the SOAP client could not be generated</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    \SoapClient
+                                            &mdash; <p>a SOAP client</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_populateOptions" name="method_populateOptions" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">populateOptions()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">populateOptions(\Google\AdsApi\Common\AdsSession  <span class="argument">$session</span>, array  <span class="argument">$options</span>, \Google\AdsApi\Common\SoapSettings  <span class="argument">$soapSettings = null</span>) </pre>
+                <p><em></em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Google.AdsApi.Common.AdsSession.html">\Google\AdsApi\Common\AdsSession</a></td>
+                                <td>$session </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$options </td>
+                                <td></td>
+                            </tr>
+                                                    <tr>
+                                <td><a href="../classes/Google.AdsApi.Common.SoapSettings.html">\Google\AdsApi\Common\SoapSettings</a></td>
+                                <td>$soapSettings </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">AdsSoapClientFactory.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Common/AdsSoapClientFactory.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Google.html">\Google</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on February 14th, 2018 at 03:40.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>

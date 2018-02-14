@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>Dfp API Documentation</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">Dfp API Documentation</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/Google.html">\Google</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">279</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-326476385"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-326476385" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-904613738"></a>
+                                <a href="../namespaces/Google.html" style="margin-left: 30px; padding-left: 0">Google</a>
+            </div>
+            <div id="namespace-904613738" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1640187572"></a>
+                                <a href="../namespaces/Google.AdsApi.html" style="margin-left: 30px; padding-left: 0">AdsApi</a>
+            </div>
+            <div id="namespace-1640187572" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1894815169"></a>
+                                <a href="../namespaces/Google.AdsApi.Common.html" style="margin-left: 30px; padding-left: 0">Common</a>
+            </div>
+            <div id="namespace-1894815169" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-601824066"></a>
+                                <a href="../namespaces/Google.AdsApi.Common.Testing.html" style="margin-left: 30px; padding-left: 0">Testing</a>
+            </div>
+            <div id="namespace-601824066" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.Testing.AdsBuildersTestProvider.html">AdsBuildersTestProvider</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.Testing.ApplicationNames.html">ApplicationNames</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.Testing.ConfigurationLoaderTestProvider.html">ConfigurationLoaderTestProvider</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.Testing.FakeHttpPayloadsAndLogsProvider.html">FakeHttpPayloadsAndLogsProvider</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.Testing.FakeInvalidMapEntry.html">FakeInvalidMapEntry</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.Testing.FakeMapEntry.html">FakeMapEntry</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.Testing.FakeSoapPayloadsAndLogsProvider.html">FakeSoapPayloadsAndLogsProvider</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-143697459"></a>
+                                <a href="../namespaces/Google.AdsApi.Common.Util.html" style="margin-left: 30px; padding-left: 0">Util</a>
+            </div>
+            <div id="namespace-143697459" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.Util.EnvironmentalVariables.html">EnvironmentalVariables</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.Util.LogMessageScrubbers.html">LogMessageScrubbers</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.Util.MapEntries.html">MapEntries</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.Util.OAuth2TokenRefresher.html">OAuth2TokenRefresher</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.Util.Reflection.html">Reflection</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.Util.SoapHeaders.html">SoapHeaders</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.Util.SoapRequests.html">SoapRequests</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/Google.AdsApi.Common.AdsBuilder.html">AdsBuilder</a></li>
+                                                    <li class="interface"><a href="../classes/Google.AdsApi.Common.AdsHeaderHandler.html">AdsHeaderHandler</a></li>
+                                                    <li class="interface"><a href="../classes/Google.AdsApi.Common.AdsServiceDescriptor.html">AdsServiceDescriptor</a></li>
+                                                    <li class="interface"><a href="../classes/Google.AdsApi.Common.AdsServices.html">AdsServices</a></li>
+                                                    <li class="interface"><a href="../classes/Google.AdsApi.Common.AdsSession.html">AdsSession</a></li>
+                                                    <li class="interface"><a href="../classes/Google.AdsApi.Common.GuzzleHttpClientFactory.html">GuzzleHttpClientFactory</a></li>
+                                                    <li class="interface"><a href="../classes/Google.AdsApi.Common.GuzzleLogMessageFormatterProvider.html">GuzzleLogMessageFormatterProvider</a></li>
+                                                    <li class="interface"><a href="../classes/Google.AdsApi.Common.SoapLogMessageFormatterProvider.html">SoapLogMessageFormatterProvider</a></li>
+                                                                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.AdsGuzzleHttpClientFactory.html">AdsGuzzleHttpClientFactory</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.AdsGuzzleProxyHttpHandler.html">AdsGuzzleProxyHttpHandler</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.AdsHeaderFormatter.html">AdsHeaderFormatter</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.AdsLoggerFactory.html">AdsLoggerFactory</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.AdsSoapClient.html">AdsSoapClient</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.AdsSoapClientFactory.html">AdsSoapClientFactory</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.AdsUtility.html">AdsUtility</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.AdsUtilityRegistry.html">AdsUtilityRegistry</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.Configuration.html">Configuration</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.ConfigurationLoader.html">ConfigurationLoader</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.ConnectionSettings.html">ConnectionSettings</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.ConnectionSettingsBuilder.html">ConnectionSettingsBuilder</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.GuzzleLogMessageFormatter.html">GuzzleLogMessageFormatter</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.GuzzleLogMessageHandler.html">GuzzleLogMessageHandler</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.LibraryMetadataProvider.html">LibraryMetadataProvider</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.OAuth2TokenBuilder.html">OAuth2TokenBuilder</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.SoapLogMessageFormatter.html">SoapLogMessageFormatter</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.SoapSettings.html">SoapSettings</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Common.SoapSettingsBuilder.html">SoapSettingsBuilder</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1211325148"></a>
+                                <a href="../namespaces/Google.AdsApi.Dfp.html" style="margin-left: 30px; padding-left: 0">Dfp</a>
+            </div>
+            <div id="namespace-1211325148" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1976642183"></a>
+                                <a href="../namespaces/Google.AdsApi.Dfp.Util.html" style="margin-left: 30px; padding-left: 0">Util</a>
+            </div>
+            <div id="namespace-1976642183" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2119524450"></a>
+                                <a href="../namespaces/Google.AdsApi.Dfp.Util.v201705.html" style="margin-left: 30px; padding-left: 0">v201705</a>
+            </div>
+            <div id="namespace-2119524450" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201705.DfpDates.html">DfpDates</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201705.DfpDateTimes.html">DfpDateTimes</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201705.Pql.html">Pql</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201705.ReportDownloader.html">ReportDownloader</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201705.StatementBuilder.html">StatementBuilder</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1863876831"></a>
+                                <a href="../namespaces/Google.AdsApi.Dfp.Util.v201708.html" style="margin-left: 30px; padding-left: 0">v201708</a>
+            </div>
+            <div id="namespace-1863876831" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201708.DfpDates.html">DfpDates</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201708.DfpDateTimes.html">DfpDateTimes</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201708.Pql.html">Pql</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201708.ReportDownloader.html">ReportDownloader</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201708.StatementBuilder.html">StatementBuilder</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1401201927"></a>
+                                <a href="../namespaces/Google.AdsApi.Dfp.Util.v201711.html" style="margin-left: 30px; padding-left: 0">v201711</a>
+            </div>
+            <div id="namespace-1401201927" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201711.CsvFiles.html">CsvFiles</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201711.DfpDates.html">DfpDates</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201711.DfpDateTimes.html">DfpDateTimes</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201711.Pql.html">Pql</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201711.ReportDownloader.html">ReportDownloader</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201711.StatementBuilder.html">StatementBuilder</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1680495394"></a>
+                                <a href="../namespaces/Google.AdsApi.Dfp.Util.v201802.html" style="margin-left: 30px; padding-left: 0">v201802</a>
+            </div>
+            <div id="namespace-1680495394" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201802.CsvFiles.html">CsvFiles</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201802.DfpDates.html">DfpDates</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201802.DfpDateTimes.html">DfpDateTimes</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201802.Pql.html">Pql</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201802.ReportDownloader.html">ReportDownloader</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.Util.v201802.StatementBuilder.html">StatementBuilder</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.DfpGuzzleLogMessageFormatterProvider.html">DfpGuzzleLogMessageFormatterProvider</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.DfpHeaderHandler.html">DfpHeaderHandler</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.DfpServiceDescriptor.html">DfpServiceDescriptor</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.DfpServices.html">DfpServices</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.DfpSession.html">DfpSession</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.DfpSessionBuilder.html">DfpSessionBuilder</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.Dfp.DfpSoapLogMessageFormatterProvider.html">DfpSoapLogMessageFormatterProvider</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/Google.AdsApi.Common.html">\Google\AdsApi\Common</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\Google\AdsApi\Common</small>OAuth2TokenBuilder</h1>
+                    <p><em>Builds OAuth2 access token fetchers.</em></p>
+                    
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Google.AdsApi.Common.OAuth2TokenBuilder.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/Google.AdsApi.Common.OAuth2TokenBuilder.html#method_fromFile" class="">fromFile()</a><br />
+                                                                    <a href="../classes/Google.AdsApi.Common.OAuth2TokenBuilder.html#method_from" class="">from()</a><br />
+                                                                    <a href="../classes/Google.AdsApi.Common.OAuth2TokenBuilder.html#method_withJsonKeyFilePath" class="">withJsonKeyFilePath()</a><br />
+                                                                    <a href="../classes/Google.AdsApi.Common.OAuth2TokenBuilder.html#method_withScopes" class="">withScopes()</a><br />
+                                                                    <a href="../classes/Google.AdsApi.Common.OAuth2TokenBuilder.html#method_withImpersonatedEmail" class="">withImpersonatedEmail()</a><br />
+                                                                    <a href="../classes/Google.AdsApi.Common.OAuth2TokenBuilder.html#method_withClientId" class="">withClientId()</a><br />
+                                                                    <a href="../classes/Google.AdsApi.Common.OAuth2TokenBuilder.html#method_withClientSecret" class="">withClientSecret()</a><br />
+                                                                    <a href="../classes/Google.AdsApi.Common.OAuth2TokenBuilder.html#method_withRefreshToken" class="">withRefreshToken()</a><br />
+                                                                    <a href="../classes/Google.AdsApi.Common.OAuth2TokenBuilder.html#method_build" class="">build()</a><br />
+                                                                    <a href="../classes/Google.AdsApi.Common.OAuth2TokenBuilder.html#method_defaultOptionals" class="">defaultOptionals()</a><br />
+                                                                    <a href="../classes/Google.AdsApi.Common.OAuth2TokenBuilder.html#method_validate" class="">validate()</a><br />
+                                                                    <a href="../classes/Google.AdsApi.Common.OAuth2TokenBuilder.html#method_getJsonKeyFilePath" class="">getJsonKeyFilePath()</a><br />
+                                                                    <a href="../classes/Google.AdsApi.Common.OAuth2TokenBuilder.html#method_getScopes" class="">getScopes()</a><br />
+                                                                    <a href="../classes/Google.AdsApi.Common.OAuth2TokenBuilder.html#method_getImpersonatedEmail" class="">getImpersonatedEmail()</a><br />
+                                                                    <a href="../classes/Google.AdsApi.Common.OAuth2TokenBuilder.html#method_getClientId" class="">getClientId()</a><br />
+                                                                    <a href="../classes/Google.AdsApi.Common.OAuth2TokenBuilder.html#method_getClientSecret" class="">getClientSecret()</a><br />
+                                                                    <a href="../classes/Google.AdsApi.Common.OAuth2TokenBuilder.html#method_getRefreshToken" class="">getRefreshToken()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <em>No private methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/Google.AdsApi.Common.OAuth2TokenBuilder.html#property_configurationLoader" class="">$configurationLoader</a><br />
+                                                                    <a href="../classes/Google.AdsApi.Common.OAuth2TokenBuilder.html#property_jsonKeyFilePath" class="">$jsonKeyFilePath</a><br />
+                                                                    <a href="../classes/Google.AdsApi.Common.OAuth2TokenBuilder.html#property_scopes" class="">$scopes</a><br />
+                                                                    <a href="../classes/Google.AdsApi.Common.OAuth2TokenBuilder.html#property_impersonatedEmail" class="">$impersonatedEmail</a><br />
+                                                                    <a href="../classes/Google.AdsApi.Common.OAuth2TokenBuilder.html#property_clientId" class="">$clientId</a><br />
+                                                                    <a href="../classes/Google.AdsApi.Common.OAuth2TokenBuilder.html#property_clientSecret" class="">$clientSecret</a><br />
+                                                                    <a href="../classes/Google.AdsApi.Common.OAuth2TokenBuilder.html#property_refreshToken" class="">$refreshToken</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                                                <span class="label label-info">final</span>
+                    
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/Common.OAuth2TokenBuilder.html"><div class="path-wrapper">Common/OAuth2TokenBuilder.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\Google\AdsApi\Common\OAuth2TokenBuilder</div>
+                            </dd>
+
+                                                                            <dt>Implements</dt>
+                                                        <dd><a href="../classes/Google.AdsApi.Common.AdsBuilder.html"><div class="namespace-wrapper">\Google\AdsApi\Common\AdsBuilder</div></a></dd>
+                        
+                        
+                        
+                                                                            <dt>See also</dt>
+                                                                                        <dd><a href=""><span class="namespace-wrapper">\Google\AdsApi\Common\FetchAuthTokenInterface</span></a></dd>
+                                                    
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_configurationLoader" name="property_configurationLoader" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$configurationLoader</h3>
+                <pre class="signature">$configurationLoader : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_jsonKeyFilePath" name="property_jsonKeyFilePath" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$jsonKeyFilePath</h3>
+                <pre class="signature">$jsonKeyFilePath : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_scopes" name="property_scopes" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$scopes</h3>
+                <pre class="signature">$scopes : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_impersonatedEmail" name="property_impersonatedEmail" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$impersonatedEmail</h3>
+                <pre class="signature">$impersonatedEmail : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_clientId" name="property_clientId" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$clientId</h3>
+                <pre class="signature">$clientId : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_clientSecret" name="property_clientSecret" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$clientSecret</h3>
+                <pre class="signature">$clientSecret : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_refreshToken" name="property_refreshToken" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$refreshToken</h3>
+                <pre class="signature">$refreshToken : </pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                
+                                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct() </pre>
+                <p><em></em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_fromFile" name="method_fromFile" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">fromFile()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">fromFile(string  <span class="argument">$path = null</span>) : \Google\AdsApi\Common\OAuth2TokenBuilder</pre>
+                <p><em>Reads configuration settings from the specified filepath. The filepath is
+optional, and if omitted, it will look for the default configuration
+filename in the home directory of the user running PHP.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$path </td>
+                                <td><p>the filepath</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>if the configuration file could not be
+found</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Google.AdsApi.Common.OAuth2TokenBuilder.html">\Google\AdsApi\Common\OAuth2TokenBuilder</a>
+                                            &mdash; <p>this builder populated from the configuration</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="../classes/Google.AdsApi.Common.AdsBuilder.html#constant_DEFAULT_CONFIGURATION_FILENAME"><span class="namespace-wrapper">\Google\AdsApi\Common\AdsBuilder::DEFAULT_CONFIGURATION_FILENAME</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_from" name="method_from" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">from()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">from(\Google\AdsApi\Common\Configuration  <span class="argument">$configuration</span>) : \Google\AdsApi\Common\AdsBuilder</pre>
+                <p><em>Populates this builder from the specified configuration object.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td><a href="../classes/Google.AdsApi.Common.Configuration.html">\Google\AdsApi\Common\Configuration</a></td>
+                                <td>$configuration </td>
+                                <td><p>the configuration</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Google.AdsApi.Common.AdsBuilder.html">\Google\AdsApi\Common\AdsBuilder</a>
+                                            &mdash; <p>this builder populated from the configuration</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="../classes/Google.AdsApi.Common.AdsBuilder.html#method_from"><span class="namespace-wrapper">\Google\AdsApi\Common\AdsBuilder::from()</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_withJsonKeyFilePath" name="method_withJsonKeyFilePath" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">withJsonKeyFilePath()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">withJsonKeyFilePath(string|null  <span class="argument">$jsonKeyFilePath</span>) : \Google\AdsApi\Common\OAuth2TokenBuilder</pre>
+                <p><em>Includes an absolute path to an OAuth2 JSON key file when using service
+account flow. Required and only applicable when using service account flow.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string|null</td>
+                                <td>$jsonKeyFilePath </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Google.AdsApi.Common.OAuth2TokenBuilder.html">\Google\AdsApi\Common\OAuth2TokenBuilder</a>
+                                            &mdash; <p>this builder</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_withScopes" name="method_withScopes" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">withScopes()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">withScopes(string|null  <span class="argument">$scopes</span>) : \Google\AdsApi\Common\OAuth2TokenBuilder</pre>
+                <p><em>Includes OAuth2 scopes. Required and only applicable when using service
+account flow.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string|null</td>
+                                <td>$scopes </td>
+                                <td><p>a space-delimited list of scopes</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Google.AdsApi.Common.OAuth2TokenBuilder.html">\Google\AdsApi\Common\OAuth2TokenBuilder</a>
+                                            &mdash; <p>this builder</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_withImpersonatedEmail" name="method_withImpersonatedEmail" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">withImpersonatedEmail()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">withImpersonatedEmail(string|null  <span class="argument">$impersonatedEmail</span>) : \Google\AdsApi\Common\OAuth2TokenBuilder</pre>
+                <p><em>Includes an email of account to impersonate when using service account
+flow. Optional and only applicable when using service account flow.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string|null</td>
+                                <td>$impersonatedEmail </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Google.AdsApi.Common.OAuth2TokenBuilder.html">\Google\AdsApi\Common\OAuth2TokenBuilder</a>
+                                            &mdash; <p>this builder</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_withClientId" name="method_withClientId" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">withClientId()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">withClientId(string|null  <span class="argument">$clientId</span>) : \Google\AdsApi\Common\OAuth2TokenBuilder</pre>
+                <p><em>Includes an OAuth2 client ID. Required when using installed application or
+web application flow.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string|null</td>
+                                <td>$clientId </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Google.AdsApi.Common.OAuth2TokenBuilder.html">\Google\AdsApi\Common\OAuth2TokenBuilder</a>
+                                            &mdash; <p>this builder</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_withClientSecret" name="method_withClientSecret" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">withClientSecret()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">withClientSecret(string|null  <span class="argument">$clientSecret</span>) : \Google\AdsApi\Common\OAuth2TokenBuilder</pre>
+                <p><em>Includes an OAuth2 client secret. Required when using installed application
+or web application flow.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string|null</td>
+                                <td>$clientSecret </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Google.AdsApi.Common.OAuth2TokenBuilder.html">\Google\AdsApi\Common\OAuth2TokenBuilder</a>
+                                            &mdash; <p>this builder</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_withRefreshToken" name="method_withRefreshToken" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">withRefreshToken()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">withRefreshToken(string|null  <span class="argument">$refreshToken</span>) : \Google\AdsApi\Common\OAuth2TokenBuilder</pre>
+                <p><em>Includes an OAuth2 refresh token. Required when using installed application
+or web application flow.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string|null</td>
+                                <td>$refreshToken </td>
+                                <td></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    <a href="../classes/Google.AdsApi.Common.OAuth2TokenBuilder.html">\Google\AdsApi\Common\OAuth2TokenBuilder</a>
+                                            &mdash; <p>this builder</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_build" name="method_build" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">build()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">build() : mixed</pre>
+                <p><em>Creates a new instance of the data object being populated. This method
+should call defaultOptionals() and validate().</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    mixed
+                                            &mdash; <p>the data object</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="../classes/Google.AdsApi.Common.AdsBuilder.html#method_build"><span class="namespace-wrapper">\Google\AdsApi\Common\AdsBuilder::build()</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_defaultOptionals" name="method_defaultOptionals" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">defaultOptionals()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">defaultOptionals() </pre>
+                <p><em>Sets all optional fields to their default if they are `null`.</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="../classes/Google.AdsApi.Common.AdsBuilder.html#method_defaultOptionals"><span class="namespace-wrapper">\Google\AdsApi\Common\AdsBuilder::defaultOptionals()</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_validate" name="method_validate" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">validate()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">validate() </pre>
+                <p><em>Checks that required fields have been included and all included
+fields are valid (e.g., URIs are valid).</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                                            <dt>See also</dt>
+                                                                <dd><a href="../classes/Google.AdsApi.Common.AdsBuilder.html#method_validate"><span class="namespace-wrapper">\Google\AdsApi\Common\AdsBuilder::validate()</span></a></dd>
+                                                                </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getJsonKeyFilePath" name="method_getJsonKeyFilePath" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getJsonKeyFilePath()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getJsonKeyFilePath() : string|null</pre>
+                <p><em>Gets the JSON key file path.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string|null
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getScopes" name="method_getScopes" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getScopes()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getScopes() : string|null</pre>
+                <p><em>Gets the scopes.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string|null
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getImpersonatedEmail" name="method_getImpersonatedEmail" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getImpersonatedEmail()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getImpersonatedEmail() : string|null</pre>
+                <p><em>Gets the impersonated email.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string|null
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getClientId" name="method_getClientId" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getClientId()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getClientId() : string|null</pre>
+                <p><em>Gets the client ID.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string|null
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getClientSecret" name="method_getClientSecret" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getClientSecret()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getClientSecret() : string|null</pre>
+                <p><em>Gets the client secret.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string|null
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getRefreshToken" name="method_getRefreshToken" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getRefreshToken()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getRefreshToken() : string|null</pre>
+                <p><em>Gets the refresh token.</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    string|null
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">OAuth2TokenBuilder.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/Common/OAuth2TokenBuilder.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/Google.html">\Google</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on February 14th, 2018 at 03:40.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
