@@ -106,7 +106,7 @@ class Contact extends \Google\AdsApi\Dfp\v201711\BaseContact
      */
     public function setId($id)
     {
-      $this->id = (!is_null(id) && PHP_INT_SIZE === 4)
+      $this->id = (!is_null($id) && PHP_INT_SIZE === 4)
           ? floatval($id) : $id;
       return $this;
     }
@@ -143,7 +143,7 @@ class Contact extends \Google\AdsApi\Dfp\v201711\BaseContact
      */
     public function setCompanyId($companyId)
     {
-      $this->companyId = (!is_null(companyId) && PHP_INT_SIZE === 4)
+      $this->companyId = (!is_null($companyId) && PHP_INT_SIZE === 4)
           ? floatval($companyId) : $companyId;
       return $this;
     }

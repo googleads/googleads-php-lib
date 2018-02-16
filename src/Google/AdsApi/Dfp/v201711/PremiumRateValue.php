@@ -64,7 +64,7 @@ class PremiumRateValue
      */
     public function setPremiumRateId($premiumRateId)
     {
-      $this->premiumRateId = (!is_null(premiumRateId) && PHP_INT_SIZE === 4)
+      $this->premiumRateId = (!is_null($premiumRateId) && PHP_INT_SIZE === 4)
           ? floatval($premiumRateId) : $premiumRateId;
       return $this;
     }
@@ -137,7 +137,7 @@ class PremiumRateValue
      */
     public function setAdjustmentSize($adjustmentSize)
     {
-      $this->adjustmentSize = (!is_null(adjustmentSize) && PHP_INT_SIZE === 4)
+      $this->adjustmentSize = (!is_null($adjustmentSize) && PHP_INT_SIZE === 4)
           ? floatval($adjustmentSize) : $adjustmentSize;
       return $this;
     }

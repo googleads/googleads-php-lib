@@ -57,7 +57,7 @@ class CustomerFeed
      */
     public function setFeedId($feedId)
     {
-      $this->feedId = (!is_null(feedId) && PHP_INT_SIZE === 4)
+      $this->feedId = (!is_null($feedId) && PHP_INT_SIZE === 4)
           ? floatval($feedId) : $feedId;
       return $this;
     }

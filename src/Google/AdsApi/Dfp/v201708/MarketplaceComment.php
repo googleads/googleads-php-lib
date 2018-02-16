@@ -57,7 +57,7 @@ class MarketplaceComment
      */
     public function setProposalId($proposalId)
     {
-      $this->proposalId = (!is_null(proposalId) && PHP_INT_SIZE === 4)
+      $this->proposalId = (!is_null($proposalId) && PHP_INT_SIZE === 4)
           ? floatval($proposalId) : $proposalId;
       return $this;
     }

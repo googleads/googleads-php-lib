@@ -38,7 +38,7 @@ class Money extends \Google\AdsApi\AdWords\v201708\cm\ComparableValue
      */
     public function setMicroAmount($microAmount)
     {
-      $this->microAmount = (!is_null(microAmount) && PHP_INT_SIZE === 4)
+      $this->microAmount = (!is_null($microAmount) && PHP_INT_SIZE === 4)
           ? floatval($microAmount) : $microAmount;
       return $this;
     }

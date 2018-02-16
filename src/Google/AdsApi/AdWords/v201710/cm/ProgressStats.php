@@ -57,7 +57,7 @@ class ProgressStats
      */
     public function setNumOperationsExecuted($numOperationsExecuted)
     {
-      $this->numOperationsExecuted = (!is_null(numOperationsExecuted) && PHP_INT_SIZE === 4)
+      $this->numOperationsExecuted = (!is_null($numOperationsExecuted) && PHP_INT_SIZE === 4)
           ? floatval($numOperationsExecuted) : $numOperationsExecuted;
       return $this;
     }
@@ -76,7 +76,7 @@ class ProgressStats
      */
     public function setNumOperationsSucceeded($numOperationsSucceeded)
     {
-      $this->numOperationsSucceeded = (!is_null(numOperationsSucceeded) && PHP_INT_SIZE === 4)
+      $this->numOperationsSucceeded = (!is_null($numOperationsSucceeded) && PHP_INT_SIZE === 4)
           ? floatval($numOperationsSucceeded) : $numOperationsSucceeded;
       return $this;
     }
@@ -113,7 +113,7 @@ class ProgressStats
      */
     public function setNumResultsWritten($numResultsWritten)
     {
-      $this->numResultsWritten = (!is_null(numResultsWritten) && PHP_INT_SIZE === 4)
+      $this->numResultsWritten = (!is_null($numResultsWritten) && PHP_INT_SIZE === 4)
           ? floatval($numResultsWritten) : $numResultsWritten;
       return $this;
     }

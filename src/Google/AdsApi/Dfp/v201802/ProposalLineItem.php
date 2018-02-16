@@ -456,7 +456,7 @@ class ProposalLineItem
      */
     public function setId($id)
     {
-      $this->id = (!is_null(id) && PHP_INT_SIZE === 4)
+      $this->id = (!is_null($id) && PHP_INT_SIZE === 4)
           ? floatval($id) : $id;
       return $this;
     }
@@ -475,7 +475,7 @@ class ProposalLineItem
      */
     public function setProposalId($proposalId)
     {
-      $this->proposalId = (!is_null(proposalId) && PHP_INT_SIZE === 4)
+      $this->proposalId = (!is_null($proposalId) && PHP_INT_SIZE === 4)
           ? floatval($proposalId) : $proposalId;
       return $this;
     }
@@ -494,7 +494,7 @@ class ProposalLineItem
      */
     public function setPackageId($packageId)
     {
-      $this->packageId = (!is_null(packageId) && PHP_INT_SIZE === 4)
+      $this->packageId = (!is_null($packageId) && PHP_INT_SIZE === 4)
           ? floatval($packageId) : $packageId;
       return $this;
     }
@@ -513,7 +513,7 @@ class ProposalLineItem
      */
     public function setRateCardId($rateCardId)
     {
-      $this->rateCardId = (!is_null(rateCardId) && PHP_INT_SIZE === 4)
+      $this->rateCardId = (!is_null($rateCardId) && PHP_INT_SIZE === 4)
           ? floatval($rateCardId) : $rateCardId;
       return $this;
     }
@@ -532,7 +532,7 @@ class ProposalLineItem
      */
     public function setProductId($productId)
     {
-      $this->productId = (!is_null(productId) && PHP_INT_SIZE === 4)
+      $this->productId = (!is_null($productId) && PHP_INT_SIZE === 4)
           ? floatval($productId) : $productId;
       return $this;
     }
@@ -713,7 +713,7 @@ class ProposalLineItem
      */
     public function setScheduledQuantity($scheduledQuantity)
     {
-      $this->scheduledQuantity = (!is_null(scheduledQuantity) && PHP_INT_SIZE === 4)
+      $this->scheduledQuantity = (!is_null($scheduledQuantity) && PHP_INT_SIZE === 4)
           ? floatval($scheduledQuantity) : $scheduledQuantity;
       return $this;
     }
@@ -732,7 +732,7 @@ class ProposalLineItem
      */
     public function setContractedUnitsBought($contractedUnitsBought)
     {
-      $this->contractedUnitsBought = (!is_null(contractedUnitsBought) && PHP_INT_SIZE === 4)
+      $this->contractedUnitsBought = (!is_null($contractedUnitsBought) && PHP_INT_SIZE === 4)
           ? floatval($contractedUnitsBought) : $contractedUnitsBought;
       return $this;
     }
@@ -823,7 +823,7 @@ class ProposalLineItem
      */
     public function setVideoMaxDuration($videoMaxDuration)
     {
-      $this->videoMaxDuration = (!is_null(videoMaxDuration) && PHP_INT_SIZE === 4)
+      $this->videoMaxDuration = (!is_null($videoMaxDuration) && PHP_INT_SIZE === 4)
           ? floatval($videoMaxDuration) : $videoMaxDuration;
       return $this;
     }
@@ -860,7 +860,7 @@ class ProposalLineItem
      */
     public function setDfpLineItemId($dfpLineItemId)
     {
-      $this->dfpLineItemId = (!is_null(dfpLineItemId) && PHP_INT_SIZE === 4)
+      $this->dfpLineItemId = (!is_null($dfpLineItemId) && PHP_INT_SIZE === 4)
           ? floatval($dfpLineItemId) : $dfpLineItemId;
       return $this;
     }
@@ -1545,7 +1545,7 @@ class ProposalLineItem
      */
     public function setEstimatedMinimumImpressions($estimatedMinimumImpressions)
     {
-      $this->estimatedMinimumImpressions = (!is_null(estimatedMinimumImpressions) && PHP_INT_SIZE === 4)
+      $this->estimatedMinimumImpressions = (!is_null($estimatedMinimumImpressions) && PHP_INT_SIZE === 4)
           ? floatval($estimatedMinimumImpressions) : $estimatedMinimumImpressions;
       return $this;
     }

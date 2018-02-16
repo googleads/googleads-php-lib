@@ -2380,10 +2380,12 @@
               <element maxOccurs="1" minOccurs="0" name="uploadKeyType" type="tns:CustomerMatchUploadKeyType">
                 <annotation>
                   <documentation>
-                    Matching key type of the list. This field is read only and set on the first upload by API and
-                    remains immutable afterwards. Mixed data types are not allowed on the same list.
+                    Matching key type of the list.
+                    This field is read only and set on the first upload by API.
+                    Mixed data types are not allowed on the same list.
+                    From v201802, this field will be required for an ADD operation.
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "UploadKeyType".&lt;/span&gt;
-                    &lt;span class="constraint ReadOnly"&gt;This field is read only and will be ignored when sent to the API.&lt;/span&gt;
+                    &lt;span class="constraint ReadOnly"&gt;This field is read only and will be ignored when sent to the API for the following {@link Operator}s: SET.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>

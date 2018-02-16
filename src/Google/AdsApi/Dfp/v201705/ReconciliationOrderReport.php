@@ -92,7 +92,7 @@ class ReconciliationOrderReport
      */
     public function setId($id)
     {
-      $this->id = (!is_null(id) && PHP_INT_SIZE === 4)
+      $this->id = (!is_null($id) && PHP_INT_SIZE === 4)
           ? floatval($id) : $id;
       return $this;
     }
@@ -111,7 +111,7 @@ class ReconciliationOrderReport
      */
     public function setReconciliationReportId($reconciliationReportId)
     {
-      $this->reconciliationReportId = (!is_null(reconciliationReportId) && PHP_INT_SIZE === 4)
+      $this->reconciliationReportId = (!is_null($reconciliationReportId) && PHP_INT_SIZE === 4)
           ? floatval($reconciliationReportId) : $reconciliationReportId;
       return $this;
     }
@@ -130,7 +130,7 @@ class ReconciliationOrderReport
      */
     public function setOrderId($orderId)
     {
-      $this->orderId = (!is_null(orderId) && PHP_INT_SIZE === 4)
+      $this->orderId = (!is_null($orderId) && PHP_INT_SIZE === 4)
           ? floatval($orderId) : $orderId;
       return $this;
     }
@@ -149,7 +149,7 @@ class ReconciliationOrderReport
      */
     public function setProposalId($proposalId)
     {
-      $this->proposalId = (!is_null(proposalId) && PHP_INT_SIZE === 4)
+      $this->proposalId = (!is_null($proposalId) && PHP_INT_SIZE === 4)
           ? floatval($proposalId) : $proposalId;
       return $this;
     }
@@ -204,7 +204,7 @@ class ReconciliationOrderReport
      */
     public function setSubmitterId($submitterId)
     {
-      $this->submitterId = (!is_null(submitterId) && PHP_INT_SIZE === 4)
+      $this->submitterId = (!is_null($submitterId) && PHP_INT_SIZE === 4)
           ? floatval($submitterId) : $submitterId;
       return $this;
     }

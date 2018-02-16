@@ -71,7 +71,7 @@ class LineItemDeliveryForecast
      */
     public function setLineItemId($lineItemId)
     {
-      $this->lineItemId = (!is_null(lineItemId) && PHP_INT_SIZE === 4)
+      $this->lineItemId = (!is_null($lineItemId) && PHP_INT_SIZE === 4)
           ? floatval($lineItemId) : $lineItemId;
       return $this;
     }
@@ -90,7 +90,7 @@ class LineItemDeliveryForecast
      */
     public function setOrderId($orderId)
     {
-      $this->orderId = (!is_null(orderId) && PHP_INT_SIZE === 4)
+      $this->orderId = (!is_null($orderId) && PHP_INT_SIZE === 4)
           ? floatval($orderId) : $orderId;
       return $this;
     }
@@ -127,7 +127,7 @@ class LineItemDeliveryForecast
      */
     public function setPredictedDeliveryUnits($predictedDeliveryUnits)
     {
-      $this->predictedDeliveryUnits = (!is_null(predictedDeliveryUnits) && PHP_INT_SIZE === 4)
+      $this->predictedDeliveryUnits = (!is_null($predictedDeliveryUnits) && PHP_INT_SIZE === 4)
           ? floatval($predictedDeliveryUnits) : $predictedDeliveryUnits;
       return $this;
     }
@@ -146,7 +146,7 @@ class LineItemDeliveryForecast
      */
     public function setDeliveredUnits($deliveredUnits)
     {
-      $this->deliveredUnits = (!is_null(deliveredUnits) && PHP_INT_SIZE === 4)
+      $this->deliveredUnits = (!is_null($deliveredUnits) && PHP_INT_SIZE === 4)
           ? floatval($deliveredUnits) : $deliveredUnits;
       return $this;
     }
@@ -165,7 +165,7 @@ class LineItemDeliveryForecast
      */
     public function setMatchedUnits($matchedUnits)
     {
-      $this->matchedUnits = (!is_null(matchedUnits) && PHP_INT_SIZE === 4)
+      $this->matchedUnits = (!is_null($matchedUnits) && PHP_INT_SIZE === 4)
           ? floatval($matchedUnits) : $matchedUnits;
       return $this;
     }

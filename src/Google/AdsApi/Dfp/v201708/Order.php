@@ -246,7 +246,7 @@ class Order
      */
     public function setId($id)
     {
-      $this->id = (!is_null(id) && PHP_INT_SIZE === 4)
+      $this->id = (!is_null($id) && PHP_INT_SIZE === 4)
           ? floatval($id) : $id;
       return $this;
     }
@@ -445,7 +445,7 @@ class Order
      */
     public function setAdvertiserId($advertiserId)
     {
-      $this->advertiserId = (!is_null(advertiserId) && PHP_INT_SIZE === 4)
+      $this->advertiserId = (!is_null($advertiserId) && PHP_INT_SIZE === 4)
           ? floatval($advertiserId) : $advertiserId;
       return $this;
     }
@@ -482,7 +482,7 @@ class Order
      */
     public function setAgencyId($agencyId)
     {
-      $this->agencyId = (!is_null(agencyId) && PHP_INT_SIZE === 4)
+      $this->agencyId = (!is_null($agencyId) && PHP_INT_SIZE === 4)
           ? floatval($agencyId) : $agencyId;
       return $this;
     }
@@ -519,7 +519,7 @@ class Order
      */
     public function setCreatorId($creatorId)
     {
-      $this->creatorId = (!is_null(creatorId) && PHP_INT_SIZE === 4)
+      $this->creatorId = (!is_null($creatorId) && PHP_INT_SIZE === 4)
           ? floatval($creatorId) : $creatorId;
       return $this;
     }
@@ -538,7 +538,7 @@ class Order
      */
     public function setTraffickerId($traffickerId)
     {
-      $this->traffickerId = (!is_null(traffickerId) && PHP_INT_SIZE === 4)
+      $this->traffickerId = (!is_null($traffickerId) && PHP_INT_SIZE === 4)
           ? floatval($traffickerId) : $traffickerId;
       return $this;
     }
@@ -575,7 +575,7 @@ class Order
      */
     public function setSalespersonId($salespersonId)
     {
-      $this->salespersonId = (!is_null(salespersonId) && PHP_INT_SIZE === 4)
+      $this->salespersonId = (!is_null($salespersonId) && PHP_INT_SIZE === 4)
           ? floatval($salespersonId) : $salespersonId;
       return $this;
     }
@@ -612,7 +612,7 @@ class Order
      */
     public function setTotalImpressionsDelivered($totalImpressionsDelivered)
     {
-      $this->totalImpressionsDelivered = (!is_null(totalImpressionsDelivered) && PHP_INT_SIZE === 4)
+      $this->totalImpressionsDelivered = (!is_null($totalImpressionsDelivered) && PHP_INT_SIZE === 4)
           ? floatval($totalImpressionsDelivered) : $totalImpressionsDelivered;
       return $this;
     }
@@ -631,7 +631,7 @@ class Order
      */
     public function setTotalClicksDelivered($totalClicksDelivered)
     {
-      $this->totalClicksDelivered = (!is_null(totalClicksDelivered) && PHP_INT_SIZE === 4)
+      $this->totalClicksDelivered = (!is_null($totalClicksDelivered) && PHP_INT_SIZE === 4)
           ? floatval($totalClicksDelivered) : $totalClicksDelivered;
       return $this;
     }
@@ -650,7 +650,7 @@ class Order
      */
     public function setTotalViewableImpressionsDelivered($totalViewableImpressionsDelivered)
     {
-      $this->totalViewableImpressionsDelivered = (!is_null(totalViewableImpressionsDelivered) && PHP_INT_SIZE === 4)
+      $this->totalViewableImpressionsDelivered = (!is_null($totalViewableImpressionsDelivered) && PHP_INT_SIZE === 4)
           ? floatval($totalViewableImpressionsDelivered) : $totalViewableImpressionsDelivered;
       return $this;
     }

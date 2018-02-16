@@ -162,7 +162,7 @@ class LiveStreamEvent
      */
     public function setId($id)
     {
-      $this->id = (!is_null(id) && PHP_INT_SIZE === 4)
+      $this->id = (!is_null($id) && PHP_INT_SIZE === 4)
           ? floatval($id) : $id;
       return $this;
     }
@@ -307,7 +307,7 @@ class LiveStreamEvent
      */
     public function setTotalEstimatedConcurrentUsers($totalEstimatedConcurrentUsers)
     {
-      $this->totalEstimatedConcurrentUsers = (!is_null(totalEstimatedConcurrentUsers) && PHP_INT_SIZE === 4)
+      $this->totalEstimatedConcurrentUsers = (!is_null($totalEstimatedConcurrentUsers) && PHP_INT_SIZE === 4)
           ? floatval($totalEstimatedConcurrentUsers) : $totalEstimatedConcurrentUsers;
       return $this;
     }

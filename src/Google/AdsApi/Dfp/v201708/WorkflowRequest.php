@@ -64,7 +64,7 @@ abstract class WorkflowRequest
      */
     public function setId($id)
     {
-      $this->id = (!is_null(id) && PHP_INT_SIZE === 4)
+      $this->id = (!is_null($id) && PHP_INT_SIZE === 4)
           ? floatval($id) : $id;
       return $this;
     }
@@ -101,7 +101,7 @@ abstract class WorkflowRequest
      */
     public function setEntityId($entityId)
     {
-      $this->entityId = (!is_null(entityId) && PHP_INT_SIZE === 4)
+      $this->entityId = (!is_null($entityId) && PHP_INT_SIZE === 4)
           ? floatval($entityId) : $entityId;
       return $this;
     }

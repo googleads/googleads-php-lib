@@ -1633,7 +1633,7 @@
         <annotation>
           <documentation>
             An overlay {@code Creative} that displays a Flash-based ad and is
-            served via VAST 2.0 XML. Overlays cover part of the video content
+            served via VAST XML. Overlays cover part of the video content
             they are displayed on top of.  This creative is read-only.
           </documentation>
         </annotation>
@@ -1722,7 +1722,7 @@
         <annotation>
           <documentation>
             An overlay {@code Creative} that loads a Flash asset from a specified URL
-            and is served via VAST 2.0 XML. Overlays cover part of the video content
+            and is served via VAST XML. Overlays cover part of the video content
             they are displayed on top of.
           </documentation>
         </annotation>
@@ -2120,7 +2120,7 @@
         <annotation>
           <documentation>
             An overlay {@code Creative} that loads an image asset from a specified URL
-            and is served via VAST 2.0 XML. Overlays cover part of the video content
+            and is served via VAST XML. Overlays cover part of the video content
             they are displayed on top of.  This creative is read only.
           </documentation>
         </annotation>
@@ -3507,7 +3507,7 @@
         <annotation>
           <documentation>
             A {@code Creative} that contains DFP-hosted video ads and is served
-            via VAST 2.0 XML.  This creative is read-only.
+            via VAST XML.  This creative is read-only.
           </documentation>
         </annotation>
         <complexContent>
@@ -3637,7 +3637,7 @@
       <complexType name="VpaidLinearCreative">
         <annotation>
           <documentation>
-            A {@code Creative} that displays a DFP-hosted Flash-based ad and is served via VAST 2.0 XML. It
+            A {@code Creative} that displays a DFP-hosted Flash-based ad and is served via VAST XML. It
             is displayed in a linear fashion with a video (before, after, interrupting). This creative is
             read only.
             &lt;p&gt;
@@ -3733,7 +3733,7 @@
       <complexType name="VpaidLinearRedirectCreative">
         <annotation>
           <documentation>
-            A {@code Creative} that displays an externally hosted Flash-based ad and is served via VAST 2.0
+            A {@code Creative} that displays an externally hosted Flash-based ad and is served via VAST
             XML. It is displayed in a linear fashion with a video (before, after, interrupting). This
             creative is read only.
             &lt;p&gt;

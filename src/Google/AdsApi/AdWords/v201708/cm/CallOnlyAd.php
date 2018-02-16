@@ -231,7 +231,7 @@ class CallOnlyAd extends \Google\AdsApi\AdWords\v201708\cm\Ad
      */
     public function setConversionTypeId($conversionTypeId)
     {
-      $this->conversionTypeId = (!is_null(conversionTypeId) && PHP_INT_SIZE === 4)
+      $this->conversionTypeId = (!is_null($conversionTypeId) && PHP_INT_SIZE === 4)
           ? floatval($conversionTypeId) : $conversionTypeId;
       return $this;
     }

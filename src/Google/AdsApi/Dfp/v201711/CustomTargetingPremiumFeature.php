@@ -43,7 +43,7 @@ class CustomTargetingPremiumFeature extends \Google\AdsApi\Dfp\v201711\PremiumFe
      */
     public function setCustomTargetingKeyId($customTargetingKeyId)
     {
-      $this->customTargetingKeyId = (!is_null(customTargetingKeyId) && PHP_INT_SIZE === 4)
+      $this->customTargetingKeyId = (!is_null($customTargetingKeyId) && PHP_INT_SIZE === 4)
           ? floatval($customTargetingKeyId) : $customTargetingKeyId;
       return $this;
     }
@@ -62,7 +62,7 @@ class CustomTargetingPremiumFeature extends \Google\AdsApi\Dfp\v201711\PremiumFe
      */
     public function setCustomTargetingValueId($customTargetingValueId)
     {
-      $this->customTargetingValueId = (!is_null(customTargetingValueId) && PHP_INT_SIZE === 4)
+      $this->customTargetingValueId = (!is_null($customTargetingValueId) && PHP_INT_SIZE === 4)
           ? floatval($customTargetingValueId) : $customTargetingValueId;
       return $this;
     }

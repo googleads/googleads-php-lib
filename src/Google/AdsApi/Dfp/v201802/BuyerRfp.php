@@ -131,7 +131,7 @@ class BuyerRfp
      */
     public function setUnits($units)
     {
-      $this->units = (!is_null(units) && PHP_INT_SIZE === 4)
+      $this->units = (!is_null($units) && PHP_INT_SIZE === 4)
           ? floatval($units) : $units;
       return $this;
     }

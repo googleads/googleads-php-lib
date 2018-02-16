@@ -86,7 +86,7 @@ class MonthlySearchVolume
      */
     public function setCount($count)
     {
-      $this->count = (!is_null(count) && PHP_INT_SIZE === 4)
+      $this->count = (!is_null($count) && PHP_INT_SIZE === 4)
           ? floatval($count) : $count;
       return $this;
     }

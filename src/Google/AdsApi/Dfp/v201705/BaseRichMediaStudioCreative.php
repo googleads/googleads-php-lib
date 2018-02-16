@@ -158,7 +158,7 @@ abstract class BaseRichMediaStudioCreative extends \Google\AdsApi\Dfp\v201705\Cr
      */
     public function setStudioCreativeId($studioCreativeId)
     {
-      $this->studioCreativeId = (!is_null(studioCreativeId) && PHP_INT_SIZE === 4)
+      $this->studioCreativeId = (!is_null($studioCreativeId) && PHP_INT_SIZE === 4)
           ? floatval($studioCreativeId) : $studioCreativeId;
       return $this;
     }
@@ -213,7 +213,7 @@ abstract class BaseRichMediaStudioCreative extends \Google\AdsApi\Dfp\v201705\Cr
      */
     public function setTotalFileSize($totalFileSize)
     {
-      $this->totalFileSize = (!is_null(totalFileSize) && PHP_INT_SIZE === 4)
+      $this->totalFileSize = (!is_null($totalFileSize) && PHP_INT_SIZE === 4)
           ? floatval($totalFileSize) : $totalFileSize;
       return $this;
     }

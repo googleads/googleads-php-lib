@@ -1,3 +1,10 @@
+### 33.0.1
+
+##### Common
+
+*   Fixed
+    [issue #447](https://github.com/googleads/googleads-php-lib/issues/447).
+
 ### 33.0.0
 
 ##### AdWords

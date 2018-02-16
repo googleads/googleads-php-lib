@@ -75,7 +75,7 @@ class ServiceLink
      */
     public function setServiceLinkId($serviceLinkId)
     {
-      $this->serviceLinkId = (!is_null(serviceLinkId) && PHP_INT_SIZE === 4)
+      $this->serviceLinkId = (!is_null($serviceLinkId) && PHP_INT_SIZE === 4)
           ? floatval($serviceLinkId) : $serviceLinkId;
       return $this;
     }

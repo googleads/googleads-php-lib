@@ -15,6 +15,7 @@ class OfflineDataUploadService extends \Google\AdsApi\Common\AdsSoapClient
     private static $classmap = array (
       'AuthenticationError' => 'Google\\AdsApi\\AdWords\\v201708\\cm\\AuthenticationError',
       'AuthorizationError' => 'Google\\AdsApi\\AdWords\\v201708\\cm\\AuthorizationError',
+      'CollectionSizeError' => 'Google\\AdsApi\\AdWords\\v201708\\cm\\CollectionSizeError',
       'DateError' => 'Google\\AdsApi\\AdWords\\v201708\\cm\\DateError',
       'DateRange' => 'Google\\AdsApi\\AdWords\\v201708\\cm\\DateRange',
       'DistinctError' => 'Google\\AdsApi\\AdWords\\v201708\\cm\\DistinctError',
@@ -56,7 +57,6 @@ class OfflineDataUploadService extends \Google\AdsApi\Common\AdsSoapClient
       'ListReturnValue' => 'Google\\AdsApi\\AdWords\\v201708\\cm\\ListReturnValue',
       'Operation' => 'Google\\AdsApi\\AdWords\\v201708\\cm\\Operation',
       'Page' => 'Google\\AdsApi\\AdWords\\v201708\\cm\\Page',
-      'CollectionSizeError' => 'Google\\AdsApi\\AdWords\\v201708\\rm\\CollectionSizeError',
       'CurrencyCodeError' => 'Google\\AdsApi\\AdWords\\v201708\\rm\\CurrencyCodeError',
       'FirstPartyUploadMetadata' => 'Google\\AdsApi\\AdWords\\v201708\\rm\\FirstPartyUploadMetadata',
       'MoneyWithCurrency' => 'Google\\AdsApi\\AdWords\\v201708\\rm\\MoneyWithCurrency',

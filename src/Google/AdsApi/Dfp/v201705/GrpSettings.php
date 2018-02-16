@@ -64,7 +64,7 @@ class GrpSettings
      */
     public function setMinTargetAge($minTargetAge)
     {
-      $this->minTargetAge = (!is_null(minTargetAge) && PHP_INT_SIZE === 4)
+      $this->minTargetAge = (!is_null($minTargetAge) && PHP_INT_SIZE === 4)
           ? floatval($minTargetAge) : $minTargetAge;
       return $this;
     }
@@ -83,7 +83,7 @@ class GrpSettings
      */
     public function setMaxTargetAge($maxTargetAge)
     {
-      $this->maxTargetAge = (!is_null(maxTargetAge) && PHP_INT_SIZE === 4)
+      $this->maxTargetAge = (!is_null($maxTargetAge) && PHP_INT_SIZE === 4)
           ? floatval($maxTargetAge) : $maxTargetAge;
       return $this;
     }
@@ -138,7 +138,7 @@ class GrpSettings
      */
     public function setTargetImpressionGoal($targetImpressionGoal)
     {
-      $this->targetImpressionGoal = (!is_null(targetImpressionGoal) && PHP_INT_SIZE === 4)
+      $this->targetImpressionGoal = (!is_null($targetImpressionGoal) && PHP_INT_SIZE === 4)
           ? floatval($targetImpressionGoal) : $targetImpressionGoal;
       return $this;
     }

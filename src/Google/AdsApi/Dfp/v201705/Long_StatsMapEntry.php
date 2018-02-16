@@ -43,7 +43,7 @@ class Long_StatsMapEntry
      */
     public function setKey($key)
     {
-      $this->key = (!is_null(key) && PHP_INT_SIZE === 4)
+      $this->key = (!is_null($key) && PHP_INT_SIZE === 4)
           ? floatval($key) : $key;
       return $this;
     }

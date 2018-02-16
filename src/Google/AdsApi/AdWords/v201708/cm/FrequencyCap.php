@@ -50,7 +50,7 @@ class FrequencyCap
      */
     public function setImpressions($impressions)
     {
-      $this->impressions = (!is_null(impressions) && PHP_INT_SIZE === 4)
+      $this->impressions = (!is_null($impressions) && PHP_INT_SIZE === 4)
           ? floatval($impressions) : $impressions;
       return $this;
     }

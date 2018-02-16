@@ -43,7 +43,7 @@ class RetractionDetails
      */
     public function setRetractionReasonId($retractionReasonId)
     {
-      $this->retractionReasonId = (!is_null(retractionReasonId) && PHP_INT_SIZE === 4)
+      $this->retractionReasonId = (!is_null($retractionReasonId) && PHP_INT_SIZE === 4)
           ? floatval($retractionReasonId) : $retractionReasonId;
       return $this;
     }

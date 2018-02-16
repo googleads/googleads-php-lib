@@ -36,7 +36,7 @@ class Chain
      */
     public function setChainId($chainId)
     {
-      $this->chainId = (!is_null(chainId) && PHP_INT_SIZE === 4)
+      $this->chainId = (!is_null($chainId) && PHP_INT_SIZE === 4)
           ? floatval($chainId) : $chainId;
       return $this;
     }

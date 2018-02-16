@@ -204,7 +204,7 @@ class ProductTemplate
      */
     public function setId($id)
     {
-      $this->id = (!is_null(id) && PHP_INT_SIZE === 4)
+      $this->id = (!is_null($id) && PHP_INT_SIZE === 4)
           ? floatval($id) : $id;
       return $this;
     }
@@ -349,7 +349,7 @@ class ProductTemplate
      */
     public function setCreatorId($creatorId)
     {
-      $this->creatorId = (!is_null(creatorId) && PHP_INT_SIZE === 4)
+      $this->creatorId = (!is_null($creatorId) && PHP_INT_SIZE === 4)
           ? floatval($creatorId) : $creatorId;
       return $this;
     }
@@ -620,7 +620,7 @@ class ProductTemplate
      */
     public function setVideoMaxDuration($videoMaxDuration)
     {
-      $this->videoMaxDuration = (!is_null(videoMaxDuration) && PHP_INT_SIZE === 4)
+      $this->videoMaxDuration = (!is_null($videoMaxDuration) && PHP_INT_SIZE === 4)
           ? floatval($videoMaxDuration) : $videoMaxDuration;
       return $this;
     }

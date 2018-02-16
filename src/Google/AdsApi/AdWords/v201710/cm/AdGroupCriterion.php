@@ -90,7 +90,7 @@ class AdGroupCriterion
      */
     public function setAdGroupId($adGroupId)
     {
-      $this->adGroupId = (!is_null(adGroupId) && PHP_INT_SIZE === 4)
+      $this->adGroupId = (!is_null($adGroupId) && PHP_INT_SIZE === 4)
           ? floatval($adGroupId) : $adGroupId;
       return $this;
     }
@@ -181,7 +181,7 @@ class AdGroupCriterion
      */
     public function setBaseCampaignId($baseCampaignId)
     {
-      $this->baseCampaignId = (!is_null(baseCampaignId) && PHP_INT_SIZE === 4)
+      $this->baseCampaignId = (!is_null($baseCampaignId) && PHP_INT_SIZE === 4)
           ? floatval($baseCampaignId) : $baseCampaignId;
       return $this;
     }
@@ -200,7 +200,7 @@ class AdGroupCriterion
      */
     public function setBaseAdGroupId($baseAdGroupId)
     {
-      $this->baseAdGroupId = (!is_null(baseAdGroupId) && PHP_INT_SIZE === 4)
+      $this->baseAdGroupId = (!is_null($baseAdGroupId) && PHP_INT_SIZE === 4)
           ? floatval($baseAdGroupId) : $baseAdGroupId;
       return $this;
     }

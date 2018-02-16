@@ -92,7 +92,7 @@ class NativeStyle
      */
     public function setId($id)
     {
-      $this->id = (!is_null(id) && PHP_INT_SIZE === 4)
+      $this->id = (!is_null($id) && PHP_INT_SIZE === 4)
           ? floatval($id) : $id;
       return $this;
     }
@@ -165,7 +165,7 @@ class NativeStyle
      */
     public function setCreativeTemplateId($creativeTemplateId)
     {
-      $this->creativeTemplateId = (!is_null(creativeTemplateId) && PHP_INT_SIZE === 4)
+      $this->creativeTemplateId = (!is_null($creativeTemplateId) && PHP_INT_SIZE === 4)
           ? floatval($creativeTemplateId) : $creativeTemplateId;
       return $this;
     }

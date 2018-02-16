@@ -61,7 +61,7 @@ class ProspectiveLineItem
      */
     public function setAdvertiserId($advertiserId)
     {
-      $this->advertiserId = (!is_null(advertiserId) && PHP_INT_SIZE === 4)
+      $this->advertiserId = (!is_null($advertiserId) && PHP_INT_SIZE === 4)
           ? floatval($advertiserId) : $advertiserId;
       return $this;
     }

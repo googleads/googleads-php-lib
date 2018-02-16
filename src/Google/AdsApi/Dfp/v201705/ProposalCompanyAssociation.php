@@ -50,7 +50,7 @@ class ProposalCompanyAssociation
      */
     public function setCompanyId($companyId)
     {
-      $this->companyId = (!is_null(companyId) && PHP_INT_SIZE === 4)
+      $this->companyId = (!is_null($companyId) && PHP_INT_SIZE === 4)
           ? floatval($companyId) : $companyId;
       return $this;
     }

@@ -141,7 +141,7 @@ class Company
      */
     public function setId($id)
     {
-      $this->id = (!is_null(id) && PHP_INT_SIZE === 4)
+      $this->id = (!is_null($id) && PHP_INT_SIZE === 4)
           ? floatval($id) : $id;
       return $this;
     }
@@ -358,7 +358,7 @@ class Company
      */
     public function setPrimaryContactId($primaryContactId)
     {
-      $this->primaryContactId = (!is_null(primaryContactId) && PHP_INT_SIZE === 4)
+      $this->primaryContactId = (!is_null($primaryContactId) && PHP_INT_SIZE === 4)
           ? floatval($primaryContactId) : $primaryContactId;
       return $this;
     }

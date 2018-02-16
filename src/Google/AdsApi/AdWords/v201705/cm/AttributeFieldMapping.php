@@ -43,7 +43,7 @@ class AttributeFieldMapping
      */
     public function setFeedAttributeId($feedAttributeId)
     {
-      $this->feedAttributeId = (!is_null(feedAttributeId) && PHP_INT_SIZE === 4)
+      $this->feedAttributeId = (!is_null($feedAttributeId) && PHP_INT_SIZE === 4)
           ? floatval($feedAttributeId) : $feedAttributeId;
       return $this;
     }

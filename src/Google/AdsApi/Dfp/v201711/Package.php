@@ -99,7 +99,7 @@ class Package
      */
     public function setId($id)
     {
-      $this->id = (!is_null(id) && PHP_INT_SIZE === 4)
+      $this->id = (!is_null($id) && PHP_INT_SIZE === 4)
           ? floatval($id) : $id;
       return $this;
     }
@@ -118,7 +118,7 @@ class Package
      */
     public function setProposalId($proposalId)
     {
-      $this->proposalId = (!is_null(proposalId) && PHP_INT_SIZE === 4)
+      $this->proposalId = (!is_null($proposalId) && PHP_INT_SIZE === 4)
           ? floatval($proposalId) : $proposalId;
       return $this;
     }
@@ -137,7 +137,7 @@ class Package
      */
     public function setProductPackageId($productPackageId)
     {
-      $this->productPackageId = (!is_null(productPackageId) && PHP_INT_SIZE === 4)
+      $this->productPackageId = (!is_null($productPackageId) && PHP_INT_SIZE === 4)
           ? floatval($productPackageId) : $productPackageId;
       return $this;
     }
@@ -156,7 +156,7 @@ class Package
      */
     public function setRateCardId($rateCardId)
     {
-      $this->rateCardId = (!is_null(rateCardId) && PHP_INT_SIZE === 4)
+      $this->rateCardId = (!is_null($rateCardId) && PHP_INT_SIZE === 4)
           ? floatval($rateCardId) : $rateCardId;
       return $this;
     }

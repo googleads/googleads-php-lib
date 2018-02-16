@@ -36,7 +36,7 @@ class FeedItemDevicePreference
      */
     public function setDevicePreference($devicePreference)
     {
-      $this->devicePreference = (!is_null(devicePreference) && PHP_INT_SIZE === 4)
+      $this->devicePreference = (!is_null($devicePreference) && PHP_INT_SIZE === 4)
           ? floatval($devicePreference) : $devicePreference;
       return $this;
     }

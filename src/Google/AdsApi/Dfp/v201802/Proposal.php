@@ -400,7 +400,7 @@ class Proposal
      */
     public function setId($id)
     {
-      $this->id = (!is_null(id) && PHP_INT_SIZE === 4)
+      $this->id = (!is_null($id) && PHP_INT_SIZE === 4)
           ? floatval($id) : $id;
       return $this;
     }
@@ -437,7 +437,7 @@ class Proposal
      */
     public function setDfpOrderId($dfpOrderId)
     {
-      $this->dfpOrderId = (!is_null(dfpOrderId) && PHP_INT_SIZE === 4)
+      $this->dfpOrderId = (!is_null($dfpOrderId) && PHP_INT_SIZE === 4)
           ? floatval($dfpOrderId) : $dfpOrderId;
       return $this;
     }
@@ -618,7 +618,7 @@ class Proposal
      */
     public function setProbabilityOfClose($probabilityOfClose)
     {
-      $this->probabilityOfClose = (!is_null(probabilityOfClose) && PHP_INT_SIZE === 4)
+      $this->probabilityOfClose = (!is_null($probabilityOfClose) && PHP_INT_SIZE === 4)
           ? floatval($probabilityOfClose) : $probabilityOfClose;
       return $this;
     }
@@ -817,7 +817,7 @@ class Proposal
      */
     public function setPrimaryTraffickerId($primaryTraffickerId)
     {
-      $this->primaryTraffickerId = (!is_null(primaryTraffickerId) && PHP_INT_SIZE === 4)
+      $this->primaryTraffickerId = (!is_null($primaryTraffickerId) && PHP_INT_SIZE === 4)
           ? floatval($primaryTraffickerId) : $primaryTraffickerId;
       return $this;
     }
@@ -944,7 +944,7 @@ class Proposal
      */
     public function setAdvertiserDiscount($advertiserDiscount)
     {
-      $this->advertiserDiscount = (!is_null(advertiserDiscount) && PHP_INT_SIZE === 4)
+      $this->advertiserDiscount = (!is_null($advertiserDiscount) && PHP_INT_SIZE === 4)
           ? floatval($advertiserDiscount) : $advertiserDiscount;
       return $this;
     }
@@ -963,7 +963,7 @@ class Proposal
      */
     public function setProposalDiscount($proposalDiscount)
     {
-      $this->proposalDiscount = (!is_null(proposalDiscount) && PHP_INT_SIZE === 4)
+      $this->proposalDiscount = (!is_null($proposalDiscount) && PHP_INT_SIZE === 4)
           ? floatval($proposalDiscount) : $proposalDiscount;
       return $this;
     }
@@ -1000,7 +1000,7 @@ class Proposal
      */
     public function setExchangeRate($exchangeRate)
     {
-      $this->exchangeRate = (!is_null(exchangeRate) && PHP_INT_SIZE === 4)
+      $this->exchangeRate = (!is_null($exchangeRate) && PHP_INT_SIZE === 4)
           ? floatval($exchangeRate) : $exchangeRate;
       return $this;
     }
@@ -1037,7 +1037,7 @@ class Proposal
      */
     public function setAgencyCommission($agencyCommission)
     {
-      $this->agencyCommission = (!is_null(agencyCommission) && PHP_INT_SIZE === 4)
+      $this->agencyCommission = (!is_null($agencyCommission) && PHP_INT_SIZE === 4)
           ? floatval($agencyCommission) : $agencyCommission;
       return $this;
     }
@@ -1056,7 +1056,7 @@ class Proposal
      */
     public function setValueAddedTax($valueAddedTax)
     {
-      $this->valueAddedTax = (!is_null(valueAddedTax) && PHP_INT_SIZE === 4)
+      $this->valueAddedTax = (!is_null($valueAddedTax) && PHP_INT_SIZE === 4)
           ? floatval($valueAddedTax) : $valueAddedTax;
       return $this;
     }

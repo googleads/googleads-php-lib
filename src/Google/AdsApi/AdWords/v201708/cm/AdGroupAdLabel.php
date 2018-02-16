@@ -50,7 +50,7 @@ class AdGroupAdLabel
      */
     public function setAdGroupId($adGroupId)
     {
-      $this->adGroupId = (!is_null(adGroupId) && PHP_INT_SIZE === 4)
+      $this->adGroupId = (!is_null($adGroupId) && PHP_INT_SIZE === 4)
           ? floatval($adGroupId) : $adGroupId;
       return $this;
     }
@@ -69,7 +69,7 @@ class AdGroupAdLabel
      */
     public function setAdId($adId)
     {
-      $this->adId = (!is_null(adId) && PHP_INT_SIZE === 4)
+      $this->adId = (!is_null($adId) && PHP_INT_SIZE === 4)
           ? floatval($adId) : $adId;
       return $this;
     }
@@ -88,7 +88,7 @@ class AdGroupAdLabel
      */
     public function setLabelId($labelId)
     {
-      $this->labelId = (!is_null(labelId) && PHP_INT_SIZE === 4)
+      $this->labelId = (!is_null($labelId) && PHP_INT_SIZE === 4)
           ? floatval($labelId) : $labelId;
       return $this;
     }

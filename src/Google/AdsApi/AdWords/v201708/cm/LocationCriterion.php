@@ -107,7 +107,7 @@ class LocationCriterion
      */
     public function setReach($reach)
     {
-      $this->reach = (!is_null(reach) && PHP_INT_SIZE === 4)
+      $this->reach = (!is_null($reach) && PHP_INT_SIZE === 4)
           ? floatval($reach) : $reach;
       return $this;
     }

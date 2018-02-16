@@ -43,7 +43,7 @@ class CampaignLabel
      */
     public function setCampaignId($campaignId)
     {
-      $this->campaignId = (!is_null(campaignId) && PHP_INT_SIZE === 4)
+      $this->campaignId = (!is_null($campaignId) && PHP_INT_SIZE === 4)
           ? floatval($campaignId) : $campaignId;
       return $this;
     }
@@ -62,7 +62,7 @@ class CampaignLabel
      */
     public function setLabelId($labelId)
     {
-      $this->labelId = (!is_null(labelId) && PHP_INT_SIZE === 4)
+      $this->labelId = (!is_null($labelId) && PHP_INT_SIZE === 4)
           ? floatval($labelId) : $labelId;
       return $this;
     }

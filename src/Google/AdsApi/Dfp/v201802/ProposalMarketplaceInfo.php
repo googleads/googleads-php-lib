@@ -136,7 +136,7 @@ class ProposalMarketplaceInfo
      */
     public function setBuyerAccountId($buyerAccountId)
     {
-      $this->buyerAccountId = (!is_null(buyerAccountId) && PHP_INT_SIZE === 4)
+      $this->buyerAccountId = (!is_null($buyerAccountId) && PHP_INT_SIZE === 4)
           ? floatval($buyerAccountId) : $buyerAccountId;
       return $this;
     }

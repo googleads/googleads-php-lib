@@ -99,7 +99,7 @@ class FeedItemPolicyData extends \Google\AdsApi\AdWords\v201710\cm\PolicyData
      */
     public function setFeedMappingId($feedMappingId)
     {
-      $this->feedMappingId = (!is_null(feedMappingId) && PHP_INT_SIZE === 4)
+      $this->feedMappingId = (!is_null($feedMappingId) && PHP_INT_SIZE === 4)
           ? floatval($feedMappingId) : $feedMappingId;
       return $this;
     }

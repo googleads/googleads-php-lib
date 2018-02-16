@@ -67,7 +67,7 @@ class RequestApprovalProgressAction extends \Google\AdsApi\Dfp\v201711\ProgressA
      */
     public function setApproverId($approverId)
     {
-      $this->approverId = (!is_null(approverId) && PHP_INT_SIZE === 4)
+      $this->approverId = (!is_null($approverId) && PHP_INT_SIZE === 4)
           ? floatval($approverId) : $approverId;
       return $this;
     }

@@ -64,7 +64,7 @@ class CreativeSet
      */
     public function setId($id)
     {
-      $this->id = (!is_null(id) && PHP_INT_SIZE === 4)
+      $this->id = (!is_null($id) && PHP_INT_SIZE === 4)
           ? floatval($id) : $id;
       return $this;
     }
@@ -101,7 +101,7 @@ class CreativeSet
      */
     public function setMasterCreativeId($masterCreativeId)
     {
-      $this->masterCreativeId = (!is_null(masterCreativeId) && PHP_INT_SIZE === 4)
+      $this->masterCreativeId = (!is_null($masterCreativeId) && PHP_INT_SIZE === 4)
           ? floatval($masterCreativeId) : $masterCreativeId;
       return $this;
     }

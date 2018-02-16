@@ -196,7 +196,7 @@ abstract class RichMediaAd extends \Google\AdsApi\AdWords\v201710\cm\Ad
      */
     public function setCertifiedVendorFormatId($certifiedVendorFormatId)
     {
-      $this->certifiedVendorFormatId = (!is_null(certifiedVendorFormatId) && PHP_INT_SIZE === 4)
+      $this->certifiedVendorFormatId = (!is_null($certifiedVendorFormatId) && PHP_INT_SIZE === 4)
           ? floatval($certifiedVendorFormatId) : $certifiedVendorFormatId;
       return $this;
     }

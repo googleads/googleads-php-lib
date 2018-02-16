@@ -43,7 +43,7 @@ class CreativeNativeStylePreview
      */
     public function setNativeStyleId($nativeStyleId)
     {
-      $this->nativeStyleId = (!is_null(nativeStyleId) && PHP_INT_SIZE === 4)
+      $this->nativeStyleId = (!is_null($nativeStyleId) && PHP_INT_SIZE === 4)
           ? floatval($nativeStyleId) : $nativeStyleId;
       return $this;
     }

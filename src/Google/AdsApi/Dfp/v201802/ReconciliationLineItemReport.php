@@ -176,7 +176,7 @@ class ReconciliationLineItemReport
      */
     public function setId($id)
     {
-      $this->id = (!is_null(id) && PHP_INT_SIZE === 4)
+      $this->id = (!is_null($id) && PHP_INT_SIZE === 4)
           ? floatval($id) : $id;
       return $this;
     }
@@ -195,7 +195,7 @@ class ReconciliationLineItemReport
      */
     public function setReconciliationReportId($reconciliationReportId)
     {
-      $this->reconciliationReportId = (!is_null(reconciliationReportId) && PHP_INT_SIZE === 4)
+      $this->reconciliationReportId = (!is_null($reconciliationReportId) && PHP_INT_SIZE === 4)
           ? floatval($reconciliationReportId) : $reconciliationReportId;
       return $this;
     }
@@ -214,7 +214,7 @@ class ReconciliationLineItemReport
      */
     public function setOrderId($orderId)
     {
-      $this->orderId = (!is_null(orderId) && PHP_INT_SIZE === 4)
+      $this->orderId = (!is_null($orderId) && PHP_INT_SIZE === 4)
           ? floatval($orderId) : $orderId;
       return $this;
     }
@@ -233,7 +233,7 @@ class ReconciliationLineItemReport
      */
     public function setProposalId($proposalId)
     {
-      $this->proposalId = (!is_null(proposalId) && PHP_INT_SIZE === 4)
+      $this->proposalId = (!is_null($proposalId) && PHP_INT_SIZE === 4)
           ? floatval($proposalId) : $proposalId;
       return $this;
     }
@@ -252,7 +252,7 @@ class ReconciliationLineItemReport
      */
     public function setLineItemId($lineItemId)
     {
-      $this->lineItemId = (!is_null(lineItemId) && PHP_INT_SIZE === 4)
+      $this->lineItemId = (!is_null($lineItemId) && PHP_INT_SIZE === 4)
           ? floatval($lineItemId) : $lineItemId;
       return $this;
     }
@@ -271,7 +271,7 @@ class ReconciliationLineItemReport
      */
     public function setProposalLineItemId($proposalLineItemId)
     {
-      $this->proposalLineItemId = (!is_null(proposalLineItemId) && PHP_INT_SIZE === 4)
+      $this->proposalLineItemId = (!is_null($proposalLineItemId) && PHP_INT_SIZE === 4)
           ? floatval($proposalLineItemId) : $proposalLineItemId;
       return $this;
     }
@@ -362,7 +362,7 @@ class ReconciliationLineItemReport
      */
     public function setDfpVolume($dfpVolume)
     {
-      $this->dfpVolume = (!is_null(dfpVolume) && PHP_INT_SIZE === 4)
+      $this->dfpVolume = (!is_null($dfpVolume) && PHP_INT_SIZE === 4)
           ? floatval($dfpVolume) : $dfpVolume;
       return $this;
     }
@@ -381,7 +381,7 @@ class ReconciliationLineItemReport
      */
     public function setThirdPartyVolume($thirdPartyVolume)
     {
-      $this->thirdPartyVolume = (!is_null(thirdPartyVolume) && PHP_INT_SIZE === 4)
+      $this->thirdPartyVolume = (!is_null($thirdPartyVolume) && PHP_INT_SIZE === 4)
           ? floatval($thirdPartyVolume) : $thirdPartyVolume;
       return $this;
     }
@@ -400,7 +400,7 @@ class ReconciliationLineItemReport
      */
     public function setManualVolume($manualVolume)
     {
-      $this->manualVolume = (!is_null(manualVolume) && PHP_INT_SIZE === 4)
+      $this->manualVolume = (!is_null($manualVolume) && PHP_INT_SIZE === 4)
           ? floatval($manualVolume) : $manualVolume;
       return $this;
     }
@@ -437,7 +437,7 @@ class ReconciliationLineItemReport
      */
     public function setReconciledVolume($reconciledVolume)
     {
-      $this->reconciledVolume = (!is_null(reconciledVolume) && PHP_INT_SIZE === 4)
+      $this->reconciledVolume = (!is_null($reconciledVolume) && PHP_INT_SIZE === 4)
           ? floatval($reconciledVolume) : $reconciledVolume;
       return $this;
     }
@@ -456,7 +456,7 @@ class ReconciliationLineItemReport
      */
     public function setCapVolume($capVolume)
     {
-      $this->capVolume = (!is_null(capVolume) && PHP_INT_SIZE === 4)
+      $this->capVolume = (!is_null($capVolume) && PHP_INT_SIZE === 4)
           ? floatval($capVolume) : $capVolume;
       return $this;
     }
@@ -475,7 +475,7 @@ class ReconciliationLineItemReport
      */
     public function setRolloverVolume($rolloverVolume)
     {
-      $this->rolloverVolume = (!is_null(rolloverVolume) && PHP_INT_SIZE === 4)
+      $this->rolloverVolume = (!is_null($rolloverVolume) && PHP_INT_SIZE === 4)
           ? floatval($rolloverVolume) : $rolloverVolume;
       return $this;
     }
@@ -494,7 +494,7 @@ class ReconciliationLineItemReport
      */
     public function setBillableVolume($billableVolume)
     {
-      $this->billableVolume = (!is_null(billableVolume) && PHP_INT_SIZE === 4)
+      $this->billableVolume = (!is_null($billableVolume) && PHP_INT_SIZE === 4)
           ? floatval($billableVolume) : $billableVolume;
       return $this;
     }

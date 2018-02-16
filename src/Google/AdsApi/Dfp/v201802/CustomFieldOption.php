@@ -50,7 +50,7 @@ class CustomFieldOption
      */
     public function setId($id)
     {
-      $this->id = (!is_null(id) && PHP_INT_SIZE === 4)
+      $this->id = (!is_null($id) && PHP_INT_SIZE === 4)
           ? floatval($id) : $id;
       return $this;
     }
@@ -69,7 +69,7 @@ class CustomFieldOption
      */
     public function setCustomFieldId($customFieldId)
     {
-      $this->customFieldId = (!is_null(customFieldId) && PHP_INT_SIZE === 4)
+      $this->customFieldId = (!is_null($customFieldId) && PHP_INT_SIZE === 4)
           ? floatval($customFieldId) : $customFieldId;
       return $this;
     }

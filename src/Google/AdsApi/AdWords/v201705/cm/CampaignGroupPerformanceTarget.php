@@ -50,7 +50,7 @@ class CampaignGroupPerformanceTarget
      */
     public function setId($id)
     {
-      $this->id = (!is_null(id) && PHP_INT_SIZE === 4)
+      $this->id = (!is_null($id) && PHP_INT_SIZE === 4)
           ? floatval($id) : $id;
       return $this;
     }
@@ -69,7 +69,7 @@ class CampaignGroupPerformanceTarget
      */
     public function setCampaignGroupId($campaignGroupId)
     {
-      $this->campaignGroupId = (!is_null(campaignGroupId) && PHP_INT_SIZE === 4)
+      $this->campaignGroupId = (!is_null($campaignGroupId) && PHP_INT_SIZE === 4)
           ? floatval($campaignGroupId) : $campaignGroupId;
       return $this;
     }

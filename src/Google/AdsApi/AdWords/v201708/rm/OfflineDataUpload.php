@@ -85,7 +85,7 @@ class OfflineDataUpload
      */
     public function setUploadId($uploadId)
     {
-      $this->uploadId = (!is_null(uploadId) && PHP_INT_SIZE === 4)
+      $this->uploadId = (!is_null($uploadId) && PHP_INT_SIZE === 4)
           ? floatval($uploadId) : $uploadId;
       return $this;
     }
@@ -104,7 +104,7 @@ class OfflineDataUpload
      */
     public function setExternalUploadId($externalUploadId)
     {
-      $this->externalUploadId = (!is_null(externalUploadId) && PHP_INT_SIZE === 4)
+      $this->externalUploadId = (!is_null($externalUploadId) && PHP_INT_SIZE === 4)
           ? floatval($externalUploadId) : $externalUploadId;
       return $this;
     }

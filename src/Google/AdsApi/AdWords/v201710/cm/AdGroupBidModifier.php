@@ -71,7 +71,7 @@ class AdGroupBidModifier
      */
     public function setCampaignId($campaignId)
     {
-      $this->campaignId = (!is_null(campaignId) && PHP_INT_SIZE === 4)
+      $this->campaignId = (!is_null($campaignId) && PHP_INT_SIZE === 4)
           ? floatval($campaignId) : $campaignId;
       return $this;
     }
@@ -90,7 +90,7 @@ class AdGroupBidModifier
      */
     public function setAdGroupId($adGroupId)
     {
-      $this->adGroupId = (!is_null(adGroupId) && PHP_INT_SIZE === 4)
+      $this->adGroupId = (!is_null($adGroupId) && PHP_INT_SIZE === 4)
           ? floatval($adGroupId) : $adGroupId;
       return $this;
     }
@@ -145,7 +145,7 @@ class AdGroupBidModifier
      */
     public function setBaseAdGroupId($baseAdGroupId)
     {
-      $this->baseAdGroupId = (!is_null(baseAdGroupId) && PHP_INT_SIZE === 4)
+      $this->baseAdGroupId = (!is_null($baseAdGroupId) && PHP_INT_SIZE === 4)
           ? floatval($baseAdGroupId) : $baseAdGroupId;
       return $this;
     }

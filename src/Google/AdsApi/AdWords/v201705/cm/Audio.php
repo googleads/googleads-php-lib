@@ -62,7 +62,7 @@ class Audio extends \Google\AdsApi\AdWords\v201705\cm\Media
      */
     public function setDurationMillis($durationMillis)
     {
-      $this->durationMillis = (!is_null(durationMillis) && PHP_INT_SIZE === 4)
+      $this->durationMillis = (!is_null($durationMillis) && PHP_INT_SIZE === 4)
           ? floatval($durationMillis) : $durationMillis;
       return $this;
     }

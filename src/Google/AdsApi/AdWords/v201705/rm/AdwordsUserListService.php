@@ -15,6 +15,7 @@ class AdwordsUserListService extends \Google\AdsApi\Common\AdsSoapClient
     private static $classmap = array (
       'AuthenticationError' => 'Google\\AdsApi\\AdWords\\v201705\\cm\\AuthenticationError',
       'AuthorizationError' => 'Google\\AdsApi\\AdWords\\v201705\\cm\\AuthorizationError',
+      'CollectionSizeError' => 'Google\\AdsApi\\AdWords\\v201705\\cm\\CollectionSizeError',
       'DateError' => 'Google\\AdsApi\\AdWords\\v201705\\cm\\DateError',
       'DateRange' => 'Google\\AdsApi\\AdWords\\v201705\\cm\\DateRange',
       'DistinctError' => 'Google\\AdsApi\\AdWords\\v201705\\cm\\DistinctError',
@@ -52,7 +53,6 @@ class AdwordsUserListService extends \Google\AdsApi\Common\AdsSoapClient
       'Operation' => 'Google\\AdsApi\\AdWords\\v201705\\cm\\Operation',
       'Page' => 'Google\\AdsApi\\AdWords\\v201705\\cm\\Page',
       'AddressInfo' => 'Google\\AdsApi\\AdWords\\v201705\\rm\\AddressInfo',
-      'CollectionSizeError' => 'Google\\AdsApi\\AdWords\\v201705\\rm\\CollectionSizeError',
       'UserListConversionType' => 'Google\\AdsApi\\AdWords\\v201705\\rm\\UserListConversionType',
       'CrmBasedUserList' => 'Google\\AdsApi\\AdWords\\v201705\\rm\\CrmBasedUserList',
       'DataUploadResult' => 'Google\\AdsApi\\AdWords\\v201705\\rm\\DataUploadResult',

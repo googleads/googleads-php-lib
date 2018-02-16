@@ -160,7 +160,7 @@ abstract class ConversionTracker
      */
     public function setId($id)
     {
-      $this->id = (!is_null(id) && PHP_INT_SIZE === 4)
+      $this->id = (!is_null($id) && PHP_INT_SIZE === 4)
           ? floatval($id) : $id;
       return $this;
     }
@@ -179,7 +179,7 @@ abstract class ConversionTracker
      */
     public function setOriginalConversionTypeId($originalConversionTypeId)
     {
-      $this->originalConversionTypeId = (!is_null(originalConversionTypeId) && PHP_INT_SIZE === 4)
+      $this->originalConversionTypeId = (!is_null($originalConversionTypeId) && PHP_INT_SIZE === 4)
           ? floatval($originalConversionTypeId) : $originalConversionTypeId;
       return $this;
     }
@@ -270,7 +270,7 @@ abstract class ConversionTracker
      */
     public function setConversionTypeOwnerCustomerId($conversionTypeOwnerCustomerId)
     {
-      $this->conversionTypeOwnerCustomerId = (!is_null(conversionTypeOwnerCustomerId) && PHP_INT_SIZE === 4)
+      $this->conversionTypeOwnerCustomerId = (!is_null($conversionTypeOwnerCustomerId) && PHP_INT_SIZE === 4)
           ? floatval($conversionTypeOwnerCustomerId) : $conversionTypeOwnerCustomerId;
       return $this;
     }

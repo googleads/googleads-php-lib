@@ -118,7 +118,7 @@ class SoapResponseHeader
      */
     public function setOperations($operations)
     {
-      $this->operations = (!is_null(operations) && PHP_INT_SIZE === 4)
+      $this->operations = (!is_null($operations) && PHP_INT_SIZE === 4)
           ? floatval($operations) : $operations;
       return $this;
     }
@@ -137,7 +137,7 @@ class SoapResponseHeader
      */
     public function setResponseTime($responseTime)
     {
-      $this->responseTime = (!is_null(responseTime) && PHP_INT_SIZE === 4)
+      $this->responseTime = (!is_null($responseTime) && PHP_INT_SIZE === 4)
           ? floatval($responseTime) : $responseTime;
       return $this;
     }
