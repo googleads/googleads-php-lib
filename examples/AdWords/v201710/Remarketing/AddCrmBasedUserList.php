@@ -23,6 +23,7 @@ use Google\AdsApi\AdWords\AdWordsServices;
 use Google\AdsApi\AdWords\AdWordsSession;
 use Google\AdsApi\AdWords\AdWordsSessionBuilder;
 use Google\AdsApi\AdWords\v201710\cm\Operator;
+use Google\AdsApi\AdWords\v201710\rm\AddressInfo;
 use Google\AdsApi\AdWords\v201710\rm\AdwordsUserListService;
 use Google\AdsApi\AdWords\v201710\rm\CrmBasedUserList;
 use Google\AdsApi\AdWords\v201710\rm\Member;
@@ -98,15 +99,11 @@ class AddCrmBasedUserList
             $members[] = $memberByEmail;
         }
 
-        // Adding address info is currently available on a whitelist-only basis.
-        // This code demonstrates how to do it, and you can uncomment it if you are
-        // on the whitelist.
-        /*
         $firstName = 'John';
         $lastName = 'Doe';
         $countryCode = 'US';
         $zipCode = '10011';
-    
+
         $addressInfo = new AddressInfo();
         // First and last name must be normalized and hashed.
         $addressInfo->setHashedFirstName(self::normalizeAndHash($firstName));
@@ -114,11 +111,10 @@ class AddCrmBasedUserList
         // Country code and zip code are sent in plain text.
         $addressInfo->setCountryCode($countryCode);
         $addressInfo->setZipCode($zipCode);
-    
+
         $memberByAddress = new Member();
         $memberByAddress->setAddressInfo($addressInfo);
         $members[] = $memberByAddress;
-         */
 
         // Add members to the operand and add the operation to the list.
         $operand->setMembersList($members);

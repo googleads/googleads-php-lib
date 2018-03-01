@@ -984,7 +984,9 @@
       <complexType name="CountryConstraint">
         <annotation>
           <documentation>
-            Information about countries that were targeted that caused a policy finding.
+            Information about countries that were targeted that caused a policy finding. If a
+            CountryConstraint has 0 targeted countries and an empty list of constrained countries, it means
+            that the constraint applies globally.
           </documentation>
         </annotation>
         <complexContent>

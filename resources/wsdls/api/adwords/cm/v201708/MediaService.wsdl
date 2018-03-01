@@ -3566,8 +3566,7 @@
   </wsdl:message>
   <wsdl:portType name="MediaServiceInterface">
     <wsdl:documentation>
-      Use this service to manage media for your template ads. After uploading images and videos
-      with this service, use the IDs when creating image or template ads.
+      Use this service to manage media.
     </wsdl:documentation>
     <wsdl:operation name="get">
       <wsdl:documentation>

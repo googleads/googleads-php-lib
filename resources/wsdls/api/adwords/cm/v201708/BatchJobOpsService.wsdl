@@ -2338,6 +2338,7 @@
             <annotation>
               <documentation>
                 Current base budget of campaign; default if no custom budgets are enabled.
+                This field is readonly for draft campaigns and will be ignored when sent to the API.
               </documentation>
             </annotation>
           </element>
@@ -8110,8 +8111,7 @@
             (Operand) new GeoTargetOperand(Lists.newArrayList(new CriterionId(2250L))));
             &lt;/code&gt;&lt;/pre&gt;
             
-            &lt;p&gt;NOTE: Starting v201607 places of interest targeting is read only.&lt;/p&gt;
-            &lt;p&gt;NOTE: Starting v201702 income targeting is read only.&lt;/p&gt;
+            &lt;p&gt;NOTE: Places of interest and income targeting are read only. &lt;/p&gt;
             &lt;span class="constraint AdxEnabled"&gt;This is disabled for AdX when it is contained within Operators: ADD, SET.&lt;/span&gt;
           </documentation>
         </annotation>

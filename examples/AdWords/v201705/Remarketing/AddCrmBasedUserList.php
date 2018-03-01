@@ -29,6 +29,7 @@ use Google\AdsApi\AdWords\v201705\rm\Member;
 use Google\AdsApi\AdWords\v201705\rm\MutateMembersOperand;
 use Google\AdsApi\AdWords\v201705\rm\MutateMembersOperation;
 use Google\AdsApi\AdWords\v201705\rm\UserListOperation;
+use Google\AdsApi\AdWords\v201705\rm\AddressInfo;
 use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
@@ -98,10 +99,6 @@ class AddCrmBasedUserList
             $members[] = $memberByEmail;
         }
 
-        // Adding address info is currently available on a whitelist-only basis.
-        // This code demonstrates how to do it, and you can uncomment it if you are
-        // on the whitelist.
-        /*
         $firstName = 'John';
         $lastName = 'Doe';
         $countryCode = 'US';
@@ -118,7 +115,6 @@ class AddCrmBasedUserList
         $memberByAddress = new Member();
         $memberByAddress->setAddressInfo($addressInfo);
         $members[] = $memberByAddress;
-         */
 
         // Add members to the operand and add the operation to the list.
         $operand->setMembersList($members);

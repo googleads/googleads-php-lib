@@ -566,6 +566,7 @@
             <annotation>
               <documentation>
                 Current base budget of campaign; default if no custom budgets are enabled.
+                This field is readonly for draft campaigns and will be ignored when sent to the API.
               </documentation>
             </annotation>
           </element>
@@ -992,7 +993,9 @@
       <complexType name="CountryConstraint">
         <annotation>
           <documentation>
-            Information about countries that were targeted that caused a policy finding.
+            Information about countries that were targeted that caused a policy finding. If a
+            CountryConstraint has 0 targeted countries and an empty list of constrained countries, it means
+            that the constraint applies globally.
           </documentation>
         </annotation>
         <complexContent>
@@ -2846,6 +2849,8 @@
                 <annotation>
                   <documentation>
                     Sales country of products to include in the campaign.
+                    This must be set to 'ZZ' for Campaigns of types other than
+                    {@link AdvertisingChannelType#SHOPPING}
                     &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
                   </documentation>
                 </annotation>

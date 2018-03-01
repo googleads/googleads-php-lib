@@ -1864,7 +1864,7 @@
         <annotation>
           <documentation>
             An {@code adwords grouping} string. Not supported by campaigns of
-            {@link AdvertisingChannelType#SHOPPING}.
+            {@link AdvertisingChannelType#SHOPPING} so is only used in {@link ProductScope}s.
           </documentation>
         </annotation>
         <complexContent>
@@ -1885,7 +1885,7 @@
         <annotation>
           <documentation>
             An {@code adwords labels} string. Not supported by campaigns of
-            {@link AdvertisingChannelType#SHOPPING}.
+            {@link AdvertisingChannelType#SHOPPING} so is only used in {@link ProductScope}s.
           </documentation>
         </annotation>
         <complexContent>
@@ -2007,7 +2007,7 @@
         <annotation>
           <documentation>
             A plain condition string. Not supported by campaigns of
-            {@link AdvertisingChannelType#SHOPPING}.
+            {@link AdvertisingChannelType#SHOPPING} so is only used in {@link ProductScope}s.
           </documentation>
         </annotation>
         <complexContent>
@@ -2158,7 +2158,8 @@
             
             &lt;pre&gt;{@code "Home &amp; Garden &gt; Kitchen &amp; Dining &gt; Kitchen Appliances &gt; Refrigerators"}&lt;/pre&gt;
             
-            &lt;p&gt;Not supported by campaigns of {@link AdvertisingChannelType#SHOPPING}.
+            &lt;p&gt;Not supported by campaigns of {@link AdvertisingChannelType#SHOPPING} so is only used in
+            {@link ProductScope}s.
           </documentation>
         </annotation>
         <complexContent>
@@ -2526,8 +2527,7 @@
             (Operand) new GeoTargetOperand(Lists.newArrayList(new CriterionId(2250L))));
             &lt;/code&gt;&lt;/pre&gt;
             
-            &lt;p&gt;NOTE: Starting v201607 places of interest targeting is read only.&lt;/p&gt;
-            &lt;p&gt;NOTE: Starting v201702 income targeting is read only.&lt;/p&gt;
+            &lt;p&gt;NOTE: Places of interest and income targeting are read only. &lt;/p&gt;
             &lt;span class="constraint AdxEnabled"&gt;This is disabled for AdX when it is contained within Operators: ADD, SET.&lt;/span&gt;
           </documentation>
         </annotation>
