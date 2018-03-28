@@ -115,8 +115,9 @@
               <element maxOccurs="1" minOccurs="0" name="publisherId" type="xsd:string">
                 <annotation>
                   <documentation>
-                    The AdMob publisher ID. See https://support.google.com/dfp_premium/answer/1209767#admob
-                    for more information. This attribute is required.
+                    The AdMob publisher ID.
+                    See the &lt;a href="https://support.google.com/dfp_premium/answer/1209767#admob"&gt;
+                    DFP Help Center&lt;/a&gt; for more information. This attribute is required.
                   </documentation>
                 </annotation>
               </element>
@@ -1060,6 +1061,9 @@
         <annotation>
           <documentation>
             A {@code Creative} represents the media for the ad being served.
+            
+            &lt;p&gt;Read more about creatives on the
+            &lt;a href="https://support.google.com/dfp_premium/answer/3185155"&gt;DFP Help Center&lt;/a&gt;.&lt;/p&gt;
           </documentation>
         </annotation>
         <sequence>
@@ -7267,7 +7271,10 @@
       objects.
       
       &lt;p&gt;For a creative to run, it must be associated with a {@link LineItem}
-      managed by the {@link LineItemCreativeAssociationService}.
+      managed by the {@link LineItemCreativeAssociationService}.&lt;/p&gt;
+      
+      &lt;p&gt;Read more about creatives on the
+      &lt;a href="https://support.google.com/dfp_premium/answer/3185155"&gt;DFP Help Center&lt;/a&gt;.&lt;/p&gt;
     </wsdl:documentation>
     <wsdl:operation name="createCreatives">
       <wsdl:documentation>

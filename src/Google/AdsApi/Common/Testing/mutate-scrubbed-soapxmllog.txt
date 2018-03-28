@@ -1,4 +1,4 @@
-POST /api/adwords/cm/v201705/FeedService?wsdl HTTP/1.1
+POST /api/adwords/cm/v201802/FeedService?wsdl HTTP/1.1
 Host: adwords.google.com
 Connection: close
 User-Agent: PHP-SOAP/5.5.38
@@ -8,7 +8,7 @@ Content-Length: 1451
 Authorization: REDACTED
 
 <?xml version="1.0" encoding="UTF-8"?>
-<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="https://adwords.google.com/api/adwords/cm/v201705">
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="https://adwords.google.com/api/adwords/cm/v201802">
 <SOAP-ENV:Header>
   <ns1:RequestHeader>
     <ns1:clientCustomerId>REDACTED</ns1:clientCustomerId>
@@ -46,7 +46,7 @@ Server: GSE
 
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
   <soap:Header>
-    <ResponseHeader xmlns="https://adwords.google.com/api/adwords/cm/v201705">
+    <ResponseHeader xmlns="https://adwords.google.com/api/adwords/cm/v201802">
       <requestId>123abc456xyz</requestId>
       <serviceName>FeedService</serviceName>
       <methodName>mutate</methodName>
@@ -55,7 +55,7 @@ Server: GSE
     </ResponseHeader>
   </soap:Header>
   <soap:Body>
-    <mutateResponse xmlns="https://adwords.google.com/api/adwords/cm/v201705">
+    <mutateResponse xmlns="https://adwords.google.com/api/adwords/cm/v201802">
       <rval>
         <ListReturnValue.Type>FeedReturnValue</ListReturnValue.Type>
         <value>

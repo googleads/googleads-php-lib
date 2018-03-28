@@ -11,6 +11,48 @@
       targetNamespace="https://adwords.google.com/api/adwords/cm/v201802"
       xmlns="http://www.w3.org/2001/XMLSchema"
       xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:tns="https://adwords.google.com/api/adwords/cm/v201802">
+      <complexType abstract="true" name="ApiError">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="fieldPath" type="xsd:string"/>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="fieldPathElements" type="tns:FieldPathElement"/>
+          <element maxOccurs="1" minOccurs="0" name="trigger" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="errorString" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="ApiError.Type" type="xsd:string">
+            <annotation>
+              <documentation>
+                Indicates that this instance is a subtype of ApiError.
+                Although this field is returned in the response, it is ignored on input
+                and cannot be selected. Specify xsi:type instead.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="ApiException">
+        <complexContent>
+          <extension base="tns:ApplicationException">
+            <sequence>
+              <element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:ApiError"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ApplicationException">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="message" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0"
+            name="ApplicationException.Type" type="xsd:string">
+            <annotation>
+              <documentation>
+                Indicates that this instance is a subtype of ApplicationException.
+                Although this field is returned in the response, it is ignored on input
+                and cannot be selected. Specify xsi:type instead.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
       <complexType name="AuthenticationError">
         <complexContent>
           <extension base="tns:ApiError">
@@ -34,6 +76,15 @@
           <extension base="tns:ApiError">
             <sequence>
               <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ClientTermsError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DatabaseError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:DatabaseError.Reason"/>
             </sequence>
           </extension>
         </complexContent>
@@ -224,57 +275,6 @@
             </sequence>
           </extension>
         </complexContent>
-      </complexType>
-      <complexType name="DatabaseError">
-        <complexContent>
-          <extension base="tns:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:DatabaseError.Reason"/>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType abstract="true" name="ApiError">
-        <sequence>
-          <element maxOccurs="1" minOccurs="0" name="fieldPath" type="xsd:string"/>
-          <element maxOccurs="unbounded" minOccurs="0"
-            name="fieldPathElements" type="tns:FieldPathElement"/>
-          <element maxOccurs="1" minOccurs="0" name="trigger" type="xsd:string"/>
-          <element maxOccurs="1" minOccurs="0" name="errorString" type="xsd:string"/>
-          <element maxOccurs="1" minOccurs="0" name="ApiError.Type" type="xsd:string">
-            <annotation>
-              <documentation>
-                Indicates that this instance is a subtype of ApiError.
-                Although this field is returned in the response, it is ignored on input
-                and cannot be selected. Specify xsi:type instead.
-              </documentation>
-            </annotation>
-          </element>
-        </sequence>
-      </complexType>
-      <complexType name="ApiException">
-        <complexContent>
-          <extension base="tns:ApplicationException">
-            <sequence>
-              <element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:ApiError"/>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="ApplicationException">
-        <sequence>
-          <element maxOccurs="1" minOccurs="0" name="message" type="xsd:string"/>
-          <element maxOccurs="1" minOccurs="0"
-            name="ApplicationException.Type" type="xsd:string">
-            <annotation>
-              <documentation>
-                Indicates that this instance is a subtype of ApplicationException.
-                Although this field is returned in the response, it is ignored on input
-                and cannot be selected. Specify xsi:type instead.
-              </documentation>
-            </annotation>
-          </element>
-        </sequence>
       </complexType>
       <simpleType name="AuthenticationError.Reason">
         <restriction base="xsd:string">
@@ -624,61 +624,6 @@
           </element>
         </sequence>
       </complexType>
-      <complexType name="CustomerSyncError">
-        <annotation>
-          <documentation>
-            Represents CustomerSyncService specific errors
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="cm:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CustomerSyncError.Reason"/>
-              <element maxOccurs="1" minOccurs="0" name="campaignId" type="xsd:long"/>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="FeedChangeData">
-        <annotation>
-          <documentation>
-            Holds information about a changed feed and any feeds items within the feed.
-          </documentation>
-        </annotation>
-        <sequence>
-          <element maxOccurs="1" minOccurs="0" name="feedId" type="xsd:long">
-            <annotation>
-              <documentation>
-                The feed ID.
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0" name="feedChangeStatus" type="tns:ChangeStatus">
-            <annotation>
-              <documentation>
-                Whether or not the fields of this feed have changed.
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="unbounded" minOccurs="0"
-            name="changedFeedItems" type="xsd:long">
-            <annotation>
-              <documentation>
-                A list of feed item IDs that have been added or modified within the the feed. If a feed item is
-                deleted after a modification, it will not be included in this list.
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="unbounded" minOccurs="0"
-            name="removedFeedItems" type="xsd:long">
-            <annotation>
-              <documentation>
-                A list feed item IDs that have been removed from the feed.
-              </documentation>
-            </annotation>
-          </element>
-        </sequence>
-      </complexType>
       <complexType name="CustomerChangeData">
         <annotation>
           <documentation>
@@ -715,6 +660,21 @@
           </element>
         </sequence>
       </complexType>
+      <complexType name="CustomerSyncError">
+        <annotation>
+          <documentation>
+            Represents CustomerSyncService specific errors
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="cm:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CustomerSyncError.Reason"/>
+              <element maxOccurs="1" minOccurs="0" name="campaignId" type="xsd:long"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
       <complexType name="CustomerSyncSelector">
         <annotation>
           <documentation>
@@ -747,6 +707,46 @@
               <documentation>
                 Return entities belonging to these feeds.
                 &lt;span class="constraint ContentsDistinct"&gt;This field must contain distinct elements.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="FeedChangeData">
+        <annotation>
+          <documentation>
+            Holds information about a changed feed and any feeds items within the feed.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="feedId" type="xsd:long">
+            <annotation>
+              <documentation>
+                The feed ID.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="feedChangeStatus" type="tns:ChangeStatus">
+            <annotation>
+              <documentation>
+                Whether or not the fields of this feed have changed.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="changedFeedItems" type="xsd:long">
+            <annotation>
+              <documentation>
+                A list of feed item IDs that have been added or modified within the the feed. If a feed item is
+                deleted after a modification, it will not be included in this list.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="removedFeedItems" type="xsd:long">
+            <annotation>
+              <documentation>
+                A list feed item IDs that have been removed from the feed.
               </documentation>
             </annotation>
           </element>

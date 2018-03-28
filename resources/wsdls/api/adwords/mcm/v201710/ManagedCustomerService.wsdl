@@ -11,6 +11,105 @@
       targetNamespace="https://adwords.google.com/api/adwords/cm/v201710"
       xmlns="http://www.w3.org/2001/XMLSchema"
       xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:tns="https://adwords.google.com/api/adwords/cm/v201710">
+      <complexType abstract="true" name="ApiError">
+        <annotation>
+          <documentation>
+            The API error base class that provides details about an error that occurred
+            while processing a service request.
+            
+            &lt;p&gt;The OGNL field path is provided for parsers to identify the request data
+            element that may have caused the error.&lt;/p&gt;
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="fieldPath" type="xsd:string">
+            <annotation>
+              <documentation>
+                The OGNL field path to identify cause of error.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="fieldPathElements" type="tns:FieldPathElement">
+            <annotation>
+              <documentation>
+                A parsed copy of the field path. For example, the field path "operations[1].operand"
+                corresponds to this list: {FieldPathElement(field = "operations", index = 1),
+                FieldPathElement(field = "operand", index = null)}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="trigger" type="xsd:string">
+            <annotation>
+              <documentation>
+                The data that caused the error.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="errorString" type="xsd:string">
+            <annotation>
+              <documentation>
+                A simple string representation of the error and reason.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="ApiError.Type" type="xsd:string">
+            <annotation>
+              <documentation>
+                Indicates that this instance is a subtype of ApiError.
+                Although this field is returned in the response, it is ignored on input
+                and cannot be selected. Specify xsi:type instead.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="ApiException">
+        <annotation>
+          <documentation>
+            Exception class for holding a list of service errors.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApplicationException">
+            <sequence>
+              <element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:ApiError">
+                <annotation>
+                  <documentation>
+                    List of errors.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ApplicationException">
+        <annotation>
+          <documentation>
+            Base class for exceptions.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="message" type="xsd:string">
+            <annotation>
+              <documentation>
+                Error message.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0"
+            name="ApplicationException.Type" type="xsd:string">
+            <annotation>
+              <documentation>
+                Indicates that this instance is a subtype of ApplicationException.
+                Although this field is returned in the response, it is ignored on input
+                and cannot be selected. Specify xsi:type instead.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
       <complexType name="AuthenticationError">
         <annotation>
           <documentation>
@@ -61,6 +160,26 @@
           <extension base="tns:ApiError">
             <sequence>
               <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ClientTermsError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DatabaseError">
+        <annotation>
+          <documentation>
+            Errors that are thrown due to a database access problem.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:DatabaseError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
             </sequence>
           </extension>
         </complexContent>
@@ -234,6 +353,33 @@
           </extension>
         </complexContent>
       </complexType>
+      <complexType abstract="true" name="Operation">
+        <annotation>
+          <documentation>
+            This represents an operation that includes an operator and an operand
+            specified type.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="operator" type="tns:Operator">
+            <annotation>
+              <documentation>
+                Operator.
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="Operation.Type" type="xsd:string">
+            <annotation>
+              <documentation>
+                Indicates that this instance is a subtype of Operation.
+                Although this field is returned in the response, it is ignored on input
+                and cannot be selected. Specify xsi:type instead.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
       <complexType name="OperationAccessDenied">
         <annotation>
           <documentation>
@@ -287,6 +433,31 @@
             <annotation>
               <documentation>
                 The order to sort the results on. The default sort order is {@link SortOrder#ASCENDING}.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType abstract="true" name="Page">
+        <annotation>
+          <documentation>
+            Contains the results from a get call.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="totalNumEntries" type="xsd:int">
+            <annotation>
+              <documentation>
+                Total number of entries in the result that this page is a part of.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="Page.Type" type="xsd:string">
+            <annotation>
+              <documentation>
+                Indicates that this instance is a subtype of Page.
+                Although this field is returned in the response, it is ignored on input
+                and cannot be selected. Specify xsi:type instead.
               </documentation>
             </annotation>
           </element>
@@ -510,6 +681,64 @@
           </extension>
         </complexContent>
       </complexType>
+      <complexType name="Selector">
+        <annotation>
+          <documentation>
+            A generic selector to specify the type of information to return.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="fields" type="xsd:string">
+            <annotation>
+              <documentation>
+                List of fields to select.
+                &lt;a href="/adwords/api/docs/appendix/selectorfields"&gt;Possible values&lt;/a&gt;
+                are marked {@code Selectable} on the entity's reference page.
+                For example, for the {@code CampaignService} selector, refer to the
+                selectable fields from the {@link Campaign} reference page.
+                &lt;span class="constraint ContentsDistinct"&gt;This field must contain distinct elements.&lt;/span&gt;
+                &lt;span class="constraint ContentsNotNull"&gt;This field must not contain {@code null} elements.&lt;/span&gt;
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="predicates" type="tns:Predicate">
+            <annotation>
+              <documentation>
+                Specifies how an entity (eg. adgroup, campaign, criterion, ad) should be filtered.
+                &lt;span class="constraint ContentsNotNull"&gt;This field must not contain {@code null} elements.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="dateRange" type="tns:DateRange">
+            <annotation>
+              <documentation>
+                Range of dates for which you want to include data. If this value is omitted,
+                results for all dates are returned.
+                &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; This field is only used by the report download
+                service. For all other services, it is ignored.&lt;/p&gt;
+                &lt;span class="constraint DateRangeWithinRange"&gt;This range must be contained within the range [19700101, 20380101].&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="ordering" type="tns:OrderBy">
+            <annotation>
+              <documentation>
+                The fields on which you want to sort, and the sort order. The order in the list is
+                significant: The first element in the list indicates the primary sort order, the next
+                specifies the secondary sort order and so on.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="paging" type="tns:Paging">
+            <annotation>
+              <documentation>
+                Pagination information.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
       <complexType name="SelectorError">
         <annotation>
           <documentation>
@@ -683,235 +912,6 @@
             </sequence>
           </extension>
         </complexContent>
-      </complexType>
-      <complexType name="DatabaseError">
-        <annotation>
-          <documentation>
-            Errors that are thrown due to a database access problem.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:DatabaseError.Reason">
-                <annotation>
-                  <documentation>
-                    The error reason represented by an enum.
-                  </documentation>
-                </annotation>
-              </element>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType abstract="true" name="ApiError">
-        <annotation>
-          <documentation>
-            The API error base class that provides details about an error that occurred
-            while processing a service request.
-            
-            &lt;p&gt;The OGNL field path is provided for parsers to identify the request data
-            element that may have caused the error.&lt;/p&gt;
-          </documentation>
-        </annotation>
-        <sequence>
-          <element maxOccurs="1" minOccurs="0" name="fieldPath" type="xsd:string">
-            <annotation>
-              <documentation>
-                The OGNL field path to identify cause of error.
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="unbounded" minOccurs="0"
-            name="fieldPathElements" type="tns:FieldPathElement">
-            <annotation>
-              <documentation>
-                A parsed copy of the field path. For example, the field path "operations[1].operand"
-                corresponds to this list: {FieldPathElement(field = "operations", index = 1),
-                FieldPathElement(field = "operand", index = null)}.
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0" name="trigger" type="xsd:string">
-            <annotation>
-              <documentation>
-                The data that caused the error.
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0" name="errorString" type="xsd:string">
-            <annotation>
-              <documentation>
-                A simple string representation of the error and reason.
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0" name="ApiError.Type" type="xsd:string">
-            <annotation>
-              <documentation>
-                Indicates that this instance is a subtype of ApiError.
-                Although this field is returned in the response, it is ignored on input
-                and cannot be selected. Specify xsi:type instead.
-              </documentation>
-            </annotation>
-          </element>
-        </sequence>
-      </complexType>
-      <complexType name="ApiException">
-        <annotation>
-          <documentation>
-            Exception class for holding a list of service errors.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ApplicationException">
-            <sequence>
-              <element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:ApiError">
-                <annotation>
-                  <documentation>
-                    List of errors.
-                  </documentation>
-                </annotation>
-              </element>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="ApplicationException">
-        <annotation>
-          <documentation>
-            Base class for exceptions.
-          </documentation>
-        </annotation>
-        <sequence>
-          <element maxOccurs="1" minOccurs="0" name="message" type="xsd:string">
-            <annotation>
-              <documentation>
-                Error message.
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0"
-            name="ApplicationException.Type" type="xsd:string">
-            <annotation>
-              <documentation>
-                Indicates that this instance is a subtype of ApplicationException.
-                Although this field is returned in the response, it is ignored on input
-                and cannot be selected. Specify xsi:type instead.
-              </documentation>
-            </annotation>
-          </element>
-        </sequence>
-      </complexType>
-      <complexType name="Selector">
-        <annotation>
-          <documentation>
-            A generic selector to specify the type of information to return.
-          </documentation>
-        </annotation>
-        <sequence>
-          <element maxOccurs="unbounded" minOccurs="0" name="fields" type="xsd:string">
-            <annotation>
-              <documentation>
-                List of fields to select.
-                &lt;a href="/adwords/api/docs/appendix/selectorfields"&gt;Possible values&lt;/a&gt;
-                are marked {@code Selectable} on the entity's reference page.
-                For example, for the {@code CampaignService} selector, refer to the
-                selectable fields from the {@link Campaign} reference page.
-                &lt;span class="constraint ContentsDistinct"&gt;This field must contain distinct elements.&lt;/span&gt;
-                &lt;span class="constraint ContentsNotNull"&gt;This field must not contain {@code null} elements.&lt;/span&gt;
-                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="unbounded" minOccurs="0" name="predicates" type="tns:Predicate">
-            <annotation>
-              <documentation>
-                Specifies how an entity (eg. adgroup, campaign, criterion, ad) should be filtered.
-                &lt;span class="constraint ContentsNotNull"&gt;This field must not contain {@code null} elements.&lt;/span&gt;
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0" name="dateRange" type="tns:DateRange">
-            <annotation>
-              <documentation>
-                Range of dates for which you want to include data. If this value is omitted,
-                results for all dates are returned.
-                &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; This field is only used by the report download
-                service. For all other services, it is ignored.&lt;/p&gt;
-                &lt;span class="constraint DateRangeWithinRange"&gt;This range must be contained within the range [19700101, 20380101].&lt;/span&gt;
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="unbounded" minOccurs="0" name="ordering" type="tns:OrderBy">
-            <annotation>
-              <documentation>
-                The fields on which you want to sort, and the sort order. The order in the list is
-                significant: The first element in the list indicates the primary sort order, the next
-                specifies the secondary sort order and so on.
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0" name="paging" type="tns:Paging">
-            <annotation>
-              <documentation>
-                Pagination information.
-              </documentation>
-            </annotation>
-          </element>
-        </sequence>
-      </complexType>
-      <complexType abstract="true" name="Operation">
-        <annotation>
-          <documentation>
-            This represents an operation that includes an operator and an operand
-            specified type.
-          </documentation>
-        </annotation>
-        <sequence>
-          <element maxOccurs="1" minOccurs="0" name="operator" type="tns:Operator">
-            <annotation>
-              <documentation>
-                Operator.
-                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0" name="Operation.Type" type="xsd:string">
-            <annotation>
-              <documentation>
-                Indicates that this instance is a subtype of Operation.
-                Although this field is returned in the response, it is ignored on input
-                and cannot be selected. Specify xsi:type instead.
-              </documentation>
-            </annotation>
-          </element>
-        </sequence>
-      </complexType>
-      <complexType abstract="true" name="Page">
-        <annotation>
-          <documentation>
-            Contains the results from a get call.
-          </documentation>
-        </annotation>
-        <sequence>
-          <element maxOccurs="1" minOccurs="0" name="totalNumEntries" type="xsd:int">
-            <annotation>
-              <documentation>
-                Total number of entries in the result that this page is a part of.
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0" name="Page.Type" type="xsd:string">
-            <annotation>
-              <documentation>
-                Indicates that this instance is a subtype of Page.
-                Although this field is returned in the response, it is ignored on input
-                and cannot be selected. Specify xsi:type instead.
-              </documentation>
-            </annotation>
-          </element>
-        </sequence>
       </complexType>
       <simpleType name="AuthenticationError.Reason">
         <annotation>
@@ -2064,121 +2064,6 @@
           <jaxb:globalBindings typesafeEnumMaxMembers="999999"/>
         </appinfo>
       </annotation>
-      <complexType name="ManagedCustomerLabel">
-        <annotation>
-          <documentation>
-            A label ID and customer ID the label applies to.
-          </documentation>
-        </annotation>
-        <sequence>
-          <element maxOccurs="1" minOccurs="0" name="labelId" type="xsd:long">
-            <annotation>
-              <documentation>
-                The ID of an existing label to be applied to the account.
-                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0" name="customerId" type="xsd:long">
-            <annotation>
-              <documentation>
-                The 10-digit customer ID that identifies this account. Note that this is a {@code long} (do not
-                include hyphens in the middle), just like {@link ManagedCustomer#customerId}.
-                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
-              </documentation>
-            </annotation>
-          </element>
-        </sequence>
-      </complexType>
-      <complexType name="ManagedCustomerLabelOperation">
-        <annotation>
-          <documentation>
-            An operation to apply or remove an account label from a managed customer.
-            
-            &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; The {@code SET} operator is not supported.&lt;/p&gt;
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="cm:Operation">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="operand" type="tns:ManagedCustomerLabel">
-                <annotation>
-                  <documentation>
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
-                  </documentation>
-                </annotation>
-              </element>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="ManagedCustomerLabelReturnValue">
-        <annotation>
-          <documentation>
-            A container for return values from {@link ManagedCustomerService#mutateLabel}.
-            &lt;p&gt;For successful {@linkplain ADD} operations, the input {@linkplain ManagedCustomerLabel}
-            is returned.
-            &lt;p&gt;For successful {@linkplain REMOVE} operations, the returned {@linkplain ManagedCustomerLabel}
-            will contain the customer ID and a null label ID.
-          </documentation>
-        </annotation>
-        <sequence>
-          <element maxOccurs="unbounded" minOccurs="0" name="value" type="tns:ManagedCustomerLabel">
-            <annotation>
-              <documentation>
-                List of managed customer labels.
-              </documentation>
-            </annotation>
-          </element>
-        </sequence>
-      </complexType>
-      <complexType name="ManagedCustomerServiceError">
-        <annotation>
-          <documentation>
-            Error for {@link ManagedCustomerService}
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="cm:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ManagedCustomerServiceError.Reason"/>
-              <element maxOccurs="unbounded" minOccurs="0"
-                name="customerIds" type="xsd:long">
-                <annotation>
-                  <documentation>
-                    The list of customer ids associated with the error.
-                  </documentation>
-                </annotation>
-              </element>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="PendingInvitationSelector">
-        <annotation>
-          <documentation>
-            Selector for getPendingInvitations method.
-          </documentation>
-        </annotation>
-        <sequence>
-          <element maxOccurs="unbounded" minOccurs="0"
-            name="managerCustomerIds" type="xsd:long">
-            <annotation>
-              <documentation>
-                Manager customer IDs to check for sent invitations.
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="unbounded" minOccurs="0"
-            name="clientCustomerIds" type="xsd:long">
-            <annotation>
-              <documentation>
-                Client customer IDs to check for received invitations.
-              </documentation>
-            </annotation>
-          </element>
-        </sequence>
-      </complexType>
       <complexType name="AccountLabel">
         <annotation>
           <documentation>
@@ -2284,62 +2169,6 @@
           </extension>
         </complexContent>
       </complexType>
-      <complexType name="MoveOperation">
-        <annotation>
-          <documentation>
-            Operation for moving ManagedCustomer links. See {@link ManagedCustomerService#mutateManager}.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="cm:Operation">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="operand" type="tns:ManagedCustomerLink"/>
-              <element maxOccurs="1" minOccurs="0"
-                name="oldManagerCustomerId" type="xsd:long">
-                <annotation>
-                  <documentation>
-                    The ID of the old Manager.
-                  </documentation>
-                </annotation>
-              </element>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="MutateLinkResults">
-        <annotation>
-          <documentation>
-            Results of a {@link ManagedCustomerService#mutateLink} call which changes
-            manager/client links.
-          </documentation>
-        </annotation>
-        <sequence>
-          <element maxOccurs="unbounded" minOccurs="0" name="links" type="tns:ManagedCustomerLink">
-            <annotation>
-              <documentation>
-                Links that were changed as a result of this call.
-              </documentation>
-            </annotation>
-          </element>
-        </sequence>
-      </complexType>
-      <complexType name="MutateManagerResults">
-        <annotation>
-          <documentation>
-            Results of a {@link ManagedCustomerService#mutateManager} call, which moves client customers to
-            new managers.
-          </documentation>
-        </annotation>
-        <sequence>
-          <element maxOccurs="unbounded" minOccurs="0" name="links" type="tns:ManagedCustomerLink">
-            <annotation>
-              <documentation>
-                The links that were changed as a result of this call.
-              </documentation>
-            </annotation>
-          </element>
-        </sequence>
-      </complexType>
       <complexType name="ManagedCustomer">
         <annotation>
           <documentation>
@@ -2432,6 +2261,74 @@
           </element>
         </sequence>
       </complexType>
+      <complexType name="ManagedCustomerLabel">
+        <annotation>
+          <documentation>
+            A label ID and customer ID the label applies to.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="labelId" type="xsd:long">
+            <annotation>
+              <documentation>
+                The ID of an existing label to be applied to the account.
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="customerId" type="xsd:long">
+            <annotation>
+              <documentation>
+                The 10-digit customer ID that identifies this account. Note that this is a {@code long} (do not
+                include hyphens in the middle), just like {@link ManagedCustomer#customerId}.
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="ManagedCustomerLabelOperation">
+        <annotation>
+          <documentation>
+            An operation to apply or remove an account label from a managed customer.
+            
+            &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; The {@code SET} operator is not supported.&lt;/p&gt;
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="cm:Operation">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="operand" type="tns:ManagedCustomerLabel">
+                <annotation>
+                  <documentation>
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ManagedCustomerLabelReturnValue">
+        <annotation>
+          <documentation>
+            A container for return values from {@link ManagedCustomerService#mutateLabel}.
+            &lt;p&gt;For successful {@linkplain ADD} operations, the input {@linkplain ManagedCustomerLabel}
+            is returned.
+            &lt;p&gt;For successful {@linkplain REMOVE} operations, the returned {@linkplain ManagedCustomerLabel}
+            will contain the customer ID and a null label ID.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="value" type="tns:ManagedCustomerLabel">
+            <annotation>
+              <documentation>
+                List of managed customer labels.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
       <complexType name="ManagedCustomerOperation">
         <annotation>
           <documentation>
@@ -2498,6 +2395,84 @@
           </element>
         </sequence>
       </complexType>
+      <complexType name="ManagedCustomerServiceError">
+        <annotation>
+          <documentation>
+            Error for {@link ManagedCustomerService}
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="cm:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ManagedCustomerServiceError.Reason"/>
+              <element maxOccurs="unbounded" minOccurs="0"
+                name="customerIds" type="xsd:long">
+                <annotation>
+                  <documentation>
+                    The list of customer ids associated with the error.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="MoveOperation">
+        <annotation>
+          <documentation>
+            Operation for moving ManagedCustomer links. See {@link ManagedCustomerService#mutateManager}.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="cm:Operation">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="operand" type="tns:ManagedCustomerLink"/>
+              <element maxOccurs="1" minOccurs="0"
+                name="oldManagerCustomerId" type="xsd:long">
+                <annotation>
+                  <documentation>
+                    The ID of the old Manager.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="MutateLinkResults">
+        <annotation>
+          <documentation>
+            Results of a {@link ManagedCustomerService#mutateLink} call which changes
+            manager/client links.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="links" type="tns:ManagedCustomerLink">
+            <annotation>
+              <documentation>
+                Links that were changed as a result of this call.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="MutateManagerResults">
+        <annotation>
+          <documentation>
+            Results of a {@link ManagedCustomerService#mutateManager} call, which moves client customers to
+            new managers.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="links" type="tns:ManagedCustomerLink">
+            <annotation>
+              <documentation>
+                The links that were changed as a result of this call.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
       <complexType name="PendingInvitation">
         <annotation>
           <documentation>
@@ -2509,6 +2484,31 @@
           <element maxOccurs="1" minOccurs="0" name="client" type="tns:ManagedCustomer"/>
           <element maxOccurs="1" minOccurs="0" name="creationDate" type="xsd:string"/>
           <element maxOccurs="1" minOccurs="0" name="expirationDate" type="xsd:string"/>
+        </sequence>
+      </complexType>
+      <complexType name="PendingInvitationSelector">
+        <annotation>
+          <documentation>
+            Selector for getPendingInvitations method.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="managerCustomerIds" type="xsd:long">
+            <annotation>
+              <documentation>
+                Manager customer IDs to check for sent invitations.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="clientCustomerIds" type="xsd:long">
+            <annotation>
+              <documentation>
+                Client customer IDs to check for received invitations.
+              </documentation>
+            </annotation>
+          </element>
         </sequence>
       </complexType>
       <simpleType name="LinkStatus">

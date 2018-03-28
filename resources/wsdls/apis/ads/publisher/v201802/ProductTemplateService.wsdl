@@ -2240,7 +2240,7 @@
                 The name of the {@code ProductTemplate}.
                 
                 This attribute has maximum length of 255 characters.
-                This attribute is required.
+                &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -2372,7 +2372,7 @@
                 {@link #roadblockingType}, {@link #lineItemType}, {@link #frequencyCaps},
                 {@link #productSegmentation} and {@link #targeting}.
                 &lt;/b&gt;
-                This attribute is required.
+                &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -2389,7 +2389,7 @@
             <annotation>
               <documentation>
                 The method used for billing the created {@link ProposalLineItem}.
-                This attribute is required.
+                &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>

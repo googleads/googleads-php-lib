@@ -1,4 +1,4 @@
-POST /api/adwords/cm/v201705/FeedService?wsdl HTTP/1.1
+POST /api/adwords/cm/v201802/FeedService?wsdl HTTP/1.1
 Host: adwords.google.com
 Connection: close
 User-Agent: PHP-SOAP/5.5.38

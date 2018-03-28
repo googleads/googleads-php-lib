@@ -3307,8 +3307,9 @@
           <enumeration value="INVALID_AGE_RANGE">
             <annotation>
               <documentation>
-                Age range for GRP audience is not valid. Please see
-                https://support.google.com/dfp_premium/answer/6337075 for more information.
+                Age range for GRP audience is not valid. Please see the
+                &lt;a href="https://support.google.com/dfp_premium/answer/6135438"&gt;DFP Help Center&lt;/a&gt; for more
+                information.
               </documentation>
             </annotation>
           </enumeration>

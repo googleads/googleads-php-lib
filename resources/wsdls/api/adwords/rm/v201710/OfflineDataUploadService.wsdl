@@ -2440,9 +2440,11 @@
                 name="partialFailureErrors" type="cm:ApiError">
                 <annotation>
                   <documentation>
-                    List of partial failure errors. For row level errors, offlineDataList will be shown in the
-                    fieldPath along with row index. In this case the operation will be processed and just the rows
-                    with errors will not be used. For more information about partial failure, see:
+                    In v201710 and previous, this field stores a list of operation level errors. Starting in
+                    v201802, this field stores both operation-level and row-level errors. For row-level errors,
+                    offlineDataList will be shown in the fieldPath along with row index. In this case, the
+                    operation will be processed and just the rows with errors will not be used. For more
+                    information about partial failure, see:
                     https://developers.google.com/adwords/api/docs/guides/partial-failure
                   </documentation>
                 </annotation>

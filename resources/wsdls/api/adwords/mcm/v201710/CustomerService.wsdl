@@ -11,6 +11,105 @@
       targetNamespace="https://adwords.google.com/api/adwords/cm/v201710"
       xmlns="http://www.w3.org/2001/XMLSchema"
       xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:tns="https://adwords.google.com/api/adwords/cm/v201710">
+      <complexType abstract="true" name="ApiError">
+        <annotation>
+          <documentation>
+            The API error base class that provides details about an error that occurred
+            while processing a service request.
+            
+            &lt;p&gt;The OGNL field path is provided for parsers to identify the request data
+            element that may have caused the error.&lt;/p&gt;
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="fieldPath" type="xsd:string">
+            <annotation>
+              <documentation>
+                The OGNL field path to identify cause of error.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="fieldPathElements" type="tns:FieldPathElement">
+            <annotation>
+              <documentation>
+                A parsed copy of the field path. For example, the field path "operations[1].operand"
+                corresponds to this list: {FieldPathElement(field = "operations", index = 1),
+                FieldPathElement(field = "operand", index = null)}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="trigger" type="xsd:string">
+            <annotation>
+              <documentation>
+                The data that caused the error.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="errorString" type="xsd:string">
+            <annotation>
+              <documentation>
+                A simple string representation of the error and reason.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="ApiError.Type" type="xsd:string">
+            <annotation>
+              <documentation>
+                Indicates that this instance is a subtype of ApiError.
+                Although this field is returned in the response, it is ignored on input
+                and cannot be selected. Specify xsi:type instead.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="ApiException">
+        <annotation>
+          <documentation>
+            Exception class for holding a list of service errors.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApplicationException">
+            <sequence>
+              <element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:ApiError">
+                <annotation>
+                  <documentation>
+                    List of errors.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ApplicationException">
+        <annotation>
+          <documentation>
+            Base class for exceptions.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="message" type="xsd:string">
+            <annotation>
+              <documentation>
+                Error message.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0"
+            name="ApplicationException.Type" type="xsd:string">
+            <annotation>
+              <documentation>
+                Indicates that this instance is a subtype of ApplicationException.
+                Although this field is returned in the response, it is ignored on input
+                and cannot be selected. Specify xsi:type instead.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
       <complexType name="AuthenticationError">
         <annotation>
           <documentation>
@@ -61,6 +160,26 @@
           <extension base="tns:ApiError">
             <sequence>
               <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ClientTermsError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DatabaseError">
+        <annotation>
+          <documentation>
+            Errors that are thrown due to a database access problem.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:DatabaseError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
             </sequence>
           </extension>
         </complexContent>
@@ -213,6 +332,33 @@
             </sequence>
           </extension>
         </complexContent>
+      </complexType>
+      <complexType abstract="true" name="Operation">
+        <annotation>
+          <documentation>
+            This represents an operation that includes an operator and an operand
+            specified type.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="operator" type="tns:Operator">
+            <annotation>
+              <documentation>
+                Operator.
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="Operation.Type" type="xsd:string">
+            <annotation>
+              <documentation>
+                Indicates that this instance is a subtype of Operation.
+                Although this field is returned in the response, it is ignored on input
+                and cannot be selected. Specify xsi:type instead.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
       </complexType>
       <complexType name="OperationAccessDenied">
         <annotation>
@@ -490,6 +636,64 @@
           </extension>
         </complexContent>
       </complexType>
+      <complexType name="Selector">
+        <annotation>
+          <documentation>
+            A generic selector to specify the type of information to return.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="fields" type="xsd:string">
+            <annotation>
+              <documentation>
+                List of fields to select.
+                &lt;a href="/adwords/api/docs/appendix/selectorfields"&gt;Possible values&lt;/a&gt;
+                are marked {@code Selectable} on the entity's reference page.
+                For example, for the {@code CampaignService} selector, refer to the
+                selectable fields from the {@link Campaign} reference page.
+                &lt;span class="constraint ContentsDistinct"&gt;This field must contain distinct elements.&lt;/span&gt;
+                &lt;span class="constraint ContentsNotNull"&gt;This field must not contain {@code null} elements.&lt;/span&gt;
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="predicates" type="tns:Predicate">
+            <annotation>
+              <documentation>
+                Specifies how an entity (eg. adgroup, campaign, criterion, ad) should be filtered.
+                &lt;span class="constraint ContentsNotNull"&gt;This field must not contain {@code null} elements.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="dateRange" type="tns:DateRange">
+            <annotation>
+              <documentation>
+                Range of dates for which you want to include data. If this value is omitted,
+                results for all dates are returned.
+                &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; This field is only used by the report download
+                service. For all other services, it is ignored.&lt;/p&gt;
+                &lt;span class="constraint DateRangeWithinRange"&gt;This range must be contained within the range [19700101, 20380101].&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="ordering" type="tns:OrderBy">
+            <annotation>
+              <documentation>
+                The fields on which you want to sort, and the sort order. The order in the list is
+                significant: The first element in the list indicates the primary sort order, the next
+                specifies the secondary sort order and so on.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="paging" type="tns:Paging">
+            <annotation>
+              <documentation>
+                Pagination information.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
       <complexType name="SizeLimitError">
         <annotation>
           <documentation>
@@ -663,210 +867,6 @@
             </sequence>
           </extension>
         </complexContent>
-      </complexType>
-      <complexType name="DatabaseError">
-        <annotation>
-          <documentation>
-            Errors that are thrown due to a database access problem.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:DatabaseError.Reason">
-                <annotation>
-                  <documentation>
-                    The error reason represented by an enum.
-                  </documentation>
-                </annotation>
-              </element>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType abstract="true" name="ApiError">
-        <annotation>
-          <documentation>
-            The API error base class that provides details about an error that occurred
-            while processing a service request.
-            
-            &lt;p&gt;The OGNL field path is provided for parsers to identify the request data
-            element that may have caused the error.&lt;/p&gt;
-          </documentation>
-        </annotation>
-        <sequence>
-          <element maxOccurs="1" minOccurs="0" name="fieldPath" type="xsd:string">
-            <annotation>
-              <documentation>
-                The OGNL field path to identify cause of error.
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="unbounded" minOccurs="0"
-            name="fieldPathElements" type="tns:FieldPathElement">
-            <annotation>
-              <documentation>
-                A parsed copy of the field path. For example, the field path "operations[1].operand"
-                corresponds to this list: {FieldPathElement(field = "operations", index = 1),
-                FieldPathElement(field = "operand", index = null)}.
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0" name="trigger" type="xsd:string">
-            <annotation>
-              <documentation>
-                The data that caused the error.
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0" name="errorString" type="xsd:string">
-            <annotation>
-              <documentation>
-                A simple string representation of the error and reason.
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0" name="ApiError.Type" type="xsd:string">
-            <annotation>
-              <documentation>
-                Indicates that this instance is a subtype of ApiError.
-                Although this field is returned in the response, it is ignored on input
-                and cannot be selected. Specify xsi:type instead.
-              </documentation>
-            </annotation>
-          </element>
-        </sequence>
-      </complexType>
-      <complexType name="ApiException">
-        <annotation>
-          <documentation>
-            Exception class for holding a list of service errors.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ApplicationException">
-            <sequence>
-              <element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:ApiError">
-                <annotation>
-                  <documentation>
-                    List of errors.
-                  </documentation>
-                </annotation>
-              </element>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="ApplicationException">
-        <annotation>
-          <documentation>
-            Base class for exceptions.
-          </documentation>
-        </annotation>
-        <sequence>
-          <element maxOccurs="1" minOccurs="0" name="message" type="xsd:string">
-            <annotation>
-              <documentation>
-                Error message.
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0"
-            name="ApplicationException.Type" type="xsd:string">
-            <annotation>
-              <documentation>
-                Indicates that this instance is a subtype of ApplicationException.
-                Although this field is returned in the response, it is ignored on input
-                and cannot be selected. Specify xsi:type instead.
-              </documentation>
-            </annotation>
-          </element>
-        </sequence>
-      </complexType>
-      <complexType name="Selector">
-        <annotation>
-          <documentation>
-            A generic selector to specify the type of information to return.
-          </documentation>
-        </annotation>
-        <sequence>
-          <element maxOccurs="unbounded" minOccurs="0" name="fields" type="xsd:string">
-            <annotation>
-              <documentation>
-                List of fields to select.
-                &lt;a href="/adwords/api/docs/appendix/selectorfields"&gt;Possible values&lt;/a&gt;
-                are marked {@code Selectable} on the entity's reference page.
-                For example, for the {@code CampaignService} selector, refer to the
-                selectable fields from the {@link Campaign} reference page.
-                &lt;span class="constraint ContentsDistinct"&gt;This field must contain distinct elements.&lt;/span&gt;
-                &lt;span class="constraint ContentsNotNull"&gt;This field must not contain {@code null} elements.&lt;/span&gt;
-                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="unbounded" minOccurs="0" name="predicates" type="tns:Predicate">
-            <annotation>
-              <documentation>
-                Specifies how an entity (eg. adgroup, campaign, criterion, ad) should be filtered.
-                &lt;span class="constraint ContentsNotNull"&gt;This field must not contain {@code null} elements.&lt;/span&gt;
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0" name="dateRange" type="tns:DateRange">
-            <annotation>
-              <documentation>
-                Range of dates for which you want to include data. If this value is omitted,
-                results for all dates are returned.
-                &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; This field is only used by the report download
-                service. For all other services, it is ignored.&lt;/p&gt;
-                &lt;span class="constraint DateRangeWithinRange"&gt;This range must be contained within the range [19700101, 20380101].&lt;/span&gt;
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="unbounded" minOccurs="0" name="ordering" type="tns:OrderBy">
-            <annotation>
-              <documentation>
-                The fields on which you want to sort, and the sort order. The order in the list is
-                significant: The first element in the list indicates the primary sort order, the next
-                specifies the secondary sort order and so on.
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0" name="paging" type="tns:Paging">
-            <annotation>
-              <documentation>
-                Pagination information.
-              </documentation>
-            </annotation>
-          </element>
-        </sequence>
-      </complexType>
-      <complexType abstract="true" name="Operation">
-        <annotation>
-          <documentation>
-            This represents an operation that includes an operator and an operand
-            specified type.
-          </documentation>
-        </annotation>
-        <sequence>
-          <element maxOccurs="1" minOccurs="0" name="operator" type="tns:Operator">
-            <annotation>
-              <documentation>
-                Operator.
-                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0" name="Operation.Type" type="xsd:string">
-            <annotation>
-              <documentation>
-                Indicates that this instance is a subtype of Operation.
-                Although this field is returned in the response, it is ignored on input
-                and cannot be selected. Specify xsi:type instead.
-              </documentation>
-            </annotation>
-          </element>
-        </sequence>
       </complexType>
       <simpleType name="AuthenticationError.Reason">
         <annotation>
@@ -2209,100 +2209,6 @@
           </element>
         </sequence>
       </complexType>
-      <complexType name="CustomerError">
-        <annotation>
-          <documentation>
-            Possible error codes in CustomerService.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="cm:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CustomerError.Reason"/>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="RemarketingSettings">
-        <annotation>
-          <documentation>
-            Customer-wide settings related to AdWords remarketing.
-          </documentation>
-        </annotation>
-        <sequence>
-          <element maxOccurs="1" minOccurs="0" name="snippet" type="xsd:string">
-            <annotation>
-              <documentation>
-                The Adwords remarketing tag snippet for the customer.
-                &lt;span class="constraint ReadOnly"&gt;This field is read only and will be ignored when sent to the API.&lt;/span&gt;
-              </documentation>
-            </annotation>
-          </element>
-        </sequence>
-      </complexType>
-      <complexType name="ServiceLink">
-        <annotation>
-          <documentation>
-            A data-sharing connection between an AdWords customer and another Google service.
-          </documentation>
-        </annotation>
-        <sequence>
-          <element maxOccurs="1" minOccurs="0" name="serviceType" type="tns:ServiceType">
-            <annotation>
-              <documentation>
-                The service being linked.
-                &lt;span class="constraint Filterable"&gt;This field can be filtered on using the value "ServiceType".&lt;/span&gt;
-                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0" name="serviceLinkId" type="xsd:long">
-            <annotation>
-              <documentation>
-                An ID uniquely identifying this link within a given {@link serviceType}.
-                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET, REMOVE.&lt;/span&gt;
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0" name="linkStatus" type="tns:ServiceLink.LinkStatus">
-            <annotation>
-              <documentation>
-                Status of the link.
-                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
-            <annotation>
-              <documentation>
-                An identifier for the service account to which the AdWords account is linked.
-                &lt;span class="constraint ReadOnly"&gt;This field is read only and will be ignored when sent to the API.&lt;/span&gt;
-              </documentation>
-            </annotation>
-          </element>
-        </sequence>
-      </complexType>
-      <complexType name="ServiceLinkOperation">
-        <annotation>
-          <documentation>
-            An operation on an AdWords link.
-            See {@link ServiceType} for information on the various linking types supported.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="cm:Operation">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="operand" type="tns:ServiceLink">
-                <annotation>
-                  <documentation>
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
-                  </documentation>
-                </annotation>
-              </element>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
       <complexType name="Customer">
         <annotation>
           <documentation>
@@ -2400,6 +2306,100 @@
             </annotation>
           </element>
         </sequence>
+      </complexType>
+      <complexType name="CustomerError">
+        <annotation>
+          <documentation>
+            Possible error codes in CustomerService.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="cm:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CustomerError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RemarketingSettings">
+        <annotation>
+          <documentation>
+            Customer-wide settings related to AdWords remarketing.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="snippet" type="xsd:string">
+            <annotation>
+              <documentation>
+                The Adwords remarketing tag snippet for the customer.
+                &lt;span class="constraint ReadOnly"&gt;This field is read only and will be ignored when sent to the API.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="ServiceLink">
+        <annotation>
+          <documentation>
+            A data-sharing connection between an AdWords customer and another Google service.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="serviceType" type="tns:ServiceType">
+            <annotation>
+              <documentation>
+                The service being linked.
+                &lt;span class="constraint Filterable"&gt;This field can be filtered on using the value "ServiceType".&lt;/span&gt;
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="serviceLinkId" type="xsd:long">
+            <annotation>
+              <documentation>
+                An ID uniquely identifying this link within a given {@link serviceType}.
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET, REMOVE.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="linkStatus" type="tns:ServiceLink.LinkStatus">
+            <annotation>
+              <documentation>
+                Status of the link.
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
+            <annotation>
+              <documentation>
+                An identifier for the service account to which the AdWords account is linked.
+                &lt;span class="constraint ReadOnly"&gt;This field is read only and will be ignored when sent to the API.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="ServiceLinkOperation">
+        <annotation>
+          <documentation>
+            An operation on an AdWords link.
+            See {@link ServiceType} for information on the various linking types supported.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="cm:Operation">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="operand" type="tns:ServiceLink">
+                <annotation>
+                  <documentation>
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
       </complexType>
       <simpleType name="CustomerError.Reason">
         <annotation>

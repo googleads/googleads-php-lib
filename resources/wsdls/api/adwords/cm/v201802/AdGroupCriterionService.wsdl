@@ -751,6 +751,7 @@
                     URL template for appending params to Final URL.
                     
                     &lt;p&gt;On update, empty string ("") indicates to clear the field.
+                    &lt;p&gt;This field is supported only in test accounts.
                   </documentation>
                 </annotation>
               </element>

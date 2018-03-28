@@ -173,10 +173,10 @@ pattern is similar for DFP.
 ```php
 use Google\AdsApi\AdWords\AdWordsServices;
 use Google\AdsApi\AdWords\AdWordsSessionBuilder;
-use Google\AdsApi\AdWords\v201705\cm\CampaignService;
-use Google\AdsApi\AdWords\v201705\cm\OrderBy;
-use Google\AdsApi\AdWords\v201705\cm\Paging;
-use Google\AdsApi\AdWords\v201705\cm\Selector;
+use Google\AdsApi\AdWords\v201802\cm\CampaignService;
+use Google\AdsApi\AdWords\v201802\cm\OrderBy;
+use Google\AdsApi\AdWords\v201802\cm\Paging;
+use Google\AdsApi\AdWords\v201802\cm\Selector;
 use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 $oAuth2Credential = (new OAuth2TokenBuilder())
@@ -296,6 +296,16 @@ $session = (new AdWordsSessionBuilder())
     ->withReportDownloaderLogger(new MyCustomReportDownloaderLogger())
     ->build();
 ```
+
+### Utilities
+
+We provide some utilities in this client library for helping you use features
+in the AdWords and DFP API more conveniently. Check out the following wikis for
+details:
+
+*   [BatchJobs for AdWords](//github.com/googleads/googleads-php-lib/wiki/BatchJobs-for-AdWords)
+*   [ProductPartitions for AdWords](//github.com/googleads/googleads-php-lib/wiki/ProductPartitions-for-AdWords)
+*   [ReportDownloader Utilities](//github.com/googleads/googleads-php-lib/wiki/ReportDownloader-Utilities)
 
 ### Reporting
 

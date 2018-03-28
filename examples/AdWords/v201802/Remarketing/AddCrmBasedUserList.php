@@ -58,17 +58,22 @@ class AddCrmBasedUserList
         AdWordsSession $session,
         array $emails
     ) {
-        $userListService = $adWordsServices->get($session, AdwordsUserListService::class);
+        $userListService =
+            $adWordsServices->get($session, AdwordsUserListService::class);
 
         // Create a CRM based user list.
         $userList = new CrmBasedUserList();
-        $userList->setName('Customer relationship management list #' . uniqid());
+        $userList->setName(
+            'Customer relationship management list #' . uniqid()
+        );
         $userList->setDescription(
             'A list of customers that originated from email addresses'
         );
 
-        // Maximum life span is 180 days.
-        $userList->setMembershipLifeSpan(180);
+        // CRM-based user lists can use a membershipLifeSpan of 10000 to
+        // indicate unlimited; otherwise normal values apply.
+        // Sets the membership life span to 30 days.
+        $userList->setMembershipLifeSpan(30);
         $userList->setUploadKeyType(CustomerMatchUploadKeyType::CONTACT_INFO);
 
         // Create a user list operation and add it to the list.
@@ -132,8 +137,8 @@ class AddCrmBasedUserList
         // members.
         foreach ($result->getUserLists() as $userList) {
             printf(
-                "%d email addresses were uploaded to user list with name '%s' and ID"
-                . " %d and are scheduled for review.\n",
+                "%d email addresses were uploaded to user list with name '%s'"
+                . " and ID %d and are scheduled for review.\n",
                 count($emails),
                 $userList->getName(),
                 $userList->getId()
@@ -153,7 +158,10 @@ class AddCrmBasedUserList
 
         // Construct an API session configured from a properties file and the
         // OAuth2 credentials above.
-        $session = (new AdWordsSessionBuilder())->fromFile()->withOAuth2Credential($oAuth2Credential)->build();
+        $session = (new AdWordsSessionBuilder())
+            ->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
         self::runExample(new AdWordsServices(), $session, self::$EMAILS);
     }
 }

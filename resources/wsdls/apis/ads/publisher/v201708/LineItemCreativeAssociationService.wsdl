@@ -4979,6 +4979,9 @@
       Each LICA has a start and end date and time that defines when the creative
       should be displayed.
       &lt;/p&gt;
+      &lt;p&gt;
+      To read more about associating creatives with line items, see this
+      &lt;a href="https://support.google.com/dfp_premium/answer/3187916"&gt;DFP Help Center&lt;/a&gt; article.
     </wsdl:documentation>
     <wsdl:operation name="createLineItemCreativeAssociations">
       <wsdl:documentation>

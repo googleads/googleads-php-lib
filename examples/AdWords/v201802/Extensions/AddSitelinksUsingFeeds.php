@@ -30,10 +30,13 @@ use Google\AdsApi\AdWords\v201802\cm\Feed;
 use Google\AdsApi\AdWords\v201802\cm\FeedAttribute;
 use Google\AdsApi\AdWords\v201802\cm\FeedAttributeType;
 use Google\AdsApi\AdWords\v201802\cm\FeedItem;
+use Google\AdsApi\AdWords\v201802\cm\FeedItemAdGroupTarget;
 use Google\AdsApi\AdWords\v201802\cm\FeedItemAttributeValue;
 use Google\AdsApi\AdWords\v201802\cm\FeedItemGeoRestriction;
 use Google\AdsApi\AdWords\v201802\cm\FeedItemOperation;
 use Google\AdsApi\AdWords\v201802\cm\FeedItemService;
+use Google\AdsApi\AdWords\v201802\cm\FeedItemTargetOperation;
+use Google\AdsApi\AdWords\v201802\cm\FeedItemTargetService;
 use Google\AdsApi\AdWords\v201802\cm\FeedMapping;
 use Google\AdsApi\AdWords\v201802\cm\FeedMappingOperation;
 use Google\AdsApi\AdWords\v201802\cm\FeedMappingService;
@@ -55,8 +58,13 @@ class AddSitelinksUsingFeeds
 
     const CAMPAIGN_ID = 'INSERT_CAMPAIGN_ID_HERE';
 
-    // See the Placeholder reference page for a list of all the placeholder types
-    // and fields.
+    // Optional: Enter the ID of ad group for which you want to restrict the
+    // first feed item to only serve with ads.
+    // Leave this as null if you don't want to make such restriction.
+    const AD_GROUP_ID = null;
+
+    // See the Placeholder reference page for a list of all the placeholder
+    // types and fields.
     // https://developers.google.com/adwords/api/docs/appendix/placeholders.html
     const PLACEHOLDER_SITELINKS = 1;
     const PLACEHOLDER_FIELD_SITELINK_LINK_TEXT = 1;
@@ -67,7 +75,8 @@ class AddSitelinksUsingFeeds
     public static function runExample(
         AdWordsServices $adWordsServices,
         AdWordsSession $session,
-        $campaignId
+        $campaignId,
+        $adGroupId = null
     ) {
         $sitelinksData = self::createSitelinksFeed($adWordsServices, $session);
         $sitelinksData = self::createSitelinksFeedItems(
@@ -86,6 +95,17 @@ class AddSitelinksUsingFeeds
             $sitelinksData,
             $campaignId
         );
+        // Optional: Restrict the first feed item to only serve with ads for the
+        // specified ad group ID.
+        if ($adGroupId !== null) {
+            self::createFeedItemAdGroupTarget(
+                $adWordsServices,
+                $session,
+                $sitelinksData['sitelinksFeedId'],
+                $sitelinksData['sitelinkFeedItemIds'][0],
+                $adGroupId
+            );
+        }
     }
 
     /**
@@ -133,13 +153,15 @@ class AddSitelinksUsingFeeds
         $sitelinksData['sitelinksFeedId'] = $savedFeed->getId();
         $savedAttributes = $savedFeed->getAttributes();
         $sitelinksData['linkTextFeedAttributeId'] = $savedAttributes[0]->getId();
-        $sitelinksData['linkFinalUrlFeedAttributeId'] = $savedAttributes[1]->getId();
+        $sitelinksData['linkFinalUrlFeedAttributeId'] =
+            $savedAttributes[1]->getId();
         $sitelinksData['line2FeedAttribute'] = $savedAttributes[2]->getId();
         $sitelinksData['line3FeedAttribute'] = $savedAttributes[3]->getId();
 
         printf(
             "Feed with name '%s', ID %d with linkTextAttributeId %d, "
-            . "linkFinalUrlAttributeId %d, line2AttributeId %d and line3AttributeId %d was created.\n",
+            . "linkFinalUrlAttributeId %d, line2AttributeId %d and "
+            . "line3AttributeId %d was created.\n",
             $savedFeed->getName(),
             $savedFeed->getId(),
             $savedAttributes[0]->getId(),
@@ -334,6 +356,46 @@ class AddSitelinksUsingFeeds
     }
 
     /**
+     * Creates feed item ad group target for a specified feed ID, feed item ID,
+     * and ad group ID.
+     */
+    private static function createFeedItemAdGroupTarget(
+        AdWordsServices $adWordsServices,
+        AdWordsSession $session,
+        $feedId,
+        $feedItemId,
+        $adGroupId
+    ) {
+        $feedItemTargetService = $adWordsServices->get(
+            $session,
+            FeedItemTargetService::class
+        );
+
+        // Create a feed item ad group target.
+        $feedItemAdGroupTarget = new FeedItemAdGroupTarget();
+        $feedItemAdGroupTarget->setFeedId($feedId);
+        $feedItemAdGroupTarget->setFeedItemId($feedItemId);
+        $feedItemAdGroupTarget->setAdGroupId($adGroupId);
+
+        // Create a feed item ad group target operation.
+        $operation = new FeedItemTargetOperation();
+        $operation->setOperand($feedItemAdGroupTarget);
+        $operation->setOperator(Operator::ADD);
+
+        // Create the feed item ad group target on the server and print out
+        // some information.
+        $result = $feedItemTargetService->mutate([$operation]);
+        $feedItemAdGroupTarget = $result->getValue()[0];
+        printf(
+            "Feed item target for feed ID %d and feed item ID %d was "
+            . "created to restrict serving to ad group ID %d.\n",
+            $feedItemAdGroupTarget->getFeedId(),
+            $feedItemAdGroupTarget->getFeedItemId(),
+            $feedItemAdGroupTarget->getAdGroupId()
+        );
+    }
+
+    /**
      * Creates a site link feed item and wraps it in an ADD operation.
      *
      * @param array $sitelinksData IDs associated to created sitelinks feed
@@ -414,11 +476,15 @@ class AddSitelinksUsingFeeds
 
         // Construct an API session configured from a properties file and the
         // OAuth2 credentials above.
-        $session = (new AdWordsSessionBuilder())->fromFile()->withOAuth2Credential($oAuth2Credential)->build();
+        $session = (new AdWordsSessionBuilder())
+            ->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
         self::runExample(
             new AdWordsServices(),
             $session,
-            intval(self::CAMPAIGN_ID)
+            intval(self::CAMPAIGN_ID),
+            self::AD_GROUP_ID === null ? null : intval(self::AD_GROUP_ID)
         );
     }
 }
