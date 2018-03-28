@@ -26,5 +26,7 @@ final class AdsUtility
     const REPORT_DOWNLOADER_FILE = 'ReportDownloader/file';
     const REPORT_DOWNLOADER_STREAM = 'ReportDownloader/stream';
     const REPORT_DOWNLOADER_STRING = 'ReportDownloader/string';
+    const SERVICE_QUERY_BUILDER = "ServiceQueryBuilder";
+    const REPORT_QUERY_BUILDER = "ReportQueryBuilder";
 }
 

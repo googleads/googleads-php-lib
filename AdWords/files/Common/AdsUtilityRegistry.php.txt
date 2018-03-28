@@ -20,7 +20,7 @@ namespace Google\AdsApi\Common;
 /**
  * Stores and registers usage of ads utilities.
  */
-class AdsUtilityRegistry
+class AdsUtilityRegistry implements AdsUtilityRegistryInterface
 {
 
     private $adsUtilities = [];
@@ -45,9 +45,7 @@ class AdsUtilityRegistry
     }
 
     /**
-     * Adds a new ads utility to the ads utilities list.
-     *
-     * @param string $adsUtility the name of ads utility that has been used
+     * @see AdsUtilityInterface::addUtility
      */
     public function addUtility($adsUtility)
     {
@@ -55,9 +53,7 @@ class AdsUtilityRegistry
     }
 
     /**
-     * Gets all utilities in the registry and clear the registry.
-     *
-     * @return string[] the list of registered ads utilities
+     * @see AdsUtilityInterface::popAllUtilities
      */
     public function popAllUtilities()
     {
