@@ -1,3 +1,20 @@
+### 34.0.0
+
+##### AdWords
+
+*   Removed support and examples for v201705 and v201708. See deprecation
+    schedule at: https://developers.google.com/adwords/api/docs/sunset-dates
+*   Added `ServiceQueryBuilder` for v201802 to support
+    building AWQL strings for querying AdWords API services.
+*   Added `ReportQueryBuilder` for v201802 to support
+    building AWQL strings for downloading AdWords API reports.
+
+##### DFP
+
+*   Added new examples for managing user-team associations:
+    `CreateUserTeamAssociations`, `UpdateUserTeamAssociations`
+    and `DeleteUserTeamAssociations`.
+
 ### 33.1.0
 
 ##### AdWords

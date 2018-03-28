@@ -810,7 +810,7 @@
             <annotation>
               <documentation>
                 The ID of the buyer that this {@code Proposal} is being negotiated with.
-                This attribute is required.
+                &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -1088,7 +1088,7 @@
               <documentation>
                 The name of the {@code ProposalLink}. Must be unique under the same
                 {@link Proposal}. This attribute has a maximum length of 255 characters.
-                This attribute is required.
+                &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -1104,7 +1104,7 @@
             <annotation>
               <documentation>
                 The link to the {@code ProposalLink} resource.
-                This attribute is required.
+                &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -1139,7 +1139,7 @@
             <annotation>
               <documentation>
                 The unique ID of the {@link Company} associated with the {@link Proposal}.
-                This attribute is required.
+                &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -1147,7 +1147,7 @@
             <annotation>
               <documentation>
                 The association type of the {@link Company} and {@link Proposal}.
-                This attribute is required.
+                &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -1201,7 +1201,7 @@
                 is copied to {@link Order#name} when the proposal turns into an order.
                 This attribute can be configured as editable after the proposal has been submitted.
                 Please check with your network administrator for editable fields configuration.
-                This attribute is required.
+                &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -1812,7 +1812,7 @@
             <annotation>
               <documentation>
                 The ID of the terms and conditions added to the proposal.
-                This attribute is required.
+                &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -2107,7 +2107,7 @@
               <documentation>
                 The unique ID of the {@link User} responsible for the sales of the
                 {@link Proposal}.
-                This attribute is required.
+                &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -5277,6 +5277,21 @@
               <documentation>
                 The {@link Goal#units} value is invalid. For {@link RateType#CPD}
                 {@link ProposalLineItem proposal line items}, only 100% is allowed
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MIX_NATIVE_AND_BANNER_SIZE_NOT_ALLOWED">
+            <annotation>
+              <documentation>
+                Cannot mix native and banner size in a programmatic proposal line item.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_UPDATE_SIZES">
+            <annotation>
+              <documentation>
+                Cannot update sizes when a programmatic proposal line item with publisher creative source is
+                sent to a buyer.
               </documentation>
             </annotation>
           </enumeration>

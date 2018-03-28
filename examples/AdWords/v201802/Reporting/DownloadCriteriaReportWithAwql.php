@@ -21,9 +21,12 @@ require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\AdWords\AdWordsSession;
 use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\Query\v201802\ReportQueryBuilder;
 use Google\AdsApi\AdWords\Reporting\v201802\DownloadFormat;
+use Google\AdsApi\AdWords\Reporting\v201802\ReportDefinitionDateRangeType;
 use Google\AdsApi\AdWords\Reporting\v201802\ReportDownloader;
 use Google\AdsApi\AdWords\ReportSettingsBuilder;
+use Google\AdsApi\AdWords\v201802\cm\ReportDefinitionReportType;
 use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
@@ -35,18 +38,33 @@ class DownloadCriteriaReportWithAwql
     public static function runExample(AdWordsSession $session, $reportFormat)
     {
         // Create report query to get the data for last 7 days.
-        $reportQuery = 'SELECT CampaignId, AdGroupId, Id, Criteria, CriteriaType, '
-            . 'Impressions, Clicks, Cost FROM CRITERIA_PERFORMANCE_REPORT '
-            . 'WHERE Status IN [ENABLED, PAUSED] DURING LAST_7_DAYS';
+        $query = (new ReportQueryBuilder())
+            ->select([
+                'CampaignId',
+                'AdGroupId',
+                'Id',
+                'Criteria',
+                'CriteriaType',
+                'Impressions',
+                'Clicks',
+                'Cost'
+            ])
+            ->from(ReportDefinitionReportType::CRITERIA_PERFORMANCE_REPORT)
+            ->where('Status')->in(['ENABLED', 'PAUSED'])
+            ->duringDateRange(ReportDefinitionDateRangeType::LAST_7_DAYS)
+            ->build();
 
         // Download report as a string.
         $reportDownloader = new ReportDownloader($session);
         // Optional: If you need to adjust report settings just for this one
-        // request, you can create and supply the settings override here. Otherwise,
-        // default values from the configuration file (adsapi_php.ini) are used.
-        $reportSettingsOverride = (new ReportSettingsBuilder())->includeZeroImpressions(false)->build();
+        // request, you can create and supply the settings override here.
+        // Otherwise, default values from the configuration
+        // file (adsapi_php.ini) are used.
+        $reportSettingsOverride = (new ReportSettingsBuilder())
+            ->includeZeroImpressions(false)
+            ->build();
         $reportDownloadResult = $reportDownloader->downloadReportWithAwql(
-            $reportQuery,
+            sprintf('%s', $query),
             $reportFormat,
             $reportSettingsOverride
         );
@@ -63,7 +81,10 @@ class DownloadCriteriaReportWithAwql
         // different from that specified in your adsapi_php.ini file.
         // Construct an API session configured from a properties file and the
         // OAuth2 credentials above.
-        $session = (new AdWordsSessionBuilder())->fromFile()->withOAuth2Credential($oAuth2Credential)->build();
+        $session = (new AdWordsSessionBuilder())
+            ->fromFile()
+            ->withOAuth2Credential($oAuth2Credential)
+            ->build();
 
         self::runExample($session, DownloadFormat::CSV);
     }

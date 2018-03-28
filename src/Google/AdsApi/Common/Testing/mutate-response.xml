@@ -1,6 +1,6 @@
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
   <soap:Header>
-    <ResponseHeader xmlns="https://adwords.google.com/api/adwords/cm/v201705">
+    <ResponseHeader xmlns="https://adwords.google.com/api/adwords/cm/v201802">
       <requestId>123abc456xyz</requestId>
       <serviceName>FeedService</serviceName>
       <methodName>mutate</methodName>
@@ -9,7 +9,7 @@
     </ResponseHeader>
   </soap:Header>
   <soap:Body>
-    <mutateResponse xmlns="https://adwords.google.com/api/adwords/cm/v201705">
+    <mutateResponse xmlns="https://adwords.google.com/api/adwords/cm/v201802">
       <rval>
         <ListReturnValue.Type>FeedReturnValue</ListReturnValue.Type>
         <value>

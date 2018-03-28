@@ -486,7 +486,8 @@
             <annotation>
               <documentation>
                 The scheduled end date and time of this {@code LiveStreamEvent}. This
-                attribute is required.
+                attribute is required if {@code unlimitedEndDateTime} is false and ignored if
+                {@code unlimitedEndDateTime} is true.
               </documentation>
             </annotation>
           </element>

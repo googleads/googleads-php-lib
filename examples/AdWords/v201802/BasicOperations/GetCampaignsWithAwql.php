@@ -22,7 +22,9 @@ require __DIR__ . '/../../../../vendor/autoload.php';
 use Google\AdsApi\AdWords\AdWordsServices;
 use Google\AdsApi\AdWords\AdWordsSession;
 use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\Query\v201802\ServiceQueryBuilder;
 use Google\AdsApi\AdWords\v201802\cm\CampaignService;
+use Google\AdsApi\AdWords\v201802\cm\Page;
 use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
@@ -38,22 +40,29 @@ class GetCampaignsWithAwql
         AdWordsServices $adWordsServices,
         AdWordsSession $session
     ) {
-        $campaignService = $adWordsServices->get($session, CampaignService::class);
+        $campaignService = $adWordsServices->get($session,
+            CampaignService::class);
 
         // Create AWQL query.
-        $query = 'SELECT Id, Name, Status ORDER BY Name';
+        $query = (new ServiceQueryBuilder())
+            ->select(['Id', 'Name', 'Status'])
+            ->orderByAsc('Name')
+            ->limit(0, self::PAGE_LIMIT)
+            ->build();
 
-        // Create paging controls.
-        $totalNumEntries = 0;
-        $offset = 0;
         do {
-            $pageQuery = sprintf('%s LIMIT %d,%d', $query, $offset, self::PAGE_LIMIT);
-            // Make the query request.
-            $page = $campaignService->query($pageQuery);
 
-            // Display results from the query.
+            // Advance the paging offset in subsequent iterations only.
+            if (isset($page)) {
+                $query->nextPage();
+            }
+
+            // Make a request using an AWQL string. This request will return the
+            // first page containing up to `self::PAGE_LIMIT` results
+            $page = $campaignService->query(sprintf('%s', $query));
+
+            // Display results from second and subsequent pages.
             if ($page->getEntries() !== null) {
-                $totalNumEntries = $page->getTotalNumEntries();
                 foreach ($page->getEntries() as $campaign) {
                     printf(
                         "Campaign with ID %d and name '%s' was found.\n",
@@ -62,12 +71,10 @@ class GetCampaignsWithAwql
                     );
                 }
             }
+        } while ($query->hasNext($page));
 
-            // Advance the paging offset.
-            $offset += self::PAGE_LIMIT;
-        } while ($offset < $totalNumEntries);
-
-        printf("Number of results found: %d\n", $totalNumEntries);
+        printf("Number of results found: %d\n",
+            $page->getTotalNumEntries());
     }
 
     public static function main()

@@ -2213,7 +2213,7 @@
                 To overwrite this, set the {@link #nameSource} to {@link ValueSourceType#DIRECTLY_SPECIFIED}
                 when setting the value of this field.
                 It has maximum length of 255 characters if overridden via update.
-                This attribute is required.
+                &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>

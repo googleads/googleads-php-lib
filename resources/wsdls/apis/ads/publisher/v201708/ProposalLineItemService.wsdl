@@ -2882,7 +2882,7 @@
               <documentation>
                 The unique ID of the {@link Proposal}, to which the {@code ProposalLineItem}
                 belongs. This attribute is required for creation and then is readonly.
-                This attribute is required.
+                &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -2925,7 +2925,7 @@
                 {@link Proposal}. This attribute has a maximum length of 255 characters.
                 This attribute can be configured as editable after the proposal has been submitted.
                 Please check with your network administrator for editable fields configuration.
-                This attribute is required.
+                &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -2998,7 +2998,7 @@
                 than 0 when the proposal line item turns into a line item, {@link Goal#goalType} and {@link
                 Goal#unitType} are readonly.
                 For a Preferred deal {@code ProposalLineItem}, the goal type can only be {@link GoalType#NONE}.
-                This attribute is required.
+                &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -3126,7 +3126,7 @@
                 &lt;li&gt;{@link LineItemType#STANDARD}&lt;/li&gt;
                 &lt;li&gt;{@link LineItemType#PREFERRED_DEAL}&lt;/li&gt;
                 &lt;/ul&gt;
-                This attribute is required.
+                &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -3571,7 +3571,7 @@
                 line item.
                 This is only for {@link ProposalLineItem proposal line items} with a corresponding deal in
                 Marketplace.
-                This attribute is required.
+                &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -8598,6 +8598,21 @@
               <documentation>
                 The {@link Goal#units} value is invalid. For {@link RateType#CPD}
                 {@link ProposalLineItem proposal line items}, only 100% is allowed
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MIX_NATIVE_AND_BANNER_SIZE_NOT_ALLOWED">
+            <annotation>
+              <documentation>
+                Cannot mix native and banner size in a programmatic proposal line item.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_UPDATE_SIZES">
+            <annotation>
+              <documentation>
+                Cannot update sizes when a programmatic proposal line item with publisher creative source is
+                sent to a buyer.
               </documentation>
             </annotation>
           </enumeration>
