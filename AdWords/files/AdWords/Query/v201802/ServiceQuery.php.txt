@@ -17,8 +17,9 @@
 
 namespace Google\AdsApi\AdWords\Query\v201802;
 
-use Google\AdsApi\AdWords\v201802\cm\CriterionBidLandscapePage;
+use Google\AdsApi\AdWords\Query\QueryValidator;
 use Google\AdsApi\AdWords\v201802\cm\AdGroupBidLandscapePage;
+use Google\AdsApi\AdWords\v201802\cm\CriterionBidLandscapePage;
 use Google\AdsApi\AdWords\v201802\cm\Page;
 use InvalidArgumentException;
 use OutOfBoundsException;
@@ -28,10 +29,6 @@ use OutOfBoundsException;
  */
 final class ServiceQuery
 {
-    const PATTERN_LIMIT_CLAUSE = '/limit\s+\d+,\d+/i';
-    const PATTERN_LITERAL_STRING = '/[\'"][^\'"]*[\'""]/i';
-    const REDACTED_LITERAL_STRING = 'redacted_literal_string';
-
     /**
      * @var string a partial AWQL string without the LIMIT clause
      */
@@ -65,40 +62,6 @@ final class ServiceQuery
     }
 
     /**
-     * Detects the LIMIT clause in an AWQL string.
-     *
-     * @param string $awqlString an AWQL string
-     * @return bool true if the AWQL string contains a LIMIT clause;
-     *     Otherwise, returns false
-     */
-    private static function containsLimitClause($awqlString)
-    {
-        if (empty($awqlString)) {
-            return false;
-        }
-
-        // The AWQL string may contain the LIMIT keyword in a literal string.
-        // For example:
-        //     SELECT Id
-        //     WHERE Name = 'THE LIMIT INC'
-        //
-        // This function concerns about the LIMIT keyword outside of all literal
-        // strings. Hence, it is necessary to redact all literal strings before
-        // scanning for the LIMIT keyword.
-
-        $awqlStringWithoutLiteralStrings = preg_replace(
-            self::PATTERN_LITERAL_STRING,
-            self::REDACTED_LITERAL_STRING,
-            $awqlString
-        );
-
-        return 1 === preg_match(
-            self::PATTERN_LIMIT_CLAUSE,
-            $awqlStringWithoutLiteralStrings
-        );
-    }
-
-    /**
      * Validates the arguments for constructing a service query object.
      *
      * @param string $awqlString the AWQL string without the LIMIT clause
@@ -112,14 +75,15 @@ final class ServiceQuery
      */
     private static function validate($awqlString, $startIndex, $pageSize)
     {
-        if (empty($awqlString)) {
-            throw new InvalidArgumentException('The AWQL string must not be' .
-                ' null or empty');
-        }
-
-        if (self::containsLimitClause($awqlString)) {
-            throw new InvalidArgumentException('The AWQL string must not' .
-                ' contain the LIMIT clause');
+        $validationResult = QueryValidator::validateServiceQuery(
+            $awqlString,
+            false
+        );
+        if ($validationResult->isFailed()) {
+            throw new InvalidArgumentException(
+                'The service query string is invalid. Validation fail reason: '.
+                $validationResult->getFailReason()
+            );
         }
 
         // The `startIndex` and `pageSize` arguments are optional for

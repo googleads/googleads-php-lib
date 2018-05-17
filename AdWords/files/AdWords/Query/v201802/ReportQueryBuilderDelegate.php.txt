@@ -17,7 +17,7 @@
 
 namespace Google\AdsApi\AdWords\Query\v201802;
 
-use DateTime;
+use Google\AdsApi\AdWords\Query\QueryValidator;
 use Google\AdsApi\AdWords\Query\WhereBuilderInterface;
 use Google\AdsApi\AdWords\Query\WhereClauseAppender;
 use InvalidArgumentException;
@@ -43,17 +43,44 @@ final class ReportQueryBuilderDelegate
     private $duringEndDate;
 
     /**
-     * Validates a field name.
+     * Creates a new query builder delegate object by copying field names,
+     * WHERE, FROM and DURING clauses from another query builder delegate
+     * object.
      *
-     * @param string $field the field name to be validated
-     * @throws InvalidArgumentException if the field name is null or empty
+     * @param ReportQueryBuilderDelegate $otherInstance the other query
+     *     builder delegate object for copying field names, FROM and DURING
+     *     clauses
+     * @param ReportQueryBuilder $queryBuilder the query builder object for
+     *     continuation of building a complete AWQL string
+     * @return ReportQueryBuilderDelegate a new query builder delegate object
+     *     that copies from the input one
      */
-    private static function validateFieldName($field)
-    {
-        if (empty($field)) {
-            throw new InvalidArgumentException('The field name must not be'
-                . ' null or empty.');
+    public static function copyFrom(
+        ReportQueryBuilderDelegate $otherInstance,
+        ReportQueryBuilder $queryBuilder
+    ) {
+        $copyingInstance = new self();
+
+        // In PHP, array assignment always performs value copying.
+        $copyingInstance->selectFields = $otherInstance->selectFields;
+
+        $copyingInstance->fromReportType = $otherInstance->fromReportType;
+        $copyingInstance->duringDateRangeType =
+            $otherInstance->duringDateRangeType;
+        $copyingInstance->duringStartDate = $otherInstance->duringStartDate;
+        $copyingInstance->duringEndDate = $otherInstance->duringEndDate;
+
+        if (isset($otherInstance->whereBuilders)) {
+            $copyingInstance->whereBuilders = [];
+            foreach ($otherInstance->whereBuilders as $whereBuilder) {
+                $copyingInstance->whereBuilders[] =
+                    ReportQueryWhereBuilder::copyFrom(
+                        $whereBuilder,
+                        $queryBuilder
+                    );
+            }
         }
+        return $copyingInstance;
     }
 
     /**
@@ -70,7 +97,13 @@ final class ReportQueryBuilderDelegate
         }
 
         foreach ($fields as $field) {
-            self::validateFieldName($field);
+            $validationResult = QueryValidator::validateFieldName($field);
+            if ($validationResult->isFailed()) {
+                throw new InvalidArgumentException('The field array for' .
+                    ' building the SELECT clause contains invalid field name.' .
+                    ' Validation fail reason: ' .
+                    $validationResult->getFailReason());
+            }
         }
 
         $this->selectFields = $fields;
@@ -145,20 +178,14 @@ final class ReportQueryBuilderDelegate
      */
     public function during($startDate, $endDate)
     {
-        if (empty($startDate) || empty($endDate)) {
-            throw new InvalidArgumentException('The start and end dates must' .
-                ' not be null or empty.');
-        }
-
-        if (!is_string($startDate) || !is_string($endDate)) {
-            throw new InvalidArgumentException('The start and end dates must' .
-                ' be strings.');
-        }
-
-        if (DateTime::createFromFormat('Ymd', $startDate) === false
-            || DateTime::createFromFormat('Ymd', $endDate) === false) {
-            throw new InvalidArgumentException('The start and end dates must' .
-                ' follow YYYYMMDD format.');
+        $validationResult = QueryValidator::validateCustomDateRange(
+            $startDate,
+            $endDate
+        );
+        if ($validationResult->isFailed()) {
+            throw new InvalidArgumentException('The start or end date is' .
+                ' invalid. Validation fail reasons: ' .
+                $validationResult->getFailReason());
         }
 
         $this->duringStartDate = $startDate;

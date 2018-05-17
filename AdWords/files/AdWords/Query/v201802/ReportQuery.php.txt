@@ -17,6 +17,7 @@
 
 namespace Google\AdsApi\AdWords\Query\v201802;
 
+use Google\AdsApi\AdWords\Query\QueryValidator;
 use InvalidArgumentException;
 
 /**
@@ -40,9 +41,12 @@ final class ReportQuery
     public function __construct(
         $awqlString
     ) {
-        if (empty($awqlString)) {
-            throw new InvalidArgumentException('The AWQL string must not be' .
-                ' null or empty.');
+        $validationResult = QueryValidator::validateReportQuery($awqlString);
+        if ($validationResult->isFailed()) {
+            throw new InvalidArgumentException(
+                'The report query string is invalid. Validation fail reason: ' .
+                $validationResult->getFailReason()
+            );
         }
         $this->awqlString = $awqlString;
     }

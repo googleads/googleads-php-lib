@@ -41,33 +41,33 @@
 </g>
 <g id="clust7" class="cluster">
 <title>cluster_\Google\AdsApi\Dfp</title>
-<path fill="none" stroke="gray" d="M671,-68C671,-68 950,-68 950,-68 956,-68 962,-74 962,-80 962,-80 962,-1780 962,-1780 962,-1786 956,-1792 950,-1792 950,-1792 671,-1792 671,-1792 665,-1792 659,-1786 659,-1780 659,-1780 659,-80 659,-80 659,-74 665,-68 671,-68"/>
-<text text-anchor="middle" x="810.5" y="-1779.2" font-family="Times,serif" font-size="11.00" fill="gray">Dfp</text>
+<path fill="none" stroke="gray" d="M671,-68C671,-68 950,-68 950,-68 956,-68 962,-74 962,-80 962,-80 962,-1834 962,-1834 962,-1840 956,-1846 950,-1846 950,-1846 671,-1846 671,-1846 665,-1846 659,-1840 659,-1834 659,-1834 659,-80 659,-80 659,-74 665,-68 671,-68"/>
+<text text-anchor="middle" x="810.5" y="-1833.2" font-family="Times,serif" font-size="11.00" fill="gray">Dfp</text>
 </g>
 <g id="clust8" class="cluster">
 <title>cluster_\Google\AdsApi\Dfp\Util</title>
-<path fill="none" stroke="gray" d="M738,-444C738,-444 883,-444 883,-444 889,-444 895,-450 895,-456 895,-456 895,-1752 895,-1752 895,-1758 889,-1764 883,-1764 883,-1764 738,-1764 738,-1764 732,-1764 726,-1758 726,-1752 726,-1752 726,-456 726,-456 726,-450 732,-444 738,-444"/>
-<text text-anchor="middle" x="810.5" y="-1751.2" font-family="Times,serif" font-size="11.00" fill="gray">Util</text>
+<path fill="none" stroke="gray" d="M738,-444C738,-444 883,-444 883,-444 889,-444 895,-450 895,-456 895,-456 895,-1806 895,-1806 895,-1812 889,-1818 883,-1818 883,-1818 738,-1818 738,-1818 732,-1818 726,-1812 726,-1806 726,-1806 726,-456 726,-456 726,-450 732,-444 738,-444"/>
+<text text-anchor="middle" x="810.5" y="-1805.2" font-family="Times,serif" font-size="11.00" fill="gray">Util</text>
 </g>
 <g id="clust9" class="cluster">
-<title>cluster_\Google\AdsApi\Dfp\Util\v201705</title>
-<path fill="none" stroke="gray" d="M746,-1448C746,-1448 875,-1448 875,-1448 881,-1448 887,-1454 887,-1460 887,-1460 887,-1724 887,-1724 887,-1730 881,-1736 875,-1736 875,-1736 746,-1736 746,-1736 740,-1736 734,-1730 734,-1724 734,-1724 734,-1460 734,-1460 734,-1454 740,-1448 746,-1448"/>
-<text text-anchor="middle" x="810.5" y="-1723.2" font-family="Times,serif" font-size="11.00" fill="gray">v201705</text>
+<title>cluster_\Google\AdsApi\Dfp\Util\v201708</title>
+<path fill="none" stroke="gray" d="M746,-1502C746,-1502 875,-1502 875,-1502 881,-1502 887,-1508 887,-1514 887,-1514 887,-1778 887,-1778 887,-1784 881,-1790 875,-1790 875,-1790 746,-1790 746,-1790 740,-1790 734,-1784 734,-1778 734,-1778 734,-1514 734,-1514 734,-1508 740,-1502 746,-1502"/>
+<text text-anchor="middle" x="810.5" y="-1777.2" font-family="Times,serif" font-size="11.00" fill="gray">v201708</text>
 </g>
 <g id="clust10" class="cluster">
-<title>cluster_\Google\AdsApi\Dfp\Util\v201708</title>
-<path fill="none" stroke="gray" d="M746,-1152C746,-1152 875,-1152 875,-1152 881,-1152 887,-1158 887,-1164 887,-1164 887,-1428 887,-1428 887,-1434 881,-1440 875,-1440 875,-1440 746,-1440 746,-1440 740,-1440 734,-1434 734,-1428 734,-1428 734,-1164 734,-1164 734,-1158 740,-1152 746,-1152"/>
-<text text-anchor="middle" x="810.5" y="-1427.2" font-family="Times,serif" font-size="11.00" fill="gray">v201708</text>
+<title>cluster_\Google\AdsApi\Dfp\Util\v201711</title>
+<path fill="none" stroke="gray" d="M746,-1152C746,-1152 875,-1152 875,-1152 881,-1152 887,-1158 887,-1164 887,-1164 887,-1482 887,-1482 887,-1488 881,-1494 875,-1494 875,-1494 746,-1494 746,-1494 740,-1494 734,-1488 734,-1482 734,-1482 734,-1164 734,-1164 734,-1158 740,-1152 746,-1152"/>
+<text text-anchor="middle" x="810.5" y="-1481.2" font-family="Times,serif" font-size="11.00" fill="gray">v201711</text>
 </g>
 <g id="clust11" class="cluster">
-<title>cluster_\Google\AdsApi\Dfp\Util\v201711</title>
+<title>cluster_\Google\AdsApi\Dfp\Util\v201802</title>
 <path fill="none" stroke="gray" d="M746,-802C746,-802 875,-802 875,-802 881,-802 887,-808 887,-814 887,-814 887,-1132 887,-1132 887,-1138 881,-1144 875,-1144 875,-1144 746,-1144 746,-1144 740,-1144 734,-1138 734,-1132 734,-1132 734,-814 734,-814 734,-808 740,-802 746,-802"/>
-<text text-anchor="middle" x="810.5" y="-1131.2" font-family="Times,serif" font-size="11.00" fill="gray">v201711</text>
+<text text-anchor="middle" x="810.5" y="-1131.2" font-family="Times,serif" font-size="11.00" fill="gray">v201802</text>
 </g>
 <g id="clust12" class="cluster">
-<title>cluster_\Google\AdsApi\Dfp\Util\v201802</title>
+<title>cluster_\Google\AdsApi\Dfp\Util\v201805</title>
 <path fill="none" stroke="gray" d="M746,-452C746,-452 875,-452 875,-452 881,-452 887,-458 887,-464 887,-464 887,-782 887,-782 887,-788 881,-794 875,-794 875,-794 746,-794 746,-794 740,-794 734,-788 734,-782 734,-782 734,-464 734,-464 734,-458 740,-452 746,-452"/>
-<text text-anchor="middle" x="810.5" y="-781.2" font-family="Times,serif" font-size="11.00" fill="gray">v201802</text>
+<text text-anchor="middle" x="810.5" y="-781.2" font-family="Times,serif" font-size="11.00" fill="gray">v201805</text>
 </g>
 <!-- \\Google\\AdsApi\\Common\\Testing\\AdsBuildersTestProvider -->
 <g id="node1" class="node">
@@ -196,7 +196,7 @@
 <text text-anchor="middle" x="463" y="-415.2" font-family="Courier,monospace" font-size="11.00">AdsSoapClient</text>
 </g>
 <!-- \\SoapClient -->
-<g id="node72" class="node">
+<g id="node73" class="node">
 <title>\\SoapClient</title>
 <ellipse fill="none" stroke="black" cx="149.5" cy="-18" rx="64.189" ry="18"/>
 <text text-anchor="middle" x="149.5" y="-14.3" font-family="Times,serif" font-size="14.00" fill="gray">\SoapClient</text>
@@ -363,140 +363,146 @@
 <polygon fill="none" stroke="black" points="587.5,-274 338.5,-274 338.5,-238 587.5,-238 587.5,-274"/>
 <text text-anchor="middle" x="463" y="-253.2" font-family="Courier,monospace" font-size="11.00">SoapLogMessageFormatterProvider</text>
 </g>
-<!-- \\Google\\AdsApi\\Dfp\\Util\\v201705\\DfpDateTimes -->
-<g id="node43" class="node">
-<title>\\Google\\AdsApi\\Dfp\\Util\\v201705\\DfpDateTimes</title>
-<polygon fill="none" stroke="black" points="864,-1708 757,-1708 757,-1672 864,-1672 864,-1708"/>
-<text text-anchor="middle" x="810.5" y="-1687.2" font-family="Courier,monospace" font-size="11.00">DfpDateTimes</text>
-</g>
-<!-- \\Google\\AdsApi\\Dfp\\Util\\v201705\\DfpDates -->
-<g id="node44" class="node">
-<title>\\Google\\AdsApi\\Dfp\\Util\\v201705\\DfpDates</title>
-<polygon fill="none" stroke="black" points="849,-1654 772,-1654 772,-1618 849,-1618 849,-1654"/>
-<text text-anchor="middle" x="810.5" y="-1633.2" font-family="Courier,monospace" font-size="11.00">DfpDates</text>
-</g>
-<!-- \\Google\\AdsApi\\Dfp\\Util\\v201705\\Pql -->
-<g id="node45" class="node">
-<title>\\Google\\AdsApi\\Dfp\\Util\\v201705\\Pql</title>
-<polygon fill="none" stroke="black" points="837.5,-1600 783.5,-1600 783.5,-1564 837.5,-1564 837.5,-1600"/>
-<text text-anchor="middle" x="810.5" y="-1579.2" font-family="Courier,monospace" font-size="11.00">Pql</text>
-</g>
-<!-- \\Google\\AdsApi\\Dfp\\Util\\v201705\\ReportDownloader -->
-<g id="node46" class="node">
-<title>\\Google\\AdsApi\\Dfp\\Util\\v201705\\ReportDownloader</title>
-<polygon fill="none" stroke="black" points="879,-1546 742,-1546 742,-1510 879,-1510 879,-1546"/>
-<text text-anchor="middle" x="810.5" y="-1525.2" font-family="Courier,monospace" font-size="11.00">ReportDownloader</text>
-</g>
-<!-- \\Google\\AdsApi\\Dfp\\Util\\v201705\\StatementBuilder -->
-<g id="node47" class="node">
-<title>\\Google\\AdsApi\\Dfp\\Util\\v201705\\StatementBuilder</title>
-<polygon fill="none" stroke="black" points="879,-1492 742,-1492 742,-1456 879,-1456 879,-1492"/>
-<text text-anchor="middle" x="810.5" y="-1471.2" font-family="Courier,monospace" font-size="11.00">StatementBuilder</text>
-</g>
 <!-- \\Google\\AdsApi\\Dfp\\Util\\v201708\\DfpDateTimes -->
-<g id="node48" class="node">
+<g id="node43" class="node">
 <title>\\Google\\AdsApi\\Dfp\\Util\\v201708\\DfpDateTimes</title>
+<polygon fill="none" stroke="black" points="864,-1762 757,-1762 757,-1726 864,-1726 864,-1762"/>
+<text text-anchor="middle" x="810.5" y="-1741.2" font-family="Courier,monospace" font-size="11.00">DfpDateTimes</text>
+</g>
+<!-- \\Google\\AdsApi\\Dfp\\Util\\v201708\\DfpDates -->
+<g id="node44" class="node">
+<title>\\Google\\AdsApi\\Dfp\\Util\\v201708\\DfpDates</title>
+<polygon fill="none" stroke="black" points="849,-1708 772,-1708 772,-1672 849,-1672 849,-1708"/>
+<text text-anchor="middle" x="810.5" y="-1687.2" font-family="Courier,monospace" font-size="11.00">DfpDates</text>
+</g>
+<!-- \\Google\\AdsApi\\Dfp\\Util\\v201708\\Pql -->
+<g id="node45" class="node">
+<title>\\Google\\AdsApi\\Dfp\\Util\\v201708\\Pql</title>
+<polygon fill="none" stroke="black" points="837.5,-1654 783.5,-1654 783.5,-1618 837.5,-1618 837.5,-1654"/>
+<text text-anchor="middle" x="810.5" y="-1633.2" font-family="Courier,monospace" font-size="11.00">Pql</text>
+</g>
+<!-- \\Google\\AdsApi\\Dfp\\Util\\v201708\\ReportDownloader -->
+<g id="node46" class="node">
+<title>\\Google\\AdsApi\\Dfp\\Util\\v201708\\ReportDownloader</title>
+<polygon fill="none" stroke="black" points="879,-1600 742,-1600 742,-1564 879,-1564 879,-1600"/>
+<text text-anchor="middle" x="810.5" y="-1579.2" font-family="Courier,monospace" font-size="11.00">ReportDownloader</text>
+</g>
+<!-- \\Google\\AdsApi\\Dfp\\Util\\v201708\\StatementBuilder -->
+<g id="node47" class="node">
+<title>\\Google\\AdsApi\\Dfp\\Util\\v201708\\StatementBuilder</title>
+<polygon fill="none" stroke="black" points="879,-1546 742,-1546 742,-1510 879,-1510 879,-1546"/>
+<text text-anchor="middle" x="810.5" y="-1525.2" font-family="Courier,monospace" font-size="11.00">StatementBuilder</text>
+</g>
+<!-- \\Google\\AdsApi\\Dfp\\Util\\v201711\\CsvFiles -->
+<g id="node48" class="node">
+<title>\\Google\\AdsApi\\Dfp\\Util\\v201711\\CsvFiles</title>
+<polygon fill="none" stroke="black" points="849,-1466 772,-1466 772,-1430 849,-1430 849,-1466"/>
+<text text-anchor="middle" x="810.5" y="-1445.2" font-family="Courier,monospace" font-size="11.00">CsvFiles</text>
+</g>
+<!-- \\Google\\AdsApi\\Dfp\\Util\\v201711\\DfpDateTimes -->
+<g id="node49" class="node">
+<title>\\Google\\AdsApi\\Dfp\\Util\\v201711\\DfpDateTimes</title>
 <polygon fill="none" stroke="black" points="864,-1412 757,-1412 757,-1376 864,-1376 864,-1412"/>
 <text text-anchor="middle" x="810.5" y="-1391.2" font-family="Courier,monospace" font-size="11.00">DfpDateTimes</text>
 </g>
-<!-- \\Google\\AdsApi\\Dfp\\Util\\v201708\\DfpDates -->
-<g id="node49" class="node">
-<title>\\Google\\AdsApi\\Dfp\\Util\\v201708\\DfpDates</title>
+<!-- \\Google\\AdsApi\\Dfp\\Util\\v201711\\DfpDates -->
+<g id="node50" class="node">
+<title>\\Google\\AdsApi\\Dfp\\Util\\v201711\\DfpDates</title>
 <polygon fill="none" stroke="black" points="849,-1358 772,-1358 772,-1322 849,-1322 849,-1358"/>
 <text text-anchor="middle" x="810.5" y="-1337.2" font-family="Courier,monospace" font-size="11.00">DfpDates</text>
 </g>
-<!-- \\Google\\AdsApi\\Dfp\\Util\\v201708\\Pql -->
-<g id="node50" class="node">
-<title>\\Google\\AdsApi\\Dfp\\Util\\v201708\\Pql</title>
+<!-- \\Google\\AdsApi\\Dfp\\Util\\v201711\\Pql -->
+<g id="node51" class="node">
+<title>\\Google\\AdsApi\\Dfp\\Util\\v201711\\Pql</title>
 <polygon fill="none" stroke="black" points="837.5,-1304 783.5,-1304 783.5,-1268 837.5,-1268 837.5,-1304"/>
 <text text-anchor="middle" x="810.5" y="-1283.2" font-family="Courier,monospace" font-size="11.00">Pql</text>
 </g>
-<!-- \\Google\\AdsApi\\Dfp\\Util\\v201708\\ReportDownloader -->
-<g id="node51" class="node">
-<title>\\Google\\AdsApi\\Dfp\\Util\\v201708\\ReportDownloader</title>
+<!-- \\Google\\AdsApi\\Dfp\\Util\\v201711\\ReportDownloader -->
+<g id="node52" class="node">
+<title>\\Google\\AdsApi\\Dfp\\Util\\v201711\\ReportDownloader</title>
 <polygon fill="none" stroke="black" points="879,-1250 742,-1250 742,-1214 879,-1214 879,-1250"/>
 <text text-anchor="middle" x="810.5" y="-1229.2" font-family="Courier,monospace" font-size="11.00">ReportDownloader</text>
 </g>
-<!-- \\Google\\AdsApi\\Dfp\\Util\\v201708\\StatementBuilder -->
-<g id="node52" class="node">
-<title>\\Google\\AdsApi\\Dfp\\Util\\v201708\\StatementBuilder</title>
+<!-- \\Google\\AdsApi\\Dfp\\Util\\v201711\\StatementBuilder -->
+<g id="node53" class="node">
+<title>\\Google\\AdsApi\\Dfp\\Util\\v201711\\StatementBuilder</title>
 <polygon fill="none" stroke="black" points="879,-1196 742,-1196 742,-1160 879,-1160 879,-1196"/>
 <text text-anchor="middle" x="810.5" y="-1175.2" font-family="Courier,monospace" font-size="11.00">StatementBuilder</text>
 </g>
-<!-- \\Google\\AdsApi\\Dfp\\Util\\v201711\\CsvFiles -->
-<g id="node53" class="node">
-<title>\\Google\\AdsApi\\Dfp\\Util\\v201711\\CsvFiles</title>
+<!-- \\Google\\AdsApi\\Dfp\\Util\\v201802\\CsvFiles -->
+<g id="node54" class="node">
+<title>\\Google\\AdsApi\\Dfp\\Util\\v201802\\CsvFiles</title>
 <polygon fill="none" stroke="black" points="849,-1116 772,-1116 772,-1080 849,-1080 849,-1116"/>
 <text text-anchor="middle" x="810.5" y="-1095.2" font-family="Courier,monospace" font-size="11.00">CsvFiles</text>
 </g>
-<!-- \\Google\\AdsApi\\Dfp\\Util\\v201711\\DfpDateTimes -->
-<g id="node54" class="node">
-<title>\\Google\\AdsApi\\Dfp\\Util\\v201711\\DfpDateTimes</title>
+<!-- \\Google\\AdsApi\\Dfp\\Util\\v201802\\DfpDateTimes -->
+<g id="node55" class="node">
+<title>\\Google\\AdsApi\\Dfp\\Util\\v201802\\DfpDateTimes</title>
 <polygon fill="none" stroke="black" points="864,-1062 757,-1062 757,-1026 864,-1026 864,-1062"/>
 <text text-anchor="middle" x="810.5" y="-1041.2" font-family="Courier,monospace" font-size="11.00">DfpDateTimes</text>
 </g>
-<!-- \\Google\\AdsApi\\Dfp\\Util\\v201711\\DfpDates -->
-<g id="node55" class="node">
-<title>\\Google\\AdsApi\\Dfp\\Util\\v201711\\DfpDates</title>
+<!-- \\Google\\AdsApi\\Dfp\\Util\\v201802\\DfpDates -->
+<g id="node56" class="node">
+<title>\\Google\\AdsApi\\Dfp\\Util\\v201802\\DfpDates</title>
 <polygon fill="none" stroke="black" points="849,-1008 772,-1008 772,-972 849,-972 849,-1008"/>
 <text text-anchor="middle" x="810.5" y="-987.2" font-family="Courier,monospace" font-size="11.00">DfpDates</text>
 </g>
-<!-- \\Google\\AdsApi\\Dfp\\Util\\v201711\\Pql -->
-<g id="node56" class="node">
-<title>\\Google\\AdsApi\\Dfp\\Util\\v201711\\Pql</title>
+<!-- \\Google\\AdsApi\\Dfp\\Util\\v201802\\Pql -->
+<g id="node57" class="node">
+<title>\\Google\\AdsApi\\Dfp\\Util\\v201802\\Pql</title>
 <polygon fill="none" stroke="black" points="837.5,-954 783.5,-954 783.5,-918 837.5,-918 837.5,-954"/>
 <text text-anchor="middle" x="810.5" y="-933.2" font-family="Courier,monospace" font-size="11.00">Pql</text>
 </g>
-<!-- \\Google\\AdsApi\\Dfp\\Util\\v201711\\ReportDownloader -->
-<g id="node57" class="node">
-<title>\\Google\\AdsApi\\Dfp\\Util\\v201711\\ReportDownloader</title>
+<!-- \\Google\\AdsApi\\Dfp\\Util\\v201802\\ReportDownloader -->
+<g id="node58" class="node">
+<title>\\Google\\AdsApi\\Dfp\\Util\\v201802\\ReportDownloader</title>
 <polygon fill="none" stroke="black" points="879,-900 742,-900 742,-864 879,-864 879,-900"/>
 <text text-anchor="middle" x="810.5" y="-879.2" font-family="Courier,monospace" font-size="11.00">ReportDownloader</text>
 </g>
-<!-- \\Google\\AdsApi\\Dfp\\Util\\v201711\\StatementBuilder -->
-<g id="node58" class="node">
-<title>\\Google\\AdsApi\\Dfp\\Util\\v201711\\StatementBuilder</title>
+<!-- \\Google\\AdsApi\\Dfp\\Util\\v201802\\StatementBuilder -->
+<g id="node59" class="node">
+<title>\\Google\\AdsApi\\Dfp\\Util\\v201802\\StatementBuilder</title>
 <polygon fill="none" stroke="black" points="879,-846 742,-846 742,-810 879,-810 879,-846"/>
 <text text-anchor="middle" x="810.5" y="-825.2" font-family="Courier,monospace" font-size="11.00">StatementBuilder</text>
 </g>
-<!-- \\Google\\AdsApi\\Dfp\\Util\\v201802\\CsvFiles -->
-<g id="node59" class="node">
-<title>\\Google\\AdsApi\\Dfp\\Util\\v201802\\CsvFiles</title>
+<!-- \\Google\\AdsApi\\Dfp\\Util\\v201805\\CsvFiles -->
+<g id="node60" class="node">
+<title>\\Google\\AdsApi\\Dfp\\Util\\v201805\\CsvFiles</title>
 <polygon fill="none" stroke="black" points="849,-766 772,-766 772,-730 849,-730 849,-766"/>
 <text text-anchor="middle" x="810.5" y="-745.2" font-family="Courier,monospace" font-size="11.00">CsvFiles</text>
 </g>
-<!-- \\Google\\AdsApi\\Dfp\\Util\\v201802\\DfpDateTimes -->
-<g id="node60" class="node">
-<title>\\Google\\AdsApi\\Dfp\\Util\\v201802\\DfpDateTimes</title>
+<!-- \\Google\\AdsApi\\Dfp\\Util\\v201805\\DfpDateTimes -->
+<g id="node61" class="node">
+<title>\\Google\\AdsApi\\Dfp\\Util\\v201805\\DfpDateTimes</title>
 <polygon fill="none" stroke="black" points="864,-712 757,-712 757,-676 864,-676 864,-712"/>
 <text text-anchor="middle" x="810.5" y="-691.2" font-family="Courier,monospace" font-size="11.00">DfpDateTimes</text>
 </g>
-<!-- \\Google\\AdsApi\\Dfp\\Util\\v201802\\DfpDates -->
-<g id="node61" class="node">
-<title>\\Google\\AdsApi\\Dfp\\Util\\v201802\\DfpDates</title>
+<!-- \\Google\\AdsApi\\Dfp\\Util\\v201805\\DfpDates -->
+<g id="node62" class="node">
+<title>\\Google\\AdsApi\\Dfp\\Util\\v201805\\DfpDates</title>
 <polygon fill="none" stroke="black" points="849,-658 772,-658 772,-622 849,-622 849,-658"/>
 <text text-anchor="middle" x="810.5" y="-637.2" font-family="Courier,monospace" font-size="11.00">DfpDates</text>
 </g>
-<!-- \\Google\\AdsApi\\Dfp\\Util\\v201802\\Pql -->
-<g id="node62" class="node">
-<title>\\Google\\AdsApi\\Dfp\\Util\\v201802\\Pql</title>
+<!-- \\Google\\AdsApi\\Dfp\\Util\\v201805\\Pql -->
+<g id="node63" class="node">
+<title>\\Google\\AdsApi\\Dfp\\Util\\v201805\\Pql</title>
 <polygon fill="none" stroke="black" points="837.5,-604 783.5,-604 783.5,-568 837.5,-568 837.5,-604"/>
 <text text-anchor="middle" x="810.5" y="-583.2" font-family="Courier,monospace" font-size="11.00">Pql</text>
 </g>
-<!-- \\Google\\AdsApi\\Dfp\\Util\\v201802\\ReportDownloader -->
-<g id="node63" class="node">
-<title>\\Google\\AdsApi\\Dfp\\Util\\v201802\\ReportDownloader</title>
+<!-- \\Google\\AdsApi\\Dfp\\Util\\v201805\\ReportDownloader -->
+<g id="node64" class="node">
+<title>\\Google\\AdsApi\\Dfp\\Util\\v201805\\ReportDownloader</title>
 <polygon fill="none" stroke="black" points="879,-550 742,-550 742,-514 879,-514 879,-550"/>
 <text text-anchor="middle" x="810.5" y="-529.2" font-family="Courier,monospace" font-size="11.00">ReportDownloader</text>
 </g>
-<!-- \\Google\\AdsApi\\Dfp\\Util\\v201802\\StatementBuilder -->
-<g id="node64" class="node">
-<title>\\Google\\AdsApi\\Dfp\\Util\\v201802\\StatementBuilder</title>
+<!-- \\Google\\AdsApi\\Dfp\\Util\\v201805\\StatementBuilder -->
+<g id="node65" class="node">
+<title>\\Google\\AdsApi\\Dfp\\Util\\v201805\\StatementBuilder</title>
 <polygon fill="none" stroke="black" points="879,-496 742,-496 742,-460 879,-460 879,-496"/>
 <text text-anchor="middle" x="810.5" y="-475.2" font-family="Courier,monospace" font-size="11.00">StatementBuilder</text>
 </g>
 <!-- \\Google\\AdsApi\\Dfp\\DfpGuzzleLogMessageFormatterProvider -->
-<g id="node65" class="node">
+<g id="node66" class="node">
 <title>\\Google\\AdsApi\\Dfp\\DfpGuzzleLogMessageFormatterProvider</title>
 <polygon fill="none" stroke="black" points="954,-328 667,-328 667,-292 954,-292 954,-328"/>
 <text text-anchor="middle" x="810.5" y="-307.2" font-family="Courier,monospace" font-size="11.00">DfpGuzzleLogMessageFormatterProvider</text>
@@ -508,7 +514,7 @@
 <polygon fill="none" stroke="black" points="605.2379,-306.5001 595.2378,-310 605.2378,-313.5001 605.2379,-306.5001"/>
 </g>
 <!-- \\Google\\AdsApi\\Dfp\\DfpHeaderHandler -->
-<g id="node66" class="node">
+<g id="node67" class="node">
 <title>\\Google\\AdsApi\\Dfp\\DfpHeaderHandler</title>
 <polygon fill="none" stroke="black" points="879,-220 742,-220 742,-184 879,-184 879,-220"/>
 <text text-anchor="middle" x="810.5" y="-199.2" font-family="Courier,monospace" font-size="11.00">DfpHeaderHandler</text>
@@ -520,7 +526,7 @@
 <polygon fill="none" stroke="black" points="541.5122,-198.5001 531.5122,-202 541.5122,-205.5001 541.5122,-198.5001"/>
 </g>
 <!-- \\Google\\AdsApi\\Dfp\\DfpServiceDescriptor -->
-<g id="node67" class="node">
+<g id="node68" class="node">
 <title>\\Google\\AdsApi\\Dfp\\DfpServiceDescriptor</title>
 <polygon fill="none" stroke="black" points="894,-166 727,-166 727,-130 894,-130 894,-166"/>
 <text text-anchor="middle" x="810.5" y="-145.2" font-family="Courier,monospace" font-size="11.00">DfpServiceDescriptor</text>
@@ -532,7 +538,7 @@
 <polygon fill="none" stroke="black" points="556.5527,-144.5001 546.5527,-148 556.5526,-151.5001 556.5527,-144.5001"/>
 </g>
 <!-- \\Google\\AdsApi\\Dfp\\DfpServices -->
-<g id="node68" class="node">
+<g id="node69" class="node">
 <title>\\Google\\AdsApi\\Dfp\\DfpServices</title>
 <polygon fill="none" stroke="black" points="860,-112 761,-112 761,-76 860,-76 860,-112"/>
 <text text-anchor="middle" x="810.5" y="-91.2" font-family="Courier,monospace" font-size="11.00">DfpServices</text>
@@ -544,7 +550,7 @@
 <polygon fill="none" stroke="black" points="522.696,-90.5001 512.6959,-94 522.6959,-97.5001 522.696,-90.5001"/>
 </g>
 <!-- \\Google\\AdsApi\\Dfp\\DfpSession -->
-<g id="node69" class="node">
+<g id="node70" class="node">
 <title>\\Google\\AdsApi\\Dfp\\DfpSession</title>
 <polygon fill="none" stroke="black" points="856.5,-382 764.5,-382 764.5,-346 856.5,-346 856.5,-382"/>
 <text text-anchor="middle" x="810.5" y="-361.2" font-family="Courier,monospace" font-size="11.00">DfpSession</text>
@@ -556,7 +562,7 @@
 <polygon fill="none" stroke="black" points="519.0591,-360.5001 509.0591,-364 519.0591,-367.5001 519.0591,-360.5001"/>
 </g>
 <!-- \\Google\\AdsApi\\Dfp\\DfpSessionBuilder -->
-<g id="node70" class="node">
+<g id="node71" class="node">
 <title>\\Google\\AdsApi\\Dfp\\DfpSessionBuilder</title>
 <polygon fill="none" stroke="black" points="882.5,-436 738.5,-436 738.5,-400 882.5,-400 882.5,-436"/>
 <text text-anchor="middle" x="810.5" y="-415.2" font-family="Courier,monospace" font-size="11.00">DfpSessionBuilder</text>
@@ -568,7 +574,7 @@
 <polygon fill="none" stroke="black" points="168.4408,-928.9728 160.3945,-922.0802 162.3863,-932.4861 168.4408,-928.9728"/>
 </g>
 <!-- \\Google\\AdsApi\\Dfp\\DfpSoapLogMessageFormatterProvider -->
-<g id="node71" class="node">
+<g id="node72" class="node">
 <title>\\Google\\AdsApi\\Dfp\\DfpSoapLogMessageFormatterProvider</title>
 <polygon fill="none" stroke="black" points="946.5,-274 674.5,-274 674.5,-238 946.5,-238 946.5,-274"/>
 <text text-anchor="middle" x="810.5" y="-253.2" font-family="Courier,monospace" font-size="11.00">DfpSoapLogMessageFormatterProvider</text>

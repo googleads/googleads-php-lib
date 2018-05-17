@@ -18,6 +18,7 @@
 namespace Google\AdsApi\AdWords\Query\v201802;
 
 use BadFunctionCallException;
+use Google\AdsApi\AdWords\Query\QueryValidator;
 use Google\AdsApi\AdWords\v201802\cm\PredicateOperator;
 use InvalidArgumentException;
 
@@ -41,12 +42,35 @@ final class ExpressionBuilder
      */
     public function __construct($fieldName)
     {
-        if (empty($fieldName)) {
-            throw new InvalidArgumentException('The field name to be used as' .
-                ' the left-hand operand of a logic expression in the WHERE' .
-                ' clause must not be null or empty');
+        $validationResult = QueryValidator::validateFieldName($fieldName);
+        if ($validationResult->isFailed()) {
+            throw new InvalidArgumentException(
+                'The field name for building a logic expression in the WHERE' .
+                ' clause is invalid. Validation fail reason: ' .
+                $validationResult->getFailReason()
+            );
         }
+
         $this->fieldName = $fieldName;
+    }
+
+    /**
+     * Creates a new expression builder object by copying the operands and
+     * operators from another expression builder object.
+     *
+     * @param ExpressionBuilder $otherInstance the other expression builder
+     *     object for copying the operands and operators
+     * @return ExpressionBuilder a new expression builder object that copies
+     *     from the input one
+     */
+    public static function copyFrom(ExpressionBuilder $otherInstance)
+    {
+        $copyingInstance = new self($otherInstance->fieldName);
+        $copyingInstance->simpleOperator = $otherInstance->simpleOperator;
+        $copyingInstance->simpleValue = $otherInstance->simpleValue;
+        $copyingInstance->listOperator = $otherInstance->listOperator;
+        $copyingInstance->listValues = $otherInstance->listValues;
+        return $copyingInstance;
     }
 
     /**
@@ -347,7 +371,7 @@ final class ExpressionBuilder
      * @throws BadFunctionCallException when no operators was specified prior
      *     to calling this function
      */
-    public function buildWhere()
+    public function buildExpression()
     {
         if (isset($this->simpleOperator)) {
             return sprintf(

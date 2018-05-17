@@ -18,6 +18,7 @@
 namespace Google\AdsApi\AdWords\Query\v201802;
 
 use BadFunctionCallException;
+use Google\AdsApi\AdWords\Query\QueryValidator;
 use Google\AdsApi\AdWords\Query\WhereBuilderInterface;
 use InvalidArgumentException;
 
@@ -71,11 +72,34 @@ final class ReportQueryWhereBuilder implements WhereBuilderInterface
         $field,
         ReportQueryBuilder $queryBuilder
     ) {
-        if (empty($field)) {
-            throw new InvalidArgumentException('The field name must not be' .
-                ' null or empty.');
+        $validationResult = QueryValidator::validateFieldName($field);
+        if ($validationResult->isFailed()) {
+            throw new InvalidArgumentException('The field name for building' .
+                ' the WHERE clause is invalid. Validation fail reason: ' .
+                $validationResult->getFailReason());
         }
         return new self($queryBuilder, new ExpressionBuilder($field));
+    }
+
+    /**
+     * Creates a new where builder object by copying the logic expression from
+     * another where builder object.
+     *
+     * @param ReportQueryWhereBuilder $otherInstance the other where builder
+     *     object for copying the logic expression
+     * @param ReportQueryBuilder $queryBuilder the query builder object for
+     *     continuation of building a complete AWQL string
+     * @return ReportQueryWhereBuilder a new where builder object that
+     *     copies from the input one
+     */
+    public static function copyFrom(
+        ReportQueryWhereBuilder $otherInstance,
+        ReportQueryBuilder $queryBuilder
+    ) {
+        return new self(
+            $queryBuilder,
+            ExpressionBuilder::copyFrom($otherInstance->expressionBuilder)
+        );
     }
 
     /**
@@ -88,7 +112,7 @@ final class ReportQueryWhereBuilder implements WhereBuilderInterface
      */
     public function buildWhere()
     {
-        return $this->expressionBuilder->buildWhere();
+        return $this->expressionBuilder->buildExpression();
     }
 
     /**
