@@ -1507,7 +1507,7 @@
           <enumeration value="DELETED">
             <annotation>
               <documentation>
-                The campaign group is deleted.
+                The campaign group has been removed.
               </documentation>
             </annotation>
           </enumeration>

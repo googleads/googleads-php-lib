@@ -615,8 +615,9 @@
                 name="logicalOperator" type="tns:CustomCriteriaSet.LogicalOperator">
                 <annotation>
                   <documentation>
-                    The logical operator to be applied to {@link CustomCriteriaSet#children}.
-                    This attribute is required.
+                    The logical operator to be applied to {@link CustomCriteriaSet#children}. This attribute is
+                    required.
+                    &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>

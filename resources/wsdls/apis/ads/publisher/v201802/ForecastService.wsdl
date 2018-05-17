@@ -1108,8 +1108,9 @@
                 name="logicalOperator" type="tns:CustomCriteriaSet.LogicalOperator">
                 <annotation>
                   <documentation>
-                    The logical operator to be applied to {@link CustomCriteriaSet#children}.
-                    This attribute is required.
+                    The logical operator to be applied to {@link CustomCriteriaSet#children}. This attribute is
+                    required.
+                    &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -3521,7 +3522,7 @@
             <annotation>
               <documentation>
                 The target of the forecast. If {@link LineItem#id} is null or no line item exists with that ID,
-                then a forecast is computed for the the subject, predicting what would happen if it were added
+                then a forecast is computed for the subject, predicting what would happen if it were added
                 to the network. If a line item already exists with {@link LineItem#id}, the forecast is
                 computed for the subject, predicting what would happen if the existing line item's settings
                 were modified to match the subject.

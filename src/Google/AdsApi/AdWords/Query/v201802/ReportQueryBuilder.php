@@ -53,6 +53,26 @@ final class ReportQueryBuilder
     }
 
     /**
+     * Creates a new query builder object by copying each clauses from another
+     * query builder object.
+     *
+     * @param ReportQueryBuilder $otherInstance the other query builder object
+     *     for copying its clauses
+     * @return ReportQueryBuilder a new builder object that copies from the
+     *     input one
+     */
+    public static function copyFrom(ReportQueryBuilder $otherInstance)
+    {
+        $copyBuilder = new self(null, $otherInstance->utilityRegistry);
+        $copyDelegate = ReportQueryBuilderDelegate::copyFrom(
+            $otherInstance->delegate,
+            $copyBuilder
+        );
+        $copyBuilder->delegate = $copyDelegate;
+        return $copyBuilder;
+    }
+
+    /**
      * Sets the fields for the SELECT clause. Field names can be repeated and
      * their order will be preserved.
      *

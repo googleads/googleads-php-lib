@@ -49,6 +49,7 @@ class InventoryService extends \Google\AdsApi\Common\AdsSoapClient
       'FrequencyCapError' => 'Google\\AdsApi\\Dfp\\v201802\\FrequencyCapError',
       'InternalApiError' => 'Google\\AdsApi\\Dfp\\v201802\\InternalApiError',
       'InvalidColorError' => 'Google\\AdsApi\\Dfp\\v201802\\InvalidColorError',
+      'InvalidUrlError' => 'Google\\AdsApi\\Dfp\\v201802\\InvalidUrlError',
       'InventoryUnitError' => 'Google\\AdsApi\\Dfp\\v201802\\InventoryUnitError',
       'InventoryUnitRefreshRateError' => 'Google\\AdsApi\\Dfp\\v201802\\InventoryUnitRefreshRateError',
       'AdUnitSize' => 'Google\\AdsApi\\Dfp\\v201802\\AdUnitSize',

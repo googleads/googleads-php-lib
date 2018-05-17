@@ -78,6 +78,79 @@
           </extension>
         </complexContent>
       </complexType>
+      <complexType abstract="true" name="ApiError">
+        <annotation>
+          <documentation>
+            The API error base class that provides details about an error that occurred
+            while processing a service request.
+            
+            &lt;p&gt;The OGNL field path is provided for parsers to identify the request data
+            element that may have caused the error.&lt;/p&gt;
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="fieldPath" type="xsd:string">
+            <annotation>
+              <documentation>
+                The OGNL field path to identify cause of error.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="fieldPathElements" type="tns:FieldPathElement">
+            <annotation>
+              <documentation>
+                A parsed copy of the field path. For example, the field path "operations[1].operand"
+                corresponds to this list: {FieldPathElement(field = "operations", index = 1),
+                FieldPathElement(field = "operand", index = null)}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="trigger" type="xsd:string">
+            <annotation>
+              <documentation>
+                The data that caused the error.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="errorString" type="xsd:string">
+            <annotation>
+              <documentation>
+                A simple string representation of the error and reason.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="ApiError.Type" type="xsd:string">
+            <annotation>
+              <documentation>
+                Indicates that this instance is a subtype of ApiError.
+                Although this field is returned in the response, it is ignored on input
+                and cannot be selected. Specify xsi:type instead.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="ApiException">
+        <annotation>
+          <documentation>
+            Exception class for holding a list of service errors.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApplicationException">
+            <sequence>
+              <element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:ApiError">
+                <annotation>
+                  <documentation>
+                    List of errors.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
       <complexType name="AppConversion">
         <annotation>
           <documentation>
@@ -157,6 +230,32 @@
           </extension>
         </complexContent>
       </complexType>
+      <complexType name="ApplicationException">
+        <annotation>
+          <documentation>
+            Base class for exceptions.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="message" type="xsd:string">
+            <annotation>
+              <documentation>
+                Error message.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0"
+            name="ApplicationException.Type" type="xsd:string">
+            <annotation>
+              <documentation>
+                Indicates that this instance is a subtype of ApplicationException.
+                Although this field is returned in the response, it is ignored on input
+                and cannot be selected. Specify xsi:type instead.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
       <complexType name="AuthenticationError">
         <annotation>
           <documentation>
@@ -211,712 +310,24 @@
           </extension>
         </complexContent>
       </complexType>
-      <complexType name="ConversionTrackingError">
+      <complexType name="ConversionTrackerPage">
         <annotation>
           <documentation>
-            An error that can occur during calls to the ConversionTypeService.
+            Contains a subset of {@link ConversionTracker}s resulting from the filtering
+            and paging of the {@link ConversionTrackerService#get} call.
           </documentation>
         </annotation>
         <complexContent>
-          <extension base="tns:ApiError">
+          <extension base="tns:NoStatsPage">
             <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ConversionTrackingError.Reason"/>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="DateError">
-        <annotation>
-          <documentation>
-            Errors associated with invalid dates and date ranges.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:DateError.Reason">
+              <element maxOccurs="unbounded" minOccurs="0"
+                name="entries" type="tns:ConversionTracker">
                 <annotation>
                   <documentation>
-                    The error reason represented by an enum.
+                    The result entries in this page.
                   </documentation>
                 </annotation>
               </element>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="DateRange">
-        <annotation>
-          <documentation>
-            Represents a range of dates that has either an upper or a lower bound.
-            The format for the date is YYYYMMDD.
-          </documentation>
-        </annotation>
-        <sequence>
-          <element maxOccurs="1" minOccurs="0" name="min" type="xsd:string">
-            <annotation>
-              <documentation>
-                the lower bound of this date range, inclusive.
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0" name="max" type="xsd:string">
-            <annotation>
-              <documentation>
-                the upper bound of this date range, inclusive.
-              </documentation>
-            </annotation>
-          </element>
-        </sequence>
-      </complexType>
-      <complexType name="DistinctError">
-        <annotation>
-          <documentation>
-            Errors related to distinct ids or content.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:DistinctError.Reason">
-                <annotation>
-                  <documentation>
-                    The error reason represented by an enum.
-                  </documentation>
-                </annotation>
-              </element>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="FieldPathElement">
-        <annotation>
-          <documentation>
-            A segment of a field path. Each dot in a field path defines a new segment.
-          </documentation>
-        </annotation>
-        <sequence>
-          <element maxOccurs="1" minOccurs="0" name="field" type="xsd:string">
-            <annotation>
-              <documentation>
-                The name of a field in lower camelcase. (e.g. "biddingStrategy")
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0" name="index" type="xsd:int">
-            <annotation>
-              <documentation>
-                For list fields, this is a 0-indexed position in the list. Null for non-list fields.
-              </documentation>
-            </annotation>
-          </element>
-        </sequence>
-      </complexType>
-      <complexType name="IdError">
-        <annotation>
-          <documentation>
-            Errors associated with the ids.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:IdError.Reason">
-                <annotation>
-                  <documentation>
-                    The error reason represented by an enum.
-                  </documentation>
-                </annotation>
-              </element>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="InternalApiError">
-        <annotation>
-          <documentation>
-            Indicates that a server-side error has occured. {@code InternalApiError}s
-            are generally not the result of an invalid request or message sent by the
-            client.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:InternalApiError.Reason">
-                <annotation>
-                  <documentation>
-                    The error reason represented by an enum.
-                  </documentation>
-                </annotation>
-              </element>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="NotEmptyError">
-        <annotation>
-          <documentation>
-            Errors corresponding with violation of a NOT EMPTY check.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:NotEmptyError.Reason">
-                <annotation>
-                  <documentation>
-                    The error reason represented by an enum.
-                  </documentation>
-                </annotation>
-              </element>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="OperationAccessDenied">
-        <annotation>
-          <documentation>
-            Operation not permitted due to the invoked service's access policy.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:OperationAccessDenied.Reason"/>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="OperatorError">
-        <annotation>
-          <documentation>
-            Errors due to the use of unsupported operations.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:OperatorError.Reason">
-                <annotation>
-                  <documentation>
-                    The error reason represented by an enum.
-                  </documentation>
-                </annotation>
-              </element>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="OrderBy">
-        <annotation>
-          <documentation>
-            Specifies how the resulting information should be sorted.
-          </documentation>
-        </annotation>
-        <sequence>
-          <element maxOccurs="1" minOccurs="0" name="field" type="xsd:string">
-            <annotation>
-              <documentation>
-                The field to sort the results on.
-                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0" name="sortOrder" type="tns:SortOrder">
-            <annotation>
-              <documentation>
-                The order to sort the results on. The default sort order is {@link SortOrder#ASCENDING}.
-              </documentation>
-            </annotation>
-          </element>
-        </sequence>
-      </complexType>
-      <complexType name="Paging">
-        <annotation>
-          <documentation>
-            Specifies the page of results to return in the response. A page is specified
-            by the result position to start at and the maximum number of results to
-            return.
-          </documentation>
-        </annotation>
-        <sequence>
-          <element maxOccurs="1" minOccurs="0" name="startIndex" type="xsd:int">
-            <annotation>
-              <documentation>
-                Index of the first result to return in this page.
-                &lt;span class="constraint InRange"&gt;This field must be greater than or equal to 0.&lt;/span&gt;
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0" name="numberResults" type="xsd:int">
-            <annotation>
-              <documentation>
-                Maximum number of results to return in this page. Set this to a reasonable value to limit
-                the number of results returned per page.
-                &lt;span class="constraint InRange"&gt;This field must be greater than or equal to 0.&lt;/span&gt;
-              </documentation>
-            </annotation>
-          </element>
-        </sequence>
-      </complexType>
-      <complexType name="Predicate">
-        <annotation>
-          <documentation>
-            Specifies how an entity (eg. adgroup, campaign, criterion, ad) should be filtered.
-          </documentation>
-        </annotation>
-        <sequence>
-          <element maxOccurs="1" minOccurs="0" name="field" type="xsd:string">
-            <annotation>
-              <documentation>
-                The field by which to filter the returned data. Possible values are marked Filterable on
-                the entity's reference page. For example, for predicates for the
-                CampaignService {@link Selector selector}, refer to the filterable fields from the
-                {@link Campaign} reference page.
-                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0" name="operator" type="tns:Predicate.Operator">
-            <annotation>
-              <documentation>
-                The operator to use for filtering the data returned.
-                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="unbounded" minOccurs="0" name="values" type="xsd:string">
-            <annotation>
-              <documentation>
-                The values by which to filter the field. The {@link Operator#CONTAINS_ALL},
-                {@link Operator#CONTAINS_ANY}, {@link Operator#CONTAINS_NONE}, {@link Operator#IN}
-                and {@link Operator#NOT_IN} take multiple values. All others take a single value.
-                &lt;span class="constraint ContentsNotNull"&gt;This field must not contain {@code null} elements.&lt;/span&gt;
-                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
-              </documentation>
-            </annotation>
-          </element>
-        </sequence>
-      </complexType>
-      <complexType name="QueryError">
-        <annotation>
-          <documentation>
-            A QueryError represents possible errors for query parsing and execution.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:QueryError.Reason"/>
-              <element maxOccurs="1" minOccurs="0" name="message" type="xsd:string"/>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="QuotaCheckError">
-        <annotation>
-          <documentation>
-            Encapsulates the errors thrown during developer quota checks.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:QuotaCheckError.Reason"/>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="RangeError">
-        <annotation>
-          <documentation>
-            A list of all errors associated with the Range constraint.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RangeError.Reason">
-                <annotation>
-                  <documentation>
-                    The error reason represented by an enum.
-                  </documentation>
-                </annotation>
-              </element>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="RateExceededError">
-        <annotation>
-          <documentation>
-            Signals that a call failed because a measured rate exceeded.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RateExceededError.Reason">
-                <annotation>
-                  <documentation>
-                    The error reason represented by an enum.
-                  </documentation>
-                </annotation>
-              </element>
-              <element maxOccurs="1" minOccurs="0" name="rateName" type="xsd:string">
-                <annotation>
-                  <documentation>
-                    Cause of the rate exceeded error.
-                  </documentation>
-                </annotation>
-              </element>
-              <element maxOccurs="1" minOccurs="0" name="rateScope" type="xsd:string">
-                <annotation>
-                  <documentation>
-                    The scope of the rate (ACCOUNT/DEVELOPER).
-                  </documentation>
-                </annotation>
-              </element>
-              <element maxOccurs="1" minOccurs="0"
-                name="retryAfterSeconds" type="xsd:int">
-                <annotation>
-                  <documentation>
-                    The amount of time (in seconds) the client should wait before retrying the request.
-                  </documentation>
-                </annotation>
-              </element>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="ReadOnlyError">
-        <annotation>
-          <documentation>
-            Errors from attempting to write to read-only fields.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ReadOnlyError.Reason">
-                <annotation>
-                  <documentation>
-                    The error reason represented by an enum.
-                  </documentation>
-                </annotation>
-              </element>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="RejectedError">
-        <annotation>
-          <documentation>
-            Indicates that a field was rejected due to compatibility issues.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RejectedError.Reason">
-                <annotation>
-                  <documentation>
-                    The error reason represented by an enum.
-                  </documentation>
-                </annotation>
-              </element>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="RequestError">
-        <annotation>
-          <documentation>
-            Encapsulates the generic errors thrown when there's an error with user
-            request.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RequestError.Reason"/>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="RequiredError">
-        <annotation>
-          <documentation>
-            Errors due to missing required field.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RequiredError.Reason">
-                <annotation>
-                  <documentation>
-                    The error reason represented by an enum.
-                  </documentation>
-                </annotation>
-              </element>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="SelectorError">
-        <annotation>
-          <documentation>
-            Represents possible error codes for {@link Selector}.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:SelectorError.Reason">
-                <annotation>
-                  <documentation>
-                    The error reason represented by enum.
-                  </documentation>
-                </annotation>
-              </element>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="SizeLimitError">
-        <annotation>
-          <documentation>
-            Indicates that the number of entries in the request or response exceeds the system limit.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:SizeLimitError.Reason">
-                <annotation>
-                  <documentation>
-                    The error reason represented by an enum.
-                  </documentation>
-                </annotation>
-              </element>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="SoapHeader">
-        <annotation>
-          <documentation>
-            Defines the required and optional elements within the header of a SOAP request.
-          </documentation>
-        </annotation>
-        <sequence>
-          <element maxOccurs="1" minOccurs="0" name="clientCustomerId" type="xsd:string">
-            <annotation>
-              <documentation>
-                The header identifies the customer id of the client of the AdWords manager, if an AdWords
-                manager is acting on behalf of their client or the customer id of the advertiser managing their
-                own account.
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0" name="developerToken" type="xsd:string">
-            <annotation>
-              <documentation>
-                Developer token to identify that the person making the call has enough
-                quota.
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0" name="userAgent" type="xsd:string">
-            <annotation>
-              <documentation>
-                UserAgent is used to track distribution of API client programs and
-                application usage. The client is responsible for putting in a meaningful
-                value for tracking purposes. To be clear this is not the same as an HTTP
-                user agent.
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0" name="validateOnly" type="xsd:boolean">
-            <annotation>
-              <documentation>
-                Used to validate the request without executing it.
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0" name="partialFailure" type="xsd:boolean">
-            <annotation>
-              <documentation>
-                If true, API will try to commit as many error free operations as possible and
-                report the other operations' errors.
-                
-                &lt;p&gt;Ignored for non-mutate calls.
-              </documentation>
-            </annotation>
-          </element>
-        </sequence>
-      </complexType>
-      <complexType name="SoapResponseHeader">
-        <annotation>
-          <documentation>
-            Defines the elements within the header of a SOAP response.
-          </documentation>
-        </annotation>
-        <sequence>
-          <element maxOccurs="1" minOccurs="0" name="requestId" type="xsd:string">
-            <annotation>
-              <documentation>
-                Unique id that identifies this request. If developers have any support issues, sending us
-                this id will enable us to find their request more easily.
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0" name="serviceName" type="xsd:string">
-            <annotation>
-              <documentation>
-                The name of the service being invoked.
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0" name="methodName" type="xsd:string">
-            <annotation>
-              <documentation>
-                The name of the method being invoked.
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0" name="operations" type="xsd:long">
-            <annotation>
-              <documentation>
-                Number of operations performed for this SOAP request.
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0" name="responseTime" type="xsd:long">
-            <annotation>
-              <documentation>
-                Elapsed time in milliseconds between the AdWords API receiving the request and sending the
-                response.
-              </documentation>
-            </annotation>
-          </element>
-        </sequence>
-      </complexType>
-      <complexType name="StringFormatError">
-        <annotation>
-          <documentation>
-            A list of error code for reporting invalid content of input strings.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:StringFormatError.Reason"/>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="StringLengthError">
-        <annotation>
-          <documentation>
-            Errors associated with the length of the given string being
-            out of bounds.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:StringLengthError.Reason">
-                <annotation>
-                  <documentation>
-                    The error reason represented by an enum.
-                  </documentation>
-                </annotation>
-              </element>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="UploadCallConversion">
-        <annotation>
-          <documentation>
-            A conversion that happens when a user performs one the following sequences of actions:
-            &lt;ul&gt;
-            &lt;li&gt;User clicks on an advertiser's ad which takes the user to the advertiser's website, where
-            special javascript installed on the page produces a dynamically-generated phone number.
-            Then, user calls that number from their home (or other) phone&lt;/li&gt;
-            &lt;/li&gt;User makes a phone call from conversion-tracked call extensions &lt;/li&gt;
-            &lt;/ul&gt;
-            
-            After successfully creating a new UploadCallConversion, send the name of this conversion type
-            along with your conversion details to the OfflineCallConversionFeedService
-            to attribute those conversions to this conversion type.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ConversionTracker">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="snippet" type="xsd:string"/>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="UploadConversion">
-        <annotation>
-          <documentation>
-            A conversion type that receives conversions by having them uploaded
-            through the OfflineConversionFeedService.
-            
-            After successfully creating a new UploadConversion, send the name of this conversion type
-            along with your conversion details to the OfflineConversionFeedService
-            to attribute those conversions to this conversion type.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ConversionTracker">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0"
-                name="isExternallyAttributed" type="xsd:boolean">
-                <annotation>
-                  <documentation>
-                    Whether this conversion is using an external attribution model.
-                    &lt;span class="constraint ReadOnly"&gt;This field is read only and will be ignored when sent to the API for the following {@link Operator}s: SET.&lt;/span&gt;
-                  </documentation>
-                </annotation>
-              </element>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="WebsiteCallMetricsConversion">
-        <annotation>
-          <documentation>
-            A conversion that happens when a user performs the following sequence of actions:
-            &lt;ul&gt;
-            &lt;li&gt;Clicks on an advertiser's ad&lt;/li&gt;
-            &lt;li&gt;
-            Proceeds to the advertiser's website, where special javascript installed on the page
-            produces a dynamically-generated phone number,
-            &lt;/li&gt;
-            &lt;li&gt;Calls that number from their home (or other) phone&lt;/li&gt;
-            &lt;/ul&gt;
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ConversionTracker">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0"
-                name="phoneCallDuration" type="xsd:long">
-                <annotation>
-                  <documentation>
-                    &lt;span class="constraint Selectable"&gt;This field can be selected using the value "WebsitePhoneCallDuration".&lt;/span&gt;
-                    &lt;span class="constraint InRange"&gt;This field must be between 0 and 10000, inclusive.&lt;/span&gt;
-                  </documentation>
-                </annotation>
-              </element>
-              <element maxOccurs="1" minOccurs="0" name="snippet" type="xsd:string"/>
             </sequence>
           </extension>
         </complexContent>
@@ -1192,6 +603,20 @@
           </extension>
         </complexContent>
       </complexType>
+      <complexType name="ConversionTrackingError">
+        <annotation>
+          <documentation>
+            An error that can occur during calls to the ConversionTypeService.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ConversionTrackingError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
       <complexType name="DatabaseError">
         <annotation>
           <documentation>
@@ -1202,6 +627,135 @@
           <extension base="tns:ApiError">
             <sequence>
               <element maxOccurs="1" minOccurs="0" name="reason" type="tns:DatabaseError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DateError">
+        <annotation>
+          <documentation>
+            Errors associated with invalid dates and date ranges.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:DateError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DateRange">
+        <annotation>
+          <documentation>
+            Represents a range of dates that has either an upper or a lower bound.
+            The format for the date is YYYYMMDD.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="min" type="xsd:string">
+            <annotation>
+              <documentation>
+                the lower bound of this date range, inclusive.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="max" type="xsd:string">
+            <annotation>
+              <documentation>
+                the upper bound of this date range, inclusive.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="DistinctError">
+        <annotation>
+          <documentation>
+            Errors related to distinct ids or content.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:DistinctError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="FieldPathElement">
+        <annotation>
+          <documentation>
+            A segment of a field path. Each dot in a field path defines a new segment.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="field" type="xsd:string">
+            <annotation>
+              <documentation>
+                The name of a field in lower camelcase. (e.g. "biddingStrategy")
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="index" type="xsd:int">
+            <annotation>
+              <documentation>
+                For list fields, this is a 0-indexed position in the list. Null for non-list fields.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="IdError">
+        <annotation>
+          <documentation>
+            Errors associated with the ids.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:IdError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="InternalApiError">
+        <annotation>
+          <documentation>
+            Indicates that a server-side error has occured. {@code InternalApiError}s
+            are generally not the result of an invalid request or message sent by the
+            client.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:InternalApiError.Reason">
                 <annotation>
                   <documentation>
                     The error reason represented by an enum.
@@ -1231,6 +785,33 @@
           </element>
         </sequence>
       </complexType>
+      <complexType abstract="true" name="NoStatsPage">
+        <complexContent>
+          <extension base="tns:Page">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="NotEmptyError">
+        <annotation>
+          <documentation>
+            Errors corresponding with violation of a NOT EMPTY check.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:NotEmptyError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
       <complexType abstract="true" name="Operation">
         <annotation>
           <documentation>
@@ -1258,72 +839,33 @@
           </element>
         </sequence>
       </complexType>
-      <complexType abstract="true" name="ApiError">
+      <complexType name="OperationAccessDenied">
         <annotation>
           <documentation>
-            The API error base class that provides details about an error that occurred
-            while processing a service request.
-            
-            &lt;p&gt;The OGNL field path is provided for parsers to identify the request data
-            element that may have caused the error.&lt;/p&gt;
-          </documentation>
-        </annotation>
-        <sequence>
-          <element maxOccurs="1" minOccurs="0" name="fieldPath" type="xsd:string">
-            <annotation>
-              <documentation>
-                The OGNL field path to identify cause of error.
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="unbounded" minOccurs="0"
-            name="fieldPathElements" type="tns:FieldPathElement">
-            <annotation>
-              <documentation>
-                A parsed copy of the field path. For example, the field path "operations[1].operand"
-                corresponds to this list: {FieldPathElement(field = "operations", index = 1),
-                FieldPathElement(field = "operand", index = null)}.
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0" name="trigger" type="xsd:string">
-            <annotation>
-              <documentation>
-                The data that caused the error.
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0" name="errorString" type="xsd:string">
-            <annotation>
-              <documentation>
-                A simple string representation of the error and reason.
-              </documentation>
-            </annotation>
-          </element>
-          <element maxOccurs="1" minOccurs="0" name="ApiError.Type" type="xsd:string">
-            <annotation>
-              <documentation>
-                Indicates that this instance is a subtype of ApiError.
-                Although this field is returned in the response, it is ignored on input
-                and cannot be selected. Specify xsi:type instead.
-              </documentation>
-            </annotation>
-          </element>
-        </sequence>
-      </complexType>
-      <complexType name="ApiException">
-        <annotation>
-          <documentation>
-            Exception class for holding a list of service errors.
+            Operation not permitted due to the invoked service's access policy.
           </documentation>
         </annotation>
         <complexContent>
-          <extension base="tns:ApplicationException">
+          <extension base="tns:ApiError">
             <sequence>
-              <element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:ApiError">
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:OperationAccessDenied.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="OperatorError">
+        <annotation>
+          <documentation>
+            Errors due to the use of unsupported operations.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:OperatorError.Reason">
                 <annotation>
                   <documentation>
-                    List of errors.
+                    The error reason represented by an enum.
                   </documentation>
                 </annotation>
               </element>
@@ -1331,60 +873,29 @@
           </extension>
         </complexContent>
       </complexType>
-      <complexType name="ApplicationException">
+      <complexType name="OrderBy">
         <annotation>
           <documentation>
-            Base class for exceptions.
+            Specifies how the resulting information should be sorted.
           </documentation>
         </annotation>
         <sequence>
-          <element maxOccurs="1" minOccurs="0" name="message" type="xsd:string">
+          <element maxOccurs="1" minOccurs="0" name="field" type="xsd:string">
             <annotation>
               <documentation>
-                Error message.
+                The field to sort the results on.
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
-          <element maxOccurs="1" minOccurs="0"
-            name="ApplicationException.Type" type="xsd:string">
+          <element maxOccurs="1" minOccurs="0" name="sortOrder" type="tns:SortOrder">
             <annotation>
               <documentation>
-                Indicates that this instance is a subtype of ApplicationException.
-                Although this field is returned in the response, it is ignored on input
-                and cannot be selected. Specify xsi:type instead.
+                The order to sort the results on. The default sort order is {@link SortOrder#ASCENDING}.
               </documentation>
             </annotation>
           </element>
         </sequence>
-      </complexType>
-      <complexType name="ConversionTrackerPage">
-        <annotation>
-          <documentation>
-            Contains a subset of {@link ConversionTracker}s resulting from the filtering
-            and paging of the {@link ConversionTrackerService#get} call.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:NoStatsPage">
-            <sequence>
-              <element maxOccurs="unbounded" minOccurs="0"
-                name="entries" type="tns:ConversionTracker">
-                <annotation>
-                  <documentation>
-                    The result entries in this page.
-                  </documentation>
-                </annotation>
-              </element>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType abstract="true" name="NoStatsPage">
-        <complexContent>
-          <extension base="tns:Page">
-            <sequence/>
-          </extension>
-        </complexContent>
       </complexType>
       <complexType abstract="true" name="Page">
         <annotation>
@@ -1410,6 +921,239 @@
             </annotation>
           </element>
         </sequence>
+      </complexType>
+      <complexType name="Paging">
+        <annotation>
+          <documentation>
+            Specifies the page of results to return in the response. A page is specified
+            by the result position to start at and the maximum number of results to
+            return.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="startIndex" type="xsd:int">
+            <annotation>
+              <documentation>
+                Index of the first result to return in this page.
+                &lt;span class="constraint InRange"&gt;This field must be greater than or equal to 0.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="numberResults" type="xsd:int">
+            <annotation>
+              <documentation>
+                Maximum number of results to return in this page. Set this to a reasonable value to limit
+                the number of results returned per page.
+                &lt;span class="constraint InRange"&gt;This field must be greater than or equal to 0.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="Predicate">
+        <annotation>
+          <documentation>
+            Specifies how an entity (eg. adgroup, campaign, criterion, ad) should be filtered.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="field" type="xsd:string">
+            <annotation>
+              <documentation>
+                The field by which to filter the returned data. Possible values are marked Filterable on
+                the entity's reference page. For example, for predicates for the
+                CampaignService {@link Selector selector}, refer to the filterable fields from the
+                {@link Campaign} reference page.
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="operator" type="tns:Predicate.Operator">
+            <annotation>
+              <documentation>
+                The operator to use for filtering the data returned.
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="values" type="xsd:string">
+            <annotation>
+              <documentation>
+                The values by which to filter the field. The {@link Operator#CONTAINS_ALL},
+                {@link Operator#CONTAINS_ANY}, {@link Operator#CONTAINS_NONE}, {@link Operator#IN}
+                and {@link Operator#NOT_IN} take multiple values. All others take a single value.
+                &lt;span class="constraint ContentsNotNull"&gt;This field must not contain {@code null} elements.&lt;/span&gt;
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="QueryError">
+        <annotation>
+          <documentation>
+            A QueryError represents possible errors for query parsing and execution.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:QueryError.Reason"/>
+              <element maxOccurs="1" minOccurs="0" name="message" type="xsd:string"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="QuotaCheckError">
+        <annotation>
+          <documentation>
+            Encapsulates the errors thrown during developer quota checks.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:QuotaCheckError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RangeError">
+        <annotation>
+          <documentation>
+            A list of all errors associated with the Range constraint.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RangeError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RateExceededError">
+        <annotation>
+          <documentation>
+            Signals that a call failed because a measured rate exceeded.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RateExceededError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0" name="rateName" type="xsd:string">
+                <annotation>
+                  <documentation>
+                    Cause of the rate exceeded error.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0" name="rateScope" type="xsd:string">
+                <annotation>
+                  <documentation>
+                    The scope of the rate (ACCOUNT/DEVELOPER).
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0"
+                name="retryAfterSeconds" type="xsd:int">
+                <annotation>
+                  <documentation>
+                    The amount of time (in seconds) the client should wait before retrying the request.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ReadOnlyError">
+        <annotation>
+          <documentation>
+            Errors from attempting to write to read-only fields.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ReadOnlyError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RejectedError">
+        <annotation>
+          <documentation>
+            Indicates that a field was rejected due to compatibility issues.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RejectedError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RequestError">
+        <annotation>
+          <documentation>
+            Encapsulates the generic errors thrown when there's an error with user
+            request.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RequestError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RequiredError">
+        <annotation>
+          <documentation>
+            Errors due to missing required field.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RequiredError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
       </complexType>
       <complexType name="Selector">
         <annotation>
@@ -1468,6 +1212,262 @@
             </annotation>
           </element>
         </sequence>
+      </complexType>
+      <complexType name="SelectorError">
+        <annotation>
+          <documentation>
+            Represents possible error codes for {@link Selector}.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:SelectorError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="SizeLimitError">
+        <annotation>
+          <documentation>
+            Indicates that the number of entries in the request or response exceeds the system limit.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:SizeLimitError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="SoapHeader">
+        <annotation>
+          <documentation>
+            Defines the required and optional elements within the header of a SOAP request.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="clientCustomerId" type="xsd:string">
+            <annotation>
+              <documentation>
+                The header identifies the customer id of the client of the AdWords manager, if an AdWords
+                manager is acting on behalf of their client or the customer id of the advertiser managing their
+                own account.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="developerToken" type="xsd:string">
+            <annotation>
+              <documentation>
+                Developer token to identify that the person making the call has enough
+                quota.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="userAgent" type="xsd:string">
+            <annotation>
+              <documentation>
+                UserAgent is used to track distribution of API client programs and
+                application usage. The client is responsible for putting in a meaningful
+                value for tracking purposes. To be clear this is not the same as an HTTP
+                user agent.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="validateOnly" type="xsd:boolean">
+            <annotation>
+              <documentation>
+                Used to validate the request without executing it.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="partialFailure" type="xsd:boolean">
+            <annotation>
+              <documentation>
+                If true, API will try to commit as many error free operations as possible and
+                report the other operations' errors.
+                
+                &lt;p&gt;Ignored for non-mutate calls.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="SoapResponseHeader">
+        <annotation>
+          <documentation>
+            Defines the elements within the header of a SOAP response.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="requestId" type="xsd:string">
+            <annotation>
+              <documentation>
+                Unique id that identifies this request. If developers have any support issues, sending us
+                this id will enable us to find their request more easily.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="serviceName" type="xsd:string">
+            <annotation>
+              <documentation>
+                The name of the service being invoked.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="methodName" type="xsd:string">
+            <annotation>
+              <documentation>
+                The name of the method being invoked.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="operations" type="xsd:long">
+            <annotation>
+              <documentation>
+                Number of operations performed for this SOAP request.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="responseTime" type="xsd:long">
+            <annotation>
+              <documentation>
+                Elapsed time in milliseconds between the AdWords API receiving the request and sending the
+                response.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="StringFormatError">
+        <annotation>
+          <documentation>
+            A list of error code for reporting invalid content of input strings.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:StringFormatError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="StringLengthError">
+        <annotation>
+          <documentation>
+            Errors associated with the length of the given string being
+            out of bounds.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:StringLengthError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="UploadCallConversion">
+        <annotation>
+          <documentation>
+            A conversion that happens when a user performs one the following sequences of actions:
+            &lt;ul&gt;
+            &lt;li&gt;User clicks on an advertiser's ad which takes the user to the advertiser's website, where
+            special javascript installed on the page produces a dynamically-generated phone number.
+            Then, user calls that number from their home (or other) phone&lt;/li&gt;
+            &lt;/li&gt;User makes a phone call from conversion-tracked call extensions &lt;/li&gt;
+            &lt;/ul&gt;
+            
+            After successfully creating a new UploadCallConversion, send the name of this conversion type
+            along with your conversion details to the OfflineCallConversionFeedService
+            to attribute those conversions to this conversion type.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ConversionTracker">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="snippet" type="xsd:string"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="UploadConversion">
+        <annotation>
+          <documentation>
+            A conversion type that receives conversions by having them uploaded
+            through the OfflineConversionFeedService.
+            
+            After successfully creating a new UploadConversion, send the name of this conversion type
+            along with your conversion details to the OfflineConversionFeedService
+            to attribute those conversions to this conversion type.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ConversionTracker">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0"
+                name="isExternallyAttributed" type="xsd:boolean">
+                <annotation>
+                  <documentation>
+                    Whether this conversion is using an external attribution model.
+                    &lt;span class="constraint ReadOnly"&gt;This field is read only and will be ignored when sent to the API for the following {@link Operator}s: SET.&lt;/span&gt;
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="WebsiteCallMetricsConversion">
+        <annotation>
+          <documentation>
+            A conversion that happens when a user performs the following sequence of actions:
+            &lt;ul&gt;
+            &lt;li&gt;Clicks on an advertiser's ad&lt;/li&gt;
+            &lt;li&gt;
+            Proceeds to the advertiser's website, where special javascript installed on the page
+            produces a dynamically-generated phone number,
+            &lt;/li&gt;
+            &lt;li&gt;Calls that number from their home (or other) phone&lt;/li&gt;
+            &lt;/ul&gt;
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ConversionTracker">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0"
+                name="phoneCallDuration" type="xsd:long">
+                <annotation>
+                  <documentation>
+                    &lt;span class="constraint Selectable"&gt;This field can be selected using the value "WebsitePhoneCallDuration".&lt;/span&gt;
+                    &lt;span class="constraint InRange"&gt;This field must be between 0 and 10000, inclusive.&lt;/span&gt;
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0" name="snippet" type="xsd:string"/>
+            </sequence>
+          </extension>
+        </complexContent>
       </complexType>
       <simpleType name="AdWordsConversionTracker.TrackingCodeType">
         <annotation>

@@ -3,6 +3,7 @@
   "description": "Google Ads APIs Client Library for PHP (AdWords and DFP)",
   "require": {
     "php": ">=5.5.9",
+    "ext-mbstring": "*",
     "ext-openssl": "*",
     "ext-soap": "*",
     "google/auth": "^1.0.0",

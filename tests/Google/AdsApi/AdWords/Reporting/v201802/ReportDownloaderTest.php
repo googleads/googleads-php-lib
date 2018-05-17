@@ -18,10 +18,13 @@
 namespace Google\AdsApi\AdWords\Reporting\v201802;
 
 use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\Query\v201802\ReportQueryBuilder;
 use Google\AdsApi\AdWords\ReportSettingsBuilder;
 use Google\AdsApi\AdWords\Testing\Reporting\v201802\ReportingTestProvider;
 use Google\AdsApi\AdWords\v201802\cm\ReportDefinitionReportType;
 use Google\AdsApi\AdWords\v201802\cm\Selector;
+use Google\AdsApi\Common\AdsUtility;
+use Google\AdsApi\Common\AdsUtilityRegistry;
 use Google\AdsApi\Common\SoapSettingsBuilder;
 use Google\Auth\FetchAuthTokenInterface;
 use GuzzleHttp\Client;
@@ -31,6 +34,7 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
+use InvalidArgumentException;
 use Monolog\Handler\NullHandler;
 use Monolog\Logger;
 use PHPUnit\Framework\TestCase;
@@ -77,6 +81,14 @@ class ReportDownloaderTest extends TestCase
     }
 
     /**
+     * @see PHPUnit\Framework\TestCase::tearDown
+     */
+    protected function tearDown()
+    {
+        AdsUtilityRegistry::getInstance()->popAllUtilities();
+    }
+
+        /**
      * @covers Google\AdsApi\AdWords\Reporting\v201802\ReportDownloader::downloadReport
      */
     public function testDownloadReportUsingReportDefinition()
@@ -258,6 +270,66 @@ class ReportDownloaderTest extends TestCase
             $reportDownloader->downloadReportWithAwql(
                 $reportQuery,
                 $reportFormat
+            );
+
+        $this->assertNotNull($downloadResult);
+    }
+
+    /**
+     * @covers Google\AdsApi\AdWords\Reporting\v201802\ReportDownloader::downloadReportWithAwql
+     *
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage report query
+     */
+    public function testDownloadReportUsingAwqlShouldRejectReportQueryObject()
+    {
+        // Setup the Guzzle HTTP client to mock a request to return the report
+        // contents.
+        $fakeReport = ReportingTestProvider::getFakeCriteriaReport();
+        $mockHandler = new MockHandler([new Response(200, [], $fakeReport)]);
+        $handler = HandlerStack::create($mockHandler);
+        $httpClient = new Client(['handler' => $handler]);
+
+        $reportQuery = (new ReportQueryBuilder())
+            ->select(['Id'])
+            ->from(ReportDefinitionReportType::CRITERIA_PERFORMANCE_REPORT)
+            ->build();
+        $reportDownloader =
+            new ReportDownloader($this->adWordsSession, null, $httpClient);
+        $reportDownloader->downloadReportWithAwql($reportQuery, 'CSV');
+    }
+
+    /**
+     * @covers Google\AdsApi\AdWords\Reporting\v201802\ReportDownloader::downloadReportWithReportQuery
+     */
+    public function testDownloadReportUsingReportQueryObject()
+    {
+        // Setup the Guzzle HTTP client to mock a request to return the report
+        // contents.
+        $fakeReport = ReportingTestProvider::getFakeCriteriaReport();
+        $mockHandler = new MockHandler([new Response(200, [], $fakeReport)]);
+        $handler = HandlerStack::create($mockHandler);
+        $httpClient = new Client(['handler' => $handler]);
+
+        $reportQuery = (new ReportQueryBuilder())
+            ->select([
+                'CampaignId',
+                'AdGroupId',
+                'Id',
+                'Criteria',
+                'CriteriaType',
+                'Impressions',
+                'Clicks',
+                'Cost'
+            ])
+            ->from(ReportDefinitionReportType::CRITERIA_PERFORMANCE_REPORT)
+            ->build();
+        $reportDownloader =
+            new ReportDownloader($this->adWordsSession, null, $httpClient);
+        $downloadResult =
+            $reportDownloader->downloadReportWithReportQuery(
+                $reportQuery,
+                'CSV'
             );
 
         $this->assertNotNull($downloadResult);

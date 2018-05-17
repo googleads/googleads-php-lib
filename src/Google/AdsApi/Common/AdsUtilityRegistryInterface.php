@@ -17,7 +17,6 @@
 
 namespace Google\AdsApi\Common;
 
-
 /**
  * Stores and registers usage of ads utilities.
  */

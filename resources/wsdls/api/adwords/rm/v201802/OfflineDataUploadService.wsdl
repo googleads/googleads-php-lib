@@ -3440,7 +3440,8 @@
           <element maxOccurs="1" minOccurs="0" name="loyaltyRate" type="xsd:double">
             <annotation>
               <documentation>
-                This is the fraction of overall sales which you can associate with a customer loyalty program.
+                This is the fraction of all transactions that are identifiable (i.e., associated with any form
+                of customer information).
                 The fraction needs to be between 0 and 1 (excluding 0).
                 &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
               </documentation>

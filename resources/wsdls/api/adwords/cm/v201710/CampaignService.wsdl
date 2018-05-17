@@ -298,7 +298,8 @@
                 &lt;p&gt;Starting with v201705, this field cannot be set at the ad group or ad group criterion level
                 to any value other than {@code BiddingStrategyType.NONE}.
                 &lt;span class="constraint Selectable"&gt;This field can be selected using the value "BiddingStrategyType".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
-                &lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, ENHANCED_CPC, TARGET_ROAS, TARGET_SPEND for campaign channel type SHOPPING.&lt;/span&gt;
+                &lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, PAGE_ONE_PROMOTED, TARGET_SPEND, ENHANCED_CPC, TARGET_CPA, TARGET_ROAS, MAXIMIZE_CONVERSIONS, TARGET_OUTRANK_SHARE, NONE, MANUAL_CPM for campaign channel type SEARCH.&lt;/span&gt;
+&lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, ENHANCED_CPC, TARGET_ROAS, TARGET_SPEND for campaign channel type SHOPPING.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, MANUAL_CPM, TARGET_SPEND, ENHANCED_CPC, TARGET_CPA, TARGET_ROAS, MAXIMIZE_CONVERSIONS for campaign channel type DISPLAY.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, TARGET_CPA for campaign channel type DISPLAY with campaign channel subtype DISPLAY_MOBILE_APP.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, MAXIMIZE_CONVERSIONS, NONE, PAGE_ONE_PROMOTED, TARGET_CPA, TARGET_OUTRANK_SHARE, TARGET_ROAS, TARGET_SPEND for campaign channel subtype SEARCH_MOBILE_APP.&lt;/span&gt;
@@ -731,8 +732,6 @@
                 Selective optimization setting for this campaign, which includes a set of conversion
                 types to optimize this campaign towards.
                 &lt;span class="constraint Selectable"&gt;This field can be selected using the value "SelectiveOptimization".&lt;/span&gt;
-                &lt;span class="constraint CampaignType"&gt;This field may only be set for campaign channel type MULTI_CHANNEL.&lt;/span&gt;
-&lt;span class="constraint CampaignType"&gt;This field may not be set.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -1564,9 +1563,6 @@
             &lt;li&gt; Positively geotargeted using solely AOI, solely LOP, or either.
             &lt;li&gt; Negatively geotargeted using solely LOP, or both.
             &lt;/ul&gt;
-            
-            &lt;p&gt;This setting applies only to ads shown on the search network, and does
-            not affect ads shown on the Google Display Network.
           </documentation>
         </annotation>
         <complexContent>
@@ -1995,7 +1991,7 @@
                 &lt;span class="constraint Selectable"&gt;This field can be selected using the value "TargetGoogleSearch".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
                 &lt;span class="constraint AdxEnabled"&gt;This is disabled for AdX.&lt;/span&gt;
                 &lt;span class="constraint CampaignType"&gt;This field may only be set to true for campaign channel type SEARCH.&lt;/span&gt;
-&lt;span class="constraint CampaignType"&gt;This field may only be set to true for campaign channel subtype UNIVERSAL_APP_CAMPAIGN.&lt;/span&gt;
+&lt;span class="constraint CampaignType"&gt;This field may only be set to true for campaign channel type MULTI_CHANNEL.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may only be set to false for campaign channel type DISPLAY.&lt;/span&gt;
               </documentation>
             </annotation>
@@ -2008,7 +2004,7 @@
                 (requires {@code GOOGLE_SEARCH}).
                 &lt;span class="constraint Selectable"&gt;This field can be selected using the value "TargetSearchNetwork".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
                 &lt;span class="constraint AdxEnabled"&gt;This is disabled for AdX.&lt;/span&gt;
-                &lt;span class="constraint CampaignType"&gt;This field may only be set to true for campaign channel subtype UNIVERSAL_APP_CAMPAIGN.&lt;/span&gt;
+                &lt;span class="constraint CampaignType"&gt;This field may only be set to true for campaign channel type MULTI_CHANNEL.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -2019,7 +2015,7 @@
                 Ads will be served on specified placements in the Google Display Network.
                 Placements are specified using {@code Placement} criteria.
                 &lt;span class="constraint Selectable"&gt;This field can be selected using the value "TargetContentNetwork".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
-                &lt;span class="constraint CampaignType"&gt;This field may only be set to true for campaign channel subtype UNIVERSAL_APP_CAMPAIGN.&lt;/span&gt;
+                &lt;span class="constraint CampaignType"&gt;This field may only be set to true for campaign channel type MULTI_CHANNEL.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may only be set to false for campaign channel subtype SEARCH_MOBILE_APP.&lt;/span&gt;
               </documentation>
             </annotation>
@@ -2032,7 +2028,7 @@
                 only some specific Google partner accounts.
                 &lt;span class="constraint Selectable"&gt;This field can be selected using the value "TargetPartnerSearchNetwork".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
                 &lt;span class="constraint AdxEnabled"&gt;This is disabled for AdX.&lt;/span&gt;
-                &lt;span class="constraint CampaignType"&gt;This field may only be set to false for campaign channel subtype UNIVERSAL_APP_CAMPAIGN.&lt;/span&gt;
+                &lt;span class="constraint CampaignType"&gt;This field may only be set to false for campaign channel type MULTI_CHANNEL.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -2688,8 +2684,9 @@
       <complexType name="SelectiveOptimization">
         <annotation>
           <documentation>
-            Selected set of conversion types for optimizing campaigns. For e.g. For universal app campaigns,
-            these are the set of in-app actions to optimize the campaign towards.
+            Selected set of conversion types or a selective optimization set id for optimizing campaigns. For
+            e.g. For universal app campaigns, these are the set of in-app actions to optimize the campaign
+            towards.
           </documentation>
         </annotation>
         <sequence>

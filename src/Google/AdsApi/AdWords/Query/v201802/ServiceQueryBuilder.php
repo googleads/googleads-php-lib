@@ -52,6 +52,26 @@ final class ServiceQueryBuilder
     }
 
     /**
+     * Creates a new query builder object by copying each clauses from another
+     * query builder object.
+     *
+     * @param ServiceQueryBuilder $otherInstance the other query builder object
+     *     for copying its clauses
+     * @return ServiceQueryBuilder a new builder object that copies from the
+     *     input one
+     */
+    public static function copyFrom(ServiceQueryBuilder $otherInstance)
+    {
+        $copyBuilder = new self(null, $otherInstance->utilityRegistry);
+        $copyDelegate = ServiceQueryBuilderDelegate::copyFrom(
+            $otherInstance->delegate,
+            $copyBuilder
+        );
+        $copyBuilder->delegate = $copyDelegate;
+        return $copyBuilder;
+    }
+
+    /**
      * Sets the fields for the SELECT clause. Repeated field names will be
      * included exactly once.
      *

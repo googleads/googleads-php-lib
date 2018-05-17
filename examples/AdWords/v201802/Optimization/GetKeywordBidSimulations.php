@@ -22,6 +22,7 @@ require __DIR__ . '/../../../../vendor/autoload.php';
 use Google\AdsApi\AdWords\AdWordsServices;
 use Google\AdsApi\AdWords\AdWordsSession;
 use Google\AdsApi\AdWords\AdWordsSessionBuilder;
+use Google\AdsApi\AdWords\Query\v201802\ServiceQueryBuilder;
 use Google\AdsApi\AdWords\v201802\cm\DataService;
 use Google\AdsApi\AdWords\v201802\cm\Paging;
 use Google\AdsApi\AdWords\v201802\cm\Predicate;
@@ -46,11 +47,10 @@ class GetKeywordBidSimulations
     ) {
         $dataService = $adWordsServices->get($session, DataService::class);
 
-        // Create a selector to select all keyword bid simulations for the
+        // Create a query to select all keyword bid simulations for the
         // specified ad group.
-        $selector = new Selector();
-        $selector->setFields(
-            [
+        $query = (new ServiceQueryBuilder())
+            ->select([
                 'AdGroupId',
                 'CriterionId',
                 'StartDate',
@@ -61,61 +61,56 @@ class GetKeywordBidSimulations
                 'LocalClicks',
                 'LocalCost',
                 'LocalImpressions'
-            ]
-        );
-        $selector->setPredicates(
-            [
-                new Predicate('AdGroupId', PredicateOperator::IN, [$adGroupId])
-            ]
-        );
-        $selector->setPaging(new Paging(0, self::PAGE_SIZE));
+            ])
+            ->where('AdGroupId')->in([$adGroupId])
+            ->limit(0, self::PAGE_SIZE)
+            ->build();
 
         // Display bid landscapes.
-        $landscapePointsInPreviousPage = 0;
-        $startIndex = 0;
         do {
-            // Offset the start index by the number of landscape points in the last
-            // retrieved page, NOT the number of entries (bid landscapes) in the page.
-            $startIndex += $landscapePointsInPreviousPage;
-            $selector->getPaging()->setStartIndex($startIndex);
+            if (isset($fetchedPage)) {
+                // Advance the paging offset in subsequent iterations only.
+                $query->nextPage();
+            }
 
-            // Reset the count of landscape points in preparation for processing the
-            // next page.
-            $landscapePointsInPreviousPage = 0;
-
-            // Retrieve keyword bid simulations one page at a time, continuing to
-            // request pages until all of them have been retrieved.
-            $page = $dataService->getCriterionBidLandscape($selector);
+            // Retrieve keyword bid simulations one page at a time, continuing
+            // to request pages until all of them have been retrieved.
+            $fetchedPage = $dataService->queryCriterionBidLandscape(
+                sprintf('%s', $query)
+            );
 
             // Print out some information for each bid landscape.
-            if ($page->getEntries() !== null) {
-                foreach ($page->getEntries() as $bidLandscape) {
+            if ($fetchedPage->getEntries() !== null) {
+                foreach ($fetchedPage->getEntries() as $bidLandscape) {
                     printf(
-                        "Found criterion bid landscape with ad group ID %d, criterion ID"
-                        . " %d, start date '%s', end date '%s', and landscape points:\n",
+                        "Found a criterion bid landscape with ad group ID %d," .
+                        " criterion ID %d, start date '%s', end date '%s'," .
+                        " and landscape points:%s",
                         $bidLandscape->getAdGroupId(),
                         $bidLandscape->getCriterionId(),
                         $bidLandscape->getStartDate(),
-                        $bidLandscape->getEndDate()
+                        $bidLandscape->getEndDate(),
+                        PHP_EOL
                     );
-                    $landscapePointsInPreviousPage = count($bidLandscape->getLandscapePoints());
-                    foreach ($bidLandscape->getLandscapePoints() as $bidLandscapePoint) {
+                    foreach ($bidLandscape->getLandscapePoints() as
+                             $bidLandscapePoint) {
                         printf(
                             "  bid: %d => clicks: %d, cost: %d, impressions: %d"
                             . ", biddable conversions: %.2f, biddable "
-                            . "conversions value: %.2f\n",
+                            . "conversions value: %.2f%s",
                             $bidLandscapePoint->getBid()->getMicroAmount(),
                             $bidLandscapePoint->getClicks(),
                             $bidLandscapePoint->getCost()->getMicroAmount(),
                             $bidLandscapePoint->getImpressions(),
                             $bidLandscapePoint->getBiddableConversions(),
-                            $bidLandscapePoint->getBiddableConversionsValue()
+                            $bidLandscapePoint->getBiddableConversionsValue(),
+                            PHP_EOL
                         );
                     }
-                    print "\n";
+                    print PHP_EOL;
                 }
             }
-        } while ($landscapePointsInPreviousPage >= self::PAGE_SIZE);
+        } while ($query->hasNext($fetchedPage));
     }
 
     public static function main()
@@ -125,7 +120,8 @@ class GetKeywordBidSimulations
 
         // Construct an API session configured from a properties file and the
         // OAuth2 credentials above.
-        $session = (new AdWordsSessionBuilder())->fromFile()->withOAuth2Credential($oAuth2Credential)->build();
+        $session = (new AdWordsSessionBuilder())
+            ->fromFile()->withOAuth2Credential($oAuth2Credential)->build();
         self::runExample(
             new AdWordsServices(),
             $session,

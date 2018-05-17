@@ -20,6 +20,7 @@ namespace Google\AdsApi\AdWords\Reporting\v201802;
 use Google\AdsApi\AdWords\AdWordsGuzzleLogMessageFormatterProvider;
 use Google\AdsApi\AdWords\AdWordsNormalizer;
 use Google\AdsApi\AdWords\AdWordsSession;
+use Google\AdsApi\AdWords\Query\v201802\ReportQuery;
 use Google\AdsApi\AdWords\Reporting\ApiErrorFieldNameConverter;
 use Google\AdsApi\AdWords\Reporting\ReportDownloadResult;
 use Google\AdsApi\AdWords\ReportSettings;
@@ -30,6 +31,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
 use GuzzleHttp\RequestOptions;
+use InvalidArgumentException;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
 use Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer;
@@ -140,6 +142,14 @@ final class ReportDownloader
         $reportFormat,
         ReportSettings $reportSettingsOverride = null
     ) {
+        // The `$reportQuery` argument must be a string. If it is an object
+        // of other types, the object must be converted to a string for this
+        // function to accept it.
+        if (!is_string($reportQuery)) {
+            throw new InvalidArgumentException('The report query must be a' .
+                ' string.');
+        }
+
         return $this->makeReportRequest(
             $this->requestOptionsFactory
                 ->createRequestOptionsWithAwqlQuery(
@@ -147,6 +157,32 @@ final class ReportDownloader
                     $reportFormat,
                     $reportSettingsOverride
                 )
+        );
+    }
+
+    /**
+     * Downloads a report using a report query object.
+     *
+     * @param ReportQuery $reportQuery the report query object that can
+     *     generate an AWQL string
+     * @param string $reportFormat the report format to request
+     * @param null|ReportSettings $reportSettingsOverride the report settings
+     *     used to override the report settings of the AdWords session for this
+     *     request
+     * @return ReportDownloadResult the report download result
+     * @throws ApiException if there are errors during downloading reports
+     */
+    public function downloadReportWithReportQuery(
+        ReportQuery $reportQuery,
+        $reportFormat,
+        ReportSettings $reportSettingsOverride = null
+    ) {
+        $awqlString = sprintf('%s', $reportQuery);
+
+        return $this->downloadReportWithAwql(
+            $awqlString,
+            $reportFormat,
+            $reportSettingsOverride
         );
     }
 

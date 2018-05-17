@@ -758,8 +758,9 @@
                 name="logicalOperator" type="tns:CustomCriteriaSet.LogicalOperator">
                 <annotation>
                   <documentation>
-                    The logical operator to be applied to {@link CustomCriteriaSet#children}.
-                    This attribute is required.
+                    The logical operator to be applied to {@link CustomCriteriaSet#children}. This attribute is
+                    required.
+                    &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -2296,7 +2297,6 @@
               <documentation>
                 The method used for billing the created {@link ProposalLineItem}.
                 &lt;span class="constraint ReadOnly"&gt;This attribute is read-only when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, using sales management.&lt;/li&gt;&lt;li&gt;not using programmatic, using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
-                &lt;span class="constraint Required"&gt;This attribute is required when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -2349,7 +2349,6 @@
                 &lt;p&gt;For a {@link #roadblockingType} of {@link RoadblockingType#CREATIVE_SET}, all
                 creative placeholders must have a master and at least one companion size.
                 &lt;span class="constraint ReadOnly"&gt;This attribute is read-only when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, using sales management.&lt;/li&gt;&lt;li&gt;not using programmatic, using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
-                &lt;span class="constraint Required"&gt;This attribute is required when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -2358,7 +2357,6 @@
               <documentation>
                 Indicates the line item type for the created {@link ProposalLineItem}.
                 &lt;span class="constraint ReadOnly"&gt;This attribute is read-only when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, using sales management.&lt;/li&gt;&lt;li&gt;not using programmatic, using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
-                &lt;span class="constraint Required"&gt;This attribute is required when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -2368,7 +2366,6 @@
                 The priority for the created {@link ProposalLineItem}. The priority is a value
                 between 1 and 16.
                 &lt;span class="constraint ReadOnly"&gt;This attribute is read-only when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, using sales management.&lt;/li&gt;&lt;li&gt;not using programmatic, using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
-                &lt;span class="constraint Required"&gt;This attribute is required when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -2390,7 +2387,6 @@
                 management, it's a combination of {@link ProductTemplate#productSegmentation} and
                 {@link ProductTemplate#builtInTargeting}. See details in {@link ProductTemplate}.
                 &lt;span class="constraint ReadOnly"&gt;This attribute is read-only when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, using sales management.&lt;/li&gt;&lt;li&gt;not using programmatic, using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
-                &lt;span class="constraint Required"&gt;This attribute is required when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -2425,7 +2421,6 @@
                 {@link AdUnitSize sizes} whose {@link AdUnitSize#environmentType} is also
                 {@link EnvironmentType#VIDEO_PLAYER}.
                 &lt;span class="constraint ReadOnly"&gt;This attribute is read-only when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, using sales management.&lt;/li&gt;&lt;li&gt;not using programmatic, using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
-                &lt;span class="constraint Required"&gt;This attribute is required when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -2434,7 +2429,6 @@
               <documentation>
                 The rate of this {@code Product}.
                 &lt;span class="constraint Applicable"&gt;This attribute is applicable when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
-                &lt;span class="constraint Required"&gt;This attribute is required when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -2443,8 +2437,8 @@
             <annotation>
               <documentation>
                 Marketplace information of this {@code Product}.
-                &lt;span class="constraint Applicable"&gt;This attribute is applicable when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, using sales management.&lt;/li&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
-                &lt;span class="constraint Required"&gt;This attribute is required when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, using sales management.&lt;/li&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
+                &lt;span class="constraint Applicable"&gt;This attribute is applicable when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
+                &lt;span class="constraint Required"&gt;This attribute is required when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -6257,48 +6251,6 @@
             &lt;/tr&gt;
             &lt;/table&gt;
             
-            When using programmatic guaranteed and not sales management,
-            the following fields are supported for filtering and/or sorting.
-            
-            &lt;table&gt;
-            &lt;tr&gt;
-            &lt;th scope="col"&gt;PQL Property&lt;/th&gt;
-            &lt;th scope="col"&gt;Object Property&lt;/th&gt;
-            &lt;th scope="col"&gt;Filterable&lt;/th&gt;
-            &lt;th scope="col"&gt;Sortable&lt;/th&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-            &lt;td&gt;{@code status}&lt;/td&gt;
-            &lt;td&gt;{@link Product#status}&lt;/td&gt;
-            &lt;td&gt;Yes&lt;/td&gt;
-            &lt;td&gt;Yes&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-            &lt;td&gt;{@code rateType}&lt;/td&gt;
-            &lt;td&gt;{@link Product#rateType}&lt;/td&gt;
-            &lt;td&gt;Yes&lt;/td&gt;
-            &lt;td&gt;Yes&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-            &lt;td&gt;{@code name}&lt;/td&gt;
-            &lt;td&gt;{@link Product#name}&lt;/td&gt;
-            &lt;td&gt;Yes&lt;/td&gt;
-            &lt;td&gt;Yes&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-            &lt;td&gt;{@code id}&lt;/td&gt;
-            &lt;td&gt;{@link Product#id}&lt;/td&gt;
-            &lt;td&gt;Yes&lt;/td&gt;
-            &lt;td&gt;Yes&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-            &lt;td&gt;{@code lastModifiedDateTime}&lt;/td&gt;
-            &lt;td&gt;{@link Product#lastModifiedDateTime}&lt;/td&gt;
-            &lt;td&gt;Yes&lt;/td&gt;
-            &lt;td&gt;Yes&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;/table&gt;
-            
             @param statement a Publisher Query Language statement which specifies the filtering
             criteria over products
             @return the products that match the given statement
@@ -6486,48 +6438,6 @@
         &lt;td&gt;{@link Product#description}&lt;/td&gt;
         &lt;td&gt;Yes&lt;/td&gt;
         &lt;td&gt;No&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-        &lt;td&gt;{@code id}&lt;/td&gt;
-        &lt;td&gt;{@link Product#id}&lt;/td&gt;
-        &lt;td&gt;Yes&lt;/td&gt;
-        &lt;td&gt;Yes&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-        &lt;td&gt;{@code lastModifiedDateTime}&lt;/td&gt;
-        &lt;td&gt;{@link Product#lastModifiedDateTime}&lt;/td&gt;
-        &lt;td&gt;Yes&lt;/td&gt;
-        &lt;td&gt;Yes&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;/table&gt;
-        
-        When using programmatic guaranteed and not sales management,
-        the following fields are supported for filtering and/or sorting.
-        
-        &lt;table&gt;
-        &lt;tr&gt;
-        &lt;th scope="col"&gt;PQL Property&lt;/th&gt;
-        &lt;th scope="col"&gt;Object Property&lt;/th&gt;
-        &lt;th scope="col"&gt;Filterable&lt;/th&gt;
-        &lt;th scope="col"&gt;Sortable&lt;/th&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-        &lt;td&gt;{@code status}&lt;/td&gt;
-        &lt;td&gt;{@link Product#status}&lt;/td&gt;
-        &lt;td&gt;Yes&lt;/td&gt;
-        &lt;td&gt;Yes&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-        &lt;td&gt;{@code rateType}&lt;/td&gt;
-        &lt;td&gt;{@link Product#rateType}&lt;/td&gt;
-        &lt;td&gt;Yes&lt;/td&gt;
-        &lt;td&gt;Yes&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-        &lt;td&gt;{@code name}&lt;/td&gt;
-        &lt;td&gt;{@link Product#name}&lt;/td&gt;
-        &lt;td&gt;Yes&lt;/td&gt;
-        &lt;td&gt;Yes&lt;/td&gt;
         &lt;/tr&gt;
         &lt;tr&gt;
         &lt;td&gt;{@code id}&lt;/td&gt;

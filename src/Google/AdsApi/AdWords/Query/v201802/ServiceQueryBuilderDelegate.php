@@ -17,6 +17,7 @@
 
 namespace Google\AdsApi\AdWords\Query\v201802;
 
+use Google\AdsApi\AdWords\Query\QueryValidator;
 use Google\AdsApi\AdWords\Query\WhereBuilderInterface;
 use Google\AdsApi\AdWords\Query\WhereClauseAppender;
 use InvalidArgumentException;
@@ -41,17 +42,39 @@ final class ServiceQueryBuilderDelegate
     private $whereBuilders;
 
     /**
-     * Validates a field name.
+     * Creates a new query builder delegate object by copying field names,
+     * WHERE conditions and pagination data from another query builder
+     * delegate object.
      *
-     * @param string $field the field name to be validated
-     * @throws InvalidArgumentException if the field name is null or empty
+     * @param ServiceQueryBuilderDelegate $otherInstance the other query
+     *     builder delegate object for copying field names, WHERE conditions
+     *     and pagination data
+     * @param ServiceQueryBuilder $queryBuilder the query builder object for
+     *     continuation of building a complete AWQL string
+     * @return ServiceQueryBuilderDelegate a new query builder delegate object
+     *     that copies from the input one
      */
-    private static function validateFieldName($field)
-    {
-        if (empty($field)) {
-            throw new InvalidArgumentException('The field name must not be'
-                . ' null or empty.');
+    public static function copyFrom(
+        ServiceQueryBuilderDelegate $otherInstance,
+        ServiceQueryBuilder $queryBuilder
+    ) {
+        $copyingInstance = new self();
+        $copyingInstance->startIndex = $otherInstance->startIndex;
+        $copyingInstance->pageSize = $otherInstance->pageSize;
+        $copyingInstance->orderByFields = $otherInstance->orderByFields;
+        $copyingInstance->selectFields = $otherInstance->selectFields;
+
+        if (isset($otherInstance->whereBuilders)) {
+            $copyingInstance->whereBuilders = [];
+            foreach ($otherInstance->whereBuilders as $whereBuilder) {
+                $copyingInstance->whereBuilders[] =
+                    ServiceQueryWhereBuilder::copyFrom(
+                        $whereBuilder,
+                        $queryBuilder
+                    );
+            }
         }
+        return $copyingInstance;
     }
 
     /**
@@ -68,7 +91,13 @@ final class ServiceQueryBuilderDelegate
         }
 
         foreach ($fields as $field) {
-            self::validateFieldName($field);
+            $validationResult = QueryValidator::validateFieldName($field);
+            if ($validationResult->isFailed()) {
+                throw new InvalidArgumentException('The field array for' .
+                    ' building the SELECT clause contains invalid field name.' .
+                    ' Validation fail reason: ' .
+                    $validationResult->getFailReason());
+            }
         }
 
         // Flipping an array will create a new associative array. The keys of
@@ -111,7 +140,12 @@ final class ServiceQueryBuilderDelegate
      */
     private function orderBy($field, $descOrAsc)
     {
-        self::validateFieldName($field);
+        $validationResult = QueryValidator::validateFieldName($field);
+        if ($validationResult->isFailed()) {
+            throw new InvalidArgumentException('The field name for building' .
+                ' the ORDER BY clause is invalid. Validation fail reason: ' .
+                $validationResult->getFailReason());
+        }
 
         if (!isset($this->orderByFields)) {
             $this->orderByFields = [];

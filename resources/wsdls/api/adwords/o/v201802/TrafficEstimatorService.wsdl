@@ -690,7 +690,7 @@
                 Ads will be served with Google.com search results.
                 &lt;span class="constraint AdxEnabled"&gt;This is disabled for AdX.&lt;/span&gt;
                 &lt;span class="constraint CampaignType"&gt;This field may only be set to true for campaign channel type SEARCH.&lt;/span&gt;
-&lt;span class="constraint CampaignType"&gt;This field may only be set to true for campaign channel subtype UNIVERSAL_APP_CAMPAIGN.&lt;/span&gt;
+&lt;span class="constraint CampaignType"&gt;This field may only be set to true for campaign channel type MULTI_CHANNEL.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may only be set to false for campaign channel type DISPLAY.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may only be set to true for campaign channel subtype SHOPPING_UNIVERSAL_ADS.&lt;/span&gt;
               </documentation>
@@ -703,7 +703,7 @@
                 Ads will be served on partner sites in the Google Search Network
                 (requires {@code GOOGLE_SEARCH}).
                 &lt;span class="constraint AdxEnabled"&gt;This is disabled for AdX.&lt;/span&gt;
-                &lt;span class="constraint CampaignType"&gt;This field may only be set to true for campaign channel subtype UNIVERSAL_APP_CAMPAIGN.&lt;/span&gt;
+                &lt;span class="constraint CampaignType"&gt;This field may only be set to true for campaign channel type MULTI_CHANNEL.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may only be set to true for campaign channel subtype SHOPPING_UNIVERSAL_ADS.&lt;/span&gt;
               </documentation>
             </annotation>
@@ -714,7 +714,7 @@
               <documentation>
                 Ads will be served on specified placements in the Google Display Network.
                 Placements are specified using {@code Placement} criteria.
-                &lt;span class="constraint CampaignType"&gt;This field may only be set to true for campaign channel subtype UNIVERSAL_APP_CAMPAIGN.&lt;/span&gt;
+                &lt;span class="constraint CampaignType"&gt;This field may only be set to true for campaign channel type MULTI_CHANNEL.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may only be set to false for campaign channel subtype SEARCH_MOBILE_APP.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may only be set to true for campaign channel subtype SHOPPING_UNIVERSAL_ADS.&lt;/span&gt;
               </documentation>
@@ -727,7 +727,7 @@
                 Ads will be served on the Google Partner Network. This is available to
                 only some specific Google partner accounts.
                 &lt;span class="constraint AdxEnabled"&gt;This is disabled for AdX.&lt;/span&gt;
-                &lt;span class="constraint CampaignType"&gt;This field may only be set to false for campaign channel subtype UNIVERSAL_APP_CAMPAIGN.&lt;/span&gt;
+                &lt;span class="constraint CampaignType"&gt;This field may only be set to false for campaign channel type MULTI_CHANNEL.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>

@@ -1,3 +1,21 @@
+### 35.0.0
+
+##### AdWords
+
+*   Added `QueryValidator` for v201802 to validate parts of an AWQL string.
+*   Added unit tests for `ServiceQueryBuilder`, `ReportQueryBuilder` and
+    supporting classes for v201802.
+*   Fixed
+    [issue #473](https://github.com/googleads/googleads-php-lib/issues/473).
+
+##### DFP
+
+*   Added `DaiAuthenticationKeyService` for creating, updating and retrieving
+    `DaiAuthenticationKey` objects.
+*   Added support and examples for v201805.
+*   Removed support for v201705.
+*   Removed examples for v201708.
+
 ### 34.0.0
 
 ##### AdWords

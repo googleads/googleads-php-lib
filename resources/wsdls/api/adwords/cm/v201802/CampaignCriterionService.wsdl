@@ -376,6 +376,7 @@
                 &lt;p&gt;To clear an existing bid modifier, specify {@code -1.0} (invalid for initial {@code ADD}
                 operations).
                 &lt;span class="constraint Selectable"&gt;This field can be selected using the value "BidModifier".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
+                &lt;span class="constraint CampaignType"&gt;This field may not be set for campaign channel type SHOPPING with campaign channel subtype SHOPPING_UNIVERSAL_ADS.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>

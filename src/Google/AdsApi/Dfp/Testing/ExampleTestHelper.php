@@ -110,7 +110,8 @@ class ExampleTestHelper
             ->withBindVariableValue('teamId', $teamId);
 
         $result = $service->performUserTeamAssociationAction(
-            new DeleteUserTeamAssociations(), $statementBuilder->toStatement()
+            new DeleteUserTeamAssociations(),
+            $statementBuilder->toStatement()
         );
 
         if (is_null($result) || $result->getNumChanges() < 1) {

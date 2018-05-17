@@ -1490,7 +1490,9 @@
             <annotation>
               <documentation>
                 The number of times that the code for an ad is served by the ad server.
-                &lt;p&gt;Corresponds to "Ad server code served count" in the DFP UI. Compatible with any of the following report types: HISTORICAL, BUSINESS_INTELLIGENCE, SAMPLED_HISTORICAL.&lt;/p&gt;
+                
+                &lt;p&gt;This field is deprecated and will be removed in v201808.
+                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, BUSINESS_INTELLIGENCE, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5120,9 +5122,8 @@
           <enumeration value="REACH_LIFETIME">
             <annotation>
               <documentation>
-                The last 5 months and the current month to date. This date range is only
-                usable for the columns {@link Column#REACH_FREQUENCY},
-                {@link Column#REACH_AVERAGE_REVENUE} and {@link Column#REACH}.
+                The last 63 days. This date range is only usable for the columns
+                {@link Column#REACH_FREQUENCY}, {@link Column#REACH_AVERAGE_REVENUE} and {@link Column#REACH}.
               </documentation>
             </annotation>
           </enumeration>
@@ -5483,7 +5484,7 @@
                 Breaks down reporting data by ad unit. {@link AdUnit#name} and
                 {@link AdUnit#id} are automatically included as columns in the report. Can
                 be used to filter by {@link AdUnit#name}.
-                &lt;p&gt;Corresponds to "Ad unit" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, BUSINESS_INTELLIGENCE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Ad unit" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, BUSINESS_INTELLIGENCE, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5893,7 +5894,9 @@
             <annotation>
               <documentation>
                 Size of the creative requested for an ad.
-                &lt;p&gt;Corresponds to "Ad request size" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH.&lt;/p&gt;
+                
+                &lt;p&gt;This field is deprecated and will be removed in v201808.
+                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, REACH.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6061,8 +6064,10 @@
           <enumeration value="VERIFIED_ADVERTISER_ID">
             <annotation>
               <documentation>
-                ID of the advertiser that filled the ad either directly (through DFP) or indirectly via
-                Google Ad Exchange or another ad network or exchange.
+                ID of the advertiser that filled the ad either directly (through DFP) or indirectly via Google
+                Ad Exchange or another ad network or exchange.
+                
+                &lt;p&gt;This field is deprecated and will be removed in v201808.
                 &lt;p&gt;Compatible with any of the following report types: BUSINESS_INTELLIGENCE, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
@@ -6072,7 +6077,9 @@
               <documentation>
                 Name of the advertiser that filled the ad either directly (through DFP) or indirectly via
                 Google Ad Exchange or another ad network or exchange.
-                &lt;p&gt;Corresponds to "Verified advertiser" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SAMPLED_HISTORICAL.&lt;/p&gt;
+                
+                &lt;p&gt;This field is deprecated and will be removed in v201808.
+                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, REACH, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6869,7 +6876,7 @@
               <documentation>
                 Represents {@link LineItem#effectiveAppliedLabels} as a comma separated list of
                 {@link Label#name} for {@link Dimension#LINE_ITEM_NAME}.
-                &lt;p&gt;Corresponds to "Line item labels" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Line item labels" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6878,7 +6885,7 @@
               <documentation>
                 Represents {@link LineItem#effectiveAppliedLabels} as a comma separated list of
                 {@link Label#id} for {@link Dimension#LINE_ITEM_NAME}.
-                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6888,7 +6895,7 @@
                 Generated as {@code true} for {@link Dimension#LINE_ITEM_NAME} which is eligible
                 for optimization, {@code false} otherwise.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Optimizable" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Optimizable" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6920,7 +6927,7 @@
                 insufficient information about the {@link LineItem}.&lt;/td&gt;
                 &lt;/tr&gt;
                 &lt;/table&gt;
-                &lt;p&gt;Corresponds to "Delivery Indicator" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Delivery Indicator" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6928,7 +6935,7 @@
             <annotation>
               <documentation>
                 Represents {@link LineItem#deliveryRateType} for {@link Dimension#LINE_ITEM_NAME}.
-                &lt;p&gt;Corresponds to "Delivery pacing" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Delivery pacing" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6939,7 +6946,7 @@
                 "{@link FrequencyCap#maxImpressions} impressions per/every {@link FrequencyCap#numTimeUnits}
                 {@link FrequencyCap#timeUnit}" (e.g. "10 impressions every day,500 impressions per lifetime")
                 for {@link Dimension#LINE_ITEM_NAME}.
-                &lt;p&gt;Corresponds to "Frequency cap" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Frequency cap" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6948,7 +6955,7 @@
               <documentation>
                 Represents the monthly reconciliation status of the line item for
                 {@link Dimension#LINE_ITEM_NAME} and {@link Dimension#MONTH_YEAR}.
-                &lt;p&gt;Corresponds to "Line item reconciliation status" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL, PARTNER_FINANCE.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Line item reconciliation status" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6957,7 +6964,7 @@
               <documentation>
                 Represents the monthly last reconciliation date time of the line item for
                 {@link Dimension#LINE_ITEM_NAME} and {@link Dimension#MONTH_YEAR}.
-                &lt;p&gt;Corresponds to "Line item last reconciliation time" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL, PARTNER_FINANCE.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Line item last reconciliation time" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6965,7 +6972,7 @@
             <annotation>
               <documentation>
                 Represents {@link Company#externalId} for {@link Dimension#ADVERTISER_NAME}.
-                &lt;p&gt;Corresponds to "External advertiser ID" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "External advertiser ID" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6974,7 +6981,7 @@
               <documentation>
                 Represents {@link Company#type} for {@link Dimension#ADVERTISER_NAME}.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Advertiser type" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Advertiser type" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6983,7 +6990,7 @@
               <documentation>
                 Represents {@link Company#creditStatus} for {@link Dimension#ADVERTISER_NAME}.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Advertiser credit status" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Advertiser credit status" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6992,7 +6999,7 @@
               <documentation>
                 Represents name and email address in the form of name(email) of primary contact for {@link
                 Dimension#ADVERTISER_NAME}.
-                &lt;p&gt;Corresponds to "Advertiser primary contact" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Advertiser primary contact" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7001,7 +7008,7 @@
               <documentation>
                 Represents the start date (in YYYY-MM-DD format) for {@link Dimension#ORDER_NAME}.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Order start date" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Order start date" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7010,7 +7017,7 @@
               <documentation>
                 Represents the end date (in YYYY-MM-DD format) for {@link Dimension#ORDER_NAME}.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Order end date" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Order end date" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7018,7 +7025,7 @@
             <annotation>
               <documentation>
                 Represents {@link Order#externalOrderId} for {@link Dimension#ORDER_NAME}.
-                &lt;p&gt;Corresponds to "External order ID" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "External order ID" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7027,7 +7034,7 @@
               <documentation>
                 Represents {@link Order#poNumber} for {@link Dimension#ORDER_NAME}.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Order PO number" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Order PO number" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7036,7 +7043,7 @@
               <documentation>
                 Represents {@link Order#orderIsProgrammatic} for {@link Dimension#ORDER_NAME}.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Programmatic order" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Programmatic order" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7044,7 +7051,7 @@
             <annotation>
               <documentation>
                 Represents the name of {@link Order#agencyId} for {@link Dimension#ORDER_NAME}.
-                &lt;p&gt;Corresponds to "Agency" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Agency" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7053,7 +7060,7 @@
               <documentation>
                 Represents {@link Order#agencyId} for {@link Dimension#ORDER_NAME}.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Agency ID" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Agency ID" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7062,7 +7069,7 @@
               <documentation>
                 Represents {@link Order#effectiveAppliedLabels} as a comma separated list of
                 {@link Label#name} for {@link Dimension#ORDER_NAME}.
-                &lt;p&gt;Corresponds to "Order labels" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Order labels" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7071,7 +7078,7 @@
               <documentation>
                 Represents {@link Order#effectiveAppliedLabels} as a comma separated list of
                 {@link Label#id} for {@link Dimension#ORDER_NAME}.
-                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7080,7 +7087,7 @@
               <documentation>
                 The name and email address in the form of name(email) of the trafficker for
                 {@link Dimension#ORDER_NAME}
-                &lt;p&gt;Corresponds to "Trafficker" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Trafficker" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7089,7 +7096,7 @@
               <documentation>
                 Represents {@link Order#traffickerId} for {@link Dimension#ORDER_NAME}.
                 Can be used for filtering.
-                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7098,7 +7105,7 @@
               <documentation>
                 The names and email addresses as a comma separated list of name(email) of the
                 {@link Order#secondaryTraffickerIds} for {@link Dimension#ORDER_NAME}.
-                &lt;p&gt;Corresponds to "Secondary traffickers" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Secondary traffickers" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7107,7 +7114,7 @@
               <documentation>
                 The name and email address in the form of name(email) of the
                 {@link Order#salespersonId} for {@link Dimension#ORDER_NAME}.
-                &lt;p&gt;Corresponds to "Salesperson" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Salesperson" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7116,7 +7123,7 @@
               <documentation>
                 The names and email addresses as a comma separated list of name(email) of the
                 {@link Order#secondarySalespersonIds} for {@link Dimension#ORDER_NAME}.
-                &lt;p&gt;Corresponds to "Secondary salespeople" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Secondary salespeople" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7125,7 +7132,7 @@
               <documentation>
                 The total number of impressions delivered over the lifetime of an
                 {@link Dimension#ORDER_NAME}.
-                &lt;p&gt;Corresponds to "Order lifetime impressions" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Order lifetime impressions" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7134,7 +7141,7 @@
               <documentation>
                 The total number of clicks delivered over the lifetime of an
                 {@link Dimension#ORDER_NAME}.
-                &lt;p&gt;Corresponds to "Order lifetime clicks" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Order lifetime clicks" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7142,7 +7149,7 @@
             <annotation>
               <documentation>
                 The cost of booking all the CPM ads for {@link Dimension#ORDER_NAME}.
-                &lt;p&gt;Corresponds to "Booked CPM" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Booked CPM" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7150,7 +7157,7 @@
             <annotation>
               <documentation>
                 The cost of booking all the CPC ads for {@link Dimension#ORDER_NAME}.
-                &lt;p&gt;Corresponds to "Booked CPC" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Booked CPC" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7159,7 +7166,7 @@
               <documentation>
                 Represents the start date (in YYYY-MM-DD format) for {@link Dimension#LINE_ITEM_NAME}.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Line item start date" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Line item start date" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7168,7 +7175,7 @@
               <documentation>
                 Represents the end date (in YYYY-MM-DD format) for {@link Dimension#LINE_ITEM_NAME}.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Line item end date" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Line item end date" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7177,7 +7184,7 @@
               <documentation>
                 Represents {@link LineItem#externalId} for {@link Dimension#LINE_ITEM_NAME}.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "External Line Item ID" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "External Line Item ID" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7186,7 +7193,7 @@
               <documentation>
                 Represents {@link LineItem#costType} for {@link Dimension#LINE_ITEM_NAME}.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Cost type" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Cost type" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7194,7 +7201,7 @@
             <annotation>
               <documentation>
                 Represents {@link LineItem#costPerUnit} for {@link Dimension#LINE_ITEM_NAME}.
-                &lt;p&gt;Corresponds to "Rate" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Rate" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7202,7 +7209,7 @@
             <annotation>
               <documentation>
                 Represents the 3 letter currency code for {@link Dimension#LINE_ITEM_NAME}.
-                &lt;p&gt;Corresponds to "Currency code" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Currency code" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7211,7 +7218,7 @@
               <documentation>
                 The total number of impressions, clicks or days that is reserved
                 for {@link Dimension#LINE_ITEM_NAME}.
-                &lt;p&gt;Corresponds to "Goal quantity" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Goal quantity" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7221,7 +7228,7 @@
                 The ratio between the goal quantity for {@link Dimension#LINE_ITEM_NAME} of
                 {@link LineItemType#SPONSORSHIP} and the {@link #LINE_ITEM_GOAL_QUANTITY}.
                 Represented as a number between 0..100.
-                &lt;p&gt;Corresponds to "Sponsorship goal (%)" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Sponsorship goal (%)" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7230,7 +7237,7 @@
               <documentation>
                 The total number of impressions delivered over the lifetime of a
                 {@link Dimension#LINE_ITEM_NAME}.
-                &lt;p&gt;Corresponds to "Line item lifetime impressions" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Line item lifetime impressions" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7239,7 +7246,7 @@
               <documentation>
                 The total number of clicks delivered over the lifetime of a
                 {@link Dimension#LINE_ITEM_NAME}.
-                &lt;p&gt;Corresponds to "Line item lifetime clicks" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Line item lifetime clicks" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7249,7 +7256,7 @@
                 Represents {@link LineItem#priority} for {@link Dimension#LINE_ITEM_NAME} as
                 a value between 1 and 16.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Line item priority" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Line item priority" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, BUSINESS_INTELLIGENCE, DATA_LEAKAGE, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7258,7 +7265,7 @@
               <documentation>
                 Indicates if a creative is a regular creative or creative set.
                 Values will be 'Creative' or 'Creative set'
-                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, REACH, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, REACH, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7266,7 +7273,7 @@
             <annotation>
               <documentation>
                 The type of creative in a creative set - master or companion.
-                &lt;p&gt;Corresponds to "Master or Companion" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Master or Companion" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7275,7 +7282,7 @@
               <documentation>
                 Represents the {@link LineItem#contractedUnitsBought} quantity
                 for {@link Dimension#LINE_ITEM_NAME}.
-                &lt;p&gt;Corresponds to "Contracted quantity" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Contracted quantity" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7285,7 +7292,7 @@
                 Represents the {@link LineItem#discount} for {@link Dimension#LINE_ITEM_NAME}.
                 The number is either a percentage or an absolute value depending on
                 {@link LineItem#discountType}.
-                &lt;p&gt;Corresponds to "Discount" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Discount" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7293,7 +7300,7 @@
             <annotation>
               <documentation>
                 The cost of booking for a non-CPD {@link Dimension#LINE_ITEM_NAME}.
-                &lt;p&gt;Corresponds to "Booked revenue (exclude CPD)" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Booked revenue (exclude CPD)" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7302,7 +7309,7 @@
               <documentation>
                 Represents {@link Company#appliedLabels} as a comma separated list of
                 {@link Label#name} for {@link Dimension#ADVERTISER_NAME}.
-                &lt;p&gt;Corresponds to "Advertiser labels" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Advertiser labels" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7311,7 +7318,7 @@
               <documentation>
                 Represents {@link Company#appliedLabels} as a comma separated list of
                 {@link Label#id} for {@link Dimension#ADVERTISER_NAME}.
-                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7319,7 +7326,7 @@
             <annotation>
               <documentation>
                 Represents the click-through URL for {@link Dimension#CREATIVE_NAME}.
-                &lt;p&gt;Corresponds to "Click-through URL" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Click-through URL" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7327,7 +7334,7 @@
             <annotation>
               <documentation>
                 Represents whether a creative is SSL-compliant.
-                &lt;p&gt;Corresponds to "Creative SSL scan result" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Creative SSL scan result" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7335,7 +7342,7 @@
             <annotation>
               <documentation>
                 Represents whether a creative's SSL status was overridden.
-                &lt;p&gt;Corresponds to "Creative SSL compliance override" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Creative SSL compliance override" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7345,7 +7352,7 @@
                 Represents a {@link LineItemCreativeAssociation#startDateTime} for a
                 {@link Dimension#LINE_ITEM_NAME} and a {@link Dimension#CREATIVE_NAME}.
                 Includes the date without the time.
-                &lt;p&gt;Corresponds to "Creative start date" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL, SELL_THROUGH, SALES.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Creative start date" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7355,7 +7362,7 @@
                 Represents a {@link LineItemCreativeAssociation#endDateTime} for a
                 {@link Dimension#LINE_ITEM_NAME} and a {@link Dimension#CREATIVE_NAME}.
                 Includes the date without the time.
-                &lt;p&gt;Corresponds to "Creative end date" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, DATA_LEAKAGE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL, SELL_THROUGH, SALES.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Creative end date" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7827,7 +7834,7 @@
               <documentation>
                 Represents the monthly reconciliation status of the proposal line item for
                 {@link Dimension#PROPOSAL_LINE_ITEM_NAME} and {@link Dimension#MONTH_YEAR}.
-                &lt;p&gt;Corresponds to "Proposal line item reconciliation status" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, SAMPLED_HISTORICAL, PARTNER_FINANCE.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Proposal line item reconciliation status" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7836,7 +7843,7 @@
               <documentation>
                 Represents the monthly last reconciliation date time of the proposal line item for
                 {@link Dimension#PROPOSAL_LINE_ITEM_NAME} and {@link Dimension#MONTH_YEAR}.
-                &lt;p&gt;Corresponds to "Proposal line item last reconciliation time" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, SAMPLED_HISTORICAL, PARTNER_FINANCE.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Proposal line item last reconciliation time" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7854,7 +7861,7 @@
                 Represents the corresponding product package item's archival status of
                 {@link Dimension#PROPOSAL_LINE_ITEM_NAME}. Not available as an attribute
                 to report on, but exists as an attribute for filtering using PQL.
-                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -8011,7 +8018,7 @@
                 Represents the {@link Dimension#ALL_SALESPEOPLE_NAME}'s contribution to a {@link
                 Dimension#PROPOSAL_NAME}. This is different from {@link #SALESPERSON_PROPOSAL_CONTRIBUTION} as
                 this will include both primary and secondary salespeople.
-                &lt;p&gt;Corresponds to "Salespeople proposal contribution" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SALES, SAMPLED_HISTORICAL, SELL_THROUGH.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Salespeople proposal contribution" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -8022,7 +8029,7 @@
                 Dimension#PROPOSAL_NAME}.
                 
                 &lt;p&gt;See {@link #SALESPERSON_PROPOSAL_CONTRIBUTION}.
-                &lt;p&gt;Corresponds to "Salesperson proposal contribution" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Salesperson proposal contribution" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -8080,7 +8087,7 @@
               <documentation>
                 Represents the {@link CmsContent#displayName} within the first element of
                 {@link Content#cmsContent} for {@link Dimension#CONTENT_NAME}.
-                &lt;p&gt;Corresponds to "Content source name" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Content source name" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -8089,7 +8096,7 @@
               <documentation>
                 Represents the {@link CmsContent#cmsContentId} within the first element of
                 {@link Content#cmsContent} for {@link Dimension#CONTENT_NAME}.
-                &lt;p&gt;Corresponds to "ID of the video in the content source" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "ID of the video in the content source" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -8097,7 +8104,7 @@
             <annotation>
               <documentation>
                 Represents {@link AdUnit#adUnitCode} for {@link Dimension#AD_UNIT_NAME}.
-                &lt;p&gt;Corresponds to "Ad unit code" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, BUSINESS_INTELLIGENCE, DFP_HISTORICAL_DATA_STUDIO, SAMPLED_HISTORICAL.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Ad unit code" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, SAMPLED_HISTORICAL.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>

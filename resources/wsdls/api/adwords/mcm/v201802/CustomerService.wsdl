@@ -2310,8 +2310,6 @@
             <annotation>
               <documentation>
                 Whether parallel tracking is enabled for this customer.
-                
-                &lt;p&gt;This field is supported only in test accounts.
               </documentation>
             </annotation>
           </element>

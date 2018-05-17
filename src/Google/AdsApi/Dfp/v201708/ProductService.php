@@ -247,48 +247,6 @@ class ProductService extends \Google\AdsApi\Common\AdsSoapClient
      * </tr>
      * </table>
      *
-     * When using programmatic guaranteed and not sales management,
-     * the following fields are supported for filtering and/or sorting.
-     *
-     * <table>
-     * <tr>
-     * <th scope="col">PQL Property</th>
-     * <th scope="col">Object Property</th>
-     * <th scope="col">Filterable</th>
-     * <th scope="col">Sortable</th>
-     * </tr>
-     * <tr>
-     * <td>{@code status}</td>
-     * <td>{@link Product#status}</td>
-     * <td>Yes</td>
-     * <td>Yes</td>
-     * </tr>
-     * <tr>
-     * <td>{@code rateType}</td>
-     * <td>{@link Product#rateType}</td>
-     * <td>Yes</td>
-     * <td>Yes</td>
-     * </tr>
-     * <tr>
-     * <td>{@code name}</td>
-     * <td>{@link Product#name}</td>
-     * <td>Yes</td>
-     * <td>Yes</td>
-     * </tr>
-     * <tr>
-     * <td>{@code id}</td>
-     * <td>{@link Product#id}</td>
-     * <td>Yes</td>
-     * <td>Yes</td>
-     * </tr>
-     * <tr>
-     * <td>{@code lastModifiedDateTime}</td>
-     * <td>{@link Product#lastModifiedDateTime}</td>
-     * <td>Yes</td>
-     * <td>Yes</td>
-     * </tr>
-     * </table>
-     *
      * criteria over products
      *
      * @param \Google\AdsApi\Dfp\v201708\Statement $statement

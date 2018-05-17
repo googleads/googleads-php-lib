@@ -37,10 +37,8 @@ use Google\AdsApi\Common\OAuth2TokenBuilder;
 class UpdateKeyword
 {
 
-//  const AD_GROUP_ID = 'INSERT_AD_GROUP_ID_HERE';
-//  const CRITERION_ID = 'INSERT_KEYWORD_CRITERION_ID_HERE';
-    const AD_GROUP_ID = '17453504533';
-    const CRITERION_ID = '174223779';
+    const AD_GROUP_ID = 'INSERT_AD_GROUP_ID_HERE';
+    const CRITERION_ID = 'INSERT_KEYWORD_CRITERION_ID_HERE';
 
     public static function runExample(
         AdWordsServices $adWordsServices,

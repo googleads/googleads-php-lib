@@ -90,7 +90,8 @@ class AddCampaignTargetingCrtieria
             $radius->setType(ConstantOperandConstantType::DOUBLE);
             $radius->setUnit(ConstantOperandUnit::MILES);
             $radius->setDoubleValue(10.0);
-            $distance = new LocationExtensionOperand($radius);
+            $distance = new LocationExtensionOperand();
+            $distance->setRadius($radius);
             $locationGroup = new LocationGroups();
             $locationGroup->setFeedId(intval($locationFeedId));
             $locationGroup->setMatchingFunction(

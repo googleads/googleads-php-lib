@@ -1617,6 +1617,7 @@
                   <documentation>
                     The amount of money.
                     &lt;span class="constraint InRange"&gt;This field must be greater than or equal to 0.&lt;/span&gt;
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET, ADD.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
