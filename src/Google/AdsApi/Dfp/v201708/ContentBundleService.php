@@ -26,6 +26,7 @@ class ContentBundleService extends \Google\AdsApi\Common\AdsSoapClient
       'ContentBundleAction' => 'Google\\AdsApi\\Dfp\\v201708\\ContentBundleAction',
       'ContentBundle' => 'Google\\AdsApi\\Dfp\\v201708\\ContentBundle',
       'ContentBundlePage' => 'Google\\AdsApi\\Dfp\\v201708\\ContentBundlePage',
+      'ContentFilterError' => 'Google\\AdsApi\\Dfp\\v201708\\ContentFilterError',
       'Date' => 'Google\\AdsApi\\Dfp\\v201708\\Date',
       'DateTime' => 'Google\\AdsApi\\Dfp\\v201708\\DateTime',
       'DateTimeValue' => 'Google\\AdsApi\\Dfp\\v201708\\DateTimeValue',

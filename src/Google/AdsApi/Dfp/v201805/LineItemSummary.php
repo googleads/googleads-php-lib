@@ -295,6 +295,11 @@ class LineItemSummary
     protected $viewabilityProviderCompanyId = null;
 
     /**
+     * @var string $userConsentEligibility
+     */
+    protected $userConsentEligibility = null;
+
+    /**
      * @param int $orderId
      * @param int $id
      * @param string $name
@@ -352,8 +357,9 @@ class LineItemSummary
      * @param \Google\AdsApi\Dfp\v201805\Goal[] $secondaryGoals
      * @param \Google\AdsApi\Dfp\v201805\GrpSettings $grpSettings
      * @param int $viewabilityProviderCompanyId
+     * @param string $userConsentEligibility
      */
-    public function __construct($orderId = null, $id = null, $name = null, $externalId = null, $orderName = null, $startDateTime = null, $startDateTimeType = null, $endDateTime = null, $autoExtensionDays = null, $unlimitedEndDateTime = null, $creativeRotationType = null, $deliveryRateType = null, $roadblockingType = null, array $frequencyCaps = null, $lineItemType = null, $priority = null, $costPerUnit = null, $valueCostPerUnit = null, $costType = null, $discountType = null, $discount = null, $contractedUnitsBought = null, array $creativePlaceholders = null, array $activityAssociations = null, $environmentType = null, $companionDeliveryOption = null, $allowOverbook = null, $skipInventoryCheck = null, $skipCrossSellingRuleWarningChecks = null, $reserveAtCreation = null, $stats = null, $deliveryIndicator = null, $deliveryData = null, $budget = null, $status = null, $reservationStatus = null, $isArchived = null, $webPropertyCode = null, array $appliedLabels = null, array $effectiveAppliedLabels = null, $disableSameAdvertiserCompetitiveExclusion = null, $lastModifiedByApp = null, $notes = null, $lastModifiedDateTime = null, $creationDateTime = null, $isPrioritizedPreferredDealsEnabled = null, $adExchangeAuctionOpeningPriority = null, array $customFieldValues = null, $isSetTopBoxEnabled = null, $isMissingCreatives = null, $setTopBoxDisplayInfo = null, $programmaticCreativeSource = null, $videoMaxDuration = null, $primaryGoal = null, array $secondaryGoals = null, $grpSettings = null, $viewabilityProviderCompanyId = null)
+    public function __construct($orderId = null, $id = null, $name = null, $externalId = null, $orderName = null, $startDateTime = null, $startDateTimeType = null, $endDateTime = null, $autoExtensionDays = null, $unlimitedEndDateTime = null, $creativeRotationType = null, $deliveryRateType = null, $roadblockingType = null, array $frequencyCaps = null, $lineItemType = null, $priority = null, $costPerUnit = null, $valueCostPerUnit = null, $costType = null, $discountType = null, $discount = null, $contractedUnitsBought = null, array $creativePlaceholders = null, array $activityAssociations = null, $environmentType = null, $companionDeliveryOption = null, $allowOverbook = null, $skipInventoryCheck = null, $skipCrossSellingRuleWarningChecks = null, $reserveAtCreation = null, $stats = null, $deliveryIndicator = null, $deliveryData = null, $budget = null, $status = null, $reservationStatus = null, $isArchived = null, $webPropertyCode = null, array $appliedLabels = null, array $effectiveAppliedLabels = null, $disableSameAdvertiserCompetitiveExclusion = null, $lastModifiedByApp = null, $notes = null, $lastModifiedDateTime = null, $creationDateTime = null, $isPrioritizedPreferredDealsEnabled = null, $adExchangeAuctionOpeningPriority = null, array $customFieldValues = null, $isSetTopBoxEnabled = null, $isMissingCreatives = null, $setTopBoxDisplayInfo = null, $programmaticCreativeSource = null, $videoMaxDuration = null, $primaryGoal = null, array $secondaryGoals = null, $grpSettings = null, $viewabilityProviderCompanyId = null, $userConsentEligibility = null)
     {
       $this->orderId = $orderId;
       $this->id = $id;
@@ -412,6 +418,7 @@ class LineItemSummary
       $this->secondaryGoals = $secondaryGoals;
       $this->grpSettings = $grpSettings;
       $this->viewabilityProviderCompanyId = $viewabilityProviderCompanyId;
+      $this->userConsentEligibility = $userConsentEligibility;
     }
 
     /**
@@ -1442,6 +1449,24 @@ class LineItemSummary
     {
       $this->viewabilityProviderCompanyId = (!is_null($viewabilityProviderCompanyId) && PHP_INT_SIZE === 4)
           ? floatval($viewabilityProviderCompanyId) : $viewabilityProviderCompanyId;
+      return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUserConsentEligibility()
+    {
+      return $this->userConsentEligibility;
+    }
+
+    /**
+     * @param string $userConsentEligibility
+     * @return \Google\AdsApi\Dfp\v201805\LineItemSummary
+     */
+    public function setUserConsentEligibility($userConsentEligibility)
+    {
+      $this->userConsentEligibility = $userConsentEligibility;
       return $this;
     }
 

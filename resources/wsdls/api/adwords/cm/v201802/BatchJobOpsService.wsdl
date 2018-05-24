@@ -19,10 +19,8 @@
       <complexType name="Ad">
         <annotation>
           <documentation>
-            The base class of all ad types. {@code Ad} objects themselves cannot be modified. If you want to
-            make a change to an {@code Ad} object, you must REMOVE its AdGroupAd and ADD a new AdGroupAd with
-            the new {@code Ad}. This will result in a new {@code Ad} ID, so stats for the original {@code Ad}
-            and the new {@code Ad} will appear under separate IDs in reports.
+            The base class of all ad types. {@code Ad}s are created using the {@code AdGroupAdService}.
+            Some ad types such as {@code ExpandedTextAd}s may be modified using the {@code AdService}.
             
             &lt;p&gt;When calling {@code AdGroupAdService} to update the {@code status} of an {@code AdGroupAd},
             you can construct an {@code Ad} object (instead of the {@code Ad}'s concrete type) with the
@@ -12246,7 +12244,7 @@
           <enumeration value="SHOPPING_UNIVERSAL_ADS">
             <annotation>
               <documentation>
-                Ad group type for Universal Shopping Campaigns.
+                Ad group type for goal-optimized Shopping Campaigns.
               </documentation>
             </annotation>
           </enumeration>
@@ -12422,9 +12420,9 @@
           <enumeration value="SHOPPING_UNIVERSAL_ADS">
             <annotation>
               <documentation>
-                Campaign type for retail advertising, that targets multiple advertising channels
-                across Search, Google Display Network, and YouTube. It optimizes automatically
-                towards the retailer's business objectives.
+                Campaigns specialized for retail advertising, that target multiple advertising
+                channels across Search, Google Display Network, and YouTube. These campaigns
+                optimize automatically towards the retailer's business objectives.
               </documentation>
             </annotation>
           </enumeration>

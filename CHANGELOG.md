@@ -1,3 +1,12 @@
+### 35.1.0
+
+##### DFP
+
+*   Added `ContentFilterError`, `ContentFilterErrorReason` for all versions.
+    These classes are for deserializing server errors.
+*   Added `UserConsentEligibility` and updated `LineItem`, `LineItemSummary`
+    for v201805 to make line items ineligible for non-personalized ad requests.
+
 ### 35.0.0
 
 ##### AdWords

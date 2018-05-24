@@ -276,6 +276,20 @@
           </element>
         </sequence>
       </complexType>
+      <complexType name="ContentFilterError">
+        <annotation>
+          <documentation>
+            Errors associated with the incorrect creation of a {@link Condition}.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ContentFilterError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
       <complexType name="Date">
         <annotation>
           <documentation>
@@ -1151,6 +1165,24 @@
               </documentation>
             </annotation>
           </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="ContentFilterError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the {@link ContentFilterError}.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="WRONG_NUMBER_OF_ARGUMENTS"/>
+          <enumeration value="ANY_FILTER_NOT_SUPPORTED"/>
         </restriction>
       </simpleType>
       <simpleType name="FeatureError.Reason">

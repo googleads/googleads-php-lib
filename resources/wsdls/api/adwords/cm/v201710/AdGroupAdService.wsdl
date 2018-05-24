@@ -19,10 +19,8 @@
       <complexType name="Ad">
         <annotation>
           <documentation>
-            The base class of all ad types. {@code Ad} objects themselves cannot be modified. If you want to
-            make a change to an {@code Ad} object, you must REMOVE its AdGroupAd and ADD a new AdGroupAd with
-            the new {@code Ad}. This will result in a new {@code Ad} ID, so stats for the original {@code Ad}
-            and the new {@code Ad} will appear under separate IDs in reports.
+            The base class of all ad types. {@code Ad}s are created using the {@code AdGroupAdService}.
+            Some ad types such as {@code ExpandedTextAd}s may be modified using the {@code AdService}.
             
             &lt;p&gt;When calling {@code AdGroupAdService} to update the {@code status} of an {@code AdGroupAd},
             you can construct an {@code Ad} object (instead of the {@code Ad}'s concrete type) with the

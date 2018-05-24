@@ -1473,6 +1473,43 @@
           </enumeration>
         </restriction>
       </simpleType>
+      <simpleType name="ThirdPartyAudienceSegment.AudienceSegmentApprovalStatus">
+        <annotation>
+          <documentation>
+            Approval status values for {@link ThirdPartyAudienceSegment} objects.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNAPPROVED">
+            <annotation>
+              <documentation>
+                Specifies that this segment is waiting to be approved or rejected. It cannot be targeted.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="APPROVED">
+            <annotation>
+              <documentation>
+                Specifies that this segment is approved and can be targeted.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="REJECTED">
+            <annotation>
+              <documentation>
+                Specifies that this segment is rejected and cannot be targeted.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
       <simpleType name="AuthenticationError.Reason">
         <restriction base="xsd:string">
           <enumeration value="AMBIGUOUS_SOAP_REQUEST_HEADER">
@@ -1883,76 +1920,6 @@
           </enumeration>
         </restriction>
       </simpleType>
-      <simpleType name="ThirdPartyAudienceSegment.AudienceSegmentApprovalStatus">
-        <annotation>
-          <documentation>
-            Approval status values for {@link ThirdPartyAudienceSegment} objects.
-          </documentation>
-        </annotation>
-        <restriction base="xsd:string">
-          <enumeration value="UNAPPROVED">
-            <annotation>
-              <documentation>
-                Specifies that this segment is waiting to be approved or rejected. It cannot be targeted.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="APPROVED">
-            <annotation>
-              <documentation>
-                Specifies that this segment is approved and can be targeted.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="REJECTED">
-            <annotation>
-              <documentation>
-                Specifies that this segment is rejected and cannot be targeted.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="UNKNOWN">
-            <annotation>
-              <documentation>
-                The value returned if the actual value is not exposed by the requested API version.
-              </documentation>
-            </annotation>
-          </enumeration>
-        </restriction>
-      </simpleType>
-      <simpleType name="ThirdPartyAudienceSegment.LicenseType">
-        <annotation>
-          <documentation>
-            Specifies the license type of a {@link ThirdPartyAudienceSegment}.
-          </documentation>
-        </annotation>
-        <restriction base="xsd:string">
-          <enumeration value="DIRECT_LICENSE">
-            <annotation>
-              <documentation>
-                A direct license is the result of a direct contract between the data provider
-                and the publisher.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="GLOBAL_LICENSE">
-            <annotation>
-              <documentation>
-                A global license is the result of an agreement between Google and the data provider, which
-                agrees to license their audience segments to all the publishers and/or advertisers
-                of the Doubleclick ecosystem.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="UNKNOWN">
-            <annotation>
-              <documentation>
-                The value returned if the actual value is not exposed by the requested API version.
-              </documentation>
-            </annotation>
-          </enumeration>
-        </restriction>
-      </simpleType>
       <simpleType name="FeatureError.Reason">
         <restriction base="xsd:string">
           <enumeration value="MISSING_FEATURE">
@@ -2010,6 +1977,39 @@
             <annotation>
               <documentation>
                 Mutate succeeded but server was unable to build response. Client should not retry mutate.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="ThirdPartyAudienceSegment.LicenseType">
+        <annotation>
+          <documentation>
+            Specifies the license type of a {@link ThirdPartyAudienceSegment}.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="DIRECT_LICENSE">
+            <annotation>
+              <documentation>
+                A direct license is the result of a direct contract between the data provider and the
+                publisher.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="GLOBAL_LICENSE">
+            <annotation>
+              <documentation>
+                A global license is the result of an agreement between Google and the data provider, which
+                agrees to license their audience segments to all the publishers and/or advertisers of the
+                Doubleclick ecosystem.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
               </documentation>
             </annotation>
           </enumeration>
