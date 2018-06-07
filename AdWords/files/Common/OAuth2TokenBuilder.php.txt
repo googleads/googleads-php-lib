@@ -219,7 +219,7 @@ final class OAuth2TokenBuilder implements AdsBuilder
                     . '\'scopes\' must be set when using service account flow.'
                 );
             }
-        } else if ($this->clientId === null
+        } elseif ($this->clientId === null
             || $this->clientSecret === null
             || $this->refreshToken === null) {
             throw new InvalidArgumentException(

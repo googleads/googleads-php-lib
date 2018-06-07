@@ -172,7 +172,7 @@ class ReportDownloader
                     ReportJobStatus::IN_PROGRESS
                 )
             );
-        } else if ($reportJobStatus === ReportJobStatus::FAILED) {
+        } elseif ($reportJobStatus === ReportJobStatus::FAILED) {
             throw new UnexpectedValueException(
                 sprintf(
                     'Cannot download report %d because it has a status of %s.',
