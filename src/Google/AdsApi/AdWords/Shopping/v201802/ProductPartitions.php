@@ -310,7 +310,7 @@ final class ProductPartitions
                 (new ReflectionClass($node->getCaseValue()))->getShortName();
             if ($node->getCaseValue() instanceof ProductCanonicalCondition) {
                 $value = $node->getCaseValue()->getCondition();
-            } else if ($node->getCaseValue() instanceof
+            } elseif ($node->getCaseValue() instanceof
                 ProductBiddingCategory) {
                 $value = sprintf(
                     '%s (%s)',

@@ -1,3 +1,9 @@
+### 35.2.0
+
+##### AdWords
+
+*   Added support and examples for v201806.
+
 ### 35.1.0
 
 ##### DFP

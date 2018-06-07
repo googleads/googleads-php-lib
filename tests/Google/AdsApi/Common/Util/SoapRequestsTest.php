@@ -25,52 +25,57 @@ use PHPUnit\Framework\TestCase;
  * @see SoapRequests
  * @small
  */
-class SoapRequestsTest extends TestCase {
+class SoapRequestsTest extends TestCase
+{
 
   /**
    * @covers Google\AdsApi\Common\Util\SoapRequests::replaceReferences
    */
-  public function testReplaceReferencesInvalidXmlIsNoOp() {
-    $invalidXml = 'hello world';
-    $this->assertSame(
-        $invalidXml,
-        SoapRequests::replaceReferences($invalidXml)
-    );
-  }
+    public function testReplaceReferencesInvalidXmlIsNoOp()
+    {
+        $invalidXml = 'hello world';
+        $this->assertSame(
+            $invalidXml,
+            SoapRequests::replaceReferences($invalidXml)
+        );
+    }
 
   /**
    * @covers Google\AdsApi\Common\Util\SoapRequests::replaceReferences
    */
-  public function testReplaceReferencesNullXmlIsNoOp() {
-    $nullXml = null;
-    $this->assertSame(
-        $nullXml,
-        SoapRequests::replaceReferences($nullXml)
-    );
-  }
+    public function testReplaceReferencesNullXmlIsNoOp()
+    {
+        $nullXml = null;
+        $this->assertSame(
+            $nullXml,
+            SoapRequests::replaceReferences($nullXml)
+        );
+    }
 
   /**
    * @covers Google\AdsApi\Common\Util\SoapRequests::replaceReferences
    */
-  public function testReplaceReferencesNoRefsIsNoOp() {
-    $requestXml = FakeSoapPayloadsAndLogsProvider::getFakeGetCreativesRequest();
-    $this->assertXmlStringEqualsXmlString(
-        $requestXml,
-        SoapRequests::replaceReferences($requestXml)
-    );
-  }
+    public function testReplaceReferencesNoRefsIsNoOp()
+    {
+        $requestXml = FakeSoapPayloadsAndLogsProvider::getFakeGetCreativesRequest();
+        $this->assertXmlStringEqualsXmlString(
+            $requestXml,
+            SoapRequests::replaceReferences($requestXml)
+        );
+    }
 
   /**
    * @covers Google\AdsApi\Common\Util\SoapRequests::replaceReferences
    */
-  public function testReplaceReferencesAllRefsReplaced() {
-    $requestXmlWithRefs =
+    public function testReplaceReferencesAllRefsReplaced()
+    {
+        $requestXmlWithRefs =
         FakeSoapPayloadsAndLogsProvider::getFakeGetCreativesRequestWithRefs();
-    $requestXmlWithRefsReplaced = FakeSoapPayloadsAndLogsProvider
+        $requestXmlWithRefsReplaced = FakeSoapPayloadsAndLogsProvider
         ::getFakeGetCreativesRequestWithRefsReplaced();
-    $this->assertXmlStringEqualsXmlString(
-        $requestXmlWithRefsReplaced,
-        SoapRequests::replaceReferences($requestXmlWithRefs)
-    );
-  }
+        $this->assertXmlStringEqualsXmlString(
+            $requestXmlWithRefsReplaced,
+            SoapRequests::replaceReferences($requestXmlWithRefs)
+        );
+    }
 }

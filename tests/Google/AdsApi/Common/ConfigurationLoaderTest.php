@@ -26,59 +26,67 @@ use PHPUnit\Framework\TestCase;
  * @see ConfigurationLoader
  * @small
  */
-class ConfigurationLoaderTest extends TestCase {
+class ConfigurationLoaderTest extends TestCase
+{
 
-  private $configurationLoader;
+    private $configurationLoader;
 
   /**
    * @see PHPUnit\Framework\TestCase::setUp
    */
-  protected function setUp() {
-    $environmentalVariablesMock = $this
+    protected function setUp()
+    {
+        $environmentalVariablesMock = $this
         ->getMockBuilder(EnvironmentalVariables::class)
         ->getMock();
-    $environmentalVariablesMock
+        $environmentalVariablesMock
         ->method('getHome')
         ->willReturn(ConfigurationLoaderTestProvider::getFilePathToFakeHome());
-    $this->configurationLoader =
+        $this->configurationLoader =
         new ConfigurationLoader($environmentalVariablesMock);
-  }
+    }
 
   /**
    * @covers Google\AdsApi\Common\ConfigurationLoader::fromFile
    */
-  public function testFromFileFileExists() {
-    $config = $this->configurationLoader->fromFile(
-        ConfigurationLoaderTestProvider::getFilePathForTestIniFile());
-    $this->assertNotNull($config);
-    $this->assertInstanceOf(Configuration::class, $config);
-  }
+    public function testFromFileFileExists()
+    {
+        $config = $this->configurationLoader->fromFile(
+            ConfigurationLoaderTestProvider::getFilePathForTestIniFile()
+        );
+        $this->assertNotNull($config);
+        $this->assertInstanceOf(Configuration::class, $config);
+    }
 
   /**
    * @covers Google\AdsApi\Common\ConfigurationLoader::fromFile
    */
-  public function testFromFileFileExistsInHome() {
-    $config = $this->configurationLoader->fromFile('home_adsapi_php.ini');
-    $this->assertNotNull($config);
-    $this->assertInstanceOf(Configuration::class, $config);
-  }
+    public function testFromFileFileExistsInHome()
+    {
+        $config = $this->configurationLoader->fromFile('home_adsapi_php.ini');
+        $this->assertNotNull($config);
+        $this->assertInstanceOf(Configuration::class, $config);
+    }
 
   /**
    * @covers Google\AdsApi\Common\ConfigurationLoader::fromFile
    * @expectedException InvalidArgumentException
    */
-  public function testFromFileFileDoesNotExistAnywhere() {
-    $this->configurationLoader->fromFile('asdf.ini');
-  }
+    public function testFromFileFileDoesNotExistAnywhere()
+    {
+        $this->configurationLoader->fromFile('asdf.ini');
+    }
 
   /**
    * @covers Google\AdsApi\Common\ConfigurationLoader::fromString
    */
-  public function testFromString() {
-    $iniString = file_get_contents(
-        ConfigurationLoaderTestProvider::getFilePathForTestIniFile());
-    $config = $this->configurationLoader->fromString($iniString);
-    $this->assertNotNull($config);
-    $this->assertInstanceOf(Configuration::class, $config);
-  }
+    public function testFromString()
+    {
+        $iniString = file_get_contents(
+            ConfigurationLoaderTestProvider::getFilePathForTestIniFile()
+        );
+        $config = $this->configurationLoader->fromString($iniString);
+        $this->assertNotNull($config);
+        $this->assertInstanceOf(Configuration::class, $config);
+    }
 }

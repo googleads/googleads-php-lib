@@ -13,10 +13,14 @@ class ReportDefinitionService extends \Google\AdsApi\Common\AdsSoapClient
      * @var array $classmap The defined classes
      */
     private static $classmap = array (
+      'ApiError' => 'Google\\AdsApi\\AdWords\\v201802\\cm\\ApiError',
+      'ApiException' => 'Google\\AdsApi\\AdWords\\v201802\\cm\\ApiException',
+      'ApplicationException' => 'Google\\AdsApi\\AdWords\\v201802\\cm\\ApplicationException',
       'AuthenticationError' => 'Google\\AdsApi\\AdWords\\v201802\\cm\\AuthenticationError',
       'AuthorizationError' => 'Google\\AdsApi\\AdWords\\v201802\\cm\\AuthorizationError',
       'ClientTermsError' => 'Google\\AdsApi\\AdWords\\v201802\\cm\\ClientTermsError',
       'CollectionSizeError' => 'Google\\AdsApi\\AdWords\\v201802\\cm\\CollectionSizeError',
+      'DatabaseError' => 'Google\\AdsApi\\AdWords\\v201802\\cm\\DatabaseError',
       'DateError' => 'Google\\AdsApi\\AdWords\\v201802\\cm\\DateError',
       'DistinctError' => 'Google\\AdsApi\\AdWords\\v201802\\cm\\DistinctError',
       'EnumValuePair' => 'Google\\AdsApi\\AdWords\\v201802\\cm\\EnumValuePair',
@@ -42,10 +46,6 @@ class ReportDefinitionService extends \Google\AdsApi\Common\AdsSoapClient
       'SoapResponseHeader' => 'Google\\AdsApi\\AdWords\\v201802\\cm\\SoapResponseHeader',
       'StringFormatError' => 'Google\\AdsApi\\AdWords\\v201802\\cm\\StringFormatError',
       'StringLengthError' => 'Google\\AdsApi\\AdWords\\v201802\\cm\\StringLengthError',
-      'DatabaseError' => 'Google\\AdsApi\\AdWords\\v201802\\cm\\DatabaseError',
-      'ApiError' => 'Google\\AdsApi\\AdWords\\v201802\\cm\\ApiError',
-      'ApiException' => 'Google\\AdsApi\\AdWords\\v201802\\cm\\ApiException',
-      'ApplicationException' => 'Google\\AdsApi\\AdWords\\v201802\\cm\\ApplicationException',
       'getReportFieldsResponse' => 'Google\\AdsApi\\AdWords\\v201802\\cm\\getReportFieldsResponse',
     );
 

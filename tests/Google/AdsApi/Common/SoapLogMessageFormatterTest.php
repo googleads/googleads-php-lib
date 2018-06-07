@@ -26,139 +26,148 @@ use SoapFault;
  * @see SoapLogMessageFormatter
  * @small
  */
-class SoapLogMessageFormatterTest extends TestCase {
+class SoapLogMessageFormatterTest extends TestCase
+{
 
-  private $soapLogMessageFormatter;
-  private $requestHttpHeadersMock;
-  private $requestSoapXmlMock;
-  private $responseHttpHeadersMock;
-  private $responseSoapXmlMock;
-  private $mutateRequestHttpHeadersMock;
-  private $mutateRequestSoapXmlMock;
-  private $mutateResponseHttpHeadersMock;
-  private $mutateResponseSoapXmlMock;
+    private $soapLogMessageFormatter;
+    private $requestHttpHeadersMock;
+    private $requestSoapXmlMock;
+    private $responseHttpHeadersMock;
+    private $responseSoapXmlMock;
+    private $mutateRequestHttpHeadersMock;
+    private $mutateRequestSoapXmlMock;
+    private $mutateResponseHttpHeadersMock;
+    private $mutateResponseSoapXmlMock;
 
   /**
    * @see PHPUnit\Framework\TestCase::setUp
    */
-  protected function setUp() {
-    $this->soapLogMessageFormatter = new SoapLogMessageFormatter();
-    $this->requestHttpHeadersMock = FakeSoapPayloadsAndLogsProvider
+    protected function setUp()
+    {
+        $this->soapLogMessageFormatter = new SoapLogMessageFormatter();
+        $this->requestHttpHeadersMock = FakeSoapPayloadsAndLogsProvider
         ::getFakeGetCreativesRequestHttpHeaders();
-    $this->requestSoapXmlMock = FakeSoapPayloadsAndLogsProvider
+        $this->requestSoapXmlMock = FakeSoapPayloadsAndLogsProvider
         ::getFakeGetCreativesRequest();
-    $this->responseHttpHeadersMock = FakeSoapPayloadsAndLogsProvider
+        $this->responseHttpHeadersMock = FakeSoapPayloadsAndLogsProvider
         ::getFakeGetCreativesResponseHttpHeaders();
-    $this->responseSoapXmlMock = FakeSoapPayloadsAndLogsProvider
+        $this->responseSoapXmlMock = FakeSoapPayloadsAndLogsProvider
         ::getFakeGetCreativesResponse();
 
-    $this->mutateRequestHttpHeadersMock = FakeSoapPayloadsAndLogsProvider
+        $this->mutateRequestHttpHeadersMock = FakeSoapPayloadsAndLogsProvider
         ::getFakeMutateRequestHttpHeaders();
-    $this->mutateRequestSoapXmlMock = FakeSoapPayloadsAndLogsProvider
+        $this->mutateRequestSoapXmlMock = FakeSoapPayloadsAndLogsProvider
         ::getFakeMutateRequest();
-    $this->mutateResponseHttpHeadersMock = FakeSoapPayloadsAndLogsProvider
+        $this->mutateResponseHttpHeadersMock = FakeSoapPayloadsAndLogsProvider
         ::getFakeMutateResponseHttpHeaders();
-    $this->mutateResponseSoapXmlMock = FakeSoapPayloadsAndLogsProvider
+        $this->mutateResponseSoapXmlMock = FakeSoapPayloadsAndLogsProvider
         ::getFakeMutateResponse();
-  }
+    }
 
   /**
    * @covers Google\AdsApi\Common\SoapLogMessageFormatter::formatSummary
    */
-  public function testFormatSummary() {
-    $this->assertSame(
-        'service=CreativeService method=getCreativesByStatement '
+    public function testFormatSummary()
+    {
+        $this->assertSame(
+            'service=CreativeService method=getCreativesByStatement '
             . 'responseTime=226 requestId=123abc456xyz server=ads.google.com '
             . 'isFault=0 faultMessage=',
-        $this->soapLogMessageFormatter->formatSummary(
-            'CreativeService',
-            'getCreativesByStatement',
-            $this->requestHttpHeadersMock,
-            $this->requestSoapXmlMock,
-            $this->responseSoapXmlMock
-        )
-    );
-  }
+            $this->soapLogMessageFormatter->formatSummary(
+                'CreativeService',
+                'getCreativesByStatement',
+                $this->requestHttpHeadersMock,
+                $this->requestSoapXmlMock,
+                $this->responseSoapXmlMock
+            )
+        );
+    }
 
   /**
    * @covers Google\AdsApi\Common\SoapLogMessageFormatter::formatSummary
    */
-  public function testFormatSummaryWithFault() {
-    $this->assertSame(
-        'service=CreativeService method=getCreativesByStatement '
+    public function testFormatSummaryWithFault()
+    {
+        $this->assertSame(
+            'service=CreativeService method=getCreativesByStatement '
             . 'responseTime=226 requestId=123abc456xyz server=ads.google.com '
             . 'isFault=1 faultMessage=Could not contact server.',
-        $this->soapLogMessageFormatter->formatSummary(
-           'CreativeService',
-            'getCreativesByStatement',
-            $this->requestHttpHeadersMock,
-            $this->requestSoapXmlMock,
-            $this->responseSoapXmlMock,
-            new SoapFault('SERVER', 'Could not contact server.')
-        )
-    );
-  }
+            $this->soapLogMessageFormatter->formatSummary(
+                'CreativeService',
+                'getCreativesByStatement',
+                $this->requestHttpHeadersMock,
+                $this->requestSoapXmlMock,
+                $this->responseSoapXmlMock,
+                new SoapFault('SERVER', 'Could not contact server.')
+            )
+        );
+    }
 
   /**
    * @covers Google\AdsApi\Common\SoapLogMessageFormatter::formatSummary
    */
-  public function testFormatSummaryWithLongFaultIsTruncated() {
-    $soapLogMessageFormatter = new SoapLogMessageFormatter(
-        null,
-        null,
-        null,
-        null,
-        null,
-        34
-    );
-    $this->assertSame(
-        'service=CreativeService method=getCreativesByStatement '
+    public function testFormatSummaryWithLongFaultIsTruncated()
+    {
+        $soapLogMessageFormatter = new SoapLogMessageFormatter(
+            null,
+            null,
+            null,
+            null,
+            null,
+            34
+        );
+        $this->assertSame(
+            'service=CreativeService method=getCreativesByStatement '
             . 'responseTime=226 requestId=123abc456xyz server=ads.google.com '
             . 'isFault=1 faultMessage=Could not contact server. See 熊羊 f...',
-        $soapLogMessageFormatter->formatSummary(
-            'CreativeService',
-            'getCreativesByStatement',
+            $soapLogMessageFormatter->formatSummary(
+                'CreativeService',
+                'getCreativesByStatement',
+                $this->requestHttpHeadersMock,
+                $this->requestSoapXmlMock,
+                $this->responseSoapXmlMock,
+                new SoapFault(
+                    'SERVER',
+                    "Could not \r\rcontact \nserver.\n See 熊羊 for details.\n"
+                )
+            )
+        );
+    }
+
+  /**
+   * @covers Google\AdsApi\Common\SoapLogMessageFormatter::formatDetailed
+   */
+    public function testFormatDetailed()
+    {
+        $actualDetailedLog = $this->soapLogMessageFormatter->formatDetailed(
             $this->requestHttpHeadersMock,
             $this->requestSoapXmlMock,
-            $this->responseSoapXmlMock,
-            new SoapFault('SERVER',
-                "Could not \r\rcontact \nserver.\n See 熊羊 for details.\n")
-        )
-    );
-  }
-
-  /**
-   * @covers Google\AdsApi\Common\SoapLogMessageFormatter::formatDetailed
-   */
-  public function testFormatDetailed() {
-    $actualDetailedLog = $this->soapLogMessageFormatter->formatDetailed(
-        $this->requestHttpHeadersMock,
-        $this->requestSoapXmlMock,
-        $this->responseHttpHeadersMock,
-        $this->responseSoapXmlMock
-    );
-    $expectedDetailedLog =
+            $this->responseHttpHeadersMock,
+            $this->responseSoapXmlMock
+        );
+        $expectedDetailedLog =
         FakeSoapPayloadsAndLogsProvider::getFakeSoapXmlLog();
-    $this->assertSame(trim($expectedDetailedLog), trim($actualDetailedLog));
-  }
+        $this->assertSame(trim($expectedDetailedLog), trim($actualDetailedLog));
+    }
 
   /**
    * @covers Google\AdsApi\Common\SoapLogMessageFormatter::formatDetailed
    */
-  public function testFormatDetailedWithScrubbing() {
-    $soapLogMessageFormatter = new SoapLogMessageFormatter(
-        ['Authorization'],
-        ['networkCode', 'clientCustomerId'],
-        ['httpAuthorizationHeader']
-    );
-    $actualDetailedLog = $soapLogMessageFormatter->formatDetailed(
-        $this->mutateRequestHttpHeadersMock,
-        $this->mutateRequestSoapXmlMock,
-        $this->mutateResponseHttpHeadersMock,
-        $this->mutateResponseSoapXmlMock
-    );
-    $expectedDetailedLog =
+    public function testFormatDetailedWithScrubbing()
+    {
+        $soapLogMessageFormatter = new SoapLogMessageFormatter(
+            ['Authorization'],
+            ['networkCode', 'clientCustomerId'],
+            ['httpAuthorizationHeader']
+        );
+        $actualDetailedLog = $soapLogMessageFormatter->formatDetailed(
+            $this->mutateRequestHttpHeadersMock,
+            $this->mutateRequestSoapXmlMock,
+            $this->mutateResponseHttpHeadersMock,
+            $this->mutateResponseSoapXmlMock
+        );
+        $expectedDetailedLog =
         FakeSoapPayloadsAndLogsProvider::getScrubbedFakeMutateSoapXmlLog();
-    $this->assertSame(trim($expectedDetailedLog), trim($actualDetailedLog));
-  }
+        $this->assertSame(trim($expectedDetailedLog), trim($actualDetailedLog));
+    }
 }

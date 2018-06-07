@@ -27,24 +27,27 @@ use PHPUnit\Framework\TestCase;
  * @see OAuth2TokenBuilder
  * @small
  */
-class OAuth2TokenBuilderTest extends TestCase {
+class OAuth2TokenBuilderTest extends TestCase
+{
 
-  private $oAuth2TokenBuilder;
-  private $jsonKeyFilePath;
+    private $oAuth2TokenBuilder;
+    private $jsonKeyFilePath;
 
   /**
    * @see PHPUnit\Framework\TestCase::setUp
    */
-  protected function setUp() {
-    $this->oAuth2TokenBuilder = new OAuth2TokenBuilder();
-    $this->jsonKeyFilePath = AdsBuildersTestProvider::getFakeJsonKeyFilePath();
-  }
+    protected function setUp()
+    {
+        $this->oAuth2TokenBuilder = new OAuth2TokenBuilder();
+        $this->jsonKeyFilePath = AdsBuildersTestProvider::getFakeJsonKeyFilePath();
+    }
 
   /**
    * @covers Google\AdsApi\Common\OAuth2TokenBuilder::from
    */
-  public function testBuildFromWithServiceAccountFlow() {
-    $valueMap = [
+    public function testBuildFromWithServiceAccountFlow()
+    {
+        $valueMap = [
         [
             'jsonKeyFilePath',
             'OAUTH2',
@@ -54,26 +57,27 @@ class OAuth2TokenBuilderTest extends TestCase {
             'OAUTH2',
             'https://www.googleapis.com/auth/dfp'
         ],
-    ];
-    $configurationMock = $this->getMockBuilder(Configuration::class)
+        ];
+        $configurationMock = $this->getMockBuilder(Configuration::class)
         ->disableOriginalConstructor()
         ->getMock();
-    $configurationMock->expects($this->any())
+        $configurationMock->expects($this->any())
         ->method('getConfiguration')
         ->will($this->returnValueMap($valueMap));
 
-    $tokenFetcher = $this->oAuth2TokenBuilder
+        $tokenFetcher = $this->oAuth2TokenBuilder
         ->from($configurationMock)
         ->build();
 
-    $this->assertInstanceOf(ServiceAccountCredentials::class, $tokenFetcher);
-  }
+        $this->assertInstanceOf(ServiceAccountCredentials::class, $tokenFetcher);
+    }
 
   /**
    * @covers Google\AdsApi\Common\OAuth2TokenBuilder::from
    */
-  public function testBuildFromWithServiceAccountFlowUsingImpersonation() {
-    $valueMap = [
+    public function testBuildFromWithServiceAccountFlowUsingImpersonation()
+    {
+        $valueMap = [
         [
             'jsonKeyFilePath',
             'OAUTH2',
@@ -87,91 +91,97 @@ class OAuth2TokenBuilderTest extends TestCase {
             'OAUTH2',
             'dfp@gmail.com'
         ]
-    ];
-    $configurationMock = $this->getMockBuilder(Configuration::class)
+        ];
+        $configurationMock = $this->getMockBuilder(Configuration::class)
         ->disableOriginalConstructor()
         ->getMock();
-    $configurationMock->expects($this->any())
+        $configurationMock->expects($this->any())
         ->method('getConfiguration')
         ->will($this->returnValueMap($valueMap));
 
-    $tokenFetcher = $this->oAuth2TokenBuilder
+        $tokenFetcher = $this->oAuth2TokenBuilder
         ->from($configurationMock)
         ->build();
 
-    $this->assertInstanceOf(ServiceAccountCredentials::class, $tokenFetcher);
-  }
+        $this->assertInstanceOf(ServiceAccountCredentials::class, $tokenFetcher);
+    }
 
   /**
    * @covers Google\AdsApi\Common\OAuth2TokenBuilder::build
    * @expectedException InvalidArgumentException
    * @expectedExceptionMessageRegExp /both service account.+installed.+web.+flow.+set/
    */
-  public function testBuildFailsWhenSettingValuesForMultipleFlows() {
-    $this->oAuth2TokenBuilder
+    public function testBuildFailsWhenSettingValuesForMultipleFlows()
+    {
+        $this->oAuth2TokenBuilder
         ->withJsonKeyFilePath($this->jsonKeyFilePath)
         ->withScopes('https://www.googleapis.com/auth/dfp')
         ->withClientId('abcxyz-123.apps.googleusercontent.com')
         ->withClientSecret('ABcXyZ-123abc')
         ->withRefreshToken('1/AbC-xY123Za-bc')
         ->build();
-  }
+    }
 
   /**
    * @covers Google\AdsApi\Common\OAuth2TokenBuilder::build
    */
-  public function testBuildWithServiceAccountFlow() {
-    $tokenFetcher = $this->oAuth2TokenBuilder
+    public function testBuildWithServiceAccountFlow()
+    {
+        $tokenFetcher = $this->oAuth2TokenBuilder
         ->withJsonKeyFilePath($this->jsonKeyFilePath)
         ->withScopes('https://www.googleapis.com/auth/dfp')
         ->build();
-    $this->assertInstanceOf(ServiceAccountCredentials::class, $tokenFetcher);
-  }
+        $this->assertInstanceOf(ServiceAccountCredentials::class, $tokenFetcher);
+    }
 
   /**
    * @covers Google\AdsApi\Common\OAuth2TokenBuilder::build
    */
-  public function testBuildWithServiceAccountFlowUsingImpersonation() {
-    $tokenFetcher = $this->oAuth2TokenBuilder
+    public function testBuildWithServiceAccountFlowUsingImpersonation()
+    {
+        $tokenFetcher = $this->oAuth2TokenBuilder
         ->withJsonKeyFilePath($this->jsonKeyFilePath)
         ->withScopes('https://www.googleapis.com/auth/dfp')
         ->withImpersonatedEmail('dfp@gmail.com')
         ->build();
-    $this->assertInstanceOf(ServiceAccountCredentials::class, $tokenFetcher);
-  }
+        $this->assertInstanceOf(ServiceAccountCredentials::class, $tokenFetcher);
+    }
 
   /**
    * @covers Google\AdsApi\Common\OAuth2TokenBuilder::build
    * @expectedException InvalidArgumentException
    * @expectedExceptionMessageRegExp /jsonKeyFilePath.+scopes.+must be set/
    */
-  public function testBuildFailsWhenMissingRequiredValuesForSAFlow() {
-    $this->oAuth2TokenBuilder
+    public function testBuildFailsWhenMissingRequiredValuesForSAFlow()
+    {
+        $this->oAuth2TokenBuilder
         ->withJsonKeyFilePath($this->jsonKeyFilePath)
         ->build();
-  }
+    }
 
   /**
    * @covers Google\AdsApi\Common\OAuth2TokenBuilder::build
    */
-  public function testBuildWithWebOrInstalledAppFlow() {
-    $tokenFetcher = $this->oAuth2TokenBuilder
+    public function testBuildWithWebOrInstalledAppFlow()
+    {
+        $tokenFetcher = $this->oAuth2TokenBuilder
         ->withClientId('abcxyz-123.apps.googleusercontent.com')
         ->withClientSecret('ABcXyZ-123abc')
         ->withRefreshToken('1/AbC-xY123Za-bc')
         ->build();
-    $this->assertInstanceOf(UserRefreshCredentials::class, $tokenFetcher);
-  }
+        $this->assertInstanceOf(UserRefreshCredentials::class, $tokenFetcher);
+    }
 
   /**
    * @covers Google\AdsApi\Common\OAuth2TokenBuilder::build
    * @expectedException InvalidArgumentException
    * @expectedExceptionMessageRegExp /clientId.+clientSecret.+refreshToken.+must be set/
    */
-  public function testBuildFailsWhenMissingRequiredValuesForInstAppOrWebFlow() {
-    $this->oAuth2TokenBuilder
+    public function testBuildFailsWhenMissingRequiredValuesForInstAppOrWebFlow()
+    {
+        $this->oAuth2TokenBuilder
         ->withClientId('abcxyz-123.apps.googleusercontent.com')
         ->withClientSecret('ABcXyZ-123abc')
         ->build();
-  }
+    }
 }

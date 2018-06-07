@@ -13,9 +13,13 @@ class CustomerSyncService extends \Google\AdsApi\Common\AdsSoapClient
      * @var array $classmap The defined classes
      */
     private static $classmap = array (
+      'ApiError' => 'Google\\AdsApi\\AdWords\\v201710\\cm\\ApiError',
+      'ApiException' => 'Google\\AdsApi\\AdWords\\v201710\\cm\\ApiException',
+      'ApplicationException' => 'Google\\AdsApi\\AdWords\\v201710\\cm\\ApplicationException',
       'AuthenticationError' => 'Google\\AdsApi\\AdWords\\v201710\\cm\\AuthenticationError',
       'AuthorizationError' => 'Google\\AdsApi\\AdWords\\v201710\\cm\\AuthorizationError',
       'ClientTermsError' => 'Google\\AdsApi\\AdWords\\v201710\\cm\\ClientTermsError',
+      'DatabaseError' => 'Google\\AdsApi\\AdWords\\v201710\\cm\\DatabaseError',
       'DateError' => 'Google\\AdsApi\\AdWords\\v201710\\cm\\DateError',
       'DateTimeRange' => 'Google\\AdsApi\\AdWords\\v201710\\cm\\DateTimeRange',
       'DistinctError' => 'Google\\AdsApi\\AdWords\\v201710\\cm\\DistinctError',
@@ -37,16 +41,12 @@ class CustomerSyncService extends \Google\AdsApi\Common\AdsSoapClient
       'SoapResponseHeader' => 'Google\\AdsApi\\AdWords\\v201710\\cm\\SoapResponseHeader',
       'StringFormatError' => 'Google\\AdsApi\\AdWords\\v201710\\cm\\StringFormatError',
       'StringLengthError' => 'Google\\AdsApi\\AdWords\\v201710\\cm\\StringLengthError',
-      'DatabaseError' => 'Google\\AdsApi\\AdWords\\v201710\\cm\\DatabaseError',
-      'ApiError' => 'Google\\AdsApi\\AdWords\\v201710\\cm\\ApiError',
-      'ApiException' => 'Google\\AdsApi\\AdWords\\v201710\\cm\\ApiException',
-      'ApplicationException' => 'Google\\AdsApi\\AdWords\\v201710\\cm\\ApplicationException',
       'AdGroupChangeData' => 'Google\\AdsApi\\AdWords\\v201710\\ch\\AdGroupChangeData',
       'CampaignChangeData' => 'Google\\AdsApi\\AdWords\\v201710\\ch\\CampaignChangeData',
-      'CustomerSyncError' => 'Google\\AdsApi\\AdWords\\v201710\\ch\\CustomerSyncError',
-      'FeedChangeData' => 'Google\\AdsApi\\AdWords\\v201710\\ch\\FeedChangeData',
       'CustomerChangeData' => 'Google\\AdsApi\\AdWords\\v201710\\ch\\CustomerChangeData',
+      'CustomerSyncError' => 'Google\\AdsApi\\AdWords\\v201710\\ch\\CustomerSyncError',
       'CustomerSyncSelector' => 'Google\\AdsApi\\AdWords\\v201710\\ch\\CustomerSyncSelector',
+      'FeedChangeData' => 'Google\\AdsApi\\AdWords\\v201710\\ch\\FeedChangeData',
       'getResponse' => 'Google\\AdsApi\\AdWords\\v201710\\ch\\getResponse',
     );
 

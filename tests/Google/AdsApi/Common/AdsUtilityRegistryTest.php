@@ -24,39 +24,44 @@ use PHPUnit\Framework\TestCase;
  * @see AdsUtilityRegistry
  * @small
  */
-class AdsUtilityRegistryTest extends TestCase {
+class AdsUtilityRegistryTest extends TestCase
+{
 
-  private $adsUtilityRegistry;
+    private $adsUtilityRegistry;
 
   /**
    * @see PHPUnit\Framework\TestCase::setUp
    */
-  public function setUp() {
-    $this->adsUtilityRegistry = AdsUtilityRegistry::getInstance();
-    $this->adsUtilityRegistry->popAllUtilities();
-    $this->adsUtilityRegistry->addUtility('ReportDownloader/file');
-    $this->adsUtilityRegistry->addUtility('BatchJobHelper');
-    $this->adsUtilityRegistry->addUtility('ReportDownloader/string');
-    $this->adsUtilityRegistry->addUtility('ReportDownloader/stream');
-  }
+    public function setUp()
+    {
+        $this->adsUtilityRegistry = AdsUtilityRegistry::getInstance();
+        $this->adsUtilityRegistry->popAllUtilities();
+        $this->adsUtilityRegistry->addUtility('ReportDownloader/file');
+        $this->adsUtilityRegistry->addUtility('BatchJobHelper');
+        $this->adsUtilityRegistry->addUtility('ReportDownloader/string');
+        $this->adsUtilityRegistry->addUtility('ReportDownloader/stream');
+    }
 
   /**
    * @covers Google\AdsApi\Common\AdsUtilityRegistry::addUtility
    * @covers Google\AdsApi\Common\AdsUtilityRegistry::popAllUtilities
    */
-  public function testAddAndPopRegisteredUtilities() {
-    // The members of expected array should be sorted.
-    $expected = [
+    public function testAddAndPopRegisteredUtilities()
+    {
+        // The members of expected array should be sorted.
+        $expected = [
         'BatchJobHelper',
         'ReportDownloader/file',
         'ReportDownloader/stream',
         'ReportDownloader/string'
-    ];
-    // First time, get all registered ads utilities.
-    $this->assertEquals($expected,
-        $this->adsUtilityRegistry->popAllUtilities());
-    // Second time and later, get an empty list.
-    $this->assertEmpty($this->adsUtilityRegistry->popAllUtilities());
-    $this->assertEmpty($this->adsUtilityRegistry->popAllUtilities());
-  }
+        ];
+        // First time, get all registered ads utilities.
+        $this->assertEquals(
+            $expected,
+            $this->adsUtilityRegistry->popAllUtilities()
+        );
+        // Second time and later, get an empty list.
+        $this->assertEmpty($this->adsUtilityRegistry->popAllUtilities());
+        $this->assertEmpty($this->adsUtilityRegistry->popAllUtilities());
+    }
 }

@@ -1,0 +1,935 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated file, do not edit -->
+<!-- Copyright 2018 Google Inc. All Rights Reserved -->
+<wsdl:definitions
+  targetNamespace="https://adwords.google.com/api/adwords/ch/v201806"
+  xmlns:tns="https://adwords.google.com/api/adwords/ch/v201806"
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <schema elementFormDefault="qualified" jaxb:version="1.0"
+      targetNamespace="https://adwords.google.com/api/adwords/cm/v201806"
+      xmlns="http://www.w3.org/2001/XMLSchema"
+      xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:tns="https://adwords.google.com/api/adwords/cm/v201806">
+      <complexType abstract="true" name="ApiError">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="fieldPath" type="xsd:string"/>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="fieldPathElements" type="tns:FieldPathElement"/>
+          <element maxOccurs="1" minOccurs="0" name="trigger" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="errorString" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="ApiError.Type" type="xsd:string">
+            <annotation>
+              <documentation>
+                Indicates that this instance is a subtype of ApiError.
+                Although this field is returned in the response, it is ignored on input
+                and cannot be selected. Specify xsi:type instead.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="ApiException">
+        <complexContent>
+          <extension base="tns:ApplicationException">
+            <sequence>
+              <element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:ApiError"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ApplicationException">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="message" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0"
+            name="ApplicationException.Type" type="xsd:string">
+            <annotation>
+              <documentation>
+                Indicates that this instance is a subtype of ApplicationException.
+                Although this field is returned in the response, it is ignored on input
+                and cannot be selected. Specify xsi:type instead.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="AuthenticationError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:AuthenticationError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="AuthorizationError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:AuthorizationError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ClientTermsError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ClientTermsError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DatabaseError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:DatabaseError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DateError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:DateError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DateTimeRange">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="min" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="max" type="xsd:string"/>
+        </sequence>
+      </complexType>
+      <complexType name="DistinctError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:DistinctError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="FieldPathElement">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="field" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="index" type="xsd:int"/>
+        </sequence>
+      </complexType>
+      <complexType name="IdError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:IdError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="InternalApiError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:InternalApiError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="NotEmptyError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:NotEmptyError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="OperationAccessDenied">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:OperationAccessDenied.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="OperatorError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:OperatorError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="QuotaCheckError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:QuotaCheckError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RangeError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RangeError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RateExceededError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RateExceededError.Reason"/>
+              <element maxOccurs="1" minOccurs="0" name="rateName" type="xsd:string"/>
+              <element maxOccurs="1" minOccurs="0" name="rateScope" type="xsd:string"/>
+              <element maxOccurs="1" minOccurs="0"
+                name="retryAfterSeconds" type="xsd:int"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ReadOnlyError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ReadOnlyError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RejectedError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RejectedError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RequestError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RequestError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RequiredError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RequiredError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="SizeLimitError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:SizeLimitError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="SoapHeader">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="clientCustomerId" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="developerToken" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="userAgent" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="validateOnly" type="xsd:boolean"/>
+          <element maxOccurs="1" minOccurs="0" name="partialFailure" type="xsd:boolean"/>
+        </sequence>
+      </complexType>
+      <complexType name="SoapResponseHeader">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="requestId" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="serviceName" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="methodName" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="operations" type="xsd:long"/>
+          <element maxOccurs="1" minOccurs="0" name="responseTime" type="xsd:long"/>
+        </sequence>
+      </complexType>
+      <complexType name="StringFormatError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:StringFormatError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="StringLengthError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:StringLengthError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <simpleType name="AuthenticationError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="AUTHENTICATION_FAILED"/>
+          <enumeration value="CLIENT_CUSTOMER_ID_IS_REQUIRED"/>
+          <enumeration value="CLIENT_EMAIL_REQUIRED"/>
+          <enumeration value="CLIENT_CUSTOMER_ID_INVALID"/>
+          <enumeration value="CLIENT_EMAIL_INVALID"/>
+          <enumeration value="CLIENT_EMAIL_FAILED_TO_AUTHENTICATE"/>
+          <enumeration value="CUSTOMER_NOT_FOUND"/>
+          <enumeration value="GOOGLE_ACCOUNT_DELETED"/>
+          <enumeration value="GOOGLE_ACCOUNT_COOKIE_INVALID"/>
+          <enumeration value="FAILED_TO_AUTHENTICATE_GOOGLE_ACCOUNT"/>
+          <enumeration value="GOOGLE_ACCOUNT_USER_AND_ADS_USER_MISMATCH"/>
+          <enumeration value="LOGIN_COOKIE_REQUIRED"/>
+          <enumeration value="NOT_ADS_USER"/>
+          <enumeration value="OAUTH_TOKEN_INVALID"/>
+          <enumeration value="OAUTH_TOKEN_EXPIRED"/>
+          <enumeration value="OAUTH_TOKEN_DISABLED"/>
+          <enumeration value="OAUTH_TOKEN_REVOKED"/>
+          <enumeration value="OAUTH_TOKEN_HEADER_INVALID"/>
+          <enumeration value="LOGIN_COOKIE_INVALID"/>
+          <enumeration value="FAILED_TO_RETRIEVE_LOGIN_COOKIE"/>
+          <enumeration value="USER_ID_INVALID"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="AuthorizationError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="UNABLE_TO_AUTHORIZE"/>
+          <enumeration value="NO_ADWORDS_ACCOUNT_FOR_CUSTOMER"/>
+          <enumeration value="USER_PERMISSION_DENIED"/>
+          <enumeration value="EFFECTIVE_USER_PERMISSION_DENIED"/>
+          <enumeration value="CUSTOMER_NOT_ACTIVE"/>
+          <enumeration value="USER_HAS_READONLY_PERMISSION"/>
+          <enumeration value="NO_CUSTOMER_FOUND"/>
+          <enumeration value="SERVICE_ACCESS_DENIED"/>
+          <enumeration value="TWO_STEP_VERIFICATION_NOT_ENROLLED"/>
+          <enumeration value="ADVANCED_PROTECTION_NOT_ENROLLED"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="ClientTermsError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="INCOMPLETE_SIGNUP_CURRENT_ADWORDS_TNC_NOT_AGREED"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="DatabaseError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="CONCURRENT_MODIFICATION"/>
+          <enumeration value="PERMISSION_DENIED"/>
+          <enumeration value="ACCESS_PROHIBITED"/>
+          <enumeration value="CAMPAIGN_PRODUCT_NOT_SUPPORTED"/>
+          <enumeration value="DUPLICATE_KEY"/>
+          <enumeration value="DATABASE_ERROR"/>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="DateError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="INVALID_FIELD_VALUES_IN_DATE"/>
+          <enumeration value="INVALID_FIELD_VALUES_IN_DATE_TIME"/>
+          <enumeration value="INVALID_STRING_DATE"/>
+          <enumeration value="INVALID_STRING_DATE_RANGE"/>
+          <enumeration value="INVALID_STRING_DATE_TIME"/>
+          <enumeration value="EARLIER_THAN_MINIMUM_DATE"/>
+          <enumeration value="LATER_THAN_MAXIMUM_DATE"/>
+          <enumeration value="DATE_RANGE_MINIMUM_DATE_LATER_THAN_MAXIMUM_DATE"/>
+          <enumeration value="DATE_RANGE_MINIMUM_AND_MAXIMUM_DATES_BOTH_NULL"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="DistinctError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="DUPLICATE_ELEMENT"/>
+          <enumeration value="DUPLICATE_TYPE"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="IdError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="NOT_FOUND"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="InternalApiError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="UNEXPECTED_INTERNAL_API_ERROR"/>
+          <enumeration value="TRANSIENT_ERROR"/>
+          <enumeration value="UNKNOWN"/>
+          <enumeration value="DOWNTIME"/>
+          <enumeration value="ERROR_GENERATING_RESPONSE"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="NotEmptyError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="EMPTY_LIST"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="OperationAccessDenied.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="ACTION_NOT_PERMITTED"/>
+          <enumeration value="ADD_OPERATION_NOT_PERMITTED"/>
+          <enumeration value="REMOVE_OPERATION_NOT_PERMITTED"/>
+          <enumeration value="SET_OPERATION_NOT_PERMITTED"/>
+          <enumeration value="MUTATE_ACTION_NOT_PERMITTED_FOR_CLIENT"/>
+          <enumeration value="OPERATION_NOT_PERMITTED_FOR_CAMPAIGN_TYPE"/>
+          <enumeration value="ADD_AS_REMOVED_NOT_PERMITTED"/>
+          <enumeration value="OPERATION_NOT_PERMITTED_FOR_REMOVED_ENTITY"/>
+          <enumeration value="OPERATION_NOT_PERMITTED_FOR_AD_GROUP_TYPE"/>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="OperatorError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="OPERATOR_NOT_SUPPORTED"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="QuotaCheckError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="INVALID_TOKEN_HEADER"/>
+          <enumeration value="ACCOUNT_DELINQUENT"/>
+          <enumeration value="ACCOUNT_INACCESSIBLE"/>
+          <enumeration value="ACCOUNT_INACTIVE"/>
+          <enumeration value="INCOMPLETE_SIGNUP"/>
+          <enumeration value="DEVELOPER_TOKEN_NOT_APPROVED"/>
+          <enumeration value="TERMS_AND_CONDITIONS_NOT_SIGNED"/>
+          <enumeration value="MONTHLY_BUDGET_REACHED"/>
+          <enumeration value="QUOTA_EXCEEDED"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="RangeError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="TOO_LOW"/>
+          <enumeration value="TOO_HIGH"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="RateExceededError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="RATE_EXCEEDED"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="ReadOnlyError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="READ_ONLY"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="RejectedError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="UNKNOWN_VALUE"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="RequestError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="UNKNOWN"/>
+          <enumeration value="INVALID_INPUT"/>
+          <enumeration value="UNSUPPORTED_VERSION"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="RequiredError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="REQUIRED"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="SizeLimitError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="REQUEST_SIZE_LIMIT_EXCEEDED"/>
+          <enumeration value="RESPONSE_SIZE_LIMIT_EXCEEDED"/>
+          <enumeration value="INTERNAL_STORAGE_ERROR"/>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                &lt;span class="constraint Rejected"&gt;Used for return value only. An enumeration could not be processed, typically due to incompatibility with your WSDL version.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="StringFormatError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="UNKNOWN"/>
+          <enumeration value="ILLEGAL_CHARS"/>
+          <enumeration value="INVALID_FORMAT"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="StringLengthError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="TOO_SHORT"/>
+          <enumeration value="TOO_LONG"/>
+        </restriction>
+      </simpleType>
+    </schema>
+    <schema elementFormDefault="qualified" jaxb:version="1.0"
+      targetNamespace="https://adwords.google.com/api/adwords/ch/v201806"
+      xmlns="http://www.w3.org/2001/XMLSchema"
+      xmlns:cm="https://adwords.google.com/api/adwords/cm/v201806"
+      xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:tns="https://adwords.google.com/api/adwords/ch/v201806">
+      <xsd:import namespace="https://adwords.google.com/api/adwords/cm/v201806"/>
+      <annotation>
+        <appinfo>
+          <jaxb:globalBindings typesafeEnumMaxMembers="999999"/>
+        </appinfo>
+      </annotation>
+      <complexType name="AdGroupChangeData">
+        <annotation>
+          <documentation>
+            Holds information about a changed adgroup
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="adGroupId" type="xsd:long">
+            <annotation>
+              <documentation>
+                The ad group ID.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0"
+            name="adGroupChangeStatus" type="tns:ChangeStatus">
+            <annotation>
+              <documentation>
+                Whether or not the fields of this adgroup have changed, for example the AdGroup name. Changes
+                to the Ads and Criteria are enumerated in their respective lists and will not be reflected in
+                this status.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="changedAds" type="xsd:long">
+            <annotation>
+              <documentation>
+                The IDs of any changed ads of this ad group. This includes ads that have been deleted.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="changedCriteria" type="xsd:long">
+            <annotation>
+              <documentation>
+                The IDs of any changed criterion of this ad group.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="removedCriteria" type="xsd:long">
+            <annotation>
+              <documentation>
+                The IDs of any deleted criterion of this ad group.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="changedFeeds" type="xsd:long">
+            <annotation>
+              <documentation>
+                A list of feed IDs for AdGroupFeeds that have been changed in this ad group. If an AdGroupFeed
+                is deleted after a modification, it will not be included in this list.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="removedFeeds" type="xsd:long">
+            <annotation>
+              <documentation>
+                A list of feed IDs for AdGroupFeeds that have been removed from the ad group.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="changedAdGroupBidModifierCriteria" type="xsd:long">
+            <annotation>
+              <documentation>
+                Set of campaign criterion that have a bid modifier override at ad group level. If the
+                associated bid modifier override is deleted after a modification, it will not be included in
+                this list.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="removedAdGroupBidModifierCriteria" type="xsd:long">
+            <annotation>
+              <documentation>
+                Set of campaign criterion whose bid modifier override at ad group level has been removed.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="CampaignChangeData">
+        <annotation>
+          <documentation>
+            Holds information about a changed campaign and any ad groups under that have changed.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="campaignId" type="xsd:long">
+            <annotation>
+              <documentation>
+                The campaign ID.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0"
+            name="campaignChangeStatus" type="tns:ChangeStatus">
+            <annotation>
+              <documentation>
+                Whether or not the fields of this campaign have changed. Changes to campaign level criteria and
+                ad extensions are enumerated in their respective lists and will not be reflected in this
+                status.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="changedAdGroups" type="tns:AdGroupChangeData">
+            <annotation>
+              <documentation>
+                A list of change information for all changed adgroups belonging to the campaign.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="addedCampaignCriteria" type="xsd:long">
+            <annotation>
+              <documentation>
+                A list of criteria IDs that have been added as campaign criteria. This list includes any
+                criteria that can be downloaded using CampaignCriterionService.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="removedCampaignCriteria" type="xsd:long">
+            <annotation>
+              <documentation>
+                A list of criteria IDs that have been deleted as campaign criteria. This list includes any
+                criteria that can be downloaded using CampaignCriterionService.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="changedFeeds" type="xsd:long">
+            <annotation>
+              <documentation>
+                A list of feed IDs for CampaignFeeds that have been changed in this campaign. If a CampaignFeed
+                is deleted after a modification, it will not be included in this list.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="removedFeeds" type="xsd:long">
+            <annotation>
+              <documentation>
+                A list of feed IDs for CampaignFeeds that have been removed from the campaign.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="CustomerChangeData">
+        <annotation>
+          <documentation>
+            Holds information about changes to a customer
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="changedCampaigns" type="tns:CampaignChangeData">
+            <annotation>
+              <documentation>
+                A list of campaign changes for the customer, as specified by the selector. If a campaign is
+                included in the selector it will be included in this list, even if the campaign did not change.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="changedFeeds" type="tns:FeedChangeData">
+            <annotation>
+              <documentation>
+                A list of feed changes for the customer as specified in the selector. If a feed is included in
+                the selector then it will be included in this list, even if the feed did not change.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0"
+            name="lastChangeTimestamp" type="xsd:string">
+            <annotation>
+              <documentation>
+                The timestamp for the last changed processed for this customer. It is important that this
+                timestamp be used for subsequent requests to avoid missing any changes.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="CustomerSyncError">
+        <annotation>
+          <documentation>
+            Represents CustomerSyncService specific errors
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="cm:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CustomerSyncError.Reason"/>
+              <element maxOccurs="1" minOccurs="0" name="campaignId" type="xsd:long"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="CustomerSyncSelector">
+        <annotation>
+          <documentation>
+            A filter for selecting change history data for a customer.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="dateTimeRange" type="cm:DateTimeRange">
+            <annotation>
+              <documentation>
+                Only return entities that have changed during the specified time range. String Format: yyyyMMdd
+                HHmmss &lt;Timezone ID&gt; (for example, 20100609 150223 America/New_York). See the &lt;a
+                href="https://developers.google.com/adwords/api/docs/appendix/timezones"&gt;Timezones&lt;/a&gt; page for
+                the complete list of Timezone IDs.
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="campaignIds" type="xsd:long">
+            <annotation>
+              <documentation>
+                Return entities belonging to these campaigns.
+                &lt;span class="constraint ContentsDistinct"&gt;This field must contain distinct elements.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="feedIds" type="xsd:long">
+            <annotation>
+              <documentation>
+                Return entities belonging to these feeds.
+                &lt;span class="constraint ContentsDistinct"&gt;This field must contain distinct elements.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="FeedChangeData">
+        <annotation>
+          <documentation>
+            Holds information about a changed feed and any feeds items within the feed.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="feedId" type="xsd:long">
+            <annotation>
+              <documentation>
+                The feed ID.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="feedChangeStatus" type="tns:ChangeStatus">
+            <annotation>
+              <documentation>
+                Whether or not the fields of this feed have changed.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="changedFeedItems" type="xsd:long">
+            <annotation>
+              <documentation>
+                A list of feed item IDs that have been added or modified within the the feed. If a feed item is
+                deleted after a modification, it will not be included in this list.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="removedFeedItems" type="xsd:long">
+            <annotation>
+              <documentation>
+                A list feed item IDs that have been removed from the feed.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <simpleType name="ChangeStatus">
+        <annotation>
+          <documentation>
+            An enum used to classify the types of changes that have been made to an adgroup/campaign during a
+            specified date range. This only refers to the field of the entity itself, and not its children.
+            
+            &lt;p&gt;For example, if an AdGroup name changed, this status would be FIELDS_CHANGED, but if only bids
+            on keywords belonging an AdGroup were changed this status would be FIELDS_UNCHANGED.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="FIELDS_UNCHANGED">
+            <annotation>
+              <documentation>
+                The fields of this entity have not changed, but there may still be changes to its children.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FIELDS_CHANGED">
+            <annotation>
+              <documentation>
+                The fields of this entity have changed, for example the name of an adgroup.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NEW">
+            <annotation>
+              <documentation>
+                This entity was created during the time frame we're looking at. We will not enumerate all of
+                the individual changes to this entity and its children. Instead it should be loaded from the
+                appropriate service.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="CustomerSyncError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="INVALID_CAMPAIGN_ID">
+            <annotation>
+              <documentation>
+                The request attempted to access a campaign that either does not exist or belongs to a
+                different account.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_FEED_ID">
+            <annotation>
+              <documentation>
+                The request attempted to access a feed that either does not exist or belongs to a different
+                account.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_DATE_RANGE">
+            <annotation>
+              <documentation>
+                The request asked for an invalid date range
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TOO_MANY_CHANGES">
+            <annotation>
+              <documentation>
+                There have been too many changes to sync the campaign over the requested date/time range. To
+                avoid this error, try specifying a smaller date/time range. If this does not work, you should
+                assume that everything has changed and retrieve the objects using their respective services.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <element name="get">
+        <annotation>
+          <documentation>
+            Returns information about changed entities inside a customer's account.
+            
+            @param selector Specifies the filter for selecting changehistory events for a customer.
+            @return A Customer-&gt;Campaign-&gt;AdGroup hierarchy containing information about the objects
+            changed at each level. All Campaigns that are requested in the selector will be returned,
+            regardless of whether or not they have changed, but unchanged AdGroups will be ignored.
+          </documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="selector" type="tns:CustomerSyncSelector">
+              <annotation>
+                <documentation>
+                  &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+                </documentation>
+              </annotation>
+            </element>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="getResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="rval" type="tns:CustomerChangeData"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ApiExceptionFault" type="cm:ApiException">
+        <annotation>
+          <documentation>
+            A fault element of type ApiException.
+          </documentation>
+        </annotation>
+      </element>
+      <element name="RequestHeader" type="cm:SoapHeader"/>
+      <element name="ResponseHeader" type="cm:SoapResponseHeader"/>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="RequestHeader">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"/>
+  </wsdl:message>
+  <wsdl:message name="ResponseHeader">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"/>
+  </wsdl:message>
+  <wsdl:message name="getRequest">
+    <wsdl:part element="tns:get" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getResponse">
+    <wsdl:part element="tns:getResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ApiException">
+    <wsdl:part element="tns:ApiExceptionFault" name="ApiException"/>
+  </wsdl:message>
+  <wsdl:portType name="CustomerSyncServiceInterface">
+    <wsdl:documentation>
+      Use this service to retrieve the changed entities for a customer account or campaign based on the
+      given date range.
+      
+      &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; There will be some delay in changes becoming visible to this
+      service; thus, use {@code lastChangeTimestamp} from the response to determine the validity period
+      for the data.
+      
+      &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; CustomerSyncService only supports queries for dates within the last
+      90 days.
+    </wsdl:documentation>
+    <wsdl:operation name="get">
+      <wsdl:documentation>
+        Returns information about changed entities inside a customer's account.
+        
+        @param selector Specifies the filter for selecting changehistory events for a customer.
+        @return A Customer-&gt;Campaign-&gt;AdGroup hierarchy containing information about the objects
+        changed at each level. All Campaigns that are requested in the selector will be returned,
+        regardless of whether or not they have changed, but unchanged AdGroups will be ignored.
+      </wsdl:documentation>
+      <wsdl:input message="tns:getRequest" name="getRequest"/>
+      <wsdl:output message="tns:getResponse" name="getResponse"/>
+      <wsdl:fault message="tns:ApiException" name="ApiException"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CustomerSyncServiceSoapBinding" type="tns:CustomerSyncServiceInterface">
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="get">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getRequest">
+        <wsdlsoap:header message="tns:RequestHeader"
+          part="RequestHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getResponse">
+        <wsdlsoap:header message="tns:ResponseHeader"
+          part="ResponseHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ApiException">
+        <wsdlsoap:fault name="ApiException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CustomerSyncService">
+    <wsdl:port binding="tns:CustomerSyncServiceSoapBinding" name="CustomerSyncServiceInterfacePort">
+      <wsdlsoap:address location="https://adwords.google.com/api/adwords/ch/v201806/CustomerSyncService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

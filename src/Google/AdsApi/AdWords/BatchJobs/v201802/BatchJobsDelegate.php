@@ -108,9 +108,9 @@ final class BatchJobsDelegate
                 'denormalize' => function ($value, $type) {
                     if ($type === 'int' || $type === 'integer') {
                         return $value + 0;
-                    } else if ($type === 'float' || $type === 'double') {
+                    } elseif ($type === 'float' || $type === 'double') {
                         return floatval($value);
-                    } else if ($type === 'bool' || $type === 'boolean') {
+                    } elseif ($type === 'bool' || $type === 'boolean') {
                         return ($value === 'true') ? true : false;
                     } else {
                         return $value;

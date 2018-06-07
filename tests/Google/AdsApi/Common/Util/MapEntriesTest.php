@@ -26,7 +26,8 @@ use PHPUnit\Framework\TestCase;
  * @see MapEntries
  * @small
  */
-class MapEntriesTest extends TestCase {
+class MapEntriesTest extends TestCase
+{
 
   /**
    * @param array $mapEntries a list of map entries
@@ -34,21 +35,24 @@ class MapEntriesTest extends TestCase {
    * @covers Google\AdsApi\Common\Util\MapEntries::toAssociativeArray
    * @dataProvider mapEntriesProvider
    */
-  public function testToAssociativeArray(
-      array $mapEntries, array $expectedMap) {
-    $actualMap = MapEntries::toAssociativeArray($mapEntries);
-    $this->assertSame($expectedMap, $actualMap);
-  }
+    public function testToAssociativeArray(
+        array $mapEntries,
+        array $expectedMap
+    ) {
+        $actualMap = MapEntries::toAssociativeArray($mapEntries);
+        $this->assertSame($expectedMap, $actualMap);
+    }
 
   /**
    * @covers Google\AdsApi\Common\Util\MapEntries::toAssociativeArray
    * @expectedException UnexpectedValueException
    */
-  public function testToAssociativeArrayWithInvalidMapEntryType() {
-    $invalidClass = new FakeInvalidMapEntry();
-    $invalidClass->lets = 'foo';
-    MapEntries::toAssociativeArray([$invalidClass]);
-  }
+    public function testToAssociativeArrayWithInvalidMapEntryType()
+    {
+        $invalidClass = new FakeInvalidMapEntry();
+        $invalidClass->lets = 'foo';
+        MapEntries::toAssociativeArray([$invalidClass]);
+    }
 
   /**
    * @param array $expectedMapEntries the expected map entries as a list
@@ -56,28 +60,37 @@ class MapEntriesTest extends TestCase {
    * @covers Google\AdsApi\Common\Util\MapEntries::fromAssociativeArray
    * @dataProvider mapEntriesProvider
    */
-  public function testFromAssociativeArray(
-      array $expectedMapEntries, array $map) {
-    $actualMapEntries =
+    public function testFromAssociativeArray(
+        array $expectedMapEntries,
+        array $map
+    ) {
+        $actualMapEntries =
         MapEntries::fromAssociativeArray($map, FakeMapEntry::class);
-    $this->assertSame(count($expectedMapEntries), count($actualMapEntries));
+        $this->assertSame(count($expectedMapEntries), count($actualMapEntries));
 
-    foreach ($actualMapEntries as $i => $actualMapEntry) {
-      $this->assertSame(
-          $expectedMapEntries[$i]->key, $actualMapEntry->key);
-      $this->assertSame(
-          $expectedMapEntries[$i]->value, $actualMapEntry->value);
+        foreach ($actualMapEntries as $i => $actualMapEntry) {
+            $this->assertSame(
+                $expectedMapEntries[$i]->key,
+                $actualMapEntry->key
+            );
+            $this->assertSame(
+                $expectedMapEntries[$i]->value,
+                $actualMapEntry->value
+            );
+        }
     }
-  }
 
   /**
    * @covers Google\AdsApi\Common\Util\MapEntries::fromAssociativeArray
    * @expectedException UnexpectedValueException
    */
-  public function testFromAssociativeArrayWithInvalidClass() {
-    MapEntries::fromAssociativeArray(
-        ['foo' => 'bar'], FakeInvalidMapEntry::class);
-  }
+    public function testFromAssociativeArrayWithInvalidClass()
+    {
+        MapEntries::fromAssociativeArray(
+            ['foo' => 'bar'],
+            FakeInvalidMapEntry::class
+        );
+    }
 
   /**
    * Provides map entries and their list equivalents using `FakeMapEntry`.
@@ -85,36 +98,37 @@ class MapEntriesTest extends TestCase {
    * @return array an array of arrays of map entries as a list and its map
    *     equivalent
    */
-  public function mapEntriesProvider() {
-    $data = [];
+    public function mapEntriesProvider()
+    {
+        $data = [];
 
-    // One entry.
-    $mapEntries1 = [
+        // One entry.
+        $mapEntries1 = [
         new FakeMapEntry('foo', 'bar')
-    ];
-    $entryMap1 = [
+        ];
+        $entryMap1 = [
         'foo' => 'bar'
-    ];
-    $data[] = [$mapEntries1, $entryMap1];
+        ];
+        $data[] = [$mapEntries1, $entryMap1];
 
-    // Multiple entries.
-    $mapEntries2 = [
+        // Multiple entries.
+        $mapEntries2 = [
         new FakeMapEntry('foo', 'bar'),
         new FakeMapEntry('bear', 'Sheep'),
         new FakeMapEntry('Cow', 'PIG')
-    ];
-    $entryMap2 = [
+        ];
+        $entryMap2 = [
         'foo' => 'bar',
         'bear' => 'Sheep',
         'Cow' => 'PIG'
-    ];
-    $data[] = [$mapEntries2, $entryMap2];
+        ];
+        $data[] = [$mapEntries2, $entryMap2];
 
-    // No entries.
-    $mapEntries3 = [];
-    $entryMap3 = [];
-    $data[] = [$mapEntries3, $entryMap3];
+        // No entries.
+        $mapEntries3 = [];
+        $entryMap3 = [];
+        $data[] = [$mapEntries3, $entryMap3];
 
-    return $data;
-  }
+        return $data;
+    }
 }

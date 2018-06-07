@@ -24,36 +24,38 @@ use PHPUnit\Framework\TestCase;
  * @see AdsSoapClient
  * @small
  */
-class AdsSoapClientTest extends TestCase {
+class AdsSoapClientTest extends TestCase
+{
 
   /**
    * @covers Google\AdsApi\Common\AdsSoapClient::getLocalWsdlPath
    */
-  public function testGetLocalWsdlPath() {
-    $fakeLiveWsdlUri =
+    public function testGetLocalWsdlPath()
+    {
+        $fakeLiveWsdlUri =
         'https://abc.xyz/api/adwords/cm/v201710/MockService?wsdl';
-    $adsSoapClientMock = $this->getMockBuilder(AdsSoapClient::class)
+        $adsSoapClientMock = $this->getMockBuilder(AdsSoapClient::class)
         ->disableOriginalConstructor()
         ->getMock();
 
-    $expectedResultRegex = sprintf(
-        '|src%1$sGoogle%1$sAdsApi%1$sCommon%1$s'
+        $expectedResultRegex = sprintf(
+            '|src%1$sGoogle%1$sAdsApi%1$sCommon%1$s'
             . '\.\.%1$s\.\.%1$s\.\.%1$s\.\.%1$sresources%1$swsdls'
             . '%1$sapi%1$sadwords%1$scm%1$sv201710%1$sMockService\.wsdl$|',
-        DIRECTORY_SEPARATOR
-    );
+            DIRECTORY_SEPARATOR
+        );
 
-    $reflection = new \ReflectionClass(get_class($adsSoapClientMock));
-    $method = $reflection->getMethod('getLocalWsdlPath');
-    $method->setAccessible(true);
-    $actualResult = $method->invokeArgs($adsSoapClientMock, [$fakeLiveWsdlUri]);
+        $reflection = new \ReflectionClass(get_class($adsSoapClientMock));
+        $method = $reflection->getMethod('getLocalWsdlPath');
+        $method->setAccessible(true);
+        $actualResult = $method->invokeArgs($adsSoapClientMock, [$fakeLiveWsdlUri]);
 
-    $this->assertRegExp($expectedResultRegex, $actualResult);
-    if (DIRECTORY_SEPARATOR === '\\') {
-      $this->assertNotContains('/', $actualResult);
+        $this->assertRegExp($expectedResultRegex, $actualResult);
+        if (DIRECTORY_SEPARATOR === '\\') {
+            $this->assertNotContains('/', $actualResult);
+        }
+        if (DIRECTORY_SEPARATOR === '/') {
+            $this->assertNotContains('\\', $actualResult);
+        }
     }
-    if (DIRECTORY_SEPARATOR === '/') {
-      $this->assertNotContains('\\', $actualResult);
-    }
-  }
 }

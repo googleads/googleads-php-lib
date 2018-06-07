@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<reportDefinition>
+  <selector>
+    <fields>CampaignId</fields>
+    <fields>AdGroupId</fields>
+    <fields>Id</fields>
+    <fields>Criteria</fields>
+    <fields>CriteriaType</fields>
+    <fields>Impressions</fields>
+    <fields>Clicks</fields>
+    <fields>Cost</fields>
+  </selector>
+  <reportName>CRITERIA_PERFORMANCE_REPORT</reportName>
+  <reportType>CRITERIA_PERFORMANCE_REPORT</reportType>
+  <downloadFormat>CSV</downloadFormat>
+</reportDefinition>

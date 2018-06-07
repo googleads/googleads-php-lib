@@ -24,7 +24,8 @@ use PHPUnit\Framework\TestCase;
  * @see ConnectionSettings
  * @small
  */
-class ConnectionSettingsTest extends TestCase {
+class ConnectionSettingsTest extends TestCase
+{
 
   /**
    * @param array $value the array of proxies to evaluate
@@ -32,13 +33,14 @@ class ConnectionSettingsTest extends TestCase {
    * @covers Google\AdsApi\Common\ConnectionSettings::getProxyParts
    * @dataProvider proxyPartsProvider
    */
-  public function testGetProxyParts($value, $expected) {
-    $connectionSettings = (new ConnectionSettingsBuilder())
+    public function testGetProxyParts($value, $expected)
+    {
+        $connectionSettings = (new ConnectionSettingsBuilder())
         ->withProxyUrl($value)
         ->build();
 
-    $this->assertSame($expected, $connectionSettings->getProxyParts());
-  }
+        $this->assertSame($expected, $connectionSettings->getProxyParts());
+    }
 
   /**
    * Provides arrays and the expected values of
@@ -46,41 +48,42 @@ class ConnectionSettingsTest extends TestCase {
    *
    * @return array arrays of a string and an array
    */
-  public function proxyPartsProvider() {
-    $data = [];
+    public function proxyPartsProvider()
+    {
+        $data = [];
 
-    // Full URL.
-    $data[] = ['http://user:pass@localhost:999',
+        // Full URL.
+        $data[] = ['http://user:pass@localhost:999',
         ['user', 'pass', 'http://localhost', '999']];
-    // No password.
-    $data[] = ['http://user@localhost:999',
+        // No password.
+        $data[] = ['http://user@localhost:999',
         ['user', '', 'http://localhost', '999']];
-    // No username and password.
-    $data[] = ['https://localhost:999',
+        // No username and password.
+        $data[] = ['https://localhost:999',
         ['', '', 'https://localhost', '999']];
 
-    // No protocol.
-    $data[] = ['user:pass@localhost:999',
+        // No protocol.
+        $data[] = ['user:pass@localhost:999',
         ['user', 'pass', 'localhost', '999']];
-    // No protocol and username and password.
-    $data[] = ['localhost:999',
+        // No protocol and username and password.
+        $data[] = ['localhost:999',
         ['', '', 'localhost', '999']];
 
-    // No port.
-    $data[] = ['localhost',
+        // No port.
+        $data[] = ['localhost',
         ['', '', 'localhost', '']];
-    $data[] = ['https://localhost',
+        $data[] = ['https://localhost',
         ['', '', 'https://localhost', '']];
 
-    // IP address.
-    $data[] = ['https://127.0.0.1:999',
+        // IP address.
+        $data[] = ['https://127.0.0.1:999',
         ['', '', 'https://127.0.0.1', '999']];
-    $data[] = ['127.0.0.1:999',
+        $data[] = ['127.0.0.1:999',
         ['', '', '127.0.0.1', '999']];
-    $data[] = ['127.0.0.1',
+        $data[] = ['127.0.0.1',
         ['', '', '127.0.0.1', '']];
-    $data[] = ['', ['', '', '', '']];
+        $data[] = ['', ['', '', '', '']];
 
-    return $data;
-  }
+        return $data;
+    }
 }

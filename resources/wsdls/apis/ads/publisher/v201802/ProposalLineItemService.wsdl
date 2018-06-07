@@ -4630,7 +4630,7 @@
       <simpleType name="AdExchangeEnvironment">
         <annotation>
           <documentation>
-            Identifies the the format of inventory or "channel" in which ads serve.
+            Identifies the format of inventory or "channel" in which ads serve.
           </documentation>
         </annotation>
         <restriction base="xsd:string">
@@ -4644,14 +4644,14 @@
           <enumeration value="VIDEO">
             <annotation>
               <documentation>
-                Ads serve in a video.
+                In-stream video ads serve in a video.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="GAMES">
             <annotation>
               <documentation>
-                Ads serve in a game.
+                In-stream video ads serve in a game.
               </documentation>
             </annotation>
           </enumeration>

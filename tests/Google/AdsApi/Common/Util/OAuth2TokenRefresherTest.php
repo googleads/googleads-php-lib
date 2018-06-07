@@ -25,98 +25,108 @@ use PHPUnit\Framework\TestCase;
  * @see OAuth2TokenRefresher
  * @small
  */
-class OAuth2TokenRefresherTest extends TestCase {
+class OAuth2TokenRefresherTest extends TestCase
+{
 
-  private $fetchAuthTokenInterfaceMock;
-  private $oAuth2TokenRefresher;
+    private $fetchAuthTokenInterfaceMock;
+    private $oAuth2TokenRefresher;
 
   /**
    * @see PHPUnit\Framework\TestCase::setUp
    */
-  protected function setUp() {
-    $this->fetchAuthTokenInterfaceMock = $this
+    protected function setUp()
+    {
+        $this->fetchAuthTokenInterfaceMock = $this
         ->getMockBuilder(FetchAuthTokenInterface::class)
         ->disableOriginalConstructor()
         ->getMock();
-    $this->oAuth2TokenRefresher = new OAuth2TokenRefresher();
-  }
+        $this->oAuth2TokenRefresher = new OAuth2TokenRefresher();
+    }
 
   /**
    * @covers Google\AdsApi\Common\Util\OAuth2TokenRefresher::getOrFetchAccessToken
    */
-  public function testGetOrFetchAccessNoExistingToken() {
-    $this->fetchAuthTokenInterfaceMock->expects($this->once())
+    public function testGetOrFetchAccessNoExistingToken()
+    {
+        $this->fetchAuthTokenInterfaceMock->expects($this->once())
         ->method('fetchAuthToken')
         ->will($this->returnValue(['access_token' => 'newabc123']));
-    $this->fetchAuthTokenInterfaceMock->expects($this->once())
+        $this->fetchAuthTokenInterfaceMock->expects($this->once())
         ->method('getLastReceivedToken')
         ->will($this->returnValue(null));
 
-    $this->assertSame(
-        'newabc123',
-        $this->oAuth2TokenRefresher->getOrFetchAccessToken(
-            $this->fetchAuthTokenInterfaceMock)
-    );
-  }
+        $this->assertSame(
+            'newabc123',
+            $this->oAuth2TokenRefresher->getOrFetchAccessToken(
+                $this->fetchAuthTokenInterfaceMock
+            )
+        );
+    }
 
   /**
    * @covers Google\AdsApi\Common\Util\OAuth2TokenRefresher::getOrFetchAccessToken
    */
-  public function testGetOrFetchAccessExistingTokenNotExpiringSoon() {
-    $expiresAt = time() + 9000;
-    $this->fetchAuthTokenInterfaceMock->expects($this->never())
+    public function testGetOrFetchAccessExistingTokenNotExpiringSoon()
+    {
+        $expiresAt = time() + 9000;
+        $this->fetchAuthTokenInterfaceMock->expects($this->never())
         ->method('fetchAuthToken');
-    $this->fetchAuthTokenInterfaceMock->expects($this->exactly(2))
+        $this->fetchAuthTokenInterfaceMock->expects($this->exactly(2))
         ->method('getLastReceivedToken')
         ->will($this->onConsecutiveCalls(
             ['access_token' => 'existingabc123', 'expires_at' => $expiresAt],
             ['access_token' => 'existingabc123', 'expires_at' => $expiresAt]
         ));
 
-    $this->assertSame(
-        'existingabc123',
-        $this->oAuth2TokenRefresher->getOrFetchAccessToken(
-            $this->fetchAuthTokenInterfaceMock)
-    );
-  }
+        $this->assertSame(
+            'existingabc123',
+            $this->oAuth2TokenRefresher->getOrFetchAccessToken(
+                $this->fetchAuthTokenInterfaceMock
+            )
+        );
+    }
 
   /**
    * @covers Google\AdsApi\Common\Util\OAuth2TokenRefresher::getOrFetchAccessToken
    */
-  public function testGetOrFetchAccessExistingTokenExpiringSoon() {
-    $this->fetchAuthTokenInterfaceMock->expects($this->once())
+    public function testGetOrFetchAccessExistingTokenExpiringSoon()
+    {
+        $this->fetchAuthTokenInterfaceMock->expects($this->once())
         ->method('fetchAuthToken')
         ->will($this->returnValue(['access_token' => 'newabc123']));
-    $this->fetchAuthTokenInterfaceMock->expects($this->once())
+        $this->fetchAuthTokenInterfaceMock->expects($this->once())
         ->method('getLastReceivedToken')
         ->will($this->returnValue(
             ['access_token' => 'existingabc123', 'expires_at' => time() + 30]
         ));
 
-    $this->assertSame(
-        'newabc123',
-        $this->oAuth2TokenRefresher->getOrFetchAccessToken(
-            $this->fetchAuthTokenInterfaceMock)
-    );
-  }
+        $this->assertSame(
+            'newabc123',
+            $this->oAuth2TokenRefresher->getOrFetchAccessToken(
+                $this->fetchAuthTokenInterfaceMock
+            )
+        );
+    }
 
   /**
    * @covers Google\AdsApi\Common\Util\OAuth2TokenRefresher::getOrFetchAccessToken
    */
-  public function testGetOrFetchAccessExistingTokenExpired() {
-    $this->fetchAuthTokenInterfaceMock->expects($this->once())
+    public function testGetOrFetchAccessExistingTokenExpired()
+    {
+        $this->fetchAuthTokenInterfaceMock->expects($this->once())
         ->method('fetchAuthToken')
         ->will($this->returnValue(['access_token' => 'newabc123']));
-    $this->fetchAuthTokenInterfaceMock->expects($this->once())
+        $this->fetchAuthTokenInterfaceMock->expects($this->once())
         ->method('getLastReceivedToken')
         ->will($this->returnValue(
             ['access_token' => 'existingabc123', 'expires_at' => time() - 9000]
         ));
 
-    $this->assertSame(
-        'newabc123',
-        $this->oAuth2TokenRefresher->getOrFetchAccessToken(
-            $this->fetchAuthTokenInterfaceMock)
-    );
-  }
+        $this->assertSame(
+            'newabc123',
+            $this->oAuth2TokenRefresher->getOrFetchAccessToken(
+                $this->fetchAuthTokenInterfaceMock
+            )
+        );
+    }
 }

@@ -40,8 +40,10 @@ class GetCampaignsWithAwql
         AdWordsServices $adWordsServices,
         AdWordsSession $session
     ) {
-        $campaignService = $adWordsServices->get($session,
-            CampaignService::class);
+        $campaignService = $adWordsServices->get(
+            $session,
+            CampaignService::class
+        );
 
         // Create AWQL query.
         $query = (new ServiceQueryBuilder())
@@ -51,7 +53,6 @@ class GetCampaignsWithAwql
             ->build();
 
         do {
-
             // Advance the paging offset in subsequent iterations only.
             if (isset($page)) {
                 $query->nextPage();
@@ -73,8 +74,10 @@ class GetCampaignsWithAwql
             }
         } while ($query->hasNext($page));
 
-        printf("Number of results found: %d\n",
-            $page->getTotalNumEntries());
+        printf(
+            "Number of results found: %d\n",
+            $page->getTotalNumEntries()
+        );
     }
 
     public static function main()

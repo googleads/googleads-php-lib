@@ -29,74 +29,90 @@ use PHPUnit\Framework\TestCase;
  * @see AdsGuzzleHttpClientFactory
  * @small
  */
-class AdsGuzzleHttpClientFactoryTest extends TestCase {
+class AdsGuzzleHttpClientFactoryTest extends TestCase
+{
 
   /**
    * @covers Google\AdsApi\Common\GuzzleHttpClientFactory::generateHttpClient
    */
-  public function testGenerateHttpClient() {
-    $logger = new Logger('', [new NullHandler()]);
-    $guzzleLogMessageFormatter = new GuzzleLogMessageFormatter([], [], false);
+    public function testGenerateHttpClient()
+    {
+        $logger = new Logger('', [new NullHandler()]);
+        $guzzleLogMessageFormatter = new GuzzleLogMessageFormatter([], [], false);
 
-    $stack = HandlerStack::create();
-    $stack->before('http_errors',
-        GuzzleLogMessageHandler::log($logger, $guzzleLogMessageFormatter));
+        $stack = HandlerStack::create();
+        $stack->before(
+            'http_errors',
+            GuzzleLogMessageHandler::log($logger, $guzzleLogMessageFormatter)
+        );
 
-    $httpClientFactory =
+        $httpClientFactory =
         new AdsGuzzleHttpClientFactory($logger, $guzzleLogMessageFormatter);
-    $httpClient = $httpClientFactory->generateHttpClient();
+        $httpClient = $httpClientFactory->generateHttpClient();
 
-    $this->assertNotNull($httpClient);
-    $this->assertInstanceOf(Client::class, $httpClient);
-    $this->assertEquals($stack, $httpClient->getConfig()['handler']);
-  }
-
-  /**
-   * @covers Google\AdsApi\Common\GuzzleHttpClientFactory::generateHttpClient
-   */
-  public function testGenerateHttpClient_userProvidedStack() {
-    $logger = new Logger('', [new NullHandler()]);
-    $guzzleLogMessageFormatter = new GuzzleLogMessageFormatter([], [], false);
-
-    $stack = HandlerStack::create();
-    $stack->before('http_errors',
-        GuzzleLogMessageHandler::log($logger, $guzzleLogMessageFormatter));
-    $stack->before('http_errors', Middleware::tap());
-    $client = new Client(['handler' => $stack]);
-
-    $httpClientFactory = new AdsGuzzleHttpClientFactory(
-        $logger, $guzzleLogMessageFormatter, $client);
-    $httpClient = $httpClientFactory->generateHttpClient();
-
-    $this->assertNotNull($httpClient);
-    $this->assertInstanceOf(Client::class, $httpClient);
-    $this->assertEquals($stack, $httpClient->getConfig()['handler']);
-  }
+        $this->assertNotNull($httpClient);
+        $this->assertInstanceOf(Client::class, $httpClient);
+        $this->assertEquals($stack, $httpClient->getConfig()['handler']);
+    }
 
   /**
    * @covers Google\AdsApi\Common\GuzzleHttpClientFactory::generateHttpClient
    */
-  public function testGenerateHttpClient_userProvidedConfigs() {
-    $logger = new Logger('', [new NullHandler()]);
-    $guzzleLogMessageFormatter = new GuzzleLogMessageFormatter([], [], false);
+    public function testGenerateHttpClient_userProvidedStack()
+    {
+        $logger = new Logger('', [new NullHandler()]);
+        $guzzleLogMessageFormatter = new GuzzleLogMessageFormatter([], [], false);
 
-    $stack = HandlerStack::create();
-    $stack->before('http_errors',
-        GuzzleLogMessageHandler::log($logger, $guzzleLogMessageFormatter));
-    $client = new Client([
+        $stack = HandlerStack::create();
+        $stack->before(
+            'http_errors',
+            GuzzleLogMessageHandler::log($logger, $guzzleLogMessageFormatter)
+        );
+        $stack->before('http_errors', Middleware::tap());
+        $client = new Client(['handler' => $stack]);
+
+        $httpClientFactory = new AdsGuzzleHttpClientFactory(
+            $logger,
+            $guzzleLogMessageFormatter,
+            $client
+        );
+        $httpClient = $httpClientFactory->generateHttpClient();
+
+        $this->assertNotNull($httpClient);
+        $this->assertInstanceOf(Client::class, $httpClient);
+        $this->assertEquals($stack, $httpClient->getConfig()['handler']);
+    }
+
+  /**
+   * @covers Google\AdsApi\Common\GuzzleHttpClientFactory::generateHttpClient
+   */
+    public function testGenerateHttpClient_userProvidedConfigs()
+    {
+        $logger = new Logger('', [new NullHandler()]);
+        $guzzleLogMessageFormatter = new GuzzleLogMessageFormatter([], [], false);
+
+        $stack = HandlerStack::create();
+        $stack->before(
+            'http_errors',
+            GuzzleLogMessageHandler::log($logger, $guzzleLogMessageFormatter)
+        );
+        $client = new Client([
         'handler' => $stack,
         'verify' => true,
         'cookies' => false
-    ]);
+        ]);
 
-    $httpClientFactory = new AdsGuzzleHttpClientFactory(
-        $logger, $guzzleLogMessageFormatter, $client);
-    $httpClient = $httpClientFactory->generateHttpClient();
+        $httpClientFactory = new AdsGuzzleHttpClientFactory(
+            $logger,
+            $guzzleLogMessageFormatter,
+            $client
+        );
+        $httpClient = $httpClientFactory->generateHttpClient();
 
-    $this->assertNotNull($httpClient);
-    $this->assertInstanceOf(Client::class, $httpClient);
-    $this->assertEquals($stack, $httpClient->getConfig()['handler']);
-    $this->assertTrue($httpClient->getConfig()['verify']);
-    $this->assertFalse($httpClient->getConfig()['cookies']);
-  }
+        $this->assertNotNull($httpClient);
+        $this->assertInstanceOf(Client::class, $httpClient);
+        $this->assertEquals($stack, $httpClient->getConfig()['handler']);
+        $this->assertTrue($httpClient->getConfig()['verify']);
+        $this->assertFalse($httpClient->getConfig()['cookies']);
+    }
 }

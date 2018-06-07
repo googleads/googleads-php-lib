@@ -52,7 +52,7 @@ final class SoapHeaders
                 && $xmlReader->localName === $soapHeaderName) {
                 $xmlReader->read();
                 $headerValue = $xmlReader->value;
-            } else if ($xmlReader->nodeType === XMLReader::END_ELEMENT
+            } elseif ($xmlReader->nodeType === XMLReader::END_ELEMENT
                 && $xmlReader->localName === self::$SOAP_HEADER_NODE_NAME) {
                 break;
             }
@@ -78,10 +78,10 @@ final class SoapHeaders
                 && $xmlReader->localName === self::$SOAP_RESPONSE_HEADER_NODE_NAME) {
                 $foundOpenTag = true;
                 continue;
-            } else if ($xmlReader->nodeType === XMLReader::END_ELEMENT
+            } elseif ($xmlReader->nodeType === XMLReader::END_ELEMENT
                 && $xmlReader->localName === self::$SOAP_RESPONSE_HEADER_NODE_NAME) {
                 break;
-            } else if ($foundOpenTag && $xmlReader->nodeType === XMLReader::ELEMENT) {
+            } elseif ($foundOpenTag && $xmlReader->nodeType === XMLReader::ELEMENT) {
                 $headerName = $xmlReader->localName;
                 $xmlReader->read();
                 $headerValues[$headerName] = $xmlReader->value;

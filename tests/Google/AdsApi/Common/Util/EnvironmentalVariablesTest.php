@@ -24,81 +24,88 @@ use PHPUnit\Framework\TestCase;
  * @see EnvironmentalVariables
  * @small
  */
-class EnvironmentalVariablesTest extends TestCase {
+class EnvironmentalVariablesTest extends TestCase
+{
 
-  private $environmentalVariables;
+    private $environmentalVariables;
 
   /**
    * @see PHPUnit\Framework\TestCase::setUp
    */
-  protected function setUp() {
-    $this->environmentalVariables = new EnvironmentalVariables();
-  }
+    protected function setUp()
+    {
+        $this->environmentalVariables = new EnvironmentalVariables();
+    }
 
   /**
    * @covers Google\AdsApi\Common\Util\EnvironmentalVariables::getHome
    */
-  public function testGetHomeNixPlatforms() {
-    putenv('HOME=/usr/local/home/bear/');
-    $this->assertSame(
-        '/usr/local/home/bear',
-        $this->environmentalVariables->getHome()
-    );
-  }
+    public function testGetHomeNixPlatforms()
+    {
+        putenv('HOME=/usr/local/home/bear/');
+        $this->assertSame(
+            '/usr/local/home/bear',
+            $this->environmentalVariables->getHome()
+        );
+    }
 
   /**
    * @covers Google\AdsApi\Common\Util\EnvironmentalVariables::getHome
    */
-  public function testGetHomeNixPlatformsNoHomeEnvVar() {
-    putenv('HOME=');
-    $_SERVER['HOME'] = '/usr/local/home/walrus/';
-    $this->assertSame(
-        '/usr/local/home/walrus',
-        $this->environmentalVariables->getHome()
-    );
-  }
+    public function testGetHomeNixPlatformsNoHomeEnvVar()
+    {
+        putenv('HOME=');
+        $_SERVER['HOME'] = '/usr/local/home/walrus/';
+        $this->assertSame(
+            '/usr/local/home/walrus',
+            $this->environmentalVariables->getHome()
+        );
+    }
 
   /**
    * @covers Google\AdsApi\Common\Util\EnvironmentalVariables::getHome
    */
-  public function testGetHomeWindows() {
-    putenv('HOME=');
-    $_SERVER['HOME'] = null;
-    putenv('HOMEDRIVE=C:\\');
-    putenv('HOMEPATH=Users\\Moose\\');
-    $this->assertSame(
-        'C:\\Users\\Moose',
-        $this->environmentalVariables->getHome()
-    );
-  }
+    public function testGetHomeWindows()
+    {
+        putenv('HOME=');
+        $_SERVER['HOME'] = null;
+        putenv('HOMEDRIVE=C:\\');
+        putenv('HOMEPATH=Users\\Moose\\');
+        $this->assertSame(
+            'C:\\Users\\Moose',
+            $this->environmentalVariables->getHome()
+        );
+    }
 
   /**
    * @covers Google\AdsApi\Common\Util\EnvironmentalVariables::getHome
    */
-  public function testGetHomeWindowsNoHomeEnvVars() {
-    putenv('HOME=');
-    $_SERVER['HOME'] = null;
-    putenv('HOMEDRIVE=');
-    putenv('HOMEPATH=');
-    $_SERVER['HOMEDRIVE'] = 'D:\\';
-    $_SERVER['HOMEPATH'] = 'Users\\Sheep';
-    $this->assertSame(
-        'D:\\Users\\Sheep',
-        $this->environmentalVariables->getHome()
-    );
-  }
+    public function testGetHomeWindowsNoHomeEnvVars()
+    {
+        putenv('HOME=');
+        $_SERVER['HOME'] = null;
+        putenv('HOMEDRIVE=');
+        putenv('HOMEPATH=');
+        $_SERVER['HOMEDRIVE'] = 'D:\\';
+        $_SERVER['HOMEPATH'] = 'Users\\Sheep';
+        $this->assertSame(
+            'D:\\Users\\Sheep',
+            $this->environmentalVariables->getHome()
+        );
+    }
 
   /**
    * @covers Google\AdsApi\Common\Util\EnvironmentalVariables::getHome
    * @expectedException UnexpectedValueException
    */
-  public function testGetHomeNotFound() {
-    putenv('HOME=');
-    $_SERVER['HOME'] = null;
-    putenv('HOMEDRIVE=');
-    putenv('HOMEPATH=');
-    $_SERVER['HOMEDRIVE'] = '';
-    $_SERVER['HOMEPATH'] = null;
-    $this->environmentalVariables->getHome();
-  }
+    public function testGetHomeNotFound()
+    {
+        putenv('HOME=');
+        $_SERVER['HOME'] = null;
+        putenv('HOMEDRIVE=');
+        putenv('HOMEPATH=');
+        $_SERVER['HOMEDRIVE'] = '';
+        $_SERVER['HOMEPATH'] = null;
+        $this->environmentalVariables->getHome();
+    }
 }

@@ -28,54 +28,58 @@ use Psr\Http\Message\ResponseInterface;
  * @see AdsGuzzleProxyHttpHandler
  * @small
  */
-class AdsGuzzleProxyHttpHandlerTest extends TestCase {
+class AdsGuzzleProxyHttpHandlerTest extends TestCase
+{
 
   /**
    * @see PHPUnit\Framework\TestCase::setUp
    */
-  protected function setUp() {
-    $this->mockRequest =
+    protected function setUp()
+    {
+        $this->mockRequest =
         $this->getMockBuilder(RequestInterface::class)->getMock();
-    $this->mockClient = $this->getMockBuilder(Client::class)->getMock();
-    $this->mockClient
+        $this->mockClient = $this->getMockBuilder(Client::class)->getMock();
+        $this->mockClient
         ->expects($this->any())
         ->method('send')
         ->will($this->returnValue(new Response(200)));
-  }
+    }
 
   /**
    * @covers Google\AdsApi\Common\AdsGuzzleProxyHttpHandler::__invoke()
    */
-  public function testSendRequest_emptyProxyUrl() {
-    $mockSession = $this->getMockBuilder(AdsSession::class)->getMock();
-    $connectionSettings = (new ConnectionSettingsBuilder())
+    public function testSendRequest_emptyProxyUrl()
+    {
+        $mockSession = $this->getMockBuilder(AdsSession::class)->getMock();
+        $connectionSettings = (new ConnectionSettingsBuilder())
         ->withProxyUrl('')
         ->build();
-    $mockSession
+        $mockSession
         ->expects($this->any())
         ->method('getConnectionSettings')
         ->will($this->returnValue($connectionSettings));
 
-    $handler = new AdsGuzzleProxyHttpHandler($mockSession, $this->mockClient);
-    $response = $handler($this->mockRequest);
-    $this->assertInstanceOf(ResponseInterface::class, $response);
-  }
+        $handler = new AdsGuzzleProxyHttpHandler($mockSession, $this->mockClient);
+        $response = $handler($this->mockRequest);
+        $this->assertInstanceOf(ResponseInterface::class, $response);
+    }
 
   /**
    * @covers Google\AdsApi\Common\AdsGuzzleProxyHttpHandler::__invoke()
    */
-  public function testSendRequest_withProxyUrl() {
-    $mockSession = $this->getMockBuilder(AdsSession::class)->getMock();
-    $connectionSettings = (new ConnectionSettingsBuilder())
+    public function testSendRequest_withProxyUrl()
+    {
+        $mockSession = $this->getMockBuilder(AdsSession::class)->getMock();
+        $connectionSettings = (new ConnectionSettingsBuilder())
         ->withProxyUrl('127.0.0.1')
         ->build();
-    $mockSession
+        $mockSession
         ->expects($this->any())
         ->method('getConnectionSettings')
         ->will($this->returnValue($connectionSettings));
 
-    $handler = new AdsGuzzleProxyHttpHandler($mockSession, $this->mockClient);
-    $response = $handler($this->mockRequest);
-    $this->assertInstanceOf(ResponseInterface::class, $response);
-  }
+        $handler = new AdsGuzzleProxyHttpHandler($mockSession, $this->mockClient);
+        $response = $handler($this->mockRequest);
+        $this->assertInstanceOf(ResponseInterface::class, $response);
+    }
 }

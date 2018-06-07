@@ -2707,14 +2707,13 @@
             name="userConsentEligibility" type="tns:UserConsentEligibility">
             <annotation>
               <documentation>
-                Optional User consent eligibility designation for this line item.
-                
-                Defaults {@link UserConsentEligibility#NONE} if the network's EU User Consent settings limit
-                line items.
+                User consent eligibility designation for this line item. This field is optional and defaults to
+                {@link UserConsentEligibility#NONE}.
                 
                 This field has no effect on serving enforcement unless you opt to "Limit line items" in the
-                network's EU User Consent settings.  See
-                https://support.google.com/dfp_premium/answer/7673898#limit for more information.
+                network's EU User Consent settings.  See the
+                &lt;a href="https://support.google.com/dfp_premium/answer/7673898#limit"&gt;DFP Help Center&lt;/a&gt; for
+                more information.
               </documentation>
             </annotation>
           </element>
@@ -9552,41 +9551,41 @@
             
             This value is only relevant if a publisher has opted to "Limit line items" in the network-level
             EU user consent settings, and only on specific types of {@link LineItem}.
-            See https://support.google.com/dfp_premium/answer/7673898#limit for a full explanation of how and
-            when this setting is used.
+            See the &lt;a href="https://support.google.com/dfp_premium/answer/7673898#limit"&gt;DFP Help Center&lt;/a&gt;
+            for a full explanation of how and when this setting is used.
           </documentation>
         </annotation>
         <restriction base="xsd:string">
           <enumeration value="NONE">
             <annotation>
               <documentation>
-                Don't serve for any EEA ad request - This line item is not eligible to serve on any
-                requests that originate in the EEA - regardless of the consent bit in request.
+                Don't serve for any EEA ad request. This line item is not eligible to serve on any
+                requests that originate in the EEA regardless of the consent bit in request.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="CONSENTED_OR_NPA">
             <annotation>
               <documentation>
-                Don't limit serving - The network has marked this line item as one that does not use any
-                personalized data.  The line item is therefore eligible to serve on requests regardless of
-                field). their consent designations (in other words, for requests that have *either* NPA=1 or no
-                NPA.
+                Don't limit serving. The network has marked this line item as one that does not use any
+                personalized data. The line item is therefore eligible to serve on requests regardless of
+                users' consent designations (in other words, for requests that have &lt;b&gt;either&lt;/b&gt; NPA=1 or no
+                NPA).
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="CONSENTED_ONLY">
             <annotation>
               <documentation>
-                Don't serve for non-personalized ad requests - The network has marked this line item as being
-                eligible to serve on any consented request (ie. on requests that *do not* have NPA=1).
+                Don't serve for non-personalized ad requests. The network has marked this line item as being
+                eligible to serve on any consented request (i.e., on requests that &lt;b&gt;do not&lt;/b&gt; have NPA=1).
                 
                 The network therefore takes responsibility for gathering consent from the user for any data
                 sharing that may occur from third parties present on the creatives that are associated with
                 this line item.
                 
-                If a non-consented request (a request that *does* have NPA=1) is received, this line item will
-                *not* be eligible for match.
+                If a non-consented request (a request that &lt;b&gt;does&lt;/b&gt; have NPA=1) is received, this line item
+                will &lt;b&gt;not&lt;/b&gt; be eligible for match.
               </documentation>
             </annotation>
           </enumeration>

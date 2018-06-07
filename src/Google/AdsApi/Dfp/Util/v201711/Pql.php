@@ -63,17 +63,17 @@ class Pql
     {
         if ($value instanceof Value) {
             return $value;
-        } else if (is_bool($value)) {
+        } elseif (is_bool($value)) {
             return new BooleanValue($value);
-        } else if (is_float($value) || is_int($value)) {
+        } elseif (is_float($value) || is_int($value)) {
             return new NumberValue(strval($value));
-        } else if (is_string($value)) {
+        } elseif (is_string($value)) {
             return new TextValue($value);
-        } else if ($value instanceof DfpDateTime) {
+        } elseif ($value instanceof DfpDateTime) {
             return new DateTimeValue($value);
-        } else if ($value instanceof Date) {
+        } elseif ($value instanceof Date) {
             return new DateValue($value);
-        } else if (is_array($value)) {
+        } elseif (is_array($value)) {
             $values = [];
             foreach ($value as $valueEntry) {
                 $values[] = self::createValue($valueEntry);
@@ -82,7 +82,7 @@ class Pql
             $setValue->setValues($values);
 
             return $setValue;
-        } else if ($value instanceof Targeting) {
+        } elseif ($value instanceof Targeting) {
             return new TargetingValue($value);
         } else {
             throw new InvalidArgumentException(
@@ -105,13 +105,13 @@ class Pql
     {
         if ($value instanceof BooleanValue) {
             return $value->getValue() ? 'true' : 'false';
-        } else if ($value instanceof NumberValue || $value instanceof TextValue) {
+        } elseif ($value instanceof NumberValue || $value instanceof TextValue) {
             return strval($value->getValue());
-        } else if ($value instanceof DateTimeValue) {
+        } elseif ($value instanceof DateTimeValue) {
             return $value->getValue() !== null ? DfpDateTimes::toDateTimeString($value->getValue()) : '';
-        } else if ($value instanceof DateValue) {
+        } elseif ($value instanceof DateValue) {
             return DfpDates::toDateString($value->getValue());
-        } else if ($value instanceof SetValue) {
+        } elseif ($value instanceof SetValue) {
             $pqlValues = $value->getValues();
             if ($pqlValues !== null) {
                 $valuesAsStrings = [];

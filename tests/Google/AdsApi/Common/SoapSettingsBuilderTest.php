@@ -25,84 +25,92 @@ use PHPUnit\Framework\TestCase;
  * @see SoapSettingsBuilder
  * @small
  */
-class SoapSettingsBuilderTest extends TestCase {
+class SoapSettingsBuilderTest extends TestCase
+{
 
-  private $soapSettingsBuilder;
+    private $soapSettingsBuilder;
 
   /**
    * @see PHPUnit\Framework\TestCase::setUp
    */
-  protected function setUp() {
-    $this->soapSettingsBuilder = new SoapSettingsBuilder();
-  }
+    protected function setUp()
+    {
+        $this->soapSettingsBuilder = new SoapSettingsBuilder();
+    }
 
   /**
    * @covers Google\AdsApi\Common\SoapSettingsBuilder::from
    */
-  public function testBuildFrom() {
-    $valueMap = [
+    public function testBuildFrom()
+    {
+        $valueMap = [
         ['compressionLevel', 'SOAP', '2'],
         ['wsdlCache', 'SOAP', '3'],
-    ];
-    $configurationMock = $this->getMockBuilder(Configuration::class)
+        ];
+        $configurationMock = $this->getMockBuilder(Configuration::class)
         ->disableOriginalConstructor()
         ->getMock();
-    $configurationMock->expects($this->any())
+        $configurationMock->expects($this->any())
         ->method('getConfiguration')
         ->will($this->returnValueMap($valueMap));
 
-    $soapSettings = $this->soapSettingsBuilder
+        $soapSettings = $this->soapSettingsBuilder
         ->from($configurationMock)
         ->build();
-    $this->assertSame(2, $soapSettings->getCompressionLevel());
-    $this->assertSame(3, $soapSettings->getWsdlCacheType());
-  }
+        $this->assertSame(2, $soapSettings->getCompressionLevel());
+        $this->assertSame(3, $soapSettings->getWsdlCacheType());
+    }
 
   /**
    * @covers Google\AdsApi\Common\SoapSettingsBuilder::from
    */
-  public function testBuildFromDefaults() {
-    $configurationMock = $this->getMockBuilder(Configuration::class)
+    public function testBuildFromDefaults()
+    {
+        $configurationMock = $this->getMockBuilder(Configuration::class)
         ->disableOriginalConstructor()
         ->getMock();
-    $configurationMock->expects($this->any())
+        $configurationMock->expects($this->any())
         ->method('getConfiguration')
         ->will($this->returnValueMap([]));
 
-    $soapSettings = $this->soapSettingsBuilder
+        $soapSettings = $this->soapSettingsBuilder
         ->from($configurationMock)
         ->build();
-    $this->assertNull($soapSettings->getCompressionLevel());
-    $this->assertNull($soapSettings->getWsdlCacheType());
-  }
+        $this->assertNull($soapSettings->getCompressionLevel());
+        $this->assertNull($soapSettings->getWsdlCacheType());
+    }
 
   /**
    * @covers Google\AdsApi\Common\SoapSettingsBuilder::build
    */
-  public function testBuild() {
-    $caCertFile = AdsBuildersTestProvider::getFakeCertsFilePath();
+    public function testBuild()
+    {
+        $caCertFile = AdsBuildersTestProvider::getFakeCertsFilePath();
 
-    $soapSettings = $this->soapSettingsBuilder
+        $soapSettings = $this->soapSettingsBuilder
         ->withCompressionLevel(SOAP_COMPRESSION_GZIP)
         ->withWsdlCacheType(WSDL_CACHE_DISK)
         ->disableSslVerify()
         ->withSslCaFile($caCertFile)
         ->build();
-    $this->assertSame(
-        SOAP_COMPRESSION_GZIP, $soapSettings->getCompressionLevel());
-    $this->assertSame(WSDL_CACHE_DISK, $soapSettings->getWsdlCacheType());
-    $this->assertSame(false, $soapSettings->getSslVerify());
-    $this->assertSame($caCertFile, $soapSettings->getSslCaFile());
-  }
+        $this->assertSame(
+            SOAP_COMPRESSION_GZIP,
+            $soapSettings->getCompressionLevel()
+        );
+        $this->assertSame(WSDL_CACHE_DISK, $soapSettings->getWsdlCacheType());
+        $this->assertSame(false, $soapSettings->getSslVerify());
+        $this->assertSame($caCertFile, $soapSettings->getSslCaFile());
+    }
 
   /**
    * @covers Google\AdsApi\Common\SoapSettingsBuilder::build
    */
-  public function testBuildDefaults() {
-    $soapSettings = $this->soapSettingsBuilder->build();
-    $this->assertNull($soapSettings->getCompressionLevel());
-    $this->assertNull($soapSettings->getWsdlCacheType());
-    $this->assertNotNull($soapSettings->getSslVerify());
-    $this->assertNull($soapSettings->getSslCaFile());
-  }
+    public function testBuildDefaults()
+    {
+        $soapSettings = $this->soapSettingsBuilder->build();
+        $this->assertNull($soapSettings->getCompressionLevel());
+        $this->assertNull($soapSettings->getWsdlCacheType());
+        $this->assertNotNull($soapSettings->getSslVerify());
+        $this->assertNull($soapSettings->getSslCaFile());
+    }
 }

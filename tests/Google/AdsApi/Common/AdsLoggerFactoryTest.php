@@ -26,39 +26,44 @@ use PHPUnit\Framework\TestCase;
  * @see AdsLoggerFactory
  * @small
  */
-class AdsLoggerFactoryTest extends TestCase {
+class AdsLoggerFactoryTest extends TestCase
+{
 
-  private $adsLoggerFactory;
+    private $adsLoggerFactory;
 
   /**
    * @see PHPUnit\Framework\TestCase::setUp
    */
-  protected function setUp() {
-    $this->adsLoggerFactory = new AdsLoggerFactory();
-  }
+    protected function setUp()
+    {
+        $this->adsLoggerFactory = new AdsLoggerFactory();
+    }
 
   /**
    * @covers Google\AdsApi\Common\AdsLoggerFactory::createLogger
    */
-  public function testCreateLoggerWithChannel() {
-    $logger = $this->adsLoggerFactory->createLogger('ADS_CHANNEL');
-    $this->assertSame('ADS_CHANNEL', $logger->getName());
-  }
+    public function testCreateLoggerWithChannel()
+    {
+        $logger = $this->adsLoggerFactory->createLogger('ADS_CHANNEL');
+        $this->assertSame('ADS_CHANNEL', $logger->getName());
+    }
 
   /**
    * @covers Google\AdsApi\Common\AdsLoggerFactory::createLogger
    */
-  public function testCreateLoggerWithFilePath() {
-    $logger = $this->adsLoggerFactory->createLogger('', '/dev/null');
-    $this->assertCount(1, $logger->getHandlers());
-    $this->assertInstanceOf(StreamHandler::class, $logger->getHandlers()[0]);
-  }
+    public function testCreateLoggerWithFilePath()
+    {
+        $logger = $this->adsLoggerFactory->createLogger('', '/dev/null');
+        $this->assertCount(1, $logger->getHandlers());
+        $this->assertInstanceOf(StreamHandler::class, $logger->getHandlers()[0]);
+    }
 
   /**
    * @covers Google\AdsApi\Common\AdsLoggerFactory::createLogger
    */
-  public function testCreateLoggerWithLevel() {
-    $logger = $this->adsLoggerFactory->createLogger('', null, 'NOTICE');
-    $this->assertSame(Logger::NOTICE, $logger->getHandlers()[0]->getLevel());
-  }
+    public function testCreateLoggerWithLevel()
+    {
+        $logger = $this->adsLoggerFactory->createLogger('', null, 'NOTICE');
+        $this->assertSame(Logger::NOTICE, $logger->getHandlers()[0]->getLevel());
+    }
 }

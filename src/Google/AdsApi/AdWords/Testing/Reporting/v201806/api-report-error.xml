@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<reportDownloadError>
+  <ApiError>
+    <type>ReportDefinitionError.INVALID_FIELD_NAME_FOR_REPORT</type>
+    <trigger>TypeImpressions</trigger>
+    <fieldPath>operations[0].operand</fieldPath>
+  </ApiError>
+  <ApiError>
+    <type>QueryError.PARSING_FAILED</type>
+    <trigger></trigger>
+    <fieldPath/>
+  </ApiError>
+</reportDownloadError>

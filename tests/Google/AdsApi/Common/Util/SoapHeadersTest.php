@@ -25,106 +25,116 @@ use PHPUnit\Framework\TestCase;
  * @see SoapHeaders
  * @small
  */
-class SoapHeadersTest extends TestCase {
+class SoapHeadersTest extends TestCase
+{
 
   /**
    * @covers Google\AdsApi\Common\Util\SoapHeaders::getSoapHeaderValue
    */
-  public function testGetSoapHeaderValueEmptyXml() {
-    $this->assertSame(
-        '',
-        SoapHeaders::getSoapHeaderValue('', 'networkCode')
-    );
-  }
+    public function testGetSoapHeaderValueEmptyXml()
+    {
+        $this->assertSame(
+            '',
+            SoapHeaders::getSoapHeaderValue('', 'networkCode')
+        );
+    }
 
   /**
    * @covers Google\AdsApi\Common\Util\SoapHeaders::getSoapHeaderValue
    */
-  public function testGetSoapHeaderValueNullXml() {
-    $this->assertSame(
-        '',
-        SoapHeaders::getSoapHeaderValue(null, 'networkCode')
-    );
-  }
+    public function testGetSoapHeaderValueNullXml()
+    {
+        $this->assertSame(
+            '',
+            SoapHeaders::getSoapHeaderValue(null, 'networkCode')
+        );
+    }
 
   /**
    * @covers Google\AdsApi\Common\Util\SoapHeaders::getSoapHeaderValue
    */
-  public function testGetSoapHeaderValueCannotFindHeader() {
-    $requestXml = FakeSoapPayloadsAndLogsProvider::getFakeGetCreativesRequest();
-    $this->assertSame(
-        '',
-        SoapHeaders::getSoapHeaderValue($requestXml, 'animal')
-    );
-  }
+    public function testGetSoapHeaderValueCannotFindHeader()
+    {
+        $requestXml = FakeSoapPayloadsAndLogsProvider::getFakeGetCreativesRequest();
+        $this->assertSame(
+            '',
+            SoapHeaders::getSoapHeaderValue($requestXml, 'animal')
+        );
+    }
 
   /**
    * @covers Google\AdsApi\Common\Util\SoapHeaders::getSoapHeaderValue
    */
-  public function testGetSoapHeaderValueFindsRequestHeaderWithAttr() {
-    $requestXml = FakeSoapPayloadsAndLogsProvider::getFakeGetCreativesRequest();
-    $this->assertSame(
-        '888888',
-        SoapHeaders::getSoapHeaderValue($requestXml, 'networkCode')
-    );
-  }
+    public function testGetSoapHeaderValueFindsRequestHeaderWithAttr()
+    {
+        $requestXml = FakeSoapPayloadsAndLogsProvider::getFakeGetCreativesRequest();
+        $this->assertSame(
+            '888888',
+            SoapHeaders::getSoapHeaderValue($requestXml, 'networkCode')
+        );
+    }
 
   /**
    * @covers Google\AdsApi\Common\Util\SoapHeaders::getSoapHeaderValue
    */
-  public function testGetSoapHeaderValueFindsRequestHeaderWithoutAttr() {
-    $requestXml = FakeSoapPayloadsAndLogsProvider::getFakeGetCreativesRequest();
-    $this->assertSame(
-        '123-777-999',
-        SoapHeaders::getSoapHeaderValue($requestXml, 'clientCustomerId')
-    );
-  }
+    public function testGetSoapHeaderValueFindsRequestHeaderWithoutAttr()
+    {
+        $requestXml = FakeSoapPayloadsAndLogsProvider::getFakeGetCreativesRequest();
+        $this->assertSame(
+            '123-777-999',
+            SoapHeaders::getSoapHeaderValue($requestXml, 'clientCustomerId')
+        );
+    }
 
   /**
    * @covers Google\AdsApi\Common\Util\SoapHeaders::getSoapHeaderValue
    */
-  public function testGetSoapHeaderValueFindsResponseHeader() {
-    $responseXml =
+    public function testGetSoapHeaderValueFindsResponseHeader()
+    {
+        $responseXml =
         FakeSoapPayloadsAndLogsProvider::getFakeGetCreativesResponse();
-    $this->assertSame(
-        '123abc456xyz',
-        SoapHeaders::getSoapHeaderValue($responseXml, 'requestId')
-    );
-  }
+        $this->assertSame(
+            '123abc456xyz',
+            SoapHeaders::getSoapHeaderValue($responseXml, 'requestId')
+        );
+    }
 
   /**
    * @covers Google\AdsApi\Common\Util\SoapHeaders::getSoapResponseHeaderValues
    */
-  public function testGetSoapResponseHeaderValuesEmptyXml() {
-    $this->assertSame(
-        [],
-        SoapHeaders::getSoapResponseHeaderValues('')
-    );
-  }
+    public function testGetSoapResponseHeaderValuesEmptyXml()
+    {
+        $this->assertSame(
+            [],
+            SoapHeaders::getSoapResponseHeaderValues('')
+        );
+    }
 
   /**
    * @covers Google\AdsApi\Common\Util\SoapHeaders::getSoapResponseHeaderValues
    */
-  public function testGetSoapResponseHeaderValuesNullXml() {
-    $this->assertSame(
-        [],
-        SoapHeaders::getSoapResponseHeaderValues(null)
-    );
-  }
+    public function testGetSoapResponseHeaderValuesNullXml()
+    {
+        $this->assertSame(
+            [],
+            SoapHeaders::getSoapResponseHeaderValues(null)
+        );
+    }
 
   /**
    * @covers Google\AdsApi\Common\Util\SoapHeaders::getSoapResponseHeaderValues
    */
-  public function testGetSoapResponseHeaderValues() {
-    $responseXml =
+    public function testGetSoapResponseHeaderValues()
+    {
+        $responseXml =
         FakeSoapPayloadsAndLogsProvider::getFakeGetCreativesResponse();
-    $this->assertSame(
-        [
+        $this->assertSame(
+            [
             'requestId' => '123abc456xyz',
             'responseTime' => '226',
             'operations' => '9'
-        ],
-        SoapHeaders::getSoapResponseHeaderValues($responseXml)
-    );
-  }
+            ],
+            SoapHeaders::getSoapResponseHeaderValues($responseXml)
+        );
+    }
 }
