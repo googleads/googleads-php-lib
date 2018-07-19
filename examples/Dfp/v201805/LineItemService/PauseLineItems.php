@@ -20,12 +20,12 @@ namespace Google\AdsApi\Examples\Dfp\v201805\LineItemService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\StatementBuilder;
 use Google\AdsApi\Dfp\v201805\LineItemService;
 use Google\AdsApi\Dfp\v201805\PauseLineItems as PauseLineItemsAction;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * Pauses line items.
@@ -40,11 +40,11 @@ class PauseLineItems
     const LINE_ITEM_ID = 'INSERT_LINE_ITEM_ID_HERE';
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session,
         $lineItemId
     ) {
-        $lineItemService = $dfpServices->get($session, LineItemService::class);
+        $lineItemService = $serviceFactory->createLineItemService($session);
 
         // Create a statement to select the line items to pause.
         $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
@@ -67,10 +67,12 @@ class PauseLineItems
                 $i = $page->getStartIndex();
                 foreach ($page->getResults() as $lineItem) {
                     printf(
-                        "%d) Line item with ID %d and name '%s' will be paused.\n",
+                        "%d) Line item with ID %d and name '%s' will be"
+                        . " paused.%s",
                         $i++,
                         $lineItem->getId(),
-                        $lineItem->getName()
+                        $lineItem->getName(),
+                        PHP_EOL
                     );
                 }
             }
@@ -78,7 +80,11 @@ class PauseLineItems
             $statementBuilder->increaseOffsetBy($pageSize);
         } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-        printf("Total number of line items to be paused: %d\n", $totalResultSetSize);
+        printf(
+            "Total number of line items to be paused: %d%s",
+            $totalResultSetSize,
+            PHP_EOL
+        );
 
         if ($totalResultSetSize > 0) {
             // Remove limit and offset from statement so we can reuse the statement.
@@ -92,9 +98,13 @@ class PauseLineItems
             );
 
             if ($result !== null && $result->getNumChanges() > 0) {
-                printf("Number of line items paused: %d\n", $result->getNumChanges());
+                printf(
+                    "Number of line items paused: %d%s",
+                    $result->getNumChanges(),
+                    PHP_EOL
+                );
             } else {
-                printf("No line items were paused.\n");
+                printf("No line items were paused.%s", PHP_EOL);
             }
         }
     }
@@ -105,13 +115,17 @@ class PauseLineItems
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
-        self::runExample(new DfpServices(), $session, intval(self::LINE_ITEM_ID));
+        self::runExample(
+            new ServiceFactory(),
+            $session,
+            intval(self::LINE_ITEM_ID)
+        );
     }
 }
 

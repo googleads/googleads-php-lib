@@ -20,12 +20,12 @@ namespace Google\AdsApi\Examples\Dfp\v201805\ReconciliationLineItemReportService
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\StatementBuilder;
 use Google\AdsApi\Dfp\v201805\BillFrom;
 use Google\AdsApi\Dfp\v201805\ReconciliationLineItemReportService;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * Updates a reconciliation line item report.
@@ -40,14 +40,14 @@ class UpdateReconciliationLineItemReports
     const RECONCILIATION_LINE_ITEM_REPORT_ID = 'INSERT_RECONCILIATION_LINE_ITEM_REPORT_ID_HERE';
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session,
         $reconciliationLineItemReportId
     ) {
-        $reconciliationLineItemReportService = $dfpServices->get(
-            $session,
-            ReconciliationLineItemReportService::class
-        );
+        $reconciliationLineItemReportService =
+            $serviceFactory->createReconciliationLineItemReportService(
+                $session
+            );
 
         // Create a statement to select the reconciliation line item reports to
         // update.
@@ -84,11 +84,12 @@ class UpdateReconciliationLineItemReports
         // report.
         foreach ($updatedLineItemReports as $reconciliationLineItemReport) {
             printf(
-                "Reconciliation line item report with ID %d for line item ID %d "
-                . "was updated with manual volume %d.\n",
+                "Reconciliation line item report with ID %d for"
+                . " line item ID %d was updated with manual volume %d.%s",
                 $reconciliationLineItemReport->getId(),
                 $reconciliationLineItemReport->getLineItemId(),
-                $reconciliationLineItemReport->getManualVolume()
+                $reconciliationLineItemReport->getManualVolume(),
+                PHP_EOL
             );
         }
     }
@@ -99,14 +100,14 @@ class UpdateReconciliationLineItemReports
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
         self::runExample(
-            new DfpServices(),
+            new ServiceFactory(),
             $session,
             intval(self::RECONCILIATION_LINE_ITEM_REPORT_ID)
         );

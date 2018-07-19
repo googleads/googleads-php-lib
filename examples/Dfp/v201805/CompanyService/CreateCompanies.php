@@ -20,12 +20,12 @@ namespace Google\AdsApi\Examples\Dfp\v201805\CompanyService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\v201805\Company;
 use Google\AdsApi\Dfp\v201805\CompanyService;
 use Google\AdsApi\Dfp\v201805\CompanyType;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * Creates companies.
@@ -38,10 +38,10 @@ class CreateCompanies
 {
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session
     ) {
-        $companyService = $dfpServices->get($session, CompanyService::class);
+        $companyService = $serviceFactory->createCompanyService($session);
 
         $company = new Company();
         $company->setName('Advertiser #' . uniqid());
@@ -53,10 +53,11 @@ class CreateCompanies
         // Print out some information for each created company.
         foreach ($results as $i => $company) {
             printf(
-                "%d) Company with ID %d and name '%s' was created.\n",
+                "%d) Company with ID %d and name '%s' was created.%s",
                 $i,
                 $company->getId(),
-                $company->getName()
+                $company->getName(),
+                PHP_EOL
             );
         }
     }
@@ -67,13 +68,13 @@ class CreateCompanies
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
-        self::runExample(new DfpServices(), $session);
+        self::runExample(new ServiceFactory(), $session);
     }
 }
 

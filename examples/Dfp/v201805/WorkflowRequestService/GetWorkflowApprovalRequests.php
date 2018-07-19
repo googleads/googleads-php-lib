@@ -20,10 +20,10 @@ namespace Google\AdsApi\Examples\Dfp\v201805\WorkflowRequestService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\StatementBuilder;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 use Google\AdsApi\Dfp\v201805\WorkflowRequestService;
 use Google\AdsApi\Dfp\v201805\WorkflowRequestType;
 
@@ -39,10 +39,12 @@ class GetWorkflowApprovalRequests
 {
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session
     ) {
-        $workflowRequestService = $dfpServices->get($session, WorkflowRequestService::class);
+        $workflowRequestService = $serviceFactory->createWorkflowRequestService(
+            $session
+        );
 
         // Create a statement to select workflow requests.
         $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
@@ -65,11 +67,13 @@ class GetWorkflowApprovalRequests
                 $i = $page->getStartIndex();
                 foreach ($page->getResults() as $workflowRequest) {
                     printf(
-                        "%d) Workflow request with ID %d, entity type '%s', and entity ID %d was found.\n",
+                        "%d) Workflow request with ID %d, entity type '%s',"
+                        . " and entity ID %d was found.%s",
                         $i++,
                         $workflowRequest->getId(),
                         $workflowRequest->getEntityType(),
-                        $workflowRequest->getEntityId()
+                        $workflowRequest->getEntityId(),
+                        PHP_EOL
                     );
                 }
             }
@@ -77,7 +81,7 @@ class GetWorkflowApprovalRequests
             $statementBuilder->increaseOffsetBy($pageSize);
         } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-        printf("Number of results found: %d\n", $totalResultSetSize);
+        printf("Number of results found: %d%s", $totalResultSetSize, PHP_EOL);
     }
 
     public static function main()
@@ -86,13 +90,13 @@ class GetWorkflowApprovalRequests
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
-        self::runExample(new DfpServices(), $session);
+        self::runExample(new ServiceFactory(), $session);
     }
 }
 

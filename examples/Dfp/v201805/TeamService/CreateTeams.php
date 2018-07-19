@@ -20,9 +20,9 @@ namespace Google\AdsApi\Examples\Dfp\v201805\TeamService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 use Google\AdsApi\Dfp\v201805\Team;
 use Google\AdsApi\Dfp\v201805\TeamService;
 
@@ -37,10 +37,10 @@ class CreateTeams
 {
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session
     ) {
-        $teamService = $dfpServices->get($session, TeamService::class);
+        $teamService = $serviceFactory->createTeamService($session);
 
         $team = new Team();
         $team->setName('Team #' . uniqid());
@@ -53,10 +53,11 @@ class CreateTeams
         // Print out some information for each created team.
         foreach ($results as $i => $team) {
             printf(
-                "%d) Team with ID %d and name '%s' was created.\n",
+                "%d) Team with ID %d and name '%s' was created.%s",
                 $i,
                 $team->getId(),
-                $team->getName()
+                $team->getName(),
+                PHP_EOL
             );
         }
     }
@@ -67,13 +68,13 @@ class CreateTeams
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
-        self::runExample(new DfpServices(), $session);
+        self::runExample(new ServiceFactory(), $session);
     }
 }
 

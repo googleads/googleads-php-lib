@@ -20,12 +20,12 @@ namespace Google\AdsApi\Examples\Dfp\v201805\CreativeService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\StatementBuilder;
 use Google\AdsApi\Dfp\v201805\CreativeService;
 use Google\AdsApi\Dfp\v201805\HasDestinationUrlCreative;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * This example updates a single creative's destination URL.
@@ -37,11 +37,11 @@ class UpdateCreatives
     const CREATIVE_ID = 'INSERT_CREATIVE_ID_HERE';
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session,
         $creativeId
     ) {
-        $creativeService = $dfpServices->get($session, CreativeService::class);
+        $creativeService = $serviceFactory->createCreativeService($session);
 
         // Create a statement to select a single creative by ID.
         $statementBuilder = (new StatementBuilder())->where('id = :id')
@@ -65,13 +65,14 @@ class UpdateCreatives
 
             foreach ($creatives as $updatedCreative) {
                 printf(
-                    "Creative with ID %d and name '%s' was updated.\n",
+                    "Creative with ID %d and name '%s' was updated.%s",
                     $updatedCreative->getId(),
-                    $updatedCreative->getName()
+                    $updatedCreative->getName(),
+                    PHP_EOL
                 );
             }
         } else {
-            printf("No creatives were updated.\n");
+            printf("No creatives were updated.%s", PHP_EOL);
         }
     }
 
@@ -82,7 +83,11 @@ class UpdateCreatives
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
-        self::runExample(new DfpServices(), $session, intval(self::CREATIVE_ID));
+        self::runExample(
+            new ServiceFactory(),
+            $session,
+            intval(self::CREATIVE_ID)
+        );
     }
 }
 

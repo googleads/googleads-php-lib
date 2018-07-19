@@ -20,12 +20,12 @@ namespace Google\AdsApi\Examples\Dfp\v201805\ProposalService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\StatementBuilder;
 use Google\AdsApi\Dfp\v201805\ProposalService;
 use Google\AdsApi\Dfp\v201805\RequestBuyerAcceptance as RequestBuyerAcceptanceAction;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * Requests buyer acceptance for proposals.
@@ -40,14 +40,14 @@ class RequestBuyerAcceptance
     const PROGRAMMATIC_PROPOSAL_ID = 'INSERT_PROGRAMMATIC_PROPOSAL_ID_HERE';
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session,
         $programmaticProposalId
     ) {
-        $proposalService = $dfpServices->get($session, ProposalService::class);
+        $proposalService = $serviceFactory->createProposalService($session);
 
-        // Create a statement to select the proposals to request buyer acceptance
-        // for.
+        // Create a statement to select the proposals to request buyer
+        // acceptance for.
         $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
         $statementBuilder = (new StatementBuilder())->where('id = :id')
             ->orderBy('id ASC')
@@ -69,11 +69,12 @@ class RequestBuyerAcceptance
                 $i = $page->getStartIndex();
                 foreach ($page->getResults() as $proposal) {
                     printf(
-                        "%d) Proposal with ID %d "
-                        . "and name '%s' will be requested for buyer acceptance.\n",
+                        "%d) Proposal with ID %d and name '%s' will be"
+                        . " requested for buyer acceptance.%s",
                         $i++,
                         $proposal->getId(),
-                        $proposal->getName()
+                        $proposal->getName(),
+                        PHP_EOL
                     );
                 }
             }
@@ -82,8 +83,9 @@ class RequestBuyerAcceptance
         } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
         printf(
-            "Total number of proposals to request buyer acceptance for: %d\n",
-            $totalResultSetSize
+            "Total number of proposals to request buyer acceptance for: %d%s",
+            $totalResultSetSize,
+            PHP_EOL
         );
 
         if ($totalResultSetSize > 0) {
@@ -99,11 +101,15 @@ class RequestBuyerAcceptance
 
             if ($result !== null && $result->getNumChanges() > 0) {
                 printf(
-                    "Number of proposals requested for buyer acceptance: %d\n",
-                    $result->getNumChanges()
+                    "Number of proposals requested for buyer acceptance: %d%s",
+                    $result->getNumChanges(),
+                    PHP_EOL
                 );
             } else {
-                printf("No proposals were requested for buyer acceptance.\n");
+                printf(
+                    "No proposals were requested for buyer acceptance.%s",
+                    PHP_EOL
+                );
             }
         }
     }
@@ -114,14 +120,14 @@ class RequestBuyerAcceptance
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
         self::runExample(
-            new DfpServices(),
+            new ServiceFactory(),
             $session,
             intval(self::PROGRAMMATIC_PROPOSAL_ID)
         );

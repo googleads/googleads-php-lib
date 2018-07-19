@@ -20,12 +20,12 @@ namespace Google\AdsApi\Examples\Dfp\v201805\UserTeamAssociationService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\StatementBuilder;
-use Google\AdsApi\Dfp\v201805\UserTeamAssociationService;
 use Google\AdsApi\Dfp\v201805\DeleteUserTeamAssociations as DeleteAction;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
+use Google\AdsApi\Dfp\v201805\UserTeamAssociationService;
 
 /**
  * This example deletes all user team associations for a given user (i.e.
@@ -43,14 +43,12 @@ class DeleteUserTeamAssociations
     const USER_ID = 'INSERT_USER_ID_HERE';
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session,
         $userId
     ) {
-        $userTeamAssociationService = $dfpServices->get(
-            $session,
-            UserTeamAssociationService::class
-        );
+        $userTeamAssociationService =
+            $serviceFactory->createUserTeamAssociationService($session);
 
         // Create a statement to get all user team associations for a user.
         $statementBuilder = (new StatementBuilder())
@@ -75,10 +73,11 @@ class DeleteUserTeamAssociations
                 foreach ($page->getResults() as $userTeamAssociation) {
                     printf(
                         "%d) User team association with user ID %d and "
-                        . "team ID %d will be deleted.\n",
+                        . "team ID %d will be deleted.%s",
                         $i++,
                         $userTeamAssociation->getUserId(),
-                        $userTeamAssociation->getTeamId()
+                        $userTeamAssociation->getTeamId(),
+                        PHP_EOL
                     );
                 }
             }
@@ -89,8 +88,9 @@ class DeleteUserTeamAssociations
         } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
         printf(
-            "Number of user team associations to be deleted: %d\n",
-            $totalResultSetSize
+            "Number of user team associations to be deleted: %d%s",
+            $totalResultSetSize,
+            PHP_EOL
         );
 
         if ($totalResultSetSize > 0) {
@@ -109,8 +109,9 @@ class DeleteUserTeamAssociations
 
             if (!is_null($result) && $result->getNumChanges() > 0) {
                 printf(
-                    "Number of user team associations deleted: %d\n",
-                    $result->getNumChanges()
+                    "Number of user team associations deleted: %d%s",
+                    $result->getNumChanges(),
+                    PHP_EOL
                 );
             } else {
                 print "No user team associations were deleted.\n";
@@ -125,14 +126,14 @@ class DeleteUserTeamAssociations
             ->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())
             ->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
-        self::runExample(new DfpServices(), $session, intval(self::USER_ID));
+        self::runExample(new ServiceFactory(), $session, intval(self::USER_ID));
     }
 }
 

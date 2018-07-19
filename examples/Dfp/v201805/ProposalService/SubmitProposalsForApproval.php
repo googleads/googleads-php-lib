@@ -20,11 +20,11 @@ namespace Google\AdsApi\Examples\Dfp\v201805\ProposalService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\StatementBuilder;
 use Google\AdsApi\Dfp\v201805\ProposalService;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 use Google\AdsApi\Dfp\v201805\SubmitProposalsForApproval as SubmitProposalsForApprovalAction;
 
 /**
@@ -40,11 +40,11 @@ class SubmitProposalsForApproval
     const PROPOSAL_ID = 'INSERT_PROPOSAL_ID_HERE';
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session,
         $proposalId
     ) {
-        $proposalService = $dfpServices->get($session, ProposalService::class);
+        $proposalService = $serviceFactory->createProposalService($session);
 
         // Create a statement to select the proposals to submit for approval.
         $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
@@ -69,10 +69,11 @@ class SubmitProposalsForApproval
                 foreach ($page->getResults() as $proposal) {
                     printf(
                         "%d) Proposal with ID %d "
-                        . "and name '%s' will be submitted for approval.\n",
+                        . "and name '%s' will be submitted for approval.%s",
                         $i++,
                         $proposal->getId(),
-                        $proposal->getName()
+                        $proposal->getName(),
+                        PHP_EOL
                     );
                 }
             }
@@ -81,8 +82,9 @@ class SubmitProposalsForApproval
         } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
         printf(
-            "Total number of proposals to be submitted for approval: %d\n",
-            $totalResultSetSize
+            "Total number of proposals to be submitted for approval: %d%s",
+            $totalResultSetSize,
+            PHP_EOL
         );
 
         if ($totalResultSetSize > 0) {
@@ -98,11 +100,12 @@ class SubmitProposalsForApproval
 
             if ($result !== null && $result->getNumChanges() > 0) {
                 printf(
-                    "Number of proposals submitted for approval: %d\n",
-                    $result->getNumChanges()
+                    "Number of proposals submitted for approval: %d%s",
+                    $result->getNumChanges(),
+                    PHP_EOL
                 );
             } else {
-                printf("No proposals were submitted for approval.\n");
+                printf("No proposals were submitted for approval.%s", PHP_EOL);
             }
         }
     }
@@ -113,13 +116,17 @@ class SubmitProposalsForApproval
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
-        self::runExample(new DfpServices(), $session, intval(self::PROPOSAL_ID));
+        self::runExample(
+            new ServiceFactory(),
+            $session,
+            intval(self::PROPOSAL_ID)
+        );
     }
 }
 

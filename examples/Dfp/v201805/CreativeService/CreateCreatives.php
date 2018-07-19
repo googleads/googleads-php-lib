@@ -20,12 +20,12 @@ namespace Google\AdsApi\Examples\Dfp\v201805\CreativeService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\v201805\CreativeAsset;
 use Google\AdsApi\Dfp\v201805\CreativeService;
 use Google\AdsApi\Dfp\v201805\ImageCreative;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 use Google\AdsApi\Dfp\v201805\Size;
 
 /**
@@ -41,11 +41,11 @@ class CreateCreatives
     const ADVERTISER_ID = 'INSERT_ADVERTISER_ID_HERE';
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session,
         $advertiserId
     ) {
-        $creativeService = $dfpServices->get($session, CreativeService::class);
+        $creativeService = $serviceFactory->createCreativeService($session);
 
         $imageCreative = new ImageCreative();
         $imageCreative->setName('Image creative #' . uniqid());
@@ -73,10 +73,11 @@ class CreateCreatives
         // Print out some information for each created image creative.
         foreach ($results as $i => $imageCreative) {
             printf(
-                "%d) Image creative with ID %d and name '%s' was created.\n",
+                "%d) Image creative with ID %d and name '%s' was created.%s",
                 $i,
                 $imageCreative->getId(),
-                $imageCreative->getName()
+                $imageCreative->getName(),
+                PHP_EOL
             );
         }
     }
@@ -87,13 +88,17 @@ class CreateCreatives
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
-        self::runExample(new DfpServices(), $session, intval(self::ADVERTISER_ID));
+        self::runExample(
+            new ServiceFactory(),
+            $session,
+            intval(self::ADVERTISER_ID)
+        );
     }
 }
 

@@ -20,11 +20,11 @@ namespace Google\AdsApi\Examples\Dfp\v201805\NativeStyleService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\v201805\NativeStyle;
 use Google\AdsApi\Dfp\v201805\NativeStyleService;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 use Google\AdsApi\Dfp\v201805\Size;
 
 /**
@@ -152,10 +152,12 @@ body {
 CSS;
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session
     ) {
-        $nativeStyleService = $dfpServices->get($session, NativeStyleService::class);
+        $nativeStyleService = $serviceFactory->createNativeStyleService(
+            $session
+        );
 
         $nativeStyle = new NativeStyle();
         $nativeStyle->setName('Native style #' . uniqid());
@@ -183,11 +185,12 @@ CSS;
         foreach ($results as $i => $nativeStyle) {
             printf(
                 "%d) Native style with ID %d, name '%s', "
-                . "and creative template ID %d was created.\n",
+                . "and creative template ID %d was created.%s",
                 $i,
                 $nativeStyle->getId(),
                 $nativeStyle->getName(),
-                $nativeStyle->getCreativeTemplateId()
+                $nativeStyle->getCreativeTemplateId(),
+                PHP_EOL
             );
         }
     }
@@ -198,13 +201,13 @@ CSS;
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
-        self::runExample(new DfpServices(), $session);
+        self::runExample(new ServiceFactory(), $session);
     }
 }
 

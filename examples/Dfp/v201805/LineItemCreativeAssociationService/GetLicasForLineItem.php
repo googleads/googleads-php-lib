@@ -20,11 +20,11 @@ namespace Google\AdsApi\Examples\Dfp\v201805\LineItemCreativeAssociationService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\StatementBuilder;
 use Google\AdsApi\Dfp\v201805\LineItemCreativeAssociationService;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * This example gets all line item creative associations for a given line item.
@@ -38,12 +38,13 @@ class GetLicasForLineItem
 
     const LINE_ITEM_ID = 'INSERT_LINE_ITEM_ID_HERE';
 
-    public static function runExample(DfpServices $dfpServices, DfpSession $session, $lineItemId)
-    {
-        $lineItemCreativeAssociationService = $dfpServices->get(
-            $session,
-            LineItemCreativeAssociationService::class
-        );
+    public static function runExample(
+        ServiceFactory $serviceFactory,
+        DfpSession $session,
+        $lineItemId
+    ) {
+        $lineItemCreativeAssociationService =
+            $serviceFactory->createLineItemCreativeAssociationService($session);
 
         // Create a statement to select line item creative associations.
         $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
@@ -70,18 +71,21 @@ class GetLicasForLineItem
                 foreach ($page->getResults() as $lica) {
                     if ($lica->getCreativeSetId() !== null) {
                         printf(
-                            "%d) LICA with line item ID %d and creative set ID %d was "
-                            . "found.\n",
+                            "%d) LICA with line item ID %d and creative set"
+                            . " ID %d was found.%s",
                             $i++,
                             $lica->getLineItemId(),
-                            $lica->getCreativeSetId()
+                            $lica->getCreativeSetId(),
+                            PHP_EOL
                         );
                     } else {
                         printf(
-                            "%d) LICA with line item ID %d and creative ID %d was found.\n",
+                            "%d) LICA with line item ID %d and creative ID %d"
+                            . " was found.%s",
                             $i++,
                             $lica->getLineItemId(),
-                            $lica->getCreativeId()
+                            $lica->getCreativeId(),
+                            PHP_EOL
                         );
                     }
                 }
@@ -90,7 +94,7 @@ class GetLicasForLineItem
             $statementBuilder->increaseOffsetBy($pageSize);
         } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-        printf("Number of results found: %d\n", $totalResultSetSize);
+        printf("Number of results found: %d%s", $totalResultSetSize, PHP_EOL);
     }
 
     public static function main()
@@ -99,13 +103,17 @@ class GetLicasForLineItem
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
-        self::runExample(new DfpServices(), $session, intval(self::LINE_ITEM_ID));
+        self::runExample(
+            new ServiceFactory(),
+            $session,
+            intval(self::LINE_ITEM_ID)
+        );
     }
 }
 

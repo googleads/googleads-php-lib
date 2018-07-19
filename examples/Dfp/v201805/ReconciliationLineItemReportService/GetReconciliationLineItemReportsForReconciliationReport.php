@@ -20,11 +20,11 @@ namespace Google\AdsApi\Examples\Dfp\v201805\ReconciliationLineItemReportService
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\StatementBuilder;
 use Google\AdsApi\Dfp\v201805\ReconciliationLineItemReportService;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * This example gets a reconciliation report's data for line items that served
@@ -40,19 +40,20 @@ class GetReconciliationLineItemReportsForReconciliationReport
     const RECONCILIATION_REPORT_ID = 'INSERT_RECONCILIATION_REPORT_ID_HERE';
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session,
         $reconciliationReportId
     ) {
-        $reconciliationLineItemReportService = $dfpServices->get(
-            $session,
-            ReconciliationLineItemReportService::class
-        );
+        $reconciliationLineItemReportService =
+            $serviceFactory->createReconciliationLineItemReportService(
+                $session
+            );
 
         // Create a statement to select reconciliation line item reports.
         $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
         $statementBuilder = (new StatementBuilder())->where(
-            'reconciliationReportId = :reconciliationReportId AND ' . 'lineItemId != :lineItemId'
+            'reconciliationReportId = :reconciliationReportId'
+            . ' AND lineItemId != :lineItemId'
         )
             ->orderBy('lineItemId ASC')
             ->limit($pageSize)
@@ -78,14 +79,16 @@ class GetReconciliationLineItemReportsForReconciliationReport
                 $i = $page->getStartIndex();
                 foreach ($page->getResults() as $reconciliationLineItemReport) {
                     printf(
-                        "%d) Reconciliation line item report with ID %d, line item ID "
-                        . "%d, reconciliation source '%s', and reconciled volume %d "
-                        . "was found.\n",
+                        "%d) Reconciliation line item report with ID %d,"
+                        . " line item ID %d, reconciliation source '%s', and"
+                        . " reconciled volume %d was found.%s",
                         $i++,
                         $reconciliationLineItemReport->getId(),
                         $reconciliationLineItemReport->getLineItemId(),
-                        $reconciliationLineItemReport->getReconciliationSource(),
-                        $reconciliationLineItemReport->getReconciledVolume()
+                        $reconciliationLineItemReport
+                            ->getReconciliationSource(),
+                        $reconciliationLineItemReport->getReconciledVolume(),
+                        PHP_EOL
                     );
                 }
             }
@@ -93,7 +96,7 @@ class GetReconciliationLineItemReportsForReconciliationReport
             $statementBuilder->increaseOffsetBy($pageSize);
         } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-        printf("Number of results found: %d\n", $totalResultSetSize);
+        printf("Number of results found: %d%s", $totalResultSetSize, PHP_EOL);
     }
 
     public static function main()
@@ -102,14 +105,14 @@ class GetReconciliationLineItemReportsForReconciliationReport
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
         self::runExample(
-            new DfpServices(),
+            new ServiceFactory(),
             $session,
             intval(self::RECONCILIATION_REPORT_ID)
         );

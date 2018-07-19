@@ -2527,6 +2527,9 @@
             <annotation>
               <documentation>
                 The number of unique visitors.
+                
+                &lt;p&gt;To maintain user privacy, "Unique visitors" totaling 0-99 won't be displayed in the report
+                and will appear empty.
                 &lt;p&gt;Corresponds to "Unique visitors" in the DFP UI. Compatible with the REACH report type.&lt;/p&gt;
               </documentation>
             </annotation>
@@ -2874,7 +2877,7 @@
             <annotation>
               <documentation>
                 The number of impressions where the video was played.
-                &lt;p&gt;Corresponds to "Start" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Start" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -2882,7 +2885,7 @@
             <annotation>
               <documentation>
                 The number of times the video played to 25% of its length.
-                &lt;p&gt;Corresponds to "First quartile" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "First quartile" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -2890,7 +2893,7 @@
             <annotation>
               <documentation>
                 The number of times the video reached its midpoint during play.
-                &lt;p&gt;Corresponds to "Midpoint" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Midpoint" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -2898,7 +2901,7 @@
             <annotation>
               <documentation>
                 The number of times the video played to 75% of its length.
-                &lt;p&gt;Corresponds to "Third quartile" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Third quartile" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -2906,7 +2909,7 @@
             <annotation>
               <documentation>
                 The number of times the video played to completion.
-                &lt;p&gt;Corresponds to "Complete" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Complete" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -2914,7 +2917,7 @@
             <annotation>
               <documentation>
                 Average percentage of the video watched by users.
-                &lt;p&gt;Corresponds to "Average view rate" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Average view rate" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -2922,7 +2925,7 @@
             <annotation>
               <documentation>
                 Average time(seconds) users watched the video.
-                &lt;p&gt;Corresponds to "Average view time" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Average view time" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -2930,7 +2933,7 @@
             <annotation>
               <documentation>
                 Percentage of times the video played to the end.
-                &lt;p&gt;Corresponds to "Completion rate" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Completion rate" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -2939,7 +2942,7 @@
               <documentation>
                 The number of times an error occurred, such as a VAST redirect error, a video playback error,
                 or an invalid response error.
-                &lt;p&gt;Corresponds to "Total error count" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Total error count" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -2947,7 +2950,7 @@
             <annotation>
               <documentation>
                 Duration of the video creative.
-                &lt;p&gt;Corresponds to "Video length" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Video length" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -2955,7 +2958,7 @@
             <annotation>
               <documentation>
                 The number of times a skip button is shown in video.
-                &lt;p&gt;Corresponds to "Skip button shown" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Skip button shown" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -2964,7 +2967,7 @@
               <documentation>
                 The number of engaged views i.e. ad is viewed to completion
                 or for 30s, whichever comes first.
-                &lt;p&gt;Corresponds to "Engaged view" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Engaged view" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -2972,7 +2975,7 @@
             <annotation>
               <documentation>
                 View-through rate represented as a percentage.
-                &lt;p&gt;Corresponds to "View-through rate" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "View-through rate" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -2980,7 +2983,7 @@
             <annotation>
               <documentation>
                 Number of times that the publisher specified a video ad played automatically.
-                &lt;p&gt;Corresponds to "Auto-plays" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Auto-plays" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -2988,7 +2991,7 @@
             <annotation>
               <documentation>
                 Number of times that the publisher specified a video ad was clicked to play.
-                &lt;p&gt;Corresponds to "Click-to-plays" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Click-to-plays" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3004,7 +3007,7 @@
             <annotation>
               <documentation>
                 Number of VAST video errors of type 100.
-                &lt;p&gt;Corresponds to "VAST error 100 count" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "VAST error 100 count" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3012,7 +3015,7 @@
             <annotation>
               <documentation>
                 Number of VAST video errors of type 101.
-                &lt;p&gt;Corresponds to "VAST error 101 count" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "VAST error 101 count" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3020,7 +3023,7 @@
             <annotation>
               <documentation>
                 Number of VAST video errors of type 102.
-                &lt;p&gt;Corresponds to "VAST error 102 count" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "VAST error 102 count" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3028,7 +3031,7 @@
             <annotation>
               <documentation>
                 Number of VAST video errors of type 200.
-                &lt;p&gt;Corresponds to "VAST error 200 count" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "VAST error 200 count" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3036,7 +3039,7 @@
             <annotation>
               <documentation>
                 Number of VAST video errors of type 201.
-                &lt;p&gt;Corresponds to "VAST error 201 count" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "VAST error 201 count" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3044,7 +3047,7 @@
             <annotation>
               <documentation>
                 Number of VAST video errors of type 202.
-                &lt;p&gt;Corresponds to "VAST error 202 count" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "VAST error 202 count" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3052,7 +3055,7 @@
             <annotation>
               <documentation>
                 Number of VAST video errors of type 203.
-                &lt;p&gt;Corresponds to "VAST error 203 count" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "VAST error 203 count" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3060,7 +3063,7 @@
             <annotation>
               <documentation>
                 Number of VAST video errors of type 300.
-                &lt;p&gt;Corresponds to "VAST error 300 count" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "VAST error 300 count" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3068,7 +3071,7 @@
             <annotation>
               <documentation>
                 Number of VAST video errors of type 301.
-                &lt;p&gt;Corresponds to "VAST error 301 count" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "VAST error 301 count" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3076,7 +3079,7 @@
             <annotation>
               <documentation>
                 Number of VAST video errors of type 302.
-                &lt;p&gt;Corresponds to "VAST error 302 count" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "VAST error 302 count" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3084,7 +3087,7 @@
             <annotation>
               <documentation>
                 Number of VAST video errors of type 303.
-                &lt;p&gt;Corresponds to "VAST error 303 count" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "VAST error 303 count" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3092,7 +3095,7 @@
             <annotation>
               <documentation>
                 Number of VAST video errors of type 400.
-                &lt;p&gt;Corresponds to "VAST error 400 count" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "VAST error 400 count" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3100,7 +3103,7 @@
             <annotation>
               <documentation>
                 Number of VAST video errors of type 401.
-                &lt;p&gt;Corresponds to "VAST error 401 count" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "VAST error 401 count" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3108,7 +3111,7 @@
             <annotation>
               <documentation>
                 Number of VAST video errors of type 402.
-                &lt;p&gt;Corresponds to "VAST error 402 count" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "VAST error 402 count" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3116,7 +3119,7 @@
             <annotation>
               <documentation>
                 Number of VAST video errors of type 403.
-                &lt;p&gt;Corresponds to "VAST error 403 count" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "VAST error 403 count" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3124,7 +3127,7 @@
             <annotation>
               <documentation>
                 Number of VAST video errors of type 405.
-                &lt;p&gt;Corresponds to "VAST error 405 count" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "VAST error 405 count" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3132,7 +3135,7 @@
             <annotation>
               <documentation>
                 Number of VAST video errors of type 500.
-                &lt;p&gt;Corresponds to "VAST error 500 count" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "VAST error 500 count" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3140,7 +3143,7 @@
             <annotation>
               <documentation>
                 Number of VAST video errors of type 501.
-                &lt;p&gt;Corresponds to "VAST error 501 count" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "VAST error 501 count" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3148,7 +3151,7 @@
             <annotation>
               <documentation>
                 Number of VAST video errors of type 502.
-                &lt;p&gt;Corresponds to "VAST error 502 count" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "VAST error 502 count" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3156,7 +3159,7 @@
             <annotation>
               <documentation>
                 Number of VAST video errors of type 503.
-                &lt;p&gt;Corresponds to "VAST error 503 count" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "VAST error 503 count" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3164,7 +3167,7 @@
             <annotation>
               <documentation>
                 Number of VAST video errors of type 600.
-                &lt;p&gt;Corresponds to "VAST error 600 count" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "VAST error 600 count" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3172,7 +3175,7 @@
             <annotation>
               <documentation>
                 Number of VAST video errors of type 601.
-                &lt;p&gt;Corresponds to "VAST error 601 count" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "VAST error 601 count" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3180,7 +3183,7 @@
             <annotation>
               <documentation>
                 Number of VAST video errors of type 602.
-                &lt;p&gt;Corresponds to "VAST error 602 count" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "VAST error 602 count" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3188,7 +3191,7 @@
             <annotation>
               <documentation>
                 Number of VAST video errors of type 603.
-                &lt;p&gt;Corresponds to "VAST error 603 count" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "VAST error 603 count" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3196,7 +3199,7 @@
             <annotation>
               <documentation>
                 Number of VAST video errors of type 604.
-                &lt;p&gt;Corresponds to "VAST error 604 count" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "VAST error 604 count" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3204,7 +3207,7 @@
             <annotation>
               <documentation>
                 Number of VAST video errors of type 900.
-                &lt;p&gt;Corresponds to "VAST error 900 count" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "VAST error 900 count" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3212,7 +3215,7 @@
             <annotation>
               <documentation>
                 Number of VAST video errors of type 901.
-                &lt;p&gt;Corresponds to "VAST error 901 count" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "VAST error 901 count" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3220,7 +3223,7 @@
             <annotation>
               <documentation>
                 Video interaction event: The number of times user paused ad clip.
-                &lt;p&gt;Corresponds to "Pause" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Pause" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3228,7 +3231,7 @@
             <annotation>
               <documentation>
                 Video interaction event: The number of times the user unpaused the video.
-                &lt;p&gt;Corresponds to "Resume" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Resume" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3236,7 +3239,7 @@
             <annotation>
               <documentation>
                 Video interaction event: The number of times a user rewinds the video.
-                &lt;p&gt;Corresponds to "Rewind" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Rewind" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3245,7 +3248,7 @@
               <documentation>
                 Video interaction event: The number of times video player was in mute state during play
                 of ad clip.
-                &lt;p&gt;Corresponds to "Mute" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Mute" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3253,7 +3256,7 @@
             <annotation>
               <documentation>
                 Video interaction event: The number of times a user unmutes the video.
-                &lt;p&gt;Corresponds to "Unmute" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Unmute" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3262,7 +3265,7 @@
               <documentation>
                 Video interaction event: The number of times a user collapses a video,
                 either to its original size or to a different size.
-                &lt;p&gt;Corresponds to "Collapse" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Collapse" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3270,7 +3273,7 @@
             <annotation>
               <documentation>
                 Video interaction event: The number of times a user expands a video.
-                &lt;p&gt;Corresponds to "Expand" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Expand" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3278,7 +3281,7 @@
             <annotation>
               <documentation>
                 Video interaction event: The number of times ad clip played in full screen mode.
-                &lt;p&gt;Corresponds to "Full screen" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Full screen" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3287,7 +3290,7 @@
               <documentation>
                 Video interaction event: The number of user interactions with a video, on average,
                 such as pause, full screen, mute, etc.
-                &lt;p&gt;Corresponds to "Average interaction rate" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Average interaction rate" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3295,7 +3298,7 @@
             <annotation>
               <documentation>
                 Video interaction event: The number of times a skippable video is skipped.
-                &lt;p&gt;Corresponds to "Video skipped" in the DFP UI. Compatible with the HISTORICAL report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Video skipped" in the DFP UI. Compatible with any of the following report types: HISTORICAL, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5252,7 +5255,7 @@
                 &lt;li&gt; {@link TimeZoneType.PUBLISHER}
                 &lt;li&gt; {@link TimeZoneType.PROPOSAL_LOCAL}
                 &lt;/ul&gt;
-                &lt;p&gt;Corresponds to "Month and year" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, PARTNER_FINANCE.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Month and year" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, PARTNER_FINANCE, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5268,7 +5271,7 @@
                 &lt;li&gt; {@link TimeZoneType.PUBLISHER}
                 &lt;li&gt; {@link TimeZoneType.PROPOSAL_LOCAL}
                 &lt;/ul&gt;
-                &lt;p&gt;Corresponds to "Week" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Week" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5284,7 +5287,7 @@
                 &lt;li&gt; {@link TimeZoneType.PUBLISHER}
                 &lt;li&gt; {@link TimeZoneType.PROPOSAL_LOCAL}
                 &lt;/ul&gt;
-                &lt;p&gt;Corresponds to "Date" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Date" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5294,7 +5297,7 @@
                 Breaks down reporting data by day of the week in the network time zone. Can
                 be used to filter by day of the week using the index of the day (from 1 for
                 Monday is 1 to 7 for Sunday).
-                &lt;p&gt;Corresponds to "Day of week" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Day of week" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5312,7 +5315,7 @@
               <documentation>
                 Breaks down reporting data by {@link LineItem#id}. Can be used to
                 filter by {@link LineItem#id}.
-                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5322,7 +5325,7 @@
                 Breaks down reporting data by line item. {@link LineItem#name} and
                 {@link LineItem#id} are automatically included as columns in the report.
                 Can be used to filter by {@link LineItem#name}.
-                &lt;p&gt;Corresponds to "Line item" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Line item" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5331,7 +5334,7 @@
               <documentation>
                 Breaks down reporting data by {@link LineItem#lineItemType}. Can be used
                 to filter by line item type using {@link LineItemType} enumeration names.
-                &lt;p&gt;Corresponds to "Line item type" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, DATA_LEAKAGE.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Line item type" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, DATA_LEAKAGE, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5350,7 +5353,7 @@
               <documentation>
                 Breaks down reporting data by {@link Order#id}. Can be used to filter by
                 {@link Order#id}.
-                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5360,7 +5363,7 @@
                 Breaks down reporting data by order. {@link Order#name} and
                 {@link Order#id} are automatically included as columns in the report. Can
                 be used to filter by {@link Order#name}.
-                &lt;p&gt;Corresponds to "Order" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Order" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5379,7 +5382,7 @@
               <documentation>
                 Breaks down reporting data by advertising company {@link Company#id}. Can
                 be used to filter by {@link Company#id}.
-                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5389,7 +5392,7 @@
                 Breaks down reporting data by advertising company. {@link Company#name} and
                 {@link Company#id} are automatically included as columns in the report.
                 Can be used to filter by {@link Company#name}.
-                &lt;p&gt;Corresponds to "Advertiser" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Advertiser" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5423,7 +5426,7 @@
               <documentation>
                 Breaks down reporting data by salesperson {@link User#id}. Can be used to
                 filter by {@link User#id}.
-                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5433,7 +5436,7 @@
                 Breaks down reporting data by salesperson. {@link User#name} and
                 {@link User#id} of the salesperson are automatically included as columns in
                 the report. Can be used to filter by {@link User#name}.
-                &lt;p&gt;Corresponds to "Salesperson" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Salesperson" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5443,7 +5446,7 @@
                 Breaks down reporting data by {@link Creative#id} or creative set id
                 (master's {@link Creative#id}) if the creative is part of a creative set.
                 Can be used to filter by {@link Creative#id}.
-                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, REACH, DATA_LEAKAGE.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, REACH, DATA_LEAKAGE, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5453,7 +5456,7 @@
                 Breaks down reporting data by creative. {@link Creative#name} and
                 {@link Creative#id} are automatically included as columns in the report.
                 Can be used to filter by {@link Creative#name}.
-                &lt;p&gt;Corresponds to "Creative" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, DATA_LEAKAGE.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Creative" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, DATA_LEAKAGE, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5512,7 +5515,7 @@
                 Breaks down reporting data by {@link AdUnit#id}. Can be used to filter by
                 {@link AdUnit#id}. {@link #AD_UNIT_NAME}, i.e. {@link AdUnit#name}, is
                 automatically included as a dimension in the report.
-                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5522,7 +5525,7 @@
                 Breaks down reporting data by ad unit. {@link AdUnit#name} and
                 {@link AdUnit#id} are automatically included as columns in the report. Can
                 be used to filter by {@link AdUnit#name}.
-                &lt;p&gt;Corresponds to "Ad unit" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Ad unit" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5531,7 +5534,7 @@
               <documentation>
                 Used to filter on all the descendants of an ad unit by {@link AdUnit#id}. Not available as a
                 dimension to report on.
-                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5540,7 +5543,7 @@
               <documentation>
                 Used to filter on all the descendants of an ad unit by {@link AdUnit#name}. Not available as a
                 dimension to report on.
-                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5589,7 +5592,7 @@
                 The ID of the device category to which an ad is being targeted.
                 
                 Can be used to filter by device category ID.
-                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, REACH.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, REACH, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5600,7 +5603,7 @@
                 targeted.
                 
                 Can be used to filter by device category name.
-                &lt;p&gt;Corresponds to "Device category" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Device category" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5609,7 +5612,7 @@
               <documentation>
                 Breaks down reporting data by country criteria ID. Can be used to filter by
                 country criteria ID.
-                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5619,7 +5622,7 @@
                 Breaks down reporting data by country name. The country name and the
                 country criteria ID are automatically included as columns in the report.
                 Can be used to filter by country name using the US English name.
-                &lt;p&gt;Corresponds to "Country" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Country" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5838,7 +5841,7 @@
                 Breaks down reporting data by the fallback position of the video ad, i.e.,
                 {@code NON_FALLBACK}, {@code FALLBACK_POSITION_1}, {@code FALLBACK_POSITION_2}, etc. Can be
                 used for filtering.
-                &lt;p&gt;Corresponds to "Fallback position" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Fallback position" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5849,7 +5852,7 @@
                 {@code UNKNOWN_POSITION}, {@code PREROLL}, {@code POSTROLL}, {@code UNKNOWN_MIDROLL},
                 {@code MIDROLL_1}, {@code MIDROLL_2}, etc. {@code UNKNOWN_MIDROLL} represents a midroll, but
                 which specific midroll is unknown. Can be used for filtering.
-                &lt;p&gt;Corresponds to "Position of pod" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Position of pod" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5859,7 +5862,7 @@
                 Breaks down reporting data by the position of the video ad within the pod, i.e.,
                 {@code UNKNOWN_POSITION}, {@code POSITION_1}, {@code POSITION_2}, etc.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Position in pod" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Position in pod" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6118,7 +6121,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by device name. Can be used for filtering.
-                &lt;p&gt;Corresponds to "Devices" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Devices" in the DFP UI. Compatible with any of the following report types: HISTORICAL, REACH, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6165,7 +6168,7 @@
                 Status of the ad unit. Not available as a dimension to report on,
                 but exists as a dimension in order to filter on it using PQL.
                 Valid values correspond to {@link InventoryStatus}.
-                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7027,7 +7030,7 @@
             <annotation>
               <documentation>
                 Represents {@link LineItem#deliveryRateType} for {@link Dimension#LINE_ITEM_NAME}.
-                &lt;p&gt;Corresponds to "Delivery pacing" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Delivery pacing" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7073,7 +7076,7 @@
               <documentation>
                 Represents {@link Company#type} for {@link Dimension#ADVERTISER_NAME}.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Advertiser type" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Advertiser type" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7082,7 +7085,7 @@
               <documentation>
                 Represents {@link Company#creditStatus} for {@link Dimension#ADVERTISER_NAME}.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Advertiser credit status" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Advertiser credit status" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7100,7 +7103,7 @@
               <documentation>
                 Represents the start date (in YYYY-MM-DD format) for {@link Dimension#ORDER_NAME}.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Order start date" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Order start date" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7109,7 +7112,7 @@
               <documentation>
                 Represents the end date (in YYYY-MM-DD format) for {@link Dimension#ORDER_NAME}.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Order end date" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Order end date" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7126,7 +7129,7 @@
               <documentation>
                 Represents {@link Order#poNumber} for {@link Dimension#ORDER_NAME}.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Order PO number" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Order PO number" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7224,7 +7227,7 @@
               <documentation>
                 The total number of impressions delivered over the lifetime of an
                 {@link Dimension#ORDER_NAME}.
-                &lt;p&gt;Corresponds to "Order lifetime impressions" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Order lifetime impressions" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7233,7 +7236,7 @@
               <documentation>
                 The total number of clicks delivered over the lifetime of an
                 {@link Dimension#ORDER_NAME}.
-                &lt;p&gt;Corresponds to "Order lifetime clicks" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Order lifetime clicks" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7258,7 +7261,7 @@
               <documentation>
                 Represents the start date (in YYYY-MM-DD format) for {@link Dimension#LINE_ITEM_NAME}.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Line item start date" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Line item start date" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7267,7 +7270,7 @@
               <documentation>
                 Represents the end date (in YYYY-MM-DD format) for {@link Dimension#LINE_ITEM_NAME}.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Line item end date" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Line item end date" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7285,7 +7288,7 @@
               <documentation>
                 Represents {@link LineItem#costType} for {@link Dimension#LINE_ITEM_NAME}.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Cost type" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Cost type" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7293,7 +7296,7 @@
             <annotation>
               <documentation>
                 Represents {@link LineItem#costPerUnit} for {@link Dimension#LINE_ITEM_NAME}.
-                &lt;p&gt;Corresponds to "Rate" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Rate" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7301,7 +7304,7 @@
             <annotation>
               <documentation>
                 Represents the 3 letter currency code for {@link Dimension#LINE_ITEM_NAME}.
-                &lt;p&gt;Corresponds to "Currency code" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Currency code" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7310,7 +7313,7 @@
               <documentation>
                 The total number of impressions, clicks or days that is reserved
                 for {@link Dimension#LINE_ITEM_NAME}.
-                &lt;p&gt;Corresponds to "Goal quantity" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Goal quantity" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7329,7 +7332,7 @@
               <documentation>
                 The total number of impressions delivered over the lifetime of a
                 {@link Dimension#LINE_ITEM_NAME}.
-                &lt;p&gt;Corresponds to "Line item lifetime impressions" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Line item lifetime impressions" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7338,7 +7341,7 @@
               <documentation>
                 The total number of clicks delivered over the lifetime of a
                 {@link Dimension#LINE_ITEM_NAME}.
-                &lt;p&gt;Corresponds to "Line item lifetime clicks" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Line item lifetime clicks" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7348,7 +7351,7 @@
                 Represents {@link LineItem#priority} for {@link Dimension#LINE_ITEM_NAME} as
                 a value between 1 and 16.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Line item priority" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Line item priority" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, DATA_LEAKAGE, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -8205,7 +8208,7 @@
             <annotation>
               <documentation>
                 Represents {@link AdUnit#adUnitCode} for {@link Dimension#AD_UNIT_NAME}.
-                &lt;p&gt;Corresponds to "Ad unit code" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Ad unit code" in the DFP UI. Compatible with any of the following report types: HISTORICAL, SELL_THROUGH, REACH, SALES, CREATIVE_QOS.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>

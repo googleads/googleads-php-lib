@@ -20,11 +20,11 @@ namespace Google\AdsApi\Examples\Dfp\v201805\LineItemService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\StatementBuilder;
 use Google\AdsApi\Dfp\v201805\LineItemService;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * Updates line items.
@@ -40,11 +40,11 @@ class UpdateLineItems
     const LINE_ITEM_ID = 'INSERT_LINE_ITEM_ID_HERE';
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session,
         $lineItemId
     ) {
-        $lineItemService = $dfpServices->get($session, LineItemService::class);
+        $lineItemService = $serviceFactory->createLineItemService($session);
 
         // Create a statement to only select a single line item by ID.
         $statementBuilder = new StatementBuilder();
@@ -76,7 +76,6 @@ class UpdateLineItems
                 PHP_EOL
             );
         }
-
     }
 
     public static function main()
@@ -85,14 +84,14 @@ class UpdateLineItems
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
         self::runExample(
-            new DfpServices(),
+            new ServiceFactory(),
             $session,
             intval(self::LINE_ITEM_ID)
         );

@@ -33,7 +33,7 @@ class AdsSoapClientTest extends TestCase
     public function testGetLocalWsdlPath()
     {
         $fakeLiveWsdlUri =
-        'https://abc.xyz/api/adwords/cm/v201710/MockService?wsdl';
+        'https://abc.xyz/api/adwords/cm/v201806/MockService?wsdl';
         $adsSoapClientMock = $this->getMockBuilder(AdsSoapClient::class)
         ->disableOriginalConstructor()
         ->getMock();
@@ -41,7 +41,7 @@ class AdsSoapClientTest extends TestCase
         $expectedResultRegex = sprintf(
             '|src%1$sGoogle%1$sAdsApi%1$sCommon%1$s'
             . '\.\.%1$s\.\.%1$s\.\.%1$s\.\.%1$sresources%1$swsdls'
-            . '%1$sapi%1$sadwords%1$scm%1$sv201710%1$sMockService\.wsdl$|',
+            . '%1$sapi%1$sadwords%1$scm%1$sv201806%1$sMockService\.wsdl$|',
             DIRECTORY_SEPARATOR
         );
 

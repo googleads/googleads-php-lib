@@ -22,13 +22,13 @@ require __DIR__ . '/../../../../vendor/autoload.php';
 use DateTime;
 use DateTimeZone;
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\DfpDateTimes;
 use Google\AdsApi\Dfp\Util\v201805\StatementBuilder;
 use Google\AdsApi\Dfp\v201805\NetworkService;
 use Google\AdsApi\Dfp\v201805\ReconciliationReportService;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * This example gets the previous billing period's reconciliation report.
@@ -40,12 +40,14 @@ use Google\AdsApi\Dfp\v201805\ReconciliationReportService;
 class GetReconciliationReportForLastBillingPeriod
 {
 
-    public static function runExample(DfpServices $dfpServices, DfpSession $session)
-    {
+    public static function runExample(
+        ServiceFactory $serviceFactory,
+        DfpSession $session
+    ) {
         $reconciliationReportService =
-            $dfpServices->get($session, ReconciliationReportService::class);
+            $serviceFactory->createReconciliationReportService($session);
 
-        $networkService = $dfpServices->get($session, NetworkService::class);
+        $networkService = $serviceFactory->createNetworkService($session);
         $network = $networkService->getCurrentNetwork();
 
         // Create a statement to select reconciliation reports.
@@ -80,13 +82,13 @@ class GetReconciliationReportForLastBillingPeriod
                 $i = $page->getStartIndex();
                 foreach ($page->getResults() as $reconciliationReport) {
                     printf(
-                        "%d) Reconciliation report with ID %d for month %d/%d was found.\n",
+                        "%d) Reconciliation report with ID %d for month %d/%d"
+                        . " was found.%s",
                         $i++,
                         $reconciliationReport->getId(),
-                        $reconciliationReport->getStartDate()
-                            ->getMonth(),
-                        $reconciliationReport->getStartDate()
-                            ->getYear()
+                        $reconciliationReport->getStartDate()->getMonth(),
+                        $reconciliationReport->getStartDate()->getYear(),
+                        PHP_EOL
                     );
                 }
             }
@@ -94,7 +96,7 @@ class GetReconciliationReportForLastBillingPeriod
             $statementBuilder->increaseOffsetBy($pageSize);
         } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-        printf("Number of results found: %d\n", $totalResultSetSize);
+        printf("Number of results found: %d%s", $totalResultSetSize, PHP_EOL);
     }
 
     public static function main()
@@ -103,13 +105,13 @@ class GetReconciliationReportForLastBillingPeriod
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
-        self::runExample(new DfpServices(), $session);
+        self::runExample(new ServiceFactory(), $session);
     }
 }
 

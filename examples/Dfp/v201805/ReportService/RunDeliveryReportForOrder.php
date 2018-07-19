@@ -22,7 +22,6 @@ require __DIR__ . '/../../../../vendor/autoload.php';
 use DateTime;
 use DateTimeZone;
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\DfpDateTimes;
@@ -36,6 +35,7 @@ use Google\AdsApi\Dfp\v201805\ExportFormat;
 use Google\AdsApi\Dfp\v201805\ReportJob;
 use Google\AdsApi\Dfp\v201805\ReportQuery;
 use Google\AdsApi\Dfp\v201805\ReportService;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * Runs a typical delivery report for a single order.
@@ -45,9 +45,12 @@ class RunDeliveryReportForOrder
 
     const ORDER_ID = 'INSERT_ORDER_ID_HERE';
 
-    public static function runExample(DfpServices $dfpServices, DfpSession $session, $orderId)
-    {
-        $reportService = $dfpServices->get($session, ReportService::class);
+    public static function runExample(
+        ServiceFactory $serviceFactory,
+        DfpSession $session,
+        $orderId
+    ) {
+        $reportService = $serviceFactory->createReportService($session);
 
         // Create report query.
         $reportQuery = new ReportQuery();
@@ -118,7 +121,7 @@ class RunDeliveryReportForOrder
                 '%s.csv.gz',
                 tempnam(sys_get_temp_dir(), 'delivery-report-')
             );
-            printf("Downloading report to %s ...\n", $filePath);
+            printf("Downloading report to %s ...%s", $filePath, PHP_EOL);
             // Download the report.
             $reportDownloader->downloadReport(ExportFormat::CSV_DUMP, $filePath);
             print "done.\n";
@@ -134,7 +137,11 @@ class RunDeliveryReportForOrder
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
-        self::runExample(new DfpServices(), $session, intval(self::ORDER_ID));
+        self::runExample(
+            new ServiceFactory(),
+            $session,
+            intval(self::ORDER_ID)
+        );
     }
 }
 

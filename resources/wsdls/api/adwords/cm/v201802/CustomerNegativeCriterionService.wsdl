@@ -2607,13 +2607,7 @@
               </documentation>
             </annotation>
           </enumeration>
-          <enumeration value="PLACEMENT_LIST_TYPE_ONLY_ALLOWED_FOR_XBID">
-            <annotation>
-              <documentation>
-                Only Xbid customers can exclude criteria of placement list type.
-              </documentation>
-            </annotation>
-          </enumeration>
+          <enumeration value="PLACEMENT_LIST_TYPE_ONLY_ALLOWED_FOR_XBID"/>
           <enumeration value="MANAGER_CUSTOMER_CANNOT_ADD">
             <annotation>
               <documentation>

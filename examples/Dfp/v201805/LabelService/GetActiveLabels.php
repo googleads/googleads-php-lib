@@ -20,11 +20,11 @@ namespace Google\AdsApi\Examples\Dfp\v201805\LabelService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\StatementBuilder;
 use Google\AdsApi\Dfp\v201805\LabelService;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * This example gets all active labels.
@@ -36,9 +36,11 @@ use Google\AdsApi\Dfp\v201805\LabelService;
 class GetActiveLabels
 {
 
-    public static function runExample(DfpServices $dfpServices, DfpSession $session)
-    {
-        $labelService = $dfpServices->get($session, LabelService::class);
+    public static function runExample(
+        ServiceFactory $serviceFactory,
+        DfpSession $session
+    ) {
+        $labelService = $serviceFactory->createLabelService($session);
 
         // Create a statement to select labels.
         $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
@@ -63,10 +65,11 @@ class GetActiveLabels
                 $i = $page->getStartIndex();
                 foreach ($page->getResults() as $label) {
                     printf(
-                        "%d) Label with ID %d and name '%s' was found.\n",
+                        "%d) Label with ID %d and name '%s' was found.%s",
                         $i++,
                         $label->getId(),
-                        $label->getName()
+                        $label->getName(),
+                        PHP_EOL
                     );
                 }
             }
@@ -74,7 +77,7 @@ class GetActiveLabels
             $statementBuilder->increaseOffsetBy($pageSize);
         } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-        printf("Number of results found: %d\n", $totalResultSetSize);
+        printf("Number of results found: %d%s", $totalResultSetSize, PHP_EOL);
     }
 
     public static function main()
@@ -83,13 +86,13 @@ class GetActiveLabels
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
-        self::runExample(new DfpServices(), $session);
+        self::runExample(new ServiceFactory(), $session);
     }
 }
 

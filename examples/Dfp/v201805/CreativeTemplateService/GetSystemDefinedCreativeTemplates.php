@@ -20,12 +20,12 @@ namespace Google\AdsApi\Examples\Dfp\v201805\CreativeTemplateService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\StatementBuilder;
 use Google\AdsApi\Dfp\v201805\CreativeTemplateService;
 use Google\AdsApi\Dfp\v201805\CreativeTemplateType;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * This example gets all system defined creative templates.
@@ -38,10 +38,11 @@ class GetSystemDefinedCreativeTemplates
 {
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session
     ) {
-        $creativeTemplateService = $dfpServices->get($session, CreativeTemplateService::class);
+        $creativeTemplateService =
+            $serviceFactory->createCreativeTemplateService($session);
 
         // Create a statement to select creative templates.
         $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
@@ -64,10 +65,12 @@ class GetSystemDefinedCreativeTemplates
                 $i = $page->getStartIndex();
                 foreach ($page->getResults() as $creativeTemplate) {
                     printf(
-                        "%d) Creative template with ID %d and name '%s' was found.\n",
+                        "%d) Creative template with ID %d and name '%s' was"
+                        . " found.%s",
                         $i++,
                         $creativeTemplate->getId(),
-                        $creativeTemplate->getName()
+                        $creativeTemplate->getName(),
+                        PHP_EOL
                     );
                 }
             }
@@ -75,7 +78,7 @@ class GetSystemDefinedCreativeTemplates
             $statementBuilder->increaseOffsetBy($pageSize);
         } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-        printf("Number of results found: %d\n", $totalResultSetSize);
+        printf("Number of results found: %d%s", $totalResultSetSize, PHP_EOL);
     }
 
     public static function main()
@@ -84,13 +87,13 @@ class GetSystemDefinedCreativeTemplates
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
-        self::runExample(new DfpServices(), $session);
+        self::runExample(new ServiceFactory(), $session);
     }
 }
 

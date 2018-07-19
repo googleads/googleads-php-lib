@@ -20,11 +20,11 @@ namespace Google\AdsApi\Examples\Dfp\v201805\PackageService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\StatementBuilder;
 use Google\AdsApi\Dfp\v201805\PackageService;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * This example gets all packages.
@@ -37,10 +37,10 @@ class GetAllPackages
 {
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session
     ) {
-        $packageService = $dfpServices->get($session, PackageService::class);
+        $packageService = $serviceFactory->createPackageService($session);
 
         // Create a statement to select packages.
         $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
@@ -61,11 +61,13 @@ class GetAllPackages
                 $i = $page->getStartIndex();
                 foreach ($page->getResults() as $pkg) {
                     printf(
-                        "%d) Package with ID %d, name '%s', and proposal id %d was found.\n",
+                        "%d) Package with ID %d, name '%s', and"
+                        . " proposal id %d was found.%s",
                         $i++,
                         $pkg->getId(),
                         $pkg->getName(),
-                        $pkg->getProposalId()
+                        $pkg->getProposalId(),
+                        PHP_EOL
                     );
                 }
             }
@@ -73,7 +75,7 @@ class GetAllPackages
             $statementBuilder->increaseOffsetBy($pageSize);
         } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-        printf("Number of results found: %d\n", $totalResultSetSize);
+        printf("Number of results found: %d%s", $totalResultSetSize, PHP_EOL);
     }
 
     public static function main()
@@ -82,13 +84,13 @@ class GetAllPackages
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
-        self::runExample(new DfpServices(), $session);
+        self::runExample(new ServiceFactory(), $session);
     }
 }
 

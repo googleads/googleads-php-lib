@@ -1778,7 +1778,6 @@
           <enumeration value="UKNOWN">
             <annotation>
               <documentation>
-                Invalid type to provide default for grubby.Should not be used.
                 &lt;span class="constraint Rejected"&gt;Used for return value only. An enumeration could not be processed, typically due to incompatibility with your WSDL version.&lt;/span&gt;
               </documentation>
             </annotation>

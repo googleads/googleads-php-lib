@@ -20,11 +20,11 @@ namespace Google\AdsApi\Examples\Dfp\v201805\PremiumRateService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\StatementBuilder;
 use Google\AdsApi\Dfp\v201805\PremiumRateService;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * This example gets all premium rates.
@@ -37,10 +37,12 @@ class GetAllPremiumRates
 {
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session
     ) {
-        $premiumRateService = $dfpServices->get($session, PremiumRateService::class);
+        $premiumRateService = $serviceFactory->createPremiumRateService(
+            $session
+        );
 
         // Create a statement to select premium rates.
         $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
@@ -61,11 +63,13 @@ class GetAllPremiumRates
                 $i = $page->getStartIndex();
                 foreach ($page->getResults() as $premiumRate) {
                     printf(
-                        "%d) Premium rate with ID %d, premium feature '%s', and rate card id %d was found.\n",
+                        "%d) Premium rate with ID %d, premium feature '%s',"
+                        . " and rate card id %d was found.%s",
                         $i++,
                         $premiumRate->getId(),
                         (new \ReflectionObject($premiumRate))->getShortName(),
-                        $premiumRate->getRateCardId()
+                        $premiumRate->getRateCardId(),
+                        PHP_EOL
                     );
                 }
             }
@@ -73,7 +77,7 @@ class GetAllPremiumRates
             $statementBuilder->increaseOffsetBy($pageSize);
         } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-        printf("Number of results found: %d\n", $totalResultSetSize);
+        printf("Number of results found: %d%s", $totalResultSetSize, PHP_EOL);
     }
 
     public static function main()
@@ -82,13 +86,13 @@ class GetAllPremiumRates
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
-        self::runExample(new DfpServices(), $session);
+        self::runExample(new ServiceFactory(), $session);
     }
 }
 

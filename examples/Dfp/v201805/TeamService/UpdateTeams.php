@@ -20,10 +20,10 @@ namespace Google\AdsApi\Examples\Dfp\v201805\TeamService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\StatementBuilder;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 use Google\AdsApi\Dfp\v201805\TeamService;
 
 /**
@@ -39,11 +39,11 @@ class UpdateTeams
     const TEAM_ID = 'INSERT_TEAM_ID_HERE';
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session,
         $teamId
     ) {
-        $teamService = $dfpServices->get($session, TeamService::class);
+        $teamService = $serviceFactory->createTeamService($session);
 
         // Create a statement to only select a single team by ID.
         $statementBuilder = new StatementBuilder();
@@ -64,9 +64,10 @@ class UpdateTeams
 
         foreach ($teams as $updatedTeam) {
             printf(
-                "Team with ID %d and name '%s' was updated.\n",
+                "Team with ID %d and name '%s' was updated.%s",
                 $updatedTeam->getId(),
-                $updatedTeam->getName()
+                $updatedTeam->getName(),
+                PHP_EOL
             );
         }
     }
@@ -77,13 +78,13 @@ class UpdateTeams
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a `adsapi_php.ini` file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from a `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
-        self::runExample(new DfpServices(), $session, intval(self::TEAM_ID));
+        self::runExample(new ServiceFactory(), $session, intval(self::TEAM_ID));
     }
 }
 

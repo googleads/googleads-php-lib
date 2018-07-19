@@ -20,13 +20,13 @@ namespace Google\AdsApi\Examples\Dfp\v201805\ProposalService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\v201805\Proposal;
 use Google\AdsApi\Dfp\v201805\ProposalMarketplaceInfo;
 use Google\AdsApi\Dfp\v201805\ProposalService;
 use Google\AdsApi\Dfp\v201805\SalespersonSplit;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * Creates a programmatic proposal for a non-sales-enabled network.
@@ -46,13 +46,13 @@ class CreateProgrammaticProposalsForNonSalesManagement
     const PRIMARY_TRAFFICKER_ID = 'INSERT_PRIMARY_TRAFFICKER_ID_HERE';
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session,
         $buyerId,
         $primarySalespersonId,
         $primaryTraffickerId
     ) {
-        $proposalService = $dfpServices->get($session, ProposalService::class);
+        $proposalService = $serviceFactory->createProposalService($session);
 
         $proposal = new Proposal();
         $proposal->setName('Proposal #' . uniqid());
@@ -78,10 +78,12 @@ class CreateProgrammaticProposalsForNonSalesManagement
         // Print out some information for each created proposal.
         foreach ($results as $i => $proposal) {
             printf(
-                "%d) Programmatic proposal with ID %d and name '%s' was created.\n",
+                "%d) Programmatic proposal with ID %d and name '%s' was"
+                . " created.%s",
                 $i,
                 $proposal->getId(),
-                $proposal->getName()
+                $proposal->getName(),
+                PHP_EOL
             );
         }
     }
@@ -92,14 +94,14 @@ class CreateProgrammaticProposalsForNonSalesManagement
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
         self::runExample(
-            new DfpServices(),
+            new ServiceFactory(),
             $session,
             intval(self::BUYER_ID),
             intval(self::PRIMARY_SALESPERSON_ID),

@@ -20,12 +20,12 @@ namespace Google\AdsApi\Examples\Dfp\v201805\CustomTargetingService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\StatementBuilder;
 use Google\AdsApi\Dfp\v201805\CustomTargetingService;
 use Google\AdsApi\Dfp\v201805\DeleteCustomTargetingKeys as DeleteCustomTargetingKeysAction;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * Deletes custom targeting keys.
@@ -40,11 +40,13 @@ class DeleteCustomTargetingKeys
     const CUSTOM_TARGETING_KEY_ID = 'INSERT_CUSTOM_TARGETING_KEY_ID_HERE';
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session,
         $customTargetingKeyId
     ) {
-        $customTargetingService = $dfpServices->get($session, CustomTargetingService::class);
+        $customTargetingService = $serviceFactory->createCustomTargetingService(
+            $session
+        );
 
         // Create a statement to select the custom targeting keys to delete.
         $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
@@ -68,11 +70,12 @@ class DeleteCustomTargetingKeys
                 foreach ($page->getResults() as $customTargetingKey) {
                     printf(
                         "%d) Custom targeting key with ID %d, name '%s', "
-                        . "and display name '%s' will be deleted.\n",
+                        . "and display name '%s' will be deleted.%s",
                         $i++,
                         $customTargetingKey->getId(),
                         $customTargetingKey->getName(),
-                        $customTargetingKey->getDisplayName()
+                        $customTargetingKey->getDisplayName(),
+                        PHP_EOL
                     );
                 }
             }
@@ -81,8 +84,9 @@ class DeleteCustomTargetingKeys
         } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
         printf(
-            "Total number of custom targeting keys to be deleted: %d\n",
-            $totalResultSetSize
+            "Total number of custom targeting keys to be deleted: %d%s",
+            $totalResultSetSize,
+            PHP_EOL
         );
 
         if ($totalResultSetSize > 0) {
@@ -98,11 +102,12 @@ class DeleteCustomTargetingKeys
 
             if ($result !== null && $result->getNumChanges() > 0) {
                 printf(
-                    "Number of custom targeting keys deleted: %d\n",
-                    $result->getNumChanges()
+                    "Number of custom targeting keys deleted: %d%s",
+                    $result->getNumChanges(),
+                    PHP_EOL
                 );
             } else {
-                printf("No custom targeting keys were deleted.\n");
+                printf("No custom targeting keys were deleted.%s", PHP_EOL);
             }
         }
     }
@@ -113,14 +118,14 @@ class DeleteCustomTargetingKeys
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
         self::runExample(
-            new DfpServices(),
+            new ServiceFactory(),
             $session,
             intval(self::CUSTOM_TARGETING_KEY_ID)
         );

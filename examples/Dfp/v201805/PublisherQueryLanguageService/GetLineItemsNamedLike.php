@@ -20,12 +20,12 @@ namespace Google\AdsApi\Examples\Dfp\v201805\PublisherQueryLanguageService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\Pql;
 use Google\AdsApi\Dfp\Util\v201805\StatementBuilder;
 use Google\AdsApi\Dfp\v201805\PublisherQueryLanguageService;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * This example gets all line items which have a name beginning with 'line
@@ -41,9 +41,13 @@ use Google\AdsApi\Dfp\v201805\PublisherQueryLanguageService;
 class GetLineItemsNamedLike
 {
 
-    public static function runExample(DfpServices $dfpServices, DfpSession $session)
-    {
-        $pqlService = $dfpServices->get($session, PublisherQueryLanguageService::class);
+    public static function runExample(
+        ServiceFactory $serviceFactory,
+        DfpSession $session
+    ) {
+        $pqlService = $serviceFactory->createPublisherQueryLanguageService(
+            $session
+        );
 
         // Create statement to select line items whose names begin with "line item".
         $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
@@ -73,10 +77,12 @@ class GetLineItemsNamedLike
                 );
 
             printf(
-                "%d) %d line items beginning at offset %d were found.\n",
+                "%d) %d line items beginning at offset %d were found.%s",
                 $i++,
-                $resultSet->getRows() !== null ? count($resultSet->getRows()) : 0,
-                $statementBuilder->getOffset()
+                $resultSet->getRows() !== null
+                    ? count($resultSet->getRows()) : 0,
+                $statementBuilder->getOffset(),
+                PHP_EOL
             );
 
             $statementBuilder->increaseOffsetBy($pageSize);
@@ -97,7 +103,7 @@ class GetLineItemsNamedLike
         }
         fclose($fp);
 
-        printf("Line items saved to %s\n", $filePath);
+        printf("Line items saved to %s%s", $filePath, PHP_EOL);
     }
 
     public static function main()
@@ -107,7 +113,7 @@ class GetLineItemsNamedLike
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
-        self::runExample(new DfpServices(), $session);
+        self::runExample(new ServiceFactory(), $session);
     }
 }
 

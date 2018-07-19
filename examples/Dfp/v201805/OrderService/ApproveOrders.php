@@ -20,12 +20,12 @@ namespace Google\AdsApi\Examples\Dfp\v201805\OrderService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\StatementBuilder;
 use Google\AdsApi\Dfp\v201805\ApproveOrders as ApproveOrdersAction;
 use Google\AdsApi\Dfp\v201805\OrderService;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * Approves orders.
@@ -40,11 +40,11 @@ class ApproveOrders
     const ORDER_ID = 'INSERT_ORDER_ID_HERE';
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session,
         $orderId
     ) {
-        $orderService = $dfpServices->get($session, OrderService::class);
+        $orderService = $serviceFactory->createOrderService($session);
 
         // Create a statement to select the orders to approve.
         $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
@@ -67,12 +67,13 @@ class ApproveOrders
                 $i = $page->getStartIndex();
                 foreach ($page->getResults() as $order) {
                     printf(
-                        "%d) Order with ID %d, name '%s', "
-                        . "and advertiser ID %d will be approved.\n",
+                        "%d) Order with ID %d, name '%s',"
+                        . " and advertiser ID %d will be approved.%s",
                         $i++,
                         $order->getId(),
                         $order->getName(),
-                        $order->getAdvertiserId()
+                        $order->getAdvertiserId(),
+                        PHP_EOL
                     );
                 }
             }
@@ -80,7 +81,11 @@ class ApproveOrders
             $statementBuilder->increaseOffsetBy($pageSize);
         } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-        printf("Total number of orders to be approved: %d\n", $totalResultSetSize);
+        printf(
+            "Total number of orders to be approved: %d%s",
+            $totalResultSetSize,
+            PHP_EOL
+        );
 
         if ($totalResultSetSize > 0) {
             // Remove limit and offset from statement so we can reuse the statement.
@@ -94,9 +99,13 @@ class ApproveOrders
             );
 
             if ($result !== null && $result->getNumChanges() > 0) {
-                printf("Number of orders approved: %d\n", $result->getNumChanges());
+                printf(
+                    "Number of orders approved: %d%s",
+                    $result->getNumChanges(),
+                    PHP_EOL
+                );
             } else {
-                printf("No orders were approved.\n");
+                printf("No orders were approved.%s", PHP_EOL);
             }
         }
     }
@@ -107,13 +116,17 @@ class ApproveOrders
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
-        self::runExample(new DfpServices(), $session, intval(self::ORDER_ID));
+        self::runExample(
+            new ServiceFactory(),
+            $session,
+            intval(self::ORDER_ID)
+        );
     }
 }
 

@@ -20,11 +20,11 @@ namespace Google\AdsApi\Examples\Dfp\v201805\CustomTargetingService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\StatementBuilder;
 use Google\AdsApi\Dfp\v201805\CustomTargetingService;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * This example gets all custom targeting keys and values.
@@ -37,13 +37,16 @@ class GetAllCustomTargetingKeysAndValues
 {
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session
     ) {
-        $customTargetingService = $dfpServices->get($session, CustomTargetingService::class);
+        $customTargetingService = $serviceFactory->createCustomTargetingService(
+            $session
+        );
 
         // Get all custom targeting keys.
-        $customTargetingKeyIds = self::getAllCustomTargetingKeyIds($dfpServices, $session);
+        $customTargetingKeyIds =
+            self::getAllCustomTargetingKeyIds($serviceFactory, $session);
 
         // Create a statement to get all custom targeting values for a custom
         // targeting key.
@@ -76,13 +79,15 @@ class GetAllCustomTargetingKeysAndValues
                     $totalResultSetSize = $page->getTotalResultSetSize();
                     foreach ($page->getResults() as $customTargetingValue) {
                         printf(
-                            "%d) Custom targeting value with ID %d, name '%s', display "
-                            . "name '%s', belonging to key with ID %d was found.\n",
+                            "%d) Custom targeting value with ID %d, "
+                            . "name '%s', display name '%s', belonging to key"
+                            . " with ID %d was found.%s",
                             $totalValueCounter++,
                             $customTargetingValue->getId(),
                             $customTargetingValue->getName(),
                             $customTargetingValue->getDisplayName(),
-                            $customTargetingValue->getCustomTargetingKeyId()
+                            $customTargetingValue->getCustomTargetingKeyId(),
+                            PHP_EOL
                         );
                     }
                 }
@@ -91,19 +96,21 @@ class GetAllCustomTargetingKeysAndValues
             } while ($statementBuilder->getOffset() < $totalResultSetSize);
         }
 
-        printf("Number of values found: %d\n", $totalValueCounter);
+        printf("Number of values found: %d%s", $totalValueCounter, PHP_EOL);
     }
 
     /**
      * Gets all custom targeting key IDs.
      */
     private static function getAllCustomTargetingKeyIds(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session
     ) {
         $customTargetingKeyIds = [];
 
-        $customTargetingService = $dfpServices->get($session, CustomTargetingService::class);
+        $customTargetingService = $serviceFactory->createCustomTargetingService(
+            $session
+        );
 
         // Create a statement to get all custom targeting keys.
         $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
@@ -123,12 +130,13 @@ class GetAllCustomTargetingKeysAndValues
                 $i = $page->getStartIndex();
                 foreach ($page->getResults() as $customTargetingKey) {
                     printf(
-                        "%d) Custom targeting key with ID %d, name '%s', and display "
-                        . "name '%s' was found.\n",
+                        "%d) Custom targeting key with ID %d, name '%s', and"
+                        . " display name '%s' was found.%s",
                         $i++,
                         $customTargetingKey->getId(),
                         $customTargetingKey->getName(),
-                        $customTargetingKey->getDisplayName()
+                        $customTargetingKey->getDisplayName(),
+                        PHP_EOL
                     );
                     $customTargetingKeyIds[] = $customTargetingKey->getId();
                 }
@@ -137,7 +145,12 @@ class GetAllCustomTargetingKeysAndValues
             $statementBuilder->increaseOffsetBy($pageSize);
         } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-        printf("Number of keys found: %d\n\n", $totalResultSetSize);
+        printf(
+            "Number of keys found: %d%s%s",
+            $totalResultSetSize,
+            PHP_EOL,
+            PHP_EOL
+        );
 
         return $customTargetingKeyIds;
     }
@@ -148,13 +161,13 @@ class GetAllCustomTargetingKeysAndValues
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
-        self::runExample(new DfpServices(), $session);
+        self::runExample(new ServiceFactory(), $session);
     }
 }
 

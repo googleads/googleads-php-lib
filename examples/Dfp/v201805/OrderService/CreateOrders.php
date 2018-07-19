@@ -20,11 +20,11 @@ namespace Google\AdsApi\Examples\Dfp\v201805\OrderService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\v201805\Order;
 use Google\AdsApi\Dfp\v201805\OrderService;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * Creates orders.
@@ -43,13 +43,13 @@ class CreateOrders
     const TRAFFICKER_ID = 'INSERT_TRAFFICKER_ID_HERE';
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session,
         $advertiserId,
         $salespersonId,
         $traffickerId
     ) {
-        $orderService = $dfpServices->get($session, OrderService::class);
+        $orderService = $serviceFactory->createOrderService($session);
 
         $order = new Order();
         $order->setName('Order #' . uniqid());
@@ -63,10 +63,11 @@ class CreateOrders
         // Print out some information for each created order.
         foreach ($results as $i => $order) {
             printf(
-                "%d) Order with ID %d and name '%s' was created.\n",
+                "%d) Order with ID %d and name '%s' was created.%s",
                 $i,
                 $order->getId(),
-                $order->getName()
+                $order->getName(),
+                PHP_EOL
             );
         }
     }
@@ -77,14 +78,14 @@ class CreateOrders
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
         self::runExample(
-            new DfpServices(),
+            new ServiceFactory(),
             $session,
             intval(self::ADVERTISER_ID),
             intval(self::SALESPERSON_ID),

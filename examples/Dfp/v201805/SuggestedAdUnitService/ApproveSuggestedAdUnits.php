@@ -20,11 +20,11 @@ namespace Google\AdsApi\Examples\Dfp\v201805\SuggestedAdUnitService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\StatementBuilder;
 use Google\AdsApi\Dfp\v201805\ApproveSuggestedAdUnits as ApproveSuggestedAdUnitsAction;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 use Google\AdsApi\Dfp\v201805\SuggestedAdUnitService;
 
 /**
@@ -40,11 +40,13 @@ class ApproveSuggestedAdUnits
     const NUMBER_OF_REQUESTS = 'INSERT_NUMBER_OF_REQUESTS_HERE';
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session,
         $numberOfRequests
     ) {
-        $suggestedAdUnitService = $dfpServices->get($session, SuggestedAdUnitService::class);
+        $suggestedAdUnitService = $serviceFactory->createSuggestedAdUnitService(
+            $session
+        );
 
         // Create a statement to select the suggested ad units to approve.
         $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
@@ -68,10 +70,11 @@ class ApproveSuggestedAdUnits
                 foreach ($page->getResults() as $suggestedAdUnit) {
                     printf(
                         "%d) Suggested ad unit with ID %d "
-                        . "and number of requests %d will be approved.\n",
+                        . "and number of requests %d will be approved.%s",
                         $i++,
                         $suggestedAdUnit->getId(),
-                        $suggestedAdUnit->getNumRequests()
+                        $suggestedAdUnit->getNumRequests(),
+                        PHP_EOL
                     );
                 }
             }
@@ -80,8 +83,9 @@ class ApproveSuggestedAdUnits
         } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
         printf(
-            "Total number of suggested ad units to be approved: %d\n",
-            $totalResultSetSize
+            "Total number of suggested ad units to be approved: %d%s",
+            $totalResultSetSize,
+            PHP_EOL
         );
 
         if ($totalResultSetSize > 0) {
@@ -97,11 +101,12 @@ class ApproveSuggestedAdUnits
 
             if ($result !== null && $result->getNumChanges() > 0) {
                 printf(
-                    "Number of suggested ad units approved: %d\n",
-                    $result->getNumChanges()
+                    "Number of suggested ad units approved: %d%s",
+                    $result->getNumChanges(),
+                    PHP_EOL
                 );
             } else {
-                printf("No suggested ad units were approved.\n");
+                printf("No suggested ad units were approved.%s", PHP_EOL);
             }
         }
     }
@@ -112,14 +117,14 @@ class ApproveSuggestedAdUnits
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
         self::runExample(
-            new DfpServices(),
+            new ServiceFactory(),
             $session,
             intval(self::NUMBER_OF_REQUESTS)
         );

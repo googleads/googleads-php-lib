@@ -814,7 +814,7 @@
             <annotation>
               <documentation>
                 Overrides the value set for {@link LineItem#startDateTime}. This value is
-                optional and is only valid for DFP premium networks.
+                optional and is only valid for Ad Manager 360 networks.
               </documentation>
             </annotation>
           </element>
@@ -832,7 +832,7 @@
             <annotation>
               <documentation>
                 Overrides {@link LineItem#endDateTime}. This value is optional and is only
-                valid for DFP premium networks.
+                valid for Ad Manager 360 networks.
               </documentation>
             </annotation>
           </element>
@@ -841,7 +841,7 @@
               <documentation>
                 Overrides the value set for
                 {@link HasDestinationUrlCreative#destinationUrl}. This value is optional
-                and is only valid for DFP premium networks.
+                and is only valid for Ad Manager 360 networks.
               </documentation>
             </annotation>
           </element>
@@ -3798,7 +3798,7 @@
           <enumeration value="COMPANION_DELIVERY_OPTION_REQUIRE_PREMIUM">
             <annotation>
               <documentation>
-                Companion delivery options require premium networks.
+                Companion delivery options require Ad Manager 360 networks.
               </documentation>
             </annotation>
           </enumeration>
@@ -3814,7 +3814,7 @@
               <documentation>
                 The line item priority is invalid if for dynamic allocation line items
                 it is different than the default for free publishers.  When allowed,
-                Premium publishers can change the priority to any value.
+                Ad Manager 360 users can change the priority to any value.
               </documentation>
             </annotation>
           </enumeration>

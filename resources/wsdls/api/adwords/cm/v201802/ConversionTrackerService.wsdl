@@ -2191,9 +2191,8 @@
           <enumeration value="INVALID_ORIGINAL_CONVERSION_TYPE_ID">
             <annotation>
               <documentation>
-                When providing a global conversion type id to fork from in an ADD operation,
-                the global conversion type id is not acceptable (i.e.: we don't allow this global conversion
-                type to be forked from)
+                Editing the settings for the system-wide default conversion trackers is not permitted in
+                AdWords API.
               </documentation>
             </annotation>
           </enumeration>

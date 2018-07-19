@@ -4987,7 +4987,7 @@
             <annotation>
               <documentation>
                 The type of {@link LineItem} used for ads that track ads being served
-                externally of DFP, for example an email newsletter. The click through would
+                externally of Ad Manager, for example an email newsletter. The click through would
                 reference this ad, and the click would be tracked via this ad.
               </documentation>
             </annotation>
@@ -5002,7 +5002,7 @@
           <enumeration value="AD_EXCHANGE">
             <annotation>
               <documentation>
-                A {@link LineItem} using dynamic allocation backed by the Doubleclick Ad Exchange.
+                A {@link LineItem} using dynamic allocation backed by the Google Ad Exchange.
               </documentation>
             </annotation>
           </enumeration>

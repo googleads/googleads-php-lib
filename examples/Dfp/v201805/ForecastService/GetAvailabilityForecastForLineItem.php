@@ -20,11 +20,11 @@ namespace Google\AdsApi\Examples\Dfp\v201805\ForecastService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\v201805\AvailabilityForecastOptions;
 use Google\AdsApi\Dfp\v201805\ForecastService;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * Gets a forecast for an existing line item.
@@ -36,11 +36,11 @@ class GetAvailabilityForecastForLineItem
     const LINE_ITEM_ID = 'INSERT_LINE_ITEM_ID_HERE';
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session,
         $lineItemId
     ) {
-        $forecastService = $dfpServices->get($session, ForecastService::class);
+        $forecastService = $serviceFactory->createForecastService($session);
 
         // Get forecast for line item.
         $options = new AvailabilityForecastOptions();
@@ -54,18 +54,29 @@ class GetAvailabilityForecastForLineItem
         // Print out forecast results.
         $matchedUnits = $forecast->getMatchedUnits();
         $unitType = strtolower($forecast->getUnitType());
-        printf("%d %s matched.\n", $matchedUnits, $unitType);
+        printf("%d %s matched.%s", $matchedUnits, $unitType, PHP_EOL);
 
         if ($matchedUnits > 0) {
             $percentAvailableUnits = $forecast->getAvailableUnits() / $matchedUnits * 100;
             $percentPossibleUnits = $forecast->getPossibleUnits() / $matchedUnits * 100;
-            printf("%.2d%% %s available.\n", $percentAvailableUnits, $unitType);
-            printf("%.2d%% %s possible.\n", $percentPossibleUnits, $unitType);
+            printf(
+                "%.2d%% %s available.%s",
+                $percentAvailableUnits,
+                $unitType,
+                PHP_EOL
+            );
+            printf(
+                "%.2d%% %s possible.%s",
+                $percentPossibleUnits,
+                $unitType,
+                PHP_EOL
+            );
         }
 
         printf(
-            "%d contending line items.\n",
-            count($forecast->getContendingLineItems())
+            "%d contending line items.%s",
+            count($forecast->getContendingLineItems()),
+            PHP_EOL
         );
     }
 
@@ -76,7 +87,11 @@ class GetAvailabilityForecastForLineItem
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
-        self::runExample(new DfpServices(), $session, intval(self::LINE_ITEM_ID));
+        self::runExample(
+            new ServiceFactory(),
+            $session,
+            intval(self::LINE_ITEM_ID)
+        );
     }
 }
 

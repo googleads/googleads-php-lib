@@ -20,12 +20,12 @@ namespace Google\AdsApi\Examples\Dfp\v201805\InventoryService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\StatementBuilder;
 use Google\AdsApi\Dfp\v201805\ArchiveAdUnits as ArchiveAdUnitsAction;
 use Google\AdsApi\Dfp\v201805\InventoryService;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * Archives ad units.
@@ -40,11 +40,11 @@ class ArchiveAdUnits
     const PARENT_AD_UNIT_ID = 'INSERT_PARENT_AD_UNIT_ID_HERE';
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session,
         $parentAdUnitId
     ) {
-        $inventoryService = $dfpServices->get($session, InventoryService::class);
+        $inventoryService = $serviceFactory->createInventoryService($session);
 
         // Create a statement to select the ad units to archive.
         $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
@@ -71,10 +71,12 @@ class ArchiveAdUnits
                 $i = $page->getStartIndex();
                 foreach ($page->getResults() as $adUnit) {
                     printf(
-                        "%d) Ad unit with ID %d and name '%s' will be archived.\n",
+                        "%d) Ad unit with ID %d and name '%s' will be"
+                        . " archived.%s",
                         $i++,
                         $adUnit->getId(),
-                        $adUnit->getName()
+                        $adUnit->getName(),
+                        PHP_EOL
                     );
                 }
             }
@@ -83,8 +85,9 @@ class ArchiveAdUnits
         } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
         printf(
-            "Total number of ad units to be archived: %d\n",
-            $totalResultSetSize
+            "Total number of ad units to be archived: %d%s",
+            $totalResultSetSize,
+            PHP_EOL
         );
 
         if ($totalResultSetSize > 0) {
@@ -99,9 +102,13 @@ class ArchiveAdUnits
             );
 
             if ($result !== null && $result->getNumChanges() > 0) {
-                printf("Number of ad units archived: %d\n", $result->getNumChanges());
+                printf(
+                    "Number of ad units archived: %d%s",
+                    $result->getNumChanges(),
+                    PHP_EOL
+                );
             } else {
-                printf("No ad units were archived.\n");
+                printf("No ad units were archived.%s", PHP_EOL);
             }
         }
     }
@@ -112,14 +119,14 @@ class ArchiveAdUnits
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
         self::runExample(
-            new DfpServices(),
+            new ServiceFactory(),
             $session,
             intval(self::PARENT_AD_UNIT_ID)
         );

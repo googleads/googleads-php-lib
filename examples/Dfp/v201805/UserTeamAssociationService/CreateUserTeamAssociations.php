@@ -20,9 +20,9 @@ namespace Google\AdsApi\Examples\Dfp\v201805\UserTeamAssociationService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 use Google\AdsApi\Dfp\v201805\UserTeamAssociation;
 use Google\AdsApi\Dfp\v201805\UserTeamAssociationService;
 
@@ -43,13 +43,13 @@ class CreateUserTeamAssociations
     const TEAM_ID = 'INSERT_TEAM_ID_HERE';
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session,
         $userId,
         $teamId
     ) {
         $userTeamAssociationService =
-            $dfpServices->get($session, UserTeamAssociationService::class);
+            $serviceFactory->createUserTeamAssociationService($session);
 
         // Create a user team association.
         $userTeamAssociation = new UserTeamAssociation();
@@ -65,9 +65,10 @@ class CreateUserTeamAssociations
         foreach ($userTeamAssociations as $createdUserTeamAssociation) {
             printf(
                 'A user team association with user ID %d and team ID %d was '
-                . "created.\n",
+                . "created.%s",
                 $createdUserTeamAssociation->getUserId(),
-                $createdUserTeamAssociation->getTeamId()
+                $createdUserTeamAssociation->getTeamId(),
+                PHP_EOL
             );
         }
     }
@@ -79,15 +80,15 @@ class CreateUserTeamAssociations
             ->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())
             ->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
         self::runExample(
-            new DfpServices(),
+            new ServiceFactory(),
             $session,
             intval(self::USER_ID),
             intval(self::TEAM_ID)

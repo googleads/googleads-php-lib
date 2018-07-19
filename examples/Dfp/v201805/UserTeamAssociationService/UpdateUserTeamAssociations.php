@@ -20,10 +20,10 @@ namespace Google\AdsApi\Examples\Dfp\v201805\UserTeamAssociationService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\StatementBuilder;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 use Google\AdsApi\Dfp\v201805\TeamAccessType;
 use Google\AdsApi\Dfp\v201805\UserTeamAssociationService;
 
@@ -44,14 +44,14 @@ class UpdateUserTeamAssociations
     const TEAM_ID = 'INSERT_TEAM_ID_HERE';
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session,
         $userId,
         $teamId
     ) {
         // Get the UserTeamAssociationService.
         $userTeamAssociationService =
-            $dfpServices->get($session, UserTeamAssociationService::class);
+            $serviceFactory->createUserTeamAssociationService($session);
 
         // Create a statement to only select a single user team association
         // by user's and team's ID.
@@ -79,8 +79,8 @@ class UpdateUserTeamAssociations
 
         foreach ($userTeamAssociations as $updatedUserTeamAssociation) {
             printf(
-                'User team association with user ID %d and team ID %d was' .
-                ' updated.%s',
+                'User team association with user ID %d and team ID %d was'
+                . ' updated.%s',
                 $updatedUserTeamAssociation->getUserId(),
                 $updatedUserTeamAssociation->getTeamId(),
                 PHP_EOL
@@ -95,15 +95,15 @@ class UpdateUserTeamAssociations
             ->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())
             ->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
         self::runExample(
-            new DfpServices(),
+            new ServiceFactory(),
             $session,
             intval(self::USER_ID),
             intval(self::TEAM_ID)

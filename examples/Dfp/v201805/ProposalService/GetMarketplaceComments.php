@@ -20,12 +20,12 @@ namespace Google\AdsApi\Examples\Dfp\v201805\ProposalService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\DfpDateTimes;
 use Google\AdsApi\Dfp\Util\v201805\StatementBuilder;
 use Google\AdsApi\Dfp\v201805\ProposalService;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * This example gets the Marketplace comments for a programmatic proposal.
@@ -39,9 +39,12 @@ class GetMarketplaceComments
 
     const PROPOSAL_ID = 'INSERT_PROPOSAL_ID_HERE';
 
-    public static function runExample(DfpServices $dfpServices, DfpSession $session, $proposalId)
-    {
-        $proposalService = $dfpServices->get($session, ProposalService::class);
+    public static function runExample(
+        ServiceFactory $serviceFactory,
+        DfpSession $session,
+        $proposalId
+    ) {
+        $proposalService = $serviceFactory->createProposalService($session);
 
         // Create a statement to select marketplace comments.
         $statementBuilder = (new StatementBuilder())->where('proposalId = :proposalId')
@@ -59,18 +62,19 @@ class GetMarketplaceComments
             $totalResultSetSize = count($page->getResults());
             foreach ($page->getResults() as $i => $marketplaceComment) {
                 printf(
-                    "%d) Marketplace comment with creation time '%s' and comment "
-                    . "'%s' was found.\n",
+                    "%d) Marketplace comment with creation time '%s' and"
+                    . " comment '%s' was found.%s",
                     $i,
                     DfpDateTimes::toDateTimeString(
                         $marketplaceComment->getCreationTime()
                     ),
-                    $marketplaceComment->getComment()
+                    $marketplaceComment->getComment(),
+                    PHP_EOL
                 );
             }
         }
 
-        printf("Number of results found: %d\n", $totalResultSetSize);
+        printf("Number of results found: %d%s", $totalResultSetSize, PHP_EOL);
     }
 
     public static function main()
@@ -79,13 +83,17 @@ class GetMarketplaceComments
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
-        self::runExample(new DfpServices(), $session, intval(self::PROPOSAL_ID));
+        self::runExample(
+            new ServiceFactory(),
+            $session,
+            intval(self::PROPOSAL_ID)
+        );
     }
 }
 

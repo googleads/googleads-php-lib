@@ -20,7 +20,6 @@ namespace Google\AdsApi\Examples\Dfp\v201805\ProductTemplateService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\v201805\AdExchangeEnvironment;
@@ -36,6 +35,7 @@ use Google\AdsApi\Dfp\v201805\ProductTemplateMarketplaceInfo;
 use Google\AdsApi\Dfp\v201805\ProductTemplateService;
 use Google\AdsApi\Dfp\v201805\ProductType;
 use Google\AdsApi\Dfp\v201805\RateType;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 use Google\AdsApi\Dfp\v201805\Size;
 
 /**
@@ -49,11 +49,13 @@ class CreateProgrammaticProductTemplates
 {
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session
     ) {
-        $productTemplateService = $dfpServices->get($session, ProductTemplateService::class);
-        $networkService = $dfpServices->get($session, NetworkService::class);
+        $productTemplateService = $serviceFactory->createProductTemplateService(
+            $session
+        );
+        $networkService = $serviceFactory->createNetworkService($session);
 
         // Create a product template that will have standard proposal line items and
         // be trafficked in DFP.
@@ -115,10 +117,12 @@ class CreateProgrammaticProductTemplates
         // Print out some information for each created product template.
         foreach ($results as $i => $productTemplate) {
             printf(
-                "%d) Programmatic product template with ID %d and name '%s' was created.\n",
+                "%d) Programmatic product template with ID %d and name '%s'"
+                . " was created.%s",
                 $i,
                 $productTemplate->getId(),
-                $productTemplate->getName()
+                $productTemplate->getName(),
+                PHP_EOL
             );
         }
     }
@@ -129,13 +133,13 @@ class CreateProgrammaticProductTemplates
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
-        self::runExample(new DfpServices(), $session);
+        self::runExample(new ServiceFactory(), $session);
     }
 }
 

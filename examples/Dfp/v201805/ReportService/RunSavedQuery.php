@@ -20,7 +20,6 @@ namespace Google\AdsApi\Examples\Dfp\v201805\ReportService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\ReportDownloader;
@@ -29,6 +28,7 @@ use Google\AdsApi\Dfp\v201805\ExportFormat;
 use Google\AdsApi\Dfp\v201805\ReportJob;
 use Google\AdsApi\Dfp\v201805\ReportQueryAdUnitView;
 use Google\AdsApi\Dfp\v201805\ReportService;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 use UnexpectedValueException;
 
 /**
@@ -40,11 +40,11 @@ class RunSavedQuery
     const SAVED_QUERY_ID = 'INSERT_SAVED_QUERY_ID_HERE';
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session,
         $savedQueryId
     ) {
-        $reportService = $dfpServices->get($session, ReportService::class);
+        $reportService = $serviceFactory->createReportService($session);
 
         // Create statement to retrieve the saved query.
         $statementBuilder = (new StatementBuilder())->where('id = :id')
@@ -81,7 +81,7 @@ class RunSavedQuery
                 '%s.csv.gz',
                 tempnam(sys_get_temp_dir(), 'saved-report-')
             );
-            printf("Downloading report to %s ...\n", $filePath);
+            printf("Downloading report to %s ...%s", $filePath, PHP_EOL);
             // Download the report.
             $reportDownloader->downloadReport(ExportFormat::CSV_DUMP, $filePath);
             print "done.\n";
@@ -97,7 +97,11 @@ class RunSavedQuery
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
-        self::runExample(new DfpServices(), $session, intval(self::SAVED_QUERY_ID));
+        self::runExample(
+            new ServiceFactory(),
+            $session,
+            intval(self::SAVED_QUERY_ID)
+        );
     }
 }
 

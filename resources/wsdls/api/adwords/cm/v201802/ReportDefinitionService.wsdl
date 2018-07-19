@@ -2034,7 +2034,7 @@
           <enumeration value="CLIENT_SELECTOR_NO_CUSTOMER_IDENTIFIER">
             <annotation>
               <documentation>
-                Cross client report has an client selector without any valid identifier
+                Cross-client report has a client selector without any valid identifier
                 for a customer.
               </documentation>
             </annotation>
@@ -2042,7 +2042,7 @@
           <enumeration value="CLIENT_SELECTOR_INVALID_CUSTOMER_ID">
             <annotation>
               <documentation>
-                Cross client report has an invalid external customer ID in the client
+                Cross-client report has an invalid external customer ID in the client
                 selector.
               </documentation>
             </annotation>

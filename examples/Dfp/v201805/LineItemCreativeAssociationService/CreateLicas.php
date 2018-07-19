@@ -20,11 +20,11 @@ namespace Google\AdsApi\Examples\Dfp\v201805\LineItemCreativeAssociationService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\v201805\LineItemCreativeAssociation;
 use Google\AdsApi\Dfp\v201805\LineItemCreativeAssociationService;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * Creates LICAs.
@@ -40,12 +40,13 @@ class CreateLicas
     const CREATIVE_ID = 'INSERT_CREATIVE_ID_HERE';
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session,
         $lineItemId,
         $creativeId
     ) {
-        $licaService = $dfpServices->get($session, LineItemCreativeAssociationService::class);
+        $licaService =
+            $serviceFactory->createLineItemCreativeAssociationService($session);
 
         $lica = new LineItemCreativeAssociation();
         $lica->setCreativeId($creativeId);
@@ -57,12 +58,13 @@ class CreateLicas
         // Print out some information for each created LICA.
         foreach ($results as $i => $lica) {
             printf(
-                "%d) LICA with line item ID %d, creative ID %d, and status '%s' was "
-                . "created.\n",
+                "%d) LICA with line item ID %d, creative ID %d, and"
+                . " status '%s' was created.%s",
                 $i,
                 $lica->getLineItemId(),
                 $lica->getCreativeId(),
-                $lica->getStatus()
+                $lica->getStatus(),
+                PHP_EOL
             );
         }
     }
@@ -73,14 +75,14 @@ class CreateLicas
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
         self::runExample(
-            new DfpServices(),
+            new ServiceFactory(),
             $session,
             intval(self::LINE_ITEM_ID),
             intval(self::CREATIVE_ID)

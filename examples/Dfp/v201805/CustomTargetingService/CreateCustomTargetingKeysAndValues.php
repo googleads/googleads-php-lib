@@ -20,7 +20,6 @@ namespace Google\AdsApi\Examples\Dfp\v201805\CustomTargetingService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\v201805\CustomTargetingKey;
@@ -28,6 +27,7 @@ use Google\AdsApi\Dfp\v201805\CustomTargetingKeyType;
 use Google\AdsApi\Dfp\v201805\CustomTargetingService;
 use Google\AdsApi\Dfp\v201805\CustomTargetingValue;
 use Google\AdsApi\Dfp\v201805\CustomTargetingValueMatchType;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * Creates custom targeting keys and values.
@@ -40,10 +40,12 @@ class CreateCustomTargetingKeysAndValues
 {
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session
     ) {
-        $customTargetingService = $dfpServices->get($session, CustomTargetingService::class);
+        $customTargetingService = $serviceFactory->createCustomTargetingService(
+            $session
+        );
 
         // Create a predefined key.
         $genderKey = new CustomTargetingKey();
@@ -70,11 +72,12 @@ class CreateCustomTargetingKeysAndValues
 
         foreach ($keys as $key) {
             printf(
-                "A custom targeting key with ID '%s', name '%s', and display name "
-                . "'%s' was created.\n",
+                "A custom targeting key with ID '%s', name '%s', and display"
+                . " name '%s' was created.%s",
                 $key->getId(),
                 $key->getName(),
-                $key->getDisplayName()
+                $key->getDisplayName(),
+                PHP_EOL
             );
         }
 
@@ -132,11 +135,12 @@ class CreateCustomTargetingKeysAndValues
         foreach ($values as $value) {
             printf(
                 "A custom targeting value with ID %d, belonging to key with ID %d, "
-                . "name '%s', and display name '%s' was created.\n",
+                . "name '%s', and display name '%s' was created.%s",
                 $value->getId(),
                 $value->getCustomTargetingKeyId(),
                 $value->getName(),
-                $value->getDisplayName()
+                $value->getDisplayName(),
+                PHP_EOL
             );
         }
     }
@@ -147,13 +151,13 @@ class CreateCustomTargetingKeysAndValues
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
-        self::runExample(new DfpServices(), $session);
+        self::runExample(new ServiceFactory(), $session);
     }
 }
 

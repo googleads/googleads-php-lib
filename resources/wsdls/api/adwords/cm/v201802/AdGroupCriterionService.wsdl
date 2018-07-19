@@ -751,7 +751,6 @@
                     URL template for appending params to Final URL.
                     
                     &lt;p&gt;On update, empty string ("") indicates to clear the field.
-                    &lt;p&gt;This field is supported only in test accounts.
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "FinalUrlSuffix".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
                   </documentation>
                 </annotation>
@@ -7843,8 +7842,8 @@
             <annotation>
               <documentation>
                 Operand denoting a webpage URL targeting condition.
-                The operator {@link StringConditionOperator#CONTAINS} will be used for
-                such conditions.
+                Operators {@link WebpageConditionOperator#CONTAINS} and {@link WebpageConditionOperator#EQUALS}
+                are supported for such conditions.
               </documentation>
             </annotation>
           </enumeration>
@@ -7852,7 +7851,7 @@
             <annotation>
               <documentation>
                 Operand denoting a webpage category targeting condition.
-                The operator {@link StringConditionOperator#EQUALS} will be used for
+                The operator {@link WebpageConditionOperator#EQUALS} will be used for
                 such conditions.
               </documentation>
             </annotation>
@@ -7861,7 +7860,7 @@
             <annotation>
               <documentation>
                 Operand denoting a webpage title targeting condition.
-                The operator {@link StringConditionOperator#CONTAINS} will be used for
+                The operator {@link WebpageConditionOperator#CONTAINS} will be used for
                 such conditions.
               </documentation>
             </annotation>
@@ -7870,7 +7869,7 @@
             <annotation>
               <documentation>
                 Operand denoting a webpage content targeting condition.
-                The operator {@link StringConditionOperator#CONTAINS} will be used for
+                The operator {@link WebpageConditionOperator#CONTAINS} will be used for
                 such conditions.
               </documentation>
             </annotation>
@@ -7879,7 +7878,7 @@
             <annotation>
               <documentation>
                 Operand denoting a webpage custom label targeting condition.&lt;br&gt;
-                The operator {@link StringConditionOperator#EQUALS} will be used for such conditions.
+                The operator {@link WebpageConditionOperator#EQUALS} will be used for such conditions.
               </documentation>
             </annotation>
           </enumeration>

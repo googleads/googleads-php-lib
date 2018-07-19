@@ -20,11 +20,11 @@ namespace Google\AdsApi\Examples\Dfp\v201805\WorkflowRequestService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\StatementBuilder;
 use Google\AdsApi\Dfp\v201805\ApproveWorkflowApprovalRequests as ApproveWorkflowApprovalRequestsAction;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 use Google\AdsApi\Dfp\v201805\WorkflowEntityType;
 use Google\AdsApi\Dfp\v201805\WorkflowRequestService;
 use Google\AdsApi\Dfp\v201805\WorkflowRequestType;
@@ -42,11 +42,13 @@ class ApproveWorkflowApprovalRequests
     const PROPOSAL_ID = 'INSERT_PROPOSAL_ID_HERE';
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session,
         $proposalId
     ) {
-        $workflowRequestService = $dfpServices->get($session, WorkflowRequestService::class);
+        $workflowRequestService = $serviceFactory->createWorkflowRequestService(
+            $session
+        );
 
         // Create a statement to select the workflow approval requests to approve.
         $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
@@ -78,11 +80,12 @@ class ApproveWorkflowApprovalRequests
                 foreach ($page->getResults() as $workflowRequest) {
                     printf(
                         "%d) Workflow approval request with ID %d, for '%s', "
-                        . "and ID %d will be approved.\n",
+                        . "and ID %d will be approved.%s",
                         $i++,
                         $workflowRequest->getId(),
                         $workflowRequest->getEntityType(),
-                        $workflowRequest->getEntityId()
+                        $workflowRequest->getEntityId(),
+                        PHP_EOL
                     );
                 }
             }
@@ -91,8 +94,9 @@ class ApproveWorkflowApprovalRequests
         } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
         printf(
-            "Total number of workflow approval requests to be approved: %d\n",
-            $totalResultSetSize
+            "Total number of workflow approval requests to be approved: %d%s",
+            $totalResultSetSize,
+            PHP_EOL
         );
 
         if ($totalResultSetSize > 0) {
@@ -109,11 +113,15 @@ class ApproveWorkflowApprovalRequests
 
             if ($result !== null && $result->getNumChanges() > 0) {
                 printf(
-                    "Number of workflow approval requests approved: %d\n",
-                    $result->getNumChanges()
+                    "Number of workflow approval requests approved: %d%s",
+                    $result->getNumChanges(),
+                    PHP_EOL
                 );
             } else {
-                printf("No workflow approval requests were approved.\n");
+                printf(
+                    "No workflow approval requests were approved.%s",
+                    PHP_EOL
+                );
             }
         }
     }
@@ -124,13 +132,17 @@ class ApproveWorkflowApprovalRequests
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
-        self::runExample(new DfpServices(), $session, intval(self::PROPOSAL_ID));
+        self::runExample(
+            new ServiceFactory(),
+            $session,
+            intval(self::PROPOSAL_ID)
+        );
     }
 }
 

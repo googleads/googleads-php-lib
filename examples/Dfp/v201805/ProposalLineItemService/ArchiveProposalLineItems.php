@@ -20,12 +20,12 @@ namespace Google\AdsApi\Examples\Dfp\v201805\ProposalLineItemService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\StatementBuilder;
 use Google\AdsApi\Dfp\v201805\ArchiveProposalLineItems as ArchiveProposalLineItemsAction;
 use Google\AdsApi\Dfp\v201805\ProposalLineItemService;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * Archives proposal line items.
@@ -40,11 +40,12 @@ class ArchiveProposalLineItems
     const PROPOSAL_LINE_ITEM_ID = 'INSERT_PROPOSAL_LINE_ITEM_ID_HERE';
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session,
         $proposalLineItemId
     ) {
-        $proposalLineItemService = $dfpServices->get($session, ProposalLineItemService::class);
+        $proposalLineItemService =
+            $serviceFactory->createProposalLineItemService($session);
 
         // Create a statement to select the proposal line items to archive.
         $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
@@ -67,10 +68,12 @@ class ArchiveProposalLineItems
                 $i = $page->getStartIndex();
                 foreach ($page->getResults() as $proposalLineItem) {
                     printf(
-                        "%d) Proposal line item with ID %d and name '%s' will be archived.\n",
+                        "%d) Proposal line item with ID %d and name '%s' will"
+                        . " be archived.%s",
                         $i++,
                         $proposalLineItem->getId(),
-                        $proposalLineItem->getName()
+                        $proposalLineItem->getName(),
+                        PHP_EOL
                     );
                 }
             }
@@ -79,8 +82,9 @@ class ArchiveProposalLineItems
         } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
         printf(
-            "Total number of proposal line items to be archived: %d\n",
-            $totalResultSetSize
+            "Total number of proposal line items to be archived: %d%s",
+            $totalResultSetSize,
+            PHP_EOL
         );
 
         if ($totalResultSetSize > 0) {
@@ -96,11 +100,12 @@ class ArchiveProposalLineItems
 
             if ($result !== null && $result->getNumChanges() > 0) {
                 printf(
-                    "Number of proposal line items archived: %d\n",
-                    $result->getNumChanges()
+                    "Number of proposal line items archived: %d%s",
+                    $result->getNumChanges(),
+                    PHP_EOL
                 );
             } else {
-                printf("No proposal line items were archived.\n");
+                printf("No proposal line items were archived.%s", PHP_EOL);
             }
         }
     }
@@ -111,14 +116,14 @@ class ArchiveProposalLineItems
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
         self::runExample(
-            new DfpServices(),
+            new ServiceFactory(),
             $session,
             intval(self::PROPOSAL_LINE_ITEM_ID)
         );

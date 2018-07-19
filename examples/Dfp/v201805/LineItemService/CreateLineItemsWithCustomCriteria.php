@@ -22,7 +22,6 @@ require __DIR__ . '/../../../../vendor/autoload.php';
 use DateTime;
 use DateTimeZone;
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\DfpDateTimes;
@@ -42,6 +41,7 @@ use Google\AdsApi\Dfp\v201805\LineItemService;
 use Google\AdsApi\Dfp\v201805\LineItemType;
 use Google\AdsApi\Dfp\v201805\Money;
 use Google\AdsApi\Dfp\v201805\NetworkService;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 use Google\AdsApi\Dfp\v201805\Size;
 use Google\AdsApi\Dfp\v201805\StartDateTimeType;
 use Google\AdsApi\Dfp\v201805\Targeting;
@@ -76,7 +76,7 @@ class CreateLineItemsWithCustomCriteria
     const CUSTOM_TARGETING_VALUE_ID_3 = 'INSERT_CUSTOM_TARGETING_VALUE_ID_3_HERE';
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session,
         $orderId,
         $customTargetingKeyId1,
@@ -89,10 +89,10 @@ class CreateLineItemsWithCustomCriteria
     ) {
 
         // Get the LineItemService.
-        $lineItemService = $dfpServices->get($session, LineItemService::class);
+        $lineItemService = $serviceFactory->createLineItemService($session);
 
         // Get the NetworkService.
-        $networkService = $dfpServices->get($session, NetworkService::class);
+        $networkService = $serviceFactory->createNetworkService($session);
 
         // Get the root ad unit ID used to target the whole site.
         $rootAdUnitId = $networkService->getCurrentNetwork()
@@ -233,12 +233,13 @@ class CreateLineItemsWithCustomCriteria
         // Print out some information for each created line item.
         foreach ($results as $i => $lineItem) {
             printf(
-                "%d) Line item with ID %d, belonging to order ID %d, and name '%s' "
-                . "was created.\n",
+                "%d) Line item with ID %d, belonging to order ID %d, and"
+                . " name '%s' was created.%s",
                 $i,
                 $lineItem->getId(),
                 $lineItem->getOrderId(),
-                $lineItem->getName()
+                $lineItem->getName(),
+                PHP_EOL
             );
         }
     }
@@ -249,14 +250,14 @@ class CreateLineItemsWithCustomCriteria
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
         self::runExample(
-            new DfpServices(),
+            new ServiceFactory(),
             $session,
             intval(self::ORDER_ID),
             intval(self::CUSTOM_TARGETING_KEY_ID_1),

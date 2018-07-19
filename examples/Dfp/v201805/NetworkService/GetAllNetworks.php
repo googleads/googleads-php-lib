@@ -20,10 +20,10 @@ namespace Google\AdsApi\Examples\Dfp\v201805\NetworkService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
-use Google\AdsApi\Dfp\v201805\NetworkService;
+use Google\AdsApi\Dfp\v201805\ApiException;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * This example gets all networks.
@@ -35,27 +35,37 @@ use Google\AdsApi\Dfp\v201805\NetworkService;
 class GetAllNetworks
 {
 
+    /**
+     * Gets all networks.
+     *
+     * @param ServiceFactory $serviceFactory the factory class for creating a
+     *     network service client
+     * @param DfpSession $session the session containing configurations for
+     *     creating a network service client
+     * @throws ApiException if the request for getting all networks fails
+     */
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session
     ) {
-        $networkService = $dfpServices->get($session, NetworkService::class);
+        $networkService = $serviceFactory->createNetworkService($session);
 
-        // Get all networks that you have access to with the current authentication
-        // credentials.
+        // Get all networks that you have access to with the current
+        // authentication credentials.
         $networks = $networkService->getAllNetworks();
 
         // Print out some information for each network.
         foreach ($networks as $i => $network) {
             printf(
-                "%d) Network with code %d and display name '%s' was found.\n",
+                "%d) Network with code %d and display name '%s' was found.%s",
                 $i,
                 $network->getNetworkCode(),
-                $network->getDisplayName()
+                $network->getDisplayName(),
+                PHP_EOL
             );
         }
 
-        printf("Number of results found: %d\n", count($networks));
+        printf("Number of results found: %d%s", count($networks), PHP_EOL);
     }
 
     public static function main()
@@ -64,13 +74,13 @@ class GetAllNetworks
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
-        self::runExample(new DfpServices(), $session);
+        self::runExample(new ServiceFactory(), $session);
     }
 }
 

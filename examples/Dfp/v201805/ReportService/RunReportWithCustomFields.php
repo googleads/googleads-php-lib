@@ -20,7 +20,6 @@ namespace Google\AdsApi\Examples\Dfp\v201805\ReportService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\ReportDownloader;
@@ -31,6 +30,7 @@ use Google\AdsApi\Dfp\v201805\ExportFormat;
 use Google\AdsApi\Dfp\v201805\ReportJob;
 use Google\AdsApi\Dfp\v201805\ReportQuery;
 use Google\AdsApi\Dfp\v201805\ReportService;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * This example runs a report that includes a custom field. To determine which
@@ -46,11 +46,11 @@ class RunReportWithCustomFields
     const CUSTOM_FIELD_ID = 'INSERT_CUSTOM_FIELD_ID_HERE';
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session,
         $customFieldId
     ) {
-        $reportService = $dfpServices->get($session, ReportService::class);
+        $reportService = $serviceFactory->createReportService($session);
 
         // Create report query.
         $reportQuery = new ReportQuery();
@@ -77,7 +77,7 @@ class RunReportWithCustomFields
                 '%s.csv.gz',
                 tempnam(sys_get_temp_dir(), 'custom-field-report-')
             );
-            printf("Downloading report to %s ...\n", $filePath);
+            printf("Downloading report to %s ...%s", $filePath, PHP_EOL);
             // Download the report.
             $reportDownloader->downloadReport(ExportFormat::CSV_DUMP, $filePath);
             print "done.\n";
@@ -94,7 +94,7 @@ class RunReportWithCustomFields
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
         self::runExample(
-            new DfpServices(),
+            new ServiceFactory(),
             $session,
             intval(self::CUSTOM_FIELD_ID)
         );

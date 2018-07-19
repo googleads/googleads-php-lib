@@ -20,12 +20,12 @@ namespace Google\AdsApi\Examples\Dfp\v201805\ProductTemplateService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\StatementBuilder;
 use Google\AdsApi\Dfp\v201805\ActivateProductTemplates as ActivateProductTemplatesAction;
 use Google\AdsApi\Dfp\v201805\ProductTemplateService;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * Activates product templates.
@@ -40,11 +40,13 @@ class ActivateProductTemplates
     const PRODUCT_TEMPLATE_ID = 'INSERT_PRODUCT_TEMPLATE_ID_HERE';
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session,
         $productTemplateId
     ) {
-        $productTemplateService = $dfpServices->get($session, ProductTemplateService::class);
+        $productTemplateService = $serviceFactory->createProductTemplateService(
+            $session
+        );
 
         // Create a statement to select the product templates to activate.
         $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
@@ -68,10 +70,12 @@ class ActivateProductTemplates
                 $i = $page->getStartIndex();
                 foreach ($page->getResults() as $productTemplate) {
                     printf(
-                        "%d) Product template with ID %d and name '%s' will be activated.\n",
+                        "%d) Product template with ID %d and name '%s' will"
+                        . " be activated.%s",
                         $i++,
                         $productTemplate->getId(),
-                        $productTemplate->getName()
+                        $productTemplate->getName(),
+                        PHP_EOL
                     );
                 }
             }
@@ -80,8 +84,9 @@ class ActivateProductTemplates
         } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
         printf(
-            "Total number of product templates to be activated: %d\n",
-            $totalResultSetSize
+            "Total number of product templates to be activated: %d%s",
+            $totalResultSetSize,
+            PHP_EOL
         );
 
         if ($totalResultSetSize > 0) {
@@ -97,11 +102,12 @@ class ActivateProductTemplates
 
             if ($result !== null && $result->getNumChanges() > 0) {
                 printf(
-                    "Number of product templates activated: %d\n",
-                    $result->getNumChanges()
+                    "Number of product templates activated: %d%s",
+                    $result->getNumChanges(),
+                    PHP_EOL
                 );
             } else {
-                printf("No product templates were activated.\n");
+                printf("No product templates were activated.%s", PHP_EOL);
             }
         }
     }
@@ -112,14 +118,14 @@ class ActivateProductTemplates
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
         self::runExample(
-            new DfpServices(),
+            new ServiceFactory(),
             $session,
             intval(self::PRODUCT_TEMPLATE_ID)
         );

@@ -3714,7 +3714,7 @@
               <documentation>
                 Remnant line items from the Google Ad Manager cannot be changed to other
                 line item types once delivery begins. This restriction does not apply
-                for new line items created in Doubleclick For Publishers.
+                for new line items created in Ad Manager.
               </documentation>
             </annotation>
           </enumeration>

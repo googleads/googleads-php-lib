@@ -164,7 +164,6 @@
                 URL template for appending params to Final URL.
                 
                 &lt;p&gt;On update, empty string ("") indicates to clear the field.
-                &lt;p&gt;This field is supported only in test accounts.
                 &lt;span class="constraint Selectable"&gt;This field can be selected using the value "FinalUrlSuffix".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
               </documentation>
             </annotation>
@@ -2738,7 +2737,7 @@
           <enumeration value="SHOPPING_GOAL_OPTIMIZED_ADS">
             <annotation>
               <documentation>
-                Ad group type for goal-optimized Shopping Campaigns.
+                Ad group type for Smart Shopping Campaigns.
               </documentation>
             </annotation>
           </enumeration>

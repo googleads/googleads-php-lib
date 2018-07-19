@@ -22,7 +22,6 @@ require __DIR__ . '/../../../../vendor/autoload.php';
 use DateTime;
 use DateTimeZone;
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\DfpDateTimes;
@@ -39,6 +38,7 @@ use Google\AdsApi\Dfp\v201805\LineItem;
 use Google\AdsApi\Dfp\v201805\LineItemType;
 use Google\AdsApi\Dfp\v201805\NetworkService;
 use Google\AdsApi\Dfp\v201805\ProspectiveLineItem;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 use Google\AdsApi\Dfp\v201805\Size;
 use Google\AdsApi\Dfp\v201805\StartDateTimeType;
 use Google\AdsApi\Dfp\v201805\Targeting;
@@ -58,11 +58,11 @@ class GetAvailabilityForecast
     const ADVERTISER_ID = 'INSERT_ADVERTISER_ID_HERE';
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session,
         $advertiserId
     ) {
-        $forecastService = $dfpServices->get($session, ForecastService::class);
+        $forecastService = $serviceFactory->createForecastService($session);
 
         // Create a run-of-network line item to forecast on.
         $lineItem = new LineItem();
@@ -93,7 +93,7 @@ class GetAvailabilityForecast
         $lineItem->setCreativePlaceholders([$creativePlaceholder]);
 
         // Create ad unit targeting for the root ad unit.
-        $networkService = $dfpServices->get($session, NetworkService::class);
+        $networkService = $serviceFactory->createNetworkService($session);
         $rootAdUnitId = $networkService->getCurrentNetwork()
             ->getEffectiveRootAdUnitId();
         $adUnitTargeting = new AdUnitTargeting();
@@ -121,18 +121,29 @@ class GetAvailabilityForecast
         // Print out forecast results.
         $matchedUnits = $forecast->getMatchedUnits();
         $unitType = strtolower($forecast->getUnitType());
-        printf("%d %s matched.\n", $matchedUnits, $unitType);
+        printf("%d %s matched.%s", $matchedUnits, $unitType, PHP_EOL);
 
         if ($matchedUnits > 0) {
             $percentAvailableUnits = $forecast->getAvailableUnits() / $matchedUnits * 100;
             $percentPossibleUnits = $forecast->getPossibleUnits() / $matchedUnits * 100;
-            printf("%.2d%% %s available.\n", $percentAvailableUnits, $unitType);
-            printf("%.2d%% %s possible.\n", $percentPossibleUnits, $unitType);
+            printf(
+                "%.2d%% %s available.%s",
+                $percentAvailableUnits,
+                $unitType,
+                PHP_EOL
+            );
+            printf(
+                "%.2d%% %s possible.%s",
+                $percentPossibleUnits,
+                $unitType,
+                PHP_EOL
+            );
         }
 
         printf(
-            "%d contending line items.\n",
-            count($forecast->getContendingLineItems())
+            "%d contending line items.%s",
+            count($forecast->getContendingLineItems()),
+            PHP_EOL
         );
     }
 
@@ -143,7 +154,11 @@ class GetAvailabilityForecast
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
-        self::runExample(new DfpServices(), $session, intval(self::ADVERTISER_ID));
+        self::runExample(
+            new ServiceFactory(),
+            $session,
+            intval(self::ADVERTISER_ID)
+        );
     }
 }
 

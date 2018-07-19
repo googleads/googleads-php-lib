@@ -20,11 +20,11 @@ namespace Google\AdsApi\Examples\Dfp\v201805\CreativeSetService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\StatementBuilder;
 use Google\AdsApi\Dfp\v201805\CreativeSetService;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * This example gets all creative sets.
@@ -37,10 +37,12 @@ class GetAllCreativeSets
 {
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session
     ) {
-        $creativeSetService = $dfpServices->get($session, CreativeSetService::class);
+        $creativeSetService = $serviceFactory->createCreativeSetService(
+            $session
+        );
 
         // Create a statement to select creative sets.
         $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
@@ -61,10 +63,12 @@ class GetAllCreativeSets
                 $i = $page->getStartIndex();
                 foreach ($page->getResults() as $creativeSet) {
                     printf(
-                        "%d) Creative set with ID %d and name '%s' was found.\n",
+                        "%d) Creative set with ID %d and name '%s' was"
+                        . " found.%s",
                         $i++,
                         $creativeSet->getId(),
-                        $creativeSet->getName()
+                        $creativeSet->getName(),
+                        PHP_EOL
                     );
                 }
             }
@@ -72,7 +76,7 @@ class GetAllCreativeSets
             $statementBuilder->increaseOffsetBy($pageSize);
         } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-        printf("Number of results found: %d\n", $totalResultSetSize);
+        printf("Number of results found: %d%s", $totalResultSetSize, PHP_EOL);
     }
 
     public static function main()
@@ -81,13 +85,13 @@ class GetAllCreativeSets
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
-        self::runExample(new DfpServices(), $session);
+        self::runExample(new ServiceFactory(), $session);
     }
 }
 

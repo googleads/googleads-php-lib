@@ -20,7 +20,6 @@ namespace Google\AdsApi\Examples\Dfp\v201805\InventoryService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\v201805\AdUnit;
@@ -29,6 +28,7 @@ use Google\AdsApi\Dfp\v201805\AdUnitTargetWindow;
 use Google\AdsApi\Dfp\v201805\EnvironmentType;
 use Google\AdsApi\Dfp\v201805\InventoryService;
 use Google\AdsApi\Dfp\v201805\NetworkService;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 use Google\AdsApi\Dfp\v201805\Size;
 
 /**
@@ -42,11 +42,11 @@ class CreateAdUnits
 {
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session
     ) {
-        $inventoryService = $dfpServices->get($session, InventoryService::class);
-        $networkService = $dfpServices->get($session, NetworkService::class);
+        $inventoryService = $serviceFactory->createInventoryService($session);
+        $networkService = $serviceFactory->createNetworkService($session);
 
         // Get the effective root ad unit's ID for all ad units to be created under.
         $network = $networkService->getCurrentNetwork();
@@ -75,14 +75,15 @@ class CreateAdUnits
         // Print out some information for each created ad unit.
         foreach ($adUnits as $i => $adUnit) {
             printf(
-                "%d) An ad unit with ID '%s' and name '%s' was created.\n",
+                "%d) An ad unit with ID '%s' and name '%s' was created.%s",
                 $i,
                 $adUnit->getId(),
-                $adUnit->getName()
+                $adUnit->getName(),
+                PHP_EOL
             );
         }
 
-        printf("Created %d ad unit(s).\n", count($adUnits));
+        printf("Created %d ad unit(s).%s", count($adUnits), PHP_EOL);
     }
 
     public static function main()
@@ -91,13 +92,13 @@ class CreateAdUnits
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
-        self::runExample(new DfpServices(), $session);
+        self::runExample(new ServiceFactory(), $session);
     }
 }
 

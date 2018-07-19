@@ -108,7 +108,6 @@
                 URL template for appending params to Final URL.
                 
                 &lt;p&gt;On update, empty string ("") indicates to clear the field.
-                &lt;p&gt;This field is supported only in test accounts.
                 &lt;span class="constraint Selectable"&gt;This field can be selected using the value "CreativeFinalUrlSuffix".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
               </documentation>
             </annotation>
@@ -3818,17 +3817,16 @@
       <complexType name="UniversalShoppingAd">
         <annotation>
           <documentation>
-            Represents a goal-optimized Shopping ad (known as Shopping ad (goal-optimized) in the AdWords
-            user interface). A goal-optimized Shopping ad targets multiple advertising channels across
-            Search, Google Display Network, and YouTube with a focus on retail. This supports ads that
-            display product data (managed using the Google Merchant Center) as specified in the parent
-            campaign's {@linkplain ShoppingSetting Shopping setting} as well as ads using advertiser provided
-            asset data.
+            Represents a Smart Shopping ad that optimizes towards your goals. A Smart Shopping ad targets
+            multiple advertising channels across Search, Google Display Network, and YouTube with a focus on
+            retail. This supports ads that display product data (managed using the Google Merchant Center) as
+            specified in the parent campaign's {@linkplain ShoppingSetting Shopping setting} as well as ads
+            using advertiser provided asset data.
             
-            &lt;p class="caution"&gt;&lt;b&gt;Caution:&lt;/b&gt; goal-optimized Shopping ads do not use {@link #url url},
-            {@link #finalUrls finalUrls}, {@link #finalMobileUrls finalMobileUrls},
-            {@link #finalAppUrls finalAppUrls}, or {@link #displayUrl displayUrl};
-            setting these fields on a goal-optimized Shopping ad will cause an error.
+            &lt;p class="caution"&gt;&lt;b&gt;Caution:&lt;/b&gt; Smart Shopping ads do not use {@link #url url}, {@link
+            #finalUrls finalUrls}, {@link #finalMobileUrls finalMobileUrls}, {@link #finalAppUrls
+            finalAppUrls}, or {@link #displayUrl displayUrl}; setting these fields on a Smart Shopping ad
+            will cause an error.
             &lt;span class="constraint AdxEnabled"&gt;This is enabled for AdX.&lt;/span&gt;
           </documentation>
         </annotation>

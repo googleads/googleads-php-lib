@@ -1,3 +1,15 @@
+### 36.0.0
+
+##### AdWords
+
+*   Removed support and examples for v201710. See deprecation
+    schedule at: https://developers.google.com/adwords/api/docs/sunset-dates
+
+##### DFP
+
+*   Added `ServiceFactory` classes for v201708, v201711, v201802 and v201805.
+*   Updated examples to use the new `ServiceFactory` classes.
+
 ### 35.2.0
 
 ##### AdWords

@@ -20,13 +20,13 @@ namespace Google\AdsApi\Examples\Dfp\v201805\PublisherQueryLanguageService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\CsvFiles;
 use Google\AdsApi\Dfp\Util\v201805\Pql;
 use Google\AdsApi\Dfp\Util\v201805\StatementBuilder;
 use Google\AdsApi\Dfp\v201805\PublisherQueryLanguageService;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * This example gets all programmatic buyers in your network using the Programmatic_Buyer table.
@@ -41,9 +41,13 @@ use Google\AdsApi\Dfp\v201805\PublisherQueryLanguageService;
 class GetAllProgrammaticBuyers
 {
 
-    public static function runExample(DfpServices $dfpServices, DfpSession $session)
-    {
-        $pqlService = $dfpServices->get($session, PublisherQueryLanguageService::class);
+    public static function runExample(
+        ServiceFactory $serviceFactory,
+        DfpSession $session
+    ) {
+        $pqlService = $serviceFactory->createPublisherQueryLanguageService(
+            $session
+        );
 
         // Create statement to select all programmatic buyers.
         $statementBuilder = new StatementBuilder();
@@ -72,10 +76,12 @@ class GetAllProgrammaticBuyers
             $rows = $resultSet->getRows();
 
             printf(
-                "%d) %d programmatic buyers beginning at offset %d were found.\n",
+                "%d) %d programmatic buyers beginning at offset %d were"
+                . " found.%s",
                 $i++,
                 is_null($rows) ? 0 : count($rows),
-                $statementBuilder->getOffset()
+                $statementBuilder->getOffset(),
+                PHP_EOL
             );
 
             $statementBuilder->increaseOffsetBy(
@@ -92,7 +98,7 @@ class GetAllProgrammaticBuyers
             $filePath
         );
 
-        printf("Programmatic buyers saved to: %s\n", $filePath);
+        printf("Programmatic buyers saved to: %s%s", $filePath, PHP_EOL);
     }
 
     public static function main()
@@ -102,7 +108,7 @@ class GetAllProgrammaticBuyers
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
-        self::runExample(new DfpServices(), $session);
+        self::runExample(new ServiceFactory(), $session);
     }
 }
 

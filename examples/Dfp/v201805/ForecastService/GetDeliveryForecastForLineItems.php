@@ -20,11 +20,11 @@ namespace Google\AdsApi\Examples\Dfp\v201805\ForecastService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\v201805\DeliveryForecastOptions;
 use Google\AdsApi\Dfp\v201805\ForecastService;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * Gets a delivery forecast for existing line items.
@@ -37,12 +37,12 @@ class GetDeliveryForecastForLineItems
     const LINE_ITEM_ID_2 = 'INSERT_LINE_ITEM_ID_HERE';
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session,
         $lineItemId1,
         $lineItemId2
     ) {
-        $forecastService = $dfpServices->get($session, ForecastService::class);
+        $forecastService = $serviceFactory->createForecastService($session);
 
         // Get forecast for the line items with no options set.
         $forecast = $forecastService->getDeliveryForecastByIds(
@@ -54,23 +54,27 @@ class GetDeliveryForecastForLineItems
         foreach ($forecast->getLineItemDeliveryForecasts() as $lineItemForecast) {
             $unitType = strtolower($lineItemForecast->getUnitType());
             printf(
-                "Forecast for line item ID %d:\n",
-                $lineItemForecast->getLineItemId()
+                "Forecast for line item ID %d:%s",
+                $lineItemForecast->getLineItemId(),
+                PHP_EOL
             );
             printf(
-                "    %d %s matched\n",
+                "    %d %s matched%s",
                 $lineItemForecast->getMatchedUnits(),
-                $unitType
+                $unitType,
+                PHP_EOL
             );
             printf(
-                "    %d %s delivered\n",
+                "    %d %s delivered%s",
                 $lineItemForecast->getDeliveredUnits(),
-                $unitType
+                $unitType,
+                PHP_EOL
             );
             printf(
-                "    %d %s predicted\n",
+                "    %d %s predicted%s",
                 $lineItemForecast->getPredictedDeliveryUnits(),
-                $unitType
+                $unitType,
+                PHP_EOL
             );
         }
     }
@@ -83,7 +87,7 @@ class GetDeliveryForecastForLineItems
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
         self::runExample(
-            new DfpServices(),
+            new ServiceFactory(),
             $session,
             intval(self::LINE_ITEM_ID_1),
             intval(self::LINE_ITEM_ID_2)

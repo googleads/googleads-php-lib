@@ -22,13 +22,13 @@ require __DIR__ . '/../../../../vendor/autoload.php';
 use DateTime;
 use DateTimeZone;
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\DfpDateTimes;
 use Google\AdsApi\Dfp\Util\v201805\StatementBuilder;
 use Google\AdsApi\Dfp\v201805\OrderService;
 use Google\AdsApi\Dfp\v201805\OrderStatus;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * This example gets all orders that are starting soon.
@@ -40,9 +40,11 @@ use Google\AdsApi\Dfp\v201805\OrderStatus;
 class GetOrdersStartingSoon
 {
 
-    public static function runExample(DfpServices $dfpServices, DfpSession $session)
-    {
-        $orderService = $dfpServices->get($session, OrderService::class);
+    public static function runExample(
+        ServiceFactory $serviceFactory,
+        DfpSession $session
+    ) {
+        $orderService = $serviceFactory->createOrderService($session);
 
         // Create a statement to select orders.
         $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
@@ -82,10 +84,11 @@ class GetOrdersStartingSoon
                 $i = $page->getStartIndex();
                 foreach ($page->getResults() as $order) {
                     printf(
-                        "%d) Order with ID %d and name '%s' was found.\n",
+                        "%d) Order with ID %d and name '%s' was found.%s",
                         $i++,
                         $order->getId(),
-                        $order->getName()
+                        $order->getName(),
+                        PHP_EOL
                     );
                 }
             }
@@ -93,7 +96,7 @@ class GetOrdersStartingSoon
             $statementBuilder->increaseOffsetBy($pageSize);
         } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
-        printf("Number of results found: %d\n", $totalResultSetSize);
+        printf("Number of results found: %d%s", $totalResultSetSize, PHP_EOL);
     }
 
     public static function main()
@@ -102,13 +105,13 @@ class GetOrdersStartingSoon
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
-        self::runExample(new DfpServices(), $session);
+        self::runExample(new ServiceFactory(), $session);
     }
 }
 

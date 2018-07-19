@@ -22,13 +22,13 @@ require __DIR__ . '/../../../../vendor/autoload.php';
 use DateTime;
 use DateTimeZone;
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\DfpDateTimes;
 use Google\AdsApi\Dfp\Util\v201805\Pql;
 use Google\AdsApi\Dfp\Util\v201805\StatementBuilder;
 use Google\AdsApi\Dfp\v201805\PublisherQueryLanguageService;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * Gets recent changes in your network using the `Change_History` table and
@@ -44,9 +44,13 @@ use Google\AdsApi\Dfp\v201805\PublisherQueryLanguageService;
 class GetRecentChanges
 {
 
-    public static function runExample(DfpServices $dfpServices, DfpSession $session)
-    {
-        $pqlService = $dfpServices->get($session, PublisherQueryLanguageService::class);
+    public static function runExample(
+        ServiceFactory $serviceFactory,
+        DfpSession $session
+    ) {
+        $pqlService = $serviceFactory->createPublisherQueryLanguageService(
+            $session
+        );
 
         // Create statement to select recent changes. Change_History only supports
         // ordering by descending ChangeDateTime. Offsets are not supported. IDs are
@@ -95,10 +99,11 @@ class GetRecentChanges
                 $lastId = $lastRow->getValues()[0]->getValue();
 
                 printf(
-                    "%d) %d changes prior to ID '%s' were found.\n",
+                    "%d) %d changes prior to ID '%s' were found.%s",
                     $i++,
                     count($rows),
-                    $lastId
+                    $lastId,
+                    PHP_EOL
                 );
 
                 // Use the earliest change ID in the result set to page.
@@ -126,7 +131,7 @@ class GetRecentChanges
         }
         fclose($fp);
 
-        printf("Recent changes saved to %s\n", $filePath);
+        printf("Recent changes saved to %s%s", $filePath, PHP_EOL);
     }
 
     public static function main()
@@ -136,7 +141,7 @@ class GetRecentChanges
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
-        self::runExample(new DfpServices(), $session);
+        self::runExample(new ServiceFactory(), $session);
     }
 }
 

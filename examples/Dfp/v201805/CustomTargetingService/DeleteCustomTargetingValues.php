@@ -20,12 +20,12 @@ namespace Google\AdsApi\Examples\Dfp\v201805\CustomTargetingService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\StatementBuilder;
 use Google\AdsApi\Dfp\v201805\CustomTargetingService;
 use Google\AdsApi\Dfp\v201805\DeleteCustomTargetingValues as DeleteCustomTargetingValuesAction;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 
 /**
  * Deletes custom targeting values.
@@ -41,12 +41,14 @@ class DeleteCustomTargetingValues
     const CUSTOM_TARGETING_VALUE_ID = 'INSERT_CUSTOM_TARGETING_VALUE_ID_HERE';
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session,
         $customTargetingKeyId,
         $customTargetingValueId
     ) {
-        $customTargetingService = $dfpServices->get($session, CustomTargetingService::class);
+        $customTargetingService = $serviceFactory->createCustomTargetingService(
+            $session
+        );
 
         // Create a statement to select the custom targeting values to delete.
         $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
@@ -77,11 +79,12 @@ class DeleteCustomTargetingValues
                 foreach ($page->getResults() as $customTargetingValue) {
                     printf(
                         "%d) Custom targeting value with ID %d, name '%s', "
-                        . "and display name '%s' will be deleted.\n",
+                        . "and display name '%s' will be deleted.%s",
                         $i++,
                         $customTargetingValue->getId(),
                         $customTargetingValue->getName(),
-                        $customTargetingValue->getDisplayName()
+                        $customTargetingValue->getDisplayName(),
+                        PHP_EOL
                     );
                 }
             }
@@ -90,8 +93,9 @@ class DeleteCustomTargetingValues
         } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
         printf(
-            "Total number of custom targeting values to be deleted: %d\n",
-            $totalResultSetSize
+            "Total number of custom targeting values to be deleted: %d%s",
+            $totalResultSetSize,
+            PHP_EOL
         );
 
         if ($totalResultSetSize > 0) {
@@ -107,11 +111,12 @@ class DeleteCustomTargetingValues
 
             if ($result !== null && $result->getNumChanges() > 0) {
                 printf(
-                    "Number of custom targeting values deleted: %d\n",
-                    $result->getNumChanges()
+                    "Number of custom targeting values deleted: %d%s",
+                    $result->getNumChanges(),
+                    PHP_EOL
                 );
             } else {
-                printf("No custom targeting values were deleted.\n");
+                printf("No custom targeting values were deleted.%s", PHP_EOL);
             }
         }
     }
@@ -122,14 +127,14 @@ class DeleteCustomTargetingValues
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
         self::runExample(
-            new DfpServices(),
+            new ServiceFactory(),
             $session,
             intval(self::CUSTOM_TARGETING_KEY_ID),
             intval(self::CUSTOM_TARGETING_VALUE_ID)

@@ -20,11 +20,11 @@ namespace Google\AdsApi\Examples\Dfp\v201805\ReconciliationOrderReportService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
 use Google\AdsApi\Dfp\Util\v201805\StatementBuilder;
 use Google\AdsApi\Dfp\v201805\ReconciliationOrderReportService;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 use Google\AdsApi\Dfp\v201805\SubmitReconciliationOrderReports as SubmitReconciliationOrderReportsAction;
 
 /**
@@ -40,12 +40,12 @@ class SubmitReconciliationOrderReports
     const RECONCILIATION_ORDER_REPORT_ID = 'INSERT_RECONCILIATION_ORDER_REPORT_ID_HERE';
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session,
         $reconciliationOrderReportId
     ) {
         $reconciliationOrderReportService =
-            $dfpServices->get($session, ReconciliationOrderReportService::class);
+            $serviceFactory->createReconciliationOrderReportService($session);
 
         // Create a statement to select the reconciliation order reports to submit.
         $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
@@ -69,9 +69,11 @@ class SubmitReconciliationOrderReports
                 $i = $page->getStartIndex();
                 foreach ($page->getResults() as $reconciliationOrderReport) {
                     printf(
-                        "%d) Reconciliation order report with ID %d will be submitted.\n",
+                        "%d) Reconciliation order report with ID %d will be"
+                        . " submitted.%s",
                         $i++,
-                        $reconciliationOrderReport->getId()
+                        $reconciliationOrderReport->getId(),
+                        PHP_EOL
                     );
                 }
             }
@@ -80,8 +82,10 @@ class SubmitReconciliationOrderReports
         } while ($statementBuilder->getOffset() < $totalResultSetSize);
 
         printf(
-            "Total number of reconciliation order reports to be submitted: %d\n",
-            $totalResultSetSize
+            "Total number of reconciliation order reports to be"
+            . " submitted: %d%s",
+            $totalResultSetSize,
+            PHP_EOL
         );
 
         if ($totalResultSetSize > 0) {
@@ -97,11 +101,15 @@ class SubmitReconciliationOrderReports
 
             if ($result !== null && $result->getNumChanges() > 0) {
                 printf(
-                    "Number of reconciliation order reports submitted: %d\n",
-                    $result->getNumChanges()
+                    "Number of reconciliation order reports submitted: %d%s",
+                    $result->getNumChanges(),
+                    PHP_EOL
                 );
             } else {
-                printf("No reconciliation order reports were submitted.\n");
+                printf(
+                    "No reconciliation order reports were submitted.%s",
+                    PHP_EOL
+                );
             }
         }
     }
@@ -112,14 +120,14 @@ class SubmitReconciliationOrderReports
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
         self::runExample(
-            new DfpServices(),
+            new ServiceFactory(),
             $session,
             intval(self::RECONCILIATION_ORDER_REPORT_ID)
         );

@@ -20,9 +20,9 @@ namespace Google\AdsApi\Examples\Dfp\v201805\UserService;
 require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\Common\OAuth2TokenBuilder;
-use Google\AdsApi\Dfp\DfpServices;
 use Google\AdsApi\Dfp\DfpSession;
 use Google\AdsApi\Dfp\DfpSessionBuilder;
+use Google\AdsApi\Dfp\v201805\ServiceFactory;
 use Google\AdsApi\Dfp\v201805\User;
 use Google\AdsApi\Dfp\v201805\UserService;
 
@@ -43,13 +43,13 @@ class CreateUsers
     const USER_ROLE_ID = 'INSERT_USER_ROLE_ID_HERE';
 
     public static function runExample(
-        DfpServices $dfpServices,
+        ServiceFactory $serviceFactory,
         DfpSession $session,
         $userEmail,
         $userName,
         $userRoleId
     ) {
-        $userService = $dfpServices->get($session, UserService::class);
+        $userService = $serviceFactory->createUserService($session);
 
         $user = new User();
         $user->setName('User #' . uniqid());
@@ -63,10 +63,11 @@ class CreateUsers
         // Print out some information for each created user.
         foreach ($results as $i => $user) {
             printf(
-                "%d) User with ID %d and name '%s' was created.\n",
+                "%d) User with ID %d and name '%s' was created.%s",
                 $i,
                 $user->getId(),
-                $user->getName()
+                $user->getName(),
+                PHP_EOL
             );
         }
     }
@@ -77,14 +78,14 @@ class CreateUsers
         $oAuth2Credential = (new OAuth2TokenBuilder())->fromFile()
             ->build();
 
-        // Construct an API session configured from a properties file and the
-        // OAuth2 credentials above.
+        // Construct an API session configured from an `adsapi_php.ini` file
+        // and the OAuth2 credentials above.
         $session = (new DfpSessionBuilder())->fromFile()
             ->withOAuth2Credential($oAuth2Credential)
             ->build();
 
         self::runExample(
-            new DfpServices(),
+            new ServiceFactory(),
             $session,
             self::USER_EMAIL,
             self::USER_NAME,
