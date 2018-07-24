@@ -6,7 +6,7 @@
  */
 class FakeApiError {
 
-  const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
+  const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201802";
   const XSI_TYPE = "FakeApiError";
 
   /**
@@ -100,7 +100,7 @@ class FakeApiError {
  */
 class FakePolicyViolationError extends FakeApiError {
 
-  const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
+  const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201802";
   const XSI_TYPE = "FakePolicyViolationError";
 
   /**
@@ -187,7 +187,7 @@ class FakePolicyViolationError extends FakeApiError {
  */
 class FakeCriterionPolicyError extends FakePolicyViolationError {
 
-  const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201710";
+  const WSDL_NAMESPACE = "https://adwords.google.com/api/adwords/cm/v201802";
   const XSI_TYPE = "FakeCriterionPolicyError";
 
   /**

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<mutateResponse xmlns="https://adwords.google.com/api/adwords/cm/v201710">
+<mutateResponse xmlns="https://adwords.google.com/api/adwords/cm/v201802">
   <rval>
     <ListReturnValue.Type>CampaignCriterionReturnValue</ListReturnValue.Type>
     <value>
