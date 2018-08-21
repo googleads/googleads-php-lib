@@ -23,8 +23,8 @@
             &lt;p&gt;
             &lt;b&gt;This object is experimental!
             &lt;code&gt;ObjectValue&lt;/code&gt; is an experimental, innovative, and rapidly
-            changing new feature for DFP. Unfortunately, being on the bleeding edge means that we may make
-            backwards-incompatible changes to
+            changing new feature for Ad Manager. Unfortunately, being on the bleeding edge means that
+            we may make backwards-incompatible changes to
             &lt;code&gt;ObjectValue&lt;/code&gt;. We will inform the community when this feature
             is no longer experimental.&lt;/b&gt;
           </documentation>
@@ -903,8 +903,8 @@
       <complexType name="OfflineError">
         <annotation>
           <documentation>
-            An error that occurs for an internal DFP process that happens in the background. For example,
-            {@link Proposal} workflows can have background tasks that may have offline errors.
+            An error that occurs for an internal Ad Manager process that happens in the background. For
+            example, {@link Proposal} workflows can have background tasks that may have offline errors.
           </documentation>
         </annotation>
         <sequence>
@@ -1189,7 +1189,7 @@
             <annotation>
               <documentation>
                 The unique ID of corresponding {@link Order}.
-                This will be {@code null} if the {@code Proposal} has not been pushed to DFP.
+                This will be {@code null} if the {@code Proposal} has not been pushed to Ad Manager.
                 This attribute is read-only.
               </documentation>
             </annotation>
@@ -3184,14 +3184,14 @@
           <enumeration value="DFP_VOLUME">
             <annotation>
               <documentation>
-                Charge based on what actually delivered counted by DFP
+                Charge based on what actually delivered, as counted by Ad Manager.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="THIRD_PARTY_VOLUME">
             <annotation>
               <documentation>
-                Charge based on what actually delivered counted by third party ads server
+                Charge based on what actually delivered, as counted by the third party ads server.
               </documentation>
             </annotation>
           </enumeration>
@@ -4782,7 +4782,7 @@
           <enumeration value="LINE_ITEM_TYPE_NOT_ALLOWED">
             <annotation>
               <documentation>
-                The proposal line item's type is not yet supported by DFP Sales Manager.
+                The proposal line item's type is not yet supported by Sales Manager.
               </documentation>
             </annotation>
           </enumeration>
@@ -5429,8 +5429,8 @@
                 about 5 seconds and then retry the request. Note that this does not
                 guarantee the request will succeed. If it fails again, try increasing the
                 wait time.
-                &lt;p&gt;Another way to mitigate this error is to limit requests to 2 per second for
-                Small Business networks, or 8 per second for Premium networks. Once again
+                &lt;p&gt;Another way to mitigate this error is to limit requests to 8 per second for Ad Manager
+                360 accounts, or 2 per second for Ad Manager accounts. Once again
                 this does not guarantee that every request will succeed, but may help
                 reduce the number of times you receive this error.
               </documentation>
@@ -6320,11 +6320,6 @@
   <wsdl:portType name="ProposalServiceInterface">
     <wsdl:documentation>
       Provides methods for adding, updating and retrieving {@link Proposal} objects.
-      &lt;p&gt;
-      To use this service, you need to have the new sales management solution
-      enabled on your network. If you do not see a "Sales" tab in
-      &lt;a href="https://www.google.com/dfp"&gt;DoubleClick for Publishers (DFP)&lt;/a&gt;,
-      you will not be able to use this service.
     </wsdl:documentation>
     <wsdl:operation name="createProposals">
       <wsdl:documentation>

@@ -23,8 +23,8 @@
             &lt;p&gt;
             &lt;b&gt;This object is experimental!
             &lt;code&gt;ObjectValue&lt;/code&gt; is an experimental, innovative, and rapidly
-            changing new feature for DFP. Unfortunately, being on the bleeding edge means that we may make
-            backwards-incompatible changes to
+            changing new feature for Ad Manager. Unfortunately, being on the bleeding edge means that
+            we may make backwards-incompatible changes to
             &lt;code&gt;ObjectValue&lt;/code&gt;. We will inform the community when this feature
             is no longer experimental.&lt;/b&gt;
           </documentation>
@@ -1825,7 +1825,7 @@
         <annotation>
           <documentation>
             Represents a mobile carrier.
-            Carrier targeting is only available to DFP mobile publishers.
+            Carrier targeting is only available to Ad Manager mobile publishers.
           </documentation>
         </annotation>
         <complexContent>
@@ -4357,7 +4357,7 @@
           <enumeration value="VALUE_MATCH_TYPE_NOT_ALLOWED">
             <annotation>
               <documentation>
-                Only DFP Premium networks can have {@link CustomTargetingValue#matchType}
+                Only Ad Manager 360 networks can have {@link CustomTargetingValue#matchType}
                 other than {@link CustomTargetingValue.MatchType#EXACT}.
               </documentation>
             </annotation>
@@ -6213,8 +6213,8 @@
                 about 5 seconds and then retry the request. Note that this does not
                 guarantee the request will succeed. If it fails again, try increasing the
                 wait time.
-                &lt;p&gt;Another way to mitigate this error is to limit requests to 2 per second for
-                Small Business networks, or 8 per second for Premium networks. Once again
+                &lt;p&gt;Another way to mitigate this error is to limit requests to 8 per second for Ad Manager
+                360 accounts, or 2 per second for Ad Manager accounts. Once again
                 this does not guarantee that every request will succeed, but may help
                 reduce the number of times you receive this error.
               </documentation>

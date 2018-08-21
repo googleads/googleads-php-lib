@@ -23,8 +23,8 @@
             &lt;p&gt;
             &lt;b&gt;This object is experimental!
             &lt;code&gt;ObjectValue&lt;/code&gt; is an experimental, innovative, and rapidly
-            changing new feature for DFP. Unfortunately, being on the bleeding edge means that we may make
-            backwards-incompatible changes to
+            changing new feature for Ad Manager. Unfortunately, being on the bleeding edge means that
+            we may make backwards-incompatible changes to
             &lt;code&gt;ObjectValue&lt;/code&gt;. We will inform the community when this feature
             is no longer experimental.&lt;/b&gt;
           </documentation>
@@ -95,20 +95,22 @@
             name="impressionsLookback" type="xsd:int">
             <annotation>
               <documentation>
-                DFP records view-through conversions for users who have previously viewed a DFP ad within the
-                number of days that you set here (1 to 30 days), then visits a webpage containing activity tags
-                from this activity group. To be counted, the ad needs to belong to one of the companies
-                associated with the activity group. This attribute is required to create an activity group.
+                Ad Manager records view-through conversions for users who have previously viewed an Ad Manager
+                ad within the number of days that you set here (1 to 30 days), then visits a webpage
+                containing activity tags from this activity group. To be counted, the ad needs to belong to
+                one of the companies associated with the activity group. This attribute is required to create
+                an activity group.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="clicksLookback" type="xsd:int">
             <annotation>
               <documentation>
-                DFP records click-through conversions for users who have previously clicked on a DFP ad within
-                the number of days that you set here (1 to 30 days), then visits a webpage containing activity
-                tags from this activity group. To be counted, the ad needs to belong to one of the companies
-                associated with the activity group. This attribute is required to create an activity group.
+                Ad Manager records click-through conversions for users who have previously clicked on an
+                Ad Manager ad within the number of days that you set here (1 to 30 days), then visits a
+                webpage containing activity tags from this activity group. To be counted, the ad needs to
+                belong to one of the companies associated with the activity group. This attribute is required
+                to create an activity group.
               </documentation>
             </annotation>
           </element>
@@ -1316,8 +1318,8 @@
                 about 5 seconds and then retry the request. Note that this does not
                 guarantee the request will succeed. If it fails again, try increasing the
                 wait time.
-                &lt;p&gt;Another way to mitigate this error is to limit requests to 2 per second for
-                Small Business networks, or 8 per second for Premium networks. Once again
+                &lt;p&gt;Another way to mitigate this error is to limit requests to 8 per second for Ad Manager
+                360 accounts, or 2 per second for Ad Manager accounts. Once again
                 this does not guarantee that every request will succeed, but may help
                 reduce the number of times you receive this error.
               </documentation>

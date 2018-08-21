@@ -178,8 +178,8 @@ class AdsSoapClient extends SoapClient
 
     private function parseApiExceptionFromSoapFault(SoapFault $soapFault)
     {
-        // The AW and DFP APIs always return one element in the SOAP fault detail
-        // that represents an exception.
+        // The AW and Ad Manager APIs always return one element in the SOAP
+        // fault detail that represents an exception.
         $soapFaultDetailName = key(get_object_vars($soapFault->detail));
         $soapFaultDetail = current(get_object_vars($soapFault->detail));
 

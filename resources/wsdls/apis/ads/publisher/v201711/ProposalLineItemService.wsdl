@@ -23,8 +23,8 @@
             &lt;p&gt;
             &lt;b&gt;This object is experimental!
             &lt;code&gt;ObjectValue&lt;/code&gt; is an experimental, innovative, and rapidly
-            changing new feature for DFP. Unfortunately, being on the bleeding edge means that we may make
-            backwards-incompatible changes to
+            changing new feature for Ad Manager. Unfortunately, being on the bleeding edge means that
+            we may make backwards-incompatible changes to
             &lt;code&gt;ObjectValue&lt;/code&gt;. We will inform the community when this feature
             is no longer experimental.&lt;/b&gt;
           </documentation>
@@ -1533,7 +1533,7 @@
             <annotation>
               <documentation>
                 How much the {@code LineItem} was expected to deliver as a percentage of
-                {@link LineItem#unitsBought}.
+                {@link LineItem#primaryGoal}.
               </documentation>
             </annotation>
           </element>
@@ -1542,7 +1542,7 @@
             <annotation>
               <documentation>
                 How much the line item actually delivered as a percentage of
-                {@link LineItem#unitsBought}.
+                {@link LineItem#primaryGoal}.
               </documentation>
             </annotation>
           </element>
@@ -2230,7 +2230,7 @@
         <annotation>
           <documentation>
             Represents a mobile carrier.
-            Carrier targeting is only available to DFP mobile publishers.
+            Carrier targeting is only available to Ad Manager mobile publishers.
           </documentation>
         </annotation>
         <complexContent>
@@ -3112,7 +3112,7 @@
             <annotation>
               <documentation>
                 The unique ID of corresponding {@link LineItem}. This will be {@code null} if the {@link
-                Proposal} has not been pushed to DFP.
+                Proposal} has not been pushed to Ad Manager.
                 This attribute is read-only.
               </documentation>
             </annotation>
@@ -3327,7 +3327,7 @@
                 This will be {@code null} if the delivery indicator information is not available due to one
                 of the following reasons:
                 &lt;ol&gt;
-                &lt;li&gt;The proposal line item has not pushed to DFP.&lt;/li&gt;
+                &lt;li&gt;The proposal line item has not pushed to Ad Manager.&lt;/li&gt;
                 &lt;li&gt;The line item is not delivering.&lt;/li&gt;
                 &lt;li&gt;The line item has an unlimited goal or cap.&lt;/li&gt;
                 &lt;li&gt;The line item has a percentage based goal or cap.&lt;/li&gt;
@@ -3343,7 +3343,7 @@
                 generated from this proposal line item in the last 7 days. This will be {@code null} if the
                 delivery data cannot be computed due to one of the following reasons:
                 &lt;ol&gt;
-                &lt;li&gt;The proposal line item has not pushed to DFP.&lt;/li&gt;
+                &lt;li&gt;The proposal line item has not pushed to Ad Manager.&lt;/li&gt;
                 &lt;li&gt;The line item is not deliverable.&lt;/li&gt;
                 &lt;li&gt;The line item has completed delivering more than 7 days ago.&lt;/li&gt;
                 &lt;li&gt;The line item has an absolute-based goal. {@link ProposalLineItem#deliveryIndicator} should
@@ -3356,7 +3356,7 @@
             <annotation>
               <documentation>
                 The status of the {@link LineItem} generated from this proposal line item.
-                This will be {@code null} if the proposal line item has not pushed to DFP.
+                This will be {@code null} if the proposal line item has not pushed to Ad Manager.
                 This attribute is read-only.
               </documentation>
             </annotation>
@@ -5060,14 +5060,14 @@
           <enumeration value="DFP_VOLUME">
             <annotation>
               <documentation>
-                Charge based on what actually delivered counted by DFP
+                Charge based on what actually delivered, as counted by Ad Manager.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="THIRD_PARTY_VOLUME">
             <annotation>
               <documentation>
-                Charge based on what actually delivered counted by third party ads server
+                Charge based on what actually delivered, as counted by the third party ads server.
               </documentation>
             </annotation>
           </enumeration>
@@ -5630,7 +5630,7 @@
           <enumeration value="VALUE_MATCH_TYPE_NOT_ALLOWED">
             <annotation>
               <documentation>
-                Only DFP Premium networks can have {@link CustomTargetingValue#matchType}
+                Only Ad Manager 360 networks can have {@link CustomTargetingValue#matchType}
                 other than {@link CustomTargetingValue.MatchType#EXACT}.
               </documentation>
             </annotation>
@@ -8124,7 +8124,7 @@
           <enumeration value="LINE_ITEM_TYPE_NOT_ALLOWED">
             <annotation>
               <documentation>
-                The proposal line item's type is not yet supported by DFP Sales Manager.
+                The proposal line item's type is not yet supported by Sales Manager.
               </documentation>
             </annotation>
           </enumeration>
@@ -8756,8 +8756,8 @@
                 about 5 seconds and then retry the request. Note that this does not
                 guarantee the request will succeed. If it fails again, try increasing the
                 wait time.
-                &lt;p&gt;Another way to mitigate this error is to limit requests to 2 per second for
-                Small Business networks, or 8 per second for Premium networks. Once again
+                &lt;p&gt;Another way to mitigate this error is to limit requests to 8 per second for Ad Manager
+                360 accounts, or 2 per second for Ad Manager accounts. Once again
                 this does not guarantee that every request will succeed, but may help
                 reduce the number of times you receive this error.
               </documentation>
@@ -9014,9 +9014,8 @@
           <enumeration value="NETWORK_REMNANT_ORDER_CANNOT_UPDATE_LINEITEM_TYPE">
             <annotation>
               <documentation>
-                Remnant line items from the Google Ad Manager cannot be changed to other
-                line item types once delivery begins. This restriction does not apply
-                for new line items created in Ad Manager.
+                Network remnant line items cannot be changed to other line item types once delivery begins.
+                This restriction does not apply to any new line items created in Ad Manager.
               </documentation>
             </annotation>
           </enumeration>
@@ -9884,8 +9883,7 @@
       <element name="updateProposalLineItems">
         <annotation>
           <documentation>
-            Updates the specified {@link ProposalLineItem} objects. If free editing mode is enabled,
-            this will trigger inventory reservation and cause the proposal to be pushed to DFP again.
+            Updates the specified {@link ProposalLineItem} objects.
             
             @param proposalLineItems the proposal line items to update
             @return the updated proposal line items
@@ -10056,8 +10054,7 @@
     </wsdl:operation>
     <wsdl:operation name="updateProposalLineItems">
       <wsdl:documentation>
-        Updates the specified {@link ProposalLineItem} objects. If free editing mode is enabled,
-        this will trigger inventory reservation and cause the proposal to be pushed to DFP again.
+        Updates the specified {@link ProposalLineItem} objects.
         
         @param proposalLineItems the proposal line items to update
         @return the updated proposal line items

@@ -155,6 +155,7 @@
                 
                 &lt;p&gt;On update, empty string ("") indicates to clear the field.
                 &lt;span class="constraint Selectable"&gt;This field can be selected using the value "TrackingUrlTemplate".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
+                &lt;span class="constraint CampaignType"&gt;This field may not be set for campaign channel type MULTI_CHANNEL.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -165,6 +166,7 @@
                 
                 &lt;p&gt;On update, empty string ("") indicates to clear the field.
                 &lt;span class="constraint Selectable"&gt;This field can be selected using the value "FinalUrlSuffix".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
+                &lt;span class="constraint CampaignType"&gt;This field may not be set for campaign channel type MULTI_CHANNEL.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -175,6 +177,7 @@
                 A list of mappings to be used for substituting URL custom parameter tags in the
                 trackingUrlTemplate, finalUrls, and/or finalMobileUrls.
                 &lt;span class="constraint Selectable"&gt;This field can be selected using the value "UrlCustomParameters".&lt;/span&gt;
+                &lt;span class="constraint CampaignType"&gt;This field may not be set for campaign channel type MULTI_CHANNEL.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -209,6 +212,8 @@
             <annotation>
               <documentation>
                 &lt;span class="constraint Selectable"&gt;This field can be selected using the value "AdRotationMode".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
+                &lt;span class="constraint CampaignType"&gt;This field may only be set to OPTIMIZE for campaign channel subtype UNIVERSAL_APP_CAMPAIGN.&lt;/span&gt;
+&lt;span class="constraint CampaignType"&gt;This field may only be set to the values: OPTIMIZE, ROTATE_FOREVER.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -624,6 +629,7 @@
                 &lt;p&gt;Starting with v201705, this field cannot be set at the ad group or ad group criterion level.
                 &lt;span class="constraint Selectable"&gt;This field can be selected using the value "BiddingStrategyId".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
                 &lt;span class="constraint AdxEnabled"&gt;This is disabled for AdX.&lt;/span&gt;
+                &lt;span class="constraint CampaignType"&gt;This field may not be set.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -649,16 +655,7 @@
                 &lt;p&gt;Starting with v201705, this field cannot be set at the ad group or ad group criterion level
                 to any value other than {@code BiddingStrategyType.NONE}.
                 &lt;span class="constraint Selectable"&gt;This field can be selected using the value "BiddingStrategyType".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
-                &lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, PAGE_ONE_PROMOTED, TARGET_SPEND, TARGET_CPA, TARGET_ROAS, MAXIMIZE_CONVERSIONS, MAXIMIZE_CONVERSION_VALUE, TARGET_OUTRANK_SHARE, NONE for campaign channel type SEARCH.&lt;/span&gt;
-&lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, NONE for campaign channel type SHOPPING with ad group type SHOPPING_SHOWCASE_ADS.&lt;/span&gt;
-&lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, TARGET_ROAS, TARGET_SPEND, NONE for campaign channel type SHOPPING.&lt;/span&gt;
-&lt;span class="constraint CampaignType"&gt;This field may only be set to NONE for campaign channel type SHOPPING with campaign channel subtype SHOPPING_GOAL_OPTIMIZED_ADS.&lt;/span&gt;
-&lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, TARGET_ROAS, TARGET_SPEND, TARGET_CPA, NONE, MAXIMIZE_CONVERSIONS for campaign channel type DISPLAY.&lt;/span&gt;
-&lt;span class="constraint CampaignType"&gt;This field may only be set to NONE for campaign channel type DISPLAY with campaign channel subtype DISPLAY_MOBILE_APP.&lt;/span&gt;
-&lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, MAXIMIZE_CONVERSIONS, NONE, PAGE_ONE_PROMOTED, TARGET_CPA, TARGET_OUTRANK_SHARE, TARGET_ROAS, TARGET_SPEND for campaign channel subtype SEARCH_MOBILE_APP.&lt;/span&gt;
-&lt;span class="constraint CampaignType"&gt;This field may only be set to NONE for campaign channel subtype UNIVERSAL_APP_CAMPAIGN.&lt;/span&gt;
-&lt;span class="constraint CampaignType"&gt;This field may only be set to the values: TARGET_ROAS, TARGET_CPA, MAXIMIZE_CONVERSIONS, NONE for campaign channel type DISPLAY with campaign channel subtype DISPLAY_SMART_CAMPAIGN.&lt;/span&gt;
-&lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, TARGET_CPA, TARGET_ROAS, NONE for campaign channel type DISPLAY with campaign channel subtype DISPLAY_GMAIL_AD.&lt;/span&gt;
+                &lt;span class="constraint CampaignType"&gt;This field may only be set to NONE.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -683,6 +680,7 @@
                 href="https://developers.google.com/adwords/api/docs/guides/bidding"&gt;bidding guide&lt;/a&gt;.
                 
                 &lt;p&gt;Starting with v201705, this field cannot be set at the ad group or ad group criterion level.
+                &lt;span class="constraint CampaignType"&gt;This field may not be set.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>

@@ -23,8 +23,8 @@
             &lt;p&gt;
             &lt;b&gt;This object is experimental!
             &lt;code&gt;ObjectValue&lt;/code&gt; is an experimental, innovative, and rapidly
-            changing new feature for DFP. Unfortunately, being on the bleeding edge means that we may make
-            backwards-incompatible changes to
+            changing new feature for Ad Manager. Unfortunately, being on the bleeding edge means that
+            we may make backwards-incompatible changes to
             &lt;code&gt;ObjectValue&lt;/code&gt;. We will inform the community when this feature
             is no longer experimental.&lt;/b&gt;
           </documentation>
@@ -311,7 +311,7 @@
                 If this field is set to {@code true}, then the {@code AdUnit} will not be
                 implicitly targeted when its parent is. Traffickers must explicitly
                 target such an ad unit or else no line items will serve to it. This
-                feature is only available for DFP Premium accounts.
+                feature is only available for Ad Manager 360 accounts.
               </documentation>
             </annotation>
           </element>
@@ -1712,8 +1712,8 @@
           <enumeration value="ASSOCIATE_ACCOUNT_API_ERROR">
             <annotation>
               <documentation>
-                An error occured while trying to associate an AdSense account with DFP. Unable to create an
-                association with AdSense or Ad Exchange account.
+                An error occurred while trying to associate an AdSense account with Ad Manager. Unable to
+                create an association with AdSense or Ad Exchange account.
               </documentation>
             </annotation>
           </enumeration>
@@ -1938,16 +1938,17 @@
               <documentation>
                 The depth of the {@link AdUnit} in the inventory hierarchy is greater
                 than is allowed. The maximum allowed depth is two below the effective
-                root ad unit for Premium accounts and one level below effective root ad
-                unit for Small Business accounts.
+                root ad unit for Ad Manager 360 accounts and is one level below the
+                effective root ad unit for Ad Manager accounts.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="INVALID_PARENT">
             <annotation>
               <documentation>
-                The only valid {@link AdUnit#parentId} for a DFP Small Business account
-                is the {@link Network#effectiveRootAdUnitId}.
+                The only valid {@link AdUnit#parentId} for an Ad Manager account is the
+                {@link Network#effectiveRootAdUnitId}, Ad Manager 360 accounts can specify an ad unit
+                hierarchy with more than two levels.
               </documentation>
             </annotation>
           </enumeration>
@@ -2820,8 +2821,8 @@
           <enumeration value="EXPLICIT_TARGETING_NOT_ALLOWED">
             <annotation>
               <documentation>
-                {@link AdUnit#explicitlyTargeted} can be set to {@code true} only in a
-                DFP Premium account.
+                {@link AdUnit#explicitlyTargeted} can be set to {@code true} only in an
+                Ad Manager 360 account.
               </documentation>
             </annotation>
           </enumeration>
@@ -3171,8 +3172,8 @@
                 about 5 seconds and then retry the request. Note that this does not
                 guarantee the request will succeed. If it fails again, try increasing the
                 wait time.
-                &lt;p&gt;Another way to mitigate this error is to limit requests to 2 per second for
-                Small Business networks, or 8 per second for Premium networks. Once again
+                &lt;p&gt;Another way to mitigate this error is to limit requests to 8 per second for Ad Manager
+                360 accounts, or 2 per second for Ad Manager accounts. Once again
                 this does not guarantee that every request will succeed, but may help
                 reduce the number of times you receive this error.
               </documentation>

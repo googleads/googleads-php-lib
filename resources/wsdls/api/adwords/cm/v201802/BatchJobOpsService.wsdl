@@ -357,6 +357,7 @@
                 URL template for constructing a tracking URL.
                 
                 &lt;p&gt;On update, empty string ("") indicates to clear the field.
+                &lt;span class="constraint CampaignType"&gt;This field may not be set for campaign channel type MULTI_CHANNEL.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -366,6 +367,7 @@
                 URL template for appending params to Final URL.
                 
                 &lt;p&gt;On update, empty string ("") indicates to clear the field.
+                &lt;span class="constraint CampaignType"&gt;This field may not be set for campaign channel type MULTI_CHANNEL.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -375,6 +377,7 @@
               <documentation>
                 A list of mappings to be used for substituting URL custom parameter tags in the
                 trackingUrlTemplate, finalUrls, and/or finalMobileUrls.
+                &lt;span class="constraint CampaignType"&gt;This field may not be set for campaign channel type MULTI_CHANNEL.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -648,7 +651,14 @@
           </documentation>
         </annotation>
         <sequence>
-          <element maxOccurs="1" minOccurs="0" name="adRotationMode" type="tns:AdRotationMode"/>
+          <element maxOccurs="1" minOccurs="0" name="adRotationMode" type="tns:AdRotationMode">
+            <annotation>
+              <documentation>
+                &lt;span class="constraint CampaignType"&gt;This field may only be set to OPTIMIZE for campaign channel subtype UNIVERSAL_APP_CAMPAIGN.&lt;/span&gt;
+&lt;span class="constraint CampaignType"&gt;This field may only be set to the values: OPTIMIZE, ROTATE_FOREVER.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
         </sequence>
       </complexType>
       <complexType name="AdGroupBidModifier">
@@ -14010,6 +14020,7 @@
                 &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; Starting with v201710, this label is deprecated and can only be
                 removed from campaigns - it can no longer be added. A future release will remove this label
                 entirely.
+                &lt;span class="constraint CampaignType"&gt;This field may not be set.&lt;/span&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -14028,6 +14039,7 @@
                 &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; Starting with v201710, this label is deprecated and can only be
                 removed from campaigns - it can no longer be added. A future release will remove this label
                 entirely. Please use the {@code TRAGEDY} label instead of this one going forward.
+                &lt;span class="constraint CampaignType"&gt;This field may not be set.&lt;/span&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -14074,6 +14086,7 @@
                 &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; Starting with v201710, this label is deprecated and can only be
                 removed from campaigns - it can no longer be added. A future release will remove this label
                 entirely.
+                &lt;span class="constraint CampaignType"&gt;This field may not be set.&lt;/span&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -14085,6 +14098,7 @@
                 &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; Starting with v201710, this label is deprecated and can only be
                 removed from campaigns - it can no longer be added. A future release will remove this label
                 entirely.
+                &lt;span class="constraint CampaignType"&gt;This field may not be set.&lt;/span&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -14096,6 +14110,7 @@
                 &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; Starting with v201710, this label is deprecated and can only be
                 removed from campaigns - it can no longer be added. A future release will remove this label
                 entirely.
+                &lt;span class="constraint CampaignType"&gt;This field may not be set.&lt;/span&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -14107,6 +14122,7 @@
                 &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; Starting with v201710, this label is deprecated and can only be
                 removed from campaigns - it can no longer be added. A future release will remove this label
                 entirely.
+                &lt;span class="constraint CampaignType"&gt;This field may not be set.&lt;/span&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -14118,6 +14134,7 @@
                 &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; Starting with v201710, this label is deprecated and can only be
                 removed from campaigns - it can no longer be added. A future release will remove this label
                 entirely. Please use the {@code TRAGEDY} label instead of this one going forward.
+                &lt;span class="constraint CampaignType"&gt;This field may not be set.&lt;/span&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -14185,6 +14202,7 @@
                 &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; Starting with v201710, this label is deprecated and can only be
                 removed from campaigns - it can no longer be added. A future release will remove this label
                 entirely.
+                &lt;span class="constraint CampaignType"&gt;This field may not be set.&lt;/span&gt;
               </documentation>
             </annotation>
           </enumeration>

@@ -28,7 +28,7 @@ patches.
 *   Sign a Contributor License Agreement (see above).
 *   Join the appropriate product discussion forum.
     *   AdWords API: https://developers.google.com/adwords/api/community/
-    *   DFP API: https://developers.google.com/doubleclick-publishers/community
+    *   Ad Manager API: https://developers.google.com/ad-manager/community
     *   DFA API:
         https://developers.google.com/doubleclick-advertisers/reporting/community
 *   Create an issue on the library issue tracker if there isn't one already. Use

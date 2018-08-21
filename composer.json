@@ -1,6 +1,6 @@
 {
   "name": "googleads/googleads-php-lib",
-  "description": "Google Ads APIs Client Library for PHP (AdWords and DFP)",
+  "description": "Google Ads APIs Client Library for PHP (AdWords and Ad Manager)",
   "require": {
     "php": ">=5.5.9",
     "ext-mbstring": "*",

@@ -277,8 +277,8 @@
             name="placeholderTypes" type="xsd:int">
             <annotation>
               <documentation>
-                Indicates which &lt;a href="/adwords/api/docs/appendix/placeholders"&gt;placeholder types&lt;/a&gt;
-                the feed may populate under the connected customer.
+                Indicates which &lt;a href="/adwords/api/docs/appendix/placeholders"&gt;placeholder types&lt;/a&gt; the
+                feed may populate under the connected customer.
                 &lt;span class="constraint Selectable"&gt;This field can be selected using the value "PlaceholderTypes".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
                 &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
               </documentation>

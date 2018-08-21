@@ -51,8 +51,8 @@
             &lt;p&gt;
             &lt;b&gt;This object is experimental!
             &lt;code&gt;ObjectValue&lt;/code&gt; is an experimental, innovative, and rapidly
-            changing new feature for DFP. Unfortunately, being on the bleeding edge means that we may make
-            backwards-incompatible changes to
+            changing new feature for Ad Manager. Unfortunately, being on the bleeding edge means that
+            we may make backwards-incompatible changes to
             &lt;code&gt;ObjectValue&lt;/code&gt;. We will inform the community when this feature
             is no longer experimental.&lt;/b&gt;
           </documentation>
@@ -117,7 +117,7 @@
                   <documentation>
                     The AdMob publisher ID.
                     See the &lt;a href="https://support.google.com/dfp_premium/answer/1209767#admob"&gt;
-                    DFP Help Center&lt;/a&gt; for more information. This attribute is required.
+                    Ad Manager Help Center&lt;/a&gt; for more information. This attribute is required.
                   </documentation>
                 </annotation>
               </element>
@@ -847,8 +847,8 @@
           <documentation>
             Click tags define click-through URLs for each exit on an HTML5 creative. An exit is any
             area that can be clicked that directs the browser to a landing page. Each click tag defines
-            the click-through URL for a different exit. In DFP, tracking pixels are attached to the click
-            tags if URLs are valid.
+            the click-through URL for a different exit. In Ad Manager, tracking pixels are attached to the
+            click tags if URLs are valid.
           </documentation>
         </annotation>
         <sequence>
@@ -1063,7 +1063,7 @@
             A {@code Creative} represents the media for the ad being served.
             
             &lt;p&gt;Read more about creatives on the
-            &lt;a href="https://support.google.com/dfp_premium/answer/3185155"&gt;DFP Help Center&lt;/a&gt;.&lt;/p&gt;
+            &lt;a href="https://support.google.com/dfp_premium/answer/3185155"&gt;Ad Manager Help Center&lt;/a&gt;.&lt;/p&gt;
           </documentation>
         </annotation>
         <sequence>
@@ -2216,11 +2216,11 @@
       <complexType name="InternalRedirectCreative">
         <annotation>
           <documentation>
-            A {@code Creative} hosted by DoubleClick for Advertisers (DFA).
+            A {@code Creative} hosted by Campaign Manager.
             
-            &lt;p&gt;Similar to third-party creatives, a DoubleClick tag is used to retrieve a creative asset.
-            However, DoubleClick tags are not sent to the user's browser. Instead, they are processed
-            internally within the DoubleClick system..
+            &lt;p&gt;Similar to third-party creatives, a Campaign Manager tag is used to retrieve a creative asset.
+            However, Campaign Manager tags are not sent to the user's browser. Instead, they are processed
+            internally within the Google Marketing Platform system..
           </documentation>
         </annotation>
         <complexContent>
@@ -2497,9 +2497,9 @@
       <complexType name="ProgrammaticCreative">
         <annotation>
           <documentation>
-            A {@code Creative} used for programmatic trafficking. This creative will be auto-created with
-            the right approval from the buyer. This creative cannot be created through
-            the API. This creative can be updated.
+            A {@code Creative} used for programmatic trafficking. This creative will be auto-created with the
+            right approval from the buyer. This creative cannot be created through the API. This creative can
+            be updated.
           </documentation>
         </annotation>
         <complexContent>
@@ -2509,7 +2509,8 @@
                 name="isSafeFrameCompatible" type="xsd:boolean">
                 <annotation>
                   <documentation>
-                    {@code true} if this {@link Creative} is served in a SafeFrame.
+                    {@code true} if this {@link Creative} is served in a SafeFrame. This field is deprecated and
+                    will be removed in a future API version.
                   </documentation>
                 </annotation>
               </element>
@@ -2755,7 +2756,7 @@
       <complexType name="RichMediaStudioCreativeError">
         <annotation>
           <documentation>
-            Lists all errors associated with Rich Media Studio creatives.
+            Lists all errors associated with Studio creatives.
           </documentation>
         </annotation>
         <complexContent>
@@ -3402,7 +3403,7 @@
           <documentation>
             A {@code Creative} that isn't supported by this version of the API.
             This object is readonly and when encountered should be reported
-            on the DFP API forum.
+            on the Ad Manager API forum.
           </documentation>
         </annotation>
         <complexContent>
@@ -3532,7 +3533,7 @@
       <complexType name="VideoCreative">
         <annotation>
           <documentation>
-            A {@code Creative} that contains DFP-hosted video ads and is served
+            A {@code Creative} that contains Ad Manager hosted video ads and is served
             via VAST XML.  This creative is read-only.
           </documentation>
         </annotation>
@@ -6169,8 +6170,8 @@
                 about 5 seconds and then retry the request. Note that this does not
                 guarantee the request will succeed. If it fails again, try increasing the
                 wait time.
-                &lt;p&gt;Another way to mitigate this error is to limit requests to 2 per second for
-                Small Business networks, or 8 per second for Premium networks. Once again
+                &lt;p&gt;Another way to mitigate this error is to limit requests to 8 per second for Ad Manager
+                360 accounts, or 2 per second for Ad Manager accounts. Once again
                 this does not guarantee that every request will succeed, but may help
                 reduce the number of times you receive this error.
               </documentation>
@@ -6432,7 +6433,7 @@
           <enumeration value="CREATION_NOT_ALLOWED">
             <annotation>
               <documentation>
-                Only DoubleClick Rich Media Studio can create a {@code RichMediaStudioCreative}.
+                Only Studio can create a {@code RichMediaStudioCreative}.
               </documentation>
             </annotation>
           </enumeration>

@@ -23,8 +23,8 @@
             &lt;p&gt;
             &lt;b&gt;This object is experimental!
             &lt;code&gt;ObjectValue&lt;/code&gt; is an experimental, innovative, and rapidly
-            changing new feature for DFP. Unfortunately, being on the bleeding edge means that we may make
-            backwards-incompatible changes to
+            changing new feature for Ad Manager. Unfortunately, being on the bleeding edge means that
+            we may make backwards-incompatible changes to
             &lt;code&gt;ObjectValue&lt;/code&gt;. We will inform the community when this feature
             is no longer experimental.&lt;/b&gt;
           </documentation>
@@ -39,12 +39,12 @@
         <annotation>
           <documentation>
             &lt;p&gt;An activity is a specific user action that an advertiser wants to track, such as the
-            completion of a purchase or a visit to a webpage. You create and manage activities in DFP. When
-            a user performs the action after seeing an advertiser's ad, that's a conversion.&lt;/p&gt;
+            completion of a purchase or a visit to a webpage. You create and manage activities in Ad Manager.
+            When a user performs the action after seeing an advertiser's ad, that's a conversion.&lt;/p&gt;
             
-            &lt;p&gt;For example, you set up an activity in DFP to track how many users visit an advertiser's
-            promotional website after viewing or clicking on an ad. When a user views an ad, then visits the
-            page, that's one conversion.&lt;/p&gt;
+            &lt;p&gt;For example, you set up an activity in Ad Manager to track how many users visit an
+            advertiser's promotional website after viewing or clicking on an ad. When a user views an ad,
+            then visits the page, that's one conversion.&lt;/p&gt;
           </documentation>
         </annotation>
         <sequence>
@@ -1380,8 +1380,8 @@
                 about 5 seconds and then retry the request. Note that this does not
                 guarantee the request will succeed. If it fails again, try increasing the
                 wait time.
-                &lt;p&gt;Another way to mitigate this error is to limit requests to 2 per second for
-                Small Business networks, or 8 per second for Premium networks. Once again
+                &lt;p&gt;Another way to mitigate this error is to limit requests to 8 per second for Ad Manager
+                360 accounts, or 2 per second for Ad Manager accounts. Once again
                 this does not guarantee that every request will succeed, but may help
                 reduce the number of times you receive this error.
               </documentation>

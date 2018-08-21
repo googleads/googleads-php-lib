@@ -298,14 +298,14 @@
                 &lt;p&gt;Starting with v201705, this field cannot be set at the ad group or ad group criterion level
                 to any value other than {@code BiddingStrategyType.NONE}.
                 &lt;span class="constraint Selectable"&gt;This field can be selected using the value "BiddingStrategyType".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
-                &lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, PAGE_ONE_PROMOTED, TARGET_SPEND, ENHANCED_CPC, TARGET_CPA, TARGET_ROAS, MAXIMIZE_CONVERSIONS, MAXIMIZE_CONVERSION_VALUE, TARGET_OUTRANK_SHARE, NONE for campaign channel type SEARCH.&lt;/span&gt;
+                &lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, PAGE_ONE_PROMOTED, TARGET_SPEND, ENHANCED_CPC, TARGET_CPA, TARGET_ROAS, MAXIMIZE_CONVERSIONS, MAXIMIZE_CONVERSION_VALUE, TARGET_OUTRANK_SHARE for campaign channel type SEARCH.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, ENHANCED_CPC, TARGET_ROAS, TARGET_SPEND for campaign channel type SHOPPING.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may only be set to MAXIMIZE_CONVERSION_VALUE for campaign channel type SHOPPING with campaign channel subtype SHOPPING_UNIVERSAL_ADS.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, MANUAL_CPM, TARGET_SPEND, ENHANCED_CPC, TARGET_CPA, TARGET_ROAS, MAXIMIZE_CONVERSIONS for campaign channel type DISPLAY.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, TARGET_CPA for campaign channel type DISPLAY with campaign channel subtype DISPLAY_MOBILE_APP.&lt;/span&gt;
-&lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, MAXIMIZE_CONVERSIONS, NONE, PAGE_ONE_PROMOTED, TARGET_CPA, TARGET_OUTRANK_SHARE, TARGET_ROAS, TARGET_SPEND for campaign channel subtype SEARCH_MOBILE_APP.&lt;/span&gt;
+&lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, MAXIMIZE_CONVERSIONS, PAGE_ONE_PROMOTED, TARGET_CPA, TARGET_OUTRANK_SHARE, TARGET_ROAS, TARGET_SPEND for campaign channel subtype SEARCH_MOBILE_APP.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may only be set to the values: TARGET_CPA, TARGET_ROAS for campaign channel type MULTI_CHANNEL.&lt;/span&gt;
-&lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, ENHANCED_CPC, TARGET_CPA, TARGET_ROAS, NONE for campaign channel type DISPLAY with campaign channel subtype DISPLAY_GMAIL_AD.&lt;/span&gt;
+&lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, ENHANCED_CPC, TARGET_CPA, TARGET_ROAS, MAXIMIZE_CONVERSIONS for campaign channel type DISPLAY with campaign channel subtype DISPLAY_GMAIL_AD.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -341,6 +341,7 @@
                 Default CPC and CPM bid values will be set if they are not provided during {@linkplain AdGroup}
                 creation. Default CPC and CPM values are minimal billable amounts in local currencies.
                 For example, for US Dollars CPC and CPM default values are $0.01 and $0.01, respectively.
+                &lt;span class="constraint CampaignType"&gt;This field may not be set.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>

@@ -1617,6 +1617,7 @@
                 &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; Starting with v201710, this label is deprecated and can only be
                 removed from campaigns - it can no longer be added. A future release will remove this label
                 entirely.
+                &lt;span class="constraint CampaignType"&gt;This field may not be set.&lt;/span&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -1635,6 +1636,7 @@
                 &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; Starting with v201710, this label is deprecated and can only be
                 removed from campaigns - it can no longer be added. A future release will remove this label
                 entirely. Please use the {@code TRAGEDY} label instead of this one going forward.
+                &lt;span class="constraint CampaignType"&gt;This field may not be set.&lt;/span&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -1681,6 +1683,7 @@
                 &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; Starting with v201710, this label is deprecated and can only be
                 removed from campaigns - it can no longer be added. A future release will remove this label
                 entirely.
+                &lt;span class="constraint CampaignType"&gt;This field may not be set.&lt;/span&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -1692,6 +1695,7 @@
                 &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; Starting with v201710, this label is deprecated and can only be
                 removed from campaigns - it can no longer be added. A future release will remove this label
                 entirely.
+                &lt;span class="constraint CampaignType"&gt;This field may not be set.&lt;/span&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -1703,6 +1707,7 @@
                 &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; Starting with v201710, this label is deprecated and can only be
                 removed from campaigns - it can no longer be added. A future release will remove this label
                 entirely.
+                &lt;span class="constraint CampaignType"&gt;This field may not be set.&lt;/span&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -1714,6 +1719,7 @@
                 &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; Starting with v201710, this label is deprecated and can only be
                 removed from campaigns - it can no longer be added. A future release will remove this label
                 entirely.
+                &lt;span class="constraint CampaignType"&gt;This field may not be set.&lt;/span&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -1725,6 +1731,7 @@
                 &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; Starting with v201710, this label is deprecated and can only be
                 removed from campaigns - it can no longer be added. A future release will remove this label
                 entirely. Please use the {@code TRAGEDY} label instead of this one going forward.
+                &lt;span class="constraint CampaignType"&gt;This field may not be set.&lt;/span&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -1792,6 +1799,7 @@
                 &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; Starting with v201710, this label is deprecated and can only be
                 removed from campaigns - it can no longer be added. A future release will remove this label
                 entirely.
+                &lt;span class="constraint CampaignType"&gt;This field may not be set.&lt;/span&gt;
               </documentation>
             </annotation>
           </enumeration>

@@ -1055,7 +1055,7 @@
           <enumeration value="MULTI_CURRENCY_NOT_SUPPORTED">
             <annotation>
               <documentation>
-                Multi-currency support is not enabled for this network.  This is a premium feature.
+                Multi-currency support is not enabled for this network.  This is an Ad Manager 360 feature.
               </documentation>
             </annotation>
           </enumeration>
@@ -1234,8 +1234,8 @@
                 about 5 seconds and then retry the request. Note that this does not
                 guarantee the request will succeed. If it fails again, try increasing the
                 wait time.
-                &lt;p&gt;Another way to mitigate this error is to limit requests to 2 per second for
-                Small Business networks, or 8 per second for Premium networks. Once again
+                &lt;p&gt;Another way to mitigate this error is to limit requests to 8 per second for Ad Manager
+                360 accounts, or 2 per second for Ad Manager accounts. Once again
                 this does not guarantee that every request will succeed, but may help
                 reduce the number of times you receive this error.
               </documentation>
@@ -1550,7 +1550,7 @@
             any of your existing networks will not be transferred to the new test network.
             Once the test network is created, the test network can be used in the API
             by supplying the {@link Network#networkCode} in the SOAP header or by
-            logging into the DFP UI.
+            logging into the Ad Manager UI.
             &lt;p&gt;
             Test networks are limited in the following ways:
             &lt;ul&gt;
@@ -1559,8 +1559,8 @@
             back without data.&lt;/li&gt;
             &lt;li&gt;Since forecasting requires serving history, forecast service results
             will be faked. See {@link ForecastService} for more info.&lt;/li&gt;
-            &lt;li&gt;Test networks are, by default, small business networks and do not have any
-            premium features. To have additional features turned on, please contact your
+            &lt;li&gt;Test networks are, by default, Ad Manager networks and don't have any features
+            from Ad Manager 360. To have additional features turned on, please contact your
             account manager. &lt;/li&gt;
             &lt;li&gt;Test networks are limited to 10,000 objects per entity type.&lt;/li&gt;
             &lt;/ul&gt;
@@ -1678,7 +1678,7 @@
         any of your existing networks will not be transferred to the new test network.
         Once the test network is created, the test network can be used in the API
         by supplying the {@link Network#networkCode} in the SOAP header or by
-        logging into the DFP UI.
+        logging into the Ad Manager UI.
         &lt;p&gt;
         Test networks are limited in the following ways:
         &lt;ul&gt;
@@ -1687,8 +1687,8 @@
         back without data.&lt;/li&gt;
         &lt;li&gt;Since forecasting requires serving history, forecast service results
         will be faked. See {@link ForecastService} for more info.&lt;/li&gt;
-        &lt;li&gt;Test networks are, by default, small business networks and do not have any
-        premium features. To have additional features turned on, please contact your
+        &lt;li&gt;Test networks are, by default, Ad Manager networks and don't have any features
+        from Ad Manager 360. To have additional features turned on, please contact your
         account manager. &lt;/li&gt;
         &lt;li&gt;Test networks are limited to 10,000 objects per entity type.&lt;/li&gt;
         &lt;/ul&gt;

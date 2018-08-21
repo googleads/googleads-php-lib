@@ -29,7 +29,7 @@ The new ads PHP client library has these notable upgrades:
 *   Contains better object-oriented library design and stub interfaces,
     including builders to configure settings.
 *   Contains upgraded and easier to use utilities for AdWords reporting, AdWords
-    batch jobs, and DFP reporting.
+    batch jobs, and DFP (currently Ad Manager) reporting.
 *   Enables SSL by default for SOAP API calls and non-SOAP HTTP API calls.
 
 The following are differences at a high-level.
@@ -59,11 +59,11 @@ For example:
 $adWordsSession = (new AdWordsSessionBuilder())->fromFile();
 ```
 
-|                                   | Old library                                                                                                                                                                               | New library
------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -----------
-AdWords sample config file location | `auth.ini` and `settings.ini` in [src/Google/Api/Ads/AdWords](https://github.com/googleads/googleads-php-lib/tree/deprecated/src/Google/Api/Ads/AdWords)                                  | `adsapi_php.ini` in [examples/AdWords](https://github.com/googleads/googleads-php-lib/blob/master/examples/AdWords/adsapi_php.ini)
-DFP sample config file location     | `auth.ini` and `settings.ini` in [src/Google/Api/Ads/Dfp](https://github.com/googleads/googleads-php-lib/tree/deprecated/src/Google/Api/Ads/Dfp)                                          | `adsapi_php.ini` in [examples/Dfp](https://github.com/googleads/googleads-php-lib/blob/master/examples/Dfp/adsapi_php.ini)
-Recommended location of config file | Leave it under `src/`, creating an [AdsUser](https://github.com/googleads/googleads-php-lib/blob/deprecated/src/Google/Api/Ads/Common/Lib/AdsUser.php) will look for it there by default. | Copy it to your home directory and use `fromFile()` on builders to load config file from home directory.
+|                                                      | Old library                                                                                                                                                                               | New library
+------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -----------
+AdWords sample config file location                    | `auth.ini` and `settings.ini` in [src/Google/Api/Ads/AdWords](https://github.com/googleads/googleads-php-lib/tree/deprecated/src/Google/Api/Ads/AdWords)                                  | `adsapi_php.ini` in [examples/AdWords](https://github.com/googleads/googleads-php-lib/blob/master/examples/AdWords/adsapi_php.ini)
+DFP (currently Ad Manager) sample config file location | `auth.ini` and `settings.ini` in [src/Google/Api/Ads/Dfp](https://github.com/googleads/googleads-php-lib/tree/deprecated/src/Google/Api/Ads/Dfp)                                          | `adsapi_php.ini` in [examples/AdManager](https://github.com/googleads/googleads-php-lib/blob/master/examples/AdManager/adsapi_php.ini)
+Recommended location of config file                    | Leave it under `src/`, creating an [AdsUser](https://github.com/googleads/googleads-php-lib/blob/deprecated/src/Google/Api/Ads/Common/Lib/AdsUser.php) will look for it there by default. | Copy it to your home directory and use `fromFile()` on builders to load config file from home directory.
 
 If you don't want to use the INI file to configure the new library, all settings
 can be programmatically configured using builders. The following table outlines
@@ -73,7 +73,7 @@ the new one.
 |                                                                        | Old library                                                                                                                                | New library
 ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | -----------
 **Logging**                                                              |                                                                                                                                            |
-Logging settings - see [Logging](#logging) for more details              | `settings.ini` or `AdsUser`                                                                                                                | `adsapi_php.ini` or [AdsSession](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/AdsApi/Common/AdsSession.php) using an AdWords or DFP `SessionBuilder`
+Logging settings - see [Logging](#logging) for more details              | `settings.ini` or `AdsUser`                                                                                                                | `adsapi_php.ini` or [AdsSession](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/AdsApi/Common/AdsSession.php) using an AdWords or Ad Manager `SessionBuilder`
 **Auth**                                                                 |                                                                                                                                            |
 OAuth2 settings - see [Authentication](#authentication) for more details | `auth.ini` or `AdsUser`                                                                                                                    | `adsapi_php.ini` or `AdsSession` using [OAuth2TokenBuilder.php](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/AdsApi/Common/OAuth2TokenBuilder.php)
 **SOAP**                                                                 |                                                                                                                                            |
@@ -83,8 +83,8 @@ SSL settings                                                             | `sett
 **AdWords**                                                              |                                                                                                                                            |
 AdWords settings (e.g., client customer ID, dev token)                   | `auth.ini` or [AdWordsUser](https://github.com/googleads/googleads-php-lib/blob/deprecated/src/Google/Api/Ads/AdWords/Lib/AdWordsUser.php) | `adsapi_php.ini` or `AdsSession` using [AdWordsSessionBuilder.php](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/AdsApi/AdWords/AdWordsSessionBuilder.php)
 AdWords reporting settings                                               | `ReportUtils`                                                                                                                              | `adsapi_php.ini` or `AdsSession` using [ReportSettingsBuilder.php](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/AdsApi/AdWords/ReportSettingsBuilder.php)
-**DFP**                                                                  |                                                                                                                                            |
-DFP settings (e.g., network code)                                        | `auth.ini` or [DfpUser](https://github.com/googleads/googleads-php-lib/blob/deprecated/src/Google/Api/Ads/Dfp/Lib/DfpUser.php)             | `adsapi_php.ini` or `AdsSession` using [DfpSessionBuilder.php](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/AdsApi/Dfp/DfpSessionBuilder.php)
+**DFP (currently Ad Manager)**                                           |                                                                                                                                            |
+DFP (currrently Ad Manager) settings (e.g., network code)                | `auth.ini` or [DfpUser](https://github.com/googleads/googleads-php-lib/blob/deprecated/src/Google/Api/Ads/Dfp/Lib/DfpUser.php)             | `adsapi_php.ini` or `AdsSession` using [AdManagerSessionBuilder.php](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/AdsApi/AdManager/AdManagerSessionBuilder.php)
 
 For a more detailed example of how you can configure settings in the new
 library, see the [Basic
@@ -174,13 +174,13 @@ Usages of both these upgraded utilities can be found in examples.
     *   [DownloadCriteriaReportWithAwql](https://github.com/googleads/googleads-php-lib/blob/master/examples/AdWords/v201609/Reporting/DownloadCriteriaReportWithAwql.php)
     *   [DownloadCriteriaReportWithSelector](https://github.com/googleads/googleads-php-lib/blob/master/examples/AdWords/v201609/Reporting/DownloadCriteriaReportWithSelector.php)
 
-### DFP utility changes
+### DFP (currently Ad Manager) utility changes
 
-DFP utilities have minor changes, most remain the same.
+DFP (currently Ad Manager) utilities have minor changes, most remain the same.
 
 |                  | Old library                                                                                                                                   | New library
 ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- | -----------
-Date times utility | Called [DateTimeUtils](https://github.com/googleads/googleads-php-lib/blob/deprecated/src/Google/Api/Ads/Dfp/Util/v201711/DateTimeUtils.php). | Split and renamed to [DfpDateTimes](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/AdsApi/Dfp/Util/v201711/DfpDateTimes.php) and [DfpDates](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/AdsApi/Dfp/Util/v201711/DfpDates.php), some obsolete methods removed.
+Date times utility | Called [DateTimeUtils](https://github.com/googleads/googleads-php-lib/blob/deprecated/src/Google/Api/Ads/Dfp/Util/v201711/DateTimeUtils.php). | Split and renamed to [AdManagerDateTimes](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/AdsApi/AdManager/Util/v201808/AdManagerDateTimes.php) and [AdManagerDates](https://github.com/googleads/googleads-php-lib/blob/master/src/Google/AdsApi/AdManager/Util/v201808/AdManagerDates.php), some obsolete methods removed.
 Report downloader  | Uses Curl ext.                                                                                                                                | Uses Guzzle.
 
 ## Examples
@@ -191,10 +191,10 @@ changed much and have been updated to use the new library instead of the old
 one. If an example you want is not available, please reference the old library
 for now.
 
-|                         | Old library                                                                                 | New library
-------------------------- | ------------------------------------------------------------------------------------------- | -----------
-AdWords examples location | [Examples](https://github.com/googleads/googleads-php-lib/tree/deprecated/examples/AdWords) | [Examples](https://github.com/googleads/googleads-php-lib/tree/master/examples/AdWords)
-DFP examples location     | [Examples](https://github.com/googleads/googleads-php-lib/tree/deprecated/examples/Dfp)     | [Examples](https://github.com/googleads/googleads-php-lib/tree/master/examples/Dfp)
+|                                            | Old library                                                                                   | New library
+-------------------------------------------- | --------------------------------------------------------------------------------------------- | -----------
+AdWords examples location                    | [Examples](https://github.com/googleads/googleads-php-lib/tree/deprecated/examples/AdWords)   | [Examples](https://github.com/googleads/googleads-php-lib/tree/master/examples/AdWords)
+DFP (currently Ad Manager) examples location | [Examples](https://github.com/googleads/googleads-php-lib/tree/deprecated/examples/Dfp) | [Examples](https://github.com/googleads/googleads-php-lib/tree/master/examples/AdManager)
 
 ## PHPDoc
 
@@ -203,10 +203,10 @@ PHPDoc pages under
 [gh-pages](https://github.com/googleads/googleads-php-lib/tree/gh-pages) on
 GitHub.
 
-|              | Old library    | New library
--------------- | -------------- | -----------
-AdWords PHPDoc | Already sunset | [PHPDoc](http://googleads.github.io/googleads-php-lib/AdWords/)
-DFP PHPDoc     | Already sunset | [PHPDoc](http://googleads.github.io/googleads-php-lib/Dfp/)
+|                                 | Old library    | New library
+--------------------------------- | -------------- | -----------
+AdWords PHPDoc                    | Already sunset | [PHPDoc](http://googleads.github.io/googleads-php-lib/AdWords/)
+DFP (currently Ad Manager) PHPDoc | Already sunset | [PHPDoc](http://googleads.github.io/googleads-php-lib/AdManager/)
 
 ## Questions?
 

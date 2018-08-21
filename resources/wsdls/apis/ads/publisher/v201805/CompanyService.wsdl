@@ -23,8 +23,8 @@
             &lt;p&gt;
             &lt;b&gt;This object is experimental!
             &lt;code&gt;ObjectValue&lt;/code&gt; is an experimental, innovative, and rapidly
-            changing new feature for DFP. Unfortunately, being on the bleeding edge means that we may make
-            backwards-incompatible changes to
+            changing new feature for Ad Manager. Unfortunately, being on the bleeding edge means that
+            we may make backwards-incompatible changes to
             &lt;code&gt;ObjectValue&lt;/code&gt;. We will inform the community when this feature
             is no longer experimental.&lt;/b&gt;
           </documentation>
@@ -455,7 +455,7 @@
             <annotation>
               <documentation>
                 Default billing cap for {@link Proposal proposals} created by the {@link Company}
-                of type {@link Company.Type#ADVERTISER} in DFP Sales Manager.
+                of type {@link Company.Type#ADVERTISER} in Sales Manager.
                 Return null if default billing setting feature is disabled or
                 {@link BillingSource} is {@link BillingSource#CONTRACTED}.
                 It is allowed that all of the BillingCap, BillingSchedule, BillingSource
@@ -467,7 +467,7 @@
             <annotation>
               <documentation>
                 Default billing schedule for {@link Proposal proposals} created by the {@link Company}
-                of type {@link Company.Type#ADVERTISER} in DFP Sales Manager.
+                of type {@link Company.Type#ADVERTISER} in Sales Manager.
                 Return null if default billing setting feature is disabled or
                 {@link BillingSource} is not {@link BillingSource#CONTRACTED}.
                 It is allowed that all of the BillingCap, BillingSchedule, BillingSource
@@ -479,7 +479,7 @@
             <annotation>
               <documentation>
                 Default billing source for {@link Proposal proposals} created by the {@link Company}
-                of type {@link Company.Type#ADVERTISER} in DFP Sales Manager.
+                of type {@link Company.Type#ADVERTISER} in Sales Manager.
                 Return null if default billing setting feature is disabled.
                 It is allowed that all of the BillingCap, BillingSchedule, BillingSource
                 are null when the company has no setting about these values.
@@ -490,7 +490,7 @@
             <annotation>
               <documentation>
                 Default advertiser discount for {@link Proposal proposals} created by the {@link Company}
-                of type {@link Company.Type#ADVERTISER} in DFP Sales Manager.
+                of type {@link Company.Type#ADVERTISER} in Sales Manager.
                 Return null if default billing setting feature is disabled or the company
                 has no setting on this value.
                 It presents in millipercentage (values 0 to 100000).
@@ -501,7 +501,7 @@
             <annotation>
               <documentation>
                 Default value added tax for {@link Proposal proposals} created by the {@link Company}
-                of type {@link Company.Type#ADVERTISER} in DFP Sales Manager.
+                of type {@link Company.Type#ADVERTISER} in Sales Manager.
                 Return null if default billing setting feature is disabled or the company
                 has no setting on this value.
                 It presents in millipercentage (values 0 to 100000).
@@ -512,7 +512,7 @@
             <annotation>
               <documentation>
                 Default agency commission for {@link Proposal proposals} associated with the {@link Company}
-                of type {@link Company.Type#AGENCY} in DFP Sales Manager.
+                of type {@link Company.Type#AGENCY} in Sales Manager.
                 Return null if the default billing setting feature is disabled or the company
                 has no setting on this value.
                 It presents in millipercentage (values 0 to 100000).
@@ -1594,14 +1594,14 @@
           <enumeration value="DFP_VOLUME">
             <annotation>
               <documentation>
-                Charge based on what actually delivered counted by DFP
+                Charge based on what actually delivered, as counted by Ad Manager.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="THIRD_PARTY_VOLUME">
             <annotation>
               <documentation>
-                Charge based on what actually delivered counted by third party ads server
+                Charge based on what actually delivered, as counted by the third party ads server.
               </documentation>
             </annotation>
           </enumeration>
@@ -1766,8 +1766,8 @@
             Specifies the credit-worthiness of the company for which the publisher runs
             an order. By doing so, the publisher can control the running of campaigns
             for the company. A publisher can choose between Basic and Advanced Credit
-            Status settings. This feature needs to be enabled in the DoubleClick For
-            Publishers web site. Also the kind of setting you need - Basic or Advanced
+            Status settings. This feature needs to be enabled in the Ad Manager
+            web site. Also the kind of setting you need - Basic or Advanced
             must be configured. If Basic is enabled then, the values allowed are
             {@code ACTIVE} and {@code INACTIVE}. If Advanced is chosen, then all values
             are allowed. Choosing an Advanced setting when only the Basic feature has
@@ -1814,7 +1814,7 @@
                 the credit status change will remain active. You cannot create any new
                 orders or line items for the company. It is used to mark companies with
                 which business is to be discontinued. Such companies are not listed in
-                Doubleclick for Publishers website. This is a Basic as well as an
+                Ad Manager web site. This is a Basic as well as an
                 Advanced Credit Status setting.
               </documentation>
             </annotation>
@@ -2309,7 +2309,7 @@
           <enumeration value="MULTI_CURRENCY_NOT_SUPPORTED">
             <annotation>
               <documentation>
-                Multi-currency support is not enabled for this network.  This is a premium feature.
+                Multi-currency support is not enabled for this network.  This is an Ad Manager 360 feature.
               </documentation>
             </annotation>
           </enumeration>
@@ -2482,8 +2482,8 @@
                 about 5 seconds and then retry the request. Note that this does not
                 guarantee the request will succeed. If it fails again, try increasing the
                 wait time.
-                &lt;p&gt;Another way to mitigate this error is to limit requests to 2 per second for
-                Small Business networks, or 8 per second for Premium networks. Once again
+                &lt;p&gt;Another way to mitigate this error is to limit requests to 8 per second for Ad Manager
+                360 accounts, or 2 per second for Ad Manager accounts. Once again
                 this does not guarantee that every request will succeed, but may help
                 reduce the number of times you receive this error.
               </documentation>

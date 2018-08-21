@@ -23,8 +23,8 @@
             &lt;p&gt;
             &lt;b&gt;This object is experimental!
             &lt;code&gt;ObjectValue&lt;/code&gt; is an experimental, innovative, and rapidly
-            changing new feature for DFP. Unfortunately, being on the bleeding edge means that we may make
-            backwards-incompatible changes to
+            changing new feature for Ad Manager. Unfortunately, being on the bleeding edge means that
+            we may make backwards-incompatible changes to
             &lt;code&gt;ObjectValue&lt;/code&gt;. We will inform the community when this feature
             is no longer experimental.&lt;/b&gt;
           </documentation>
@@ -559,7 +559,7 @@
         <annotation>
           <documentation>
             A {@link ThirdPartyAudienceSegment} is an {@link AudienceSegment} owned by a data provider and
-            licensed to the DFP publisher.
+            licensed to the Ad Manager publisher.
           </documentation>
         </annotation>
         <complexContent>
@@ -735,7 +735,7 @@
             cookie upload.
             
             &lt;p&gt;These segments are created by data management platforms or Google Analytics. They cannot be
-            created using the DFP API.
+            created using the Ad Manager API.
           </documentation>
         </annotation>
         <complexContent>
@@ -1994,7 +1994,7 @@
               <documentation>
                 A global license is the result of an agreement between Google and the data provider, which
                 agrees to license their audience segments to all the publishers and/or advertisers of the
-                Doubleclick ecosystem.
+                Google ecosystem.
               </documentation>
             </annotation>
           </enumeration>
@@ -2136,8 +2136,8 @@
                 about 5 seconds and then retry the request. Note that this does not
                 guarantee the request will succeed. If it fails again, try increasing the
                 wait time.
-                &lt;p&gt;Another way to mitigate this error is to limit requests to 2 per second for
-                Small Business networks, or 8 per second for Premium networks. Once again
+                &lt;p&gt;Another way to mitigate this error is to limit requests to 8 per second for Ad Manager
+                360 accounts, or 2 per second for Ad Manager accounts. Once again
                 this does not guarantee that every request will succeed, but may help
                 reduce the number of times you receive this error.
               </documentation>
