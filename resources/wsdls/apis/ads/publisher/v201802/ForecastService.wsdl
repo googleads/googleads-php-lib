@@ -3098,6 +3098,8 @@
           <documentation>
             Represents a mobile carrier.
             Carrier targeting is only available to Ad Manager mobile publishers.
+            For a list of current mobile carriers, you can use
+            {@link PublisherQueryLanguageService#mobile_carrier}.
           </documentation>
         </annotation>
         <complexContent>

@@ -1,0 +1,3713 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated file, do not edit -->
+<!-- Copyright 2018 Google Inc. All Rights Reserved -->
+<wsdl:definitions
+  targetNamespace="https://adwords.google.com/api/adwords/cm/v201809"
+  xmlns:tns="https://adwords.google.com/api/adwords/cm/v201809"
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <schema elementFormDefault="qualified" jaxb:version="1.0"
+      targetNamespace="https://adwords.google.com/api/adwords/cm/v201809"
+      xmlns="http://www.w3.org/2001/XMLSchema"
+      xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:tns="https://adwords.google.com/api/adwords/cm/v201809">
+      <annotation>
+        <appinfo>
+          <jaxb:globalBindings typesafeEnumMaxMembers="999999"/>
+        </appinfo>
+      </annotation>
+      <complexType abstract="true" name="ApiError">
+        <annotation>
+          <documentation>
+            The API error base class that provides details about an error that occurred
+            while processing a service request.
+            
+            &lt;p&gt;The OGNL field path is provided for parsers to identify the request data
+            element that may have caused the error.&lt;/p&gt;
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="fieldPath" type="xsd:string">
+            <annotation>
+              <documentation>
+                The OGNL field path to identify cause of error.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="fieldPathElements" type="tns:FieldPathElement">
+            <annotation>
+              <documentation>
+                A parsed copy of the field path. For example, the field path "operations[1].operand"
+                corresponds to this list: {FieldPathElement(field = "operations", index = 1),
+                FieldPathElement(field = "operand", index = null)}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="trigger" type="xsd:string">
+            <annotation>
+              <documentation>
+                The data that caused the error.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="errorString" type="xsd:string">
+            <annotation>
+              <documentation>
+                A simple string representation of the error and reason.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="ApiError.Type" type="xsd:string">
+            <annotation>
+              <documentation>
+                Indicates that this instance is a subtype of ApiError.
+                Although this field is returned in the response, it is ignored on input
+                and cannot be selected. Specify xsi:type instead.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="ApiException">
+        <annotation>
+          <documentation>
+            Exception class for holding a list of service errors.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApplicationException">
+            <sequence>
+              <element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:ApiError">
+                <annotation>
+                  <documentation>
+                    List of errors.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ApplicationException">
+        <annotation>
+          <documentation>
+            Base class for exceptions.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="message" type="xsd:string">
+            <annotation>
+              <documentation>
+                Error message.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0"
+            name="ApplicationException.Type" type="xsd:string">
+            <annotation>
+              <documentation>
+                Indicates that this instance is a subtype of ApplicationException.
+                Although this field is returned in the response, it is ignored on input
+                and cannot be selected. Specify xsi:type instead.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="AuthenticationError">
+        <annotation>
+          <documentation>
+            Errors returned when Authentication failed.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:AuthenticationError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="AuthorizationError">
+        <annotation>
+          <documentation>
+            Errors encountered when trying to authorize a user.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:AuthorizationError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="BiddingErrors">
+        <annotation>
+          <documentation>
+            Represents error codes for bidding strategy entities.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:BiddingErrors.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="BudgetError">
+        <annotation>
+          <documentation>
+            A list of all the error codes being used by the common budget domain package.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:BudgetError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="CampaignError">
+        <annotation>
+          <documentation>
+            Base error class for Campaign Service.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CampaignError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ClientTermsError">
+        <annotation>
+          <documentation>
+            Error due to user not accepting the AdWords terms of service.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ClientTermsError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DatabaseError">
+        <annotation>
+          <documentation>
+            Errors that are thrown due to a database access problem.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:DatabaseError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DateError">
+        <annotation>
+          <documentation>
+            Errors associated with invalid dates and date ranges.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:DateError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DateRange">
+        <annotation>
+          <documentation>
+            Represents a range of dates that has either an upper or a lower bound.
+            The format for the date is YYYYMMDD.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="min" type="xsd:string">
+            <annotation>
+              <documentation>
+                the lower bound of this date range, inclusive.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="max" type="xsd:string">
+            <annotation>
+              <documentation>
+                the upper bound of this date range, inclusive.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="DateRangeError">
+        <annotation>
+          <documentation>
+            A list of all the error codes being used for date range error.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:DateRangeError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DistinctError">
+        <annotation>
+          <documentation>
+            Errors related to distinct ids or content.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:DistinctError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="EntityCountLimitExceeded">
+        <annotation>
+          <documentation>
+            Signals that an entity count limit was exceeded for some level.
+            For example, too many criteria for a campaign.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:EntityCountLimitExceeded.Reason">
+                <annotation>
+                  <documentation>
+                    Specifies which level's limit was exceeded.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0" name="enclosingId" type="xsd:string">
+                <annotation>
+                  <documentation>
+                    Id of the entity whose limit was exceeded.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0" name="limit" type="xsd:int">
+                <annotation>
+                  <documentation>
+                    The limit which was exceeded.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0"
+                name="accountLimitType" type="xsd:string">
+                <annotation>
+                  <documentation>
+                    The account limit type which was exceeded.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0" name="existingCount" type="xsd:int">
+                <annotation>
+                  <documentation>
+                    The count of existing entities.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="EntityNotFound">
+        <annotation>
+          <documentation>
+            An id did not correspond to an entity, or it referred to an entity which does not belong to the
+            customer.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:EntityNotFound.Reason">
+                <annotation>
+                  <documentation>
+                    Reason for this error.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="FieldPathElement">
+        <annotation>
+          <documentation>
+            A segment of a field path. Each dot in a field path defines a new segment.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="field" type="xsd:string">
+            <annotation>
+              <documentation>
+                The name of a field in lower camelcase. (e.g. "biddingStrategy")
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="index" type="xsd:int">
+            <annotation>
+              <documentation>
+                For list fields, this is a 0-indexed position in the list. Null for non-list fields.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="IdError">
+        <annotation>
+          <documentation>
+            Errors associated with the ids.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:IdError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="InternalApiError">
+        <annotation>
+          <documentation>
+            Indicates that a server-side error has occured. {@code InternalApiError}s
+            are generally not the result of an invalid request or message sent by the
+            client.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:InternalApiError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType abstract="true" name="ListReturnValue">
+        <annotation>
+          <documentation>
+            Base list return value type.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0"
+            name="ListReturnValue.Type" type="xsd:string">
+            <annotation>
+              <documentation>
+                Indicates that this instance is a subtype of ListReturnValue.
+                Although this field is returned in the response, it is ignored on input
+                and cannot be selected. Specify xsi:type instead.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="NotEmptyError">
+        <annotation>
+          <documentation>
+            Errors corresponding with violation of a NOT EMPTY check.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:NotEmptyError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="NullError">
+        <annotation>
+          <documentation>
+            Errors associated with violation of a NOT NULL check.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:NullError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType abstract="true" name="Operation">
+        <annotation>
+          <documentation>
+            This represents an operation that includes an operator and an operand
+            specified type.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="operator" type="tns:Operator">
+            <annotation>
+              <documentation>
+                Operator.
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="Operation.Type" type="xsd:string">
+            <annotation>
+              <documentation>
+                Indicates that this instance is a subtype of Operation.
+                Although this field is returned in the response, it is ignored on input
+                and cannot be selected. Specify xsi:type instead.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="OperationAccessDenied">
+        <annotation>
+          <documentation>
+            Operation not permitted due to the invoked service's access policy.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:OperationAccessDenied.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="OperatorError">
+        <annotation>
+          <documentation>
+            Errors due to the use of unsupported operations.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:OperatorError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="OrderBy">
+        <annotation>
+          <documentation>
+            Specifies how the resulting information should be sorted.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="field" type="xsd:string">
+            <annotation>
+              <documentation>
+                The field to sort the results on.
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="sortOrder" type="tns:SortOrder">
+            <annotation>
+              <documentation>
+                The order to sort the results on. The default sort order is {@link SortOrder#ASCENDING}.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType abstract="true" name="Page">
+        <annotation>
+          <documentation>
+            Contains the results from a get call.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="totalNumEntries" type="xsd:int">
+            <annotation>
+              <documentation>
+                Total number of entries in the result that this page is a part of.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="Page.Type" type="xsd:string">
+            <annotation>
+              <documentation>
+                Indicates that this instance is a subtype of Page.
+                Although this field is returned in the response, it is ignored on input
+                and cannot be selected. Specify xsi:type instead.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="Paging">
+        <annotation>
+          <documentation>
+            Specifies the page of results to return in the response. A page is specified
+            by the result position to start at and the maximum number of results to
+            return.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="startIndex" type="xsd:int">
+            <annotation>
+              <documentation>
+                Index of the first result to return in this page.
+                &lt;span class="constraint InRange"&gt;This field must be greater than or equal to 0.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="numberResults" type="xsd:int">
+            <annotation>
+              <documentation>
+                Maximum number of results to return in this page. Set this to a reasonable value to limit
+                the number of results returned per page.
+                &lt;span class="constraint InRange"&gt;This field must be greater than or equal to 0.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="Predicate">
+        <annotation>
+          <documentation>
+            Specifies how an entity (eg. adgroup, campaign, criterion, ad) should be filtered.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="field" type="xsd:string">
+            <annotation>
+              <documentation>
+                The field by which to filter the returned data. Possible values are marked Filterable on
+                the entity's reference page. For example, for predicates for the
+                CampaignService {@link Selector selector}, refer to the filterable fields from the
+                {@link Campaign} reference page.
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="operator" type="tns:Predicate.Operator">
+            <annotation>
+              <documentation>
+                The operator to use for filtering the data returned.
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="values" type="xsd:string">
+            <annotation>
+              <documentation>
+                The values by which to filter the field. The {@link Operator#CONTAINS_ALL},
+                {@link Operator#CONTAINS_ANY}, {@link Operator#CONTAINS_NONE}, {@link Operator#IN}
+                and {@link Operator#NOT_IN} take multiple values. All others take a single value.
+                &lt;span class="constraint ContentsNotNull"&gt;This field must not contain {@code null} elements.&lt;/span&gt;
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="QuotaCheckError">
+        <annotation>
+          <documentation>
+            Encapsulates the errors thrown during developer quota checks.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:QuotaCheckError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RangeError">
+        <annotation>
+          <documentation>
+            A list of all errors associated with the Range constraint.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RangeError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RateExceededError">
+        <annotation>
+          <documentation>
+            Signals that a call failed because a measured rate exceeded.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RateExceededError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0" name="rateName" type="xsd:string">
+                <annotation>
+                  <documentation>
+                    Cause of the rate exceeded error.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0" name="rateScope" type="xsd:string">
+                <annotation>
+                  <documentation>
+                    The scope of the rate (ACCOUNT/DEVELOPER).
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0"
+                name="retryAfterSeconds" type="xsd:int">
+                <annotation>
+                  <documentation>
+                    The amount of time (in seconds) the client should wait before retrying the request.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ReadOnlyError">
+        <annotation>
+          <documentation>
+            Errors from attempting to write to read-only fields.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ReadOnlyError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RejectedError">
+        <annotation>
+          <documentation>
+            Indicates that a field was rejected due to compatibility issues.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RejectedError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RequestError">
+        <annotation>
+          <documentation>
+            Encapsulates the generic errors thrown when there's an error with user
+            request.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RequestError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RequiredError">
+        <annotation>
+          <documentation>
+            Errors due to missing required field.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RequiredError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="Selector">
+        <annotation>
+          <documentation>
+            A generic selector to specify the type of information to return.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="fields" type="xsd:string">
+            <annotation>
+              <documentation>
+                List of fields to select.
+                &lt;a href="/adwords/api/docs/appendix/selectorfields"&gt;Possible values&lt;/a&gt;
+                are marked {@code Selectable} on the entity's reference page.
+                For example, for the {@code CampaignService} selector, refer to the
+                selectable fields from the {@link Campaign} reference page.
+                &lt;span class="constraint ContentsDistinct"&gt;This field must contain distinct elements.&lt;/span&gt;
+                &lt;span class="constraint ContentsNotNull"&gt;This field must not contain {@code null} elements.&lt;/span&gt;
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="predicates" type="tns:Predicate">
+            <annotation>
+              <documentation>
+                Specifies how an entity (eg. adgroup, campaign, criterion, ad) should be filtered.
+                &lt;span class="constraint ContentsNotNull"&gt;This field must not contain {@code null} elements.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="dateRange" type="tns:DateRange">
+            <annotation>
+              <documentation>
+                Range of dates for which you want to include data. If this value is omitted,
+                results for all dates are returned.
+                &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; This field is only used by the report download
+                service. For all other services, it is ignored.&lt;/p&gt;
+                &lt;span class="constraint DateRangeWithinRange"&gt;This range must be contained within the range [19700101, 20380101].&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="ordering" type="tns:OrderBy">
+            <annotation>
+              <documentation>
+                The fields on which you want to sort, and the sort order. The order in the list is
+                significant: The first element in the list indicates the primary sort order, the next
+                specifies the secondary sort order and so on.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="paging" type="tns:Paging">
+            <annotation>
+              <documentation>
+                Pagination information.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="SelectorError">
+        <annotation>
+          <documentation>
+            Represents possible error codes for {@link Selector}.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:SelectorError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="SizeLimitError">
+        <annotation>
+          <documentation>
+            Indicates that the number of entries in the request or response exceeds the system limit.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:SizeLimitError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="SoapHeader">
+        <annotation>
+          <documentation>
+            Defines the required and optional elements within the header of a SOAP request.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="clientCustomerId" type="xsd:string">
+            <annotation>
+              <documentation>
+                The header identifies the customer id of the client of the AdWords manager, if an AdWords
+                manager is acting on behalf of their client or the customer id of the advertiser managing their
+                own account.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="developerToken" type="xsd:string">
+            <annotation>
+              <documentation>
+                Developer token to identify that the person making the call has enough
+                quota.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="userAgent" type="xsd:string">
+            <annotation>
+              <documentation>
+                UserAgent is used to track distribution of API client programs and
+                application usage. The client is responsible for putting in a meaningful
+                value for tracking purposes. To be clear this is not the same as an HTTP
+                user agent.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="validateOnly" type="xsd:boolean">
+            <annotation>
+              <documentation>
+                Used to validate the request without executing it.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="partialFailure" type="xsd:boolean">
+            <annotation>
+              <documentation>
+                If true, API will try to commit as many error free operations as possible and
+                report the other operations' errors.
+                
+                &lt;p&gt;Ignored for non-mutate calls.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="SoapResponseHeader">
+        <annotation>
+          <documentation>
+            Defines the elements within the header of a SOAP response.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="requestId" type="xsd:string">
+            <annotation>
+              <documentation>
+                Unique id that identifies this request. If developers have any support issues, sending us
+                this id will enable us to find their request more easily.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="serviceName" type="xsd:string">
+            <annotation>
+              <documentation>
+                The name of the service being invoked.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="methodName" type="xsd:string">
+            <annotation>
+              <documentation>
+                The name of the method being invoked.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="operations" type="xsd:long">
+            <annotation>
+              <documentation>
+                Number of operations performed for this SOAP request.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="responseTime" type="xsd:long">
+            <annotation>
+              <documentation>
+                Elapsed time in milliseconds between the AdWords API receiving the request and sending the
+                response.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="StringFormatError">
+        <annotation>
+          <documentation>
+            A list of error code for reporting invalid content of input strings.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:StringFormatError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="StringLengthError">
+        <annotation>
+          <documentation>
+            Errors associated with the length of the given string being
+            out of bounds.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:StringLengthError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="Trial">
+        <annotation>
+          <documentation>
+            Interface for campaign trial entities. A trial is an experiment created by an advertiser from
+            changes in a draft.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
+            <annotation>
+              <documentation>
+                The id of this trial.
+                &lt;span class="constraint Selectable"&gt;This field can be selected using the value "Id".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
+                &lt;span class="constraint ReadOnly"&gt;This field is read only and will be ignored when sent to the API for the following {@link Operator}s: ADD.&lt;/span&gt;
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="baseCampaignId" type="xsd:long">
+            <annotation>
+              <documentation>
+                Id of the base campaign, which will be the control arm of this trial.
+                &lt;span class="constraint Selectable"&gt;This field can be selected using the value "BaseCampaignId".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
+                &lt;span class="constraint ReadOnly"&gt;This field is read only and will be ignored when sent to the API for the following {@link Operator}s: SET.&lt;/span&gt;
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="draftId" type="xsd:long">
+            <annotation>
+              <documentation>
+                Valid id of the draft this trial is based on.
+                &lt;span class="constraint Selectable"&gt;This field can be selected using the value "DraftId".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
+                &lt;span class="constraint ReadOnly"&gt;This field is read only and will be ignored when sent to the API for the following {@link Operator}s: SET.&lt;/span&gt;
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="budgetId" type="xsd:long">
+            <annotation>
+              <documentation>
+                Id of the new budget to assign to the trial campaign when graduating a trial.
+                
+                &lt;p&gt;Required for {@link Operator#SET SET} operations, when changing the {@link #status} to
+                {@code GRADUATED}, and read-only otherwise.
+                
+                &lt;p&gt;When graduating a trial, the same constraints apply to this field as for a budget id passed
+                to {@code CampaignService} when creating a new campaign.
+                
+                &lt;p&gt;{@code GET} operations always return a {@code null} budget id.
+                &lt;span class="constraint ReadOnly"&gt;This field is read only and will be ignored when sent to the API for the following {@link Operator}s: ADD.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
+            <annotation>
+              <documentation>
+                The name of this trial. Must not conflict with the name of another trial or campaign.
+                &lt;span class="constraint Selectable"&gt;This field can be selected using the value "Name".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                &lt;span class="constraint StringLength"&gt;The length of this string should be between 1 and 1024, inclusive, in UTF-8 bytes, (trimmed).&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="startDate" type="xsd:string">
+            <annotation>
+              <documentation>
+                Date the trial begins. On add, defaults to the the base campaign's start date or the
+                current day in the parent account's local timezone (whichever is later).
+                &lt;span class="constraint Selectable"&gt;This field can be selected using the value "StartDate".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="endDate" type="xsd:string">
+            <annotation>
+              <documentation>
+                Date the campaign ends. On add, defaults to the base campaign's end date.
+                &lt;span class="constraint Selectable"&gt;This field can be selected using the value "EndDate".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0"
+            name="trafficSplitPercent" type="xsd:int">
+            <annotation>
+              <documentation>
+                Traffic share to be directed to the trial arm of this trial, i.e. the arm containing the
+                trial changes (in percent). The remainder of the traffic (100 - {@code trafficSplitPercent})
+                will be directed to the base campaign.
+                &lt;span class="constraint Selectable"&gt;This field can be selected using the value "TrafficSplitPercent".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
+                &lt;span class="constraint InRange"&gt;This field must be between 1 and 99, inclusive.&lt;/span&gt;
+                &lt;span class="constraint ReadOnly"&gt;This field is read only and will be ignored when sent to the API for the following {@link Operator}s: SET.&lt;/span&gt;
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="trafficSplitType" type="tns:CampaignTrialTrafficSplitType">
+            <annotation>
+              <documentation>
+                Determines the behavior of the traffic split.
+                &lt;span class="constraint Selectable"&gt;This field can be selected using the value "TrafficSplitType".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
+                &lt;span class="constraint ReadOnly"&gt;This field is read only and will be ignored when sent to the API for the following {@link Operator}s: REMOVE and SET.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="status" type="tns:TrialStatus">
+            <annotation>
+              <documentation>
+                Status of this trial. Note that a running trial will always be ACTIVE, but not all ACTIVE
+                trials are currently running: they may have ended or been scheduled for the future.
+                &lt;span class="constraint Selectable"&gt;This field can be selected using the value "Status".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
+                &lt;span class="constraint ReadOnly"&gt;This field is read only and will be ignored when sent to the API for the following {@link Operator}s: ADD.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="trialCampaignId" type="xsd:long">
+            <annotation>
+              <documentation>
+                Id of the trial campaign. This will be null if the Trial has
+                status CREATING.
+                &lt;span class="constraint Selectable"&gt;This field can be selected using the value "TrialCampaignId".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
+                &lt;span class="constraint ReadOnly"&gt;This field is read only and will be ignored when sent to the API.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="TrialError">
+        <annotation>
+          <documentation>
+            Error class for {@link TrialService}.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:TrialError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="TrialOperation">
+        <annotation>
+          <documentation>
+            Operation for creating, modifying and promoting/archiving campaign trials.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Operation">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="operand" type="tns:Trial">
+                <annotation>
+                  <documentation>
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="TrialPage">
+        <annotation>
+          <documentation>
+            Contains a filtered and paged subset of campaign trials as returned by
+            {@link TrialService#get}.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Page">
+            <sequence>
+              <element maxOccurs="unbounded" minOccurs="0"
+                name="entries" type="tns:Trial"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="TrialReturnValue">
+        <annotation>
+          <documentation>
+            Return value for {@link TrialService#mutate(java.util.List)} operations.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ListReturnValue">
+            <sequence>
+              <element maxOccurs="unbounded" minOccurs="0" name="value" type="tns:Trial"/>
+              <element maxOccurs="unbounded" minOccurs="0"
+                name="partialFailureErrors" type="tns:ApiError"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <simpleType name="AuthenticationError.Reason">
+        <annotation>
+          <documentation>
+            The single reason for the authentication failure.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="AUTHENTICATION_FAILED">
+            <annotation>
+              <documentation>
+                Authentication of the request failed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CLIENT_CUSTOMER_ID_IS_REQUIRED">
+            <annotation>
+              <documentation>
+                Client Customer Id is required if CustomerIdMode is set to CLIENT_EXTERNAL_CUSTOMER_ID.
+                Starting version V201409 ClientCustomerId will be required for all requests except
+                for {@link CustomerService#get}
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CLIENT_EMAIL_REQUIRED">
+            <annotation>
+              <documentation>
+                Client Email is required if CustomerIdMode is set to CLIENT_EXTERNAL_EMAIL_FIELD.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CLIENT_CUSTOMER_ID_INVALID">
+            <annotation>
+              <documentation>
+                Client customer Id is not a number.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CLIENT_EMAIL_INVALID">
+            <annotation>
+              <documentation>
+                Client customer Id is not a number.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CLIENT_EMAIL_FAILED_TO_AUTHENTICATE">
+            <annotation>
+              <documentation>
+                Client email is not a valid customer email.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CUSTOMER_NOT_FOUND">
+            <annotation>
+              <documentation>
+                No customer found for the customer id provided in the header.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="GOOGLE_ACCOUNT_DELETED">
+            <annotation>
+              <documentation>
+                Client's Google Account is deleted.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="GOOGLE_ACCOUNT_COOKIE_INVALID">
+            <annotation>
+              <documentation>
+                Google account login token in the cookie is invalid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FAILED_TO_AUTHENTICATE_GOOGLE_ACCOUNT">
+            <annotation>
+              <documentation>
+                problem occurred during Google account authentication.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="GOOGLE_ACCOUNT_USER_AND_ADS_USER_MISMATCH">
+            <annotation>
+              <documentation>
+                The user in the google account login token does not match the UserId in the cookie.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="LOGIN_COOKIE_REQUIRED">
+            <annotation>
+              <documentation>
+                Login cookie is required for authentication.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NOT_ADS_USER">
+            <annotation>
+              <documentation>
+                User in the cookie is not a valid Ads user.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="OAUTH_TOKEN_INVALID">
+            <annotation>
+              <documentation>
+                Oauth token in the header is not valid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="OAUTH_TOKEN_EXPIRED">
+            <annotation>
+              <documentation>
+                Oauth token in the header has expired.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="OAUTH_TOKEN_DISABLED">
+            <annotation>
+              <documentation>
+                Oauth token in the header has been disabled.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="OAUTH_TOKEN_REVOKED">
+            <annotation>
+              <documentation>
+                Oauth token in the header has been revoked.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="OAUTH_TOKEN_HEADER_INVALID">
+            <annotation>
+              <documentation>
+                Oauth token HTTP header is malformed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="LOGIN_COOKIE_INVALID">
+            <annotation>
+              <documentation>
+                Login cookie is not valid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FAILED_TO_RETRIEVE_LOGIN_COOKIE">
+            <annotation>
+              <documentation>
+                Failed to decrypt the login cookie.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="USER_ID_INVALID">
+            <annotation>
+              <documentation>
+                User Id in the header is not a valid id.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="AuthorizationError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the authorization error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNABLE_TO_AUTHORIZE">
+            <annotation>
+              <documentation>
+                Could not complete authorization due to an internal problem.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NO_ADWORDS_ACCOUNT_FOR_CUSTOMER">
+            <annotation>
+              <documentation>
+                Customer has no AdWords account.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="USER_PERMISSION_DENIED">
+            <annotation>
+              <documentation>
+                User doesn't have permission to access customer.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="EFFECTIVE_USER_PERMISSION_DENIED">
+            <annotation>
+              <documentation>
+                Effective user doesn't have permission to access this customer.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CUSTOMER_NOT_ACTIVE">
+            <annotation>
+              <documentation>
+                Access denied since the customer is not active.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="USER_HAS_READONLY_PERMISSION">
+            <annotation>
+              <documentation>
+                User has read-only permission cannot mutate.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NO_CUSTOMER_FOUND">
+            <annotation>
+              <documentation>
+                No customer found.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="SERVICE_ACCESS_DENIED">
+            <annotation>
+              <documentation>
+                Developer doesn't have permission to access service.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TWO_STEP_VERIFICATION_NOT_ENROLLED">
+            <annotation>
+              <documentation>
+                The customer has a policy to enforce 2-Step Verification, but the user is not enrolled.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ADVANCED_PROTECTION_NOT_ENROLLED">
+            <annotation>
+              <documentation>
+                The customer has a policy to enforce enrollment in the Advanced Protection Program, but
+                the user is not enrolled.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="BiddingErrors.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="BIDDING_STRATEGY_TRANSITION_NOT_ALLOWED">
+            <annotation>
+              <documentation>
+                Cannot transition to new bidding strategy.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="BIDDING_STRATEGY_NOT_COMPATIBLE_WITH_ADGROUP_OVERRIDES">
+            <annotation>
+              <documentation>
+                Bidding strategy cannot be overridden by current ad group bidding strategy.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="BIDDING_STRATEGY_NOT_COMPATIBLE_WITH_ADGROUP_CRITERIA_OVERRIDES">
+            <annotation>
+              <documentation>
+                Bidding strategy cannot be overridden by current criteria bidding strategy.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CAMPAIGN_BIDDING_STRATEGY_CANNOT_BE_OVERRIDDEN">
+            <annotation>
+              <documentation>
+                Cannot override campaign bidding strategy.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ADGROUP_BIDDING_STRATEGY_CANNOT_BE_OVERRIDDEN">
+            <annotation>
+              <documentation>
+                Cannot override ad group bidding strategy.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_ATTACH_BIDDING_STRATEGY_TO_CAMPAIGN">
+            <annotation>
+              <documentation>
+                Cannot attach bidding strategy to campaign.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_ATTACH_BIDDING_STRATEGY_TO_ADGROUP">
+            <annotation>
+              <documentation>
+                Cannot attach bidding strategy to ad group.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_ATTACH_BIDDING_STRATEGY_TO_ADGROUP_CRITERIA">
+            <annotation>
+              <documentation>
+                Cannot attach bidding strategy to criteria.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_ANONYMOUS_BIDDING_STRATEGY_TYPE">
+            <annotation>
+              <documentation>
+                Bidding strategy is not supported or cannot be used as anonymous.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="BIDS_NOT_ALLLOWED">
+            <annotation>
+              <documentation>
+                No bids may be set. The bid list must be null or empty.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DUPLICATE_BIDS">
+            <annotation>
+              <documentation>
+                The bid list contains two or more bids of the same type.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_BIDDING_SCHEME">
+            <annotation>
+              <documentation>
+                The bidding scheme does not match the bidding strategy type.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_BIDDING_STRATEGY_TYPE">
+            <annotation>
+              <documentation>
+                The type does not match the named strategy's type.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_BIDDING_STRATEGY_TYPE">
+            <annotation>
+              <documentation>
+                The bidding strategy type is missing.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NULL_BID">
+            <annotation>
+              <documentation>
+                The bid list contains a null entry.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_BID">
+            <annotation>
+              <documentation>
+                The bid is invalid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="BIDDING_STRATEGY_NOT_AVAILABLE_FOR_ACCOUNT_TYPE">
+            <annotation>
+              <documentation>
+                Bidding strategy is not available for the account type.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CONVERSION_TRACKING_NOT_ENABLED">
+            <annotation>
+              <documentation>
+                Conversion tracking is not enabled for the campaign for VBB transition.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NOT_ENOUGH_CONVERSIONS">
+            <annotation>
+              <documentation>
+                Not enough conversions tracked for VBB transitions.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_CREATE_CAMPAIGN_WITH_BIDDING_STRATEGY">
+            <annotation>
+              <documentation>
+                Campaign can not be created with given bidding strategy. It can be transitioned to the
+                strategy, once eligible.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_TARGET_CONTENT_NETWORK_ONLY_WITH_AD_GROUP_LEVEL_POP_BIDDING_STRATEGY">
+            <annotation>
+              <documentation>
+                Cannot target content network only as ad group uses Page One Promoted bidding strategy.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_TARGET_CONTENT_NETWORK_ONLY_WITH_CAMPAIGN_LEVEL_POP_BIDDING_STRATEGY">
+            <annotation>
+              <documentation>
+                Cannot target content network only as campaign uses Page One Promoted bidding strategy.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="BIDDING_STRATEGY_NOT_SUPPORTED_WITH_AD_SCHEDULE">
+            <annotation>
+              <documentation>
+                Budget Optimizer and Target Spend bidding strategies are not supported for campaigns with
+                AdSchedule targeting.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PAY_PER_CONVERSION_NOT_AVAILABLE_FOR_CUSTOMER">
+            <annotation>
+              <documentation>
+                Pay per conversion is not available to all the customer, only few whitelisted customers
+                can use this.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PAY_PER_CONVERSION_NOT_ALLOWED_WITH_TARGET_CPA">
+            <annotation>
+              <documentation>
+                Pay per conversion is not allowed with Target CPA.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="BIDDING_STRATEGY_NOT_ALLOWED_FOR_SEARCH_ONLY_CAMPAIGNS">
+            <annotation>
+              <documentation>
+                Cannot set bidding strategy to Manual CPM for search network only campaigns.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="BIDDING_STRATEGY_NOT_SUPPORTED_IN_DRAFTS_OR_EXPERIMENTS">
+            <annotation>
+              <documentation>
+                The bidding strategy is not supported for use in drafts or experiments.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="BIDDING_STRATEGY_TYPE_DOES_NOT_SUPPORT_PRODUCT_TYPE_ADGROUP_CRITERION">
+            <annotation>
+              <documentation>
+                Bidding strategy type does not support product type ad group criterion.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="BID_TOO_SMALL">
+            <annotation>
+              <documentation>
+                Bid amount is too small.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="BID_TOO_BIG">
+            <annotation>
+              <documentation>
+                Bid amount is too big.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="BID_TOO_MANY_FRACTIONAL_DIGITS">
+            <annotation>
+              <documentation>
+                Bid has too many fractional digit precision.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ENHANCED_CPC_ENABLED_NOT_SUPPORTED_ON_PORTFOLIO_TARGET_SPEND_STRATEGY">
+            <annotation>
+              <documentation>
+                EnhancedCpcEnabled cannot be set on &lt;em&gt;portfolio&lt;/em&gt; Target Spend strategies.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="BIDDING_STRATEGY_TYPE_NOT_ALLOWED_FOR_UNIVERSAL_APP_BIDDING_STRATEGY_GOAL_TYPE">
+            <annotation>
+              <documentation>
+                The bidding strategy is not allowed for the universal app bidding strategy goal type.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="BudgetError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the budget error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="BUDGET_CANNOT_BE_EXPLICITLY_SHARED">
+            <annotation>
+              <documentation>
+                Budgets cannot be shared.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="BUDGET_REMOVED">
+            <annotation>
+              <documentation>
+                The requested budget no longer exists.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="BUDGET_ERROR">
+            <annotation>
+              <documentation>
+                Default budget error.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="BUDGET_IN_USE">
+            <annotation>
+              <documentation>
+                The budget is associated with at least one campaign, and so the budget cannot be removed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="BUDGET_PERIOD_NOT_AVAILABLE">
+            <annotation>
+              <documentation>
+                Customer is not whitelisted for this budget period.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_EDIT_SHARED_BUDGET">
+            <annotation>
+              <documentation>
+                Customer cannot use CampaignService to edit a shared budget.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_MODIFY_FIELD_OF_IMPLICITLY_SHARED_BUDGET">
+            <annotation>
+              <documentation>
+                This field is not mutable on implicitly shared budgets
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_UPDATE_BUDGET_TO_IMPLICITLY_SHARED">
+            <annotation>
+              <documentation>
+                Cannot change explicitly shared budgets back to implicitly shared ones.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_UPDATE_BUDGET_TO_EXPLICITLY_SHARED_WITHOUT_NAME">
+            <annotation>
+              <documentation>
+                An implicit budget without a name cannot be changed to explicitly shared budget.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_UPDATE_BUDGET_TO_EXPLICITLY_SHARED">
+            <annotation>
+              <documentation>
+                Cannot change an implicitly shared budget to an explicitly shared one.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_USE_IMPLICITLY_SHARED_BUDGET_WITH_MULTIPLE_CAMPAIGNS">
+            <annotation>
+              <documentation>
+                Only explicitly shared budgets can be used with multiple campaigns.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DUPLICATE_NAME">
+            <annotation>
+              <documentation>
+                A budget with this name already exists.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MONEY_AMOUNT_IN_WRONG_CURRENCY">
+            <annotation>
+              <documentation>
+                A money amount was not in the expected currency.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MONEY_AMOUNT_LESS_THAN_CURRENCY_MINIMUM_CPC">
+            <annotation>
+              <documentation>
+                A money amount was less than the minimum CPC for currency.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MONEY_AMOUNT_TOO_LARGE">
+            <annotation>
+              <documentation>
+                A money amount was greater than the maximum allowed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NEGATIVE_MONEY_AMOUNT">
+            <annotation>
+              <documentation>
+                A money amount was negative.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NON_MULTIPLE_OF_MINIMUM_CURRENCY_UNIT">
+            <annotation>
+              <documentation>
+                A money amount was not a multiple of a minimum unit.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="CampaignError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="CANNOT_GO_BACK_TO_INCOMPLETE">
+            <annotation>
+              <documentation>
+                A complete campaign cannot go back to being incomplete
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_TARGET_CONTENT_NETWORK">
+            <annotation>
+              <documentation>
+                Cannot target content network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_TARGET_SEARCH_NETWORK">
+            <annotation>
+              <documentation>
+                Cannot target search network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_TARGET_SEARCH_NETWORK_WITHOUT_GOOGLE_SEARCH">
+            <annotation>
+              <documentation>
+                Cannot cover search network without google search network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_TARGET_GOOGLE_SEARCH_FOR_CPM_CAMPAIGN">
+            <annotation>
+              <documentation>
+                Cannot target Google Search network for a CPM campaign.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CAMPAIGN_MUST_TARGET_AT_LEAST_ONE_NETWORK">
+            <annotation>
+              <documentation>
+                Must target at least one network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_TARGET_PARTNER_SEARCH_NETWORK">
+            <annotation>
+              <documentation>
+                Only some Google partners are allowed to target partner search network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_TARGET_CONTENT_NETWORK_ONLY_WITH_CRITERIA_LEVEL_BIDDING_STRATEGY">
+            <annotation>
+              <documentation>
+                Cannot target content network only as campaign has criteria-level bidding strategy.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CAMPAIGN_DURATION_MUST_CONTAIN_ALL_RUNNABLE_TRIALS">
+            <annotation>
+              <documentation>
+                Cannot modify the start or end date such that the campaign duration would not contain the
+                durations of all runnable trials.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_MODIFY_FOR_TRIAL_CAMPAIGN">
+            <annotation>
+              <documentation>
+                Cannot modify dates, budget or campaign name of a trial campaign.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DUPLICATE_CAMPAIGN_NAME">
+            <annotation>
+              <documentation>
+                Trying to modify the name of an active or paused campaign, where the name is already
+                assigned to another active or paused campaign.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INCOMPATIBLE_CAMPAIGN_FIELD">
+            <annotation>
+              <documentation>
+                Two fields are in conflicting modes.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_CAMPAIGN_NAME">
+            <annotation>
+              <documentation>
+                Campaign name cannot be used.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_AD_SERVING_OPTIMIZATION_STATUS">
+            <annotation>
+              <documentation>
+                Given status is invalid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_TRACKING_URL">
+            <annotation>
+              <documentation>
+                Error in the campaign level tracking url.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_SET_BOTH_TRACKING_URL_TEMPLATE_AND_TRACKING_SETTING">
+            <annotation>
+              <documentation>
+                Cannot set both tracking url template and tracking setting. An user has to clear legacy
+                tracking setting in order to add tracking url template.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MAX_IMPRESSIONS_NOT_IN_RANGE">
+            <annotation>
+              <documentation>
+                The maximum number of impressions for Frequency Cap should be an integer greater than 0.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TIME_UNIT_NOT_SUPPORTED">
+            <annotation>
+              <documentation>
+                Only the Day, Week and Month time units are supported.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_OPERATION_IF_SERVING_STATUS_HAS_ENDED">
+            <annotation>
+              <documentation>
+                Operation not allowed on a campaign whose serving status has ended
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="BUDGET_CANNOT_BE_SHARED">
+            <annotation>
+              <documentation>
+                This budget is exclusively linked to a Campaign that is using @link{Experiment}s
+                so it cannot be shared.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CAMPAIGN_CANNOT_USE_SHARED_BUDGET">
+            <annotation>
+              <documentation>
+                Campaigns using @link{Experiment}s cannot use a shared budget.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_CHANGE_BUDGET_ON_CAMPAIGN_WITH_TRIALS">
+            <annotation>
+              <documentation>
+                A different budget cannot be assigned to a campaign when there are running or scheduled
+                trials.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CAMPAIGN_LABEL_DOES_NOT_EXIST">
+            <annotation>
+              <documentation>
+                No link found between the campaign and the label.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CAMPAIGN_LABEL_ALREADY_EXISTS">
+            <annotation>
+              <documentation>
+                The label has already been attached to the campaign.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_SHOPPING_SETTING">
+            <annotation>
+              <documentation>
+                A ShoppingSetting was not found when creating a shopping campaign.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_SHOPPING_SALES_COUNTRY">
+            <annotation>
+              <documentation>
+                The country in shopping setting is not an allowed country.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_UNIVERSAL_APP_CAMPAIGN_SETTING">
+            <annotation>
+              <documentation>
+                A Campaign with channel sub type UNIVERSAL_APP_CAMPAIGN must have a
+                UniversalAppCampaignSetting specified.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ADVERTISING_CHANNEL_TYPE_NOT_AVAILABLE_FOR_ACCOUNT_TYPE">
+            <annotation>
+              <documentation>
+                The requested channel type is not available according to the customer's account setting.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_ADVERTISING_CHANNEL_SUB_TYPE">
+            <annotation>
+              <documentation>
+                The AdvertisingChannelSubType is not a valid subtype of the primary channel type.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CAMPAIGN_CANNOT_USE_SHARED_BUDGET_WHILE_PART_OF_CAMPAIGN_GROUP">
+            <annotation>
+              <documentation>
+                A campaign cannot use a shared budget and be a part of a campaign group.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="AT_LEAST_ONE_CONVERSION_MUST_BE_SELECTED">
+            <annotation>
+              <documentation>
+                At least one conversion must be selected.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_SET_AD_ROTATION_MODE">
+            <annotation>
+              <documentation>
+                Setting ad rotation mode for a campaign is not allowed.
+                Ad rotation mode at campaign is deprecated.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                Default error
+                &lt;span class="constraint Rejected"&gt;Used for return value only. An enumeration could not be processed, typically due to incompatibility with your WSDL version.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="CampaignTrialTrafficSplitType">
+        <annotation>
+          <documentation>
+            This enum is used to indicate if this campaign trial is splitting traffic
+            between the control and trial arm.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                Invalid type. Should not be used except for detecting values that are incorrect,
+                or values that are not yet known to the user.
+                &lt;span class="constraint Rejected"&gt;Used for return value only. An enumeration could not be processed, typically due to incompatibility with your WSDL version.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="RANDOM_QUERY">
+            <annotation>
+              <documentation>
+                The traffic is split using a coin toss for each query when running on the search
+                network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="COOKIE">
+            <annotation>
+              <documentation>
+                The traffic is split using cookies to keep users in the same arm (base or trial)
+                of the experiment.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="ClientTermsError.Reason">
+        <annotation>
+          <documentation>
+            Enums for the various reasons an error can be thrown as a result of
+            ClientTerms violation.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="INCOMPLETE_SIGNUP_CURRENT_ADWORDS_TNC_NOT_AGREED">
+            <annotation>
+              <documentation>
+                Customer has not agreed to the latest AdWords Terms &amp; Conditions
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="DatabaseError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the database error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="CONCURRENT_MODIFICATION">
+            <annotation>
+              <documentation>
+                A concurrency problem occurred as two threads were attempting to modify same object.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PERMISSION_DENIED">
+            <annotation>
+              <documentation>
+                The permission was denied to access an object.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ACCESS_PROHIBITED">
+            <annotation>
+              <documentation>
+                The user's access to an object has been prohibited.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CAMPAIGN_PRODUCT_NOT_SUPPORTED">
+            <annotation>
+              <documentation>
+                Requested campaign belongs to a product that is not supported by the api.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DUPLICATE_KEY">
+            <annotation>
+              <documentation>
+                a duplicate key was detected upon insertion
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DATABASE_ERROR">
+            <annotation>
+              <documentation>
+                a database error has occurred
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                an unknown error has occurred
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="DateError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="INVALID_FIELD_VALUES_IN_DATE">
+            <annotation>
+              <documentation>
+                Given field values do not correspond to a valid date.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_FIELD_VALUES_IN_DATE_TIME">
+            <annotation>
+              <documentation>
+                Given field values do not correspond to a valid date time.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_STRING_DATE">
+            <annotation>
+              <documentation>
+                The string date's format should be yyyymmdd.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_STRING_DATE_RANGE">
+            <annotation>
+              <documentation>
+                The string date range's format should be yyyymmdd yyyymmdd.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_STRING_DATE_TIME">
+            <annotation>
+              <documentation>
+                The string date time's format should be yyyymmdd hhmmss [tz].
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="EARLIER_THAN_MINIMUM_DATE">
+            <annotation>
+              <documentation>
+                Date is before allowed minimum.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="LATER_THAN_MAXIMUM_DATE">
+            <annotation>
+              <documentation>
+                Date is after allowed maximum.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DATE_RANGE_MINIMUM_DATE_LATER_THAN_MAXIMUM_DATE">
+            <annotation>
+              <documentation>
+                Date range bounds are not in order.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DATE_RANGE_MINIMUM_AND_MAXIMUM_DATES_BOTH_NULL">
+            <annotation>
+              <documentation>
+                Both dates in range are null.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="DateRangeError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the date range error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="DATE_RANGE_ERROR"/>
+          <enumeration value="INVALID_DATE">
+            <annotation>
+              <documentation>
+                Invalid date.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="START_DATE_AFTER_END_DATE">
+            <annotation>
+              <documentation>
+                The start date was after the end date.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_SET_DATE_TO_PAST">
+            <annotation>
+              <documentation>
+                Cannot set date to past time
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="AFTER_MAXIMUM_ALLOWABLE_DATE">
+            <annotation>
+              <documentation>
+                A date was used that is past the system "last" date.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_MODIFY_START_DATE_IF_ALREADY_STARTED">
+            <annotation>
+              <documentation>
+                Trying to change start date on a campaign that has started.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="DistinctError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the validation error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="DUPLICATE_ELEMENT"/>
+          <enumeration value="DUPLICATE_TYPE"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="EntityCountLimitExceeded.Reason">
+        <annotation>
+          <documentation>
+            Limits at various levels of the account.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="ACCOUNT_LIMIT">
+            <annotation>
+              <documentation>
+                Indicates that this request would exceed the number of allowed entities for the AdWords
+                account. The exact entity type and limit being checked can be inferred from
+                {@link #accountLimitType}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CAMPAIGN_LIMIT">
+            <annotation>
+              <documentation>
+                Indicates that this request would exceed the number of allowed entities in a Campaign.
+                The exact entity type and limit being checked can be inferred from
+                {@link #accountLimitType}, and the numeric id of the Campaign involved is given by
+                {@link #enclosingId}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ADGROUP_LIMIT">
+            <annotation>
+              <documentation>
+                Indicates that this request would exceed the number of allowed entities in
+                an ad group.  The exact entity type and limit being checked can be
+                inferred from {@link #accountLimitType}, and the numeric id of the ad group
+                involved is given by {@link #enclosingId}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="AD_GROUP_AD_LIMIT">
+            <annotation>
+              <documentation>
+                Indicates that this request would exceed the number of allowed entities in an ad group ad.
+                The exact entity type and limit being checked can be inferred from {@link #accountLimitType},
+                and the {@link #enclosingId} contains the ad group id followed by the ad id, separated by a
+                single comma (,).
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="AD_GROUP_CRITERION_LIMIT">
+            <annotation>
+              <documentation>
+                Indicates that this request would exceed the number of allowed entities in an ad group
+                criterion.  The exact entity type and limit being checked can be inferred from
+                {@link #accountLimitType}, and the {@link #enclosingId} contains the ad group id followed by
+                the criterion id, separated by a single comma (,).
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="SHARED_SET_LIMIT">
+            <annotation>
+              <documentation>
+                Indicates that this request would exceed the number of allowed entities in
+                this shared set.  The exact entity type and limit being checked can be
+                inferred from {@link #accountLimitType}, and the numeric id of the shared
+                set involved is given by {@link #enclosingId}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MATCHING_FUNCTION_LIMIT">
+            <annotation>
+              <documentation>
+                Exceeds a limit related to a matching function.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                Specific limit that has been exceeded is unknown (the client may be of an
+                older version than the server).
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="EntityNotFound.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="INVALID_ID">
+            <annotation>
+              <documentation>
+                The specified id refered to an entity which either doesn't exist or is not accessible to the
+                customer. e.g. campaign belongs to another customer.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="IdError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="NOT_FOUND">
+            <annotation>
+              <documentation>
+                Id not found
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="InternalApiError.Reason">
+        <annotation>
+          <documentation>
+            The single reason for the internal API error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNEXPECTED_INTERNAL_API_ERROR">
+            <annotation>
+              <documentation>
+                API encountered an unexpected internal error.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TRANSIENT_ERROR">
+            <annotation>
+              <documentation>
+                A temporary error occurred during the request. Please retry.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The cause of the error is not known or only defined in newer versions.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DOWNTIME">
+            <annotation>
+              <documentation>
+                The API is currently unavailable for a planned downtime.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ERROR_GENERATING_RESPONSE">
+            <annotation>
+              <documentation>
+                Mutate succeeded but server was unable to build response. Client should not retry mutate.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="NotEmptyError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the validation error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="EMPTY_LIST"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="NullError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the validation error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="NULL_CONTENT">
+            <annotation>
+              <documentation>
+                Specified list/container must not contain any null elements
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="OperationAccessDenied.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the operation access error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="ACTION_NOT_PERMITTED">
+            <annotation>
+              <documentation>
+                Unauthorized invocation of a service's method (get, mutate, etc.)
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ADD_OPERATION_NOT_PERMITTED">
+            <annotation>
+              <documentation>
+                Unauthorized ADD operation in invoking a service's mutate method.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="REMOVE_OPERATION_NOT_PERMITTED">
+            <annotation>
+              <documentation>
+                Unauthorized REMOVE operation in invoking a service's mutate method.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="SET_OPERATION_NOT_PERMITTED">
+            <annotation>
+              <documentation>
+                Unauthorized SET operation in invoking a service's mutate method.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MUTATE_ACTION_NOT_PERMITTED_FOR_CLIENT">
+            <annotation>
+              <documentation>
+                A mutate action is not allowed on this campaign, from this client.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="OPERATION_NOT_PERMITTED_FOR_CAMPAIGN_TYPE">
+            <annotation>
+              <documentation>
+                This operation is not permitted on this campaign type
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ADD_AS_REMOVED_NOT_PERMITTED">
+            <annotation>
+              <documentation>
+                An ADD operation may not set status to REMOVED.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="OPERATION_NOT_PERMITTED_FOR_REMOVED_ENTITY">
+            <annotation>
+              <documentation>
+                This operation is not allowed because the campaign or adgroup is removed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="OPERATION_NOT_PERMITTED_FOR_AD_GROUP_TYPE">
+            <annotation>
+              <documentation>
+                This operation is not permitted on this ad group type.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The reason the invoked method or operation is prohibited is not known
+                (the client may be of an older version than the server).
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="Operator">
+        <annotation>
+          <documentation>
+            This represents an operator that may be presented to an adsapi service.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="ADD">
+            <annotation>
+              <documentation>
+                The ADD operator.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="REMOVE">
+            <annotation>
+              <documentation>
+                The REMOVE operator.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="SET">
+            <annotation>
+              <documentation>
+                The SET operator (used for updates).
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="OperatorError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the validation error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="OPERATOR_NOT_SUPPORTED"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="Predicate.Operator">
+        <annotation>
+          <documentation>
+            Defines the valid set of operators.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="EQUALS">
+            <annotation>
+              <documentation>
+                Checks if the field is equal to the given value.
+                
+                &lt;p&gt;This operator is used with integers, dates, booleans, strings,
+                enums, and sets.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NOT_EQUALS">
+            <annotation>
+              <documentation>
+                Checks if the field does not equal the given value.
+                
+                &lt;p&gt;This operator is used with integers, booleans, strings, enums,
+                and sets.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="IN">
+            <annotation>
+              <documentation>
+                Checks if the field is equal to one of the given values.
+                
+                &lt;p&gt;This operator accepts multiple operands and is used with
+                integers, booleans, strings, and enums.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NOT_IN">
+            <annotation>
+              <documentation>
+                Checks if the field does not equal any of the given values.
+                
+                &lt;p&gt;This operator accepts multiple operands and is used with
+                integers, booleans, strings, and enums.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="GREATER_THAN">
+            <annotation>
+              <documentation>
+                Checks if the field is greater than the given value.
+                
+                &lt;p&gt;This operator is used with numbers and dates.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="GREATER_THAN_EQUALS">
+            <annotation>
+              <documentation>
+                Checks if the field is greater or equal to the given value.
+                
+                &lt;p&gt;This operator is used with numbers and dates.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="LESS_THAN">
+            <annotation>
+              <documentation>
+                Checks if the field is less than the given value.
+                
+                &lt;p&gt;This operator is used with numbers and dates.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="LESS_THAN_EQUALS">
+            <annotation>
+              <documentation>
+                Checks if the field is less or equal to than the given value.
+                
+                &lt;p&gt;This operator is used with numbers and dates.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="STARTS_WITH">
+            <annotation>
+              <documentation>
+                Checks if the field starts with the given value.
+                
+                &lt;p&gt;This operator is used with strings.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="STARTS_WITH_IGNORE_CASE">
+            <annotation>
+              <documentation>
+                Checks if the field starts with the given value, ignoring case.
+                
+                &lt;p&gt;This operator is used with strings.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CONTAINS">
+            <annotation>
+              <documentation>
+                Checks if the field contains the given value as a substring.
+                
+                &lt;p&gt;This operator is used with strings.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CONTAINS_IGNORE_CASE">
+            <annotation>
+              <documentation>
+                Checks if the field contains the given value as a substring, ignoring
+                case.
+                
+                &lt;p&gt;This operator is used with strings.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DOES_NOT_CONTAIN">
+            <annotation>
+              <documentation>
+                Checks if the field does not contain the given value as a substring.
+                
+                &lt;p&gt;This operator is used with strings.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DOES_NOT_CONTAIN_IGNORE_CASE">
+            <annotation>
+              <documentation>
+                Checks if the field does not contain the given value as a substring,
+                ignoring case.
+                
+                &lt;p&gt;This operator is used with strings.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CONTAINS_ANY">
+            <annotation>
+              <documentation>
+                Checks if the field contains &lt;em&gt;any&lt;/em&gt; of the given values.
+                
+                &lt;p&gt;This operator accepts multiple values and is used on sets of numbers
+                or strings.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CONTAINS_ALL">
+            <annotation>
+              <documentation>
+                Checks if the field contains &lt;em&gt;all&lt;/em&gt; of the given values.
+                
+                &lt;p&gt;This operator accepts multiple values and is used on sets of numbers
+                or strings.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CONTAINS_NONE">
+            <annotation>
+              <documentation>
+                Checks if the field contains &lt;em&gt;none&lt;/em&gt; of the given values.
+                
+                &lt;p&gt;This operator accepts multiple values and is used on sets of numbers
+                or strings.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                &lt;span class="constraint Rejected"&gt;Used for return value only. An enumeration could not be processed, typically due to incompatibility with your WSDL version.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="QuotaCheckError.Reason">
+        <annotation>
+          <documentation>
+            Enums for all the reasons an error can be thrown to the user during
+            billing quota checks.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="INVALID_TOKEN_HEADER">
+            <annotation>
+              <documentation>
+                Customer passed in an invalid token in the header.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ACCOUNT_DELINQUENT">
+            <annotation>
+              <documentation>
+                Customer is marked delinquent.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ACCOUNT_INACCESSIBLE">
+            <annotation>
+              <documentation>
+                Customer is a fraudulent.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ACCOUNT_INACTIVE">
+            <annotation>
+              <documentation>
+                Inactive Account.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INCOMPLETE_SIGNUP">
+            <annotation>
+              <documentation>
+                Signup not complete
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DEVELOPER_TOKEN_NOT_APPROVED">
+            <annotation>
+              <documentation>
+                Developer token is not approved for production access, and the customer
+                is attempting to access a production account.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TERMS_AND_CONDITIONS_NOT_SIGNED">
+            <annotation>
+              <documentation>
+                Terms and conditions are not signed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MONTHLY_BUDGET_REACHED">
+            <annotation>
+              <documentation>
+                Monthly budget quota reached.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="QUOTA_EXCEEDED">
+            <annotation>
+              <documentation>
+                Monthly budget quota exceeded.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="RangeError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="TOO_LOW"/>
+          <enumeration value="TOO_HIGH"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="RateExceededError.Reason">
+        <annotation>
+          <documentation>
+            The reason for the rate exceeded error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="RATE_EXCEEDED">
+            <annotation>
+              <documentation>
+                Rate exceeded.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="ReadOnlyError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="READ_ONLY"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="RejectedError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNKNOWN_VALUE">
+            <annotation>
+              <documentation>
+                Unknown value encountered
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="RequestError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                Error reason is unknown.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_INPUT">
+            <annotation>
+              <documentation>
+                Invalid input.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNSUPPORTED_VERSION">
+            <annotation>
+              <documentation>
+                The api version in the request has been discontinued. Please update
+                to the new AdWords API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="RequiredError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="REQUIRED">
+            <annotation>
+              <documentation>
+                Missing required field.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="SelectorError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="INVALID_FIELD_NAME">
+            <annotation>
+              <documentation>
+                The field name is not valid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_FIELDS">
+            <annotation>
+              <documentation>
+                The list of fields is null or empty.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_PREDICATES">
+            <annotation>
+              <documentation>
+                The list of predicates is null or empty.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="OPERATOR_DOES_NOT_SUPPORT_MULTIPLE_VALUES">
+            <annotation>
+              <documentation>
+                Predicate operator does not support multiple values. Multiple values are
+                supported only for {@link Predicate.Operator#IN} and {@link Predicate.Operator#NOT_IN}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_PREDICATE_ENUM_VALUE">
+            <annotation>
+              <documentation>
+                The predicate enum value is not valid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_PREDICATE_OPERATOR">
+            <annotation>
+              <documentation>
+                The predicate operator is empty.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_PREDICATE_VALUES">
+            <annotation>
+              <documentation>
+                The predicate values are empty.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_PREDICATE_FIELD_NAME">
+            <annotation>
+              <documentation>
+                The predicate field name is not valid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_PREDICATE_OPERATOR">
+            <annotation>
+              <documentation>
+                The predicate operator is not valid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_FIELD_SELECTION">
+            <annotation>
+              <documentation>
+                Invalid selection of fields.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_PREDICATE_VALUE">
+            <annotation>
+              <documentation>
+                The predicate value is not valid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_SORT_FIELD_NAME">
+            <annotation>
+              <documentation>
+                The sort field name is not valid or the field is not sortable.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="SELECTOR_ERROR">
+            <annotation>
+              <documentation>
+                Standard error.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FILTER_BY_DATE_RANGE_NOT_SUPPORTED">
+            <annotation>
+              <documentation>
+                Filtering by date range is not supported.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="START_INDEX_IS_TOO_HIGH">
+            <annotation>
+              <documentation>
+                Selector paging start index is too high.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TOO_MANY_PREDICATE_VALUES">
+            <annotation>
+              <documentation>
+                The values list in a predicate was too long.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN_ERROR">
+            <annotation>
+              <documentation>
+                &lt;span class="constraint Rejected"&gt;Used for return value only. An enumeration could not be processed, typically due to incompatibility with your WSDL version.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="SizeLimitError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for Ad Scheduling errors.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="REQUEST_SIZE_LIMIT_EXCEEDED">
+            <annotation>
+              <documentation>
+                The number of entries in the request exceeds the system limit.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="RESPONSE_SIZE_LIMIT_EXCEEDED">
+            <annotation>
+              <documentation>
+                The number of entries in the response exceeds the system limit.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INTERNAL_STORAGE_ERROR">
+            <annotation>
+              <documentation>
+                The account is too large to load.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                &lt;span class="constraint Rejected"&gt;Used for return value only. An enumeration could not be processed, typically due to incompatibility with your WSDL version.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="SortOrder">
+        <annotation>
+          <documentation>
+            Possible orders of sorting.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="ASCENDING"/>
+          <enumeration value="DESCENDING"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="StringFormatError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNKNOWN"/>
+          <enumeration value="ILLEGAL_CHARS">
+            <annotation>
+              <documentation>
+                The input string value contains disallowed characters.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_FORMAT">
+            <annotation>
+              <documentation>
+                The input string value is invalid for the associated field.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="StringLengthError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="TOO_SHORT"/>
+          <enumeration value="TOO_LONG"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="TrialError.Reason">
+        <annotation>
+          <documentation>
+            Error codes defined by {@link TrialError}.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                &lt;span class="constraint Rejected"&gt;Used for return value only. An enumeration could not be processed, typically due to incompatibility with your WSDL version.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_STATUS_TRANSITION">
+            <annotation>
+              <documentation>
+                Trial status cannot be updated from the current status to the requested target status.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_USE_TRIAL_WITH_SHARED_BUDGET">
+            <annotation>
+              <documentation>
+                Cannot create a trial from a campaign using an explicitly shared budget.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_CREATE_TRIAL_WHEN_CAMPAIGN_HAS_ACTIVE_EXPERIMENTS">
+            <annotation>
+              <documentation>
+                Cannot create a trial as long as the campaign has a running or scheduled Advertiser Campaign
+                Experiment.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_CREATE_TRIAL_FOR_DELETED_BASE_CAMPAIGN">
+            <annotation>
+              <documentation>
+                Cannot create a trial for a base campaign, which is deleted.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_CREATE_TRIAL_FOR_NON_PROPOSED_DRAFT">
+            <annotation>
+              <documentation>
+                Cannot create a trial from a draft, which has a status other than proposed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CUSTOMER_CANNOT_CREATE_TRIAL">
+            <annotation>
+              <documentation>
+                This customer is not allowed to create a trial.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CAMPAIGN_CANNOT_CREATE_TRIAL">
+            <annotation>
+              <documentation>
+                This campaign is not allowed to create a trial.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NAME_ALREADY_IN_USE">
+            <annotation>
+              <documentation>
+                Trying to use a trial name which is already assigned to another campaign or trial.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TRIAL_DURATIONS_MUST_NOT_OVERLAP">
+            <annotation>
+              <documentation>
+                Trying to set a trial duration which overlaps with another trial.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TRIAL_DURATION_MUST_BE_WITHIN_CAMPAIGN_DURATION">
+            <annotation>
+              <documentation>
+                All non-archived trials must start and end within their campaign's duration.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="TrialStatus">
+        <annotation>
+          <documentation>
+            Status of a trial.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                Invalid status. Should not be used except for detecting values that are
+                incorrect, or values that are not yet known to the user.
+                &lt;span class="constraint Rejected"&gt;Used for return value only. An enumeration could not be processed, typically due to incompatibility with your WSDL version.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CREATING">
+            <annotation>
+              <documentation>
+                The trial campaign is being created.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ACTIVE">
+            <annotation>
+              <documentation>
+                The trial campaign is fully created. The trial is currently running, scheduled
+                to run in the future or has ended based on its end date.The advertiser cannot
+                set this status directly. A trial with the status CREATING will be updated to
+                ACTIVE when it is fully created.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PROMOTING">
+            <annotation>
+              <documentation>
+                The advertiser requested to merge changes in the trial back into the original
+                campaigns. The update to the original campaign will be kicked off asynchronously
+                and the status will be updated to PROMOTED or PROMOTE_FAILED upon completion.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PROMOTED">
+            <annotation>
+              <documentation>
+                The process to merge changes in the trial back to the original campaign has
+                completedly successfully. The advertiser cannot set this status directly. To
+                move the trial to this status, set the trial to status PROMOTING and the status
+                will be updated to PROMOTED when the changes are applied to the original
+                campaign.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ARCHIVED">
+            <annotation>
+              <documentation>
+                The advertiser archived the campaign trial.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CREATION_FAILED">
+            <annotation>
+              <documentation>
+                The trial campaign failed to create. More details about the errors are available
+                through getErrors in the TrialService API.The advertiser cannot set this status
+                directly.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PROMOTE_FAILED">
+            <annotation>
+              <documentation>
+                The promotion failed after it was partially applied. Promote cannot be attempted
+                again safely, so the issue must be corrected in the original campaign. More
+                details about the errors are available through getErrors in the TrialService
+                API.The advertiser cannot set this status directly. To promote the trial, set
+                the trial in state PROMOTING and the status will be updated to PROMOTE_FAILED if
+                errors are encountered while applying changes to the original campaign.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="GRADUATED">
+            <annotation>
+              <documentation>
+                The advertiser has graduated the trial campaign to a standalone campaign,
+                existing independently of the trial.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="HALTED">
+            <annotation>
+              <documentation>
+                The advertiser has halted the trial.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <element name="get">
+        <annotation>
+          <documentation>
+            Loads a TrialPage containing a list of {@link Trial} objects matching the selector.
+            
+            @param selector defines which subset of all available trials to return, the sort order, and
+            which fields to include
+            
+            @return Returns a page of matching trial objects.
+            @throws com.google.ads.api.services.common.error.ApiException if errors occurred while
+            retrieving the results.
+          </documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="selector" type="tns:Selector">
+              <annotation>
+                <documentation>
+                  &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+                </documentation>
+              </annotation>
+            </element>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="getResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="rval" type="tns:TrialPage"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ApiExceptionFault" type="tns:ApiException">
+        <annotation>
+          <documentation>
+            A fault element of type ApiException.
+          </documentation>
+        </annotation>
+      </element>
+      <element name="mutate">
+        <annotation>
+          <documentation>
+            Creates new trials, updates properties and controls the life cycle of existing trials.
+            See {@link TrialService} for details on the trial life cycle.
+            
+            @return Returns the list of updated Trials, in the same order as the {@code operations} list.
+            @throws com.google.ads.api.services.common.error.ApiException if errors occurred while
+            processing the request.
+          </documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" minOccurs="0"
+              name="operations" type="tns:TrialOperation">
+              <annotation>
+                <documentation>
+                  &lt;span class="constraint ContentsNotNull"&gt;This field must not contain {@code null} elements.&lt;/span&gt;
+                  &lt;span class="constraint DistinctIds"&gt;Elements in this field must have distinct IDs for following {@link Operator}s : SET, REMOVE.&lt;/span&gt;
+                  &lt;span class="constraint NotEmpty"&gt;This field must contain at least one element.&lt;/span&gt;
+                  &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+                </documentation>
+              </annotation>
+            </element>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="mutateResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="rval" type="tns:TrialReturnValue"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="query">
+        <annotation>
+          <documentation>
+            Loads a TrialPage containing a list of {@link Trial} objects matching the query.
+            
+            @param query defines which subset of all available trials to return, the sort order, and
+            which fields to include
+            
+            @return Returns a page of matching trial objects.
+            @throws com.google.ads.api.services.common.error.ApiException if errors occurred while
+            retrieving the results.
+          </documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="query" type="xsd:string">
+              <annotation>
+                <documentation>
+                  &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+                </documentation>
+              </annotation>
+            </element>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="queryResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="rval" type="tns:TrialPage"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="RequestHeader" type="tns:SoapHeader"/>
+      <element name="ResponseHeader" type="tns:SoapResponseHeader"/>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="RequestHeader">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"/>
+  </wsdl:message>
+  <wsdl:message name="ResponseHeader">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"/>
+  </wsdl:message>
+  <wsdl:message name="getRequest">
+    <wsdl:part element="tns:get" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getResponse">
+    <wsdl:part element="tns:getResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ApiException">
+    <wsdl:part element="tns:ApiExceptionFault" name="ApiException"/>
+  </wsdl:message>
+  <wsdl:message name="mutateRequest">
+    <wsdl:part element="tns:mutate" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="mutateResponse">
+    <wsdl:part element="tns:mutateResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="queryRequest">
+    <wsdl:part element="tns:query" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="queryResponse">
+    <wsdl:part element="tns:queryResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="TrialServiceInterface">
+    <wsdl:documentation>
+      TrialService manages the life cycle of campaign trials. It is used to create new trials from
+      drafts, modify trial properties, promote changes in a trial back to its base campaign, and to
+      archive a trial.
+      
+      &lt;p&gt;A trial is an experiment, running two variants (trial arms) - the base campaign and the trial
+      - at the same time, directing a fixed share of traffic to each trial arm. A trial is created from
+      a draft of the base campaign and will be a snapshot of changes in the draft at the time of
+      creation.
+      
+      &lt;h3&gt;Constraints&lt;/h3&gt;
+      
+      &lt;ul&gt;
+      &lt;li&gt;A campaign cannot have running/scheduled "AdWords Campaign Experiments" (ACE) and
+      running/scheduled trials at the same time. Trial creation will fail, if the base campaign
+      has a running/scheduled ACE experiment.&lt;/li&gt;
+      &lt;li&gt;Trial names must be unique across all of the customer's non-deleted trial and campaign
+      names.&lt;/li&gt;
+      &lt;li&gt;When creating a trial, [startDate, endDate] cannot be in the past or overlap with any other
+      running/scheduled trial, must be within the base campaign's [startDate, endDate] and
+      endDate must be later than startDate.&lt;/li&gt;
+      &lt;li&gt;A future startDate/endDate can be updated to a different future startDate/endDate as long
+      as the constraints on [startDate, endDate] are not violated.&lt;/li&gt;
+      &lt;li&gt;There is at most one trial running and at most one trial scheduled for the future at a
+      time, per base campaign.&lt;/li&gt;
+      &lt;li&gt;The base campaign's budget cannot be shared with any other campaign. Trial creation will
+      fail if the base campaign's budget is shared with another campaign.&lt;/li&gt;
+      &lt;/ul&gt;
+      
+      &lt;h3&gt;Life cycle&lt;/h3&gt;
+      
+      A trial's {@link Trial#status status} reflects the state of the trial within its life cycle. Some
+      status transitions are performed explicitly by sending a {@link Operator#SET SET} operation,
+      while other status transitions occur asynchronously without a client operation.
+      
+      &lt;p&gt;When a trial is first {@link Operator#ADD ADD}ed, its status is
+      {@link TrialStatus#CREATING CREATING}. The trial will be created asynchronously, and once it
+      is fully created, its status will change to {@link TrialStatus#ACTIVE ACTIVE}.
+      
+      &lt;p&gt;If the asynchronous creation of the trial fails, its status will change to
+      {@link TrialStatus#CREATION_FAILED CREATION_FAILED}.
+      
+      &lt;p&gt;To promote changes in an {@link TrialStatus#ACTIVE ACTIVE} trial back to the base campaign,
+      set the trial status to {@link TrialStatus#PROMOTING PROMOTING}. The promotion itself will occur
+      asynchronously. If the promotion operation fails after some of the base campaign has already been
+      updated, the status will change to {@link TrialStatus#PROMOTE_FAILED PROMOTE_FAILED}.
+      
+      &lt;p&gt;To graduate an {@link TrialStatus#ACTIVE ACTIVE} trial, which will allow its associated
+      campaign to act independently of the trial and free it of restrictions from the trial, set the
+      status to {@link TrialStatus#GRADUATED GRADUATED} and provide a new
+      {@link Budget#budgetid budgetId} for the campaign to use (since it can no longer share the base
+      campaign's budget).
+      
+      &lt;p&gt;Any trial that is not {@link TrialStatus#CREATING CREATING} or
+      {@link TrialStatus#PROMOTING PROMOTING} can be archived by setting the status to the value of the
+      same name.
+    </wsdl:documentation>
+    <wsdl:operation name="get">
+      <wsdl:documentation>
+        Loads a TrialPage containing a list of {@link Trial} objects matching the selector.
+        
+        @param selector defines which subset of all available trials to return, the sort order, and
+        which fields to include
+        
+        @return Returns a page of matching trial objects.
+        @throws com.google.ads.api.services.common.error.ApiException if errors occurred while
+        retrieving the results.
+      </wsdl:documentation>
+      <wsdl:input message="tns:getRequest" name="getRequest"/>
+      <wsdl:output message="tns:getResponse" name="getResponse"/>
+      <wsdl:fault message="tns:ApiException" name="ApiException"/>
+    </wsdl:operation>
+    <wsdl:operation name="mutate">
+      <wsdl:documentation>
+        Creates new trials, updates properties and controls the life cycle of existing trials.
+        See {@link TrialService} for details on the trial life cycle.
+        
+        @return Returns the list of updated Trials, in the same order as the {@code operations} list.
+        @throws com.google.ads.api.services.common.error.ApiException if errors occurred while
+        processing the request.
+      </wsdl:documentation>
+      <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
+      <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>
+      <wsdl:fault message="tns:ApiException" name="ApiException"/>
+    </wsdl:operation>
+    <wsdl:operation name="query">
+      <wsdl:documentation>
+        Loads a TrialPage containing a list of {@link Trial} objects matching the query.
+        
+        @param query defines which subset of all available trials to return, the sort order, and
+        which fields to include
+        
+        @return Returns a page of matching trial objects.
+        @throws com.google.ads.api.services.common.error.ApiException if errors occurred while
+        retrieving the results.
+      </wsdl:documentation>
+      <wsdl:input message="tns:queryRequest" name="queryRequest"/>
+      <wsdl:output message="tns:queryResponse" name="queryResponse"/>
+      <wsdl:fault message="tns:ApiException" name="ApiException"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TrialServiceSoapBinding" type="tns:TrialServiceInterface">
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="get">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getRequest">
+        <wsdlsoap:header message="tns:RequestHeader"
+          part="RequestHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getResponse">
+        <wsdlsoap:header message="tns:ResponseHeader"
+          part="ResponseHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ApiException">
+        <wsdlsoap:fault name="ApiException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="mutate">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="mutateRequest">
+        <wsdlsoap:header message="tns:RequestHeader"
+          part="RequestHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="mutateResponse">
+        <wsdlsoap:header message="tns:ResponseHeader"
+          part="ResponseHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ApiException">
+        <wsdlsoap:fault name="ApiException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="query">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="queryRequest">
+        <wsdlsoap:header message="tns:RequestHeader"
+          part="RequestHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="queryResponse">
+        <wsdlsoap:header message="tns:ResponseHeader"
+          part="ResponseHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ApiException">
+        <wsdlsoap:fault name="ApiException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TrialService">
+    <wsdl:port binding="tns:TrialServiceSoapBinding" name="TrialServiceInterfacePort">
+      <wsdlsoap:address location="https://adwords.google.com/api/adwords/cm/v201809/TrialService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -2963,9 +2963,8 @@
                 <annotation>
                   <documentation>
                     Sales country of products to include in the campaign.
-                    This must be set to 'ZZ' for Campaigns of types other than
-                    {@link AdvertisingChannelType#SHOPPING}
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                    This field is required for Shopping campaigns. This field will default to 'ZZ' (and is the only
+                    permitted value) for campaigns of type other than {@link AdvertisingChannelType#SHOPPING}.
                   </documentation>
                 </annotation>
               </element>
@@ -2974,10 +2973,9 @@
                 <annotation>
                   <documentation>
                     Priority of the campaign. Campaigns with numerically higher priorities take precedence over
-                    those with lower priorities.
-                    &lt;span class="constraint CampaignType"&gt;This field may only be set to 3 for campaign channel type SHOPPING with campaign channel subtype SHOPPING_UNIVERSAL_ADS.&lt;/span&gt;
+                    those with lower priorities. This field is required and should not be null. This field is not
+                    required for Smart Shopping campaigns.
                     &lt;span class="constraint InRange"&gt;This field must be between 0 and 2, inclusive.&lt;/span&gt;
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>

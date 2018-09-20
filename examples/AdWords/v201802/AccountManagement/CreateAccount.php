@@ -57,11 +57,6 @@ class CreateAccount
         $operation = new ManagedCustomerOperation();
         $operation->setOperator(Operator::ADD);
         $operation->setOperand($customer);
-        // For whitelisted users only, uncomment two below commands to invite a
-        // user to have access to an account on an ADD. An email will be sent to
-        // that user inviting them to have access to the newly created account.
-        // $operation->setInviteeEmail('invited_user1@example.com');
-        // $operation->setInviteeRole('ADMINISTRATIVE');
 
         $operations[] = $operation;
         // Create a managed customer on the server and print out some info

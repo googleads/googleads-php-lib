@@ -131,10 +131,14 @@ final class ServiceQuery
      */
     private static function countLandscapePoints(Page $page)
     {
+        $entries = $page->getEntries();
+        if (is_null($entries)) {
+            return 0;
+        }
+
         $totalLandscapePointsInPage = 0;
-        foreach ($page->getEntries() as $entry) {
-            $totalLandscapePointsInPage +=
-                count($entry->getLandscapePoints());
+        foreach ($entries as $entry) {
+            $totalLandscapePointsInPage += count($entry->getLandscapePoints());
         }
         return $totalLandscapePointsInPage;
     }

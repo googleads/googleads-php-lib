@@ -1217,7 +1217,9 @@
         <annotation>
           <documentation>
             The action used for deleting {@link LineItem} objects. A line item can be
-            deleted if it has never been eligible to serve.
+            deleted if it has never been eligible to serve. Note: deleted line items
+            will still count against your network limits. For more information, see the
+            &lt;a href="https://support.google.com/admanager/answer/1628457"&gt;Help Center&lt;/a&gt;.
           </documentation>
         </annotation>
         <complexContent>
@@ -2799,6 +2801,8 @@
           <documentation>
             Represents a mobile carrier.
             Carrier targeting is only available to Ad Manager mobile publishers.
+            For a list of current mobile carriers, you can use
+            {@link PublisherQueryLanguageService#mobile_carrier}.
           </documentation>
         </annotation>
         <complexContent>
@@ -3695,11 +3699,10 @@
             An example of such a query might be {@code "WHERE id = :idValue"}.
             &lt;/p&gt;
             &lt;p&gt;
-            Statements also support use of the LIKE keyword. This provides partial and
-            wildcard string matching.
+            Statements also support use of the LIKE keyword. This provides wildcard string matching.
             &lt;/p&gt;
             &lt;p&gt;
-            An example of such a query might be {@code "WHERE name LIKE 'startswith%'"}.
+            An example of such a query might be {@code "WHERE name LIKE '%searchString%'"}.
             &lt;/p&gt;
             The value for the variable idValue must then be set with an object of type
             {@link Value}, e.g., {@link NumberValue}, {@link TextValue} or

@@ -2,7 +2,7 @@
 <ruleset name="googleads-php-lib-psr2">
     <rule ref="PSR2"/>
     <exclude-pattern>src/Google/AdsApi/AdWords/v[0-9]+</exclude-pattern>
-    <exclude-pattern>src/Google/AdsApi/Dfp/v[0-9]+</exclude-pattern>
+    <exclude-pattern>src/Google/AdsApi/AdManager/v[0-9]+</exclude-pattern>
     <file>src</file>
     <file>tests</file>
     <file>examples</file>

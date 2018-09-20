@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
   <soap:Header>
-    <ResponseHeader xmlns="https://adwords.google.com/api/adwords/cm/v201806">
+    <ResponseHeader xmlns="https://adwords.google.com/api/adwords/cm/v201809">
       <requestId>123456abcxyz</requestId>
       <serviceName>CampaignService</serviceName>
       <methodName>get</methodName>
@@ -14,7 +14,7 @@
       <faultcode>soap:Server</faultcode>
       <faultstring>[SelectorError.INVALID_FIELD_NAME @ serviceSelector; trigger:'asDEEf'; errorDetails:asDEEf]</faultstring>
       <detail>
-        <ApiExceptionFault xmlns="https://adwords.google.com/api/adwords/cm/v201806">
+        <ApiExceptionFault xmlns="https://adwords.google.com/api/adwords/cm/v201809">
           <message>[SelectorError.INVALID_FIELD_NAME @ serviceSelector; trigger:'asDEEf'; errorDetails:asDEEf]</message>
           <ApplicationException.Type>ApiException</ApplicationException.Type>
           <errors xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="SelectorError">

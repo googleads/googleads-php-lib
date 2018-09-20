@@ -1,3 +1,10 @@
+### 37.1.0
+
+##### AdWords
+
+*   Added support and examples for v201809.
+*   Fixed [issue #527](https://github.com/googleads/googleads-php-lib/issues/527).
+
 ### 37.0.0
 
 ##### AdWords

@@ -1,0 +1,3279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated file, do not edit -->
+<!-- Copyright 2018 Google Inc. All Rights Reserved -->
+<wsdl:definitions
+  targetNamespace="https://adwords.google.com/api/adwords/cm/v201809"
+  xmlns:tns="https://adwords.google.com/api/adwords/cm/v201809"
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <schema elementFormDefault="qualified" jaxb:version="1.0"
+      targetNamespace="https://adwords.google.com/api/adwords/cm/v201809"
+      xmlns="http://www.w3.org/2001/XMLSchema"
+      xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:tns="https://adwords.google.com/api/adwords/cm/v201809">
+      <annotation>
+        <appinfo>
+          <jaxb:globalBindings typesafeEnumMaxMembers="999999"/>
+        </appinfo>
+      </annotation>
+      <complexType name="AffiliateLocationFeedData">
+        <annotation>
+          <documentation>
+            Data used to configure an Affiliate Location Feed populated with the specified chains.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:SystemFeedGenerationData">
+            <sequence>
+              <element maxOccurs="unbounded" minOccurs="0" name="chains" type="tns:Chain">
+                <annotation>
+                  <documentation>
+                    The list of chains that the Affiliate Location Feed will sync the locations from.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0"
+                name="relationshipType" type="tns:RelationshipType">
+                <annotation>
+                  <documentation>
+                    The relationship the chains have with the advertiser.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType abstract="true" name="ApiError">
+        <annotation>
+          <documentation>
+            The API error base class that provides details about an error that occurred
+            while processing a service request.
+            
+            &lt;p&gt;The OGNL field path is provided for parsers to identify the request data
+            element that may have caused the error.&lt;/p&gt;
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="fieldPath" type="xsd:string">
+            <annotation>
+              <documentation>
+                The OGNL field path to identify cause of error.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="fieldPathElements" type="tns:FieldPathElement">
+            <annotation>
+              <documentation>
+                A parsed copy of the field path. For example, the field path "operations[1].operand"
+                corresponds to this list: {FieldPathElement(field = "operations", index = 1),
+                FieldPathElement(field = "operand", index = null)}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="trigger" type="xsd:string">
+            <annotation>
+              <documentation>
+                The data that caused the error.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="errorString" type="xsd:string">
+            <annotation>
+              <documentation>
+                A simple string representation of the error and reason.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="ApiError.Type" type="xsd:string">
+            <annotation>
+              <documentation>
+                Indicates that this instance is a subtype of ApiError.
+                Although this field is returned in the response, it is ignored on input
+                and cannot be selected. Specify xsi:type instead.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="ApiException">
+        <annotation>
+          <documentation>
+            Exception class for holding a list of service errors.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApplicationException">
+            <sequence>
+              <element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:ApiError">
+                <annotation>
+                  <documentation>
+                    List of errors.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ApplicationException">
+        <annotation>
+          <documentation>
+            Base class for exceptions.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="message" type="xsd:string">
+            <annotation>
+              <documentation>
+                Error message.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0"
+            name="ApplicationException.Type" type="xsd:string">
+            <annotation>
+              <documentation>
+                Indicates that this instance is a subtype of ApplicationException.
+                Although this field is returned in the response, it is ignored on input
+                and cannot be selected. Specify xsi:type instead.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="AuthenticationError">
+        <annotation>
+          <documentation>
+            Errors returned when Authentication failed.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:AuthenticationError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="AuthorizationError">
+        <annotation>
+          <documentation>
+            Errors encountered when trying to authorize a user.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:AuthorizationError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="PlacesLocationFeedData">
+        <annotation>
+          <documentation>
+            Data used to configure a location feed populated from
+            Google My Business Locations.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:SystemFeedGenerationData">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="oAuthInfo" type="tns:OAuthInfo">
+                <annotation>
+                  <documentation>
+                    Required authentication token (from OAuth API) for the email.&lt;/br&gt;
+                    Use the following values when populating the oAuthInfo:
+                    &lt;ul&gt;
+                    &lt;li&gt;httpMethod: {@code GET}&lt;/li&gt;
+                    &lt;li&gt;httpRequestUrl: {@code https://www.googleapis.com/auth/adwords}&lt;/li&gt;
+                    &lt;li&gt;
+                    httpAuthorizationHeader: {@code Bearer *ACCESS_TOKEN*}
+                    (where *ACCESS_TOKEN* is generated from OAuth credentials for the
+                    emailAddress and a scope matching httpRequestUrl)
+                    &lt;/li&gt;
+                    &lt;/ul&gt;
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0" name="emailAddress" type="xsd:string">
+                <annotation>
+                  <documentation>
+                    Email address of a Google My Business account or email address of a manager of the
+                    Google My Business account.
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0"
+                name="businessAccountIdentifier" type="xsd:string">
+                <annotation>
+                  <documentation>
+                    Plus page ID of the managed business whose locations should be used. If this field is not set,
+                    then all businesses accessible by the user (specified by the emailAddress) are used.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0"
+                name="businessNameFilter" type="xsd:string">
+                <annotation>
+                  <documentation>
+                    Used to filter Google My Business listings by business name. If businessNameFilter is set,
+                    only listings with a matching business name are candidates to be sync'd into FeedItems.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="unbounded" minOccurs="0"
+                name="categoryFilters" type="xsd:string">
+                <annotation>
+                  <documentation>
+                    Used to filter Google My Business listings by categories. If entries exist in categoryFilters,
+                    only listings that belong to any of the categories are candidates to be sync'd into FeedItems.
+                    If no entries exist in categoryFilters, then all listings are candidates for syncing.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="unbounded" minOccurs="0"
+                name="labelFilters" type="xsd:string">
+                <annotation>
+                  <documentation>
+                    Used to filter &lt;a href="http://www.google.com/mybusiness"&gt;Google My Business&lt;/a&gt; listings by
+                    labels. If entries exist in labelFilters, only listings that has any of the labels set are
+                    candidates to be synchronized into FeedItems. If no entries exist in labelFilters, then all
+                    listings are candidates for syncing.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="Chain">
+        <annotation>
+          <documentation>
+            Chain defines chain related metadata required in order to sync features belonging to a chain.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="chainId" type="xsd:long">
+            <annotation>
+              <documentation>
+                Id of the chain.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="ClientTermsError">
+        <annotation>
+          <documentation>
+            Error due to user not accepting the AdWords terms of service.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ClientTermsError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="CollectionSizeError">
+        <annotation>
+          <documentation>
+            Errors associated with the size of the given collection being
+            out of bounds.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CollectionSizeError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DatabaseError">
+        <annotation>
+          <documentation>
+            Errors that are thrown due to a database access problem.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:DatabaseError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DateRange">
+        <annotation>
+          <documentation>
+            Represents a range of dates that has either an upper or a lower bound.
+            The format for the date is YYYYMMDD.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="min" type="xsd:string">
+            <annotation>
+              <documentation>
+                the lower bound of this date range, inclusive.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="max" type="xsd:string">
+            <annotation>
+              <documentation>
+                the upper bound of this date range, inclusive.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="DistinctError">
+        <annotation>
+          <documentation>
+            Errors related to distinct ids or content.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:DistinctError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="EntityCountLimitExceeded">
+        <annotation>
+          <documentation>
+            Signals that an entity count limit was exceeded for some level.
+            For example, too many criteria for a campaign.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:EntityCountLimitExceeded.Reason">
+                <annotation>
+                  <documentation>
+                    Specifies which level's limit was exceeded.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0" name="enclosingId" type="xsd:string">
+                <annotation>
+                  <documentation>
+                    Id of the entity whose limit was exceeded.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0" name="limit" type="xsd:int">
+                <annotation>
+                  <documentation>
+                    The limit which was exceeded.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0"
+                name="accountLimitType" type="xsd:string">
+                <annotation>
+                  <documentation>
+                    The account limit type which was exceeded.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0" name="existingCount" type="xsd:int">
+                <annotation>
+                  <documentation>
+                    The count of existing entities.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="EntityNotFound">
+        <annotation>
+          <documentation>
+            An id did not correspond to an entity, or it referred to an entity which does not belong to the
+            customer.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:EntityNotFound.Reason">
+                <annotation>
+                  <documentation>
+                    Reason for this error.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="Feed">
+        <annotation>
+          <documentation>
+            A Feed identifies a source of data and its schema. The data for the Feed can either be
+            user-entered via the FeedItemService or system-generated, in which case the data is provided
+            automatically.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
+            <annotation>
+              <documentation>
+                Id of the Feed.
+                &lt;span class="constraint Selectable"&gt;This field can be selected using the value "Id".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : REMOVE, SET.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
+            <annotation>
+              <documentation>
+                Name of the Feed.
+                &lt;span class="constraint Selectable"&gt;This field can be selected using the value "Name".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                &lt;span class="constraint StringLength"&gt;The length of this string should be between 1 and 128, inclusive, (trimmed).&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="attributes" type="tns:FeedAttribute">
+            <annotation>
+              <documentation>
+                The Feed's schema. In SET operations, these attributes will be considered new attributes and
+                will be appended to the existing list of attributes unless this list is an exact copy of the
+                existing list (as would be obtained via {@link FeedService#get}).
+                If an empty attributes list is provided, the existing list of attributes will not be changed.
+                &lt;span class="constraint Selectable"&gt;This field can be selected using the value "Attributes".&lt;/span&gt;
+                &lt;span class="constraint ContentsNotNull"&gt;This field must not contain {@code null} elements.&lt;/span&gt;
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="status" type="tns:Feed.Status">
+            <annotation>
+              <documentation>
+                Status of the Feed.
+                &lt;span class="constraint Selectable"&gt;This field can be selected using the value "FeedStatus".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
+                &lt;span class="constraint ReadOnly"&gt;This field is read only and will be ignored when sent to the API.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="origin" type="tns:Feed.Origin">
+            <annotation>
+              <documentation>
+                Specifies who manages the {@link FeedAttribute}s for the {@link Feed}.
+                &lt;span class="constraint Selectable"&gt;This field can be selected using the value "Origin".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0"
+            name="systemFeedGenerationData" type="tns:SystemFeedGenerationData">
+            <annotation>
+              <documentation>
+                The system data for the Feed. This data specifies information for generating the feed items
+                of the system generated feed.
+                &lt;span class="constraint Selectable"&gt;This field can be selected using the value "SystemFeedGenerationData".&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="FeedAttribute">
+        <annotation>
+          <documentation>
+            FeedAttributes define the types of data expected to be present in a Feed. A single FeedAttribute
+            specifies the expected type of the FeedItemAttributes with the same FeedAttributeId. Optionally,
+            a FeedAttribute can be marked as being part of a FeedItem's unique key.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
+            <annotation>
+              <documentation>
+                Id of the attribute.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
+            <annotation>
+              <documentation>
+                The name of the attribute.
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD, SET.&lt;/span&gt;
+                &lt;span class="constraint StringLength"&gt;The length of this string should be between 1 and 30, inclusive, (trimmed).&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="type" type="tns:FeedAttribute.Type">
+            <annotation>
+              <documentation>
+                The expected type of the data.
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD, SET.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="isPartOfKey" type="xsd:boolean">
+            <annotation>
+              <documentation>
+                Indicates that data corresponding to this attribute is part of a FeedItem's unique key. It
+                defaults to false if it is unspecified. Note that a unique key is not required in a Feed's
+                schema, in which case the FeedItems must be referenced by their FeedItemId.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="FeedError">
+        <annotation>
+          <documentation>
+            An error caused by an invalid Feed in a FeedService request.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:FeedError.Reason">
+                <annotation>
+                  <documentation>
+                    The cause of the error.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="FeedOperation">
+        <annotation>
+          <documentation>
+            Operation used to create or mutate a Feed.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Operation">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="operand" type="tns:Feed">
+                <annotation>
+                  <documentation>
+                    The Feed to create or mutate.
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="FeedPage">
+        <annotation>
+          <documentation>
+            The result of a call to FeedService#get.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:NullStatsPage">
+            <sequence>
+              <element maxOccurs="unbounded" minOccurs="0"
+                name="entries" type="tns:Feed">
+                <annotation>
+                  <documentation>
+                    The resulting Feeds.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="FeedReturnValue">
+        <annotation>
+          <documentation>
+            The result of a call to FeedService#mutate.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ListReturnValue">
+            <sequence>
+              <element maxOccurs="unbounded" minOccurs="0" name="value" type="tns:Feed">
+                <annotation>
+                  <documentation>
+                    The resulting Feeds.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="FieldPathElement">
+        <annotation>
+          <documentation>
+            A segment of a field path. Each dot in a field path defines a new segment.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="field" type="xsd:string">
+            <annotation>
+              <documentation>
+                The name of a field in lower camelcase. (e.g. "biddingStrategy")
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="index" type="xsd:int">
+            <annotation>
+              <documentation>
+                For list fields, this is a 0-indexed position in the list. Null for non-list fields.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="IdError">
+        <annotation>
+          <documentation>
+            Errors associated with the ids.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:IdError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="InternalApiError">
+        <annotation>
+          <documentation>
+            Indicates that a server-side error has occured. {@code InternalApiError}s
+            are generally not the result of an invalid request or message sent by the
+            client.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:InternalApiError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType abstract="true" name="ListReturnValue">
+        <annotation>
+          <documentation>
+            Base list return value type.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0"
+            name="ListReturnValue.Type" type="xsd:string">
+            <annotation>
+              <documentation>
+                Indicates that this instance is a subtype of ListReturnValue.
+                Although this field is returned in the response, it is ignored on input
+                and cannot be selected. Specify xsi:type instead.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="NewEntityCreationError">
+        <annotation>
+          <documentation>
+            Error associated with creation of new entities.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:NewEntityCreationError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="NotEmptyError">
+        <annotation>
+          <documentation>
+            Errors corresponding with violation of a NOT EMPTY check.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:NotEmptyError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="NullError">
+        <annotation>
+          <documentation>
+            Errors associated with violation of a NOT NULL check.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:NullError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType abstract="true" name="NullStatsPage">
+        <complexContent>
+          <extension base="tns:Page">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="OAuthInfo">
+        <annotation>
+          <documentation>
+            Data used for authorization using OAuth.
+            For more information about OAuth, see:
+            {@link "https://developers.google.com/identity/protocols/OAuth2"}
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="httpMethod" type="xsd:string">
+            <annotation>
+              <documentation>
+                The HTTP method used to obtain authorization.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="httpRequestUrl" type="xsd:string">
+            <annotation>
+              <documentation>
+                The HTTP request URL used to obtain authorization.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0"
+            name="httpAuthorizationHeader" type="xsd:string">
+            <annotation>
+              <documentation>
+                The HTTP authorization header used to obtain authorization.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType abstract="true" name="Operation">
+        <annotation>
+          <documentation>
+            This represents an operation that includes an operator and an operand
+            specified type.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="operator" type="tns:Operator">
+            <annotation>
+              <documentation>
+                Operator.
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="Operation.Type" type="xsd:string">
+            <annotation>
+              <documentation>
+                Indicates that this instance is a subtype of Operation.
+                Although this field is returned in the response, it is ignored on input
+                and cannot be selected. Specify xsi:type instead.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="OperationAccessDenied">
+        <annotation>
+          <documentation>
+            Operation not permitted due to the invoked service's access policy.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:OperationAccessDenied.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="OperatorError">
+        <annotation>
+          <documentation>
+            Errors due to the use of unsupported operations.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:OperatorError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="OrderBy">
+        <annotation>
+          <documentation>
+            Specifies how the resulting information should be sorted.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="field" type="xsd:string">
+            <annotation>
+              <documentation>
+                The field to sort the results on.
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="sortOrder" type="tns:SortOrder">
+            <annotation>
+              <documentation>
+                The order to sort the results on. The default sort order is {@link SortOrder#ASCENDING}.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType abstract="true" name="Page">
+        <annotation>
+          <documentation>
+            Contains the results from a get call.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="totalNumEntries" type="xsd:int">
+            <annotation>
+              <documentation>
+                Total number of entries in the result that this page is a part of.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="Page.Type" type="xsd:string">
+            <annotation>
+              <documentation>
+                Indicates that this instance is a subtype of Page.
+                Although this field is returned in the response, it is ignored on input
+                and cannot be selected. Specify xsi:type instead.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="Paging">
+        <annotation>
+          <documentation>
+            Specifies the page of results to return in the response. A page is specified
+            by the result position to start at and the maximum number of results to
+            return.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="startIndex" type="xsd:int">
+            <annotation>
+              <documentation>
+                Index of the first result to return in this page.
+                &lt;span class="constraint InRange"&gt;This field must be greater than or equal to 0.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="numberResults" type="xsd:int">
+            <annotation>
+              <documentation>
+                Maximum number of results to return in this page. Set this to a reasonable value to limit
+                the number of results returned per page.
+                &lt;span class="constraint InRange"&gt;This field must be greater than or equal to 0.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="Predicate">
+        <annotation>
+          <documentation>
+            Specifies how an entity (eg. adgroup, campaign, criterion, ad) should be filtered.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="field" type="xsd:string">
+            <annotation>
+              <documentation>
+                The field by which to filter the returned data. Possible values are marked Filterable on
+                the entity's reference page. For example, for predicates for the
+                CampaignService {@link Selector selector}, refer to the filterable fields from the
+                {@link Campaign} reference page.
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="operator" type="tns:Predicate.Operator">
+            <annotation>
+              <documentation>
+                The operator to use for filtering the data returned.
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="values" type="xsd:string">
+            <annotation>
+              <documentation>
+                The values by which to filter the field. The {@link Operator#CONTAINS_ALL},
+                {@link Operator#CONTAINS_ANY}, {@link Operator#CONTAINS_NONE}, {@link Operator#IN}
+                and {@link Operator#NOT_IN} take multiple values. All others take a single value.
+                &lt;span class="constraint ContentsNotNull"&gt;This field must not contain {@code null} elements.&lt;/span&gt;
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="QueryError">
+        <annotation>
+          <documentation>
+            A QueryError represents possible errors for query parsing and execution.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:QueryError.Reason"/>
+              <element maxOccurs="1" minOccurs="0" name="message" type="xsd:string"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="QuotaCheckError">
+        <annotation>
+          <documentation>
+            Encapsulates the errors thrown during developer quota checks.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:QuotaCheckError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RangeError">
+        <annotation>
+          <documentation>
+            A list of all errors associated with the Range constraint.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RangeError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RateExceededError">
+        <annotation>
+          <documentation>
+            Signals that a call failed because a measured rate exceeded.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RateExceededError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0" name="rateName" type="xsd:string">
+                <annotation>
+                  <documentation>
+                    Cause of the rate exceeded error.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0" name="rateScope" type="xsd:string">
+                <annotation>
+                  <documentation>
+                    The scope of the rate (ACCOUNT/DEVELOPER).
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0"
+                name="retryAfterSeconds" type="xsd:int">
+                <annotation>
+                  <documentation>
+                    The amount of time (in seconds) the client should wait before retrying the request.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ReadOnlyError">
+        <annotation>
+          <documentation>
+            Errors from attempting to write to read-only fields.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ReadOnlyError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RejectedError">
+        <annotation>
+          <documentation>
+            Indicates that a field was rejected due to compatibility issues.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RejectedError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RequestError">
+        <annotation>
+          <documentation>
+            Encapsulates the generic errors thrown when there's an error with user
+            request.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RequestError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RequiredError">
+        <annotation>
+          <documentation>
+            Errors due to missing required field.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RequiredError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="Selector">
+        <annotation>
+          <documentation>
+            A generic selector to specify the type of information to return.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="fields" type="xsd:string">
+            <annotation>
+              <documentation>
+                List of fields to select.
+                &lt;a href="/adwords/api/docs/appendix/selectorfields"&gt;Possible values&lt;/a&gt;
+                are marked {@code Selectable} on the entity's reference page.
+                For example, for the {@code CampaignService} selector, refer to the
+                selectable fields from the {@link Campaign} reference page.
+                &lt;span class="constraint ContentsDistinct"&gt;This field must contain distinct elements.&lt;/span&gt;
+                &lt;span class="constraint ContentsNotNull"&gt;This field must not contain {@code null} elements.&lt;/span&gt;
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="predicates" type="tns:Predicate">
+            <annotation>
+              <documentation>
+                Specifies how an entity (eg. adgroup, campaign, criterion, ad) should be filtered.
+                &lt;span class="constraint ContentsNotNull"&gt;This field must not contain {@code null} elements.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="dateRange" type="tns:DateRange">
+            <annotation>
+              <documentation>
+                Range of dates for which you want to include data. If this value is omitted,
+                results for all dates are returned.
+                &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; This field is only used by the report download
+                service. For all other services, it is ignored.&lt;/p&gt;
+                &lt;span class="constraint DateRangeWithinRange"&gt;This range must be contained within the range [19700101, 20380101].&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="ordering" type="tns:OrderBy">
+            <annotation>
+              <documentation>
+                The fields on which you want to sort, and the sort order. The order in the list is
+                significant: The first element in the list indicates the primary sort order, the next
+                specifies the secondary sort order and so on.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="paging" type="tns:Paging">
+            <annotation>
+              <documentation>
+                Pagination information.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="SelectorError">
+        <annotation>
+          <documentation>
+            Represents possible error codes for {@link Selector}.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:SelectorError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="SizeLimitError">
+        <annotation>
+          <documentation>
+            Indicates that the number of entries in the request or response exceeds the system limit.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:SizeLimitError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="SoapHeader">
+        <annotation>
+          <documentation>
+            Defines the required and optional elements within the header of a SOAP request.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="clientCustomerId" type="xsd:string">
+            <annotation>
+              <documentation>
+                The header identifies the customer id of the client of the AdWords manager, if an AdWords
+                manager is acting on behalf of their client or the customer id of the advertiser managing their
+                own account.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="developerToken" type="xsd:string">
+            <annotation>
+              <documentation>
+                Developer token to identify that the person making the call has enough
+                quota.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="userAgent" type="xsd:string">
+            <annotation>
+              <documentation>
+                UserAgent is used to track distribution of API client programs and
+                application usage. The client is responsible for putting in a meaningful
+                value for tracking purposes. To be clear this is not the same as an HTTP
+                user agent.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="validateOnly" type="xsd:boolean">
+            <annotation>
+              <documentation>
+                Used to validate the request without executing it.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="partialFailure" type="xsd:boolean">
+            <annotation>
+              <documentation>
+                If true, API will try to commit as many error free operations as possible and
+                report the other operations' errors.
+                
+                &lt;p&gt;Ignored for non-mutate calls.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="SoapResponseHeader">
+        <annotation>
+          <documentation>
+            Defines the elements within the header of a SOAP response.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="requestId" type="xsd:string">
+            <annotation>
+              <documentation>
+                Unique id that identifies this request. If developers have any support issues, sending us
+                this id will enable us to find their request more easily.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="serviceName" type="xsd:string">
+            <annotation>
+              <documentation>
+                The name of the service being invoked.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="methodName" type="xsd:string">
+            <annotation>
+              <documentation>
+                The name of the method being invoked.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="operations" type="xsd:long">
+            <annotation>
+              <documentation>
+                Number of operations performed for this SOAP request.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="responseTime" type="xsd:long">
+            <annotation>
+              <documentation>
+                Elapsed time in milliseconds between the AdWords API receiving the request and sending the
+                response.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="StringFormatError">
+        <annotation>
+          <documentation>
+            A list of error code for reporting invalid content of input strings.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:StringFormatError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="StringLengthError">
+        <annotation>
+          <documentation>
+            Errors associated with the length of the given string being
+            out of bounds.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:StringLengthError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="SystemFeedGenerationData">
+        <annotation>
+          <documentation>
+            Configuration data allowing feed items to be populated for a system feed.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0"
+            name="SystemFeedGenerationData.Type" type="xsd:string">
+            <annotation>
+              <documentation>
+                Indicates that this instance is a subtype of SystemFeedGenerationData.
+                Although this field is returned in the response, it is ignored on input
+                and cannot be selected. Specify xsi:type instead.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <simpleType name="AuthenticationError.Reason">
+        <annotation>
+          <documentation>
+            The single reason for the authentication failure.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="AUTHENTICATION_FAILED">
+            <annotation>
+              <documentation>
+                Authentication of the request failed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CLIENT_CUSTOMER_ID_IS_REQUIRED">
+            <annotation>
+              <documentation>
+                Client Customer Id is required if CustomerIdMode is set to CLIENT_EXTERNAL_CUSTOMER_ID.
+                Starting version V201409 ClientCustomerId will be required for all requests except
+                for {@link CustomerService#get}
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CLIENT_EMAIL_REQUIRED">
+            <annotation>
+              <documentation>
+                Client Email is required if CustomerIdMode is set to CLIENT_EXTERNAL_EMAIL_FIELD.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CLIENT_CUSTOMER_ID_INVALID">
+            <annotation>
+              <documentation>
+                Client customer Id is not a number.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CLIENT_EMAIL_INVALID">
+            <annotation>
+              <documentation>
+                Client customer Id is not a number.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CLIENT_EMAIL_FAILED_TO_AUTHENTICATE">
+            <annotation>
+              <documentation>
+                Client email is not a valid customer email.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CUSTOMER_NOT_FOUND">
+            <annotation>
+              <documentation>
+                No customer found for the customer id provided in the header.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="GOOGLE_ACCOUNT_DELETED">
+            <annotation>
+              <documentation>
+                Client's Google Account is deleted.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="GOOGLE_ACCOUNT_COOKIE_INVALID">
+            <annotation>
+              <documentation>
+                Google account login token in the cookie is invalid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FAILED_TO_AUTHENTICATE_GOOGLE_ACCOUNT">
+            <annotation>
+              <documentation>
+                problem occurred during Google account authentication.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="GOOGLE_ACCOUNT_USER_AND_ADS_USER_MISMATCH">
+            <annotation>
+              <documentation>
+                The user in the google account login token does not match the UserId in the cookie.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="LOGIN_COOKIE_REQUIRED">
+            <annotation>
+              <documentation>
+                Login cookie is required for authentication.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NOT_ADS_USER">
+            <annotation>
+              <documentation>
+                User in the cookie is not a valid Ads user.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="OAUTH_TOKEN_INVALID">
+            <annotation>
+              <documentation>
+                Oauth token in the header is not valid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="OAUTH_TOKEN_EXPIRED">
+            <annotation>
+              <documentation>
+                Oauth token in the header has expired.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="OAUTH_TOKEN_DISABLED">
+            <annotation>
+              <documentation>
+                Oauth token in the header has been disabled.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="OAUTH_TOKEN_REVOKED">
+            <annotation>
+              <documentation>
+                Oauth token in the header has been revoked.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="OAUTH_TOKEN_HEADER_INVALID">
+            <annotation>
+              <documentation>
+                Oauth token HTTP header is malformed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="LOGIN_COOKIE_INVALID">
+            <annotation>
+              <documentation>
+                Login cookie is not valid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FAILED_TO_RETRIEVE_LOGIN_COOKIE">
+            <annotation>
+              <documentation>
+                Failed to decrypt the login cookie.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="USER_ID_INVALID">
+            <annotation>
+              <documentation>
+                User Id in the header is not a valid id.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="AuthorizationError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the authorization error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNABLE_TO_AUTHORIZE">
+            <annotation>
+              <documentation>
+                Could not complete authorization due to an internal problem.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NO_ADWORDS_ACCOUNT_FOR_CUSTOMER">
+            <annotation>
+              <documentation>
+                Customer has no AdWords account.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="USER_PERMISSION_DENIED">
+            <annotation>
+              <documentation>
+                User doesn't have permission to access customer.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="EFFECTIVE_USER_PERMISSION_DENIED">
+            <annotation>
+              <documentation>
+                Effective user doesn't have permission to access this customer.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CUSTOMER_NOT_ACTIVE">
+            <annotation>
+              <documentation>
+                Access denied since the customer is not active.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="USER_HAS_READONLY_PERMISSION">
+            <annotation>
+              <documentation>
+                User has read-only permission cannot mutate.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NO_CUSTOMER_FOUND">
+            <annotation>
+              <documentation>
+                No customer found.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="SERVICE_ACCESS_DENIED">
+            <annotation>
+              <documentation>
+                Developer doesn't have permission to access service.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TWO_STEP_VERIFICATION_NOT_ENROLLED">
+            <annotation>
+              <documentation>
+                The customer has a policy to enforce 2-Step Verification, but the user is not enrolled.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ADVANCED_PROTECTION_NOT_ENROLLED">
+            <annotation>
+              <documentation>
+                The customer has a policy to enforce enrollment in the Advanced Protection Program, but
+                the user is not enrolled.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="ClientTermsError.Reason">
+        <annotation>
+          <documentation>
+            Enums for the various reasons an error can be thrown as a result of
+            ClientTerms violation.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="INCOMPLETE_SIGNUP_CURRENT_ADWORDS_TNC_NOT_AGREED">
+            <annotation>
+              <documentation>
+                Customer has not agreed to the latest AdWords Terms &amp; Conditions
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="CollectionSizeError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="TOO_FEW"/>
+          <enumeration value="TOO_MANY"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="DatabaseError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the database error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="CONCURRENT_MODIFICATION">
+            <annotation>
+              <documentation>
+                A concurrency problem occurred as two threads were attempting to modify same object.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PERMISSION_DENIED">
+            <annotation>
+              <documentation>
+                The permission was denied to access an object.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ACCESS_PROHIBITED">
+            <annotation>
+              <documentation>
+                The user's access to an object has been prohibited.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CAMPAIGN_PRODUCT_NOT_SUPPORTED">
+            <annotation>
+              <documentation>
+                Requested campaign belongs to a product that is not supported by the api.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DUPLICATE_KEY">
+            <annotation>
+              <documentation>
+                a duplicate key was detected upon insertion
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DATABASE_ERROR">
+            <annotation>
+              <documentation>
+                a database error has occurred
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                an unknown error has occurred
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="DistinctError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the validation error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="DUPLICATE_ELEMENT"/>
+          <enumeration value="DUPLICATE_TYPE"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="EntityCountLimitExceeded.Reason">
+        <annotation>
+          <documentation>
+            Limits at various levels of the account.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="ACCOUNT_LIMIT">
+            <annotation>
+              <documentation>
+                Indicates that this request would exceed the number of allowed entities for the AdWords
+                account. The exact entity type and limit being checked can be inferred from
+                {@link #accountLimitType}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CAMPAIGN_LIMIT">
+            <annotation>
+              <documentation>
+                Indicates that this request would exceed the number of allowed entities in a Campaign.
+                The exact entity type and limit being checked can be inferred from
+                {@link #accountLimitType}, and the numeric id of the Campaign involved is given by
+                {@link #enclosingId}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ADGROUP_LIMIT">
+            <annotation>
+              <documentation>
+                Indicates that this request would exceed the number of allowed entities in
+                an ad group.  The exact entity type and limit being checked can be
+                inferred from {@link #accountLimitType}, and the numeric id of the ad group
+                involved is given by {@link #enclosingId}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="AD_GROUP_AD_LIMIT">
+            <annotation>
+              <documentation>
+                Indicates that this request would exceed the number of allowed entities in an ad group ad.
+                The exact entity type and limit being checked can be inferred from {@link #accountLimitType},
+                and the {@link #enclosingId} contains the ad group id followed by the ad id, separated by a
+                single comma (,).
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="AD_GROUP_CRITERION_LIMIT">
+            <annotation>
+              <documentation>
+                Indicates that this request would exceed the number of allowed entities in an ad group
+                criterion.  The exact entity type and limit being checked can be inferred from
+                {@link #accountLimitType}, and the {@link #enclosingId} contains the ad group id followed by
+                the criterion id, separated by a single comma (,).
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="SHARED_SET_LIMIT">
+            <annotation>
+              <documentation>
+                Indicates that this request would exceed the number of allowed entities in
+                this shared set.  The exact entity type and limit being checked can be
+                inferred from {@link #accountLimitType}, and the numeric id of the shared
+                set involved is given by {@link #enclosingId}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MATCHING_FUNCTION_LIMIT">
+            <annotation>
+              <documentation>
+                Exceeds a limit related to a matching function.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                Specific limit that has been exceeded is unknown (the client may be of an
+                older version than the server).
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="EntityNotFound.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="INVALID_ID">
+            <annotation>
+              <documentation>
+                The specified id refered to an entity which either doesn't exist or is not accessible to the
+                customer. e.g. campaign belongs to another customer.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="Feed.Origin">
+        <annotation>
+          <documentation>
+            Used to Specify who manages the {@link FeedAttribute}s for the {@link Feed}.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="USER">
+            <annotation>
+              <documentation>
+                The {@link FeedAttribute}s for this {@link Feed} are managed by the user.
+                Users can add {@link FeedAttribute}s to this {@link Feed}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ADWORDS">
+            <annotation>
+              <documentation>
+                The {@link FeedAttribute}s for an ADWORDS {@link Feed} are created
+                by ADWORDS. Occasionally the attributes defined for a particular type
+                of {@link Feed} is expanded. In this case, older {@link Feed}s of this
+                type can be mutated to add the expanded attributes.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                &lt;span class="constraint Rejected"&gt;Used for return value only. An enumeration could not be processed, typically due to incompatibility with your WSDL version.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="Feed.Status">
+        <annotation>
+          <documentation>
+            Status of the Feed.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="ENABLED">
+            <annotation>
+              <documentation>
+                This Feed's data can be used in placeholders.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="REMOVED">
+            <annotation>
+              <documentation>
+                This Feed's data is not used anymore.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                Unknown status.
+                &lt;span class="constraint Rejected"&gt;Used for return value only. An enumeration could not be processed, typically due to incompatibility with your WSDL version.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="FeedAttribute.Type">
+        <annotation>
+          <documentation>
+            Possible data types.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="INT64"/>
+          <enumeration value="FLOAT"/>
+          <enumeration value="STRING"/>
+          <enumeration value="BOOLEAN"/>
+          <enumeration value="URL"/>
+          <enumeration value="DATE_TIME"/>
+          <enumeration value="INT64_LIST"/>
+          <enumeration value="FLOAT_LIST"/>
+          <enumeration value="STRING_LIST"/>
+          <enumeration value="BOOLEAN_LIST"/>
+          <enumeration value="URL_LIST"/>
+          <enumeration value="DATE_TIME_LIST"/>
+          <enumeration value="PRICE"/>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                &lt;span class="constraint Rejected"&gt;Used for return value only. An enumeration could not be processed, typically due to incompatibility with your WSDL version.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="FeedError.Reason">
+        <annotation>
+          <documentation>
+            Error reasons.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="ATTRIBUTE_NAMES_NOT_UNIQUE">
+            <annotation>
+              <documentation>
+                The names of the FeedAttributes must be unique.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ATTRIBUTES_DO_NOT_MATCH_EXISTING_ATTRIBUTES">
+            <annotation>
+              <documentation>
+                The attribute list must be an exact copy of the existing list if the attribute id's are
+                present.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_CHANGE_ORIGIN">
+            <annotation>
+              <documentation>
+                Origin can only be set during Feed creation.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_SPECIFY_USER_ORIGIN_FOR_SYSTEM_FEED">
+            <annotation>
+              <documentation>
+                Cannot specify USER origin for a system generated feed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_SPECIFY_ADWORDS_ORIGIN_FOR_NON_SYSTEM_FEED">
+            <annotation>
+              <documentation>
+                Cannot specify ADWORDS origin for a non-system generated feed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_SPECIFY_FEED_ATTRIBUTES_FOR_SYSTEM_FEED">
+            <annotation>
+              <documentation>
+                Cannot specify feed attributes for system feed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_UPDATE_FEED_ATTRIBUTES_WITH_ORIGIN_ADWORDS">
+            <annotation>
+              <documentation>
+                Cannot update FeedAttributes on feed with origin adwords.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FEED_REMOVED">
+            <annotation>
+              <documentation>
+                The given id refers to a removed Feed. Removed Feeds are immutable.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_ORIGIN_VALUE">
+            <annotation>
+              <documentation>
+                The origin of the feed is not valid for the client.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FEED_ORIGIN_IS_NOT_USER">
+            <annotation>
+              <documentation>
+                A user can only create and modify feeds with user origin.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_AUTH_TOKEN_FOR_EMAIL">
+            <annotation>
+              <documentation>
+                Invalid auth token for the given email
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_EMAIL">
+            <annotation>
+              <documentation>
+                Invalid email specified
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DUPLICATE_FEED_NAME">
+            <annotation>
+              <documentation>
+                Feed name matches that of another active Feed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_FEED_NAME">
+            <annotation>
+              <documentation>
+                Name of feed is not allowed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_OAUTH_INFO">
+            <annotation>
+              <documentation>
+                Missing OAuthInfo
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NEW_ATTRIBUTE_CANNOT_BE_PART_OF_UNIQUE_KEY">
+            <annotation>
+              <documentation>
+                New FeedAttributes must not effect the unique key.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TOO_MANY_FEED_ATTRIBUTES_FOR_FEED">
+            <annotation>
+              <documentation>
+                Too many FeedAttributes for a Feed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_BUSINESS_ACCOUNT">
+            <annotation>
+              <documentation>
+                The business account is not valid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="BUSINESS_ACCOUNT_CANNOT_ACCESS_LOCATION_ACCOUNT">
+            <annotation>
+              <documentation>
+                Business account cannot access Google My Business account.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_AFFILIATE_CHAIN_ID">
+            <annotation>
+              <documentation>
+                Invalid chain id provided for affiliate location feed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_CHANGE_SYSTEM_FEED_GENERATION_DATA_TYPE">
+            <annotation>
+              <documentation>
+                Cannot change system feed generation data type
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNSUPPORTED_AFFILIATE_LOCATION_RELATIONSHIP_TYPE">
+            <annotation>
+              <documentation>
+                Unsupported relationship type
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="IdError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="NOT_FOUND">
+            <annotation>
+              <documentation>
+                Id not found
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="InternalApiError.Reason">
+        <annotation>
+          <documentation>
+            The single reason for the internal API error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNEXPECTED_INTERNAL_API_ERROR">
+            <annotation>
+              <documentation>
+                API encountered an unexpected internal error.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TRANSIENT_ERROR">
+            <annotation>
+              <documentation>
+                A temporary error occurred during the request. Please retry.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The cause of the error is not known or only defined in newer versions.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DOWNTIME">
+            <annotation>
+              <documentation>
+                The API is currently unavailable for a planned downtime.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ERROR_GENERATING_RESPONSE">
+            <annotation>
+              <documentation>
+                Mutate succeeded but server was unable to build response. Client should not retry mutate.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="NewEntityCreationError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="CANNOT_SET_ID_FOR_ADD">
+            <annotation>
+              <documentation>
+                Do not set the id field while creating new entities.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DUPLICATE_TEMP_IDS">
+            <annotation>
+              <documentation>
+                Creating more than one entity with the same temp ID is not allowed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TEMP_ID_ENTITY_HAD_ERRORS">
+            <annotation>
+              <documentation>
+                Parent object with specified temp id failed validation, so no deep
+                validation will be done for this child entity.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="NotEmptyError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the validation error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="EMPTY_LIST"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="NullError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the validation error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="NULL_CONTENT">
+            <annotation>
+              <documentation>
+                Specified list/container must not contain any null elements
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="OperationAccessDenied.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the operation access error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="ACTION_NOT_PERMITTED">
+            <annotation>
+              <documentation>
+                Unauthorized invocation of a service's method (get, mutate, etc.)
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ADD_OPERATION_NOT_PERMITTED">
+            <annotation>
+              <documentation>
+                Unauthorized ADD operation in invoking a service's mutate method.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="REMOVE_OPERATION_NOT_PERMITTED">
+            <annotation>
+              <documentation>
+                Unauthorized REMOVE operation in invoking a service's mutate method.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="SET_OPERATION_NOT_PERMITTED">
+            <annotation>
+              <documentation>
+                Unauthorized SET operation in invoking a service's mutate method.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MUTATE_ACTION_NOT_PERMITTED_FOR_CLIENT">
+            <annotation>
+              <documentation>
+                A mutate action is not allowed on this campaign, from this client.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="OPERATION_NOT_PERMITTED_FOR_CAMPAIGN_TYPE">
+            <annotation>
+              <documentation>
+                This operation is not permitted on this campaign type
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ADD_AS_REMOVED_NOT_PERMITTED">
+            <annotation>
+              <documentation>
+                An ADD operation may not set status to REMOVED.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="OPERATION_NOT_PERMITTED_FOR_REMOVED_ENTITY">
+            <annotation>
+              <documentation>
+                This operation is not allowed because the campaign or adgroup is removed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="OPERATION_NOT_PERMITTED_FOR_AD_GROUP_TYPE">
+            <annotation>
+              <documentation>
+                This operation is not permitted on this ad group type.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The reason the invoked method or operation is prohibited is not known
+                (the client may be of an older version than the server).
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="Operator">
+        <annotation>
+          <documentation>
+            This represents an operator that may be presented to an adsapi service.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="ADD">
+            <annotation>
+              <documentation>
+                The ADD operator.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="REMOVE">
+            <annotation>
+              <documentation>
+                The REMOVE operator.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="SET">
+            <annotation>
+              <documentation>
+                The SET operator (used for updates).
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="OperatorError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the validation error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="OPERATOR_NOT_SUPPORTED"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="Predicate.Operator">
+        <annotation>
+          <documentation>
+            Defines the valid set of operators.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="EQUALS">
+            <annotation>
+              <documentation>
+                Checks if the field is equal to the given value.
+                
+                &lt;p&gt;This operator is used with integers, dates, booleans, strings,
+                enums, and sets.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NOT_EQUALS">
+            <annotation>
+              <documentation>
+                Checks if the field does not equal the given value.
+                
+                &lt;p&gt;This operator is used with integers, booleans, strings, enums,
+                and sets.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="IN">
+            <annotation>
+              <documentation>
+                Checks if the field is equal to one of the given values.
+                
+                &lt;p&gt;This operator accepts multiple operands and is used with
+                integers, booleans, strings, and enums.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NOT_IN">
+            <annotation>
+              <documentation>
+                Checks if the field does not equal any of the given values.
+                
+                &lt;p&gt;This operator accepts multiple operands and is used with
+                integers, booleans, strings, and enums.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="GREATER_THAN">
+            <annotation>
+              <documentation>
+                Checks if the field is greater than the given value.
+                
+                &lt;p&gt;This operator is used with numbers and dates.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="GREATER_THAN_EQUALS">
+            <annotation>
+              <documentation>
+                Checks if the field is greater or equal to the given value.
+                
+                &lt;p&gt;This operator is used with numbers and dates.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="LESS_THAN">
+            <annotation>
+              <documentation>
+                Checks if the field is less than the given value.
+                
+                &lt;p&gt;This operator is used with numbers and dates.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="LESS_THAN_EQUALS">
+            <annotation>
+              <documentation>
+                Checks if the field is less or equal to than the given value.
+                
+                &lt;p&gt;This operator is used with numbers and dates.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="STARTS_WITH">
+            <annotation>
+              <documentation>
+                Checks if the field starts with the given value.
+                
+                &lt;p&gt;This operator is used with strings.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="STARTS_WITH_IGNORE_CASE">
+            <annotation>
+              <documentation>
+                Checks if the field starts with the given value, ignoring case.
+                
+                &lt;p&gt;This operator is used with strings.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CONTAINS">
+            <annotation>
+              <documentation>
+                Checks if the field contains the given value as a substring.
+                
+                &lt;p&gt;This operator is used with strings.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CONTAINS_IGNORE_CASE">
+            <annotation>
+              <documentation>
+                Checks if the field contains the given value as a substring, ignoring
+                case.
+                
+                &lt;p&gt;This operator is used with strings.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DOES_NOT_CONTAIN">
+            <annotation>
+              <documentation>
+                Checks if the field does not contain the given value as a substring.
+                
+                &lt;p&gt;This operator is used with strings.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DOES_NOT_CONTAIN_IGNORE_CASE">
+            <annotation>
+              <documentation>
+                Checks if the field does not contain the given value as a substring,
+                ignoring case.
+                
+                &lt;p&gt;This operator is used with strings.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CONTAINS_ANY">
+            <annotation>
+              <documentation>
+                Checks if the field contains &lt;em&gt;any&lt;/em&gt; of the given values.
+                
+                &lt;p&gt;This operator accepts multiple values and is used on sets of numbers
+                or strings.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CONTAINS_ALL">
+            <annotation>
+              <documentation>
+                Checks if the field contains &lt;em&gt;all&lt;/em&gt; of the given values.
+                
+                &lt;p&gt;This operator accepts multiple values and is used on sets of numbers
+                or strings.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CONTAINS_NONE">
+            <annotation>
+              <documentation>
+                Checks if the field contains &lt;em&gt;none&lt;/em&gt; of the given values.
+                
+                &lt;p&gt;This operator accepts multiple values and is used on sets of numbers
+                or strings.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                &lt;span class="constraint Rejected"&gt;Used for return value only. An enumeration could not be processed, typically due to incompatibility with your WSDL version.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="QueryError.Reason">
+        <annotation>
+          <documentation>
+            The reason for the query error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="PARSING_FAILED">
+            <annotation>
+              <documentation>
+                Exception that happens when trying to parse a query that doesn't match the AWQL grammar.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_QUERY">
+            <annotation>
+              <documentation>
+                The provided query is an empty string.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_SELECT_CLAUSE">
+            <annotation>
+              <documentation>
+                The query does not contain the required SELECT clause or it is not in the
+                correct location.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_FROM_CLAUSE">
+            <annotation>
+              <documentation>
+                The query does not contain the required FROM clause or it is not in the correct location.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_SELECT_CLAUSE">
+            <annotation>
+              <documentation>
+                The SELECT clause could not be parsed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_FROM_CLAUSE">
+            <annotation>
+              <documentation>
+                The FROM clause could not be parsed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_WHERE_CLAUSE">
+            <annotation>
+              <documentation>
+                The WHERE clause could not be parsed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_ORDER_BY_CLAUSE">
+            <annotation>
+              <documentation>
+                The ORDER BY clause could not be parsed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_LIMIT_CLAUSE">
+            <annotation>
+              <documentation>
+                The LIMIT clause could not be parsed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_START_INDEX_IN_LIMIT_CLAUSE">
+            <annotation>
+              <documentation>
+                The startIndex in the LIMIT clause does not contain a valid integer.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_PAGE_SIZE_IN_LIMIT_CLAUSE">
+            <annotation>
+              <documentation>
+                The pageSize in the LIMIT clause does not contain a valid integer.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_DURING_CLAUSE">
+            <annotation>
+              <documentation>
+                The DURING clause could not be parsed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_MIN_DATE_IN_DURING_CLAUSE">
+            <annotation>
+              <documentation>
+                The minimum date in the DURING clause is not a valid date in YYYYMMDD format.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_MAX_DATE_IN_DURING_CLAUSE">
+            <annotation>
+              <documentation>
+                The maximum date in the DURING clause is not a valid date in YYYYMMDD format.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MAX_LESS_THAN_MIN_IN_DURING_CLAUSE">
+            <annotation>
+              <documentation>
+                The minimum date in the DURING is after the maximum date.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="VALIDATION_FAILED">
+            <annotation>
+              <documentation>
+                The query matched the grammar, but is invalid in some way such as using a service that
+                isn't supported.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="QuotaCheckError.Reason">
+        <annotation>
+          <documentation>
+            Enums for all the reasons an error can be thrown to the user during
+            billing quota checks.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="INVALID_TOKEN_HEADER">
+            <annotation>
+              <documentation>
+                Customer passed in an invalid token in the header.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ACCOUNT_DELINQUENT">
+            <annotation>
+              <documentation>
+                Customer is marked delinquent.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ACCOUNT_INACCESSIBLE">
+            <annotation>
+              <documentation>
+                Customer is a fraudulent.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ACCOUNT_INACTIVE">
+            <annotation>
+              <documentation>
+                Inactive Account.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INCOMPLETE_SIGNUP">
+            <annotation>
+              <documentation>
+                Signup not complete
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DEVELOPER_TOKEN_NOT_APPROVED">
+            <annotation>
+              <documentation>
+                Developer token is not approved for production access, and the customer
+                is attempting to access a production account.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TERMS_AND_CONDITIONS_NOT_SIGNED">
+            <annotation>
+              <documentation>
+                Terms and conditions are not signed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MONTHLY_BUDGET_REACHED">
+            <annotation>
+              <documentation>
+                Monthly budget quota reached.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="QUOTA_EXCEEDED">
+            <annotation>
+              <documentation>
+                Monthly budget quota exceeded.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="RangeError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="TOO_LOW"/>
+          <enumeration value="TOO_HIGH"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="RateExceededError.Reason">
+        <annotation>
+          <documentation>
+            The reason for the rate exceeded error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="RATE_EXCEEDED">
+            <annotation>
+              <documentation>
+                Rate exceeded.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="ReadOnlyError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="READ_ONLY"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="RejectedError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNKNOWN_VALUE">
+            <annotation>
+              <documentation>
+                Unknown value encountered
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="RelationshipType">
+        <annotation>
+          <documentation>
+            Relationship type affiliate locations have with the advertiser.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                &lt;span class="constraint Rejected"&gt;Used for return value only. An enumeration could not be processed, typically due to incompatibility with your WSDL version.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="GENERAL_RETAILERS">
+            <annotation>
+              <documentation>
+                General retailer relationship
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="RequestError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                Error reason is unknown.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_INPUT">
+            <annotation>
+              <documentation>
+                Invalid input.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNSUPPORTED_VERSION">
+            <annotation>
+              <documentation>
+                The api version in the request has been discontinued. Please update
+                to the new AdWords API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="RequiredError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="REQUIRED">
+            <annotation>
+              <documentation>
+                Missing required field.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="SelectorError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="INVALID_FIELD_NAME">
+            <annotation>
+              <documentation>
+                The field name is not valid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_FIELDS">
+            <annotation>
+              <documentation>
+                The list of fields is null or empty.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_PREDICATES">
+            <annotation>
+              <documentation>
+                The list of predicates is null or empty.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="OPERATOR_DOES_NOT_SUPPORT_MULTIPLE_VALUES">
+            <annotation>
+              <documentation>
+                Predicate operator does not support multiple values. Multiple values are
+                supported only for {@link Predicate.Operator#IN} and {@link Predicate.Operator#NOT_IN}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_PREDICATE_ENUM_VALUE">
+            <annotation>
+              <documentation>
+                The predicate enum value is not valid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_PREDICATE_OPERATOR">
+            <annotation>
+              <documentation>
+                The predicate operator is empty.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_PREDICATE_VALUES">
+            <annotation>
+              <documentation>
+                The predicate values are empty.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_PREDICATE_FIELD_NAME">
+            <annotation>
+              <documentation>
+                The predicate field name is not valid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_PREDICATE_OPERATOR">
+            <annotation>
+              <documentation>
+                The predicate operator is not valid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_FIELD_SELECTION">
+            <annotation>
+              <documentation>
+                Invalid selection of fields.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_PREDICATE_VALUE">
+            <annotation>
+              <documentation>
+                The predicate value is not valid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_SORT_FIELD_NAME">
+            <annotation>
+              <documentation>
+                The sort field name is not valid or the field is not sortable.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="SELECTOR_ERROR">
+            <annotation>
+              <documentation>
+                Standard error.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FILTER_BY_DATE_RANGE_NOT_SUPPORTED">
+            <annotation>
+              <documentation>
+                Filtering by date range is not supported.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="START_INDEX_IS_TOO_HIGH">
+            <annotation>
+              <documentation>
+                Selector paging start index is too high.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TOO_MANY_PREDICATE_VALUES">
+            <annotation>
+              <documentation>
+                The values list in a predicate was too long.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN_ERROR">
+            <annotation>
+              <documentation>
+                &lt;span class="constraint Rejected"&gt;Used for return value only. An enumeration could not be processed, typically due to incompatibility with your WSDL version.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="SizeLimitError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for Ad Scheduling errors.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="REQUEST_SIZE_LIMIT_EXCEEDED">
+            <annotation>
+              <documentation>
+                The number of entries in the request exceeds the system limit.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="RESPONSE_SIZE_LIMIT_EXCEEDED">
+            <annotation>
+              <documentation>
+                The number of entries in the response exceeds the system limit.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INTERNAL_STORAGE_ERROR">
+            <annotation>
+              <documentation>
+                The account is too large to load.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                &lt;span class="constraint Rejected"&gt;Used for return value only. An enumeration could not be processed, typically due to incompatibility with your WSDL version.&lt;/span&gt;
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="SortOrder">
+        <annotation>
+          <documentation>
+            Possible orders of sorting.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="ASCENDING"/>
+          <enumeration value="DESCENDING"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="StringFormatError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNKNOWN"/>
+          <enumeration value="ILLEGAL_CHARS">
+            <annotation>
+              <documentation>
+                The input string value contains disallowed characters.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_FORMAT">
+            <annotation>
+              <documentation>
+                The input string value is invalid for the associated field.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="StringLengthError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="TOO_SHORT"/>
+          <enumeration value="TOO_LONG"/>
+        </restriction>
+      </simpleType>
+      <element name="get">
+        <annotation>
+          <documentation>
+            Returns a list of Feeds that meet the selector criteria.
+            
+            @param selector Determines which Feeds to return. If empty all
+            Feeds are returned.
+            @return The list of Feeds.
+            @throws ApiException Indicates a problem with the request.
+          </documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="selector" type="tns:Selector">
+              <annotation>
+                <documentation>
+                  &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+                </documentation>
+              </annotation>
+            </element>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="getResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="rval" type="tns:FeedPage"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ApiExceptionFault" type="tns:ApiException">
+        <annotation>
+          <documentation>
+            A fault element of type ApiException.
+          </documentation>
+        </annotation>
+      </element>
+      <element name="mutate">
+        <annotation>
+          <documentation>
+            Add, remove, and set Feeds.
+            
+            @param operations The operations to apply.
+            @return The resulting Feeds.
+            @throws ApiException Indicates a problem with the request.
+          </documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" minOccurs="0"
+              name="operations" type="tns:FeedOperation">
+              <annotation>
+                <documentation>
+                  &lt;span class="constraint ContentsNotNull"&gt;This field must not contain {@code null} elements.&lt;/span&gt;
+                  &lt;span class="constraint DistinctIds"&gt;Elements in this field must have distinct IDs for following {@link Operator}s : SET, REMOVE.&lt;/span&gt;
+                  &lt;span class="constraint NotEmpty"&gt;This field must contain at least one element.&lt;/span&gt;
+                  &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+                </documentation>
+              </annotation>
+            </element>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="mutateResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="rval" type="tns:FeedReturnValue"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="query">
+        <annotation>
+          <documentation>
+            Returns the list of Feed that match the query.
+            
+            @param query The SQL-like AWQL query string.
+            @returns A list of Feed.
+            @throws ApiException if problems occur while parsing the query or fetching Feed.
+          </documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="query" type="xsd:string">
+              <annotation>
+                <documentation>
+                  &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+                </documentation>
+              </annotation>
+            </element>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="queryResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="rval" type="tns:FeedPage"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="RequestHeader" type="tns:SoapHeader"/>
+      <element name="ResponseHeader" type="tns:SoapResponseHeader"/>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="RequestHeader">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"/>
+  </wsdl:message>
+  <wsdl:message name="ResponseHeader">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"/>
+  </wsdl:message>
+  <wsdl:message name="getRequest">
+    <wsdl:part element="tns:get" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getResponse">
+    <wsdl:part element="tns:getResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ApiException">
+    <wsdl:part element="tns:ApiExceptionFault" name="ApiException"/>
+  </wsdl:message>
+  <wsdl:message name="mutateRequest">
+    <wsdl:part element="tns:mutate" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="mutateResponse">
+    <wsdl:part element="tns:mutateResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="queryRequest">
+    <wsdl:part element="tns:query" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="queryResponse">
+    <wsdl:part element="tns:queryResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="FeedServiceInterface">
+    <wsdl:documentation>
+      Service used to get and mutate Feeds.
+    </wsdl:documentation>
+    <wsdl:operation name="get">
+      <wsdl:documentation>
+        Returns a list of Feeds that meet the selector criteria.
+        
+        @param selector Determines which Feeds to return. If empty all
+        Feeds are returned.
+        @return The list of Feeds.
+        @throws ApiException Indicates a problem with the request.
+      </wsdl:documentation>
+      <wsdl:input message="tns:getRequest" name="getRequest"/>
+      <wsdl:output message="tns:getResponse" name="getResponse"/>
+      <wsdl:fault message="tns:ApiException" name="ApiException"/>
+    </wsdl:operation>
+    <wsdl:operation name="mutate">
+      <wsdl:documentation>
+        Add, remove, and set Feeds.
+        
+        @param operations The operations to apply.
+        @return The resulting Feeds.
+        @throws ApiException Indicates a problem with the request.
+      </wsdl:documentation>
+      <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
+      <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>
+      <wsdl:fault message="tns:ApiException" name="ApiException"/>
+    </wsdl:operation>
+    <wsdl:operation name="query">
+      <wsdl:documentation>
+        Returns the list of Feed that match the query.
+        
+        @param query The SQL-like AWQL query string.
+        @returns A list of Feed.
+        @throws ApiException if problems occur while parsing the query or fetching Feed.
+      </wsdl:documentation>
+      <wsdl:input message="tns:queryRequest" name="queryRequest"/>
+      <wsdl:output message="tns:queryResponse" name="queryResponse"/>
+      <wsdl:fault message="tns:ApiException" name="ApiException"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="FeedServiceSoapBinding" type="tns:FeedServiceInterface">
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="get">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getRequest">
+        <wsdlsoap:header message="tns:RequestHeader"
+          part="RequestHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getResponse">
+        <wsdlsoap:header message="tns:ResponseHeader"
+          part="ResponseHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ApiException">
+        <wsdlsoap:fault name="ApiException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="mutate">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="mutateRequest">
+        <wsdlsoap:header message="tns:RequestHeader"
+          part="RequestHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="mutateResponse">
+        <wsdlsoap:header message="tns:ResponseHeader"
+          part="ResponseHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ApiException">
+        <wsdlsoap:fault name="ApiException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="query">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="queryRequest">
+        <wsdlsoap:header message="tns:RequestHeader"
+          part="RequestHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="queryResponse">
+        <wsdlsoap:header message="tns:ResponseHeader"
+          part="ResponseHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ApiException">
+        <wsdlsoap:fault name="ApiException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FeedService">
+    <wsdl:port binding="tns:FeedServiceSoapBinding" name="FeedServiceInterfacePort">
+      <wsdlsoap:address location="https://adwords.google.com/api/adwords/cm/v201809/FeedService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

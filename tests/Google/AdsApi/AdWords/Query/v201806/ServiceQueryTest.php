@@ -243,20 +243,66 @@ class ServiceQueryTest extends TestCase
         $this->assertTrue($query->hasNext($page));
     }
 
-    private function createMockPageWithBidLandscapes(
+    /**
+     * Creates mock bid landscape page with entries.
+     *
+     * @param string $pageClass class name for mocking a page
+     * @param array $entries entries of the mock page
+     * @return mixed a mock bid landscape page with entries
+     */
+    private function createMockBidLandscapePage(
         $pageClass,
+        $entries
+    ) {
+        $page = $this->getMockBuilder($pageClass)->getMock();
+        $page->method('getEntries')->willReturn($entries);
+        return $page;
+    }
+
+    private function createMockBidLandscapeEntries(
         $entryClass,
         $countOfLandscapePoints
     ) {
         $mockEntry = $this->getMockBuilder($entryClass)->getMock();
         $mockEntry->method('getLandscapePoints')
             ->willReturn(range(1, $countOfLandscapePoints));
+        return [$mockEntry];
+    }
 
-        $page = $this->getMockBuilder($pageClass)->getMock();
-        $page->method('getEntries')
-            ->willReturn([$mockEntry]);
+    /**
+     * @covers Google\AdsApi\AdWords\Query\v201806\ServiceQuery::hasNext
+     */
+    public function testHasNextWithNullAdGroupBidLandscapePage()
+    {
+        $builder = new ServiceQueryBuilder();
+        $query = $builder->select(['AdGroupId'])
+            ->orderByDesc('StartDate')
+            ->limit(0, 50)
+            ->build();
 
-        return $page;
+        $page = $this->createMockBidLandscapePage(
+            AdGroupBidLandscapePage::class,
+            null
+        );
+        $this->assertFalse($query->hasNext($page));
+    }
+
+    /**
+     * @covers Google\AdsApi\AdWords\Query\v201806\ServiceQuery::hasNext
+     */
+    public function testHasNextWithEmptyAdGroupBidLandscapePage()
+    {
+        $builder = new ServiceQueryBuilder();
+        $query = $builder->select(['AdGroupId'])
+            ->orderByDesc('StartDate')
+            ->limit(0, 50)
+            ->build();
+
+        $page = $this->createMockBidLandscapePage(
+            AdGroupBidLandscapePage::class,
+            []
+        );
+        $this->assertFalse($query->hasNext($page));
     }
 
     /**
@@ -270,10 +316,13 @@ class ServiceQueryTest extends TestCase
             ->limit(0, 50)
             ->build();
 
-        $page = $this->createMockPageWithBidLandscapes(
-            AdGroupBidLandscapePage::class,
+        $mockEntries = $this->createMockBidLandscapeEntries(
             AdGroupBidLandscape::class,
             49
+        );
+        $page = $this->createMockBidLandscapePage(
+            AdGroupBidLandscapePage::class,
+            $mockEntries
         );
         $this->assertFalse($query->hasNext($page));
     }
@@ -289,12 +338,51 @@ class ServiceQueryTest extends TestCase
             ->limit(0, 50)
             ->build();
 
-        $page = $this->createMockPageWithBidLandscapes(
-            AdGroupBidLandscapePage::class,
+        $mockEntries = $this->createMockBidLandscapeEntries(
             AdGroupBidLandscape::class,
             50
         );
+        $page = $this->createMockBidLandscapePage(
+            AdGroupBidLandscapePage::class,
+            $mockEntries
+        );
         $this->assertTrue($query->hasNext($page));
+    }
+
+    /**
+     * @covers Google\AdsApi\AdWords\Query\v201806\ServiceQuery::hasNext
+     */
+    public function testHasNextWithNullCriterionBidLandscapePage()
+    {
+        $builder = new ServiceQueryBuilder();
+        $query = $builder->select(['CriterionId'])
+            ->orderByDesc('StartDate')
+            ->limit(0, 50)
+            ->build();
+
+        $page = $this->createMockBidLandscapePage(
+            CriterionBidLandscapePage::class,
+            null
+        );
+        $this->assertFalse($query->hasNext($page));
+    }
+
+    /**
+     * @covers Google\AdsApi\AdWords\Query\v201806\ServiceQuery::hasNext
+     */
+    public function testHasNextWithEmptyCriterionBidLandscapePage()
+    {
+        $builder = new ServiceQueryBuilder();
+        $query = $builder->select(['CriterionId'])
+            ->orderByDesc('StartDate')
+            ->limit(0, 50)
+            ->build();
+
+        $page = $this->createMockBidLandscapePage(
+            CriterionBidLandscapePage::class,
+            []
+        );
+        $this->assertFalse($query->hasNext($page));
     }
 
     /**
@@ -308,10 +396,13 @@ class ServiceQueryTest extends TestCase
             ->limit(0, 50)
             ->build();
 
-        $page = $this->createMockPageWithBidLandscapes(
-            CriterionBidLandscapePage::class,
+        $mockEntries = $this->createMockBidLandscapeEntries(
             CriterionBidLandscape::class,
             49
+        );
+        $page = $this->createMockBidLandscapePage(
+            CriterionBidLandscapePage::class,
+            $mockEntries
         );
         $this->assertFalse($query->hasNext($page));
     }
@@ -327,10 +418,13 @@ class ServiceQueryTest extends TestCase
             ->limit(0, 50)
             ->build();
 
-        $page = $this->createMockPageWithBidLandscapes(
-            CriterionBidLandscapePage::class,
+        $mockEntries = $this->createMockBidLandscapeEntries(
             CriterionBidLandscape::class,
             50
+        );
+        $page = $this->createMockBidLandscapePage(
+            CriterionBidLandscapePage::class,
+            $mockEntries
         );
         $this->assertTrue($query->hasNext($page));
     }
@@ -402,10 +496,13 @@ class ServiceQueryTest extends TestCase
             ->limit(3, 50)
             ->build();
 
-        $page = $this->createMockPageWithBidLandscapes(
-            AdGroupBidLandscapePage::class,
+        $mockEntries = $this->createMockBidLandscapeEntries(
             AdGroupBidLandscape::class,
             50
+        );
+        $page = $this->createMockBidLandscapePage(
+            AdGroupBidLandscapePage::class,
+            $mockEntries
         );
 
         $query->nextPage($page);

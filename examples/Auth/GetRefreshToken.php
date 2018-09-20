@@ -59,9 +59,9 @@ class GetRefreshToken
     public static function main()
     {
         $PRODUCTS = [
-            ['AdWords', self::ADWORDS_API_SCOPE],
-            ['Ad Manager', self::AD_MANAGER_API_SCOPE],
-            ['AdWords and Ad Manager', self::ADWORDS_API_SCOPE . ' '
+            ['AdWords API', self::ADWORDS_API_SCOPE],
+            ['Ad Manager API', self::AD_MANAGER_API_SCOPE],
+            ['AdWords API and Ad Manager API', self::ADWORDS_API_SCOPE . ' '
                 . self::AD_MANAGER_API_SCOPE]
         ];
 
@@ -73,23 +73,23 @@ class GetRefreshToken
         print 'Enter your OAuth2 client secret here: ';
         $clientSecret = trim(fgets($stdin));
 
-        print "Select the ads API you're using: [0] AdWords [1] Ad Manager [2] "
-            . "Both\n";
+        print "Select the API you're using: [0] AdWords API [1] Ad Manager API "
+            . "[2] Both" . PHP_EOL;
         $api = trim(fgets($stdin));
 
         while (!is_numeric($api)
             || !(strval(intval($api)) === $api)
             || !(intval($api) >= 0 && intval($api) <= 2)) {
-            print "Please enter a valid number for the ads API you're using: " .
-                "[0] AdWords [1] Ad Manager [2] Both\n";
+            print "Please enter a valid number for the API you're using: " .
+                "[0] AdWords API [1] Ad Manager API [2] Both" . PHP_EOL;
             $api = trim(fgets($stdin));
         }
         $api = intval($api);
 
         if ($api === 2) {
             print '[OPTIONAL] enter any additional OAuth2 scopes as a space '
-                . 'delimited string here (the AdWords and Ad Manager scopes are'
-                . ' already included): ';
+                . 'delimited string here (the AdWords API and Ad Manager API '
+                . 'scopes are already included): ';
         } else {
             printf(
                 '[OPTIONAL] enter any additional OAuth2 scopes as a space '

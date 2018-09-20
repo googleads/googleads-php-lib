@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
   <soap:Header>
-    <ResponseHeader xmlns="https://adwords.google.com/api/adwords/cm/v201806">
+    <ResponseHeader xmlns="https://adwords.google.com/api/adwords/cm/v201809">
       <requestId>123abc456xyz</requestId>
       <serviceName>CampaignService</serviceName>
       <methodName>get</methodName>
@@ -10,7 +10,7 @@
     </ResponseHeader>
   </soap:Header>
   <soap:Body>
-    <getResponse xmlns="https://adwords.google.com/api/adwords/cm/v201806">
+    <getResponse xmlns="https://adwords.google.com/api/adwords/cm/v201809">
       <rval>
         <totalNumEntries>2</totalNumEntries>
         <Page.Type>CampaignPage</Page.Type>
