@@ -1,2 +1,27 @@
+### Composer ###
+composer.phar
 /vendor/
-/composer.lock
+
+# Ignore a library lock file https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies
+composer.lock
+
+
+### macOS ###
+*.DS_Store
+.AppleDouble
+.LSOverride
+
+
+### PhpStorm ###
+.idea/
+
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history
+
+

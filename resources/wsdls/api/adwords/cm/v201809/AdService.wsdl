@@ -1050,7 +1050,7 @@
             <annotation>
               <documentation>
                 The value this parameter should be mapped to. It should be null if isRemove is true.
-                &lt;span class="constraint StringLength"&gt;The length of this string should be between 0 and 200, inclusive, in UTF-8 bytes, (trimmed).&lt;/span&gt;
+                &lt;span class="constraint StringLength"&gt;The length of this string should be between 0 and 250, inclusive, in UTF-8 bytes, (trimmed).&lt;/span&gt;
               </documentation>
             </annotation>
           </element>

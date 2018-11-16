@@ -1,3 +1,19 @@
+### 38.0.0
+
+##### AdWords
+
+*   Added Smart Shopping ad example (v201809).
+*   Fixed [issue #541](https://github.com/googleads/googleads-php-lib/issues/541).
+
+##### Ad Manager
+
+*   Added support for v201811.
+*   Removed support for v201711.
+*   Removed examples for v201802.
+*   Updated the `Util/v201811/AdManagerDateTimes.php` class for renaming the
+function `setTimeZoneID` to `setTimeZoneId`.
+*   Discontinue the `GetAllContentMetadataKeyHierarchies.php` example.
+
 ### 37.1.0
 
 ##### AdWords

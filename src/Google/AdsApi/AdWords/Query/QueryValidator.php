@@ -123,23 +123,44 @@ final class QueryValidator
         $clauseKeywords,
         $containAll
     ) {
-        // The AWQL string may contain the clause opening keywords in literal
-        // strings.
+        // The AWQL string may contain the clause opening keywords in the
+        // selectable field names.
+        //
+        // For example:
+        //     SELECT ConversionTracker.excludeFromBidding
+        //
+        // Redacting all keywords embedded in words before scanning for the
+        // keywords will avoid false positive results.
+        // Redacted example:
+        //     SELECT ConversionTracker.redacted_literal_string
+
+        // Adding each clause opening keywords to the list of patterns for
+        // redacting.
+        $patterns = array_map(function ($keyword) {
+            return "/\w+$keyword\w+/i";
+        }, $clauseKeywords);
+
+        // The AWQL string may also contain the clause opening keywords in
+        // literal strings.
         //
         // For example:
         //     SELECT Id
         //     WHERE Name = 'THE LIMIT INC'
         //
-        // This function concerns about the LIMIT keyword outside of all literal
-        // strings. Redacting all literal strings before scanning for the
-        // keywords will avoid false positive results.
+        // This function concerns about the LIMIT keyword outside of all
+        // literal strings. Redacting all literal strings before scanning
+        // for the keywords will avoid false positive results.
         //
         // Redacted example:
         //     SELECT Id
         //     WHERE Name = redacted_literal_string
 
+        // Prepending the literal string to the list of patterns for
+        // prioritizing this operation over other patterns.
+        array_unshift($patterns, self::PATTERN_LITERAL_STRING);
+
         $awqlStringWithoutLiteralStrings = preg_replace(
-            self::PATTERN_LITERAL_STRING,
+            $patterns,
             self::REDACTED_LITERAL_STRING,
             $awqlString
         );

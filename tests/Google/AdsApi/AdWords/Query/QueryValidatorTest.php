@@ -243,6 +243,18 @@ class QueryValidatorTest extends TestCase
     }
 
     /**
+     * @covers Google\AdsApi\AdWords\Query\QueryValidator::validateServiceQuery
+     */
+    public function testValidateServiceQueryWithFromKeywordInFieldName()
+    {
+        $validationResult = QueryValidator::validateServiceQuery(
+            'SELECT ConversionTracker.excludeFromBidding'
+        );
+        $this->assertTrue($validationResult->isPassed());
+        $this->assertFalse($validationResult->isFailed());
+    }
+
+    /**
      * @covers Google\AdsApi\AdWords\Query\QueryValidator::validateReportQuery
      */
     public function testValidateReportQuery()

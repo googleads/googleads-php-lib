@@ -1241,7 +1241,6 @@
                   <documentation>
                     ID of the custom affinity.
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "CustomAffinityId".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
-                    &lt;span class="constraint InRange"&gt;This field must be greater than or equal to 1.&lt;/span&gt;
                     &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
                   </documentation>
                 </annotation>
@@ -1266,7 +1265,6 @@
                   <documentation>
                     ID of the custom intent.
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "CustomIntentId".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
-                    &lt;span class="constraint InRange"&gt;This field must be greater than or equal to 1.&lt;/span&gt;
                     &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
                   </documentation>
                 </annotation>
@@ -1295,7 +1293,7 @@
             <annotation>
               <documentation>
                 The value this parameter should be mapped to. It should be null if isRemove is true.
-                &lt;span class="constraint StringLength"&gt;The length of this string should be between 0 and 200, inclusive, in UTF-8 bytes, (trimmed).&lt;/span&gt;
+                &lt;span class="constraint StringLength"&gt;The length of this string should be between 0 and 250, inclusive, in UTF-8 bytes, (trimmed).&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -1875,8 +1873,9 @@
                     The target return on ad spend (ROAS). This is optional. If set, the bid strategy will
                     maximize revenue while averaging the target return on ad spend. If the target ROAS is high,
                     the bid strategy may not be able to spend the full budget. If the target ROAS is not set, the
-                    bid strategy will aim to achieve the highest possible ROAS for the budget.
-                    &lt;span class="constraint InRange"&gt;This field must be between 0.0 and 1.7976931348623157E308, inclusive.&lt;/span&gt;
+                    bid strategy will aim to achieve the highest possible ROAS for the budget. Use {@code 0.0} to
+                    clear an existing value.
+                    &lt;span class="constraint InRange"&gt;This field must be between 0.01 and 1000.0, inclusive.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>

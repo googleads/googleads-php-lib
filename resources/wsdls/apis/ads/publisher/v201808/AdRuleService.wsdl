@@ -4547,8 +4547,7 @@
     <wsdl:documentation>
       Provides methods for creating, updating and retrieving {@link AdRule} objects.
       
-      &lt;p&gt;Ad rules contain data that the ad server uses to generate a playlist of
-      video ads.
+      &lt;p&gt;Ad rules contain data that the ad server uses to generate a playlist of video ads.
     </wsdl:documentation>
     <wsdl:operation name="createAdRules">
       <wsdl:documentation>

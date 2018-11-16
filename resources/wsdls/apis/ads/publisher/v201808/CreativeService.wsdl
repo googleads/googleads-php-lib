@@ -3476,7 +3476,7 @@
               <element maxOccurs="1" minOccurs="0" name="duration" type="xsd:int">
                 <annotation>
                   <documentation>
-                    The duration of the VAST ad in milliseconds. This attribute is optional and defaults to 0.
+                    The duration of the VAST ad in milliseconds. This attribute is required.
                   </documentation>
                 </annotation>
               </element>

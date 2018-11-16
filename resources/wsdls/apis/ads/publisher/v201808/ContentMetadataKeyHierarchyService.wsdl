@@ -203,7 +203,7 @@
         <annotation>
           <documentation>
             A {@code ContentMetadataKeyHierarchy} defines a hierarchical relationship between content
-            metadata keys.
+            metadata keys. This is deprecated and will be removed as of V201811.
           </documentation>
         </annotation>
         <sequence>
@@ -262,7 +262,8 @@
           <documentation>
             A {@code ContentMetadataKeyHierarchyLevel} represents one level in a {@link
             ContentMetadataKeyHierarchy}. The level consists of a {@link CustomTargetingKey} and an integer
-            that represents the level's position in the hierarchy.
+            that represents the level's position in the hierarchy. This is deprecated and will be removed
+            as of V201811.
           </documentation>
         </annotation>
         <sequence>
@@ -288,7 +289,8 @@
       <complexType name="ContentMetadataKeyHierarchyPage">
         <annotation>
           <documentation>
-            Captures a page of {@link ContentMetadataKeyHierarchy} objects.
+            Captures a page of {@link ContentMetadataKeyHierarchy} objects. This is deprecated and will be
+            removed as of V201811.
           </documentation>
         </annotation>
         <sequence>
@@ -1744,7 +1746,7 @@
   <wsdl:portType name="ContentMetadataKeyHierarchyServiceInterface">
     <wsdl:documentation>
       Provides methods for creating, updating, and retrieving {@link ContentMetadataKeyHierarchy}
-      objects.
+      objects. This is deprecated and will be removed as of V201811.
     </wsdl:documentation>
     <wsdl:operation name="createContentMetadataKeyHierarchies">
       <wsdl:documentation>

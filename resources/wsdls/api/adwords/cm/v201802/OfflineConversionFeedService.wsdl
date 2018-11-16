@@ -562,9 +562,6 @@
                 
                 &lt;p&gt;An ATTRIBUTED_CREDIT_SET_FOR_NON_EXTERNALLY_ATTRIBUTED_CONVERSION_ACTION error will be
                 returned if this field is used with a non-externally attributed conversion action.
-                
-                &lt;p&gt;At this time, the externally attributed conversion import feature and this field are
-                available to whitelisted AdWords accounts only.
                 &lt;span class="constraint InRange"&gt;This field must be between 0 and 1, inclusive.&lt;/span&gt;
               </documentation>
             </annotation>
@@ -578,9 +575,6 @@
                 
                 &lt;p&gt;An ATTRIBUTION_MODEL_SET_FOR_NON_EXTERNALLY_ATTRIBUTED_CONVERSION_ACTION error will be
                 returned if this field is used with a non-externally attributed conversion action.
-                
-                &lt;p&gt;At this time, the externally attributed conversion import feature and this field are
-                available to whitelisted AdWords accounts only.
                 &lt;span class="constraint StringLength"&gt;The length of this string should be between 1 and 100, inclusive, (trimmed).&lt;/span&gt;
               </documentation>
             </annotation>

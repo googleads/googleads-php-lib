@@ -627,7 +627,7 @@
             <annotation>
               <documentation>
                 The value this parameter should be mapped to. It should be null if isRemove is true.
-                &lt;span class="constraint StringLength"&gt;The length of this string should be between 0 and 200, inclusive, in UTF-8 bytes, (trimmed).&lt;/span&gt;
+                &lt;span class="constraint StringLength"&gt;The length of this string should be between 0 and 250, inclusive, in UTF-8 bytes, (trimmed).&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -1540,8 +1540,7 @@
                 name="messagePhoneNumber" type="xsd:string">
                 <annotation>
                   <documentation>
-                    The advertiser's phone number the message will be sent to.
-                    &lt;span class="constraint StringLength"&gt;This string must not be empty, (trimmed).&lt;/span&gt;
+                    The advertiser's phone number the message will be sent to. This string must not be empty.
                   </documentation>
                 </annotation>
               </element>
