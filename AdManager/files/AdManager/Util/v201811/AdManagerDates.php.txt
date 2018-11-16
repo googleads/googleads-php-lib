@@ -15,9 +15,9 @@
  * limitations under the License.
  */
 
-namespace Google\AdsApi\AdManager\Util\v201711;
+namespace Google\AdsApi\AdManager\Util\v201811;
 
-use Google\AdsApi\AdManager\v201711\Date;
+use Google\AdsApi\AdManager\v201811\Date;
 
 /**
  * Static utility methods for working with Ad Manager `Date` objects.

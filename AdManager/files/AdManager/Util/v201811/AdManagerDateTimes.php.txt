@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-namespace Google\AdsApi\AdManager\Util\v201711;
+namespace Google\AdsApi\AdManager\Util\v201811;
 
 use DateTime;
 use DateTimeZone;
-use Google\AdsApi\AdManager\v201711\Date;
-use Google\AdsApi\AdManager\v201711\DateTime as AdManagerDateTime;
+use Google\AdsApi\AdManager\v201811\Date;
+use Google\AdsApi\AdManager\v201811\DateTime as AdManagerDateTime;
 
 /**
  * Static utility methods for working with Ad Manager `DateTime` objects.
@@ -50,7 +50,7 @@ final class AdManagerDateTimes
         $result->setHour(intval($dateTime->format('H')));
         $result->setMinute(intval($dateTime->format('i')));
         $result->setSecond(intval($dateTime->format('s')));
-        $result->setTimeZoneID($dateTime->format('e'));
+        $result->setTimeZoneId($dateTime->format('e'));
 
         return $result;
     }

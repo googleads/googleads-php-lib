@@ -15,14 +15,14 @@
  * limitations under the License.
  */
 
-namespace Google\AdsApi\AdManager\Util\v201711;
+namespace Google\AdsApi\AdManager\Util\v201811;
 
 use Google\AdsApi\Common\AdsGuzzleHttpClientFactory;
 use Google\AdsApi\Common\GuzzleHttpClientFactory;
 use Google\AdsApi\AdManager\AdManagerGuzzleLogMessageFormatterProvider;
 use Google\AdsApi\AdManager\AdManagerHeaderHandler;
-use Google\AdsApi\AdManager\v201711\ReportJobStatus;
-use Google\AdsApi\AdManager\v201711\ReportService;
+use Google\AdsApi\AdManager\v201811\ReportJobStatus;
+use Google\AdsApi\AdManager\v201811\ReportService;
 use GuzzleHttp\Client;
 use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\StreamInterface;
