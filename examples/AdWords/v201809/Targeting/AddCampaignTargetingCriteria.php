@@ -44,7 +44,7 @@ use Google\AdsApi\Common\OAuth2TokenBuilder;
  * This example adds various types of targeting criteria to a campaign.
  * To get campaigns, run BasicOperations/GetCampaigns.php.
  */
-class AddCampaignTargetingCrtieria
+class AddCampaignTargetingCriteria
 {
 
     const CAMPAIGN_ID = 'INSERT_CAMPAIGN_ID_HERE';
