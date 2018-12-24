@@ -26,7 +26,7 @@ final class ConnectionSettings
     // The regular expression for matching proxy URLs in the forms of
     // "protocol://user:pass@host:port", where the protocol, user and pass are
     // optional.
-    const PROXY_REGEX_PATTERN = '|(?<protocol>\S*://)?(?:(?<user>[^\s:]*)(?::(?<pass>\S*))?@)?(?<host>[^\s:]+)(?::(?<port>\d*))?|';
+    const PROXY_REGEX_PATTERN = '/(?<protocol>\S*:\/\/)?(?:(?<user>[^\s:]*)(?::(?<pass>\S*))?@)?(?<host>[^\s:]+)(?::(?<port>\d*))?/';
 
     private $proxyUrl;
     private $isReportingGzipEnabled;
