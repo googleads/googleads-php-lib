@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2018 Google Inc. All Rights Reserved -->
+<!-- Copyright 2019 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://adwords.google.com/api/adwords/cm/v201809"
   xmlns:tns="https://adwords.google.com/api/adwords/cm/v201809"
@@ -304,7 +304,7 @@
 &lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, MANUAL_CPM, TARGET_SPEND, TARGET_CPA, TARGET_ROAS, MAXIMIZE_CONVERSIONS for campaign channel type DISPLAY.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, TARGET_CPA for campaign channel type DISPLAY with campaign channel subtype DISPLAY_MOBILE_APP.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, MAXIMIZE_CONVERSIONS, PAGE_ONE_PROMOTED, TARGET_CPA, TARGET_OUTRANK_SHARE, TARGET_ROAS, TARGET_SPEND for campaign channel subtype SEARCH_MOBILE_APP.&lt;/span&gt;
-&lt;span class="constraint CampaignType"&gt;This field may only be set to the values: TARGET_CPA, TARGET_ROAS for campaign channel type MULTI_CHANNEL.&lt;/span&gt;
+&lt;span class="constraint CampaignType"&gt;This field may only be set to the values: TARGET_CPA, TARGET_ROAS, MAXIMIZE_CONVERSIONS for campaign channel type MULTI_CHANNEL with campaign channel subtype UNIVERSAL_APP_CAMPAIGN.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may only be set to the values: TARGET_ROAS, TARGET_CPA, MAXIMIZE_CONVERSIONS for campaign channel type DISPLAY with campaign channel subtype DISPLAY_SMART_CAMPAIGN.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, TARGET_CPA, TARGET_ROAS, MAXIMIZE_CONVERSIONS for campaign channel type DISPLAY with campaign channel subtype DISPLAY_GMAIL_AD.&lt;/span&gt;
               </documentation>

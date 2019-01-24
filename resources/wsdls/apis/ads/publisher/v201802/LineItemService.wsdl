@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2018 Google Inc. All Rights Reserved -->
+<!-- Copyright 2019 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v201802"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v201802"
@@ -4238,9 +4238,9 @@
           <element maxOccurs="1" minOccurs="0" name="videoBumperType" type="tns:VideoBumperType">
             <annotation>
               <documentation>
-                The video bumper type to target.  To target a video position or a pod position,
-                this value must be null.  To target a bumper position this value must be populated
-                and the line item must have a bumper type.
+                The video bumper type to target. To target a video position or a pod position, this value must
+                be null. To target a bumper position this value must be populated and the line item must have a
+                bumper type. To target a subpod, this value must be null.
               </documentation>
             </annotation>
           </element>
@@ -4248,9 +4248,9 @@
             name="videoPositionWithinPod" type="tns:VideoPositionWithinPod">
             <annotation>
               <documentation>
-                The video position within a pod to target.  To target a video position or a bumper
-                position, this value must be null.  To target a position within a pod this value must
-                be populated.
+                The video position within a pod to target. To target a video position or a bumper position,
+                this value must be null. To target a position within a pod this value must be populated. To
+                target a {@link Subpod}, this value must be null.
               </documentation>
             </annotation>
           </element>

@@ -54,6 +54,11 @@ class GetAllNetworks
         // authentication credentials.
         $networks = $networkService->getAllNetworks();
 
+        if (empty($networks)) {
+            printf('No accessible networks found.' . PHP_EOL);
+            return;
+        }
+
         // Print out some information for each network.
         foreach ($networks as $i => $network) {
             printf(

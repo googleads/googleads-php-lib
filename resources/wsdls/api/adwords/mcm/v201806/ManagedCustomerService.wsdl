@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2018 Google Inc. All Rights Reserved -->
+<!-- Copyright 2019 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://adwords.google.com/api/adwords/mcm/v201806"
   xmlns:tns="https://adwords.google.com/api/adwords/mcm/v201806"

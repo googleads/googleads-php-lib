@@ -1,3 +1,21 @@
+### 39.0.0
+
+##### AdWords
+
+*   Removed support and examples for v201802. See deprecation
+    schedule at: https://developers.google.com/adwords/api/docs/sunset-dates
+
+##### Ad Manager
+
+*   Added CreateVideoLineItems example for v201811.
+*   Fixed null pointer exception when the `getAllNetworks` function returns
+    null in the `GetAllNetworks` examples for v201811, v201808 and v201805.
+
+##### Common
+
+*   Updated GuzzleLogMessageHandler to support both logging response body.
+*   Updated `composer.json` to require the minimum PHP version of 5.6.
+
 ### 38.0.0
 
 ##### AdWords
