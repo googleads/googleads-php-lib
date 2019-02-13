@@ -19,7 +19,9 @@ namespace Google\AdsApi\Common;
 
 use Exception;
 use Google\AdsApi\Common\Util\LogMessageScrubbers;
+use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\MessageFormatter;
+use GuzzleHttp\Psr7\CachingStream;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -29,10 +31,10 @@ use Psr\Http\Message\ResponseInterface;
 final class GuzzleLogMessageFormatter
 {
 
-    // String operators are not supported in PHP of versions earlier than 5.6,
-    // so this is initialized in the constructor instead.
-    private static $SUMMARY_MESSAGE_FORMAT;
-    private static $DETAILED_MESSAGE_FORMAT = "Request:\n{request}\n\nResponse:\n%s\n--------\nError:\n{error}\n";
+    private static $SUMMARY_MESSAGE_FORMAT
+        = '{req_header_User-Agent} "{method} {target} HTTP/{version}" Status: {code} ';
+    private static $DETAILED_MESSAGE_FORMAT
+        = "Request:\n{request}\n\nResponse:\n%s\n--------\nError:\n{error}\n";
     private static $REDACTED_DATA_MESSAGE = 'REDACTED DATA';
 
     private $requestHttpHeadersToScrub;
@@ -66,9 +68,6 @@ final class GuzzleLogMessageFormatter
         MessageFormatter $summaryMessageFormatter = null,
         MessageFormatter $detailedMessageFormatter = null
     ) {
-        self::$SUMMARY_MESSAGE_FORMAT =
-            '{req_header_User-Agent} "{method} {target} HTTP/{version}" Status: {code} ';
-
         $this->requestHttpHeadersToScrub = $requestHttpHeadersToScrub;
         $this->additionalSummaryInfo = $additionalSummaryInfo;
         $this->shouldLogResponsePayload = $shouldLogResponsePayload;
@@ -112,7 +111,59 @@ final class GuzzleLogMessageFormatter
     }
 
     /**
-     * Formats this log message as a detailed message containing HTTP request and
+     * Formats a detailed message based on the specified HTTP request and
+     * response, and errors, if present. This function also replaces the
+     * original response with a new one with a seekable stream, if the original
+     * one contains forward-only stream.
+     *
+     * @param RequestInterface $request the HTTP request
+     * @param ResponseInterface|null &$response the HTTP response containing the
+     *     body to be formatted. This original response with forward-only body
+     *     stream will be replaced with a new response with a seekable stream
+     * @param Exception|null &$error the HTTP error whose body would be modified
+     *     to use a seekable stream
+     * @return string the formatted detailed log message
+     */
+    public function formatDetailed(
+        RequestInterface $request,
+        ResponseInterface &$response = null,
+        Exception &$error = null
+    ) {
+        $needRewind = $this->shouldLogResponsePayload
+            && !is_null($response) && !is_null($response->getBody());
+        // Create a new response with its body as a rewindable caching stream.
+        // This is needed when we want to both log the response body
+        // and use it in other cases, e.g. creating an exception with this
+        // response body, reading the content of the downloaded report.
+        if ($needRewind && !$response->getBody()->isSeekable()) {
+            $response =
+                $response->withBody(new CachingStream($response->getBody()));
+
+            if (!is_null($error)) {
+                // Creates a new RequestException with the response whose stream
+                // can be rewound.
+                $error = RequestException::create(
+                    $request,
+                    $response,
+                    $error
+                );
+            }
+        }
+
+        $detailedLog =
+            $this->scrubAndFormatDetailedMessage($request, $response, $error);
+
+        // Rewind the response stream so it can be used again, e.g. reading
+        // the content of the downloaded report.
+        if ($needRewind) {
+            \GuzzleHttp\Psr7\rewind_body($response);
+        }
+
+        return $detailedLog;
+    }
+
+    /**
+     * Scrubs and formats a detailed message containing HTTP request and
      * response, and errors if exist.
      *
      * @param RequestInterface $request the HTTP request
@@ -120,7 +171,7 @@ final class GuzzleLogMessageFormatter
      * @param Exception $error the HTTP error
      * @return string the formatted detailed log message
      */
-    public function formatDetailed(
+    private function scrubAndFormatDetailedMessage(
         RequestInterface $request,
         ResponseInterface $response = null,
         Exception $error = null
@@ -144,4 +195,3 @@ final class GuzzleLogMessageFormatter
         );
     }
 }
-

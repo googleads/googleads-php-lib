@@ -15,21 +15,21 @@
  * limitations under the License.
  */
 
-namespace Google\AdsApi\AdManager\Util\v201802;
+namespace Google\AdsApi\AdManager\Util\v201902;
 
-use Google\AdsApi\AdManager\v201802\BooleanValue;
-use Google\AdsApi\AdManager\v201802\Date;
-use Google\AdsApi\AdManager\v201802\DateTime as AdManagerDateTime;
-use Google\AdsApi\AdManager\v201802\DateTimeValue;
-use Google\AdsApi\AdManager\v201802\DateValue;
-use Google\AdsApi\AdManager\v201802\NumberValue;
-use Google\AdsApi\AdManager\v201802\ResultSet;
-use Google\AdsApi\AdManager\v201802\Row;
-use Google\AdsApi\AdManager\v201802\SetValue;
-use Google\AdsApi\AdManager\v201802\Targeting;
-use Google\AdsApi\AdManager\v201802\TargetingValue;
-use Google\AdsApi\AdManager\v201802\TextValue;
-use Google\AdsApi\AdManager\v201802\Value;
+use Google\AdsApi\AdManager\v201902\BooleanValue;
+use Google\AdsApi\AdManager\v201902\Date;
+use Google\AdsApi\AdManager\v201902\DateTime as AdManagerDateTime;
+use Google\AdsApi\AdManager\v201902\DateTimeValue;
+use Google\AdsApi\AdManager\v201902\DateValue;
+use Google\AdsApi\AdManager\v201902\NumberValue;
+use Google\AdsApi\AdManager\v201902\ResultSet;
+use Google\AdsApi\AdManager\v201902\Row;
+use Google\AdsApi\AdManager\v201902\SetValue;
+use Google\AdsApi\AdManager\v201902\Targeting;
+use Google\AdsApi\AdManager\v201902\TargetingValue;
+use Google\AdsApi\AdManager\v201902\TextValue;
+use Google\AdsApi\AdManager\v201902\Value;
 use InvalidArgumentException;
 
 /**

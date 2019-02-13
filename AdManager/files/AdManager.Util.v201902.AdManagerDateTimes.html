@@ -21,54 +21,54 @@
     <script src="../js/jquery.smooth-scroll.js"></script>
     <script src="../js/prism.min.js"></script>
     <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
-    <script type="text/javascript">
-    function loadExternalCodeSnippets() {
-        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
-            var src = pre.getAttribute('data-src');
-            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
-            var language = 'php';
+        <script type="text/javascript">
+        function loadExternalCodeSnippets() {
+            Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+                var src = pre.getAttribute('data-src');
+                var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+                var language = 'php';
 
-            var code = document.createElement('code');
-            code.className = 'language-' + language;
+                var code = document.createElement('code');
+                code.className = 'language-' + language;
 
-            pre.textContent = '';
+                pre.textContent = '';
 
-            code.textContent = 'Loading…';
+                code.textContent = 'Loading…';
 
-            pre.appendChild(code);
+                pre.appendChild(code);
 
-            var xhr = new XMLHttpRequest();
+                var xhr = new XMLHttpRequest();
 
-            xhr.open('GET', src, true);
+                xhr.open('GET', src, true);
 
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4) {
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
 
-                    if (xhr.status < 400 && xhr.responseText) {
-                        code.textContent = xhr.responseText;
+                        if (xhr.status < 400 && xhr.responseText) {
+                            code.textContent = xhr.responseText;
 
-                        Prism.highlightElement(code);
+                            Prism.highlightElement(code);
+                        }
+                        else if (xhr.status >= 400) {
+                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                        }
+                        else {
+                            code.textContent = '✖ Error: File does not exist or is empty';
+                        }
                     }
-                    else if (xhr.status >= 400) {
-                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
-                    }
-                    else {
-                        code.textContent = '✖ Error: File does not exist or is empty';
-                    }
-                }
-            };
+                };
 
-            xhr.send(null);
+                xhr.send(null);
+            });
+        }
+
+        $(document).ready(function(){
+            loadExternalCodeSnippets();
         });
-    }
-
-    $(document).ready(function(){
-        loadExternalCodeSnippets();
-    });
-    $('#source-view').on('shown', function () {
-        loadExternalCodeSnippets();
-    })
-</script>
+        $('#source-view').on('shown', function () {
+            loadExternalCodeSnippets();
+        })
+    </script>
 
     <link rel="shortcut icon" href="../images/favicon.ico"/>
     <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
@@ -144,78 +144,55 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-931558806"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1296547712"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-931558806" class="accordion-body collapse in">
+            <div id="namespace-1296547712" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-586672383"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-420659842"></a>
                                 <a href="../namespaces/Google.html" style="margin-left: 30px; padding-left: 0">Google</a>
             </div>
-            <div id="namespace-586672383" class="accordion-body collapse ">
+            <div id="namespace-420659842" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-487395443"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-95708257"></a>
                                 <a href="../namespaces/Google.AdsApi.html" style="margin-left: 30px; padding-left: 0">AdsApi</a>
             </div>
-            <div id="namespace-487395443" class="accordion-body collapse ">
+            <div id="namespace-95708257" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1888754483"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1883966300"></a>
                                 <a href="../namespaces/Google.AdsApi.AdManager.html" style="margin-left: 30px; padding-left: 0">AdManager</a>
             </div>
-            <div id="namespace-1888754483" class="accordion-body collapse ">
+            <div id="namespace-1883966300" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-261588714"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-478822753"></a>
                                 <a href="../namespaces/Google.AdsApi.AdManager.Util.html" style="margin-left: 30px; padding-left: 0">Util</a>
             </div>
-            <div id="namespace-261588714" class="accordion-body collapse ">
+            <div id="namespace-478822753" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-622446677"></a>
-                                <a href="../namespaces/Google.AdsApi.AdManager.Util.v201802.html" style="margin-left: 30px; padding-left: 0">v201802</a>
-            </div>
-            <div id="namespace-622446677" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201802.AdManagerDates.html">AdManagerDates</a></li>
-                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201802.AdManagerDateTimes.html">AdManagerDateTimes</a></li>
-                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201802.CsvFiles.html">CsvFiles</a></li>
-                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201802.Pql.html">Pql</a></li>
-                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201802.ReportDownloader.html">ReportDownloader</a></li>
-                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201802.StatementBuilder.html">StatementBuilder</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1752727073"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1278358455"></a>
                                 <a href="../namespaces/Google.AdsApi.AdManager.Util.v201805.html" style="margin-left: 30px; padding-left: 0">v201805</a>
             </div>
-            <div id="namespace-1752727073" class="accordion-body collapse ">
+            <div id="namespace-1278358455" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -235,10 +212,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1760693430"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1184581582"></a>
                                 <a href="../namespaces/Google.AdsApi.AdManager.Util.v201808.html" style="margin-left: 30px; padding-left: 0">v201808</a>
             </div>
-            <div id="namespace-1760693430" class="accordion-body collapse ">
+            <div id="namespace-1184581582" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -258,10 +235,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-662219201"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1925773151"></a>
                                 <a href="../namespaces/Google.AdsApi.AdManager.Util.v201811.html" style="margin-left: 30px; padding-left: 0">v201811</a>
             </div>
-            <div id="namespace-662219201" class="accordion-body collapse ">
+            <div id="namespace-1925773151" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -272,6 +249,29 @@
                                                     <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201811.Pql.html">Pql</a></li>
                                                     <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201811.ReportDownloader.html">ReportDownloader</a></li>
                                                     <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201811.StatementBuilder.html">StatementBuilder</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-626423150"></a>
+                                <a href="../namespaces/Google.AdsApi.AdManager.Util.v201902.html" style="margin-left: 30px; padding-left: 0">v201902</a>
+            </div>
+            <div id="namespace-626423150" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201902.AdManagerDates.html">AdManagerDates</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201902.AdManagerDateTimes.html">AdManagerDateTimes</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201902.CsvFiles.html">CsvFiles</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201902.Pql.html">Pql</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201902.ReportDownloader.html">ReportDownloader</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201902.StatementBuilder.html">StatementBuilder</a></li>
                                             </ul>
                 </div>
             </div>
@@ -304,19 +304,19 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-404349222"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-686917485"></a>
                                 <a href="../namespaces/Google.AdsApi.Common.html" style="margin-left: 30px; padding-left: 0">Common</a>
             </div>
-            <div id="namespace-404349222" class="accordion-body collapse ">
+            <div id="namespace-686917485" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1094156496"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-831988336"></a>
                                 <a href="../namespaces/Google.AdsApi.Common.Testing.html" style="margin-left: 30px; padding-left: 0">Testing</a>
             </div>
-            <div id="namespace-1094156496" class="accordion-body collapse ">
+            <div id="namespace-831988336" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -337,10 +337,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1558340783"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1684624684"></a>
                                 <a href="../namespaces/Google.AdsApi.Common.Util.html" style="margin-left: 30px; padding-left: 0">Util</a>
             </div>
-            <div id="namespace-1558340783" class="accordion-body collapse ">
+            <div id="namespace-1684624684" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -423,303 +423,61 @@
     <section class="row-fluid">
         <div class="span10 offset2">
             <div class="row-fluid">
-                <div class="span8 content class">
+                <div class="span8 content file">
                     <nav>
-                                                <a href="../namespaces/Google.AdsApi.AdManager.Util.v201802.html">\Google\AdsApi\AdManager\Util\v201802</a> <i class="icon-level-up"></i>
-                                            </nav>
+                                                                    </nav>
+
                     <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+                    <h1><small>AdManager/Util/v201902</small>AdManagerDateTimes.php</h1>
+                    <p><em>Copyright 2017 Google Inc. All Rights Reserved.</em></p>
+                    <p>Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at</p>
+<pre><code>http://www.apache.org/licenses/LICENSE-2.0</code></pre>
+<p>Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.</p>
 
-                    <h1><small>\Google\AdsApi\AdManager\Util\v201802</small>AdManagerDateTimes</h1>
-                    <p><em>Static utility methods for working with Ad Manager `DateTime` objects.</em></p>
                     
                     
-                                        
-                    <section id="summary">
-                        <h2>Summary</h2>
-                        <section class="row-fluid heading">
-                            <section class="span4">
-                                <a href="#methods">Methods</a>
-                            </section>
-                            <section class="span4">
-                                <a href="#properties">Properties</a>
-                            </section>
-                            <section class="span4">
-                                <a href="#constants">Constants</a>
-                            </section>
-                        </section>
-                        <section class="row-fluid public">
-                            <section class="span4">
-                                                                    <a href="../classes/Google.AdsApi.AdManager.Util.v201802.AdManagerDateTimes.html#method_fromDateTime" class="">fromDateTime()</a><br />
-                                                                    <a href="../classes/Google.AdsApi.AdManager.Util.v201802.AdManagerDateTimes.html#method_fromDateTimeString" class="">fromDateTimeString()</a><br />
-                                                                    <a href="../classes/Google.AdsApi.AdManager.Util.v201802.AdManagerDateTimes.html#method_toDateTime" class="">toDateTime()</a><br />
-                                                                    <a href="../classes/Google.AdsApi.AdManager.Util.v201802.AdManagerDateTimes.html#method_toDateTimeString" class="">toDateTimeString()</a><br />
-                                                            </section>
-                            <section class="span4">
-                                                                    <em>No public properties found</em>
-                                                            </section>
-                            <section class="span4">
-                                                                    <em>No constants found</em>
-                                                            </section>
-                        </section>
-                        <section class="row-fluid protected">
-                            <section class="span4">
-                                                                    <em>No protected methods found</em>
-                                                            </section>
-                            <section class="span4">
-                                                                    <em>No protected properties found</em>
-                                                            </section>
-                            <section class="span4">
-                                <em>N/A</em>
-                            </section>
-                        </section>
-                        <section class="row-fluid private">
-                            <section class="span4">
-                                                                    <a href="../classes/Google.AdsApi.AdManager.Util.v201802.AdManagerDateTimes.html#method___construct" class="">__construct()</a><br />
-                                                            </section>
-                            <section class="span4">
-                                                                    <em>No private properties found</em>
-                                                            </section>
-                            <section class="span4">
-                                <em>N/A</em>
-                            </section>
-                        </section>
-                    </section>
-                </div>
+                                        <h2>Classes</h2>
+                    <table class="table table-hover">
+                                            <tr>
+                            <td><a href="../classes/Google.AdsApi.AdManager.Util.v201902.AdManagerDateTimes.html">AdManagerDateTimes</a></td>
+                            <td><em>Static utility methods for working with Ad Manager `DateTime` objects.</em></td>
+                        </tr>
+                                        </table>
+                                    </div>
+
                 <aside class="span4 detailsbar">
-                                                                <span class="label label-info">final</span>
-                    
-                    
                     <dl>
-                        <dt>File</dt>
-                            <dd><a href="../files/AdManager.Util.v201802.AdManagerDateTimes.html"><div class="path-wrapper">AdManager/Util/v201802/AdManagerDateTimes.php</div></a></dd>
-                                                <dt>Package</dt>
-                            <dd><div class="namespace-wrapper">Default</div></dd>
-                                                <dt>Class hierarchy</dt>
-                            <dd class="hierarchy">
-                                                                                                                                                                    <div class="namespace-wrapper">\Google\AdsApi\AdManager\Util\v201802\AdManagerDateTimes</div>
-                            </dd>
-
+                                                    <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\Default</div></dd>
                         
                         
-                        
-                        
-                                                                        </dl>
+                    </dl>
                     <h2>Tags</h2>
                     <table class="table table-condensed">
-                                            <tr><td colspan="2"><em>None found</em></td></tr>
-                                        </table>
+                                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                                            </table>
+
                 </aside>
             </div>
 
-                        
-                        
-                                    <a id="methods" name="methods"></a>
-            <div class="row-fluid">
-                <div class="span8 content class"><h2>Methods</h2></div>
-                <aside class="span4 detailsbar"></aside>
-            </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_fromDateTime" name="method_fromDateTime" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">fromDateTime()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">fromDateTime(\DateTime  <span class="argument">$dateTime</span>) : \Google\AdsApi\AdManager\v201802\DateTime</pre>
-                <p><em>Creates a Ad Manager date time from a PHP date time.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>\DateTime</td>
-                                <td>$dateTime </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    \Google\AdsApi\AdManager\v201802\DateTime
-                                    				
-                            </article>
+            
+            
         </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                            <span class="label label-info">static</span>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_fromDateTimeString" name="method_fromDateTimeString" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">fromDateTimeString()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">fromDateTimeString(string  <span class="argument">$dateTime</span>) : \Google\AdsApi\AdManager\v201802\DateTime</pre>
-                <p><em>Creates a Ad Manager date time from a date time string in ISO 8601
-format.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$dateTime </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    \Google\AdsApi\AdManager\v201802\DateTime
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                            <span class="label label-info">static</span>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_toDateTime" name="method_toDateTime" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">toDateTime()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">toDateTime(\Google\AdsApi\AdManager\v201802\DateTime  <span class="argument">$adManagerDateTime</span>) : \DateTime</pre>
-                <p><em>Converts a Ad Manager date time to a PHP date time.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>\Google\AdsApi\AdManager\v201802\DateTime</td>
-                                <td>$adManagerDateTime </td>
-                                <td></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    \DateTime
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                            <span class="label label-info">static</span>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_toDateTimeString" name="method_toDateTimeString" class="anchor"></a>
-            <article class="method">
-                <h3 class="public ">toDateTimeString()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">toDateTimeString(\Google\AdsApi\AdManager\v201802\DateTime  <span class="argument">$adManagerDateTime</span>, null|string  <span class="argument">$timeZoneId = null</span>) : string</pre>
-                <p><em>Returns an ISO 8601 string representation of the specified Ad Manager
-date time.</em></p>
-                <p>Optionally, you may specify the timezone you want to view the date time
-in. By default the time zone from the Ad Manager date time is used.
-For example, if the Ad Manager date time holds <code>11/29/2016 21:05:30 in GMT</code>, the result from this method with Europe/Paris as the new time
-zone, would be <code>11/29/2016 22:05:30 in CET</code>. This is useful for
-displaying Ad Manager date times in your network's time zone.
-For example:</p>
-<pre><code>$timeZoneId = $networkService-&gt;getCurrentNetwork()-&gt;getTimeZone();
-$dateTimeString = AdManagerDateTimes::toDateTimeString(
-    $adManagerDateTime,
-    $timeZoneId
-);</code></pre>
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>\Google\AdsApi\AdManager\v201802\DateTime</td>
-                                <td>$adManagerDateTime </td>
-                                <td></td>
-                            </tr>
-                                                    <tr>
-                                <td>null|string</td>
-                                <td>$timeZoneId </td>
-                                <td><p>optional</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    string
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                            <span class="label label-info">static</span>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                                                    <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method___construct" name="method___construct" class="anchor"></a>
-            <article class="method">
-                <h3 class="private ">__construct()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">__construct() </pre>
-                <p><em></em></p>
-                
-
-                
-                
-                				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                            </table>
-        </aside>
-    </div>
-
-                                    </div>
     </section>
 
     <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="source-view-label">AdManagerDateTimes.php</h3>
+            <h3 id="source-view-label"></h3>
         </div>
         <div class="modal-body">
-            <pre data-src="../files/AdManager/Util/v201802/AdManagerDateTimes.php.txt" class="language-php line-numbers"></pre>
+            <pre data-src="../files/AdManager/Util/v201902/AdManagerDateTimes.php.txt" class="language-php line-numbers"></pre>
         </div>
     </div>
 
@@ -760,7 +518,7 @@ $dateTimeString = AdManagerDateTimes::toDateTimeString(
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on January 24th, 2019 at 08:41.
+                    on February 13th, 2019 at 04:16.
                 </section>
             </section>
         </section>

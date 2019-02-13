@@ -35,24 +35,24 @@
 <text text-anchor="middle" x="833" y="-1859.2" font-family="Times,serif" font-size="11.00" fill="gray">Util</text>
 </g>
 <g id="clust6" class="cluster">
-<title>cluster_\Google\AdsApi\AdManager\Util\v201802</title>
+<title>cluster_\Google\AdsApi\AdManager\Util\v201805</title>
 <path fill="none" stroke="gray" d="M761,-1502C761,-1502 905,-1502 905,-1502 911,-1502 917,-1508 917,-1514 917,-1514 917,-1832 917,-1832 917,-1838 911,-1844 905,-1844 905,-1844 761,-1844 761,-1844 755,-1844 749,-1838 749,-1832 749,-1832 749,-1514 749,-1514 749,-1508 755,-1502 761,-1502"/>
-<text text-anchor="middle" x="833" y="-1831.2" font-family="Times,serif" font-size="11.00" fill="gray">v201802</text>
+<text text-anchor="middle" x="833" y="-1831.2" font-family="Times,serif" font-size="11.00" fill="gray">v201805</text>
 </g>
 <g id="clust7" class="cluster">
-<title>cluster_\Google\AdsApi\AdManager\Util\v201805</title>
+<title>cluster_\Google\AdsApi\AdManager\Util\v201808</title>
 <path fill="none" stroke="gray" d="M761,-1152C761,-1152 905,-1152 905,-1152 911,-1152 917,-1158 917,-1164 917,-1164 917,-1482 917,-1482 917,-1488 911,-1494 905,-1494 905,-1494 761,-1494 761,-1494 755,-1494 749,-1488 749,-1482 749,-1482 749,-1164 749,-1164 749,-1158 755,-1152 761,-1152"/>
-<text text-anchor="middle" x="833" y="-1481.2" font-family="Times,serif" font-size="11.00" fill="gray">v201805</text>
+<text text-anchor="middle" x="833" y="-1481.2" font-family="Times,serif" font-size="11.00" fill="gray">v201808</text>
 </g>
 <g id="clust8" class="cluster">
-<title>cluster_\Google\AdsApi\AdManager\Util\v201808</title>
+<title>cluster_\Google\AdsApi\AdManager\Util\v201811</title>
 <path fill="none" stroke="gray" d="M761,-802C761,-802 905,-802 905,-802 911,-802 917,-808 917,-814 917,-814 917,-1132 917,-1132 917,-1138 911,-1144 905,-1144 905,-1144 761,-1144 761,-1144 755,-1144 749,-1138 749,-1132 749,-1132 749,-814 749,-814 749,-808 755,-802 761,-802"/>
-<text text-anchor="middle" x="833" y="-1131.2" font-family="Times,serif" font-size="11.00" fill="gray">v201808</text>
+<text text-anchor="middle" x="833" y="-1131.2" font-family="Times,serif" font-size="11.00" fill="gray">v201811</text>
 </g>
 <g id="clust9" class="cluster">
-<title>cluster_\Google\AdsApi\AdManager\Util\v201811</title>
+<title>cluster_\Google\AdsApi\AdManager\Util\v201902</title>
 <path fill="none" stroke="gray" d="M761,-452C761,-452 905,-452 905,-452 911,-452 917,-458 917,-464 917,-464 917,-782 917,-782 917,-788 911,-794 905,-794 905,-794 761,-794 761,-794 755,-794 749,-788 749,-782 749,-782 749,-464 749,-464 749,-458 755,-452 761,-452"/>
-<text text-anchor="middle" x="833" y="-781.2" font-family="Times,serif" font-size="11.00" fill="gray">v201811</text>
+<text text-anchor="middle" x="833" y="-781.2" font-family="Times,serif" font-size="11.00" fill="gray">v201902</text>
 </g>
 <g id="clust10" class="cluster">
 <title>cluster_\Google\AdsApi\Common</title>
@@ -69,147 +69,147 @@
 <path fill="none" stroke="gray" d="M376,-1418C376,-1418 550,-1418 550,-1418 556,-1418 562,-1424 562,-1430 562,-1430 562,-1802 562,-1802 562,-1808 556,-1814 550,-1814 550,-1814 376,-1814 376,-1814 370,-1814 364,-1808 364,-1802 364,-1802 364,-1430 364,-1430 364,-1424 370,-1418 376,-1418"/>
 <text text-anchor="middle" x="463" y="-1801.2" font-family="Times,serif" font-size="11.00" fill="gray">Util</text>
 </g>
-<!-- \\Google\\AdsApi\\AdManager\\Util\\v201802\\AdManagerDateTimes -->
+<!-- \\Google\\AdsApi\\AdManager\\Util\\v201805\\AdManagerDateTimes -->
 <g id="node1" class="node">
-<title>\\Google\\AdsApi\\AdManager\\Util\\v201802\\AdManagerDateTimes</title>
+<title>\\Google\\AdsApi\\AdManager\\Util\\v201805\\AdManagerDateTimes</title>
 <polygon fill="none" stroke="black" points="909,-1816 757,-1816 757,-1780 909,-1780 909,-1816"/>
 <text text-anchor="middle" x="833" y="-1795.2" font-family="Courier,monospace" font-size="11.00">AdManagerDateTimes</text>
 </g>
-<!-- \\Google\\AdsApi\\AdManager\\Util\\v201802\\AdManagerDates -->
+<!-- \\Google\\AdsApi\\AdManager\\Util\\v201805\\AdManagerDates -->
 <g id="node2" class="node">
-<title>\\Google\\AdsApi\\AdManager\\Util\\v201802\\AdManagerDates</title>
+<title>\\Google\\AdsApi\\AdManager\\Util\\v201805\\AdManagerDates</title>
 <polygon fill="none" stroke="black" points="894,-1762 772,-1762 772,-1726 894,-1726 894,-1762"/>
 <text text-anchor="middle" x="833" y="-1741.2" font-family="Courier,monospace" font-size="11.00">AdManagerDates</text>
 </g>
-<!-- \\Google\\AdsApi\\AdManager\\Util\\v201802\\CsvFiles -->
+<!-- \\Google\\AdsApi\\AdManager\\Util\\v201805\\CsvFiles -->
 <g id="node3" class="node">
-<title>\\Google\\AdsApi\\AdManager\\Util\\v201802\\CsvFiles</title>
+<title>\\Google\\AdsApi\\AdManager\\Util\\v201805\\CsvFiles</title>
 <polygon fill="none" stroke="black" points="871.5,-1708 794.5,-1708 794.5,-1672 871.5,-1672 871.5,-1708"/>
 <text text-anchor="middle" x="833" y="-1687.2" font-family="Courier,monospace" font-size="11.00">CsvFiles</text>
 </g>
-<!-- \\Google\\AdsApi\\AdManager\\Util\\v201802\\Pql -->
+<!-- \\Google\\AdsApi\\AdManager\\Util\\v201805\\Pql -->
 <g id="node4" class="node">
-<title>\\Google\\AdsApi\\AdManager\\Util\\v201802\\Pql</title>
+<title>\\Google\\AdsApi\\AdManager\\Util\\v201805\\Pql</title>
 <polygon fill="none" stroke="black" points="860,-1654 806,-1654 806,-1618 860,-1618 860,-1654"/>
 <text text-anchor="middle" x="833" y="-1633.2" font-family="Courier,monospace" font-size="11.00">Pql</text>
 </g>
-<!-- \\Google\\AdsApi\\AdManager\\Util\\v201802\\ReportDownloader -->
+<!-- \\Google\\AdsApi\\AdManager\\Util\\v201805\\ReportDownloader -->
 <g id="node5" class="node">
-<title>\\Google\\AdsApi\\AdManager\\Util\\v201802\\ReportDownloader</title>
+<title>\\Google\\AdsApi\\AdManager\\Util\\v201805\\ReportDownloader</title>
 <polygon fill="none" stroke="black" points="901.5,-1600 764.5,-1600 764.5,-1564 901.5,-1564 901.5,-1600"/>
 <text text-anchor="middle" x="833" y="-1579.2" font-family="Courier,monospace" font-size="11.00">ReportDownloader</text>
 </g>
-<!-- \\Google\\AdsApi\\AdManager\\Util\\v201802\\StatementBuilder -->
+<!-- \\Google\\AdsApi\\AdManager\\Util\\v201805\\StatementBuilder -->
 <g id="node6" class="node">
-<title>\\Google\\AdsApi\\AdManager\\Util\\v201802\\StatementBuilder</title>
+<title>\\Google\\AdsApi\\AdManager\\Util\\v201805\\StatementBuilder</title>
 <polygon fill="none" stroke="black" points="901.5,-1546 764.5,-1546 764.5,-1510 901.5,-1510 901.5,-1546"/>
 <text text-anchor="middle" x="833" y="-1525.2" font-family="Courier,monospace" font-size="11.00">StatementBuilder</text>
 </g>
-<!-- \\Google\\AdsApi\\AdManager\\Util\\v201805\\AdManagerDateTimes -->
+<!-- \\Google\\AdsApi\\AdManager\\Util\\v201808\\AdManagerDateTimes -->
 <g id="node7" class="node">
-<title>\\Google\\AdsApi\\AdManager\\Util\\v201805\\AdManagerDateTimes</title>
+<title>\\Google\\AdsApi\\AdManager\\Util\\v201808\\AdManagerDateTimes</title>
 <polygon fill="none" stroke="black" points="909,-1466 757,-1466 757,-1430 909,-1430 909,-1466"/>
 <text text-anchor="middle" x="833" y="-1445.2" font-family="Courier,monospace" font-size="11.00">AdManagerDateTimes</text>
 </g>
-<!-- \\Google\\AdsApi\\AdManager\\Util\\v201805\\AdManagerDates -->
+<!-- \\Google\\AdsApi\\AdManager\\Util\\v201808\\AdManagerDates -->
 <g id="node8" class="node">
-<title>\\Google\\AdsApi\\AdManager\\Util\\v201805\\AdManagerDates</title>
+<title>\\Google\\AdsApi\\AdManager\\Util\\v201808\\AdManagerDates</title>
 <polygon fill="none" stroke="black" points="894,-1412 772,-1412 772,-1376 894,-1376 894,-1412"/>
 <text text-anchor="middle" x="833" y="-1391.2" font-family="Courier,monospace" font-size="11.00">AdManagerDates</text>
 </g>
-<!-- \\Google\\AdsApi\\AdManager\\Util\\v201805\\CsvFiles -->
+<!-- \\Google\\AdsApi\\AdManager\\Util\\v201808\\CsvFiles -->
 <g id="node9" class="node">
-<title>\\Google\\AdsApi\\AdManager\\Util\\v201805\\CsvFiles</title>
+<title>\\Google\\AdsApi\\AdManager\\Util\\v201808\\CsvFiles</title>
 <polygon fill="none" stroke="black" points="871.5,-1358 794.5,-1358 794.5,-1322 871.5,-1322 871.5,-1358"/>
 <text text-anchor="middle" x="833" y="-1337.2" font-family="Courier,monospace" font-size="11.00">CsvFiles</text>
 </g>
-<!-- \\Google\\AdsApi\\AdManager\\Util\\v201805\\Pql -->
+<!-- \\Google\\AdsApi\\AdManager\\Util\\v201808\\Pql -->
 <g id="node10" class="node">
-<title>\\Google\\AdsApi\\AdManager\\Util\\v201805\\Pql</title>
+<title>\\Google\\AdsApi\\AdManager\\Util\\v201808\\Pql</title>
 <polygon fill="none" stroke="black" points="860,-1304 806,-1304 806,-1268 860,-1268 860,-1304"/>
 <text text-anchor="middle" x="833" y="-1283.2" font-family="Courier,monospace" font-size="11.00">Pql</text>
 </g>
-<!-- \\Google\\AdsApi\\AdManager\\Util\\v201805\\ReportDownloader -->
+<!-- \\Google\\AdsApi\\AdManager\\Util\\v201808\\ReportDownloader -->
 <g id="node11" class="node">
-<title>\\Google\\AdsApi\\AdManager\\Util\\v201805\\ReportDownloader</title>
+<title>\\Google\\AdsApi\\AdManager\\Util\\v201808\\ReportDownloader</title>
 <polygon fill="none" stroke="black" points="901.5,-1250 764.5,-1250 764.5,-1214 901.5,-1214 901.5,-1250"/>
 <text text-anchor="middle" x="833" y="-1229.2" font-family="Courier,monospace" font-size="11.00">ReportDownloader</text>
 </g>
-<!-- \\Google\\AdsApi\\AdManager\\Util\\v201805\\StatementBuilder -->
+<!-- \\Google\\AdsApi\\AdManager\\Util\\v201808\\StatementBuilder -->
 <g id="node12" class="node">
-<title>\\Google\\AdsApi\\AdManager\\Util\\v201805\\StatementBuilder</title>
+<title>\\Google\\AdsApi\\AdManager\\Util\\v201808\\StatementBuilder</title>
 <polygon fill="none" stroke="black" points="901.5,-1196 764.5,-1196 764.5,-1160 901.5,-1160 901.5,-1196"/>
 <text text-anchor="middle" x="833" y="-1175.2" font-family="Courier,monospace" font-size="11.00">StatementBuilder</text>
 </g>
-<!-- \\Google\\AdsApi\\AdManager\\Util\\v201808\\AdManagerDateTimes -->
+<!-- \\Google\\AdsApi\\AdManager\\Util\\v201811\\AdManagerDateTimes -->
 <g id="node13" class="node">
-<title>\\Google\\AdsApi\\AdManager\\Util\\v201808\\AdManagerDateTimes</title>
+<title>\\Google\\AdsApi\\AdManager\\Util\\v201811\\AdManagerDateTimes</title>
 <polygon fill="none" stroke="black" points="909,-1116 757,-1116 757,-1080 909,-1080 909,-1116"/>
 <text text-anchor="middle" x="833" y="-1095.2" font-family="Courier,monospace" font-size="11.00">AdManagerDateTimes</text>
 </g>
-<!-- \\Google\\AdsApi\\AdManager\\Util\\v201808\\AdManagerDates -->
+<!-- \\Google\\AdsApi\\AdManager\\Util\\v201811\\AdManagerDates -->
 <g id="node14" class="node">
-<title>\\Google\\AdsApi\\AdManager\\Util\\v201808\\AdManagerDates</title>
+<title>\\Google\\AdsApi\\AdManager\\Util\\v201811\\AdManagerDates</title>
 <polygon fill="none" stroke="black" points="894,-1062 772,-1062 772,-1026 894,-1026 894,-1062"/>
 <text text-anchor="middle" x="833" y="-1041.2" font-family="Courier,monospace" font-size="11.00">AdManagerDates</text>
 </g>
-<!-- \\Google\\AdsApi\\AdManager\\Util\\v201808\\CsvFiles -->
+<!-- \\Google\\AdsApi\\AdManager\\Util\\v201811\\CsvFiles -->
 <g id="node15" class="node">
-<title>\\Google\\AdsApi\\AdManager\\Util\\v201808\\CsvFiles</title>
+<title>\\Google\\AdsApi\\AdManager\\Util\\v201811\\CsvFiles</title>
 <polygon fill="none" stroke="black" points="871.5,-1008 794.5,-1008 794.5,-972 871.5,-972 871.5,-1008"/>
 <text text-anchor="middle" x="833" y="-987.2" font-family="Courier,monospace" font-size="11.00">CsvFiles</text>
 </g>
-<!-- \\Google\\AdsApi\\AdManager\\Util\\v201808\\Pql -->
+<!-- \\Google\\AdsApi\\AdManager\\Util\\v201811\\Pql -->
 <g id="node16" class="node">
-<title>\\Google\\AdsApi\\AdManager\\Util\\v201808\\Pql</title>
+<title>\\Google\\AdsApi\\AdManager\\Util\\v201811\\Pql</title>
 <polygon fill="none" stroke="black" points="860,-954 806,-954 806,-918 860,-918 860,-954"/>
 <text text-anchor="middle" x="833" y="-933.2" font-family="Courier,monospace" font-size="11.00">Pql</text>
 </g>
-<!-- \\Google\\AdsApi\\AdManager\\Util\\v201808\\ReportDownloader -->
+<!-- \\Google\\AdsApi\\AdManager\\Util\\v201811\\ReportDownloader -->
 <g id="node17" class="node">
-<title>\\Google\\AdsApi\\AdManager\\Util\\v201808\\ReportDownloader</title>
+<title>\\Google\\AdsApi\\AdManager\\Util\\v201811\\ReportDownloader</title>
 <polygon fill="none" stroke="black" points="901.5,-900 764.5,-900 764.5,-864 901.5,-864 901.5,-900"/>
 <text text-anchor="middle" x="833" y="-879.2" font-family="Courier,monospace" font-size="11.00">ReportDownloader</text>
 </g>
-<!-- \\Google\\AdsApi\\AdManager\\Util\\v201808\\StatementBuilder -->
+<!-- \\Google\\AdsApi\\AdManager\\Util\\v201811\\StatementBuilder -->
 <g id="node18" class="node">
-<title>\\Google\\AdsApi\\AdManager\\Util\\v201808\\StatementBuilder</title>
+<title>\\Google\\AdsApi\\AdManager\\Util\\v201811\\StatementBuilder</title>
 <polygon fill="none" stroke="black" points="901.5,-846 764.5,-846 764.5,-810 901.5,-810 901.5,-846"/>
 <text text-anchor="middle" x="833" y="-825.2" font-family="Courier,monospace" font-size="11.00">StatementBuilder</text>
 </g>
-<!-- \\Google\\AdsApi\\AdManager\\Util\\v201811\\AdManagerDateTimes -->
+<!-- \\Google\\AdsApi\\AdManager\\Util\\v201902\\AdManagerDateTimes -->
 <g id="node19" class="node">
-<title>\\Google\\AdsApi\\AdManager\\Util\\v201811\\AdManagerDateTimes</title>
+<title>\\Google\\AdsApi\\AdManager\\Util\\v201902\\AdManagerDateTimes</title>
 <polygon fill="none" stroke="black" points="909,-766 757,-766 757,-730 909,-730 909,-766"/>
 <text text-anchor="middle" x="833" y="-745.2" font-family="Courier,monospace" font-size="11.00">AdManagerDateTimes</text>
 </g>
-<!-- \\Google\\AdsApi\\AdManager\\Util\\v201811\\AdManagerDates -->
+<!-- \\Google\\AdsApi\\AdManager\\Util\\v201902\\AdManagerDates -->
 <g id="node20" class="node">
-<title>\\Google\\AdsApi\\AdManager\\Util\\v201811\\AdManagerDates</title>
+<title>\\Google\\AdsApi\\AdManager\\Util\\v201902\\AdManagerDates</title>
 <polygon fill="none" stroke="black" points="894,-712 772,-712 772,-676 894,-676 894,-712"/>
 <text text-anchor="middle" x="833" y="-691.2" font-family="Courier,monospace" font-size="11.00">AdManagerDates</text>
 </g>
-<!-- \\Google\\AdsApi\\AdManager\\Util\\v201811\\CsvFiles -->
+<!-- \\Google\\AdsApi\\AdManager\\Util\\v201902\\CsvFiles -->
 <g id="node21" class="node">
-<title>\\Google\\AdsApi\\AdManager\\Util\\v201811\\CsvFiles</title>
+<title>\\Google\\AdsApi\\AdManager\\Util\\v201902\\CsvFiles</title>
 <polygon fill="none" stroke="black" points="871.5,-658 794.5,-658 794.5,-622 871.5,-622 871.5,-658"/>
 <text text-anchor="middle" x="833" y="-637.2" font-family="Courier,monospace" font-size="11.00">CsvFiles</text>
 </g>
-<!-- \\Google\\AdsApi\\AdManager\\Util\\v201811\\Pql -->
+<!-- \\Google\\AdsApi\\AdManager\\Util\\v201902\\Pql -->
 <g id="node22" class="node">
-<title>\\Google\\AdsApi\\AdManager\\Util\\v201811\\Pql</title>
+<title>\\Google\\AdsApi\\AdManager\\Util\\v201902\\Pql</title>
 <polygon fill="none" stroke="black" points="860,-604 806,-604 806,-568 860,-568 860,-604"/>
 <text text-anchor="middle" x="833" y="-583.2" font-family="Courier,monospace" font-size="11.00">Pql</text>
 </g>
-<!-- \\Google\\AdsApi\\AdManager\\Util\\v201811\\ReportDownloader -->
+<!-- \\Google\\AdsApi\\AdManager\\Util\\v201902\\ReportDownloader -->
 <g id="node23" class="node">
-<title>\\Google\\AdsApi\\AdManager\\Util\\v201811\\ReportDownloader</title>
+<title>\\Google\\AdsApi\\AdManager\\Util\\v201902\\ReportDownloader</title>
 <polygon fill="none" stroke="black" points="901.5,-550 764.5,-550 764.5,-514 901.5,-514 901.5,-550"/>
 <text text-anchor="middle" x="833" y="-529.2" font-family="Courier,monospace" font-size="11.00">ReportDownloader</text>
 </g>
-<!-- \\Google\\AdsApi\\AdManager\\Util\\v201811\\StatementBuilder -->
+<!-- \\Google\\AdsApi\\AdManager\\Util\\v201902\\StatementBuilder -->
 <g id="node24" class="node">
-<title>\\Google\\AdsApi\\AdManager\\Util\\v201811\\StatementBuilder</title>
+<title>\\Google\\AdsApi\\AdManager\\Util\\v201902\\StatementBuilder</title>
 <polygon fill="none" stroke="black" points="901.5,-496 764.5,-496 764.5,-460 901.5,-460 901.5,-496"/>
 <text text-anchor="middle" x="833" y="-475.2" font-family="Courier,monospace" font-size="11.00">StatementBuilder</text>
 </g>

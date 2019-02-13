@@ -21,7 +21,55 @@
     <script src="../js/jquery.smooth-scroll.js"></script>
     <script src="../js/prism.min.js"></script>
     <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
-    
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
     <link rel="shortcut icon" href="../images/favicon.ico"/>
     <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
     <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
@@ -96,78 +144,55 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1534721796"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-789518705"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1534721796" class="accordion-body collapse in">
+            <div id="namespace-789518705" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1418422257"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2095801994"></a>
                                 <a href="../namespaces/Google.html" style="margin-left: 30px; padding-left: 0">Google</a>
             </div>
-            <div id="namespace-1418422257" class="accordion-body collapse ">
+            <div id="namespace-2095801994" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1015947653"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1638266024"></a>
                                 <a href="../namespaces/Google.AdsApi.html" style="margin-left: 30px; padding-left: 0">AdsApi</a>
             </div>
-            <div id="namespace-1015947653" class="accordion-body collapse ">
+            <div id="namespace-1638266024" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-667592977"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-222785766"></a>
                                 <a href="../namespaces/Google.AdsApi.AdManager.html" style="margin-left: 30px; padding-left: 0">AdManager</a>
             </div>
-            <div id="namespace-667592977" class="accordion-body collapse ">
+            <div id="namespace-222785766" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-324907591"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1025081734"></a>
                                 <a href="../namespaces/Google.AdsApi.AdManager.Util.html" style="margin-left: 30px; padding-left: 0">Util</a>
             </div>
-            <div id="namespace-324907591" class="accordion-body collapse ">
+            <div id="namespace-1025081734" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1947335886"></a>
-                                <a href="../namespaces/Google.AdsApi.AdManager.Util.v201802.html" style="margin-left: 30px; padding-left: 0">v201802</a>
-            </div>
-            <div id="namespace-1947335886" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201802.AdManagerDates.html">AdManagerDates</a></li>
-                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201802.AdManagerDateTimes.html">AdManagerDateTimes</a></li>
-                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201802.CsvFiles.html">CsvFiles</a></li>
-                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201802.Pql.html">Pql</a></li>
-                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201802.ReportDownloader.html">ReportDownloader</a></li>
-                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201802.StatementBuilder.html">StatementBuilder</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1226698665"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-644190190"></a>
                                 <a href="../namespaces/Google.AdsApi.AdManager.Util.v201805.html" style="margin-left: 30px; padding-left: 0">v201805</a>
             </div>
-            <div id="namespace-1226698665" class="accordion-body collapse ">
+            <div id="namespace-644190190" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -187,10 +212,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1263126281"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1654636030"></a>
                                 <a href="../namespaces/Google.AdsApi.AdManager.Util.v201808.html" style="margin-left: 30px; padding-left: 0">v201808</a>
             </div>
-            <div id="namespace-1263126281" class="accordion-body collapse ">
+            <div id="namespace-1654636030" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -210,10 +235,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1187312620"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-829330262"></a>
                                 <a href="../namespaces/Google.AdsApi.AdManager.Util.v201811.html" style="margin-left: 30px; padding-left: 0">v201811</a>
             </div>
-            <div id="namespace-1187312620" class="accordion-body collapse ">
+            <div id="namespace-829330262" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -224,6 +249,29 @@
                                                     <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201811.Pql.html">Pql</a></li>
                                                     <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201811.ReportDownloader.html">ReportDownloader</a></li>
                                                     <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201811.StatementBuilder.html">StatementBuilder</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-947657006"></a>
+                                <a href="../namespaces/Google.AdsApi.AdManager.Util.v201902.html" style="margin-left: 30px; padding-left: 0">v201902</a>
+            </div>
+            <div id="namespace-947657006" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201902.AdManagerDates.html">AdManagerDates</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201902.AdManagerDateTimes.html">AdManagerDateTimes</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201902.CsvFiles.html">CsvFiles</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201902.Pql.html">Pql</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201902.ReportDownloader.html">ReportDownloader</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201902.StatementBuilder.html">StatementBuilder</a></li>
                                             </ul>
                 </div>
             </div>
@@ -256,19 +304,19 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1303238772"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1763324349"></a>
                                 <a href="../namespaces/Google.AdsApi.Common.html" style="margin-left: 30px; padding-left: 0">Common</a>
             </div>
-            <div id="namespace-1303238772" class="accordion-body collapse ">
+            <div id="namespace-1763324349" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-163122602"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-167745903"></a>
                                 <a href="../namespaces/Google.AdsApi.Common.Testing.html" style="margin-left: 30px; padding-left: 0">Testing</a>
             </div>
-            <div id="namespace-163122602" class="accordion-body collapse ">
+            <div id="namespace-167745903" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -289,10 +337,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-505939376"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-340624817"></a>
                                 <a href="../namespaces/Google.AdsApi.Common.Util.html" style="margin-left: 30px; padding-left: 0">Util</a>
             </div>
-            <div id="namespace-505939376" class="accordion-body collapse ">
+            <div id="namespace-340624817" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -375,70 +423,415 @@
     <section class="row-fluid">
         <div class="span10 offset2">
             <div class="row-fluid">
-                <div class="span8 content namespace">
+                <div class="span8 content class">
                     <nav>
-                                                <a href="../namespaces/Google.AdsApi.AdManager.Util.html">\Google\AdsApi\AdManager\Util</a>
+                                                <a href="../namespaces/Google.AdsApi.AdManager.Util.v201902.html">\Google\AdsApi\AdManager\Util\v201902</a> <i class="icon-level-up"></i>
                                             </nav>
-                    <h1><small>\Google\AdsApi\AdManager\Util</small>v201802</h1>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
 
+                    <h1><small>\Google\AdsApi\AdManager\Util\v201902</small>Pql</h1>
+                    <p><em>Static utility methods for working with PQL.</em></p>
                     
                     
-                    
-                                        <h2>Classes</h2>
-                    <table class="table table-hover">
-                                            <tr>
-                            <td><a href="../classes/Google.AdsApi.AdManager.Util.v201802.AdManagerDates.html">AdManagerDates</a></td>
-                            <td><em>Static utility methods for working with Ad Manager `Date` objects.</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="../classes/Google.AdsApi.AdManager.Util.v201802.AdManagerDateTimes.html">AdManagerDateTimes</a></td>
-                            <td><em>Static utility methods for working with Ad Manager `DateTime` objects.</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="../classes/Google.AdsApi.AdManager.Util.v201802.CsvFiles.html">CsvFiles</a></td>
-                            <td><em>A utility class for processing and handling CSV files.</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="../classes/Google.AdsApi.AdManager.Util.v201802.Pql.html">Pql</a></td>
-                            <td><em>Static utility methods for working with PQL.</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="../classes/Google.AdsApi.AdManager.Util.v201802.ReportDownloader.html">ReportDownloader</a></td>
-                            <td><em>Provides functionality to help with retrieving a report. Encapsulates common
-tasks, such as polling for a report&#039;s status until it is ready to be
-downloaded and downloading the report.</em></td>
-                        </tr>
-                                            <tr>
-                            <td><a href="../classes/Google.AdsApi.AdManager.Util.v201802.StatementBuilder.html">StatementBuilder</a></td>
-                            <td><em>Builds statements that can be used in PQL queries.</em></td>
-                        </tr>
-                                        </table>
-                                    </div>
-
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/Google.AdsApi.AdManager.Util.v201902.Pql.html#method_createValue" class="">createValue()</a><br />
+                                                                    <a href="../classes/Google.AdsApi.AdManager.Util.v201902.Pql.html#method_toString" class="">toString()</a><br />
+                                                                    <a href="../classes/Google.AdsApi.AdManager.Util.v201902.Pql.html#method_getColumnLabels" class="">getColumnLabels()</a><br />
+                                                                    <a href="../classes/Google.AdsApi.AdManager.Util.v201902.Pql.html#method_getRowStringValues" class="">getRowStringValues()</a><br />
+                                                                    <a href="../classes/Google.AdsApi.AdManager.Util.v201902.Pql.html#method_combineResultSets" class="">combineResultSets()</a><br />
+                                                                    <a href="../classes/Google.AdsApi.AdManager.Util.v201902.Pql.html#method_resultSetTo2DimensionStringArray" class="">resultSetTo2DimensionStringArray()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No public properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <a href="../classes/Google.AdsApi.AdManager.Util.v201902.Pql.html#method___construct" class="">__construct()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No private properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
                 <aside class="span4 detailsbar">
+                                        
+                    
                     <dl>
-                        <dt>Namespace hierarchy</dt>
-                        <dd class="hierarchy">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-                                    <div class="namespace-wrapper"><a href="../namespaces/default.html">\</a></div>
-                                                            
-                                    <div class="namespace-wrapper"><a href="../namespaces/Google.html">\Google</a></div>
-                                                            
-                                    <div class="namespace-wrapper"><a href="../namespaces/Google.AdsApi.html">\Google\AdsApi</a></div>
-                                                            
-                                    <div class="namespace-wrapper"><a href="../namespaces/Google.AdsApi.AdManager.html">\Google\AdsApi\AdManager</a></div>
-                                                            
-                                    <div class="namespace-wrapper"><a href="../namespaces/Google.AdsApi.AdManager.Util.html">\Google\AdsApi\AdManager\Util</a></div>
-                                                                                        <div class="namespace-wrapper">\Google\AdsApi\AdManager\Util\v201802</div>
-                        </dd>
-                    </dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/AdManager.Util.v201902.Pql.html"><div class="path-wrapper">AdManager/Util/v201902/Pql.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                    <div class="namespace-wrapper">\Google\AdsApi\AdManager\Util\v201902\Pql</div>
+                            </dd>
+
+                        
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr><td colspan="2"><em>None found</em></td></tr>
+                                        </table>
                 </aside>
             </div>
 
-            
-            
+                        
+                        
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_createValue" name="method_createValue" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">createValue()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">createValue(mixed  <span class="argument">$value</span>) : \Google\AdsApi\AdManager\v201902\Value</pre>
+                <p><em>Creates a PQL `Value` from the specified value.</em></p>
+                <p>For example:</p>
+<ul>
+<li>A <code>TextValue</code> for a value of type <code>string</code>.</li>
+<li>A <code>BooleanValue</code> for type <code>bool</code>.</li>
+<li>A <code>NumberValue</code> for type <code>float</code> or <code>int</code>.</li>
+<li>A <code>DateTimeValue</code> for type Ad Manager <code>DateTime</code></li>
+<li>A <code>DateValue</code> for type Ad Manager <code>Date</code></li>
+<li>A <code>SetValue</code> for type <code>array</code>.</li>
+</ul>
+<p>If the specified value is already a PQL <code>Value</code>, the value is returned.</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>the value to convert to a PQL value</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>if value cannot be converted</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    \Google\AdsApi\AdManager\v201902\Value
+                                            &mdash; <p>a PQL value of the appropriate type</p>
+                                    				
+                            </article>
         </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_toString" name="method_toString" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">toString()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">toString(\Google\AdsApi\AdManager\v201902\Value  <span class="argument">$value</span>) : string</pre>
+                <p><em>Creates a string from the Value.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Google\AdsApi\AdManager\v201902\Value</td>
+                                <td>$value </td>
+                                <td><p>the value to convert</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>if value cannot be converted</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>the string representation of the value</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getColumnLabels" name="method_getColumnLabels" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getColumnLabels()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getColumnLabels(\Google\AdsApi\AdManager\v201902\ResultSet  <span class="argument">$resultSet</span>) : array&lt;mixed,string&gt;</pre>
+                <p><em>Gets the column labels for the result set.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Google\AdsApi\AdManager\v201902\ResultSet</td>
+                                <td>$resultSet </td>
+                                <td><p>the result set to get the column labels for</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array&lt;mixed,string&gt;
+                                            &mdash; <p>the string list of column labels</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getRowStringValues" name="method_getRowStringValues" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getRowStringValues()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getRowStringValues(\Google\AdsApi\AdManager\v201902\Row  <span class="argument">$row</span>) : array&lt;mixed,string&gt;</pre>
+                <p><em>Gets the values in a row of the result set in the form of a string list.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Google\AdsApi\AdManager\v201902\Row</td>
+                                <td>$row </td>
+                                <td><p>the row to get the values for</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array&lt;mixed,string&gt;
+                                            &mdash; <p>the string list of row labels</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_combineResultSets" name="method_combineResultSets" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">combineResultSets()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">combineResultSets(\Google\AdsApi\AdManager\v201902\ResultSet  <span class="argument">$first</span>, \Google\AdsApi\AdManager\v201902\ResultSet  <span class="argument">$second</span>) : \Google\AdsApi\AdManager\v201902\ResultSet</pre>
+                <p><em>Combines the first and second result sets, if and only if, the columns
+of both result sets match.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Google\AdsApi\AdManager\v201902\ResultSet</td>
+                                <td>$first </td>
+                                <td><p>the first result set</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>\Google\AdsApi\AdManager\v201902\ResultSet</td>
+                                <td>$second </td>
+                                <td><p>the second result set</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\InvalidArgumentException</dt>
+                            <dd><p>if the result sets to combine do not
+have identical column headers</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    \Google\AdsApi\AdManager\v201902\ResultSet
+                                            &mdash; <p>the combined result set</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_resultSetTo2DimensionStringArray" name="method_resultSetTo2DimensionStringArray" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">resultSetTo2DimensionStringArray()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">resultSetTo2DimensionStringArray(\Google\AdsApi\AdManager\v201902\ResultSet  <span class="argument">$resultSet</span>) : array&lt;mixed,string[]&gt;</pre>
+                <p><em>Gets the result set as a two dimension string array, which can be
+transformed to a CSV using {@see CsvFiles} such as
+&lt;pre&gt;
+&lt;code&gt;
+$combinedResultSet = Pql::combineResultSet($resultSet1, $resultSet2);
+//.</em></p>
+                <p>..
+$combinedResultSet = Pql::combineResultSet(
+$combinedResultSet,
+$resultSet3);
+CsvFiles::writeCsv(
+Pql::resultSetTo2DimensionStringArray($combinedResultSet),
+$filePath);
+</code>
+</pre></p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\Google\AdsApi\AdManager\v201902\ResultSet</td>
+                                <td>$resultSet </td>
+                                <td><p>the result set to convert to a CSV compatible
+format</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array&lt;mixed,string[]&gt;
+                                            &mdash; <p>a 2 dimension array of strings representing the result
+set</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct() </pre>
+                <p><em></em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    </div>
     </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">Pql.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/AdManager/Util/v201902/Pql.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
 
     <footer class="row-fluid">
         <section class="span10 offset2">
@@ -477,7 +870,7 @@ downloaded and downloading the report.</em></td>
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on January 24th, 2019 at 08:41.
+                    on February 13th, 2019 at 04:16.
                 </section>
             </section>
         </section>
