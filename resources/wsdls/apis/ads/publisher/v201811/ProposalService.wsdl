@@ -993,6 +993,35 @@
           </extension>
         </complexContent>
       </complexType>
+      <complexType name="CmsMetadataCriteria">
+        <annotation>
+          <documentation>
+            A {@code CmsMetadataCriteria} object is used to target {@code CmsMetadataValue} objects.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:CustomCriteriaLeaf">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="operator" type="tns:CmsMetadataCriteria.ComparisonOperator">
+                <annotation>
+                  <documentation>
+                    The comparison operator. This attribute is required.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="unbounded" minOccurs="0"
+                name="cmsMetadataValueIds" type="xsd:long">
+                <annotation>
+                  <documentation>
+                    The ids of {@link CmsMetadataValue} objects used to target CMS metadata. This attribute is
+                    required.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
       <complexType abstract="true" name="CustomCriteriaLeaf">
         <annotation>
           <documentation>
@@ -4199,7 +4228,7 @@
               <documentation>
                 The video bumper type to target. To target a video position or a pod position, this value must
                 be null. To target a bumper position this value must be populated and the line item must have a
-                bumper type. To target a subpod, this value must be null.
+                bumper type. To target a custom ad spot, this value must be null.
               </documentation>
             </annotation>
           </element>
@@ -4209,7 +4238,7 @@
               <documentation>
                 The video position within a pod to target. To target a video position or a bumper position,
                 this value must be null. To target a position within a pod this value must be populated. To
-                target a {@link Subpod}, this value must be null.
+                target a custom ad spot, this value must be null.
               </documentation>
             </annotation>
           </element>
@@ -5205,6 +5234,17 @@
               </documentation>
             </annotation>
           </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="CmsMetadataCriteria.ComparisonOperator">
+        <annotation>
+          <documentation>
+            Specifies the available comparison operators.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="EQUALS"/>
+          <enumeration value="NOT_EQUALS"/>
         </restriction>
       </simpleType>
       <simpleType name="AudienceSegmentCriteria.ComparisonOperator">
@@ -7975,6 +8015,13 @@
           </documentation>
         </annotation>
         <restriction base="xsd:string">
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
           <enumeration value="PREROLL">
             <annotation>
               <documentation>

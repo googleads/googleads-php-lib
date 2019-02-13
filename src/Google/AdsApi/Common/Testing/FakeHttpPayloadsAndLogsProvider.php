@@ -48,6 +48,20 @@ class FakeHttpPayloadsAndLogsProvider
     }
 
     /**
+     * Gets a fake HTTP report download log using report definition with logged
+     * report result.
+     *
+     * @return string
+     */
+    public static function getFakeNonRedactedReportDownloadLogOfReportDefinition()
+    {
+        return file_get_contents(
+            dirname(__FILE__) . DIRECTORY_SEPARATOR
+                . 'downloadReport-noredacted-reportdefinition-log.txt'
+        );
+    }
+
+    /**
      * Gets a fake scrubbed report donwnload log.
      *
      * @return string
@@ -60,6 +74,19 @@ class FakeHttpPayloadsAndLogsProvider
     }
 
     /**
+     * Gets a fake non-redacted scrubbed report donwnload log.
+     *
+     * @return string
+     */
+    public static function getFakeNonRedactedScrubbedReportDownloadLog()
+    {
+        return file_get_contents(
+            dirname(__FILE__) . DIRECTORY_SEPARATOR
+                . 'downloadReport-nonredacted-scrubbed-log.txt'
+        );
+    }
+
+    /**
      * Gets a fake report donwnload log with errors.
      *
      * @return string
@@ -68,6 +95,19 @@ class FakeHttpPayloadsAndLogsProvider
     {
         return file_get_contents(
             dirname(__FILE__) . DIRECTORY_SEPARATOR . 'downloadReport-logwitherrors.txt'
+        );
+    }
+
+    /**
+     * Gets a fake non-redacted report donwnload log with errors.
+     *
+     * @return string
+     */
+    public static function getFakeNonRedactedReportDownloadLogWithErrors()
+    {
+        return file_get_contents(
+            dirname(__FILE__) . DIRECTORY_SEPARATOR
+                . 'downloadReport-nonredacted-logwitherrors.txt'
         );
     }
 
@@ -96,7 +136,7 @@ class FakeHttpPayloadsAndLogsProvider
     }
 
     /**
-     * Gets a fake report download results.
+     * Gets a fake report download result.
      *
      * @return string
      */
@@ -104,6 +144,18 @@ class FakeHttpPayloadsAndLogsProvider
     {
         return file_get_contents(
             dirname(__FILE__) . DIRECTORY_SEPARATOR . 'downloadReport-result.txt'
+        );
+    }
+
+    /**
+     * Gets a fake report download error.
+     *
+     * @return string
+     */
+    public static function getFakeDownloadReportError()
+    {
+        return file_get_contents(
+            dirname(__FILE__) . DIRECTORY_SEPARATOR . 'downloadReport-error.txt'
         );
     }
 }

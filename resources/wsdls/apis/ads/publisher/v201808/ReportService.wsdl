@@ -4840,7 +4840,7 @@
           <enumeration value="DP_IMPRESSIONS">
             <annotation>
               <documentation>
-                The number of impressions delivered.
+                Number of impressions delivered.
                 &lt;p&gt;Corresponds to "Impressions" in the Ad Manager UI.&lt;/p&gt;
               </documentation>
             </annotation>

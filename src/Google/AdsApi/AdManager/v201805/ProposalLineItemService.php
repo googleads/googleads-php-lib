@@ -50,6 +50,7 @@ class ProposalLineItemService extends \Google\AdsApi\Common\AdsSoapClient
       'CustomCriteriaSet' => 'Google\\AdsApi\\AdManager\\v201805\\CustomCriteriaSet',
       'CustomFieldValue' => 'Google\\AdsApi\\AdManager\\v201805\\CustomFieldValue',
       'CustomFieldValueError' => 'Google\\AdsApi\\AdManager\\v201805\\CustomFieldValueError',
+      'CmsMetadataCriteria' => 'Google\\AdsApi\\AdManager\\v201805\\CmsMetadataCriteria',
       'CustomTargetingError' => 'Google\\AdsApi\\AdManager\\v201805\\CustomTargetingError',
       'CustomTargetingPremiumFeature' => 'Google\\AdsApi\\AdManager\\v201805\\CustomTargetingPremiumFeature',
       'CustomCriteriaLeaf' => 'Google\\AdsApi\\AdManager\\v201805\\CustomCriteriaLeaf',

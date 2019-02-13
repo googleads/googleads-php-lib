@@ -30,6 +30,7 @@ class AudienceSegmentService extends \Google\AdsApi\Common\AdsSoapClient
       'CommonError' => 'Google\\AdsApi\\AdManager\\v201811\\CommonError',
       'CustomCriteria' => 'Google\\AdsApi\\AdManager\\v201811\\CustomCriteria',
       'CustomCriteriaSet' => 'Google\\AdsApi\\AdManager\\v201811\\CustomCriteriaSet',
+      'CmsMetadataCriteria' => 'Google\\AdsApi\\AdManager\\v201811\\CmsMetadataCriteria',
       'CustomCriteriaLeaf' => 'Google\\AdsApi\\AdManager\\v201811\\CustomCriteriaLeaf',
       'CustomCriteriaNode' => 'Google\\AdsApi\\AdManager\\v201811\\CustomCriteriaNode',
       'AudienceSegmentCriteria' => 'Google\\AdsApi\\AdManager\\v201811\\AudienceSegmentCriteria',

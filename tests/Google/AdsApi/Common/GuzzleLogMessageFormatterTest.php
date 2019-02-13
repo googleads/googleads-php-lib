@@ -18,6 +18,7 @@ namespace Google\AdsApi\Common;
 
 use Google\AdsApi\Common\Testing\FakeHttpPayloadsAndLogsProvider;
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Psr7\NoSeekStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
@@ -32,36 +33,50 @@ class GuzzleLogMessageFormatterTest extends TestCase
 {
 
     private $reportDownloadResult;
+    private $reportDownloadError;
+
     private $scrubbedReportDownloadLog;
+    private $nonRedactedScrubbedReportDownloadLog;
     private $reportDownloadLogWithErrors;
+    private $nonRedactedReportDownloadLogWithErrors;
     private $awql;
     private $encodedReportDefinition;
     private $reportDownloadLogOfAwql;
     private $reportDownloadLogOfReportDefinition;
+    private $nonRedactedReportDownloadLogOfReportDefinition;
 
-  /**
-   * @see PHPUnit\Framework\TestCase::setUp
-   */
+    /**
+     * @see PHPUnit\Framework\TestCase::setUp
+     */
     protected function setUp()
     {
-        $this->reportDownloadResult = FakeHttpPayloadsAndLogsProvider
-        ::getFakeDownloadReportResult();
-        $this->scrubbedReportDownloadLog = FakeHttpPayloadsAndLogsProvider
-        ::getScrubbedFakeReportDownloadLog();
+        $this->reportDownloadResult =
+            FakeHttpPayloadsAndLogsProvider::getFakeDownloadReportResult();
+        $this->reportDownloadError =
+            FakeHttpPayloadsAndLogsProvider::getFakeDownloadReportError();
+        $this->scrubbedReportDownloadLog =
+            FakeHttpPayloadsAndLogsProvider::getScrubbedFakeReportDownloadLog();
+        $this->nonRedactedScrubbedReportDownloadLog =
+            FakeHttpPayloadsAndLogsProvider::getFakeNonRedactedScrubbedReportDownloadLog();
         $this->awql = trim(FakeHttpPayloadsAndLogsProvider::getFakeAwql());
-        $this->encodedReportDefinition = trim(FakeHttpPayloadsAndLogsProvider
-        ::getFakeEncodedReportDefinition());
-        $this->reportDownloadLogOfAwql = FakeHttpPayloadsAndLogsProvider
-        ::getFakeReportDownloadLogOfAwql();
-        $this->reportDownloadLogOfReportDefinition = FakeHttpPayloadsAndLogsProvider
-        ::getFakeReportDownloadLogOfReportDefinition();
-        $this->reportDownloadLogWithErrors = FakeHttpPayloadsAndLogsProvider
-        ::getFakeReportDownloadLogWithErrors();
+        $this->encodedReportDefinition = trim(
+            FakeHttpPayloadsAndLogsProvider::getFakeEncodedReportDefinition()
+        );
+        $this->reportDownloadLogOfAwql =
+            FakeHttpPayloadsAndLogsProvider::getFakeReportDownloadLogOfAwql();
+        $this->reportDownloadLogOfReportDefinition =
+            FakeHttpPayloadsAndLogsProvider::getFakeReportDownloadLogOfReportDefinition();
+        $this->reportDownloadLogWithErrors =
+            FakeHttpPayloadsAndLogsProvider::getFakeReportDownloadLogWithErrors();
+        $this->nonRedactedReportDownloadLogWithErrors =
+            FakeHttpPayloadsAndLogsProvider::getFakeNonRedactedReportDownloadLogWithErrors();
+        $this->nonRedactedReportDownloadLogOfReportDefinition =
+            FakeHttpPayloadsAndLogsProvider::getFakeNonRedactedReportDownloadLogOfReportDefinition();
     }
 
-  /**
-   * @covers Google\AdsApi\Common\GuzzleLogMessageFormatter::formatSummary
-   */
+    /**
+     * @covers Google\AdsApi\Common\GuzzleLogMessageFormatter::formatSummary
+     */
     public function testFormatSummary()
     {
         $guzzleLogMessageFormatter = new GuzzleLogMessageFormatter(
@@ -71,22 +86,22 @@ class GuzzleLogMessageFormatterTest extends TestCase
             'REDACTED REPORT DATA'
         );
         $headers = [
-        'User-Agent' => 'Test App (AwApi-PHP, googleads-php-lib/25.0.0, '
-            . 'PHP/5.5.9, GuzzleHttp/6.0.0, curl/7.52.0)',
-        'Content-Type' => 'application/x-www-form-urlencoded',
-        'Host' => 'adwords.google.com',
-        'Authorization' => 'Bearer 123.abc.456.xyz',
-        'developerToken' => 'ABcdeFGH93KL-NOPQ_STUv',
-        'clientCustomerId' => '111-222-3333',
-        'skipReportHeader' => false,
-        'skipColumnHeader' => false,
-        'skipReportSummary' => false,
-        'useRawEnumValues' => true,
-        'includeZeroImpressions' => false
+            'User-Agent' => 'Test App (AwApi-PHP, googleads-php-lib/25.0.0, '
+                . 'PHP/5.5.9, GuzzleHttp/6.0.0, curl/7.52.0)',
+            'Content-Type' => 'application/x-www-form-urlencoded',
+            'Host' => 'adwords.google.com',
+            'Authorization' => 'Bearer 123.abc.456.xyz',
+            'developerToken' => 'ABcdeFGH93KL-NOPQ_STUv',
+            'clientCustomerId' => '111-222-3333',
+            'skipReportHeader' => false,
+            'skipColumnHeader' => false,
+            'skipReportSummary' => false,
+            'useRawEnumValues' => true,
+            'includeZeroImpressions' => false
         ];
         $body = http_build_query([
-        '__rdquery' => $this->awql,
-        '__fmt' => 'CSV'
+            '__rdquery' => $this->awql,
+            '__fmt' => 'CSV'
         ]);
         $request = new Request(
             'POST',
@@ -104,9 +119,9 @@ class GuzzleLogMessageFormatterTest extends TestCase
         );
     }
 
-  /**
-   * @covers Google\AdsApi\Common\GuzzleLogMessageFormatter::formatSummary
-   */
+    /**
+     * @covers Google\AdsApi\Common\GuzzleLogMessageFormatter::formatSummary
+     */
     public function testFormatSummary_responseIsNull()
     {
         $guzzleLogMessageFormatter = new GuzzleLogMessageFormatter(
@@ -116,22 +131,22 @@ class GuzzleLogMessageFormatterTest extends TestCase
             'REDACTED REPORT DATA'
         );
         $headers = [
-        'User-Agent' => 'Test App (AwApi-PHP, googleads-php-lib/25.0.0, '
-            . 'PHP/5.5.9, GuzzleHttp/6.0.0, curl/7.52.0)',
-        'Content-Type' => 'application/x-www-form-urlencoded',
-        'Host' => 'adwords.google.com',
-        'Authorization' => 'Bearer 123.abc.456.xyz',
-        'developerToken' => 'ABcdeFGH93KL-NOPQ_STUv',
-        'clientCustomerId' => '111-222-3333',
-        'skipReportHeader' => false,
-        'skipColumnHeader' => false,
-        'skipReportSummary' => false,
-        'useRawEnumValues' => true,
-        'includeZeroImpressions' => false
+            'User-Agent' => 'Test App (AwApi-PHP, googleads-php-lib/25.0.0, '
+                . 'PHP/5.5.9, GuzzleHttp/6.0.0, curl/7.52.0)',
+            'Content-Type' => 'application/x-www-form-urlencoded',
+            'Host' => 'adwords.google.com',
+            'Authorization' => 'Bearer 123.abc.456.xyz',
+            'developerToken' => 'ABcdeFGH93KL-NOPQ_STUv',
+            'clientCustomerId' => '111-222-3333',
+            'skipReportHeader' => false,
+            'skipColumnHeader' => false,
+            'skipReportSummary' => false,
+            'useRawEnumValues' => true,
+            'includeZeroImpressions' => false
         ];
         $body = http_build_query([
-        '__rdquery' => $this->awql,
-        '__fmt' => 'CSV'
+            '__rdquery' => $this->awql,
+            '__fmt' => 'CSV'
         ]);
         $request = new Request(
             'POST',
@@ -149,30 +164,30 @@ class GuzzleLogMessageFormatterTest extends TestCase
         );
     }
 
-  /**
-   * @covers Google\AdsApi\Common\GuzzleLogMessageFormatter::formatDetailed
-   */
+    /**
+     * @covers Google\AdsApi\Common\GuzzleLogMessageFormatter::formatDetailed
+     */
     public function testFormatDetailedWithAwql_redactReportData()
     {
         $expectedDetailedLog = $this->reportDownloadLogOfAwql;
 
         $headers = [
-        'User-Agent' => 'Test App (AwApi-PHP, googleads-php-lib/25.0.0, '
-            . 'PHP/5.5.9, GuzzleHttp/6.0.0, curl/7.52.0)',
-        'Content-Type' => 'application/x-www-form-urlencoded',
-        'Host' => 'adwords.google.com',
-        'Authorization' => 'Bearer 123.abc.456.xyz',
-        'developerToken' => 'ABcdeFGH93KL-NOPQ_STUv',
-        'clientCustomerId' => '111-222-3333',
-        'skipReportHeader' => 'false',
-        'skipColumnHeader' => 'false',
-        'skipReportSummary' => 'false',
-        'useRawEnumValues' => 'true',
-        'includeZeroImpressions' => 'false'
+            'User-Agent' => 'Test App (AwApi-PHP, googleads-php-lib/25.0.0, '
+                . 'PHP/5.5.9, GuzzleHttp/6.0.0, curl/7.52.0)',
+            'Content-Type' => 'application/x-www-form-urlencoded',
+            'Host' => 'adwords.google.com',
+            'Authorization' => 'Bearer 123.abc.456.xyz',
+            'developerToken' => 'ABcdeFGH93KL-NOPQ_STUv',
+            'clientCustomerId' => '111-222-3333',
+            'skipReportHeader' => 'false',
+            'skipColumnHeader' => 'false',
+            'skipReportSummary' => 'false',
+            'useRawEnumValues' => 'true',
+            'includeZeroImpressions' => 'false'
         ];
         $body = http_build_query([
-        '__rdquery' => $this->awql,
-        '__fmt' => 'CSV'
+            '__rdquery' => $this->awql,
+            '__fmt' => 'CSV'
         ]);
         $request = new Request(
             'POST',
@@ -194,26 +209,26 @@ class GuzzleLogMessageFormatterTest extends TestCase
         $this->assertSame(trim($expectedDetailedLog), trim($actualDetailedLog));
     }
 
-  /**
-   * @covers Google\AdsApi\Common\GuzzleLogMessageFormatter::formatDetailed
-   */
+    /**
+     * @covers Google\AdsApi\Common\GuzzleLogMessageFormatter::formatDetailed
+     */
     public function testFormatDetailedWithReportDefinition_redactReportData()
     {
         $expectedDetailedLog = $this->reportDownloadLogOfReportDefinition;
 
         $headers = [
-        'User-Agent' => 'Test App (AwApi-PHP, googleads-php-lib/25.0.0, '
-            . 'PHP/5.5.9, GuzzleHttp/6.0.0, curl/7.52.0)',
-        'Content-Type' => 'application/x-www-form-urlencoded',
-        'Host' => 'adwords.google.com',
-        'Authorization' => 'Bearer 123.abc.456.xyz',
-        'developerToken' => 'ABcdeFGH93KL-NOPQ_STUv',
-        'clientCustomerId' => '111-222-3333',
-        'skipReportHeader' => 'false',
-        'skipColumnHeader' => 'false',
-        'skipReportSummary' => 'false',
-        'useRawEnumValues' => 'true',
-        'includeZeroImpressions' => 'false'
+            'User-Agent' => 'Test App (AwApi-PHP, googleads-php-lib/25.0.0, '
+                . 'PHP/5.5.9, GuzzleHttp/6.0.0, curl/7.52.0)',
+            'Content-Type' => 'application/x-www-form-urlencoded',
+            'Host' => 'adwords.google.com',
+            'Authorization' => 'Bearer 123.abc.456.xyz',
+            'developerToken' => 'ABcdeFGH93KL-NOPQ_STUv',
+            'clientCustomerId' => '111-222-3333',
+            'skipReportHeader' => 'false',
+            'skipColumnHeader' => 'false',
+            'skipReportSummary' => 'false',
+            'useRawEnumValues' => 'true',
+            'includeZeroImpressions' => 'false'
         ];
         $body = '__rdxml=' . $this->encodedReportDefinition;
         $request = new Request(
@@ -236,30 +251,85 @@ class GuzzleLogMessageFormatterTest extends TestCase
         $this->assertSame(trim($expectedDetailedLog), trim($actualDetailedLog));
     }
 
-  /**
-   * @covers Google\AdsApi\Common\GuzzleLogMessageFormatter::formatDetailed
-   */
+    /**
+     * @covers Google\AdsApi\Common\GuzzleLogMessageFormatter::formatDetailed
+     */
+    public function testFormatDetailedWithReportDefinition_logReportData_noSeekStream()
+    {
+        $expectedDetailedLog =
+            $this->nonRedactedReportDownloadLogOfReportDefinition;
+
+        $headers = [
+            'User-Agent' => 'Test App (AwApi-PHP, googleads-php-lib/25.0.0, '
+                . 'PHP/5.5.9, GuzzleHttp/6.0.0, curl/7.52.0)',
+            'Content-Type' => 'application/x-www-form-urlencoded',
+            'Host' => 'adwords.google.com',
+            'Authorization' => 'Bearer 123.abc.456.xyz',
+            'developerToken' => 'ABcdeFGH93KL-NOPQ_STUv',
+            'clientCustomerId' => '111-222-3333',
+            'skipReportHeader' => 'false',
+            'skipColumnHeader' => 'false',
+            'skipReportSummary' => 'false',
+            'useRawEnumValues' => 'true',
+            'includeZeroImpressions' => 'false'
+        ];
+        $body = '__rdxml=' . $this->encodedReportDefinition;
+        $request = new Request(
+            'POST',
+            '/api/adwords/reportdownload/v201702',
+            $headers,
+            $body
+        );
+        $response = new Response(
+            200,
+            [],
+            new NoSeekStream(
+                \GuzzleHttp\Psr7\stream_for($this->reportDownloadResult)
+            )
+        );
+        $guzzleLogMessageFormatter = new GuzzleLogMessageFormatter(
+            [],
+            [],
+            true
+        );
+
+        // The message must be formatted correctly.
+        $actualDetailedLog = $this->removeCarriageReturns(
+            $guzzleLogMessageFormatter->formatDetailed($request, $response)
+        );
+        $this->assertSame(trim($expectedDetailedLog), trim($actualDetailedLog));
+
+        // The response body must be re-readable and have the expected content.
+        $this->assertSame(
+            trim($this->reportDownloadResult),
+            trim($response->getBody()->getContents())
+        );
+    }
+
+    /**
+     * @covers Google\AdsApi\Common\GuzzleLogMessageFormatter::formatDetailed
+     */
     public function testFormatDetailed_redactReportData_scrubHeaders()
     {
         $expectedDetailedLog = $this->scrubbedReportDownloadLog;
 
         $headers = [
-        'User-Agent' => 'Test App (AwApi-PHP, googleads-php-lib/25.0.0, '
-            . 'PHP/5.5.9, GuzzleHttp/6.0.0, curl/7.52.0)',
-        'Content-Type' => 'application/x-www-form-urlencoded',
-        'Host' => 'adwords.google.com',
-        'Authorization' => 'Bearer 123.abc.456.xyz',
-        'developerToken' => 'ABcdeFGH93KL-NOPQ_STUv',
-        'clientCustomerId' => '111-222-3333',
-        'skipReportHeader' => 'false',
-        'skipColumnHeader' => 'false',
-        'skipReportSummary' => 'false',
-        'useRawEnumValues' => 'true',
-        'includeZeroImpressions' => 'false'
+            'User-Agent' => 'Test App (AwApi-PHP, googleads-php-lib/25.0.0, '
+                . 'PHP/5.5.9, GuzzleHttp/6.0.0, curl/7.52.0)',
+            'Content-Type' => 'application/x-www-form-urlencoded',
+            'Host' => 'adwords.google.com',
+            'Authorization' => 'Bearer 123.abc.456.xyz',
+            'developerToken' => 'ABcdeFGH93KL-NOPQ_STUv',
+            'clientCustomerId' => '111-222-3333',
+            'skipReportHeader' => 'false',
+            'skipColumnHeader' => 'false',
+            'skipReportSummary' => 'false',
+            'useRawEnumValues' => 'true',
+            'includeZeroImpressions' => 'false'
         ];
         $body = http_build_query([
-        '__rdquery' => $this->awql,
-        '__fmt' => 'CSV'
+            '__rdquery' => $this->awql,
+            '__fmt' => 'CSV'
         ]);
         $request = new Request(
             'POST',
@@ -281,30 +351,81 @@ class GuzzleLogMessageFormatterTest extends TestCase
         $this->assertSame(trim($expectedDetailedLog), trim($actualDetailedLog));
     }
 
-  /**
-   * @covers Google\AdsApi\Common\GuzzleLogMessageFormatter::formatDetailed
-   */
+    /**
+     * @covers Google\AdsApi\Common\GuzzleLogMessageFormatter::formatDetailed
+     */
+    public function testFormatDetailed_logReportData_scrubHeaders()
+    {
+        $expectedDetailedLog = $this->nonRedactedScrubbedReportDownloadLog;
+
+        $headers = [
+            'User-Agent' => 'Test App (AwApi-PHP, googleads-php-lib/25.0.0, '
+                . 'PHP/5.5.9, GuzzleHttp/6.0.0, curl/7.52.0)',
+            'Content-Type' => 'application/x-www-form-urlencoded',
+            'Host' => 'adwords.google.com',
+            'Authorization' => 'Bearer 123.abc.456.xyz',
+            'developerToken' => 'ABcdeFGH93KL-NOPQ_STUv',
+            'clientCustomerId' => '111-222-3333',
+            'skipReportHeader' => 'false',
+            'skipColumnHeader' => 'false',
+            'skipReportSummary' => 'false',
+            'useRawEnumValues' => 'true',
+            'includeZeroImpressions' => 'false'
+        ];
+        $body = http_build_query([
+            '__rdquery' => $this->awql,
+            '__fmt' => 'CSV'
+        ]);
+        $request = new Request(
+            'POST',
+            '/api/adwords/reportdownload/v201702',
+            $headers,
+            $body
+        );
+        $response = new Response(200, [], $this->reportDownloadResult);
+        $guzzleLogMessageFormatter = new GuzzleLogMessageFormatter(
+            ['Authorization', 'developerToken'],
+            [],
+            true
+        );
+
+        // The message must be formatted correctly.
+        $actualDetailedLog = $this->removeCarriageReturns(
+            $guzzleLogMessageFormatter->formatDetailed($request, $response)
+        );
+        $this->assertSame(trim($expectedDetailedLog), trim($actualDetailedLog));
+
+        // The response body must be re-readable and have the expected content.
+        $this->assertSame(
+            trim($this->reportDownloadResult),
+            trim($response->getBody()->getContents())
+        );
+    }
+
+    /**
+     * @covers Google\AdsApi\Common\GuzzleLogMessageFormatter::formatDetailed
+     */
     public function testFormatDetailed_redactReportData_withErrors()
     {
         $expectedDetailedLog = $this->reportDownloadLogWithErrors;
 
         $headers = [
-        'User-Agent' => 'Test App (AwApi-PHP, googleads-php-lib/25.0.0, '
-            . 'PHP/5.5.9, GuzzleHttp/6.0.0, curl/7.52.0)',
-        'Content-Type' => 'application/x-www-form-urlencoded',
-        'Host' => 'adwords.google.com',
-        'Authorization' => 'Bearer 123.abc.456.xyz',
-        'developerToken' => 'ABcdeFGH93KL-NOPQ_STUv',
-        'clientCustomerId' => '111-222-3333',
-        'skipReportHeader' => 'false',
-        'skipColumnHeader' => 'false',
-        'skipReportSummary' => 'false',
-        'useRawEnumValues' => 'true',
-        'includeZeroImpressions' => 'false'
+            'User-Agent' => 'Test App (AwApi-PHP, googleads-php-lib/25.0.0, '
+                . 'PHP/5.5.9, GuzzleHttp/6.0.0, curl/7.52.0)',
+            'Content-Type' => 'application/x-www-form-urlencoded',
+            'Host' => 'adwords.google.com',
+            'Authorization' => 'Bearer 123.abc.456.xyz',
+            'developerToken' => 'ABcdeFGH93KL-NOPQ_STUv',
+            'clientCustomerId' => '111-222-3333',
+            'skipReportHeader' => 'false',
+            'skipColumnHeader' => 'false',
+            'skipReportSummary' => 'false',
+            'useRawEnumValues' => 'true',
+            'includeZeroImpressions' => 'false'
         ];
         $body = http_build_query([
-        '__rdquery' => $this->awql,
-        '__fmt' => 'CSV'
+            '__rdquery' => $this->awql,
+            '__fmt' => 'CSV'
         ]);
         $request = new Request(
             'POST',
@@ -325,6 +446,68 @@ class GuzzleLogMessageFormatterTest extends TestCase
         );
 
         $this->assertSame(trim($expectedDetailedLog), trim($actualDetailedLog));
+    }
+
+    /**
+     * @covers Google\AdsApi\Common\GuzzleLogMessageFormatter::formatDetailed
+     */
+    public function testFormatDetailed_logReportData_withErrors()
+    {
+        $expectedDetailedLog = $this->nonRedactedReportDownloadLogWithErrors;
+
+        $headers = [
+            'User-Agent' => 'Test App (AwApi-PHP, googleads-php-lib/25.0.0, '
+                . 'PHP/5.5.9, GuzzleHttp/6.0.0, curl/7.52.0)',
+            'Content-Type' => 'application/x-www-form-urlencoded',
+            'Host' => 'adwords.google.com',
+            'Authorization' => 'Bearer 123.abc.456.xyz',
+            'developerToken' => 'ABcdeFGH93KL-NOPQ_STUv',
+            'clientCustomerId' => '111-222-3333',
+            'skipReportHeader' => 'false',
+            'skipColumnHeader' => 'false',
+            'skipReportSummary' => 'false',
+            'useRawEnumValues' => 'true',
+            'includeZeroImpressions' => 'false'
+        ];
+        $body = http_build_query([
+            '__rdquery' => $this->awql,
+            '__fmt' => 'CSV'
+        ]);
+        $request = new Request(
+            'POST',
+            '/api/adwords/reportdownload/v201809',
+            $headers,
+            $body
+        );
+        $response = new Response(
+            400,
+            [],
+            new NoSeekStream(
+                \GuzzleHttp\Psr7\stream_for($this->reportDownloadError)
+            )
+        );
+        $error = new ClientException('Client error: 400', $request, $response);
+        $guzzleLogMessageFormatter = new GuzzleLogMessageFormatter(
+            ['Authorization', 'developerToken'],
+            [],
+            true
+        );
+
+        // The message must be formatted correctly.
+        $actualDetailedLog = $this->removeCarriageReturns(
+            $guzzleLogMessageFormatter->formatDetailed(
+                $request,
+                $response,
+                $error
+            )
+        );
+        $this->assertSame(trim($expectedDetailedLog), trim($actualDetailedLog));
+
+        // The response body must be re-readable and have the expected content.
+        $this->assertSame(
+            trim($this->reportDownloadError),
+            trim($error->getResponse()->getBody()->getContents())
+        );
     }
 
     private function removeCarriageReturns($string)

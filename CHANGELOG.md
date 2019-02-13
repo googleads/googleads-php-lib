@@ -1,3 +1,22 @@
+### 40.0.0
+
+##### AdWords
+
+*   No changes.
+
+##### Ad Manager
+
+*   Added support for v201902.
+*   Updated RunInventoryReport example to replace deprecated metrics.
+*   Added examples for AdjustmentService and CmsMetadataService.
+*   Removed support for v201802.
+*   Removed examples for v201805.
+
+##### Common
+
+*   Refactored `GuzzleLogMessageHandler` and `GuzzleLogMessageFormatter` so
+    tests can be added to cover the cases when a response body is logged.
+
 ### 39.0.0
 
 ##### AdWords

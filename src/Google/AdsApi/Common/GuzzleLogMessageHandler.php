@@ -18,8 +18,6 @@
 namespace Google\AdsApi\Common;
 
 use Monolog\Logger;
-use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Psr7\CachingStream;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -51,30 +49,17 @@ final class GuzzleLogMessageHandler
                             $messageFormatter->formatSummary($request, $response)
                         );
 
-                        // Create a new response with its body as a caching
-                        // stream to make it rewindable. This is needed when we
-                        // want to both log the response body and return it as a
-                        // report download result.
-                        $cachedResponse = $response->withBody(
-                            new CachingStream($response->getBody())
-                        );
-                        if (!$logger instanceof Logger
+                        // formatDetailed() can produce long log messages
+                        // so check if it handles DEBUG level when possible.
+                        if (!($logger instanceof Logger)
                             || $logger->isHandling(Logger::DEBUG)) {
-                            // formatDetailed() can produce long log messages
-                            // so check if it handles DEBUG level when possible.
-                            $logger->debug(
-                                $messageFormatter->formatDetailed(
-                                    $request,
-                                    $cachedResponse
-                                )
-                            );
+                            $logger->debug($messageFormatter->formatDetailed(
+                                $request,
+                                $response
+                            ));
                         }
 
-                        // Rewind the response stream so it can be returned as a
-                        // report download result later.
-                        \GuzzleHttp\Psr7\rewind_body($cachedResponse);
-
-                        return $cachedResponse;
+                        return $response;
                     },
                     function ($reason) use ($request, $logger, $messageFormatter) {
                         // Logs messages in case of failing HTTP calls.
@@ -87,37 +72,19 @@ final class GuzzleLogMessageHandler
                             $messageFormatter->formatSummary($request, $response)
                         );
 
-                        // Create a new exception to be thrown to the next layer
-                        // of the handler stack, using the created caching
-                        // stream.
-                        $cachedResponse = $response->withBody(
-                            new CachingStream($response->getBody())
-                        );
-                        $newException = RequestException::create(
-                            $request,
-                            $cachedResponse,
-                            $reason
-                        );
-
-                        if (!$logger instanceof Logger
+                        // formatDetailed() can produce long log messages
+                        // so check if it handles NOTICE level when
+                        // possible.
+                        if (!($logger instanceof Logger)
                             || $logger->isHandling(Logger::NOTICE)) {
-                            // formatDetailed() can produce long log messages
-                            // so check if it handles NOTICE level when
-                            // possible.
-                            $logger->notice(
-                                $messageFormatter->formatDetailed(
-                                    $request,
-                                    $cachedResponse,
-                                    $reason
-                                )
-                            );
+                            $logger->notice($messageFormatter->formatDetailed(
+                                $request,
+                                $response,
+                                $reason
+                            ));
                         }
 
-                        // Rewind the response stream so it can be returned as a
-                        // report download result later.
-                        \GuzzleHttp\Psr7\rewind_body($cachedResponse);
-
-                        return \GuzzleHttp\Promise\rejection_for($newException);
+                        return \GuzzleHttp\Promise\rejection_for($reason);
                     }
                 );
             };

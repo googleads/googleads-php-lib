@@ -8,6 +8,7 @@ namespace Google\AdsApi\AdManager\v201805;
  */
 class VideoPositionType
 {
+    const UNKNOWN = 'UNKNOWN';
     const PREROLL = 'PREROLL';
     const MIDROLL = 'MIDROLL';
     const POSTROLL = 'POSTROLL';

@@ -58,6 +58,7 @@ class ForecastService extends \Google\AdsApi\Common\AdsSoapClient
       'CustomCriteriaSet' => 'Google\\AdsApi\\AdManager\\v201811\\CustomCriteriaSet',
       'CustomFieldValue' => 'Google\\AdsApi\\AdManager\\v201811\\CustomFieldValue',
       'CustomFieldValueError' => 'Google\\AdsApi\\AdManager\\v201811\\CustomFieldValueError',
+      'CmsMetadataCriteria' => 'Google\\AdsApi\\AdManager\\v201811\\CmsMetadataCriteria',
       'CustomTargetingError' => 'Google\\AdsApi\\AdManager\\v201811\\CustomTargetingError',
       'CustomTargetingPremiumFeature' => 'Google\\AdsApi\\AdManager\\v201811\\CustomTargetingPremiumFeature',
       'CustomCriteriaLeaf' => 'Google\\AdsApi\\AdManager\\v201811\\CustomCriteriaLeaf',

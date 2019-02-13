@@ -36,6 +36,7 @@ class NativeStyleService extends \Google\AdsApi\Common\AdsSoapClient
       'CreativeTemplateError' => 'Google\\AdsApi\\AdManager\\v201808\\CreativeTemplateError',
       'CustomCriteria' => 'Google\\AdsApi\\AdManager\\v201808\\CustomCriteria',
       'CustomCriteriaSet' => 'Google\\AdsApi\\AdManager\\v201808\\CustomCriteriaSet',
+      'CmsMetadataCriteria' => 'Google\\AdsApi\\AdManager\\v201808\\CmsMetadataCriteria',
       'CustomTargetingError' => 'Google\\AdsApi\\AdManager\\v201808\\CustomTargetingError',
       'CustomCriteriaLeaf' => 'Google\\AdsApi\\AdManager\\v201808\\CustomCriteriaLeaf',
       'CustomCriteriaNode' => 'Google\\AdsApi\\AdManager\\v201808\\CustomCriteriaNode',
