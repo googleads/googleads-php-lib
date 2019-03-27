@@ -81,10 +81,10 @@ class AudienceSegmentPage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\AudienceSegment[] $results
+     * @param \Google\AdsApi\AdManager\v201811\AudienceSegment[]|null $results
      * @return \Google\AdsApi\AdManager\v201811\AudienceSegmentPage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

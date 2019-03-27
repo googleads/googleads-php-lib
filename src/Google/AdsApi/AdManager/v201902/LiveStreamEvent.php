@@ -385,10 +385,10 @@ class LiveStreamEvent
     }
 
     /**
-     * @param string[] $contentUrls
+     * @param string[]|null $contentUrls
      * @return \Google\AdsApi\AdManager\v201902\LiveStreamEvent
      */
-    public function setContentUrls(array $contentUrls)
+    public function setContentUrls(array $contentUrls = null)
     {
       $this->contentUrls = $contentUrls;
       return $this;
@@ -403,10 +403,10 @@ class LiveStreamEvent
     }
 
     /**
-     * @param string[] $adTags
+     * @param string[]|null $adTags
      * @return \Google\AdsApi\AdManager\v201902\LiveStreamEvent
      */
-    public function setAdTags(array $adTags)
+    public function setAdTags(array $adTags = null)
     {
       $this->adTags = $adTags;
       return $this;
@@ -549,10 +549,10 @@ class LiveStreamEvent
     }
 
     /**
-     * @param int[] $daiAuthenticationKeyIds
+     * @param int[]|null $daiAuthenticationKeyIds
      * @return \Google\AdsApi\AdManager\v201902\LiveStreamEvent
      */
-    public function setDaiAuthenticationKeyIds(array $daiAuthenticationKeyIds)
+    public function setDaiAuthenticationKeyIds(array $daiAuthenticationKeyIds = null)
     {
       $this->daiAuthenticationKeyIds = $daiAuthenticationKeyIds;
       return $this;
@@ -567,10 +567,10 @@ class LiveStreamEvent
     }
 
     /**
-     * @param int[] $sourceContentConfigurationIds
+     * @param int[]|null $sourceContentConfigurationIds
      * @return \Google\AdsApi\AdManager\v201902\LiveStreamEvent
      */
-    public function setSourceContentConfigurationIds(array $sourceContentConfigurationIds)
+    public function setSourceContentConfigurationIds(array $sourceContentConfigurationIds = null)
     {
       $this->sourceContentConfigurationIds = $sourceContentConfigurationIds;
       return $this;

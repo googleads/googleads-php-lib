@@ -102,10 +102,10 @@ class ImageCreative extends \Google\AdsApi\AdManager\v201805\BaseImageCreative
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\CreativeAsset[] $secondaryImageAssets
+     * @param \Google\AdsApi\AdManager\v201805\CreativeAsset[]|null $secondaryImageAssets
      * @return \Google\AdsApi\AdManager\v201805\ImageCreative
      */
-    public function setSecondaryImageAssets(array $secondaryImageAssets)
+    public function setSecondaryImageAssets(array $secondaryImageAssets = null)
     {
       $this->secondaryImageAssets = $secondaryImageAssets;
       return $this;

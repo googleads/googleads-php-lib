@@ -144,10 +144,10 @@ class VastRedirectCreative extends \Google\AdsApi\AdManager\v201808\Creative
     }
 
     /**
-     * @param int[] $companionCreativeIds
+     * @param int[]|null $companionCreativeIds
      * @return \Google\AdsApi\AdManager\v201808\VastRedirectCreative
      */
-    public function setCompanionCreativeIds(array $companionCreativeIds)
+    public function setCompanionCreativeIds(array $companionCreativeIds = null)
     {
       $this->companionCreativeIds = $companionCreativeIds;
       return $this;
@@ -162,10 +162,10 @@ class VastRedirectCreative extends \Google\AdsApi\AdManager\v201808\Creative
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\ConversionEvent_TrackingUrlsMapEntry[] $trackingUrls
+     * @param \Google\AdsApi\AdManager\v201808\ConversionEvent_TrackingUrlsMapEntry[]|null $trackingUrls
      * @return \Google\AdsApi\AdManager\v201808\VastRedirectCreative
      */
-    public function setTrackingUrls(array $trackingUrls)
+    public function setTrackingUrls(array $trackingUrls = null)
     {
       $this->trackingUrls = $trackingUrls;
       return $this;

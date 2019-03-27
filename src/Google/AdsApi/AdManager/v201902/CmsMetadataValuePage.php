@@ -81,10 +81,10 @@ class CmsMetadataValuePage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\CmsMetadataValue[] $results
+     * @param \Google\AdsApi\AdManager\v201902\CmsMetadataValue[]|null $results
      * @return \Google\AdsApi\AdManager\v201902\CmsMetadataValuePage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

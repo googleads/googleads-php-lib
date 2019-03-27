@@ -45,10 +45,10 @@ class ReconciliationLineItemReportPage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\ReconciliationLineItemReport[] $results
+     * @param \Google\AdsApi\AdManager\v201808\ReconciliationLineItemReport[]|null $results
      * @return \Google\AdsApi\AdManager\v201808\ReconciliationLineItemReportPage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

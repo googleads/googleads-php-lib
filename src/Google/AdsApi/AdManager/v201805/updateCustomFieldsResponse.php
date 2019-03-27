@@ -31,10 +31,10 @@ class updateCustomFieldsResponse
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\CustomField[] $rval
+     * @param \Google\AdsApi\AdManager\v201805\CustomField[]|null $rval
      * @return \Google\AdsApi\AdManager\v201805\updateCustomFieldsResponse
      */
-    public function setRval(array $rval)
+    public function setRval(array $rval = null)
     {
       $this->rval = $rval;
       return $this;

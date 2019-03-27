@@ -45,10 +45,10 @@ class PackagePage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\Package[] $results
+     * @param \Google\AdsApi\AdManager\v201808\Package[]|null $results
      * @return \Google\AdsApi\AdManager\v201808\PackagePage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

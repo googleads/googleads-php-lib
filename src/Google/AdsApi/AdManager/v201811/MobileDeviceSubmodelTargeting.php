@@ -38,10 +38,10 @@ class MobileDeviceSubmodelTargeting
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\Technology[] $targetedMobileDeviceSubmodels
+     * @param \Google\AdsApi\AdManager\v201811\Technology[]|null $targetedMobileDeviceSubmodels
      * @return \Google\AdsApi\AdManager\v201811\MobileDeviceSubmodelTargeting
      */
-    public function setTargetedMobileDeviceSubmodels(array $targetedMobileDeviceSubmodels)
+    public function setTargetedMobileDeviceSubmodels(array $targetedMobileDeviceSubmodels = null)
     {
       $this->targetedMobileDeviceSubmodels = $targetedMobileDeviceSubmodels;
       return $this;
@@ -56,10 +56,10 @@ class MobileDeviceSubmodelTargeting
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\Technology[] $excludedMobileDeviceSubmodels
+     * @param \Google\AdsApi\AdManager\v201811\Technology[]|null $excludedMobileDeviceSubmodels
      * @return \Google\AdsApi\AdManager\v201811\MobileDeviceSubmodelTargeting
      */
-    public function setExcludedMobileDeviceSubmodels(array $excludedMobileDeviceSubmodels)
+    public function setExcludedMobileDeviceSubmodels(array $excludedMobileDeviceSubmodels = null)
     {
       $this->excludedMobileDeviceSubmodels = $excludedMobileDeviceSubmodels;
       return $this;

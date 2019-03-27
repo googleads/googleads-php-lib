@@ -44,10 +44,10 @@ class ListStringCreativeTemplateVariable extends \Google\AdsApi\AdManager\v20180
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\ListStringCreativeTemplateVariableVariableChoice[] $choices
+     * @param \Google\AdsApi\AdManager\v201808\ListStringCreativeTemplateVariableVariableChoice[]|null $choices
      * @return \Google\AdsApi\AdManager\v201808\ListStringCreativeTemplateVariable
      */
-    public function setChoices(array $choices)
+    public function setChoices(array $choices = null)
     {
       $this->choices = $choices;
       return $this;

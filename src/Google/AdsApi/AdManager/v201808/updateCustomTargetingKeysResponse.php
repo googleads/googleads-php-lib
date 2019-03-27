@@ -31,10 +31,10 @@ class updateCustomTargetingKeysResponse
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\CustomTargetingKey[] $rval
+     * @param \Google\AdsApi\AdManager\v201808\CustomTargetingKey[]|null $rval
      * @return \Google\AdsApi\AdManager\v201808\updateCustomTargetingKeysResponse
      */
-    public function setRval(array $rval)
+    public function setRval(array $rval = null)
     {
       $this->rval = $rval;
       return $this;

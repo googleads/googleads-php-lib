@@ -31,10 +31,10 @@ class updateProposalLineItemsResponse
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\ProposalLineItem[] $rval
+     * @param \Google\AdsApi\AdManager\v201811\ProposalLineItem[]|null $rval
      * @return \Google\AdsApi\AdManager\v201811\updateProposalLineItemsResponse
      */
-    public function setRval(array $rval)
+    public function setRval(array $rval = null)
     {
       $this->rval = $rval;
       return $this;

@@ -31,10 +31,10 @@ class updateAdExclusionRulesResponse
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\AdExclusionRule[] $rval
+     * @param \Google\AdsApi\AdManager\v201902\AdExclusionRule[]|null $rval
      * @return \Google\AdsApi\AdManager\v201902\updateAdExclusionRulesResponse
      */
-    public function setRval(array $rval)
+    public function setRval(array $rval = null)
     {
       $this->rval = $rval;
       return $this;

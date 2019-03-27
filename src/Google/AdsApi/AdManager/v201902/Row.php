@@ -31,10 +31,10 @@ class Row
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\Value[] $values
+     * @param \Google\AdsApi\AdManager\v201902\Value[]|null $values
      * @return \Google\AdsApi\AdManager\v201902\Row
      */
-    public function setValues(array $values)
+    public function setValues(array $values = null)
     {
       $this->values = $values;
       return $this;

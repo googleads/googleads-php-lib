@@ -105,10 +105,10 @@ class ProposalLineItemConstraints
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\CreativePlaceholder[] $builtInCreativePlaceholders
+     * @param \Google\AdsApi\AdManager\v201808\CreativePlaceholder[]|null $builtInCreativePlaceholders
      * @return \Google\AdsApi\AdManager\v201808\ProposalLineItemConstraints
      */
-    public function setBuiltInCreativePlaceholders(array $builtInCreativePlaceholders)
+    public function setBuiltInCreativePlaceholders(array $builtInCreativePlaceholders = null)
     {
       $this->builtInCreativePlaceholders = $builtInCreativePlaceholders;
       return $this;
@@ -195,10 +195,10 @@ class ProposalLineItemConstraints
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\FrequencyCap[] $builtInFrequencyCaps
+     * @param \Google\AdsApi\AdManager\v201808\FrequencyCap[]|null $builtInFrequencyCaps
      * @return \Google\AdsApi\AdManager\v201808\ProposalLineItemConstraints
      */
-    public function setBuiltInFrequencyCaps(array $builtInFrequencyCaps)
+    public function setBuiltInFrequencyCaps(array $builtInFrequencyCaps = null)
     {
       $this->builtInFrequencyCaps = $builtInFrequencyCaps;
       return $this;

@@ -115,10 +115,10 @@ class ReportQuery
     }
 
     /**
-     * @param string[] $dimensions
+     * @param string[]|null $dimensions
      * @return \Google\AdsApi\AdManager\v201811\ReportQuery
      */
-    public function setDimensions(array $dimensions)
+    public function setDimensions(array $dimensions = null)
     {
       $this->dimensions = $dimensions;
       return $this;
@@ -151,10 +151,10 @@ class ReportQuery
     }
 
     /**
-     * @param string[] $columns
+     * @param string[]|null $columns
      * @return \Google\AdsApi\AdManager\v201811\ReportQuery
      */
-    public function setColumns(array $columns)
+    public function setColumns(array $columns = null)
     {
       $this->columns = $columns;
       return $this;
@@ -169,10 +169,10 @@ class ReportQuery
     }
 
     /**
-     * @param string[] $dimensionAttributes
+     * @param string[]|null $dimensionAttributes
      * @return \Google\AdsApi\AdManager\v201811\ReportQuery
      */
-    public function setDimensionAttributes(array $dimensionAttributes)
+    public function setDimensionAttributes(array $dimensionAttributes = null)
     {
       $this->dimensionAttributes = $dimensionAttributes;
       return $this;
@@ -187,10 +187,10 @@ class ReportQuery
     }
 
     /**
-     * @param int[] $customFieldIds
+     * @param int[]|null $customFieldIds
      * @return \Google\AdsApi\AdManager\v201811\ReportQuery
      */
-    public function setCustomFieldIds(array $customFieldIds)
+    public function setCustomFieldIds(array $customFieldIds = null)
     {
       $this->customFieldIds = $customFieldIds;
       return $this;
@@ -205,10 +205,10 @@ class ReportQuery
     }
 
     /**
-     * @param int[] $contentMetadataKeyHierarchyCustomTargetingKeyIds
+     * @param int[]|null $contentMetadataKeyHierarchyCustomTargetingKeyIds
      * @return \Google\AdsApi\AdManager\v201811\ReportQuery
      */
-    public function setContentMetadataKeyHierarchyCustomTargetingKeyIds(array $contentMetadataKeyHierarchyCustomTargetingKeyIds)
+    public function setContentMetadataKeyHierarchyCustomTargetingKeyIds(array $contentMetadataKeyHierarchyCustomTargetingKeyIds = null)
     {
       $this->contentMetadataKeyHierarchyCustomTargetingKeyIds = $contentMetadataKeyHierarchyCustomTargetingKeyIds;
       return $this;

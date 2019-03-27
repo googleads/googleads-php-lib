@@ -81,10 +81,10 @@ class ReconciliationReportRowPage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\ReconciliationReportRow[] $results
+     * @param \Google\AdsApi\AdManager\v201808\ReconciliationReportRow[]|null $results
      * @return \Google\AdsApi\AdManager\v201808\ReconciliationReportRowPage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

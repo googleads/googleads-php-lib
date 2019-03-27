@@ -31,10 +31,10 @@ class updateNativeStylesResponse
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\NativeStyle[] $rval
+     * @param \Google\AdsApi\AdManager\v201808\NativeStyle[]|null $rval
      * @return \Google\AdsApi\AdManager\v201808\updateNativeStylesResponse
      */
-    public function setRval(array $rval)
+    public function setRval(array $rval = null)
     {
       $this->rval = $rval;
       return $this;

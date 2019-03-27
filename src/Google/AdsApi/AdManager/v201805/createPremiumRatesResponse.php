@@ -31,10 +31,10 @@ class createPremiumRatesResponse
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\PremiumRate[] $rval
+     * @param \Google\AdsApi\AdManager\v201805\PremiumRate[]|null $rval
      * @return \Google\AdsApi\AdManager\v201805\createPremiumRatesResponse
      */
-    public function setRval(array $rval)
+    public function setRval(array $rval = null)
     {
       $this->rval = $rval;
       return $this;

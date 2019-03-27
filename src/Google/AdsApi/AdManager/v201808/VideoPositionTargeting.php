@@ -31,10 +31,10 @@ class VideoPositionTargeting
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\VideoPositionTarget[] $targetedPositions
+     * @param \Google\AdsApi\AdManager\v201808\VideoPositionTarget[]|null $targetedPositions
      * @return \Google\AdsApi\AdManager\v201808\VideoPositionTargeting
      */
-    public function setTargetedPositions(array $targetedPositions)
+    public function setTargetedPositions(array $targetedPositions = null)
     {
       $this->targetedPositions = $targetedPositions;
       return $this;

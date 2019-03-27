@@ -189,10 +189,10 @@ class RateCard
     }
 
     /**
-     * @param int[] $appliedTeamIds
+     * @param int[]|null $appliedTeamIds
      * @return \Google\AdsApi\AdManager\v201902\RateCard
      */
-    public function setAppliedTeamIds(array $appliedTeamIds)
+    public function setAppliedTeamIds(array $appliedTeamIds = null)
     {
       $this->appliedTeamIds = $appliedTeamIds;
       return $this;

@@ -45,10 +45,10 @@ class BaseRatePage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\BaseRate[] $results
+     * @param \Google\AdsApi\AdManager\v201808\BaseRate[]|null $results
      * @return \Google\AdsApi\AdManager\v201808\BaseRatePage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

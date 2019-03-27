@@ -116,10 +116,10 @@ class SetTopBoxCreative extends \Google\AdsApi\AdManager\v201902\BaseVideoCreati
     }
 
     /**
-     * @param string[] $availabilityRegionIds
+     * @param string[]|null $availabilityRegionIds
      * @return \Google\AdsApi\AdManager\v201902\SetTopBoxCreative
      */
-    public function setAvailabilityRegionIds(array $availabilityRegionIds)
+    public function setAvailabilityRegionIds(array $availabilityRegionIds = null)
     {
       $this->availabilityRegionIds = $availabilityRegionIds;
       return $this;

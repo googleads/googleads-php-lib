@@ -115,10 +115,10 @@ class CreativeSet
     }
 
     /**
-     * @param int[] $companionCreativeIds
+     * @param int[]|null $companionCreativeIds
      * @return \Google\AdsApi\AdManager\v201805\CreativeSet
      */
-    public function setCompanionCreativeIds(array $companionCreativeIds)
+    public function setCompanionCreativeIds(array $companionCreativeIds = null)
     {
       $this->companionCreativeIds = $companionCreativeIds;
       return $this;

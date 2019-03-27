@@ -81,10 +81,10 @@ class MobileApplicationPage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\MobileApplication[] $results
+     * @param \Google\AdsApi\AdManager\v201805\MobileApplication[]|null $results
      * @return \Google\AdsApi\AdManager\v201805\MobileApplicationPage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

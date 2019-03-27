@@ -31,10 +31,10 @@ class RequestPlatformTargeting
     }
 
     /**
-     * @param string[] $targetedRequestPlatforms
+     * @param string[]|null $targetedRequestPlatforms
      * @return \Google\AdsApi\AdManager\v201808\RequestPlatformTargeting
      */
-    public function setTargetedRequestPlatforms(array $targetedRequestPlatforms)
+    public function setTargetedRequestPlatforms(array $targetedRequestPlatforms = null)
     {
       $this->targetedRequestPlatforms = $targetedRequestPlatforms;
       return $this;

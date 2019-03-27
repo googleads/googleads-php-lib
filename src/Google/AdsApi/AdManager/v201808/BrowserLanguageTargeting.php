@@ -56,10 +56,10 @@ class BrowserLanguageTargeting
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\Technology[] $browserLanguages
+     * @param \Google\AdsApi\AdManager\v201808\Technology[]|null $browserLanguages
      * @return \Google\AdsApi\AdManager\v201808\BrowserLanguageTargeting
      */
-    public function setBrowserLanguages(array $browserLanguages)
+    public function setBrowserLanguages(array $browserLanguages = null)
     {
       $this->browserLanguages = $browserLanguages;
       return $this;

@@ -81,10 +81,10 @@ class UserTeamAssociationPage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\UserTeamAssociation[] $results
+     * @param \Google\AdsApi\AdManager\v201808\UserTeamAssociation[]|null $results
      * @return \Google\AdsApi\AdManager\v201808\UserTeamAssociationPage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

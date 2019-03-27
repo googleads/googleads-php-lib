@@ -81,10 +81,10 @@ class CustomTargetingKeyPage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\CustomTargetingKey[] $results
+     * @param \Google\AdsApi\AdManager\v201811\CustomTargetingKey[]|null $results
      * @return \Google\AdsApi\AdManager\v201811\CustomTargetingKeyPage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

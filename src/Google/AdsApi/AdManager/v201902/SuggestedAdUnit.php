@@ -110,10 +110,10 @@ class SuggestedAdUnit
     }
 
     /**
-     * @param string[] $path
+     * @param string[]|null $path
      * @return \Google\AdsApi\AdManager\v201902\SuggestedAdUnit
      */
-    public function setPath(array $path)
+    public function setPath(array $path = null)
     {
       $this->path = $path;
       return $this;
@@ -128,10 +128,10 @@ class SuggestedAdUnit
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\AdUnitParent[] $parentPath
+     * @param \Google\AdsApi\AdManager\v201902\AdUnitParent[]|null $parentPath
      * @return \Google\AdsApi\AdManager\v201902\SuggestedAdUnit
      */
-    public function setParentPath(array $parentPath)
+    public function setParentPath(array $parentPath = null)
     {
       $this->parentPath = $parentPath;
       return $this;
@@ -182,10 +182,10 @@ class SuggestedAdUnit
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\AdUnitSize[] $suggestedAdUnitSizes
+     * @param \Google\AdsApi\AdManager\v201902\AdUnitSize[]|null $suggestedAdUnitSizes
      * @return \Google\AdsApi\AdManager\v201902\SuggestedAdUnit
      */
-    public function setSuggestedAdUnitSizes(array $suggestedAdUnitSizes)
+    public function setSuggestedAdUnitSizes(array $suggestedAdUnitSizes = null)
     {
       $this->suggestedAdUnitSizes = $suggestedAdUnitSizes;
       return $this;

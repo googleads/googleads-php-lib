@@ -81,10 +81,10 @@ class SavedQueryPage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\SavedQuery[] $results
+     * @param \Google\AdsApi\AdManager\v201902\SavedQuery[]|null $results
      * @return \Google\AdsApi\AdManager\v201902\SavedQueryPage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

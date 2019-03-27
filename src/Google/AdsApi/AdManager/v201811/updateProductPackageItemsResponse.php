@@ -31,10 +31,10 @@ class updateProductPackageItemsResponse
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\ProductPackageItem[] $rval
+     * @param \Google\AdsApi\AdManager\v201811\ProductPackageItem[]|null $rval
      * @return \Google\AdsApi\AdManager\v201811\updateProductPackageItemsResponse
      */
-    public function setRval(array $rval)
+    public function setRval(array $rval = null)
     {
       $this->rval = $rval;
       return $this;

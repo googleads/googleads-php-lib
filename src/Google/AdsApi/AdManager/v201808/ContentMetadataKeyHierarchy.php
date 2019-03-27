@@ -88,10 +88,10 @@ class ContentMetadataKeyHierarchy
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\ContentMetadataKeyHierarchyLevel[] $hierarchyLevels
+     * @param \Google\AdsApi\AdManager\v201808\ContentMetadataKeyHierarchyLevel[]|null $hierarchyLevels
      * @return \Google\AdsApi\AdManager\v201808\ContentMetadataKeyHierarchy
      */
-    public function setHierarchyLevels(array $hierarchyLevels)
+    public function setHierarchyLevels(array $hierarchyLevels = null)
     {
       $this->hierarchyLevels = $hierarchyLevels;
       return $this;

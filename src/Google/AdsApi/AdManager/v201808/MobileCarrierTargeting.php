@@ -56,10 +56,10 @@ class MobileCarrierTargeting
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\Technology[] $mobileCarriers
+     * @param \Google\AdsApi\AdManager\v201808\Technology[]|null $mobileCarriers
      * @return \Google\AdsApi\AdManager\v201808\MobileCarrierTargeting
      */
-    public function setMobileCarriers(array $mobileCarriers)
+    public function setMobileCarriers(array $mobileCarriers = null)
     {
       $this->mobileCarriers = $mobileCarriers;
       return $this;

@@ -342,10 +342,10 @@ class Company
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\AppliedLabel[] $appliedLabels
+     * @param \Google\AdsApi\AdManager\v201811\AppliedLabel[]|null $appliedLabels
      * @return \Google\AdsApi\AdManager\v201811\Company
      */
-    public function setAppliedLabels(array $appliedLabels)
+    public function setAppliedLabels(array $appliedLabels = null)
     {
       $this->appliedLabels = $appliedLabels;
       return $this;
@@ -379,10 +379,10 @@ class Company
     }
 
     /**
-     * @param int[] $appliedTeamIds
+     * @param int[]|null $appliedTeamIds
      * @return \Google\AdsApi\AdManager\v201811\Company
      */
-    public function setAppliedTeamIds(array $appliedTeamIds)
+    public function setAppliedTeamIds(array $appliedTeamIds = null)
     {
       $this->appliedTeamIds = $appliedTeamIds;
       return $this;

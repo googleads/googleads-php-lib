@@ -34,32 +34,41 @@ class AdsSoapClientFactoryTest extends TestCase
     public function testGenerateSoapClientWithEndpointOverride()
     {
         // Mock the arguments the generate SOAP client method needs.
-        $adsSessionMock = $this->getMock(AdsSession::class);
+        $adsSessionMock = $this->getMockBuilder(AdsSession::class)
+            ->disableOriginalConstructor()
+            ->getMock();
         $adsSessionMock->expects($this->once())
-        ->method('getSoapSettings')
-        ->will($this->returnValue(null));
+            ->method('getSoapSettings')
+            ->will($this->returnValue(null));
         $adsSessionMock->expects($this->once())
-        ->method('getEndpoint')
-        ->will($this->returnValue('https://abc.xyz'));
-        $adsHeaderHandlerMock = $this->getMock(AdsHeaderHandler::class);
-        $adsServiceDescriptorMock = $this->getMock(AdsServiceDescriptor::class);
+            ->method('getEndpoint')
+            ->will($this->returnValue('https://abc.xyz'));
+        $adsHeaderHandlerMock = $this->getMockBuilder(AdsHeaderHandler::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $adsServiceDescriptorMock =
+            $this->getMockBuilder(AdsServiceDescriptor::class)
+                ->disableOriginalConstructor()
+                ->getMock();
 
         // Return a partial mock for the ads SOAP client the factory creates to
         // suppress the SOAP client from looking for a live WSDL.
         $adsSoapClientMock = $this->getMockBuilder(AdsSoapClient::class)
-        ->setMethods(['getWsdlUri'])
-        ->disableOriginalConstructor()
-        ->getMock();
+            ->setMethods(['getWsdlUri'])
+            ->disableOriginalConstructor()
+            ->getMock();
         $adsSoapClientMock->expects($this->atLeastOnce())
-        ->method('getWsdlUri')
-        ->will($this->returnValue(
-            'https://ads.google.com/apis/ads/publisher/MockService?wsdl'
-        ));
+            ->method('getWsdlUri')
+            ->will(
+                $this->returnValue(
+                    'https://ads.google.com/apis/ads/publisher/MockService?wsdl'
+                )
+            );
         $reflectionMock = $this->getMockBuilder(Reflection::class)
-        ->getMock();
+            ->getMock();
         $reflectionMock->expects($this->once())
-        ->method('createInstance')
-        ->will($this->returnValue($adsSoapClientMock));
+            ->method('createInstance')
+            ->will($this->returnValue($adsSoapClientMock));
 
         // Use the factory to create the SOAP client and test that the factory
         // set up the client correctly.

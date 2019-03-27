@@ -1,3 +1,18 @@
+### 41.0.0
+
+##### AdWords
+
+*   Removed support and examples for v201806. See deprecation
+    schedule at: https://developers.google.com/adwords/api/docs/sunset-dates
+
+##### Ad Manager
+
+*   Fixed [issue #538](https://github.com/googleads/googleads-php-lib/issues/538).
+
+##### Common
+
+*   Updated `composer.json` to require the minimum PHP version of 7.1.
+
 ### 40.0.0
 
 ##### AdWords

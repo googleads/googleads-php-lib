@@ -38,10 +38,10 @@ class DayPartTargeting
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\DayPart[] $dayParts
+     * @param \Google\AdsApi\AdManager\v201811\DayPart[]|null $dayParts
      * @return \Google\AdsApi\AdManager\v201811\DayPartTargeting
      */
-    public function setDayParts(array $dayParts)
+    public function setDayParts(array $dayParts = null)
     {
       $this->dayParts = $dayParts;
       return $this;

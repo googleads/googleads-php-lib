@@ -595,10 +595,10 @@ class Proposal
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\ProposalCompanyAssociation[] $agencies
+     * @param \Google\AdsApi\AdManager\v201811\ProposalCompanyAssociation[]|null $agencies
      * @return \Google\AdsApi\AdManager\v201811\Proposal
      */
-    public function setAgencies(array $agencies)
+    public function setAgencies(array $agencies = null)
     {
       $this->agencies = $agencies;
       return $this;
@@ -776,10 +776,10 @@ class Proposal
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\SalespersonSplit[] $secondarySalespeople
+     * @param \Google\AdsApi\AdManager\v201811\SalespersonSplit[]|null $secondarySalespeople
      * @return \Google\AdsApi\AdManager\v201811\Proposal
      */
-    public function setSecondarySalespeople(array $secondarySalespeople)
+    public function setSecondarySalespeople(array $secondarySalespeople = null)
     {
       $this->secondarySalespeople = $secondarySalespeople;
       return $this;
@@ -794,10 +794,10 @@ class Proposal
     }
 
     /**
-     * @param int[] $salesPlannerIds
+     * @param int[]|null $salesPlannerIds
      * @return \Google\AdsApi\AdManager\v201811\Proposal
      */
-    public function setSalesPlannerIds(array $salesPlannerIds)
+    public function setSalesPlannerIds(array $salesPlannerIds = null)
     {
       $this->salesPlannerIds = $salesPlannerIds;
       return $this;
@@ -831,10 +831,10 @@ class Proposal
     }
 
     /**
-     * @param int[] $secondaryTraffickerIds
+     * @param int[]|null $secondaryTraffickerIds
      * @return \Google\AdsApi\AdManager\v201811\Proposal
      */
-    public function setSecondaryTraffickerIds(array $secondaryTraffickerIds)
+    public function setSecondaryTraffickerIds(array $secondaryTraffickerIds = null)
     {
       $this->secondaryTraffickerIds = $secondaryTraffickerIds;
       return $this;
@@ -849,10 +849,10 @@ class Proposal
     }
 
     /**
-     * @param int[] $sellerContactIds
+     * @param int[]|null $sellerContactIds
      * @return \Google\AdsApi\AdManager\v201811\Proposal
      */
-    public function setSellerContactIds(array $sellerContactIds)
+    public function setSellerContactIds(array $sellerContactIds = null)
     {
       $this->sellerContactIds = $sellerContactIds;
       return $this;
@@ -867,10 +867,10 @@ class Proposal
     }
 
     /**
-     * @param int[] $appliedTeamIds
+     * @param int[]|null $appliedTeamIds
      * @return \Google\AdsApi\AdManager\v201811\Proposal
      */
-    public function setAppliedTeamIds(array $appliedTeamIds)
+    public function setAppliedTeamIds(array $appliedTeamIds = null)
     {
       $this->appliedTeamIds = $appliedTeamIds;
       return $this;
@@ -885,10 +885,10 @@ class Proposal
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\BaseCustomFieldValue[] $customFieldValues
+     * @param \Google\AdsApi\AdManager\v201811\BaseCustomFieldValue[]|null $customFieldValues
      * @return \Google\AdsApi\AdManager\v201811\Proposal
      */
-    public function setCustomFieldValues(array $customFieldValues)
+    public function setCustomFieldValues(array $customFieldValues = null)
     {
       $this->customFieldValues = $customFieldValues;
       return $this;
@@ -903,10 +903,10 @@ class Proposal
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\AppliedLabel[] $appliedLabels
+     * @param \Google\AdsApi\AdManager\v201811\AppliedLabel[]|null $appliedLabels
      * @return \Google\AdsApi\AdManager\v201811\Proposal
      */
-    public function setAppliedLabels(array $appliedLabels)
+    public function setAppliedLabels(array $appliedLabels = null)
     {
       $this->appliedLabels = $appliedLabels;
       return $this;
@@ -921,10 +921,10 @@ class Proposal
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\AppliedLabel[] $effectiveAppliedLabels
+     * @param \Google\AdsApi\AdManager\v201811\AppliedLabel[]|null $effectiveAppliedLabels
      * @return \Google\AdsApi\AdManager\v201811\Proposal
      */
-    public function setEffectiveAppliedLabels(array $effectiveAppliedLabels)
+    public function setEffectiveAppliedLabels(array $effectiveAppliedLabels = null)
     {
       $this->effectiveAppliedLabels = $effectiveAppliedLabels;
       return $this;
@@ -1142,10 +1142,10 @@ class Proposal
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\ProposalLink[] $resources
+     * @param \Google\AdsApi\AdManager\v201811\ProposalLink[]|null $resources
      * @return \Google\AdsApi\AdManager\v201811\Proposal
      */
-    public function setResources(array $resources)
+    public function setResources(array $resources = null)
     {
       $this->resources = $resources;
       return $this;
@@ -1232,10 +1232,10 @@ class Proposal
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\ProposalTermsAndConditions[] $termsAndConditions
+     * @param \Google\AdsApi\AdManager\v201811\ProposalTermsAndConditions[]|null $termsAndConditions
      * @return \Google\AdsApi\AdManager\v201811\Proposal
      */
-    public function setTermsAndConditions(array $termsAndConditions)
+    public function setTermsAndConditions(array $termsAndConditions = null)
     {
       $this->termsAndConditions = $termsAndConditions;
       return $this;
@@ -1286,10 +1286,10 @@ class Proposal
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\OfflineError[] $offlineErrors
+     * @param \Google\AdsApi\AdManager\v201811\OfflineError[]|null $offlineErrors
      * @return \Google\AdsApi\AdManager\v201811\Proposal
      */
-    public function setOfflineErrors(array $offlineErrors)
+    public function setOfflineErrors(array $offlineErrors = null)
     {
       $this->offlineErrors = $offlineErrors;
       return $this;

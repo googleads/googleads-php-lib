@@ -81,10 +81,10 @@ class SuggestedAdUnitPage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\SuggestedAdUnit[] $results
+     * @param \Google\AdsApi\AdManager\v201808\SuggestedAdUnit[]|null $results
      * @return \Google\AdsApi\AdManager\v201808\SuggestedAdUnitPage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

@@ -31,10 +31,10 @@ class createProposalsResponse
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\Proposal[] $rval
+     * @param \Google\AdsApi\AdManager\v201808\Proposal[]|null $rval
      * @return \Google\AdsApi\AdManager\v201808\createProposalsResponse
      */
-    public function setRval(array $rval)
+    public function setRval(array $rval = null)
     {
       $this->rval = $rval;
       return $this;

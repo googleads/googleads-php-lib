@@ -38,10 +38,10 @@ class MobileApplicationTargeting
     }
 
     /**
-     * @param int[] $mobileApplicationIds
+     * @param int[]|null $mobileApplicationIds
      * @return \Google\AdsApi\AdManager\v201805\MobileApplicationTargeting
      */
-    public function setMobileApplicationIds(array $mobileApplicationIds)
+    public function setMobileApplicationIds(array $mobileApplicationIds = null)
     {
       $this->mobileApplicationIds = $mobileApplicationIds;
       return $this;

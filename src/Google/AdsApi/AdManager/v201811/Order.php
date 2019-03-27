@@ -459,10 +459,10 @@ class Order
     }
 
     /**
-     * @param int[] $advertiserContactIds
+     * @param int[]|null $advertiserContactIds
      * @return \Google\AdsApi\AdManager\v201811\Order
      */
-    public function setAdvertiserContactIds(array $advertiserContactIds)
+    public function setAdvertiserContactIds(array $advertiserContactIds = null)
     {
       $this->advertiserContactIds = $advertiserContactIds;
       return $this;
@@ -496,10 +496,10 @@ class Order
     }
 
     /**
-     * @param int[] $agencyContactIds
+     * @param int[]|null $agencyContactIds
      * @return \Google\AdsApi\AdManager\v201811\Order
      */
-    public function setAgencyContactIds(array $agencyContactIds)
+    public function setAgencyContactIds(array $agencyContactIds = null)
     {
       $this->agencyContactIds = $agencyContactIds;
       return $this;
@@ -552,10 +552,10 @@ class Order
     }
 
     /**
-     * @param int[] $secondaryTraffickerIds
+     * @param int[]|null $secondaryTraffickerIds
      * @return \Google\AdsApi\AdManager\v201811\Order
      */
-    public function setSecondaryTraffickerIds(array $secondaryTraffickerIds)
+    public function setSecondaryTraffickerIds(array $secondaryTraffickerIds = null)
     {
       $this->secondaryTraffickerIds = $secondaryTraffickerIds;
       return $this;
@@ -589,10 +589,10 @@ class Order
     }
 
     /**
-     * @param int[] $secondarySalespersonIds
+     * @param int[]|null $secondarySalespersonIds
      * @return \Google\AdsApi\AdManager\v201811\Order
      */
-    public function setSecondarySalespersonIds(array $secondarySalespersonIds)
+    public function setSecondarySalespersonIds(array $secondarySalespersonIds = null)
     {
       $this->secondarySalespersonIds = $secondarySalespersonIds;
       return $this;
@@ -682,10 +682,10 @@ class Order
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\AppliedLabel[] $appliedLabels
+     * @param \Google\AdsApi\AdManager\v201811\AppliedLabel[]|null $appliedLabels
      * @return \Google\AdsApi\AdManager\v201811\Order
      */
-    public function setAppliedLabels(array $appliedLabels)
+    public function setAppliedLabels(array $appliedLabels = null)
     {
       $this->appliedLabels = $appliedLabels;
       return $this;
@@ -700,10 +700,10 @@ class Order
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\AppliedLabel[] $effectiveAppliedLabels
+     * @param \Google\AdsApi\AdManager\v201811\AppliedLabel[]|null $effectiveAppliedLabels
      * @return \Google\AdsApi\AdManager\v201811\Order
      */
-    public function setEffectiveAppliedLabels(array $effectiveAppliedLabels)
+    public function setEffectiveAppliedLabels(array $effectiveAppliedLabels = null)
     {
       $this->effectiveAppliedLabels = $effectiveAppliedLabels;
       return $this;
@@ -754,10 +754,10 @@ class Order
     }
 
     /**
-     * @param int[] $appliedTeamIds
+     * @param int[]|null $appliedTeamIds
      * @return \Google\AdsApi\AdManager\v201811\Order
      */
-    public function setAppliedTeamIds(array $appliedTeamIds)
+    public function setAppliedTeamIds(array $appliedTeamIds = null)
     {
       $this->appliedTeamIds = $appliedTeamIds;
       return $this;
@@ -790,10 +790,10 @@ class Order
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\BaseCustomFieldValue[] $customFieldValues
+     * @param \Google\AdsApi\AdManager\v201811\BaseCustomFieldValue[]|null $customFieldValues
      * @return \Google\AdsApi\AdManager\v201811\Order
      */
-    public function setCustomFieldValues(array $customFieldValues)
+    public function setCustomFieldValues(array $customFieldValues = null)
     {
       $this->customFieldValues = $customFieldValues;
       return $this;

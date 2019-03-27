@@ -115,10 +115,10 @@ class ImageRedirectOverlayCreative extends \Google\AdsApi\AdManager\v201811\Base
     }
 
     /**
-     * @param int[] $companionCreativeIds
+     * @param int[]|null $companionCreativeIds
      * @return \Google\AdsApi\AdManager\v201811\ImageRedirectOverlayCreative
      */
-    public function setCompanionCreativeIds(array $companionCreativeIds)
+    public function setCompanionCreativeIds(array $companionCreativeIds = null)
     {
       $this->companionCreativeIds = $companionCreativeIds;
       return $this;
@@ -133,10 +133,10 @@ class ImageRedirectOverlayCreative extends \Google\AdsApi\AdManager\v201811\Base
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\ConversionEvent_TrackingUrlsMapEntry[] $trackingUrls
+     * @param \Google\AdsApi\AdManager\v201811\ConversionEvent_TrackingUrlsMapEntry[]|null $trackingUrls
      * @return \Google\AdsApi\AdManager\v201811\ImageRedirectOverlayCreative
      */
-    public function setTrackingUrls(array $trackingUrls)
+    public function setTrackingUrls(array $trackingUrls = null)
     {
       $this->trackingUrls = $trackingUrls;
       return $this;

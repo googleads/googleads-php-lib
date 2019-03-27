@@ -31,10 +31,10 @@ class SetValue extends \Google\AdsApi\AdManager\v201811\Value
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\Value[] $values
+     * @param \Google\AdsApi\AdManager\v201811\Value[]|null $values
      * @return \Google\AdsApi\AdManager\v201811\SetValue
      */
-    public function setValues(array $values)
+    public function setValues(array $values = null)
     {
       $this->values = $values;
       return $this;

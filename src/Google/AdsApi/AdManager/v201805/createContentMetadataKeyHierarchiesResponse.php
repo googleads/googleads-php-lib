@@ -31,10 +31,10 @@ class createContentMetadataKeyHierarchiesResponse
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\ContentMetadataKeyHierarchy[] $rval
+     * @param \Google\AdsApi\AdManager\v201805\ContentMetadataKeyHierarchy[]|null $rval
      * @return \Google\AdsApi\AdManager\v201805\createContentMetadataKeyHierarchiesResponse
      */
-    public function setRval(array $rval)
+    public function setRval(array $rval = null)
     {
       $this->rval = $rval;
       return $this;

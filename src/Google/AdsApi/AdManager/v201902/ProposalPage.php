@@ -81,10 +81,10 @@ class ProposalPage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\Proposal[] $results
+     * @param \Google\AdsApi\AdManager\v201902\Proposal[]|null $results
      * @return \Google\AdsApi\AdManager\v201902\ProposalPage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

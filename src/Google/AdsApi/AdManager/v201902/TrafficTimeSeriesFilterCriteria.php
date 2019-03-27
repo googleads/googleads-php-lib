@@ -56,10 +56,10 @@ class TrafficTimeSeriesFilterCriteria
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\AdUnitSize[] $adUnitSizes
+     * @param \Google\AdsApi\AdManager\v201902\AdUnitSize[]|null $adUnitSizes
      * @return \Google\AdsApi\AdManager\v201902\TrafficTimeSeriesFilterCriteria
      */
-    public function setAdUnitSizes(array $adUnitSizes)
+    public function setAdUnitSizes(array $adUnitSizes = null)
     {
       $this->adUnitSizes = $adUnitSizes;
       return $this;

@@ -31,10 +31,10 @@ class updateLineItemsResponse
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\LineItem[] $rval
+     * @param \Google\AdsApi\AdManager\v201805\LineItem[]|null $rval
      * @return \Google\AdsApi\AdManager\v201805\updateLineItemsResponse
      */
-    public function setRval(array $rval)
+    public function setRval(array $rval = null)
     {
       $this->rval = $rval;
       return $this;

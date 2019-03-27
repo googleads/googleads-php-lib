@@ -81,10 +81,10 @@ class LineItemCreativeAssociationPage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\LineItemCreativeAssociation[] $results
+     * @param \Google\AdsApi\AdManager\v201808\LineItemCreativeAssociation[]|null $results
      * @return \Google\AdsApi\AdManager\v201808\LineItemCreativeAssociationPage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

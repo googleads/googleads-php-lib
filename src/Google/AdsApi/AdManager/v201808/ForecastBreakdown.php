@@ -81,10 +81,10 @@ class ForecastBreakdown
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\ForecastBreakdownEntry[] $breakdownEntries
+     * @param \Google\AdsApi\AdManager\v201808\ForecastBreakdownEntry[]|null $breakdownEntries
      * @return \Google\AdsApi\AdManager\v201808\ForecastBreakdown
      */
-    public function setBreakdownEntries(array $breakdownEntries)
+    public function setBreakdownEntries(array $breakdownEntries = null)
     {
       $this->breakdownEntries = $breakdownEntries;
       return $this;

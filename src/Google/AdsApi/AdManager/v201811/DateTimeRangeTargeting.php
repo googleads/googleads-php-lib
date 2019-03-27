@@ -31,10 +31,10 @@ class DateTimeRangeTargeting
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\DateTimeRange[] $targetedDateTimeRanges
+     * @param \Google\AdsApi\AdManager\v201811\DateTimeRange[]|null $targetedDateTimeRanges
      * @return \Google\AdsApi\AdManager\v201811\DateTimeRangeTargeting
      */
-    public function setTargetedDateTimeRanges(array $targetedDateTimeRanges)
+    public function setTargetedDateTimeRanges(array $targetedDateTimeRanges = null)
     {
       $this->targetedDateTimeRanges = $targetedDateTimeRanges;
       return $this;

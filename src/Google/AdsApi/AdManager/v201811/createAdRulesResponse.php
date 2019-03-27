@@ -31,10 +31,10 @@ class createAdRulesResponse
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\AdRule[] $rval
+     * @param \Google\AdsApi\AdManager\v201811\AdRule[]|null $rval
      * @return \Google\AdsApi\AdManager\v201811\createAdRulesResponse
      */
-    public function setRval(array $rval)
+    public function setRval(array $rval = null)
     {
       $this->rval = $rval;
       return $this;

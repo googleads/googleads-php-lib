@@ -56,10 +56,10 @@ class AudienceSegmentCriteria extends \Google\AdsApi\AdManager\v201805\CustomCri
     }
 
     /**
-     * @param int[] $audienceSegmentIds
+     * @param int[]|null $audienceSegmentIds
      * @return \Google\AdsApi\AdManager\v201805\AudienceSegmentCriteria
      */
-    public function setAudienceSegmentIds(array $audienceSegmentIds)
+    public function setAudienceSegmentIds(array $audienceSegmentIds = null)
     {
       $this->audienceSegmentIds = $audienceSegmentIds;
       return $this;

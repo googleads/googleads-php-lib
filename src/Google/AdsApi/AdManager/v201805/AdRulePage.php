@@ -81,10 +81,10 @@ class AdRulePage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\AdRule[] $results
+     * @param \Google\AdsApi\AdManager\v201805\AdRule[]|null $results
      * @return \Google\AdsApi\AdManager\v201805\AdRulePage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

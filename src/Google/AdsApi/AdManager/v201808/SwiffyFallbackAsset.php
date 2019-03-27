@@ -63,10 +63,10 @@ class SwiffyFallbackAsset
     }
 
     /**
-     * @param string[] $html5Features
+     * @param string[]|null $html5Features
      * @return \Google\AdsApi\AdManager\v201808\SwiffyFallbackAsset
      */
-    public function setHtml5Features(array $html5Features)
+    public function setHtml5Features(array $html5Features = null)
     {
       $this->html5Features = $html5Features;
       return $this;
@@ -81,10 +81,10 @@ class SwiffyFallbackAsset
     }
 
     /**
-     * @param string[] $localizedInfoMessages
+     * @param string[]|null $localizedInfoMessages
      * @return \Google\AdsApi\AdManager\v201808\SwiffyFallbackAsset
      */
-    public function setLocalizedInfoMessages(array $localizedInfoMessages)
+    public function setLocalizedInfoMessages(array $localizedInfoMessages = null)
     {
       $this->localizedInfoMessages = $localizedInfoMessages;
       return $this;

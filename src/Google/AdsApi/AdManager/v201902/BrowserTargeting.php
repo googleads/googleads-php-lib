@@ -56,10 +56,10 @@ class BrowserTargeting
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\Technology[] $browsers
+     * @param \Google\AdsApi\AdManager\v201902\Technology[]|null $browsers
      * @return \Google\AdsApi\AdManager\v201902\BrowserTargeting
      */
-    public function setBrowsers(array $browsers)
+    public function setBrowsers(array $browsers = null)
     {
       $this->browsers = $browsers;
       return $this;

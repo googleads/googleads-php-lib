@@ -38,10 +38,10 @@ class OperatingSystemVersionTargeting
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\Technology[] $targetedOperatingSystemVersions
+     * @param \Google\AdsApi\AdManager\v201808\Technology[]|null $targetedOperatingSystemVersions
      * @return \Google\AdsApi\AdManager\v201808\OperatingSystemVersionTargeting
      */
-    public function setTargetedOperatingSystemVersions(array $targetedOperatingSystemVersions)
+    public function setTargetedOperatingSystemVersions(array $targetedOperatingSystemVersions = null)
     {
       $this->targetedOperatingSystemVersions = $targetedOperatingSystemVersions;
       return $this;
@@ -56,10 +56,10 @@ class OperatingSystemVersionTargeting
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\Technology[] $excludedOperatingSystemVersions
+     * @param \Google\AdsApi\AdManager\v201808\Technology[]|null $excludedOperatingSystemVersions
      * @return \Google\AdsApi\AdManager\v201808\OperatingSystemVersionTargeting
      */
-    public function setExcludedOperatingSystemVersions(array $excludedOperatingSystemVersions)
+    public function setExcludedOperatingSystemVersions(array $excludedOperatingSystemVersions = null)
     {
       $this->excludedOperatingSystemVersions = $excludedOperatingSystemVersions;
       return $this;

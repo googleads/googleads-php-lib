@@ -39,10 +39,10 @@ class DropDownCustomField extends \Google\AdsApi\AdManager\v201808\CustomField
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\CustomFieldOption[] $options
+     * @param \Google\AdsApi\AdManager\v201808\CustomFieldOption[]|null $options
      * @return \Google\AdsApi\AdManager\v201808\DropDownCustomField
      */
-    public function setOptions(array $options)
+    public function setOptions(array $options = null)
     {
       $this->options = $options;
       return $this;

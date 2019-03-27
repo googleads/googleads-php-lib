@@ -145,10 +145,10 @@ class AudienceSegment
     }
 
     /**
-     * @param int[] $categoryIds
+     * @param int[]|null $categoryIds
      * @return \Google\AdsApi\AdManager\v201808\AudienceSegment
      */
-    public function setCategoryIds(array $categoryIds)
+    public function setCategoryIds(array $categoryIds = null)
     {
       $this->categoryIds = $categoryIds;
       return $this;

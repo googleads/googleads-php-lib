@@ -115,10 +115,10 @@ class LineItem extends \Google\AdsApi\AdManager\v201811\LineItemSummary
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\CreativeTargeting[] $creativeTargetings
+     * @param \Google\AdsApi\AdManager\v201811\CreativeTargeting[]|null $creativeTargetings
      * @return \Google\AdsApi\AdManager\v201811\LineItem
      */
-    public function setCreativeTargetings(array $creativeTargetings)
+    public function setCreativeTargetings(array $creativeTargetings = null)
     {
       $this->creativeTargetings = $creativeTargetings;
       return $this;

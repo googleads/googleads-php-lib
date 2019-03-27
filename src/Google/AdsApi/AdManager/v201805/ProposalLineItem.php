@@ -837,10 +837,10 @@ class ProposalLineItem
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\FrequencyCap[] $frequencyCaps
+     * @param \Google\AdsApi\AdManager\v201805\FrequencyCap[]|null $frequencyCaps
      * @return \Google\AdsApi\AdManager\v201805\ProposalLineItem
      */
-    public function setFrequencyCaps(array $frequencyCaps)
+    public function setFrequencyCaps(array $frequencyCaps = null)
     {
       $this->frequencyCaps = $frequencyCaps;
       return $this;
@@ -928,10 +928,10 @@ class ProposalLineItem
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\CreativePlaceholder[] $creativePlaceholders
+     * @param \Google\AdsApi\AdManager\v201805\CreativePlaceholder[]|null $creativePlaceholders
      * @return \Google\AdsApi\AdManager\v201805\ProposalLineItem
      */
-    public function setCreativePlaceholders(array $creativePlaceholders)
+    public function setCreativePlaceholders(array $creativePlaceholders = null)
     {
       $this->creativePlaceholders = $creativePlaceholders;
       return $this;
@@ -964,10 +964,10 @@ class ProposalLineItem
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\BaseCustomFieldValue[] $customFieldValues
+     * @param \Google\AdsApi\AdManager\v201805\BaseCustomFieldValue[]|null $customFieldValues
      * @return \Google\AdsApi\AdManager\v201805\ProposalLineItem
      */
-    public function setCustomFieldValues(array $customFieldValues)
+    public function setCustomFieldValues(array $customFieldValues = null)
     {
       $this->customFieldValues = $customFieldValues;
       return $this;
@@ -982,10 +982,10 @@ class ProposalLineItem
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\AppliedLabel[] $appliedLabels
+     * @param \Google\AdsApi\AdManager\v201805\AppliedLabel[]|null $appliedLabels
      * @return \Google\AdsApi\AdManager\v201805\ProposalLineItem
      */
-    public function setAppliedLabels(array $appliedLabels)
+    public function setAppliedLabels(array $appliedLabels = null)
     {
       $this->appliedLabels = $appliedLabels;
       return $this;
@@ -1000,10 +1000,10 @@ class ProposalLineItem
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\AppliedLabel[] $effectiveAppliedLabels
+     * @param \Google\AdsApi\AdManager\v201805\AppliedLabel[]|null $effectiveAppliedLabels
      * @return \Google\AdsApi\AdManager\v201805\ProposalLineItem
      */
-    public function setEffectiveAppliedLabels(array $effectiveAppliedLabels)
+    public function setEffectiveAppliedLabels(array $effectiveAppliedLabels = null)
     {
       $this->effectiveAppliedLabels = $effectiveAppliedLabels;
       return $this;
@@ -1054,10 +1054,10 @@ class ProposalLineItem
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\ProposalLineItemPremium[] $premiums
+     * @param \Google\AdsApi\AdManager\v201805\ProposalLineItemPremium[]|null $premiums
      * @return \Google\AdsApi\AdManager\v201805\ProposalLineItem
      */
-    public function setPremiums(array $premiums)
+    public function setPremiums(array $premiums = null)
     {
       $this->premiums = $premiums;
       return $this;

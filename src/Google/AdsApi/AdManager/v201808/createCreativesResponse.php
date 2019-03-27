@@ -31,10 +31,10 @@ class createCreativesResponse
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\Creative[] $rval
+     * @param \Google\AdsApi\AdManager\v201808\Creative[]|null $rval
      * @return \Google\AdsApi\AdManager\v201808\createCreativesResponse
      */
-    public function setRval(array $rval)
+    public function setRval(array $rval = null)
     {
       $this->rval = $rval;
       return $this;

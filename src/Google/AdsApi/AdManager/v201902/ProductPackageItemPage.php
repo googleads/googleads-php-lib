@@ -81,10 +81,10 @@ class ProductPackageItemPage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\ProductPackageItem[] $results
+     * @param \Google\AdsApi\AdManager\v201902\ProductPackageItem[]|null $results
      * @return \Google\AdsApi\AdManager\v201902\ProductPackageItemPage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

@@ -81,10 +81,10 @@ class CreativeWrapperPage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\CreativeWrapper[] $results
+     * @param \Google\AdsApi\AdManager\v201811\CreativeWrapper[]|null $results
      * @return \Google\AdsApi\AdManager\v201811\CreativeWrapperPage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

@@ -38,10 +38,10 @@ class GeoTargeting
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\Location[] $targetedLocations
+     * @param \Google\AdsApi\AdManager\v201811\Location[]|null $targetedLocations
      * @return \Google\AdsApi\AdManager\v201811\GeoTargeting
      */
-    public function setTargetedLocations(array $targetedLocations)
+    public function setTargetedLocations(array $targetedLocations = null)
     {
       $this->targetedLocations = $targetedLocations;
       return $this;
@@ -56,10 +56,10 @@ class GeoTargeting
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\Location[] $excludedLocations
+     * @param \Google\AdsApi\AdManager\v201811\Location[]|null $excludedLocations
      * @return \Google\AdsApi\AdManager\v201811\GeoTargeting
      */
-    public function setExcludedLocations(array $excludedLocations)
+    public function setExcludedLocations(array $excludedLocations = null)
     {
       $this->excludedLocations = $excludedLocations;
       return $this;

@@ -31,10 +31,10 @@ class DeliveryForecast
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\LineItemDeliveryForecast[] $lineItemDeliveryForecasts
+     * @param \Google\AdsApi\AdManager\v201805\LineItemDeliveryForecast[]|null $lineItemDeliveryForecasts
      * @return \Google\AdsApi\AdManager\v201805\DeliveryForecast
      */
-    public function setLineItemDeliveryForecasts(array $lineItemDeliveryForecasts)
+    public function setLineItemDeliveryForecasts(array $lineItemDeliveryForecasts = null)
     {
       $this->lineItemDeliveryForecasts = $lineItemDeliveryForecasts;
       return $this;

@@ -267,10 +267,10 @@ class AdUnit
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\AdUnitParent[] $parentPath
+     * @param \Google\AdsApi\AdManager\v201805\AdUnitParent[]|null $parentPath
      * @return \Google\AdsApi\AdManager\v201805\AdUnit
      */
-    public function setParentPath(array $parentPath)
+    public function setParentPath(array $parentPath = null)
     {
       $this->parentPath = $parentPath;
       return $this;
@@ -375,10 +375,10 @@ class AdUnit
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\AdUnitSize[] $adUnitSizes
+     * @param \Google\AdsApi\AdManager\v201805\AdUnitSize[]|null $adUnitSizes
      * @return \Google\AdsApi\AdManager\v201805\AdUnit
      */
-    public function setAdUnitSizes(array $adUnitSizes)
+    public function setAdUnitSizes(array $adUnitSizes = null)
     {
       $this->adUnitSizes = $adUnitSizes;
       return $this;
@@ -501,10 +501,10 @@ class AdUnit
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\LabelFrequencyCap[] $appliedLabelFrequencyCaps
+     * @param \Google\AdsApi\AdManager\v201805\LabelFrequencyCap[]|null $appliedLabelFrequencyCaps
      * @return \Google\AdsApi\AdManager\v201805\AdUnit
      */
-    public function setAppliedLabelFrequencyCaps(array $appliedLabelFrequencyCaps)
+    public function setAppliedLabelFrequencyCaps(array $appliedLabelFrequencyCaps = null)
     {
       $this->appliedLabelFrequencyCaps = $appliedLabelFrequencyCaps;
       return $this;
@@ -519,10 +519,10 @@ class AdUnit
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\LabelFrequencyCap[] $effectiveLabelFrequencyCaps
+     * @param \Google\AdsApi\AdManager\v201805\LabelFrequencyCap[]|null $effectiveLabelFrequencyCaps
      * @return \Google\AdsApi\AdManager\v201805\AdUnit
      */
-    public function setEffectiveLabelFrequencyCaps(array $effectiveLabelFrequencyCaps)
+    public function setEffectiveLabelFrequencyCaps(array $effectiveLabelFrequencyCaps = null)
     {
       $this->effectiveLabelFrequencyCaps = $effectiveLabelFrequencyCaps;
       return $this;
@@ -537,10 +537,10 @@ class AdUnit
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\AppliedLabel[] $appliedLabels
+     * @param \Google\AdsApi\AdManager\v201805\AppliedLabel[]|null $appliedLabels
      * @return \Google\AdsApi\AdManager\v201805\AdUnit
      */
-    public function setAppliedLabels(array $appliedLabels)
+    public function setAppliedLabels(array $appliedLabels = null)
     {
       $this->appliedLabels = $appliedLabels;
       return $this;
@@ -555,10 +555,10 @@ class AdUnit
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\AppliedLabel[] $effectiveAppliedLabels
+     * @param \Google\AdsApi\AdManager\v201805\AppliedLabel[]|null $effectiveAppliedLabels
      * @return \Google\AdsApi\AdManager\v201805\AdUnit
      */
-    public function setEffectiveAppliedLabels(array $effectiveAppliedLabels)
+    public function setEffectiveAppliedLabels(array $effectiveAppliedLabels = null)
     {
       $this->effectiveAppliedLabels = $effectiveAppliedLabels;
       return $this;
@@ -573,10 +573,10 @@ class AdUnit
     }
 
     /**
-     * @param int[] $effectiveTeamIds
+     * @param int[]|null $effectiveTeamIds
      * @return \Google\AdsApi\AdManager\v201805\AdUnit
      */
-    public function setEffectiveTeamIds(array $effectiveTeamIds)
+    public function setEffectiveTeamIds(array $effectiveTeamIds = null)
     {
       $this->effectiveTeamIds = $effectiveTeamIds;
       return $this;
@@ -591,10 +591,10 @@ class AdUnit
     }
 
     /**
-     * @param int[] $appliedTeamIds
+     * @param int[]|null $appliedTeamIds
      * @return \Google\AdsApi\AdManager\v201805\AdUnit
      */
-    public function setAppliedTeamIds(array $appliedTeamIds)
+    public function setAppliedTeamIds(array $appliedTeamIds = null)
     {
       $this->appliedTeamIds = $appliedTeamIds;
       return $this;

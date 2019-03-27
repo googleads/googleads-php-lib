@@ -45,10 +45,10 @@ class RateCardPage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\RateCard[] $results
+     * @param \Google\AdsApi\AdManager\v201805\RateCard[]|null $results
      * @return \Google\AdsApi\AdManager\v201805\RateCardPage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

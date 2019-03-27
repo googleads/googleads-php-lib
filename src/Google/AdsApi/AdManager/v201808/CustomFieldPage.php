@@ -81,10 +81,10 @@ class CustomFieldPage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\CustomField[] $results
+     * @param \Google\AdsApi\AdManager\v201808\CustomField[]|null $results
      * @return \Google\AdsApi\AdManager\v201808\CustomFieldPage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

@@ -81,10 +81,10 @@ class ActivityPage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\Activity[] $results
+     * @param \Google\AdsApi\AdManager\v201808\Activity[]|null $results
      * @return \Google\AdsApi\AdManager\v201808\ActivityPage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

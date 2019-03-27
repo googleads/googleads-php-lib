@@ -31,10 +31,10 @@ class getPreviewUrlsForNativeStylesResponse
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\CreativeNativeStylePreview[] $rval
+     * @param \Google\AdsApi\AdManager\v201808\CreativeNativeStylePreview[]|null $rval
      * @return \Google\AdsApi\AdManager\v201808\getPreviewUrlsForNativeStylesResponse
      */
-    public function setRval(array $rval)
+    public function setRval(array $rval = null)
     {
       $this->rval = $rval;
       return $this;

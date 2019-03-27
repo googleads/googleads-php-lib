@@ -56,10 +56,10 @@ class Statement
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\String_ValueMapEntry[] $values
+     * @param \Google\AdsApi\AdManager\v201902\String_ValueMapEntry[]|null $values
      * @return \Google\AdsApi\AdManager\v201902\Statement
      */
-    public function setValues(array $values)
+    public function setValues(array $values = null)
     {
       $this->values = $values;
       return $this;

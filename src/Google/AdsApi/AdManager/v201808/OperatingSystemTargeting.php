@@ -56,10 +56,10 @@ class OperatingSystemTargeting
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\Technology[] $operatingSystems
+     * @param \Google\AdsApi\AdManager\v201808\Technology[]|null $operatingSystems
      * @return \Google\AdsApi\AdManager\v201808\OperatingSystemTargeting
      */
-    public function setOperatingSystems(array $operatingSystems)
+    public function setOperatingSystems(array $operatingSystems = null)
     {
       $this->operatingSystems = $operatingSystems;
       return $this;

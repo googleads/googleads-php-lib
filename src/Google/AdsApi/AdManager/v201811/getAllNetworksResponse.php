@@ -31,10 +31,10 @@ class getAllNetworksResponse
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\Network[] $rval
+     * @param \Google\AdsApi\AdManager\v201811\Network[]|null $rval
      * @return \Google\AdsApi\AdManager\v201811\getAllNetworksResponse
      */
-    public function setRval(array $rval)
+    public function setRval(array $rval = null)
     {
       $this->rval = $rval;
       return $this;

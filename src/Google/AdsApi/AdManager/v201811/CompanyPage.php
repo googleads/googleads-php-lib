@@ -81,10 +81,10 @@ class CompanyPage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\Company[] $results
+     * @param \Google\AdsApi\AdManager\v201811\Company[]|null $results
      * @return \Google\AdsApi\AdManager\v201811\CompanyPage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

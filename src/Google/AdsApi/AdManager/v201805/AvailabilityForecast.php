@@ -259,10 +259,10 @@ class AvailabilityForecast
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\TargetingCriteriaBreakdown[] $targetingCriteriaBreakdowns
+     * @param \Google\AdsApi\AdManager\v201805\TargetingCriteriaBreakdown[]|null $targetingCriteriaBreakdowns
      * @return \Google\AdsApi\AdManager\v201805\AvailabilityForecast
      */
-    public function setTargetingCriteriaBreakdowns(array $targetingCriteriaBreakdowns)
+    public function setTargetingCriteriaBreakdowns(array $targetingCriteriaBreakdowns = null)
     {
       $this->targetingCriteriaBreakdowns = $targetingCriteriaBreakdowns;
       return $this;
@@ -277,10 +277,10 @@ class AvailabilityForecast
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\ContendingLineItem[] $contendingLineItems
+     * @param \Google\AdsApi\AdManager\v201805\ContendingLineItem[]|null $contendingLineItems
      * @return \Google\AdsApi\AdManager\v201805\AvailabilityForecast
      */
-    public function setContendingLineItems(array $contendingLineItems)
+    public function setContendingLineItems(array $contendingLineItems = null)
     {
       $this->contendingLineItems = $contendingLineItems;
       return $this;
@@ -295,10 +295,10 @@ class AvailabilityForecast
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\AlternativeUnitTypeForecast[] $alternativeUnitTypeForecasts
+     * @param \Google\AdsApi\AdManager\v201805\AlternativeUnitTypeForecast[]|null $alternativeUnitTypeForecasts
      * @return \Google\AdsApi\AdManager\v201805\AvailabilityForecast
      */
-    public function setAlternativeUnitTypeForecasts(array $alternativeUnitTypeForecasts)
+    public function setAlternativeUnitTypeForecasts(array $alternativeUnitTypeForecasts = null)
     {
       $this->alternativeUnitTypeForecasts = $alternativeUnitTypeForecasts;
       return $this;
@@ -313,10 +313,10 @@ class AvailabilityForecast
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\GrpDemographicBreakdown[] $demographicBreakdowns
+     * @param \Google\AdsApi\AdManager\v201805\GrpDemographicBreakdown[]|null $demographicBreakdowns
      * @return \Google\AdsApi\AdManager\v201805\AvailabilityForecast
      */
-    public function setDemographicBreakdowns(array $demographicBreakdowns)
+    public function setDemographicBreakdowns(array $demographicBreakdowns = null)
     {
       $this->demographicBreakdowns = $demographicBreakdowns;
       return $this;

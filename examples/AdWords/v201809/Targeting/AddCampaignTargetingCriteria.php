@@ -150,4 +150,4 @@ class AddCampaignTargetingCriteria
     }
 }
 
-AddCampaignTargetingCrtieria::main();
+AddCampaignTargetingCriteria::main();

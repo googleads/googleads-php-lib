@@ -31,10 +31,10 @@ class TrackingUrls
     }
 
     /**
-     * @param string[] $urls
+     * @param string[]|null $urls
      * @return \Google\AdsApi\AdManager\v201808\TrackingUrls
      */
-    public function setUrls(array $urls)
+    public function setUrls(array $urls = null)
     {
       $this->urls = $urls;
       return $this;

@@ -45,10 +45,10 @@ class ProposalLineItemPage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\ProposalLineItem[] $results
+     * @param \Google\AdsApi\AdManager\v201811\ProposalLineItem[]|null $results
      * @return \Google\AdsApi\AdManager\v201811\ProposalLineItemPage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

@@ -38,10 +38,10 @@ class ProgressStep
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\ProgressRule[] $rules
+     * @param \Google\AdsApi\AdManager\v201811\ProgressRule[]|null $rules
      * @return \Google\AdsApi\AdManager\v201811\ProgressStep
      */
-    public function setRules(array $rules)
+    public function setRules(array $rules = null)
     {
       $this->rules = $rules;
       return $this;

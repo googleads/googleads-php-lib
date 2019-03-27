@@ -171,10 +171,10 @@ class AdExclusionRule
     }
 
     /**
-     * @param int[] $blockedLabelIds
+     * @param int[]|null $blockedLabelIds
      * @return \Google\AdsApi\AdManager\v201808\AdExclusionRule
      */
-    public function setBlockedLabelIds(array $blockedLabelIds)
+    public function setBlockedLabelIds(array $blockedLabelIds = null)
     {
       $this->blockedLabelIds = $blockedLabelIds;
       return $this;
@@ -189,10 +189,10 @@ class AdExclusionRule
     }
 
     /**
-     * @param int[] $allowedLabelIds
+     * @param int[]|null $allowedLabelIds
      * @return \Google\AdsApi\AdManager\v201808\AdExclusionRule
      */
-    public function setAllowedLabelIds(array $allowedLabelIds)
+    public function setAllowedLabelIds(array $allowedLabelIds = null)
     {
       $this->allowedLabelIds = $allowedLabelIds;
       return $this;

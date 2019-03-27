@@ -81,10 +81,10 @@ class CustomTargetingValuePage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\CustomTargetingValue[] $results
+     * @param \Google\AdsApi\AdManager\v201902\CustomTargetingValue[]|null $results
      * @return \Google\AdsApi\AdManager\v201902\CustomTargetingValuePage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

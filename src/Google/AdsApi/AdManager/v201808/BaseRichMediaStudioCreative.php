@@ -227,10 +227,10 @@ abstract class BaseRichMediaStudioCreative extends \Google\AdsApi\AdManager\v201
     }
 
     /**
-     * @param string[] $adTagKeys
+     * @param string[]|null $adTagKeys
      * @return \Google\AdsApi\AdManager\v201808\BaseRichMediaStudioCreative
      */
-    public function setAdTagKeys(array $adTagKeys)
+    public function setAdTagKeys(array $adTagKeys = null)
     {
       $this->adTagKeys = $adTagKeys;
       return $this;
@@ -245,10 +245,10 @@ abstract class BaseRichMediaStudioCreative extends \Google\AdsApi\AdManager\v201
     }
 
     /**
-     * @param string[] $customKeyValues
+     * @param string[]|null $customKeyValues
      * @return \Google\AdsApi\AdManager\v201808\BaseRichMediaStudioCreative
      */
-    public function setCustomKeyValues(array $customKeyValues)
+    public function setCustomKeyValues(array $customKeyValues = null)
     {
       $this->customKeyValues = $customKeyValues;
       return $this;
@@ -407,10 +407,10 @@ abstract class BaseRichMediaStudioCreative extends \Google\AdsApi\AdManager\v201
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\RichMediaStudioChildAssetProperty[] $richMediaStudioChildAssetProperties
+     * @param \Google\AdsApi\AdManager\v201808\RichMediaStudioChildAssetProperty[]|null $richMediaStudioChildAssetProperties
      * @return \Google\AdsApi\AdManager\v201808\BaseRichMediaStudioCreative
      */
-    public function setRichMediaStudioChildAssetProperties(array $richMediaStudioChildAssetProperties)
+    public function setRichMediaStudioChildAssetProperties(array $richMediaStudioChildAssetProperties = null)
     {
       $this->richMediaStudioChildAssetProperties = $richMediaStudioChildAssetProperties;
       return $this;

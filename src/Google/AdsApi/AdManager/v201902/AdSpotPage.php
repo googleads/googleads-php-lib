@@ -81,10 +81,10 @@ class AdSpotPage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\AdSpot[] $results
+     * @param \Google\AdsApi\AdManager\v201902\AdSpot[]|null $results
      * @return \Google\AdsApi\AdManager\v201902\AdSpotPage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

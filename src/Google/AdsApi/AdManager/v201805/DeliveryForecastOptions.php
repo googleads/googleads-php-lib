@@ -31,10 +31,10 @@ class DeliveryForecastOptions
     }
 
     /**
-     * @param int[] $ignoredLineItemIds
+     * @param int[]|null $ignoredLineItemIds
      * @return \Google\AdsApi\AdManager\v201805\DeliveryForecastOptions
      */
-    public function setIgnoredLineItemIds(array $ignoredLineItemIds)
+    public function setIgnoredLineItemIds(array $ignoredLineItemIds = null)
     {
       $this->ignoredLineItemIds = $ignoredLineItemIds;
       return $this;

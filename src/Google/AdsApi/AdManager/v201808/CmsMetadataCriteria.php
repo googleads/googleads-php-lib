@@ -56,10 +56,10 @@ class CmsMetadataCriteria extends \Google\AdsApi\AdManager\v201808\CustomCriteri
     }
 
     /**
-     * @param int[] $cmsMetadataValueIds
+     * @param int[]|null $cmsMetadataValueIds
      * @return \Google\AdsApi\AdManager\v201808\CmsMetadataCriteria
      */
-    public function setCmsMetadataValueIds(array $cmsMetadataValueIds)
+    public function setCmsMetadataValueIds(array $cmsMetadataValueIds = null)
     {
       $this->cmsMetadataValueIds = $cmsMetadataValueIds;
       return $this;

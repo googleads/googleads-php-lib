@@ -188,10 +188,10 @@ class TemplateCreative extends \Google\AdsApi\AdManager\v201902\Creative
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\BaseCreativeTemplateVariableValue[] $creativeTemplateVariableValues
+     * @param \Google\AdsApi\AdManager\v201902\BaseCreativeTemplateVariableValue[]|null $creativeTemplateVariableValues
      * @return \Google\AdsApi\AdManager\v201902\TemplateCreative
      */
-    public function setCreativeTemplateVariableValues(array $creativeTemplateVariableValues)
+    public function setCreativeTemplateVariableValues(array $creativeTemplateVariableValues = null)
     {
       $this->creativeTemplateVariableValues = $creativeTemplateVariableValues;
       return $this;

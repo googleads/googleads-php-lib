@@ -70,10 +70,10 @@ abstract class ApiError
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\FieldPathElement[] $fieldPathElements
+     * @param \Google\AdsApi\AdManager\v201805\FieldPathElement[]|null $fieldPathElements
      * @return \Google\AdsApi\AdManager\v201805\ApiError
      */
-    public function setFieldPathElements(array $fieldPathElements)
+    public function setFieldPathElements(array $fieldPathElements = null)
     {
       $this->fieldPathElements = $fieldPathElements;
       return $this;

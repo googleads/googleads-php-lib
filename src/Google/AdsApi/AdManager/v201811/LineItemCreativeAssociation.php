@@ -287,10 +287,10 @@ class LineItemCreativeAssociation
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\Size[] $sizes
+     * @param \Google\AdsApi\AdManager\v201811\Size[]|null $sizes
      * @return \Google\AdsApi\AdManager\v201811\LineItemCreativeAssociation
      */
-    public function setSizes(array $sizes)
+    public function setSizes(array $sizes = null)
     {
       $this->sizes = $sizes;
       return $this;

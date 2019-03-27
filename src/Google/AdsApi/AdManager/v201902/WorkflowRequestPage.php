@@ -45,10 +45,10 @@ class WorkflowRequestPage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\WorkflowRequest[] $results
+     * @param \Google\AdsApi\AdManager\v201902\WorkflowRequest[]|null $results
      * @return \Google\AdsApi\AdManager\v201902\WorkflowRequestPage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

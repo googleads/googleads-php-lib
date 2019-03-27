@@ -31,10 +31,10 @@ class updateReconciliationLineItemReportsResponse
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\ReconciliationLineItemReport[] $rval
+     * @param \Google\AdsApi\AdManager\v201902\ReconciliationLineItemReport[]|null $rval
      * @return \Google\AdsApi\AdManager\v201902\updateReconciliationLineItemReportsResponse
      */
-    public function setRval(array $rval)
+    public function setRval(array $rval = null)
     {
       $this->rval = $rval;
       return $this;

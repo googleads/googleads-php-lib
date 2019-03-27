@@ -190,10 +190,10 @@ class CreativeAsset
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\ClickTag[] $clickTags
+     * @param \Google\AdsApi\AdManager\v201811\ClickTag[]|null $clickTags
      * @return \Google\AdsApi\AdManager\v201811\CreativeAsset
      */
-    public function setClickTags(array $clickTags)
+    public function setClickTags(array $clickTags = null)
     {
       $this->clickTags = $clickTags;
       return $this;

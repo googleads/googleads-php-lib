@@ -81,10 +81,10 @@ class UserPage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\User[] $results
+     * @param \Google\AdsApi\AdManager\v201902\User[]|null $results
      * @return \Google\AdsApi\AdManager\v201902\UserPage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

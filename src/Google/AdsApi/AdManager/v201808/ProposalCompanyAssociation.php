@@ -82,10 +82,10 @@ class ProposalCompanyAssociation
     }
 
     /**
-     * @param int[] $contactIds
+     * @param int[]|null $contactIds
      * @return \Google\AdsApi\AdManager\v201808\ProposalCompanyAssociation
      */
-    public function setContactIds(array $contactIds)
+    public function setContactIds(array $contactIds = null)
     {
       $this->contactIds = $contactIds;
       return $this;

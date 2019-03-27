@@ -31,10 +31,10 @@ class updateContentBundlesResponse
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\ContentBundle[] $rval
+     * @param \Google\AdsApi\AdManager\v201805\ContentBundle[]|null $rval
      * @return \Google\AdsApi\AdManager\v201805\updateContentBundlesResponse
      */
-    public function setRval(array $rval)
+    public function setRval(array $rval = null)
     {
       $this->rval = $rval;
       return $this;

@@ -38,20 +38,23 @@ class AdsHeaderFormatterTest extends TestCase
     {
         $this->applicationNames = new ApplicationNames();
         $adsUtilityRegistry = $this->getMockBuilder(AdsUtilityRegistry::class)
-        ->disableOriginalConstructor()
-        ->getMock();
+            ->disableOriginalConstructor()
+            ->getMock();
         $adsUtilityRegistry->method('popAllUtilities')
-        ->will($this->returnValue(['BatchJobHelper', 'ReportDownloader/file']));
+            ->will(
+                $this->returnValue(['BatchJobHelper', 'ReportDownloader/file'])
+            );
 
-        $libraryMetadataProviderMock = $this->getMock(
-            LibraryMetadataProvider::class
-        );
+        $libraryMetadataProviderMock =
+            $this->getMockBuilder(LibraryMetadataProvider::class)
+                ->disableOriginalConstructor()
+                ->getMock();
         $libraryMetadataProviderMock->expects($this->once())
-        ->method('getLibName')
-        ->will($this->returnValue('googleads-php-lib2'));
+            ->method('getLibName')
+            ->will($this->returnValue('googleads-php-lib2'));
         $libraryMetadataProviderMock->expects($this->once())
-        ->method('getLibVersion')
-        ->will($this->returnValue('1.0.0-alpha'));
+            ->method('getLibVersion')
+            ->will($this->returnValue('1.0.0-alpha'));
 
         $this->adsHeaderFormatter = new AdsHeaderFormatter(
             $adsUtilityRegistry,
@@ -65,13 +68,13 @@ class AdsHeaderFormatterTest extends TestCase
     public function testFormatApplicationNameForSoapHeader()
     {
         $search = $this->applicationNames
-        ->getRegexForFormattedApplicationName('Google report runner');
+            ->getRegexForFormattedApplicationName('Google report runner');
         $formattedApplicationName = $this->adsHeaderFormatter
-        ->formatApplicationNameForSoapHeader(
-            'Google report runner',
-            'Dfp',
-            false
-        );
+            ->formatApplicationNameForSoapHeader(
+                'Google report runner',
+                'Dfp',
+                false
+            );
         $this->assertRegExp($search, $formattedApplicationName);
     }
 
@@ -81,13 +84,13 @@ class AdsHeaderFormatterTest extends TestCase
     public function testFormatApplicationNameWithUtilitiesForSoapHeader()
     {
         $search = $this->applicationNames
-        ->getRegexForFormattedApplicationName('Google report runner');
+            ->getRegexForFormattedApplicationName('Google report runner');
         $formattedApplicationName = $this->adsHeaderFormatter
-        ->formatApplicationNameForSoapHeader(
-            'Google report runner',
-            'Aw',
-            true
-        );
+            ->formatApplicationNameForSoapHeader(
+                'Google report runner',
+                'Aw',
+                true
+            );
         $this->assertRegExp($search, $formattedApplicationName);
     }
 
@@ -97,13 +100,13 @@ class AdsHeaderFormatterTest extends TestCase
     public function testFormatApplicationNameForGuzzleHeader()
     {
         $search = $this->applicationNames
-        ->getRegexForFormattedApplicationName('Google report runner');
+            ->getRegexForFormattedApplicationName('Google report runner');
         $formattedApplicationName = $this->adsHeaderFormatter
-        ->formatApplicationNameForGuzzleHeader(
-            'Google report runner',
-            'Dfp',
-            false
-        );
+            ->formatApplicationNameForGuzzleHeader(
+                'Google report runner',
+                'Dfp',
+                false
+            );
         $this->assertRegExp($search, $formattedApplicationName);
     }
 
@@ -113,13 +116,13 @@ class AdsHeaderFormatterTest extends TestCase
     public function testFormatApplicationNameWithUtilitiesForGuzzleHeader()
     {
         $search = $this->applicationNames
-        ->getRegexForFormattedApplicationName('Google report runner');
+            ->getRegexForFormattedApplicationName('Google report runner');
         $formattedApplicationName = $this->adsHeaderFormatter
-        ->formatApplicationNameForGuzzleHeader(
-            'Google report runner',
-            'Aw',
-            true
-        );
+            ->formatApplicationNameForGuzzleHeader(
+                'Google report runner',
+                'Aw',
+                true
+            );
         $this->assertRegExp($search, $formattedApplicationName);
     }
 
@@ -129,14 +132,14 @@ class AdsHeaderFormatterTest extends TestCase
     public function testFormatApplicationNameWithGzip()
     {
         $search = $this->applicationNames
-        ->getRegexForFormattedApplicationName('Google report runner');
+            ->getRegexForFormattedApplicationName('Google report runner');
         $formattedApplicationName = $this->adsHeaderFormatter
-        ->formatApplicationNameForGuzzleHeader(
-            'Google report runner',
-            'Aw',
-            false,
-            true
-        );
+            ->formatApplicationNameForGuzzleHeader(
+                'Google report runner',
+                'Aw',
+                false,
+                true
+            );
         $this->assertRegExp($search, $formattedApplicationName);
     }
 }

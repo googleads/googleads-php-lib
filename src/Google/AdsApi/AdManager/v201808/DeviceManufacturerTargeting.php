@@ -56,10 +56,10 @@ class DeviceManufacturerTargeting
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\Technology[] $deviceManufacturers
+     * @param \Google\AdsApi\AdManager\v201808\Technology[]|null $deviceManufacturers
      * @return \Google\AdsApi\AdManager\v201808\DeviceManufacturerTargeting
      */
-    public function setDeviceManufacturers(array $deviceManufacturers)
+    public function setDeviceManufacturers(array $deviceManufacturers = null)
     {
       $this->deviceManufacturers = $deviceManufacturers;
       return $this;

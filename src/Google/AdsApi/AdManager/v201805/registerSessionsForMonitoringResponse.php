@@ -31,10 +31,10 @@ class registerSessionsForMonitoringResponse
     }
 
     /**
-     * @param string[] $rval
+     * @param string[]|null $rval
      * @return \Google\AdsApi\AdManager\v201805\registerSessionsForMonitoringResponse
      */
-    public function setRval(array $rval)
+    public function setRval(array $rval = null)
     {
       $this->rval = $rval;
       return $this;

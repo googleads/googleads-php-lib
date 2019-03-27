@@ -81,10 +81,10 @@ class ContentBundlePage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\ContentBundle[] $results
+     * @param \Google\AdsApi\AdManager\v201902\ContentBundle[]|null $results
      * @return \Google\AdsApi\AdManager\v201902\ContentBundlePage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

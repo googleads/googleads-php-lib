@@ -81,10 +81,10 @@ class NativeStylePage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\NativeStyle[] $results
+     * @param \Google\AdsApi\AdManager\v201808\NativeStyle[]|null $results
      * @return \Google\AdsApi\AdManager\v201808\NativeStylePage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

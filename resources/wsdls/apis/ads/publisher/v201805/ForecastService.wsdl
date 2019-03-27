@@ -393,13 +393,13 @@
             &lt;p&gt;Inventory has three threshold values along a line of possible inventory. From least to most,
             these are:
             
-            &lt;dl&gt;
+            &lt;ul&gt;
             &lt;li&gt;Available units -- How many units can be booked without affecting any other line items.
             Booking more than this number can cause lower and same priority line items to underdeliver.
             &lt;li&gt;Possible units -- How many units can be booked without affecting any higher priority line
             items. Booking more than this number can cause the line item to underdeliver.
             &lt;li&gt;Matched (forecast) units -- How many units satisfy all specified criteria.
-            &lt;/dl&gt;
+            &lt;/ul&gt;
             
             &lt;p&gt;Underdelivery is caused by overbooking. However, if more impressions are served than are
             predicted, the extra available inventory might enable all inventory guarantees to be met without

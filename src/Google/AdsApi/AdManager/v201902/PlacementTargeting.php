@@ -31,10 +31,10 @@ class PlacementTargeting
     }
 
     /**
-     * @param int[] $targetedPlacementIds
+     * @param int[]|null $targetedPlacementIds
      * @return \Google\AdsApi\AdManager\v201902\PlacementTargeting
      */
-    public function setTargetedPlacementIds(array $targetedPlacementIds)
+    public function setTargetedPlacementIds(array $targetedPlacementIds = null)
     {
       $this->targetedPlacementIds = $targetedPlacementIds;
       return $this;

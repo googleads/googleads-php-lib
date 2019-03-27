@@ -81,10 +81,10 @@ class CreativeTemplatePage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\CreativeTemplate[] $results
+     * @param \Google\AdsApi\AdManager\v201811\CreativeTemplate[]|null $results
      * @return \Google\AdsApi\AdManager\v201811\CreativeTemplatePage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

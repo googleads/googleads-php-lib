@@ -34,10 +34,10 @@ class ApiException extends \Google\AdsApi\AdManager\v201808\ApplicationException
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\ApiError[] $errors
+     * @param \Google\AdsApi\AdManager\v201808\ApiError[]|null $errors
      * @return \Google\AdsApi\AdManager\v201808\ApiException
      */
-    public function setErrors(array $errors)
+    public function setErrors(array $errors = null)
     {
       $this->errors = $errors;
       return $this;

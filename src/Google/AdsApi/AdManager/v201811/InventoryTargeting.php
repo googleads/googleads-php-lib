@@ -45,10 +45,10 @@ class InventoryTargeting
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\AdUnitTargeting[] $targetedAdUnits
+     * @param \Google\AdsApi\AdManager\v201811\AdUnitTargeting[]|null $targetedAdUnits
      * @return \Google\AdsApi\AdManager\v201811\InventoryTargeting
      */
-    public function setTargetedAdUnits(array $targetedAdUnits)
+    public function setTargetedAdUnits(array $targetedAdUnits = null)
     {
       $this->targetedAdUnits = $targetedAdUnits;
       return $this;
@@ -63,10 +63,10 @@ class InventoryTargeting
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\AdUnitTargeting[] $excludedAdUnits
+     * @param \Google\AdsApi\AdManager\v201811\AdUnitTargeting[]|null $excludedAdUnits
      * @return \Google\AdsApi\AdManager\v201811\InventoryTargeting
      */
-    public function setExcludedAdUnits(array $excludedAdUnits)
+    public function setExcludedAdUnits(array $excludedAdUnits = null)
     {
       $this->excludedAdUnits = $excludedAdUnits;
       return $this;
@@ -81,10 +81,10 @@ class InventoryTargeting
     }
 
     /**
-     * @param int[] $targetedPlacementIds
+     * @param int[]|null $targetedPlacementIds
      * @return \Google\AdsApi\AdManager\v201811\InventoryTargeting
      */
-    public function setTargetedPlacementIds(array $targetedPlacementIds)
+    public function setTargetedPlacementIds(array $targetedPlacementIds = null)
     {
       $this->targetedPlacementIds = $targetedPlacementIds;
       return $this;

@@ -133,10 +133,10 @@ class PremiumRate
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\PremiumRateValue[] $premiumRateValues
+     * @param \Google\AdsApi\AdManager\v201902\PremiumRateValue[]|null $premiumRateValues
      * @return \Google\AdsApi\AdManager\v201902\PremiumRate
      */
-    public function setPremiumRateValues(array $premiumRateValues)
+    public function setPremiumRateValues(array $premiumRateValues = null)
     {
       $this->premiumRateValues = $premiumRateValues;
       return $this;

@@ -31,10 +31,10 @@ class updateBaseRatesResponse
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\BaseRate[] $rval
+     * @param \Google\AdsApi\AdManager\v201811\BaseRate[]|null $rval
      * @return \Google\AdsApi\AdManager\v201811\updateBaseRatesResponse
      */
-    public function setRval(array $rval)
+    public function setRval(array $rval = null)
     {
       $this->rval = $rval;
       return $this;

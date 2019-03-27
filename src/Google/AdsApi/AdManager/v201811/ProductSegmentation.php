@@ -175,10 +175,10 @@ class ProductSegmentation
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\AdUnitTargeting[] $adUnitSegments
+     * @param \Google\AdsApi\AdManager\v201811\AdUnitTargeting[]|null $adUnitSegments
      * @return \Google\AdsApi\AdManager\v201811\ProductSegmentation
      */
-    public function setAdUnitSegments(array $adUnitSegments)
+    public function setAdUnitSegments(array $adUnitSegments = null)
     {
       $this->adUnitSegments = $adUnitSegments;
       return $this;
@@ -211,10 +211,10 @@ class ProductSegmentation
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\CustomCriteria[] $customTargetingSegment
+     * @param \Google\AdsApi\AdManager\v201811\CustomCriteria[]|null $customTargetingSegment
      * @return \Google\AdsApi\AdManager\v201811\ProductSegmentation
      */
-    public function setCustomTargetingSegment(array $customTargetingSegment)
+    public function setCustomTargetingSegment(array $customTargetingSegment = null)
     {
       $this->customTargetingSegment = $customTargetingSegment;
       return $this;
@@ -445,10 +445,10 @@ class ProductSegmentation
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\CreativePlaceholder[] $sizeSegment
+     * @param \Google\AdsApi\AdManager\v201811\CreativePlaceholder[]|null $sizeSegment
      * @return \Google\AdsApi\AdManager\v201811\ProductSegmentation
      */
-    public function setSizeSegment(array $sizeSegment)
+    public function setSizeSegment(array $sizeSegment = null)
     {
       $this->sizeSegment = $sizeSegment;
       return $this;

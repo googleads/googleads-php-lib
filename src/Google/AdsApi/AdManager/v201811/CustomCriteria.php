@@ -64,10 +64,10 @@ class CustomCriteria extends \Google\AdsApi\AdManager\v201811\CustomCriteriaLeaf
     }
 
     /**
-     * @param int[] $valueIds
+     * @param int[]|null $valueIds
      * @return \Google\AdsApi\AdManager\v201811\CustomCriteria
      */
-    public function setValueIds(array $valueIds)
+    public function setValueIds(array $valueIds = null)
     {
       $this->valueIds = $valueIds;
       return $this;

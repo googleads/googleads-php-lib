@@ -231,10 +231,10 @@ class VideoMetadata
     }
 
     /**
-     * @param string[] $codecs
+     * @param string[]|null $codecs
      * @return \Google\AdsApi\AdManager\v201808\VideoMetadata
      */
-    public function setCodecs(array $codecs)
+    public function setCodecs(array $codecs = null)
     {
       $this->codecs = $codecs;
       return $this;

@@ -110,10 +110,10 @@ class CustomCreative extends \Google\AdsApi\AdManager\v201805\HasDestinationUrlC
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\CustomCreativeAsset[] $customCreativeAssets
+     * @param \Google\AdsApi\AdManager\v201805\CustomCreativeAsset[]|null $customCreativeAssets
      * @return \Google\AdsApi\AdManager\v201805\CustomCreative
      */
-    public function setCustomCreativeAssets(array $customCreativeAssets)
+    public function setCustomCreativeAssets(array $customCreativeAssets = null)
     {
       $this->customCreativeAssets = $customCreativeAssets;
       return $this;
@@ -218,10 +218,10 @@ class CustomCreative extends \Google\AdsApi\AdManager\v201805\HasDestinationUrlC
     }
 
     /**
-     * @param string[] $thirdPartyImpressionTrackingUrls
+     * @param string[]|null $thirdPartyImpressionTrackingUrls
      * @return \Google\AdsApi\AdManager\v201805\CustomCreative
      */
-    public function setThirdPartyImpressionTrackingUrls(array $thirdPartyImpressionTrackingUrls)
+    public function setThirdPartyImpressionTrackingUrls(array $thirdPartyImpressionTrackingUrls = null)
     {
       $this->thirdPartyImpressionTrackingUrls = $thirdPartyImpressionTrackingUrls;
       return $this;

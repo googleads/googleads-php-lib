@@ -38,10 +38,10 @@ class SuggestedAdUnitUpdateResult
     }
 
     /**
-     * @param string[] $newAdUnitIds
+     * @param string[]|null $newAdUnitIds
      * @return \Google\AdsApi\AdManager\v201805\SuggestedAdUnitUpdateResult
      */
-    public function setNewAdUnitIds(array $newAdUnitIds)
+    public function setNewAdUnitIds(array $newAdUnitIds = null)
     {
       $this->newAdUnitIds = $newAdUnitIds;
       return $this;

@@ -1714,9 +1714,9 @@
           <enumeration value="CONVERSION_EXPIRED">
             <annotation>
               <documentation>
-                An expired conversion was found for the given (order id, conversion name) or
-                (gclid, conversion occurrence time, conversion name).
-                Conversions expire after 90 days, after which adjustments cannot be reported against them.
+                An expired conversion was found for the given (order id, conversion name) or (gclid,
+                conversion occurrence time, conversion name). Conversions expire after 55 days, after which
+                adjustments cannot be reported against them.
               </documentation>
             </annotation>
           </enumeration>

@@ -31,10 +31,10 @@ class updateContactsResponse
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\Contact[] $rval
+     * @param \Google\AdsApi\AdManager\v201902\Contact[]|null $rval
      * @return \Google\AdsApi\AdManager\v201902\updateContactsResponse
      */
-    public function setRval(array $rval)
+    public function setRval(array $rval = null)
     {
       $this->rval = $rval;
       return $this;

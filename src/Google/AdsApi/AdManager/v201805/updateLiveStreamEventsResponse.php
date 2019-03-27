@@ -31,10 +31,10 @@ class updateLiveStreamEventsResponse
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\LiveStreamEvent[] $rval
+     * @param \Google\AdsApi\AdManager\v201805\LiveStreamEvent[]|null $rval
      * @return \Google\AdsApi\AdManager\v201805\updateLiveStreamEventsResponse
      */
-    public function setRval(array $rval)
+    public function setRval(array $rval = null)
     {
       $this->rval = $rval;
       return $this;

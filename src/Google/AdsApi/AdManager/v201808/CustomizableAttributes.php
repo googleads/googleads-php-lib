@@ -434,10 +434,10 @@ class CustomizableAttributes
     }
 
     /**
-     * @param int[] $customizableCustomTargetingKeyIds
+     * @param int[]|null $customizableCustomTargetingKeyIds
      * @return \Google\AdsApi\AdManager\v201808\CustomizableAttributes
      */
-    public function setCustomizableCustomTargetingKeyIds(array $customizableCustomTargetingKeyIds)
+    public function setCustomizableCustomTargetingKeyIds(array $customizableCustomTargetingKeyIds = null)
     {
       $this->customizableCustomTargetingKeyIds = $customizableCustomTargetingKeyIds;
       return $this;

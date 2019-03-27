@@ -56,10 +56,10 @@ class BandwidthGroupTargeting
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\Technology[] $bandwidthGroups
+     * @param \Google\AdsApi\AdManager\v201805\Technology[]|null $bandwidthGroups
      * @return \Google\AdsApi\AdManager\v201805\BandwidthGroupTargeting
      */
-    public function setBandwidthGroups(array $bandwidthGroups)
+    public function setBandwidthGroups(array $bandwidthGroups = null)
     {
       $this->bandwidthGroups = $bandwidthGroups;
       return $this;

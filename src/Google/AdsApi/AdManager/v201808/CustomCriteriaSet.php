@@ -56,10 +56,10 @@ class CustomCriteriaSet extends \Google\AdsApi\AdManager\v201808\CustomCriteriaN
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\CustomCriteriaNode[] $children
+     * @param \Google\AdsApi\AdManager\v201808\CustomCriteriaNode[]|null $children
      * @return \Google\AdsApi\AdManager\v201808\CustomCriteriaSet
      */
-    public function setChildren(array $children)
+    public function setChildren(array $children = null)
     {
       $this->children = $children;
       return $this;

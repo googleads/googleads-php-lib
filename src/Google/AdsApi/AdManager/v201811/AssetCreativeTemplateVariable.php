@@ -36,10 +36,10 @@ class AssetCreativeTemplateVariable extends \Google\AdsApi\AdManager\v201811\Cre
     }
 
     /**
-     * @param string[] $mimeTypes
+     * @param string[]|null $mimeTypes
      * @return \Google\AdsApi\AdManager\v201811\AssetCreativeTemplateVariable
      */
-    public function setMimeTypes(array $mimeTypes)
+    public function setMimeTypes(array $mimeTypes = null)
     {
       $this->mimeTypes = $mimeTypes;
       return $this;

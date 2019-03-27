@@ -45,10 +45,10 @@ class PremiumRatePage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\PremiumRate[] $results
+     * @param \Google\AdsApi\AdManager\v201902\PremiumRate[]|null $results
      * @return \Google\AdsApi\AdManager\v201902\PremiumRatePage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

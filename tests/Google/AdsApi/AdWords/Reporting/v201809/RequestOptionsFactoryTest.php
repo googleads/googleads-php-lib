@@ -65,9 +65,10 @@ class RequestOptionsFactoryTest extends TestCase
             ->useRawEnumValues(true)
             ->includeZeroImpressions(false)
             ->build();
-        $this->libraryMetadataProviderMock = $this->getMock(
-            LibraryMetadataProvider::class
-        );
+        $this->libraryMetadataProviderMock =
+            $this->getMockBuilder(LibraryMetadataProvider::class)
+                ->disableOriginalConstructor()
+                ->getMock();
         $this->libraryMetadataProviderMock->method('getLibName')
             ->will($this->returnValue('googleads-php-lib2'));
         $this->libraryMetadataProviderMock->method('getLibVersion')

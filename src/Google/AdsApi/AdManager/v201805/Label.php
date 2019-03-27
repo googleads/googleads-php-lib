@@ -132,10 +132,10 @@ class Label
     }
 
     /**
-     * @param string[] $types
+     * @param string[]|null $types
      * @return \Google\AdsApi\AdManager\v201805\Label
      */
-    public function setTypes(array $types)
+    public function setTypes(array $types = null)
     {
       $this->types = $types;
       return $this;

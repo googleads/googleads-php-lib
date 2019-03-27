@@ -124,10 +124,10 @@ class CreativePlaceholder
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\CreativePlaceholder[] $companions
+     * @param \Google\AdsApi\AdManager\v201902\CreativePlaceholder[]|null $companions
      * @return \Google\AdsApi\AdManager\v201902\CreativePlaceholder
      */
-    public function setCompanions(array $companions)
+    public function setCompanions(array $companions = null)
     {
       $this->companions = $companions;
       return $this;
@@ -142,10 +142,10 @@ class CreativePlaceholder
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\AppliedLabel[] $appliedLabels
+     * @param \Google\AdsApi\AdManager\v201902\AppliedLabel[]|null $appliedLabels
      * @return \Google\AdsApi\AdManager\v201902\CreativePlaceholder
      */
-    public function setAppliedLabels(array $appliedLabels)
+    public function setAppliedLabels(array $appliedLabels = null)
     {
       $this->appliedLabels = $appliedLabels;
       return $this;
@@ -160,10 +160,10 @@ class CreativePlaceholder
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\AppliedLabel[] $effectiveAppliedLabels
+     * @param \Google\AdsApi\AdManager\v201902\AppliedLabel[]|null $effectiveAppliedLabels
      * @return \Google\AdsApi\AdManager\v201902\CreativePlaceholder
      */
-    public function setEffectiveAppliedLabels(array $effectiveAppliedLabels)
+    public function setEffectiveAppliedLabels(array $effectiveAppliedLabels = null)
     {
       $this->effectiveAppliedLabels = $effectiveAppliedLabels;
       return $this;

@@ -171,10 +171,10 @@ class ProductPackage
     }
 
     /**
-     * @param int[] $rateCardIds
+     * @param int[]|null $rateCardIds
      * @return \Google\AdsApi\AdManager\v201805\ProductPackage
      */
-    public function setRateCardIds(array $rateCardIds)
+    public function setRateCardIds(array $rateCardIds = null)
     {
       $this->rateCardIds = $rateCardIds;
       return $this;
@@ -189,10 +189,10 @@ class ProductPackage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\BaseCustomFieldValue[] $customFieldValues
+     * @param \Google\AdsApi\AdManager\v201805\BaseCustomFieldValue[]|null $customFieldValues
      * @return \Google\AdsApi\AdManager\v201805\ProductPackage
      */
-    public function setCustomFieldValues(array $customFieldValues)
+    public function setCustomFieldValues(array $customFieldValues = null)
     {
       $this->customFieldValues = $customFieldValues;
       return $this;

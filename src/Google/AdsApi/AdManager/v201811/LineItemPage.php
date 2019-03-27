@@ -81,10 +81,10 @@ class LineItemPage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\LineItem[] $results
+     * @param \Google\AdsApi\AdManager\v201811\LineItem[]|null $results
      * @return \Google\AdsApi\AdManager\v201811\LineItemPage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

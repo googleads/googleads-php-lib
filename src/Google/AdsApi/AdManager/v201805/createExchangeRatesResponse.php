@@ -31,10 +31,10 @@ class createExchangeRatesResponse
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\ExchangeRate[] $rval
+     * @param \Google\AdsApi\AdManager\v201805\ExchangeRate[]|null $rval
      * @return \Google\AdsApi\AdManager\v201805\createExchangeRatesResponse
      */
-    public function setRval(array $rval)
+    public function setRval(array $rval = null)
     {
       $this->rval = $rval;
       return $this;

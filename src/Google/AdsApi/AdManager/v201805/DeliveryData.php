@@ -31,10 +31,10 @@ class DeliveryData
     }
 
     /**
-     * @param int[] $units
+     * @param int[]|null $units
      * @return \Google\AdsApi\AdManager\v201805\DeliveryData
      */
-    public function setUnits(array $units)
+    public function setUnits(array $units = null)
     {
       $this->units = $units;
       return $this;

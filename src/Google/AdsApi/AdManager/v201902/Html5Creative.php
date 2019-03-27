@@ -108,10 +108,10 @@ class Html5Creative extends \Google\AdsApi\AdManager\v201902\Creative
     }
 
     /**
-     * @param string[] $thirdPartyImpressionTrackingUrls
+     * @param string[]|null $thirdPartyImpressionTrackingUrls
      * @return \Google\AdsApi\AdManager\v201902\Html5Creative
      */
-    public function setThirdPartyImpressionTrackingUrls(array $thirdPartyImpressionTrackingUrls)
+    public function setThirdPartyImpressionTrackingUrls(array $thirdPartyImpressionTrackingUrls = null)
     {
       $this->thirdPartyImpressionTrackingUrls = $thirdPartyImpressionTrackingUrls;
       return $this;

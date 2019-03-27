@@ -31,10 +31,10 @@ class getAdUnitSizesByStatementResponse
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\AdUnitSize[] $rval
+     * @param \Google\AdsApi\AdManager\v201805\AdUnitSize[]|null $rval
      * @return \Google\AdsApi\AdManager\v201805\getAdUnitSizesByStatementResponse
      */
-    public function setRval(array $rval)
+    public function setRval(array $rval = null)
     {
       $this->rval = $rval;
       return $this;

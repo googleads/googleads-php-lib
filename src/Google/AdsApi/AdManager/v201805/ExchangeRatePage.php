@@ -45,10 +45,10 @@ class ExchangeRatePage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\ExchangeRate[] $results
+     * @param \Google\AdsApi\AdManager\v201805\ExchangeRate[]|null $results
      * @return \Google\AdsApi\AdManager\v201805\ExchangeRatePage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

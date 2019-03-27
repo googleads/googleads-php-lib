@@ -38,10 +38,10 @@ class UserDomainTargeting
     }
 
     /**
-     * @param string[] $domains
+     * @param string[]|null $domains
      * @return \Google\AdsApi\AdManager\v201808\UserDomainTargeting
      */
-    public function setDomains(array $domains)
+    public function setDomains(array $domains = null)
     {
       $this->domains = $domains;
       return $this;

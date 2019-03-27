@@ -81,10 +81,10 @@ class AdExclusionRulePage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\AdExclusionRule[] $results
+     * @param \Google\AdsApi\AdManager\v201808\AdExclusionRule[]|null $results
      * @return \Google\AdsApi\AdManager\v201808\AdExclusionRulePage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

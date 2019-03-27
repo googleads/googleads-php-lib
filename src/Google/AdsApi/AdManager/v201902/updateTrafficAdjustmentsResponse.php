@@ -31,10 +31,10 @@ class updateTrafficAdjustmentsResponse
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\TrafficForecastAdjustment[] $rval
+     * @param \Google\AdsApi\AdManager\v201902\TrafficForecastAdjustment[]|null $rval
      * @return \Google\AdsApi\AdManager\v201902\updateTrafficAdjustmentsResponse
      */
-    public function setRval(array $rval)
+    public function setRval(array $rval = null)
     {
       $this->rval = $rval;
       return $this;

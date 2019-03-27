@@ -81,10 +81,10 @@ class OrderPage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\Order[] $results
+     * @param \Google\AdsApi\AdManager\v201902\Order[]|null $results
      * @return \Google\AdsApi\AdManager\v201902\OrderPage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

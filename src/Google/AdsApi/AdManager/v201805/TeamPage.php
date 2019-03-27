@@ -81,10 +81,10 @@ class TeamPage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\Team[] $results
+     * @param \Google\AdsApi\AdManager\v201805\Team[]|null $results
      * @return \Google\AdsApi\AdManager\v201805\TeamPage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

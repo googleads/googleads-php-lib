@@ -31,10 +31,10 @@ class getAllRolesResponse
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\Role[] $rval
+     * @param \Google\AdsApi\AdManager\v201808\Role[]|null $rval
      * @return \Google\AdsApi\AdManager\v201808\getAllRolesResponse
      */
-    public function setRval(array $rval)
+    public function setRval(array $rval = null)
     {
       $this->rval = $rval;
       return $this;

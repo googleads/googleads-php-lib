@@ -81,10 +81,10 @@ class ContactPage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\Contact[] $results
+     * @param \Google\AdsApi\AdManager\v201902\Contact[]|null $results
      * @return \Google\AdsApi\AdManager\v201902\ContactPage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

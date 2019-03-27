@@ -88,10 +88,10 @@ class AdUnitSize
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\AdUnitSize[] $companions
+     * @param \Google\AdsApi\AdManager\v201902\AdUnitSize[]|null $companions
      * @return \Google\AdsApi\AdManager\v201902\AdUnitSize
      */
-    public function setCompanions(array $companions)
+    public function setCompanions(array $companions = null)
     {
       $this->companions = $companions;
       return $this;

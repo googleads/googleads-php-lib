@@ -81,10 +81,10 @@ class ContentMetadataKeyHierarchyPage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\ContentMetadataKeyHierarchy[] $results
+     * @param \Google\AdsApi\AdManager\v201808\ContentMetadataKeyHierarchy[]|null $results
      * @return \Google\AdsApi\AdManager\v201808\ContentMetadataKeyHierarchyPage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

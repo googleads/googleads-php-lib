@@ -66,10 +66,10 @@ class ContentTargeting
     }
 
     /**
-     * @param int[] $targetedContentIds
+     * @param int[]|null $targetedContentIds
      * @return \Google\AdsApi\AdManager\v201808\ContentTargeting
      */
-    public function setTargetedContentIds(array $targetedContentIds)
+    public function setTargetedContentIds(array $targetedContentIds = null)
     {
       $this->targetedContentIds = $targetedContentIds;
       return $this;
@@ -84,10 +84,10 @@ class ContentTargeting
     }
 
     /**
-     * @param int[] $excludedContentIds
+     * @param int[]|null $excludedContentIds
      * @return \Google\AdsApi\AdManager\v201808\ContentTargeting
      */
-    public function setExcludedContentIds(array $excludedContentIds)
+    public function setExcludedContentIds(array $excludedContentIds = null)
     {
       $this->excludedContentIds = $excludedContentIds;
       return $this;
@@ -102,10 +102,10 @@ class ContentTargeting
     }
 
     /**
-     * @param int[] $targetedVideoContentBundleIds
+     * @param int[]|null $targetedVideoContentBundleIds
      * @return \Google\AdsApi\AdManager\v201808\ContentTargeting
      */
-    public function setTargetedVideoContentBundleIds(array $targetedVideoContentBundleIds)
+    public function setTargetedVideoContentBundleIds(array $targetedVideoContentBundleIds = null)
     {
       $this->targetedVideoContentBundleIds = $targetedVideoContentBundleIds;
       return $this;
@@ -120,10 +120,10 @@ class ContentTargeting
     }
 
     /**
-     * @param int[] $excludedVideoContentBundleIds
+     * @param int[]|null $excludedVideoContentBundleIds
      * @return \Google\AdsApi\AdManager\v201808\ContentTargeting
      */
-    public function setExcludedVideoContentBundleIds(array $excludedVideoContentBundleIds)
+    public function setExcludedVideoContentBundleIds(array $excludedVideoContentBundleIds = null)
     {
       $this->excludedVideoContentBundleIds = $excludedVideoContentBundleIds;
       return $this;
@@ -138,10 +138,10 @@ class ContentTargeting
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\ContentMetadataKeyHierarchyTargeting[] $targetedContentMetadata
+     * @param \Google\AdsApi\AdManager\v201808\ContentMetadataKeyHierarchyTargeting[]|null $targetedContentMetadata
      * @return \Google\AdsApi\AdManager\v201808\ContentTargeting
      */
-    public function setTargetedContentMetadata(array $targetedContentMetadata)
+    public function setTargetedContentMetadata(array $targetedContentMetadata = null)
     {
       $this->targetedContentMetadata = $targetedContentMetadata;
       return $this;
@@ -156,10 +156,10 @@ class ContentTargeting
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\ContentMetadataKeyHierarchyTargeting[] $excludedContentMetadata
+     * @param \Google\AdsApi\AdManager\v201808\ContentMetadataKeyHierarchyTargeting[]|null $excludedContentMetadata
      * @return \Google\AdsApi\AdManager\v201808\ContentTargeting
      */
-    public function setExcludedContentMetadata(array $excludedContentMetadata)
+    public function setExcludedContentMetadata(array $excludedContentMetadata = null)
     {
       $this->excludedContentMetadata = $excludedContentMetadata;
       return $this;

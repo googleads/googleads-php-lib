@@ -102,10 +102,10 @@ class ActivityGroup
     }
 
     /**
-     * @param int[] $companyIds
+     * @param int[]|null $companyIds
      * @return \Google\AdsApi\AdManager\v201811\ActivityGroup
      */
-    public function setCompanyIds(array $companyIds)
+    public function setCompanyIds(array $companyIds = null)
     {
       $this->companyIds = $companyIds;
       return $this;

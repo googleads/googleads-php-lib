@@ -235,10 +235,10 @@ class BuyerRfp
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\CreativePlaceholder[] $creativePlaceholders
+     * @param \Google\AdsApi\AdManager\v201805\CreativePlaceholder[]|null $creativePlaceholders
      * @return \Google\AdsApi\AdManager\v201805\BuyerRfp
      */
-    public function setCreativePlaceholders(array $creativePlaceholders)
+    public function setCreativePlaceholders(array $creativePlaceholders = null)
     {
       $this->creativePlaceholders = $creativePlaceholders;
       return $this;

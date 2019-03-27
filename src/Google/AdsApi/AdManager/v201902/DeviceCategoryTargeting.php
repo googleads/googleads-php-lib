@@ -38,10 +38,10 @@ class DeviceCategoryTargeting
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\Technology[] $targetedDeviceCategories
+     * @param \Google\AdsApi\AdManager\v201902\Technology[]|null $targetedDeviceCategories
      * @return \Google\AdsApi\AdManager\v201902\DeviceCategoryTargeting
      */
-    public function setTargetedDeviceCategories(array $targetedDeviceCategories)
+    public function setTargetedDeviceCategories(array $targetedDeviceCategories = null)
     {
       $this->targetedDeviceCategories = $targetedDeviceCategories;
       return $this;
@@ -56,10 +56,10 @@ class DeviceCategoryTargeting
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\Technology[] $excludedDeviceCategories
+     * @param \Google\AdsApi\AdManager\v201902\Technology[]|null $excludedDeviceCategories
      * @return \Google\AdsApi\AdManager\v201902\DeviceCategoryTargeting
      */
-    public function setExcludedDeviceCategories(array $excludedDeviceCategories)
+    public function setExcludedDeviceCategories(array $excludedDeviceCategories = null)
     {
       $this->excludedDeviceCategories = $excludedDeviceCategories;
       return $this;

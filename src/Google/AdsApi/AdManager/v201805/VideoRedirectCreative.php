@@ -59,10 +59,10 @@ class VideoRedirectCreative extends \Google\AdsApi\AdManager\v201805\BaseVideoCr
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\VideoRedirectAsset[] $videoAssets
+     * @param \Google\AdsApi\AdManager\v201805\VideoRedirectAsset[]|null $videoAssets
      * @return \Google\AdsApi\AdManager\v201805\VideoRedirectCreative
      */
-    public function setVideoAssets(array $videoAssets)
+    public function setVideoAssets(array $videoAssets = null)
     {
       $this->videoAssets = $videoAssets;
       return $this;

@@ -66,10 +66,10 @@ class WorkflowProgress
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\ProgressStep[] $steps
+     * @param \Google\AdsApi\AdManager\v201811\ProgressStep[]|null $steps
      * @return \Google\AdsApi\AdManager\v201811\WorkflowProgress
      */
-    public function setSteps(array $steps)
+    public function setSteps(array $steps = null)
     {
       $this->steps = $steps;
       return $this;

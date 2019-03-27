@@ -31,10 +31,10 @@ class updateCreativeWrappersResponse
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\CreativeWrapper[] $rval
+     * @param \Google\AdsApi\AdManager\v201805\CreativeWrapper[]|null $rval
      * @return \Google\AdsApi\AdManager\v201805\updateCreativeWrappersResponse
      */
-    public function setRval(array $rval)
+    public function setRval(array $rval = null)
     {
       $this->rval = $rval;
       return $this;

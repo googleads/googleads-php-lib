@@ -149,10 +149,10 @@ class CreativeTemplate
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\CreativeTemplateVariable[] $variables
+     * @param \Google\AdsApi\AdManager\v201811\CreativeTemplateVariable[]|null $variables
      * @return \Google\AdsApi\AdManager\v201811\CreativeTemplate
      */
-    public function setVariables(array $variables)
+    public function setVariables(array $variables = null)
     {
       $this->variables = $variables;
       return $this;

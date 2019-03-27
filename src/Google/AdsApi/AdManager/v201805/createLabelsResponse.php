@@ -31,10 +31,10 @@ class createLabelsResponse
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\Label[] $rval
+     * @param \Google\AdsApi\AdManager\v201805\Label[]|null $rval
      * @return \Google\AdsApi\AdManager\v201805\createLabelsResponse
      */
-    public function setRval(array $rval)
+    public function setRval(array $rval = null)
     {
       $this->rval = $rval;
       return $this;

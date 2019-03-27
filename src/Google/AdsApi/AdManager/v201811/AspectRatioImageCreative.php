@@ -64,10 +64,10 @@ class AspectRatioImageCreative extends \Google\AdsApi\AdManager\v201811\HasDesti
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\CreativeAsset[] $imageAssets
+     * @param \Google\AdsApi\AdManager\v201811\CreativeAsset[]|null $imageAssets
      * @return \Google\AdsApi\AdManager\v201811\AspectRatioImageCreative
      */
-    public function setImageAssets(array $imageAssets)
+    public function setImageAssets(array $imageAssets = null)
     {
       $this->imageAssets = $imageAssets;
       return $this;

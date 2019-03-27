@@ -31,10 +31,10 @@ class createMobileApplicationsResponse
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\MobileApplication[] $rval
+     * @param \Google\AdsApi\AdManager\v201805\MobileApplication[]|null $rval
      * @return \Google\AdsApi\AdManager\v201805\createMobileApplicationsResponse
      */
-    public function setRval(array $rval)
+    public function setRval(array $rval = null)
     {
       $this->rval = $rval;
       return $this;

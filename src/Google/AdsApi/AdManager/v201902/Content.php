@@ -220,10 +220,10 @@ class Content
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\DaiIngestError[] $hlsIngestErrors
+     * @param \Google\AdsApi\AdManager\v201902\DaiIngestError[]|null $hlsIngestErrors
      * @return \Google\AdsApi\AdManager\v201902\Content
      */
-    public function setHlsIngestErrors(array $hlsIngestErrors)
+    public function setHlsIngestErrors(array $hlsIngestErrors = null)
     {
       $this->hlsIngestErrors = $hlsIngestErrors;
       return $this;
@@ -274,10 +274,10 @@ class Content
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\DaiIngestError[] $dashIngestErrors
+     * @param \Google\AdsApi\AdManager\v201902\DaiIngestError[]|null $dashIngestErrors
      * @return \Google\AdsApi\AdManager\v201902\Content
      */
-    public function setDashIngestErrors(array $dashIngestErrors)
+    public function setDashIngestErrors(array $dashIngestErrors = null)
     {
       $this->dashIngestErrors = $dashIngestErrors;
       return $this;
@@ -346,10 +346,10 @@ class Content
     }
 
     /**
-     * @param int[] $userDefinedCustomTargetingValueIds
+     * @param int[]|null $userDefinedCustomTargetingValueIds
      * @return \Google\AdsApi\AdManager\v201902\Content
      */
-    public function setUserDefinedCustomTargetingValueIds(array $userDefinedCustomTargetingValueIds)
+    public function setUserDefinedCustomTargetingValueIds(array $userDefinedCustomTargetingValueIds = null)
     {
       $this->userDefinedCustomTargetingValueIds = $userDefinedCustomTargetingValueIds;
       return $this;
@@ -364,10 +364,10 @@ class Content
     }
 
     /**
-     * @param int[] $mappingRuleDefinedCustomTargetingValueIds
+     * @param int[]|null $mappingRuleDefinedCustomTargetingValueIds
      * @return \Google\AdsApi\AdManager\v201902\Content
      */
-    public function setMappingRuleDefinedCustomTargetingValueIds(array $mappingRuleDefinedCustomTargetingValueIds)
+    public function setMappingRuleDefinedCustomTargetingValueIds(array $mappingRuleDefinedCustomTargetingValueIds = null)
     {
       $this->mappingRuleDefinedCustomTargetingValueIds = $mappingRuleDefinedCustomTargetingValueIds;
       return $this;
@@ -382,10 +382,10 @@ class Content
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\CmsContent[] $cmsSources
+     * @param \Google\AdsApi\AdManager\v201902\CmsContent[]|null $cmsSources
      * @return \Google\AdsApi\AdManager\v201902\Content
      */
-    public function setCmsSources(array $cmsSources)
+    public function setCmsSources(array $cmsSources = null)
     {
       $this->cmsSources = $cmsSources;
       return $this;

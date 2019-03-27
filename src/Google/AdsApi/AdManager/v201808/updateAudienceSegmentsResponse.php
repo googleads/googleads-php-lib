@@ -31,10 +31,10 @@ class updateAudienceSegmentsResponse
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\FirstPartyAudienceSegment[] $rval
+     * @param \Google\AdsApi\AdManager\v201808\FirstPartyAudienceSegment[]|null $rval
      * @return \Google\AdsApi\AdManager\v201808\updateAudienceSegmentsResponse
      */
-    public function setRval(array $rval)
+    public function setRval(array $rval = null)
     {
       $this->rval = $rval;
       return $this;

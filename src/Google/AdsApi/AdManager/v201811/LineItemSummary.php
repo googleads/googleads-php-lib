@@ -666,10 +666,10 @@ class LineItemSummary
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\FrequencyCap[] $frequencyCaps
+     * @param \Google\AdsApi\AdManager\v201811\FrequencyCap[]|null $frequencyCaps
      * @return \Google\AdsApi\AdManager\v201811\LineItemSummary
      */
-    public function setFrequencyCaps(array $frequencyCaps)
+    public function setFrequencyCaps(array $frequencyCaps = null)
     {
       $this->frequencyCaps = $frequencyCaps;
       return $this;
@@ -829,10 +829,10 @@ class LineItemSummary
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\CreativePlaceholder[] $creativePlaceholders
+     * @param \Google\AdsApi\AdManager\v201811\CreativePlaceholder[]|null $creativePlaceholders
      * @return \Google\AdsApi\AdManager\v201811\LineItemSummary
      */
-    public function setCreativePlaceholders(array $creativePlaceholders)
+    public function setCreativePlaceholders(array $creativePlaceholders = null)
     {
       $this->creativePlaceholders = $creativePlaceholders;
       return $this;
@@ -847,10 +847,10 @@ class LineItemSummary
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\LineItemActivityAssociation[] $activityAssociations
+     * @param \Google\AdsApi\AdManager\v201811\LineItemActivityAssociation[]|null $activityAssociations
      * @return \Google\AdsApi\AdManager\v201811\LineItemSummary
      */
-    public function setActivityAssociations(array $activityAssociations)
+    public function setActivityAssociations(array $activityAssociations = null)
     {
       $this->activityAssociations = $activityAssociations;
       return $this;
@@ -1117,10 +1117,10 @@ class LineItemSummary
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\AppliedLabel[] $appliedLabels
+     * @param \Google\AdsApi\AdManager\v201811\AppliedLabel[]|null $appliedLabels
      * @return \Google\AdsApi\AdManager\v201811\LineItemSummary
      */
-    public function setAppliedLabels(array $appliedLabels)
+    public function setAppliedLabels(array $appliedLabels = null)
     {
       $this->appliedLabels = $appliedLabels;
       return $this;
@@ -1135,10 +1135,10 @@ class LineItemSummary
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\AppliedLabel[] $effectiveAppliedLabels
+     * @param \Google\AdsApi\AdManager\v201811\AppliedLabel[]|null $effectiveAppliedLabels
      * @return \Google\AdsApi\AdManager\v201811\LineItemSummary
      */
-    public function setEffectiveAppliedLabels(array $effectiveAppliedLabels)
+    public function setEffectiveAppliedLabels(array $effectiveAppliedLabels = null)
     {
       $this->effectiveAppliedLabels = $effectiveAppliedLabels;
       return $this;
@@ -1279,10 +1279,10 @@ class LineItemSummary
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\BaseCustomFieldValue[] $customFieldValues
+     * @param \Google\AdsApi\AdManager\v201811\BaseCustomFieldValue[]|null $customFieldValues
      * @return \Google\AdsApi\AdManager\v201811\LineItemSummary
      */
-    public function setCustomFieldValues(array $customFieldValues)
+    public function setCustomFieldValues(array $customFieldValues = null)
     {
       $this->customFieldValues = $customFieldValues;
       return $this;
@@ -1406,10 +1406,10 @@ class LineItemSummary
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\Goal[] $secondaryGoals
+     * @param \Google\AdsApi\AdManager\v201811\Goal[]|null $secondaryGoals
      * @return \Google\AdsApi\AdManager\v201811\LineItemSummary
      */
-    public function setSecondaryGoals(array $secondaryGoals)
+    public function setSecondaryGoals(array $secondaryGoals = null)
     {
       $this->secondaryGoals = $secondaryGoals;
       return $this;

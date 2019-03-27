@@ -31,10 +31,10 @@ class updateCdnConfigurationsResponse
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\CdnConfiguration[] $rval
+     * @param \Google\AdsApi\AdManager\v201902\CdnConfiguration[]|null $rval
      * @return \Google\AdsApi\AdManager\v201902\updateCdnConfigurationsResponse
      */
-    public function setRval(array $rval)
+    public function setRval(array $rval = null)
     {
       $this->rval = $rval;
       return $this;

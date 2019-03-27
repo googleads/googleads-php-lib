@@ -31,10 +31,10 @@ class createUsersResponse
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\User[] $rval
+     * @param \Google\AdsApi\AdManager\v201808\User[]|null $rval
      * @return \Google\AdsApi\AdManager\v201808\createUsersResponse
      */
-    public function setRval(array $rval)
+    public function setRval(array $rval = null)
     {
       $this->rval = $rval;
       return $this;

@@ -81,10 +81,10 @@ class DaiAuthenticationKeyPage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\DaiAuthenticationKey[] $results
+     * @param \Google\AdsApi\AdManager\v201902\DaiAuthenticationKey[]|null $results
      * @return \Google\AdsApi\AdManager\v201902\DaiAuthenticationKeyPage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

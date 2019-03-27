@@ -3004,7 +3004,7 @@
               <element maxOccurs="1" minOccurs="0" name="enableLocal" type="xsd:boolean">
                 <annotation>
                   <documentation>
-                    Enable local inventory ads. This field is ignored for Smart Shopping Campaigns.
+                    Whether to include local products.
                   </documentation>
                 </annotation>
               </element>

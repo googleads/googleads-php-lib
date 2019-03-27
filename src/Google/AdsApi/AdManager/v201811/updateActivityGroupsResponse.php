@@ -31,10 +31,10 @@ class updateActivityGroupsResponse
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\ActivityGroup[] $rval
+     * @param \Google\AdsApi\AdManager\v201811\ActivityGroup[]|null $rval
      * @return \Google\AdsApi\AdManager\v201811\updateActivityGroupsResponse
      */
-    public function setRval(array $rval)
+    public function setRval(array $rval = null)
     {
       $this->rval = $rval;
       return $this;

@@ -63,10 +63,10 @@ class LineItemCreativeAssociationStats
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\Long_StatsMapEntry[] $creativeSetStats
+     * @param \Google\AdsApi\AdManager\v201811\Long_StatsMapEntry[]|null $creativeSetStats
      * @return \Google\AdsApi\AdManager\v201811\LineItemCreativeAssociationStats
      */
-    public function setCreativeSetStats(array $creativeSetStats)
+    public function setCreativeSetStats(array $creativeSetStats = null)
     {
       $this->creativeSetStats = $creativeSetStats;
       return $this;

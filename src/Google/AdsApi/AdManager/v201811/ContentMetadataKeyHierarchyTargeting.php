@@ -31,10 +31,10 @@ class ContentMetadataKeyHierarchyTargeting
     }
 
     /**
-     * @param int[] $customTargetingValueIds
+     * @param int[]|null $customTargetingValueIds
      * @return \Google\AdsApi\AdManager\v201811\ContentMetadataKeyHierarchyTargeting
      */
-    public function setCustomTargetingValueIds(array $customTargetingValueIds)
+    public function setCustomTargetingValueIds(array $customTargetingValueIds = null)
     {
       $this->customTargetingValueIds = $customTargetingValueIds;
       return $this;

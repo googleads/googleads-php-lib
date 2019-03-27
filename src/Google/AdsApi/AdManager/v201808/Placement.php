@@ -164,10 +164,10 @@ class Placement extends \Google\AdsApi\AdManager\v201808\SiteTargetingInfo
     }
 
     /**
-     * @param string[] $targetedAdUnitIds
+     * @param string[]|null $targetedAdUnitIds
      * @return \Google\AdsApi\AdManager\v201808\Placement
      */
-    public function setTargetedAdUnitIds(array $targetedAdUnitIds)
+    public function setTargetedAdUnitIds(array $targetedAdUnitIds = null)
     {
       $this->targetedAdUnitIds = $targetedAdUnitIds;
       return $this;

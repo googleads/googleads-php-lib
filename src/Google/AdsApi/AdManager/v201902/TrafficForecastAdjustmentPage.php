@@ -81,10 +81,10 @@ class TrafficForecastAdjustmentPage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\TrafficForecastAdjustment[] $results
+     * @param \Google\AdsApi\AdManager\v201902\TrafficForecastAdjustment[]|null $results
      * @return \Google\AdsApi\AdManager\v201902\TrafficForecastAdjustmentPage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

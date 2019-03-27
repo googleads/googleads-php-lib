@@ -179,10 +179,10 @@ abstract class Creative
     }
 
     /**
-     * @param string[] $policyViolations
+     * @param string[]|null $policyViolations
      * @return \Google\AdsApi\AdManager\v201808\Creative
      */
-    public function setPolicyViolations(array $policyViolations)
+    public function setPolicyViolations(array $policyViolations = null)
     {
       $this->policyViolations = $policyViolations;
       return $this;
@@ -197,10 +197,10 @@ abstract class Creative
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\AppliedLabel[] $appliedLabels
+     * @param \Google\AdsApi\AdManager\v201808\AppliedLabel[]|null $appliedLabels
      * @return \Google\AdsApi\AdManager\v201808\Creative
      */
-    public function setAppliedLabels(array $appliedLabels)
+    public function setAppliedLabels(array $appliedLabels = null)
     {
       $this->appliedLabels = $appliedLabels;
       return $this;
@@ -233,10 +233,10 @@ abstract class Creative
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\BaseCustomFieldValue[] $customFieldValues
+     * @param \Google\AdsApi\AdManager\v201808\BaseCustomFieldValue[]|null $customFieldValues
      * @return \Google\AdsApi\AdManager\v201808\Creative
      */
-    public function setCustomFieldValues(array $customFieldValues)
+    public function setCustomFieldValues(array $customFieldValues = null)
     {
       $this->customFieldValues = $customFieldValues;
       return $this;

@@ -1969,10 +1969,6 @@
             &lt;td&gt;{@link Placement#id}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;tr&gt;
-            &lt;td&gt;{@code isAdSenseTargetingEnabled}&lt;/td&gt;
-            &lt;td&gt;{@link Placement#isAdSenseTargetingEnabled}&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
             &lt;td&gt;{@code name}&lt;/td&gt;
             &lt;td&gt;{@link Placement#name}&lt;/td&gt;
             &lt;/tr&gt;
@@ -2133,10 +2129,6 @@
         &lt;tr&gt;
         &lt;td&gt;{@code id}&lt;/td&gt;
         &lt;td&gt;{@link Placement#id}&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-        &lt;td&gt;{@code isAdSenseTargetingEnabled}&lt;/td&gt;
-        &lt;td&gt;{@link Placement#isAdSenseTargetingEnabled}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;tr&gt;
         &lt;td&gt;{@code name}&lt;/td&gt;

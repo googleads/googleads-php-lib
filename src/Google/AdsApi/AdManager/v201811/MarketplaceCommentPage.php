@@ -56,10 +56,10 @@ class MarketplaceCommentPage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\MarketplaceComment[] $results
+     * @param \Google\AdsApi\AdManager\v201811\MarketplaceComment[]|null $results
      * @return \Google\AdsApi\AdManager\v201811\MarketplaceCommentPage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

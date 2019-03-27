@@ -81,10 +81,10 @@ class PlacementPage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\Placement[] $results
+     * @param \Google\AdsApi\AdManager\v201902\Placement[]|null $results
      * @return \Google\AdsApi\AdManager\v201902\PlacementPage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

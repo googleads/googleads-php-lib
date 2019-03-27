@@ -196,10 +196,10 @@ class Network
     }
 
     /**
-     * @param string[] $secondaryCurrencyCodes
+     * @param string[]|null $secondaryCurrencyCodes
      * @return \Google\AdsApi\AdManager\v201811\Network
      */
-    public function setSecondaryCurrencyCodes(array $secondaryCurrencyCodes)
+    public function setSecondaryCurrencyCodes(array $secondaryCurrencyCodes = null)
     {
       $this->secondaryCurrencyCodes = $secondaryCurrencyCodes;
       return $this;

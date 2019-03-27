@@ -81,10 +81,10 @@ class CreativePage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\Creative[] $results
+     * @param \Google\AdsApi\AdManager\v201902\Creative[]|null $results
      * @return \Google\AdsApi\AdManager\v201902\CreativePage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

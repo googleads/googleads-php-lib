@@ -81,10 +81,10 @@ class LiveStreamEventPage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\LiveStreamEvent[] $results
+     * @param \Google\AdsApi\AdManager\v201808\LiveStreamEvent[]|null $results
      * @return \Google\AdsApi\AdManager\v201808\LiveStreamEventPage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

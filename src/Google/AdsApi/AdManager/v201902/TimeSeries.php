@@ -63,10 +63,10 @@ class TimeSeries
     }
 
     /**
-     * @param int[] $timeSeriesValues
+     * @param int[]|null $timeSeriesValues
      * @return \Google\AdsApi\AdManager\v201902\TimeSeries
      */
-    public function setTimeSeriesValues(array $timeSeriesValues)
+    public function setTimeSeriesValues(array $timeSeriesValues = null)
     {
       $this->timeSeriesValues = $timeSeriesValues;
       return $this;

@@ -4105,10 +4105,10 @@
       <complexType name="UniversalAppAd">
         <annotation>
           <documentation>
-            Represents a universal app ad
+            Represents a universal app ad.
             
-            &lt;p class="caution"&gt;&lt;b&gt;Caution:&lt;/b&gt; Universal app ads do not use #displayUrl displayUrl},
-            \{@link #finalAppUrls finalAppUrls}, or {@link #devicePreference devicePreference}; setting these
+            &lt;p class="caution"&gt;&lt;b&gt;Caution:&lt;/b&gt; Universal app ads do not use {@link #displayUrl displayUrl},
+            {@link #finalAppUrls finalAppUrls}, or {@link #devicePreference devicePreference}; setting these
             fields on a universal app ad will cause an error.
             &lt;span class="constraint AdxEnabled"&gt;This is enabled for AdX.&lt;/span&gt;
           </documentation>
@@ -4156,7 +4156,7 @@
               <element maxOccurs="unbounded" minOccurs="0" name="videos" type="tns:AssetLink">
                 <annotation>
                   <documentation>
-                    YouTube videos to attach to the ad
+                    YouTube videos to attach to the ad.
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "UniversalAppAdYouTubeVideos".&lt;/span&gt;
                   </documentation>
                 </annotation>

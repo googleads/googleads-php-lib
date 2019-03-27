@@ -91,10 +91,10 @@ class FlashOverlayCreative extends \Google\AdsApi\AdManager\v201805\BaseFlashCre
     }
 
     /**
-     * @param int[] $companionCreativeIds
+     * @param int[]|null $companionCreativeIds
      * @return \Google\AdsApi\AdManager\v201805\FlashOverlayCreative
      */
-    public function setCompanionCreativeIds(array $companionCreativeIds)
+    public function setCompanionCreativeIds(array $companionCreativeIds = null)
     {
       $this->companionCreativeIds = $companionCreativeIds;
       return $this;
@@ -109,10 +109,10 @@ class FlashOverlayCreative extends \Google\AdsApi\AdManager\v201805\BaseFlashCre
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\ConversionEvent_TrackingUrlsMapEntry[] $trackingUrls
+     * @param \Google\AdsApi\AdManager\v201805\ConversionEvent_TrackingUrlsMapEntry[]|null $trackingUrls
      * @return \Google\AdsApi\AdManager\v201805\FlashOverlayCreative
      */
-    public function setTrackingUrls(array $trackingUrls)
+    public function setTrackingUrls(array $trackingUrls = null)
     {
       $this->trackingUrls = $trackingUrls;
       return $this;

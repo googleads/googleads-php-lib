@@ -81,10 +81,10 @@ class ProductTemplatePage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\ProductTemplate[] $results
+     * @param \Google\AdsApi\AdManager\v201811\ProductTemplate[]|null $results
      * @return \Google\AdsApi\AdManager\v201811\ProductTemplatePage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

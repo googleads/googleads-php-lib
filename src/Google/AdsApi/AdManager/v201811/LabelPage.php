@@ -81,10 +81,10 @@ class LabelPage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\Label[] $results
+     * @param \Google\AdsApi\AdManager\v201811\Label[]|null $results
      * @return \Google\AdsApi\AdManager\v201811\LabelPage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

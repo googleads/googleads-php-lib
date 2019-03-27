@@ -81,10 +81,10 @@ class RequestApprovalProgressAction extends \Google\AdsApi\AdManager\v201808\Pro
     }
 
     /**
-     * @param int[] $eligibleApproverUserIds
+     * @param int[]|null $eligibleApproverUserIds
      * @return \Google\AdsApi\AdManager\v201808\RequestApprovalProgressAction
      */
-    public function setEligibleApproverUserIds(array $eligibleApproverUserIds)
+    public function setEligibleApproverUserIds(array $eligibleApproverUserIds = null)
     {
       $this->eligibleApproverUserIds = $eligibleApproverUserIds;
       return $this;
@@ -99,10 +99,10 @@ class RequestApprovalProgressAction extends \Google\AdsApi\AdManager\v201808\Pro
     }
 
     /**
-     * @param int[] $eligibleApproverTeamIds
+     * @param int[]|null $eligibleApproverTeamIds
      * @return \Google\AdsApi\AdManager\v201808\RequestApprovalProgressAction
      */
-    public function setEligibleApproverTeamIds(array $eligibleApproverTeamIds)
+    public function setEligibleApproverTeamIds(array $eligibleApproverTeamIds = null)
     {
       $this->eligibleApproverTeamIds = $eligibleApproverTeamIds;
       return $this;

@@ -31,10 +31,10 @@ class createDaiAuthenticationKeysResponse
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201808\DaiAuthenticationKey[] $rval
+     * @param \Google\AdsApi\AdManager\v201808\DaiAuthenticationKey[]|null $rval
      * @return \Google\AdsApi\AdManager\v201808\createDaiAuthenticationKeysResponse
      */
-    public function setRval(array $rval)
+    public function setRval(array $rval = null)
     {
       $this->rval = $rval;
       return $this;

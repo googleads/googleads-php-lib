@@ -59,10 +59,10 @@ class ProgressRule
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201811\ProgressAction[] $actions
+     * @param \Google\AdsApi\AdManager\v201811\ProgressAction[]|null $actions
      * @return \Google\AdsApi\AdManager\v201811\ProgressRule
      */
-    public function setActions(array $actions)
+    public function setActions(array $actions = null)
     {
       $this->actions = $actions;
       return $this;

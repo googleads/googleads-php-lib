@@ -81,10 +81,10 @@ class CdnConfigurationPage
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201902\CdnConfiguration[] $results
+     * @param \Google\AdsApi\AdManager\v201902\CdnConfiguration[]|null $results
      * @return \Google\AdsApi\AdManager\v201902\CdnConfigurationPage
      */
-    public function setResults(array $results)
+    public function setResults(array $results = null)
     {
       $this->results = $results;
       return $this;

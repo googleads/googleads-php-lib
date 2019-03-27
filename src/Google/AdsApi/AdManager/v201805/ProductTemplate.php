@@ -453,10 +453,10 @@ class ProductTemplate
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\CreativePlaceholder[] $creativePlaceholders
+     * @param \Google\AdsApi\AdManager\v201805\CreativePlaceholder[]|null $creativePlaceholders
      * @return \Google\AdsApi\AdManager\v201805\ProductTemplate
      */
-    public function setCreativePlaceholders(array $creativePlaceholders)
+    public function setCreativePlaceholders(array $creativePlaceholders = null)
     {
       $this->creativePlaceholders = $creativePlaceholders;
       return $this;
@@ -507,10 +507,10 @@ class ProductTemplate
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\FrequencyCap[] $frequencyCaps
+     * @param \Google\AdsApi\AdManager\v201805\FrequencyCap[]|null $frequencyCaps
      * @return \Google\AdsApi\AdManager\v201805\ProductTemplate
      */
-    public function setFrequencyCaps(array $frequencyCaps)
+    public function setFrequencyCaps(array $frequencyCaps = null)
     {
       $this->frequencyCaps = $frequencyCaps;
       return $this;
@@ -579,10 +579,10 @@ class ProductTemplate
     }
 
     /**
-     * @param \Google\AdsApi\AdManager\v201805\BaseCustomFieldValue[] $customFieldValues
+     * @param \Google\AdsApi\AdManager\v201805\BaseCustomFieldValue[]|null $customFieldValues
      * @return \Google\AdsApi\AdManager\v201805\ProductTemplate
      */
-    public function setCustomFieldValues(array $customFieldValues)
+    public function setCustomFieldValues(array $customFieldValues = null)
     {
       $this->customFieldValues = $customFieldValues;
       return $this;
