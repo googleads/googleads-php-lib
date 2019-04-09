@@ -97,11 +97,11 @@ this library (e.g., submitting pull requests) or wish to try our examples.
 1.  Follow [Setting up your OAuth2 credentials](#setting-up-your-oauth2-credentials)
     if you haven't set up the credentials yet.
 1.  You can now use the library and run any examples you want. Try
-    [GetCampaigns.php](https://github.com/googleads/googleads-php-lib/blob/master/examples/AdWords/v201806/BasicOperations/GetCampaigns.php)
+    [GetCampaigns.php](https://github.com/googleads/googleads-php-lib/blob/master/examples/AdWords/v201809/BasicOperations/GetCampaigns.php)
     by executing the following command:
 
     ```
-    $ php examples/AdWords/v201806/BasicOperations/GetCampaigns.php
+    $ php examples/AdWords/v201809/BasicOperations/GetCampaigns.php
     ```
 
 ### Downloading a compressed tarball
@@ -122,11 +122,11 @@ client library. The extracted directory of the tarball will contain only the
 1.  Follow [Setting up your OAuth2 credentials](#setting-up-your-oauth2-credentials)
     if you haven't set up the credentials yet.
 1.  You can now run any examples you want. Try
-    [GetCampaigns.php](https://github.com/googleads/googleads-php-lib/blob/master/examples/AdWords/v201806/BasicOperations/GetCampaigns.php)
+    [GetCampaigns.php](https://github.com/googleads/googleads-php-lib/blob/master/examples/AdWords/v201809/BasicOperations/GetCampaigns.php)
     by executing the following command:
 
     ```
-    $ php examples/AdWords/v201806/BasicOperations/GetCampaigns.php
+    $ php examples/AdWords/v201809/BasicOperations/GetCampaigns.php
     ```
 
 ### Setting up your OAuth2 credentials
@@ -346,9 +346,9 @@ CA file issues can also cause an error like this:
 ```
 Fatal error: Uncaught SoapFault exception: [WSDL] SOAP-ERROR: Parsing WSDL:
 Couldn't load from
-'https://adwords.google.com/api/adwords/cm/v201806/CampaignService?wsdl' :
+'https://adwords.google.com/api/adwords/cm/v201809/CampaignService?wsdl' :
 failed to load external entity
-"https://adwords.google.com/api/adwords/cm/v201806/CampaignService?wsdl
+"https://adwords.google.com/api/adwords/cm/v201809/CampaignService?wsdl
 ```
 
 To remedy, see [Steps for troubleshooting CA file issues](https://github.com/googleads/googleads-php-lib/wiki/Steps-for-troubleshooting-CA-file-issues).
