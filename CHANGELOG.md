@@ -1,3 +1,19 @@
+### 42.0.0
+
+##### AdWords
+
+*   No changes.
+
+##### Ad Manager
+
+*   Added support for v201905.
+*   Removed support for v201805.
+*   Removed examples for v201808.
+
+##### Common
+
+*   No changes.
+
 ### 41.0.0
 
 ##### AdWords

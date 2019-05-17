@@ -961,7 +961,7 @@
                     Specifies the strategy goal: where impressions are desired to be shown on
                     search result pages.
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "PageOnePromotedStrategyGoal".&lt;/span&gt;
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -1512,7 +1512,7 @@
                     Average cost per acquisition (CPA) target. This target should be greater than or equal to
                     minimum billable unit based on the currency for the account.
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "TargetCpa".&lt;/span&gt;
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -1561,7 +1561,7 @@
                     competitor does not.
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "TargetOutrankShare".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
                     &lt;span class="constraint InRange"&gt;This field must be between 1 and 1000000, inclusive.&lt;/span&gt;
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -1571,7 +1571,7 @@
                   <documentation>
                     Competitor's visible domain URL.
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "TargetOutrankShareCompetitorDomain".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -1581,7 +1581,7 @@
                   <documentation>
                     Ceiling on max CPC bids.
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "TargetOutrankShareMaxCpcBidCeiling".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -1593,7 +1593,7 @@
                     always sets a keyword's new bid to the estimate that will meet the target. If true, only
                     updates a keyword's bid if the current bid estimate is greater than the current bid.
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "TargetOutrankShareBidChangesForRaisesOnly".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -1604,7 +1604,7 @@
                     Controls whether the strategy is allowed to raise bids on keywords with lower-range quality
                     scores.
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "TargetOutrankShareRaiseBidWhenLowQualityScore".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -1637,7 +1637,7 @@
                     The target return on average spend (ROAS).
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "TargetRoas".&lt;/span&gt;
                     &lt;span class="constraint InRange"&gt;This field must be between 0.01 and 1000.0, inclusive.&lt;/span&gt;
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>

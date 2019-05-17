@@ -4669,40 +4669,39 @@
           <documentation>
             Represents a responsive search ad.
             
-            &lt;p&gt;&lt;strong&gt;Important&lt;/strong&gt;&lt;/p&gt;
+            &lt;h5&gt;Important&lt;/h5&gt;
             
-            &lt;p&gt;
             &lt;ul&gt;
-            &lt;li&gt;Responsive search ads are in beta and may not be available to all AdWords advertisers.&lt;/li&gt;
-            &lt;li&gt;Per the &lt;a href="https://support.google.com/adwordspolicy/answer/54818"&gt;AdWords Terms &amp;amp;
-            Conditions&lt;/a&gt; for features in beta, you may not disclose any non-public information.&lt;/li&gt;
-            &lt;li&gt;Responsive search ads will learn and improve over time, so make sure to regularly monitor the
+            &lt;li&gt;Responsive search ads are in beta. Make sure to regularly monitor the
             performance and status of your ads.&lt;/li&gt;
-            &lt;li&gt;Responsive search ads are currently available in English, French, German, Spanish,
-            Portuguese, Italian, Swedish, Dutch, Russian, Japanese, Polish, Turkish, Danish, and
-            Norwegian, with other languages on the way.&lt;/li&gt;
-            &lt;li&gt;Assets can be shown in any order, so make sure that they make sense individually or in
-            combination, and don?t violate our policies or local law.&lt;/li&gt;
-            &lt;li&gt;Even after ads are assembled, they may not serve.&lt;/li&gt;
-            &lt;li&gt;If you have text that should appear in every ad, then you must pin it to either Headline
-            position 1, Headline position 2, or Description position 1, and also make sure it is less
-            than 80 characters long.&lt;/li&gt;
+            
+            &lt;li&gt;Assets can be shown in any order, so make sure that they make sense
+            individually or in combination, and don't violate our policies or local
+            law.&lt;/li&gt;
+            
+            &lt;li&gt;During the beta, make sure to have at least two expanded text ads in the
+            same ad group with your responsive search ad.&lt;/li&gt;
+            
+            &lt;li&gt;If you have text that should appear in every ad, then you must pin it to
+            either Headline position 1, Headline position 2, or Description position 1.&lt;/li&gt;
+            
+            &lt;li&gt;To increase the likelihood that your ad shows, be sure to provide at least 5
+            distinct headlines that don't repeat the same or similar phrases, and leverage
+            the feedback from &lt;a href="https://support.google.com/google-ads/answer/9142254"&gt;Ad
+            strength&lt;/a&gt; to improve the effectiveness of the ad. Providing redundant
+            headlines will restrict the system's ability to generate combinations. &lt;a
+            href="https://support.google.com/google-ads/answer/9023565"&gt;Examples&lt;/a&gt;.&lt;/li&gt;
             &lt;/ul&gt;
-            &lt;/p&gt;
             
-            &lt;p&gt;To increase the likelihood that your ad shows, be sure to provide at least 5 distinct
-            headlines and 2 distinct descriptions that don't repeat the same or similar phrases. Providing
-            redundant content will restrict the system's ability to assemble combinations.
-            &lt;a href="https://support.google.com/adwords/answer/9023565"&gt;See example ads&lt;/a&gt;&lt;/p&gt;
+            &lt;h5&gt;Help center documentation&lt;/h5&gt;
             
-            &lt;p&gt;Help center documentation
             &lt;ul&gt;
-            &lt;li&gt;&lt;a href="https://support.google.com/adwords/answer/7684791"&gt;About responsive search
-            ads&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a href="https://support.google.com/adwords/answer/9023565"&gt;Create a responsive search ad
-            (see examples)&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://support.google.com/google-ads/answer/7684791"&gt;About responsive
+            search ads&lt;/a&gt;&lt;/li&gt;
+            
+            &lt;li&gt;&lt;a href="https://support.google.com/google-ads/answer/9023565"&gt;Create a responsive
+            search ad (check out the examples)&lt;/a&gt;&lt;/li&gt;
             &lt;/ul&gt;
-            &lt;/p&gt;
             
             &lt;p class="caution"&gt;&lt;b&gt;Caution:&lt;/b&gt; Responsive search ads do not use {@link #url url}, {@link
             #displayUrl displayUrl}, {@link #finalAppUrls finalAppUrls}, or {@link #devicePreference

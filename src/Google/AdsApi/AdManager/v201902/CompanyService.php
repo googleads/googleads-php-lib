@@ -53,6 +53,7 @@ class CompanyService extends \Google\AdsApi\Common\AdsSoapClient
       'RegExError' => 'Google\\AdsApi\\AdManager\\v201902\\RegExError',
       'RequiredCollectionError' => 'Google\\AdsApi\\AdManager\\v201902\\RequiredCollectionError',
       'RequiredError' => 'Google\\AdsApi\\AdManager\\v201902\\RequiredError',
+      'RequiredNumberError' => 'Google\\AdsApi\\AdManager\\v201902\\RequiredNumberError',
       'ServerError' => 'Google\\AdsApi\\AdManager\\v201902\\ServerError',
       'SetValue' => 'Google\\AdsApi\\AdManager\\v201902\\SetValue',
       'SoapRequestHeader' => 'Google\\AdsApi\\AdManager\\v201902\\SoapRequestHeader',

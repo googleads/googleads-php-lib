@@ -2757,7 +2757,7 @@
                 
                 &lt;p&gt;If {@link #removeAll} is {@code true}, this list must be {@code null} or empty. Otherwise,
                 this field is required and there must be at least one member.
-                &lt;span class="constraint CollectionSize"&gt;The maximum size of this collection is 1000000.&lt;/span&gt;
+                &lt;span class="constraint CollectionSize"&gt;The maximum size of this collection is 500000.&lt;/span&gt;
                 &lt;span class="constraint ContentsNotNull"&gt;This field must not contain {@code null} elements.&lt;/span&gt;
               </documentation>
             </annotation>
@@ -2863,7 +2863,7 @@
             <annotation>
               <documentation>
                 Number of days offset from current date.
-                &lt;span class="constraint InRange"&gt; This field must be greater than or equal to 0.&lt;/span&gt;
+                &lt;span class="constraint InRange"&gt;This field must be greater than or equal to 0.&lt;/span&gt;
                 &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
               </documentation>
             </annotation>

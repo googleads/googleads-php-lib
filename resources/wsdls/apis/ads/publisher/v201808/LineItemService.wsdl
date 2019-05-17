@@ -2448,14 +2448,20 @@
                 and {@link LineItemType#STANDARD}. When true, operations on this line
                 item will never trigger a {@link ForecastError}, which corresponds to an
                 overbook warning in the UI. The default value is false.
+                
+                &lt;p&gt;Note: this field will not persist on the line item itself, and the value will only affect
+                the current request.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="skipInventoryCheck" type="xsd:boolean">
             <annotation>
               <documentation>
-                The flag indicates whether the inventory check should be skipped when performing an action on
-                this line item. The default value is false.
+                The flag indicates whether the inventory check should be skipped when creating or updating a
+                line item. The default value is false.
+                
+                &lt;p&gt;Note: this field will not persist on the line item itself, and the value will only affect
+                the current request.
               </documentation>
             </annotation>
           </element>

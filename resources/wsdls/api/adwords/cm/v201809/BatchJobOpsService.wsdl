@@ -5520,26 +5520,26 @@
           <documentation>
             Represents a collection of settings related to ads geotargeting.
             
-            &lt;p&gt;AdWords ads can be geotargeted using &lt;b&gt;Location of Presence&lt;/b&gt; (&lt;b&gt;LOP&lt;/b&gt;),
-            &lt;b&gt;Area of Interest&lt;/b&gt; (&lt;b&gt;AOI&lt;/b&gt;), or both. LOP is the physical location
-            of the user performing the search; AOI is the geographical region
-            in which the searcher is interested. For example, if a user in
-            New York City performs a search "hotels california", their LOP
-            is New York City and their AOI is California.
+            &lt;p&gt;Google ads can be geotargeted using &lt;b&gt;Physical Location&lt;/b&gt;, &lt;b&gt;Location of Interest&lt;/b&gt;, or
+            both. Physical Location is where the user is located or is regularly located; Location of
+            Interest is the geographical region in which the user is interested. For example, if a user is in
+            New York City and performs a search for "hotels Paris", their Physical Location is New York City
+            and their Location of Interest is Paris.
             
-            &lt;p&gt;Additionally, ads can be &lt;b&gt;positively&lt;/b&gt; or &lt;b&gt;negatively&lt;/b&gt; geotargeted.
-            An ad that is positively geotargeted to New York City only appears
-            to users whose location is related (via AOI or LOP) to New York City. An ad
-            that is negatively geotargeted to New York City appears for &lt;i&gt;all&lt;/i&gt;
-            users &lt;i&gt;except&lt;/i&gt; those whose location is related to New York City. Ads can
-            only be negatively geotargeted if a positive geotargeting is also supplied, and
-            the negatively geotargeted region must be contained within the positive
-            region.
+            &lt;p&gt;Additionally, ads can be &lt;b&gt;positively&lt;/b&gt; or &lt;b&gt;negatively&lt;/b&gt; geotargeted. An ad that is
+            positively geotargeted to New York City only appears to users whose location is related to New
+            York City. An ad that is negatively geotargeted to New York City appears for &lt;i&gt;all&lt;/i&gt; users
+            &lt;i&gt;except&lt;/i&gt; those whose location is related to New York City. Ads can only be negatively
+            geotargeted if a positive geotargeting is also supplied, and the negatively geotargeted region
+            must be contained within the positive region.
             
             &lt;p&gt;Geotargeting settings allow ads to be targeted in the following way:
+            
             &lt;ul&gt;
-            &lt;li&gt; Positively geotargeted using solely AOI, solely LOP, or either.
-            &lt;li&gt; Negatively geotargeted using solely LOP, or both.
+            &lt;li&gt;Positively geotargeted based on the location user searched for, or solely Physical
+            Location, or either Location of Interest or Physical Location.
+            &lt;li&gt;Negatively geotargeted based on where a user is located, or combined with Location of
+            Interest.
             &lt;/ul&gt;
           </documentation>
         </annotation>
@@ -5552,9 +5552,9 @@
                   <documentation>
                     The setting used for positive geotargeting in this particular campaign.
                     
-                    &lt;p&gt;Again, the campaign can be positively targeted using solely LOP, solely
-                    AOI, or either. Positive targeting triggers ads &lt;i&gt;only&lt;/i&gt; for users
-                    whose location is related to the given locations.
+                    &lt;p&gt;Again, the campaign can be positively targeted based on the location user searched for, or
+                    solely Physical Location, or either Location of Interest or Physical Location. Positive
+                    targeting triggers ads &lt;i&gt;only&lt;/i&gt; for users whose location is related to the given locations.
                     
                     &lt;p&gt;The default value is DONT_CARE.
                   </documentation>
@@ -5566,9 +5566,9 @@
                   <documentation>
                     The setting used for negative geotargeting in this particular campaign.
                     
-                    &lt;p&gt;Again, the campaign can be negatively targeted using solely LOP or
-                    both AOI and LOP. Negative targeting triggers ads for &lt;i&gt;all&lt;/i&gt; users
-                    &lt;i&gt;except&lt;/i&gt; those whose location is related to the given locations.
+                    &lt;p&gt;The campaign can be negatively targeted using both Physical Location and Location of
+                    Interest, or only based on where the user is located. Negative targeting triggers ads for
+                    &lt;i&gt;all&lt;/i&gt; users &lt;i&gt;except&lt;/i&gt; those whose location is related to the given locations.
                     
                     &lt;p&gt;The default value is DONT_CARE.
                   </documentation>
@@ -10863,40 +10863,39 @@
           <documentation>
             Represents a responsive search ad.
             
-            &lt;p&gt;&lt;strong&gt;Important&lt;/strong&gt;&lt;/p&gt;
+            &lt;h5&gt;Important&lt;/h5&gt;
             
-            &lt;p&gt;
             &lt;ul&gt;
-            &lt;li&gt;Responsive search ads are in beta and may not be available to all AdWords advertisers.&lt;/li&gt;
-            &lt;li&gt;Per the &lt;a href="https://support.google.com/adwordspolicy/answer/54818"&gt;AdWords Terms &amp;amp;
-            Conditions&lt;/a&gt; for features in beta, you may not disclose any non-public information.&lt;/li&gt;
-            &lt;li&gt;Responsive search ads will learn and improve over time, so make sure to regularly monitor the
+            &lt;li&gt;Responsive search ads are in beta. Make sure to regularly monitor the
             performance and status of your ads.&lt;/li&gt;
-            &lt;li&gt;Responsive search ads are currently available in English, French, German, Spanish,
-            Portuguese, Italian, Swedish, Dutch, Russian, Japanese, Polish, Turkish, Danish, and
-            Norwegian, with other languages on the way.&lt;/li&gt;
-            &lt;li&gt;Assets can be shown in any order, so make sure that they make sense individually or in
-            combination, and don’t violate our policies or local law.&lt;/li&gt;
-            &lt;li&gt;Even after ads are assembled, they may not serve.&lt;/li&gt;
-            &lt;li&gt;If you have text that should appear in every ad, then you must pin it to either Headline
-            position 1, Headline position 2, or Description position 1, and also make sure it is less
-            than 80 characters long.&lt;/li&gt;
+            
+            &lt;li&gt;Assets can be shown in any order, so make sure that they make sense
+            individually or in combination, and don't violate our policies or local
+            law.&lt;/li&gt;
+            
+            &lt;li&gt;During the beta, make sure to have at least two expanded text ads in the
+            same ad group with your responsive search ad.&lt;/li&gt;
+            
+            &lt;li&gt;If you have text that should appear in every ad, then you must pin it to
+            either Headline position 1, Headline position 2, or Description position 1.&lt;/li&gt;
+            
+            &lt;li&gt;To increase the likelihood that your ad shows, be sure to provide at least 5
+            distinct headlines that don't repeat the same or similar phrases, and leverage
+            the feedback from &lt;a href="https://support.google.com/google-ads/answer/9142254"&gt;Ad
+            strength&lt;/a&gt; to improve the effectiveness of the ad. Providing redundant
+            headlines will restrict the system's ability to generate combinations. &lt;a
+            href="https://support.google.com/google-ads/answer/9023565"&gt;Examples&lt;/a&gt;.&lt;/li&gt;
             &lt;/ul&gt;
-            &lt;/p&gt;
             
-            &lt;p&gt;To increase the likelihood that your ad shows, be sure to provide at least 5 distinct
-            headlines and 2 distinct descriptions that don't repeat the same or similar phrases. Providing
-            redundant content will restrict the system's ability to assemble combinations.
-            &lt;a href="https://support.google.com/adwords/answer/9023565"&gt;See example ads&lt;/a&gt;&lt;/p&gt;
+            &lt;h5&gt;Help center documentation&lt;/h5&gt;
             
-            &lt;p&gt;Help center documentation
             &lt;ul&gt;
-            &lt;li&gt;&lt;a href="https://support.google.com/adwords/answer/7684791"&gt;About responsive search
-            ads&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a href="https://support.google.com/adwords/answer/9023565"&gt;Create a responsive search ad
-            (see examples)&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://support.google.com/google-ads/answer/7684791"&gt;About responsive
+            search ads&lt;/a&gt;&lt;/li&gt;
+            
+            &lt;li&gt;&lt;a href="https://support.google.com/google-ads/answer/9023565"&gt;Create a responsive
+            search ad (check out the examples)&lt;/a&gt;&lt;/li&gt;
             &lt;/ul&gt;
-            &lt;/p&gt;
             
             &lt;p class="caution"&gt;&lt;b&gt;Caution:&lt;/b&gt; Responsive search ads do not use {@link #url url}, {@link
             #displayUrl displayUrl}, {@link #finalAppUrls finalAppUrls}, or {@link #devicePreference
@@ -17950,16 +17949,16 @@
           <enumeration value="DONT_CARE">
             <annotation>
               <documentation>
-                Specifies that a user is excluded from seeing the ad
-                if either their AOI or their LOP matches the geo target.
+                Specifies that a user is excluded from seeing the ad if they are in, or show interest in,
+                advertiser's targeted locations.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="LOCATION_OF_PRESENCE">
             <annotation>
               <documentation>
-                Specifies that a user is excluded from seeing the ad
-                only if their LOP matches the geo target.
+                Specifies that a user is excluded from seeing the ad if they are in advertiser's targeted
+                locations.
               </documentation>
             </annotation>
           </enumeration>
@@ -17975,21 +17974,23 @@
           <enumeration value="DONT_CARE">
             <annotation>
               <documentation>
-                Specifies that either AOI or LOP may trigger the ad.
+                Specifies that the ad is triggered if the user is in, or shows interest in, advertiser's
+                targeted locations.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="AREA_OF_INTEREST">
             <annotation>
               <documentation>
-                Specifies that the ad is triggered only if the user's AOI matches.
+                Specifies that the ad is triggered if the user searches for advertiser's targeted locations.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="LOCATION_OF_PRESENCE">
             <annotation>
               <documentation>
-                Specifies that the ad is triggered only if the user's LOP matches.
+                Specifies that the ad is triggered if the user is in or regularly in advertiser's targeted
+                locations.
               </documentation>
             </annotation>
           </enumeration>

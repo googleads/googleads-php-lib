@@ -1228,7 +1228,7 @@
             <annotation>
               <documentation>
                 Text of the display-call-to-action. Maximum display width is 15 characters.
-                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -1461,7 +1461,7 @@
                   <documentation>
                     The descriptive text of the ad.
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "Description".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -1497,7 +1497,7 @@
                   <documentation>
                     First part of the headline.
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "HeadlinePart1".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -1506,7 +1506,7 @@
                   <documentation>
                     Second part of the headline.
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "HeadlinePart2".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -1523,7 +1523,7 @@
                   <documentation>
                     The descriptive text of the ad.
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "Description".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -1683,7 +1683,7 @@
                 <annotation>
                   <documentation>
                     Gmail teaser info.
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -1712,7 +1712,7 @@
                 <annotation>
                   <documentation>
                     Headline of the marketing image. Maximum display width is 25 characters.
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -1721,7 +1721,7 @@
                 <annotation>
                   <documentation>
                     Description of the marketing image. Maximum display width is 90 characters.
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -1768,7 +1768,7 @@
             <annotation>
               <documentation>
                 Headline of the teaser. Maximum display width is 25 characters.
-                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -1776,7 +1776,7 @@
             <annotation>
               <documentation>
                 Description of the teaser. Maximum display width is 90 characters.
-                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -1784,7 +1784,7 @@
             <annotation>
               <documentation>
                 Business name of the advertiser. Maximum display width is 20 characters.
-                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -2273,7 +2273,7 @@
                     GIF, JPEG, and PNG. The minimum size is 600x314 and the aspect ratio must be 1.91:1 (+-1%). One
                     marketingImage is required. Support up to 15 with squareMarketingImages.
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "MultiAssetResponsiveDisplayAdMarketingImages".&lt;/span&gt;
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -2289,7 +2289,7 @@
                     the aspect ratio must be 1:1 (+-1%). One squareMarketingImage is required. Support up to 15
                     with marketingImages.
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "MultiAssetResponsiveDisplayAdSquareMarketingImages".&lt;/span&gt;
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -2326,7 +2326,7 @@
                     Short format of the headline of the ad. Maximum display width is 30. One short headline is
                     required. Support up to 5 short headlines.
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "MultiAssetResponsiveDisplayAdHeadlines".&lt;/span&gt;
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -2335,7 +2335,7 @@
                   <documentation>
                     Long format of the headline of the ad. Maximum display width is 90.
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "MultiAssetResponsiveDisplayAdLongHeadline".&lt;/span&gt;
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -2346,7 +2346,7 @@
                     The descriptive text of the ad. Maximum display width is 90. One description is required.
                     Support up to 5 descriptions.
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "MultiAssetResponsiveDisplayAdDescriptions".&lt;/span&gt;
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -2365,7 +2365,7 @@
                   <documentation>
                     The Advertiser/brand name. Maximum display width is 25.
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "MultiAssetResponsiveDisplayAdBusinessName".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -3073,7 +3073,7 @@
                 Product image. An image must first be created using the MediaService, and Image.mediaId must be
                 populated when creating a {@link "ProductImage"}. Valid image types are GIF, JPEG, and PNG. The
                 minimum size is 300x300 and the aspect ratio must be 1:1 (+-1%).
-                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -3297,7 +3297,7 @@
                     Image.mediaId must be populated when creating a {@link "ResponsiveDisplayAd"}. Valid image
                     types are GIF, JPEG, and PNG. The minimum size is 600x314 and the aspect ratio must be 600:314
                     (+-1%).
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -3329,7 +3329,7 @@
                   <documentation>
                     Short format of the headline of the ad. Maximum display width is 25.
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "ShortHeadline".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -3338,7 +3338,7 @@
                   <documentation>
                     Long format of the headline of the ad. Maximum display width is 90.
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "LongHeadline".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -3347,7 +3347,7 @@
                   <documentation>
                     The descriptive text of the ad. Maximum display width is 90.
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "Description".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -3604,7 +3604,7 @@
                 <annotation>
                   <documentation>
                     The name label for this ad.
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -3637,7 +3637,7 @@
                     Image displayed in the expanded view of the Showcase shopping ad.
                     &lt;p&gt;The format of the image must be either JPEG or PNG and the size of the image must be
                     1080x566 px.
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -4034,7 +4034,7 @@
                 <annotation>
                   <documentation>
                     Text of the text asset.
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
                     &lt;span class="constraint StringLength"&gt;This string must not be empty, (trimmed).&lt;/span&gt;
                   </documentation>
                 </annotation>
@@ -4122,7 +4122,7 @@
                   <documentation>
                     When the Ad serves, the headlines will be selected from this list.
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "UniversalAppAdHeadlines".&lt;/span&gt;
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -4132,7 +4132,7 @@
                   <documentation>
                     When the Ad serves, the descriptions will be selected from this list.
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "UniversalAppAdDescriptions".&lt;/span&gt;
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -4187,7 +4187,7 @@
                 Unique identifier for this instance of UrlData. Refer to the
                 &lt;a href="https://developers.google.com/adwords/api/docs/appendix/templateads"&gt;Template
                 Ads documentation&lt;/a&gt; for the list of valid values.
-                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
                 &lt;span class="constraint StringLength"&gt;This string must not be empty, (trimmed).&lt;/span&gt;
               </documentation>
             </annotation>
@@ -4260,40 +4260,39 @@
           <documentation>
             Represents a responsive search ad.
             
-            &lt;p&gt;&lt;strong&gt;Important&lt;/strong&gt;&lt;/p&gt;
+            &lt;h5&gt;Important&lt;/h5&gt;
             
-            &lt;p&gt;
             &lt;ul&gt;
-            &lt;li&gt;Responsive search ads are in beta and may not be available to all AdWords advertisers.&lt;/li&gt;
-            &lt;li&gt;Per the &lt;a href="https://support.google.com/adwordspolicy/answer/54818"&gt;AdWords Terms &amp;amp;
-            Conditions&lt;/a&gt; for features in beta, you may not disclose any non-public information.&lt;/li&gt;
-            &lt;li&gt;Responsive search ads will learn and improve over time, so make sure to regularly monitor the
+            &lt;li&gt;Responsive search ads are in beta. Make sure to regularly monitor the
             performance and status of your ads.&lt;/li&gt;
-            &lt;li&gt;Responsive search ads are currently available in English, French, German, Spanish,
-            Portuguese, Italian, Swedish, Dutch, Russian, Japanese, Polish, Turkish, Danish, and
-            Norwegian, with other languages on the way.&lt;/li&gt;
-            &lt;li&gt;Assets can be shown in any order, so make sure that they make sense individually or in
-            combination, and don?t violate our policies or local law.&lt;/li&gt;
-            &lt;li&gt;Even after ads are assembled, they may not serve.&lt;/li&gt;
-            &lt;li&gt;If you have text that should appear in every ad, then you must pin it to either Headline
-            position 1, Headline position 2, or Description position 1, and also make sure it is less
-            than 80 characters long.&lt;/li&gt;
+            
+            &lt;li&gt;Assets can be shown in any order, so make sure that they make sense
+            individually or in combination, and don't violate our policies or local
+            law.&lt;/li&gt;
+            
+            &lt;li&gt;During the beta, make sure to have at least two expanded text ads in the
+            same ad group with your responsive search ad.&lt;/li&gt;
+            
+            &lt;li&gt;If you have text that should appear in every ad, then you must pin it to
+            either Headline position 1, Headline position 2, or Description position 1.&lt;/li&gt;
+            
+            &lt;li&gt;To increase the likelihood that your ad shows, be sure to provide at least 5
+            distinct headlines that don't repeat the same or similar phrases, and leverage
+            the feedback from &lt;a href="https://support.google.com/google-ads/answer/9142254"&gt;Ad
+            strength&lt;/a&gt; to improve the effectiveness of the ad. Providing redundant
+            headlines will restrict the system's ability to generate combinations. &lt;a
+            href="https://support.google.com/google-ads/answer/9023565"&gt;Examples&lt;/a&gt;.&lt;/li&gt;
             &lt;/ul&gt;
-            &lt;/p&gt;
             
-            &lt;p&gt;To increase the likelihood that your ad shows, be sure to provide at least 5 distinct
-            headlines and 2 distinct descriptions that don't repeat the same or similar phrases. Providing
-            redundant content will restrict the system's ability to assemble combinations.
-            &lt;a href="https://support.google.com/adwords/answer/9023565"&gt;See example ads&lt;/a&gt;&lt;/p&gt;
+            &lt;h5&gt;Help center documentation&lt;/h5&gt;
             
-            &lt;p&gt;Help center documentation
             &lt;ul&gt;
-            &lt;li&gt;&lt;a href="https://support.google.com/adwords/answer/7684791"&gt;About responsive search
-            ads&lt;/a&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;a href="https://support.google.com/adwords/answer/9023565"&gt;Create a responsive search ad
-            (see examples)&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://support.google.com/google-ads/answer/7684791"&gt;About responsive
+            search ads&lt;/a&gt;&lt;/li&gt;
+            
+            &lt;li&gt;&lt;a href="https://support.google.com/google-ads/answer/9023565"&gt;Create a responsive
+            search ad (check out the examples)&lt;/a&gt;&lt;/li&gt;
             &lt;/ul&gt;
-            &lt;/p&gt;
             
             &lt;p class="caution"&gt;&lt;b&gt;Caution:&lt;/b&gt; Responsive search ads do not use {@link #url url}, {@link
             #displayUrl displayUrl}, {@link #finalAppUrls finalAppUrls}, or {@link #devicePreference
@@ -4310,7 +4309,7 @@
                   <documentation>
                     Headlines. When the Ad serves, the headlines will be selected from this list.
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "ResponsiveSearchAdHeadlines".&lt;/span&gt;
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -4320,7 +4319,7 @@
                   <documentation>
                     Descriptions. When the Ad serves, the descriptions will be selected from this list.
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "ResponsiveSearchAdDescriptions".&lt;/span&gt;
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -4494,7 +4493,7 @@
                 <annotation>
                   <documentation>
                     YouTube video ID. This is the 11 char string value used in the Youtube video URL.
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
