@@ -721,19 +721,19 @@
             name="originForwardingType" type="tns:OriginForwardingType">
             <annotation>
               <documentation>
-                The type of origin forwarding used to support Akamai authentication policies. This field is
-                not applicable to ingest locations, and is only applicable to delivery media locations with
-                the {@link #securityPolicyType} set to {@link SecurityPolicyType#AKAMAI}. If set elsewhere it
-                will be reset to null.
+                The type of origin forwarding used to support Akamai authentication policies for the master
+                playlist. This field is not applicable to ingest locations, and is only applicable to delivery
+                media locations with the {@link #securityPolicyType} set to {@link SecurityPolicyType#AKAMAI}.
+                If set elsewhere it will be reset to null.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="originPathPrefix" type="xsd:string">
             <annotation>
               <documentation>
-                The origin path prefix provided by the publisher. This field is only applicable for delivery
-                media locations with the value of {@link #originForwardingType} set to {@link
-                OriginForwardingType#CONVENTIONAL}, and will be set to null otherwise.
+                The origin path prefix provided by the publisher for the master playlist. This field is only
+                applicable for delivery media locations with the value of {@link #originForwardingType} set to
+                {@link OriginForwardingType#CONVENTIONAL}, and will be set to null otherwise.
               </documentation>
             </annotation>
           </element>

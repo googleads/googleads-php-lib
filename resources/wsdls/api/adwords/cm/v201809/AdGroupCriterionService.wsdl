@@ -1863,6 +1863,7 @@
                     the bid strategy may not be able to spend the full budget. If the target ROAS is not set, the
                     bid strategy will aim to achieve the highest possible ROAS for the budget. Use {@code 0.0} to
                     clear an existing value.
+                    &lt;span class="constraint CampaignType"&gt;This field may not be set.&lt;/span&gt;
                     &lt;span class="constraint InRange"&gt;This field must be between 0.01 and 1000.0, inclusive.&lt;/span&gt;
                   </documentation>
                 </annotation>

@@ -2080,7 +2080,8 @@
           <element maxOccurs="1" minOccurs="0" name="sourceUrl" type="xsd:string">
             <annotation>
               <documentation>
-                The URL of where the original media was downloaded from (or a file name).
+                The URL of where the original media was downloaded from (or a file name). Only used for media
+                of type AUDIO and IMAGE.
                 &lt;span class="constraint ReadOnly"&gt;This field is read only and will be ignored when sent to the API for the following {@link Operator}s: REMOVE and SET.&lt;/span&gt;
               </documentation>
             </annotation>
@@ -3628,6 +3629,7 @@
                     Image displayed in the collapsed view of the Showcase shopping ad.
                     &lt;p&gt;The format of the image must be either JPEG or PNG and the size of the image must be
                     270x270 px.
+                    &lt;p&gt;Collapsed image is deprecated and will be ignored if set.
                   </documentation>
                 </annotation>
               </element>

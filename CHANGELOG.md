@@ -1,3 +1,64 @@
+### 43.0.0
+
+##### AdWords
+
+*   No changes.
+
+##### Ad Manager
+
+*   Added support for v201908.
+*   Removed support for v201808.
+*   Removed examples for v201811.
+
+*   Removed examples from all versions for Sales Management:
+    - BaseRateService/GetAllBaseRates
+    - BaseRateService/GetBaseRatesForRateCard
+    - ExchangeRateService/GetAllExchangeRates
+    - ExchangeRateService/GetExchangeRatesForCurrencyCode
+    - PackageService/GetAllPackages
+    - PackageService/GetInProgressPackages
+    - PremiumRateService/GetAllPremiumRates
+    - PremiumRateService/GetPremiumRatesForRateCard
+    - ProductPackageItemService/GetAllProductPackageItems
+    - ProductPackageItemService/GetProductPackageItemsForProductPackage
+    - ProductPackageService/GetActiveProductPackages
+    - ProductPackageService/GetAllProductPackages
+    - ProductService/GetAllProducts
+    - ProductService/GetProductsForProductTemplate
+    - ProductTemplateService/ActivateProductTemplates
+    - ProductTemplateService/CreateProductTemplates
+    - ProductTemplateService/CreateProgrammaticProductTemplates
+    - ProductTemplateService/GetAllProductTemplates
+    - ProductTemplateService/GetSponsorshipProductTemplates
+    - ProposalService/CreateProgrammaticProposals
+    - ProposalLineItemService/CreateProgrammaticProposalLineItems
+    - RateCardService/GetAllRateCards
+    - RateCardService/GetMarketplaceRateCards
+    - ReconciliationLineItemReportService/GetReconciliationLineItemReportsForReconciliationReport
+    - ReconciliationLineItemReportService/UpdateReconciliationLineItemReports
+    - ReconciliationOrderReportService/GetReconciliationOrderReportsForReconciliationReport
+    - ReconciliationOrderReportService/SubmitReconciliationOrderReports
+    - ReconciliationReportRowService/GetReconciliationReportRowsForReconciliationReport
+    - ReconciliationReportRowService/UpdateReconciliationReportRows
+    - ReconciliationReportService/GetAllReconciliationReports
+    - ReconciliationReportService/GetReconciliationReportForLastBillingPeriod
+    - WorkflowRequestService/ApproveWorkflowApprovalRequests
+    - WorkflowRequestService/GetWorkflowApprovalRequests
+    - WorkflowRequestService/GetWorkflowExternalConditionRequests
+    - WorkflowRequestService/TriggerWorkflowExternalConditionRequests
+
+*   Converted ProposalService examples:
+    - GetProposalsPendingApproval to GetProposalsAwaitingSellerReview
+    - CreateProgrammaticProposalsForNonSalesManagement to CreateProposals
+
+*   Converted ProposalLineItemService example:
+    - CreateProgrammaticProposalLineItemsForNonSalesManagement to
+    CreateProposalLineItems
+
+##### Common
+
+*   No changes.
+
 ### 42.0.0
 
 ##### AdWords

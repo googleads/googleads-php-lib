@@ -2518,7 +2518,7 @@
       <simpleType name="ServiceType">
         <annotation>
           <documentation>
-            Services whose links to AdWords accounts are visible in {@link CustomerServicee}
+            Services whose links to Google Ads accounts are visible in {@link CustomerService}.
           </documentation>
         </annotation>
         <restriction base="xsd:string">
@@ -2527,7 +2527,7 @@
               <documentation>
                 Data from Google Merchant Center accounts can be linked for use in shopping campaigns.
                 For more information, visit this &lt;a
-                href="https://support.google.com/adwords/answer/6159060"&gt;Help Center article&lt;/a&gt;.
+                href="https://support.google.com/google-ads/answer/6159060"&gt;Help Center article&lt;/a&gt;.
               </documentation>
             </annotation>
           </enumeration>

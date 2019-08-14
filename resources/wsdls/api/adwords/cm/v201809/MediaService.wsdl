@@ -510,7 +510,8 @@
           <element maxOccurs="1" minOccurs="0" name="sourceUrl" type="xsd:string">
             <annotation>
               <documentation>
-                The URL of where the original media was downloaded from (or a file name).
+                The URL of where the original media was downloaded from (or a file name). Only used for media
+                of type AUDIO and IMAGE.
                 &lt;span class="constraint Selectable"&gt;This field can be selected using the value "SourceUrl".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
                 &lt;span class="constraint ReadOnly"&gt;This field is read only and will be ignored when sent to the API for the following {@link Operator}s: REMOVE and SET.&lt;/span&gt;
               </documentation>

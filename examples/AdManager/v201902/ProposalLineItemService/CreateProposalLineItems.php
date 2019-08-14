@@ -24,24 +24,28 @@ use DateTimeZone;
 use Google\AdsApi\AdManager\AdManagerSession;
 use Google\AdsApi\AdManager\AdManagerSessionBuilder;
 use Google\AdsApi\AdManager\Util\v201902\AdManagerDateTimes;
+use Google\AdsApi\AdManager\v201902\AdExchangeEnvironment;
 use Google\AdsApi\AdManager\v201902\AdUnitTargeting;
-use Google\AdsApi\AdManager\v201902\BillingCap;
-use Google\AdsApi\AdManager\v201902\BillingSource;
-use Google\AdsApi\AdManager\v201902\CreativeRotationType;
+use Google\AdsApi\AdManager\v201902\CreativePlaceholder;
 use Google\AdsApi\AdManager\v201902\DeliveryRateType;
+use Google\AdsApi\AdManager\v201902\DeviceCapability;
+use Google\AdsApi\AdManager\v201902\DeviceCapabilityTargeting;
 use Google\AdsApi\AdManager\v201902\Goal;
 use Google\AdsApi\AdManager\v201902\InventoryTargeting;
 use Google\AdsApi\AdManager\v201902\LineItemType;
 use Google\AdsApi\AdManager\v201902\Money;
 use Google\AdsApi\AdManager\v201902\ProposalLineItem;
+use Google\AdsApi\AdManager\v201902\ProposalLineItemMarketplaceInfo;
 use Google\AdsApi\AdManager\v201902\RateType;
 use Google\AdsApi\AdManager\v201902\ServiceFactory;
+use Google\AdsApi\AdManager\v201902\Size;
 use Google\AdsApi\AdManager\v201902\Targeting;
+use Google\AdsApi\AdManager\v201902\TechnologyTargeting;
 use Google\AdsApi\AdManager\v201902\UnitType;
 use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Creates proposal line items.
+ * Creates a proposal line item.
  *
  * This example is meant to be run from a command line (not as a webpage) and
  * requires that you've setup an `adsapi_php.ini` file in your home directory
@@ -50,18 +54,13 @@ use Google\AdsApi\Common\OAuth2TokenBuilder;
 class CreateProposalLineItems
 {
 
-    // Set the proposal, product, and rate card ID to use when creating the
-    // proposal line item.
+    // Set the proposal ID to use when creating the proposal line item.
     const PROPOSAL_ID = 'INSERT_PROPOSAL_ID_HERE';
-    const PRODUCT_ID = 'INSERT_PRODUCT_ID_HERE';
-    const RATE_CARD_ID = 'INSERT_RATE_CARD_ID_HERE';
 
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $proposalId,
-        $productId,
-        $rateCardId
+        $proposalId
     ) {
         $proposalLineItemService =
             $serviceFactory->createProposalLineItemService($session);
@@ -70,11 +69,16 @@ class CreateProposalLineItems
         // Create a standard proposal line item.
         $proposalLineItem = new ProposalLineItem();
         $proposalLineItem->setName('Proposal line item #' . uniqid());
+        $proposalLineItem->setProposalId($proposalId);
         $proposalLineItem->setLineItemType(LineItemType::STANDARD);
 
-        $proposalLineItem->setProposalId($proposalId);
-        $proposalLineItem->setRateCardId($rateCardId);
-        $proposalLineItem->setProductId($productId);
+        // Set required Marketplace information.
+        $proposalLineItemMarketplaceInfo =
+            new ProposalLineItemMarketplaceInfo();
+        $proposalLineItemMarketplaceInfo->setAdExchangeEnvironment(
+            AdExchangeEnvironment::DISPLAY
+        );
+        $proposalLineItem->setMarketplaceInfo($proposalLineItemMarketplaceInfo);
 
         // Set the length of the proposal line item to run.
         $proposalLineItem->setStartDateTime(
@@ -90,13 +94,21 @@ class CreateProposalLineItems
 
         // Set delivery specifications for the proposal line item.
         $proposalLineItem->setDeliveryRateType(DeliveryRateType::EVENLY);
-        $proposalLineItem->setCreativeRotationType(
-            CreativeRotationType::OPTIMIZED
-        );
 
-        // Set billing specifications for the proposal line item.
-        $proposalLineItem->setBillingCap(BillingCap::CAPPED_CUMULATIVE);
-        $proposalLineItem->setBillingSource(BillingSource::THIRD_PARTY_VOLUME);
+        // Set pricing for the proposal line item for 1000 impressions at a CPM
+        // of $2 for a total value of $2.
+        $goal = new Goal();
+        $goal->setUnits(1000);
+        $goal->setUnitType(UnitType::IMPRESSIONS);
+        $proposalLineItem->setGoal($goal);
+        $proposalLineItem->setNetRate(new Money('USD', 2000000));
+        $proposalLineItem->setRateType(RateType::CPM);
+
+        // Set the size of creatives that can be associated with the proposal
+        // line item.
+        $creativePlaceholder = new CreativePlaceholder();
+        $creativePlaceholder->setSize(new Size(300, 250, false));
+        $proposalLineItem->setCreativePlaceholders([$creativePlaceholder]);
 
         // Create ad unit targeting for the root ad unit (i.e. the whole
         // network).
@@ -107,20 +119,26 @@ class CreateProposalLineItems
         $adUnitTargeting->setAdUnitId($rootAdUnitId);
         $adUnitTargeting->setIncludeDescendants(true);
         $inventoryTargeting->setTargetedAdUnits([$adUnitTargeting]);
+
+        $deviceCapabilityTargeting = new DeviceCapabilityTargeting();
+        // Target Display environment by excluding Mobile Apps.
+        // DeviceCapabilities can be obtained though the Device_Capability PQL
+        // table:
+        // https://developers.google.com/ad-manager/api/reference/v201808/PublisherQueryLanguageService#device_capability
+        $mobileApps = new DeviceCapability();
+        $mobileApps->setId(5001);
+        $deviceCapabilityTargeting->setExcludedDeviceCapabilities(
+            [$mobileApps]
+        );
+        $technologyTargeting = new TechnologyTargeting(
+            $deviceCapabilityTargeting
+        );
+
+        // Create targeting.
         $targeting = new Targeting();
         $targeting->setInventoryTargeting($inventoryTargeting);
+        $targeting->setTechnologyTargeting($technologyTargeting);
         $proposalLineItem->setTargeting($targeting);
-
-        // Set pricing for the proposal line item for 1000 impressions at a CPM
-        // of $2 for a total value of $2.
-        $goal = new Goal();
-        $goal->setUnits(1000);
-        $goal->setUnitType(UnitType::IMPRESSIONS);
-        $proposalLineItem->setGoal($goal);
-
-        $proposalLineItem->setNetCost(new Money('USD', 2000000));
-        $proposalLineItem->setNetRate(new Money('USD', 2000000));
-        $proposalLineItem->setRateType(RateType::CPM);
 
         // Create the proposal line items on the server.
         $results = $proposalLineItemService->createProposalLineItems(
@@ -130,8 +148,8 @@ class CreateProposalLineItems
         // Print out some information for each created proposal line item.
         foreach ($results as $i => $proposalLineItem) {
             printf(
-                "%d) Proposal line item with ID %d and name '%s' was"
-                . " created.%s",
+                "%d) Proposal line item with ID %d and name '%s'"
+                . " was created.%s",
                 $i,
                 $proposalLineItem->getId(),
                 $proposalLineItem->getName(),
@@ -155,9 +173,7 @@ class CreateProposalLineItems
         self::runExample(
             new ServiceFactory(),
             $session,
-            intval(self::PROPOSAL_ID),
-            intval(self::PRODUCT_ID),
-            intval(self::RATE_CARD_ID)
+            intval(self::PROPOSAL_ID)
         );
     }
 }

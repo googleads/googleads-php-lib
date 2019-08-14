@@ -28,6 +28,7 @@ class LiveStreamEventService extends \Google\AdsApi\Common\AdsSoapClient
       'DateTime' => 'Google\\AdsApi\\AdManager\\v201811\\DateTime',
       'DateTimeValue' => 'Google\\AdsApi\\AdManager\\v201811\\DateTimeValue',
       'DateValue' => 'Google\\AdsApi\\AdManager\\v201811\\DateValue',
+      'EntityLimitReachedError' => 'Google\\AdsApi\\AdManager\\v201811\\EntityLimitReachedError',
       'FeatureError' => 'Google\\AdsApi\\AdManager\\v201811\\FeatureError',
       'FieldPathElement' => 'Google\\AdsApi\\AdManager\\v201811\\FieldPathElement',
       'HlsSettings' => 'Google\\AdsApi\\AdManager\\v201811\\HlsSettings',

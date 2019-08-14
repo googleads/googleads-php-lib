@@ -2960,7 +2960,7 @@
             <annotation>
               <documentation>
                 The external deal ID shared between seller and buyer. This field is only present if the deal
-                has been finalized.
+                has been finalized. This attribute is read-only and is assigned by Google.
               </documentation>
             </annotation>
           </element>

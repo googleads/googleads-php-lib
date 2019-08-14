@@ -2280,7 +2280,7 @@
       <complexType name="AddressInfo">
         <annotation>
           <documentation>
-            Address identifier of a user list member. Accessible for whitelisted customers only.
+            Address identifier of a user list member.
           </documentation>
         </annotation>
         <sequence>

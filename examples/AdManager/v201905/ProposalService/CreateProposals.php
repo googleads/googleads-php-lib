@@ -21,18 +21,15 @@ require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\AdManager\AdManagerSession;
 use Google\AdsApi\AdManager\AdManagerSessionBuilder;
-use Google\AdsApi\AdManager\v201905\BillingCap;
-use Google\AdsApi\AdManager\v201905\BillingSource;
-use Google\AdsApi\AdManager\v201905\Money;
 use Google\AdsApi\AdManager\v201905\Proposal;
 use Google\AdsApi\AdManager\v201905\ProposalCompanyAssociation;
-use Google\AdsApi\AdManager\v201905\ProposalCompanyAssociationType;
+use Google\AdsApi\AdManager\v201905\ProposalMarketplaceInfo;
 use Google\AdsApi\AdManager\v201905\SalespersonSplit;
 use Google\AdsApi\AdManager\v201905\ServiceFactory;
 use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
- * Creates proposals.
+ * Creates a proposal.
  *
  * This example is meant to be run from a command line (not as a webpage) and
  * requires that you've setup an `adsapi_php.ini` file in your home directory
@@ -41,73 +38,54 @@ use Google\AdsApi\Common\OAuth2TokenBuilder;
 class CreateProposals
 {
 
-    // Set the advertiser, salespersons, and trafficker IDs for creating the
-    // proposal.
-    const ADVERTISER_ID = 'INSERT_ADVERTISER_ID_HERE';
+    // Set the buyer, salesperson, and trafficker IDs for creating the proposal.
+    // Buyer IDs can be obtained from the Programmatic_Buyer PQL
+    // table (BuyerAccountId column).
+    const BUYER_ID = 'INSERT_BUYER_ID_HERE';
     const PRIMARY_SALESPERSON_ID = 'INSERT_PRIMARY_SALESPERSON_ID_HERE';
-    const SECONDARY_SALESPERSON_ID = 'INSERT_SECONDARY_SALESPERSON_ID_HERE';
     const PRIMARY_TRAFFICKER_ID = 'INSERT_PRIMARY_TRAFFICKER_ID_HERE';
+    const ADVERTISER_ID = 'INSERT_ADVERTISER_ID_HERE';
 
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $advertiserId,
+        $buyerId,
         $primarySalespersonId,
-        $secondarySalespersonId,
-        $primaryTraffickerId
+        $primaryTraffickerId,
+        $advertiserId
     ) {
         $proposalService = $serviceFactory->createProposalService($session);
-        $networkService = $serviceFactory->createNetworkService($session);
 
-        // Create a proposal.
         $proposal = new Proposal();
         $proposal->setName('Proposal #' . uniqid());
 
-        // Create a proposal company association.
-        $proposalCompanyAssociation = new ProposalCompanyAssociation();
-        $proposalCompanyAssociation->setCompanyId($advertiserId);
-        $proposalCompanyAssociation->setType(
-            ProposalCompanyAssociationType::ADVERTISER
-        );
-        $proposal->setAdvertiser($proposalCompanyAssociation);
+        // Set the required Marketplace information.
+        $proposalMarketplaceInfo = new ProposalMarketplaceInfo();
+        $proposalMarketplaceInfo->setBuyerAccountId($buyerId);
+        $proposal->setMarketplaceInfo($proposalMarketplaceInfo);
 
-        // Create salesperson splits for the primary salesperson and secondary
-        // salespeople.
+        // Create salesperson splits for the primary salesperson.
         $primarySalesperson = new SalespersonSplit();
         $primarySalesperson->setUserId($primarySalespersonId);
-        $primarySalesperson->setSplit(75000);
+        $primarySalesperson->setSplit(100000);
         $proposal->setPrimarySalesperson($primarySalesperson);
-
-        $secondarySalesperson = new SalespersonSplit();
-        $secondarySalesperson->setUserId($secondarySalespersonId);
-        $secondarySalesperson->setSplit(25000);
-        $proposal->setSecondarySalespeople([$secondarySalesperson]);
-
-        // Set the probability to close to 100%.
-        $proposal->setProbabilityOfClose(100000);
 
         // Set the primary trafficker on the proposal for when it becomes an
         // order.
         $proposal->setPrimaryTraffickerId($primaryTraffickerId);
 
-        // Create a budget for the proposal worth 100 in the network local
-        // currency.
-        $budget = new Money();
-        $budget->setMicroAmount(100000000);
-        $budget->setCurrencyCode(
-            $networkService->getCurrentNetwork()
-                ->getCurrencyCode()
+        $advertiser = new ProposalCompanyAssociation();
+        $advertiser->setProposalCompanyAssociationType(
+            ProposalCompanyAssociationType.ADVERTISER
         );
-        $proposal->setBudget($budget);
-
-        $proposal->setBillingCap(BillingCap::CAPPED_CUMULATIVE);
-        $proposal->setBillingSource(BillingSource::DFP_VOLUME);
+        $advertiser->setCompanyId($advertiserId);
+        $proposal->setAdvertiser(advertiser);
 
         // Create the proposals on the server.
-        $proposals = $proposalService->createProposals([$proposal]);
+        $results = $proposalService->createProposals([$proposal]);
 
         // Print out some information for each created proposal.
-        foreach ($proposals as $i => $proposal) {
+        foreach ($results as $i => $proposal) {
             printf(
                 "%d) Proposal with ID %d and name '%s' was created.%s",
                 $i,
@@ -133,10 +111,10 @@ class CreateProposals
         self::runExample(
             new ServiceFactory(),
             $session,
-            intval(self::ADVERTISER_ID),
+            intval(self::BUYER_ID),
             intval(self::PRIMARY_SALESPERSON_ID),
-            intval(self::SECONDARY_SALESPERSON_ID),
-            intval(self::PRIMARY_TRAFFICKER_ID)
+            intval(self::PRIMARY_TRAFFICKER_ID),
+            intval(self::ADVERTISER_ID)
         );
     }
 }
