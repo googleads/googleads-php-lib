@@ -9,7 +9,7 @@
     "google/auth": "^1.0.0",
     "guzzlehttp/guzzle": "^6.0",
     "guzzlehttp/psr7": "^1.2",
-    "monolog/monolog": "^1.17.1",
+    "monolog/monolog": "^2.0.0 || ^1.17.1",
     "phpdocumentor/reflection-docblock": "^4.0.0 || ^3.0.3",
     "symfony/serializer": "^2.8.0 || ^3.0.3 || ^4.0.0"
   },
