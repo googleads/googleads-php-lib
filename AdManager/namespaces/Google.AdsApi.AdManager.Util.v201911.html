@@ -21,55 +21,7 @@
     <script src="../js/jquery.smooth-scroll.js"></script>
     <script src="../js/prism.min.js"></script>
     <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
-        <script type="text/javascript">
-        function loadExternalCodeSnippets() {
-            Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
-                var src = pre.getAttribute('data-src');
-                var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
-                var language = 'php';
-
-                var code = document.createElement('code');
-                code.className = 'language-' + language;
-
-                pre.textContent = '';
-
-                code.textContent = 'Loading…';
-
-                pre.appendChild(code);
-
-                var xhr = new XMLHttpRequest();
-
-                xhr.open('GET', src, true);
-
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState == 4) {
-
-                        if (xhr.status < 400 && xhr.responseText) {
-                            code.textContent = xhr.responseText;
-
-                            Prism.highlightElement(code);
-                        }
-                        else if (xhr.status >= 400) {
-                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
-                        }
-                        else {
-                            code.textContent = '✖ Error: File does not exist or is empty';
-                        }
-                    }
-                };
-
-                xhr.send(null);
-            });
-        }
-
-        $(document).ready(function(){
-            loadExternalCodeSnippets();
-        });
-        $('#source-view').on('shown', function () {
-            loadExternalCodeSnippets();
-        })
-    </script>
-
+    
     <link rel="shortcut icon" href="../images/favicon.ico"/>
     <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
     <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
@@ -144,55 +96,55 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1300985847"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1683327328"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1300985847" class="accordion-body collapse in">
+            <div id="namespace-1683327328" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1383815753"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-723349263"></a>
                                 <a href="../namespaces/Google.html" style="margin-left: 30px; padding-left: 0">Google</a>
             </div>
-            <div id="namespace-1383815753" class="accordion-body collapse ">
+            <div id="namespace-723349263" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2026386001"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-958003476"></a>
                                 <a href="../namespaces/Google.AdsApi.html" style="margin-left: 30px; padding-left: 0">AdsApi</a>
             </div>
-            <div id="namespace-2026386001" class="accordion-body collapse ">
+            <div id="namespace-958003476" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-356685235"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1919282194"></a>
                                 <a href="../namespaces/Google.AdsApi.AdManager.html" style="margin-left: 30px; padding-left: 0">AdManager</a>
             </div>
-            <div id="namespace-356685235" class="accordion-body collapse ">
+            <div id="namespace-1919282194" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-761440179"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1129092920"></a>
                                 <a href="../namespaces/Google.AdsApi.AdManager.Util.html" style="margin-left: 30px; padding-left: 0">Util</a>
             </div>
-            <div id="namespace-761440179" class="accordion-body collapse ">
+            <div id="namespace-1129092920" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-497105598"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-404814037"></a>
                                 <a href="../namespaces/Google.AdsApi.AdManager.Util.v201808.html" style="margin-left: 30px; padding-left: 0">v201808</a>
             </div>
-            <div id="namespace-497105598" class="accordion-body collapse ">
+            <div id="namespace-404814037" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -212,33 +164,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1925511836"></a>
-                                <a href="../namespaces/Google.AdsApi.AdManager.Util.v201811.html" style="margin-left: 30px; padding-left: 0">v201811</a>
-            </div>
-            <div id="namespace-1925511836" class="accordion-body collapse ">
-                <div class="accordion-inner">
-
-                    
-                    <ul>
-                                                                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201811.AdManagerDates.html">AdManagerDates</a></li>
-                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201811.AdManagerDateTimes.html">AdManagerDateTimes</a></li>
-                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201811.CsvFiles.html">CsvFiles</a></li>
-                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201811.Pql.html">Pql</a></li>
-                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201811.ReportDownloader.html">ReportDownloader</a></li>
-                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201811.StatementBuilder.html">StatementBuilder</a></li>
-                                            </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-                                                    <div class="accordion" style="margin-bottom: 0">
-        <div class="accordion-group">
-            <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2128198676"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-400053856"></a>
                                 <a href="../namespaces/Google.AdsApi.AdManager.Util.v201902.html" style="margin-left: 30px; padding-left: 0">v201902</a>
             </div>
-            <div id="namespace-2128198676" class="accordion-body collapse ">
+            <div id="namespace-400053856" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -258,10 +187,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1451494107"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-277207834"></a>
                                 <a href="../namespaces/Google.AdsApi.AdManager.Util.v201905.html" style="margin-left: 30px; padding-left: 0">v201905</a>
             </div>
-            <div id="namespace-1451494107" class="accordion-body collapse ">
+            <div id="namespace-277207834" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -281,10 +210,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-30162637"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1846506814"></a>
                                 <a href="../namespaces/Google.AdsApi.AdManager.Util.v201908.html" style="margin-left: 30px; padding-left: 0">v201908</a>
             </div>
-            <div id="namespace-30162637" class="accordion-body collapse ">
+            <div id="namespace-1846506814" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -295,6 +224,29 @@
                                                     <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201908.Pql.html">Pql</a></li>
                                                     <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201908.ReportDownloader.html">ReportDownloader</a></li>
                                                     <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201908.StatementBuilder.html">StatementBuilder</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-652350584"></a>
+                                <a href="../namespaces/Google.AdsApi.AdManager.Util.v201911.html" style="margin-left: 30px; padding-left: 0">v201911</a>
+            </div>
+            <div id="namespace-652350584" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201911.AdManagerDates.html">AdManagerDates</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201911.AdManagerDateTimes.html">AdManagerDateTimes</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201911.CsvFiles.html">CsvFiles</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201911.Pql.html">Pql</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201911.ReportDownloader.html">ReportDownloader</a></li>
+                                                    <li class="class"><a href="../classes/Google.AdsApi.AdManager.Util.v201911.StatementBuilder.html">StatementBuilder</a></li>
                                             </ul>
                 </div>
             </div>
@@ -327,19 +279,19 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1744777195"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2016585955"></a>
                                 <a href="../namespaces/Google.AdsApi.Common.html" style="margin-left: 30px; padding-left: 0">Common</a>
             </div>
-            <div id="namespace-1744777195" class="accordion-body collapse ">
+            <div id="namespace-2016585955" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-788334194"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-138747775"></a>
                                 <a href="../namespaces/Google.AdsApi.Common.Testing.html" style="margin-left: 30px; padding-left: 0">Testing</a>
             </div>
-            <div id="namespace-788334194" class="accordion-body collapse ">
+            <div id="namespace-138747775" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -360,10 +312,10 @@
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1654232866"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-113243463"></a>
                                 <a href="../namespaces/Google.AdsApi.Common.Util.html" style="margin-left: 30px; padding-left: 0">Util</a>
             </div>
-            <div id="namespace-1654232866" class="accordion-body collapse ">
+            <div id="namespace-113243463" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -446,29 +398,41 @@
     <section class="row-fluid">
         <div class="span10 offset2">
             <div class="row-fluid">
-                <div class="span8 content file">
+                <div class="span8 content namespace">
                     <nav>
-                                                                    </nav>
+                                                <a href="../namespaces/Google.AdsApi.AdManager.Util.html">\Google\AdsApi\AdManager\Util</a>
+                                            </nav>
+                    <h1><small>\Google\AdsApi\AdManager\Util</small>v201911</h1>
 
-                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
-                    <h1><small>AdManager/Util/v201811</small>StatementBuilder.php</h1>
-                    <p><em>Copyright 2017 Google Inc. All Rights Reserved.</em></p>
-                    <p>Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at</p>
-<pre><code>http://www.apache.org/licenses/LICENSE-2.0</code></pre>
-<p>Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.</p>
-
+                    
                     
                     
                                         <h2>Classes</h2>
                     <table class="table table-hover">
                                             <tr>
-                            <td><a href="../classes/Google.AdsApi.AdManager.Util.v201811.StatementBuilder.html">StatementBuilder</a></td>
+                            <td><a href="../classes/Google.AdsApi.AdManager.Util.v201911.AdManagerDates.html">AdManagerDates</a></td>
+                            <td><em>Static utility methods for working with Ad Manager `Date` objects.</em></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/Google.AdsApi.AdManager.Util.v201911.AdManagerDateTimes.html">AdManagerDateTimes</a></td>
+                            <td><em>Static utility methods for working with Ad Manager `DateTime` objects.</em></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/Google.AdsApi.AdManager.Util.v201911.CsvFiles.html">CsvFiles</a></td>
+                            <td><em>A utility class for processing and handling CSV files.</em></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/Google.AdsApi.AdManager.Util.v201911.Pql.html">Pql</a></td>
+                            <td><em>Static utility methods for working with PQL.</em></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/Google.AdsApi.AdManager.Util.v201911.ReportDownloader.html">ReportDownloader</a></td>
+                            <td><em>Provides functionality to help with retrieving a report. Encapsulates common
+tasks, such as polling for a report&#039;s status until it is ready to be
+downloaded and downloading the report.</em></td>
+                        </tr>
+                                            <tr>
+                            <td><a href="../classes/Google.AdsApi.AdManager.Util.v201911.StatementBuilder.html">StatementBuilder</a></td>
                             <td><em>Builds statements that can be used in PQL queries.</em></td>
                         </tr>
                                         </table>
@@ -476,16 +440,21 @@ limitations under the License.</p>
 
                 <aside class="span4 detailsbar">
                     <dl>
-                                                    <dt>Package</dt>
-                            <dd><div class="namespace-wrapper">\Default</div></dd>
-                        
-                        
+                        <dt>Namespace hierarchy</dt>
+                        <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                                    <div class="namespace-wrapper"><a href="../namespaces/default.html">\</a></div>
+                                                            
+                                    <div class="namespace-wrapper"><a href="../namespaces/Google.html">\Google</a></div>
+                                                            
+                                    <div class="namespace-wrapper"><a href="../namespaces/Google.AdsApi.html">\Google\AdsApi</a></div>
+                                                            
+                                    <div class="namespace-wrapper"><a href="../namespaces/Google.AdsApi.AdManager.html">\Google\AdsApi\AdManager</a></div>
+                                                            
+                                    <div class="namespace-wrapper"><a href="../namespaces/Google.AdsApi.AdManager.Util.html">\Google\AdsApi\AdManager\Util</a></div>
+                                                                                        <div class="namespace-wrapper">\Google\AdsApi\AdManager\Util\v201911</div>
+                        </dd>
                     </dl>
-                    <h2>Tags</h2>
-                    <table class="table table-condensed">
-                                                    <tr><td colspan="2"><em>None found</em></td></tr>
-                                            </table>
-
                 </aside>
             </div>
 
@@ -493,16 +462,6 @@ limitations under the License.</p>
             
         </div>
     </section>
-
-    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="source-view-label"></h3>
-        </div>
-        <div class="modal-body">
-            <pre data-src="../files/AdManager/Util/v201811/StatementBuilder.php.txt" class="language-php line-numbers"></pre>
-        </div>
-    </div>
 
     <footer class="row-fluid">
         <section class="span10 offset2">
@@ -541,7 +500,7 @@ limitations under the License.</p>
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on August 14th, 2019 at 16:26.
+                    on November 5th, 2019 at 22:07.
                 </section>
             </section>
         </section>
