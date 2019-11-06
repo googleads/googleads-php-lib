@@ -596,7 +596,7 @@
             <annotation>
               <documentation>
                 This code is used in constructing a live stream event master playlist URL. This attribute is
-                read-only and is assigned by Google.
+                read-only and is assigned by Google. As of V201911 this field is called assetKey.
               </documentation>
             </annotation>
           </element>

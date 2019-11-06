@@ -799,8 +799,7 @@
               <documentation>
                 Ads will be served with Google.com search results.
                 &lt;span class="constraint AdxEnabled"&gt;This is disabled for AdX.&lt;/span&gt;
-                &lt;span class="constraint CampaignType"&gt;This field may only be set to true for campaign channel type SEARCH.&lt;/span&gt;
-&lt;span class="constraint CampaignType"&gt;This field may only be set to true for campaign channel type MULTI_CHANNEL.&lt;/span&gt;
+                &lt;span class="constraint CampaignType"&gt;This field may only be set to true for campaign channel types: SEARCH, MULTI_CHANNEL.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may only be set to false for campaign channel type DISPLAY.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may only be set to true for campaign channel subtype SHOPPING_GOAL_OPTIMIZED_ADS.&lt;/span&gt;
               </documentation>

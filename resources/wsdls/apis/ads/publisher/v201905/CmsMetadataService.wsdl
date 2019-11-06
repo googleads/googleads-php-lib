@@ -1562,7 +1562,11 @@
             &lt;/tr&gt;
             &lt;tr&gt;
             &lt;td&gt;{@code cmsKey}&lt;/td&gt;
-            &lt;td&gt;{@link CmsMetadataValue#key}&lt;/td&gt;
+            &lt;td&gt;{@link CmsMetadataValue#key#name}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code cmsKeyId}&lt;/td&gt;
+            &lt;td&gt;{@link CmsMetadataValue#key#id}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;tr&gt;
             &lt;td&gt;{@code keyValueMemberContent}&lt;/td&gt;
@@ -1658,7 +1662,11 @@
         &lt;/tr&gt;
         &lt;tr&gt;
         &lt;td&gt;{@code cmsKey}&lt;/td&gt;
-        &lt;td&gt;{@link CmsMetadataValue#key}&lt;/td&gt;
+        &lt;td&gt;{@link CmsMetadataValue#key#name}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code cmsKeyId}&lt;/td&gt;
+        &lt;td&gt;{@link CmsMetadataValue#key#id}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;tr&gt;
         &lt;td&gt;{@code keyValueMemberContent}&lt;/td&gt;

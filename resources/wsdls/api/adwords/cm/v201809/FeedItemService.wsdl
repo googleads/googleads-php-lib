@@ -628,7 +628,6 @@
                 The feed item's attribute values. For any unset/unspecified feed attributes, the value is
                 considered unset/null on ADD and unchanged on SET.
                 &lt;span class="constraint Selectable"&gt;This field can be selected using the value "AttributeValues".&lt;/span&gt;
-                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>

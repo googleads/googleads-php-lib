@@ -2282,7 +2282,7 @@
             <annotation>
               <documentation>
                 The average number of ads displayed to each unique visitor.
-                &lt;p&gt;Corresponds to "Average impressions / visitor" in the Ad Manager UI. Compatible with the "Reach" report type.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Reach" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -2290,7 +2290,7 @@
             <annotation>
               <documentation>
                 The average revenue earned per unique visitor.
-                &lt;p&gt;Corresponds to "Average revenue / visitor" in the Ad Manager UI. Compatible with the "Reach" report type.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Reach" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -2301,7 +2301,7 @@
                 
                 &lt;p&gt;To maintain user privacy, "Unique visitors" totaling 0-99 won't be displayed in the report
                 and will appear empty.
-                &lt;p&gt;Corresponds to "Unique visitors" in the Ad Manager UI. Compatible with the "Reach" report type.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Reach" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6421,7 +6421,7 @@
             <annotation>
               <documentation>
                 Breaks down mapped Ad Exchange web property data by Ad Manager ad unit ID.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Ad Exchange historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6812,7 +6812,7 @@
           <enumeration value="DP_APP_ID">
             <annotation>
               <documentation>
-                Breaks down reporting data by mobile app ID..
+                Breaks down reporting data by mobile app ID.
                 &lt;p&gt;Corresponds to "App ID" in the Ad Manager UI. Compatible with the "Ad Connector" report type.&lt;/p&gt;
               </documentation>
             </annotation>
@@ -8385,6 +8385,11 @@
         </restriction>
       </simpleType>
       <simpleType name="ReportError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for report error.
+          </documentation>
+        </annotation>
         <restriction base="xsd:string">
           <enumeration value="DEFAULT">
             <annotation>
@@ -8534,16 +8539,18 @@
                 The provided report violates one or more constraints, which govern incompatibilities and
                 requirements between different report properties. Some reasons for constraint violations
                 include:
+                
                 &lt;ul&gt;
-                &lt;li&gt; Not all {@link Column} objects requested are supported for the given set
-                of {@link Dimension} objects.
-                &lt;li&gt; The report's date range is not compatible with the given set of {@link Column}
-                objects.
-                &lt;li&gt; The report's {@link TimeZoneType} is not compatible with the given set of
-                {@link Column} and {@link Dimension} objects (version 201802 and later).
-                &lt;li&gt; The report's currency is not compatible with the given set of {@link Column} objects
-                (version 201802 and later).
+                &lt;li&gt;Not all {@link Column} objects requested are supported for the given set of {@link
+                Dimension} objects.
+                &lt;li&gt;The report's date range is not compatible with the given set of {@link Column} objects.
+                &lt;li&gt;The report's {@link TimeZoneType} is not compatible with the given set of {@link
+                Column} and {@link Dimension} objects (version 201802 and later).
+                &lt;li&gt;The report's currency is not compatible with the given set of {@link Column} objects.
                 &lt;/ul&gt;
+                
+                For versions 201911 and later, this is only returned when some or all of the {@link Column}
+                objects are not supported for the requested {@link Dimension} objects.
               </documentation>
             </annotation>
           </enumeration>

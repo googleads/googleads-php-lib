@@ -2921,13 +2921,16 @@
             &lt;p&gt;The following rules apply for {@link RequestPlatformTargeting}
             
             &lt;ul&gt;
-            &lt;li&gt;{@link RequestPlatformTargeting} must be specified for video line items. Empty
-            values for {@link RequestPlatformTargeting#targetedRequestPlatforms} mean that all request
-            platforms will be targeted.
+            &lt;li&gt;{@link RequestPlatformTargeting} must be specified for video line items. Empty values for
+            {@link RequestPlatformTargeting#targetedRequestPlatforms} mean that all request platforms
+            will be targeted.
             &lt;li&gt;{@link RequestPlatformTargeting} is read-only and assigned by Google for non-video line
             items.
             &lt;li&gt;{@link RequestPlatformTargeting} is read-only and assigned by Google for line items
             generated from proposal line items.
+            &lt;li&gt;{@link RequestPlatformTargeting} is assigned by Google for video line items created and
+            updated through external API requests when the RESPECT_EXTERNAL_API_RPT_TARGETING publisher
+            feature is off.
             &lt;/ul&gt;
           </documentation>
         </annotation>
@@ -3105,8 +3108,8 @@
         <annotation>
           <documentation>
             Represents the dimensions of an {@link AdUnit}, {@link LineItem} or {@link Creative}.
-            &lt;p&gt;
-            For interstitial size (out-of-page), native, ignored and fluid size, {@code Size} must be 1x1.
+            
+            &lt;p&gt;For interstitial size (out-of-page), native, ignored and fluid size, {@link Size} must be 1x1.
           </documentation>
         </annotation>
         <sequence>
@@ -3127,7 +3130,7 @@
           <element maxOccurs="1" minOccurs="0" name="isAspectRatio" type="xsd:boolean">
             <annotation>
               <documentation>
-                True if this size represents an aspect ratio, false otherwise.
+                Whether this size represents an aspect ratio.
               </documentation>
             </annotation>
           </element>

@@ -1440,8 +1440,8 @@
         <annotation>
           <documentation>
             Represents the dimensions of an {@link AdUnit}, {@link LineItem} or {@link Creative}.
-            &lt;p&gt;
-            For interstitial size (out-of-page), native, ignored and fluid size, {@code Size} must be 1x1.
+            
+            &lt;p&gt;For interstitial size (out-of-page), native, ignored and fluid size, {@link Size} must be 1x1.
           </documentation>
         </annotation>
         <sequence>
@@ -1462,7 +1462,7 @@
           <element maxOccurs="1" minOccurs="0" name="isAspectRatio" type="xsd:boolean">
             <annotation>
               <documentation>
-                True if this size represents an aspect ratio, false otherwise.
+                Whether this size represents an aspect ratio.
               </documentation>
             </annotation>
           </element>
@@ -3626,27 +3626,12 @@
       <element name="getAdUnitSizesByStatement">
         <annotation>
           <documentation>
-            Gets a set of {@link AdUnitSize} objects that satisfy the given
-            {@link Statement#query}. The following fields are supported for filtering:
+            Returns a set of all relevant {@link AdUnitSize} objects.
             
-            &lt;table&gt;
-            &lt;tr&gt;
-            &lt;th scope="col"&gt;PQL Property&lt;/th&gt; &lt;th scope="col"&gt;Object Property&lt;/th&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-            &lt;td&gt;{@code targetPlatform}&lt;/td&gt;
-            &lt;td&gt;{@link TargetPlatform}&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;/table&gt;
-            An exception will be thrown for queries with unsupported fields.
+            &lt;p&gt;The given {@link Statement} is currently ignored but may be honored in future versions.
             
-            Paging is not supported, as aren't the LIMIT and OFFSET PQL keywords.
-            
-            Only "=" operator is supported.
-            
-            @param filterStatement a Publisher Query Language statement used to filter
-            a set of ad unit sizes
-            @return the ad unit sizes that match the given filter
+            @param filterStatement currently ignored but may be honored in future versions
+            @return the ad unit sizes
           </documentation>
         </annotation>
         <complexType>
@@ -3830,27 +3815,12 @@
     </wsdl:operation>
     <wsdl:operation name="getAdUnitSizesByStatement">
       <wsdl:documentation>
-        Gets a set of {@link AdUnitSize} objects that satisfy the given
-        {@link Statement#query}. The following fields are supported for filtering:
+        Returns a set of all relevant {@link AdUnitSize} objects.
         
-        &lt;table&gt;
-        &lt;tr&gt;
-        &lt;th scope="col"&gt;PQL Property&lt;/th&gt; &lt;th scope="col"&gt;Object Property&lt;/th&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-        &lt;td&gt;{@code targetPlatform}&lt;/td&gt;
-        &lt;td&gt;{@link TargetPlatform}&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;/table&gt;
-        An exception will be thrown for queries with unsupported fields.
+        &lt;p&gt;The given {@link Statement} is currently ignored but may be honored in future versions.
         
-        Paging is not supported, as aren't the LIMIT and OFFSET PQL keywords.
-        
-        Only "=" operator is supported.
-        
-        @param filterStatement a Publisher Query Language statement used to filter
-        a set of ad unit sizes
-        @return the ad unit sizes that match the given filter
+        @param filterStatement currently ignored but may be honored in future versions
+        @return the ad unit sizes
       </wsdl:documentation>
       <wsdl:input message="tns:getAdUnitSizesByStatementRequest" name="getAdUnitSizesByStatementRequest"/>
       <wsdl:output message="tns:getAdUnitSizesByStatementResponse" name="getAdUnitSizesByStatementResponse"/>

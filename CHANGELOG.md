@@ -1,3 +1,25 @@
+### 44.0.0
+
+##### AdWords
+
+*   No changes.
+
+##### Ad Manager
+
+*   Added support for v201911.
+*   Updated v201911/ReportService/RunReportWithCustomFields.php example to use a
+reportable custom targeting key as a dimension.
+*   Updated v201911/ReportService/RunReachReport.php example to use replacement
+metrics and compatible dimensions.
+*   Updated v201911/ReportService/RunInventoryReport.php example to remove no-op
+PQL statements.
+*   Removed support for v201811.
+*   Removed examples for v201902.
+
+##### Common
+
+*   No changes.
+
 ### 43.0.0
 
 ##### AdWords

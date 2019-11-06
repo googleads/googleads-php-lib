@@ -1787,7 +1787,7 @@
           <enumeration value="TOO_RECENT_CLICK">
             <annotation>
               <documentation>
-                This click occurred less than 24 hours ago, please try again after a day or so.
+                This click occurred less than 6 hours ago, please try again later.
               </documentation>
             </annotation>
           </enumeration>
