@@ -73,6 +73,7 @@ final class AdWordsNormalizer extends GetSetMethodNormalizer
 {
 
     private $docBlockFactory;
+    protected $callbacks = []; // not private for symfony 4 compatibility
 
     /**
      * @see GetSetMethodNormalizer::__construct()
@@ -110,7 +111,7 @@ final class AdWordsNormalizer extends GetSetMethodNormalizer
             $attributeValue = $reflMethod->invoke($object);
 
             if ($attributeValue !== null) {
-                if (array_key_exists('normalize', $this->callbacks)) {
+                if (isset($this->callbacks['normalize'])) {
                     $attributeValue = call_user_func(
                         $this->callbacks['normalize'],
                         $attributeValue,
@@ -207,7 +208,7 @@ final class AdWordsNormalizer extends GetSetMethodNormalizer
                     $this->docBlockFactory->create($getter->getDocComment())
                 );
 
-            if (array_key_exists('denormalize', $this->callbacks)) {
+            if (isset($this->callbacks['denormalize'])) {
                 $value = call_user_func(
                     $this->callbacks['denormalize'],
                     $value,
