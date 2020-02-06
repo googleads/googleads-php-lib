@@ -70,6 +70,7 @@ class AdsGuzzleHttpClientFactoryTest extends TestCase
         );
         $stack->before('http_errors', Middleware::tap());
         $client = new Client(['handler' => $stack]);
+        $originalStack = clone $stack;
 
         $httpClientFactory = new AdsGuzzleHttpClientFactory(
             $logger,
@@ -80,7 +81,12 @@ class AdsGuzzleHttpClientFactoryTest extends TestCase
 
         $this->assertNotNull($httpClient);
         $this->assertInstanceOf(Client::class, $httpClient);
-        $this->assertEquals($stack, $httpClient->getConfig()['handler']);
+        $this->assertEquals($originalStack, $stack, 'Stack of original HTTP client should stay unchanged');
+        $this->assertNotEquals(
+            $stack,
+            $httpClient->getConfig()['handler'],
+            'Stack of factory created HTTP client should have logging middleware, thus differ from original'
+        );
     }
 
   /**
@@ -97,10 +103,11 @@ class AdsGuzzleHttpClientFactoryTest extends TestCase
             GuzzleLogMessageHandler::log($logger, $guzzleLogMessageFormatter)
         );
         $client = new Client([
-        'handler' => $stack,
-        'verify' => true,
-        'cookies' => false
+            'handler' => $stack,
+            'verify' => true,
+            'cookies' => false
         ]);
+        $originalStack = clone $stack;
 
         $httpClientFactory = new AdsGuzzleHttpClientFactory(
             $logger,
@@ -111,7 +118,12 @@ class AdsGuzzleHttpClientFactoryTest extends TestCase
 
         $this->assertNotNull($httpClient);
         $this->assertInstanceOf(Client::class, $httpClient);
-        $this->assertEquals($stack, $httpClient->getConfig()['handler']);
+        $this->assertEquals($originalStack, $stack, 'Stack of original HTTP client should stay unchanged');
+        $this->assertNotEquals(
+            $stack,
+            $httpClient->getConfig()['handler'],
+            'Stack of factory created HTTP Client should have logging middleware, thus differ from original'
+        );
         $this->assertTrue($httpClient->getConfig()['verify']);
         $this->assertFalse($httpClient->getConfig()['cookies']);
     }
