@@ -120,7 +120,7 @@ final class BatchJobsDelegate
         );
         $this->batchJobSerializer = new Serializer(
             [$adWordsNormalizer, new ArrayDenormalizer()],
-            [new XmlEncoder('ns1:mutate')]
+            [new XmlEncoder([XmlEncoder::ROOT_NODE_NAME => 'ns1:mutate'])]
         );
     }
 
