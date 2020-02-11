@@ -1,3 +1,20 @@
+### 45.0.0
+
+##### AdWords
+
+*   No changes.
+
+##### Ad Manager
+
+*   Added support for v202002.
+*   Removed support for v201902.
+*   Removed examples for v201905.
+
+##### Common
+
+*   Fixed [issue #640](https://github.com/googleads/googleads-php-lib/issues/640).
+*   Fixed [issue #637](https://github.com/googleads/googleads-php-lib/issues/637).
+
 ### 44.0.0
 
 ##### AdWords

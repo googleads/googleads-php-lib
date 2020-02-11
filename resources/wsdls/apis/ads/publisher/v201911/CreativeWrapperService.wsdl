@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2019 Google Inc. All Rights Reserved -->
+<!-- Copyright 2020 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v201911"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v201911"

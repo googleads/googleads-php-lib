@@ -63,6 +63,7 @@ class NativeStyleService extends \Google\AdsApi\Common\AdsSoapClient
       'InternalApiError' => 'Google\\AdsApi\\AdManager\\v201911\\InternalApiError',
       'InvalidUrlError' => 'Google\\AdsApi\\AdManager\\v201911\\InvalidUrlError',
       'InventoryTargeting' => 'Google\\AdsApi\\AdManager\\v201911\\InventoryTargeting',
+      'InventoryTargetingError' => 'Google\\AdsApi\\AdManager\\v201911\\InventoryTargetingError',
       'Location' => 'Google\\AdsApi\\AdManager\\v201911\\Location',
       'MobileApplicationTargeting' => 'Google\\AdsApi\\AdManager\\v201911\\MobileApplicationTargeting',
       'MobileCarrier' => 'Google\\AdsApi\\AdManager\\v201911\\MobileCarrier',

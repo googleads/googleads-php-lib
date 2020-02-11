@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2019 Google Inc. All Rights Reserved -->
+<!-- Copyright 2020 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v201911"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v201911"
@@ -4820,7 +4820,7 @@
                 {@code UNKNOWN_POSITION}, {@code PREROLL}, {@code POSTROLL}, {@code UNKNOWN_MIDROLL},
                 {@code MIDROLL_1}, {@code MIDROLL_2}, etc. {@code UNKNOWN_MIDROLL} represents a midroll, but
                 which specific midroll is unknown. Can be used for filtering.
-                &lt;p&gt;Corresponds to "Position of pod" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Position of pod" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>

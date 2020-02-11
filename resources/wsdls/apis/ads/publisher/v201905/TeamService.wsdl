@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2019 Google Inc. All Rights Reserved -->
+<!-- Copyright 2020 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v201905"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v201905"
@@ -812,16 +812,16 @@
           <element maxOccurs="1" minOccurs="0" name="hasAllCompanies" type="xsd:boolean">
             <annotation>
               <documentation>
-                Whether or not users on this team have access to all companies. If this
-                value is true, then {@link #companyIds} must be empty.
+                Whether or not users on this team have access to all companies. If this value is true, then an
+                error will be thrown if an attempt is made to associate this team with a Company.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="hasAllInventory" type="xsd:boolean">
             <annotation>
               <documentation>
-                Whether or not users on this team have access to all inventory. If this
-                value is true, then {@link #adUnitIds} must be empty.
+                Whether or not users on this team have access to all inventory. If this value is true, then an
+                error will be thrown if an attempt is made to associate this team with an AdUnit.
               </documentation>
             </annotation>
           </element>

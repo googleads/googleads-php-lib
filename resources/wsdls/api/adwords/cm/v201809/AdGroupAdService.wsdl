@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2019 Google Inc. All Rights Reserved -->
+<!-- Copyright 2020 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://adwords.google.com/api/adwords/cm/v201809"
   xmlns:tns="https://adwords.google.com/api/adwords/cm/v201809"
@@ -1736,8 +1736,8 @@
                 <annotation>
                   <documentation>
                     The descriptive text of the ad.
-                    &lt;span class="constraint Selectable"&gt;This field can be selected using the value "Description".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
                     &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                    &lt;span class="constraint Selectable"&gt;This field can be selected using the value "Description".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -1772,8 +1772,8 @@
                 <annotation>
                   <documentation>
                     First part of the headline.
-                    &lt;span class="constraint Selectable"&gt;This field can be selected using the value "HeadlinePart1".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
                     &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                    &lt;span class="constraint Selectable"&gt;This field can be selected using the value "HeadlinePart1".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -1781,8 +1781,8 @@
                 <annotation>
                   <documentation>
                     Second part of the headline.
-                    &lt;span class="constraint Selectable"&gt;This field can be selected using the value "HeadlinePart2".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
                     &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                    &lt;span class="constraint Selectable"&gt;This field can be selected using the value "HeadlinePart2".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -1798,8 +1798,8 @@
                 <annotation>
                   <documentation>
                     The descriptive text of the ad.
-                    &lt;span class="constraint Selectable"&gt;This field can be selected using the value "Description".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
                     &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                    &lt;span class="constraint Selectable"&gt;This field can be selected using the value "Description".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>

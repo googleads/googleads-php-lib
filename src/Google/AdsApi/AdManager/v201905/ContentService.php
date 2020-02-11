@@ -122,11 +122,12 @@ class ContentService extends \Google\AdsApi\Common\AdsSoapClient
     }
 
     /**
-     * Gets a {@link ContentPage} of {@link Content} objects that satisfy the
-     * given {@link Statement#query}. Additionally, filters on the given value ID
-     * and key ID that the value belongs to.
+     * Gets a {@link ContentPage} of {@link Content} objects that satisfy the given {@link
+     * Statement#query}. Additionally, filters on the given value ID and key ID that the value belongs
+     * to.
      *
-     * The following fields are supported for filtering:
+     * <p>The following fields are supported for filtering:
+     *
      * <table>
      * <tr>
      * <th scope="col">PQL Property</th> <th scope="col">Object Property</th>
@@ -148,8 +149,6 @@ class ContentService extends \Google\AdsApi\Common\AdsSoapClient
      * <td>{@link Content#lastModifiedDateTime>}</td>
      * </tr>
      * </table>
-     *
-     * filter a set of content
      *
      * @param \Google\AdsApi\AdManager\v201905\Statement $filterStatement
      * @param int $customTargetingValueId

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2019 Google Inc. All Rights Reserved -->
+<!-- Copyright 2020 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v201911"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v201911"
@@ -336,7 +336,9 @@
             name="lastModifiedDateTime" type="tns:DateTime">
             <annotation>
               <documentation>
-                The date and time at which this content was last modified.
+                The date and time at which this content was last modified. The last modified date time will
+                always be updated when a {@link ContentBundle} association is changed, but will not always be
+                updated when a {@link CmsMetadataValue} value is changed.
                 This attribute is read-only.
               </documentation>
             </annotation>
@@ -345,8 +347,8 @@
             name="userDefinedCustomTargetingValueIds" type="xsd:long">
             <annotation>
               <documentation>
-                A collection of custom targeting value IDs manually assigned to this content
-                by the user. This attribute is optional.
+                A collection of custom targeting value IDs manually assigned to this content by the user. This
+                attribute is optional.
               </documentation>
             </annotation>
           </element>
@@ -354,8 +356,8 @@
             name="mappingRuleDefinedCustomTargetingValueIds" type="xsd:long">
             <annotation>
               <documentation>
-                A collection of custom targeting value IDs automatically targeted to this
-                content via metadata mapping rules. This attribute is read-only.
+                A collection of custom targeting value IDs automatically targeted to this content via metadata
+                mapping rules. This attribute is read-only.
               </documentation>
             </annotation>
           </element>
@@ -2136,11 +2138,12 @@
       <element name="getContentByStatementAndCustomTargetingValue">
         <annotation>
           <documentation>
-            Gets a {@link ContentPage} of {@link Content} objects that satisfy the
-            given {@link Statement#query}. Additionally, filters on the given value ID
-            and key ID that the value belongs to.
+            Gets a {@link ContentPage} of {@link Content} objects that satisfy the given {@link
+            Statement#query}. Additionally, filters on the given value ID and key ID that the value belongs
+            to.
             
-            The following fields are supported for filtering:
+            &lt;p&gt;The following fields are supported for filtering:
+            
             &lt;table&gt;
             &lt;tr&gt;
             &lt;th scope="col"&gt;PQL Property&lt;/th&gt; &lt;th scope="col"&gt;Object Property&lt;/th&gt;
@@ -2163,8 +2166,7 @@
             &lt;/tr&gt;
             &lt;/table&gt;
             
-            @params filterStatement a Publisher Query Language statement used to
-            filter a set of content
+            @param filterStatement a Publisher Query Language statement used to filter a set of content
             @param customTargetingValueId the id of the value to match
             @return the content that matches the given filter
           </documentation>
@@ -2276,11 +2278,12 @@
     </wsdl:operation>
     <wsdl:operation name="getContentByStatementAndCustomTargetingValue">
       <wsdl:documentation>
-        Gets a {@link ContentPage} of {@link Content} objects that satisfy the
-        given {@link Statement#query}. Additionally, filters on the given value ID
-        and key ID that the value belongs to.
+        Gets a {@link ContentPage} of {@link Content} objects that satisfy the given {@link
+        Statement#query}. Additionally, filters on the given value ID and key ID that the value belongs
+        to.
         
-        The following fields are supported for filtering:
+        &lt;p&gt;The following fields are supported for filtering:
+        
         &lt;table&gt;
         &lt;tr&gt;
         &lt;th scope="col"&gt;PQL Property&lt;/th&gt; &lt;th scope="col"&gt;Object Property&lt;/th&gt;
@@ -2303,8 +2306,7 @@
         &lt;/tr&gt;
         &lt;/table&gt;
         
-        @params filterStatement a Publisher Query Language statement used to
-        filter a set of content
+        @param filterStatement a Publisher Query Language statement used to filter a set of content
         @param customTargetingValueId the id of the value to match
         @return the content that matches the given filter
       </wsdl:documentation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2019 Google Inc. All Rights Reserved -->
+<!-- Copyright 2020 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://adwords.google.com/api/adwords/cm/v201809"
   xmlns:tns="https://adwords.google.com/api/adwords/cm/v201809"
@@ -19,8 +19,8 @@
       <complexType name="AdGroupFeed">
         <annotation>
           <documentation>
-            AdGroupFeeds are used to link a feed to an adgroup using a matching function,
-            making the feed's feed items available in the adgroup's ads for substitution.
+            AdGroupFeeds are used to link a feed to an adgroup using a matching function, making the feed's
+            feed items available in the adgroup's ads for substitution.
           </documentation>
         </annotation>
         <sequence>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2019 Google Inc. All Rights Reserved -->
+<!-- Copyright 2020 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v201911"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v201911"
@@ -1081,7 +1081,7 @@
             &lt;li&gt;You cannot explicitly define inclusions or exclusions that are already implicit. For example,
             if you explicitly include California, you implicitly exclude all other states. You therefore
             cannot explicitly exclude Florida, because it is already implicitly excluded. Conversely if you
-            explicitly exclude Florida, you cannot excplicitly include California.&lt;/li&gt;
+            explicitly exclude Florida, you cannot explicitly include California.&lt;/li&gt;
             &lt;/ul&gt;
           </documentation>
         </annotation>
@@ -1192,6 +1192,27 @@
             </annotation>
           </element>
         </sequence>
+      </complexType>
+      <complexType name="InventoryTargetingError">
+        <annotation>
+          <documentation>
+            Lists all inventory errors caused by associating a line item with a targeting
+            expression.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:InventoryTargetingError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
       </complexType>
       <complexType name="Location">
         <annotation>
@@ -1803,9 +1824,6 @@
             items.
             &lt;li&gt;{@link RequestPlatformTargeting} is read-only and assigned by Google for line items
             generated from proposal line items.
-            &lt;li&gt;{@link RequestPlatformTargeting} is assigned by Google for video line items created and
-            updated through external API requests when the RESPECT_EXTERNAL_API_RPT_TARGETING publisher
-            feature is off.
             &lt;/ul&gt;
           </documentation>
         </annotation>
@@ -3630,6 +3648,98 @@
             <annotation>
               <documentation>
                 The URL does not contain a scheme.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="InventoryTargetingError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="AT_LEAST_ONE_PLACEMENT_OR_INVENTORY_UNIT_REQUIRED">
+            <annotation>
+              <documentation>
+                At least one placement or inventory unit is required
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVENTORY_CANNOT_BE_TARGETED_AND_EXCLUDED">
+            <annotation>
+              <documentation>
+                The same inventory unit or placement cannot be targeted and excluded at
+                the same time
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVENTORY_UNIT_CANNOT_BE_TARGETED_IF_ANCESTOR_IS_TARGETED">
+            <annotation>
+              <documentation>
+                A child inventory unit cannot be targeted if its ancestor inventory unit
+                is also targeted.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVENTORY_UNIT_CANNOT_BE_TARGETED_IF_ANCESTOR_IS_EXCLUDED">
+            <annotation>
+              <documentation>
+                A child inventory unit cannot be targeted if its ancestor inventory unit
+                is excluded.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVENTORY_UNIT_CANNOT_BE_EXCLUDED_IF_ANCESTOR_IS_EXCLUDED">
+            <annotation>
+              <documentation>
+                A child inventory unit cannot be excluded if its ancestor inventory unit
+                is also excluded.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="EXPLICITLY_TARGETED_INVENTORY_UNIT_CANNOT_BE_TARGETED">
+            <annotation>
+              <documentation>
+                An explicitly targeted inventory unit cannot be targeted.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="EXPLICITLY_TARGETED_INVENTORY_UNIT_CANNOT_BE_EXCLUDED">
+            <annotation>
+              <documentation>
+                An explicitly targeted inventory unit cannot be excluded.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="SELF_ONLY_INVENTORY_UNIT_NOT_ALLOWED">
+            <annotation>
+              <documentation>
+                A landing page-only ad unit cannot be targeted.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="SELF_ONLY_INVENTORY_UNIT_WITHOUT_DESCENDANTS">
+            <annotation>
+              <documentation>
+                A landing page-only ad unit cannot be targeted if it doesn't have any
+                children.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="YOUTUBE_AUDIENCE_SEGMENTS_CAN_ONLY_BE_TARGETED_WITH_YOUTUBE_SHARED_INVENTORY">
+            <annotation>
+              <documentation>
+                Audience segments shared from YouTube can only be targeted with inventory shared
+                from YouTube for cross selling.
               </documentation>
             </annotation>
           </enumeration>

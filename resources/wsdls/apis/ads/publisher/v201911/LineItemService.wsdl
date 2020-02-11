@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2019 Google Inc. All Rights Reserved -->
+<!-- Copyright 2020 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v201911"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v201911"
@@ -1618,7 +1618,7 @@
             &lt;li&gt;You cannot explicitly define inclusions or exclusions that are already implicit. For example,
             if you explicitly include California, you implicitly exclude all other states. You therefore
             cannot explicitly exclude Florida, because it is already implicitly excluded. Conversely if you
-            explicitly exclude Florida, you cannot excplicitly include California.&lt;/li&gt;
+            explicitly exclude Florida, you cannot explicitly include California.&lt;/li&gt;
             &lt;/ul&gt;
           </documentation>
         </annotation>
@@ -3464,9 +3464,6 @@
             items.
             &lt;li&gt;{@link RequestPlatformTargeting} is read-only and assigned by Google for line items
             generated from proposal line items.
-            &lt;li&gt;{@link RequestPlatformTargeting} is assigned by Google for video line items created and
-            updated through external API requests when the RESPECT_EXTERNAL_API_RPT_TARGETING publisher
-            feature is off.
             &lt;/ul&gt;
           </documentation>
         </annotation>
@@ -10230,7 +10227,135 @@
             given {@link Statement#query}. The following fields are supported for
             filtering:
             
-            &lt;table&gt;&lt;tr&gt;&lt;th&gt;PQL property&lt;/th&gt;&lt;th&gt;Entity property&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;CostType&lt;/code&gt;&lt;/td&gt;&lt;td&gt;{@link LineItem#costType}&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;CreationDateTime&lt;/code&gt;&lt;/td&gt;&lt;td&gt;{@link LineItem#creationDateTime}&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;DeliveryRateType&lt;/code&gt;&lt;/td&gt;&lt;td&gt;{@link LineItem#deliveryRateType}&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;EndDateTime&lt;/code&gt;&lt;/td&gt;&lt;td&gt;{@link LineItem#endDateTime}&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;ExternalId&lt;/code&gt;&lt;/td&gt;&lt;td&gt;{@link LineItem#externalId}&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;Id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;{@link LineItem#id}&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;IsMissingCreatives&lt;/code&gt;&lt;/td&gt;&lt;td&gt;{@link LineItem#isMissingCreatives}&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;IsSetTopBoxEnabled&lt;/code&gt;&lt;/td&gt;&lt;td&gt;{@link LineItem#isSetTopBoxEnabled}&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;LastModifiedDateTime&lt;/code&gt;&lt;/td&gt;&lt;td&gt;{@link LineItem#lastModifiedDateTime}&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;LineItemType&lt;/code&gt;&lt;/td&gt;&lt;td&gt;{@link LineItem#lineItemType}&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;Name&lt;/code&gt;&lt;/td&gt;&lt;td&gt;{@link LineItem#name}&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;OrderId&lt;/code&gt;&lt;/td&gt;&lt;td&gt;{@link LineItem#orderId}&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;StartDateTime&lt;/code&gt;&lt;/td&gt;&lt;td&gt;{@link LineItem#startDateTime}&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;Status&lt;/code&gt;&lt;/td&gt;&lt;td&gt;{@link LineItem#status}&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;Targeting&lt;/code&gt;&lt;/td&gt;&lt;td&gt;{@link LineItem#targeting}&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;UnitsBought&lt;/code&gt;&lt;/td&gt;&lt;td&gt;{@link LineItem#unitsBought}&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+            &lt;table&gt;
+            &lt;tbody&gt;
+            &lt;tr&gt;
+            &lt;th&gt;PQL property&lt;/th&gt;
+            &lt;th&gt;Entity property&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;
+            {@code CostType}
+            &lt;/td&gt;
+            &lt;td&gt;
+            {@link LineItem#costType}
+            &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;
+            {@code CreationDateTime}
+            &lt;/td&gt;
+            &lt;td&gt;
+            {@link LineItem#creationDateTime}
+            &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;
+            {@code DeliveryRateType}
+            &lt;/td&gt;
+            &lt;td&gt;
+            {@link LineItem#deliveryRateType}
+            &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;
+            {@code EndDateTime}
+            &lt;/td&gt;
+            &lt;td&gt;
+            {@link LineItem#endDateTime}
+            &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;
+            {@code ExternalId}
+            &lt;/td&gt;
+            &lt;td&gt;
+            {@link LineItem#externalId}
+            &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;
+            {@code Id}
+            &lt;/td&gt;
+            &lt;td&gt;
+            {@link LineItem#id}
+            &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;
+            {@code IsMissingCreatives}
+            &lt;/td&gt;
+            &lt;td&gt;
+            {@link LineItem#isMissingCreatives}
+            &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;
+            {@code IsSetTopBoxEnabled}
+            &lt;/td&gt;
+            &lt;td&gt;
+            {@link LineItem#isSetTopBoxEnabled}
+            &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;
+            {@code LastModifiedDateTime}
+            &lt;/td&gt;
+            &lt;td&gt;
+            {@link LineItem#lastModifiedDateTime}
+            &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;
+            {@code LineItemType}
+            &lt;/td&gt;
+            &lt;td&gt;
+            {@link LineItem#lineItemType}
+            &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;
+            {@code Name}
+            &lt;/td&gt;
+            &lt;td&gt;
+            {@link LineItem#name}
+            &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;
+            {@code OrderId}
+            &lt;/td&gt;
+            &lt;td&gt;
+            {@link LineItem#orderId}
+            &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;
+            {@code StartDateTime}
+            &lt;/td&gt;
+            &lt;td&gt;
+            {@link LineItem#startDateTime}
+            &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;
+            {@code Status}
+            &lt;/td&gt;
+            &lt;td&gt;
+            {@link LineItem#status}
+            &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;
+            {@code UnitsBought}
+            &lt;/td&gt;
+            &lt;td&gt;
+            {@link LineItem#unitsBought}
+            &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;/tbody&gt;
+            &lt;/table&gt;
+            
             @param filterStatement a Publisher Query Language statement used to filter
             a set of line items.
             @return the line items that match the given filter
@@ -10400,7 +10525,135 @@
         given {@link Statement#query}. The following fields are supported for
         filtering:
         
-        &lt;table&gt;&lt;tr&gt;&lt;th&gt;PQL property&lt;/th&gt;&lt;th&gt;Entity property&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;CostType&lt;/code&gt;&lt;/td&gt;&lt;td&gt;{@link LineItem#costType}&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;CreationDateTime&lt;/code&gt;&lt;/td&gt;&lt;td&gt;{@link LineItem#creationDateTime}&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;DeliveryRateType&lt;/code&gt;&lt;/td&gt;&lt;td&gt;{@link LineItem#deliveryRateType}&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;EndDateTime&lt;/code&gt;&lt;/td&gt;&lt;td&gt;{@link LineItem#endDateTime}&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;ExternalId&lt;/code&gt;&lt;/td&gt;&lt;td&gt;{@link LineItem#externalId}&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;Id&lt;/code&gt;&lt;/td&gt;&lt;td&gt;{@link LineItem#id}&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;IsMissingCreatives&lt;/code&gt;&lt;/td&gt;&lt;td&gt;{@link LineItem#isMissingCreatives}&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;IsSetTopBoxEnabled&lt;/code&gt;&lt;/td&gt;&lt;td&gt;{@link LineItem#isSetTopBoxEnabled}&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;LastModifiedDateTime&lt;/code&gt;&lt;/td&gt;&lt;td&gt;{@link LineItem#lastModifiedDateTime}&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;LineItemType&lt;/code&gt;&lt;/td&gt;&lt;td&gt;{@link LineItem#lineItemType}&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;Name&lt;/code&gt;&lt;/td&gt;&lt;td&gt;{@link LineItem#name}&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;OrderId&lt;/code&gt;&lt;/td&gt;&lt;td&gt;{@link LineItem#orderId}&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;StartDateTime&lt;/code&gt;&lt;/td&gt;&lt;td&gt;{@link LineItem#startDateTime}&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;Status&lt;/code&gt;&lt;/td&gt;&lt;td&gt;{@link LineItem#status}&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;Targeting&lt;/code&gt;&lt;/td&gt;&lt;td&gt;{@link LineItem#targeting}&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;code&gt;UnitsBought&lt;/code&gt;&lt;/td&gt;&lt;td&gt;{@link LineItem#unitsBought}&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        &lt;table&gt;
+        &lt;tbody&gt;
+        &lt;tr&gt;
+        &lt;th&gt;PQL property&lt;/th&gt;
+        &lt;th&gt;Entity property&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;
+        {@code CostType}
+        &lt;/td&gt;
+        &lt;td&gt;
+        {@link LineItem#costType}
+        &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;
+        {@code CreationDateTime}
+        &lt;/td&gt;
+        &lt;td&gt;
+        {@link LineItem#creationDateTime}
+        &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;
+        {@code DeliveryRateType}
+        &lt;/td&gt;
+        &lt;td&gt;
+        {@link LineItem#deliveryRateType}
+        &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;
+        {@code EndDateTime}
+        &lt;/td&gt;
+        &lt;td&gt;
+        {@link LineItem#endDateTime}
+        &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;
+        {@code ExternalId}
+        &lt;/td&gt;
+        &lt;td&gt;
+        {@link LineItem#externalId}
+        &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;
+        {@code Id}
+        &lt;/td&gt;
+        &lt;td&gt;
+        {@link LineItem#id}
+        &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;
+        {@code IsMissingCreatives}
+        &lt;/td&gt;
+        &lt;td&gt;
+        {@link LineItem#isMissingCreatives}
+        &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;
+        {@code IsSetTopBoxEnabled}
+        &lt;/td&gt;
+        &lt;td&gt;
+        {@link LineItem#isSetTopBoxEnabled}
+        &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;
+        {@code LastModifiedDateTime}
+        &lt;/td&gt;
+        &lt;td&gt;
+        {@link LineItem#lastModifiedDateTime}
+        &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;
+        {@code LineItemType}
+        &lt;/td&gt;
+        &lt;td&gt;
+        {@link LineItem#lineItemType}
+        &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;
+        {@code Name}
+        &lt;/td&gt;
+        &lt;td&gt;
+        {@link LineItem#name}
+        &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;
+        {@code OrderId}
+        &lt;/td&gt;
+        &lt;td&gt;
+        {@link LineItem#orderId}
+        &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;
+        {@code StartDateTime}
+        &lt;/td&gt;
+        &lt;td&gt;
+        {@link LineItem#startDateTime}
+        &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;
+        {@code Status}
+        &lt;/td&gt;
+        &lt;td&gt;
+        {@link LineItem#status}
+        &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;
+        {@code UnitsBought}
+        &lt;/td&gt;
+        &lt;td&gt;
+        {@link LineItem#unitsBought}
+        &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;/tbody&gt;
+        &lt;/table&gt;
+        
         @param filterStatement a Publisher Query Language statement used to filter
         a set of line items.
         @return the line items that match the given filter

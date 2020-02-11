@@ -216,7 +216,135 @@ class LineItemService extends \Google\AdsApi\Common\AdsSoapClient
      * given {@link Statement#query}. The following fields are supported for
      * filtering:
      *
-     * <table><tr><th>PQL property</th><th>Entity property</th></tr><tr><td><code>CostType</code></td><td>{@link LineItem#costType}</td></tr><tr><td><code>CreationDateTime</code></td><td>{@link LineItem#creationDateTime}</td></tr><tr><td><code>DeliveryRateType</code></td><td>{@link LineItem#deliveryRateType}</td></tr><tr><td><code>EndDateTime</code></td><td>{@link LineItem#endDateTime}</td></tr><tr><td><code>ExternalId</code></td><td>{@link LineItem#externalId}</td></tr><tr><td><code>Id</code></td><td>{@link LineItem#id}</td></tr><tr><td><code>IsMissingCreatives</code></td><td>{@link LineItem#isMissingCreatives}</td></tr><tr><td><code>IsSetTopBoxEnabled</code></td><td>{@link LineItem#isSetTopBoxEnabled}</td></tr><tr><td><code>LastModifiedDateTime</code></td><td>{@link LineItem#lastModifiedDateTime}</td></tr><tr><td><code>LineItemType</code></td><td>{@link LineItem#lineItemType}</td></tr><tr><td><code>Name</code></td><td>{@link LineItem#name}</td></tr><tr><td><code>OrderId</code></td><td>{@link LineItem#orderId}</td></tr><tr><td><code>StartDateTime</code></td><td>{@link LineItem#startDateTime}</td></tr><tr><td><code>Status</code></td><td>{@link LineItem#status}</td></tr><tr><td><code>Targeting</code></td><td>{@link LineItem#targeting}</td></tr><tr><td><code>UnitsBought</code></td><td>{@link LineItem#unitsBought}</td></tr></table>
+     * <table>
+     * <tbody>
+     * <tr>
+     * <th>PQL property</th>
+     * <th>Entity property</th>
+     * </tr>
+     * <tr>
+     * <td>
+     * {@code CostType}
+     * </td>
+     * <td>
+     * {@link LineItem#costType}
+     * </td>
+     * </tr>
+     * <tr>
+     * <td>
+     * {@code CreationDateTime}
+     * </td>
+     * <td>
+     * {@link LineItem#creationDateTime}
+     * </td>
+     * </tr>
+     * <tr>
+     * <td>
+     * {@code DeliveryRateType}
+     * </td>
+     * <td>
+     * {@link LineItem#deliveryRateType}
+     * </td>
+     * </tr>
+     * <tr>
+     * <td>
+     * {@code EndDateTime}
+     * </td>
+     * <td>
+     * {@link LineItem#endDateTime}
+     * </td>
+     * </tr>
+     * <tr>
+     * <td>
+     * {@code ExternalId}
+     * </td>
+     * <td>
+     * {@link LineItem#externalId}
+     * </td>
+     * </tr>
+     * <tr>
+     * <td>
+     * {@code Id}
+     * </td>
+     * <td>
+     * {@link LineItem#id}
+     * </td>
+     * </tr>
+     * <tr>
+     * <td>
+     * {@code IsMissingCreatives}
+     * </td>
+     * <td>
+     * {@link LineItem#isMissingCreatives}
+     * </td>
+     * </tr>
+     * <tr>
+     * <td>
+     * {@code IsSetTopBoxEnabled}
+     * </td>
+     * <td>
+     * {@link LineItem#isSetTopBoxEnabled}
+     * </td>
+     * </tr>
+     * <tr>
+     * <td>
+     * {@code LastModifiedDateTime}
+     * </td>
+     * <td>
+     * {@link LineItem#lastModifiedDateTime}
+     * </td>
+     * </tr>
+     * <tr>
+     * <td>
+     * {@code LineItemType}
+     * </td>
+     * <td>
+     * {@link LineItem#lineItemType}
+     * </td>
+     * </tr>
+     * <tr>
+     * <td>
+     * {@code Name}
+     * </td>
+     * <td>
+     * {@link LineItem#name}
+     * </td>
+     * </tr>
+     * <tr>
+     * <td>
+     * {@code OrderId}
+     * </td>
+     * <td>
+     * {@link LineItem#orderId}
+     * </td>
+     * </tr>
+     * <tr>
+     * <td>
+     * {@code StartDateTime}
+     * </td>
+     * <td>
+     * {@link LineItem#startDateTime}
+     * </td>
+     * </tr>
+     * <tr>
+     * <td>
+     * {@code Status}
+     * </td>
+     * <td>
+     * {@link LineItem#status}
+     * </td>
+     * </tr>
+     * <tr>
+     * <td>
+     * {@code UnitsBought}
+     * </td>
+     * <td>
+     * {@link LineItem#unitsBought}
+     * </td>
+     * </tr>
+     * </tbody>
+     * </table>
+     *
      * a set of line items.
      *
      * @param \Google\AdsApi\AdManager\v201911\Statement $filterStatement

@@ -64,7 +64,6 @@ final class AdsGuzzleHttpClientFactory implements GuzzleHttpClientFactory
     public function generateHttpClient()
     {
         $config = $this->config;
-
         $config['handler'] = isset($config['handler'])
             ? clone $config['handler']
             : HandlerStack::create();

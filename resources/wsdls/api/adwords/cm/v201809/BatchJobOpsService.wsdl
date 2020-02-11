@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2019 Google Inc. All Rights Reserved -->
+<!-- Copyright 2020 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://adwords.google.com/api/adwords/cm/v201809"
   xmlns:tns="https://adwords.google.com/api/adwords/cm/v201809"
@@ -989,8 +989,8 @@
       <complexType name="AdGroupExtensionSetting">
         <annotation>
           <documentation>
-            An AdGroupExtensionSetting is used to add or modify extensions being served for the specified
-            ad group.
+            An AdGroupExtensionSetting is used to add or modify extensions being served for the specified ad
+            group.
           </documentation>
         </annotation>
         <sequence>
@@ -1132,11 +1132,10 @@
       <complexType name="AdSchedule">
         <annotation>
           <documentation>
-            Represents an AdSchedule Criterion.
-            AdSchedule is specified as day and time of the week criteria to target
-            the Ads.
-            &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; An AdSchedule may not have more than &lt;b&gt;six&lt;/b&gt; intervals
-            in a day.&lt;/p&gt;
+            Represents an AdSchedule Criterion. AdSchedule is specified as day and time of the week criteria
+            to target the Ads.
+            
+            &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; An AdSchedule may not have more than &lt;b&gt;six&lt;/b&gt; intervals in a day.
             &lt;span class="constraint AdxEnabled"&gt;This is enabled for AdX.&lt;/span&gt;
           </documentation>
         </annotation>
@@ -4227,8 +4226,8 @@
                 <annotation>
                   <documentation>
                     The descriptive text of the ad.
-                    &lt;span class="constraint Selectable"&gt;This field can be selected using the value "Description".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
                     &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                    &lt;span class="constraint Selectable"&gt;This field can be selected using the value "Description".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -9425,7 +9424,6 @@
                     Matching function to filter out locations targeted by the criteria.
                     
                     This allows advertisers to target based on the semantics of the location.
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -10615,6 +10613,7 @@
             <annotation>
               <documentation>
                 Represents the goal which the bidding strategy of this app campaign should optimize towards.
+                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>

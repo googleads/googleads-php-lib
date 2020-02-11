@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2019 Google Inc. All Rights Reserved -->
+<!-- Copyright 2020 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://adwords.google.com/api/adwords/rm/v201809"
   xmlns:tns="https://adwords.google.com/api/adwords/rm/v201809"
@@ -2704,7 +2704,7 @@
           <element maxOccurs="1" minOccurs="0" name="userId" type="xsd:string">
             <annotation>
               <documentation>
-                Advertiser generated and assigned user ID. Accessible to whitelisted US customers only.
+                Advertiser generated and assigned user ID. Accessible to whitelisted clients only.
                 &lt;span class="constraint StringLength"&gt;The length of this string should be between 1 and 512, inclusive.&lt;/span&gt;
               </documentation>
             </annotation>

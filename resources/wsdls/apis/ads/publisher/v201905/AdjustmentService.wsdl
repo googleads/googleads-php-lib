@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2019 Google Inc. All Rights Reserved -->
+<!-- Copyright 2020 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v201905"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v201905"
@@ -1171,7 +1171,7 @@
             &lt;li&gt;You cannot explicitly define inclusions or exclusions that are already implicit. For example,
             if you explicitly include California, you implicitly exclude all other states. You therefore
             cannot explicitly exclude Florida, because it is already implicitly excluded. Conversely if you
-            explicitly exclude Florida, you cannot excplicitly include California.&lt;/li&gt;
+            explicitly exclude Florida, you cannot explicitly include California.&lt;/li&gt;
             &lt;/ul&gt;
           </documentation>
         </annotation>
@@ -1884,9 +1884,6 @@
             items.
             &lt;li&gt;{@link RequestPlatformTargeting} is read-only and assigned by Google for line items
             generated from proposal line items.
-            &lt;li&gt;{@link RequestPlatformTargeting} is assigned by Google for video line items created and
-            updated through external API requests when the RESPECT_EXTERNAL_API_RPT_TARGETING publisher
-            feature is off.
             &lt;/ul&gt;
           </documentation>
         </annotation>

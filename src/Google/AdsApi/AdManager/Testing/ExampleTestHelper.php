@@ -17,12 +17,12 @@
 
 namespace Google\AdsApi\AdManager\Testing;
 
-use Google\AdsApi\AdManager\AdManagerServices;
 use Google\AdsApi\AdManager\AdManagerSession;
-use Google\AdsApi\AdManager\Util\v201811\StatementBuilder;
-use Google\AdsApi\AdManager\v201811\DeleteUserTeamAssociations;
-use Google\AdsApi\AdManager\v201811\UserTeamAssociation;
-use Google\AdsApi\AdManager\v201811\UserTeamAssociationService;
+use Google\AdsApi\AdManager\Util\v201911\StatementBuilder;
+use Google\AdsApi\AdManager\v201911\DeleteUserTeamAssociations;
+use Google\AdsApi\AdManager\v201911\ServiceFactory;
+use Google\AdsApi\AdManager\v201911\UserTeamAssociation;
+use Google\AdsApi\AdManager\v201911\UserTeamAssociationService;
 use RuntimeException;
 use SoapClient;
 
@@ -32,21 +32,20 @@ use SoapClient;
  */
 class ExampleTestHelper
 {
-    private $services;
+    private $serviceFactory;
     private $session;
     private $userTeamAssociationService;
 
     /**
      * Creates an example test helper object.
      *
-     * @param AdManagerServices $services entry point for accessing the Ad
-     *     Manager SOAP services
+     * @param ServiceFactory $serviceFactory a factory class for making services
      * @param AdManagerSession $session a session for using the Ad Manager API
      */
     public function __construct(
-        AdManagerServices $services, AdManagerSession $session)
+        ServiceFactory $serviceFactory, AdManagerSession $session)
     {
-        $this->services = $services;
+        $this->serviceFactory = $serviceFactory;
         $this->session = $session;
     }
 
@@ -124,14 +123,14 @@ class ExampleTestHelper
     /**
      * Gets the SOAP service for managing user-team associations.
      *
-     * @return SoapClient the `UserTeamAssociationService` object for managing
+     * @return UserTeamAssociationService the service object for managing
      *     user-team associations
      */
     private function getUserTeamAssociationService()
     {
         if (is_null($this->userTeamAssociationService)) {
-            $this->userTeamAssociationService = $this->services
-                ->get($this->session, UserTeamAssociationService::class);
+            $this->userTeamAssociationService = $this->serviceFactory
+                ->createUserTeamAssociationService($this->session);
         }
         return $this->userTeamAssociationService;
     }

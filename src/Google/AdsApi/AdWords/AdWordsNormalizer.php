@@ -73,7 +73,8 @@ final class AdWordsNormalizer extends GetSetMethodNormalizer
 {
 
     private $docBlockFactory;
-    protected $callbacks = []; // not private for symfony 4 compatibility
+    // For Symfony 4 compatibility, this is declared as protected.
+    protected $callbacks = [];
 
     /**
      * @see GetSetMethodNormalizer::__construct()
