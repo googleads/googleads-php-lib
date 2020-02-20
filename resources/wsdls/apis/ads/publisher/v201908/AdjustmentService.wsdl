@@ -730,6 +730,20 @@
           </element>
         </sequence>
       </complexType>
+      <complexType name="DateError">
+        <annotation>
+          <documentation>
+            A list of all errors associated with the dates.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:DateError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
       <complexType name="DateRange">
         <annotation>
           <documentation>
@@ -3350,6 +3364,27 @@
         <restriction base="xsd:string">
           <enumeration value="IS"/>
           <enumeration value="IS_NOT"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="DateError.Reason">
+        <annotation>
+          <documentation>
+            Enumerates all possible date specific errors.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="DATE_IN_PAST"/>
+          <enumeration value="START_DATE_AFTER_END_DATE"/>
+          <enumeration value="END_DATE_BEFORE_START_DATE"/>
+          <enumeration value="NOT_CERTAIN_DAY_OF_MONTH"/>
+          <enumeration value="INVALID_DATES"/>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
         </restriction>
       </simpleType>
       <simpleType name="DateTimeRangeTargetingError.Reason">

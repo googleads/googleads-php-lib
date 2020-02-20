@@ -54,7 +54,7 @@
           <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
             <annotation>
               <documentation>
-                Name of this ad group (at most 255 UTF-8 full-width characters).
+                Name of this ad group. At most 256 characters (Unicode code points).
                 This field is required and should not be {@code null} for ADD operations from v201309 version.
                 &lt;span class="constraint Selectable"&gt;This field can be selected using the value "Name".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
                 &lt;span class="constraint MatchesRegex"&gt;AdGroup names must not contain any null (code point 0x0), NL line feed (code point 0xA) or carriage return (code point 0xD) characters. This is checked by the regular expression '[^\x00\x0A\x0D]*'.&lt;/span&gt;

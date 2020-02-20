@@ -2521,6 +2521,22 @@
               </documentation>
             </annotation>
           </enumeration>
+          <enumeration value="TOTAL_VIDEO_OPPORTUNITIES">
+            <annotation>
+              <documentation>
+                The total number of video opportunities.
+                &lt;p&gt;Corresponds to "Total Video Opportunities" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TOTAL_VIDEO_CAPPED_OPPORTUNITIES">
+            <annotation>
+              <documentation>
+                The total number of video capped opportunities.
+                &lt;p&gt;Corresponds to "Total Video Capped Opportunities" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
+              </documentation>
+            </annotation>
+          </enumeration>
           <enumeration value="TOTAL_INVENTORY_LEVEL_UNFILLED_IMPRESSIONS">
             <annotation>
               <documentation>

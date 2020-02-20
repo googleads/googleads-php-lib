@@ -1,3 +1,19 @@
+### 46.0.0
+
+##### AdWords
+
+*   No changes.
+
+##### Ad Manager
+
+*   Added AdRuleError and AdRuleErrorReason for v202002.
+*   Added new report columns for v202002: TOTAL_VIDEO_OPPORTUNITIES, TOTAL_VIDEO_CAPPED_OPPORTUNITIES and DP_ECPM.
+*   Removed src/Google/AdsApi/AdManager/Util/v201808 folder.
+
+##### Common
+
+*   No changes.
+
 ### 45.0.0
 
 ##### AdWords

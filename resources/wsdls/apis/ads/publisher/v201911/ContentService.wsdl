@@ -1700,7 +1700,7 @@
       <simpleType name="DaiIngestErrorReason">
         <annotation>
           <documentation>
-            Describes what caused the DAI content to fail during the ingestion proccess.
+            Describes what caused the DAI content to fail during the ingestion process.
           </documentation>
         </annotation>
         <restriction base="xsd:string">

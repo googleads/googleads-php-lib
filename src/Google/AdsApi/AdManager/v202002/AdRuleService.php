@@ -18,6 +18,7 @@ class AdRuleService extends \Google\AdsApi\Common\AdsSoapClient
       'AdRuleAction' => 'Google\\AdsApi\\AdManager\\v202002\\AdRuleAction',
       'AdRuleDateError' => 'Google\\AdsApi\\AdManager\\v202002\\AdRuleDateError',
       'AdRule' => 'Google\\AdsApi\\AdManager\\v202002\\AdRule',
+      'AdRuleError' => 'Google\\AdsApi\\AdManager\\v202002\\AdRuleError',
       'AdRuleFrequencyCapError' => 'Google\\AdsApi\\AdManager\\v202002\\AdRuleFrequencyCapError',
       'NoPoddingAdRuleSlot' => 'Google\\AdsApi\\AdManager\\v202002\\NoPoddingAdRuleSlot',
       'OptimizedPoddingAdRuleSlot' => 'Google\\AdsApi\\AdManager\\v202002\\OptimizedPoddingAdRuleSlot',
