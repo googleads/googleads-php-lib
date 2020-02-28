@@ -28,6 +28,7 @@ to the location of this sample application.
 1.  Copy the sample [`adsapi_php.ini`](https://github.com/googleads/googleads-php-lib/blob/master/examples/AdWords/adsapi_php.ini)
     to the same location as this `README.md` file. Then, fill out the required
     properties as described in the file.
+1.  Run `php artisan serve`. Your sample app will be ready.
 1.  You can now test the sample app by using the web browser at the URL you've
     set in your virtual machine or web server, e.g., `http://localhost`.
 

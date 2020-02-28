@@ -42,7 +42,7 @@
         </table>
     </div>
 
-    {{ $reportResults->links(new \Illuminate\Pagination\BootstrapFourPresenter($reportResults)) }}
+    {{ $reportResults->links() }}
     @include('includes.results-back')
 @stop
 

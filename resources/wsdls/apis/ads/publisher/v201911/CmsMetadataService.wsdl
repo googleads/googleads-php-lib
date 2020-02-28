@@ -1519,6 +1519,10 @@
             &lt;td&gt;{@code cmsKey}&lt;/td&gt;
             &lt;td&gt;{@link CmsMetadataKey#keyName}&lt;/td&gt;
             &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code status}&lt;/td&gt;
+            &lt;td&gt;{@link CmsMetadataKey#status}&lt;/td&gt;
+            &lt;/tr&gt;
             &lt;/table&gt;
           </documentation>
         </annotation>
@@ -1571,6 +1575,10 @@
             &lt;tr&gt;
             &lt;td&gt;{@code keyValueMemberContent}&lt;/td&gt;
             &lt;td&gt;Content IDs tagged with a CMS metadata key-value&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code status}&lt;/td&gt;
+            &lt;td&gt;{@link CmsMetadataValue#status}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;/table&gt;
           </documentation>
@@ -1637,6 +1645,10 @@
         &lt;td&gt;{@code cmsKey}&lt;/td&gt;
         &lt;td&gt;{@link CmsMetadataKey#keyName}&lt;/td&gt;
         &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code status}&lt;/td&gt;
+        &lt;td&gt;{@link CmsMetadataKey#status}&lt;/td&gt;
+        &lt;/tr&gt;
         &lt;/table&gt;
       </wsdl:documentation>
       <wsdl:input message="tns:getCmsMetadataKeysByStatementRequest" name="getCmsMetadataKeysByStatementRequest"/>
@@ -1671,6 +1683,10 @@
         &lt;tr&gt;
         &lt;td&gt;{@code keyValueMemberContent}&lt;/td&gt;
         &lt;td&gt;Content IDs tagged with a CMS metadata key-value&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code status}&lt;/td&gt;
+        &lt;td&gt;{@link CmsMetadataValue#status}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;/table&gt;
       </wsdl:documentation>

@@ -44,6 +44,6 @@
     </table>
     </div>
 
-    {{ $campaigns->links(new \Illuminate\Pagination\BootstrapFourPresenter($campaigns)) }}
+    {{ $campaigns->links() }}
     @include('includes.results-back')
 @stop

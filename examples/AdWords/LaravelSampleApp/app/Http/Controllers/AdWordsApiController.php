@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright 2018 Google LLC
  *
@@ -19,12 +20,12 @@ namespace App\Http\Controllers;
 
 use Google\AdsApi\AdWords\AdWordsServices;
 use Google\AdsApi\AdWords\AdWordsSessionBuilder;
-use Google\AdsApi\AdWords\Query\v201802\ReportQueryBuilder;
-use Google\AdsApi\AdWords\Query\v201806\ServiceQueryBuilder;
-use Google\AdsApi\AdWords\Reporting\v201806\DownloadFormat;
-use Google\AdsApi\AdWords\Reporting\v201806\ReportDownloader;
+use Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilder;
+use Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilder;
+use Google\AdsApi\AdWords\Reporting\v201809\DownloadFormat;
+use Google\AdsApi\AdWords\Reporting\v201809\ReportDownloader;
 use Google\AdsApi\AdWords\ReportSettingsBuilder;
-use Google\AdsApi\AdWords\v201806\cm\CampaignService;
+use Google\AdsApi\AdWords\v201809\cm\CampaignService;
 use Google\Auth\FetchAuthTokenInterface;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -293,4 +294,3 @@ class AdWordsApiController extends Controller
         return collect([]);
     }
 }
-

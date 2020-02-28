@@ -1,3 +1,17 @@
+### 46.1.0
+
+##### AdWords
+
+*   Updated the Laravel sample application to use Laravel framework v5.8.
+
+##### Ad Manager
+
+*   No changes.
+
+##### Common
+
+*   No changes.
+
 ### 46.0.0
 
 ##### AdWords

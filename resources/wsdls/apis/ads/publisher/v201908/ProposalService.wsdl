@@ -1818,7 +1818,7 @@
           <element maxOccurs="1" minOccurs="0" name="buyerAccountId" type="xsd:long">
             <annotation>
               <documentation>
-                The ID of the buyer that this {@code Proposal} is being negotiated with.
+                The Authorized Buyers ID of the buyer that this {@code Proposal} is being negotiated with.
                 &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
             </annotation>
