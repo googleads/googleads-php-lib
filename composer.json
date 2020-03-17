@@ -6,7 +6,7 @@
     "ext-mbstring": "*",
     "ext-openssl": "*",
     "ext-soap": "*",
-    "google/auth": "^1.0.0",
+    "google/auth": "^1.0",
     "guzzlehttp/guzzle": "^6.0",
     "guzzlehttp/psr7": "^1.2",
     "monolog/monolog": "^1.17.1 || ^2.0.0",
