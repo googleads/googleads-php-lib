@@ -1,3 +1,17 @@
+### 46.2.0
+
+##### AdWords
+
+*   Added support for ReflectionDocBlock v5.0.
+
+##### Ad Manager
+
+*   No changes.
+
+##### Common
+
+*   Removed phpcs_ruleset.xml and .gitignore from git exports.
+
 ### 46.1.0
 
 ##### AdWords
