@@ -1,3 +1,18 @@
+### 46.2.1
+
+##### AdWords
+
+*   Updated the composer.json and composer.lock files of Laravel sample
+    application to fix the repoted security issue.
+
+##### Ad Manager
+
+*   No changes.
+
+##### Common
+
+*   No changes.
+
 ### 46.2.0
 
 ##### AdWords
