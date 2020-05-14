@@ -1,3 +1,25 @@
+### 47.0.0
+
+##### AdWords
+
+*   No changes.
+
+##### Ad Manager
+
+*   Added support for v202005.
+*   Added new examples for v202005: `CmsMetadataService`,
+    `UpdateForecastAdjustments` and
+    `GetForecastAdjustmentsForTrafficForecastSegment`.
+*   Update `CreateTrafficAdjustments.php` to become `CreateForecastAdjustments`
+    example for v202005.
+*   Update `GetAllTrafficForecastSegments` example for v202005.
+*   Removed support for v201905.
+*   Removed examples for v201908.
+
+##### Common
+
+*   No changes.
+
 ### 46.2.1
 
 ##### AdWords

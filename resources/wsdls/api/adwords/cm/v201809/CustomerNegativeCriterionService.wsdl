@@ -1634,6 +1634,7 @@
             <annotation>
               <documentation>
                 Games
+                &lt;span class="constraint CampaignType"&gt;This field may not be set.&lt;/span&gt;
               </documentation>
             </annotation>
           </enumeration>

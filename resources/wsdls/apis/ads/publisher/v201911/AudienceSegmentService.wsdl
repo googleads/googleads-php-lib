@@ -2650,7 +2650,7 @@
             &lt;/table&gt;
             
             @param filterStatement a Publisher Query Language statement used to filter a set of audience
-            segments
+            segments (the only supported operator is AND)
             @return the audience segments that match the given filter
           </documentation>
         </annotation>
@@ -2675,7 +2675,7 @@
             
             @param action {@link AudienceSegmentAction} to perform
             @param filterStatement a Publisher Query Language statement used to filter a set of audience
-            segments
+            segments (the only supported operator is AND)
             @return {@link UpdateResult} indicating the result
           </documentation>
         </annotation>
@@ -2820,7 +2820,7 @@
         &lt;/table&gt;
         
         @param filterStatement a Publisher Query Language statement used to filter a set of audience
-        segments
+        segments (the only supported operator is AND)
         @return the audience segments that match the given filter
       </wsdl:documentation>
       <wsdl:input message="tns:getAudienceSegmentsByStatementRequest" name="getAudienceSegmentsByStatementRequest"/>
@@ -2834,7 +2834,7 @@
         
         @param action {@link AudienceSegmentAction} to perform
         @param filterStatement a Publisher Query Language statement used to filter a set of audience
-        segments
+        segments (the only supported operator is AND)
         @return {@link UpdateResult} indicating the result
       </wsdl:documentation>
       <wsdl:input message="tns:performAudienceSegmentActionRequest" name="performAudienceSegmentActionRequest"/>

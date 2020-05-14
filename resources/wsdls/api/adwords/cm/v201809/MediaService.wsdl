@@ -385,8 +385,8 @@
       <complexType name="Image">
         <annotation>
           <documentation>
-            Encapsulates an Image media. For {@code SET},{@code REMOVE} operations in
-            MediaService, use {@code mediaId}.
+            Encapsulates an Image media. {@code mediaId} is used in {@code SET}
+            operations.
           </documentation>
         </annotation>
         <complexContent>

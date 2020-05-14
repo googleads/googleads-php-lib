@@ -497,8 +497,8 @@
           <element maxOccurs="1" minOccurs="0" name="description" type="xsd:string">
             <annotation>
               <documentation>
-                Additional notes to annotate the event with. This attribute is optional and
-                has a maximum length of 65,535 characters.
+                Additional notes to annotate the event with. This attribute is optional and has a maximum
+                length of 65,535 characters.
               </documentation>
             </annotation>
           </element>
@@ -1005,20 +1005,6 @@
                   </documentation>
                 </annotation>
               </element>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="SamSessionError">
-        <annotation>
-          <documentation>
-            Lists all errors associated with the Session Activity Monitor (SAM).
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:SamSessionError.Reason"/>
             </sequence>
           </extension>
         </complexContent>
@@ -2237,67 +2223,6 @@
             <annotation>
               <documentation>
                 Missing required field.
-              </documentation>
-            </annotation>
-          </enumeration>
-        </restriction>
-      </simpleType>
-      <simpleType name="SamSessionError.Reason">
-        <annotation>
-          <documentation>
-            Describes reasons for SAM session errors.
-          </documentation>
-        </annotation>
-        <restriction base="xsd:string">
-          <enumeration value="COULD_NOT_REGISTER_SESSION">
-            <annotation>
-              <documentation>
-                SAM session could not be registered for monitoring.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="MALFORMED_SESSION_ID">
-            <annotation>
-              <documentation>
-                User specified an invalid format for a session ID.
-                
-                &lt;p&gt;Session IDs are UUIDs and look like
-                "123e4567-e89b-12d3-a456-426655440000".
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="INVALID_SESSION_ID">
-            <annotation>
-              <documentation>
-                Error thrown when the user specifies an invalid session ID.
-                
-                &lt;p&gt;An invalid session ID error is thrown in the following cases: 1. There is no data for this
-                session. 2. There is not enough data to validate that the user has access to the session. 3.
-                The user does not belong to the network that is associated with the live stream event code
-                specified by the session. We lump all of these cases into a single error because we don't
-                want users to know when they have given a real session ID belonging to a different network.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="INVALID_DEBUG_KEY">
-            <annotation>
-              <documentation>
-                Error thrown when the provided debug key does not match any session ids.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="REQUEST_EXCEEDS_SESSION_LIMIT">
-            <annotation>
-              <documentation>
-                Error thrown when the number of sessions requested exceeds the limit.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="UNKNOWN">
-            <annotation>
-              <documentation>
-                The value returned if the actual value is not exposed by the requested
-                API version.
               </documentation>
             </annotation>
           </enumeration>

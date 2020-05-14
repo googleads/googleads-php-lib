@@ -57,7 +57,6 @@ class LiveStreamEventService extends \Google\AdsApi\Common\AdsSoapClient
       'RefreshLiveStreamEventMasterPlaylists' => 'Google\\AdsApi\\AdManager\\v202002\\RefreshLiveStreamEventMasterPlaylists',
       'RequiredCollectionError' => 'Google\\AdsApi\\AdManager\\v202002\\RequiredCollectionError',
       'RequiredError' => 'Google\\AdsApi\\AdManager\\v202002\\RequiredError',
-      'SamSessionError' => 'Google\\AdsApi\\AdManager\\v202002\\SamSessionError',
       'ServerError' => 'Google\\AdsApi\\AdManager\\v202002\\ServerError',
       'SetValue' => 'Google\\AdsApi\\AdManager\\v202002\\SetValue',
       'SoapRequestHeader' => 'Google\\AdsApi\\AdManager\\v202002\\SoapRequestHeader',

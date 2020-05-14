@@ -322,6 +322,12 @@
         <annotation>
           <documentation>
             Ad service operations.
+            
+            &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; For the SET operation (updates), only the
+            following Ad types are supported:
+            CallOnlyAd, ExpandedTextAd, MultiAssetResponsiveDisplayAd,
+            ResponsiveDisplayAd, ResponsiveSearchAd, ThirdPartyRedirectAd, ShowcaseAd,
+            UniversalAppAd.
           </documentation>
         </annotation>
         <complexContent>
@@ -676,7 +682,6 @@
             <annotation>
               <documentation>
                 Asset contained in this AssetLink.
-                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -1822,8 +1827,8 @@
       <complexType name="Image">
         <annotation>
           <documentation>
-            Encapsulates an Image media. For {@code SET},{@code REMOVE} operations in
-            MediaService, use {@code mediaId}.
+            Encapsulates an Image media. {@code mediaId} is used in {@code SET}
+            operations.
           </documentation>
         </annotation>
         <complexContent>
@@ -9446,7 +9451,11 @@
       <element name="mutate">
         <annotation>
           <documentation>
-            Applies the list of mutate operations. For {@link AdService}, only SET operations are allowed.
+            Applies the list of mutate operations. For {@link AdService}, only SET
+            operations are allowed. Since a SET operation replaces an existing ad in
+            its entirety, the same validation rules apply to the SET operation as
+            enforced by the ADD operation of the {@code AdGroupAdService.mutate()}
+            method.
             
             @param operations The operations to apply.
             @return A list of {@line Ad}s where each entry in the list is the result of applying the
@@ -9523,7 +9532,11 @@
     </wsdl:operation>
     <wsdl:operation name="mutate">
       <wsdl:documentation>
-        Applies the list of mutate operations. For {@link AdService}, only SET operations are allowed.
+        Applies the list of mutate operations. For {@link AdService}, only SET
+        operations are allowed. Since a SET operation replaces an existing ad in
+        its entirety, the same validation rules apply to the SET operation as
+        enforced by the ADD operation of the {@code AdGroupAdService.mutate()}
+        method.
         
         @param operations The operations to apply.
         @return A list of {@line Ad}s where each entry in the list is the result of applying the

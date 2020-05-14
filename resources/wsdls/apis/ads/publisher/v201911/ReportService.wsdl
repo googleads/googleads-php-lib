@@ -632,20 +632,6 @@
                 &lt;tr&gt;
                 &lt;td&gt;{@link CustomFieldEntityType#CREATIVE}&lt;/td&gt;&lt;td&gt;{@link Dimension#CREATIVE_NAME}&lt;/td&gt;
                 &lt;/tr&gt;
-                &lt;tr&gt;
-                &lt;td&gt;{@link CustomFieldEntityType#PRODUCT_TEMPLATE}&lt;/td&gt;
-                &lt;td&gt;{@link Dimension#PRODUCT_TEMPLATE_NAME}&lt;/td&gt;
-                &lt;/tr&gt;
-                &lt;tr&gt;
-                &lt;td&gt;{@link CustomFieldEntityType#PRODUCT}&lt;/td&gt;&lt;td&gt;{@link Dimension#PRODUCT_NAME}&lt;/td&gt;
-                &lt;/tr&gt;
-                &lt;tr&gt;
-                &lt;td&gt;{@link CustomFieldEntityType#PROPOSAL}&lt;/td&gt;&lt;td&gt;{@link Dimension#PROPOSAL_NAME}&lt;/td&gt;
-                &lt;/tr&gt;
-                &lt;tr&gt;
-                &lt;td&gt;{@link CustomFieldEntityType#PROPOSAL_LINE_ITEM}&lt;/td&gt;
-                &lt;td&gt;{@link Dimension#PROPOSAL_LINE_ITEM_NAME}&lt;/td&gt;
-                &lt;/tr&gt;
                 &lt;/table&gt;
               </documentation>
             </annotation>
@@ -2354,7 +2340,7 @@
             <annotation>
               <documentation>
                 The number of people in the given demographic bucket.
-                &lt;p&gt;Corresponds to "Population" in the Ad Manager UI. Compatible with the "Reach" report type.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Reach" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -2362,7 +2348,7 @@
             <annotation>
               <documentation>
                 The number of unique users reached in the given demographic bucket.
-                &lt;p&gt;Corresponds to "Unique viewers" in the Ad Manager UI. Compatible with the "Reach" report type.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Reach" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -2371,7 +2357,7 @@
               <documentation>
                 Percentage of the number of unique users reached in the given demographic bucket (out of the
                 number of unique users reached in all demographics).
-                &lt;p&gt;Corresponds to "% Composition unique viewers" in the Ad Manager UI. Compatible with the "Reach" report type.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Reach" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -2379,7 +2365,7 @@
             <annotation>
               <documentation>
                 The number of impressions in the given demographic bucket.
-                &lt;p&gt;Corresponds to "Impressions" in the Ad Manager UI. Compatible with the "Reach" report type.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Reach" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -2388,7 +2374,7 @@
               <documentation>
                 Percentage of the number of impressions in the given demographic bucket (out of the number of
                 impressions in all demographics).
-                &lt;p&gt;Corresponds to "% Composition impressions" in the Ad Manager UI. Compatible with the "Reach" report type.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Reach" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -2396,7 +2382,7 @@
             <annotation>
               <documentation>
                 The audience reach calculated as {@link #GRP_UNIQUE_AUDIENCE} / {@link #GRP_POPULATION}.
-                &lt;p&gt;Corresponds to "% Population reach" in the Ad Manager UI. Compatible with the "Reach" report type.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Reach" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -2405,7 +2391,7 @@
               <documentation>
                 The audience average frequency calculated as {@link #GRP_AUDIENCE_IMPRESSIONS} / {@link
                 #GRP_UNIQUE_AUDIENCE}.
-                &lt;p&gt;Corresponds to "Average frequency" in the Ad Manager UI. Compatible with the "Reach" report type.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Reach" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -2414,7 +2400,7 @@
               <documentation>
                 The gross rating points (GRP) calculated as {@link #GRP_AUDIENCE_REACH} * {@link
                 #GRP_AUDIENCE_AVERAGE_FREQUENCY} * 100.
-                &lt;p&gt;Corresponds to "Target rating points" in the Ad Manager UI. Compatible with the "Reach" report type.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Reach" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>

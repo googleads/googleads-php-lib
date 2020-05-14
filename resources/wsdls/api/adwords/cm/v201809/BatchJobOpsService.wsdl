@@ -1708,7 +1708,6 @@
             <annotation>
               <documentation>
                 Asset contained in this AssetLink.
-                &lt;span class="constraint Required"&gt;This field is required and should not be {@code null}.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -5733,8 +5732,8 @@
       <complexType name="Image">
         <annotation>
           <documentation>
-            Encapsulates an Image media. For {@code SET},{@code REMOVE} operations in
-            MediaService, use {@code mediaId}.
+            Encapsulates an Image media. {@code mediaId} is used in {@code SET}
+            operations.
           </documentation>
         </annotation>
         <complexContent>
@@ -15043,6 +15042,7 @@
             <annotation>
               <documentation>
                 Games
+                &lt;span class="constraint CampaignType"&gt;This field may not be set.&lt;/span&gt;
               </documentation>
             </annotation>
           </enumeration>

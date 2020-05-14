@@ -497,8 +497,8 @@
           <element maxOccurs="1" minOccurs="0" name="description" type="xsd:string">
             <annotation>
               <documentation>
-                Additional notes to annotate the event with. This attribute is optional and
-                has a maximum length of 65,535 characters.
+                Additional notes to annotate the event with. This attribute is optional and has a maximum
+                length of 65,535 characters.
               </documentation>
             </annotation>
           </element>

@@ -2381,9 +2381,7 @@
       <complexType name="TimeSeries">
         <annotation>
           <documentation>
-            Represents a time series data. The {@code timeSeriesValues} should contain of a list value
-            accordingly to the specified {@link PeriodType} for the {@code timeSeriesDateRange}. The order of
-            the values in this list should be sorted by its chronological order.
+            Represents a chronological sequence of daily values.
           </documentation>
         </annotation>
         <sequence>
@@ -2403,7 +2401,8 @@
                 
                 &lt;p&gt;The list will contain a single value if {@code valuePeriodType} is {@link
                 PeriodType.CUSTOM}, and will contain a value for each day in {@code timeSeriesDateRange} if
-                {@code valuePeriodType} is {@link PeriodType.DAILY}.
+                {@code valuePeriodType} is {@link PeriodType.DAILY}. The order of the values in this list
+                should be sorted by its chronological order.
               </documentation>
             </annotation>
           </element>
@@ -4662,7 +4661,12 @@
         <annotation>
           <documentation>
             Returns a {@link TrafficForecastAdjustmentPage} of all {@link TrafficForecastAdjustment}s that
-            satisfy the given {@link Statement#query}. The following fields are supported for filtering:
+            satisfy the given {@link Statement#query}.
+            
+            &lt;p&gt;This method is incompatible with the use of traffic forecast segments and forecast
+            adjustments. It will throw an exception if that use is enabled for this network.
+            
+            &lt;p&gt;The following fields are supported for filtering:
             
             &lt;table&gt;
             &lt;tr&gt;
@@ -4710,6 +4714,9 @@
             
             &lt;p&gt;This method is only available when MAKE_TRAFFIC_FORECAST_ADJUSTMENTS_IN_BULK is enabled in
             the global settings on your network.
+            
+            &lt;p&gt;This method is incompatible with the use of traffic forecast segments and forecast
+            adjustments. It will throw an exception if that use is enabled for this network.
           </documentation>
         </annotation>
         <complexType>
@@ -4764,7 +4771,12 @@
     <wsdl:operation name="getTrafficAdjustmentsByStatement">
       <wsdl:documentation>
         Returns a {@link TrafficForecastAdjustmentPage} of all {@link TrafficForecastAdjustment}s that
-        satisfy the given {@link Statement#query}. The following fields are supported for filtering:
+        satisfy the given {@link Statement#query}.
+        
+        &lt;p&gt;This method is incompatible with the use of traffic forecast segments and forecast
+        adjustments. It will throw an exception if that use is enabled for this network.
+        
+        &lt;p&gt;The following fields are supported for filtering:
         
         &lt;table&gt;
         &lt;tr&gt;
@@ -4795,6 +4807,9 @@
         
         &lt;p&gt;This method is only available when MAKE_TRAFFIC_FORECAST_ADJUSTMENTS_IN_BULK is enabled in
         the global settings on your network.
+        
+        &lt;p&gt;This method is incompatible with the use of traffic forecast segments and forecast
+        adjustments. It will throw an exception if that use is enabled for this network.
       </wsdl:documentation>
       <wsdl:input message="tns:updateTrafficAdjustmentsRequest" name="updateTrafficAdjustmentsRequest"/>
       <wsdl:output message="tns:updateTrafficAdjustmentsResponse" name="updateTrafficAdjustmentsResponse"/>

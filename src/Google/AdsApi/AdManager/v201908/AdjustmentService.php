@@ -41,6 +41,7 @@ class AdjustmentService extends \Google\AdsApi\Common\AdsSoapClient
       'CustomCriteriaNode' => 'Google\\AdsApi\\AdManager\\v201908\\CustomCriteriaNode',
       'AudienceSegmentCriteria' => 'Google\\AdsApi\\AdManager\\v201908\\AudienceSegmentCriteria',
       'Date' => 'Google\\AdsApi\\AdManager\\v201908\\Date',
+      'DateError' => 'Google\\AdsApi\\AdManager\\v201908\\DateError',
       'DateRange' => 'Google\\AdsApi\\AdManager\\v201908\\DateRange',
       'DateTime' => 'Google\\AdsApi\\AdManager\\v201908\\DateTime',
       'DateTimeRange' => 'Google\\AdsApi\\AdManager\\v201908\\DateTimeRange',
@@ -147,7 +148,12 @@ class AdjustmentService extends \Google\AdsApi\Common\AdsSoapClient
 
     /**
      * Returns a {@link TrafficForecastAdjustmentPage} of all {@link TrafficForecastAdjustment}s that
-     * satisfy the given {@link Statement#query}. The following fields are supported for filtering:
+     * satisfy the given {@link Statement#query}.
+     *
+     * <p>This method is incompatible with the use of traffic forecast segments and forecast
+     * adjustments. It will throw an exception if that use is enabled for this network.
+     *
+     * <p>The following fields are supported for filtering:
      *
      * <table>
      * <tr>
@@ -181,6 +187,9 @@ class AdjustmentService extends \Google\AdsApi\Common\AdsSoapClient
      *
      * <p>This method is only available when MAKE_TRAFFIC_FORECAST_ADJUSTMENTS_IN_BULK is enabled in
      * the global settings on your network.
+     *
+     * <p>This method is incompatible with the use of traffic forecast segments and forecast
+     * adjustments. It will throw an exception if that use is enabled for this network.
      *
      * @param \Google\AdsApi\AdManager\v201908\TrafficForecastAdjustment[] $adjustments
      * @return \Google\AdsApi\AdManager\v201908\TrafficForecastAdjustment[]

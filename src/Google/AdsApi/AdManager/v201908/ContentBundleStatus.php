@@ -11,6 +11,7 @@ class ContentBundleStatus
     const ACTIVE = 'ACTIVE';
     const INACTIVE = 'INACTIVE';
     const ARCHIVED = 'ARCHIVED';
+    const UNKNOWN = 'UNKNOWN';
 
 
 }

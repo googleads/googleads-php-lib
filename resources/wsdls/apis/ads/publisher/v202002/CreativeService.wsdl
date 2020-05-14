@@ -5984,7 +5984,7 @@
           <enumeration value="REQUIRED">
             <annotation>
               <documentation>
-                {@link Creative#size} or {@link LineItem#creativeSizes} is
+                {@link Creative#size} or {@link LineItem#creativePlaceholders} size is
                 missing.
               </documentation>
             </annotation>
@@ -5993,7 +5993,7 @@
             <annotation>
               <documentation>
                 {@link LineItemCreativeAssociation#sizes} must be a subset of
-                {@link LineItem#creativeSizes}.
+                {@link LineItem#creativePlaceholders} sizes.
               </documentation>
             </annotation>
           </enumeration>

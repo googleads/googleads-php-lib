@@ -1,0 +1,23 @@
+<?php
+
+namespace Google\AdsApi\AdManager\v202005;
+
+
+/**
+ * This file was generated from WSDL. DO NOT EDIT.
+ */
+class AccountStatus
+{
+    const UNKNOWN = 'UNKNOWN';
+    const INVITED = 'INVITED';
+    const DECLINED = 'DECLINED';
+    const PENDING_GOOGLE_APPROVAL = 'PENDING_GOOGLE_APPROVAL';
+    const APPROVED = 'APPROVED';
+    const DISAPPROVED_POLICY_VIOLATION = 'DISAPPROVED_POLICY_VIOLATION';
+    const DISAPPROVED_DUPLICATE_ACCOUNT = 'DISAPPROVED_DUPLICATE_ACCOUNT';
+    const EXPIRED = 'EXPIRED';
+    const INACTIVE = 'INACTIVE';
+    const DEACTIVATED_BY_AD_MANAGER = 'DEACTIVATED_BY_AD_MANAGER';
+
+
+}

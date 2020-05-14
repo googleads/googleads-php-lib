@@ -94,6 +94,10 @@ class CmsMetadataService extends \Google\AdsApi\Common\AdsSoapClient
      * <td>{@code cmsKey}</td>
      * <td>{@link CmsMetadataKey#keyName}</td>
      * </tr>
+     * <tr>
+     * <td>{@code status}</td>
+     * <td>{@link CmsMetadataKey#status}</td>
+     * </tr>
      * </table>
      *
      * @param \Google\AdsApi\AdManager\v201911\Statement $statement
@@ -132,6 +136,10 @@ class CmsMetadataService extends \Google\AdsApi\Common\AdsSoapClient
      * <tr>
      * <td>{@code keyValueMemberContent}</td>
      * <td>Content IDs tagged with a CMS metadata key-value</td>
+     * </tr>
+     * <tr>
+     * <td>{@code status}</td>
+     * <td>{@link CmsMetadataValue#status}</td>
      * </tr>
      * </table>
      *
