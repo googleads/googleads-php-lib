@@ -42,7 +42,6 @@ final class GuzzleLogMessageHandler
         return function (callable $handler) use ($logger, $messageFormatter) {
             return function ($request, array $options) use ($handler, $logger, $messageFormatter) {
                 return $handler($request, $options)->then(
-
                     function ($response) use ($request, $logger, $messageFormatter) {
                         // Logs messages in case of successful HTTP calls.
                         $logger->info(

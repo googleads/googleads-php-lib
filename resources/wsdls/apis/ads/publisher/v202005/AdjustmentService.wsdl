@@ -715,12 +715,12 @@
       <complexType name="DailyVolumeSettings">
         <annotation>
           <documentation>
-            Settings to specify daily ad opportunity values that will be used as the expected future traffic
+            Settings to specify daily ad opportunity counts that will be used as the expected future traffic
             volume for a forecast adjustment.
             
-            &lt;p&gt;E.g. [10000, 20000, 5000] indicates a forecast goal for the targeting specified on the parent
-            traffic forecast segment of 10,000 ad opportunities for the first day, 20,000 ad opportunities
-            for the second, etc.
+            &lt;p&gt;For example: [10000, 20000, 5000] indicates expected traffic for the targeting specified on
+            the parent traffic forecast segment of 10,000 ad opportunities for the first day, 20,000 ad
+            opportunities for the second, and 5,000 for the third.
           </documentation>
         </annotation>
         <sequence>
@@ -728,8 +728,13 @@
             name="adOpportunityCounts" type="xsd:long">
             <annotation>
               <documentation>
-                The list of ad opportunity counts. Each value in this list represents to the expected number of
-                ad opportunities on the corresponding day of the adjustment date range.
+                The list of ad opportunity counts. Each value in this list represents the expected number of ad
+                opportunities on the corresponding day of the adjustment date range.
+                
+                &lt;p&gt;The number of values provided must match the number of days in the adjustment date range,
+                inclusive. For example, an adjustment date range of June 5-June 7 would need 3 values in this
+                list, one for June 5, one for June 6, and one for June 7.
+                &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -1192,7 +1197,7 @@
       <complexType name="ForecastAdjustment">
         <annotation>
           <documentation>
-            Provides information about the expected traffic volume and ad requests over a date range for a
+            Provides information about the expected volume and composition of traffic over a date range for a
             traffic forecast segment.
           </documentation>
         </annotation>
@@ -1218,7 +1223,8 @@
           <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
             <annotation>
               <documentation>
-                Name of the ForecastAdjustment. This field is optional.
+                Name of the ForecastAdjustment.
+                &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -1233,7 +1239,9 @@
           <element maxOccurs="1" minOccurs="0" name="status" type="tns:ForecastAdjustmentStatus">
             <annotation>
               <documentation>
-                The status of the adjustment. This field is required.
+                The status of the adjustment. Changes to this field should be made via {@code
+                performForecastAdjustmentAction}
+                This attribute is read-only.
               </documentation>
             </annotation>
           </element>
@@ -1249,9 +1257,9 @@
             name="allowAdjustingForecastAboveRecommendedLimit" type="xsd:boolean">
             <annotation>
               <documentation>
-                Whether to allow provided volume settings to increase current forecasted traffic values by more
-                than 300%. Due to system constraints, adjusting the forecast by more than 300% may have
-                unintended consequences for other parts of the forecast.
+                Whether to allow provided volume settings to increase the current forecast by more than 300%.
+                Due to system constraints, adjusting the forecast by more than 300% may have unintended
+                consequences for other parts of the forecast.
                 
                 &lt;p&gt;Note that this field will not persist on the adjustment itself, and will only affect the
                 current request.
@@ -1282,9 +1290,10 @@
             name="historicalBasisVolumeSettings" type="tns:HistoricalBasisVolumeSettings">
             <annotation>
               <documentation>
-                The total number of ad opportunities for the entire adjustment date range, determined by
-                reference to historical volume data. This field is required if {@code volumeType} is {@code
-                ForecastAdjustmentVolumeType#HISTORICAL_BASIS_VOLUME} and ignored othewise.
+                The daily number of ad opportunities for each day in the adjustment date range, determined by
+                reference to the ad opportunity volume of a historical reference period. This field is required
+                if {@code volumeType} is {@code ForecastAdjustmentVolumeType#HISTORICAL_BASIS_VOLUME} and
+                ignored othewise.
               </documentation>
             </annotation>
           </element>
@@ -1294,9 +1303,13 @@
               <documentation>
                 The daily number of ad opportunities calculated to satisfy the provided volume settings. Each
                 value in this list represents the calculated ad opportunities on the corresponding day of the
-                adjustment date range.
+                adjustment date range. For example: for a {@code dateRange} of 2001-8-15 to 2001-8-17, this
+                field will contain one value for 2001-8-15, one value for 2001-8-16, and one value for
+                2001-8-17.
                 
-                &lt;p&gt;This field is read-only and is populated by Google after forecast adjustment creation.
+                &lt;p&gt;This field is read-only and is populated by Google after forecast adjustment creation or
+                update.
+                This attribute is read-only.
               </documentation>
             </annotation>
           </element>
@@ -1453,13 +1466,14 @@
       <complexType name="HistoricalBasisVolumeSettings">
         <annotation>
           <documentation>
-            Settings to specify historical volume data that will be used as the expected future traffic
-            volume for a {@link ForecastAdjustment}.
+            Settings to specify the volume of ad opportunities per day over the {@link ForecastAdjustment}
+            date range based on the traffic volume of a historical reference period.
             
-            &lt;p&gt;The historical daily ad opportunity volumes are fetched for the requested historical targeting
-            and range, multiplied by the multiplier, and then translated into the date range of this
-            adjustment. The duration of the historical date range does *not* need to be the same as the
-            duration of this adjustment's date range.
+            &lt;p&gt;The daily historical traffic for the provided targeting and date range is fetched, multiplied
+            by the provided multiplier, and used as the daily expected traffic for the adjustment.
+            
+            &lt;p&gt;The number of days included in the historical date range does *not* need to be the same as the
+            number of days included in the adjustment date range.
           </documentation>
         </annotation>
         <sequence>
@@ -1468,7 +1482,8 @@
             <annotation>
               <documentation>
                 Whether the parent traffic forecast segment targeting's or the {@code targeting}'s historical
-                volume data should be used. This field is required.
+                volume data should be used.
+                &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -1485,9 +1500,7 @@
             <annotation>
               <documentation>
                 The date range to use for the historical ad opportunity volume.
-                
-                &lt;p&gt;The start date of the historical date range must be less than 12 months before the end date
-                of the adjustment date range.
+                &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -1495,7 +1508,10 @@
             name="multiplierMilliPercent" type="xsd:long">
             <annotation>
               <documentation>
-                The milli-percent multiplier applied to the historical volume data.
+                The multiplier to apply to the historical traffic volume, expressed in thousandths of a
+                percent. For example, to set the forecasted traffic as 130% of the historical traffic, this
+                value would be 130,000.
+                &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -2564,9 +2580,9 @@
             Settings to specify a single total traffic volume that will be used as the expected total future
             volume for a forecast adjustment.
             
-            &lt;p&gt;E.g. An {@code adOpportunityCount} of 3,000 indicates a forecast goal for the targeting
-            specified on the parent traffic forecast segment of 3,000 ad opportunities over the entire
-            duration of the adjustment.
+            &lt;p&gt;For example, an {@code adOpportunityCount} of 3,000 indicates a forecast goal for the
+            targeting specified on the parent traffic forecast segment of 3,000 ad opportunities over the
+            entire duration of the adjustment.
           </documentation>
         </annotation>
         <sequence>
@@ -2574,6 +2590,7 @@
             <annotation>
               <documentation>
                 The total ad opportunity count over the entire forecast adjustment date range.
+                &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -2590,13 +2607,16 @@
             <annotation>
               <documentation>
                 The unique ID of the TrafficForecastSegment. This field is read-only and set by Google.
+                This attribute is read-only.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
             <annotation>
               <documentation>
-                Name of the TrafficForecastSegment. This field is required and must be unique.
+                Name of the TrafficForecastSegment. This field must be unique among all segments for this
+                network.
+                &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -2797,10 +2817,12 @@
         <annotation>
           <documentation>
             Represents positions within and around a video where ads can be targeted to.
-            &lt;p&gt;
-            Example positions could be {@code pre-roll} (before the video plays),
-            {@code post-roll} (after a video has completed playback) and
-            {@code mid-roll} (during video playback).
+            
+            &lt;p&gt;Example positions could be {@code pre-roll} (before the video plays), {@code post-roll} (after
+            a video has completed playback) and {@code mid-roll} (during video playback).
+            
+            &lt;p&gt;Empty video position targeting means that all video positions are allowed. If a bumper line
+            item has empty video position targeting it will be updated to target all bumper positions.
           </documentation>
         </annotation>
         <sequence>
@@ -4900,6 +4922,8 @@
               <documentation>
                 The targeting expression that defines the segment is not unique within the given network's
                 segments.
+                
+                &lt;p&gt;The ID of the colliding segment will be provided in the {@link ApiError#trigger}.
               </documentation>
             </annotation>
           </enumeration>
@@ -5049,11 +5073,8 @@
           <documentation>
             Creates new {@link ForecastAdjustment} objects.
             
-            &lt;p&gt;This method requires that use of traffic forecast segments and forecast adjustments is
-            enabled for this network, and will throw an exception if it is not enabled.
-            
             @param forecastAdjustments the forecast adjustments to create
-            @return the created forecast adjustments with their IDs filled in
+            @return the persisted forecast adjustments with their IDs populated
             @throws ApiException if there is an error creating the forecast adjustments
           </documentation>
         </annotation>
@@ -5083,11 +5104,8 @@
           <documentation>
             Creates new {@link TrafficForecastSegment} objects.
             
-            &lt;p&gt;This method requires that use of traffic forecast segments and forecast adjustments is
-            enabled for this network, and will throw an exception if it is not enabled.
-            
             @param trafficForecastSegments the traffic forecast segments to create
-            @return the created traffic forecast segments with their IDs filled in
+            @return the persisted traffic forecast segments with their IDs populated
             @throws ApiException if there is an error creating the traffic forecast segments
           </documentation>
         </annotation>
@@ -5110,9 +5128,6 @@
           <documentation>
             Gets a {@link ForecastAdjustmentPage} of {@link ForecastAdjustment} objects that satisfy the
             given {@link Statement#query}.
-            
-            &lt;p&gt;This method requires that use of traffic forecast segments and forecast adjustments is
-            enabled for this network, and will throw an exception if it is not enabled.
             
             &lt;p&gt;The following fields are supported for filtering:
             
@@ -5148,7 +5163,7 @@
             
             @param filterStatement a Publisher Query Language statement to filter a list of traffic
             forecast segments
-            @return the forecast adjustments that match the filter
+            @return a page of forecast adjustments that match the filter
           </documentation>
         </annotation>
         <complexType>
@@ -5169,9 +5184,6 @@
           <documentation>
             Gets a {@link TrafficForecastSegmentPage} of {@link TrafficForecastSegment} objects that
             satisfy the given {@link Statement#query}.
-            
-            &lt;p&gt;This method requires that use of traffic forecast segments and forecast adjustments is
-            enabled for this network, and will throw an exception if it is not enabled.
             
             &lt;p&gt;The following fields are supported for filtering:
             
@@ -5195,7 +5207,7 @@
             
             @param filterStatement a Publisher Query Language statement to filter a list of traffic
             forecast segments
-            @return the traffic forecast segments that match the filter
+            @return a page of traffic forecast segments that match the filter
           </documentation>
         </annotation>
         <complexType>
@@ -5216,9 +5228,6 @@
           <documentation>
             Performs actions on {@link ForecastAdjustment} objects that match the given {@link
             Statement#query}.
-            
-            &lt;p&gt;This method requires that use of traffic forecast segments and forecast adjustments is
-            enabled for this network, and will throw an exception if it is not enabled.
             
             @param forecastAdjustmentAction the action to perform
             @param filterStatement a Publisher Query Language statement used to filter a set of forecast
@@ -5246,9 +5255,6 @@
           <documentation>
             Updates the specified {@link ForecastAdjustment} objects.
             
-            &lt;p&gt;This method requires that use of traffic forecast segments and forecast adjustments is
-            enabled for this network, and will throw an exception if it is not enabled.
-            
             @param forecastAdjustments the forecast adjustments to update
             @return the updated forecast adjustments
             @throws ApiException if there is an error updating the forecast adjustments
@@ -5272,9 +5278,6 @@
         <annotation>
           <documentation>
             Updates the specified {@link TrafficForecastSegment} objects.
-            
-            &lt;p&gt;This method requires that use of traffic forecast segments and forecast adjustments is
-            enabled for this network, and will throw an exception if it is not enabled.
             
             @param trafficForecastSegments the traffic forecast segments to update
             @return the updated traffic forecast segments
@@ -5353,23 +5356,19 @@
   </wsdl:message>
   <wsdl:portType name="AdjustmentServiceInterface">
     <wsdl:documentation>
-      Provides methods for creating, updating and retrieving {@link Adjustment} objects.
+      Provides methods for creating, updating, and retrieving {@link ForecastAdjustment}s and {@link
+      TrafficForecastSegment}s.
       
-      &lt;p&gt;Adjustments are used to adjust a particular ad unit for forecasting. For, example you might
-      have a manual adjustment for an inventory unit that will be seeing a spike for a movie premiere
-      coming up. Or you may have a historical adjustment to tell forecasting that you have a seasonal
-      trend coming up and you want Christmas this year to look like Christmas last year plus five
-      percent.
+      &lt;p&gt;Forecast adjustments allow editing the volume and traffic composition of forecasted inventory.
+      Traffic forecast segments divide forecasted inventory into segments to which forecast adjustments
+      can be applied.
     </wsdl:documentation>
     <wsdl:operation name="createForecastAdjustments">
       <wsdl:documentation>
         Creates new {@link ForecastAdjustment} objects.
         
-        &lt;p&gt;This method requires that use of traffic forecast segments and forecast adjustments is
-        enabled for this network, and will throw an exception if it is not enabled.
-        
         @param forecastAdjustments the forecast adjustments to create
-        @return the created forecast adjustments with their IDs filled in
+        @return the persisted forecast adjustments with their IDs populated
         @throws ApiException if there is an error creating the forecast adjustments
       </wsdl:documentation>
       <wsdl:input message="tns:createForecastAdjustmentsRequest" name="createForecastAdjustmentsRequest"/>
@@ -5380,11 +5379,8 @@
       <wsdl:documentation>
         Creates new {@link TrafficForecastSegment} objects.
         
-        &lt;p&gt;This method requires that use of traffic forecast segments and forecast adjustments is
-        enabled for this network, and will throw an exception if it is not enabled.
-        
         @param trafficForecastSegments the traffic forecast segments to create
-        @return the created traffic forecast segments with their IDs filled in
+        @return the persisted traffic forecast segments with their IDs populated
         @throws ApiException if there is an error creating the traffic forecast segments
       </wsdl:documentation>
       <wsdl:input message="tns:createTrafficForecastSegmentsRequest" name="createTrafficForecastSegmentsRequest"/>
@@ -5395,9 +5391,6 @@
       <wsdl:documentation>
         Gets a {@link ForecastAdjustmentPage} of {@link ForecastAdjustment} objects that satisfy the
         given {@link Statement#query}.
-        
-        &lt;p&gt;This method requires that use of traffic forecast segments and forecast adjustments is
-        enabled for this network, and will throw an exception if it is not enabled.
         
         &lt;p&gt;The following fields are supported for filtering:
         
@@ -5433,7 +5426,7 @@
         
         @param filterStatement a Publisher Query Language statement to filter a list of traffic
         forecast segments
-        @return the forecast adjustments that match the filter
+        @return a page of forecast adjustments that match the filter
       </wsdl:documentation>
       <wsdl:input message="tns:getForecastAdjustmentsByStatementRequest" name="getForecastAdjustmentsByStatementRequest"/>
       <wsdl:output
@@ -5444,9 +5437,6 @@
       <wsdl:documentation>
         Gets a {@link TrafficForecastSegmentPage} of {@link TrafficForecastSegment} objects that
         satisfy the given {@link Statement#query}.
-        
-        &lt;p&gt;This method requires that use of traffic forecast segments and forecast adjustments is
-        enabled for this network, and will throw an exception if it is not enabled.
         
         &lt;p&gt;The following fields are supported for filtering:
         
@@ -5470,7 +5460,7 @@
         
         @param filterStatement a Publisher Query Language statement to filter a list of traffic
         forecast segments
-        @return the traffic forecast segments that match the filter
+        @return a page of traffic forecast segments that match the filter
       </wsdl:documentation>
       <wsdl:input
         message="tns:getTrafficForecastSegmentsByStatementRequest" name="getTrafficForecastSegmentsByStatementRequest"/>
@@ -5482,9 +5472,6 @@
       <wsdl:documentation>
         Performs actions on {@link ForecastAdjustment} objects that match the given {@link
         Statement#query}.
-        
-        &lt;p&gt;This method requires that use of traffic forecast segments and forecast adjustments is
-        enabled for this network, and will throw an exception if it is not enabled.
         
         @param forecastAdjustmentAction the action to perform
         @param filterStatement a Publisher Query Language statement used to filter a set of forecast
@@ -5499,9 +5486,6 @@
       <wsdl:documentation>
         Updates the specified {@link ForecastAdjustment} objects.
         
-        &lt;p&gt;This method requires that use of traffic forecast segments and forecast adjustments is
-        enabled for this network, and will throw an exception if it is not enabled.
-        
         @param forecastAdjustments the forecast adjustments to update
         @return the updated forecast adjustments
         @throws ApiException if there is an error updating the forecast adjustments
@@ -5513,9 +5497,6 @@
     <wsdl:operation name="updateTrafficForecastSegments">
       <wsdl:documentation>
         Updates the specified {@link TrafficForecastSegment} objects.
-        
-        &lt;p&gt;This method requires that use of traffic forecast segments and forecast adjustments is
-        enabled for this network, and will throw an exception if it is not enabled.
         
         @param trafficForecastSegments the traffic forecast segments to update
         @return the updated traffic forecast segments

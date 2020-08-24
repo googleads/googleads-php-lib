@@ -2653,6 +2653,10 @@
             &lt;td&gt;{@link AudienceSegmentDataProvider#name}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;tr&gt;
+            &lt;td&gt;{@code segmentType}&lt;/td&gt;
+            &lt;td&gt;{@link AudienceSegment#type}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
             &lt;td&gt;{@code approvalStatus}&lt;/td&gt;
             &lt;td&gt;{@link ThirdPartyAudienceSegment#approvalStatus}&lt;/td&gt;
             &lt;/tr&gt;
@@ -2821,6 +2825,10 @@
         &lt;tr&gt;
         &lt;td&gt;{@code dataProviderName}&lt;/td&gt;
         &lt;td&gt;{@link AudienceSegmentDataProvider#name}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code segmentType}&lt;/td&gt;
+        &lt;td&gt;{@link AudienceSegment#type}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;tr&gt;
         &lt;td&gt;{@code approvalStatus}&lt;/td&gt;

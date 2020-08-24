@@ -18,13 +18,12 @@
 namespace Google\AdsApi\AdManager\Testing;
 
 use Google\AdsApi\AdManager\AdManagerSession;
-use Google\AdsApi\AdManager\Util\v201911\StatementBuilder;
-use Google\AdsApi\AdManager\v201911\DeleteUserTeamAssociations;
-use Google\AdsApi\AdManager\v201911\ServiceFactory;
-use Google\AdsApi\AdManager\v201911\UserTeamAssociation;
-use Google\AdsApi\AdManager\v201911\UserTeamAssociationService;
+use Google\AdsApi\AdManager\Util\v202008\StatementBuilder;
+use Google\AdsApi\AdManager\v202008\DeleteUserTeamAssociations;
+use Google\AdsApi\AdManager\v202008\ServiceFactory;
+use Google\AdsApi\AdManager\v202008\UserTeamAssociation;
+use Google\AdsApi\AdManager\v202008\UserTeamAssociationService;
 use RuntimeException;
-use SoapClient;
 
 /**
  * Helper class for Ad Manager examples.
@@ -43,8 +42,9 @@ class ExampleTestHelper
      * @param AdManagerSession $session a session for using the Ad Manager API
      */
     public function __construct(
-        ServiceFactory $serviceFactory, AdManagerSession $session)
-    {
+        ServiceFactory $serviceFactory,
+        AdManagerSession $session
+    ) {
         $this->serviceFactory = $serviceFactory;
         $this->session = $session;
     }

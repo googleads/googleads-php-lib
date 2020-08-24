@@ -14,7 +14,6 @@ class ForecastService extends \Google\AdsApi\Common\AdsSoapClient
      */
     private static $classmap = array (
       'ObjectValue' => 'Google\\AdsApi\\AdManager\\v201911\\ObjectValue',
-      'AdRuleSlotError' => 'Google\\AdsApi\\AdManager\\v201911\\AdRuleSlotError',
       'AdUnitCodeError' => 'Google\\AdsApi\\AdManager\\v201911\\AdUnitCodeError',
       'AdUnitTargeting' => 'Google\\AdsApi\\AdManager\\v201911\\AdUnitTargeting',
       'AlternativeUnitTypeForecast' => 'Google\\AdsApi\\AdManager\\v201911\\AlternativeUnitTypeForecast',

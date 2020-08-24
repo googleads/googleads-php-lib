@@ -363,8 +363,8 @@
             <annotation>
               <documentation>
                 Indicates the type of the playlist associated with this live stream. The playlist type is
-                analagous to the EXT-X-PLAYLIST-TYPE HLS tag. This field is optional and will default to {@link
-                PlaylistType#LIVE}.
+                analogous to the EXT-X-PLAYLIST-TYPE HLS tag. This field is optional and will default to {@link
+                PlaylistType#LIVE}. This field cannot be modified after live stream creation.
               </documentation>
             </annotation>
           </element>
@@ -469,12 +469,12 @@
       <complexType name="LiveStreamEvent">
         <annotation>
           <documentation>
-            A {@code LiveStreamEvent} encapsulates all the information necessary
-            to enable DAI (Dynamic Ad Insertion) into a live video stream.
+            A {@code LiveStreamEvent} encapsulates all the information necessary to enable DAI (Dynamic Ad
+            Insertion) into a live video stream.
             
-            &lt;p&gt;This includes information such as the start and expected end time of
-            the event, the URL of the actual content for Ad Manager to pull and insert ads into,
-            as well as the metadata necessary to generate ad requests during the event.
+            &lt;p&gt;This includes information such as the start and expected end time of the live stream, the URL
+            of the actual content for Ad Manager to pull and insert ads into, as well as the metadata
+            necessary to generate ad requests during the live stream.
           </documentation>
         </annotation>
         <sequence>
@@ -523,10 +523,10 @@
           <element maxOccurs="1" minOccurs="0" name="startDateTime" type="tns:DateTime">
             <annotation>
               <documentation>
-                The start date and time of this {@code LiveStreamEvent}. This attribute
-                is required if the {@link LiveStreamEvent#startDateTimeType} is
-                {@link StartDateTimeType#USE_START_DATE_TIME} and is ignored for all other values of
-                {@link StartDateTimeType}.
+                The start date and time of this {@code LiveStreamEvent}. This attribute is required if the
+                {@link LiveStreamEvent#startDateTimeType} is {@link StartDateTimeType#USE_START_DATE_TIME} and
+                is ignored for all other values of {@link StartDateTimeType}. Modifying this attribute for an
+                active live stream can impact traffic.
               </documentation>
             </annotation>
           </element>
@@ -541,9 +541,9 @@
           <element maxOccurs="1" minOccurs="0" name="endDateTime" type="tns:DateTime">
             <annotation>
               <documentation>
-                The scheduled end date and time of this {@code LiveStreamEvent}. This
-                attribute is required if {@code unlimitedEndDateTime} is false and ignored if
-                {@code unlimitedEndDateTime} is true.
+                The scheduled end date and time of this {@code LiveStreamEvent}. This attribute is required if
+                {@code unlimitedEndDateTime} is false and ignored if {@code unlimitedEndDateTime} is true.
+                Modifying this attribute for an active live stream can impact traffic.
               </documentation>
             </annotation>
           </element>
@@ -560,8 +560,8 @@
             name="totalEstimatedConcurrentUsers" type="xsd:long">
             <annotation>
               <documentation>
-                The total number of concurrent users expected to watch this event across
-                all regions. This attribute is optional and default value is 0.
+                The total number of concurrent users expected to watch this live stream across all regions.
+                This attribute is optional and default value is 0.
               </documentation>
             </annotation>
           </element>
@@ -569,8 +569,9 @@
             name="contentUrls" type="xsd:string">
             <annotation>
               <documentation>
-                The list of URLs pointing to the live stream content in
-                Content Delivery Network. This attribute is required.
+                The list of URLs pointing to the live stream content in Content Delivery Network. This
+                attribute is required and can be modified when the live stream is in a {@link
+                LiveStreamEventStatus#PAUSED} state.
               </documentation>
             </annotation>
           </element>
@@ -603,8 +604,9 @@
           <element maxOccurs="1" minOccurs="0" name="dvrWindowSeconds" type="xsd:int">
             <annotation>
               <documentation>
-                Length of the DVR window in seconds. This value is optional. If unset
-                the default window as provided by the input encoder will be used.
+                Length of the DVR window in seconds. This value is optional. If unset the default window as
+                provided by the input encoder will be used. Modifying this value for an active live stream can
+                impact traffic.
               </documentation>
             </annotation>
           </element>
@@ -612,7 +614,7 @@
             name="enableDaiAuthenticationKeys" type="xsd:boolean">
             <annotation>
               <documentation>
-                Whether the event's stream requests to the IMA SDK API will be authenticated using the DAI
+                Whether the live stream's requests to the IMA SDK API will be authenticated using the DAI
                 authentication keys.
               </documentation>
             </annotation>
@@ -686,8 +688,9 @@
             name="daiAuthenticationKeyIds" type="xsd:long">
             <annotation>
               <documentation>
-                The list of {@link DaiAuthenticationKey} IDs used to authenticate requests for this live
-                stream.
+                The list of {@link DaiAuthenticationKey} IDs used to authenticate stream create requests for
+                this live stream. Modifying keys for an active live stream may break the stream for some users.
+                Exercise caution.
               </documentation>
             </annotation>
           </element>
@@ -696,7 +699,8 @@
             <annotation>
               <documentation>
                 The list of {@link CdnConfiguration} IDs that provide settings for ingesting and delivering the
-                videos associated with this source.
+                videos associated with this source. Modifying settings for an active live stream may break the
+                stream for some users. Exercise caution.
               </documentation>
             </annotation>
           </element>
@@ -714,7 +718,8 @@
               <documentation>
                 Whether specific whitelisted IP addresses should be used to access this live stream. This field
                 is optional and will default to false. To set this field a network needs to have the "Video
-                live whitelisted IPS enabled" feature enabled.
+                live whitelisted IPS enabled" feature enabled. Modifying this field for an active live stream
+                can impact traffic.
               </documentation>
             </annotation>
           </element>
@@ -724,14 +729,16 @@
               <documentation>
                 Whether the served playlists can include relative URLs. This field is optional and defaults to
                 false. To set this field a network needs to have the "Video live stream relative playlist URLs"
-                feature enabled.
+                feature enabled. This field can be modified when the live stream is in a {@link
+                LiveStreamEventStatus#PAUSED} state.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="streamingFormat" type="tns:StreamingFormat">
             <annotation>
               <documentation>
-                The streaming format of the {@link LiveStreamEvent} media.
+                The streaming format of the {@link LiveStreamEvent} media. This field cannot be modified after
+                live stream creation.
               </documentation>
             </annotation>
           </element>
@@ -840,7 +847,8 @@
             <annotation>
               <documentation>
                 Indicates how the master playlist gets refreshed. This field is optional and defaults to {@link
-                RefreshType#AUTOMATIC}.
+                RefreshType#AUTOMATIC}. This field can only be modified when the live stream is in a {@link
+                LiveStreamEventStatus#PAUSED} state.
               </documentation>
             </annotation>
           </element>

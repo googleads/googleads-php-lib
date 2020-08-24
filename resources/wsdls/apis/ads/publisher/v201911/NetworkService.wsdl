@@ -1673,10 +1673,9 @@
   </wsdl:message>
   <wsdl:portType name="NetworkServiceInterface">
     <wsdl:documentation>
-      Provides operations for retrieving information related to the publisher's
-      networks. This service can be used to obtain the list of all networks
-      that the current login has access to, or to obtain information about a
-      specific network.
+      Provides operations for retrieving information related to the publisher's networks. This service
+      can be used to obtain the list of all networks that the current login has access to, or to obtain
+      information about a specific network.
     </wsdl:documentation>
     <wsdl:operation name="getAllNetworks">
       <wsdl:documentation>

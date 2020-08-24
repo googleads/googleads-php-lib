@@ -57,7 +57,17 @@ class CsvFilesTest extends TestCase
      */
     public function testWriteCsv()
     {
-        CsvFiles::writeCsv($this->resultSet, self::IN_MEMORY_FILE_PATH);
+        $tmpHandle = tmpfile();
+        $metaData = stream_get_meta_data($tmpHandle);
+        $tmpFilename = $metaData['uri'];
+
+        CsvFiles::writeCsv($this->resultSet, $tmpFilename);
+
+        fseek($tmpHandle, 0);
+        $actual = fread($tmpHandle, 1024);
+        fclose($tmpHandle);
+
+        $this->assertEquals("id,name,note\nid1,name1,note1\nid,\n", $actual);
     }
 
     /**

@@ -149,6 +149,10 @@ class AudienceSegmentService extends \Google\AdsApi\Common\AdsSoapClient
      * <td>{@link AudienceSegmentDataProvider#name}</td>
      * </tr>
      * <tr>
+     * <td>{@code segmentType}</td>
+     * <td>{@link AudienceSegment#type}</td>
+     * </tr>
+     * <tr>
      * <td>{@code approvalStatus}</td>
      * <td>{@link ThirdPartyAudienceSegment#approvalStatus}</td>
      * </tr>

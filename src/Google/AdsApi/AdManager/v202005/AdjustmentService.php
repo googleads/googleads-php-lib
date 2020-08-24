@@ -161,9 +161,6 @@ class AdjustmentService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * Creates new {@link ForecastAdjustment} objects.
      *
-     * <p>This method requires that use of traffic forecast segments and forecast adjustments is
-     * enabled for this network, and will throw an exception if it is not enabled.
-     *
      * @param \Google\AdsApi\AdManager\v202005\ForecastAdjustment[] $forecastAdjustments
      * @return \Google\AdsApi\AdManager\v202005\ForecastAdjustment[]
      * @throws \Google\AdsApi\AdManager\v202005\ApiException
@@ -175,9 +172,6 @@ class AdjustmentService extends \Google\AdsApi\Common\AdsSoapClient
 
     /**
      * Creates new {@link TrafficForecastSegment} objects.
-     *
-     * <p>This method requires that use of traffic forecast segments and forecast adjustments is
-     * enabled for this network, and will throw an exception if it is not enabled.
      *
      * @param \Google\AdsApi\AdManager\v202005\TrafficForecastSegment[] $trafficForecastSegments
      * @return \Google\AdsApi\AdManager\v202005\TrafficForecastSegment[]
@@ -191,9 +185,6 @@ class AdjustmentService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * Gets a {@link ForecastAdjustmentPage} of {@link ForecastAdjustment} objects that satisfy the
      * given {@link Statement#query}.
-     *
-     * <p>This method requires that use of traffic forecast segments and forecast adjustments is
-     * enabled for this network, and will throw an exception if it is not enabled.
      *
      * <p>The following fields are supported for filtering:
      *
@@ -242,9 +233,6 @@ class AdjustmentService extends \Google\AdsApi\Common\AdsSoapClient
      * Gets a {@link TrafficForecastSegmentPage} of {@link TrafficForecastSegment} objects that
      * satisfy the given {@link Statement#query}.
      *
-     * <p>This method requires that use of traffic forecast segments and forecast adjustments is
-     * enabled for this network, and will throw an exception if it is not enabled.
-     *
      * <p>The following fields are supported for filtering:
      *
      * <table>
@@ -280,9 +268,6 @@ class AdjustmentService extends \Google\AdsApi\Common\AdsSoapClient
      * Performs actions on {@link ForecastAdjustment} objects that match the given {@link
      * Statement#query}.
      *
-     * <p>This method requires that use of traffic forecast segments and forecast adjustments is
-     * enabled for this network, and will throw an exception if it is not enabled.
-     *
      * adjustments
      *
      * @param \Google\AdsApi\AdManager\v202005\ForecastAdjustmentAction $forecastAdjustmentAction
@@ -298,9 +283,6 @@ class AdjustmentService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * Updates the specified {@link ForecastAdjustment} objects.
      *
-     * <p>This method requires that use of traffic forecast segments and forecast adjustments is
-     * enabled for this network, and will throw an exception if it is not enabled.
-     *
      * @param \Google\AdsApi\AdManager\v202005\ForecastAdjustment[] $forecastAdjustments
      * @return \Google\AdsApi\AdManager\v202005\ForecastAdjustment[]
      * @throws \Google\AdsApi\AdManager\v202005\ApiException
@@ -312,9 +294,6 @@ class AdjustmentService extends \Google\AdsApi\Common\AdsSoapClient
 
     /**
      * Updates the specified {@link TrafficForecastSegment} objects.
-     *
-     * <p>This method requires that use of traffic forecast segments and forecast adjustments is
-     * enabled for this network, and will throw an exception if it is not enabled.
      *
      * @param \Google\AdsApi\AdManager\v202005\TrafficForecastSegment[] $trafficForecastSegments
      * @return \Google\AdsApi\AdManager\v202005\TrafficForecastSegment[]

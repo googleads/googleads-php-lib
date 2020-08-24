@@ -819,11 +819,13 @@
           <element maxOccurs="1" minOccurs="0" name="adjustedValue" type="xsd:double">
             <annotation>
               <documentation>
-                The adjusted value used for restatements. This is the value of the conversion after
-                adjustment. For example, to change the value of a conversion from 100 to 70, an
-                adjusted value of 70 should be reported.
-                This is required for restatements and should not be used for retractions. An error
-                will be returned if an adjusted value is provided for a retraction.
+                The adjusted value used for restatements. This is the value of the conversion after adjustment.
+                For example, to change the value of a conversion from 100 to 70, an adjusted value of 70 should
+                be reported. This is required for restatements and should not be used for retractions. An error
+                will be returned if an adjusted value is provided for a retraction. NOTE: If you want to upload
+                a second restatement with a different adjusted value, it must have a new, more recent,
+                adjustment occurrence time. Otherwise, it will be treated as a duplicate of the previous
+                restatement and ignored.
                 &lt;span class="constraint InRange"&gt;This field must be greater than or equal to 0.&lt;/span&gt;
               </documentation>
             </annotation>

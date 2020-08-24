@@ -2661,10 +2661,12 @@
         <annotation>
           <documentation>
             Represents positions within and around a video where ads can be targeted to.
-            &lt;p&gt;
-            Example positions could be {@code pre-roll} (before the video plays),
-            {@code post-roll} (after a video has completed playback) and
-            {@code mid-roll} (during video playback).
+            
+            &lt;p&gt;Example positions could be {@code pre-roll} (before the video plays), {@code post-roll} (after
+            a video has completed playback) and {@code mid-roll} (during video playback).
+            
+            &lt;p&gt;Empty video position targeting means that all video positions are allowed. If a bumper line
+            item has empty video position targeting it will be updated to target all bumper positions.
           </documentation>
         </annotation>
         <sequence>
@@ -4663,9 +4665,6 @@
             Returns a {@link TrafficForecastAdjustmentPage} of all {@link TrafficForecastAdjustment}s that
             satisfy the given {@link Statement#query}.
             
-            &lt;p&gt;This method is incompatible with the use of traffic forecast segments and forecast
-            adjustments. It will throw an exception if that use is enabled for this network.
-            
             &lt;p&gt;The following fields are supported for filtering:
             
             &lt;table&gt;
@@ -4712,11 +4711,8 @@
             TrafficTimeSeriesFilterCriteria}, the pre-existing {@link TrafficForecastAdjustment} will be
             completely replaced with the submitted {@link TrafficForecastAdjustment}.
             
-            &lt;p&gt;This method is only available when MAKE_TRAFFIC_FORECAST_ADJUSTMENTS_IN_BULK is enabled in
-            the global settings on your network.
-            
-            &lt;p&gt;This method is incompatible with the use of traffic forecast segments and forecast
-            adjustments. It will throw an exception if that use is enabled for this network.
+            &lt;p&gt;This method is no longer supported. To programmatically create adjustments, you must
+            update to the V202005 API.
           </documentation>
         </annotation>
         <complexType>
@@ -4760,21 +4756,17 @@
   </wsdl:message>
   <wsdl:portType name="AdjustmentServiceInterface">
     <wsdl:documentation>
-      Provides methods for creating, updating and retrieving {@link Adjustment} objects.
+      Provides methods for creating, updating, and retrieving {@link ForecastAdjustment}s and {@link
+      TrafficForecastSegment}s.
       
-      &lt;p&gt;Adjustments are used to adjust a particular ad unit for forecasting. For, example you might
-      have a manual adjustment for an inventory unit that will be seeing a spike for a movie premiere
-      coming up. Or you may have a historical adjustment to tell forecasting that you have a seasonal
-      trend coming up and you want Christmas this year to look like Christmas last year plus five
-      percent.
+      &lt;p&gt;Forecast adjustments allow editing the volume and traffic composition of forecasted inventory.
+      Traffic forecast segments divide forecasted inventory into segments to which forecast adjustments
+      can be applied.
     </wsdl:documentation>
     <wsdl:operation name="getTrafficAdjustmentsByStatement">
       <wsdl:documentation>
         Returns a {@link TrafficForecastAdjustmentPage} of all {@link TrafficForecastAdjustment}s that
         satisfy the given {@link Statement#query}.
-        
-        &lt;p&gt;This method is incompatible with the use of traffic forecast segments and forecast
-        adjustments. It will throw an exception if that use is enabled for this network.
         
         &lt;p&gt;The following fields are supported for filtering:
         
@@ -4805,11 +4797,8 @@
         TrafficTimeSeriesFilterCriteria}, the pre-existing {@link TrafficForecastAdjustment} will be
         completely replaced with the submitted {@link TrafficForecastAdjustment}.
         
-        &lt;p&gt;This method is only available when MAKE_TRAFFIC_FORECAST_ADJUSTMENTS_IN_BULK is enabled in
-        the global settings on your network.
-        
-        &lt;p&gt;This method is incompatible with the use of traffic forecast segments and forecast
-        adjustments. It will throw an exception if that use is enabled for this network.
+        &lt;p&gt;This method is no longer supported. To programmatically create adjustments, you must
+        update to the V202005 API.
       </wsdl:documentation>
       <wsdl:input message="tns:updateTrafficAdjustmentsRequest" name="updateTrafficAdjustmentsRequest"/>
       <wsdl:output message="tns:updateTrafficAdjustmentsResponse" name="updateTrafficAdjustmentsResponse"/>

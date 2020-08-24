@@ -14050,14 +14050,15 @@
           <enumeration value="CONVERSION_TRACKING_NOT_ENABLED">
             <annotation>
               <documentation>
-                Conversion tracking is not enabled for the campaign for VBB transition.
+                Conversion tracking is not enabled in the campaign that has YouTube
+                Video Builder transitions.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="NOT_ENOUGH_CONVERSIONS">
             <annotation>
               <documentation>
-                Not enough conversions tracked for VBB transitions.
+                Not enough conversions tracked for YouTube Video Builder transitions.
               </documentation>
             </annotation>
           </enumeration>
@@ -14898,8 +14899,9 @@
           <enumeration value="DRAFT">
             <annotation>
               <documentation>
-                This is a draft version of a campaign. It has some modifications from a base
-                campaign, but it does not serve or accrue stats.
+                This is a draft version of a campaign that is part of a CampaignDraft or a
+                customer-level Draft. It has some modifications from a base campaign, but it
+                does not serve or accrue stats.
               </documentation>
             </annotation>
           </enumeration>

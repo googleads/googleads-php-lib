@@ -56,15 +56,15 @@ final class OAuth2TokenRefresher
      *     OAuth2 access token fetcher
      * @param callable|null $httpHandler the HTTP handler for making requests
      *     to refresh OAuth2 credentials
-     * @return string
+     * @return string|null
      */
     public function getOrFetchAccessToken(
         FetchAuthTokenInterface $fetchAuthTokenInterface,
         callable $httpHandler = null
     ) {
         if ($this->shouldFetchAccessToken($fetchAuthTokenInterface)) {
-            return $fetchAuthTokenInterface->fetchAuthToken($httpHandler)
-            ['access_token'];
+            $authToken = $fetchAuthTokenInterface->fetchAuthToken($httpHandler);
+            return is_null($authToken) ? null : $authToken['access_token'];
         }
 
         return $fetchAuthTokenInterface->getLastReceivedToken()['access_token'];

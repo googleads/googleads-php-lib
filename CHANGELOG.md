@@ -1,3 +1,21 @@
+### 48.0.0
+
+##### AdWords
+
+*   No changes.
+
+##### Ad Manager
+
+*   Added support for v202008.
+*   Added new examples for v202008: `CreateSites`, `GetAllSites`,
+    `GetSitesRequiringApproval` and `GetMcmEarnings`.
+*   Removed support for v201908.
+*   Removed examples for v201911.
+
+##### Common
+
+*   No changes.
+
 ### 47.0.0
 
 ##### AdWords

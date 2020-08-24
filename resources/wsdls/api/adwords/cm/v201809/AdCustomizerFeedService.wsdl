@@ -88,7 +88,7 @@
               <documentation>
                 The name of the attribute.
                 &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD, SET.&lt;/span&gt;
-                &lt;span class="constraint StringLength"&gt;The length of this string should be between 1 and 40, inclusive, (trimmed).&lt;/span&gt;
+                &lt;span class="constraint StringLength"&gt;The length of this string should be between 1 and 50, inclusive, (trimmed).&lt;/span&gt;
               </documentation>
             </annotation>
           </element>

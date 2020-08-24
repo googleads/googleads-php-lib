@@ -35,20 +35,6 @@
           </extension>
         </complexContent>
       </complexType>
-      <complexType name="AdRuleSlotError">
-        <annotation>
-          <documentation>
-            Errors related to ad rule slots.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:AdRuleSlotError.Reason"/>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
       <complexType name="AdUnitCodeError">
         <annotation>
           <documentation>
@@ -328,9 +314,9 @@
       <complexType name="AppliedLabel">
         <annotation>
           <documentation>
-            Represents a {@link Label} that can be applied to an entity. To negate an
-            inherited label, create an {@code AppliedLabel} with {@code labelId} as the
-            inherited label's ID and {@code isNegated} set to true.
+            Represents a {@link Label} that can be applied to an entity. To negate an inherited label, create
+            an {@code AppliedLabel} with {@code labelId} as the inherited label's ID and {@code isNegated}
+            set to true.
           </documentation>
         </annotation>
         <sequence>
@@ -2294,8 +2280,8 @@
             name="enableNielsenCoViewingSupport" type="xsd:boolean">
             <annotation>
               <documentation>
-                Specifiies whether to enable Nielsen co-viewing for line items using Nielsen as a
-                GRP provider.
+                Specifiies whether to enable Nielsen measurement for connected devices for line items using
+                Nielsen as a GRP provider.
               </documentation>
             </annotation>
           </element>
@@ -3401,8 +3387,8 @@
             <annotation>
               <documentation>
                 Optional ID of the {@link Company} that provides ad verification for this line item. An error
-                will be thrown if the company that the ID refernces is not of type
-                {@link Company.Type#VIEWABILITY_PROVIDER}.
+                will be thrown if the company that the ID references is not of type {@link
+                Company.Type#VIEWABILITY_PROVIDER}.
               </documentation>
             </annotation>
           </element>
@@ -5522,10 +5508,12 @@
         <annotation>
           <documentation>
             Represents positions within and around a video where ads can be targeted to.
-            &lt;p&gt;
-            Example positions could be {@code pre-roll} (before the video plays),
-            {@code post-roll} (after a video has completed playback) and
-            {@code mid-roll} (during video playback).
+            
+            &lt;p&gt;Example positions could be {@code pre-roll} (before the video plays), {@code post-roll} (after
+            a video has completed playback) and {@code mid-roll} (during video playback).
+            
+            &lt;p&gt;Empty video position targeting means that all video positions are allowed. If a bumper line
+            item has empty video position targeting it will be updated to target all bumper positions.
           </documentation>
         </annotation>
         <sequence>
@@ -5670,101 +5658,6 @@
             <annotation>
               <documentation>
                 Out-stream video ads serve in a browser. Examples include in-feed and in-banner video ads.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="UNKNOWN">
-            <annotation>
-              <documentation>
-                The value returned if the actual value is not exposed by the requested API version.
-              </documentation>
-            </annotation>
-          </enumeration>
-        </restriction>
-      </simpleType>
-      <simpleType name="AdRuleSlotError.Reason">
-        <annotation>
-          <documentation>
-            Describes reason for {@code AdRuleSlotError}s.
-          </documentation>
-        </annotation>
-        <restriction base="xsd:string">
-          <enumeration value="DIFFERENT_STATUS_THAN_AD_RULE">
-            <annotation>
-              <documentation>
-                Has a different status than the ad rule to which it belongs.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="INVALID_VIDEO_AD_DURATION_RANGE">
-            <annotation>
-              <documentation>
-                Min video ad duration is greater than max video ad duration.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="INVALID_VIDEO_MIDROLL_FREQUENCY_TYPE">
-            <annotation>
-              <documentation>
-                Video mid-roll frequency type other than NONE for pre-roll or post-roll.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="MALFORMED_VIDEO_MIDROLL_FREQUENCY_CSV">
-            <annotation>
-              <documentation>
-                Invalid format for video mid-roll frequency when expecting a CSV list of
-                numbers. Valid formats are the following:&lt;ul&gt;
-                &lt;li&gt;empty
-                &lt;li&gt; comma-separated list of numbers (time milliseconds or cue points)
-                &lt;li&gt;a single number (every n milliseconds or cue points, or one
-                specific time / cue point)
-                &lt;/ul&gt;
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="MALFORMED_VIDEO_MIDROLL_FREQUENCY_SINGLE_NUMBER">
-            <annotation>
-              <documentation>
-                Invalid format for video mid-roll frequency when expecting a single
-                number only, e.g., every n seconds or every n cue points.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="INVALID_OVERLAY_AD_DURATION_RANGE">
-            <annotation>
-              <documentation>
-                Min overlay ad duration is greater than max overlay ad duration.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="INVALID_OVERLAY_MIDROLL_FREQUENCY_TYPE">
-            <annotation>
-              <documentation>
-                Overlay mid-roll frequency type other than NONE for pre-roll or
-                post-roll.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="MALFORMED_OVERLAY_MIDROLL_FREQUENCY_CSV">
-            <annotation>
-              <documentation>
-                Invalid format for overlay mid-roll frequency for list of numbers. See
-                valid formats above.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="MALFORMED_OVERLAY_MIDROLL_FREQUENCY_SINGLE_NUMBER">
-            <annotation>
-              <documentation>
-                Invalid format for overlay mid-roll frequency for a single number.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="INVALID_BUMPER_MAX_DURATION">
-            <annotation>
-              <documentation>
-                Non-positive bumper duration when expecting a positive number.
               </documentation>
             </annotation>
           </enumeration>
@@ -12242,7 +12135,7 @@
       &lt;td&gt;50&lt;/td&gt;
       &lt;td&gt;1,200,000&lt;/td&gt;
       &lt;td&gt;6,000,000&lt;/td&gt;
-      &lt;td&gt;600,000&lt;br/&gt;For prospective: 0&lt;/td&gt;
+      &lt;td&gt;600,000&lt;/td&gt;
       &lt;td&gt;&amp;ndash;&amp;ndash;&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
@@ -12250,7 +12143,7 @@
       &lt;td&gt;!= 20 and &lt;br/&gt; != 50&lt;/td&gt;
       &lt;td&gt;1,200,000&lt;/td&gt;
       &lt;td&gt;1,200,000&lt;/td&gt;
-      &lt;td&gt;600,000&lt;br/&gt;For prospective: 0&lt;/td&gt;
+      &lt;td&gt;600,000&lt;/td&gt;
       &lt;td&gt;&amp;ndash;&amp;ndash;&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
@@ -12258,7 +12151,7 @@
       &lt;td&gt;&amp;lt;= 500,000&lt;/td&gt;
       &lt;td&gt;3 * unitsBought / 2&lt;/td&gt;
       &lt;td&gt;unitsBought * 6&lt;/td&gt;
-      &lt;td&gt;600,000&lt;br/&gt;For prospective: 0&lt;/td&gt;
+      &lt;td&gt;600,000&lt;/td&gt;
       &lt;td&gt;&amp;ndash;&amp;ndash;&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
@@ -12266,7 +12159,7 @@
       &lt;td&gt;&amp;gt; 500,000 and &amp;lt;= 1,000,000&lt;/td&gt;
       &lt;td&gt;unitsBought / 2&lt;/td&gt;
       &lt;td&gt;unitsBought * 6&lt;/td&gt;
-      &lt;td&gt;600,000&lt;br/&gt;For prospective: 0&lt;/td&gt;
+      &lt;td&gt;600,000&lt;/td&gt;
       &lt;td&gt;&amp;ndash;&amp;ndash;&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
@@ -12274,7 +12167,7 @@
       &lt;td&gt;&amp;gt; 1,000,000 and &amp;lt;= 1,500,000&lt;/td&gt;
       &lt;td&gt;unitsBought / 2&lt;/td&gt;
       &lt;td&gt;3 * unitsBought / 2&lt;/td&gt;
-      &lt;td&gt;600,000&lt;br/&gt;For prospective: 0&lt;/td&gt;
+      &lt;td&gt;600,000&lt;/td&gt;
       &lt;td&gt;&amp;ndash;&amp;ndash;&lt;/td&gt;
       &lt;/tr&gt;
       &lt;tr&gt;
@@ -12282,7 +12175,7 @@
       &lt;td&gt;&amp;gt; 1,500,000&lt;/td&gt;
       &lt;td&gt;unitsBought / 4&lt;/td&gt;
       &lt;td&gt;3 * unitsBought / 2&lt;/td&gt;
-      &lt;td&gt;600,000&lt;br/&gt;For prospective: 0&lt;/td&gt;
+      &lt;td&gt;600,000&lt;/td&gt;
       &lt;td&gt;&amp;ndash;&amp;ndash;&lt;/td&gt;
       &lt;/tr&gt;
       &lt;/table&gt;
