@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-namespace Google\AdsApi\AdManager\Util\v201908;
+namespace Google\AdsApi\AdManager\Util\v202008;
 
 use DateTime;
 use DateTimeZone;
-use Google\AdsApi\AdManager\v201908\Date;
-use Google\AdsApi\AdManager\v201908\DateTime as AdManagerDateTime;
+use Google\AdsApi\AdManager\v202008\Date;
+use Google\AdsApi\AdManager\v202008\DateTime as AdManagerDateTime;
 
 /**
  * Static utility methods for working with Ad Manager `DateTime` objects.
