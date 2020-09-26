@@ -418,7 +418,7 @@ class RequestOptionsFactoryTest extends TestCase
 
     private function formatGuzzleInfo()
     {
-        $guzzleInfoTokens = ['GuzzleHttp/' . $this->getGuzzleVersion()];
+        $guzzleInfoTokens = ['GuzzleHttp/' . ClientInterface::MAJOR_VERSION];
         if (extension_loaded('curl') && function_exists('curl_version')) {
             $guzzleInfoTokens[] = 'curl/' . \curl_version()['version'];
         }
@@ -426,12 +426,4 @@ class RequestOptionsFactoryTest extends TestCase
         return implode(', ', $guzzleInfoTokens);
     }
 
-    private function getGuzzleVersion()
-    {
-        if (defined('GuzzleHttp\ClientInterface::MAJOR_VERSION')) {
-            return ClientInterface::MAJOR_VERSION;
-        }
-
-        return ClientInterface::VERSION;
-    }
 }
