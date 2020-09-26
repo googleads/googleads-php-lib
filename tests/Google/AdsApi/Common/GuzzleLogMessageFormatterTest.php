@@ -434,7 +434,7 @@ class GuzzleLogMessageFormatterTest extends TestCase
             $body
         );
         $response = new Response(400, [], $this->reportDownloadResult);
-        $error = new ClientException('Client error: 400', $request);
+        $error = new ClientException('Client error: 400', $request, $response);
         $guzzleLogMessageFormatter = new GuzzleLogMessageFormatter(
             ['Authorization', 'developerToken'],
             [],

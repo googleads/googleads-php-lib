@@ -418,11 +418,12 @@ class RequestOptionsFactoryTest extends TestCase
 
     private function formatGuzzleInfo()
     {
-        $guzzleInfoTokens = ['GuzzleHttp/' . ClientInterface::VERSION];
+        $guzzleInfoTokens = ['GuzzleHttp/' . ClientInterface::MAJOR_VERSION];
         if (extension_loaded('curl') && function_exists('curl_version')) {
             $guzzleInfoTokens[] = 'curl/' . \curl_version()['version'];
         }
 
         return implode(', ', $guzzleInfoTokens);
     }
+
 }
