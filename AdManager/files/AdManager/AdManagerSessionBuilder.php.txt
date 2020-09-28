@@ -323,7 +323,15 @@ final class AdManagerSessionBuilder implements AdsBuilder
     public function validate()
     {
         if ($this->networkCode === null || trim($this->networkCode) === '') {
-            throw new InvalidArgumentException('Network code is required.');
+            // Most of Ad Manager API functions require a network code.
+            // GetAllNetwork (https://developers.google.com/ad-manager/api/reference/latest/NetworkService#getAllNetworks)
+            // is the only one function intended to be used without a network
+            // code.
+            trigger_error(
+                "Network code is not specified. An API" .
+                " function will reject requests if it requires a network code.",
+                E_USER_WARNING
+            );
         }
 
         if ($this->applicationName === null
