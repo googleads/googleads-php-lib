@@ -2841,6 +2841,38 @@
             &lt;td&gt;{@code id}&lt;/td&gt;
             &lt;td&gt;{@link LiveStreamEvent#id}&lt;/td&gt;
             &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code slateCreativeId}&lt;/td&gt;
+            &lt;td&gt;{@link LiveStreamEvent#slateCreativeId}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code assetKey}&lt;/td&gt;
+            &lt;td&gt;{@link LiveStreamEvent#assetKey}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code streamCreateDaiAuthenticationKeyIds}&lt;/td&gt;
+            &lt;td&gt;{@link LiveStreamEvent#streamCreateDaiAuthenticationKeyIds}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code dynamicAdInsertionType}&lt;/td&gt;
+            &lt;td&gt;{@link LiveStreamEvent#dynamicAdInsertionType}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code streamingFormat}&lt;/td&gt;
+            &lt;td&gt;{@link LiveStreamEvent#streamingFormat}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code customAssetKey}&lt;/td&gt;
+            &lt;td&gt;{@link LiveStreamEvent#customAssetKey}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code daiEncodingProfileIds}&lt;/td&gt;
+            &lt;td&gt;{@link LiveStreamEvent#daiEncodingProfileIds}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code segmentUrlAuthenticationKeyIds}&lt;/td&gt;
+            &lt;td&gt;{@link LiveStreamEvent#segmentUrlAuthenticationKeyIds}&lt;/td&gt;
+            &lt;/tr&gt;
             &lt;/table&gt;
             
             @param filterStatement a Publisher Query Language statement to filter a
@@ -2953,8 +2985,9 @@
     <wsdl:documentation>
       Provides methods for creating, updating and retrieving {@link LiveStreamEvent} objects.
       
-      &lt;p&gt;This feature is not yet openly available for DFP Video publishers. Publishers will need to
-      apply for access for this feature through their account managers.
+      &lt;p&gt;This feature is only available for Ad Manager 360 networks.
+      Publishers will need to be activated through the &lt;b&gt;Video &gt; Live streams&lt;/b&gt;
+      tab in the Ad Manager UI. For access, apply through your account manager.
     </wsdl:documentation>
     <wsdl:operation name="createLiveStreamEvents">
       <wsdl:documentation>
@@ -2989,6 +3022,38 @@
         &lt;tr&gt;
         &lt;td&gt;{@code id}&lt;/td&gt;
         &lt;td&gt;{@link LiveStreamEvent#id}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code slateCreativeId}&lt;/td&gt;
+        &lt;td&gt;{@link LiveStreamEvent#slateCreativeId}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code assetKey}&lt;/td&gt;
+        &lt;td&gt;{@link LiveStreamEvent#assetKey}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code streamCreateDaiAuthenticationKeyIds}&lt;/td&gt;
+        &lt;td&gt;{@link LiveStreamEvent#streamCreateDaiAuthenticationKeyIds}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code dynamicAdInsertionType}&lt;/td&gt;
+        &lt;td&gt;{@link LiveStreamEvent#dynamicAdInsertionType}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code streamingFormat}&lt;/td&gt;
+        &lt;td&gt;{@link LiveStreamEvent#streamingFormat}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code customAssetKey}&lt;/td&gt;
+        &lt;td&gt;{@link LiveStreamEvent#customAssetKey}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code daiEncodingProfileIds}&lt;/td&gt;
+        &lt;td&gt;{@link LiveStreamEvent#daiEncodingProfileIds}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code segmentUrlAuthenticationKeyIds}&lt;/td&gt;
+        &lt;td&gt;{@link LiveStreamEvent#segmentUrlAuthenticationKeyIds}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;/table&gt;
         

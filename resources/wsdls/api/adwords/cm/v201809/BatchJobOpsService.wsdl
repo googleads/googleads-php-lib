@@ -2771,7 +2771,6 @@
               <documentation>
                 Stores information specific to Universal App Campaigns.
                 &lt;span class="constraint CampaignType"&gt;This field may only be set for campaign channel type MULTI_CHANNEL.&lt;/span&gt;
-&lt;span class="constraint CampaignType"&gt;This field may not be set.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -6323,7 +6322,6 @@
                     the bid strategy may not be able to spend the full budget. If the target ROAS is not set, the
                     bid strategy will aim to achieve the highest possible ROAS for the budget. Use {@code 0.0} to
                     clear an existing value.
-                    &lt;span class="constraint CampaignType"&gt;This field may not be set.&lt;/span&gt;
                     &lt;span class="constraint InRange"&gt;This field must be between 0.01 and 1000.0, inclusive.&lt;/span&gt;
                   </documentation>
                 </annotation>
@@ -9716,7 +9714,7 @@
                     Image displayed in the expanded view of the Showcase shopping ad.
                     &lt;p&gt;The format of the image must be either JPEG or PNG and the size of the image must be
                     1080x566 px.
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                    &lt;p&gt;Expanded image is deprecated and will be ignored if set.
                   </documentation>
                 </annotation>
               </element>
@@ -15044,7 +15042,6 @@
             <annotation>
               <documentation>
                 Games
-                &lt;span class="constraint CampaignType"&gt;This field may not be set.&lt;/span&gt;
               </documentation>
             </annotation>
           </enumeration>

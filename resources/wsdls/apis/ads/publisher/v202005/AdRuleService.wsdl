@@ -532,7 +532,7 @@
                 The set of line item types that may appear in the ad spot. This field is optional and defaults
                 to an empty set, which means that all types are allowed.
                 
-                &lt;p&gt;Note, backfill reservation types are controlled via the {@code bacfillBlocked} field.
+                &lt;p&gt;Note, backfill reservation types are controlled via the {@code backfillBlocked} field.
               </documentation>
             </annotation>
           </element>

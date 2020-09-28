@@ -19,9 +19,12 @@ namespace Google\AdsApi\AdManager;
 
 use Google\AdsApi\Common\Configuration;
 use Google\Auth\FetchAuthTokenInterface;
+use InvalidArgumentException;
 use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
+use PHPUnit\Framework\Error\Warning;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
 
@@ -35,10 +38,13 @@ class AdManagerSessionBuilderTest extends TestCase
 {
 
     private $adManagerSessionBuilder;
+    /**
+     * @var FetchAuthTokenInterface $fetchAuthTokenInterfaceMock
+     */
     private $fetchAuthTokenInterfaceMock;
 
     /**
-     * @see PHPUnit\Framework\TestCase::setUp
+     * @see \PHPUnit\Framework\TestCase::setUp
      */
     protected function setUp()
     {
@@ -49,7 +55,7 @@ class AdManagerSessionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\AdManagerSessionBuilder::from
+     * @covers \Google\AdsApi\AdManager\AdManagerSessionBuilder::from
      */
     public function testBuildFrom()
     {
@@ -60,6 +66,7 @@ class AdManagerSessionBuilderTest extends TestCase
             ['soapLogFilePath', 'LOGGING', '/dev/null'],
             ['soapLogLevel', 'LOGGING', 'DEBUG']
         ];
+        /** @var Configuration|MockObject $configurationMock */
         $configurationMock = $this->getMockBuilder(Configuration::class)
             ->disableOriginalConstructor()->getMock();
         $configurationMock->expects($this->any())->method('getConfiguration')
@@ -91,7 +98,7 @@ class AdManagerSessionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\AdManagerSessionBuilder::from
+     * @covers \Google\AdsApi\AdManager\AdManagerSessionBuilder::from
      */
     public function testBuildFromDefaults()
     {
@@ -99,6 +106,7 @@ class AdManagerSessionBuilderTest extends TestCase
             ['networkCode', 'AD_MANAGER', '12345678'],
             ['applicationName', 'AD_MANAGER', 'google report runner']
         ];
+        /** @var Configuration|MockObject $configurationMock */
         $configurationMock = $this->getMockBuilder(Configuration::class)
             ->disableOriginalConstructor()->getMock();
         $configurationMock->expects($this->any())->method('getConfiguration')
@@ -120,7 +128,7 @@ class AdManagerSessionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\AdManagerSessionBuilder::from
+     * @covers \Google\AdsApi\AdManager\AdManagerSessionBuilder::from
      */
     public function testBuildFromWithCustomLogger()
     {
@@ -128,6 +136,7 @@ class AdManagerSessionBuilderTest extends TestCase
             ['networkCode', 'AD_MANAGER', '12345678'],
             ['applicationName', 'AD_MANAGER', 'google report runner']
         ];
+        /** @var Configuration|MockObject $configurationMock */
         $configurationMock = $this->getMockBuilder(Configuration::class)
             ->disableOriginalConstructor()->getMock();
         $configurationMock->expects($this->any())->method('getConfiguration')
@@ -150,11 +159,11 @@ class AdManagerSessionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\AdManagerSessionBuilder::build
-     * @expectedException InvalidArgumentException
+     * @covers \Google\AdsApi\AdManager\AdManagerSessionBuilder::build
      */
     public function testBuildFailsWithoutNetworkCode()
     {
+        $this->expectException(Warning::class);
         $this->adManagerSessionBuilder
             ->withApplicationName('Google report runner')
             ->withOAuth2Credential($this->fetchAuthTokenInterfaceMock)
@@ -162,22 +171,22 @@ class AdManagerSessionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\AdManagerSessionBuilder::build
-     * @expectedException InvalidArgumentException
+     * @covers \Google\AdsApi\AdManager\AdManagerSessionBuilder::build
      */
     public function testBuildFailsWithoutApplicationName()
     {
+        $this->expectException(InvalidArgumentException::class);
         $this->adManagerSessionBuilder->withNetworkCode('12345678')
             ->withOAuth2Credential($this->fetchAuthTokenInterfaceMock)
             ->build();
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\AdManagerSessionBuilder::build
-     * @expectedException InvalidArgumentException
+     * @covers \Google\AdsApi\AdManager\AdManagerSessionBuilder::build
      */
     public function testBuildFailsWithDefaultApplicationName()
     {
+        $this->expectException(InvalidArgumentException::class);
         $this->adManagerSessionBuilder->withNetworkCode('12345678')
             ->withApplicationName(
                 AdManagerSessionBuilder::DEFAULT_APPLICATION_NAME
@@ -187,11 +196,11 @@ class AdManagerSessionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\AdManagerSessionBuilder::build
-     * @expectedException InvalidArgumentException
+     * @covers \Google\AdsApi\AdManager\AdManagerSessionBuilder::build
      */
     public function testBuildFailsWithInvalidEndpointUrl()
     {
+        $this->expectException(InvalidArgumentException::class);
         $this->adManagerSessionBuilder->withNetworkCode('12345678')
             ->withApplicationName('Google report runner')->withEndpoint(
                 'abcxyz'
@@ -200,17 +209,17 @@ class AdManagerSessionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\AdManagerSessionBuilder::build
-     * @expectedException InvalidArgumentException
+     * @covers \Google\AdsApi\AdManager\AdManagerSessionBuilder::build
      */
     public function testBuildFailsWithoutOAuth2Credential()
     {
+        $this->expectException(InvalidArgumentException::class);
         $this->adManagerSessionBuilder->withNetworkCode('12345678')
             ->withApplicationName('Google report runner')->build();
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\AdManagerSessionBuilder::build
+     * @covers \Google\AdsApi\AdManager\AdManagerSessionBuilder::build
      */
     public function testBuild()
     {
@@ -233,7 +242,7 @@ class AdManagerSessionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\AdManagerSessionBuilder::build
+     * @covers \Google\AdsApi\AdManager\AdManagerSessionBuilder::build
      */
     public function testBuildDefaults()
     {

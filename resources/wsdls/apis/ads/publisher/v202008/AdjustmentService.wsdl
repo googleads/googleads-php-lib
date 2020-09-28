@@ -2633,7 +2633,7 @@
             name="forecastAdjustmentCount" type="xsd:int">
             <annotation>
               <documentation>
-                The number of forecast adjustments associated with the TrafficForecastSegment.
+                The number of active forecast adjustments associated with the TrafficForecastSegment.
                 This attribute is read-only.
               </documentation>
             </annotation>

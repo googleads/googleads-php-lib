@@ -3996,7 +3996,7 @@
                     Image displayed in the expanded view of the Showcase shopping ad.
                     &lt;p&gt;The format of the image must be either JPEG or PNG and the size of the image must be
                     1080x566 px.
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
+                    &lt;p&gt;Expanded image is deprecated and will be ignored if set.
                   </documentation>
                 </annotation>
               </element>

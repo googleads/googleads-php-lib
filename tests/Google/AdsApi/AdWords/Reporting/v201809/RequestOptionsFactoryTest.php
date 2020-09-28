@@ -425,5 +425,4 @@ class RequestOptionsFactoryTest extends TestCase
 
         return implode(', ', $guzzleInfoTokens);
     }
-
 }

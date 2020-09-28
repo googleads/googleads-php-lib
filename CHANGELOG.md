@@ -1,3 +1,20 @@
+### 49.0.0
+
+##### AdWords
+
+*   No changes.
+
+##### Ad Manager
+
+*   Fixed [issue #675](https://github.com/googleads/googleads-php-lib/issues/675)
+by replacing an exception with a warning when network code is missing from the
+adsapi_php.ini file.
+
+##### Common
+
+*   Fixed [issue #679](https://github.com/googleads/googleads-php-lib/issues/679)
+by updating `guzzlehttp/guzzle` to version 7.
+
 ### 48.0.0
 
 ##### AdWords

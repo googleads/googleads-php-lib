@@ -4463,9 +4463,6 @@
                 This will report on the last 93 days for the following columns: {@link
                 Column#UNIQUE_REACH_IMPRESSIONS}, {@link Column#UNIQUE_REACH_FREQUENCY}, and {@link
                 Column#UNIQUE_REACH}.
-                
-                This will report on the last 63 days for the following columns: {@link
-                Column#REACH_FREQUENCY}, {@link Column#REACH_AVERAGE_REVENUE} and {@link Column#REACH}.
               </documentation>
             </annotation>
           </enumeration>

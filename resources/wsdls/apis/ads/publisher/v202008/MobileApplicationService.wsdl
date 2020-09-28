@@ -428,14 +428,6 @@
               </documentation>
             </annotation>
           </element>
-          <element maxOccurs="unbounded" minOccurs="0" name="appStores" type="tns:MobileApplicationStore">
-            <annotation>
-              <documentation>
-                The app stores the mobile application belongs to. This attribute is required for creation and
-                is mutable to allow for third party app store linking.
-              </documentation>
-            </annotation>
-          </element>
           <element maxOccurs="1" minOccurs="0" name="isArchived" type="xsd:boolean">
             <annotation>
               <documentation>
@@ -1342,7 +1334,6 @@
           <enumeration value="PLAYSTATION"/>
           <enumeration value="XBOX"/>
           <enumeration value="SAMSUNG_TV"/>
-          <enumeration value="AMAZON"/>
         </restriction>
       </simpleType>
       <simpleType name="NotNullError.Reason">

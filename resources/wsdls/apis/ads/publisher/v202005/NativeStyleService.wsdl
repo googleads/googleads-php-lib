@@ -3813,32 +3813,10 @@
           </documentation>
         </annotation>
         <restriction base="xsd:string">
-          <enumeration value="UNRECOGNIZED_PLACEHOLDER">
-            <annotation>
-              <documentation>
-                The snippet of the native style contains a placeholder which is not defined as a variable
-                on the creative template of this native style.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="NATIVE_CREATIVE_TEMPLATE_REQUIRED">
-            <annotation>
-              <documentation>
-                Native styles can only be created under native creative templates.
-              </documentation>
-            </annotation>
-          </enumeration>
           <enumeration value="ACTIVE_CREATIVE_TEMPLATE_REQUIRED">
             <annotation>
               <documentation>
                 Native styles can only be created under active creative templates.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="UNIQUE_SNIPPET_REQUIRED">
-            <annotation>
-              <documentation>
-                Native styles must have an HTML snippet.
               </documentation>
             </annotation>
           </enumeration>
@@ -3850,10 +3828,10 @@
               </documentation>
             </annotation>
           </enumeration>
-          <enumeration value="TOO_MANY_CUSTOM_TARGETING_KEY_VALUES">
+          <enumeration value="INVALID_INVENTORY_TARTGETING_TYPE">
             <annotation>
               <documentation>
-                Targeting expressions on native styles can have a maximum of 20 key-value pairs.
+                Native styles only allows inclusion of inventory units.
               </documentation>
             </annotation>
           </enumeration>
@@ -3865,10 +3843,24 @@
               </documentation>
             </annotation>
           </enumeration>
-          <enumeration value="INVALID_INVENTORY_TARTGETING_TYPE">
+          <enumeration value="NATIVE_CREATIVE_TEMPLATE_REQUIRED">
             <annotation>
               <documentation>
-                Native styles only allows inclusion of inventory units.
+                Native styles can only be created under native creative templates.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TOO_MANY_CUSTOM_TARGETING_KEY_VALUES">
+            <annotation>
+              <documentation>
+                Targeting expressions on native styles can have a maximum of 20 key-value pairs.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNIQUE_SNIPPET_REQUIRED">
+            <annotation>
+              <documentation>
+                Native styles must have an HTML snippet.
               </documentation>
             </annotation>
           </enumeration>
@@ -3876,6 +3868,14 @@
             <annotation>
               <documentation>
                 The macro referenced in the snippet is not valid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNRECOGNIZED_PLACEHOLDER">
+            <annotation>
+              <documentation>
+                The snippet of the native style contains a placeholder which is not defined as a variable
+                on the creative template of this native style.
               </documentation>
             </annotation>
           </enumeration>
