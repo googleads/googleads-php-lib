@@ -118,7 +118,7 @@ final class AdsHeaderFormatter
 
     private function formatGuzzleInfo()
     {
-        $guzzleInfoTokens = ['GuzzleHttp/6'];
+        $guzzleInfoTokens = ['GuzzleHttp/' . ClientInterface::MAJOR_VERSION];
         if (extension_loaded('curl') && function_exists('curl_version')) {
             $guzzleInfoTokens[] = 'curl/' . \curl_version()['version'];
         }
