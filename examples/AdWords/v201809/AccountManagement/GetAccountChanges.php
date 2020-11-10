@@ -74,8 +74,8 @@ class GetAccountChanges
 
         // Set the date time range, from 24 hours ago until now.
         $dateTimeRange = new DateTimeRange();
-        $dateTimeRange->setMin(date('Ymd his', strtotime('-1 day')));
-        $dateTimeRange->setMax(date('Ymd his'));
+        $dateTimeRange->setMin(date('Ymd His T', strtotime('-1 day')));
+        $dateTimeRange->setMax(date('Ymd His T'));
 
         // Create selector.
         $selector = new CustomerSyncSelector();
