@@ -2623,9 +2623,9 @@
           <element maxOccurs="1" minOccurs="0" name="targeting" type="tns:Targeting">
             <annotation>
               <documentation>
-                The targeting that defines a segment of traffic.
-                
-                &lt;p&gt;This field is required for segment creation and then read-only thereafter.
+                The targeting that defines a segment of traffic. Targeting cannot be changed after segment
+                creation.
+                &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>

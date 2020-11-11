@@ -131,6 +131,38 @@ class LiveStreamEventService extends \Google\AdsApi\Common\AdsSoapClient
      * <td>{@code id}</td>
      * <td>{@link LiveStreamEvent#id}</td>
      * </tr>
+     * <tr>
+     * <td>{@code slateCreativeId}</td>
+     * <td>{@link LiveStreamEvent#slateCreativeId}</td>
+     * </tr>
+     * <tr>
+     * <td>{@code assetKey}</td>
+     * <td>{@link LiveStreamEvent#assetKey}</td>
+     * </tr>
+     * <tr>
+     * <td>{@code streamCreateDaiAuthenticationKeyIds}</td>
+     * <td>{@link LiveStreamEvent#streamCreateDaiAuthenticationKeyIds}</td>
+     * </tr>
+     * <tr>
+     * <td>{@code dynamicAdInsertionType}</td>
+     * <td>{@link LiveStreamEvent#dynamicAdInsertionType}</td>
+     * </tr>
+     * <tr>
+     * <td>{@code streamingFormat}</td>
+     * <td>{@link LiveStreamEvent#streamingFormat}</td>
+     * </tr>
+     * <tr>
+     * <td>{@code customAssetKey}</td>
+     * <td>{@link LiveStreamEvent#customAssetKey}</td>
+     * </tr>
+     * <tr>
+     * <td>{@code daiEncodingProfileIds}</td>
+     * <td>{@link LiveStreamEvent#daiEncodingProfileIds}</td>
+     * </tr>
+     * <tr>
+     * <td>{@code segmentUrlAuthenticationKeyIds}</td>
+     * <td>{@link LiveStreamEvent#segmentUrlAuthenticationKeyIds}</td>
+     * </tr>
      * </table>
      *
      * list of live stream events

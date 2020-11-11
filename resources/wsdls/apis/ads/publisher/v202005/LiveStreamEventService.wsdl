@@ -716,9 +716,9 @@
             name="enableWhitelistedIps" type="xsd:boolean">
             <annotation>
               <documentation>
-                Whether specific whitelisted IP addresses should be used to access this live stream. This field
+                Whether specific allowlisted IP addresses should be used to access this live stream. This field
                 is optional and will default to false. To set this field a network needs to have the "Video
-                live whitelisted IPS enabled" feature enabled. Modifying this field for an active live stream
+                live allowlisted IPS enabled" feature enabled. Modifying this field for an active live stream
                 can impact traffic.
               </documentation>
             </annotation>

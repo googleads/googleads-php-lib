@@ -1,3 +1,20 @@
+### 50.0.0
+
+##### AdWords
+
+*   Fixed the date time format in example `GetAccountChanges.php` for v201809.
+
+##### Ad Manager
+
+*   Added support for v202011.
+*   Added new examples for v202011: `GetTrafficData` and `GetDefaultThirdPartyDataDeclaration`.
+*   Removed support for v201911.
+*   Removed examples for v202002.
+
+##### Common
+
+*   No changes.
+
 ### 49.0.0
 
 ##### AdWords

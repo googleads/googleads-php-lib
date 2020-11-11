@@ -30,11 +30,6 @@ class MobileApplication
     protected $appStore = null;
 
     /**
-     * @var string[] $appStores
-     */
-    protected $appStores = null;
-
-    /**
      * @var boolean $isArchived
      */
     protected $isArchived = null;
@@ -69,7 +64,6 @@ class MobileApplication
      * @param string $displayName
      * @param string $appStoreId
      * @param string $appStore
-     * @param string[] $appStores
      * @param boolean $isArchived
      * @param string $appStoreName
      * @param string $developerName
@@ -77,13 +71,12 @@ class MobileApplication
      * @param boolean $isFree
      * @param string $downloadUrl
      */
-    public function __construct($id = null, $displayName = null, $appStoreId = null, $appStore = null, array $appStores = null, $isArchived = null, $appStoreName = null, $developerName = null, $platform = null, $isFree = null, $downloadUrl = null)
+    public function __construct($id = null, $displayName = null, $appStoreId = null, $appStore = null, $isArchived = null, $appStoreName = null, $developerName = null, $platform = null, $isFree = null, $downloadUrl = null)
     {
       $this->id = $id;
       $this->displayName = $displayName;
       $this->appStoreId = $appStoreId;
       $this->appStore = $appStore;
-      $this->appStores = $appStores;
       $this->isArchived = $isArchived;
       $this->appStoreName = $appStoreName;
       $this->developerName = $developerName;
@@ -162,24 +155,6 @@ class MobileApplication
     public function setAppStore($appStore)
     {
       $this->appStore = $appStore;
-      return $this;
-    }
-
-    /**
-     * @return string[]
-     */
-    public function getAppStores()
-    {
-      return $this->appStores;
-    }
-
-    /**
-     * @param string[]|null $appStores
-     * @return \Google\AdsApi\AdManager\v202008\MobileApplication
-     */
-    public function setAppStores(array $appStores = null)
-    {
-      $this->appStores = $appStores;
       return $this;
     }
 

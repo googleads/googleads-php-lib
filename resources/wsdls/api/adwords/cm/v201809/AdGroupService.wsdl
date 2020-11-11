@@ -87,7 +87,6 @@
                 use one of {@link Predicate.Operator#CONTAINS_ALL}, {@link Predicate.Operator#CONTAINS_ANY},
                 {@link Predicate.Operator#CONTAINS_NONE} operators with a list of {@link Label} ids.
                 &lt;span class="constraint Selectable"&gt;This field can be selected using the value "Labels".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
-                &lt;span class="constraint CampaignType"&gt;This field may not be set for campaign channel subtype UNIVERSAL_APP_CAMPAIGN.&lt;/span&gt;
                 &lt;span class="constraint ReadOnly"&gt;This field is read only and will be ignored when sent to the API for the following {@link Operator}s: REMOVE and SET.&lt;/span&gt;
               </documentation>
             </annotation>
@@ -3189,15 +3188,15 @@
           <enumeration value="CONVERSION_TRACKING_NOT_ENABLED">
             <annotation>
               <documentation>
-                Conversion tracking is not enabled in the campaign that has YouTube
-                Video Builder transitions.
+                Conversion tracking is not enabled in the campaign that has value-based
+                bidding transitions.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="NOT_ENOUGH_CONVERSIONS">
             <annotation>
               <documentation>
-                Not enough conversions tracked for YouTube Video Builder transitions.
+                Not enough conversions tracked for value-based bidding transitions.
               </documentation>
             </annotation>
           </enumeration>
