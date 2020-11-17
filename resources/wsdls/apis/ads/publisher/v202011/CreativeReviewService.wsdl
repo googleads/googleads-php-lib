@@ -395,6 +395,7 @@
           <enumeration value="MISSING_AUTHENTICATION_HTTP_HEADER"/>
           <enumeration value="MISSING_AUTHENTICATION"/>
           <enumeration value="NOT_WHITELISTED_FOR_API_ACCESS"/>
+          <enumeration value="NETWORK_API_ACCESS_DISABLED"/>
           <enumeration value="NO_NETWORKS_TO_ACCESS"/>
           <enumeration value="NETWORK_NOT_FOUND"/>
           <enumeration value="NETWORK_CODE_REQUIRED"/>

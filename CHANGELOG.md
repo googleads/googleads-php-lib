@@ -1,3 +1,17 @@
+### 50.0.1
+
+##### AdWords
+
+*   Fixed [issue #684](https://github.com/googleads/googleads-php-lib/issues/684).
+
+##### Ad Manager
+
+*   No changes.
+
+##### Common
+
+*   No changes.
+
 ### 50.0.0
 
 ##### AdWords
@@ -77,7 +91,7 @@ by updating `guzzlehttp/guzzle` to version 7.
 ##### AdWords
 
 *   Updated the composer.json and composer.lock files of Laravel sample
-    application to fix the repoted security issue.
+    application to fix the reported security issue.
 
 ##### Ad Manager
 
