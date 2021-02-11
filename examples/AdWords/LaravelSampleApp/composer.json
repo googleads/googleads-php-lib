@@ -7,7 +7,7 @@
     "type": "project",
     "require": {
         "php": ">=7.2",
-        "laravel/framework": "^6.20",
+        "laravel/framework": "^6.20.14",
         "symfony/http-foundation": "^4.4.7",
         "fideloper/proxy": "^4.0",
         "laravel/tinker": "^1.0",
