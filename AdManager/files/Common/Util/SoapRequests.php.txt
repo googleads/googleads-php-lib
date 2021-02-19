@@ -35,11 +35,14 @@ final class SoapRequests
      * If replacement fails in any way, return the original request so any
      * issues bubble up.
      *
-     * @param string $request
+     * @param string|null $request
      * @return string the request SOAP XML string with references replaced
      */
-    public static function replaceReferences($request)
+    public static function replaceReferences(?string $request)
     {
+        if (empty($request)) {
+            return $request;
+        }
         $requestDom = new DOMDocument();
         try {
             set_error_handler([self::class, 'handleLoadXmlWarnings']);
