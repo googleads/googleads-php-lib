@@ -30,9 +30,9 @@ class AdsUtilityRegistryTest extends TestCase
     private $adsUtilityRegistry;
 
   /**
-   * @see PHPUnit\Framework\TestCase::setUp
+   * @see \PHPUnit\Framework\TestCase::setUp
    */
-    public function setUp()
+    public function setUp(): void
     {
         $this->adsUtilityRegistry = AdsUtilityRegistry::getInstance();
         $this->adsUtilityRegistry->popAllUtilities();
@@ -43,8 +43,8 @@ class AdsUtilityRegistryTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\AdsUtilityRegistry::addUtility
-   * @covers Google\AdsApi\Common\AdsUtilityRegistry::popAllUtilities
+   * @covers \Google\AdsApi\Common\AdsUtilityRegistry::addUtility
+   * @covers \Google\AdsApi\Common\AdsUtilityRegistry::popAllUtilities
    */
     public function testAddAndPopRegisteredUtilities()
     {

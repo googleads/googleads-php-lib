@@ -33,12 +33,13 @@ use Google\AdsApi\AdManager\v202011\Targeting;
 use Google\AdsApi\AdManager\v202011\TargetingValue;
 use Google\AdsApi\AdManager\v202011\TextValue;
 use Google\AdsApi\AdManager\v202011\Value;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Tests for `Pql`.
  *
- * @see Pql
+ * @see \Pql
  * @small
  */
 class PqlTest extends TestCase
@@ -70,9 +71,9 @@ class PqlTest extends TestCase
     private $targeting1;
 
     /**
-     * @see PHPUnit\Framework\TestCase::setUp
+     * @see \PHPUnit\Framework\TestCase::setUp
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->column1 = new ColumnType('Id');
         $this->column2 = new ColumnType('Name');
@@ -110,7 +111,7 @@ class PqlTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202011\Pql::createValue
+     * @covers \Google\AdsApi\AdManager\Util\v202011\Pql::createValue
      */
     public function testCreateValue()
     {
@@ -152,28 +153,27 @@ class PqlTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202011\Pql::createValue
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Unsupported value type
-     *     [Google\AdsApi\AdManager\Util\v202011\MyObject]
+     * @covers \Google\AdsApi\AdManager\Util\v202011\Pql::createValue
      */
     public function testCreateValueWithInvalidTypeThrowsException()
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Unsupported value type [Google\\AdsApi\\AdManager\\Util\\v202011\\MyObject]");
         Pql::createValue(new MyObject());
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202011\Pql::createValue
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Unsupported value type [NULL]
+     * @covers \Google\AdsApi\AdManager\Util\v202011\Pql::createValue
      */
     public function testCreateValueWithNullThrowsException()
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Unsupported value type [NULL]");
         Pql::createValue(null);
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202011\Pql::toString
+     * @covers \Google\AdsApi\AdManager\Util\v202011\Pql::toString
      */
     public function testToString()
     {
@@ -189,27 +189,26 @@ class PqlTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202011\Pql::toString
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage Unsupported value type
-     *     [Google\AdsApi\AdManager\Util\v202011\MyValue]
+     * @covers \Google\AdsApi\AdManager\Util\v202011\Pql::toString
      */
     public function testToStringWithUnsupportedValueTypeThrowsException()
     {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage("Unsupported value type [Google\\AdsApi\\AdManager\\Util\\v202011\\MyValue]");
         Pql::toString(new MyValue());
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202011\Pql::toString
-     * @expectedException InvalidArgumentException
+     * @covers \Google\AdsApi\AdManager\Util\v202011\Pql::toString
      */
     public function testToStringWithTargetingValueTypeThrowsException()
     {
+        $this->expectException(InvalidArgumentException::class);
         Pql::toString(new TargetingValue());
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202011\Pql::getColumnLabels
+     * @covers \Google\AdsApi\AdManager\Util\v202011\Pql::getColumnLabels
      */
     public function testGetColumnLabels()
     {
@@ -227,7 +226,7 @@ class PqlTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202011\Pql::getRowStringValues
+     * @covers \Google\AdsApi\AdManager\Util\v202011\Pql::getRowStringValues
      */
     public function testGetRowStringValues()
     {
@@ -245,7 +244,7 @@ class PqlTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202011\Pql::combineResultSets
+     * @covers \Google\AdsApi\AdManager\Util\v202011\Pql::combineResultSets
      */
     public function testCombineResultSet()
     {
@@ -390,11 +389,11 @@ class PqlTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202011\Pql::combineResultSets
-     * @expectedException InvalidArgumentException
+     * @covers \Google\AdsApi\AdManager\Util\v202011\Pql::combineResultSets
      */
     public function testCombineResultSetWithBadColumnsThrowsException()
     {
+        $this->expectException(InvalidArgumentException::class);
         $row1 = new Row(
             [
                 $this->textValue1,

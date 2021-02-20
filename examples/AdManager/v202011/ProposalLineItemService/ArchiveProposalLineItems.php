@@ -41,7 +41,7 @@ class ArchiveProposalLineItems
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $proposalLineItemId
+        int $proposalLineItemId
     ) {
         $proposalLineItemService =
             $serviceFactory->createProposalLineItemService($session);

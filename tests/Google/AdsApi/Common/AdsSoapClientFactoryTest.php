@@ -29,7 +29,7 @@ class AdsSoapClientFactoryTest extends TestCase
 {
 
   /**
-   * @covers Google\AdsApi\Common\AdsSoapClientFactory::generateSoapClient
+   * @covers \Google\AdsApi\Common\AdsSoapClientFactory::generateSoapClient
    */
     public function testGenerateSoapClientWithEndpointOverride()
     {

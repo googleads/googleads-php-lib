@@ -30,12 +30,12 @@ class ServiceQueryWhereBuilderTest extends TestCase
 {
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::createWithField
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage field name
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::createWithField
      */
     public function testCreateWithFieldAsNull()
     {
+        $this->expectExceptionMessage("field name");
+        $this->expectException(InvalidArgumentException::class);
         ServiceQueryWhereBuilder::createWithField(
             null,
             new ServiceQueryBuilder()
@@ -43,12 +43,12 @@ class ServiceQueryWhereBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::createWithField
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage field name
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::createWithField
      */
     public function testCreateWithFieldAsEmptyString()
     {
+        $this->expectExceptionMessage("field name");
+        $this->expectException(InvalidArgumentException::class);
         ServiceQueryWhereBuilder::createWithField(
             '',
             new ServiceQueryBuilder()
@@ -56,9 +56,9 @@ class ServiceQueryWhereBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::createWithField
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::__construct
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::buildWhere
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::createWithField
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::__construct
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::buildWhere
      */
     public function testCreateWithField()
     {
@@ -73,10 +73,10 @@ class ServiceQueryWhereBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::createWithField
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::copyFrom
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::__construct
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::buildWhere
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::createWithField
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::copyFrom
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::__construct
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::buildWhere
      */
     public function testCopyFromShouldCopyPartialExpressions()
     {
@@ -96,10 +96,10 @@ class ServiceQueryWhereBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::createWithField
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::copyFrom
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::__construct
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::buildWhere
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::createWithField
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::copyFrom
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::__construct
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::buildWhere
      */
     public function testCopyFromShouldCopyCompleteExpressions()
     {
@@ -119,10 +119,10 @@ class ServiceQueryWhereBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::createWithField
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::copyFrom
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::__construct
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::buildWhere
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::createWithField
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::copyFrom
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::__construct
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::buildWhere
      */
     public function testCopyFromShouldOverwritePreviousExpression()
     {
@@ -143,10 +143,10 @@ class ServiceQueryWhereBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::createWithField
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::copyFrom
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::__construct
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::buildWhere
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::createWithField
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::copyFrom
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::__construct
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryWhereBuilder::buildWhere
      */
     public function testCopyFromShouldNotShareQueryBuilder()
     {

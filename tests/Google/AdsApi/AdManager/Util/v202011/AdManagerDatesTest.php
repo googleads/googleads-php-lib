@@ -38,9 +38,9 @@ class AdManagerDatesTest extends TestCase
     private $stringDate3;
 
     /**
-     * @see PHPUnit\Framework\TestCase::setUp
+     * @see \PHPUnit\Framework\TestCase::setUp
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->stringDate1 = '1983-06-02';
         $this->stringDate2 = '2014-12-31';
@@ -52,7 +52,7 @@ class AdManagerDatesTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202011\AdManagerDates::toDateString
+     * @covers \Google\AdsApi\AdManager\Util\v202011\AdManagerDates::toDateString
      */
     public function testToDateString()
     {

@@ -41,8 +41,8 @@ class CreateLicas
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $lineItemId,
-        $creativeId
+        int $lineItemId,
+        int $creativeId
     ) {
         $licaService =
             $serviceFactory->createLineItemCreativeAssociationService($session);

@@ -72,11 +72,11 @@ class CreateVideoLineItems
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $orderId,
-        $adUnitId,
-        $contentId,
-        $contentBundleId,
-        $cmsMetadataValueId
+        int $orderId,
+        int $adUnitId,
+        int $contentId,
+        int $contentBundleId,
+        int $cmsMetadataValueId
     ) {
         $lineItemService = $serviceFactory->createLineItemService($session);
 

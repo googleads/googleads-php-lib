@@ -45,7 +45,7 @@ class CreateForecastAdjustments
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $trafficForecastSegmentId
+        int $trafficForecastSegmentId
     ) {
         $adjustment = new ForecastAdjustment();
 

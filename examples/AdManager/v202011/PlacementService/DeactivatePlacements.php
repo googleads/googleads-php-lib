@@ -41,7 +41,7 @@ class DeactivatePlacements
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $placementId
+        int $placementId
     ) {
         $placementService = $serviceFactory->createPlacementService($session);
 

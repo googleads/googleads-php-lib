@@ -35,9 +35,9 @@ class ReportDownloadResultDelegateTest extends TestCase
     private $reportDownloadResultDelegate;
 
     /**
-     * @see PHPUnit\Framework\TestCase::setUp
+     * @see \PHPUnit\Framework\TestCase::setUp
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->fakeReport =
             ReportDownloadResultTestProvider::getFakeCampaignReport();
@@ -47,7 +47,7 @@ class ReportDownloadResultDelegateTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Reporting\ReportDownloadResultDelegate::getStream
+     * @covers \Google\AdsApi\AdWords\Reporting\ReportDownloadResultDelegate::getStream
      */
     public function testGetStream()
     {
@@ -61,7 +61,7 @@ class ReportDownloadResultDelegateTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Reporting\ReportDownloadResultDelegate::getAsString
+     * @covers \Google\AdsApi\AdWords\Reporting\ReportDownloadResultDelegate::getAsString
      */
     public function testGetAsString()
     {
@@ -70,18 +70,18 @@ class ReportDownloadResultDelegateTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Reporting\ReportDownloadResultDelegate::getAsString
-     * @expectedException RuntimeException
+     * @covers \Google\AdsApi\AdWords\Reporting\ReportDownloadResultDelegate::getAsString
      */
     public function testGetAsStringTwiceThrowsException()
     {
+        $this->expectException(RuntimeException::class);
         $this->reportDownloadResultDelegate->getAsString();
         // Consuming the result stream twice should throw RuntimeException.
         $this->reportDownloadResultDelegate->getAsString();
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Reporting\ReportDownloadResultDelegate::saveToFile
+     * @covers \Google\AdsApi\AdWords\Reporting\ReportDownloadResultDelegate::saveToFile
      */
     public function testSaveToFile()
     {
@@ -94,11 +94,11 @@ class ReportDownloadResultDelegateTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Reporting\ReportDownloadResultDelegate::saveToFile
-     * @expectedException RuntimeException
+     * @covers \Google\AdsApi\AdWords\Reporting\ReportDownloadResultDelegate::saveToFile
      */
     public function testSaveToFileTwiceThrowsException()
     {
+        $this->expectException(RuntimeException::class);
         $filePath = sprintf(
             '%s.csv',
             tempnam(sys_get_temp_dir(), 'criteria-report-')
@@ -109,12 +109,12 @@ class ReportDownloadResultDelegateTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Reporting\ReportDownloadResultDelegate::saveToFile
-     * @covers Google\AdsApi\AdWords\Reporting\ReportDownloadResultDelegate::getAsString
-     * @expectedException RuntimeException
+     * @covers \Google\AdsApi\AdWords\Reporting\ReportDownloadResultDelegate::saveToFile
+     * @covers \Google\AdsApi\AdWords\Reporting\ReportDownloadResultDelegate::getAsString
      */
     public function testConsumeStreamTwiceByAnyMeansThrowsException()
     {
+        $this->expectException(RuntimeException::class);
         $filePath = sprintf(
             '%s.csv',
             tempnam(sys_get_temp_dir(), 'criteria-report-')

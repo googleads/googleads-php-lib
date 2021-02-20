@@ -40,9 +40,9 @@ class SoapLogMessageFormatterTest extends TestCase
     private $mutateResponseSoapXmlMock;
 
   /**
-   * @see PHPUnit\Framework\TestCase::setUp
+   * @see \PHPUnit\Framework\TestCase::setUp
    */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->soapLogMessageFormatter = new SoapLogMessageFormatter();
         $this->requestHttpHeadersMock = FakeSoapPayloadsAndLogsProvider
@@ -65,7 +65,7 @@ class SoapLogMessageFormatterTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\SoapLogMessageFormatter::formatSummary
+   * @covers \Google\AdsApi\Common\SoapLogMessageFormatter::formatSummary
    */
     public function testFormatSummary()
     {
@@ -84,7 +84,7 @@ class SoapLogMessageFormatterTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\SoapLogMessageFormatter::formatSummary
+   * @covers \Google\AdsApi\Common\SoapLogMessageFormatter::formatSummary
    */
     public function testFormatSummaryWithFault()
     {
@@ -104,7 +104,7 @@ class SoapLogMessageFormatterTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\SoapLogMessageFormatter::formatSummary
+   * @covers \Google\AdsApi\Common\SoapLogMessageFormatter::formatSummary
    */
     public function testFormatSummaryWithLongFaultIsTruncated()
     {
@@ -135,7 +135,7 @@ class SoapLogMessageFormatterTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\SoapLogMessageFormatter::formatDetailed
+   * @covers \Google\AdsApi\Common\SoapLogMessageFormatter::formatDetailed
    */
     public function testFormatDetailed()
     {
@@ -151,7 +151,7 @@ class SoapLogMessageFormatterTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\SoapLogMessageFormatter::formatDetailed
+   * @covers \Google\AdsApi\Common\SoapLogMessageFormatter::formatDetailed
    */
     public function testFormatDetailedWithScrubbing()
     {

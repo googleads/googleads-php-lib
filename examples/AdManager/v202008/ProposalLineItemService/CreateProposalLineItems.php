@@ -60,7 +60,7 @@ class CreateProposalLineItems
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $proposalId
+        int $proposalId
     ) {
         $proposalLineItemService =
             $serviceFactory->createProposalLineItemService($session);

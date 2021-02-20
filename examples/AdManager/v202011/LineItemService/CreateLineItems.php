@@ -69,8 +69,8 @@ class CreateLineItems
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $orderId,
-        $placementId
+        int $orderId,
+        int $placementId
     ) {
         $lineItemService = $serviceFactory->createLineItemService($session);
 

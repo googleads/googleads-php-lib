@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2020 Google Inc. All Rights Reserved -->
+<!-- Copyright 2021 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202008"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202008"
@@ -6987,14 +6987,13 @@
   </wsdl:message>
   <wsdl:portType name="CreativeServiceInterface">
     <wsdl:documentation>
-      Provides methods for adding, updating and retrieving {@link Creative}
-      objects.
+      Provides methods for adding, updating and retrieving {@link Creative} objects.
       
-      &lt;p&gt;For a creative to run, it must be associated with a {@link LineItem}
-      managed by the {@link LineItemCreativeAssociationService}.&lt;/p&gt;
+      &lt;p&gt;For a creative to run, it must be associated with a {@link LineItem} managed by the {@link
+      LineItemCreativeAssociationService}.
       
-      &lt;p&gt;Read more about creatives on the
-      &lt;a href="https://support.google.com/dfp_premium/answer/3185155"&gt;DFP Help Center&lt;/a&gt;.&lt;/p&gt;
+      &lt;p&gt;Read more about creatives on the &lt;a
+      href="https://support.google.com/dfp_premium/answer/3185155"&gt;DFP Help Center&lt;/a&gt;.
     </wsdl:documentation>
     <wsdl:operation name="createCreatives">
       <wsdl:documentation>

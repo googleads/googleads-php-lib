@@ -63,7 +63,7 @@ class GetGeoTargets
         );
         $statementBuilder->from('Geo_Target');
         $statementBuilder->where(
-            'Type = :type and CountryCode = :countryCode  and Targetable = true'
+            'Type = :type and CountryCode = :countryCode and Targetable = true'
         );
         $statementBuilder->orderBy('CountryCode ASC, Name ASC');
         $statementBuilder->offset(0);

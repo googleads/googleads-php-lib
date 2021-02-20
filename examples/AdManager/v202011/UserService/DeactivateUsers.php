@@ -41,7 +41,7 @@ class DeactivateUsers
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $userId
+        int $userId
     ) {
         $userService = $serviceFactory->createUserService($session);
 

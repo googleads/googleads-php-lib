@@ -46,9 +46,9 @@ class GuzzleLogMessageFormatterTest extends TestCase
     private $nonRedactedReportDownloadLogOfReportDefinition;
 
     /**
-     * @see PHPUnit\Framework\TestCase::setUp
+     * @see \PHPUnit\Framework\TestCase::setUp
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->reportDownloadResult =
             FakeHttpPayloadsAndLogsProvider::getFakeDownloadReportResult();
@@ -75,7 +75,7 @@ class GuzzleLogMessageFormatterTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\Common\GuzzleLogMessageFormatter::formatSummary
+     * @covers \Google\AdsApi\Common\GuzzleLogMessageFormatter::formatSummary
      */
     public function testFormatSummary()
     {
@@ -120,7 +120,7 @@ class GuzzleLogMessageFormatterTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\Common\GuzzleLogMessageFormatter::formatSummary
+     * @covers \Google\AdsApi\Common\GuzzleLogMessageFormatter::formatSummary
      */
     public function testFormatSummary_responseIsNull()
     {
@@ -165,7 +165,7 @@ class GuzzleLogMessageFormatterTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\Common\GuzzleLogMessageFormatter::formatDetailed
+     * @covers \Google\AdsApi\Common\GuzzleLogMessageFormatter::formatDetailed
      */
     public function testFormatDetailedWithAwql_redactReportData()
     {
@@ -210,7 +210,7 @@ class GuzzleLogMessageFormatterTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\Common\GuzzleLogMessageFormatter::formatDetailed
+     * @covers \Google\AdsApi\Common\GuzzleLogMessageFormatter::formatDetailed
      */
     public function testFormatDetailedWithReportDefinition_redactReportData()
     {
@@ -252,7 +252,7 @@ class GuzzleLogMessageFormatterTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\Common\GuzzleLogMessageFormatter::formatDetailed
+     * @covers \Google\AdsApi\Common\GuzzleLogMessageFormatter::formatDetailed
      */
     public function testFormatDetailedWithReportDefinition_logReportData_noSeekStream()
     {
@@ -307,7 +307,7 @@ class GuzzleLogMessageFormatterTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\Common\GuzzleLogMessageFormatter::formatDetailed
+     * @covers \Google\AdsApi\Common\GuzzleLogMessageFormatter::formatDetailed
      */
     public function testFormatDetailed_redactReportData_scrubHeaders()
     {
@@ -352,7 +352,7 @@ class GuzzleLogMessageFormatterTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\Common\GuzzleLogMessageFormatter::formatDetailed
+     * @covers \Google\AdsApi\Common\GuzzleLogMessageFormatter::formatDetailed
      */
     public function testFormatDetailed_logReportData_scrubHeaders()
     {
@@ -403,7 +403,7 @@ class GuzzleLogMessageFormatterTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\Common\GuzzleLogMessageFormatter::formatDetailed
+     * @covers \Google\AdsApi\Common\GuzzleLogMessageFormatter::formatDetailed
      */
     public function testFormatDetailed_redactReportData_withErrors()
     {
@@ -449,7 +449,7 @@ class GuzzleLogMessageFormatterTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\Common\GuzzleLogMessageFormatter::formatDetailed
+     * @covers \Google\AdsApi\Common\GuzzleLogMessageFormatter::formatDetailed
      */
     public function testFormatDetailed_logReportData_withErrors()
     {

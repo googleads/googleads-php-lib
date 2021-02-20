@@ -85,14 +85,14 @@ final class AdManagerSessionBuilder implements AdsBuilder
      *
      * @see AdsBuilder::DEFAULT_CONFIGURATION_FILENAME
      *
-     * @param string $path the filepath
+     * @param string|null $path the filepath
      * @return AdManagerSessionBuilder this builder populated from the
      *     configuration
      *
      * @throws InvalidArgumentException if the configuration file could not be
      *     found
      */
-    public function fromFile($path = null)
+    public function fromFile(string $path = null)
     {
         if ($path === null) {
             $path = self::DEFAULT_CONFIGURATION_FILENAME;
@@ -102,6 +102,10 @@ final class AdManagerSessionBuilder implements AdsBuilder
     }
 
     /**
+     * @param Configuration $configuration a configuration object that holds the
+     *     same data as an *.ini file would have
+     * @return AdManagerSessionBuilder this builder populated from the
+     *     configuration
      * @see AdsBuilder::from()
      */
     public function from(Configuration $configuration)
@@ -150,7 +154,7 @@ final class AdManagerSessionBuilder implements AdsBuilder
      * @param string $networkCode
      * @return AdManagerSessionBuilder this builder
      */
-    public function withNetworkCode($networkCode)
+    public function withNetworkCode(string $networkCode)
     {
         $this->networkCode = $networkCode;
 
@@ -163,7 +167,7 @@ final class AdManagerSessionBuilder implements AdsBuilder
      * @param string $applicationName
      * @return AdManagerSessionBuilder this builder
      */
-    public function withApplicationName($applicationName)
+    public function withApplicationName(string $applicationName)
     {
         $this->applicationName = $applicationName;
 
@@ -177,7 +181,7 @@ final class AdManagerSessionBuilder implements AdsBuilder
      * @param string|null $endpoint
      * @return AdManagerSessionBuilder this builder
      */
-    public function withEndpoint($endpoint)
+    public function withEndpoint(string $endpoint)
     {
         $this->endpoint = $endpoint;
 
@@ -202,7 +206,7 @@ final class AdManagerSessionBuilder implements AdsBuilder
     /**
      * Includes connection settings. This is optional.
      *
-     * @param ConnectionSettings|null $connectionSettings
+     * @param ConnectionSettings $connectionSettings
      * @return AdManagerSessionBuilder this builder
      */
     public function withConnectionSettings(
@@ -217,7 +221,7 @@ final class AdManagerSessionBuilder implements AdsBuilder
      * Includes SOAP settings. This is optional.
      *
      * @see SoapSettingsBuilder::defaultOptionals()
-     * @param SoapSettings|null $soapSettings
+     * @param SoapSettings $soapSettings
      * @return AdManagerSessionBuilder this builder
      */
     public function withSoapSettings(SoapSettings $soapSettings)
@@ -231,7 +235,7 @@ final class AdManagerSessionBuilder implements AdsBuilder
      * Includes a PSR-3 compliant logger for logging SOAP calls. This is
      * optional.
      *
-     * @param LoggerInterface|null $soapLogger
+     * @param LoggerInterface $soapLogger
      * @return AdManagerSessionBuilder this builder
      */
     public function withSoapLogger(LoggerInterface $soapLogger)
@@ -245,7 +249,7 @@ final class AdManagerSessionBuilder implements AdsBuilder
      * Includes a PSR-3 compliant logger for the report downloader utility to
      * log report download calls. This is optional.
      *
-     * @param LoggerInterface|null $reportDownloaderLogger
+     * @param LoggerInterface $reportDownloaderLogger
      * @return AdManagerSessionBuilder this builder
      */
     public function withReportDownloaderLogger(
@@ -259,7 +263,7 @@ final class AdManagerSessionBuilder implements AdsBuilder
     /**
      * Includes ads header formatter. This is optional.
      *
-     * @param AdsHeaderFormatter|null $adsHeaderFormatter
+     * @param AdsHeaderFormatter $adsHeaderFormatter
      * @return AdManagerSessionBuilder this builder
      */
     public function withAdsHeaderFormatter(

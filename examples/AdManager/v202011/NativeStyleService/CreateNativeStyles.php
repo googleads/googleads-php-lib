@@ -165,7 +165,7 @@ CSS;
         // install ad format, which we will create the native style from. Use
         // CreativeTemplateService.getCreativeTemplatesByStatement() and
         // CreativeTemplate.isNativeEligible to get other native ad formats
-        // availablein your network.
+        // available in your network.
         $nativeStyle->setCreativeTemplateId(10004400);
 
         // Set the size of the native style.

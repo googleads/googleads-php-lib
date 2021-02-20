@@ -45,7 +45,7 @@ class CreateNativeCreatives
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $advertiserId
+        int $advertiserId
     ) {
         $creativeService = $serviceFactory->createCreativeService($session);
 

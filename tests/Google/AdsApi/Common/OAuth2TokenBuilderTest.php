@@ -19,6 +19,7 @@ namespace Google\AdsApi\Common;
 use Google\AdsApi\Common\Testing\AdsBuildersTestProvider;
 use Google\Auth\Credentials\ServiceAccountCredentials;
 use Google\Auth\Credentials\UserRefreshCredentials;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -34,16 +35,16 @@ class OAuth2TokenBuilderTest extends TestCase
     private $jsonKeyFilePath;
 
   /**
-   * @see PHPUnit\Framework\TestCase::setUp
+   * @see \PHPUnit\Framework\TestCase::setUp
    */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->oAuth2TokenBuilder = new OAuth2TokenBuilder();
         $this->jsonKeyFilePath = AdsBuildersTestProvider::getFakeJsonKeyFilePath();
     }
 
   /**
-   * @covers Google\AdsApi\Common\OAuth2TokenBuilder::from
+   * @covers \Google\AdsApi\Common\OAuth2TokenBuilder::from
    */
     public function testBuildFromWithServiceAccountFlow()
     {
@@ -73,7 +74,7 @@ class OAuth2TokenBuilderTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\OAuth2TokenBuilder::from
+   * @covers \Google\AdsApi\Common\OAuth2TokenBuilder::from
    */
     public function testBuildFromWithServiceAccountFlowUsingImpersonation()
     {
@@ -107,12 +108,12 @@ class OAuth2TokenBuilderTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\OAuth2TokenBuilder::build
-   * @expectedException InvalidArgumentException
-   * @expectedExceptionMessageRegExp /both service account.+installed.+web.+flow.+set/
+   * @covers \Google\AdsApi\Common\OAuth2TokenBuilder::build
    */
     public function testBuildFailsWhenSettingValuesForMultipleFlows()
     {
+        $this->expectExceptionMessageMatches("/both service account.+installed.+web.+flow.+set/");
+        $this->expectException(InvalidArgumentException::class);
         $this->oAuth2TokenBuilder
         ->withJsonKeyFilePath($this->jsonKeyFilePath)
         ->withScopes('https://www.googleapis.com/auth/dfp')
@@ -123,7 +124,7 @@ class OAuth2TokenBuilderTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\OAuth2TokenBuilder::build
+   * @covers \Google\AdsApi\Common\OAuth2TokenBuilder::build
    */
     public function testBuildWithServiceAccountFlow()
     {
@@ -135,7 +136,7 @@ class OAuth2TokenBuilderTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\OAuth2TokenBuilder::build
+   * @covers \Google\AdsApi\Common\OAuth2TokenBuilder::build
    */
     public function testBuildWithServiceAccountFlowUsingImpersonation()
     {
@@ -148,19 +149,19 @@ class OAuth2TokenBuilderTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\OAuth2TokenBuilder::build
-   * @expectedException InvalidArgumentException
-   * @expectedExceptionMessageRegExp /jsonKeyFilePath.+scopes.+must be set/
+   * @covers \Google\AdsApi\Common\OAuth2TokenBuilder::build
    */
     public function testBuildFailsWhenMissingRequiredValuesForSAFlow()
     {
+        $this->expectExceptionMessageMatches("/jsonKeyFilePath.+scopes.+must be set/");
+        $this->expectException(InvalidArgumentException::class);
         $this->oAuth2TokenBuilder
         ->withJsonKeyFilePath($this->jsonKeyFilePath)
         ->build();
     }
 
   /**
-   * @covers Google\AdsApi\Common\OAuth2TokenBuilder::build
+   * @covers \Google\AdsApi\Common\OAuth2TokenBuilder::build
    */
     public function testBuildWithWebOrInstalledAppFlow()
     {
@@ -173,12 +174,12 @@ class OAuth2TokenBuilderTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\OAuth2TokenBuilder::build
-   * @expectedException InvalidArgumentException
-   * @expectedExceptionMessageRegExp /clientId.+clientSecret.+refreshToken.+must be set/
+   * @covers \Google\AdsApi\Common\OAuth2TokenBuilder::build
    */
     public function testBuildFailsWhenMissingRequiredValuesForInstAppOrWebFlow()
     {
+        $this->expectExceptionMessageMatches("/clientId.+clientSecret.+refreshToken.+must be set/");
+        $this->expectException(InvalidArgumentException::class);
         $this->oAuth2TokenBuilder
         ->withClientId('abcxyz-123.apps.googleusercontent.com')
         ->withClientSecret('ABcXyZ-123abc')

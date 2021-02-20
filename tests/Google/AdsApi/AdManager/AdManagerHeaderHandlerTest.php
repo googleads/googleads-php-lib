@@ -18,6 +18,7 @@
 namespace Google\AdsApi\AdManager;
 
 use Google\Auth\FetchAuthTokenInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -33,13 +34,14 @@ class AdManagerHeaderHandlerTest extends TestCase
     private $adManagerSessionBuilder;
 
     /**
-     * @see PHPUnit\Framework\TestCase::setUp
+     * @see \PHPUnit\Framework\TestCase::setUp
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->adManagerHeaderHandler = new AdManagerHeaderHandler();
         $this->adManagerSessionBuilder = new AdManagerSessionBuilder();
 
+        /** @var MockObject|FetchAuthTokenInterface $fetchAuthTokenInterfaceMock */
         $fetchAuthTokenInterfaceMock = $this
             ->getMockBuilder(FetchAuthTokenInterface::class)
                 ->disableOriginalConstructor()
@@ -53,7 +55,7 @@ class AdManagerHeaderHandlerTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\AdManagerHeaderHandler::generateHttpHeaders
+     * @covers \Google\AdsApi\AdManager\AdManagerHeaderHandler::generateHttpHeaders
      */
     public function testGenerateHttpHeaders()
     {

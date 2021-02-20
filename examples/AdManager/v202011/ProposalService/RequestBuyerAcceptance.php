@@ -41,7 +41,7 @@ class RequestBuyerAcceptance
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $programmaticProposalId
+        int $programmaticProposalId
     ) {
         $proposalService = $serviceFactory->createProposalService($session);
 

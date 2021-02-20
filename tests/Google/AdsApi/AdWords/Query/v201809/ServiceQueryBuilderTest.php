@@ -30,7 +30,7 @@ class ServiceQueryBuilderTest extends TestCase
 {
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilder::__construct
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilder::__construct
      */
     public function testBuildWithUtilityTracking()
     {
@@ -50,7 +50,7 @@ class ServiceQueryBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilder::copyFrom
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilder::copyFrom
      */
     public function testCopyFromEmptyServiceQueryBuilder()
     {
@@ -61,7 +61,7 @@ class ServiceQueryBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilder::copyFrom
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilder::copyFrom
      */
     public function testCopyFromShouldCopyValuesOfAllClauses()
     {
@@ -92,7 +92,7 @@ class ServiceQueryBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilder::copyFrom
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilder::copyFrom
      */
     public function testCopyFromShouldAllowWhereClauseExpansion()
     {
@@ -114,8 +114,8 @@ class ServiceQueryBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilder::__construct
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilder::copyFrom
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilder::__construct
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilder::copyFrom
      */
     public function testCopyFromShouldReuseUtilityRegistry()
     {
@@ -138,7 +138,7 @@ class ServiceQueryBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilder::select
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilder::select
      */
     public function testSelectShouldReturnSameServiceQueryBuilder()
     {
@@ -147,7 +147,7 @@ class ServiceQueryBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilder::where
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilder::where
      */
     public function testWhereShouldReturnWhereBuilder()
     {
@@ -159,7 +159,7 @@ class ServiceQueryBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilder::orderByAsc
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilder::orderByAsc
      */
     public function testOrderByAscShouldReturnSameServiceQueryBuilder()
     {
@@ -168,7 +168,7 @@ class ServiceQueryBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilder::orderByDesc
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilder::orderByDesc
      */
     public function testOrderByDescShouldReturnSameServiceQueryBuilder()
     {
@@ -177,7 +177,7 @@ class ServiceQueryBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilder::limit
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilder::limit
      */
     public function testLimitShouldReturnSameServiceQueryBuilder()
     {
@@ -186,7 +186,7 @@ class ServiceQueryBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilder::build
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilder::build
      */
     public function testBuildShouldReturnServiceQuery()
     {

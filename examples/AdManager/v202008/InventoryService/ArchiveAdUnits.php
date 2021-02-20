@@ -41,7 +41,7 @@ class ArchiveAdUnits
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $parentAdUnitId
+        int $parentAdUnitId
     ) {
         $inventoryService = $serviceFactory->createInventoryService($session);
 

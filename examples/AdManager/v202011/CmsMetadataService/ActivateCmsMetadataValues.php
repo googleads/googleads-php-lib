@@ -22,8 +22,8 @@ require __DIR__ . '/../../../../vendor/autoload.php';
 use Google\AdsApi\AdManager\AdManagerSession;
 use Google\AdsApi\AdManager\AdManagerSessionBuilder;
 use Google\AdsApi\AdManager\Util\v202011\StatementBuilder;
-use Google\AdsApi\AdManager\v202011\ServiceFactory;
 use Google\AdsApi\AdManager\v202011\CmsMetadataKeyStatus;
+use Google\AdsApi\AdManager\v202011\ServiceFactory;
 use Google\AdsApi\Common\OAuth2TokenBuilder;
 
 /**
@@ -43,7 +43,7 @@ class ActivateCmsMetadataValues
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $cmsMetadataKeyId
+        int $cmsMetadataKeyId
     )
     {
         $cmsMetadataService =
@@ -92,12 +92,12 @@ class ActivateCmsMetadataValues
             $statementBuilder->removeLimitAndOffset();
 
             // Create an action.
-            $action = new ActivateCmsMetadataValues();
+            $action = new \Google\AdsApi\AdManager\v202011\ActivateCmsMetadataValues();
 
             // Perform the action.
             $result = $cmsMetadataService->performCmsMetadataValueAction(
                 $action,
-                statementBuilder . toStatement()
+                $statementBuilder->toStatement()
             );
 
             if ($result != null && $result->getNumChanges() > 0) {

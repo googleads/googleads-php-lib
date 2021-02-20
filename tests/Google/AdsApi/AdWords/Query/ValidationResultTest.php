@@ -30,7 +30,7 @@ class ValidationResultTest extends TestCase
 {
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\ValidationResult::pass
+     * @covers \Google\AdsApi\AdWords\Query\ValidationResult::pass
      */
     public function testCreatePassedValidationResult()
     {
@@ -41,7 +41,7 @@ class ValidationResultTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\ValidationResult::fail
+     * @covers \Google\AdsApi\AdWords\Query\ValidationResult::fail
      */
     public function testCreateFailedValidationResult()
     {
@@ -53,33 +53,30 @@ class ValidationResultTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\ValidationResult::fail
-     *
-     * @expectedException InvalidArgumentException
+     * @covers \Google\AdsApi\AdWords\Query\ValidationResult::fail
      */
     public function testCreateFailedValidationResultWithNullReason()
     {
+        $this->expectException(InvalidArgumentException::class);
         ValidationResult::fail(null);
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\ValidationResult::fail
-     *
-     * @expectedException InvalidArgumentException
+     * @covers \Google\AdsApi\AdWords\Query\ValidationResult::fail
      */
     public function testCreateFailedValidationResultWithEmptyReason()
     {
+        $this->expectException(InvalidArgumentException::class);
         ValidationResult::fail('');
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\ValidationResult::fail
-     *
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage must be a string
+     * @covers \Google\AdsApi\AdWords\Query\ValidationResult::fail
      */
     public function testCreateFailedValidationResultWithReasonArray()
     {
+        $this->expectExceptionMessage("must be a string");
+        $this->expectException(InvalidArgumentException::class);
         ValidationResult::fail(['reason 1', 'reason 2']);
     }
 }

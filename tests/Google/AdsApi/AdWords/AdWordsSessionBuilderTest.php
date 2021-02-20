@@ -19,6 +19,7 @@ namespace Google\AdsApi\AdWords;
 
 use Google\AdsApi\Common\Configuration;
 use Google\Auth\FetchAuthTokenInterface;
+use InvalidArgumentException;
 use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
@@ -38,9 +39,9 @@ class AdWordsSessionBuilderTest extends TestCase
     private $fetchAuthTokenInterfaceMock;
 
     /**
-     * @see PHPUnit\Framework\TestCase::setUp
+     * @see \PHPUnit\Framework\TestCase::setUp
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->adWordsSessionBuilder = new AdWordsSessionBuilder();
         $this->fetchAuthTokenInterfaceMock = $this
@@ -50,7 +51,7 @@ class AdWordsSessionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\AdWordsSessionBuilder::from
+     * @covers \Google\AdsApi\AdWords\AdWordsSessionBuilder::from
      */
     public function testBuildFrom()
     {
@@ -124,7 +125,7 @@ class AdWordsSessionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\AdWordsSessionBuilder::from
+     * @covers \Google\AdsApi\AdWords\AdWordsSessionBuilder::from
      */
     public function testBuildFromDefaults()
     {
@@ -177,7 +178,7 @@ class AdWordsSessionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\AdWordsSessionBuilder::from
+     * @covers \Google\AdsApi\AdWords\AdWordsSessionBuilder::from
      */
     public function testBuildFromWithCustomLogger()
     {
@@ -206,11 +207,11 @@ class AdWordsSessionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\AdWordsSessionBuilder::build
-     * @expectedException InvalidArgumentException
+     * @covers \Google\AdsApi\AdWords\AdWordsSessionBuilder::build
      */
     public function testBuildFailsWithoutDeveloperToken()
     {
+        $this->expectException(InvalidArgumentException::class);
         $this->adWordsSessionBuilder
             ->withUserAgent('report downloader')
             ->withOAuth2Credential($this->fetchAuthTokenInterfaceMock)
@@ -218,7 +219,7 @@ class AdWordsSessionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\AdWordsSessionBuilder::build
+     * @covers \Google\AdsApi\AdWords\AdWordsSessionBuilder::build
      */
     public function testBuildWithNullOrEmptyUserAgent()
     {
@@ -237,11 +238,11 @@ class AdWordsSessionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\AdWordsSessionBuilder::build
-     * @expectedException InvalidArgumentException
+     * @covers \Google\AdsApi\AdWords\AdWordsSessionBuilder::build
      */
     public function testBuildFailsWithNonAsciiUserAgent()
     {
+        $this->expectException(InvalidArgumentException::class);
         $this->adWordsSessionBuilder
             ->withDeveloperToken('ABcdeFGH93KL-NOPQ_STUv')
             ->withUserAgent('å∫ç∂´ƒ')
@@ -250,11 +251,11 @@ class AdWordsSessionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\AdWordsSessionBuilder::build
-     * @expectedException InvalidArgumentException
+     * @covers \Google\AdsApi\AdWords\AdWordsSessionBuilder::build
      */
     public function testBuildFailsWithInvalidEndpointUrl()
     {
+        $this->expectException(InvalidArgumentException::class);
         $this->adWordsSessionBuilder
             ->withDeveloperToken('ABcdeFGH93KL-NOPQ_STUv')
             ->withUserAgent('report downloader')
@@ -264,11 +265,11 @@ class AdWordsSessionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\AdWordsSessionBuilder::build
-     * @expectedException InvalidArgumentException
+     * @covers \Google\AdsApi\AdWords\AdWordsSessionBuilder::build
      */
     public function testBuildFailsWithoutOAuth2Credential()
     {
+        $this->expectException(InvalidArgumentException::class);
         $this->adWordsSessionBuilder
             ->withDeveloperToken('ABcdeFGH93KL-NOPQ_STUv')
             ->withUserAgent('report downloader')
@@ -276,7 +277,7 @@ class AdWordsSessionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\AdWordsSessionBuilder::build
+     * @covers \Google\AdsApi\AdWords\AdWordsSessionBuilder::build
      */
     public function testBuild()
     {
@@ -303,7 +304,7 @@ class AdWordsSessionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\AdWordsSessionBuilder::build
+     * @covers \Google\AdsApi\AdWords\AdWordsSessionBuilder::build
      */
     public function testBuildDefaults()
     {
@@ -354,7 +355,7 @@ class AdWordsSessionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\AdWordsSessionBuilder::build
+     * @covers \Google\AdsApi\AdWords\AdWordsSessionBuilder::build
      */
     public function testBuildWithClientCustomerId()
     {
@@ -384,7 +385,7 @@ class AdWordsSessionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\AdWordsSessionBuilder::build
+     * @covers \Google\AdsApi\AdWords\AdWordsSessionBuilder::build
      */
     public function testBuildWithEnableAndValidateOnlyPartialFailure()
     {
@@ -413,7 +414,7 @@ class AdWordsSessionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\AdWordsSessionBuilder::build
+     * @covers \Google\AdsApi\AdWords\AdWordsSessionBuilder::build
      */
     public function testBuildWithDisableIncludeUtilitiesInUserAgent()
     {

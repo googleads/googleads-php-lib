@@ -17,6 +17,7 @@
 
 namespace Google\AdsApi\AdManager\Util\v202005;
 
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -29,7 +30,7 @@ class StatementBuilderTest extends TestCase
 {
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202005\StatementBuilder::toStatement
+     * @covers \Google\AdsApi\AdManager\Util\v202005\StatementBuilder::toStatement
      */
     public function testToStatementForPqlTable()
     {
@@ -45,7 +46,7 @@ class StatementBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202005\StatementBuilder::toStatement
+     * @covers \Google\AdsApi\AdManager\Util\v202005\StatementBuilder::toStatement
      */
     public function testToStatementForPqlTableWithKeywords()
     {
@@ -61,7 +62,7 @@ class StatementBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202005\StatementBuilder::toStatement
+     * @covers \Google\AdsApi\AdManager\Util\v202005\StatementBuilder::toStatement
      */
     public function testToStatementNotPqlTable()
     {
@@ -76,7 +77,7 @@ class StatementBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202005\StatementBuilder::toStatement
+     * @covers \Google\AdsApi\AdManager\Util\v202005\StatementBuilder::toStatement
      */
     public function testToStatementNoOffset()
     {
@@ -90,7 +91,7 @@ class StatementBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202005\StatementBuilder::toStatement
+     * @covers \Google\AdsApi\AdManager\Util\v202005\StatementBuilder::toStatement
      */
     public function testToStatementJustLimit()
     {
@@ -101,7 +102,7 @@ class StatementBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202005\StatementBuilder::toStatement
+     * @covers \Google\AdsApi\AdManager\Util\v202005\StatementBuilder::toStatement
      */
     public function testToStatementLimitAndOffset()
     {
@@ -113,8 +114,8 @@ class StatementBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202005\StatementBuilder::toStatement
-     * @covers Google\AdsApi\AdManager\Util\v202005\StatementBuilder::removeLimitAndOffset
+     * @covers \Google\AdsApi\AdManager\Util\v202005\StatementBuilder::toStatement
+     * @covers \Google\AdsApi\AdManager\Util\v202005\StatementBuilder::removeLimitAndOffset
      */
     public function testToStatementRemoveLimitAndOffset()
     {
@@ -134,8 +135,8 @@ class StatementBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202005\StatementBuilder::toStatement
-     * @covers Google\AdsApi\AdManager\Util\v202005\StatementBuilder::increaseOffsetBy
+     * @covers \Google\AdsApi\AdManager\Util\v202005\StatementBuilder::toStatement
+     * @covers \Google\AdsApi\AdManager\Util\v202005\StatementBuilder::increaseOffsetBy
      */
     public function testToStatementIncreaseOffsetNoInitialOffset()
     {
@@ -155,8 +156,8 @@ class StatementBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202005\StatementBuilder::toStatement
-     * @covers Google\AdsApi\AdManager\Util\v202005\StatementBuilder::increaseOffsetBy
+     * @covers \Google\AdsApi\AdManager\Util\v202005\StatementBuilder::toStatement
+     * @covers \Google\AdsApi\AdManager\Util\v202005\StatementBuilder::increaseOffsetBy
      */
     public function testToStatementIncreaseOffsetWithInitialOffset()
     {
@@ -176,7 +177,7 @@ class StatementBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202005\StatementBuilder::toStatement
+     * @covers \Google\AdsApi\AdManager\Util\v202005\StatementBuilder::toStatement
      */
     public function testToStatementEmpty()
     {
@@ -187,17 +188,17 @@ class StatementBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202005\StatementBuilder::toStatement
-     * @expectedException InvalidArgumentException
+     * @covers \Google\AdsApi\AdManager\Util\v202005\StatementBuilder::toStatement
      */
     public function testToStatementOffsetWithoutLimit()
     {
+        $this->expectException(InvalidArgumentException::class);
         $statementBuilder = new StatementBuilder();
         $statementBuilder->offset(500)->toStatement();
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202005\StatementBuilder::withBindVariableValue
+     * @covers \Google\AdsApi\AdManager\Util\v202005\StatementBuilder::withBindVariableValue
      */
     public function testWithBindingVariable()
     {

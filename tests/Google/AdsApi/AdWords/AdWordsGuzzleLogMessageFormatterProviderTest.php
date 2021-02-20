@@ -37,9 +37,9 @@ class AdWordsGuzzleLogMessageFormatterProviderTest extends TestCase
     private $awql;
 
     /**
-     * @see PHPUnit\Framework\TestCase::setUp
+     * @see \PHPUnit\Framework\TestCase::setUp
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $fetchAuthTokenInterfaceStub = $this
             ->getMockBuilder(FetchAuthTokenInterface::class)
@@ -64,7 +64,7 @@ class AdWordsGuzzleLogMessageFormatterProviderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\AdWordsGuzzleLogMessageFormatterProvider::getGuzzleLogMessageFormatter
+     * @covers \Google\AdsApi\AdWords\AdWordsGuzzleLogMessageFormatterProvider::getGuzzleLogMessageFormatter
      */
     public function testGetGuzzleLogMessageFormatterFormatsSummary()
     {

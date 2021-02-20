@@ -38,7 +38,7 @@ class UpdateCreatives
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $creativeId
+        int $creativeId
     ) {
         $creativeService = $serviceFactory->createCreativeService($session);
 

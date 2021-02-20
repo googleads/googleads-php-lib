@@ -30,13 +30,12 @@ use RuntimeException;
 class ServiceQueryBuilderDelegateTest extends TestCase
 {
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::copyFrom
-     *
-     * @expectedException RuntimeException
-     * @expectedExceptionMessage select
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::copyFrom
      */
     public function testCopyFromEmptyObject()
     {
+        $this->expectExceptionMessage("select");
+        $this->expectException(RuntimeException::class);
         $originalDelegate = new ServiceQueryBuilderDelegate();
         $copyDelegate = ServiceQueryBuilderDelegate::copyFrom(
             $originalDelegate,
@@ -46,8 +45,8 @@ class ServiceQueryBuilderDelegateTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::copyFrom
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::select
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::copyFrom
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::select
      */
     public function testCopyFromShouldAllowSelectOverridePreviousSelect()
     {
@@ -65,13 +64,13 @@ class ServiceQueryBuilderDelegateTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::select
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::where
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::orderByDesc
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::orderByAsc
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::limit
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::build
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::copyFrom
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::select
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::where
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::orderByDesc
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::orderByAsc
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::limit
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::build
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::copyFrom
      */
     public function testCopyFromShouldBuildSameAwqlStringAsOriginal()
     {
@@ -109,107 +108,99 @@ class ServiceQueryBuilderDelegateTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::orderByAsc
-     *
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage field name
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::orderByAsc
      */
     public function testOrderByAscWithNullValue()
     {
+        $this->expectExceptionMessage("field name");
+        $this->expectException(InvalidArgumentException::class);
         $builder = new ServiceQueryBuilderDelegate();
         $builder->orderByAsc(null);
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::orderByDesc
-     *
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage field name
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::orderByDesc
      */
     public function testOrderByDescWithNullValue()
     {
+        $this->expectExceptionMessage("field name");
+        $this->expectException(InvalidArgumentException::class);
         $builder = new ServiceQueryBuilderDelegate();
         $builder->orderByDesc(null);
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::orderByAsc
-     *
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage field name
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::orderByAsc
      */
     public function testOrderByAscWithEmptyString()
     {
+        $this->expectExceptionMessage("field name");
+        $this->expectException(InvalidArgumentException::class);
         $builder = new ServiceQueryBuilderDelegate();
         $builder->orderByAsc('');
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::orderByDesc
-     *
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage field name
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::orderByDesc
      */
     public function testOrderByDescWithEmptyString()
     {
+        $this->expectExceptionMessage("field name");
+        $this->expectException(InvalidArgumentException::class);
         $builder = new ServiceQueryBuilderDelegate();
         $builder->orderByDesc('');
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::orderByAsc
-     *
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage repeat
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::orderByAsc
      */
     public function testOrderByAscWithDuplicateFieldName()
     {
+        $this->expectExceptionMessage("repeat");
+        $this->expectException(InvalidArgumentException::class);
         $builder = new ServiceQueryBuilderDelegate();
         $builder->orderByAsc('Name');
         $builder->orderByAsc('Name');
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::orderByDesc
-     *
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage repeat
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::orderByDesc
      */
     public function testOrderByDescWithDuplicateFieldName()
     {
+        $this->expectExceptionMessage("repeat");
+        $this->expectException(InvalidArgumentException::class);
         $builder = new ServiceQueryBuilderDelegate();
         $builder->orderByDesc('Status');
         $builder->orderByDesc('Status');
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::orderByAsc
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::orderByDesc
-     *
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage repeat
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::orderByAsc
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::orderByDesc
      */
     public function testOrderByAscAndDescWithDuplicateFieldName()
     {
+        $this->expectExceptionMessage("repeat");
+        $this->expectException(InvalidArgumentException::class);
         $builder = new ServiceQueryBuilderDelegate();
         $builder->orderByAsc('Status');
         $builder->orderByDesc('Status');
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::select
-     *
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage field
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::select
      */
     public function testSelectWithEmptyArray()
     {
+        $this->expectExceptionMessage("field");
+        $this->expectException(InvalidArgumentException::class);
         $builder = new ServiceQueryBuilderDelegate();
         $builder->select([]);
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::select
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::select
      */
     public function testSelectOverridePreviousSelect()
     {
@@ -223,7 +214,7 @@ class ServiceQueryBuilderDelegateTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::select
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::select
      */
     public function testDuplicatedSelectFields()
     {
@@ -234,15 +225,14 @@ class ServiceQueryBuilderDelegateTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::orderByDesc
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::orderByAsc
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::build
-     *
-     * @expectedException RuntimeException
-     * @expectedExceptionMessage select
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::orderByDesc
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::orderByAsc
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::build
      */
     public function testBuildWithoutSelect()
     {
+        $this->expectExceptionMessage("select");
+        $this->expectException(RuntimeException::class);
         $builder = new ServiceQueryBuilderDelegate();
         $builder->orderByDesc('Name');
         $builder->orderByAsc('Status');
@@ -251,10 +241,10 @@ class ServiceQueryBuilderDelegateTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::select
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::orderByDesc
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::orderByAsc
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::build
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::select
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::orderByDesc
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::orderByAsc
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::build
      */
     public function testBuild()
     {
@@ -272,10 +262,10 @@ class ServiceQueryBuilderDelegateTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::select
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::orderByDesc
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::orderByAsc
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::build
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::select
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::orderByDesc
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::orderByAsc
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQueryBuilderDelegate::build
      */
     public function testBuildWithoutPagination()
     {

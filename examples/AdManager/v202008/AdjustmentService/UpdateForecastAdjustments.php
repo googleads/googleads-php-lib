@@ -41,7 +41,7 @@ class UpdateForecastAdjustments
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $adjustmentId
+        int $adjustmentId
     ) {
         $adjustmentService =
             $serviceFactory->createAdjustmentService($session);

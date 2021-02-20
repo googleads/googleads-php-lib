@@ -37,7 +37,7 @@ class GetAvailabilityForecastForLineItem
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $lineItemId
+        int $lineItemId
     ) {
         $forecastService = $serviceFactory->createForecastService($session);
 

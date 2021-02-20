@@ -41,7 +41,7 @@ class GetForecastAdjustmentsForTrafficForecastSegment
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $trafficForecastSegmentId
+        int $trafficForecastSegmentId
     ) {
         $adjustmentService = $serviceFactory->createAdjustmentService($session);
 

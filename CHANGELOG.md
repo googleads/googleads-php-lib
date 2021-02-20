@@ -1,3 +1,49 @@
+### 52.0.0
+
+##### AdWords
+
+*   Updated laravel/framework version from 5.8.38 to 6.20.14 in
+    LaravelSampleApp.
+
+##### Ad Manager
+
+*   Added support for v202102.
+*   Removed support for v202002.
+*   Removed examples for v202005.
+*   Updated the v202102/LineItemService/CreateVideoLineItems.php example to use
+    `setVideoMaxDuration` function.
+
+##### Common
+
+*   Updated php version to ^7.3 as a dependency.
+*   Added symfony/serializer version ^3.0.3 as a dependency.
+*   Updated monolog/monolog version to ^2.2.0 as a dependency.
+*   Updated phpunit/phpunit version to ^9.5.2 as a development dependency.
+*   Migrated phpunit.xml.dist to comply with phpunit 9.5.2 schema.
+
+### 51.0.0
+
+##### AdWords
+
+*   No changes.
+
+##### Ad Manager
+
+*   Added ext-json to composer.json file for `ContentService` examples.
+*   Added new types in v202011:
+    *   TimeSeries.php
+    *   TrafficDataRequest.php
+    *   TrafficDataResponse.php
+    *   getTrafficDataResponse.php
+    *   AuthenticationErrorReason.php
+    *   CreativeErrorReason.php
+    *   TrafficForecastSegmentErrorReason.php
+
+##### Common
+
+*   Added symfony/serializer version ^3.0.3 as a dependency.
+*   Updated phpunit/phpunit version to ^9.5.0 as a development dependency.
+
 ### 50.0.1
 
 ##### AdWords

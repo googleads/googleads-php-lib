@@ -41,7 +41,7 @@ class PauseLineItems
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $lineItemId
+        int $lineItemId
     ) {
         $lineItemService = $serviceFactory->createLineItemService($session);
 

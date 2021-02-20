@@ -47,7 +47,7 @@ class RunDeliveryReportForOrder
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $orderId
+        int $orderId
     ) {
         $reportService = $serviceFactory->createReportService($session);
 

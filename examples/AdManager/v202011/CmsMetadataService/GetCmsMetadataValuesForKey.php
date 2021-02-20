@@ -69,7 +69,7 @@ class GetCmsMetadataValuesForKey
                 $i = $page->getStartIndex();
                 foreach ($page->getResults() as $cmsMetadataValue) {
                     printf(
-                        "%d) CMS value with ID %d and name '%s' associated %s"
+                        "%d) CMS value with ID %d and name '%s' associated "
                         . "with key id %d and name '%s' was found.%s",
                         $i++,
                         $cmsMetadataValue->getCmsMetadataValueId(),

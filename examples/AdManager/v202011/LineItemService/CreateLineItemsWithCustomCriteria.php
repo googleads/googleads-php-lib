@@ -63,7 +63,6 @@ class CreateLineItemsWithCustomCriteria
     // Set the order that all created line items will belong to and the
     // placement ID to target.
     const ORDER_ID = 'INSERT_ORDER_ID_HERE';
-    const PLACEMENT_ID = 'INSERT_PLACEMENT_ID_HERE';
 
     const CUSTOM_TARGETING_KEY_ID_1 = 'INSERT_CUSTOM_TARGETING_KEY_ID_1_HERE';
     const CUSTOM_TARGETING_KEY_ID_2 = 'INSERT_CUSTOM_TARGETING_KEY_ID_2_HERE';
@@ -80,14 +79,14 @@ class CreateLineItemsWithCustomCriteria
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $orderId,
-        $customTargetingKeyId1,
-        $customTargetingKeyId2,
-        $customTargetingKeyId3,
-        $customTargetingValueId1,
-        $customTargetingValueId2a,
-        $customTargetingValueId2b,
-        $customTargetingValueId3
+        int $orderId,
+        int $customTargetingKeyId1,
+        int $customTargetingKeyId2,
+        int $customTargetingKeyId3,
+        int $customTargetingValueId1,
+        int $customTargetingValueId2a,
+        int $customTargetingValueId2b,
+        int $customTargetingValueId3
     ) {
 
         // Get the LineItemService.

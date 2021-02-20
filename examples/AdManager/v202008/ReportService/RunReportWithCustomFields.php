@@ -51,8 +51,8 @@ class RunReportWithCustomFields
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $customFieldId,
-        $customDimensionKeyId
+        int $customFieldId,
+        int $customDimensionKeyId
     ) {
         $reportService = $serviceFactory->createReportService($session);
 

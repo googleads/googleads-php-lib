@@ -46,7 +46,7 @@ class CreateUsers
         AdManagerSession $session,
         $userEmail,
         $userName,
-        $userRoleId
+        int $userRoleId
     ) {
         $userService = $serviceFactory->createUserService($session);
 

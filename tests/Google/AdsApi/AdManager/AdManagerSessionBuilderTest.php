@@ -23,7 +23,6 @@ use InvalidArgumentException;
 use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
-use PHPUnit\Framework\Error\Warning;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
@@ -46,7 +45,7 @@ class AdManagerSessionBuilderTest extends TestCase
     /**
      * @see \PHPUnit\Framework\TestCase::setUp
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->adManagerSessionBuilder = new AdManagerSessionBuilder();
         $this->fetchAuthTokenInterfaceMock =
@@ -163,7 +162,7 @@ class AdManagerSessionBuilderTest extends TestCase
      */
     public function testBuildFailsWithoutNetworkCode()
     {
-        $this->expectException(Warning::class);
+        $this->expectWarning();
         $this->adManagerSessionBuilder
             ->withApplicationName('Google report runner')
             ->withOAuth2Credential($this->fetchAuthTokenInterfaceMock)

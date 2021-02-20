@@ -32,9 +32,9 @@ class AdsHeaderFormatterTest extends TestCase
     private $adsHeaderFormatter;
 
   /**
-   * @see PHPUnit\Framework\TestCase::setUp
+   * @see \PHPUnit\Framework\TestCase::setUp
    */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->applicationNames = new ApplicationNames();
         $adsUtilityRegistry = $this->getMockBuilder(AdsUtilityRegistry::class)
@@ -63,7 +63,7 @@ class AdsHeaderFormatterTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\AdsHeaderFormatter::formatApplicationNameForSoapHeader
+   * @covers \Google\AdsApi\Common\AdsHeaderFormatter::formatApplicationNameForSoapHeader
    */
     public function testFormatApplicationNameForSoapHeader()
     {
@@ -75,11 +75,12 @@ class AdsHeaderFormatterTest extends TestCase
                 'Dfp',
                 false
             );
-        $this->assertRegExp($search, $formattedApplicationName);
+        $this->assertMatchesRegularExpression($search,
+            $formattedApplicationName);
     }
 
   /**
-   * @covers Google\AdsApi\Common\AdsHeaderFormatter::formatApplicationNameForSoapHeader
+   * @covers \Google\AdsApi\Common\AdsHeaderFormatter::formatApplicationNameForSoapHeader
    */
     public function testFormatApplicationNameWithUtilitiesForSoapHeader()
     {
@@ -91,11 +92,12 @@ class AdsHeaderFormatterTest extends TestCase
                 'Aw',
                 true
             );
-        $this->assertRegExp($search, $formattedApplicationName);
+        $this->assertMatchesRegularExpression($search,
+            $formattedApplicationName);
     }
 
   /**
-   * @covers Google\AdsApi\Common\AdsHeaderFormatter::formatApplicationNameForGuzzleHeader
+   * @covers \Google\AdsApi\Common\AdsHeaderFormatter::formatApplicationNameForGuzzleHeader
    */
     public function testFormatApplicationNameForGuzzleHeader()
     {
@@ -107,11 +109,12 @@ class AdsHeaderFormatterTest extends TestCase
                 'Dfp',
                 false
             );
-        $this->assertRegExp($search, $formattedApplicationName);
+        $this->assertMatchesRegularExpression($search,
+            $formattedApplicationName);
     }
 
   /**
-   * @covers Google\AdsApi\Common\AdsHeaderFormatter::formatApplicationNameForGuzzleHeader
+   * @covers \Google\AdsApi\Common\AdsHeaderFormatter::formatApplicationNameForGuzzleHeader
    */
     public function testFormatApplicationNameWithUtilitiesForGuzzleHeader()
     {
@@ -123,11 +126,12 @@ class AdsHeaderFormatterTest extends TestCase
                 'Aw',
                 true
             );
-        $this->assertRegExp($search, $formattedApplicationName);
+        $this->assertMatchesRegularExpression($search,
+            $formattedApplicationName);
     }
 
   /**
-   * @covers Google\AdsApi\Common\AdsHeaderFormatter::formatApplicationNameForGuzzleHeader
+   * @covers \Google\AdsApi\Common\AdsHeaderFormatter::formatApplicationNameForGuzzleHeader
    */
     public function testFormatApplicationNameWithGzip()
     {
@@ -140,6 +144,7 @@ class AdsHeaderFormatterTest extends TestCase
                 false,
                 true
             );
-        $this->assertRegExp($search, $formattedApplicationName);
+        $this->assertMatchesRegularExpression($search,
+            $formattedApplicationName);
     }
 }

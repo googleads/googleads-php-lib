@@ -28,7 +28,7 @@ class AdsSoapClientTest extends TestCase
 {
 
   /**
-   * @covers Google\AdsApi\Common\AdsSoapClient::getLocalWsdlPath
+   * @covers \Google\AdsApi\Common\AdsSoapClient::getLocalWsdlPath
    */
     public function testGetLocalWsdlPath()
     {
@@ -48,14 +48,16 @@ class AdsSoapClientTest extends TestCase
         $reflection = new \ReflectionClass(get_class($adsSoapClientMock));
         $method = $reflection->getMethod('getLocalWsdlPath');
         $method->setAccessible(true);
-        $actualResult = $method->invokeArgs($adsSoapClientMock, [$fakeLiveWsdlUri]);
+        $actualResult = $method->invokeArgs($adsSoapClientMock,
+            [$fakeLiveWsdlUri]);
 
-        $this->assertRegExp($expectedResultRegex, $actualResult);
+        $this->assertMatchesRegularExpression($expectedResultRegex,
+            $actualResult);
         if (DIRECTORY_SEPARATOR === '\\') {
-            $this->assertNotContains('/', $actualResult);
+            $this->assertStringNotContainsString('/', $actualResult);
         }
         if (DIRECTORY_SEPARATOR === '/') {
-            $this->assertNotContains('\\', $actualResult);
+            $this->assertStringNotContainsString('\\', $actualResult);
         }
     }
 }

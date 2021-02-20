@@ -18,6 +18,7 @@
 namespace Google\AdsApi\AdWords;
 
 use Google\AdsApi\AdWords\Testing\AdWordsServicesIntegrationTestProvider;
+use Google\AdsApi\AdWords\v201809\cm\ApiException;
 use Google\AdsApi\AdWords\v201809\cm\Campaign;
 use Google\AdsApi\AdWords\v201809\cm\CampaignService;
 use Google\AdsApi\AdWords\v201809\cm\Selector;
@@ -52,9 +53,9 @@ class AdWordsServicesIntegrationTest extends TestCase
     private $adWordsServices;
 
     /**
-     * @see PHPUnit\Framework\TestCase::setUp
+     * @see \PHPUnit\Framework\TestCase::setUp
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         error_reporting(E_ALL & ~E_USER_NOTICE);
         self::$WSDL_FILE_DIR = __DIR__ . '/../../../../';
@@ -177,7 +178,7 @@ class AdWordsServicesIntegrationTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\AdWordsServices::get
+     * @covers \Google\AdsApi\AdWords\AdWordsServices::get
      */
     public function testGetCallToCampaignServiceValidateOnlyReturnsNullResult()
     {
@@ -208,13 +209,11 @@ class AdWordsServicesIntegrationTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\AdWordsServices::get
-     * @expectedException Google\AdsApi\AdWords\v201809\cm\ApiException
-     * @expectedExceptionMessage [SelectorError.INVALID_FIELD_NAME @
-     *     serviceSelector; trigger:'asDEEf'; errorDetails:asDEEf]
+     * @covers \Google\AdsApi\AdWords\AdWordsServices::get
      */
     public function testGetCallToCampaignServiceExpectFault()
     {
+        $this->expectException(ApiException::class);
         $this->campaignServiceMock->expects($this->once())
             ->method('__doRequest')
             ->will(

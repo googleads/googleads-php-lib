@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2020 Google Inc. All Rights Reserved -->
+<!-- Copyright 2021 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202008"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202008"
@@ -2990,7 +2990,7 @@
       <complexType name="SalespersonSplit">
         <annotation>
           <documentation>
-            A {@code SalespersonSplit} represents a salesperson and his/her split.
+            A {@code SalespersonSplit} represents a salesperson and their split.
           </documentation>
         </annotation>
         <sequence>

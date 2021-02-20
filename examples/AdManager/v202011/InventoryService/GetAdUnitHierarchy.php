@@ -164,7 +164,7 @@ class GetAdUnitHierarchy
     private static function displayInventoryTreeHelper(
         AdUnit $root,
         array $treeMap,
-        $depth
+        int $depth
     ) {
         $rootId = $root->getId();
 
@@ -191,7 +191,7 @@ class GetAdUnitHierarchy
      * @param int $depth the depth the tree has reached
      * @return string the tabs to insert in front of the root unit
      */
-    private static function generateTab($depth)
+    private static function generateTab(int $depth)
     {
         $builder = '';
 

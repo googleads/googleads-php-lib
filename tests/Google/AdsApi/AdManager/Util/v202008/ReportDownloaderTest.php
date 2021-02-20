@@ -27,9 +27,12 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Psr7\Utils;
 use Monolog\Handler\NullHandler;
 use Monolog\Logger;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use UnexpectedValueException;
 
 /**
  * Unit tests for `ReportDownloader`.
@@ -40,21 +43,24 @@ use PHPUnit\Framework\TestCase;
 class ReportDownloaderTest extends TestCase
 {
 
-    private $adManagerSession;
+    /**
+     * @var MockObject|ReportService a mock object for ReportService
+     */
     private $reportServiceMock;
 
     /**
-     * @see PHPUnit\Framework\TestCase::setUp
+     * @see \PHPUnit\Framework\TestCase::setUp
      */
-    protected function setUp()
+    protected function setUp(): void
     {
+        /** @var MockObject|FetchAuthTokenInterface $fetchAuthTokenInterfaceStub */
         $fetchAuthTokenInterfaceStub =
             $this->getMockBuilder(FetchAuthTokenInterface::class)
                 ->disableOriginalConstructor()->getMock();
         $fetchAuthTokenInterfaceStub->method('fetchAuthToken')->willReturn(
             ['access_token' => 'abc123']
         );
-        $this->adManagerSession =
+        $adManagerSession =
             (new AdManagerSessionBuilder())->withNetworkCode('12345678')
                 ->withApplicationName('Google report runner')
                 ->withOAuth2Credential($fetchAuthTokenInterfaceStub)
@@ -65,12 +71,12 @@ class ReportDownloaderTest extends TestCase
         $this->reportServiceMock = $this->getMockBuilder(ReportService::class)
             ->disableOriginalConstructor()->getMock();
         $this->reportServiceMock->method('getAdsSession')->willReturn(
-            $this->adManagerSession
+            $adManagerSession
         );
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202008\ReportDownloader::waitForReportToFinish
+     * @covers \Google\AdsApi\AdManager\Util\v202008\ReportDownloader::waitForReportToFinish
      */
     public function testWaitForReportToFinishFinishesImmediatelySuccess()
     {
@@ -83,7 +89,7 @@ class ReportDownloaderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202008\ReportDownloader::waitForReportToFinish
+     * @covers \Google\AdsApi\AdManager\Util\v202008\ReportDownloader::waitForReportToFinish
      */
     public function testWaitForReportToFinishFinishesImmediatelyFailed()
     {
@@ -96,7 +102,7 @@ class ReportDownloaderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202008\ReportDownloader::waitForReportToFinish
+     * @covers \Google\AdsApi\AdManager\Util\v202008\ReportDownloader::waitForReportToFinish
      */
     public function testWaitForReportToFinishPollsOnceSuccess()
     {
@@ -112,7 +118,7 @@ class ReportDownloaderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202008\ReportDownloader::downloadReport
+     * @covers \Google\AdsApi\AdManager\Util\v202008\ReportDownloader::downloadReport
      */
     public function testDownloadReportAsStream()
     {
@@ -138,18 +144,18 @@ class ReportDownloaderTest extends TestCase
         );
         $responseStream =
             $reportDownloader->downloadReport(ExportFormat::CSV_DUMP);
-        $response = \GuzzleHttp\Psr7\copy_to_string($responseStream);
+        $response = Utils::copyToString($responseStream);
         $responseStream->close();
 
         $this->assertSame($fakeReport, $response);
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202008\ReportDownloader::downloadReport
-     * @expectedException UnexpectedValueException
+     * @covers \Google\AdsApi\AdManager\Util\v202008\ReportDownloader::downloadReport
      */
     public function testDownloadReportBeforeCompleteThrowsEx()
     {
+        $this->expectException(UnexpectedValueException::class);
         $this->reportServiceMock->method('getReportJobStatus')->willReturn(
             ReportJobStatus::IN_PROGRESS
         );

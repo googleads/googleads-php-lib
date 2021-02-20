@@ -45,9 +45,9 @@ class BatchJobUploadStatusTest extends TestCase
     private $adWordsSession;
 
     /**
-     * @see PHPUnit\Framework\TestCase::setUp
+     * @see \PHPUnit\Framework\TestCase::setUp
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $fetchAuthTokenInterfaceStub = $this
             ->getMockBuilder(FetchAuthTokenInterface::class)
@@ -66,8 +66,8 @@ class BatchJobUploadStatusTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\BatchJobs\BatchJobUploadStatus::__construct
-     * @covers Google\AdsApi\AdWords\BatchJobs\BatchJobUploadStatus::initiateResumableUpload
+     * @covers \Google\AdsApi\AdWords\BatchJobs\BatchJobUploadStatus::__construct
+     * @covers \Google\AdsApi\AdWords\BatchJobs\BatchJobUploadStatus::initiateResumableUpload
      */
     public function testCreateBatchJobUploadStatusWithZeroBytes()
     {
@@ -98,7 +98,7 @@ class BatchJobUploadStatusTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\BatchJobs\BatchJobUploadStatus::__construct
+     * @covers \Google\AdsApi\AdWords\BatchJobs\BatchJobUploadStatus::__construct
      */
     public function testCreateBatchJobUploadStatusWithNonZeroBytes()
     {

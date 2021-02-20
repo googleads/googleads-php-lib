@@ -41,7 +41,7 @@ class DeleteCustomTargetingKeys
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $customTargetingKeyId
+        int $customTargetingKeyId
     ) {
         $customTargetingService = $serviceFactory->createCustomTargetingService(
             $session

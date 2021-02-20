@@ -17,6 +17,7 @@
 
 namespace Google\AdsApi\AdManager\Util\v202005;
 
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -32,9 +33,9 @@ class CsvFilesTest extends TestCase
     private $resultSet;
 
     /**
-     * @see PHPUnit\Framework\TestCase::setUp
+     * @see \PHPUnit\Framework\TestCase::setUp
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->resultSet = [
             ['id', 'name', 'note'],
@@ -44,16 +45,16 @@ class CsvFilesTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202005\CsvFiles::writeCsv
-     * @expectedException InvalidArgumentException
+     * @covers \Google\AdsApi\AdManager\Util\v202005\CsvFiles::writeCsv
      */
     public function testWriteCsvWithNullFileName()
     {
+        $this->expectException(InvalidArgumentException::class);
         CsvFiles::writeCsv([], null);
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202005\CsvFiles::writeCsv
+     * @covers \Google\AdsApi\AdManager\Util\v202005\CsvFiles::writeCsv
      */
     public function testWriteCsv()
     {
@@ -74,7 +75,7 @@ class CsvFilesTest extends TestCase
      * Verify that data is written completely and correctly in CSV format
      * to a stream.
      *
-     * @covers Google\AdsApi\AdManager\Util\v202005\CsvFiles::writeCsvToStream
+     * @covers \Google\AdsApi\AdManager\Util\v202005\CsvFiles::writeCsvToStream
      */
     public function testWriteCsvToStream()
     {

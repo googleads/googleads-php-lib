@@ -58,7 +58,7 @@ class GetAvailabilityForecast
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $advertiserId
+        int $advertiserId
     ) {
         $forecastService = $serviceFactory->createForecastService($session);
 

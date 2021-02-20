@@ -41,7 +41,7 @@ class DeactivateLicas
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $lineItemId
+        int $lineItemId
     ) {
         $lineItemCreativeAssociationService =
             $serviceFactory->createLineItemCreativeAssociationService($session);

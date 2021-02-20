@@ -40,7 +40,7 @@ class UpdateTeams
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $teamId
+        int $teamId
     ) {
         $teamService = $serviceFactory->createTeamService($session);
 

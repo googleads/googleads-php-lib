@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2020 Google Inc. All Rights Reserved -->
+<!-- Copyright 2021 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202011"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202011"
@@ -1719,32 +1719,32 @@
           <enumeration value="INVALID_INGEST_URL">
             <annotation>
               <documentation>
-                The ingest URL provided in the publisher's content source feed is invalid. The trigger for
-                this error is the ingest URL specified in the publisher's feed.
+                The ingest URL provided in the publisher's content source feed is invalid. The trigger for this
+                error is the ingest URL specified in the publisher's feed.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="INVALID_CLOSED_CAPTION_URL">
             <annotation>
               <documentation>
-                The closed caption URL provided in the publisher's content source feed is invalid. The
-                trigger for this error is the closed caption URL specified in the publisher's feed.
+                The closed caption URL provided in the publisher's content source feed is invalid. The trigger
+                for this error is the closed caption URL specified in the publisher's feed.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="MISSING_CLOSED_CAPTION_URL">
             <annotation>
               <documentation>
-                There is no closed caption URL for a content in the publisher's content source feed. There
-                is no trigger for this error.
+                There is no closed caption URL for a content in the publisher's content source feed. There is
+                no trigger for this error.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="COULD_NOT_FETCH_HLS">
             <annotation>
               <documentation>
-                There was an error while trying to fetch the HLS from the specified ingest URL. The trigger
-                for this error is the ingest URL specified in the publisher's feed.
+                There was an error while trying to fetch the HLS from the specified ingest URL. The trigger for
+                this error is the ingest URL specified in the publisher's feed.
               </documentation>
             </annotation>
           </enumeration>
@@ -1768,16 +1768,16 @@
             <annotation>
               <documentation>
                 Error fetching the media files from the URLs specified in the master HLS playlist. The trigger
-                for this error is a media playlist URL within the publisher's HLS playlist that could not
-                be fetched.
+                for this error is a media playlist URL within the publisher's HLS playlist that could not be
+                fetched.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="MALFORMED_MEDIA_BYTES">
             <annotation>
               <documentation>
-                The media from the publisher's CDN is malformed and cannot be conditioned. The trigger
-                for this error is a media playlist URL within the publisher's HLS playlist that is malformed.
+                The media from the publisher's CDN is malformed and cannot be conditioned. The trigger for this
+                error is a media playlist URL within the publisher's HLS playlist that is malformed.
               </documentation>
             </annotation>
           </enumeration>
@@ -1785,40 +1785,39 @@
             <annotation>
               <documentation>
                 A chapter time for the content is outside of the range of the content's duration. The trigger
-                for this error is the chapter time (a parsable long representing the time in ms) that is out
-                of bounds.
+                for this error is the chapter time (a parsable long representing the time in ms) that is out of
+                bounds.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="INTERNAL_ERROR">
             <annotation>
               <documentation>
-                An internal error occurred while conditioning the content. There is no trigger for this
-                error.
+                An internal error occurred while conditioning the content. There is no trigger for this error.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="CONTENT_HAS_CHAPTER_TIMES_BUT_NO_MIDROLL_SETTINGS">
             <annotation>
               <documentation>
-                The content has chapter times but the content's source has no CDN settings for midrolls.
-                There is no trigger for this error.
+                The content has chapter times but the content's source has no CDN settings for midrolls. There
+                is no trigger for this error.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="MALFORMED_MEDIA_PLAYLIST">
             <annotation>
               <documentation>
-                There is bad/missing/malformed data in a media playlist. The trigger for this error is the
-                URL that points to the malformed media playlist.
+                There is bad/missing/malformed data in a media playlist. The trigger for this error is the URL
+                that points to the malformed media playlist.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="MALFORMED_SUBTITLES">
             <annotation>
               <documentation>
-                There is bad/missing/malformed data in a subtitles file. The trigger for this error is the
-                URL that points to the malformed subtitles.
+                There is bad/missing/malformed data in a subtitles file. The trigger for this error is the URL
+                that points to the malformed subtitles.
               </documentation>
             </annotation>
           </enumeration>
@@ -1926,40 +1925,40 @@
           <enumeration value="ADTS_PARSE_ERROR">
             <annotation>
               <documentation>
-                Error parsing ADTS while splitting the content. The trigger for this error is the
-                variant URL and the cue-point separated by a semi-colon, e.g. "www.variant2.com;5000".
+                Error parsing ADTS while splitting the content. The trigger for this error is the variant URL
+                and the cue-point separated by a semi-colon, e.g. "www.variant2.com;5000".
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="AAC_SPLIT_ERROR">
             <annotation>
               <documentation>
-                Error splitting an AAC segment. The trigger for this error is the variant URL and the
-                cue-point separated by a semi-colon, e.g. "www.variant2.com;5000".
+                Error splitting an AAC segment. The trigger for this error is the variant URL and the cue-point
+                separated by a semi-colon, e.g. "www.variant2.com;5000".
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="AAC_PARSE_ERROR">
             <annotation>
               <documentation>
-                Error parsing an AAC file while splitting the content. The trigger for this error is
-                the variant URL and the cue-point separated by a semi-colon, e.g. "www.variant2.com;5000".
+                Error parsing an AAC file while splitting the content. The trigger for this error is the
+                variant URL and the cue-point separated by a semi-colon, e.g. "www.variant2.com;5000".
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="TS_PARSE_ERROR">
             <annotation>
               <documentation>
-                Error parsing a TS file while splitting the content. The trigger for this error is the
-                variant URL and the cue-point separated by a semi-colon, e.g. "www.variant2.com;5000".
+                Error parsing a TS file while splitting the content. The trigger for this error is the variant
+                URL and the cue-point separated by a semi-colon, e.g. "www.variant2.com;5000".
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="TS_SPLIT_ERROR">
             <annotation>
               <documentation>
-                Error splitting a TS file while splitting the content. The trigger for this error is
-                the variant URL and the cue-point separated by a semi-colon, e.g. "www.variant2.com;5000".
+                Error splitting a TS file while splitting the content. The trigger for this error is the
+                variant URL and the cue-point separated by a semi-colon, e.g. "www.variant2.com;5000".
               </documentation>
             </annotation>
           </enumeration>
@@ -2026,8 +2025,8 @@
           <enumeration value="INVALID_ENCRYPTION_KEY">
             <annotation>
               <documentation>
-                Error caused by an invalid encryption key. The trigger for this error is a media playlist
-                URL within the publisher's HLS playlist that has the invalid encryption key.
+                Error caused by an invalid encryption key. The trigger for this error is a media playlist URL
+                within the publisher's HLS playlist that has the invalid encryption key.
               </documentation>
             </annotation>
           </enumeration>

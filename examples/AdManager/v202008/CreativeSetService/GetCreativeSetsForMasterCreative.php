@@ -40,7 +40,7 @@ class GetCreativeSetsForMasterCreative
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $masterCreativeId
+        int $masterCreativeId
     ) {
         $creativeSetService = $serviceFactory->createCreativeSetService(
             $session

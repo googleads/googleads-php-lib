@@ -41,7 +41,7 @@ class UpdateOrders
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $orderId
+        int $orderId
     ) {
 
         $orderService = $serviceFactory->createOrderService($session);

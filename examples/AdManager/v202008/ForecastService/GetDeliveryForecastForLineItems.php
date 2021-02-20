@@ -38,8 +38,8 @@ class GetDeliveryForecastForLineItems
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $lineItemId1,
-        $lineItemId2
+        int $lineItemId1,
+        int $lineItemId2
     ) {
         $forecastService = $serviceFactory->createForecastService($session);
 

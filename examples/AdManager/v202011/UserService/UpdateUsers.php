@@ -42,8 +42,8 @@ class UpdateUsers
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $userId,
-        $roleId
+        int $userId,
+        int $roleId
     ) {
         $userService = $serviceFactory->createUserService($session);
 

@@ -44,9 +44,9 @@ class CreateOrders
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $advertiserId,
-        $salespersonId,
-        $traffickerId
+        int $advertiserId,
+        int $salespersonId,
+        int $traffickerId
     ) {
         $orderService = $serviceFactory->createOrderService($session);
 

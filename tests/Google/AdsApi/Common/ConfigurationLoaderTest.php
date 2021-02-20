@@ -18,6 +18,7 @@ namespace Google\AdsApi\Common;
 
 use Google\AdsApi\Common\Testing\ConfigurationLoaderTestProvider;
 use Google\AdsApi\Common\Util\EnvironmentalVariables;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -32,9 +33,9 @@ class ConfigurationLoaderTest extends TestCase
     private $configurationLoader;
 
   /**
-   * @see PHPUnit\Framework\TestCase::setUp
+   * @see \PHPUnit\Framework\TestCase::setUp
    */
-    protected function setUp()
+    protected function setUp(): void
     {
         $environmentalVariablesMock = $this
         ->getMockBuilder(EnvironmentalVariables::class)
@@ -47,7 +48,7 @@ class ConfigurationLoaderTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\ConfigurationLoader::fromFile
+   * @covers \Google\AdsApi\Common\ConfigurationLoader::fromFile
    */
     public function testFromFileFileExists()
     {
@@ -59,7 +60,7 @@ class ConfigurationLoaderTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\ConfigurationLoader::fromFile
+   * @covers \Google\AdsApi\Common\ConfigurationLoader::fromFile
    */
     public function testFromFileFileExistsInHome()
     {
@@ -69,16 +70,17 @@ class ConfigurationLoaderTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\ConfigurationLoader::fromFile
-   * @expectedException InvalidArgumentException
+   * @covers \Google\AdsApi\Common\ConfigurationLoader::fromFile
+   *
    */
     public function testFromFileFileDoesNotExistAnywhere()
     {
+        $this->expectException(InvalidArgumentException::class);
         $this->configurationLoader->fromFile('asdf.ini');
     }
 
   /**
-   * @covers Google\AdsApi\Common\ConfigurationLoader::fromString
+   * @covers \Google\AdsApi\Common\ConfigurationLoader::fromString
    */
     public function testFromString()
     {

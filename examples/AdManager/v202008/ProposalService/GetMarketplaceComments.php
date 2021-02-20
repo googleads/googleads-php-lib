@@ -41,7 +41,7 @@ class GetMarketplaceComments
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $proposalId
+        int $proposalId
     ) {
         $proposalService = $serviceFactory->createProposalService($session);
 

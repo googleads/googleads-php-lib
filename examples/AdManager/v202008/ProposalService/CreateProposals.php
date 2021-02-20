@@ -23,6 +23,7 @@ use Google\AdsApi\AdManager\AdManagerSession;
 use Google\AdsApi\AdManager\AdManagerSessionBuilder;
 use Google\AdsApi\AdManager\v202008\Proposal;
 use Google\AdsApi\AdManager\v202008\ProposalCompanyAssociation;
+use Google\AdsApi\AdManager\v202008\ProposalCompanyAssociationType;
 use Google\AdsApi\AdManager\v202008\ProposalMarketplaceInfo;
 use Google\AdsApi\AdManager\v202008\SalespersonSplit;
 use Google\AdsApi\AdManager\v202008\ServiceFactory;
@@ -49,10 +50,10 @@ class CreateProposals
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $buyerId,
-        $primarySalespersonId,
-        $primaryTraffickerId,
-        $advertiserId
+        int $buyerId,
+        int $primarySalespersonId,
+        int $primaryTraffickerId,
+        int $advertiserId
     ) {
         $proposalService = $serviceFactory->createProposalService($session);
 
@@ -75,11 +76,11 @@ class CreateProposals
         $proposal->setPrimaryTraffickerId($primaryTraffickerId);
 
         $advertiser = new ProposalCompanyAssociation();
-        $advertiser->setProposalCompanyAssociationType(
-            ProposalCompanyAssociationType.ADVERTISER
+        $advertiser->setType(
+            ProposalCompanyAssociationType::ADVERTISER
         );
         $advertiser->setCompanyId($advertiserId);
-        $proposal->setAdvertiser(advertiser);
+        $proposal->setAdvertiser($advertiser);
 
         // Create the proposals on the server.
         $results = $proposalService->createProposals([$proposal]);

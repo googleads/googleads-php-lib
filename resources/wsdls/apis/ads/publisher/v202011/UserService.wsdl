@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2020 Google Inc. All Rights Reserved -->
+<!-- Copyright 2021 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202011"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202011"
@@ -941,9 +941,9 @@
                 name="isEmailNotificationAllowed" type="xsd:boolean">
                 <annotation>
                   <documentation>
-                    Specifies whether or not the {@code User} wants to permit the Publisher
-                    Display Ads system to send email notifications to his or her email address.
-                    This attribute is optional and defaults to {@code true}.
+                    Specifies whether or not the {@code User} wants to permit the Publisher Display Ads system to
+                    send email notifications to their email address. This attribute is optional and defaults to
+                    {@code true}.
                   </documentation>
                 </annotation>
               </element>

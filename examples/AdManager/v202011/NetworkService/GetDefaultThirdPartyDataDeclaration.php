@@ -21,11 +21,9 @@ require __DIR__ . '/../../../../vendor/autoload.php';
 
 use Google\AdsApi\AdManager\AdManagerSession;
 use Google\AdsApi\AdManager\AdManagerSessionBuilder;
-use Google\AdsApi\AdManager\Util\v202011\Pql;
 use Google\AdsApi\AdManager\Util\v202011\StatementBuilder;
 use Google\AdsApi\AdManager\v202005\DeclarationType;
 use Google\AdsApi\AdManager\v202011\ApiException;
-use Google\AdsApi\AdManager\v202011\NumberValue;
 use Google\AdsApi\AdManager\v202011\ServiceFactory;
 use Google\AdsApi\Common\OAuth2TokenBuilder;
 

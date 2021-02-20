@@ -29,7 +29,7 @@ class SoapHeadersTest extends TestCase
 {
 
   /**
-   * @covers Google\AdsApi\Common\Util\SoapHeaders::getSoapHeaderValue
+   * @covers \Google\AdsApi\Common\Util\SoapHeaders::getSoapHeaderValue
    */
     public function testGetSoapHeaderValueEmptyXml()
     {
@@ -40,7 +40,7 @@ class SoapHeadersTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Util\SoapHeaders::getSoapHeaderValue
+   * @covers \Google\AdsApi\Common\Util\SoapHeaders::getSoapHeaderValue
    */
     public function testGetSoapHeaderValueNullXml()
     {
@@ -51,7 +51,7 @@ class SoapHeadersTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Util\SoapHeaders::getSoapHeaderValue
+   * @covers \Google\AdsApi\Common\Util\SoapHeaders::getSoapHeaderValue
    */
     public function testGetSoapHeaderValueCannotFindHeader()
     {
@@ -63,7 +63,7 @@ class SoapHeadersTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Util\SoapHeaders::getSoapHeaderValue
+   * @covers \Google\AdsApi\Common\Util\SoapHeaders::getSoapHeaderValue
    */
     public function testGetSoapHeaderValueFindsRequestHeaderWithAttr()
     {
@@ -75,7 +75,7 @@ class SoapHeadersTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Util\SoapHeaders::getSoapHeaderValue
+   * @covers \Google\AdsApi\Common\Util\SoapHeaders::getSoapHeaderValue
    */
     public function testGetSoapHeaderValueFindsRequestHeaderWithoutAttr()
     {
@@ -87,7 +87,7 @@ class SoapHeadersTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Util\SoapHeaders::getSoapHeaderValue
+   * @covers \Google\AdsApi\Common\Util\SoapHeaders::getSoapHeaderValue
    */
     public function testGetSoapHeaderValueFindsResponseHeader()
     {
@@ -100,7 +100,7 @@ class SoapHeadersTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Util\SoapHeaders::getSoapResponseHeaderValues
+   * @covers \Google\AdsApi\Common\Util\SoapHeaders::getSoapResponseHeaderValues
    */
     public function testGetSoapResponseHeaderValuesEmptyXml()
     {
@@ -111,7 +111,7 @@ class SoapHeadersTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Util\SoapHeaders::getSoapResponseHeaderValues
+   * @covers \Google\AdsApi\Common\Util\SoapHeaders::getSoapResponseHeaderValues
    */
     public function testGetSoapResponseHeaderValuesNullXml()
     {
@@ -122,7 +122,7 @@ class SoapHeadersTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Util\SoapHeaders::getSoapResponseHeaderValues
+   * @covers \Google\AdsApi\Common\Util\SoapHeaders::getSoapResponseHeaderValues
    */
     public function testGetSoapResponseHeaderValues()
     {

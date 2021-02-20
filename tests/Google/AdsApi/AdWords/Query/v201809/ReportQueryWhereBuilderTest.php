@@ -30,12 +30,12 @@ class ReportQueryWhereBuilderTest extends TestCase
 {
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::createWithField
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage field name
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::createWithField
      */
     public function testCreateWithFieldAsNull()
     {
+        $this->expectExceptionMessage("field name");
+        $this->expectException(InvalidArgumentException::class);
         ReportQueryWhereBuilder::createWithField(
             null,
             new ReportQueryBuilder()
@@ -43,12 +43,12 @@ class ReportQueryWhereBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::createWithField
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage field name
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::createWithField
      */
     public function testCreateWithFieldAsEmptyString()
     {
+        $this->expectExceptionMessage("field name");
+        $this->expectException(InvalidArgumentException::class);
         ReportQueryWhereBuilder::createWithField(
             '',
             new ReportQueryBuilder()
@@ -56,9 +56,9 @@ class ReportQueryWhereBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::createWithField
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::__construct
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::buildWhere
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::createWithField
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::__construct
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::buildWhere
      */
     public function testCreateWithField()
     {
@@ -74,10 +74,10 @@ class ReportQueryWhereBuilderTest extends TestCase
 
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::createWithField
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::copyFrom
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::__construct
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::buildWhere
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::createWithField
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::copyFrom
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::__construct
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::buildWhere
      */
     public function testCopyFromShouldCopyPartialExpressions()
     {
@@ -97,10 +97,10 @@ class ReportQueryWhereBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::createWithField
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::copyFrom
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::__construct
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::buildWhere
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::createWithField
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::copyFrom
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::__construct
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::buildWhere
      */
     public function testCopyFromShouldCopyCompleteExpressions()
     {
@@ -120,10 +120,10 @@ class ReportQueryWhereBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::createWithField
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::copyFrom
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::__construct
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::buildWhere
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::createWithField
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::copyFrom
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::__construct
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::buildWhere
      */
     public function testCopyFromShouldOverwritePreviousExpression()
     {
@@ -144,10 +144,10 @@ class ReportQueryWhereBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::createWithField
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::copyFrom
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::__construct
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::buildWhere
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::createWithField
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::copyFrom
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::__construct
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryWhereBuilder::buildWhere
      */
     public function testCopyFromShouldNotShareQueryBuilder()
     {

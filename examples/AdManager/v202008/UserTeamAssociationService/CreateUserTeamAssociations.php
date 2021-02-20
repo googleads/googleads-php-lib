@@ -44,8 +44,8 @@ class CreateUserTeamAssociations
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $userId,
-        $teamId
+        int $userId,
+        int $teamId
     ) {
         $userTeamAssociationService =
             $serviceFactory->createUserTeamAssociationService($session);

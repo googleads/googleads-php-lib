@@ -41,7 +41,7 @@ class RunSavedQuery
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $savedQueryId
+        int $savedQueryId
     ) {
         $reportService = $serviceFactory->createReportService($session);
 

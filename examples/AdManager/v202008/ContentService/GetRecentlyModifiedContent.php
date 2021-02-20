@@ -19,6 +19,8 @@ namespace Google\AdsApi\Examples\AdManager\v202008\ContentService;
 
 require __DIR__ . '/../../../../vendor/autoload.php';
 
+use DateTime;
+use DateTimeZone;
 use Google\AdsApi\AdManager\AdManagerSession;
 use Google\AdsApi\AdManager\AdManagerSessionBuilder;
 use Google\AdsApi\AdManager\Util\v202008\AdManagerDateTimes;
@@ -43,7 +45,7 @@ class GetRecentlyModifiedContent
         $contentService = $serviceFactory->createContentService($session);
 
         // Create a statement to get recently modified content based on
-        // lastModifiedDateTime. Changes to content buddle associations will
+        // lastModifiedDateTime. Changes to content bundle associations will
         // update the lastModifiedDateTime, but CMS metadata changes may not
         // change the lastModifiedDateTime.
         $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
@@ -74,7 +76,7 @@ class GetRecentlyModifiedContent
                 $totalResultSetSize = $page->getTotalResultSetSize();
                 $i = $page->getStartIndex();
                 foreach ($page->getResults() as $content) {
-                    $bundleIds = content->getContentBundleIds() ?? [];
+                    $bundleIds = $content->getContentBundleIds() ?? [];
                     printf(
                       "%d) Content with ID %d and name '%s' belonging to
                       bundle IDs %s was found.%s",

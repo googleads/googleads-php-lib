@@ -16,7 +16,6 @@ class AdjustmentService extends \Google\AdsApi\Common\AdsSoapClient
       'ObjectValue' => 'Google\\AdsApi\\AdManager\\v202011\\ObjectValue',
       'ActivateForecastAdjustments' => 'Google\\AdsApi\\AdManager\\v202011\\ActivateForecastAdjustments',
       'AdUnitTargeting' => 'Google\\AdsApi\\AdManager\\v202011\\AdUnitTargeting',
-      'AdjustmentError' => 'Google\\AdsApi\\AdManager\\v202011\\AdjustmentError',
       'ApiError' => 'Google\\AdsApi\\AdManager\\v202011\\ApiError',
       'ApiException' => 'Google\\AdsApi\\AdManager\\v202011\\ApiException',
       'TechnologyTargeting' => 'Google\\AdsApi\\AdManager\\v202011\\TechnologyTargeting',

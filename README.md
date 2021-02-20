@@ -403,14 +403,10 @@ post to our forums:
 For general ads API and client library updates and news, follow:
 
 *   [Google Ads Developers blog](http://googleadsdeveloper.blogspot.com)
-*   [AdWords API Announcements mailing
-    list](https://groups.google.com/forum/#!forum/adwordsapi-announcements)
 *   [Ad Manager API Sunset Announcements mailing
     list](https://groups.google.com/forum/#!forum/dfpapi-sunset-announce)
 
 API deprecation schedules can be found at:
 
-*   [AdWords API deprecation
-    schedule](https://developers.google.com/adwords/api/docs/sunset-dates)
 *   [Ad Manager API deprecation
     schedule](https://developers.google.com/ad-manager/docs/deprecation)

@@ -22,6 +22,7 @@ require __DIR__ . '/../../../../vendor/autoload.php';
 use Google\AdsApi\AdManager\AdManagerSession;
 use Google\AdsApi\AdManager\AdManagerSessionBuilder;
 use Google\AdsApi\AdManager\Util\v202008\StatementBuilder;
+use Google\AdsApi\AdManager\v202008\ApiException;
 use Google\AdsApi\AdManager\v202008\CustomTargetingKeyType;
 use Google\AdsApi\AdManager\v202008\ServiceFactory;
 use Google\AdsApi\Common\OAuth2TokenBuilder;
@@ -106,6 +107,14 @@ class GetPredefinedCustomTargetingKeysAndValues
 
     /**
      * Gets predefined custom targeting key IDs.
+     *
+     * @param ServiceFactory $serviceFactory the factory class for creating a
+     *     custom targeting service client
+     * @param AdManagerSession $session the session containing configurations
+     *     for creating a custom targeting service client
+     * @return int[] array of custom targeting key's IDs
+     * @throws ApiException if the request for getting all custom targeting keys
+     *    fails
      */
     private static function getPredefinedCustomTargetingKeyIds(
         ServiceFactory $serviceFactory,

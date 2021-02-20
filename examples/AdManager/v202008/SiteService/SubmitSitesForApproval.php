@@ -22,7 +22,6 @@ require __DIR__ . '/../../../../vendor/autoload.php';
 use Google\AdsApi\AdManager\AdManagerSession;
 use Google\AdsApi\AdManager\AdManagerSessionBuilder;
 use Google\AdsApi\AdManager\Util\v202008\StatementBuilder;
-use Google\AdsApi\AdManager\v202008\ApprovalStatus;
 use Google\AdsApi\AdManager\v202008\ServiceFactory;
 use Google\AdsApi\AdManager\v202008\SubmitSiteForApproval;
 use Google\AdsApi\Common\OAuth2TokenBuilder;
@@ -43,12 +42,11 @@ class SubmitSitesForApproval
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $siteId
+        int $siteId
     ) {
         $siteService = $serviceFactory->createSiteService($session);
 
         // Create a statement to select sites.
-        $pageSize = StatementBuilder::SUGGESTED_PAGE_LIMIT;
         $statementBuilder = (new StatementBuilder())
             ->where('id = :id')
             ->withBindVariableValue('id', $siteId);

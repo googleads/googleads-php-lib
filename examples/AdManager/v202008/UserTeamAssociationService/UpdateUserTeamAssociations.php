@@ -45,8 +45,8 @@ class UpdateUserTeamAssociations
     public static function runExample(
         ServiceFactory $serviceFactory,
         AdManagerSession $session,
-        $userId,
-        $teamId
+        int $userId,
+        int $teamId
     ) {
         // Get the UserTeamAssociationService.
         $userTeamAssociationService =
