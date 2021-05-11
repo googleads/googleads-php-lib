@@ -1704,10 +1704,6 @@
             &lt;td&gt;{@link CmsMetadataValue#key#id}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;tr&gt;
-            &lt;td&gt;{@code keyValueMemberContent}&lt;/td&gt;
-            &lt;td&gt;Content IDs tagged with a CMS metadata key-value&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
             &lt;td&gt;{@code status}&lt;/td&gt;
             &lt;td&gt;{@link CmsMetadataValue#status}&lt;/td&gt;
             &lt;/tr&gt;
@@ -1874,10 +1870,6 @@
         &lt;tr&gt;
         &lt;td&gt;{@code cmsKeyId}&lt;/td&gt;
         &lt;td&gt;{@link CmsMetadataValue#key#id}&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-        &lt;td&gt;{@code keyValueMemberContent}&lt;/td&gt;
-        &lt;td&gt;Content IDs tagged with a CMS metadata key-value&lt;/td&gt;
         &lt;/tr&gt;
         &lt;tr&gt;
         &lt;td&gt;{@code status}&lt;/td&gt;

@@ -779,7 +779,7 @@
       <complexType name="SiteTargetingInfo">
         <annotation>
           <documentation>
-            Contains information required for AdWords advertisers to place their ads.
+            Deprecated container for information required for AdWords advertisers to place their ads.
           </documentation>
         </annotation>
         <sequence/>

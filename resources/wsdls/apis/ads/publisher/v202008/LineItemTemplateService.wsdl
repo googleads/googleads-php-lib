@@ -4779,8 +4779,7 @@
           <enumeration value="STANDARD">
             <annotation>
               <documentation>
-                The type of {@link LineItem} for which a fixed quantity of impressions or
-                clicks are reserved.
+                The type of {@link LineItem} for which a fixed quantity of impressions or clicks are reserved.
               </documentation>
             </annotation>
           </enumeration>

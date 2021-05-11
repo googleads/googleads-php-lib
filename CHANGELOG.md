@@ -1,3 +1,22 @@
+### 53.0.0
+
+##### AdWords
+
+*   No changes.
+
+##### Ad Manager
+
+*   Added support for v202105.
+*   Removed support for v202005.
+*   Removed examples for v202008.
+*   Updated the CreateProposalLineItems example to use RequestPlatformTargeting
+    instead of marketplace info for v202105.
+*   Added a new example for v202105: `PushCreativeToDevices`.
+
+##### Common
+
+*   No changes.
+
 ### 52.0.0
 
 ##### AdWords

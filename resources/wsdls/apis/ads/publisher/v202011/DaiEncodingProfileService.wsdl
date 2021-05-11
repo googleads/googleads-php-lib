@@ -1081,7 +1081,7 @@
           <element maxOccurs="1" minOccurs="0" name="bitrate" type="xsd:long">
             <annotation>
               <documentation>
-                The bitrate of the audio, in bits per second. This value must be between 56kbps and 250 Mbps.
+                The bitrate of the video, in bits per second. This value must be between 32kbps and 250 Mbps.
               </documentation>
             </annotation>
           </element>

@@ -148,6 +148,9 @@ class SiteService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * Updates the specified {@link Site} objects.
      *
+     * <p>The {@link Site#childNetworkCode} can be updated in order to 1) change the child network, 2)
+     * move a site from O&O to represented, or 3) move a site from represented to O&O.
+     *
      * @param \Google\AdsApi\AdManager\v202011\Site[] $sites
      * @return \Google\AdsApi\AdManager\v202011\Site[]
      * @throws \Google\AdsApi\AdManager\v202011\ApiException

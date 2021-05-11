@@ -35,7 +35,6 @@ use PHPUnit\Framework\TestCase;
 class ServiceQueryTest extends TestCase
 {
 
-
     /**
      * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQuery::__construct
      */

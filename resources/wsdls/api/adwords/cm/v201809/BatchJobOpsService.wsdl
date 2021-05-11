@@ -2646,9 +2646,8 @@
             <annotation>
               <documentation>
                 The primary serving target for ads within this campaign. The targeting options can be refined
-                in NetworkSetting. May only be set for new campaigns.
-                This field is required and should not be {@code null} when it is contained within
-                {@link Operator}s : ADD
+                in NetworkSetting. May only be set for new campaigns. This field is required and should not be
+                {@code null} when it is contained within {@link Operator}s : ADD
                 &lt;span class="constraint ReadOnly"&gt;This field is read only and will be ignored when sent to the API for the following {@link Operator}s: SET.&lt;/span&gt;
               </documentation>
             </annotation>
@@ -14893,8 +14892,9 @@
             <annotation>
               <documentation>
                 This is a trial version of a campaign. It has some modifications from a base
-                campaign, and a percentage of traffic is being diverted from the BASE campaign
-                to this trial campaign.
+                campaign. The type will continue to be TRIAL unless the trial is graduated. The
+                TRIAL type will remain even on trial campaigns which are promoted back to the
+                BASE campaigns.
               </documentation>
             </annotation>
           </enumeration>

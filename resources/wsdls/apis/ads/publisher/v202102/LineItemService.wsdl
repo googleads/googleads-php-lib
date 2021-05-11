@@ -8555,8 +8555,7 @@
           <enumeration value="STANDARD">
             <annotation>
               <documentation>
-                The type of {@link LineItem} for which a fixed quantity of impressions or
-                clicks are reserved.
+                The type of {@link LineItem} for which a fixed quantity of impressions or clicks are reserved.
               </documentation>
             </annotation>
           </enumeration>
@@ -10317,9 +10316,27 @@
               </documentation>
             </annotation>
           </enumeration>
-          <enumeration value="NONE"/>
-          <enumeration value="KANTAR_MILLWARD_BROWN"/>
-          <enumeration value="DYNATA"/>
+          <enumeration value="NONE">
+            <annotation>
+              <documentation>
+                Indicates there's no third-party brand lift integration partner.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="KANTAR_MILLWARD_BROWN">
+            <annotation>
+              <documentation>
+                Indicates third-party brand lift integration partner Kantar.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DYNATA">
+            <annotation>
+              <documentation>
+                Indicates third-party brand lift integration partner Dynata.
+              </documentation>
+            </annotation>
+          </enumeration>
         </restriction>
       </simpleType>
       <simpleType name="ThirdPartyReachIntegrationPartner">

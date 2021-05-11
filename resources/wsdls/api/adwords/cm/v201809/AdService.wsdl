@@ -130,6 +130,7 @@
                 Additional urls for the ad that are tagged with a unique identifier. Currently only used for
                 TemplateAds for specific template IDs. For all other ad types, use finalUrls,
                 finalMobileUrls and finalAppUrls instead.
+                &lt;span class="constraint Selectable"&gt;This field can be selected using the value "UrlData".&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -2278,8 +2279,8 @@
                     AssetService, and ImageAsset.assetId must be populated in this field. Valid image types are
                     GIF, JPEG, and PNG. The minimum size is 600x314 and the aspect ratio must be 1.91:1 (+-1%). One
                     marketingImage is required. Support up to 15 with squareMarketingImages.
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "MultiAssetResponsiveDisplayAdMarketingImages".&lt;/span&gt;
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -2294,8 +2295,8 @@
                     populated in this field. Valid image types are GIF, JPEG, and PNG. The minimum size is 300x300
                     the aspect ratio must be 1:1 (+-1%). One squareMarketingImage is required. Support up to 15
                     with marketingImages.
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "MultiAssetResponsiveDisplayAdSquareMarketingImages".&lt;/span&gt;
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -2331,8 +2332,8 @@
                   <documentation>
                     Short format of the headline of the ad. Maximum display width is 30. One short headline is
                     required. Support up to 5 short headlines.
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "MultiAssetResponsiveDisplayAdHeadlines".&lt;/span&gt;
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -2340,8 +2341,8 @@
                 <annotation>
                   <documentation>
                     Long format of the headline of the ad. Maximum display width is 90.
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "MultiAssetResponsiveDisplayAdLongHeadline".&lt;/span&gt;
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -2351,8 +2352,8 @@
                   <documentation>
                     The descriptive text of the ad. Maximum display width is 90. One description is required.
                     Support up to 5 descriptions.
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "MultiAssetResponsiveDisplayAdDescriptions".&lt;/span&gt;
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -2370,8 +2371,8 @@
                 <annotation>
                   <documentation>
                     The Advertiser/brand name. Maximum display width is 25.
+                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : ADD.&lt;/span&gt;
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "MultiAssetResponsiveDisplayAdBusinessName".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
-                    &lt;span class="constraint Required"&gt;This field is required and should not be {@code null} when it is contained within {@link Operator}s : SET.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
