@@ -33,6 +33,10 @@ final class AdManagerSession implements AdsSession
     private $oAuth2Credential;
     private $connectionSettings;
     private $soapSettings;
+    // MOE:begin_strip
+    private $isIcsUser;
+    private $impersonatedUser;
+    // MOE:end_strip
     private $soapLogger;
     private $reportDownloaderLogger;
     private $adsHeaderFormatter;
@@ -55,6 +59,10 @@ final class AdManagerSession implements AdsSession
         $this->connectionSettings = $builder->getConnectionSettings();
         $this->soapSettings = $builder->getSoapSettings();
         $this->adsHeaderFormatter = $builder->getAdsHeaderFormatter();
+        // MOE:begin_strip
+        $this->isIcsUser = $builder->isIcsUser();
+        $this->impersonatedUser = $builder->getImpersonatedUser();
+        // MOE:end_strip
         $this->soapLogger = $builder->getSoapLogger();
         $this->reportDownloaderLogger = $builder->getReportDownloaderLogger();
     }
@@ -110,6 +118,29 @@ final class AdManagerSession implements AdsSession
     {
         return $this->soapSettings;
     }
+    // MOE:begin_strip
+    /**
+     * Whether this session represents a user with ICS access.
+     *
+     * @return boolean|null
+     */
+    public function isIcsUser()
+    {
+        return $this->isIcsUser;
+    }
+
+    /**
+     * Gets the email address of a Ad Manager user to impersonate.
+     * This is `null` if API requests should be performed by the authenticated
+     * user within the impersonated network.
+     *
+     * @return string|null
+     */
+    public function getImpersonatedUser()
+    {
+        return $this->impersonatedUser;
+    }
+    // MOE:end_strip
 
     /**
      * @see AdsSession::getSoapLogger()

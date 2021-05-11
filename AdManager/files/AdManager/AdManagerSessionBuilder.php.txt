@@ -65,6 +65,10 @@ final class AdManagerSessionBuilder implements AdsBuilder
     private $oAuth2Credential;
     private $connectionSettings;
     private $soapSettings;
+    // MOE:begin_strip
+    private $isIcsUser;
+    private $impersonatedUser;
+    // MOE:end_strip
 
     private $soapLogger;
     private $reportDownloaderLogger;
@@ -230,6 +234,34 @@ final class AdManagerSessionBuilder implements AdsBuilder
 
         return $this;
     }
+    // MOE:begin_strip
+    /**
+     * Allows the session to act as an ICS user for the specified network.
+     *
+     * @param string $networkCode
+     * @return AdManagerSessionBuilder this builder
+     */
+    public function asIcsUserForNetwork(string $networkCode)
+    {
+        $this->isIcsUser = true;
+
+        return $this->withNetworkCode($networkCode);
+    }
+
+    /**
+     * Impersonates the specified user.
+     *
+     * @param string $impersonatedUser the email address of the user to
+     *     impersonate
+     * @return AdManagerSessionBuilder this builder
+     */
+    public function asImpersonatedUser(string $impersonatedUser)
+    {
+        $this->impersonatedUser = $impersonatedUser;
+
+        return $this;
+    }
+    // MOE:end_strip
 
     /**
      * Includes a PSR-3 compliant logger for logging SOAP calls. This is
@@ -290,6 +322,9 @@ final class AdManagerSessionBuilder implements AdsBuilder
      */
     public function defaultOptionals()
     {
+        // MOE:begin_strip
+        // TODO: b/158447308 Create a new logger or context object for debugging
+        // MOE:end_strip
         if ($this->endpoint === null) {
             $this->endpoint = self::DEFAULT_ENDPOINT;
         }
@@ -362,6 +397,16 @@ final class AdManagerSessionBuilder implements AdsBuilder
                 'Missing OAuth2 authentication credentials.'
             );
         }
+        // MOE:begin_strip
+        if (!$this->isIcsUser
+            && ($this->impersonatedUser !== null
+                && trim($this->impersonatedUser) !== '')) {
+            throw new InvalidArgumentException(
+                'To impersonate a user, you must authenticate as an internal '
+                . 'user with the asIcsUserForNetwork() method.'
+            );
+        }
+        // MOE:end_strip
     }
 
     /**
@@ -423,6 +468,28 @@ final class AdManagerSessionBuilder implements AdsBuilder
     {
         return $this->soapSettings;
     }
+    // MOE:begin_strip
+
+    /**
+     * If ICS access is being used.
+     *
+     * @return boolean|null
+     */
+    public function isIcsUser()
+    {
+        return $this->isIcsUser;
+    }
+
+    /**
+     * Gets the email address of the impersonated user.
+     *
+     * @return string|null
+     */
+    public function getImpersonatedUser()
+    {
+        return $this->impersonatedUser;
+    }
+    // MOE:end_strip
 
     /**
      * Gets the SOAP logger.

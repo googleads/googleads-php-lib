@@ -17,6 +17,9 @@
 
 namespace Google\AdsApi\Common;
 
+// MOE:begin_strip
+// TODO: b/75254558 This interface needs to be used consistently throughout the lib
+// MOE:end_strip
 /**
  * Stores and registers usage of ads utilities.
  */

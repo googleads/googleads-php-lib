@@ -69,6 +69,15 @@ final class AdManagerHeaderHandler implements AdsHeaderHandler
      */
     public function generateHttpHeaders(AdsSession $session)
     {
+        // MOE:begin_strip
+        // TODO: b/158447308 Use a new logger or context object for oauth errors
+        //  * Extract variables for `getOrFetchAccessToken()` and
+        //        `getOAuth2Credential()` calls.
+        //  * Make sure the new logger or context object log or contain
+        //        information about where the credential is loaded and which
+        //        tokens are used. Refresh tokens need to be redacted to
+        //        a 12-character length.
+        // MOE:end_strip
         $httpHandler = new AdsGuzzleProxyHttpHandler($session);
         $httpHeaders = [
             'Authorization' => sprintf(
@@ -81,6 +90,16 @@ final class AdManagerHeaderHandler implements AdsHeaderHandler
                 )
             )
         ];
+        // MOE:begin_strip
+        if ($session->isIcsUser()) {
+            $httpHeaders['Is-Internal-User'] = 'true';
+            $impersonatedUser = $session->getImpersonatedUser();
+            if ($impersonatedUser !== null) {
+                $httpHeaders['Impersonate-User'] = $impersonatedUser;
+            }
+        }
+
+        // MOE:end_strip
         return $httpHeaders;
     }
 

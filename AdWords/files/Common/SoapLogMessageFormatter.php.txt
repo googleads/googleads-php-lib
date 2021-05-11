@@ -26,6 +26,7 @@ use SoapFault;
  */
 final class SoapLogMessageFormatter
 {
+    // TODO(b/33260509): optimize extracting SOAP headers. MOE:strip_line
 
     private static $FAULT_MSG_MAX_LEN_DEFAULT = 16000;
 
