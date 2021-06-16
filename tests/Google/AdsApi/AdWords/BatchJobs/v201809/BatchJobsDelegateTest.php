@@ -21,6 +21,7 @@ use Google\AdsApi\AdWords\BatchJobs\BatchJobUploadStatus;
 use Google\AdsApi\AdWords\Testing\BatchJobs\SimpleGuzzleHttpClientFactory;
 use Google\AdsApi\AdWords\Testing\BatchJobs\v201809\BatchJobsTestProvider;
 use Google\AdsApi\AdWords\Testing\BatchJobs\v201809\FakeMutateResult;
+use Google\AdsApi\AdWords\v201809\cm\ApiException;
 use Google\Auth\FetchAuthTokenInterface;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ServerException;
@@ -51,9 +52,9 @@ class BatchJobsDelegateTest extends TestCase
     private $adWordsSession;
 
   /**
-   * @see PHPUnit\Framework\TestCase::setUp
+   * @see \PHPUnit\Framework\TestCase::setUp
    */
-    protected function setUp()
+    protected function setUp(): void
     {
         $fetchAuthTokenInterfaceStub = $this
         ->getMockBuilder(FetchAuthTokenInterface::class)
@@ -72,7 +73,7 @@ class BatchJobsDelegateTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\AdWords\BatchJobs\v201809\BatchJobsDelegate::uploadIncrementalBatchJobOperations
+   * @covers \Google\AdsApi\AdWords\BatchJobs\v201809\BatchJobsDelegate::uploadIncrementalBatchJobOperations
    */
     public function testUploadIncrementalBatchJobOperationsFirstRequest()
     {
@@ -130,7 +131,7 @@ class BatchJobsDelegateTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\AdWords\BatchJobs\v201809\BatchJobsDelegate::uploadIncrementalBatchJobOperations
+   * @covers \Google\AdsApi\AdWords\BatchJobs\v201809\BatchJobsDelegate::uploadIncrementalBatchJobOperations
    */
     public function testUploadIncrementalBatchJobOperationsIntermediateRequest()
     {
@@ -182,11 +183,11 @@ class BatchJobsDelegateTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\AdWords\BatchJobs\v201809\BatchJobsDelegate::uploadIncrementalBatchJobOperations
-   * @expectedException Google\AdsApi\AdWords\v201809\cm\ApiException
+   * @covers \Google\AdsApi\AdWords\BatchJobs\v201809\BatchJobsDelegate::uploadIncrementalBatchJobOperations
    */
     public function testUploadIncrementalBatchJobOperationsFails()
     {
+        $this->expectException(ApiException::class);
         $batchJobUploadStatus = new BatchJobUploadStatus(
             self::$DUMMY_RESUMABLE_UPLOAD_URL,
             $this->adWordsSession,
@@ -217,7 +218,7 @@ class BatchJobsDelegateTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\AdWords\BatchJobs\v201809\BatchJobsDelegate::closeIncrementalUpload
+   * @covers \Google\AdsApi\AdWords\BatchJobs\v201809\BatchJobsDelegate::closeIncrementalUpload
    */
     public function testCloseIncrementalUpload()
     {
@@ -256,11 +257,11 @@ class BatchJobsDelegateTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\AdWords\BatchJobs\v201809\BatchJobsDelegate::closeIncrementalUpload
-   * @expectedException Google\AdsApi\AdWords\v201809\cm\ApiException
+   * @covers \Google\AdsApi\AdWords\BatchJobs\v201809\BatchJobsDelegate::closeIncrementalUpload
    */
     public function testCloseIncrementalUploadFails()
     {
+        $this->expectException(ApiException::class);
         $batchJobUploadStatus = new BatchJobUploadStatus(
             self::$DUMMY_RESUMABLE_UPLOAD_URL,
             $this->adWordsSession,
@@ -288,7 +289,7 @@ class BatchJobsDelegateTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\AdWords\BatchJobs\v201809\BatchJobsDelegate::downloadBatchJobResults
+   * @covers \Google\AdsApi\AdWords\BatchJobs\v201809\BatchJobsDelegate::downloadBatchJobResults
    */
     public function testDownloadBatchJobResults()
     {
@@ -377,11 +378,11 @@ class BatchJobsDelegateTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\AdWords\BatchJobs\v201809\BatchJobsDelegate::downloadBatchJobResults
-   * @expectedException Google\AdsApi\AdWords\v201809\cm\ApiException
+   * @covers \Google\AdsApi\AdWords\BatchJobs\v201809\BatchJobsDelegate::downloadBatchJobResults
    */
     public function testDownloadBatchJobResultsFails()
     {
+        $this->expectException(ApiException::class);
         $mockHandler = new MockHandler([
         new ServerException(
             'Server error: 500',

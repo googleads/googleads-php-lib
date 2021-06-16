@@ -33,7 +33,7 @@ class AdsGuzzleHttpClientFactoryTest extends TestCase
 {
 
   /**
-   * @covers Google\AdsApi\Common\GuzzleHttpClientFactory::generateHttpClient
+   * @covers \Google\AdsApi\Common\GuzzleHttpClientFactory::generateHttpClient
    */
     public function testGenerateHttpClient()
     {
@@ -56,7 +56,7 @@ class AdsGuzzleHttpClientFactoryTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\GuzzleHttpClientFactory::generateHttpClient
+   * @covers \Google\AdsApi\Common\GuzzleHttpClientFactory::generateHttpClient
    */
     public function testGenerateHttpClient_userProvidedStack()
     {
@@ -95,7 +95,7 @@ class AdsGuzzleHttpClientFactoryTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\GuzzleHttpClientFactory::generateHttpClient
+   * @covers \Google\AdsApi\Common\GuzzleHttpClientFactory::generateHttpClient
    */
     public function testGenerateHttpClient_userProvidedConfigs()
     {

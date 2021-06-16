@@ -32,9 +32,9 @@ class AdsGuzzleProxyHttpHandlerTest extends TestCase
 {
 
   /**
-   * @see PHPUnit\Framework\TestCase::setUp
+   * @see \PHPUnit\Framework\TestCase::setUp
    */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->mockRequest =
         $this->getMockBuilder(RequestInterface::class)->getMock();
@@ -46,7 +46,7 @@ class AdsGuzzleProxyHttpHandlerTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\AdsGuzzleProxyHttpHandler::__invoke()
+   * @covers \Google\AdsApi\Common\AdsGuzzleProxyHttpHandler::__invoke()
    */
     public function testSendRequest_emptyProxyUrl()
     {
@@ -65,7 +65,7 @@ class AdsGuzzleProxyHttpHandlerTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\AdsGuzzleProxyHttpHandler::__invoke()
+   * @covers \Google\AdsApi\Common\AdsGuzzleProxyHttpHandler::__invoke()
    */
     public function testSendRequest_withProxyUrl()
     {

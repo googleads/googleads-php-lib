@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2020 Google Inc. All Rights Reserved -->
+<!-- Copyright 2021 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202008"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202008"
@@ -72,26 +72,6 @@
             </annotation>
           </element>
         </sequence>
-      </complexType>
-      <complexType name="AdjustmentError">
-        <annotation>
-          <documentation>
-            Lists all errors associated with adjustments.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:AdjustmentError.Reason">
-                <annotation>
-                  <documentation>
-                    The error reason represented by an enum.
-                  </documentation>
-                </annotation>
-              </element>
-            </sequence>
-          </extension>
-        </complexContent>
       </complexType>
       <complexType abstract="true" name="ApiError">
         <annotation>
@@ -2623,9 +2603,9 @@
           <element maxOccurs="1" minOccurs="0" name="targeting" type="tns:Targeting">
             <annotation>
               <documentation>
-                The targeting that defines a segment of traffic.
-                
-                &lt;p&gt;This field is required for segment creation and then read-only thereafter.
+                The targeting that defines a segment of traffic. Targeting cannot be changed after segment
+                creation.
+                &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -2906,67 +2886,6 @@
           </element>
         </sequence>
       </complexType>
-      <complexType name="VolumeTimeSeriesRequestError">
-        <annotation>
-          <documentation>
-            Lists all errors associated with volume time series requests.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:VolumeTimeSeriesRequestError.Reason">
-                <annotation>
-                  <documentation>
-                    The error reason represented by an enum.
-                  </documentation>
-                </annotation>
-              </element>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <simpleType name="AdjustmentError.Reason">
-        <restriction base="xsd:string">
-          <enumeration value="START_DATE_TIME_IS_IN_PAST"/>
-          <enumeration value="END_DATE_TIME_NOT_AFTER_START_TIME"/>
-          <enumeration value="END_DATE_TIME_TOO_LATE"/>
-          <enumeration value="HISTORICAL_DATE_RANGE_INVALID"/>
-          <enumeration value="HISTORICAL_START_DATE_TIME_IS_TOO_FAR_IN_PAST"/>
-          <enumeration value="HISTORICAL_START_DATE_TIME_IS_BEFORE_CREATION_OF_INVENTORY_UNIT"/>
-          <enumeration value="HISTORICAL_END_DATE_TIME_IS_NOT_IN_PAST"/>
-          <enumeration value="HISTORICAL_END_DATE_TIME_NOT_AFTER_HISTORICAL_START_TIME"/>
-          <enumeration value="HISTORICAL_DATE_RANGE_LENGTH_DOES_NOT_MATCH_FUTURE_DATE_RANGE_LENGTH"/>
-          <enumeration value="ADJUSTMENT_ALREADY_EXISTS_FOR_AD_UNIT_IN_DATE_RANGE"/>
-          <enumeration value="INVALID_IMPRESSION_VOLUME"/>
-          <enumeration value="OVERRIDE_SIZE_SETS_MUST_BE_UNIQUE"/>
-          <enumeration value="OVERRIDE_SIZE_SET_SIZES_MUST_HAVE_THE_SAME_ENV_TYPE"/>
-          <enumeration value="OVERRIDE_SIZE_SET_SIZES_MUST_MATCH_INVENTORY"/>
-          <enumeration value="INVALID_INVENTORY_UNIT_ID"/>
-          <enumeration value="VIOLATES_CONSTRAINTS_OF_OVERLAPPING_ENTRIES"/>
-          <enumeration value="INVALID_ADJUSTMENT_UPLOAD"/>
-          <enumeration value="FUTURE_DATE_RANGE_MUST_BE_IN_WEEK_INCREMENTS"/>
-          <enumeration value="BULK_UPLOAD_ADJUSTMENT_LIMIT_REACHED"/>
-          <enumeration value="WEEKLY_MANUAL_ADJUSTMENTS_NOT_ALLOWED"/>
-          <enumeration value="TARGETING_OR_INVENTORY_UNIT_REQUIRED"/>
-          <enumeration value="CANNOT_CHANGE_ADJUSTMENT_TARGET_TYPE"/>
-          <enumeration value="OVERRIDES_NOT_ALLOWED_WITH_TARGETING"/>
-          <enumeration value="INVALID_TARGETING_EXPRESSION"/>
-          <enumeration value="ADJUSTMENT_NAME_MUST_BE_UNIQUE"/>
-          <enumeration value="END_DATE_TIME_IS_IN_PAST"/>
-          <enumeration value="HISTORICAL_TARGETING_REQUIRED"/>
-          <enumeration value="INVALID_HISTORICAL_TARGETING"/>
-          <enumeration value="AD_UNIT_REQUIRED"/>
-          <enumeration value="TARGETING_REQUIRED"/>
-          <enumeration value="UNKNOWN">
-            <annotation>
-              <documentation>
-                The value returned if the actual value is not exposed by the requested API version.
-              </documentation>
-            </annotation>
-          </enumeration>
-        </restriction>
-      </simpleType>
       <simpleType name="ApiVersionError.Reason">
         <restriction base="xsd:string">
           <enumeration value="UPDATE_TO_NEWER_VERSION">
@@ -2991,10 +2910,9 @@
           <enumeration value="AMBIGUOUS_SOAP_REQUEST_HEADER">
             <annotation>
               <documentation>
-                The SOAP message contains a request header with an ambiguous definition
-                of the authentication header fields. This means either the {@code
-                authToken} and {@code oAuthToken} fields were both null or both were
-                specified. Exactly one value should be specified with each request.
+                The SOAP message contains a request header with an ambiguous definition of the authentication
+                header fields. This means either the {@code authToken} and {@code oAuthToken} fields were
+                both null or both were specified. Exactly one value should be specified with each request.
               </documentation>
             </annotation>
           </enumeration>
@@ -3029,8 +2947,8 @@
           <enumeration value="MISSING_SOAP_REQUEST_HEADER">
             <annotation>
               <documentation>
-                The SOAP message is missing a request header with an {@code authToken}
-                and optional {@code networkCode}.
+                The SOAP message is missing a request header with an {@code authToken} and optional {@code
+                networkCode}.
               </documentation>
             </annotation>
           </enumeration>
@@ -3072,32 +2990,30 @@
           <enumeration value="NETWORK_CODE_REQUIRED">
             <annotation>
               <documentation>
-                The user has access to more than one network, but did not provide a
-                {@code networkCode}.
+                The user has access to more than one network, but did not provide a {@code networkCode}.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="CONNECTION_ERROR">
             <annotation>
               <documentation>
-                An error happened on the server side during connection to authentication
-                service.
+                An error happened on the server side during connection to authentication service.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="GOOGLE_ACCOUNT_ALREADY_ASSOCIATED_WITH_NETWORK">
             <annotation>
               <documentation>
-                The user tried to create a test network using an account that already is
-                associated with a network.
+                The user tried to create a test network using an account that already is associated with a
+                network.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="UNDER_INVESTIGATION">
             <annotation>
               <documentation>
-                The account is blocked and under investigation by the collections team. Please contact
-                Google for more information.
+                The account is blocked and under investigation by the collections team. Please contact Google
+                for more information.
               </documentation>
             </annotation>
           </enumeration>
@@ -5084,51 +5000,6 @@
             <annotation>
               <documentation>
                 The position defined as showing after the video is completed.
-              </documentation>
-            </annotation>
-          </enumeration>
-        </restriction>
-      </simpleType>
-      <simpleType name="VolumeTimeSeriesRequestError.Reason">
-        <annotation>
-          <documentation>
-            Error reason types for {@link VolumeTimeSeriesRequestError}.
-          </documentation>
-        </annotation>
-        <restriction base="xsd:string">
-          <enumeration value="HISTORICAL_BASIS_DATE_RANGE_TOO_SHORT">
-            <annotation>
-              <documentation>
-                The historical basis date range of the request is shorter than the minimum allowed length.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="NO_VOLUME_SETTINGS_PROVIDED">
-            <annotation>
-              <documentation>
-                The request does not contain a volume settings instance.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="MULTIPLE_VOLUME_SETTINGS_PROVIDED">
-            <annotation>
-              <documentation>
-                The request contains more than one volume settings instance.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="PARENT_SEGMENT_TARGETING_OPTION_USED_OUTSIDE_OF_ADJUSTMENT_CONTEXT">
-            <annotation>
-              <documentation>
-                The flag to use parent segment targeting was used outside the context of an adjustment,
-                meaning no parent segment is available to be referenced.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="UNKNOWN">
-            <annotation>
-              <documentation>
-                The value returned if the actual value is not exposed by the requested API version.
               </documentation>
             </annotation>
           </enumeration>

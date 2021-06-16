@@ -32,15 +32,15 @@ class AdsLoggerFactoryTest extends TestCase
     private $adsLoggerFactory;
 
   /**
-   * @see PHPUnit\Framework\TestCase::setUp
+   * @see \PHPUnit\Framework\TestCase::setUp
    */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->adsLoggerFactory = new AdsLoggerFactory();
     }
 
   /**
-   * @covers Google\AdsApi\Common\AdsLoggerFactory::createLogger
+   * @covers \Google\AdsApi\Common\AdsLoggerFactory::createLogger
    */
     public function testCreateLoggerWithChannel()
     {
@@ -49,7 +49,7 @@ class AdsLoggerFactoryTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\AdsLoggerFactory::createLogger
+   * @covers \Google\AdsApi\Common\AdsLoggerFactory::createLogger
    */
     public function testCreateLoggerWithFilePath()
     {
@@ -59,7 +59,7 @@ class AdsLoggerFactoryTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\AdsLoggerFactory::createLogger
+   * @covers \Google\AdsApi\Common\AdsLoggerFactory::createLogger
    */
     public function testCreateLoggerWithLevel()
     {

@@ -22,10 +22,12 @@ use Google\AdsApi\AdWords\Testing\FakeAd;
 use Google\AdsApi\AdWords\Testing\FakeBudget;
 use Google\AdsApi\AdWords\Testing\FakeMoney;
 use Google\AdsApi\AdWords\Testing\FakeMutateResult;
+use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
 use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
 use Symfony\Component\Serializer\Serializer;
+use UnexpectedValueException;
 
 /**
  * Unit tests for `AdWordsNormalizer`.
@@ -39,9 +41,9 @@ class AdWordsNormalizerTest extends TestCase
     private $serializer;
 
     /**
-     * @see PHPUnit\Framework\TestCase::setUp
+     * @see \PHPUnit\Framework\TestCase::setUp
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->serializer = new Serializer(
             [new AdWordsNormalizer(), new ArrayDenormalizer()]
@@ -49,7 +51,7 @@ class AdWordsNormalizerTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\AdWordsNormalizer::normalize
+     * @covers \Google\AdsApi\AdWords\AdWordsNormalizer::normalize
      */
     public function testNormalizeObjectWithXsiType()
     {
@@ -64,7 +66,7 @@ class AdWordsNormalizerTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\AdWordsNormalizer::normalize
+     * @covers \Google\AdsApi\AdWords\AdWordsNormalizer::normalize
      */
     public function testNormalizedNestedObject()
     {
@@ -80,7 +82,7 @@ class AdWordsNormalizerTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\AdWordsNormalizer::normalize
+     * @covers \Google\AdsApi\AdWords\AdWordsNormalizer::normalize
      */
     public function testNormalizeObjectWithPrivateGetter()
     {
@@ -96,7 +98,7 @@ class AdWordsNormalizerTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\AdWordsNormalizer::normalize
+     * @covers \Google\AdsApi\AdWords\AdWordsNormalizer::normalize
      */
     public function testNormalizeObjectWithNullFieldsAreSkipped()
     {
@@ -111,7 +113,7 @@ class AdWordsNormalizerTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\AdWordsNormalizer::normalize
+     * @covers \Google\AdsApi\AdWords\AdWordsNormalizer::normalize
      */
     public function testSetNormalizeCallback()
     {
@@ -139,11 +141,11 @@ class AdWordsNormalizerTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\AdWordsNormalizer::normalize
-     * @expectedException InvalidArgumentException
+     * @covers \Google\AdsApi\AdWords\AdWordsNormalizer::normalize
      */
     public function testSetInvalidCallbacks()
     {
+        $this->expectException(InvalidArgumentException::class);
         $normalizer = new AdWordsNormalizer();
         $normalizer->setCallbacks(
             [
@@ -156,7 +158,7 @@ class AdWordsNormalizerTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\AdWordsNormalizer::normalize
+     * @covers \Google\AdsApi\AdWords\AdWordsNormalizer::normalize
      */
     public function testNormalizeObjectWithArrayOfScalars()
     {
@@ -181,7 +183,7 @@ class AdWordsNormalizerTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\AdWordsNormalizer::denormalize
+     * @covers \Google\AdsApi\AdWords\AdWordsNormalizer::denormalize
      */
     public function testDenormalizeObjectUsingXsiType()
     {
@@ -198,7 +200,7 @@ class AdWordsNormalizerTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\AdWordsNormalizer::denormalize
+     * @covers \Google\AdsApi\AdWords\AdWordsNormalizer::denormalize
      */
     public function testDenormalizeObjectWithArrayOfScalars()
     {
@@ -226,7 +228,7 @@ class AdWordsNormalizerTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\AdWordsNormalizer::denormalize
+     * @covers \Google\AdsApi\AdWords\AdWordsNormalizer::denormalize
      */
     public function testDenormalizeNestedObject()
     {
@@ -249,7 +251,7 @@ class AdWordsNormalizerTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\AdWordsNormalizer::denormalize
+     * @covers \Google\AdsApi\AdWords\AdWordsNormalizer::denormalize
      */
     public function testDenormalizeObjectWhoseMemberIsArrayOfOneObject()
     {
@@ -273,7 +275,7 @@ class AdWordsNormalizerTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\AdWordsNormalizer::denormalize
+     * @covers \Google\AdsApi\AdWords\AdWordsNormalizer::denormalize
      */
     public function testDenormalizeObjectWhoseMemberIsArrayOfManyObjects()
     {
@@ -302,7 +304,7 @@ class AdWordsNormalizerTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\AdWordsNormalizer::denormalize
+     * @covers \Google\AdsApi\AdWords\AdWordsNormalizer::denormalize
      */
     public function testDenormalizeObjectUsingCallback()
     {
@@ -334,11 +336,11 @@ class AdWordsNormalizerTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\AdWordsNormalizer::denormalize
-     * @expectedException UnexpectedValueException
+     * @covers \Google\AdsApi\AdWords\AdWordsNormalizer::denormalize
      */
     public function testDenormalizeObjectWithNotExistingProperties()
     {
+        $this->expectException(UnexpectedValueException::class);
         $this->serializer->denormalize(
             AdWordsNormalizerTestProvider::
             getDecodedMoneyWithNotExistingProperties(),
@@ -347,7 +349,7 @@ class AdWordsNormalizerTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\AdWordsNormalizer::denormalize
+     * @covers \Google\AdsApi\AdWords\AdWordsNormalizer::denormalize
      */
     public function testDenormalizeObjectWithNameConverter()
     {
@@ -376,7 +378,7 @@ class AdWordsNormalizerTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\AdWordsNormalizer::denormalize
+     * @covers \Google\AdsApi\AdWords\AdWordsNormalizer::denormalize
      */
     public function testDenormalizeObjectWithAttributesSkipped()
     {

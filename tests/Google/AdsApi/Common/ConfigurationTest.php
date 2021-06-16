@@ -28,7 +28,7 @@ class ConfigurationTest extends TestCase
 {
 
   /**
-   * @covers Google\AdsApi\Common\Configuration::getConfiguration
+   * @covers \Google\AdsApi\Common\Configuration::getConfiguration
    */
     public function testGetConfigurationWithoutSections()
     {
@@ -53,7 +53,7 @@ class ConfigurationTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Configuration::getConfiguration
+   * @covers \Google\AdsApi\Common\Configuration::getConfiguration
    */
     public function testGetConfigurationWithSections()
     {
@@ -102,7 +102,7 @@ class ConfigurationTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Configuration::getConfiguration
+   * @covers \Google\AdsApi\Common\Configuration::getConfiguration
    */
     public function testGetConfigurationWithOnlySections()
     {
@@ -148,7 +148,7 @@ class ConfigurationTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Configuration::getConfiguration
+   * @covers \Google\AdsApi\Common\Configuration::getConfiguration
    */
     public function testGetConfigurationWithSettingNameNotFound()
     {
@@ -185,7 +185,7 @@ class ConfigurationTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Configuration::getConfiguration
+   * @covers \Google\AdsApi\Common\Configuration::getConfiguration
    */
     public function testGetConfigurationWithSectionNameNotFound()
     {

@@ -19,6 +19,7 @@ namespace Google\AdsApi\Common\Util;
 use Google\AdsApi\Common\Testing\FakeInvalidMapEntry;
 use Google\AdsApi\Common\Testing\FakeMapEntry;
 use PHPUnit\Framework\TestCase;
+use UnexpectedValueException;
 
 /**
  * Unit tests for `MapEntries`.
@@ -32,7 +33,7 @@ class MapEntriesTest extends TestCase
   /**
    * @param array $mapEntries a list of map entries
    * @param array $expectedMap the expected map
-   * @covers Google\AdsApi\Common\Util\MapEntries::toAssociativeArray
+   * @covers \Google\AdsApi\Common\Util\MapEntries::toAssociativeArray
    * @dataProvider mapEntriesProvider
    */
     public function testToAssociativeArray(
@@ -44,11 +45,11 @@ class MapEntriesTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Util\MapEntries::toAssociativeArray
-   * @expectedException UnexpectedValueException
+   * @covers \Google\AdsApi\Common\Util\MapEntries::toAssociativeArray
    */
     public function testToAssociativeArrayWithInvalidMapEntryType()
     {
+        $this->expectException(UnexpectedValueException::class);
         $invalidClass = new FakeInvalidMapEntry();
         $invalidClass->lets = 'foo';
         MapEntries::toAssociativeArray([$invalidClass]);
@@ -57,7 +58,7 @@ class MapEntriesTest extends TestCase
   /**
    * @param array $expectedMapEntries the expected map entries as a list
    * @param array $map a map of entries
-   * @covers Google\AdsApi\Common\Util\MapEntries::fromAssociativeArray
+   * @covers \Google\AdsApi\Common\Util\MapEntries::fromAssociativeArray
    * @dataProvider mapEntriesProvider
    */
     public function testFromAssociativeArray(
@@ -81,11 +82,11 @@ class MapEntriesTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Util\MapEntries::fromAssociativeArray
-   * @expectedException UnexpectedValueException
+   * @covers \Google\AdsApi\Common\Util\MapEntries::fromAssociativeArray
    */
     public function testFromAssociativeArrayWithInvalidClass()
     {
+        $this->expectException(UnexpectedValueException::class);
         MapEntries::fromAssociativeArray(
             ['foo' => 'bar'],
             FakeInvalidMapEntry::class

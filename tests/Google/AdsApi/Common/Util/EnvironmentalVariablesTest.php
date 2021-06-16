@@ -17,6 +17,7 @@
 namespace Google\AdsApi\Common\Util;
 
 use PHPUnit\Framework\TestCase;
+use UnexpectedValueException;
 
 /**
  * Unit tests for `EnvironmentalVariables`.
@@ -30,15 +31,15 @@ class EnvironmentalVariablesTest extends TestCase
     private $environmentalVariables;
 
   /**
-   * @see PHPUnit\Framework\TestCase::setUp
+   * @see \PHPUnit\Framework\TestCase::setUp
    */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->environmentalVariables = new EnvironmentalVariables();
     }
 
   /**
-   * @covers Google\AdsApi\Common\Util\EnvironmentalVariables::getHome
+   * @covers \Google\AdsApi\Common\Util\EnvironmentalVariables::getHome
    */
     public function testGetHomeNixPlatforms()
     {
@@ -50,7 +51,7 @@ class EnvironmentalVariablesTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Util\EnvironmentalVariables::getHome
+   * @covers \Google\AdsApi\Common\Util\EnvironmentalVariables::getHome
    */
     public function testGetHomeNixPlatformsNoHomeEnvVar()
     {
@@ -63,7 +64,7 @@ class EnvironmentalVariablesTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Util\EnvironmentalVariables::getHome
+   * @covers \Google\AdsApi\Common\Util\EnvironmentalVariables::getHome
    */
     public function testGetHomeWindows()
     {
@@ -78,7 +79,7 @@ class EnvironmentalVariablesTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Util\EnvironmentalVariables::getHome
+   * @covers \Google\AdsApi\Common\Util\EnvironmentalVariables::getHome
    */
     public function testGetHomeWindowsNoHomeEnvVars()
     {
@@ -95,11 +96,11 @@ class EnvironmentalVariablesTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Util\EnvironmentalVariables::getHome
-   * @expectedException UnexpectedValueException
+   * @covers \Google\AdsApi\Common\Util\EnvironmentalVariables::getHome
    */
     public function testGetHomeNotFound()
     {
+        $this->expectException(UnexpectedValueException::class);
         putenv('HOME=');
         $_SERVER['HOME'] = null;
         putenv('HOMEDRIVE=');

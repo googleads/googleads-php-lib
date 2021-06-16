@@ -32,7 +32,7 @@ class ReportQueryBuilderTest extends TestCase
 {
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilder::__construct
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilder::__construct
      */
     public function testBuildWithUtilityTracking()
     {
@@ -55,7 +55,7 @@ class ReportQueryBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilder::copyFrom
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilder::copyFrom
      */
     public function testCopyFromEmptyReportQueryBuilder()
     {
@@ -66,7 +66,7 @@ class ReportQueryBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilder::copyFrom
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilder::copyFrom
      */
     public function testCopyFromShouldCopyValuesOfAllClauses()
     {
@@ -97,7 +97,7 @@ class ReportQueryBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilder::copyFrom
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilder::copyFrom
      */
     public function testCopyFromShouldAllowWhereClauseExpansion()
     {
@@ -122,8 +122,8 @@ class ReportQueryBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilder::__construct
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilder::copyFrom
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilder::__construct
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilder::copyFrom
      */
     public function testCopyFromShouldReuseUtilityRegistry()
     {
@@ -148,7 +148,7 @@ class ReportQueryBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilder::select
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilder::select
      */
     public function testSelectShouldReturnSameReportQueryBuilder()
     {
@@ -157,7 +157,7 @@ class ReportQueryBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilder::from
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilder::from
      */
     public function testFromShouldReturnSameReportQueryBuilder()
     {
@@ -171,7 +171,7 @@ class ReportQueryBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilder::where
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilder::where
      */
     public function testWhereShouldReturnWhereBuilder()
     {
@@ -183,7 +183,7 @@ class ReportQueryBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilder::duringDateRange
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilder::duringDateRange
      */
     public function testDuringDateRangeShouldReturnSameReportQueryBuilder()
     {
@@ -197,7 +197,7 @@ class ReportQueryBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilder::during
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilder::during
      */
     public function testDuringShouldReturnSameReportQueryBuilder()
     {
@@ -206,7 +206,7 @@ class ReportQueryBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilder::build
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilder::build
      */
     public function testBuildShouldReturnReportQuery()
     {

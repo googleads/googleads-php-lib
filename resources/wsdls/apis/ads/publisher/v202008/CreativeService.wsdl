@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2020 Google Inc. All Rights Reserved -->
+<!-- Copyright 2021 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202008"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202008"
@@ -1880,11 +1880,11 @@
       <complexType name="InternalRedirectCreative">
         <annotation>
           <documentation>
-            A {@code Creative} hosted by Campaign Manager.
+            A {@code Creative} hosted by Campaign Manager 360.
             
-            &lt;p&gt;Similar to third-party creatives, a Campaign Manager tag is used to retrieve a creative asset.
-            However, Campaign Manager tags are not sent to the user's browser. Instead, they are processed
-            internally within the Google Marketing Platform system..
+            &lt;p&gt;Similar to third-party creatives, a Campaign Manager 360 tag is used to retrieve a creative
+            asset. However, Campaign Manager 360 tags are not sent to the user's browser. Instead, they are
+            processed internally within the Google Marketing Platform system..
           </documentation>
         </annotation>
         <complexContent>
@@ -3468,10 +3468,9 @@
           <enumeration value="AMBIGUOUS_SOAP_REQUEST_HEADER">
             <annotation>
               <documentation>
-                The SOAP message contains a request header with an ambiguous definition
-                of the authentication header fields. This means either the {@code
-                authToken} and {@code oAuthToken} fields were both null or both were
-                specified. Exactly one value should be specified with each request.
+                The SOAP message contains a request header with an ambiguous definition of the authentication
+                header fields. This means either the {@code authToken} and {@code oAuthToken} fields were
+                both null or both were specified. Exactly one value should be specified with each request.
               </documentation>
             </annotation>
           </enumeration>
@@ -3506,8 +3505,8 @@
           <enumeration value="MISSING_SOAP_REQUEST_HEADER">
             <annotation>
               <documentation>
-                The SOAP message is missing a request header with an {@code authToken}
-                and optional {@code networkCode}.
+                The SOAP message is missing a request header with an {@code authToken} and optional {@code
+                networkCode}.
               </documentation>
             </annotation>
           </enumeration>
@@ -3549,32 +3548,30 @@
           <enumeration value="NETWORK_CODE_REQUIRED">
             <annotation>
               <documentation>
-                The user has access to more than one network, but did not provide a
-                {@code networkCode}.
+                The user has access to more than one network, but did not provide a {@code networkCode}.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="CONNECTION_ERROR">
             <annotation>
               <documentation>
-                An error happened on the server side during connection to authentication
-                service.
+                An error happened on the server side during connection to authentication service.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="GOOGLE_ACCOUNT_ALREADY_ASSOCIATED_WITH_NETWORK">
             <annotation>
               <documentation>
-                The user tried to create a test network using an account that already is
-                associated with a network.
+                The user tried to create a test network using an account that already is associated with a
+                network.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="UNDER_INVESTIGATION">
             <annotation>
               <documentation>
-                The account is blocked and under investigation by the collections team. Please contact
-                Google for more information.
+                The account is blocked and under investigation by the collections team. Please contact Google
+                for more information.
               </documentation>
             </annotation>
           </enumeration>
@@ -4167,7 +4164,7 @@
           <enumeration value="USE_OF_NON_WHITELISTED_OMID_VERIFICATION_SCRIPT">
             <annotation>
               <documentation>
-                Non-whitelisted OMID verification script.
+                Non-allowlisted OMID verification script.
                 
                 &lt;p&gt;For more information see &lt;a
                 href="https://support.google.com/authorizedbuyers/answer/9115752"&gt;here&lt;/a&gt;.
@@ -6990,14 +6987,13 @@
   </wsdl:message>
   <wsdl:portType name="CreativeServiceInterface">
     <wsdl:documentation>
-      Provides methods for adding, updating and retrieving {@link Creative}
-      objects.
+      Provides methods for adding, updating and retrieving {@link Creative} objects.
       
-      &lt;p&gt;For a creative to run, it must be associated with a {@link LineItem}
-      managed by the {@link LineItemCreativeAssociationService}.&lt;/p&gt;
+      &lt;p&gt;For a creative to run, it must be associated with a {@link LineItem} managed by the {@link
+      LineItemCreativeAssociationService}.
       
-      &lt;p&gt;Read more about creatives on the
-      &lt;a href="https://support.google.com/dfp_premium/answer/3185155"&gt;DFP Help Center&lt;/a&gt;.&lt;/p&gt;
+      &lt;p&gt;Read more about creatives on the &lt;a
+      href="https://support.google.com/dfp_premium/answer/3185155"&gt;DFP Help Center&lt;/a&gt;.
     </wsdl:documentation>
     <wsdl:operation name="createCreatives">
       <wsdl:documentation>

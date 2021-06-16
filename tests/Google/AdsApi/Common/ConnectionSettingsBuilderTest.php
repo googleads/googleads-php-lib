@@ -30,15 +30,15 @@ class ConnectionSettingsBuilderTest extends TestCase
     private $connectionSettingsBuilder;
 
   /**
-   * @see PHPUnit\Framework\TestCase::setUp
+   * @see \PHPUnit\Framework\TestCase::setUp
    */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->connectionSettingsBuilder = new ConnectionSettingsBuilder();
     }
 
   /**
-   * @covers Google\AdsApi\Common\ConnectionSettingsBuilder::from
+   * @covers \Google\AdsApi\Common\ConnectionSettingsBuilder::from
    */
     public function testBuildFrom()
     {
@@ -65,7 +65,7 @@ class ConnectionSettingsBuilderTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\ConnectionSettingsBuilder::build
+   * @covers \Google\AdsApi\Common\ConnectionSettingsBuilder::build
    */
     public function testBuildWithIpAsProxyHost()
     {
@@ -76,7 +76,7 @@ class ConnectionSettingsBuilderTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\ConnectionSettingsBuilder::build
+   * @covers \Google\AdsApi\Common\ConnectionSettingsBuilder::build
    */
     public function testBuildWithNoProxyUserPassword()
     {
@@ -90,7 +90,7 @@ class ConnectionSettingsBuilderTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\ConnectionSettingsBuilder::build
+   * @covers \Google\AdsApi\Common\ConnectionSettingsBuilder::build
    */
     public function testBuildWithNoProxyPassword()
     {
@@ -104,7 +104,7 @@ class ConnectionSettingsBuilderTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\ConnectionSettingsBuilder::from
+   * @covers \Google\AdsApi\Common\ConnectionSettingsBuilder::from
    */
     public function testBuildFromDefaults()
     {
@@ -123,7 +123,7 @@ class ConnectionSettingsBuilderTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\ConnectionSettingsBuilder::build
+   * @covers \Google\AdsApi\Common\ConnectionSettingsBuilder::build
    */
     public function testBuild()
     {
@@ -139,7 +139,7 @@ class ConnectionSettingsBuilderTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\ConnectionSettingsBuilder::build
+   * @covers \Google\AdsApi\Common\ConnectionSettingsBuilder::build
    */
     public function testBuildDefaults()
     {
@@ -149,11 +149,11 @@ class ConnectionSettingsBuilderTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\ConnectionSettingsBuilder::validate
-   * @expectedException \InvalidArgumentException
+   * @covers \Google\AdsApi\Common\ConnectionSettingsBuilder::validate
    */
     public function testValidateFails()
     {
+        $this->expectException(\InvalidArgumentException::class);
         $this->connectionSettingsBuilder
         ->withProxyUrl('       ')
         ->build();

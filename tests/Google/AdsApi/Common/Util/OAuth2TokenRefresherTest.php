@@ -32,9 +32,9 @@ class OAuth2TokenRefresherTest extends TestCase
     private $oAuth2TokenRefresher;
 
   /**
-   * @see PHPUnit\Framework\TestCase::setUp
+   * @see \PHPUnit\Framework\TestCase::setUp
    */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->fetchAuthTokenInterfaceMock = $this
         ->getMockBuilder(FetchAuthTokenInterface::class)
@@ -44,7 +44,7 @@ class OAuth2TokenRefresherTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Util\OAuth2TokenRefresher::getOrFetchAccessToken
+   * @covers \Google\AdsApi\Common\Util\OAuth2TokenRefresher::getOrFetchAccessToken
    */
     public function testGetOrFetchAccessNoExistingToken()
     {
@@ -64,7 +64,7 @@ class OAuth2TokenRefresherTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Util\OAuth2TokenRefresher::getOrFetchAccessToken
+   * @covers \Google\AdsApi\Common\Util\OAuth2TokenRefresher::getOrFetchAccessToken
    */
     public function testGetOrFetchAccessExistingTokenNotExpiringSoon()
     {
@@ -87,7 +87,7 @@ class OAuth2TokenRefresherTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Util\OAuth2TokenRefresher::getOrFetchAccessToken
+   * @covers \Google\AdsApi\Common\Util\OAuth2TokenRefresher::getOrFetchAccessToken
    */
     public function testGetOrFetchAccessExistingTokenExpiringSoon()
     {
@@ -109,7 +109,7 @@ class OAuth2TokenRefresherTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Util\OAuth2TokenRefresher::getOrFetchAccessToken
+   * @covers \Google\AdsApi\Common\Util\OAuth2TokenRefresher::getOrFetchAccessToken
    */
     public function testGetOrFetchAccessExistingTokenExpired()
     {

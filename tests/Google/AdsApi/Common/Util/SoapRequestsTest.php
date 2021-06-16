@@ -29,7 +29,7 @@ class SoapRequestsTest extends TestCase
 {
 
   /**
-   * @covers Google\AdsApi\Common\Util\SoapRequests::replaceReferences
+   * @covers \Google\AdsApi\Common\Util\SoapRequests::replaceReferences
    */
     public function testReplaceReferencesInvalidXmlIsNoOp()
     {
@@ -41,7 +41,7 @@ class SoapRequestsTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Util\SoapRequests::replaceReferences
+   * @covers \Google\AdsApi\Common\Util\SoapRequests::replaceReferences
    */
     public function testReplaceReferencesNullXmlIsNoOp()
     {
@@ -53,7 +53,7 @@ class SoapRequestsTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Util\SoapRequests::replaceReferences
+   * @covers \Google\AdsApi\Common\Util\SoapRequests::replaceReferences
    */
     public function testReplaceReferencesNoRefsIsNoOp()
     {
@@ -65,7 +65,7 @@ class SoapRequestsTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Util\SoapRequests::replaceReferences
+   * @covers \Google\AdsApi\Common\Util\SoapRequests::replaceReferences
    */
     public function testReplaceReferencesAllRefsReplaced()
     {

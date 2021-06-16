@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2020 Google Inc. All Rights Reserved -->
+<!-- Copyright 2021 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202008"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202008"
@@ -2821,9 +2821,11 @@
           <element maxOccurs="1" minOccurs="0" name="videoMaxDuration" type="xsd:long">
             <annotation>
               <documentation>
-                The max duration of a video creative associated with this {@code LineItem} in
-                milliseconds. This attribute is optional, defaults to 0, and only meaningful if this is
-                a video line item.
+                The max duration of a video creative associated with this {@code LineItem} in milliseconds.
+                
+                &lt;p&gt;This attribute is only meaningful for video line items. For version v202011 and earlier,
+                this attribute is optional and defaults to 0. For version v202102 and later, this attribute is
+                required for video line items and must be greater than 0.
               </documentation>
             </annotation>
           </element>
@@ -4789,10 +4791,9 @@
           <enumeration value="AMBIGUOUS_SOAP_REQUEST_HEADER">
             <annotation>
               <documentation>
-                The SOAP message contains a request header with an ambiguous definition
-                of the authentication header fields. This means either the {@code
-                authToken} and {@code oAuthToken} fields were both null or both were
-                specified. Exactly one value should be specified with each request.
+                The SOAP message contains a request header with an ambiguous definition of the authentication
+                header fields. This means either the {@code authToken} and {@code oAuthToken} fields were
+                both null or both were specified. Exactly one value should be specified with each request.
               </documentation>
             </annotation>
           </enumeration>
@@ -4827,8 +4828,8 @@
           <enumeration value="MISSING_SOAP_REQUEST_HEADER">
             <annotation>
               <documentation>
-                The SOAP message is missing a request header with an {@code authToken}
-                and optional {@code networkCode}.
+                The SOAP message is missing a request header with an {@code authToken} and optional {@code
+                networkCode}.
               </documentation>
             </annotation>
           </enumeration>
@@ -4870,32 +4871,30 @@
           <enumeration value="NETWORK_CODE_REQUIRED">
             <annotation>
               <documentation>
-                The user has access to more than one network, but did not provide a
-                {@code networkCode}.
+                The user has access to more than one network, but did not provide a {@code networkCode}.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="CONNECTION_ERROR">
             <annotation>
               <documentation>
-                An error happened on the server side during connection to authentication
-                service.
+                An error happened on the server side during connection to authentication service.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="GOOGLE_ACCOUNT_ALREADY_ASSOCIATED_WITH_NETWORK">
             <annotation>
               <documentation>
-                The user tried to create a test network using an account that already is
-                associated with a network.
+                The user tried to create a test network using an account that already is associated with a
+                network.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="UNDER_INVESTIGATION">
             <annotation>
               <documentation>
-                The account is blocked and under investigation by the collections team. Please contact
-                Google for more information.
+                The account is blocked and under investigation by the collections team. Please contact Google
+                for more information.
               </documentation>
             </annotation>
           </enumeration>
@@ -8451,8 +8450,7 @@
           <enumeration value="STANDARD">
             <annotation>
               <documentation>
-                The type of {@link LineItem} for which a fixed quantity of impressions or
-                clicks are reserved.
+                The type of {@link LineItem} for which a fixed quantity of impressions or clicks are reserved.
               </documentation>
             </annotation>
           </enumeration>

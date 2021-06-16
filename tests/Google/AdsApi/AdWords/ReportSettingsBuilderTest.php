@@ -32,15 +32,15 @@ class ReportSettingsBuilderTest extends TestCase
     private $reportSettingsBuilder;
 
     /**
-     * @see PHPUnit\Framework\TestCase::setUp
+     * @see \PHPUnit\Framework\TestCase::setUp
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->reportSettingsBuilder = new ReportSettingsBuilder();
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\ReportSettingsBuilder::from
+     * @covers \Google\AdsApi\AdWords\ReportSettingsBuilder::from
      */
     public function testBuildFrom()
     {
@@ -67,7 +67,7 @@ class ReportSettingsBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\ReportSettingsBuilder::from
+     * @covers \Google\AdsApi\AdWords\ReportSettingsBuilder::from
      */
     public function testBuildFromDefaults()
     {
@@ -89,7 +89,7 @@ class ReportSettingsBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\ReportSettingsBuilder::build
+     * @covers \Google\AdsApi\AdWords\ReportSettingsBuilder::build
      */
     public function testBuild()
     {
@@ -106,7 +106,7 @@ class ReportSettingsBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\ReportSettingsBuilder::build
+     * @covers \Google\AdsApi\AdWords\ReportSettingsBuilder::build
      */
     public function testBuildDefaults()
     {
@@ -119,7 +119,7 @@ class ReportSettingsBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\ReportSettingsBuilder::build
+     * @covers \Google\AdsApi\AdWords\ReportSettingsBuilder::build
      */
     public function testCopyConstructor()
     {

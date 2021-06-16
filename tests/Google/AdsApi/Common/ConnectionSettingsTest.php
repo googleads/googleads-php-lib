@@ -30,7 +30,7 @@ class ConnectionSettingsTest extends TestCase
   /**
    * @param array $value the array of proxies to evaluate
    * @param bool $expected the expected result of getProxyParts()
-   * @covers Google\AdsApi\Common\ConnectionSettings::getProxyParts
+   * @covers \Google\AdsApi\Common\ConnectionSettings::getProxyParts
    * @dataProvider proxyPartsProvider
    */
     public function testGetProxyParts($value, $expected)

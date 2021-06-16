@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2020 Google Inc. All Rights Reserved -->
+<!-- Copyright 2021 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202008"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202008"
@@ -730,9 +730,9 @@
             name="enableWhitelistedIps" type="xsd:boolean">
             <annotation>
               <documentation>
-                Whether specific whitelisted IP addresses should be used to access this live stream. This field
+                Whether specific allowlisted IP addresses should be used to access this live stream. This field
                 is optional and will default to false. To set this field a network needs to have the "Video
-                live whitelisted IPS enabled" feature enabled. Modifying this field for an active live stream
+                live allowlisted IPS enabled" feature enabled. Modifying this field for an active live stream
                 can impact traffic.
               </documentation>
             </annotation>
@@ -1579,10 +1579,9 @@
           <enumeration value="AMBIGUOUS_SOAP_REQUEST_HEADER">
             <annotation>
               <documentation>
-                The SOAP message contains a request header with an ambiguous definition
-                of the authentication header fields. This means either the {@code
-                authToken} and {@code oAuthToken} fields were both null or both were
-                specified. Exactly one value should be specified with each request.
+                The SOAP message contains a request header with an ambiguous definition of the authentication
+                header fields. This means either the {@code authToken} and {@code oAuthToken} fields were
+                both null or both were specified. Exactly one value should be specified with each request.
               </documentation>
             </annotation>
           </enumeration>
@@ -1617,8 +1616,8 @@
           <enumeration value="MISSING_SOAP_REQUEST_HEADER">
             <annotation>
               <documentation>
-                The SOAP message is missing a request header with an {@code authToken}
-                and optional {@code networkCode}.
+                The SOAP message is missing a request header with an {@code authToken} and optional {@code
+                networkCode}.
               </documentation>
             </annotation>
           </enumeration>
@@ -1660,32 +1659,30 @@
           <enumeration value="NETWORK_CODE_REQUIRED">
             <annotation>
               <documentation>
-                The user has access to more than one network, but did not provide a
-                {@code networkCode}.
+                The user has access to more than one network, but did not provide a {@code networkCode}.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="CONNECTION_ERROR">
             <annotation>
               <documentation>
-                An error happened on the server side during connection to authentication
-                service.
+                An error happened on the server side during connection to authentication service.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="GOOGLE_ACCOUNT_ALREADY_ASSOCIATED_WITH_NETWORK">
             <annotation>
               <documentation>
-                The user tried to create a test network using an account that already is
-                associated with a network.
+                The user tried to create a test network using an account that already is associated with a
+                network.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="UNDER_INVESTIGATION">
             <annotation>
               <documentation>
-                The account is blocked and under investigation by the collections team. Please contact
-                Google for more information.
+                The account is blocked and under investigation by the collections team. Please contact Google
+                for more information.
               </documentation>
             </annotation>
           </enumeration>

@@ -32,13 +32,12 @@ use RuntimeException;
 class ReportQueryBuilderDelegateTest extends TestCase
 {
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::copyFrom
-     *
-     * @expectedException RuntimeException
-     * @expectedExceptionMessage select
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::copyFrom
      */
     public function testCopyFromEmptyObject()
     {
+        $this->expectExceptionMessage("select");
+        $this->expectException(RuntimeException::class);
         $originalDelegate = new ReportQueryBuilderDelegate();
         $copyDelegate = ReportQueryBuilderDelegate::copyFrom(
             $originalDelegate,
@@ -48,8 +47,8 @@ class ReportQueryBuilderDelegateTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::copyFrom
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::select
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::copyFrom
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::select
      */
     public function testCopyFromShouldAllowSelectOverridePreviousSelect()
     {
@@ -70,11 +69,11 @@ class ReportQueryBuilderDelegateTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::select
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::from
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::where
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::during
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::copyFrom
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::select
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::from
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::where
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::during
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::copyFrom
      */
     public function testCopyFromShouldBuildSameAwqlStringAsOriginal()
     {
@@ -112,20 +111,19 @@ class ReportQueryBuilderDelegateTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::select
-     *
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage field
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::select
      */
     public function testSelectWithEmptyArray()
     {
+        $this->expectExceptionMessage("field");
+        $this->expectException(InvalidArgumentException::class);
         $delegate = new ReportQueryBuilderDelegate();
         $delegate->select([]);
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::select
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::from
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::select
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::from
      */
     public function testSelectOverridePreviousSelect()
     {
@@ -142,8 +140,8 @@ class ReportQueryBuilderDelegateTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::select
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::from
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::select
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::from
      */
     public function testDuplicatedSelectFields()
     {
@@ -158,35 +156,33 @@ class ReportQueryBuilderDelegateTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::select
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::from
-     *
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage report type
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::select
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::from
      */
     public function testFromWithEmptyStringValue()
     {
+        $this->expectExceptionMessage("report type");
+        $this->expectException(InvalidArgumentException::class);
         $delegate = new ReportQueryBuilderDelegate();
         $delegate->select(['Status', 'Name', 'Status']);
         $delegate->from('');
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::select
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::from
-     *
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage report type
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::select
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::from
      */
     public function testFromWithNullValue()
     {
+        $this->expectExceptionMessage("report type");
+        $this->expectException(InvalidArgumentException::class);
         $delegate = new ReportQueryBuilderDelegate();
         $delegate->select(['Status', 'Name', 'Status']);
         $delegate->from(null);
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::where
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::where
      */
     public function testWhereShouldReturnReportQueryWhereBuilder()
     {
@@ -196,93 +192,92 @@ class ReportQueryBuilderDelegateTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::duringDateRange
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage date range type
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::duringDateRange
      */
     public function testDuringDateRangeWithEmptyString()
     {
+        $this->expectExceptionMessage("date range type");
+        $this->expectException(InvalidArgumentException::class);
         $delegate = new ReportQueryBuilderDelegate();
         $delegate->duringDateRange('');
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::duringDateRange
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage date range type
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::duringDateRange
      */
     public function testDuringDateRangeWithNull()
     {
+        $this->expectExceptionMessage("date range type");
+        $this->expectException(InvalidArgumentException::class);
         $delegate = new ReportQueryBuilderDelegate();
         $delegate->duringDateRange(null);
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::during
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage start
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::during
      */
     public function testDuringWithNullValues()
     {
+        $this->expectExceptionMessage("start");
+        $this->expectException(InvalidArgumentException::class);
         $delegate = new ReportQueryBuilderDelegate();
         $delegate->during(null, null);
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::during
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage start
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::during
      */
     public function testDuringWithEmptyStrings()
     {
+        $this->expectExceptionMessage("start");
+        $this->expectException(InvalidArgumentException::class);
         $delegate = new ReportQueryBuilderDelegate();
         $delegate->during('', '');
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::during
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage start
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::during
      */
     public function testDuringWithIntValues()
     {
+        $this->expectExceptionMessage("start");
+        $this->expectException(InvalidArgumentException::class);
         $delegate = new ReportQueryBuilderDelegate();
         $delegate->during(1, 2);
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::during
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage start
-     * @expectedExceptionMessage YYYYMMDD
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::during
      */
     public function testDuringWithInvalidDates()
     {
+        $this->expectExceptionMessage("YYYYMMDD");
+        $this->expectExceptionMessage("start");
+        $this->expectException(InvalidArgumentException::class);
         $delegate = new ReportQueryBuilderDelegate();
         $delegate->during('11111', '222222');
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::during
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage end
-     * @expectedExceptionMessage YYYYMMDD
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::during
      */
     public function testDuringWithInvalidEndDate()
     {
+        $this->expectExceptionMessage("YYYYMMDD");
+        $this->expectExceptionMessage("end");
+        $this->expectException(InvalidArgumentException::class);
         $delegate = new ReportQueryBuilderDelegate();
         $delegate->during('20180315', '222222');
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::select
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::build
-     *
-     * @expectedException RuntimeException
-     * @expectedExceptionMessage select()
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::select
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::build
      */
     public function testBuildWithoutSelect()
     {
+        $this->expectExceptionMessage("select()");
+        $this->expectException(RuntimeException::class);
         $delegate = new ReportQueryBuilderDelegate();
         $delegate->from(
             ReportDefinitionReportType::KEYWORDS_PERFORMANCE_REPORT
@@ -291,25 +286,24 @@ class ReportQueryBuilderDelegateTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::from
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::build
-     *
-     * @expectedException RuntimeException
-     * @expectedExceptionMessage from()
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::from
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::build
      */
     public function testBuildWithoutFrom()
     {
+        $this->expectExceptionMessage("from()");
+        $this->expectException(RuntimeException::class);
         $delegate = new ReportQueryBuilderDelegate();
         $delegate->select(['Status', 'Name', 'Status']);
         $delegate->build();
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::select
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::from
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::where
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::duringDateRange
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::build
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::select
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::from
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::where
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::duringDateRange
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::build
      */
     public function testBuildWithDateRangeType()
     {
@@ -330,11 +324,11 @@ class ReportQueryBuilderDelegateTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::select
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::from
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::where
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::during
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::build
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::select
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::from
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::where
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::during
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilderDelegate::build
      */
     public function testBuildWithCustomDateRange()
     {

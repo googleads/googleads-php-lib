@@ -28,7 +28,7 @@ class LogMessageScrubbersTest extends TestCase
 {
 
   /**
-   * @covers Google\AdsApi\Common\Util\LogMessageScrubbers::scrubRequestHttpHeaders
+   * @covers \Google\AdsApi\Common\Util\LogMessageScrubbers::scrubRequestHttpHeaders
    */
     public function testScrubOneHttpHeader()
     {
@@ -46,7 +46,7 @@ class LogMessageScrubbersTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Util\LogMessageScrubbers::scrubRequestHttpHeaders
+   * @covers \Google\AdsApi\Common\Util\LogMessageScrubbers::scrubRequestHttpHeaders
    */
     public function testScrubTwoHttpHeaders()
     {
@@ -64,7 +64,7 @@ class LogMessageScrubbersTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Util\LogMessageScrubbers::scrubRequestHttpHeaders
+   * @covers \Google\AdsApi\Common\Util\LogMessageScrubbers::scrubRequestHttpHeaders
    */
     public function testScrubHttpHeadersNothingToScrubNoOp()
     {
@@ -79,7 +79,7 @@ class LogMessageScrubbersTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Util\LogMessageScrubbers::scrubRequestSoapHeaders
+   * @covers \Google\AdsApi\Common\Util\LogMessageScrubbers::scrubRequestSoapHeaders
    */
     public function testScrubOneSoapHeader()
     {
@@ -97,7 +97,7 @@ class LogMessageScrubbersTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Util\LogMessageScrubbers::scrubRequestSoapHeaders
+   * @covers \Google\AdsApi\Common\Util\LogMessageScrubbers::scrubRequestSoapHeaders
    */
     public function testScrubTwoSoapHeaders()
     {
@@ -117,7 +117,7 @@ class LogMessageScrubbersTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Util\LogMessageScrubbers::scrubRequestSoapHeaders
+   * @covers \Google\AdsApi\Common\Util\LogMessageScrubbers::scrubRequestSoapHeaders
    */
     public function testScrubSoapHeadersNothingToScrubNoOp()
     {
@@ -131,7 +131,7 @@ class LogMessageScrubbersTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Util\LogMessageScrubbers::scrubRequestSoapBodyTags
+   * @covers \Google\AdsApi\Common\Util\LogMessageScrubbers::scrubRequestSoapBodyTags
    */
     public function testScrubOneSoapBodyTag()
     {
@@ -149,7 +149,7 @@ class LogMessageScrubbersTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Util\LogMessageScrubbers::scrubRequestSoapBodyTags
+   * @covers \Google\AdsApi\Common\Util\LogMessageScrubbers::scrubRequestSoapBodyTags
    */
     public function testScrubTwoSoapBodyTags()
     {
@@ -169,7 +169,7 @@ class LogMessageScrubbersTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Util\LogMessageScrubbers::scrubRequestSoapBodyTags
+   * @covers \Google\AdsApi\Common\Util\LogMessageScrubbers::scrubRequestSoapBodyTags
    */
     public function testScrubSoapBodyTagsNothingToScrubNoOp()
     {
@@ -184,7 +184,7 @@ class LogMessageScrubbersTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Util\LogMessageScrubbers::scrubHttpHeadersArray
+   * @covers \Google\AdsApi\Common\Util\LogMessageScrubbers::scrubHttpHeadersArray
    */
     public function testScrubOneHttpHeaderInArray()
     {
@@ -206,7 +206,7 @@ class LogMessageScrubbersTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Util\LogMessageScrubbers::scrubHttpHeadersArray
+   * @covers \Google\AdsApi\Common\Util\LogMessageScrubbers::scrubHttpHeadersArray
    */
     public function testScrubTwoHttpHeadersInArray()
     {
@@ -228,7 +228,7 @@ class LogMessageScrubbersTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\Util\LogMessageScrubbers::scrubHttpHeadersArray
+   * @covers \Google\AdsApi\Common\Util\LogMessageScrubbers::scrubHttpHeadersArray
    */
     public function testScrubHttpHeadersInArrayNothingToScrubNoOp()
     {

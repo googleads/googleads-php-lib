@@ -40,9 +40,11 @@ class AdManagerDateTimesTest extends TestCase
     private $dateTime1;
     private $dateTime2;
     private $dateTime3;
+    private $dateTime4;
     private $adManagerDateTime1;
     private $adManagerDateTime2;
     private $adManagerDateTime3;
+    private $adManagerDateTime4;
 
     private $stringDateTime1;
     private $stringDateTime2;
@@ -54,9 +56,9 @@ class AdManagerDateTimesTest extends TestCase
     private $stringDateTimeWithTimeZone4;
 
     /**
-     * @see PHPUnit\Framework\TestCase::setUp
+     * @see \PHPUnit\Framework\TestCase::setUp
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->stringDateTime1 = '1983-06-02T08:30:15';
         $this->stringDateTime2 = '2015-06-02T00:00:00';
@@ -116,7 +118,7 @@ class AdManagerDateTimesTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202008\AdManagerDateTimes::fromDateTime
+     * @covers \Google\AdsApi\AdManager\Util\v202008\AdManagerDateTimes::fromDateTime
      */
     public function testFromDateTime()
     {
@@ -147,7 +149,7 @@ class AdManagerDateTimesTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202008\AdManagerDateTimes::fromDateTimeString
+     * @covers \Google\AdsApi\AdManager\Util\v202008\AdManagerDateTimes::fromDateTimeString
      */
     public function testFromDateTimeString()
     {
@@ -186,7 +188,7 @@ class AdManagerDateTimesTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202008\AdManagerDateTimes::toDateTime
+     * @covers \Google\AdsApi\AdManager\Util\v202008\AdManagerDateTimes::toDateTime
      */
     public function testToDateTime()
     {
@@ -217,7 +219,7 @@ class AdManagerDateTimesTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202008\AdManagerDateTimes::toDateTimeString
+     * @covers \Google\AdsApi\AdManager\Util\v202008\AdManagerDateTimes::toDateTimeString
      */
     public function testToDateTimeString()
     {
@@ -240,7 +242,7 @@ class AdManagerDateTimesTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202008\AdManagerDateTimes::toDateTimeString
+     * @covers \Google\AdsApi\AdManager\Util\v202008\AdManagerDateTimes::toDateTimeString
      */
     public function testToDateTimeStringWithSameTimeZoneIsNoOp()
     {
@@ -276,7 +278,7 @@ class AdManagerDateTimesTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202008\AdManagerDateTimes::toDateTimeString
+     * @covers \Google\AdsApi\AdManager\Util\v202008\AdManagerDateTimes::toDateTimeString
      */
     public function testToDateTimeStringWithDaylightSavingRules()
     {
@@ -298,7 +300,7 @@ class AdManagerDateTimesTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202008\AdManagerDateTimes::toDateTimeString
+     * @covers \Google\AdsApi\AdManager\Util\v202008\AdManagerDateTimes::toDateTimeString
      */
     public function testToDateTimeStringTimezoneOnDifferentDay()
     {
@@ -313,7 +315,7 @@ class AdManagerDateTimesTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\Util\v202008\AdManagerDateTimes::toDateTimeString
+     * @covers \Google\AdsApi\AdManager\Util\v202008\AdManagerDateTimes::toDateTimeString
      */
     public function testToDateTimeStringTimezoneUtc()
     {

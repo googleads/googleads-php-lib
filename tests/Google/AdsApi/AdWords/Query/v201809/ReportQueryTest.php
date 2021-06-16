@@ -31,7 +31,7 @@ class ReportQueryTest extends TestCase
 {
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ReportQuery::__toString
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ReportQuery::__toString
      */
     public function testToString()
     {

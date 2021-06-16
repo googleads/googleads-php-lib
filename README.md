@@ -3,13 +3,8 @@
 This project hosts the PHP client library for the various SOAP-based Ads APIs
 (AdWords and Ad Manager) at Google.
 
-> Welcome to the new ads API PHP client library!
->
-> The ads API PHP client library has been rewritten. If you're new to this
-> library, read on! If you're already using our library, you may want to take a
-> look at our [Upgrading
-> guide](https://github.com/googleads/googleads-php-lib/blob/master/UPGRADING.md)
-> first.
+> **The AdWords API will [sunset on April 27, 2022](https://ads-developers.googleblog.com/2021/04/upgrade-to-google-ads-api-from-adwords.html).  
+> [Upgrading guide](https://github.com/googleads/googleads-php-lib/blob/master/UPGRADING.md).**
 
 [![PHP version](https://badge.fury.io/ph/googleads%2Fgoogleads-php-lib.svg)](https://badge.fury.io/ph/googleads%2Fgoogleads-php-lib) [![Build Status](https://travis-ci.org/googleads/googleads-php-lib.svg?branch=master)](https://travis-ci.org/googleads/googleads-php-lib)
 
@@ -403,14 +398,10 @@ post to our forums:
 For general ads API and client library updates and news, follow:
 
 *   [Google Ads Developers blog](http://googleadsdeveloper.blogspot.com)
-*   [AdWords API Announcements mailing
-    list](https://groups.google.com/forum/#!forum/adwordsapi-announcements)
 *   [Ad Manager API Sunset Announcements mailing
     list](https://groups.google.com/forum/#!forum/dfpapi-sunset-announce)
 
 API deprecation schedules can be found at:
 
-*   [AdWords API deprecation
-    schedule](https://developers.google.com/adwords/api/docs/sunset-dates)
 *   [Ad Manager API deprecation
     schedule](https://developers.google.com/ad-manager/docs/deprecation)

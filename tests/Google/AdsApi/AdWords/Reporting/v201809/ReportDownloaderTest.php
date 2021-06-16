@@ -21,9 +21,9 @@ use Google\AdsApi\AdWords\AdWordsSessionBuilder;
 use Google\AdsApi\AdWords\Query\v201809\ReportQueryBuilder;
 use Google\AdsApi\AdWords\ReportSettingsBuilder;
 use Google\AdsApi\AdWords\Testing\Reporting\v201809\ReportingTestProvider;
+use Google\AdsApi\AdWords\v201809\cm\ApiException;
 use Google\AdsApi\AdWords\v201809\cm\ReportDefinitionReportType;
 use Google\AdsApi\AdWords\v201809\cm\Selector;
-use Google\AdsApi\Common\AdsUtility;
 use Google\AdsApi\Common\AdsUtilityRegistry;
 use Google\AdsApi\Common\SoapSettingsBuilder;
 use Google\Auth\FetchAuthTokenInterface;
@@ -51,9 +51,9 @@ class ReportDownloaderTest extends TestCase
     private $adWordsSession;
 
     /**
-     * @see PHPUnit\Framework\TestCase::setUp
+     * @see \PHPUnit\Framework\TestCase::setUp
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $fetchAuthTokenInterfaceStub = $this
             ->getMockBuilder(FetchAuthTokenInterface::class)
@@ -81,15 +81,15 @@ class ReportDownloaderTest extends TestCase
     }
 
     /**
-     * @see PHPUnit\Framework\TestCase::tearDown
+     * @see \PHPUnit\Framework\TestCase::tearDown
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         AdsUtilityRegistry::getInstance()->popAllUtilities();
     }
 
         /**
-     * @covers Google\AdsApi\AdWords\Reporting\v201809\ReportDownloader::downloadReport
+     * @covers \Google\AdsApi\AdWords\Reporting\v201809\ReportDownloader::downloadReport
      */
     public function testDownloadReportUsingReportDefinition()
     {
@@ -129,7 +129,7 @@ class ReportDownloaderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Reporting\v201809\ReportDownloader::downloadReportWithAwql
+     * @covers \Google\AdsApi\AdWords\Reporting\v201809\ReportDownloader::downloadReportWithAwql
      */
     public function testDownloadReportUsingAwql()
     {
@@ -152,11 +152,12 @@ class ReportDownloaderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Reporting\v201809\ReportDownloader::downloadReport
-     * @expectedException Google\AdsApi\AdWords\v201809\cm\ApiException
+     * @covers \Google\AdsApi\AdWords\Reporting\v201809\ReportDownloader::downloadReport
+     *
      */
     public function testDownloadReportFailedWithClientError()
     {
+        $this->expectException(ApiException::class);
         // Setup the Guzzle HTTP client to mock a request to return the report
         // error and throw a client exception with code 400.
         $fakeApiErrorResponse =
@@ -200,11 +201,11 @@ class ReportDownloaderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Reporting\v201809\ReportDownloader::downloadReportWithAwql
-     * @expectedException Google\AdsApi\AdWords\v201809\cm\ApiException
+     * @covers \Google\AdsApi\AdWords\Reporting\v201809\ReportDownloader::downloadReportWithAwql
      */
     public function testDownloadReportFailedWithServerError()
     {
+        $this->expectException(ApiException::class);
         // Setup the Guzzle HTTP client to mock a request to throw a server
         // exception with code 500.
         $mockHandler = new MockHandler(
@@ -229,7 +230,7 @@ class ReportDownloaderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Reporting\v201809\ReportDownloader::downloadReportWithAwql
+     * @covers \Google\AdsApi\AdWords\Reporting\v201809\ReportDownloader::downloadReportWithAwql
      */
     public function testDownloadReportUsingAwqlWithRequestOptionsFactory()
     {
@@ -276,13 +277,12 @@ class ReportDownloaderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Reporting\v201809\ReportDownloader::downloadReportWithAwql
-     *
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage report query
+     * @covers \Google\AdsApi\AdWords\Reporting\v201809\ReportDownloader::downloadReportWithAwql
      */
     public function testDownloadReportUsingAwqlShouldRejectReportQueryObject()
     {
+        $this->expectExceptionMessage("report query");
+        $this->expectException(InvalidArgumentException::class);
         // Setup the Guzzle HTTP client to mock a request to return the report
         // contents.
         $fakeReport = ReportingTestProvider::getFakeCriteriaReport();
@@ -300,7 +300,7 @@ class ReportDownloaderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Reporting\v201809\ReportDownloader::downloadReportWithReportQuery
+     * @covers \Google\AdsApi\AdWords\Reporting\v201809\ReportDownloader::downloadReportWithReportQuery
      */
     public function testDownloadReportUsingReportQueryObject()
     {

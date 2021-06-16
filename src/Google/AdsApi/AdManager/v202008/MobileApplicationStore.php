@@ -16,7 +16,6 @@ class MobileApplicationStore
     const PLAYSTATION = 'PLAYSTATION';
     const XBOX = 'XBOX';
     const SAMSUNG_TV = 'SAMSUNG_TV';
-    const AMAZON = 'AMAZON';
 
 
 }

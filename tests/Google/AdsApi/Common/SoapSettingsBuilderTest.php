@@ -31,15 +31,15 @@ class SoapSettingsBuilderTest extends TestCase
     private $soapSettingsBuilder;
 
   /**
-   * @see PHPUnit\Framework\TestCase::setUp
+   * @see \PHPUnit\Framework\TestCase::setUp
    */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->soapSettingsBuilder = new SoapSettingsBuilder();
     }
 
   /**
-   * @covers Google\AdsApi\Common\SoapSettingsBuilder::from
+   * @covers \Google\AdsApi\Common\SoapSettingsBuilder::from
    */
     public function testBuildFrom()
     {
@@ -62,7 +62,7 @@ class SoapSettingsBuilderTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\SoapSettingsBuilder::from
+   * @covers \Google\AdsApi\Common\SoapSettingsBuilder::from
    */
     public function testBuildFromDefaults()
     {
@@ -81,7 +81,7 @@ class SoapSettingsBuilderTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\SoapSettingsBuilder::build
+   * @covers \Google\AdsApi\Common\SoapSettingsBuilder::build
    */
     public function testBuild()
     {
@@ -103,7 +103,7 @@ class SoapSettingsBuilderTest extends TestCase
     }
 
   /**
-   * @covers Google\AdsApi\Common\SoapSettingsBuilder::build
+   * @covers \Google\AdsApi\Common\SoapSettingsBuilder::build
    */
     public function testBuildDefaults()
     {

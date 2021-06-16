@@ -29,7 +29,7 @@ class QueryValidatorTest extends TestCase
 {
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\QueryValidator::validateFieldName
+     * @covers \Google\AdsApi\AdWords\Query\QueryValidator::validateFieldName
      */
     public function testValidateFieldName()
     {
@@ -38,7 +38,7 @@ class QueryValidatorTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\QueryValidator::validateFieldName
+     * @covers \Google\AdsApi\AdWords\Query\QueryValidator::validateFieldName
      */
     public function testValidateFieldNameWithNull()
     {
@@ -48,7 +48,7 @@ class QueryValidatorTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\QueryValidator::validateFieldName
+     * @covers \Google\AdsApi\AdWords\Query\QueryValidator::validateFieldName
      */
     public function testValidateFieldNameWithZeroString()
     {
@@ -58,7 +58,7 @@ class QueryValidatorTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\QueryValidator::validateFieldName
+     * @covers \Google\AdsApi\AdWords\Query\QueryValidator::validateFieldName
      */
     public function testValidateFieldNameWithEmptyString()
     {
@@ -68,7 +68,7 @@ class QueryValidatorTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\QueryValidator::validateFieldName
+     * @covers \Google\AdsApi\AdWords\Query\QueryValidator::validateFieldName
      */
     public function testValidateFieldNameWithWhitespaceString()
     {
@@ -78,7 +78,7 @@ class QueryValidatorTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\QueryValidator::validateFieldName
+     * @covers \Google\AdsApi\AdWords\Query\QueryValidator::validateFieldName
      */
     public function testValidateFieldNameWithArray()
     {
@@ -88,7 +88,7 @@ class QueryValidatorTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\QueryValidator::validateCustomDateRange
+     * @covers \Google\AdsApi\AdWords\Query\QueryValidator::validateCustomDateRange
      */
     public function testValidateCustomDateRangeWithWrongFormatStartDate()
     {
@@ -105,7 +105,7 @@ class QueryValidatorTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\QueryValidator::validateCustomDateRange
+     * @covers \Google\AdsApi\AdWords\Query\QueryValidator::validateCustomDateRange
      */
     public function testValidateCustomDateRangeWithInvalidStartDate()
     {
@@ -122,7 +122,7 @@ class QueryValidatorTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\QueryValidator::validateCustomDateRange
+     * @covers \Google\AdsApi\AdWords\Query\QueryValidator::validateCustomDateRange
      */
     public function testValidateCustomDateRangeWithWrongFormatEndDate()
     {
@@ -139,7 +139,7 @@ class QueryValidatorTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\QueryValidator::validateCustomDateRange
+     * @covers \Google\AdsApi\AdWords\Query\QueryValidator::validateCustomDateRange
      */
     public function testValidateCustomDateRangeWithInvalidEndDate()
     {
@@ -156,7 +156,7 @@ class QueryValidatorTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\QueryValidator::validateCustomDateRange
+     * @covers \Google\AdsApi\AdWords\Query\QueryValidator::validateCustomDateRange
      */
     public function testValidateCustomDateRangeWithEndDatePriorToStartDate()
     {
@@ -173,7 +173,7 @@ class QueryValidatorTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\QueryValidator::validateServiceQuery
+     * @covers \Google\AdsApi\AdWords\Query\QueryValidator::validateServiceQuery
      */
     public function testValidateServiceQuery()
     {
@@ -188,7 +188,7 @@ class QueryValidatorTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\QueryValidator::validateServiceQuery
+     * @covers \Google\AdsApi\AdWords\Query\QueryValidator::validateServiceQuery
      */
     public function testValidateServiceQueryMissingSelectClause()
     {
@@ -206,7 +206,7 @@ class QueryValidatorTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\QueryValidator::validateServiceQuery
+     * @covers \Google\AdsApi\AdWords\Query\QueryValidator::validateServiceQuery
      */
     public function testValidateServiceQueryWithExtraneousFromClause()
     {
@@ -226,7 +226,7 @@ class QueryValidatorTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\QueryValidator::validateServiceQuery
+     * @covers \Google\AdsApi\AdWords\Query\QueryValidator::validateServiceQuery
      */
     public function testValidateServiceQueryWithExtraneousDuringClause()
     {
@@ -243,7 +243,7 @@ class QueryValidatorTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\QueryValidator::validateServiceQuery
+     * @covers \Google\AdsApi\AdWords\Query\QueryValidator::validateServiceQuery
      */
     public function testValidateServiceQueryWithFromKeywordInFieldName()
     {
@@ -255,7 +255,7 @@ class QueryValidatorTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\QueryValidator::validateReportQuery
+     * @covers \Google\AdsApi\AdWords\Query\QueryValidator::validateReportQuery
      */
     public function testValidateReportQuery()
     {
@@ -269,7 +269,7 @@ class QueryValidatorTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\QueryValidator::validateReportQuery
+     * @covers \Google\AdsApi\AdWords\Query\QueryValidator::validateReportQuery
      */
     public function testValidateReportQueryMissingSelectClause()
     {
@@ -286,7 +286,7 @@ class QueryValidatorTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\QueryValidator::validateReportQuery
+     * @covers \Google\AdsApi\AdWords\Query\QueryValidator::validateReportQuery
      */
     public function testValidateReportQueryMissingFromClause()
     {
@@ -303,7 +303,7 @@ class QueryValidatorTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\QueryValidator::validateReportQuery
+     * @covers \Google\AdsApi\AdWords\Query\QueryValidator::validateReportQuery
      */
     public function testValidateReportQueryMissingDuringClause()
     {
@@ -316,7 +316,7 @@ class QueryValidatorTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\QueryValidator::validateReportQuery
+     * @covers \Google\AdsApi\AdWords\Query\QueryValidator::validateReportQuery
      */
     public function testValidateReportQueryWithExtraneousOrderByClause()
     {
@@ -335,7 +335,7 @@ class QueryValidatorTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\QueryValidator::validateReportQuery
+     * @covers \Google\AdsApi\AdWords\Query\QueryValidator::validateReportQuery
      */
     public function testValidateReportQueryWithExtraneousLimitClause()
     {

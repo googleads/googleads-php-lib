@@ -47,9 +47,9 @@ class RequestOptionsFactoryTest extends TestCase
     private $libraryMetadataProviderMock;
 
     /**
-     * @see PHPUnit\Framework\TestCase::setUp
+     * @see \PHPUnit\Framework\TestCase::setUp
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $fetchAuthTokenInterfaceMock = $this
             ->getMockBuilder(FetchAuthTokenInterface::class)
@@ -91,7 +91,7 @@ class RequestOptionsFactoryTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Reporting\v201809\RequestOptionsFactory::createRequestOptionsWithReportDefinition
+     * @covers \Google\AdsApi\AdWords\Reporting\v201809\RequestOptionsFactory::createRequestOptionsWithReportDefinition
      */
     public function testCreateRequestOptionsWithReportDefinition()
     {
@@ -153,7 +153,7 @@ class RequestOptionsFactoryTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Reporting\v201809\RequestOptionsFactory::createRequestOptionsWithReportDefinition
+     * @covers \Google\AdsApi\AdWords\Reporting\v201809\RequestOptionsFactory::createRequestOptionsWithReportDefinition
      */
     public function testCreateRequestOptionsWithReportDefinitionOverridingReportSettings()
     {
@@ -221,7 +221,7 @@ class RequestOptionsFactoryTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Reporting\v201809\RequestOptionsFactory::createRequestOptionsWithAwqlQuery
+     * @covers \Google\AdsApi\AdWords\Reporting\v201809\RequestOptionsFactory::createRequestOptionsWithAwqlQuery
      */
     public function testCreateRequestOptionsWithAwqlQuery()
     {
@@ -271,7 +271,7 @@ class RequestOptionsFactoryTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Reporting\v201809\RequestOptionsFactory::createRequestOptionsWithAwqlQuery
+     * @covers \Google\AdsApi\AdWords\Reporting\v201809\RequestOptionsFactory::createRequestOptionsWithAwqlQuery
      */
     public function testCreateRequestOptionsWithAwqlQueryOverridingReportSettings()
     {
@@ -330,7 +330,7 @@ class RequestOptionsFactoryTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Reporting\v201809\RequestOptionsFactory::createRequestOptionsWithReportDefinition
+     * @covers \Google\AdsApi\AdWords\Reporting\v201809\RequestOptionsFactory::createRequestOptionsWithReportDefinition
      */
     public function testCreateRequestOptionsWithAdditionalRequestOptions()
     {

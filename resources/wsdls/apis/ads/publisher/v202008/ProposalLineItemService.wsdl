@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2020 Google Inc. All Rights Reserved -->
+<!-- Copyright 2021 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202008"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202008"
@@ -2730,7 +2730,6 @@
               <documentation>
                 The marketplace info if this proposal line item is programmatic, null otherwise.
                 &lt;span class="constraint Applicable"&gt;This attribute is applicable when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, using sales management.&lt;/li&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
-                &lt;span class="constraint Required"&gt;This attribute is required when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, using sales management.&lt;/li&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -2879,9 +2878,11 @@
               <documentation>
                 The {@link AdExchangeEnvironment} of the marketplace web property that is associated with this
                 line item.
-                This is only for {@link ProposalLineItem proposal line items} with a corresponding deal in
-                Marketplace.
-                &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
+                
+                &lt;p&gt;The last API version in which this field will be available is v202105. Starting with
+                v202108, this field will no longer be available. To control which platforms your proposal line
+                item will serve on from v202108 onward, please use request platform targeting in the targeting
+                expression.
               </documentation>
             </annotation>
           </element>
@@ -4089,10 +4090,9 @@
           <enumeration value="AMBIGUOUS_SOAP_REQUEST_HEADER">
             <annotation>
               <documentation>
-                The SOAP message contains a request header with an ambiguous definition
-                of the authentication header fields. This means either the {@code
-                authToken} and {@code oAuthToken} fields were both null or both were
-                specified. Exactly one value should be specified with each request.
+                The SOAP message contains a request header with an ambiguous definition of the authentication
+                header fields. This means either the {@code authToken} and {@code oAuthToken} fields were
+                both null or both were specified. Exactly one value should be specified with each request.
               </documentation>
             </annotation>
           </enumeration>
@@ -4127,8 +4127,8 @@
           <enumeration value="MISSING_SOAP_REQUEST_HEADER">
             <annotation>
               <documentation>
-                The SOAP message is missing a request header with an {@code authToken}
-                and optional {@code networkCode}.
+                The SOAP message is missing a request header with an {@code authToken} and optional {@code
+                networkCode}.
               </documentation>
             </annotation>
           </enumeration>
@@ -4170,32 +4170,30 @@
           <enumeration value="NETWORK_CODE_REQUIRED">
             <annotation>
               <documentation>
-                The user has access to more than one network, but did not provide a
-                {@code networkCode}.
+                The user has access to more than one network, but did not provide a {@code networkCode}.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="CONNECTION_ERROR">
             <annotation>
               <documentation>
-                An error happened on the server side during connection to authentication
-                service.
+                An error happened on the server side during connection to authentication service.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="GOOGLE_ACCOUNT_ALREADY_ASSOCIATED_WITH_NETWORK">
             <annotation>
               <documentation>
-                The user tried to create a test network using an account that already is
-                associated with a network.
+                The user tried to create a test network using an account that already is associated with a
+                network.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="UNDER_INVESTIGATION">
             <annotation>
               <documentation>
-                The account is blocked and under investigation by the collections team. Please contact
-                Google for more information.
+                The account is blocked and under investigation by the collections team. Please contact Google
+                for more information.
               </documentation>
             </annotation>
           </enumeration>
@@ -6721,8 +6719,7 @@
           <enumeration value="STANDARD">
             <annotation>
               <documentation>
-                The type of {@link LineItem} for which a fixed quantity of impressions or
-                clicks are reserved.
+                The type of {@link LineItem} for which a fixed quantity of impressions or clicks are reserved.
               </documentation>
             </annotation>
           </enumeration>

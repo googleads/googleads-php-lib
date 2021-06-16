@@ -33,9 +33,9 @@ class AdWordsHeaderHandlerTest extends TestCase
     private $adWordsSessionBuilder;
 
     /**
-     * @see PHPUnit\Framework\TestCase::setUp
+     * @see \PHPUnit\Framework\TestCase::setUp
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->adWordsHeaderHandler = new AdWordsHeaderHandler();
 
@@ -53,7 +53,7 @@ class AdWordsHeaderHandlerTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\AdWordsHeaderHandler::generateHttpHeaders
+     * @covers \Google\AdsApi\AdWords\AdWordsHeaderHandler::generateHttpHeaders
      */
     public function testGenerateHttpHeaders()
     {

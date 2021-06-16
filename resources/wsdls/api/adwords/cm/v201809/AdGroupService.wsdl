@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2020 Google Inc. All Rights Reserved -->
+<!-- Copyright 2021 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://adwords.google.com/api/adwords/cm/v201809"
   xmlns:tns="https://adwords.google.com/api/adwords/cm/v201809"
@@ -87,7 +87,6 @@
                 use one of {@link Predicate.Operator#CONTAINS_ALL}, {@link Predicate.Operator#CONTAINS_ANY},
                 {@link Predicate.Operator#CONTAINS_NONE} operators with a list of {@link Label} ids.
                 &lt;span class="constraint Selectable"&gt;This field can be selected using the value "Labels".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
-                &lt;span class="constraint CampaignType"&gt;This field may not be set for campaign channel subtype UNIVERSAL_APP_CAMPAIGN.&lt;/span&gt;
                 &lt;span class="constraint ReadOnly"&gt;This field is read only and will be ignored when sent to the API for the following {@link Operator}s: REMOVE and SET.&lt;/span&gt;
               </documentation>
             </annotation>
@@ -1670,8 +1669,8 @@
       <complexType name="PageOnePromotedBiddingScheme">
         <annotation>
           <documentation>
-            Page-One Promoted bidding scheme, which sets max cpc bids to
-            target impressions on page one or page one promoted slots on google.com.
+            Page-One Promoted bidding scheme, which sets max cpc bids to target impressions on page one or
+            page one promoted slots on google.com.
             &lt;span class="constraint AdxEnabled"&gt;This is disabled for AdX.&lt;/span&gt;
           </documentation>
         </annotation>
@@ -1691,7 +1690,6 @@
                   <documentation>
                     Strategy maximum bid limit in advertiser local currency micro units.
                     This upper limit applies to all keywords managed by the strategy.
-                    &lt;span class="constraint InRange"&gt;This field must be greater than or equal to 0.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -1700,7 +1698,6 @@
                   <documentation>
                     Bid Multiplier to be applied to the relevant bid estimate (depending on the strategyGoal)
                     in determining a keyword's new max cpc bid.
-                    &lt;span class="constraint InRange"&gt;This field must be greater than or equal to 0.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -2342,7 +2339,6 @@
                     competitor. The advertiser outranks the competitor in an auction if either the advertiser
                     appears above the competitor in the search results, or appears in the search results when the
                     competitor does not.
-                    &lt;span class="constraint InRange"&gt;This field must be between 1 and 1000000, inclusive.&lt;/span&gt;
                   </documentation>
                 </annotation>
               </element>
@@ -3189,15 +3185,15 @@
           <enumeration value="CONVERSION_TRACKING_NOT_ENABLED">
             <annotation>
               <documentation>
-                Conversion tracking is not enabled in the campaign that has YouTube
-                Video Builder transitions.
+                Conversion tracking is not enabled in the campaign that has value-based
+                bidding transitions.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="NOT_ENOUGH_CONVERSIONS">
             <annotation>
               <documentation>
-                Not enough conversions tracked for YouTube Video Builder transitions.
+                Not enough conversions tracked for value-based bidding transitions.
               </documentation>
             </annotation>
           </enumeration>
@@ -3338,8 +3334,8 @@
       <simpleType name="BiddingStrategyType">
         <annotation>
           <documentation>
-            The bidding strategy type. See {@linkplain BiddingStrategyConfiguration}
-            for additional information.
+            The bidding strategy type. See {@linkplain BiddingStrategyConfiguration} for additional
+            information.
           </documentation>
         </annotation>
         <restriction base="xsd:string">
@@ -3363,10 +3359,9 @@
           <enumeration value="PAGE_ONE_PROMOTED">
             <annotation>
               <documentation>
-                Page-One Promoted is an automated bid strategy that sets max CPC bids
-                to target impressions on page one or page one promoted slots on
-                google.com. See {@linkplain PageOnePromotedBiddingScheme} for
-                more details.
+                Page-One Promoted is an automated bid strategy that sets max CPC bids to target impressions on
+                page one or page one promoted slots on google.com. See {@linkplain
+                PageOnePromotedBiddingScheme} for more details.
               </documentation>
             </annotation>
           </enumeration>
@@ -3416,16 +3411,7 @@
               </documentation>
             </annotation>
           </enumeration>
-          <enumeration value="TARGET_OUTRANK_SHARE">
-            <annotation>
-              <documentation>
-                Target Outrank Share is an automated bidding strategy that sets bids
-                based on the target fraction of auctions where the advertiser should
-                outrank a specific competitor. See {@linkplain TargetOutrankShareBiddingScheme}
-                for more details.
-              </documentation>
-            </annotation>
-          </enumeration>
+          <enumeration value="TARGET_OUTRANK_SHARE"/>
           <enumeration value="NONE">
             <annotation>
               <documentation>

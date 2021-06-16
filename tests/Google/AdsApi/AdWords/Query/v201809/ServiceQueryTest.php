@@ -35,9 +35,8 @@ use PHPUnit\Framework\TestCase;
 class ServiceQueryTest extends TestCase
 {
 
-
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQuery::__construct
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQuery::__construct
      */
     public function testQueryStringWithLimitKeywordInLiteralString()
     {
@@ -57,7 +56,7 @@ class ServiceQueryTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQuery::__construct
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQuery::__construct
      */
     public function testQueryStringWithLimitKeywordInLiteralStringWithSingleQuotes()
     {
@@ -77,7 +76,7 @@ class ServiceQueryTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQuery::__construct
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQuery::__construct
      */
     public function testQueryStringWithLimitKeywordInLiteralStringWithDoubleQuotes()
     {
@@ -97,7 +96,7 @@ class ServiceQueryTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQuery::__construct
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQuery::__construct
      */
     public function testQueryStringWithLimitKeywordInLiteralStringLowerCase()
     {
@@ -117,79 +116,73 @@ class ServiceQueryTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQuery::__construct
-     *
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage both
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQuery::__construct
      */
     public function testValidationWithStartIndexIsNullButPageSizeIsSpecified()
     {
+        $this->expectExceptionMessage("both");
+        $this->expectException(InvalidArgumentException::class);
         $builder = new ServiceQueryBuilder();
         $builder->select(['Id'])->limit(null, 1)->build();
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQuery::__construct
-     *
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage both
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQuery::__construct
      */
     public function testValidationWithStartIndexIsSpecifiedButPageSizeIsNull()
     {
+        $this->expectExceptionMessage("both");
+        $this->expectException(InvalidArgumentException::class);
         $builder = new ServiceQueryBuilder();
         $builder->select(['Id'])->limit(0, null)->build();
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQuery::__construct
-     *
-     * @expectedException OutOfBoundsException
-     * @expectedExceptionMessage start index
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQuery::__construct
      */
     public function testValidationWithNegativeStartIndex()
     {
+        $this->expectExceptionMessage("start index");
+        $this->expectException(OutOfBoundsException::class);
         $builder = new ServiceQueryBuilder();
         $builder->select(['Id'])->limit(-1, 1)->build();
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQuery::__construct
-     *
-     * @expectedException OutOfBoundsException
-     * @expectedExceptionMessage page size
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQuery::__construct
      */
     public function testValidationWithZeroPageSize()
     {
+        $this->expectExceptionMessage("page size");
+        $this->expectException(OutOfBoundsException::class);
         $builder = new ServiceQueryBuilder();
         $builder->select(['Id'])->limit(0, 0)->build();
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQuery::__construct
-     *
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage start index
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQuery::__construct
      */
     public function testValidationWithFloatNumberAsStartIndex()
     {
+        $this->expectExceptionMessage("start index");
+        $this->expectException(InvalidArgumentException::class);
         $builder = new ServiceQueryBuilder();
         $builder->select(['Id'])->limit(1.1, 1)->build();
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQuery::__construct
-     *
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage page size
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQuery::__construct
      */
     public function testValidationWithFloatNumberAsPageSize()
     {
+        $this->expectExceptionMessage("page size");
+        $this->expectException(InvalidArgumentException::class);
         $builder = new ServiceQueryBuilder();
         $builder->select(['Id'])->limit(0, 1.1)->build();
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQuery::__toString
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQuery::__toString
      */
     public function testToString()
     {
@@ -214,7 +207,7 @@ class ServiceQueryTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQuery::hasNext
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQuery::hasNext
      */
     public function testHasNextWith1Page()
     {
@@ -229,7 +222,7 @@ class ServiceQueryTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQuery::hasNext
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQuery::hasNext
      */
     public function testHasNextWith2Pages()
     {
@@ -270,7 +263,7 @@ class ServiceQueryTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQuery::hasNext
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQuery::hasNext
      */
     public function testHasNextWithNullAdGroupBidLandscapePage()
     {
@@ -288,7 +281,7 @@ class ServiceQueryTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQuery::hasNext
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQuery::hasNext
      */
     public function testHasNextWithEmptyAdGroupBidLandscapePage()
     {
@@ -306,7 +299,7 @@ class ServiceQueryTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQuery::hasNext
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQuery::hasNext
      */
     public function testHasNextWith1AdGroupBidLandscapePage()
     {
@@ -328,7 +321,7 @@ class ServiceQueryTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQuery::hasNext
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQuery::hasNext
      */
     public function testHasNextWith2AdGroupBidLandscapePage()
     {
@@ -350,7 +343,7 @@ class ServiceQueryTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQuery::hasNext
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQuery::hasNext
      */
     public function testHasNextWithNullCriterionBidLandscapePage()
     {
@@ -368,7 +361,7 @@ class ServiceQueryTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQuery::hasNext
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQuery::hasNext
      */
     public function testHasNextWithEmptyCriterionBidLandscapePage()
     {
@@ -386,7 +379,7 @@ class ServiceQueryTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQuery::hasNext
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQuery::hasNext
      */
     public function testHasNextWith1CriterionBidLandscapePage()
     {
@@ -408,7 +401,7 @@ class ServiceQueryTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQuery::hasNext
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQuery::hasNext
      */
     public function testHasNextWith2CriterionBidLandscapePage()
     {
@@ -430,7 +423,7 @@ class ServiceQueryTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQuery::nextPage
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQuery::nextPage
      */
     public function testNextPage()
     {
@@ -449,7 +442,7 @@ class ServiceQueryTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQuery::nextPage
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQuery::nextPage
      */
     public function testNextPageMultipleTimes()
     {
@@ -468,13 +461,12 @@ class ServiceQueryTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQuery::nextPage
-     *
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage type
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQuery::nextPage
      */
     public function testNextPageWithInvalidPageType()
     {
+        $this->expectExceptionMessage("type");
+        $this->expectException(InvalidArgumentException::class);
         $builder = new ServiceQueryBuilder();
         $query = $builder->select(['AdGroupId'])
             ->orderByDesc('StartDate')
@@ -486,7 +478,7 @@ class ServiceQueryTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ServiceQuery::nextPage
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ServiceQuery::nextPage
      */
     public function testNextPageWithAdGroupBidLandscapePage()
     {

@@ -35,9 +35,9 @@ class AdManagerSoapLogMessageFormatterProviderTest extends TestCase
     private $responseSoapXmlMock;
 
     /**
-     * @see PHPUnit\Framework\TestCase::setUp
+     * @see \PHPUnit\Framework\TestCase::setUp
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->adManagerSoapLogMessageFormatter =
             (new AdManagerSoapLogMessageFormatterProvider())
@@ -51,7 +51,7 @@ class AdManagerSoapLogMessageFormatterProviderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdManager\AdManagerSoapLogMessageFormatterProvider::getSoapLogMessageFormatter
+     * @covers \Google\AdsApi\AdManager\AdManagerSoapLogMessageFormatterProvider::getSoapLogMessageFormatter
      */
     public function testGetSoapLogMessageFormatterFormatsSummaryWithNetCode()
     {

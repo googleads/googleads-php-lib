@@ -31,32 +31,30 @@ class ExpressionBuilderTest extends TestCase
 {
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::__construct
-     *
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage field name
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::__construct
      */
     public function testConstructorWithEmptyFieldName()
     {
+        $this->expectExceptionMessage("field name");
+        $this->expectException(InvalidArgumentException::class);
         $queryBuilder = new ServiceQueryBuilder();
         $queryBuilder->where('');
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::buildExpression
-     *
-     * @expectedException BadFunctionCallException
-     * @expectedExceptionMessage operator must be set
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::buildExpression
      */
     public function testBuildExpressionWithoutSettingOperator()
     {
+        $this->expectExceptionMessage("operator must be set");
+        $this->expectException(BadFunctionCallException::class);
         $delegate = new ExpressionBuilder('Id');
         $delegate->buildExpression();
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::__construct
-     * @covers Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::equalTo
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::__construct
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::equalTo
      */
     public function testEqualToSupportForChaining()
     {
@@ -76,31 +74,29 @@ class ExpressionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::equalTo
-     *
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage value string
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::equalTo
      */
     public function testEqualToEmptyString()
     {
+        $this->expectExceptionMessage("value string");
+        $this->expectException(InvalidArgumentException::class);
         $queryBuilder = new ServiceQueryBuilder();
         $queryBuilder->where('Id')->equalTo('');
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::equalTo
-     *
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage value string
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::equalTo
      */
     public function testEqualToNull()
     {
+        $this->expectExceptionMessage("value string");
+        $this->expectException(InvalidArgumentException::class);
         $queryBuilder = new ServiceQueryBuilder();
         $queryBuilder->where('Id')->equalTo(null);
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::notEqualTo
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::notEqualTo
      */
     public function testNotEqualToZeroInt()
     {
@@ -116,7 +112,7 @@ class ExpressionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::notEqualTo
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::notEqualTo
      */
     public function testNotEqualToZeroString()
     {
@@ -132,7 +128,7 @@ class ExpressionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::notEqualTo
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::notEqualTo
      */
     public function testNotEqualTo()
     {
@@ -148,7 +144,7 @@ class ExpressionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::greaterThan
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::greaterThan
      */
     public function testGreaterThan()
     {
@@ -164,7 +160,7 @@ class ExpressionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::greaterThanOrEqualTo
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::greaterThanOrEqualTo
      */
     public function testGreaterThanOrEqualTo()
     {
@@ -180,7 +176,7 @@ class ExpressionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::lessThan
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::lessThan
      */
     public function testLessThan()
     {
@@ -196,7 +192,7 @@ class ExpressionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::lessThanOrEqualTo
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::lessThanOrEqualTo
      */
     public function tesLessThanOrEqualTo()
     {
@@ -213,7 +209,7 @@ class ExpressionBuilderTest extends TestCase
 
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::startsWith
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::startsWith
      */
     public function testStartsWith()
     {
@@ -229,7 +225,7 @@ class ExpressionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::startsWithIgnoreCase
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::startsWithIgnoreCase
      */
     public function testStartsWithIgnoreCase()
     {
@@ -245,7 +241,7 @@ class ExpressionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::contains
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::contains
      */
     public function testContains()
     {
@@ -261,7 +257,7 @@ class ExpressionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::containsIgnoreCase
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::containsIgnoreCase
      */
     public function testContainsIgnoreCase()
     {
@@ -277,7 +273,7 @@ class ExpressionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::doesNotContain
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::doesNotContain
      */
     public function testDoesNotContain()
     {
@@ -293,7 +289,7 @@ class ExpressionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::doesNotContainIgnoreCase
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::doesNotContainIgnoreCase
      */
     public function testDoesNotContainIgnoreCase()
     {
@@ -310,7 +306,7 @@ class ExpressionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::in
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::in
      */
     public function testIn()
     {
@@ -326,12 +322,12 @@ class ExpressionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::in
-     * @expectedException InvalidArgumentException
-     * @expectedExceptionMessage list
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::in
      */
     public function testInWithEmptyArray()
     {
+        $this->expectExceptionMessage("list");
+        $this->expectException(InvalidArgumentException::class);
         $queryBuilder = new ServiceQueryBuilder();
         $queryBuilder
             ->select(['Name'])
@@ -340,7 +336,7 @@ class ExpressionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::notIn
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::notIn
      */
     public function testNotIn()
     {
@@ -356,7 +352,7 @@ class ExpressionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::containsAny
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::containsAny
      */
     public function testContainsAny()
     {
@@ -372,7 +368,7 @@ class ExpressionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::containsNone
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::containsNone
      */
     public function testContainsNone()
     {
@@ -388,7 +384,7 @@ class ExpressionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::containsAll
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::containsAll
      */
     public function testContainsAll()
     {
@@ -404,8 +400,8 @@ class ExpressionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::startsWithIgnoreCase
-     * @covers Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::doesNotContainIgnoreCase
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::startsWithIgnoreCase
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::doesNotContainIgnoreCase
      */
     public function testCombining2SingleOperators()
     {
@@ -423,8 +419,8 @@ class ExpressionBuilderTest extends TestCase
     }
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::containsAll
-     * @covers Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::containsNone
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::containsAll
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::containsNone
      */
     public function testCombining2ListOperators()
     {
@@ -444,8 +440,8 @@ class ExpressionBuilderTest extends TestCase
 
 
     /**
-     * @covers Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::startsWithIgnoreCase
-     * @covers Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::containsNone
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::startsWithIgnoreCase
+     * @covers \Google\AdsApi\AdWords\Query\v201809\ExpressionBuilder::containsNone
      */
     public function testCombiningSingleAndListOperators()
     {
