@@ -390,9 +390,8 @@
       <complexType name="MobileApplication">
         <annotation>
           <documentation>
-            A mobile application that has been added to or "claimed" by the network to be used for
-            targeting purposes.
-            These mobile apps can come from various app stores.
+            A mobile application that has been added to or "claimed" by the network to be used for targeting
+            purposes. These mobile apps can come from various app stores.
           </documentation>
         </annotation>
         <sequence>
@@ -423,8 +422,8 @@
           <element maxOccurs="1" minOccurs="0" name="appStore" type="tns:MobileApplicationStore">
             <annotation>
               <documentation>
-                The app store the mobile application belongs to. This attribute is required for
-                creation and then is read-only.
+                The app store the mobile application belongs to. This attribute is required for creation and
+                then is read-only.
               </documentation>
             </annotation>
           </element>

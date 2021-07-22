@@ -1,3 +1,17 @@
+### 53.1.0
+
+##### AdWords
+
+*   Upgrade laravel/framework to version 6.20.26 in examples/AdWords/LaravelSampleApp/composer.json.
+
+##### Ad Manager
+
+*   No changes.
+
+##### Common
+
+*   Restore Guzzle 6 support.
+
 ### 53.0.0
 
 ##### AdWords
