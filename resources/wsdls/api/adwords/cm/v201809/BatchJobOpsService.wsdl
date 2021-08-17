@@ -9616,8 +9616,9 @@
       <complexType name="ShoppingSetting">
         <annotation>
           <documentation>
-            Setting for shopping campaigns. Defines the universe of products covered by the campaign.
-            Encapsulates a merchant ID, sales country, and campaign priority.
+            Setting for shopping campaigns and other campaign types which advertise products. Defines the
+            universe of products covered by the campaign. Encapsulates a merchant ID, sales country, and
+            campaign priority.
           </documentation>
         </annotation>
         <complexContent>

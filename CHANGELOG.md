@@ -1,3 +1,20 @@
+### 54.0.0
+
+##### AdWords
+
+*   No changes.
+
+##### Ad Manager
+
+* Added support for v202108.
+* Removed support for v202008.
+* Removed examples for v202011.
+* Added RunReachReportWithAdUnitDimensions for v202108.
+
+##### Common
+
+*   No changes.
+
 ### 53.1.0
 
 ##### AdWords

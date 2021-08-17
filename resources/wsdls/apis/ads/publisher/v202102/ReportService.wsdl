@@ -2497,7 +2497,7 @@
             <annotation>
               <documentation>
                 The total number of video opportunities.
-                &lt;p&gt;Corresponds to "True Opportunities" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "True opportunities" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -2505,7 +2505,7 @@
             <annotation>
               <documentation>
                 The total number of video capped opportunities.
-                &lt;p&gt;Corresponds to "Capped Opportunities" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Capped opportunities" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4834,7 +4834,7 @@
                 &lt;li&gt; {@link TimeZoneType.PUBLISHER}
                 &lt;li&gt; {@link TimeZoneType.PROPOSAL_LOCAL}
                 &lt;/ul&gt;
-                &lt;p&gt;Corresponds to "Month and year" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales, Partner finance.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Month and year" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Partner finance.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4850,7 +4850,7 @@
                 &lt;li&gt; {@link TimeZoneType.PUBLISHER}
                 &lt;li&gt; {@link TimeZoneType.PROPOSAL_LOCAL}
                 &lt;/ul&gt;
-                &lt;p&gt;Corresponds to "Week" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales, Data protection.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Week" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Data protection.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4866,7 +4866,7 @@
                 &lt;li&gt; {@link TimeZoneType.PUBLISHER}
                 &lt;li&gt; {@link TimeZoneType.PROPOSAL_LOCAL}
                 &lt;/ul&gt;
-                &lt;p&gt;Corresponds to "Date" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Date" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4876,7 +4876,7 @@
                 Breaks down reporting data by day of the week in the network time zone. Can
                 be used to filter by day of the week using the index of the day (from 1 for
                 Monday is 1 to 7 for Sunday).
-                &lt;p&gt;Corresponds to "Day of week" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Day of week" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4894,7 +4894,7 @@
               <documentation>
                 Breaks down reporting data by {@link LineItem#id}. Can be used to
                 filter by {@link LineItem#id}.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales, Data protection, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, Reach, Data protection, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4904,7 +4904,7 @@
                 Breaks down reporting data by line item. {@link LineItem#name} and
                 {@link LineItem#id} are automatically included as columns in the report.
                 Can be used to filter by {@link LineItem#name}.
-                &lt;p&gt;Corresponds to "Line item" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales, Data protection, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Line item" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Data protection, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4922,7 +4922,7 @@
               <documentation>
                 Breaks down reporting data by {@link Order#id}. Can be used to filter by
                 {@link Order#id}.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales, Data protection, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, Reach, Data protection, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4932,7 +4932,7 @@
                 Breaks down reporting data by order. {@link Order#name} and
                 {@link Order#id} are automatically included as columns in the report. Can
                 be used to filter by {@link Order#name}.
-                &lt;p&gt;Corresponds to "Order" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales, Data protection, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Order" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Data protection, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4951,7 +4951,7 @@
               <documentation>
                 Breaks down reporting data by advertising company {@link Company#id}. Can
                 be used to filter by {@link Company#id}.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales, Data protection, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, Reach, Data protection, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4961,7 +4961,7 @@
                 Breaks down reporting data by advertising company. {@link Company#name} and
                 {@link Company#id} are automatically included as columns in the report.
                 Can be used to filter by {@link Company#name}.
-                &lt;p&gt;Corresponds to "Advertiser" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales, Data protection, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Advertiser" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Data protection, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4995,7 +4995,7 @@
               <documentation>
                 Breaks down reporting data by salesperson {@link User#id}. Can be used to
                 filter by {@link User#id}.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales, Data protection.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, Reach, Data protection.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5005,7 +5005,7 @@
                 Breaks down reporting data by salesperson. {@link User#name} and
                 {@link User#id} of the salesperson are automatically included as columns in
                 the report. Can be used to filter by {@link User#name}.
-                &lt;p&gt;Corresponds to "Salesperson" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales, Data protection.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Salesperson" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Data protection.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5084,7 +5084,7 @@
                 Breaks down reporting data by {@link AdUnit#id}. Can be used to filter by
                 {@link AdUnit#id}. {@link #AD_UNIT_NAME}, i.e. {@link AdUnit#name}, is
                 automatically included as a dimension in the report.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5094,7 +5094,7 @@
                 Breaks down reporting data by ad unit. {@link AdUnit#name} and
                 {@link AdUnit#id} are automatically included as columns in the report. Can
                 be used to filter by {@link AdUnit#name}.
-                &lt;p&gt;Corresponds to "Ad unit" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Ad unit" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5103,7 +5103,7 @@
               <documentation>
                 Used to filter on all the descendants of an ad unit by {@link AdUnit#id}. Not available as a
                 dimension to report on.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5112,7 +5112,7 @@
               <documentation>
                 Used to filter on all the descendants of an ad unit by {@link AdUnit#name}. Not available as a
                 dimension to report on.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5284,7 +5284,7 @@
               <documentation>
                 Breaks down reporting data by {@link CustomTargetingValue#id}. Can be used
                 to filter by {@link CustomTargetingValue#id}.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5317,7 +5317,7 @@
                 &lt;p&gt;
                 When using this {@code Dimension}, metrics for freeform key values are only
                 reported on when they are registered with {@code CustomTargetingService}.
-                &lt;p&gt;Corresponds to "Key-values" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Key-values" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6395,7 +6395,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by {@link ProposalMarketplaceInfo#buyerAccountId}.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6403,7 +6403,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by programmatic buyer name.
-                &lt;p&gt;Corresponds to "Programmatic buyer" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Programmatic buyer" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6643,7 +6643,7 @@
               <documentation>
                 Represents {@link LineItem#effectiveAppliedLabels} as a comma separated list of
                 {@link Label#name} for {@link Dimension#LINE_ITEM_NAME}.
-                &lt;p&gt;Corresponds to "Line item labels" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Line item labels" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6652,7 +6652,7 @@
               <documentation>
                 Represents {@link LineItem#effectiveAppliedLabels} as a comma separated list of
                 {@link Label#id} for {@link Dimension#LINE_ITEM_NAME}.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6662,7 +6662,7 @@
                 Generated as {@code true} for {@link Dimension#LINE_ITEM_NAME} which is eligible
                 for optimization, {@code false} otherwise.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Optimizable" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Optimizable" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6694,7 +6694,7 @@
                 insufficient information about the {@link LineItem}.&lt;/td&gt;
                 &lt;/tr&gt;
                 &lt;/table&gt;
-                &lt;p&gt;Corresponds to "Delivery Indicator" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Delivery Indicator" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6702,7 +6702,7 @@
             <annotation>
               <documentation>
                 Represents {@link LineItem#deliveryRateType} for {@link Dimension#LINE_ITEM_NAME}.
-                &lt;p&gt;Corresponds to "Delivery pacing" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales, Data protection, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Delivery pacing" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Data protection, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6713,7 +6713,7 @@
                 "{@link FrequencyCap#maxImpressions} impressions per/every {@link FrequencyCap#numTimeUnits}
                 {@link FrequencyCap#timeUnit}" (e.g. "10 impressions every day,500 impressions per lifetime")
                 for {@link Dimension#LINE_ITEM_NAME}.
-                &lt;p&gt;Corresponds to "Frequency cap" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Frequency cap" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6722,7 +6722,7 @@
               <documentation>
                 Represents the monthly reconciliation status of the line item for
                 {@link Dimension#LINE_ITEM_NAME} and {@link Dimension#MONTH_YEAR}.
-                &lt;p&gt;Corresponds to "Line item reconciliation status" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Line item reconciliation status" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6731,7 +6731,7 @@
               <documentation>
                 Represents the monthly last reconciliation date time of the line item for
                 {@link Dimension#LINE_ITEM_NAME} and {@link Dimension#MONTH_YEAR}.
-                &lt;p&gt;Corresponds to "Line item last reconciliation time" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Line item last reconciliation time" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6739,7 +6739,7 @@
             <annotation>
               <documentation>
                 Represents {@link Company#externalId} for {@link Dimension#ADVERTISER_NAME}.
-                &lt;p&gt;Corresponds to "External advertiser ID" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "External advertiser ID" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6748,7 +6748,7 @@
               <documentation>
                 Represents {@link Company#type} for {@link Dimension#ADVERTISER_NAME}.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Advertiser type" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales, Data protection, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Advertiser type" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Data protection, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6757,7 +6757,7 @@
               <documentation>
                 Represents {@link Company#creditStatus} for {@link Dimension#ADVERTISER_NAME}.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Advertiser credit status" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales, Data protection, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Advertiser credit status" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Data protection, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6766,7 +6766,7 @@
               <documentation>
                 Represents name and email address in the form of name(email) of primary contact for {@link
                 Dimension#ADVERTISER_NAME}.
-                &lt;p&gt;Corresponds to "Advertiser primary contact" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Advertiser primary contact" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6775,7 +6775,7 @@
               <documentation>
                 Represents the start date (in YYYY-MM-DD format) for {@link Dimension#ORDER_NAME}.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Order start date" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales, Data protection, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Order start date" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Data protection, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6784,7 +6784,7 @@
               <documentation>
                 Represents the end date (in YYYY-MM-DD format) for {@link Dimension#ORDER_NAME}.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Order end date" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales, Data protection, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Order end date" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Data protection, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6792,7 +6792,7 @@
             <annotation>
               <documentation>
                 Represents {@link Order#externalOrderId} for {@link Dimension#ORDER_NAME}.
-                &lt;p&gt;Corresponds to "External order ID" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "External order ID" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6801,7 +6801,7 @@
               <documentation>
                 Represents {@link Order#poNumber} for {@link Dimension#ORDER_NAME}.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Order PO number" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales, Data protection, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Order PO number" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Data protection, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6810,7 +6810,7 @@
               <documentation>
                 Represents {@link Order#orderIsProgrammatic} for {@link Dimension#ORDER_NAME}.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Programmatic order" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Programmatic order" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6818,7 +6818,7 @@
             <annotation>
               <documentation>
                 Represents the name of {@link Order#agencyId} for {@link Dimension#ORDER_NAME}.
-                &lt;p&gt;Corresponds to "Agency" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Agency" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6827,7 +6827,7 @@
               <documentation>
                 Represents {@link Order#agencyId} for {@link Dimension#ORDER_NAME}.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Agency ID" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Agency ID" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6836,7 +6836,7 @@
               <documentation>
                 Represents {@link Order#effectiveAppliedLabels} as a comma separated list of
                 {@link Label#name} for {@link Dimension#ORDER_NAME}.
-                &lt;p&gt;Corresponds to "Order labels" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Order labels" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6845,7 +6845,7 @@
               <documentation>
                 Represents {@link Order#effectiveAppliedLabels} as a comma separated list of
                 {@link Label#id} for {@link Dimension#ORDER_NAME}.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6854,7 +6854,7 @@
               <documentation>
                 The name and email address in the form of name(email) of the trafficker for
                 {@link Dimension#ORDER_NAME}
-                &lt;p&gt;Corresponds to "Trafficker" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Trafficker" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6863,7 +6863,7 @@
               <documentation>
                 Represents {@link Order#traffickerId} for {@link Dimension#ORDER_NAME}.
                 Can be used for filtering.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6872,7 +6872,7 @@
               <documentation>
                 The names and email addresses as a comma separated list of name(email) of the
                 {@link Order#secondaryTraffickerIds} for {@link Dimension#ORDER_NAME}.
-                &lt;p&gt;Corresponds to "Secondary traffickers" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Secondary traffickers" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6881,7 +6881,7 @@
               <documentation>
                 The name and email address in the form of name(email) of the
                 {@link Order#salespersonId} for {@link Dimension#ORDER_NAME}.
-                &lt;p&gt;Corresponds to "Salesperson" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Salesperson" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6890,7 +6890,7 @@
               <documentation>
                 The names and email addresses as a comma separated list of name(email) of the
                 {@link Order#secondarySalespersonIds} for {@link Dimension#ORDER_NAME}.
-                &lt;p&gt;Corresponds to "Secondary salespeople" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Secondary salespeople" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6899,7 +6899,7 @@
               <documentation>
                 The total number of impressions delivered over the lifetime of an
                 {@link Dimension#ORDER_NAME}.
-                &lt;p&gt;Corresponds to "Order lifetime impressions" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales, Data protection, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Order lifetime impressions" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Data protection, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6908,7 +6908,7 @@
               <documentation>
                 The total number of clicks delivered over the lifetime of an
                 {@link Dimension#ORDER_NAME}.
-                &lt;p&gt;Corresponds to "Order lifetime clicks" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales, Data protection, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Order lifetime clicks" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Data protection, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6916,7 +6916,7 @@
             <annotation>
               <documentation>
                 The cost of booking all the CPM ads for {@link Dimension#ORDER_NAME}.
-                &lt;p&gt;Corresponds to "Booked CPM" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Booked CPM" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6924,7 +6924,7 @@
             <annotation>
               <documentation>
                 The cost of booking all the CPC ads for {@link Dimension#ORDER_NAME}.
-                &lt;p&gt;Corresponds to "Booked CPC" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Booked CPC" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6933,7 +6933,7 @@
               <documentation>
                 Represents the start date (in YYYY-MM-DD format) for {@link Dimension#LINE_ITEM_NAME}.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Line item start date" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales, Data protection, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Line item start date" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Data protection, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6942,7 +6942,7 @@
               <documentation>
                 Represents the end date (in YYYY-MM-DD format) for {@link Dimension#LINE_ITEM_NAME}.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Line item end date" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales, Data protection, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Line item end date" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Data protection, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6951,7 +6951,7 @@
               <documentation>
                 Represents {@link LineItem#externalId} for {@link Dimension#LINE_ITEM_NAME}.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "External Line Item ID" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "External Line Item ID" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6960,7 +6960,7 @@
               <documentation>
                 Represents {@link LineItem#costType} for {@link Dimension#LINE_ITEM_NAME}.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Cost type" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales, Data protection, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Cost type" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Data protection, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6968,7 +6968,7 @@
             <annotation>
               <documentation>
                 Represents {@link LineItem#costPerUnit} for {@link Dimension#LINE_ITEM_NAME}.
-                &lt;p&gt;Corresponds to "Rate" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales, Data protection, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Rate" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Data protection, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6976,7 +6976,7 @@
             <annotation>
               <documentation>
                 Represents the 3 letter currency code for {@link Dimension#LINE_ITEM_NAME}.
-                &lt;p&gt;Corresponds to "Currency code" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales, Data protection, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Currency code" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Data protection, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6985,14 +6985,14 @@
               <documentation>
                 The total number of impressions, clicks or days that is reserved
                 for {@link Dimension#LINE_ITEM_NAME}.
-                &lt;p&gt;Corresponds to "Goal quantity" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales, Data protection, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Goal quantity" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Data protection, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="LINE_ITEM_AVERAGE_NUMBER_OF_VIEWERS">
             <annotation>
               <documentation>
-                &lt;p&gt;Corresponds to "Nielsen Average Number Of Viewers" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Nielsen Average Number Of Viewers" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7002,7 +7002,7 @@
                 The ratio between the goal quantity for {@link Dimension#LINE_ITEM_NAME} of
                 {@link LineItemType#SPONSORSHIP} and the {@link #LINE_ITEM_GOAL_QUANTITY}.
                 Represented as a number between 0..100.
-                &lt;p&gt;Corresponds to "Sponsorship goal (%)" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Sponsorship goal (%)" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7011,7 +7011,7 @@
               <documentation>
                 The total number of impressions delivered over the lifetime of a
                 {@link Dimension#LINE_ITEM_NAME}.
-                &lt;p&gt;Corresponds to "Line item lifetime impressions" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales, Data protection, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Line item lifetime impressions" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Data protection, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7020,7 +7020,7 @@
               <documentation>
                 The total number of clicks delivered over the lifetime of a
                 {@link Dimension#LINE_ITEM_NAME}.
-                &lt;p&gt;Corresponds to "Line item lifetime clicks" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales, Data protection, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Line item lifetime clicks" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Data protection, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7030,7 +7030,7 @@
                 Represents {@link LineItem#priority} for {@link Dimension#LINE_ITEM_NAME} as
                 a value between 1 and 16.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Line item priority" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales, Data protection, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Line item priority" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Data protection, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7056,7 +7056,7 @@
               <documentation>
                 Represents the {@link LineItem#contractedUnitsBought} quantity
                 for {@link Dimension#LINE_ITEM_NAME}.
-                &lt;p&gt;Corresponds to "Contracted quantity" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Contracted quantity" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7066,7 +7066,7 @@
                 Represents the {@link LineItem#discount} for {@link Dimension#LINE_ITEM_NAME}.
                 The number is either a percentage or an absolute value depending on
                 {@link LineItem#discountType}.
-                &lt;p&gt;Corresponds to "Discount" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Discount" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7074,7 +7074,7 @@
             <annotation>
               <documentation>
                 The cost of booking for a non-CPD {@link Dimension#LINE_ITEM_NAME}.
-                &lt;p&gt;Corresponds to "Booked revenue (exclude CPD)" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Booked revenue (exclude CPD)" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7083,7 +7083,7 @@
               <documentation>
                 Represents {@link Company#appliedLabels} as a comma separated list of
                 {@link Label#name} for {@link Dimension#ADVERTISER_NAME}.
-                &lt;p&gt;Corresponds to "Advertiser labels" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Advertiser labels" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7092,7 +7092,7 @@
               <documentation>
                 Represents {@link Company#appliedLabels} as a comma separated list of
                 {@link Label#id} for {@link Dimension#ADVERTISER_NAME}.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach, Sales.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7162,7 +7162,7 @@
             <annotation>
               <documentation>
                 Represents {@link AdUnit#adUnitCode} for {@link Dimension#AD_UNIT_NAME}.
-                &lt;p&gt;Corresponds to "Ad unit code" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Sales, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Ad unit code" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>

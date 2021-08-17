@@ -240,7 +240,7 @@ class LineItemCreativeAssociationService extends \Google\AdsApi\Common\AdsSoapCl
     /**
      * Pushes a creative to devices that that satisfy the given {@link Statement#query}. *
      *
-     * LinkedDevice table.
+     * LinkedDeviceVisibility fields of the LinkedDevice table.
      *
      * @param \Google\AdsApi\AdManager\v202105\Statement $filterStatement
      * @param \Google\AdsApi\AdManager\v202105\CreativePushOptions $options
