@@ -15,10 +15,10 @@
  * limitations under the License.
  */
 
-namespace Google\AdsApi\AdManager\Util\v202008;
+namespace Google\AdsApi\AdManager\Util\v202108;
 
 use Google\AdsApi\Common\Util\MapEntries;
-use Google\AdsApi\AdManager\v202008\Statement;
+use Google\AdsApi\AdManager\v202108\Statement;
 use InvalidArgumentException;
 
 /**
@@ -102,7 +102,7 @@ class StatementBuilder
         $statement->setValues(
             MapEntries::fromAssociativeArray(
                 $this->getBindVariableMap(),
-                'Google\AdsApi\AdManager\v202008\String_ValueMapEntry'
+                'Google\AdsApi\AdManager\v202108\String_ValueMapEntry'
             )
         );
 

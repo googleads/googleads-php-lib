@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\AdsApi\AdManager\Util\v202008;
+namespace Google\AdsApi\AdManager\Util\v202108;
 
 use InvalidArgumentException;
 
