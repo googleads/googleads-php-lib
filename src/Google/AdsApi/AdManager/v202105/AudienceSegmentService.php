@@ -105,7 +105,7 @@ class AudienceSegmentService extends \Google\AdsApi\Common\AdsSoapClient
     }
 
     /**
-     * Creates new {@link RuleBasedFirstPartyAudienceSegment} objects.
+     * Creates new {@link FirstPartyAudienceSegment} objects.
      *
      * @param \Google\AdsApi\AdManager\v202105\FirstPartyAudienceSegment[] $segments
      * @return \Google\AdsApi\AdManager\v202105\FirstPartyAudienceSegment[]
@@ -199,7 +199,7 @@ class AudienceSegmentService extends \Google\AdsApi\Common\AdsSoapClient
     }
 
     /**
-     * Updates the given {@link RuleBasedFirstPartyAudienceSegment} objects.
+     * Updates the given {@link FirstPartyAudienceSegment} objects.
      *
      * @param \Google\AdsApi\AdManager\v202105\FirstPartyAudienceSegment[] $segments
      * @return \Google\AdsApi\AdManager\v202105\FirstPartyAudienceSegment[]

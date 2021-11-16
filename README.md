@@ -13,6 +13,9 @@ This project hosts the PHP client library for the various SOAP-based Ads APIs
 *   System requirements and dependencies can be found in `composer.json` of this
     library. See [this page](https://getcomposer.org/doc/01-basic-usage.md) for
     more details.
+*   From version 52.0.0, this library requires the minimum PHP version to be
+    7.3. If you have an older version of PHP, `composer` command will
+    download an older version of the `googleads/googleads-php-lib` library.
 *   This library depends on [Composer](https://getcomposer.org/). If you don't
     have it installed on your computer yet, follow the
     [installation guide for Linux/Unix/OS X](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx)
@@ -71,10 +74,10 @@ The library will be downloaded by Composer and stored under the `vendor/` direct
     $ composer require googleads/googleads-php-lib
     ```
 
-1.  Follow [Getting started](#getting-started) if you haven't done so.
-1.  Follow [Setting up your OAuth2 credentials](#setting-up-your-oauth2-credentials)
+2.  Follow [Getting started](#getting-started) if you haven't done so.
+3.  Follow [Setting up your OAuth2 credentials](#setting-up-your-oauth2-credentials)
     if you haven't set up the credentials yet.
-1.  You can now use the library.
+4.  You can now use the library.
 
 ### Using git clone
 

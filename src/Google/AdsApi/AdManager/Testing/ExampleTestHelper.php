@@ -18,11 +18,11 @@
 namespace Google\AdsApi\AdManager\Testing;
 
 use Google\AdsApi\AdManager\AdManagerSession;
-use Google\AdsApi\AdManager\Util\v202108\StatementBuilder;
-use Google\AdsApi\AdManager\v202108\DeleteUserTeamAssociations;
-use Google\AdsApi\AdManager\v202108\ServiceFactory;
-use Google\AdsApi\AdManager\v202108\UserTeamAssociation;
-use Google\AdsApi\AdManager\v202108\UserTeamAssociationService;
+use Google\AdsApi\AdManager\Util\v202111\StatementBuilder;
+use Google\AdsApi\AdManager\v202111\DeleteUserTeamAssociations;
+use Google\AdsApi\AdManager\v202111\ServiceFactory;
+use Google\AdsApi\AdManager\v202111\UserTeamAssociation;
+use Google\AdsApi\AdManager\v202111\UserTeamAssociationService;
 use RuntimeException;
 
 /**

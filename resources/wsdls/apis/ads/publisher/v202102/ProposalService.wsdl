@@ -1787,9 +1787,8 @@
           <element maxOccurs="1" minOccurs="0" name="pausedBy" type="tns:NegotiationRole">
             <annotation>
               <documentation>
-                The {@link NegotiationRole} that paused the {@code Proposal},
-                i.e. {@link NegotiationRole#seller} or {@link NegotiationRole#buyer},
-                or {@code null} when the proposal is not paused.
+                The {@link NegotiationRole} that paused the {@code Proposal}. This field is deprecated and will
+                always be {@code null}. Use {@link ProposalLineItem#pauseReason} instead.
                 This attribute is read-only.
               </documentation>
             </annotation>
@@ -1797,8 +1796,8 @@
           <element maxOccurs="1" minOccurs="0" name="pauseReason" type="xsd:string">
             <annotation>
               <documentation>
-                The reason for pausing the {@code Proposal}, provided by the {@code pauseRole}.
-                It is {@code null} when the {@code Proposal} is not paused.
+                The reason for pausing the {@code Proposal}, provided by the {@code pauseRole}. This field is
+                deprecated and will always be {@code null}. Use {@link ProposalLineItem#pauseReason} instead.
                 This attribute is read-only.
               </documentation>
             </annotation>

@@ -2879,9 +2879,9 @@
                 The {@link AdExchangeEnvironment} of the marketplace web property that is associated with this
                 line item.
                 
-                &lt;p&gt;The last API version in which this field will be available is v202108. Starting with
-                v202111, this field will no longer be available. To control which platforms your proposal line
-                item will serve on from v202111 onward, please use request platform targeting in the targeting
+                &lt;p&gt;The last API version in which this field will be available is v202105. Starting with
+                v202108, this field will no longer be available. To control which platforms your proposal line
+                item will serve on from v202108 onward, please use request platform targeting in the targeting
                 expression.
               </documentation>
             </annotation>
