@@ -301,14 +301,14 @@
                 &lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, TARGET_SPEND, TARGET_CPA, TARGET_ROAS, MAXIMIZE_CONVERSION_VALUE, MAXIMIZE_CONVERSIONS for campaign channel type SEARCH.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, TARGET_SPEND, TARGET_CPA, TARGET_ROAS, MAXIMIZE_CONVERSION_VALUE, MAXIMIZE_CONVERSIONS for campaign channel type SEARCH with campaign channel subtype SEARCH_EXPRESS.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, TARGET_ROAS, TARGET_SPEND for campaign channel type SHOPPING.&lt;/span&gt;
-&lt;span class="constraint CampaignType"&gt;This field may only be set to MAXIMIZE_CONVERSION_VALUE for campaign channel type SHOPPING with campaign channel subtype SHOPPING_GOAL_OPTIMIZED_ADS.&lt;/span&gt;
-&lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, MANUAL_CPM, TARGET_SPEND, TARGET_CPA, TARGET_ROAS, MAXIMIZE_CONVERSIONS for campaign channel type DISPLAY.&lt;/span&gt;
-&lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, TARGET_CPA for campaign channel type DISPLAY with campaign channel subtype DISPLAY_MOBILE_APP.&lt;/span&gt;
+&lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MAXIMIZE_CONVERSION_VALUE, TARGET_ROAS for campaign channel type SHOPPING with campaign channel subtype SHOPPING_GOAL_OPTIMIZED_ADS.&lt;/span&gt;
+&lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, MANUAL_CPM, TARGET_SPEND, TARGET_CPA, TARGET_ROAS, MAXIMIZE_CONVERSIONS, MAXIMIZE_CONVERSION_VALUE for campaign channel type DISPLAY.&lt;/span&gt;
+&lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, TARGET_CPA, MAXIMIZE_CONVERSION_VALUE for campaign channel type DISPLAY with campaign channel subtype DISPLAY_MOBILE_APP.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, MAXIMIZE_CONVERSIONS, TARGET_CPA, TARGET_ROAS, TARGET_SPEND for campaign channel subtype SEARCH_MOBILE_APP.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may only be set to the values: TARGET_CPA, TARGET_ROAS, MAXIMIZE_CONVERSIONS for campaign channel type MULTI_CHANNEL with campaign channel subtype UNIVERSAL_APP_CAMPAIGN.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may not be set for campaign channel type SEARCH with campaign channel subtype SEARCH_EXPRESS.&lt;/span&gt;
-&lt;span class="constraint CampaignType"&gt;This field may only be set to the values: TARGET_ROAS, TARGET_CPA, MAXIMIZE_CONVERSIONS for campaign channel type DISPLAY with campaign channel subtype DISPLAY_SMART_CAMPAIGN.&lt;/span&gt;
-&lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, TARGET_CPA, TARGET_ROAS, MAXIMIZE_CONVERSIONS for campaign channel type DISPLAY with campaign channel subtype DISPLAY_GMAIL_AD.&lt;/span&gt;
+&lt;span class="constraint CampaignType"&gt;This field may only be set to the values: TARGET_ROAS, TARGET_CPA, MAXIMIZE_CONVERSIONS, MAXIMIZE_CONVERSION_VALUE for campaign channel type DISPLAY with campaign channel subtype DISPLAY_SMART_CAMPAIGN.&lt;/span&gt;
+&lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, TARGET_CPA, TARGET_ROAS, MAXIMIZE_CONVERSIONS, MAXIMIZE_CONVERSION_VALUE for campaign channel type DISPLAY with campaign channel subtype DISPLAY_GMAIL_AD.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may not be set for campaign channel type DISPLAY with campaign channel subtype DISPLAY_EXPRESS.&lt;/span&gt;
               </documentation>
             </annotation>
@@ -1916,7 +1916,7 @@
                     bid strategy will aim to achieve the highest possible ROAS for the budget. Use {@code 0.0} to
                     clear an existing value.
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "MaximizeConversionValueTargetRoas".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
-                    &lt;span class="constraint CampaignType"&gt;This field may only be set for campaign channel type SEARCH.&lt;/span&gt;
+                    &lt;span class="constraint CampaignType"&gt;This field may only be set for campaign channel types: SEARCH, DISPLAY.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may only be set for campaign channel subtype SHOPPING_GOAL_OPTIMIZED_ADS.&lt;/span&gt;
                     &lt;span class="constraint InRange"&gt;This field must be between 0.01 and 1000.0, inclusive.&lt;/span&gt;
                   </documentation>
@@ -2964,8 +2964,9 @@
       <complexType name="ShoppingSetting">
         <annotation>
           <documentation>
-            Setting for shopping campaigns. Defines the universe of products covered by the campaign.
-            Encapsulates a merchant ID, sales country, and campaign priority.
+            Setting for shopping campaigns and other campaign types which advertise products. Defines the
+            universe of products covered by the campaign. Encapsulates a merchant ID, sales country, and
+            campaign priority.
           </documentation>
         </annotation>
         <complexContent>

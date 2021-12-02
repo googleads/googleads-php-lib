@@ -2647,8 +2647,8 @@
       <complexType name="LineItem">
         <annotation>
           <documentation>
-            {@code LineItem} is an advertiser's commitment to purchase a specific number
-            of ad impressions, clicks, or time.
+            {@link LineItem} is an advertiser's commitment to purchase a specific number of ad impressions,
+            clicks, or time.
           </documentation>
         </annotation>
         <complexContent>
@@ -2657,8 +2657,7 @@
               <element maxOccurs="1" minOccurs="0" name="targeting" type="tns:Targeting">
                 <annotation>
                   <documentation>
-                    Contains the targeting criteria for the ad campaign. This attribute is
-                    required.
+                    Contains the targeting criteria for the ad campaign. This attribute is required.
                   </documentation>
                 </annotation>
               </element>
@@ -2668,10 +2667,10 @@
                   <documentation>
                     A list of {@link CreativeTargeting} objects that can be used to specify creative level
                     targeting for this line item. Creative level targeting is specified in a creative placeholder's
-                    {@link CreativePlaceholder#targetingName} field by referencing the creative targeting's
-                    {@link CreativeTargeting#name name}. It also needs to be re-specified in the
-                    {@link LineItemCreativeAssociation#targetingName} field when associating a line item with a
-                    creative that fits into that placeholder.
+                    {@link CreativePlaceholder#targetingName} field by referencing the creative targeting's {@link
+                    CreativeTargeting#name name}. It also needs to be re-specified in the {@link
+                    LineItemCreativeAssociation#targetingName} field when associating a line item with a creative
+                    that fits into that placeholder.
                   </documentation>
                 </annotation>
               </element>
@@ -6933,7 +6932,7 @@
           <enumeration value="CONTENT_PROVIDER_NETWORK_MISSING_PUBLISHER_FEATURE">
             <annotation>
               <documentation>
-                The cross-sell content provider publisher feature must be enabled on the partner's network.
+                The cross-sell publisher features must be enabled on the partner's network.
               </documentation>
             </annotation>
           </enumeration>

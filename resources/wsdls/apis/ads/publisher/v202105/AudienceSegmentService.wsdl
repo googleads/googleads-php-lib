@@ -777,9 +777,6 @@
             A {@link NonRuleBasedFirstPartyAudienceSegment} is a {@link FirstPartyAudienceSegment} owned by
             the publisher network. It doesn't contain a rule. Cookies are usually added to this segment via
             cookie upload.
-            
-            &lt;p&gt;These segments are created by data management platforms or Google Analytics. They cannot be
-            created using the Ad Manager API.
           </documentation>
         </annotation>
         <complexContent>
@@ -2952,7 +2949,7 @@
       <element name="createAudienceSegments">
         <annotation>
           <documentation>
-            Creates new {@link RuleBasedFirstPartyAudienceSegment} objects.
+            Creates new {@link FirstPartyAudienceSegment} objects.
             
             @param segments first-party audience segments to create
             @return created first-party audience segments
@@ -3082,7 +3079,7 @@
       <element name="updateAudienceSegments">
         <annotation>
           <documentation>
-            Updates the given {@link RuleBasedFirstPartyAudienceSegment} objects.
+            Updates the given {@link FirstPartyAudienceSegment} objects.
             
             @param segments first-party audience segments to update
             @return updated first-party audience segments
@@ -3144,7 +3141,7 @@
     </wsdl:documentation>
     <wsdl:operation name="createAudienceSegments">
       <wsdl:documentation>
-        Creates new {@link RuleBasedFirstPartyAudienceSegment} objects.
+        Creates new {@link FirstPartyAudienceSegment} objects.
         
         @param segments first-party audience segments to create
         @return created first-party audience segments
@@ -3233,7 +3230,7 @@
     </wsdl:operation>
     <wsdl:operation name="updateAudienceSegments">
       <wsdl:documentation>
-        Updates the given {@link RuleBasedFirstPartyAudienceSegment} objects.
+        Updates the given {@link FirstPartyAudienceSegment} objects.
         
         @param segments first-party audience segments to update
         @return updated first-party audience segments

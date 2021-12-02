@@ -2304,7 +2304,7 @@
           <enumeration value="CONTENT_PROVIDER_NETWORK_MISSING_PUBLISHER_FEATURE">
             <annotation>
               <documentation>
-                The cross-sell content provider publisher feature must be enabled on the partner's network.
+                The cross-sell publisher features must be enabled on the partner's network.
               </documentation>
             </annotation>
           </enumeration>
@@ -2595,7 +2595,7 @@
           <enumeration value="MULTI_CURRENCY_NOT_SUPPORTED">
             <annotation>
               <documentation>
-                Multi-currency support is not enabled for this network.  This is an Ad Manager 360 feature.
+                Multi-currency support is not enabled for this network. This is an Ad Manager 360 feature.
               </documentation>
             </annotation>
           </enumeration>

@@ -7,11 +7,11 @@
     "type": "project",
     "require": {
         "php": ">=7.3",
-        "laravel/framework": "^6.20.14",
+        "laravel/framework": "^6.20.26",
         "symfony/http-foundation": "^4.4.7",
         "fideloper/proxy": "^4.0",
         "laravel/tinker": "^1.0",
-        "googleads/googleads-php-lib": "^53.0.0"
+        "googleads/googleads-php-lib": "^55.0.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
