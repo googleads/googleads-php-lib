@@ -17,6 +17,7 @@
 
 namespace Google\AdsApi\AdWords\Reporting;
 
+use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\ResponseInterface;
 
 /**
@@ -62,10 +63,10 @@ final class ReportDownloadResultDelegate
      */
     public function saveToFile($filePath)
     {
-        $destStream = \GuzzleHttp\Psr7\stream_for(
-            \GuzzleHttp\Psr7\try_fopen($filePath, 'wb')
+        $destStream = Utils::streamFor(
+            Utils::tryFopen($filePath, 'wb')
         );
-        \GuzzleHttp\Psr7\copy_to_stream(
+        Utils::copyToStream(
             $this->response->getBody(),
             $destStream
         );

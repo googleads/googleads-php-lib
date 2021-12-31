@@ -22,6 +22,8 @@ use Google\AdsApi\Common\Util\LogMessageScrubbers;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\MessageFormatter;
 use GuzzleHttp\Psr7\CachingStream;
+use GuzzleHttp\Psr7\Message;
+use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -156,7 +158,7 @@ final class GuzzleLogMessageFormatter
         // Rewind the response stream so it can be used again, e.g. reading
         // the content of the downloaded report.
         if ($needRewind) {
-            \GuzzleHttp\Psr7\rewind_body($response);
+            Message::rewindBody($response);
         }
 
         return $detailedLog;
@@ -186,7 +188,7 @@ final class GuzzleLogMessageFormatter
             // to provide a readable log message.
             'body' => urldecode($request->getBody())
         ];
-        $clonedRequest = \GuzzleHttp\Psr7\modify_request($request, $changes);
+        $clonedRequest = Utils::modifyRequest($request, $changes);
 
         return $this->detailedMessageFormatter->format(
             $clonedRequest,

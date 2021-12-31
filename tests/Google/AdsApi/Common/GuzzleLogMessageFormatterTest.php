@@ -284,7 +284,7 @@ class GuzzleLogMessageFormatterTest extends TestCase
             200,
             [],
             new NoSeekStream(
-                \GuzzleHttp\Psr7\stream_for($this->reportDownloadResult)
+                \GuzzleHttp\Psr7\Utils::streamFor($this->reportDownloadResult)
             )
         );
         $guzzleLogMessageFormatter = new GuzzleLogMessageFormatter(
@@ -483,7 +483,7 @@ class GuzzleLogMessageFormatterTest extends TestCase
             400,
             [],
             new NoSeekStream(
-                \GuzzleHttp\Psr7\stream_for($this->reportDownloadError)
+                \GuzzleHttp\Psr7\Utils::streamFor($this->reportDownloadError)
             )
         );
         $error = new ClientException('Client error: 400', $request, $response);

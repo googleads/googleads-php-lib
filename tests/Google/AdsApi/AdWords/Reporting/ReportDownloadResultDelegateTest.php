@@ -55,7 +55,7 @@ class ReportDownloadResultDelegateTest extends TestCase
         $this->assertFalse($responseStream->eof());
         $this->assertTrue($responseStream->isReadable());
 
-        $response = \GuzzleHttp\Psr7\copy_to_string($responseStream);
+        $response = \GuzzleHttp\Psr7\Utils::copyToString($responseStream);
         $responseStream->close();
         $this->assertSame($this->fakeReport, $response);
     }
