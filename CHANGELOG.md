@@ -1,3 +1,22 @@
+### 56.0.0
+
+##### AdWords
+
+* Updated examples/AdWords/LaravelSampleApp/composer.lock file.
+
+##### Ad Manager
+
+* Added support for v202202.
+* Removed support for v202102.
+* Removed examples for v202105.
+* Added YieldGroupService for v202202.
+* Added example to create video creative for v202202.
+* Removed AdExclusionRuleService from v202202.
+
+##### Common
+
+*   No changes.
+
 ### 55.0.0
 
 ##### AdWords

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2021 Google Inc. All Rights Reserved -->
+<!-- Copyright 2022 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202108"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202108"
@@ -1984,23 +1984,25 @@
           <enumeration value="LINEAR">
             <annotation>
               <documentation>
-                Content and ads are stitched together into a unique video manifest per user.
+                Content manifest is served by Google DAI. Content and ads are stitched together into a unique
+                video manifest per user.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="POD_SERVING_REDIRECT">
             <annotation>
               <documentation>
-                The same manifest is used for all users but the ad break segment URLs are redirected to unique
-                ad segments per user.
+                Content manifest is served by the partner, embedding Google DAI ad segment URLs which redirect
+                to unique Google DAI ad segments per user.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="POD_SERVING_MANIFEST">
             <annotation>
               <documentation>
-                Provide unique ad pod segment manifests per user for the partner to stitch into the content
-                stream.
+                Ads manifest is served by Google DAI, containing unique ad pod segments for the video player
+                to switch to from the content stream, or for the partner to stitch directly into the user
+                content manifest.
               </documentation>
             </annotation>
           </enumeration>

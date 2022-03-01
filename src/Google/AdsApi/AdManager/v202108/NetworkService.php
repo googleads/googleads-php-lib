@@ -21,7 +21,6 @@ class NetworkService extends \Google\AdsApi\Common\AdsSoapClient
       'AuthenticationError' => 'Google\\AdsApi\\AdManager\\v202108\\AuthenticationError',
       'CollectionSizeError' => 'Google\\AdsApi\\AdManager\\v202108\\CollectionSizeError',
       'CommonError' => 'Google\\AdsApi\\AdManager\\v202108\\CommonError',
-      'ExchangeRateError' => 'Google\\AdsApi\\AdManager\\v202108\\ExchangeRateError',
       'FeatureError' => 'Google\\AdsApi\\AdManager\\v202108\\FeatureError',
       'FieldPathElement' => 'Google\\AdsApi\\AdManager\\v202108\\FieldPathElement',
       'InternalApiError' => 'Google\\AdsApi\\AdManager\\v202108\\InternalApiError',

@@ -14,7 +14,6 @@ class ProposalLineItemService extends \Google\AdsApi\Common\AdsSoapClient
      */
     private static $classmap = array (
       'ObjectValue' => 'Google\\AdsApi\\AdManager\\v202108\\ObjectValue',
-      'ActualizeProposalLineItems' => 'Google\\AdsApi\\AdManager\\v202108\\ActualizeProposalLineItems',
       'AdUnitTargeting' => 'Google\\AdsApi\\AdManager\\v202108\\AdUnitTargeting',
       'ApiError' => 'Google\\AdsApi\\AdManager\\v202108\\ApiError',
       'ApiException' => 'Google\\AdsApi\\AdManager\\v202108\\ApiException',
@@ -246,33 +245,6 @@ class ProposalLineItemService extends \Google\AdsApi\Common\AdsSoapClient
      * <tr>
      * <td>{@code lastModifiedDateTime}</td>
      * <td>{@link ProposalLineItem#lastModifiedDateTime}</td>
-     * </tr>
-     * <tr>
-     * <td>
-     * {@code useThirdPartyAdServerFromProposal}
-     * <div class="constraint">
-     * Only applicable for non-programmatic proposal line items using sales management
-     * </div>
-     * </td>
-     * <td>{@link ProposalLineItem#useThirdPartyAdServerFromProposal}</td>
-     * </tr>
-     * <tr>
-     * <td>
-     * {@code thirdPartyAdServerId}
-     * <div class="constraint">
-     * Only applicable for non-programmatic proposal line items using sales management
-     * </div>
-     * </td>
-     * <td>{@link ProposalLineItem#thirdPartyAdServerId}</td>
-     * </tr>
-     * <tr>
-     * <td>
-     * {@code customThirdPartyAdServerName}
-     * <div class="constraint">
-     * Only applicable for non-programmatic proposal line items using sales management
-     * </div>
-     * </td>
-     * <td>{@link ProposalLineItem#customThirdPartyAdServerName}</td>
      * </tr>
      * <tr>
      * <td>{@code isProgrammatic}</td>

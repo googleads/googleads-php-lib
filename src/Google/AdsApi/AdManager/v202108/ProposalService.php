@@ -155,8 +155,6 @@ class ProposalService extends \Google\AdsApi\Common\AdsSoapClient
       'VideoPositionTargeting' => 'Google\\AdsApi\\AdManager\\v202108\\VideoPositionTargeting',
       'VideoPositionWithinPod' => 'Google\\AdsApi\\AdManager\\v202108\\VideoPositionWithinPod',
       'VideoPositionTarget' => 'Google\\AdsApi\\AdManager\\v202108\\VideoPositionTarget',
-      'WorkflowActionError' => 'Google\\AdsApi\\AdManager\\v202108\\WorkflowActionError',
-      'WorkflowValidationError' => 'Google\\AdsApi\\AdManager\\v202108\\WorkflowValidationError',
       'createProposalsResponse' => 'Google\\AdsApi\\AdManager\\v202108\\createProposalsResponse',
       'getMarketplaceCommentsByStatementResponse' => 'Google\\AdsApi\\AdManager\\v202108\\getMarketplaceCommentsByStatementResponse',
       'getProposalsByStatementResponse' => 'Google\\AdsApi\\AdManager\\v202108\\getProposalsByStatementResponse',
@@ -276,28 +274,6 @@ class ProposalService extends \Google\AdsApi\Common\AdsSoapClient
      * <tr>
      * <td>{@code lastModifiedDateTime}</td>
      * <td>{@link Proposal#lastModifiedDateTime}</td>
-     * </tr>
-     * <tr>
-     * <td>
-     * {@code thirdPartyAdServerId}
-     * <div class="constraint">
-     * Only applicable for non-programmatic proposals using sales management
-     * </div>
-     * </td>
-     * <td>{@link Proposal#thirdPartyAdServerId}</td>
-     * </tr>
-     * <tr>
-     * <td>
-     * {@code customThirdPartyAdServerName}
-     * <div class="constraint">
-     * Only applicable for non-programmatic proposals using sales management
-     * </div>
-     * </td>
-     * <td>{@link Proposal#customThirdPartyAdServerName}</td>
-     * </tr>
-     * <tr>
-     * <td>{@code hasOfflineErrors}</td>
-     * <td>{@link Proposal#hasOfflineErrors}</td>
      * </tr>
      * <tr>
      * <td>{@code isProgrammatic}</td>

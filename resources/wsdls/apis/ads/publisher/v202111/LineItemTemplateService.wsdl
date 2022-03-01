@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2021 Google Inc. All Rights Reserved -->
+<!-- Copyright 2022 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202111"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202111"
@@ -4696,7 +4696,7 @@
           <enumeration value="SKIPPABLE_AD_TYPE_NOT_ALLOWED">
             <annotation>
               <documentation>
-                The {@Code SkippableAdType} is not allowed.
+                The {@code SkippableAdType} is not allowed.
               </documentation>
             </annotation>
           </enumeration>

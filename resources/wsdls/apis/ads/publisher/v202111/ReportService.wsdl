@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2021 Google Inc. All Rights Reserved -->
+<!-- Copyright 2022 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202111"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202111"
@@ -5616,7 +5616,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by inventory sharing assignment name.
-                &lt;p&gt;Corresponds to "Inventory Share Assignment" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Inventory share assignment" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5624,7 +5624,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by inventory sharing outcome.
-                &lt;p&gt;Corresponds to "Inventory Share Outcome" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Inventory share outcome" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
