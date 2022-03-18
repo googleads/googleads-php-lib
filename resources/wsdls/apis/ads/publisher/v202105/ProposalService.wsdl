@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2021 Google Inc. All Rights Reserved -->
+<!-- Copyright 2022 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202105"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202105"
@@ -507,7 +507,7 @@
                 proposal (for which initially a {@link Proposal} does not yet exist), this field should serve
                 as guidance for publishers to create a {@link Proposal} with {@link LineItem}s reflecting this
                 CPM.
-                &lt;span class="constraint ReadOnly"&gt;This attribute is read-only when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;li&gt;using preferred deals, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
+                This attribute is read-only.
               </documentation>
             </annotation>
           </element>
@@ -516,18 +516,18 @@
               <documentation>
                 The number of impressions per day that a buyer wishes to see in the {@link Proposal} derived
                 from the request for proposal in question.
-                &lt;span class="constraint ReadOnly"&gt;This attribute is read-only when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;li&gt;using preferred deals, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
+                This attribute is read-only.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="budget" type="tns:Money">
             <annotation>
               <documentation>
-                Total amount of {@link Money} available to spend on this deal. In the case of Preferred
-                Deal, the budget is equal to the maximum amount of money a buyer is willing to spend on a given
+                Total amount of {@link Money} available to spend on this deal. In the case of Preferred Deal,
+                the budget is equal to the maximum amount of money a buyer is willing to spend on a given
                 {@link Proposal}, even though the budget might not be spent entirely, as impressions are not
                 guaranteed.
-                &lt;span class="constraint ReadOnly"&gt;This attribute is read-only when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;li&gt;using preferred deals, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
+                This attribute is read-only.
               </documentation>
             </annotation>
           </element>
@@ -535,7 +535,7 @@
             <annotation>
               <documentation>
                 Currency code for this deal's budget and CPM.
-                &lt;span class="constraint ReadOnly"&gt;This attribute is read-only when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;li&gt;using preferred deals, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
+                This attribute is read-only.
               </documentation>
             </annotation>
           </element>
@@ -543,7 +543,7 @@
             <annotation>
               <documentation>
                 The {@link DateTime} in which the proposed deal should start serving.
-                &lt;span class="constraint ReadOnly"&gt;This attribute is read-only when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;li&gt;using preferred deals, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
+                This attribute is read-only.
               </documentation>
             </annotation>
           </element>
@@ -551,7 +551,7 @@
             <annotation>
               <documentation>
                 The {@link DateTime} in which the proposed deal should end serving.
-                &lt;span class="constraint ReadOnly"&gt;This attribute is read-only when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;li&gt;using preferred deals, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
+                This attribute is read-only.
               </documentation>
             </annotation>
           </element>
@@ -560,7 +560,7 @@
               <documentation>
                 A description of the proposed deal. This can be used for the buyer to tell the publisher more
                 detailed information about the deal in question.
-                &lt;span class="constraint ReadOnly"&gt;This attribute is read-only when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;li&gt;using preferred deals, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
+                This attribute is read-only.
               </documentation>
             </annotation>
           </element>
@@ -569,16 +569,16 @@
             <annotation>
               <documentation>
                 A list of inventory sizes in which creatives will be eventually served.
-                &lt;span class="constraint ReadOnly"&gt;This attribute is read-only when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;li&gt;using preferred deals, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
+                This attribute is read-only.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="targeting" type="tns:Targeting">
             <annotation>
               <documentation>
-                Targeting information for the proposal in question. Currently this field only contains
-                {@link GeoTargeting} information.
-                &lt;span class="constraint ReadOnly"&gt;This attribute is read-only when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;li&gt;using preferred deals, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
+                Targeting information for the proposal in question. Currently this field only contains {@link
+                GeoTargeting} information.
+                This attribute is read-only.
               </documentation>
             </annotation>
           </element>
@@ -586,12 +586,12 @@
             <annotation>
               <documentation>
                 Additional terms of the deal in question. This field can be used to state more specific
-                targeting information for the deal, as well as any additional information regarding this
-                deal. Given that this field belongs to a request for proposal (for which initially a
-                {@link Proposal} does not yet exist), this field can be populated by buyers to specify
-                additional information that they wish publishers to incorporate into the {@link Proposal}
-                derived from this request for proposal.
-                &lt;span class="constraint ReadOnly"&gt;This attribute is read-only when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;li&gt;using preferred deals, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
+                targeting information for the deal, as well as any additional information regarding this deal.
+                Given that this field belongs to a request for proposal (for which initially a {@link Proposal}
+                does not yet exist), this field can be populated by buyers to specify additional information
+                that they wish publishers to incorporate into the {@link Proposal} derived from this request
+                for proposal.
+                This attribute is read-only.
               </documentation>
             </annotation>
           </element>
@@ -600,18 +600,18 @@
             <annotation>
               <documentation>
                 Identifies the format of the inventory or "channel" through which the ad serves. Environments
-                currently supported include {@link AdExchangeEnvironment#DISPLAY},
-                {@link AdExchangeEnvironment#VIDEO}, and {@link AdExchangeEnvironment#MOBILE}.
-                &lt;span class="constraint ReadOnly"&gt;This attribute is read-only when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;li&gt;using preferred deals, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
+                currently supported include {@link AdExchangeEnvironment#DISPLAY}, {@link
+                AdExchangeEnvironment#VIDEO}, and {@link AdExchangeEnvironment#MOBILE}.
+                This attribute is read-only.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="rfpType" type="tns:RfpType">
             <annotation>
               <documentation>
-                Deal type; either Programmatic Guaranteed or Preferred Deal. This field
-                corresponds to the type of {@link Proposal} that a buyer wishes to negotiate with a seller.
-                &lt;span class="constraint ReadOnly"&gt;This attribute is read-only when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;li&gt;using preferred deals, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
+                Deal type; either Programmatic Guaranteed or Preferred Deal. This field corresponds to the type
+                of {@link Proposal} that a buyer wishes to negotiate with a seller.
+                This attribute is read-only.
               </documentation>
             </annotation>
           </element>
@@ -1338,7 +1338,7 @@
         <annotation>
           <documentation>
             The action for reverting the local {@link Proposal} modifications to reflect the latest terms and
-            private data in Marketplace. This action is only applicable for programmatic proposals.
+            private data in Marketplace.
           </documentation>
         </annotation>
         <complexContent>
@@ -1373,15 +1373,13 @@
       <complexType name="EditProposalsForNegotiation">
         <annotation>
           <documentation>
-            Opens the non-free-editable fields of a {@link Proposal} for edit.
+            Opens the fields of a {@link Proposal} for edit.
             
             &lt;p&gt;This proposal will not receive updates from Marketplace while it's open for edit. If the buyer
             updates the proposal while it is open for local editing, Google will set {@link
             ProposalMarketplaceInfo#isNewVersionFromBuyer} to {@code true}. You will then need to call {@link
             DiscardProposalDrafts} to revert your edits to get the buyer's latest changes, and then perform
             this action to start making your edits again.
-            
-            &lt;p&gt;This action is only applicable for programmatic proposals.
           </documentation>
         </annotation>
         <complexContent>
@@ -2246,8 +2244,7 @@
       <complexType name="PauseProposals">
         <annotation>
           <documentation>
-            The action used for pausing programmatic {@link Proposal} objects. This action is only applicable
-            for programmatic proposals.
+            The action used for pausing programmatic {@link Proposal} objects.
           </documentation>
         </annotation>
         <complexContent>
@@ -2387,8 +2384,8 @@
           <element maxOccurs="1" minOccurs="0" name="isProgrammatic" type="xsd:boolean">
             <annotation>
               <documentation>
-                Flag that specifies whether this {@code Proposal} is for programmatic deals.
-                This value is default to {@code false}.
+                Flag that specifies whether this {@code Proposal} is for programmatic deals. This value is
+                default to {@code false}.
               </documentation>
             </annotation>
           </element>
@@ -2482,10 +2479,10 @@
           <element maxOccurs="1" minOccurs="0" name="internalNotes" type="xsd:string">
             <annotation>
               <documentation>
-                Provides any additional notes that may annotate the {@code Proposal}. This
-                attribute is optional and has a maximum length of 65,535 characters.
-                This attribute can be configured as editable after the proposal has been submitted.
-                Please check with your network administrator for editable fields configuration.
+                Provides any additional notes that may annotate the {@code Proposal}. This attribute is
+                optional and has a maximum length of 65,535 characters. This attribute can be configured as
+                editable after the proposal has been submitted. Please check with your network administrator
+                for editable fields configuration.
               </documentation>
             </annotation>
           </element>
@@ -2528,7 +2525,6 @@
             <annotation>
               <documentation>
                 {@link User users} who are the seller's contacts.
-                &lt;span class="constraint Applicable"&gt;This attribute is applicable when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, using sales management.&lt;/li&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;li&gt;using preferred deals, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -2585,11 +2581,11 @@
           <element maxOccurs="1" minOccurs="0" name="exchangeRate" type="xsd:long">
             <annotation>
               <documentation>
-                The exchange rate from the {@link #currencyCode} to the
-                {@link Network#currencyCode network's currency}. The value is stored as the exchange rate times
-                10,000,000,000 truncated to a long. This attribute is assigned by Google when
-                first created or updated with {@link #refreshExchangeRate} set to {@code true}. This attribute
-                is ignored if the feature is not enabled.
+                The exchange rate from the {@link #currencyCode} to the {@link Network#currencyCode network's
+                currency}. The value is stored as the exchange rate times 10,000,000,000 truncated to a long.
+                This attribute is assigned by Google when first created or updated with {@link
+                #refreshExchangeRate} set to {@code true}. This attribute is ignored if the feature is not
+                enabled.
                 This attribute is read-only.
               </documentation>
             </annotation>
@@ -2626,7 +2622,6 @@
             <annotation>
               <documentation>
                 The marketplace info of this proposal if it has a corresponding order in Marketplace.
-                &lt;span class="constraint Applicable"&gt;This attribute is applicable when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, using sales management.&lt;/li&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -2635,7 +2630,6 @@
               <documentation>
                 The buyer RFP associated with this {@code Proposal}, which is optional. This field will be null
                 if the proposal is not initiated from RFP.
-                &lt;span class="constraint Applicable"&gt;This attribute is applicable when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;li&gt;using preferred deals, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -2644,7 +2638,6 @@
               <documentation>
                 Whether a {@link Proposal} contains a {@link BuyerRfp} field. If this field is true, it
                 indicates that the {@link Proposal} in question orignated from a buyer.
-                &lt;span class="constraint Applicable"&gt;This attribute is applicable when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;li&gt;using preferred deals, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -2826,7 +2819,7 @@
           <documentation>
             The action used to request acceptance from the buyer for the {@link Proposal} through
             Marketplace. This action does check forecasting unless {@link #allowOverbook} is set to {@code
-            true}. This action is only applicable for programmatic proposals.
+            true}.
           </documentation>
         </annotation>
         <complexContent>
@@ -2840,8 +2833,7 @@
       <complexType name="RequestBuyerReview">
         <annotation>
           <documentation>
-            The action used to request buyer review for the {@link Proposal}. This action is only applicable
-            for programmatic {@link Proposal}.
+            The action used to request buyer review for the {@link Proposal}.
           </documentation>
         </annotation>
         <complexContent>
@@ -2926,8 +2918,7 @@
         <annotation>
           <documentation>
             The action to reserve inventory for {@link Proposal} objects. It does not allow overbooking
-            unless {@link #allowOverbook} is set to {@code true}. This action is only applicable for
-            programmatic proposals not using sales management.
+            unless {@link #allowOverbook} is set to {@code true}.
           </documentation>
         </annotation>
         <complexContent>
@@ -2941,8 +2932,7 @@
       <complexType name="ResumeProposals">
         <annotation>
           <documentation>
-            The action used for resuming programmatic {@link Proposal} objects. This action is only
-            applicable for programmatic proposals.
+            The action used for resuming programmatic {@link Proposal} objects.
           </documentation>
         </annotation>
         <complexContent>
@@ -2954,7 +2944,10 @@
       <complexType name="RetractProposals">
         <annotation>
           <documentation>
-            The action used for retracting {@link Proposal} objects.
+            Deprecated action for retracting {@link Proposal} objects.
+            
+            &lt;p&gt;This action is no longer supported. It is being temporarily kept to avoid breaking existing
+            API clients, and will be removed in a future API version.
           </documentation>
         </annotation>
         <complexContent>
@@ -3269,7 +3262,10 @@
       <complexType name="SubmitProposalsForApproval">
         <annotation>
           <documentation>
-            The action used for submitting {@link Proposal} objects for approval.
+            Deprecated action for submitting {@link Proposal} objects for approval.
+            
+            &lt;p&gt;This action is no longer supported. It is being temporarily kept to avoid breaking existing
+            API clients, and will be removed in a future API version.
           </documentation>
         </annotation>
         <complexContent>
@@ -3576,8 +3572,7 @@
       <complexType name="UpdateOrderWithSellerData">
         <annotation>
           <documentation>
-            The action to update a finalized Marketplace {@link Order} with the seller's data. This action is
-            only applicable for programmatic proposals.
+            The action to update a finalized Marketplace {@link Order} with the seller's data.
           </documentation>
         </annotation>
         <complexContent>
@@ -3606,25 +3601,24 @@
       <complexType name="UserDomainTargeting">
         <annotation>
           <documentation>
-            Provides line items the ability to target or exclude users visiting their
-            websites from a list of domains or subdomains.
+            Provides line items the ability to target or exclude users visiting their websites from a list of
+            domains or subdomains.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="unbounded" minOccurs="0" name="domains" type="xsd:string">
             <annotation>
               <documentation>
-                The domains or subdomains that are being targeted or excluded by the
-                {@link LineItem}. This attribute is required and the maximum length of each
-                domain is 67 characters.
+                The domains or subdomains that are being targeted or excluded by the {@link LineItem}. This
+                attribute is required and the maximum length of each domain is 67 characters.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="targeted" type="xsd:boolean">
             <annotation>
               <documentation>
-                Indicates whether domains should be targeted or excluded. This attribute is
-                optional and defaults to {@code true}.
+                Indicates whether domains should be targeted or excluded. This attribute is optional and
+                defaults to {@code true}.
               </documentation>
             </annotation>
           </element>
@@ -3755,49 +3749,6 @@
             </annotation>
           </element>
         </sequence>
-      </complexType>
-      <complexType name="WorkflowActionError">
-        <annotation>
-          <documentation>
-            Lists all errors associated with performing actions within {@link WorkflowAction}.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:WorkflowActionError.Reason">
-                <annotation>
-                  <documentation>
-                    The error reason represented by an enum.
-                  </documentation>
-                </annotation>
-              </element>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="WorkflowValidationError">
-        <annotation>
-          <documentation>
-            Lists all errors associated with workflow validation.
-            &lt;p&gt;In versions V201502 and earlier, the workflow error message defined by a network administrator
-            that describes how a workflow rule is violated is stored in the {@link #trigger}. Beginning in
-            V201505, it is stored in the {@link #errorString}.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:WorkflowValidationError.Reason">
-                <annotation>
-                  <documentation>
-                    The error reason represented by an enum.
-                  </documentation>
-                </annotation>
-              </element>
-            </sequence>
-          </extension>
-        </complexContent>
       </complexType>
       <simpleType name="AdExchangeEnvironment">
         <annotation>
@@ -7003,130 +6954,6 @@
           </enumeration>
         </restriction>
       </simpleType>
-      <simpleType name="WorkflowActionError.Reason">
-        <annotation>
-          <documentation>
-            The reasons for the target error.
-          </documentation>
-        </annotation>
-        <restriction base="xsd:string">
-          <enumeration value="NOT_APPLICABLE">
-            <annotation>
-              <documentation>
-                The action does not exist or is not applicable to the current state.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="WORKFLOW_DEFINITION_NOT_FOUND">
-            <annotation>
-              <documentation>
-                Means there's no workflow definition found for the entity.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="EMPTY_ACTION_LIST">
-            <annotation>
-              <documentation>
-                Means no action is given, when user approve/reject a proposal, the action id list cannot be
-                empty.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="NOT_ACTION_APPROVER">
-            <annotation>
-              <documentation>
-                Means the user is not an approver of this action.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="WORKFLOW_ALREADY_COMPLETED">
-            <annotation>
-              <documentation>
-                Means the workflow is already completed.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="WORKFLOW_ALREADY_FAILED">
-            <annotation>
-              <documentation>
-                Means the workflow is already failed.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="WORKFLOW_ALREADY_CANCELED">
-            <annotation>
-              <documentation>
-                Means the workflow is already canceled.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="ACTION_COMPLETED">
-            <annotation>
-              <documentation>
-                Means the action is already completed.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="ACTION_FAILED">
-            <annotation>
-              <documentation>
-                Means the action is already failed.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="ACTION_CANCELED">
-            <annotation>
-              <documentation>
-                Means the action is already canceled.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="ACTION_NOT_ACTIVE">
-            <annotation>
-              <documentation>
-                Means the action currently is not active.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="UNKNOWN">
-            <annotation>
-              <documentation>
-                The value returned if the actual value is not exposed by the requested API version.
-              </documentation>
-            </annotation>
-          </enumeration>
-        </restriction>
-      </simpleType>
-      <simpleType name="WorkflowValidationError.Reason">
-        <annotation>
-          <documentation>
-            The reasons for the target error.
-          </documentation>
-        </annotation>
-        <restriction base="xsd:string">
-          <enumeration value="WARNING">
-            <annotation>
-              <documentation>
-                The rule condition validation result triggers a warning.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="ERROR">
-            <annotation>
-              <documentation>
-                The rule condition validation result triggers an error.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="UNKNOWN">
-            <annotation>
-              <documentation>
-                The value returned if the actual value is not exposed by the requested API version.
-              </documentation>
-            </annotation>
-          </enumeration>
-        </restriction>
-      </simpleType>
       <element name="createProposals">
         <annotation>
           <documentation>
@@ -7250,28 +7077,6 @@
             &lt;tr&gt;
             &lt;td&gt;{@code lastModifiedDateTime}&lt;/td&gt;
             &lt;td&gt;{@link Proposal#lastModifiedDateTime}&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-            &lt;td&gt;
-            {@code thirdPartyAdServerId}
-            &lt;div class="constraint"&gt;
-            Only applicable for non-programmatic proposals using sales management
-            &lt;/div&gt;
-            &lt;/td&gt;
-            &lt;td&gt;{@link Proposal#thirdPartyAdServerId}&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-            &lt;td&gt;
-            {@code customThirdPartyAdServerName}
-            &lt;div class="constraint"&gt;
-            Only applicable for non-programmatic proposals using sales management
-            &lt;/div&gt;
-            &lt;/td&gt;
-            &lt;td&gt;{@link Proposal#customThirdPartyAdServerName}&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-            &lt;td&gt;{@code hasOfflineErrors}&lt;/td&gt;
-            &lt;td&gt;{@link Proposal#hasOfflineErrors}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;tr&gt;
             &lt;td&gt;{@code isProgrammatic}&lt;/td&gt;
@@ -7498,28 +7303,6 @@
         &lt;tr&gt;
         &lt;td&gt;{@code lastModifiedDateTime}&lt;/td&gt;
         &lt;td&gt;{@link Proposal#lastModifiedDateTime}&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-        &lt;td&gt;
-        {@code thirdPartyAdServerId}
-        &lt;div class="constraint"&gt;
-        Only applicable for non-programmatic proposals using sales management
-        &lt;/div&gt;
-        &lt;/td&gt;
-        &lt;td&gt;{@link Proposal#thirdPartyAdServerId}&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-        &lt;td&gt;
-        {@code customThirdPartyAdServerName}
-        &lt;div class="constraint"&gt;
-        Only applicable for non-programmatic proposals using sales management
-        &lt;/div&gt;
-        &lt;/td&gt;
-        &lt;td&gt;{@link Proposal#customThirdPartyAdServerName}&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-        &lt;td&gt;{@code hasOfflineErrors}&lt;/td&gt;
-        &lt;td&gt;{@link Proposal#hasOfflineErrors}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;tr&gt;
         &lt;td&gt;{@code isProgrammatic}&lt;/td&gt;

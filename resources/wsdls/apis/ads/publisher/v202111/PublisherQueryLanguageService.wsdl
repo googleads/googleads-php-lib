@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2021 Google Inc. All Rights Reserved -->
+<!-- Copyright 2022 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202111"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202111"
@@ -2467,25 +2467,24 @@
       <complexType name="UserDomainTargeting">
         <annotation>
           <documentation>
-            Provides line items the ability to target or exclude users visiting their
-            websites from a list of domains or subdomains.
+            Provides line items the ability to target or exclude users visiting their websites from a list of
+            domains or subdomains.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="unbounded" minOccurs="0" name="domains" type="xsd:string">
             <annotation>
               <documentation>
-                The domains or subdomains that are being targeted or excluded by the
-                {@link LineItem}. This attribute is required and the maximum length of each
-                domain is 67 characters.
+                The domains or subdomains that are being targeted or excluded by the {@link LineItem}. This
+                attribute is required and the maximum length of each domain is 67 characters.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="targeted" type="xsd:boolean">
             <annotation>
               <documentation>
-                Indicates whether domains should be targeted or excluded. This attribute is
-                optional and defaults to {@code true}.
+                Indicates whether domains should be targeted or excluded. This attribute is optional and
+                defaults to {@code true}.
               </documentation>
             </annotation>
           </element>

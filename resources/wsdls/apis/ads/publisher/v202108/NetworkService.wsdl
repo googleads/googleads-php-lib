@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2021 Google Inc. All Rights Reserved -->
+<!-- Copyright 2022 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202108"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202108"
@@ -214,26 +214,6 @@
           <extension base="tns:ApiError">
             <sequence>
               <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CommonError.Reason"/>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="ExchangeRateError">
-        <annotation>
-          <documentation>
-            Lists all errors associated with {@link ExchangeRate} objects.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ExchangeRateError.Reason">
-                <annotation>
-                  <documentation>
-                    The error reason represented by an enum.
-                  </documentation>
-                </annotation>
-              </element>
             </sequence>
           </extension>
         </complexContent>
@@ -935,7 +915,7 @@
           <enumeration value="EXPIRED">
             <annotation>
               <documentation>
-                The invite was sent to the child publisher more than a month ago, due to which it has been
+                The invite was sent to the child publisher more than 90 days ago, due to which it has been
                 deactivated.
               </documentation>
             </annotation>
@@ -1196,64 +1176,6 @@
             <annotation>
               <documentation>
                 There is a set of {@link RichMediaAdsCompany}s associated with this entity.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="UNKNOWN">
-            <annotation>
-              <documentation>
-                The value returned if the actual value is not exposed by the requested API version.
-              </documentation>
-            </annotation>
-          </enumeration>
-        </restriction>
-      </simpleType>
-      <simpleType name="ExchangeRateError.Reason">
-        <annotation>
-          <documentation>
-            The reasons for the target error.
-          </documentation>
-        </annotation>
-        <restriction base="xsd:string">
-          <enumeration value="INVALID_CURRENCY_CODE">
-            <annotation>
-              <documentation>
-                The currency code is invalid and does not follow ISO 4217.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="UNSUPPORTED_CURRENCY_CODE">
-            <annotation>
-              <documentation>
-                The currency code is not supported.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="CURRENCY_CODE_ALREADY_EXISTS">
-            <annotation>
-              <documentation>
-                The currency code already exists. When creating an exchange rate, its currency should not be
-                associated with any existing exchange rate. When creating a list of exchange rates, there
-                should not be two exchange rates associated with same currency.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="INVALID_EXCHANGE_RATE">
-            <annotation>
-              <documentation>
-                The exchange rate value is invalid. When the {@link ExchangeRate#refreshRate} is
-                {@link ExchangeRateRefreshRate#FIXED}, the {@link ExchangeRate#exchangeRate} should be larger
-                than 0. Otherwise it is invalid.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="EXCHANGE_RATE_NOT_FOUND">
-            <annotation>
-              <documentation>
-                The exchange rate value is not found. When the {@link ExchangeRate#refreshRate} is
-                {@link ExchangeRateRefreshRate#DAILY} or {@link ExchangeRateRefreshRate#MONTHLY}, the
-                {@link ExchangeRate#exchangeRate} should be assigned by Google. It is not found if Google
-                cannot find such an exchange rate.
               </documentation>
             </annotation>
           </enumeration>

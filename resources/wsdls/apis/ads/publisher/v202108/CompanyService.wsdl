@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2021 Google Inc. All Rights Reserved -->
+<!-- Copyright 2022 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202108"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202108"
@@ -644,7 +644,8 @@
       <complexType name="ReInviteAction">
         <annotation>
           <documentation>
-            The action used by the parent network to invite a rejected or withdrawn child publisher.
+            The action used by the parent network to send a new invitation with a potentially updated
+            proposal to a rejected or withdrawn child publisher.
           </documentation>
         </annotation>
         <complexContent>
@@ -1499,7 +1500,7 @@
           <enumeration value="EXPIRED">
             <annotation>
               <documentation>
-                The invite was sent to the child publisher more than a month ago, due to which it has been
+                The invite was sent to the child publisher more than 90 days ago, due to which it has been
                 deactivated.
               </documentation>
             </annotation>

@@ -105,6 +105,7 @@ class NativeStyleService extends \Google\AdsApi\Common\AdsSoapClient
       'StringLengthError' => 'Google\\AdsApi\\AdManager\\v202105\\StringLengthError',
       'String_ValueMapEntry' => 'Google\\AdsApi\\AdManager\\v202105\\String_ValueMapEntry',
       'Targeting' => 'Google\\AdsApi\\AdManager\\v202105\\Targeting',
+      'TeamError' => 'Google\\AdsApi\\AdManager\\v202105\\TeamError',
       'Technology' => 'Google\\AdsApi\\AdManager\\v202105\\Technology',
       'TextValue' => 'Google\\AdsApi\\AdManager\\v202105\\TextValue',
       'TimeOfDay' => 'Google\\AdsApi\\AdManager\\v202105\\TimeOfDay',

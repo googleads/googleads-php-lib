@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2021 Google Inc. All Rights Reserved -->
+<!-- Copyright 2022 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202111"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202111"
@@ -3925,10 +3925,9 @@
       <complexType name="ProposalLineItem">
         <annotation>
           <documentation>
-            A {@code ProposalLineItem} is an instance of sales {@link Product}. It belongs to
-            a {@link Proposal} and is created according to a {@link Product} and
-            {@link RateCard}. When the proposal is turned into an {@link Order}, this object is
-            turned into a {@link LineItem}.
+            A {@code ProposalLineItem} is added to a programmatic {@link Proposal} and is similar to a
+            delivery {@link LineItem}. It contains delivery details including information like impression
+            goal or quantity, start and end times, and targeting.
           </documentation>
         </annotation>
         <sequence>
@@ -3989,17 +3988,17 @@
                 #rateType} is {@link RateType#CPD}, it will affect the cost calculation. The {@link
                 #startDateTime} and {@link #endDateTime} will be returned in this time zone. This attribute is
                 optional and defaults to the network's time zone.
-                &lt;span class="constraint ReadOnly"&gt;This attribute is read-only when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, using sales management.&lt;/li&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
+                This attribute is read-only.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="internalNotes" type="xsd:string">
             <annotation>
               <documentation>
-                Provides any additional notes that may annotate the {@code ProposalLineItem}. This
-                attribute is optional and has a maximum length of 65,535 characters.
-                This attribute can be configured as editable after the proposal has been submitted.
-                Please check with your network administrator for editable fields configuration.
+                Provides any additional notes that may annotate the {@code ProposalLineItem}. This attribute is
+                optional and has a maximum length of 65,535 characters. This attribute can be configured as
+                editable after the proposal has been submitted. Please check with your network administrator
+                for editable fields configuration.
               </documentation>
             </annotation>
           </element>
@@ -4141,8 +4140,8 @@
             <annotation>
               <documentation>
                 The method used for billing the {@code ProposalLineItem}.
-                &lt;span class="constraint ReadOnly"&gt;This attribute is read-only when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, using sales management.&lt;/li&gt;&lt;li&gt;not using programmatic, using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
-                &lt;span class="constraint Required"&gt;This attribute is required when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
+                This attribute is read-only.
+                &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -4150,10 +4149,10 @@
             name="creativePlaceholders" type="tns:CreativePlaceholder">
             <annotation>
               <documentation>
-                Details about the creatives that are expected to serve through the
-                {@code ProposalLineItem}. This attribute is optional during creation and defaults to the
-                {@link Product#creativePlaceholders product's creative placeholders}.
-                &lt;span class="constraint Required"&gt;This attribute is required when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
+                Details about the creatives that are expected to serve through the {@code ProposalLineItem}.
+                This attribute is optional during creation and defaults to the {@link
+                Product#creativePlaceholders product's creative placeholders}.
+                &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -4345,8 +4344,8 @@
             name="allowedFormats" type="tns:AllowedFormats">
             <annotation>
               <documentation>
-                The set of {@link AllowedFormats} that this proposal line item can have.
-                If the set is empty, this proposal line item allows all formats.
+                The set of {@link AllowedFormats} that this proposal line item can have. If the set is empty,
+                this proposal line item allows all formats.
               </documentation>
             </annotation>
           </element>
@@ -4363,7 +4362,6 @@
             <annotation>
               <documentation>
                 The marketplace info if this proposal line item is programmatic, null otherwise.
-                &lt;span class="constraint Applicable"&gt;This attribute is applicable when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, using sales management.&lt;/li&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -4371,7 +4369,6 @@
             <annotation>
               <documentation>
                 Additional terms shown to the buyer in Marketplace.
-                &lt;span class="constraint Applicable"&gt;This attribute is applicable when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, using sales management.&lt;/li&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -4380,7 +4377,6 @@
             <annotation>
               <documentation>
                 Indicates the {@link ProgrammaticCreativeSource} of the programmatic line item.
-                &lt;span class="constraint Applicable"&gt;This attribute is applicable when:&lt;ul&gt;&lt;li&gt;using programmatic guaranteed, using sales management.&lt;/li&gt;&lt;li&gt;using programmatic guaranteed, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -4396,7 +4392,6 @@
             <annotation>
               <documentation>
                 The estimated minimum impressions that should be delivered for a proposal line item.
-                &lt;span class="constraint Applicable"&gt;This attribute is applicable when:&lt;ul&gt;&lt;li&gt;using preferred deals, not using sales management.&lt;/li&gt;&lt;/ul&gt;&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
@@ -5580,25 +5575,24 @@
       <complexType name="UserDomainTargeting">
         <annotation>
           <documentation>
-            Provides line items the ability to target or exclude users visiting their
-            websites from a list of domains or subdomains.
+            Provides line items the ability to target or exclude users visiting their websites from a list of
+            domains or subdomains.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="unbounded" minOccurs="0" name="domains" type="xsd:string">
             <annotation>
               <documentation>
-                The domains or subdomains that are being targeted or excluded by the
-                {@link LineItem}. This attribute is required and the maximum length of each
-                domain is 67 characters.
+                The domains or subdomains that are being targeted or excluded by the {@link LineItem}. This
+                attribute is required and the maximum length of each domain is 67 characters.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="targeted" type="xsd:boolean">
             <annotation>
               <documentation>
-                Indicates whether domains should be targeted or excluded. This attribute is
-                optional and defaults to {@code true}.
+                Indicates whether domains should be targeted or excluded. This attribute is optional and
+                defaults to {@code true}.
               </documentation>
             </annotation>
           </element>
@@ -9713,7 +9707,7 @@
           <enumeration value="SKIPPABLE_AD_TYPE_NOT_ALLOWED">
             <annotation>
               <documentation>
-                The {@Code SkippableAdType} is not allowed.
+                The {@code SkippableAdType} is not allowed.
               </documentation>
             </annotation>
           </enumeration>

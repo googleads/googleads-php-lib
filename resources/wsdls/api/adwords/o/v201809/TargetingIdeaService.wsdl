@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2021 Google Inc. All Rights Reserved -->
+<!-- Copyright 2022 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://adwords.google.com/api/adwords/o/v201809"
   xmlns:tns="https://adwords.google.com/api/adwords/o/v201809"
@@ -821,7 +821,11 @@
             name="targetContentNetwork" type="xsd:boolean">
             <annotation>
               <documentation>
-                Ads will be served on specified placements in the Google Display Network.
+                Ads will be served on contextually relevant placements in the Google
+                Display Network (called Display Expansion on Search).
+                
+                Ads will only be displayed when they can perform equal to or better than
+                Search Performance and will only use unspent Search budget.
                 Placements are specified using {@code Placement} criteria.
                 &lt;span class="constraint CampaignType"&gt;This field may only be set to true for campaign channel type MULTI_CHANNEL.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may only be set to false for campaign channel subtype SEARCH_MOBILE_APP.&lt;/span&gt;
