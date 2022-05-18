@@ -1238,6 +1238,29 @@
           </extension>
         </complexContent>
       </complexType>
+      <complexType name="InventoryUrl">
+        <annotation>
+          <documentation>
+            The representation of an inventory Url that is used in targeting.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long"/>
+        </sequence>
+      </complexType>
+      <complexType name="InventoryUrlTargeting">
+        <annotation>
+          <documentation>
+            A collection of targeted inventory urls.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="targetedUrls" type="tns:InventoryUrl"/>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="excludedUrls" type="tns:InventoryUrl"/>
+        </sequence>
+      </complexType>
       <complexType name="Location">
         <annotation>
           <documentation>
@@ -1841,6 +1864,7 @@
             &lt;p&gt;The following rules apply for {@link RequestPlatformTargeting}
             
             &lt;ul&gt;
+            &lt;li&gt;{@link RequestPlatformTargeting} must be specified for {@link ProposalLineItem}s.&lt;/li&gt;
             &lt;li&gt;{@link RequestPlatformTargeting} must be specified for video line items. Empty values for
             {@link RequestPlatformTargeting#targetedRequestPlatforms} mean that all request platforms
             will be targeted.
@@ -2262,11 +2286,20 @@
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0"
+            name="inventoryUrlTargeting" type="tns:InventoryUrlTargeting">
+            <annotation>
+              <documentation>
+                Specifies the URLs that are targeted by the entity. This is currently only supported by {@link
+                YieldGroup}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0"
             name="requestPlatformTargeting" type="tns:RequestPlatformTargeting">
             <annotation>
               <documentation>
                 Specifies the request platforms that are targeted by the {@link LineItem}. This attribute is
-                required for video line items.
+                required for video line items and for {@link ProposalLineItem}.
                 
                 &lt;p&gt;This value is modifiable for video line items, but read-only for non-video line items.
                 

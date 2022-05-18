@@ -3821,6 +3821,13 @@
               </documentation>
             </annotation>
           </enumeration>
+          <enumeration value="ALL_COMPANION_DELIVERY_NOT_ALLOWED">
+            <annotation>
+              <documentation>
+                Companion delivery to display all creatives is not allowed.
+              </documentation>
+            </annotation>
+          </enumeration>
           <enumeration value="CREATIVE_SET_ROADBLOCK_NOT_ALLOWED">
             <annotation>
               <documentation>

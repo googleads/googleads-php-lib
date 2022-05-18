@@ -74,6 +74,8 @@ class ProposalService extends \Google\AdsApi\Common\AdsSoapClient
       'InternalApiError' => 'Google\\AdsApi\\AdManager\\v202202\\InternalApiError',
       'InvalidUrlError' => 'Google\\AdsApi\\AdManager\\v202202\\InvalidUrlError',
       'InventoryTargeting' => 'Google\\AdsApi\\AdManager\\v202202\\InventoryTargeting',
+      'InventoryUrl' => 'Google\\AdsApi\\AdManager\\v202202\\InventoryUrl',
+      'InventoryUrlTargeting' => 'Google\\AdsApi\\AdManager\\v202202\\InventoryUrlTargeting',
       'LabelEntityAssociationError' => 'Google\\AdsApi\\AdManager\\v202202\\LabelEntityAssociationError',
       'LineItemOperationError' => 'Google\\AdsApi\\AdManager\\v202202\\LineItemOperationError',
       'Location' => 'Google\\AdsApi\\AdManager\\v202202\\Location',

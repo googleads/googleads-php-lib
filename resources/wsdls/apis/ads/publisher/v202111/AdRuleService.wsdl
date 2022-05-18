@@ -881,8 +881,7 @@
           <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
             <annotation>
               <documentation>
-                The unique ID of the {@link BreakTemplate}. This value is readonly and is assigned by
-                Google.
+                The unique ID of the {@link BreakTemplate}. This value is readonly and is assigned by Google.
               </documentation>
             </annotation>
           </element>
@@ -919,10 +918,10 @@
             name="breakTemplateMembers" type="tns:BreakTemplate.BreakTemplateMember">
             <annotation>
               <documentation>
-                The list of the {@link BreakTemplateMember} objects in the order in which they should appear
-                in the ad pod. Each {@link BreakTemplateMember} has a reference to a {@link AdSpot},
-                which defines what kinds of ads can appear at that position, as well as other metadata that
-                defines how each ad spot should be filled.
+                The list of the {@link BreakTemplateMember} objects in the order in which they should appear in
+                the ad pod. Each {@link BreakTemplateMember} has a reference to a {@link AdSpot}, which defines
+                what kinds of ads can appear at that position, as well as other metadata that defines how each
+                ad spot should be filled.
               </documentation>
             </annotation>
           </element>
@@ -2296,6 +2295,7 @@
             &lt;p&gt;The following rules apply for {@link RequestPlatformTargeting}
             
             &lt;ul&gt;
+            &lt;li&gt;{@link RequestPlatformTargeting} must be specified for {@link ProposalLineItem}s.&lt;/li&gt;
             &lt;li&gt;{@link RequestPlatformTargeting} must be specified for video line items. Empty values for
             {@link RequestPlatformTargeting#targetedRequestPlatforms} mean that all request platforms
             will be targeted.
@@ -2690,7 +2690,7 @@
             <annotation>
               <documentation>
                 Specifies the request platforms that are targeted by the {@link LineItem}. This attribute is
-                required for video line items.
+                required for video line items and for {@link ProposalLineItem}.
                 
                 &lt;p&gt;This value is modifiable for video line items, but read-only for non-video line items.
                 
@@ -3026,7 +3026,7 @@
           <enumeration value="BREAK_TEMPLATE_MUST_HAVE_EXACTLY_ONE_FLEXIBLE_AD_SPOT">
             <annotation>
               <documentation>
-                The break template must have exactly one flesible ad spot.
+                The break template must have exactly one flexible ad spot.
               </documentation>
             </annotation>
           </enumeration>

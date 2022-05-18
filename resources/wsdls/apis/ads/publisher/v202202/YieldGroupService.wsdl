@@ -1403,7 +1403,6 @@
           <enumeration value="WEB_LINE_ITEM_CONTAINS_MOBILE_TECH_CRITERIA"/>
           <enumeration value="MOBILE_CARRIER_TARGETING_FEATURE_NOT_ENABLED"/>
           <enumeration value="DEVICE_CAPABILITY_TARGETING_FEATURE_NOT_ENABLED"/>
-          <enumeration value="DEVICE_CATEGORY_TARGETING_FEATURE_NOT_ENABLED"/>
           <enumeration value="UNKNOWN"/>
         </restriction>
       </simpleType>

@@ -64,6 +64,8 @@ class TargetingPresetService extends \Google\AdsApi\Common\AdsSoapClient
       'InternalApiError' => 'Google\\AdsApi\\AdManager\\v202202\\InternalApiError',
       'InventoryTargeting' => 'Google\\AdsApi\\AdManager\\v202202\\InventoryTargeting',
       'InventoryTargetingError' => 'Google\\AdsApi\\AdManager\\v202202\\InventoryTargetingError',
+      'InventoryUrl' => 'Google\\AdsApi\\AdManager\\v202202\\InventoryUrl',
+      'InventoryUrlTargeting' => 'Google\\AdsApi\\AdManager\\v202202\\InventoryUrlTargeting',
       'Location' => 'Google\\AdsApi\\AdManager\\v202202\\Location',
       'MobileApplicationTargeting' => 'Google\\AdsApi\\AdManager\\v202202\\MobileApplicationTargeting',
       'MobileApplicationTargetingError' => 'Google\\AdsApi\\AdManager\\v202202\\MobileApplicationTargetingError',

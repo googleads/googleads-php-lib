@@ -104,6 +104,8 @@ class ForecastService extends \Google\AdsApi\Common\AdsSoapClient
       'InventoryTargeting' => 'Google\\AdsApi\\AdManager\\v202202\\InventoryTargeting',
       'InventoryTargetingError' => 'Google\\AdsApi\\AdManager\\v202202\\InventoryTargetingError',
       'InventoryUnitError' => 'Google\\AdsApi\\AdManager\\v202202\\InventoryUnitError',
+      'InventoryUrl' => 'Google\\AdsApi\\AdManager\\v202202\\InventoryUrl',
+      'InventoryUrlTargeting' => 'Google\\AdsApi\\AdManager\\v202202\\InventoryUrlTargeting',
       'LabelEntityAssociationError' => 'Google\\AdsApi\\AdManager\\v202202\\LabelEntityAssociationError',
       'LineItemActivityAssociationError' => 'Google\\AdsApi\\AdManager\\v202202\\LineItemActivityAssociationError',
       'LineItemActivityAssociation' => 'Google\\AdsApi\\AdManager\\v202202\\LineItemActivityAssociation',

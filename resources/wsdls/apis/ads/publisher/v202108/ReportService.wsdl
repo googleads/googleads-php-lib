@@ -751,10 +751,9 @@
           <element maxOccurs="1" minOccurs="0" name="adxReportCurrency" type="xsd:string">
             <annotation>
               <documentation>
-                The currency for Ad Exchange revenue metrics. This field is only valid for Ad Exchange metrics,
-                and an exception will be thrown if this field is used with non-Ad Exchange metrics. Defaults to
-                the network currency if left {@code null}. The supported currency codes can be found in
-                &lt;a href="https://support.google.com/adxseller/answer/6019533"&gt; this Help Center article.&lt;/a&gt;
+                The currency for revenue metrics. Defaults to the network currency if left {@code null}. The
+                supported currency codes can be found in &lt;a
+                href="https://support.google.com/adxseller/answer/6019533"&gt;this Help Center article.&lt;/a&gt;
               </documentation>
             </annotation>
           </element>
@@ -1355,8 +1354,8 @@
           <enumeration value="AD_SERVER_CPM_AND_CPC_REVENUE">
             <annotation>
               <documentation>
-                The CPM and CPC revenue earned, calculated in publisher currency,
-                for the ads delivered by the ad server.
+                The CPM and CPC revenue earned, calculated in publisher currency, for the ads delivered by the
+                ad server.
                 &lt;p&gt;Corresponds to "Ad server CPM and CPC revenue" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
@@ -1374,8 +1373,8 @@
           <enumeration value="AD_SERVER_CPD_REVENUE">
             <annotation>
               <documentation>
-                The CPD revenue earned, calculated in publisher currency,
-                for the ads delivered by the ad server.
+                The CPD revenue earned, calculated in publisher currency, for the ads delivered by the ad
+                server.
                 &lt;p&gt;Corresponds to "Ad server CPD revenue" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
@@ -1383,8 +1382,8 @@
           <enumeration value="AD_SERVER_CPA_REVENUE">
             <annotation>
               <documentation>
-                The CPA revenue earned, calculated in publisher currency, for the ads delivered by the
-                ad server.
+                The CPA revenue earned, calculated in publisher currency, for the ads delivered by the ad
+                server.
                 &lt;p&gt;Corresponds to "CPA revenue" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
@@ -1392,8 +1391,8 @@
           <enumeration value="AD_SERVER_ALL_REVENUE">
             <annotation>
               <documentation>
-                The CPM, CPC and CPD revenue earned, calculated in publisher currency,
-                for the ads delivered by the ad server.
+                The CPM, CPC and CPD revenue earned, calculated in publisher currency, for the ads delivered by
+                the ad server.
                 &lt;p&gt;Can correspond to any of the following in the Ad Manager UI: Ad server CPM, CPC, CPD, and vCPM revenue, Ad server CPM, CPC and CPD revenue. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
@@ -1402,8 +1401,8 @@
             <annotation>
               <documentation>
                 The CPM, CPC and CPD gross revenue earned, calculated in publisher currency, for the ads
-                delivered by the ad server. This includes pre-rev-share revenue for Programmatic traffic.
-                This is a temporary metric to help with the transition from gross to net revenue reporting.
+                delivered by the ad server. This includes pre-rev-share revenue for Programmatic traffic. This
+                is a temporary metric to help with the transition from gross to net revenue reporting.
                 &lt;p&gt;Can correspond to any of the following in the Ad Manager UI: Ad server CPM, CPC, CPD, and vCPM revenue (gross), Ad server CPM, CPC and CPD revenue (gross). Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
@@ -1411,8 +1410,8 @@
           <enumeration value="AD_SERVER_WITHOUT_CPD_AVERAGE_ECPM">
             <annotation>
               <documentation>
-                The average estimated cost-per-thousand-impressions earned from the CPM and CPC ads
-                delivered by the ad server.
+                The average estimated cost-per-thousand-impressions earned from the CPM and CPC ads delivered
+                by the ad server.
                 &lt;p&gt;Corresponds to "Ad server average eCPM" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
@@ -1438,9 +1437,8 @@
           <enumeration value="AD_SERVER_LINE_ITEM_LEVEL_PERCENT_CLICKS">
             <annotation>
               <documentation>
-                The ratio of the number of clicks delivered to the total clicks delivered
-                by the ad server for line item-level dynamic allocation.
-                Represented as a percentage.
+                The ratio of the number of clicks delivered to the total clicks delivered by the ad server for
+                line item-level dynamic allocation. Represented as a percentage.
                 &lt;p&gt;Corresponds to "Ad server clicks (%)" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
@@ -1522,8 +1520,8 @@
           <enumeration value="ADSENSE_LINE_ITEM_LEVEL_TARGETED_CLICKS">
             <annotation>
               <documentation>
-                The number of clicks an AdSense ad delivered for line item-level dynamic allocation by
-                explicit custom criteria targeting.
+                The number of clicks an AdSense ad delivered for line item-level dynamic allocation by explicit
+                custom criteria targeting.
                 &lt;p&gt;Corresponds to "AdSense targeted clicks" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
@@ -1531,8 +1529,8 @@
           <enumeration value="ADSENSE_LINE_ITEM_LEVEL_CTR">
             <annotation>
               <documentation>
-                The ratio of clicks an AdSense reservation ad delivered to the number of
-                impressions it delivered, including line item-level dynamic allocation.
+                The ratio of clicks an AdSense reservation ad delivered to the number of impressions it
+                delivered, including line item-level dynamic allocation.
                 &lt;p&gt;Corresponds to "AdSense CTR" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
@@ -1548,8 +1546,8 @@
           <enumeration value="ADSENSE_LINE_ITEM_LEVEL_AVERAGE_ECPM">
             <annotation>
               <documentation>
-                The average estimated cost-per-thousand-impressions earned from the ads
-                delivered by AdSense for line item-level dynamic allocation.
+                The average estimated cost-per-thousand-impressions earned from the ads delivered by AdSense
+                for line item-level dynamic allocation.
                 &lt;p&gt;Corresponds to "AdSense average eCPM" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
@@ -1557,9 +1555,8 @@
           <enumeration value="ADSENSE_LINE_ITEM_LEVEL_PERCENT_IMPRESSIONS">
             <annotation>
               <documentation>
-                The ratio of the number of impressions delivered by AdSense reservation
-                ads to the total impressions delivered for line item-level dynamic allocation.
-                Represented as a percentage.
+                The ratio of the number of impressions delivered by AdSense reservation ads to the total
+                impressions delivered for line item-level dynamic allocation. Represented as a percentage.
                 &lt;p&gt;Corresponds to "AdSense impressions (%)" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
@@ -1567,9 +1564,8 @@
           <enumeration value="ADSENSE_LINE_ITEM_LEVEL_PERCENT_CLICKS">
             <annotation>
               <documentation>
-                The ratio of the number of clicks delivered by AdSense reservation ads to
-                the total clicks delivered for line item-level dynamic allocation.
-                Represented as a percentage.
+                The ratio of the number of clicks delivered by AdSense reservation ads to the total clicks
+                delivered for line item-level dynamic allocation. Represented as a percentage.
                 &lt;p&gt;Corresponds to "AdSense clicks (%)" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
@@ -2270,8 +2266,8 @@
           <enumeration value="AD_EXCHANGE_LINE_ITEM_LEVEL_CTR">
             <annotation>
               <documentation>
-                The ratio of clicks an Ad Exchange ad delivered to the number of
-                impressions it delivered for line item-level dynamic allocation.
+                The ratio of clicks an Ad Exchange ad delivered to the number of impressions it delivered for
+                line item-level dynamic allocation.
                 &lt;p&gt;Corresponds to "Ad Exchange CTR" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
@@ -2279,9 +2275,8 @@
           <enumeration value="AD_EXCHANGE_LINE_ITEM_LEVEL_PERCENT_IMPRESSIONS">
             <annotation>
               <documentation>
-                The ratio of the number of impressions delivered to the total impressions delivered
-                by Ad Exchange for line item-level dynamic allocation.
-                Represented as a percentage.
+                The ratio of the number of impressions delivered to the total impressions delivered by Ad
+                Exchange for line item-level dynamic allocation. Represented as a percentage.
                 &lt;p&gt;Corresponds to "Ad Exchange impressions (%)" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
@@ -2289,9 +2284,8 @@
           <enumeration value="AD_EXCHANGE_LINE_ITEM_LEVEL_PERCENT_CLICKS">
             <annotation>
               <documentation>
-                The ratio of the number of clicks delivered to the total clicks delivered
-                by Ad Exchange for line item-level dynamic allocation.
-                Represented as a percentage.
+                The ratio of the number of clicks delivered to the total clicks delivered by Ad Exchange for
+                line item-level dynamic allocation. Represented as a percentage.
                 &lt;p&gt;Corresponds to "Ad Exchange clicks (%)" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
@@ -2327,8 +2321,8 @@
           <enumeration value="AD_EXCHANGE_LINE_ITEM_LEVEL_AVERAGE_ECPM">
             <annotation>
               <documentation>
-                The average estimated cost-per-thousand-impressions earned from the
-                delivery of Ad Exchange ads for line item-level dynamic allocation.
+                The average estimated cost-per-thousand-impressions earned from the delivery of Ad Exchange ads
+                for line item-level dynamic allocation.
                 &lt;p&gt;Corresponds to "Ad Exchange average eCPM" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
@@ -2361,8 +2355,8 @@
           <enumeration value="TOTAL_LINE_ITEM_LEVEL_TARGETED_CLICKS">
             <annotation>
               <documentation>
-                The total number of clicks delivered including line item-level dynamic allocation by
-                explicit custom criteria targeting
+                The total number of clicks delivered including line item-level dynamic allocation by explicit
+                custom criteria targeting
                 &lt;p&gt;Corresponds to "Total targeted clicks" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
@@ -2443,8 +2437,8 @@
           <enumeration value="TOTAL_AD_REQUESTS">
             <annotation>
               <documentation>
-                The total number of times that an ad request is sent to the ad server
-                including dynamic allocation.
+                The total number of times that an ad request is sent to the ad server including dynamic
+                allocation.
                 &lt;p&gt;Corresponds to "Total ad requests" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
@@ -2452,8 +2446,7 @@
           <enumeration value="TOTAL_RESPONSES_SERVED">
             <annotation>
               <documentation>
-                The total number of times that an ad is served by the ad server
-                including dynamic allocation.
+                The total number of times that an ad is served by the ad server including dynamic allocation.
                 &lt;p&gt;Corresponds to "Total responses served" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
@@ -2469,8 +2462,8 @@
           <enumeration value="TOTAL_FILL_RATE">
             <annotation>
               <documentation>
-                The fill rate indicating how often an ad request is filled by the ad server
-                including dynamic allocation.
+                The fill rate indicating how often an ad request is filled by the ad server including dynamic
+                allocation.
                 &lt;p&gt;Corresponds to "Total fill rate" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
@@ -3101,8 +3094,7 @@
           <enumeration value="VIDEO_VIEWERSHIP_ENGAGED_VIEW">
             <annotation>
               <documentation>
-                The number of engaged views i.e. ad is viewed to completion
-                or for 30s, whichever comes first.
+                The number of engaged views i.e. ad is viewed to completion or for 30s, whichever comes first.
                 &lt;p&gt;Corresponds to "Engaged view" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
@@ -3603,7 +3595,7 @@
               <documentation>
                 Active View total average time in seconds that specific impressions are reported as being
                 viewable.
-                &lt;p&gt;Corresponds to "Total Active View Average Viewable Time (seconds)" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Total Active View average viewable time (seconds)" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3655,7 +3647,7 @@
             <annotation>
               <documentation>
                 Active View ad server revenue.
-                &lt;p&gt;Corresponds to "Ad Server Active View Revenue" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Ad server Active View revenue" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3664,7 +3656,7 @@
               <documentation>
                 Active View ad server average time in seconds that specific impressions are reported as being
                 viewable.
-                &lt;p&gt;Corresponds to "Ad Server Active View Average Viewable Time (seconds)" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Ad server Active View average viewable time (seconds)" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3715,7 +3707,7 @@
             <annotation>
               <documentation>
                 Active View AdSense revenue.
-                &lt;p&gt;Corresponds to "AdSense Active View Revenue" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "AdSense Active View revenue" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3724,7 +3716,7 @@
               <documentation>
                 Active View AdSense average time in seconds that specific impressions are reported as being
                 viewable.
-                &lt;p&gt;Corresponds to "AdSense Active View Average Viewable Time (seconds)" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "AdSense Active View average viewable time (seconds)" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3775,7 +3767,7 @@
             <annotation>
               <documentation>
                 Active View AdExchange revenue.
-                &lt;p&gt;Corresponds to "Ad Exchange Active View Revenue" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Ad Exchange Active View revenue" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3784,7 +3776,7 @@
               <documentation>
                 Active View AdExchange average time in seconds that specific impressions are reported as being
                 viewable.
-                &lt;p&gt;Corresponds to "Ad Exchange Active View Average Viewable Time (seconds)" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Ad Exchange Active View average viewable time (seconds)" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3792,7 +3784,7 @@
             <annotation>
               <documentation>
                 Active View total revenue.
-                &lt;p&gt;Corresponds to "Total Active View Revenue" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Total Active View revenue" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4831,15 +4823,8 @@
           <enumeration value="MONTH_AND_YEAR">
             <annotation>
               <documentation>
-                Breaks down reporting data by month and year in the network time zone. Can
-                be used to filter on month using ISO 4601 format 'YYYY-MM'.
-                
-                &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; In v201802 and later, this dimension is compatible with the following
-                time zone types:
-                &lt;ul&gt;
-                &lt;li&gt; {@link TimeZoneType.PUBLISHER}
-                &lt;li&gt; {@link TimeZoneType.PROPOSAL_LOCAL}
-                &lt;/ul&gt;
+                Breaks down reporting data by month and year in the network time zone. Can be used to filter on
+                month using ISO 4601 format 'YYYY-MM'.
                 &lt;p&gt;Corresponds to "Month and year" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Partner finance.&lt;/p&gt;
               </documentation>
             </annotation>
@@ -4847,15 +4832,8 @@
           <enumeration value="WEEK">
             <annotation>
               <documentation>
-                Breaks down reporting data by week of the year in the network time zone.
-                Cannot be used for filtering.
-                
-                &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; In v201802 and later, this dimension is compatible with the following
-                time zone types:
-                &lt;ul&gt;
-                &lt;li&gt; {@link TimeZoneType.PUBLISHER}
-                &lt;li&gt; {@link TimeZoneType.PROPOSAL_LOCAL}
-                &lt;/ul&gt;
+                Breaks down reporting data by week of the year in the network time zone. Cannot be used for
+                filtering.
                 &lt;p&gt;Corresponds to "Week" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
@@ -4863,15 +4841,8 @@
           <enumeration value="DATE">
             <annotation>
               <documentation>
-                Breaks down reporting data by date in the network time zone. Can be used to
-                filter by date using ISO 8601's format 'YYYY-MM-DD'".
-                
-                &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; In v201802 and later, this dimension is compatible with the following
-                time zone types:
-                &lt;ul&gt;
-                &lt;li&gt; {@link TimeZoneType.PUBLISHER}
-                &lt;li&gt; {@link TimeZoneType.PROPOSAL_LOCAL}
-                &lt;/ul&gt;
+                Breaks down reporting data by date in the network time zone. Can be used to filter by date
+                using ISO 8601's format 'YYYY-MM-DD'".
                 &lt;p&gt;Corresponds to "Date" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
@@ -4891,7 +4862,7 @@
               <documentation>
                 Breaks down reporting data by hour of the day in the network time zone. Can
                 be used to filter by hour of the day (from 0 to 23).
-                &lt;p&gt;Corresponds to "Hour" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Hour" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4948,7 +4919,7 @@
                 Delivery status of the order. Not available as a dimension to report on,
                 but exists as a dimension in order to filter on it using PQL.
                 Valid values are 'STARTED', 'NOT_STARTED' and 'COMPLETED'.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4984,7 +4955,7 @@
                 network one-by-one until it finds an ad network with an ad to serve. The ad network that ends
                 up serving the ad will appear here. Note that this id does not correlate to anything in the
                 companies table and is not the same id as is served by {@link #ADVERTISER_ID}.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4992,7 +4963,7 @@
             <annotation>
               <documentation>
                 The name of the network defined in {@link #AD_NETWORK_ID}.
-                &lt;p&gt;Corresponds to "Ad network name" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Ad network name" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5021,7 +4992,7 @@
                 Breaks down reporting data by {@link Creative#id} or creative set id
                 (master's {@link Creative#id}) if the creative is part of a creative set.
                 Can be used to filter by {@link Creative#id}.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: Historical, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5031,7 +5002,7 @@
                 Breaks down reporting data by creative. {@link Creative#name} and
                 {@link Creative#id} are automatically included as columns in the report.
                 Can be used to filter by {@link Creative#name}.
-                &lt;p&gt;Corresponds to "Creative" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Creative" in the Ad Manager UI. Compatible with any of the following report types: Historical, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5039,7 +5010,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by creative type.
-                &lt;p&gt;Corresponds to "Creative type" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Creative type" in the Ad Manager UI. Compatible with any of the following report types: Historical, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5047,7 +5018,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by creative billing type.
-                &lt;p&gt;Corresponds to "Creative billing type" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Creative billing type" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5055,7 +5026,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by custom event ID.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5063,7 +5034,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by custom event name.
-                &lt;p&gt;Corresponds to "Custom event" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Custom event" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5071,7 +5042,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by custom event type (timer/exit/counter).
-                &lt;p&gt;Corresponds to "Custom event type" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Custom event type" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5080,7 +5051,7 @@
               <documentation>
                 Breaks down reporting data by {@link Creative#size}. Cannot be used for
                 filtering.
-                &lt;p&gt;Corresponds to "Creative size" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Creative size" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5090,7 +5061,7 @@
                 Breaks down reporting data by {@link AdUnit#id}. Can be used to filter by
                 {@link AdUnit#id}. {@link #AD_UNIT_NAME}, i.e. {@link AdUnit#name}, is
                 automatically included as a dimension in the report.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5100,7 +5071,7 @@
                 Breaks down reporting data by ad unit. {@link AdUnit#name} and
                 {@link AdUnit#id} are automatically included as columns in the report. Can
                 be used to filter by {@link AdUnit#name}.
-                &lt;p&gt;Corresponds to "Ad unit" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Ad unit" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5148,7 +5119,7 @@
                 exists as a dimension in order to filter on it using PQL. Can be used to
                 filter on {@link Placement#status} by using {@link InventoryStatus}
                 enumeration names.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, Reach.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5157,7 +5128,7 @@
               <documentation>
                 Breaks down reporting data by criteria predefined by Ad Manager like the
                 operating system, browser etc. Cannot be used for filtering.
-                &lt;p&gt;Corresponds to "Targeting" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Targeting" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5165,7 +5136,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by browser criteria predefined by Ad Manager.
-                &lt;p&gt;Corresponds to "Browser" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Browser" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5175,7 +5146,7 @@
                 The ID of the device category to which an ad is being targeted.
                 
                 Can be used to filter by device category ID.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: Historical, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5186,7 +5157,7 @@
                 targeted.
                 
                 Can be used to filter by device category name.
-                &lt;p&gt;Corresponds to "Device category" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Device category" in the Ad Manager UI. Compatible with any of the following report types: Historical, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5214,7 +5185,7 @@
               <documentation>
                 Breaks down reporting data by region criteria ID. Can be used to filter by
                 region criteria ID.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5224,7 +5195,7 @@
                 Breaks down reporting data by region name. The region name and the region
                 criteria ID are automatically included as columns in the report. Can be
                 used to filter by region name using the US English name.
-                &lt;p&gt;Corresponds to "Region" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Region" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5233,7 +5204,7 @@
               <documentation>
                 Breaks down reporting data by city criteria ID. Can be used to filter by
                 city criteria ID.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5243,7 +5214,7 @@
                 Breaks down reporting data by city name. The city name and the city
                 criteria ID are automatically included as columns in the report. Can be
                 used to filter by city name using the US English name.
-                &lt;p&gt;Corresponds to "City" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "City" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5252,7 +5223,7 @@
               <documentation>
                 Breaks down reporting data by metro criteria ID. Can be used to filter by
                 metro criteria ID.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5262,7 +5233,7 @@
                 Breaks down reporting data by metro name. The metro name and the metro
                 criteria ID are automatically included as columns in the report. Can be
                 used to filter by metro name using the US English name.
-                &lt;p&gt;Corresponds to "Metro" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Metro" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5271,7 +5242,7 @@
               <documentation>
                 Breaks down reporting data by postal code criteria ID. Can be used to
                 filter by postal code criteria ID.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5281,7 +5252,7 @@
                 Breaks down reporting data by postal code. The postal code and the postal
                 code criteria ID are automatically included as columns in the report. Can
                 be used to filter by postal code.
-                &lt;p&gt;Corresponds to "Postal code" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Postal code" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5290,7 +5261,7 @@
               <documentation>
                 Breaks down reporting data by {@link CustomTargetingValue#id}. Can be used
                 to filter by {@link CustomTargetingValue#id}.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5323,7 +5294,7 @@
                 &lt;p&gt;
                 When using this {@code Dimension}, metrics for freeform key values are only
                 reported on when they are registered with {@code CustomTargetingService}.
-                &lt;p&gt;Corresponds to "Key-values" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Key-values" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5332,7 +5303,7 @@
               <documentation>
                 Breaks down reporting data by activity ID. Can be used to filter by
                 activity ID.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5342,7 +5313,7 @@
                 Breaks down reporting data by activity. The activity name and the activity
                 ID are automatically included as columns in the report. Can be used to
                 filter by activity name.
-                &lt;p&gt;Corresponds to "Activity" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Activity" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5351,7 +5322,7 @@
               <documentation>
                 Breaks down reporting data by activity group ID. Can be used to filter by
                 activity group ID.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5361,7 +5332,7 @@
                 Breaks down reporting data by activity group. The activity group name and
                 the activity group ID are automatically included as columns in the report.
                 Can be used to filter by activity group name.
-                &lt;p&gt;Corresponds to "Activity group" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Activity group" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5370,7 +5341,7 @@
               <documentation>
                 Breaks down reporting data by {@link Content#id}. Can be used to filter by
                 {@link Content#id}.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, Reach.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5380,7 +5351,7 @@
                 Breaks down reporting data by content. {@link Content#name} and
                 {@link Content#id} are automatically included as columns in the report. Can
                 be used to filter by {@link Content#name}.
-                &lt;p&gt;Corresponds to "Content" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Content" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5389,7 +5360,7 @@
               <documentation>
                 Breaks down reporting data by {@link ContentBundle#id}. Can be used to filter
                 by {@link ContentBundle#id}.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, Reach.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5399,7 +5370,7 @@
                 Breaks down reporting data by content bundle. {@link ContentBundle#name} and
                 {@link ContentBundle#id} are automatically included as columns in the
                 report. Can be used to filter by {@link ContentBundle#name}.
-                &lt;p&gt;Corresponds to "Content bundle" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Content bundle" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5407,7 +5378,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by {@link CustomTargetingKey#id}.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5417,7 +5388,7 @@
                 Breaks down reporting data by custom targeting key. {@link CustomTargetingKey#name} and
                 {@link CustomTargetingKey#id} are automatically included as columns in the
                 report.
-                &lt;p&gt;Corresponds to "Metadata key" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Metadata key" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5442,7 +5413,7 @@
                 Breaks down reporting data by the fallback position of the video ad, i.e.,
                 {@code NON_FALLBACK}, {@code FALLBACK_POSITION_1}, {@code FALLBACK_POSITION_2}, etc. Can be
                 used for filtering.
-                &lt;p&gt;Corresponds to "Fallback position" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Fallback position" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5453,7 +5424,7 @@
                 {@code UNKNOWN_POSITION}, {@code PREROLL}, {@code POSTROLL}, {@code UNKNOWN_MIDROLL},
                 {@code MIDROLL_1}, {@code MIDROLL_2}, etc. {@code UNKNOWN_MIDROLL} represents a midroll, but
                 which specific midroll is unknown. Can be used for filtering.
-                &lt;p&gt;Corresponds to "Position of pod" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Position of pod" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5463,7 +5434,7 @@
                 Breaks down reporting data by the position of the video ad within the pod, i.e.,
                 {@code UNKNOWN_POSITION}, {@code POSITION_1}, {@code POSITION_2}, etc.
                 Can be used for filtering.
-                &lt;p&gt;Corresponds to "Position in pod" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Position in pod" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5472,7 +5443,7 @@
               <documentation>
                 Breaks down reporting data by {@link AdSpot#id}. Can be used to filter by
                 {@link AdSpot#id}.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5482,7 +5453,7 @@
                 Breaks down reporting data by content. {@link AdSpot#name} and
                 {@link AdSpot#id} are automatically included as columns in the report. Can
                 be used to filter by {@link AdSpot#name}.
-                &lt;p&gt;Corresponds to "Custom spot" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Custom spot" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5490,7 +5461,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by video redirect vendor.
-                &lt;p&gt;Corresponds to "Video redirect third party" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Video redirect third party" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5499,7 +5470,7 @@
               <documentation>
                 The filter to break down reporting data by video break type.
                 Not available as a dimension to report on.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5510,7 +5481,7 @@
                 Can only be used with the following string values:
                 "Unknown", "Single ad video request", "Optimized pod video request".
                 Not available as a dimension to report on.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5518,7 +5489,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by vast version type name.
-                &lt;p&gt;Corresponds to "VAST version" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "VAST version" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5526,7 +5497,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by video request duration bucket.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5534,7 +5505,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by video request duration bucket name.
-                &lt;p&gt;Corresponds to "Video ad request duration" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Video ad request duration" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5542,7 +5513,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by video placement.
-                &lt;p&gt;Corresponds to "Video Placement" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Video Placement" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5550,7 +5521,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by partner {@link Company#id}.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach, Partner finance.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: Historical, Partner finance.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5559,7 +5530,7 @@
               <documentation>
                 Breaks down reporting data by partner {@link Company#name} and {@link Company#id} are
                 automatically included as columns in the report.
-                &lt;p&gt;Corresponds to "Partner" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Partner finance.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Partner" in the Ad Manager UI. Compatible with any of the following report types: Historical, Partner finance.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5567,7 +5538,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by partner label {@link Label#id}.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach, Partner finance.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: Historical, Partner finance.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5576,7 +5547,7 @@
               <documentation>
                 Breaks down reporting data by partner label. {@link Label#name} and {@link Label#id} are
                 automatically included as columns in the report.
-                &lt;p&gt;Corresponds to "Partner label" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Partner finance.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Partner label" in the Ad Manager UI. Compatible with any of the following report types: Historical, Partner finance.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5584,7 +5555,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by partner assignment id.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach, Partner finance.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: Historical, Partner finance.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5593,7 +5564,7 @@
               <documentation>
                 Breaks down reporting data by partner assignment name. PartnerAssignment name and id are
                 automatically included as columns in the report.
-                &lt;p&gt;Corresponds to "Assignment" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Partner finance.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Assignment" in the Ad Manager UI. Compatible with any of the following report types: Historical, Partner finance.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5601,7 +5572,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by inventory sharing assignment ID.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5609,7 +5580,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by inventory sharing assignment name.
-                &lt;p&gt;Corresponds to "Inventory share assignment" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Inventory share assignment" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5617,7 +5588,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by inventory sharing outcome.
-                &lt;p&gt;Corresponds to "Inventory share outcome" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Inventory share outcome" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5631,7 +5602,7 @@
                 #COUNTRY_NAME} must be selected.
                 
                 &lt;p&gt;This dimension is supported only for GRP columns.
-                &lt;p&gt;Can correspond to any of the following in the Ad Manager UI: Demographics, comScore vCE demographics. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Can correspond to any of the following in the Ad Manager UI: Demographics, comScore vCE demographics. Compatible with the "Reach" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5643,7 +5614,7 @@
                 &lt;p&gt;Formatted as comma separated values, e.g. "300x250,300x250v,300x60".
                 
                 &lt;p&gt;This dimension is supported only for sell-through columns.
-                &lt;p&gt;Corresponds to "Ad request sizes" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Ad request sizes" in the Ad Manager UI. Compatible with the "Future sell-through" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5657,7 +5628,7 @@
                 formatted as {@code key1=value_1|...|value_n,key2=value_1|...|value_n,...}.
                 
                 &lt;p&gt;This dimension is supported only for sell-through columns.
-                &lt;p&gt;Corresponds to "Key-values" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Key-values" in the Ad Manager UI. Compatible with the "Future sell-through" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5667,7 +5638,7 @@
                 Break down the report by a boolean indicator. It's TRUE for Ad Exchange traffic fulfilled by
                 First Look Deals. It can be used both as a dimension or dimension filter. As a filter, it can
                 only be used with the string values "true" and "false".
-                &lt;p&gt;Corresponds to "Is First Look" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Is First Look" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5675,7 +5646,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by yield group ID.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5683,7 +5654,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by yield group name.
-                &lt;p&gt;Corresponds to "Yield group" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Yield group" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5691,7 +5662,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by yield partner.
-                &lt;p&gt;Corresponds to "Yield partner" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Yield partner" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5699,7 +5670,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by the tag of a yield partner in a yield group.
-                &lt;p&gt;Corresponds to "Yield partner tag" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Yield partner tag" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5707,7 +5678,7 @@
             <annotation>
               <documentation>
                 The ID of a classified advertiser.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Ad speed" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5715,7 +5686,7 @@
             <annotation>
               <documentation>
                 The name of a classified advertiser.
-                &lt;p&gt;Corresponds to "Advertiser (classified)" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Advertiser (classified)" in the Ad Manager UI. Compatible with any of the following report types: Historical, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5723,7 +5694,7 @@
             <annotation>
               <documentation>
                 The ID of a classified brand.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Ad speed" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5731,7 +5702,7 @@
             <annotation>
               <documentation>
                 The name of a classified brand.
-                &lt;p&gt;Corresponds to "Brand (classified)" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Brand (classified)" in the Ad Manager UI. Compatible with any of the following report types: Historical, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5740,7 +5711,7 @@
               <documentation>
                 Breaks down reporting data by mediation type.   A mediation type can be web, mobile app or
                 video.
-                &lt;p&gt;Corresponds to "Mediation type" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Mediation type" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5748,7 +5719,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by native template (also known as creative template) ID.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5756,7 +5727,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by native template (also known as creative template) name.
-                &lt;p&gt;Corresponds to "Native ad format name" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Native ad format name" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5764,7 +5735,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by native style ID.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5772,7 +5743,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by native style name.
-                &lt;p&gt;Corresponds to "Native style name" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Native style name" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5782,7 +5753,7 @@
                 Breaks down reporting data by child network code in MCM "Manage Inventory".
                 
                 &lt;p&gt;&lt;b&gt;This experimental dimension only works for MCM "Manage Inventory" parent publishers.&lt;/b&gt;
-                &lt;p&gt;Corresponds to "Child network code" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Child network code" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5792,7 +5763,7 @@
                 Breaks down reporting data by mobile app 'resolved' id - either the app store id or '(Not
                 applicable)' if the app is not registered in the app store. Note: app ids are not guaranteed to
                 be unique across different app stores. Can be used for filtering.
-                &lt;p&gt;Corresponds to "App ID" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "App ID" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5800,7 +5771,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by mobile app name. Can be used for filtering.
-                &lt;p&gt;Corresponds to "App names" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "App names" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5808,7 +5779,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by device name. Can be used for filtering.
-                &lt;p&gt;Corresponds to "Devices" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Devices" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5816,7 +5787,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by inventory type. Can be used for filtering.
-                &lt;p&gt;Can correspond to any of the following in the Ad Manager UI: Inventory types (retired), Inventory types. Compatible with any of the following report types: Historical, Reach, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Inventory types" in the Ad Manager UI. Compatible with any of the following report types: Historical, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5824,7 +5795,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by request type. Can be used for filtering.
-                &lt;p&gt;Corresponds to "Request type" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Request type" in the Ad Manager UI. Compatible with any of the following report types: Historical, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5834,7 +5805,7 @@
                 Status of the ad unit. Not available as a dimension to report on,
                 but exists as a dimension in order to filter on it using PQL.
                 Valid values correspond to {@link InventoryStatus}.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5843,7 +5814,7 @@
               <documentation>
                 Breaks down reporting data by {@link Creative#id}. This includes regular creatives,
                 and master and companions in case of creative sets.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5852,7 +5823,7 @@
               <documentation>
                 Breaks down reporting data by creative. This includes regular creatives,
                 and master and companions in case of creative sets.
-                &lt;p&gt;Corresponds to "Master and Companion creative" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Master and Companion creative" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5860,7 +5831,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by billable audience segment ID.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5868,7 +5839,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by billable audience segment name.
-                &lt;p&gt;Corresponds to "Audience segment (billable)" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Audience segment (billable)" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5876,7 +5847,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by audience segment data provider name.
-                &lt;p&gt;Corresponds to "Data partner" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Data partner" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5892,7 +5863,6 @@
             <annotation>
               <documentation>
                 Breaks down mapped Ad Exchange web property data by Ad Exchange inventory size code.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5908,7 +5878,6 @@
             <annotation>
               <documentation>
                 Breaks down mapped Ad Exchange web property data by Ad Exchange pricing rule ID.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5940,7 +5909,6 @@
             <annotation>
               <documentation>
                 Breaks down data by Ad Exchange mapped web property code.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5980,7 +5948,6 @@
             <annotation>
               <documentation>
                 Breaks down mapped Ad Exchange web property data by Ad Exchange product code.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6030,7 +5997,6 @@
             <annotation>
               <documentation>
                 Breaks down mapped Ad Exchange web property data by Ad Exchange bid type code.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6038,7 +6004,6 @@
             <annotation>
               <documentation>
                 Breaks down mapped Ad Exchange web property data by Ad Exchange branding type code.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6064,7 +6029,6 @@
             <annotation>
               <documentation>
                 Breaks down mapped Ad Exchange web property data by Ad Exchange ad network ID.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6072,7 +6036,6 @@
             <annotation>
               <documentation>
                 Breaks down mapped Ad Exchange web property data by Ad Exchange custom channel code.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6080,7 +6043,6 @@
             <annotation>
               <documentation>
                 Breaks down mapped Ad Exchange web property data by Ad Exchange custom channel ID.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6088,12 +6050,6 @@
             <annotation>
               <documentation>
                 Breaks down mapped Ad Exchange web property data by Ad Exchange date, in Ad Exchange timezone.
-                
-                &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; In v201802 and later, this dimension is compatible with the following
-                time zone types:
-                &lt;ul&gt;
-                &lt;li&gt; {@link TimeZoneType.AD_EXCHANGE}
-                &lt;/ul&gt;
                 &lt;p&gt;Corresponds to "Days" in the Ad Manager UI. Compatible with the "Ad Exchange historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
@@ -6143,7 +6099,6 @@
             <annotation>
               <documentation>
                 Breaks down mapped Ad Exchange web property data by Ad Exchange country code.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6234,12 +6189,6 @@
             <annotation>
               <documentation>
                 Breaks down mapped Ad Exchange web property data by Ad Exchange month, in Ad Exchange timezone.
-                
-                &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; In v201802 and later, this dimension is compatible with the following
-                time zone types:
-                &lt;ul&gt;
-                &lt;li&gt; {@link TimeZoneType.AD_EXCHANGE}
-                &lt;/ul&gt;
                 &lt;p&gt;Corresponds to "Months" in the Ad Manager UI. Compatible with the "Ad Exchange historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
@@ -6272,7 +6221,6 @@
             <annotation>
               <documentation>
                 Breaks down mapped Ad Exchange web property data by Ad Exchange tags.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6280,7 +6228,6 @@
             <annotation>
               <documentation>
                 Breaks down mapped Ad Exchange web property data by Ad Exchange targeting type code.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6296,7 +6243,6 @@
             <annotation>
               <documentation>
                 Breaks down mapped Ad Exchange web property data by Ad Exchange transaction type code
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6304,7 +6250,6 @@
             <annotation>
               <documentation>
                 Breaks down mapped Ad Exchange web property data by Ad Exchange URL ID.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6320,7 +6265,6 @@
             <annotation>
               <documentation>
                 Breaks down mapped Ad Exchange web property data by Ad Exchange video ad duration.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6344,12 +6288,6 @@
             <annotation>
               <documentation>
                 Breaks down mapped Ad Exchange web property data by Ad Exchange week, in Ad Exchange timezone.
-                
-                &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; In v201802 and later, this dimension is compatible with the following
-                time zone types:
-                &lt;ul&gt;
-                &lt;li&gt; {@link TimeZoneType.AD_EXCHANGE}
-                &lt;/ul&gt;
                 &lt;p&gt;Corresponds to "Weeks" in the Ad Manager UI. Compatible with the "Ad Exchange historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
@@ -6374,7 +6312,7 @@
             <annotation>
               <documentation>
                 Campaign date segment of Nielsen Digital Ad Ratings reporting.
-                &lt;p&gt;Corresponds to "Nielsen Digital Ad Ratings segment" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Nielsen Digital Ad Ratings segment" in the Ad Manager UI. Compatible with the "Reach" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6393,7 +6331,7 @@
             <annotation>
               <documentation>
                 Data restatement date of Nielsen Digital Ad Ratings data.
-                &lt;p&gt;Corresponds to "Nielsen Digital Ad Ratings restatement date" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Nielsen Digital Ad Ratings restatement date" in the Ad Manager UI. Compatible with the "Reach" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6404,7 +6342,7 @@
                 
                 &lt;p&gt;
                 This dimension is supported only for Nielsen columns.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Reach" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6415,7 +6353,7 @@
                 
                 &lt;p&gt;
                 This dimension is supported only for Nielsen columns.
-                &lt;p&gt;Corresponds to "Nielsen Digital Ad Ratings device" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Nielsen Digital Ad Ratings device" in the Ad Manager UI. Compatible with the "Reach" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6431,7 +6369,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by programmatic buyer name.
-                &lt;p&gt;Corresponds to "Programmatic buyer" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Programmatic buyer" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6440,7 +6378,7 @@
               <documentation>
                 Breaks down reporting data by requested ad size(s).
                 This can be a chain of sizes or a single size.
-                &lt;p&gt;Corresponds to "Requested ad sizes" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Requested ad sizes" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6448,7 +6386,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by the creative size the ad was delivered to.
-                &lt;p&gt;Corresponds to "Creative size (delivered)" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Creative size (delivered)" in the Ad Manager UI. Compatible with any of the following report types: Historical, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6456,7 +6394,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by the type of transaction that occurred in Ad Exchange.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6472,7 +6410,7 @@
             <annotation>
               <documentation>
                 Breaks down data by detected yield partner name.
-                &lt;p&gt;Corresponds to "Yield partner (classified)" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Yield partner (classified)" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6633,7 +6571,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by top private domain.
-                &lt;p&gt;Corresponds to "Domain" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Domain" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6641,7 +6579,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by unified pricing rule id.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6649,7 +6587,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by unified pricing rule name.
-                &lt;p&gt;Corresponds to "Unified pricing rule" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Unified pricing rule" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7020,7 +6958,7 @@
           <enumeration value="LINE_ITEM_AVERAGE_NUMBER_OF_VIEWERS">
             <annotation>
               <documentation>
-                &lt;p&gt;Corresponds to "Nielsen Average Number Of Viewers" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Nielsen Average Number Of Viewers" in the Ad Manager UI. Compatible with the "Reach" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7067,7 +7005,7 @@
               <documentation>
                 Indicates if a creative is a regular creative or creative set.
                 Values will be 'Creative' or 'Creative set'
-                &lt;p&gt;Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7075,7 +7013,7 @@
             <annotation>
               <documentation>
                 The type of creative in a creative set - master or companion.
-                &lt;p&gt;Corresponds to "Master or Companion" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Master or Companion" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7128,7 +7066,7 @@
             <annotation>
               <documentation>
                 Represents the click-through URL for {@link Dimension#CREATIVE_NAME}.
-                &lt;p&gt;Corresponds to "Click-through URL" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Click-through URL" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7136,7 +7074,7 @@
             <annotation>
               <documentation>
                 Represents whether a creative is SSL-compliant.
-                &lt;p&gt;Corresponds to "Creative SSL scan result" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Creative SSL scan result" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7144,7 +7082,7 @@
             <annotation>
               <documentation>
                 Represents whether a creative's SSL status was overridden.
-                &lt;p&gt;Corresponds to "Creative SSL compliance override" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Creative SSL compliance override" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7154,7 +7092,7 @@
                 Represents a {@link LineItemCreativeAssociation#startDateTime} for a
                 {@link Dimension#LINE_ITEM_NAME} and a {@link Dimension#CREATIVE_NAME}.
                 Includes the date without the time.
-                &lt;p&gt;Corresponds to "Creative start date" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Creative start date" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7164,7 +7102,7 @@
                 Represents a {@link LineItemCreativeAssociation#endDateTime} for a
                 {@link Dimension#LINE_ITEM_NAME} and a {@link Dimension#CREATIVE_NAME}.
                 Includes the date without the time.
-                &lt;p&gt;Corresponds to "Creative end date" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Creative end date" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7173,7 +7111,7 @@
               <documentation>
                 Represents the {@link CmsContent#displayName} within the first element of
                 {@link Content#cmsContent} for {@link Dimension#CONTENT_NAME}.
-                &lt;p&gt;Corresponds to "Content source name" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Content source name" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7182,7 +7120,7 @@
               <documentation>
                 Represents the {@link CmsContent#cmsContentId} within the first element of
                 {@link Content#cmsContent} for {@link Dimension#CONTENT_NAME}.
-                &lt;p&gt;Corresponds to "ID of the video in the content source" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "ID of the video in the content source" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7190,7 +7128,7 @@
             <annotation>
               <documentation>
                 Represents {@link AdUnit#adUnitCode} for {@link Dimension#AD_UNIT_NAME}.
-                &lt;p&gt;Corresponds to "Ad unit code" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Ad unit code" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Ad speed.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>

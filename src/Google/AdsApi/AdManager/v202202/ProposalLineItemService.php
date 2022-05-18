@@ -83,6 +83,8 @@ class ProposalLineItemService extends \Google\AdsApi\Common\AdsSoapClient
       'InternalApiError' => 'Google\\AdsApi\\AdManager\\v202202\\InternalApiError',
       'InventoryTargeting' => 'Google\\AdsApi\\AdManager\\v202202\\InventoryTargeting',
       'InventoryTargetingError' => 'Google\\AdsApi\\AdManager\\v202202\\InventoryTargetingError',
+      'InventoryUrl' => 'Google\\AdsApi\\AdManager\\v202202\\InventoryUrl',
+      'InventoryUrlTargeting' => 'Google\\AdsApi\\AdManager\\v202202\\InventoryUrlTargeting',
       'LabelEntityAssociationError' => 'Google\\AdsApi\\AdManager\\v202202\\LabelEntityAssociationError',
       'LineItemError' => 'Google\\AdsApi\\AdManager\\v202202\\LineItemError',
       'LineItemOperationError' => 'Google\\AdsApi\\AdManager\\v202202\\LineItemOperationError',

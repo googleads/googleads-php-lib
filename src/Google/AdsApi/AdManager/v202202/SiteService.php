@@ -122,7 +122,16 @@ class SiteService extends \Google\AdsApi\Common\AdsSoapClient
      * <td>{@code active}</td>
      * <td>{@link Site#active}</td>
      * </tr>
+     * <tr>
+     * <td>{@code lastModifiedApprovalStatusDateTime}</td>
+     * <td></td>
+     * </tr>
      * </table>
+     *
+     * Restriction: The {@code lastModifiedApprovalStatusDateTime} PQL property can only be used in a
+     * top-level expression scoping the {@code filterStatement} to {@link Site}s whose {@code
+     * approvalStatus} was modified on or after a specified date and time. (e.x. {@code "WHERE
+     * lastModifiedApprovalStatusDateTime >= '2022-01-01T00:00:00'"}).
      *
      * @param \Google\AdsApi\AdManager\v202202\Statement $filterStatement
      * @return \Google\AdsApi\AdManager\v202202\SitePage

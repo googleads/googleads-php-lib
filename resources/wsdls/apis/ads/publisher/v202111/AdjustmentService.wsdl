@@ -2081,6 +2081,7 @@
             &lt;p&gt;The following rules apply for {@link RequestPlatformTargeting}
             
             &lt;ul&gt;
+            &lt;li&gt;{@link RequestPlatformTargeting} must be specified for {@link ProposalLineItem}s.&lt;/li&gt;
             &lt;li&gt;{@link RequestPlatformTargeting} must be specified for video line items. Empty values for
             {@link RequestPlatformTargeting#targetedRequestPlatforms} mean that all request platforms
             will be targeted.
@@ -2460,7 +2461,7 @@
             <annotation>
               <documentation>
                 Specifies the request platforms that are targeted by the {@link LineItem}. This attribute is
-                required for video line items.
+                required for video line items and for {@link ProposalLineItem}.
                 
                 &lt;p&gt;This value is modifiable for video line items, but read-only for non-video line items.
                 
@@ -4925,13 +4926,6 @@
             <annotation>
               <documentation>
                 The device capability targeting feature is not enabled.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="DEVICE_CATEGORY_TARGETING_FEATURE_NOT_ENABLED">
-            <annotation>
-              <documentation>
-                The device category targeting feature is not enabled.
               </documentation>
             </annotation>
           </enumeration>

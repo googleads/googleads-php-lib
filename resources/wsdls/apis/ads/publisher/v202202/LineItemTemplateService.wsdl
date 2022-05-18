@@ -6385,13 +6385,6 @@
               </documentation>
             </annotation>
           </enumeration>
-          <enumeration value="DEVICE_CATEGORY_TARGETING_FEATURE_NOT_ENABLED">
-            <annotation>
-              <documentation>
-                The device category targeting feature is not enabled.
-              </documentation>
-            </annotation>
-          </enumeration>
           <enumeration value="UNKNOWN">
             <annotation>
               <documentation>
