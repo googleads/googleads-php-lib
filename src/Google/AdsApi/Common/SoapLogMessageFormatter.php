@@ -142,7 +142,7 @@ final class SoapLogMessageFormatter
         $response
     ) {
         $requestHeaders = LogMessageScrubbers::scrubRequestHttpHeaders(
-            trim((string)$requestHeaders),
+            trim((string) $requestHeaders),
             $this->requestHttpHeadersToScrub
         );
         $request = LogMessageScrubbers::scrubRequestSoapHeaders(
@@ -153,7 +153,7 @@ final class SoapLogMessageFormatter
             $request,
             $this->requestSoapBodyTagsToScrub
         );
-        $responseHeaders = trim((string)$responseHeaders);
+        $responseHeaders = trim((string) $responseHeaders);
 
         return sprintf(
             "%s\n\n%s\n%s\n\n%s\n",
@@ -185,7 +185,7 @@ final class SoapLogMessageFormatter
         $hostMatches = [];
         $isMatch = preg_match(
             '/^.*Host:\\s(.*)Connection:.*$/s',
-            (string)$requestHeaders,
+            (string) $requestHeaders,
             $hostMatches
         );
         if ($isMatch) {
