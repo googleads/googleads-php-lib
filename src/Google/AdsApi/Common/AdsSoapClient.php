@@ -76,7 +76,8 @@ class AdsSoapClient extends SoapClient
         if (!file_exists($localWsdlPath)) {
             trigger_error(
                 "Local WSDLs bundled with this library were not found.\n",
-                E_USER_NOTICE);
+                E_USER_NOTICE
+            );
             parent::__construct($wsdl, $options);
 
             return;
