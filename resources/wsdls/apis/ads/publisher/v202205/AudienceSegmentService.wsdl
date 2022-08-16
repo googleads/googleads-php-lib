@@ -1143,8 +1143,8 @@
           <element maxOccurs="1" minOccurs="0" name="description" type="xsd:string">
             <annotation>
               <documentation>
-                Description of the {@link AudienceSegment}. This attribute is optional and has a maximum
-                length of 8192 characters.
+                Description of the {@link AudienceSegment}. This attribute is optional and has a maximum length
+                of 8192 characters.
               </documentation>
             </annotation>
           </element>
@@ -2847,7 +2847,7 @@
           <enumeration value="AUDIENCE_SEGMENT_GLOBAL_LICENSE_ERROR">
             <annotation>
               <documentation>
-                An error occured when purchasing global licenses.
+                An error occurred when purchasing global licenses.
               </documentation>
             </annotation>
           </enumeration>

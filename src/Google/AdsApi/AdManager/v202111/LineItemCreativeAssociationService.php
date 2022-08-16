@@ -34,6 +34,7 @@ class LineItemCreativeAssociationService extends \Google\AdsApi\Common\AdsSoapCl
       'CreativeSetError' => 'Google\\AdsApi\\AdManager\\v202111\\CreativeSetError',
       'CreativeTemplateError' => 'Google\\AdsApi\\AdManager\\v202111\\CreativeTemplateError',
       'CreativeTemplateOperationError' => 'Google\\AdsApi\\AdManager\\v202111\\CreativeTemplateOperationError',
+      'CrossSellError' => 'Google\\AdsApi\\AdManager\\v202111\\CrossSellError',
       'CustomCreativeError' => 'Google\\AdsApi\\AdManager\\v202111\\CustomCreativeError',
       'CustomFieldValueError' => 'Google\\AdsApi\\AdManager\\v202111\\CustomFieldValueError',
       'Date' => 'Google\\AdsApi\\AdManager\\v202111\\Date',

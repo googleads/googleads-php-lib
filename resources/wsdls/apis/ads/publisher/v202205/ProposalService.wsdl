@@ -2186,46 +2186,6 @@
           </element>
         </sequence>
       </complexType>
-      <complexType name="PackageActionError">
-        <annotation>
-          <documentation>
-            Lists all errors for executing actions on {@link Package} objects.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:PackageActionError.Reason">
-                <annotation>
-                  <documentation>
-                    The error reason represented by an enum.
-                  </documentation>
-                </annotation>
-              </element>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="PackageError">
-        <annotation>
-          <documentation>
-            Lists all errors associated with {@link Package} objects.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:PackageError.Reason">
-                <annotation>
-                  <documentation>
-                    The error reason represented by an enum.
-                  </documentation>
-                </annotation>
-              </element>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
       <complexType name="ParseError">
         <annotation>
           <documentation>
@@ -2290,20 +2250,6 @@
           <extension base="tns:ApiError">
             <sequence>
               <element maxOccurs="1" minOccurs="0" name="reason" type="tns:PrecisionError.Reason"/>
-            </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="ProductError">
-        <annotation>
-          <documentation>
-            Lists all error reasons associated with {@link Product products}.
-          </documentation>
-        </annotation>
-        <complexContent>
-          <extension base="tns:ApiError">
-            <sequence>
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ProductError.Reason"/>
             </sequence>
           </extension>
         </complexContent>
@@ -5148,89 +5094,6 @@
           </enumeration>
         </restriction>
       </simpleType>
-      <simpleType name="PackageActionError.Reason">
-        <annotation>
-          <documentation>
-            The reasons for the target error.
-          </documentation>
-        </annotation>
-        <restriction base="xsd:string">
-          <enumeration value="PROPOSAL_LINE_ITEMS_HAVE_BEEN_CREATED">
-            <annotation>
-              <documentation>
-                The operation is not applicable because the proposal line items under these packages
-                have already been created.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="PROPOSAL_NOT_EDITABLE">
-            <annotation>
-              <documentation>
-                The operation is not applicable because the containing proposal is not editable.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="UNKNOWN">
-            <annotation>
-              <documentation>
-                The value returned if the actual value is not exposed by the requested API version.
-              </documentation>
-            </annotation>
-          </enumeration>
-        </restriction>
-      </simpleType>
-      <simpleType name="PackageError.Reason">
-        <annotation>
-          <documentation>
-            The reasons for the {@link PackageError}.
-          </documentation>
-        </annotation>
-        <restriction base="xsd:string">
-          <enumeration value="INVAILD_PRODUCT_PACKAGE">
-            <annotation>
-              <documentation>
-                Package cannot be created from an inactive or archived product package.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="INACTIVE_RATE_CARD">
-            <annotation>
-              <documentation>
-                The rate card is inactive.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="PRODUCT_PACKAGE_NOT_IN_RATE_CARD">
-            <annotation>
-              <documentation>
-                There is no association between the product package and the rate card.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="HAS_NO_UNARCHIVED_PRODUCT_PACKAGE_ITEM">
-            <annotation>
-              <documentation>
-                There are no unarchived product package items in this product package.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="NOT_SAME_RATE_CARD">
-            <annotation>
-              <documentation>
-                The package's rate card is not the same as other packages or proposal line items
-                in the proposal.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="UNKNOWN">
-            <annotation>
-              <documentation>
-                The value returned if the actual value is not exposed by the requested API version.
-              </documentation>
-            </annotation>
-          </enumeration>
-        </restriction>
-      </simpleType>
       <simpleType name="ParseError.Reason">
         <annotation>
           <documentation>
@@ -5288,65 +5151,6 @@
             <annotation>
               <documentation>
                 The lowest N digits of the number must be zero.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="UNKNOWN">
-            <annotation>
-              <documentation>
-                The value returned if the actual value is not exposed by the requested API version.
-              </documentation>
-            </annotation>
-          </enumeration>
-        </restriction>
-      </simpleType>
-      <simpleType name="ProductError.Reason">
-        <annotation>
-          <documentation>
-            The reasons for the target error.
-          </documentation>
-        </annotation>
-        <restriction base="xsd:string">
-          <enumeration value="TEMPLATE_NOT_FOUND">
-            <annotation>
-              <documentation>
-                The specified template is not found.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="MALFORMED_PRODUCT_ID">
-            <annotation>
-              <documentation>
-                The product ID is not correctly formed.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="BAD_PRODUCT_ID_FEATURE">
-            <annotation>
-              <documentation>
-                The product ID does not match the expanded features configured in its product template.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="BAD_PRODUCT_TEMPLATE_ID">
-            <annotation>
-              <documentation>
-                The product template ID specified in the parameters does not match the product template ID
-                implied in the product ID.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="CANNOT_UPDATE_ARCHIVED_PRODUCT">
-            <annotation>
-              <documentation>
-                Cannot update an archived product.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="QUERY_TOO_LARGE">
-            <annotation>
-              <documentation>
-                The query is too large to be processed.
               </documentation>
             </annotation>
           </enumeration>
@@ -6628,7 +6432,7 @@
           <enumeration value="AUDIENCE_SEGMENT_GLOBAL_LICENSE_ERROR">
             <annotation>
               <documentation>
-                An error occured when purchasing global licenses.
+                An error occurred when purchasing global licenses.
               </documentation>
             </annotation>
           </enumeration>

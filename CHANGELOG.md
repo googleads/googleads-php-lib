@@ -1,3 +1,19 @@
+### 58.0.0
+
+##### AdWords
+
+* Removed examples/AdWords/LaravelSampleApp/composer.lock file.
+
+##### Ad Manager
+
+* Added support for v202208.
+* Removed support for v202108.
+* Removed examples for v202111.
+
+##### Common
+
+* Added support for PHP 8.1.
+
 ### 57.0.0
 
 ##### AdWords

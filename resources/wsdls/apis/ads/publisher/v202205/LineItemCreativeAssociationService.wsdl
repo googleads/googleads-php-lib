@@ -430,6 +430,26 @@
           </extension>
         </complexContent>
       </complexType>
+      <complexType name="CrossSellError">
+        <annotation>
+          <documentation>
+            Lists all errors associated with cross selling.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CrossSellError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
       <complexType name="CustomCreativeError">
         <annotation>
           <documentation>
@@ -2680,6 +2700,106 @@
               <documentation>
                 The operation is not applicable to the current state.
                 (e.g. Trying to activate an active creative template)
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="CrossSellError.Reason">
+        <annotation>
+          <documentation>
+            The reason of the error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="COMPANY_IS_NOT_DISTRIBUTION_PARTNER">
+            <annotation>
+              <documentation>
+                A company for cross-sell partner must be of type {@link Company.Type#PARTNER}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CHANGING_PARTNER_NETWORK_IS_NOT_SUPPORTED">
+            <annotation>
+              <documentation>
+                The network code of a cross-sell partner cannot be changed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_DISTRIBUTOR_PARTNER_NAME">
+            <annotation>
+              <documentation>
+                A cross-sell partner must have a partner name.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DISTRIBUTOR_NETWORK_MISSING_PUBLISHER_FEATURE">
+            <annotation>
+              <documentation>
+                The cross-sell distributor publisher feature must be enabled.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CONTENT_PROVIDER_NETWORK_MISSING_PUBLISHER_FEATURE">
+            <annotation>
+              <documentation>
+                The cross-sell publisher features must be enabled on the partner's network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_DISTRIBUTOR_PARTNER_NAME">
+            <annotation>
+              <documentation>
+                The cross-sell partner name conflicts with an ad unit name on the partner's network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_CONTENT_PROVIDER_NETWORK">
+            <annotation>
+              <documentation>
+                The network code of a cross-sell partner is invalid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CONTENT_PROVIDER_NETWORK_CANNOT_BE_ACTIVE_NETWORK">
+            <annotation>
+              <documentation>
+                The content provider network must be different than the distributor network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CONTENT_PROVIDER_NETWORK_ALREADY_ENABLED_FOR_CROSS_SELLING">
+            <annotation>
+              <documentation>
+                The same network code was already enabled for cross-sell in a different company.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DISTRIBUTOR_RULE_VIOLATION_ERROR">
+            <annotation>
+              <documentation>
+                A rule defined by the cross selling distributor has been violated by a line item targeting
+                a shared ad unit. Violating this rule is an error.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DISTRIBUTOR_RULE_VIOLATION_WARNING">
+            <annotation>
+              <documentation>
+                A rule defined by the cross selling distributor has been violated by a line item targeting
+                a shared ad unit. Violating this rule is a warning.
+                
+                &lt;p&gt;By setting {@link LineItem#skipCrossSellingRuleWarningChecks}, the content partner can
+                suppress the warning (and create or save the line item).
+                
+                &lt;p&gt;This flag is available beginning in V201411.
               </documentation>
             </annotation>
           </enumeration>

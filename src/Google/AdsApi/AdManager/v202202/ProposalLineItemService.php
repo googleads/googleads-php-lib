@@ -109,7 +109,6 @@ class ProposalLineItemService extends \Google\AdsApi\Common\AdsSoapClient
       'PermissionError' => 'Google\\AdsApi\\AdManager\\v202202\\PermissionError',
       'PrecisionError' => 'Google\\AdsApi\\AdManager\\v202202\\PrecisionError',
       'PreferredDealError' => 'Google\\AdsApi\\AdManager\\v202202\\PreferredDealError',
-      'ProductError' => 'Google\\AdsApi\\AdManager\\v202202\\ProductError',
       'ProposalError' => 'Google\\AdsApi\\AdManager\\v202202\\ProposalError',
       'ProposalLineItemAction' => 'Google\\AdsApi\\AdManager\\v202202\\ProposalLineItemAction',
       'ProposalLineItemActionError' => 'Google\\AdsApi\\AdManager\\v202202\\ProposalLineItemActionError',

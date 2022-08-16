@@ -5205,7 +5205,7 @@
               <documentation>
                 Breaks down reporting data by child network code in MCM "Manage Inventory".
                 
-                &lt;p&gt;&lt;b&gt;This experimental dimension only works for MCM "Manage Inventory" parent publishers.&lt;/b&gt;
+                &lt;p&gt;&lt;b&gt;This dimension only works for MCM "Manage Inventory" parent publishers.&lt;/b&gt;
                 &lt;p&gt;Corresponds to "Child network code" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>

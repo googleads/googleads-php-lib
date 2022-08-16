@@ -4163,9 +4163,9 @@
             <annotation>
               <documentation>
                 The priority for the corresponding {@link LineItem} of the {@code ProposalLineItem}.
-                This attribute is optional during creation and defaults to the
-                {@link Product#priority product's priority}, or a default value assigned by Google.
-                See {@link LineItem#priority} for more information.
+                This attribute is optional during creation and defaults to the default priority of the
+                {@link #lineItemType}. For forecasting, this attribute is optional and has a default value
+                assigned by Google. See {@link LineItem#priority} for more information.
               </documentation>
             </annotation>
           </element>
@@ -4273,19 +4273,14 @@
             <annotation>
               <documentation>
                 The cost of the {@code ProposalLineItem} in proposal currency. It supports precision of 2
-                decimal places in terms of the fundamental currency unit, so the
-                {@link Money#getAmountInMicros} must be multiples of 10000. It doesn't include agency
-                commission.
+                decimal places in terms of the fundamental currency unit, so the {@link
+                Money#getAmountInMicros} must be multiples of 10000. It doesn't include agency commission.
                 
-                &lt;p&gt;For example, if {@link Proposal#currencyCode} is 'USD', then $123.45 could be
-                represented as 123450000, but further precision is not supported.
+                &lt;p&gt;For example, if {@link Proposal#currencyCode} is 'USD', then $123.45 could be represented as
+                123450000, but further precision is not supported.
                 
-                &lt;p&gt;When using sales management, at least one of the four fields
-                {@link ProposalLineItem#netRate}, {@link ProposalLineItem#grossRate},
-                {@link ProposalLineItem#netCost} and {@link ProposalLineItem#grossCost} is required.
-                
-                &lt;p&gt;When not using sales management, at least one of the two fields
-                {@link ProposalLineItem#netRate} and {@link ProposalLineItem#netCost} is required.
+                &lt;p&gt;At least one of the two fields {@link ProposalLineItem#netRate} and {@link
+                ProposalLineItem#netCost} is required.
               </documentation>
             </annotation>
           </element>
@@ -11343,7 +11338,7 @@
           <enumeration value="AUDIENCE_SEGMENT_GLOBAL_LICENSE_ERROR">
             <annotation>
               <documentation>
-                An error occured when purchasing global licenses.
+                An error occurred when purchasing global licenses.
               </documentation>
             </annotation>
           </enumeration>
