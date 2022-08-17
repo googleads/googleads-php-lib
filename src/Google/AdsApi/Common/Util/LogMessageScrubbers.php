@@ -88,7 +88,7 @@ final class LogMessageScrubbers
     ) {
         foreach ($headersToScrub as $header) {
             $regex = sprintf(self::$SOAP_REQUEST_HEADER_TAG_REGEX, $header);
-            $soapXml = preg_replace($regex, '\1' . self::$REDACTED . '\2', $soapXml, 1);
+            $soapXml = preg_replace($regex, '\1' . self::$REDACTED . '\2', (string) $soapXml, 1);
         }
 
         return $soapXml;

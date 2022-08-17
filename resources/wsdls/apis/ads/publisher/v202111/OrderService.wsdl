@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2021 Google Inc. All Rights Reserved -->
+<!-- Copyright 2022 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202111"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202111"
@@ -1385,10 +1385,9 @@
             name="effectiveAppliedLabels" type="tns:AppliedLabel">
             <annotation>
               <documentation>
-                Contains the set of labels applied directly to the order as well as those
-                inherited from the company that owns the order. If a label has been
-                negated, only the negated label is returned. This field is readonly and is
-                assigned by Google.
+                Contains the set of labels applied directly to the order as well as those inherited from the
+                company that owns the order. If a label has been negated, only the negated label is returned.
+                This field is readonly and is assigned by Google.
               </documentation>
             </annotation>
           </element>
@@ -5250,7 +5249,7 @@
           <enumeration value="SKIPPABLE_AD_TYPE_NOT_ALLOWED">
             <annotation>
               <documentation>
-                The {@Code SkippableAdType} is not allowed.
+                The {@code SkippableAdType} is not allowed.
               </documentation>
             </annotation>
           </enumeration>
@@ -6372,7 +6371,7 @@
           <enumeration value="AUDIENCE_SEGMENT_GLOBAL_LICENSE_ERROR">
             <annotation>
               <documentation>
-                An error occured when purchasing global licenses.
+                An error occurred when purchasing global licenses.
               </documentation>
             </annotation>
           </enumeration>
@@ -6804,13 +6803,6 @@
             <annotation>
               <documentation>
                 The device capability targeting feature is not enabled.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="DEVICE_CATEGORY_TARGETING_FEATURE_NOT_ENABLED">
-            <annotation>
-              <documentation>
-                The device category targeting feature is not enabled.
               </documentation>
             </annotation>
           </enumeration>

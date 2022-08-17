@@ -25,7 +25,7 @@ to the location of this sample application.
     will install dependencies for the library instead.
 1.  Follow [Setting up your OAuth2 credentials](https://github.com/googleads/googleads-php-lib#setting-up-your-oauth2-credentials)
     if you haven't set up the credentials yet.
-1.  Copy the sample [`adsapi_php.ini`](https://github.com/googleads/googleads-php-lib/blob/master/examples/AdWords/adsapi_php.ini)
+1.  Copy the sample [`adsapi_php.ini`](https://github.com/googleads/googleads-php-lib/blob/HEAD/examples/AdWords/adsapi_php.ini)
     to the same location as this `README.md` file. Then, fill out the required
     properties as described in the file.
 1.  Run `php artisan serve`. Your sample app will be ready.
@@ -46,4 +46,4 @@ to the location of this sample application.
 *   The Laravel framework is open-sourced software licensed under the [MIT
     license](https://opensource.org/licenses/MIT).
 *   The Google Ads API PHP client library is open-sourced under the [Apache License
-    2.0](https://github.com/googleads/googleads-php-lib/blob/master/LICENSE).
+    2.0](https://github.com/googleads/googleads-php-lib/blob/HEAD/LICENSE).

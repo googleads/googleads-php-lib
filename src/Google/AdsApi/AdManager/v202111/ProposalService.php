@@ -95,13 +95,10 @@ class ProposalService extends \Google\AdsApi\Common\AdsSoapClient
       'OperatingSystemTargeting' => 'Google\\AdsApi\\AdManager\\v202111\\OperatingSystemTargeting',
       'OperatingSystemVersion' => 'Google\\AdsApi\\AdManager\\v202111\\OperatingSystemVersion',
       'OperatingSystemVersionTargeting' => 'Google\\AdsApi\\AdManager\\v202111\\OperatingSystemVersionTargeting',
-      'PackageActionError' => 'Google\\AdsApi\\AdManager\\v202111\\PackageActionError',
-      'PackageError' => 'Google\\AdsApi\\AdManager\\v202111\\PackageError',
       'ParseError' => 'Google\\AdsApi\\AdManager\\v202111\\ParseError',
       'PauseProposals' => 'Google\\AdsApi\\AdManager\\v202111\\PauseProposals',
       'PermissionError' => 'Google\\AdsApi\\AdManager\\v202111\\PermissionError',
       'PrecisionError' => 'Google\\AdsApi\\AdManager\\v202111\\PrecisionError',
-      'ProductError' => 'Google\\AdsApi\\AdManager\\v202111\\ProductError',
       'ProposalAction' => 'Google\\AdsApi\\AdManager\\v202111\\ProposalAction',
       'ProposalActionError' => 'Google\\AdsApi\\AdManager\\v202111\\ProposalActionError',
       'ProposalCompanyAssociation' => 'Google\\AdsApi\\AdManager\\v202111\\ProposalCompanyAssociation',
@@ -155,8 +152,6 @@ class ProposalService extends \Google\AdsApi\Common\AdsSoapClient
       'VideoPositionTargeting' => 'Google\\AdsApi\\AdManager\\v202111\\VideoPositionTargeting',
       'VideoPositionWithinPod' => 'Google\\AdsApi\\AdManager\\v202111\\VideoPositionWithinPod',
       'VideoPositionTarget' => 'Google\\AdsApi\\AdManager\\v202111\\VideoPositionTarget',
-      'WorkflowActionError' => 'Google\\AdsApi\\AdManager\\v202111\\WorkflowActionError',
-      'WorkflowValidationError' => 'Google\\AdsApi\\AdManager\\v202111\\WorkflowValidationError',
       'createProposalsResponse' => 'Google\\AdsApi\\AdManager\\v202111\\createProposalsResponse',
       'getMarketplaceCommentsByStatementResponse' => 'Google\\AdsApi\\AdManager\\v202111\\getMarketplaceCommentsByStatementResponse',
       'getProposalsByStatementResponse' => 'Google\\AdsApi\\AdManager\\v202111\\getProposalsByStatementResponse',
@@ -276,28 +271,6 @@ class ProposalService extends \Google\AdsApi\Common\AdsSoapClient
      * <tr>
      * <td>{@code lastModifiedDateTime}</td>
      * <td>{@link Proposal#lastModifiedDateTime}</td>
-     * </tr>
-     * <tr>
-     * <td>
-     * {@code thirdPartyAdServerId}
-     * <div class="constraint">
-     * Only applicable for non-programmatic proposals using sales management
-     * </div>
-     * </td>
-     * <td>{@link Proposal#thirdPartyAdServerId}</td>
-     * </tr>
-     * <tr>
-     * <td>
-     * {@code customThirdPartyAdServerName}
-     * <div class="constraint">
-     * Only applicable for non-programmatic proposals using sales management
-     * </div>
-     * </td>
-     * <td>{@link Proposal#customThirdPartyAdServerName}</td>
-     * </tr>
-     * <tr>
-     * <td>{@code hasOfflineErrors}</td>
-     * <td>{@link Proposal#hasOfflineErrors}</td>
      * </tr>
      * <tr>
      * <td>{@code isProgrammatic}</td>

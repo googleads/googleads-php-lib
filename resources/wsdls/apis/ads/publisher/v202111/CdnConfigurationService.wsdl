@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2021 Google Inc. All Rights Reserved -->
+<!-- Copyright 2022 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202111"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202111"
@@ -742,10 +742,14 @@
             <annotation>
               <documentation>
                 The type of origin forwarding used to support Akamai authentication policies for media
-                playlists. This field is not applicable to ingest locations, and is only applicable to delivery
-                media locations with the {@link #securityPolicyType} set to {@link SecurityPolicyType#AKAMAI}.
-                Valid options are {@code OriginForwardingType#NONE} or
-                {@code OriginForwardingType#ORIGIN_PATH}.
+                playlists. This setting can only be used with CDN configurations with a {@code
+                cdnConfigurationType} of {@link CdnConfigurationType#LIVE_STREAM_SOURCE_CONTENT}, is not
+                applicable to ingest locations, and is only applicable to delivery media locations with the
+                {@link #securityPolicyType} set to {@link SecurityPolicyType#AKAMAI}. Valid options are {@code
+                OriginForwardingType#NONE} or {@code OriginForwardingType#ORIGIN_PATH}.
+                
+                &lt;p&gt;This setting can only be used with CDN configurations with a {@code cdnConfigurationType} of
+                {@link CdnConfigurationType#LIVE_STREAM_SOURCE_CONTENT}.
               </documentation>
             </annotation>
           </element>

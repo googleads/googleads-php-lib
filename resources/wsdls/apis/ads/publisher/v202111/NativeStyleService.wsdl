@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2021 Google Inc. All Rights Reserved -->
+<!-- Copyright 2022 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202111"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202111"
@@ -1841,6 +1841,7 @@
             &lt;p&gt;The following rules apply for {@link RequestPlatformTargeting}
             
             &lt;ul&gt;
+            &lt;li&gt;{@link RequestPlatformTargeting} must be specified for {@link ProposalLineItem}s.&lt;/li&gt;
             &lt;li&gt;{@link RequestPlatformTargeting} must be specified for video line items. Empty values for
             {@link RequestPlatformTargeting#targetedRequestPlatforms} mean that all request platforms
             will be targeted.
@@ -2266,7 +2267,7 @@
             <annotation>
               <documentation>
                 Specifies the request platforms that are targeted by the {@link LineItem}. This attribute is
-                required for video line items.
+                required for video line items and for {@link ProposalLineItem}.
                 
                 &lt;p&gt;This value is modifiable for video line items, but read-only for non-video line items.
                 
@@ -2398,25 +2399,24 @@
       <complexType name="UserDomainTargeting">
         <annotation>
           <documentation>
-            Provides line items the ability to target or exclude users visiting their
-            websites from a list of domains or subdomains.
+            Provides line items the ability to target or exclude users visiting their websites from a list of
+            domains or subdomains.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="unbounded" minOccurs="0" name="domains" type="xsd:string">
             <annotation>
               <documentation>
-                The domains or subdomains that are being targeted or excluded by the
-                {@link LineItem}. This attribute is required and the maximum length of each
-                domain is 67 characters.
+                The domains or subdomains that are being targeted or excluded by the {@link LineItem}. This
+                attribute is required and the maximum length of each domain is 67 characters.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="targeted" type="xsd:boolean">
             <annotation>
               <documentation>
-                Indicates whether domains should be targeted or excluded. This attribute is
-                optional and defaults to {@code true}.
+                Indicates whether domains should be targeted or excluded. This attribute is optional and
+                defaults to {@code true}.
               </documentation>
             </annotation>
           </element>

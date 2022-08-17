@@ -75,7 +75,7 @@ final class QueryValidator
         $startDateString,
         $endDateString
     ) {
-        $startDate = DateTime::createFromFormat('Ymd', $startDateString);
+        $startDate = is_string($startDateString) ? DateTime::createFromFormat('Ymd', $startDateString) : false;
         $warningsFound = !empty(DateTime::getLastErrors()['warnings']);
 
         // If parsing fails with errors, the `$startDate` will be `false`.
@@ -89,7 +89,7 @@ final class QueryValidator
                 ' date and follow YYYYMMDD format.');
         }
 
-        $endDate = DateTime::createFromFormat('Ymd', $endDateString);
+        $endDate = is_string($endDateString) ? DateTime::createFromFormat('Ymd', $endDateString) : false;
         $warningsFound = !empty(DateTime::getLastErrors()['warnings']);
         if (false === $endDate || $warningsFound) {
             return ValidationResult::fail('The end date must be a valid date' .

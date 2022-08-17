@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2021 Google Inc. All Rights Reserved -->
+<!-- Copyright 2022 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202111"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202111"
@@ -617,7 +617,16 @@
             &lt;td&gt;{@code active}&lt;/td&gt;
             &lt;td&gt;{@link Site#active}&lt;/td&gt;
             &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code lastModifiedApprovalStatusDateTime}&lt;/td&gt;
+            &lt;td&gt;&lt;/td&gt;
+            &lt;/tr&gt;
             &lt;/table&gt;
+            
+            Restriction: The {@code lastModifiedApprovalStatusDateTime} PQL property can only be used in a
+            top-level expression scoping the {@code filterStatement} to {@link Site}s whose {@code
+            approvalStatus} was modified on or after a specified date and time. (e.x. {@code "WHERE
+            lastModifiedApprovalStatusDateTime &gt;= '2022-01-01T00:00:00'"}).
             
             @param filterStatement a Publisher Query Language statement used to filter a set of sites
             @return the sites that match the given filter
@@ -763,7 +772,16 @@
         &lt;td&gt;{@code active}&lt;/td&gt;
         &lt;td&gt;{@link Site#active}&lt;/td&gt;
         &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code lastModifiedApprovalStatusDateTime}&lt;/td&gt;
+        &lt;td&gt;&lt;/td&gt;
+        &lt;/tr&gt;
         &lt;/table&gt;
+        
+        Restriction: The {@code lastModifiedApprovalStatusDateTime} PQL property can only be used in a
+        top-level expression scoping the {@code filterStatement} to {@link Site}s whose {@code
+        approvalStatus} was modified on or after a specified date and time. (e.x. {@code "WHERE
+        lastModifiedApprovalStatusDateTime &gt;= '2022-01-01T00:00:00'"}).
         
         @param filterStatement a Publisher Query Language statement used to filter a set of sites
         @return the sites that match the given filter

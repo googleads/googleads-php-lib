@@ -66,7 +66,7 @@ final class AdWordsHeaderHandler implements AdsHeaderHandler
             'Authorization' => sprintf(
                 'Bearer %s',
                 urlencode(
-                    $this->oAuth2TokenRefresher->getOrFetchAccessToken(
+                    (string) $this->oAuth2TokenRefresher->getOrFetchAccessToken(
                         $session->getOAuth2Credential(),
                         $httpHandler
                     )

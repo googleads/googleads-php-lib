@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2021 Google Inc. All Rights Reserved -->
+<!-- Copyright 2022 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://adwords.google.com/api/adwords/cm/v201809"
   xmlns:tns="https://adwords.google.com/api/adwords/cm/v201809"
@@ -762,7 +762,7 @@
           <documentation>
             Represents a PreferredContent criterion.
             
-            &lt;p&gt;Possible IDs: {@code 400} ({@code YOUTUBE_TOP_CONTENT}).&lt;/p&gt;
+            &lt;p&gt;Possible IDs: {@code 400} ({@code YOUTUBE_TOP_CONTENT}).
             &lt;p&gt;A criterion of this type can only be created using an ID.
             &lt;span class="constraint AdxEnabled"&gt;This is disabled for AdX when it is contained within Operators: ADD, SET.&lt;/span&gt;
           </documentation>
