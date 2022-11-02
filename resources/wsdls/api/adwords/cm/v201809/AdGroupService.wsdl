@@ -2464,8 +2464,8 @@
       <complexType name="TargetSpendBiddingScheme">
         <annotation>
           <documentation>
-            &lt;a href="https://support.google.com/adwords/answer/6268626"&gt;Target Spend&lt;/a&gt; is an automated
-            bid strategy that sets your bids to help get as many clicks as possible within your budget.
+            &lt;a href="https://support.google.com/adwords/answer/6268626"&gt;Target Spend&lt;/a&gt; is an automated bid
+            strategy that sets your bids to help get as many clicks as possible within your budget.
             &lt;span class="constraint AdxEnabled"&gt;This is disabled for AdX.&lt;/span&gt;
           </documentation>
         </annotation>
@@ -2483,9 +2483,10 @@
               <element maxOccurs="1" minOccurs="0" name="spendTarget" type="tns:Money">
                 <annotation>
                   <documentation>
-                    A spend target under which to maximize clicks. The TargetSpend bidder will
-                    attempt to spend the smaller of this value or the natural throttling spend
-                    amount. If not specified, the budget is used as the spend target.
+                    A spend target under which to maximize clicks. The TargetSpend bidder will attempt to spend the
+                    smaller of this value or the natural throttling spend amount. If not specified, the budget is
+                    used as the spend target.
+                    &lt;span class="constraint CampaignType"&gt;This field may only be set for campaign channel types: SEARCH, SHOPPING.&lt;/span&gt;
                     &lt;span class="constraint InRange"&gt;This field must be greater than or equal to 0.&lt;/span&gt;
                   </documentation>
                 </annotation>
@@ -5380,10 +5381,6 @@
           <documentation>
             Returns a list of all the ad groups specified by the selector
             from the target customer's account.
-            
-            @param serviceSelector The selector specifying the {@link AdGroup}s to return.
-            @return List of adgroups identified by the selector.
-            @throws ApiException when there is at least one error with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -5419,10 +5416,6 @@
             &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; {@link AdGroupOperation} does not support the
             {@code REMOVE} operator. To remove an ad group, set its
             {@link AdGroup#status status} to {@code REMOVED}.&lt;/p&gt;
-            
-            @param operations List of unique operations. The same ad group cannot be
-            specified in more than one operation.
-            @return The updated adgroups.
           </documentation>
         </annotation>
         <complexType>
@@ -5459,13 +5452,6 @@
             {@code labelId} must reference an existing {@linkplain Label label}.
             &lt;p&gt;{@code REMOVE} -- Removes the link between the specified {@linkplain AdGroup ad group}
             and a {@linkplain Label label}.&lt;/p&gt;
-            
-            @param operations the operations to apply.
-            @return a list of {@linkplain AdGroupLabel}s where each entry in the list is the result of
-            applying the operation in the input list with the same index. For an
-            add operation, the returned AdGroupLabel contains the AdGroupId and the LabelId.
-            In the case of a remove operation, the returned AdGroupLabel will only have AdGroupId.
-            @throws ApiException when there are one or more errors with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -5496,10 +5482,6 @@
         <annotation>
           <documentation>
             Returns the list of ad groups that match the query.
-            
-            @param query The SQL-like AWQL query string
-            @return A list of adgroups
-            @throws ApiException
           </documentation>
         </annotation>
         <complexType>
@@ -5569,10 +5551,6 @@
       <wsdl:documentation>
         Returns a list of all the ad groups specified by the selector
         from the target customer's account.
-        
-        @param serviceSelector The selector specifying the {@link AdGroup}s to return.
-        @return List of adgroups identified by the selector.
-        @throws ApiException when there is at least one error with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>
@@ -5584,10 +5562,6 @@
         &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; {@link AdGroupOperation} does not support the
         {@code REMOVE} operator. To remove an ad group, set its
         {@link AdGroup#status status} to {@code REMOVED}.&lt;/p&gt;
-        
-        @param operations List of unique operations. The same ad group cannot be
-        specified in more than one operation.
-        @return The updated adgroups.
       </wsdl:documentation>
       <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
       <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>
@@ -5602,13 +5576,6 @@
         {@code labelId} must reference an existing {@linkplain Label label}.
         &lt;p&gt;{@code REMOVE} -- Removes the link between the specified {@linkplain AdGroup ad group}
         and a {@linkplain Label label}.&lt;/p&gt;
-        
-        @param operations the operations to apply.
-        @return a list of {@linkplain AdGroupLabel}s where each entry in the list is the result of
-        applying the operation in the input list with the same index. For an
-        add operation, the returned AdGroupLabel contains the AdGroupId and the LabelId.
-        In the case of a remove operation, the returned AdGroupLabel will only have AdGroupId.
-        @throws ApiException when there are one or more errors with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:mutateLabelRequest" name="mutateLabelRequest"/>
       <wsdl:output message="tns:mutateLabelResponse" name="mutateLabelResponse"/>
@@ -5617,10 +5584,6 @@
     <wsdl:operation name="query">
       <wsdl:documentation>
         Returns the list of ad groups that match the query.
-        
-        @param query The SQL-like AWQL query string
-        @return A list of adgroups
-        @throws ApiException
       </wsdl:documentation>
       <wsdl:input message="tns:queryRequest" name="queryRequest"/>
       <wsdl:output message="tns:queryResponse" name="queryResponse"/>

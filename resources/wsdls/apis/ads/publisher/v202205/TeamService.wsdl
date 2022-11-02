@@ -1780,9 +1780,6 @@
             &lt;ul&gt;
             &lt;li&gt;{@link Team#name}&lt;/li&gt;
             &lt;/ul&gt;
-            
-            @param teams the teams to create
-            @return the created teams with their IDs filled in
           </documentation>
         </annotation>
         <complexType>
@@ -1829,10 +1826,6 @@
             &lt;td&gt;{@link Team#description}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;/table&gt;
-            
-            @param filterStatement a Publisher Query Language statement used to filter
-            a set of teams.
-            @return the teams that match the given filter
           </documentation>
         </annotation>
         <complexType>
@@ -1852,10 +1845,6 @@
         <annotation>
           <documentation>
             Performs actions on {@link Team} objects that match the given {@link Statement#query}.
-            
-            @param teamAction the action to perform
-            @param filterStatement a Publisher Query Language statement used to filter a set of teams
-            @return the result of the action performed
           </documentation>
         </annotation>
         <complexType>
@@ -1876,9 +1865,6 @@
         <annotation>
           <documentation>
             Updates the specified {@link Team} objects.
-            
-            @param teams the teams to update
-            @return the updated teams
           </documentation>
         </annotation>
         <complexType>
@@ -1947,9 +1933,6 @@
         &lt;ul&gt;
         &lt;li&gt;{@link Team#name}&lt;/li&gt;
         &lt;/ul&gt;
-        
-        @param teams the teams to create
-        @return the created teams with their IDs filled in
       </wsdl:documentation>
       <wsdl:input message="tns:createTeamsRequest" name="createTeamsRequest"/>
       <wsdl:output message="tns:createTeamsResponse" name="createTeamsResponse"/>
@@ -1978,10 +1961,6 @@
         &lt;td&gt;{@link Team#description}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;/table&gt;
-        
-        @param filterStatement a Publisher Query Language statement used to filter
-        a set of teams.
-        @return the teams that match the given filter
       </wsdl:documentation>
       <wsdl:input message="tns:getTeamsByStatementRequest" name="getTeamsByStatementRequest"/>
       <wsdl:output message="tns:getTeamsByStatementResponse" name="getTeamsByStatementResponse"/>
@@ -1990,10 +1969,6 @@
     <wsdl:operation name="performTeamAction">
       <wsdl:documentation>
         Performs actions on {@link Team} objects that match the given {@link Statement#query}.
-        
-        @param teamAction the action to perform
-        @param filterStatement a Publisher Query Language statement used to filter a set of teams
-        @return the result of the action performed
       </wsdl:documentation>
       <wsdl:input message="tns:performTeamActionRequest" name="performTeamActionRequest"/>
       <wsdl:output message="tns:performTeamActionResponse" name="performTeamActionResponse"/>
@@ -2002,9 +1977,6 @@
     <wsdl:operation name="updateTeams">
       <wsdl:documentation>
         Updates the specified {@link Team} objects.
-        
-        @param teams the teams to update
-        @return the updated teams
       </wsdl:documentation>
       <wsdl:input message="tns:updateTeamsRequest" name="updateTeamsRequest"/>
       <wsdl:output message="tns:updateTeamsResponse" name="updateTeamsResponse"/>

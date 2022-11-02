@@ -128,9 +128,6 @@ class LabelService extends \Google\AdsApi\Common\AdsSoapClient
      * </tr>
      * </table>
      *
-     *
-     * a set of labels.
-     *
      * @param \Google\AdsApi\AdManager\v202205\Statement $filterStatement
      * @return \Google\AdsApi\AdManager\v202205\LabelPage
      * @throws \Google\AdsApi\AdManager\v202205\ApiException
@@ -143,8 +140,6 @@ class LabelService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * Performs actions on {@link Label} objects that match the given
      * {@link Statement#query}.
-     *
-     * a set of labels
      *
      * @param \Google\AdsApi\AdManager\v202205\LabelAction $labelAction
      * @param \Google\AdsApi\AdManager\v202205\Statement $filterStatement

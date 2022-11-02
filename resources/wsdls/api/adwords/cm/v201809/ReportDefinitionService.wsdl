@@ -2181,14 +2181,6 @@
             header field in calls to this method as its presence will trigger an
             authorization error if the caller does not have access to the customer
             with the included ID.
-            
-            @param reportType The type of report.
-            @return The list of available report fields. Each
-            {@link ReportDefinitionField} encapsulates the field name, the
-            field data type, and the enum values (if the field's type is
-            {@code enum}).
-            @throws ApiException if a problem occurred while fetching the
-            ReportDefinitionField information.
           </documentation>
         </annotation>
         <complexType>
@@ -2261,14 +2253,6 @@
         header field in calls to this method as its presence will trigger an
         authorization error if the caller does not have access to the customer
         with the included ID.
-        
-        @param reportType The type of report.
-        @return The list of available report fields. Each
-        {@link ReportDefinitionField} encapsulates the field name, the
-        field data type, and the enum values (if the field's type is
-        {@code enum}).
-        @throws ApiException if a problem occurred while fetching the
-        ReportDefinitionField information.
       </wsdl:documentation>
       <wsdl:input message="tns:getReportFieldsRequest" name="getReportFieldsRequest"/>
       <wsdl:output message="tns:getReportFieldsResponse" name="getReportFieldsResponse"/>

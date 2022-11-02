@@ -2251,13 +2251,6 @@
         <annotation>
           <documentation>
             Loads an AssetPage containing a list of {@link Asset} objects matching the selector.
-            
-            @param selector defines which subset of all available assets to return, the sort order, and
-            which fields to include
-            
-            @return Returns a page of matching asset objects.
-            @throws com.google.ads.api.services.common.error.ApiException if errors occurred while
-            retrieving the results.
           </documentation>
         </annotation>
         <complexType>
@@ -2291,10 +2284,6 @@
           <documentation>
             Applies the list of mutate operations. For {@link AssetService}, only ADD and REMOVE operations
             are currently allowed.
-            
-            @param operations The operations to apply.
-            @return A list of {@link Asset}s where each entry in the list is the result of applying the
-            operation in the input list with the same index.
           </documentation>
         </annotation>
         <complexType>
@@ -2350,13 +2339,6 @@
     <wsdl:operation name="get">
       <wsdl:documentation>
         Loads an AssetPage containing a list of {@link Asset} objects matching the selector.
-        
-        @param selector defines which subset of all available assets to return, the sort order, and
-        which fields to include
-        
-        @return Returns a page of matching asset objects.
-        @throws com.google.ads.api.services.common.error.ApiException if errors occurred while
-        retrieving the results.
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>
@@ -2366,10 +2348,6 @@
       <wsdl:documentation>
         Applies the list of mutate operations. For {@link AssetService}, only ADD and REMOVE operations
         are currently allowed.
-        
-        @param operations The operations to apply.
-        @return A list of {@link Asset}s where each entry in the list is the result of applying the
-        operation in the input list with the same index.
       </wsdl:documentation>
       <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
       <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>

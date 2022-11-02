@@ -23,6 +23,7 @@ class OrderService extends \Google\AdsApi\Common\AdsSoapClient
       'ApproveOrders' => 'Google\\AdsApi\\AdManager\\v202208\\ApproveOrders',
       'ApproveOrdersWithoutReservationChanges' => 'Google\\AdsApi\\AdManager\\v202208\\ApproveOrdersWithoutReservationChanges',
       'ArchiveOrders' => 'Google\\AdsApi\\AdManager\\v202208\\ArchiveOrders',
+      'AssetError' => 'Google\\AdsApi\\AdManager\\v202208\\AssetError',
       'AudienceExtensionError' => 'Google\\AdsApi\\AdManager\\v202208\\AudienceExtensionError',
       'AuthenticationError' => 'Google\\AdsApi\\AdManager\\v202208\\AuthenticationError',
       'BaseCustomFieldValue' => 'Google\\AdsApi\\AdManager\\v202208\\BaseCustomFieldValue',
@@ -204,8 +205,6 @@ class OrderService extends \Google\AdsApi\Common\AdsSoapClient
      * </tr>
      * </table>
      *
-     * a set of orders
-     *
      * @param \Google\AdsApi\AdManager\v202208\Statement $filterStatement
      * @return \Google\AdsApi\AdManager\v202208\OrderPage
      * @throws \Google\AdsApi\AdManager\v202208\ApiException
@@ -218,8 +217,6 @@ class OrderService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * Performs actions on {@link Order} objects that match the given
      * {@link Statement#query}.
-     *
-     * a set of orders
      *
      * @param \Google\AdsApi\AdManager\v202208\OrderAction $orderAction
      * @param \Google\AdsApi\AdManager\v202208\Statement $filterStatement

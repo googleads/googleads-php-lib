@@ -23,6 +23,7 @@ class ForecastService extends \Google\AdsApi\Common\AdsSoapClient
       'ApiVersionError' => 'Google\\AdsApi\\AdManager\\v202205\\ApiVersionError',
       'ApplicationException' => 'Google\\AdsApi\\AdManager\\v202205\\ApplicationException',
       'AppliedLabel' => 'Google\\AdsApi\\AdManager\\v202205\\AppliedLabel',
+      'AssetError' => 'Google\\AdsApi\\AdManager\\v202205\\AssetError',
       'AudienceExtensionError' => 'Google\\AdsApi\\AdManager\\v202205\\AudienceExtensionError',
       'AuthenticationError' => 'Google\\AdsApi\\AdManager\\v202205\\AuthenticationError',
       'AvailabilityForecast' => 'Google\\AdsApi\\AdManager\\v202205\\AvailabilityForecast',
@@ -58,6 +59,7 @@ class ForecastService extends \Google\AdsApi\Common\AdsSoapClient
       'CustomCriteriaNode' => 'Google\\AdsApi\\AdManager\\v202205\\CustomCriteriaNode',
       'AudienceSegmentCriteria' => 'Google\\AdsApi\\AdManager\\v202205\\AudienceSegmentCriteria',
       'Date' => 'Google\\AdsApi\\AdManager\\v202205\\Date',
+      'DateError' => 'Google\\AdsApi\\AdManager\\v202205\\DateError',
       'DateRange' => 'Google\\AdsApi\\AdManager\\v202205\\DateRange',
       'DateTime' => 'Google\\AdsApi\\AdManager\\v202205\\DateTime',
       'DateTimeRange' => 'Google\\AdsApi\\AdManager\\v202205\\DateTimeRange',
@@ -283,9 +285,6 @@ class ForecastService extends \Google\AdsApi\Common\AdsSoapClient
      * provided request.
      *
      * <p>Calling this endpoint programmatically is only available for Ad Manager 360 networks.
-     *
-     * be returned
-     * traffic
      *
      * @param \Google\AdsApi\AdManager\v202205\TrafficDataRequest $trafficDataRequest
      * @return \Google\AdsApi\AdManager\v202205\TrafficDataResponse

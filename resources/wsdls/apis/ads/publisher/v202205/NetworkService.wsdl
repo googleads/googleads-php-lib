@@ -366,8 +366,7 @@
           <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
             <annotation>
               <documentation>
-                The unique ID of the {@code Network}. This value is readonly and is assigned
-                by Google.
+                The unique ID of the {@code Network}. This value is readonly and is assigned by Google.
               </documentation>
             </annotation>
           </element>
@@ -381,10 +380,9 @@
           <element maxOccurs="1" minOccurs="0" name="networkCode" type="xsd:string">
             <annotation>
               <documentation>
-                The network code. If the current login has access to multiple networks,
-                then the network code must be provided in the SOAP request headers for all
-                requests. Otherwise, it is optional to provide the network code in the SOAP
-                headers. This field is read-only.
+                The network code. If the current login has access to multiple networks, then the network code
+                must be provided in the SOAP request headers for all requests. Otherwise, it is optional to
+                provide the network code in the SOAP headers. This field is read-only.
               </documentation>
             </annotation>
           </element>
@@ -398,8 +396,7 @@
           <element maxOccurs="1" minOccurs="0" name="timeZone" type="xsd:string">
             <annotation>
               <documentation>
-                The time zone associated with the delivery of orders and reporting. This
-                field is read-only.
+                The time zone associated with the delivery of orders and reporting. This field is read-only.
               </documentation>
             </annotation>
           </element>
@@ -423,16 +420,16 @@
             name="effectiveRootAdUnitId" type="xsd:string">
             <annotation>
               <documentation>
-                The {@link AdUnit#id} of the top most ad unit to which descendant ad units
-                can be added. Should be used for the {@link AdUnit#parentId} when first
-                building inventory hierarchy. This field is read-only.
+                The {@link AdUnit#id} of the top most ad unit to which descendant ad units can be added. Should
+                be used for the {@link AdUnit#parentId} when first building inventory hierarchy. This field is
+                read-only.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="isTest" type="xsd:boolean">
             <annotation>
               <documentation>
-                Whether this is a test network.  This field is read-only.
+                Whether this is a test network. This field is read-only.
               </documentation>
             </annotation>
           </element>
@@ -441,7 +438,7 @@
             <annotation>
               <documentation>
                 The child networks that have been invited by, have approved, or have rejected this parent
-                network for Multiple Customer Management.
+                network for Multiple Customer Management. Ordered by an internal identifier.
                 
                 &lt;p&gt;This field is read-only
               </documentation>
@@ -2028,8 +2025,6 @@
             Intended to be used without a network code in the SOAP header when the
             login may have more than one network associated with it.
             &lt;/p&gt;
-            
-            @return the networks to which the current login has access
           </documentation>
         </annotation>
         <complexType>
@@ -2054,8 +2049,6 @@
         <annotation>
           <documentation>
             Returns the current network for which requests are being made.
-            
-            @return the network for which the user is currently making the request
           </documentation>
         </annotation>
         <complexType>
@@ -2129,9 +2122,6 @@
           <documentation>
             Updates the specified network. Currently, only the network display name can
             be updated.
-            
-            @param network the network that needs to be updated
-            @return the updated network
           </documentation>
         </annotation>
         <complexType>
@@ -2204,8 +2194,6 @@
         Intended to be used without a network code in the SOAP header when the
         login may have more than one network associated with it.
         &lt;/p&gt;
-        
-        @return the networks to which the current login has access
       </wsdl:documentation>
       <wsdl:input message="tns:getAllNetworksRequest" name="getAllNetworksRequest"/>
       <wsdl:output message="tns:getAllNetworksResponse" name="getAllNetworksResponse"/>
@@ -2214,8 +2202,6 @@
     <wsdl:operation name="getCurrentNetwork">
       <wsdl:documentation>
         Returns the current network for which requests are being made.
-        
-        @return the network for which the user is currently making the request
       </wsdl:documentation>
       <wsdl:input message="tns:getCurrentNetworkRequest" name="getCurrentNetworkRequest"/>
       <wsdl:output message="tns:getCurrentNetworkResponse" name="getCurrentNetworkResponse"/>
@@ -2264,9 +2250,6 @@
       <wsdl:documentation>
         Updates the specified network. Currently, only the network display name can
         be updated.
-        
-        @param network the network that needs to be updated
-        @return the updated network
       </wsdl:documentation>
       <wsdl:input message="tns:updateNetworkRequest" name="updateNetworkRequest"/>
       <wsdl:output message="tns:updateNetworkResponse" name="updateNetworkResponse"/>

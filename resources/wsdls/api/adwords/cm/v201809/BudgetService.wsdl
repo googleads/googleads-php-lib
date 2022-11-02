@@ -2932,10 +2932,6 @@
         <annotation>
           <documentation>
             Returns a list of budgets that match the selector.
-            
-            @return List of budgets specified by the selector.
-            @throws com.google.ads.api.services.common.error.ApiException if problems
-            occurred while retrieving results.
           </documentation>
         </annotation>
         <complexType>
@@ -2968,10 +2964,6 @@
         <annotation>
           <documentation>
             Applies the list of mutate operations.
-            
-            @param operations The operations to apply.
-            @return The modified list of Budgets, returned in the same order as &lt;code&gt;operations&lt;/code&gt;.
-            @throws ApiException
           </documentation>
         </annotation>
         <complexType>
@@ -3001,10 +2993,6 @@
         <annotation>
           <documentation>
             Returns the list of budgets that match the query.
-            
-            @param query The SQL-like AWQL query string
-            @returns A list of Budget
-            @throws ApiException when the query is invalid or there are errors processing the request.
           </documentation>
         </annotation>
         <complexType>
@@ -3064,10 +3052,6 @@
     <wsdl:operation name="get">
       <wsdl:documentation>
         Returns a list of budgets that match the selector.
-        
-        @return List of budgets specified by the selector.
-        @throws com.google.ads.api.services.common.error.ApiException if problems
-        occurred while retrieving results.
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>
@@ -3076,10 +3060,6 @@
     <wsdl:operation name="mutate">
       <wsdl:documentation>
         Applies the list of mutate operations.
-        
-        @param operations The operations to apply.
-        @return The modified list of Budgets, returned in the same order as &lt;code&gt;operations&lt;/code&gt;.
-        @throws ApiException
       </wsdl:documentation>
       <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
       <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>
@@ -3088,10 +3068,6 @@
     <wsdl:operation name="query">
       <wsdl:documentation>
         Returns the list of budgets that match the query.
-        
-        @param query The SQL-like AWQL query string
-        @returns A list of Budget
-        @throws ApiException when the query is invalid or there are errors processing the request.
       </wsdl:documentation>
       <wsdl:input message="tns:queryRequest" name="queryRequest"/>
       <wsdl:output message="tns:queryResponse" name="queryResponse"/>

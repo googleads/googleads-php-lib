@@ -146,9 +146,6 @@ class ReportService extends \Google\AdsApi\Common\AdsSoapClient
      * </tr>
      * </table>
      *
-     * should be returned.
-     * the given statement.
-     *
      * @param \Google\AdsApi\AdManager\v202202\Statement $filterStatement
      * @return \Google\AdsApi\AdManager\v202202\SavedQueryPage
      * @throws \Google\AdsApi\AdManager\v202202\ApiException

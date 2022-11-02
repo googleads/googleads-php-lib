@@ -2866,10 +2866,6 @@
         <annotation>
           <documentation>
             Returns the list of campaign groups that meet the selector criteria.
-            
-            @param selector specifying the {@link CampaignGroup}s to return.
-            @return A list of campaign groups.
-            @throws ApiException if problems occurred while fetching campaign group information.
           </documentation>
         </annotation>
         <complexType>
@@ -2902,11 +2898,6 @@
         <annotation>
           <documentation>
             Adds, updates, or deletes campaign groups.
-            
-            @param operations A list of unique operations.
-            @return The list of updated campaign groups, returned in the same order as the
-            {@code operations} array.
-            @throws ApiException if problems occurred while updating campaign group information.
           </documentation>
         </annotation>
         <complexType>
@@ -2966,10 +2957,6 @@
     <wsdl:operation name="get">
       <wsdl:documentation>
         Returns the list of campaign groups that meet the selector criteria.
-        
-        @param selector specifying the {@link CampaignGroup}s to return.
-        @return A list of campaign groups.
-        @throws ApiException if problems occurred while fetching campaign group information.
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>
@@ -2978,11 +2965,6 @@
     <wsdl:operation name="mutate">
       <wsdl:documentation>
         Adds, updates, or deletes campaign groups.
-        
-        @param operations A list of unique operations.
-        @return The list of updated campaign groups, returned in the same order as the
-        {@code operations} array.
-        @throws ApiException if problems occurred while updating campaign group information.
       </wsdl:documentation>
       <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
       <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>

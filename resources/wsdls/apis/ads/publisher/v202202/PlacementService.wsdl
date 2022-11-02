@@ -1969,9 +1969,6 @@
         <annotation>
           <documentation>
             Creates new {@link Placement} objects.
-            
-            @param placements the placements to create
-            @return the new placements, with their IDs filled in
           </documentation>
         </annotation>
         <complexType>
@@ -2031,10 +2028,6 @@
             &lt;td&gt;{@link Placement#lastModifiedDateTime}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;/table&gt;
-            
-            @param filterStatement a Publisher Query Language statement used to filter
-            a set of placements
-            @return the placements that match the given filter
           </documentation>
         </annotation>
         <complexType>
@@ -2055,11 +2048,6 @@
           <documentation>
             Performs actions on {@link Placement} objects that match the given
             {@link Statement#query}.
-            
-            @param placementAction the action to perform
-            @param filterStatement a Publisher Query Language statement used to filter
-            a set of placements
-            @return the result of the action performed
           </documentation>
         </annotation>
         <complexType>
@@ -2080,9 +2068,6 @@
         <annotation>
           <documentation>
             Updates the specified {@link Placement} objects.
-            
-            @param placements the placements to update
-            @return the updated placements
           </documentation>
         </annotation>
         <complexType>
@@ -2150,9 +2135,6 @@
     <wsdl:operation name="createPlacements">
       <wsdl:documentation>
         Creates new {@link Placement} objects.
-        
-        @param placements the placements to create
-        @return the new placements, with their IDs filled in
       </wsdl:documentation>
       <wsdl:input message="tns:createPlacementsRequest" name="createPlacementsRequest"/>
       <wsdl:output message="tns:createPlacementsResponse" name="createPlacementsResponse"/>
@@ -2193,10 +2175,6 @@
         &lt;td&gt;{@link Placement#lastModifiedDateTime}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;/table&gt;
-        
-        @param filterStatement a Publisher Query Language statement used to filter
-        a set of placements
-        @return the placements that match the given filter
       </wsdl:documentation>
       <wsdl:input message="tns:getPlacementsByStatementRequest" name="getPlacementsByStatementRequest"/>
       <wsdl:output message="tns:getPlacementsByStatementResponse" name="getPlacementsByStatementResponse"/>
@@ -2206,11 +2184,6 @@
       <wsdl:documentation>
         Performs actions on {@link Placement} objects that match the given
         {@link Statement#query}.
-        
-        @param placementAction the action to perform
-        @param filterStatement a Publisher Query Language statement used to filter
-        a set of placements
-        @return the result of the action performed
       </wsdl:documentation>
       <wsdl:input message="tns:performPlacementActionRequest" name="performPlacementActionRequest"/>
       <wsdl:output message="tns:performPlacementActionResponse" name="performPlacementActionResponse"/>
@@ -2219,9 +2192,6 @@
     <wsdl:operation name="updatePlacements">
       <wsdl:documentation>
         Updates the specified {@link Placement} objects.
-        
-        @param placements the placements to update
-        @return the updated placements
       </wsdl:documentation>
       <wsdl:input message="tns:updatePlacementsRequest" name="updatePlacementsRequest"/>
       <wsdl:output message="tns:updatePlacementsResponse" name="updatePlacementsResponse"/>

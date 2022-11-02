@@ -3421,13 +3421,6 @@
         <annotation>
           <documentation>
             Loads a TrialPage containing a list of {@link Trial} objects matching the selector.
-            
-            @param selector defines which subset of all available trials to return, the sort order, and
-            which fields to include
-            
-            @return Returns a page of matching trial objects.
-            @throws com.google.ads.api.services.common.error.ApiException if errors occurred while
-            retrieving the results.
           </documentation>
         </annotation>
         <complexType>
@@ -3461,10 +3454,6 @@
           <documentation>
             Creates new trials, updates properties and controls the life cycle of existing trials.
             See {@link TrialService} for details on the trial life cycle.
-            
-            @return Returns the list of updated Trials, in the same order as the {@code operations} list.
-            @throws com.google.ads.api.services.common.error.ApiException if errors occurred while
-            processing the request.
           </documentation>
         </annotation>
         <complexType>
@@ -3494,13 +3483,6 @@
         <annotation>
           <documentation>
             Loads a TrialPage containing a list of {@link Trial} objects matching the query.
-            
-            @param query defines which subset of all available trials to return, the sort order, and
-            which fields to include
-            
-            @return Returns a page of matching trial objects.
-            @throws com.google.ads.api.services.common.error.ApiException if errors occurred while
-            retrieving the results.
           </documentation>
         </annotation>
         <complexType>
@@ -3614,13 +3596,6 @@
     <wsdl:operation name="get">
       <wsdl:documentation>
         Loads a TrialPage containing a list of {@link Trial} objects matching the selector.
-        
-        @param selector defines which subset of all available trials to return, the sort order, and
-        which fields to include
-        
-        @return Returns a page of matching trial objects.
-        @throws com.google.ads.api.services.common.error.ApiException if errors occurred while
-        retrieving the results.
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>
@@ -3630,10 +3605,6 @@
       <wsdl:documentation>
         Creates new trials, updates properties and controls the life cycle of existing trials.
         See {@link TrialService} for details on the trial life cycle.
-        
-        @return Returns the list of updated Trials, in the same order as the {@code operations} list.
-        @throws com.google.ads.api.services.common.error.ApiException if errors occurred while
-        processing the request.
       </wsdl:documentation>
       <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
       <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>
@@ -3642,13 +3613,6 @@
     <wsdl:operation name="query">
       <wsdl:documentation>
         Loads a TrialPage containing a list of {@link Trial} objects matching the query.
-        
-        @param query defines which subset of all available trials to return, the sort order, and
-        which fields to include
-        
-        @return Returns a page of matching trial objects.
-        @throws com.google.ads.api.services.common.error.ApiException if errors occurred while
-        retrieving the results.
       </wsdl:documentation>
       <wsdl:input message="tns:queryRequest" name="queryRequest"/>
       <wsdl:output message="tns:queryResponse" name="queryResponse"/>

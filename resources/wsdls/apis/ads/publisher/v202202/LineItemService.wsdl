@@ -302,6 +302,26 @@
           </extension>
         </complexContent>
       </complexType>
+      <complexType name="AssetError">
+        <annotation>
+          <documentation>
+            Lists all errors associated with assets.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:AssetError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
       <complexType name="AudienceExtensionError">
         <annotation>
           <documentation>
@@ -4704,6 +4724,85 @@
               <documentation>
                 Indicates that the operation is not allowed in the version the request
                 was made in.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="AssetError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="NON_UNIQUE_NAME">
+            <annotation>
+              <documentation>
+                An asset name must be unique across advertiser.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FILE_NAME_TOO_LONG">
+            <annotation>
+              <documentation>
+                The file name is too long.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FILE_SIZE_TOO_LARGE">
+            <annotation>
+              <documentation>
+                The file size is too large.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_REQUIRED_DYNAMIC_ALLOCATION_CLIENT">
+            <annotation>
+              <documentation>
+                Required client code is not present in the code snippet.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_REQUIRED_DYNAMIC_ALLOCATION_HEIGHT">
+            <annotation>
+              <documentation>
+                Required height is not present in the code snippet.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_REQUIRED_DYNAMIC_ALLOCATION_WIDTH">
+            <annotation>
+              <documentation>
+                Required width is not present in the code snippet.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_REQUIRED_DYNAMIC_ALLOCATION_FORMAT">
+            <annotation>
+              <documentation>
+                Required format is not present in the mobile code snippet.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_CODE_SNIPPET_PARAMETER_VALUE">
+            <annotation>
+              <documentation>
+                The parameter value in the code snippet is invalid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_ASSET_ID">
+            <annotation>
+              <documentation>
+                Invalid asset Id.
               </documentation>
             </annotation>
           </enumeration>
@@ -10865,9 +10964,6 @@
         <annotation>
           <documentation>
             Creates new {@link LineItem} objects.
-            
-            @param lineItems the line items to create
-            @return the created line items with their IDs filled in
           </documentation>
         </annotation>
         <complexType>
@@ -11026,10 +11122,6 @@
             &lt;/tr&gt;
             &lt;/tbody&gt;
             &lt;/table&gt;
-            
-            @param filterStatement a Publisher Query Language statement used to filter
-            a set of line items.
-            @return the line items that match the given filter
           </documentation>
         </annotation>
         <complexType>
@@ -11050,11 +11142,6 @@
           <documentation>
             Performs actions on {@link LineItem} objects that match the given
             {@link Statement#query}.
-            
-            @param lineItemAction the action to perform
-            @param filterStatement a Publisher Query Language statement used to filter
-            a set of line items
-            @return the result of the action performed
           </documentation>
         </annotation>
         <complexType>
@@ -11075,9 +11162,6 @@
         <annotation>
           <documentation>
             Updates the specified {@link LineItem} objects.
-            
-            @param lineItems the line items to update
-            @return the updated line items
           </documentation>
         </annotation>
         <complexType>
@@ -11154,9 +11238,6 @@
     <wsdl:operation name="createLineItems">
       <wsdl:documentation>
         Creates new {@link LineItem} objects.
-        
-        @param lineItems the line items to create
-        @return the created line items with their IDs filled in
       </wsdl:documentation>
       <wsdl:input message="tns:createLineItemsRequest" name="createLineItemsRequest"/>
       <wsdl:output message="tns:createLineItemsResponse" name="createLineItemsResponse"/>
@@ -11296,10 +11377,6 @@
         &lt;/tr&gt;
         &lt;/tbody&gt;
         &lt;/table&gt;
-        
-        @param filterStatement a Publisher Query Language statement used to filter
-        a set of line items.
-        @return the line items that match the given filter
       </wsdl:documentation>
       <wsdl:input message="tns:getLineItemsByStatementRequest" name="getLineItemsByStatementRequest"/>
       <wsdl:output message="tns:getLineItemsByStatementResponse" name="getLineItemsByStatementResponse"/>
@@ -11309,11 +11386,6 @@
       <wsdl:documentation>
         Performs actions on {@link LineItem} objects that match the given
         {@link Statement#query}.
-        
-        @param lineItemAction the action to perform
-        @param filterStatement a Publisher Query Language statement used to filter
-        a set of line items
-        @return the result of the action performed
       </wsdl:documentation>
       <wsdl:input message="tns:performLineItemActionRequest" name="performLineItemActionRequest"/>
       <wsdl:output message="tns:performLineItemActionResponse" name="performLineItemActionResponse"/>
@@ -11322,9 +11394,6 @@
     <wsdl:operation name="updateLineItems">
       <wsdl:documentation>
         Updates the specified {@link LineItem} objects.
-        
-        @param lineItems the line items to update
-        @return the updated line items
       </wsdl:documentation>
       <wsdl:input message="tns:updateLineItemsRequest" name="updateLineItemsRequest"/>
       <wsdl:output message="tns:updateLineItemsResponse" name="updateLineItemsResponse"/>

@@ -28,6 +28,7 @@ class SuggestedAdUnitService extends \Google\AdsApi\Common\AdsSoapClient
       'DateTime' => 'Google\\AdsApi\\AdManager\\v202208\\DateTime',
       'DateTimeValue' => 'Google\\AdsApi\\AdManager\\v202208\\DateTimeValue',
       'DateValue' => 'Google\\AdsApi\\AdManager\\v202208\\DateValue',
+      'EntityLimitReachedError' => 'Google\\AdsApi\\AdManager\\v202208\\EntityLimitReachedError',
       'FeatureError' => 'Google\\AdsApi\\AdManager\\v202208\\FeatureError',
       'FieldPathElement' => 'Google\\AdsApi\\AdManager\\v202208\\FieldPathElement',
       'InternalApiError' => 'Google\\AdsApi\\AdManager\\v202208\\InternalApiError',
@@ -105,8 +106,6 @@ class SuggestedAdUnitService extends \Google\AdsApi\Common\AdsSoapClient
      * <p><strong>Note:</strong> After API version 201311, the {@code id} field will only be
      * numerical.
      *
-     * a set of suggested ad units
-     *
      * @param \Google\AdsApi\AdManager\v202208\Statement $filterStatement
      * @return \Google\AdsApi\AdManager\v202208\SuggestedAdUnitPage
      * @throws \Google\AdsApi\AdManager\v202208\ApiException
@@ -133,8 +132,6 @@ class SuggestedAdUnitService extends \Google\AdsApi\Common\AdsSoapClient
      * <td>{@link SuggestedAdUnit#numRequests}</td>
      * </tr>
      * </table>
-     *
-     * a set of suggested ad units
      *
      * @param \Google\AdsApi\AdManager\v202208\SuggestedAdUnitAction $suggestedAdUnitAction
      * @param \Google\AdsApi\AdManager\v202208\Statement $filterStatement

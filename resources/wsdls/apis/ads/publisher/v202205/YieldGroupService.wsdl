@@ -1497,9 +1497,6 @@
         <annotation>
           <documentation>
             Creates yield groups in bulk.
-            
-            @param yieldGroups the groups to create
-            @return the created groups
           </documentation>
         </annotation>
         <complexType>
@@ -1527,9 +1524,6 @@
         <annotation>
           <documentation>
             Gets a page of yield groups, with child tags, filtered by the given statement.
-            
-            @param statement the statement used to filter yield groups.
-            @return the page of yield groups
           </documentation>
         </annotation>
         <complexType>
@@ -1566,9 +1560,6 @@
         <annotation>
           <documentation>
             Updates a list of yield groups.
-            
-            @param yieldGroups the groups to update
-            @return the updated groups
           </documentation>
         </annotation>
         <complexType>
@@ -1626,9 +1617,6 @@
     <wsdl:operation name="createYieldGroups">
       <wsdl:documentation>
         Creates yield groups in bulk.
-        
-        @param yieldGroups the groups to create
-        @return the created groups
       </wsdl:documentation>
       <wsdl:input message="tns:createYieldGroupsRequest" name="createYieldGroupsRequest"/>
       <wsdl:output message="tns:createYieldGroupsResponse" name="createYieldGroupsResponse"/>
@@ -1637,9 +1625,6 @@
     <wsdl:operation name="getYieldGroupsByStatement">
       <wsdl:documentation>
         Gets a page of yield groups, with child tags, filtered by the given statement.
-        
-        @param statement the statement used to filter yield groups.
-        @return the page of yield groups
       </wsdl:documentation>
       <wsdl:input message="tns:getYieldGroupsByStatementRequest" name="getYieldGroupsByStatementRequest"/>
       <wsdl:output message="tns:getYieldGroupsByStatementResponse" name="getYieldGroupsByStatementResponse"/>
@@ -1656,9 +1641,6 @@
     <wsdl:operation name="updateYieldGroups">
       <wsdl:documentation>
         Updates a list of yield groups.
-        
-        @param yieldGroups the groups to update
-        @return the updated groups
       </wsdl:documentation>
       <wsdl:input message="tns:updateYieldGroupsRequest" name="updateYieldGroupsRequest"/>
       <wsdl:output message="tns:updateYieldGroupsResponse" name="updateYieldGroupsResponse"/>

@@ -2815,10 +2815,6 @@
             In the result, the returned {@link LandscapePoint}s are grouped into
             {@link AdGroupBidLandscape}s by their ad groups, and numberResults of paging limits the total
             number of {@link LandscapePoint}s instead of number of {@link AdGroupBidLandscape}s.
-            
-            @param serviceSelector Selects the entities to return bid landscapes for.
-            @return A list of bid landscapes.
-            @throws ApiException when there is at least one error with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -2855,10 +2851,6 @@
             {@link CriterionBidLandscape}s by their campaign id and criterion id, and numberResults
             of paging limits the total number of {@link LandscapePoint}s instead of number of
             {@link CriterionBidLandscape}s.
-            
-            @param serviceSelector Selects the entities to return bid landscapes for.
-            @return A list of bid landscapes.
-            @throws ApiException when there is at least one error with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -2887,10 +2879,6 @@
             In the result, the returned {@link LandscapePoint}s are grouped into
             {@link CriterionBidLandscape}s by their criteria, and numberResults of paging limits the total
             number of {@link LandscapePoint}s instead of number of {@link CriterionBidLandscape}s.
-            
-            @param serviceSelector Selects the entities to return bid landscapes for.
-            @return A list of bid landscapes.
-            @throws ApiException when there is at least one error with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -2916,10 +2904,6 @@
         <annotation>
           <documentation>
             Returns a list of domain categories that can be used to create {@link WebPage} criterion.
-            
-            @param serviceSelector Selects the entities to return domain categories for.
-            @return A list of domain categories.
-            @throws ApiException when there is at least one error with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -2948,10 +2932,6 @@
             result, the returned {@link LandscapePoint}s are grouped into {@link AdGroupBidLandscape}s
             by their ad groups, and numberResults of paging limits the total number of
             {@link LandscapePoint}s instead of number of {@link AdGroupBidLandscape}s.
-            
-            @param query The SQL-like AWQL query string.
-            @return A list of bid landscapes.
-            @throws ApiException if problems occur while parsing the query or fetching bid landscapes.
           </documentation>
         </annotation>
         <complexType>
@@ -2981,10 +2961,6 @@
             {@link CriterionBidLandscape}s by their campaign id and criterion id, and numberResults
             of paging limits the total number of {@link LandscapePoint}s instead of number of
             {@link CriterionBidLandscape}s.
-            
-            @param query The SQL-like AWQL query string.
-            @return A list of bid landscapes.
-            @throws ApiException if problems occur while parsing the query or fetching bid landscapes.
           </documentation>
         </annotation>
         <complexType>
@@ -3013,10 +2989,6 @@
             result, the returned {@link LandscapePoint}s are grouped into {@link CriterionBidLandscape}s
             by their criteria, and numberResults of paging limits the total number of
             {@link LandscapePoint}s instead of number of {@link CriterionBidLandscape}s.
-            
-            @param query The SQL-like AWQL query string.
-            @return A list of bid landscapes.
-            @throws ApiException if problems occur while parsing the query or fetching bid landscapes.
           </documentation>
         </annotation>
         <complexType>
@@ -3042,11 +3014,6 @@
         <annotation>
           <documentation>
             Returns a list of domain categories that can be used to create {@link WebPage} criterion.
-            
-            @param query The SQL-like AWQL query string.
-            @return A list of domain categories.
-            @throws ApiException if problems occur while parsing the query
-            or fetching domain categories.
           </documentation>
         </annotation>
         <complexType>
@@ -3140,10 +3107,6 @@
         In the result, the returned {@link LandscapePoint}s are grouped into
         {@link AdGroupBidLandscape}s by their ad groups, and numberResults of paging limits the total
         number of {@link LandscapePoint}s instead of number of {@link AdGroupBidLandscape}s.
-        
-        @param serviceSelector Selects the entities to return bid landscapes for.
-        @return A list of bid landscapes.
-        @throws ApiException when there is at least one error with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:getAdGroupBidLandscapeRequest" name="getAdGroupBidLandscapeRequest"/>
       <wsdl:output message="tns:getAdGroupBidLandscapeResponse" name="getAdGroupBidLandscapeResponse"/>
@@ -3156,10 +3119,6 @@
         {@link CriterionBidLandscape}s by their campaign id and criterion id, and numberResults
         of paging limits the total number of {@link LandscapePoint}s instead of number of
         {@link CriterionBidLandscape}s.
-        
-        @param serviceSelector Selects the entities to return bid landscapes for.
-        @return A list of bid landscapes.
-        @throws ApiException when there is at least one error with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:getCampaignCriterionBidLandscapeRequest" name="getCampaignCriterionBidLandscapeRequest"/>
       <wsdl:output
@@ -3172,10 +3131,6 @@
         In the result, the returned {@link LandscapePoint}s are grouped into
         {@link CriterionBidLandscape}s by their criteria, and numberResults of paging limits the total
         number of {@link LandscapePoint}s instead of number of {@link CriterionBidLandscape}s.
-        
-        @param serviceSelector Selects the entities to return bid landscapes for.
-        @return A list of bid landscapes.
-        @throws ApiException when there is at least one error with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:getCriterionBidLandscapeRequest" name="getCriterionBidLandscapeRequest"/>
       <wsdl:output message="tns:getCriterionBidLandscapeResponse" name="getCriterionBidLandscapeResponse"/>
@@ -3184,10 +3139,6 @@
     <wsdl:operation name="getDomainCategory">
       <wsdl:documentation>
         Returns a list of domain categories that can be used to create {@link WebPage} criterion.
-        
-        @param serviceSelector Selects the entities to return domain categories for.
-        @return A list of domain categories.
-        @throws ApiException when there is at least one error with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:getDomainCategoryRequest" name="getDomainCategoryRequest"/>
       <wsdl:output message="tns:getDomainCategoryResponse" name="getDomainCategoryResponse"/>
@@ -3199,10 +3150,6 @@
         result, the returned {@link LandscapePoint}s are grouped into {@link AdGroupBidLandscape}s
         by their ad groups, and numberResults of paging limits the total number of
         {@link LandscapePoint}s instead of number of {@link AdGroupBidLandscape}s.
-        
-        @param query The SQL-like AWQL query string.
-        @return A list of bid landscapes.
-        @throws ApiException if problems occur while parsing the query or fetching bid landscapes.
       </wsdl:documentation>
       <wsdl:input message="tns:queryAdGroupBidLandscapeRequest" name="queryAdGroupBidLandscapeRequest"/>
       <wsdl:output message="tns:queryAdGroupBidLandscapeResponse" name="queryAdGroupBidLandscapeResponse"/>
@@ -3215,10 +3162,6 @@
         {@link CriterionBidLandscape}s by their campaign id and criterion id, and numberResults
         of paging limits the total number of {@link LandscapePoint}s instead of number of
         {@link CriterionBidLandscape}s.
-        
-        @param query The SQL-like AWQL query string.
-        @return A list of bid landscapes.
-        @throws ApiException if problems occur while parsing the query or fetching bid landscapes.
       </wsdl:documentation>
       <wsdl:input
         message="tns:queryCampaignCriterionBidLandscapeRequest" name="queryCampaignCriterionBidLandscapeRequest"/>
@@ -3232,10 +3175,6 @@
         result, the returned {@link LandscapePoint}s are grouped into {@link CriterionBidLandscape}s
         by their criteria, and numberResults of paging limits the total number of
         {@link LandscapePoint}s instead of number of {@link CriterionBidLandscape}s.
-        
-        @param query The SQL-like AWQL query string.
-        @return A list of bid landscapes.
-        @throws ApiException if problems occur while parsing the query or fetching bid landscapes.
       </wsdl:documentation>
       <wsdl:input message="tns:queryCriterionBidLandscapeRequest" name="queryCriterionBidLandscapeRequest"/>
       <wsdl:output message="tns:queryCriterionBidLandscapeResponse" name="queryCriterionBidLandscapeResponse"/>
@@ -3244,11 +3183,6 @@
     <wsdl:operation name="queryDomainCategory">
       <wsdl:documentation>
         Returns a list of domain categories that can be used to create {@link WebPage} criterion.
-        
-        @param query The SQL-like AWQL query string.
-        @return A list of domain categories.
-        @throws ApiException if problems occur while parsing the query
-        or fetching domain categories.
       </wsdl:documentation>
       <wsdl:input message="tns:queryDomainCategoryRequest" name="queryDomainCategoryRequest"/>
       <wsdl:output message="tns:queryDomainCategoryResponse" name="queryDomainCategoryResponse"/>

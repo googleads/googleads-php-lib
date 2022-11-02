@@ -318,6 +318,21 @@
           </extension>
         </complexContent>
       </complexType>
+      <complexType name="EntityLimitReachedError">
+        <annotation>
+          <documentation>
+            An error that occurs when creating an entity if the limit on the number of allowed entities for
+            a network has already been reached.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:EntityLimitReachedError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
       <complexType name="FeatureError">
         <annotation>
           <documentation>
@@ -1296,6 +1311,99 @@
           </enumeration>
         </restriction>
       </simpleType>
+      <simpleType name="EntityLimitReachedError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the entity limit reached error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="CUSTOM_TARGETING_VALUES_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of custom targeting values exceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="AD_EXCLUSION_RULES_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of ad exclusion rules exceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FIRST_PARTY_AUDIENCE_SEGMENTS_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of first party audience segments exceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PLACEMENTS_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of active placements exceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="LINE_ITEMS_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of line items excceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ACTIVE_LINE_ITEMS_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of active line items exceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DAI_ENCODING_PROFILES_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of not-archived encoding profiles exceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TRAFFIC_FORECAST_SEGMENTS_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of traffic forecast segments exceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FORECAST_ADJUSTMENTS_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of forecast adjustments exceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ACTIVE_EXPERIMENTS_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of active experiments exceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="SITES_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of sites exceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
       <simpleType name="EnvironmentType">
         <annotation>
           <documentation>
@@ -1854,10 +1962,6 @@
             
             &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; After API version 201311, the {@code id} field will only be
             numerical.
-            
-            @param filterStatement a Publisher Query Language statement used to filter
-            a set of suggested ad units
-            @return the suggested ad units that match the given filter
           </documentation>
         </annotation>
         <complexType>
@@ -1899,11 +2003,6 @@
             &lt;td&gt;{@link SuggestedAdUnit#numRequests}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;/table&gt;
-            
-            @param suggestedAdUnitAction the action to perform
-            @param filterStatement a Publisher Query Language statement used to filter
-            a set of suggested ad units
-            @return the result of the action performed
           </documentation>
         </annotation>
         <complexType>
@@ -1950,19 +2049,19 @@
     <wsdl:documentation>
       This service provides operations for retrieving and approving {@link SuggestedAdUnit} objects.
       
-      &lt;p&gt;Publishers may create ad tags that lack a corresponding ad unit defined in DFP, in
-      order to gather information about potential ads without needing to create dummy ad units and
-      make them available for targeting in line items.  Any undefined ad unit to receive more than ten
-      serving requests in the past week is treated as a 'suggested ad unit'. These can be queried by
-      the client and selectively approved.  Approval causes a new ad unit to be created based on the
-      suggested ad unit. Unapproved suggested ad units cease to exist whenever their corresponding ad
-      tag has been served fewer than ten times in the past seven days.
+      &lt;p&gt;Publishers may create ad tags that lack a corresponding ad unit defined in DFP, in order to
+      gather information about potential ads without needing to create dummy ad units and make them
+      available for targeting in line items. Any undefined ad unit to receive more than ten serving
+      requests in the past week is treated as a 'suggested ad unit'. These can be queried by the client
+      and selectively approved. Approval causes a new ad unit to be created based on the suggested ad
+      unit. Unapproved suggested ad units cease to exist whenever their corresponding ad tag has been
+      served fewer than ten times in the past seven days.
       
-      &lt;p&gt;This service is only available to Premium publishers.  Before use, suggested ad units must be
-      enabled for the client's network.  This can be done in the UI: in the Inventory tab, click
+      &lt;p&gt;This service is only available to Premium publishers. Before use, suggested ad units must be
+      enabled for the client's network. This can be done in the UI: in the Inventory tab, click
       "Network settings" in the left-hand panel, then enable the checkbox "Get suggestions for new ad
-      units."  If suggested ad units are not enabled, then {@link #getSuggestedAdUnitsByStatement}
-      will always return an empty page.
+      units." If suggested ad units are not enabled, then {@link #getSuggestedAdUnitsByStatement} will
+      always return an empty page.
     </wsdl:documentation>
     <wsdl:operation name="getSuggestedAdUnitsByStatement">
       <wsdl:documentation>
@@ -1986,10 +2085,6 @@
         
         &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; After API version 201311, the {@code id} field will only be
         numerical.
-        
-        @param filterStatement a Publisher Query Language statement used to filter
-        a set of suggested ad units
-        @return the suggested ad units that match the given filter
       </wsdl:documentation>
       <wsdl:input message="tns:getSuggestedAdUnitsByStatementRequest" name="getSuggestedAdUnitsByStatementRequest"/>
       <wsdl:output message="tns:getSuggestedAdUnitsByStatementResponse" name="getSuggestedAdUnitsByStatementResponse"/>
@@ -2013,11 +2108,6 @@
         &lt;td&gt;{@link SuggestedAdUnit#numRequests}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;/table&gt;
-        
-        @param suggestedAdUnitAction the action to perform
-        @param filterStatement a Publisher Query Language statement used to filter
-        a set of suggested ad units
-        @return the result of the action performed
       </wsdl:documentation>
       <wsdl:input message="tns:performSuggestedAdUnitActionRequest" name="performSuggestedAdUnitActionRequest"/>
       <wsdl:output message="tns:performSuggestedAdUnitActionResponse" name="performSuggestedAdUnitActionResponse"/>

@@ -170,9 +170,6 @@ class CustomFieldService extends \Google\AdsApi\Common\AdsSoapClient
      * </tr>
      * </table>
      *
-     *
-     * a set of custom fields.
-     *
      * @param \Google\AdsApi\AdManager\v202208\Statement $filterStatement
      * @return \Google\AdsApi\AdManager\v202208\CustomFieldPage
      * @throws \Google\AdsApi\AdManager\v202208\ApiException
@@ -185,8 +182,6 @@ class CustomFieldService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * Performs actions on {@link CustomField} objects that match the given
      * {@link Statement#query}.
-     *
-     * a set of custom fields
      *
      * @param \Google\AdsApi\AdManager\v202208\CustomFieldAction $customFieldAction
      * @param \Google\AdsApi\AdManager\v202208\Statement $filterStatement

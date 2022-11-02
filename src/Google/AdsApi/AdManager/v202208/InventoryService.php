@@ -170,8 +170,6 @@ class InventoryService extends \Google\AdsApi\Common\AdsSoapClient
      * </tr>
      * </table>
      *
-     * a set of ad units
-     *
      * @param \Google\AdsApi\AdManager\v202208\Statement $filterStatement
      * @return \Google\AdsApi\AdManager\v202208\AdUnitPage
      * @throws \Google\AdsApi\AdManager\v202208\ApiException
@@ -184,8 +182,6 @@ class InventoryService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * Performs actions on {@link AdUnit} objects that match the given
      * {@link Statement#query}.
-     *
-     * a set of ad units
      *
      * @param \Google\AdsApi\AdManager\v202208\AdUnitAction $adUnitAction
      * @param \Google\AdsApi\AdManager\v202208\Statement $filterStatement

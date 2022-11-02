@@ -190,8 +190,6 @@ class LiveStreamEventService extends \Google\AdsApi\Common\AdsSoapClient
      * </tr>
      * </table>
      *
-     * list of live stream events
-     *
      * @param \Google\AdsApi\AdManager\v202205\Statement $filterStatement
      * @return \Google\AdsApi\AdManager\v202205\LiveStreamEventPage
      * @throws \Google\AdsApi\AdManager\v202205\ApiException
@@ -236,8 +234,6 @@ class LiveStreamEventService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * Performs actions on {@link LiveStreamEvent} objects that match the given
      * {@link Statement#query}.
-     *
-     * a set of live stream events
      *
      * @param \Google\AdsApi\AdManager\v202205\LiveStreamEventAction $liveStreamEventAction
      * @param \Google\AdsApi\AdManager\v202205\Statement $filterStatement

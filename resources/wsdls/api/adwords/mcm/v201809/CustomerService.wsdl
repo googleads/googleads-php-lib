@@ -2576,9 +2576,6 @@
           <documentation>
             Retrieves the list of service links for the authorized customer.
             See {@link ServiceType} for information on the various linking types supported.
-            
-            @param selector describing which links to retrieve
-            @throws ApiException
           </documentation>
         </annotation>
         <complexType>
@@ -2608,9 +2605,6 @@
             &lt;p&gt;While there are a limited set of properties available to update, please read this
             &lt;a href="https://support.google.com/analytics/answer/1033981"&gt;help center article
             on auto-tagging&lt;/a&gt; before updating {@code customer.autoTaggingEnabled}.
-            
-            @param customer the requested updated value for the customer.
-            @throws ApiException
           </documentation>
         </annotation>
         <complexType>
@@ -2637,9 +2631,6 @@
           <documentation>
             Modifies links to other services for the authorized customer.
             See {@link ServiceType} for information on the various linking types supported.
-            
-            @param operations to perform
-            @throws ApiException
           </documentation>
         </annotation>
         <complexType>
@@ -2725,9 +2716,6 @@
       <wsdl:documentation>
         Retrieves the list of service links for the authorized customer.
         See {@link ServiceType} for information on the various linking types supported.
-        
-        @param selector describing which links to retrieve
-        @throws ApiException
       </wsdl:documentation>
       <wsdl:input message="tns:getServiceLinksRequest" name="getServiceLinksRequest"/>
       <wsdl:output message="tns:getServiceLinksResponse" name="getServiceLinksResponse"/>
@@ -2740,9 +2728,6 @@
         &lt;p&gt;While there are a limited set of properties available to update, please read this
         &lt;a href="https://support.google.com/analytics/answer/1033981"&gt;help center article
         on auto-tagging&lt;/a&gt; before updating {@code customer.autoTaggingEnabled}.
-        
-        @param customer the requested updated value for the customer.
-        @throws ApiException
       </wsdl:documentation>
       <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
       <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>
@@ -2752,9 +2737,6 @@
       <wsdl:documentation>
         Modifies links to other services for the authorized customer.
         See {@link ServiceType} for information on the various linking types supported.
-        
-        @param operations to perform
-        @throws ApiException
       </wsdl:documentation>
       <wsdl:input message="tns:mutateServiceLinksRequest" name="mutateServiceLinksRequest"/>
       <wsdl:output message="tns:mutateServiceLinksResponse" name="mutateServiceLinksResponse"/>

@@ -2082,9 +2082,6 @@
         <annotation>
           <documentation>
             Creates new {@link DaiEncodingProfile} objects.
-            
-            @param daiEncodingProfiles the profiles to create
-            @return the created profiles with their IDs filled in
           </documentation>
         </annotation>
         <complexType>
@@ -2131,9 +2128,6 @@
             &lt;td&gt;{@link DaiEncodingProfile#name}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;/table&gt;
-            
-            @param filterStatement a Publisher Query Language statement to filter a list of profiles
-            @return the profiles that match the filter
           </documentation>
         </annotation>
         <complexType>
@@ -2154,10 +2148,6 @@
           <documentation>
             Performs actions on {@link DaiEncodingProfile} objects that match the given {@link
             Statement#query}.
-            
-            @param daiEncodingProfileAction the action to perform
-            @param filterStatement a Publisher Query Language statement used to filter a set of profiles
-            @return the result of the action performed
           </documentation>
         </annotation>
         <complexType>
@@ -2179,10 +2169,6 @@
         <annotation>
           <documentation>
             Updates the specified {@link DaiEncodingProfile} objects.
-            
-            @param daiEncodingProfiles the content profiles to update
-            @return the updated profiles
-            @throws ApiException if there is an error updating the profiles
           </documentation>
         </annotation>
         <complexType>
@@ -2246,9 +2232,6 @@
     <wsdl:operation name="createDaiEncodingProfiles">
       <wsdl:documentation>
         Creates new {@link DaiEncodingProfile} objects.
-        
-        @param daiEncodingProfiles the profiles to create
-        @return the created profiles with their IDs filled in
       </wsdl:documentation>
       <wsdl:input message="tns:createDaiEncodingProfilesRequest" name="createDaiEncodingProfilesRequest"/>
       <wsdl:output message="tns:createDaiEncodingProfilesResponse" name="createDaiEncodingProfilesResponse"/>
@@ -2276,9 +2259,6 @@
         &lt;td&gt;{@link DaiEncodingProfile#name}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;/table&gt;
-        
-        @param filterStatement a Publisher Query Language statement to filter a list of profiles
-        @return the profiles that match the filter
       </wsdl:documentation>
       <wsdl:input message="tns:getDaiEncodingProfilesByStatementRequest" name="getDaiEncodingProfilesByStatementRequest"/>
       <wsdl:output
@@ -2289,10 +2269,6 @@
       <wsdl:documentation>
         Performs actions on {@link DaiEncodingProfile} objects that match the given {@link
         Statement#query}.
-        
-        @param daiEncodingProfileAction the action to perform
-        @param filterStatement a Publisher Query Language statement used to filter a set of profiles
-        @return the result of the action performed
       </wsdl:documentation>
       <wsdl:input message="tns:performDaiEncodingProfileActionRequest" name="performDaiEncodingProfileActionRequest"/>
       <wsdl:output message="tns:performDaiEncodingProfileActionResponse" name="performDaiEncodingProfileActionResponse"/>
@@ -2301,10 +2277,6 @@
     <wsdl:operation name="updateDaiEncodingProfiles">
       <wsdl:documentation>
         Updates the specified {@link DaiEncodingProfile} objects.
-        
-        @param daiEncodingProfiles the content profiles to update
-        @return the updated profiles
-        @throws ApiException if there is an error updating the profiles
       </wsdl:documentation>
       <wsdl:input message="tns:updateDaiEncodingProfilesRequest" name="updateDaiEncodingProfilesRequest"/>
       <wsdl:output message="tns:updateDaiEncodingProfilesResponse" name="updateDaiEncodingProfilesResponse"/>

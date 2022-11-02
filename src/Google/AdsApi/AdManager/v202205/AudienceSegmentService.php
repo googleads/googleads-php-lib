@@ -171,8 +171,6 @@ class AudienceSegmentService extends \Google\AdsApi\Common\AdsSoapClient
      * </tr>
      * </table>
      *
-     * segments (the only supported operator is AND)
-     *
      * @param \Google\AdsApi\AdManager\v202205\Statement $filterStatement
      * @return \Google\AdsApi\AdManager\v202205\AudienceSegmentPage
      * @throws \Google\AdsApi\AdManager\v202205\ApiException
@@ -185,8 +183,6 @@ class AudienceSegmentService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * Performs the given {@link AudienceSegmentAction} on the set of segments identified by the given
      * statement.
-     *
-     * segments (the only supported operator is AND)
      *
      * @param \Google\AdsApi\AdManager\v202205\AudienceSegmentAction $action
      * @param \Google\AdsApi\AdManager\v202205\Statement $filterStatement

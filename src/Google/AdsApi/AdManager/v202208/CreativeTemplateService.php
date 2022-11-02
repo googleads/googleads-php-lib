@@ -113,8 +113,6 @@ class CreativeTemplateService extends \Google\AdsApi\Common\AdsSoapClient
      * </tr>
      * </table>
      *
-     * a set of creative templates.
-     *
      * @param \Google\AdsApi\AdManager\v202208\Statement $filterStatement
      * @return \Google\AdsApi\AdManager\v202208\CreativeTemplatePage
      * @throws \Google\AdsApi\AdManager\v202208\ApiException

@@ -158,8 +158,6 @@ class CustomTargetingService extends \Google\AdsApi\Common\AdsSoapClient
      * </tr>
      * </table>
      *
-     * a set of custom targeting keys
-     *
      * @param \Google\AdsApi\AdManager\v202208\Statement $filterStatement
      * @return \Google\AdsApi\AdManager\v202208\CustomTargetingKeyPage
      * @throws \Google\AdsApi\AdManager\v202208\ApiException
@@ -220,8 +218,6 @@ class CustomTargetingService extends \Google\AdsApi\Common\AdsSoapClient
      * </tr>
      * </table>
      *
-     * a set of custom targeting values
-     *
      * @param \Google\AdsApi\AdManager\v202208\Statement $filterStatement
      * @return \Google\AdsApi\AdManager\v202208\CustomTargetingValuePage
      * @throws \Google\AdsApi\AdManager\v202208\ApiException
@@ -234,8 +230,6 @@ class CustomTargetingService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * Performs actions on {@link CustomTargetingKey} objects that match the given
      * {@link Statement#query}.
-     *
-     * a set of custom targeting keys
      *
      * @param \Google\AdsApi\AdManager\v202208\CustomTargetingKeyAction $customTargetingKeyAction
      * @param \Google\AdsApi\AdManager\v202208\Statement $filterStatement
@@ -250,8 +244,6 @@ class CustomTargetingService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * Performs actions on {@link CustomTargetingValue} objects that match the
      * given {@link Statement#query}.
-     *
-     * a set of ad units
      *
      * @param \Google\AdsApi\AdManager\v202208\CustomTargetingValueAction $customTargetingValueAction
      * @param \Google\AdsApi\AdManager\v202208\Statement $filterStatement

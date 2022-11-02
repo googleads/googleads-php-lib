@@ -124,8 +124,6 @@ class TeamService extends \Google\AdsApi\Common\AdsSoapClient
      * </tr>
      * </table>
      *
-     * a set of teams.
-     *
      * @param \Google\AdsApi\AdManager\v202205\Statement $filterStatement
      * @return \Google\AdsApi\AdManager\v202205\TeamPage
      * @throws \Google\AdsApi\AdManager\v202205\ApiException

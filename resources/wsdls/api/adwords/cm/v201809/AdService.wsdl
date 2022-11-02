@@ -9417,10 +9417,6 @@
         <annotation>
           <documentation>
             Returns a list of {@link Ad}s.
-            
-            @param serviceSelector The selector specifying the {@link Ad}s to return.
-            @return The page containing the {@link Ad}s that meet the criteria specified by the selector.
-            @throws {@link ApiException} when there is at least one error with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -9457,11 +9453,6 @@
             its entirety, the same validation rules apply to the SET operation as
             enforced by the ADD operation of the {@code AdGroupAdService.mutate()}
             method.
-            
-            @param operations The operations to apply.
-            @return A list of {@line Ad}s where each entry in the list is the result of applying the
-            operation in the input list with the same index. The returned {@link Ad}s will be what is
-            saved.
           </documentation>
         </annotation>
         <complexType>
@@ -9522,10 +9513,6 @@
     <wsdl:operation name="get">
       <wsdl:documentation>
         Returns a list of {@link Ad}s.
-        
-        @param serviceSelector The selector specifying the {@link Ad}s to return.
-        @return The page containing the {@link Ad}s that meet the criteria specified by the selector.
-        @throws {@link ApiException} when there is at least one error with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>
@@ -9538,11 +9525,6 @@
         its entirety, the same validation rules apply to the SET operation as
         enforced by the ADD operation of the {@code AdGroupAdService.mutate()}
         method.
-        
-        @param operations The operations to apply.
-        @return A list of {@line Ad}s where each entry in the list is the result of applying the
-        operation in the input list with the same index. The returned {@link Ad}s will be what is
-        saved.
       </wsdl:documentation>
       <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
       <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>

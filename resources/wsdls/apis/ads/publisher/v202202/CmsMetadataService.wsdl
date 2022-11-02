@@ -1735,11 +1735,6 @@
           <documentation>
             Performs actions on {@link CmsMetadataKey} objects that match the given {@link
             Statement#query}.
-            
-            @param keyAction the action to perform
-            @param filterStatement a Publisher Query Language statement used to filter a set of cms
-            metadata keys.
-            @return the result of the action performed
           </documentation>
         </annotation>
         <complexType>
@@ -1761,11 +1756,6 @@
           <documentation>
             Performs actions on {@link CmsMetadataValue} objects that match the given {@link
             Statement#query}.
-            
-            @param valueAction the action to perform
-            @param filterStatement a Publisher Query Language statement used to filter a set of cms
-            metadata values.
-            @return the result of the action performed
           </documentation>
         </annotation>
         <complexType>
@@ -1892,11 +1882,6 @@
       <wsdl:documentation>
         Performs actions on {@link CmsMetadataKey} objects that match the given {@link
         Statement#query}.
-        
-        @param keyAction the action to perform
-        @param filterStatement a Publisher Query Language statement used to filter a set of cms
-        metadata keys.
-        @return the result of the action performed
       </wsdl:documentation>
       <wsdl:input message="tns:performCmsMetadataKeyActionRequest" name="performCmsMetadataKeyActionRequest"/>
       <wsdl:output message="tns:performCmsMetadataKeyActionResponse" name="performCmsMetadataKeyActionResponse"/>
@@ -1906,11 +1891,6 @@
       <wsdl:documentation>
         Performs actions on {@link CmsMetadataValue} objects that match the given {@link
         Statement#query}.
-        
-        @param valueAction the action to perform
-        @param filterStatement a Publisher Query Language statement used to filter a set of cms
-        metadata values.
-        @return the result of the action performed
       </wsdl:documentation>
       <wsdl:input message="tns:performCmsMetadataValueActionRequest" name="performCmsMetadataValueActionRequest"/>
       <wsdl:output message="tns:performCmsMetadataValueActionResponse" name="performCmsMetadataValueActionResponse"/>

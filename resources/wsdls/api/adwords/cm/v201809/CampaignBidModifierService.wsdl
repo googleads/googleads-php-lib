@@ -3520,10 +3520,6 @@
         <annotation>
           <documentation>
             Returns the list of campaign bid modifiers that meet the selector criteria.
-            
-            @param selector specifying the {@link CampaignBidModifier}s to return.
-            @return A list of campaign bid modifiers.
-            @throws ApiException if problems occurred while fetching campaign bid modifier information.
           </documentation>
         </annotation>
         <complexType>
@@ -3556,11 +3552,6 @@
         <annotation>
           <documentation>
             Adds, updates, or deletes campaign bid modifiers.
-            
-            @param operations A list of unique operations.
-            @return The list of updated campaign bid modifiers, returned in the same order as the &lt;code&gt;
-            operations&lt;/code&gt; array.
-            @throws ApiException if problems occurred while updating campaign bid modifiers information.
           </documentation>
         </annotation>
         <complexType>
@@ -3591,9 +3582,6 @@
         <annotation>
           <documentation>
             Returns a list of {@link CampaignBidModifier}s that match the query.
-            
-            @param query The SQL-like AWQL query string.
-            @throws ApiException when there are one or more errors with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -3653,10 +3641,6 @@
     <wsdl:operation name="get">
       <wsdl:documentation>
         Returns the list of campaign bid modifiers that meet the selector criteria.
-        
-        @param selector specifying the {@link CampaignBidModifier}s to return.
-        @return A list of campaign bid modifiers.
-        @throws ApiException if problems occurred while fetching campaign bid modifier information.
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>
@@ -3665,11 +3649,6 @@
     <wsdl:operation name="mutate">
       <wsdl:documentation>
         Adds, updates, or deletes campaign bid modifiers.
-        
-        @param operations A list of unique operations.
-        @return The list of updated campaign bid modifiers, returned in the same order as the &lt;code&gt;
-        operations&lt;/code&gt; array.
-        @throws ApiException if problems occurred while updating campaign bid modifiers information.
       </wsdl:documentation>
       <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
       <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>
@@ -3678,9 +3657,6 @@
     <wsdl:operation name="query">
       <wsdl:documentation>
         Returns a list of {@link CampaignBidModifier}s that match the query.
-        
-        @param query The SQL-like AWQL query string.
-        @throws ApiException when there are one or more errors with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:queryRequest" name="queryRequest"/>
       <wsdl:output message="tns:queryResponse" name="queryResponse"/>

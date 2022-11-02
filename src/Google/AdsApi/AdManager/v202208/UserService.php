@@ -160,8 +160,6 @@ class UserService extends \Google\AdsApi\Common\AdsSoapClient
      * </tr>
      * </table>
      *
-     * a set of users
-     *
      * @param \Google\AdsApi\AdManager\v202208\Statement $filterStatement
      * @return \Google\AdsApi\AdManager\v202208\UserPage
      * @throws \Google\AdsApi\AdManager\v202208\ApiException
@@ -174,8 +172,6 @@ class UserService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * Performs actions on {@link User} objects that match the given
      * {@link Statement#query}.
-     *
-     * a set of users
      *
      * @param \Google\AdsApi\AdManager\v202208\UserAction $userAction
      * @param \Google\AdsApi\AdManager\v202208\Statement $filterStatement

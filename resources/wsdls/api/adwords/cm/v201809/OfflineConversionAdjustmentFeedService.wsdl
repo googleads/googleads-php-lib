@@ -2171,12 +2171,6 @@
             
             &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; {@link OfflineConversionAdjustmentFeedOperation} supports only the
             {@code ADD} operator. ({@code SET} and {@code REMOVE} are not supported.)
-            
-            @param operations A list of offline conversion adjustment feed operations.
-            @return The list of offline conversion adjustment feed results in the same order
-            as the operations.
-            @throws {@link ApiException} If problems occurred while applying offline
-            adjustment conversions.
           </documentation>
         </annotation>
         <complexType>
@@ -2239,12 +2233,6 @@
         
         &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; {@link OfflineConversionAdjustmentFeedOperation} supports only the
         {@code ADD} operator. ({@code SET} and {@code REMOVE} are not supported.)
-        
-        @param operations A list of offline conversion adjustment feed operations.
-        @return The list of offline conversion adjustment feed results in the same order
-        as the operations.
-        @throws {@link ApiException} If problems occurred while applying offline
-        adjustment conversions.
       </wsdl:documentation>
       <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
       <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>

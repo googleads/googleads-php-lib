@@ -1578,9 +1578,6 @@
             &lt;ul&gt;
             &lt;li&gt;{@link DaiAuthenticationKey#name}
             &lt;/ul&gt;
-            
-            @param daiAuthenticationKeys the DAI authentication keys to create
-            @return the created DAI authentication keys with their IDs filled in
           </documentation>
         </annotation>
         <complexType>
@@ -1627,10 +1624,6 @@
             &lt;td&gt;{@link DaiAuthenticationKey#name}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;/table&gt;
-            
-            @param filterStatement a Publisher Query Language statement to filter a list of DAI
-            authentication keys
-            @return the DAI authentication keys that match the filter
           </documentation>
         </annotation>
         <complexType>
@@ -1654,11 +1647,6 @@
             
             &lt;p&gt;DAI authentication keys cannot be deactivated if there are active {@link LiveStreamEvent}s
             or Content Sources that are using them.
-            
-            @param daiAuthenticationKeyAction the action to perform
-            @param filterStatement a Publisher Query Language statement used to filter a set of live stream
-            events
-            @return the result of the action performed
           </documentation>
         </annotation>
         <complexType>
@@ -1680,10 +1668,6 @@
         <annotation>
           <documentation>
             Updates the specified {@link DaiAuthenticationKey} objects.
-            
-            @param daiAuthenticationKeys the video DAI authentication keys to update
-            @return the updated DAI authentication keys
-            @throws ApiException if there is an error updating the DAI authentication keys
           </documentation>
         </annotation>
         <complexType>
@@ -1750,9 +1734,6 @@
         &lt;ul&gt;
         &lt;li&gt;{@link DaiAuthenticationKey#name}
         &lt;/ul&gt;
-        
-        @param daiAuthenticationKeys the DAI authentication keys to create
-        @return the created DAI authentication keys with their IDs filled in
       </wsdl:documentation>
       <wsdl:input message="tns:createDaiAuthenticationKeysRequest" name="createDaiAuthenticationKeysRequest"/>
       <wsdl:output message="tns:createDaiAuthenticationKeysResponse" name="createDaiAuthenticationKeysResponse"/>
@@ -1780,10 +1761,6 @@
         &lt;td&gt;{@link DaiAuthenticationKey#name}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;/table&gt;
-        
-        @param filterStatement a Publisher Query Language statement to filter a list of DAI
-        authentication keys
-        @return the DAI authentication keys that match the filter
       </wsdl:documentation>
       <wsdl:input
         message="tns:getDaiAuthenticationKeysByStatementRequest" name="getDaiAuthenticationKeysByStatementRequest"/>
@@ -1798,11 +1775,6 @@
         
         &lt;p&gt;DAI authentication keys cannot be deactivated if there are active {@link LiveStreamEvent}s
         or Content Sources that are using them.
-        
-        @param daiAuthenticationKeyAction the action to perform
-        @param filterStatement a Publisher Query Language statement used to filter a set of live stream
-        events
-        @return the result of the action performed
       </wsdl:documentation>
       <wsdl:input message="tns:performDaiAuthenticationKeyActionRequest" name="performDaiAuthenticationKeyActionRequest"/>
       <wsdl:output
@@ -1812,10 +1784,6 @@
     <wsdl:operation name="updateDaiAuthenticationKeys">
       <wsdl:documentation>
         Updates the specified {@link DaiAuthenticationKey} objects.
-        
-        @param daiAuthenticationKeys the video DAI authentication keys to update
-        @return the updated DAI authentication keys
-        @throws ApiException if there is an error updating the DAI authentication keys
       </wsdl:documentation>
       <wsdl:input message="tns:updateDaiAuthenticationKeysRequest" name="updateDaiAuthenticationKeysRequest"/>
       <wsdl:output message="tns:updateDaiAuthenticationKeysResponse" name="updateDaiAuthenticationKeysResponse"/>

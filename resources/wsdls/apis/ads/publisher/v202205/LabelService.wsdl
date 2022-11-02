@@ -1752,9 +1752,6 @@
         <annotation>
           <documentation>
             Creates new {@link Label} objects.
-            
-            @param labels the labels to create
-            @return the created labels with their IDs filled in
           </documentation>
         </annotation>
         <complexType>
@@ -1809,11 +1806,6 @@
             &lt;td&gt;{@link Label#isActive}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;/table&gt;
-            
-            
-            @param filterStatement a Publisher Query Language statement used to filter
-            a set of labels.
-            @return the labels that match the given filter
           </documentation>
         </annotation>
         <complexType>
@@ -1832,13 +1824,7 @@
       <element name="performLabelAction">
         <annotation>
           <documentation>
-            Performs actions on {@link Label} objects that match the given
-            {@link Statement#query}.
-            
-            @param labelAction the action to perform
-            @param filterStatement a Publisher Query Language statement used to filter
-            a set of labels
-            @return the result of the action performed
+            Performs actions on {@link Label} objects that match the given {@link Statement#query}.
           </documentation>
         </annotation>
         <complexType>
@@ -1859,9 +1845,6 @@
         <annotation>
           <documentation>
             Updates the specified {@link Label} objects.
-            
-            @param labels the labels to update
-            @return the updated labels
           </documentation>
         </annotation>
         <complexType>
@@ -1921,9 +1904,6 @@
     <wsdl:operation name="createLabels">
       <wsdl:documentation>
         Creates new {@link Label} objects.
-        
-        @param labels the labels to create
-        @return the created labels with their IDs filled in
       </wsdl:documentation>
       <wsdl:input message="tns:createLabelsRequest" name="createLabelsRequest"/>
       <wsdl:output message="tns:createLabelsResponse" name="createLabelsResponse"/>
@@ -1960,11 +1940,6 @@
         &lt;td&gt;{@link Label#isActive}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;/table&gt;
-        
-        
-        @param filterStatement a Publisher Query Language statement used to filter
-        a set of labels.
-        @return the labels that match the given filter
       </wsdl:documentation>
       <wsdl:input message="tns:getLabelsByStatementRequest" name="getLabelsByStatementRequest"/>
       <wsdl:output message="tns:getLabelsByStatementResponse" name="getLabelsByStatementResponse"/>
@@ -1972,13 +1947,7 @@
     </wsdl:operation>
     <wsdl:operation name="performLabelAction">
       <wsdl:documentation>
-        Performs actions on {@link Label} objects that match the given
-        {@link Statement#query}.
-        
-        @param labelAction the action to perform
-        @param filterStatement a Publisher Query Language statement used to filter
-        a set of labels
-        @return the result of the action performed
+        Performs actions on {@link Label} objects that match the given {@link Statement#query}.
       </wsdl:documentation>
       <wsdl:input message="tns:performLabelActionRequest" name="performLabelActionRequest"/>
       <wsdl:output message="tns:performLabelActionResponse" name="performLabelActionResponse"/>
@@ -1987,9 +1956,6 @@
     <wsdl:operation name="updateLabels">
       <wsdl:documentation>
         Updates the specified {@link Label} objects.
-        
-        @param labels the labels to update
-        @return the updated labels
       </wsdl:documentation>
       <wsdl:input message="tns:updateLabelsRequest" name="updateLabelsRequest"/>
       <wsdl:output message="tns:updateLabelsResponse" name="updateLabelsResponse"/>

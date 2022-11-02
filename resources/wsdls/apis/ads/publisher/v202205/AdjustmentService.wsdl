@@ -5102,10 +5102,6 @@
           <documentation>
             Takes a prospective forecast adjustment and calculates the daily ad opportunity counts
             corresponding to its provided volume settings.
-            
-            @param forecastAdjustment the prospective forecast adjustment
-            @return a forecast adjustment matching the one passed in, but with its {@code
-            calculatedDailyAdOpportunityCounts} field populated
           </documentation>
         </annotation>
         <complexType>
@@ -5133,10 +5129,6 @@
         <annotation>
           <documentation>
             Creates new {@link ForecastAdjustment} objects.
-            
-            @param forecastAdjustments the forecast adjustments to create
-            @return the persisted forecast adjustments with their IDs populated
-            @throws ApiException if there is an error creating the forecast adjustments
           </documentation>
         </annotation>
         <complexType>
@@ -5157,10 +5149,6 @@
         <annotation>
           <documentation>
             Creates new {@link TrafficForecastSegment} objects.
-            
-            @param trafficForecastSegments the traffic forecast segments to create
-            @return the persisted traffic forecast segments with their IDs populated
-            @throws ApiException if there is an error creating the traffic forecast segments
           </documentation>
         </annotation>
         <complexType>
@@ -5214,10 +5202,6 @@
             &lt;td&gt;{@link ForecastAdjustment#status}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;/table&gt;
-            
-            @param filterStatement a Publisher Query Language statement to filter a list of traffic
-            forecast segments
-            @return a page of forecast adjustments that match the filter
           </documentation>
         </annotation>
         <complexType>
@@ -5258,10 +5242,6 @@
             &lt;td&gt;{@link TrafficForecastSegment#creationTime}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;/table&gt;
-            
-            @param filterStatement a Publisher Query Language statement to filter a list of traffic
-            forecast segments
-            @return a page of traffic forecast segments that match the filter
           </documentation>
         </annotation>
         <complexType>
@@ -5282,11 +5262,6 @@
           <documentation>
             Performs actions on {@link ForecastAdjustment} objects that match the given {@link
             Statement#query}.
-            
-            @param forecastAdjustmentAction the action to perform
-            @param filterStatement a Publisher Query Language statement used to filter a set of forecast
-            adjustments
-            @return the result of the action performed
           </documentation>
         </annotation>
         <complexType>
@@ -5308,10 +5283,6 @@
         <annotation>
           <documentation>
             Updates the specified {@link ForecastAdjustment} objects.
-            
-            @param forecastAdjustments the forecast adjustments to update
-            @return the updated forecast adjustments
-            @throws ApiException if there is an error updating the forecast adjustments
           </documentation>
         </annotation>
         <complexType>
@@ -5332,10 +5303,6 @@
         <annotation>
           <documentation>
             Updates the specified {@link TrafficForecastSegment} objects.
-            
-            @param trafficForecastSegments the traffic forecast segments to update
-            @return the updated traffic forecast segments
-            @throws ApiException if there is an error updating the traffic forecast segments
           </documentation>
         </annotation>
         <complexType>
@@ -5427,10 +5394,6 @@
       <wsdl:documentation>
         Takes a prospective forecast adjustment and calculates the daily ad opportunity counts
         corresponding to its provided volume settings.
-        
-        @param forecastAdjustment the prospective forecast adjustment
-        @return a forecast adjustment matching the one passed in, but with its {@code
-        calculatedDailyAdOpportunityCounts} field populated
       </wsdl:documentation>
       <wsdl:input message="tns:calculateDailyAdOpportunityCountsRequest" name="calculateDailyAdOpportunityCountsRequest"/>
       <wsdl:output
@@ -5440,10 +5403,6 @@
     <wsdl:operation name="createForecastAdjustments">
       <wsdl:documentation>
         Creates new {@link ForecastAdjustment} objects.
-        
-        @param forecastAdjustments the forecast adjustments to create
-        @return the persisted forecast adjustments with their IDs populated
-        @throws ApiException if there is an error creating the forecast adjustments
       </wsdl:documentation>
       <wsdl:input message="tns:createForecastAdjustmentsRequest" name="createForecastAdjustmentsRequest"/>
       <wsdl:output message="tns:createForecastAdjustmentsResponse" name="createForecastAdjustmentsResponse"/>
@@ -5452,10 +5411,6 @@
     <wsdl:operation name="createTrafficForecastSegments">
       <wsdl:documentation>
         Creates new {@link TrafficForecastSegment} objects.
-        
-        @param trafficForecastSegments the traffic forecast segments to create
-        @return the persisted traffic forecast segments with their IDs populated
-        @throws ApiException if there is an error creating the traffic forecast segments
       </wsdl:documentation>
       <wsdl:input message="tns:createTrafficForecastSegmentsRequest" name="createTrafficForecastSegmentsRequest"/>
       <wsdl:output message="tns:createTrafficForecastSegmentsResponse" name="createTrafficForecastSegmentsResponse"/>
@@ -5497,10 +5452,6 @@
         &lt;td&gt;{@link ForecastAdjustment#status}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;/table&gt;
-        
-        @param filterStatement a Publisher Query Language statement to filter a list of traffic
-        forecast segments
-        @return a page of forecast adjustments that match the filter
       </wsdl:documentation>
       <wsdl:input message="tns:getForecastAdjustmentsByStatementRequest" name="getForecastAdjustmentsByStatementRequest"/>
       <wsdl:output
@@ -5531,10 +5482,6 @@
         &lt;td&gt;{@link TrafficForecastSegment#creationTime}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;/table&gt;
-        
-        @param filterStatement a Publisher Query Language statement to filter a list of traffic
-        forecast segments
-        @return a page of traffic forecast segments that match the filter
       </wsdl:documentation>
       <wsdl:input
         message="tns:getTrafficForecastSegmentsByStatementRequest" name="getTrafficForecastSegmentsByStatementRequest"/>
@@ -5546,11 +5493,6 @@
       <wsdl:documentation>
         Performs actions on {@link ForecastAdjustment} objects that match the given {@link
         Statement#query}.
-        
-        @param forecastAdjustmentAction the action to perform
-        @param filterStatement a Publisher Query Language statement used to filter a set of forecast
-        adjustments
-        @return the result of the action performed
       </wsdl:documentation>
       <wsdl:input message="tns:performForecastAdjustmentActionRequest" name="performForecastAdjustmentActionRequest"/>
       <wsdl:output message="tns:performForecastAdjustmentActionResponse" name="performForecastAdjustmentActionResponse"/>
@@ -5559,10 +5501,6 @@
     <wsdl:operation name="updateForecastAdjustments">
       <wsdl:documentation>
         Updates the specified {@link ForecastAdjustment} objects.
-        
-        @param forecastAdjustments the forecast adjustments to update
-        @return the updated forecast adjustments
-        @throws ApiException if there is an error updating the forecast adjustments
       </wsdl:documentation>
       <wsdl:input message="tns:updateForecastAdjustmentsRequest" name="updateForecastAdjustmentsRequest"/>
       <wsdl:output message="tns:updateForecastAdjustmentsResponse" name="updateForecastAdjustmentsResponse"/>
@@ -5571,10 +5509,6 @@
     <wsdl:operation name="updateTrafficForecastSegments">
       <wsdl:documentation>
         Updates the specified {@link TrafficForecastSegment} objects.
-        
-        @param trafficForecastSegments the traffic forecast segments to update
-        @return the updated traffic forecast segments
-        @throws ApiException if there is an error updating the traffic forecast segments
       </wsdl:documentation>
       <wsdl:input message="tns:updateTrafficForecastSegmentsRequest" name="updateTrafficForecastSegmentsRequest"/>
       <wsdl:output message="tns:updateTrafficForecastSegmentsResponse" name="updateTrafficForecastSegmentsResponse"/>

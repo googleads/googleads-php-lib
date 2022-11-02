@@ -1586,9 +1586,6 @@
         <annotation>
           <documentation>
             Creates new {@link Contact} objects.
-            
-            @param contacts the contacts to create
-            @return the created contacts with their IDs filled in
           </documentation>
         </annotation>
         <complexType>
@@ -1662,10 +1659,6 @@
             &lt;td&gt;{@link Contact#status}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;/table&gt;
-            
-            @param filterStatement a Publisher Query Language statement used to filter
-            a set of contacts
-            @return the contacts that match the given filter
           </documentation>
         </annotation>
         <complexType>
@@ -1685,9 +1678,6 @@
         <annotation>
           <documentation>
             Updates the specified {@link Contact} objects.
-            
-            @param contacts the contacts to update
-            @return the updated contacts
           </documentation>
         </annotation>
         <complexType>
@@ -1741,9 +1731,6 @@
     <wsdl:operation name="createContacts">
       <wsdl:documentation>
         Creates new {@link Contact} objects.
-        
-        @param contacts the contacts to create
-        @return the created contacts with their IDs filled in
       </wsdl:documentation>
       <wsdl:input message="tns:createContactsRequest" name="createContactsRequest"/>
       <wsdl:output message="tns:createContactsResponse" name="createContactsResponse"/>
@@ -1799,10 +1786,6 @@
         &lt;td&gt;{@link Contact#status}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;/table&gt;
-        
-        @param filterStatement a Publisher Query Language statement used to filter
-        a set of contacts
-        @return the contacts that match the given filter
       </wsdl:documentation>
       <wsdl:input message="tns:getContactsByStatementRequest" name="getContactsByStatementRequest"/>
       <wsdl:output message="tns:getContactsByStatementResponse" name="getContactsByStatementResponse"/>
@@ -1811,9 +1794,6 @@
     <wsdl:operation name="updateContacts">
       <wsdl:documentation>
         Updates the specified {@link Contact} objects.
-        
-        @param contacts the contacts to update
-        @return the updated contacts
       </wsdl:documentation>
       <wsdl:input message="tns:updateContactsRequest" name="updateContactsRequest"/>
       <wsdl:output message="tns:updateContactsResponse" name="updateContactsResponse"/>

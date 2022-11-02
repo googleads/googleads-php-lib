@@ -3220,11 +3220,6 @@
         <annotation>
           <documentation>
             Returns a list of CampaignFeeds that meet the selector criteria.
-            
-            @param selector Determines which CampaignFeeds to return. If empty all
-            Campaign feeds are returned.
-            @return The list of CampaignFeeds.
-            @throws ApiException Indicates a problem with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -3257,10 +3252,6 @@
         <annotation>
           <documentation>
             Adds, sets or removes CampaignFeeds.
-            
-            @param operations The operations to apply.
-            @return The resulting Feeds.
-            @throws ApiException Indicates a problem with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -3291,9 +3282,6 @@
           <documentation>
             Returns a list of {@link CampaignFeed}s inside a {@link CampaignFeedPage} that matches
             the query.
-            
-            @param query The SQL-like AWQL query string.
-            @throws ApiException when there are one or more errors with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -3353,11 +3341,6 @@
     <wsdl:operation name="get">
       <wsdl:documentation>
         Returns a list of CampaignFeeds that meet the selector criteria.
-        
-        @param selector Determines which CampaignFeeds to return. If empty all
-        Campaign feeds are returned.
-        @return The list of CampaignFeeds.
-        @throws ApiException Indicates a problem with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>
@@ -3366,10 +3349,6 @@
     <wsdl:operation name="mutate">
       <wsdl:documentation>
         Adds, sets or removes CampaignFeeds.
-        
-        @param operations The operations to apply.
-        @return The resulting Feeds.
-        @throws ApiException Indicates a problem with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
       <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>
@@ -3379,9 +3358,6 @@
       <wsdl:documentation>
         Returns a list of {@link CampaignFeed}s inside a {@link CampaignFeedPage} that matches
         the query.
-        
-        @param query The SQL-like AWQL query string.
-        @throws ApiException when there are one or more errors with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:queryRequest" name="queryRequest"/>
       <wsdl:output message="tns:queryResponse" name="queryResponse"/>

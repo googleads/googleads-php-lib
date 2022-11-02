@@ -140,8 +140,6 @@ class ContactService extends \Google\AdsApi\Common\AdsSoapClient
      * </tr>
      * </table>
      *
-     * a set of contacts
-     *
      * @param \Google\AdsApi\AdManager\v202205\Statement $statement
      * @return \Google\AdsApi\AdManager\v202205\ContactPage
      * @throws \Google\AdsApi\AdManager\v202205\ApiException

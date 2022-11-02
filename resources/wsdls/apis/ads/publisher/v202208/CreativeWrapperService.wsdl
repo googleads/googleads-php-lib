@@ -2080,10 +2080,6 @@
             &lt;li&gt;{@link CreativeWrapper#ordering}&lt;/li&gt;
             &lt;li&gt;{@link CreativeWrapper#header} or {@link CreativeWrapper#footer}&lt;/li&gt;
             &lt;/ul&gt;
-            
-            @param creativeWrappers the creative wrappers to create
-            @return the creative wrappers with their IDs filled in
-            @throws ApiException
           </documentation>
         </annotation>
         <complexType>
@@ -2135,10 +2131,6 @@
             &lt;td&gt;{@link CreativeWrapper#ordering}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;/table&gt;
-            
-            @param filterStatement a Publisher Query Language statement used to filter
-            a set of creative wrappers.
-            @return the creative wrappers that match the given filter
           </documentation>
         </annotation>
         <complexType>
@@ -2159,11 +2151,6 @@
           <documentation>
             Performs actions on {@link CreativeWrapper} objects that match the
             given {@link Statement#query}.
-            
-            @param creativeWrapperAction the action to perform
-            @param filterStatement a Publisher Query Language statement used to filter
-            a set of labels
-            @return the result of the action performed
           </documentation>
         </annotation>
         <complexType>
@@ -2185,10 +2172,6 @@
         <annotation>
           <documentation>
             Updates the specified {@code CreativeWrapper} objects.
-            
-            @param creativeWrappers the creative wrappers to update
-            @return the updated creative wrapper objects
-            @throws ApiException
           </documentation>
         </annotation>
         <complexType>
@@ -2262,10 +2245,6 @@
         &lt;li&gt;{@link CreativeWrapper#ordering}&lt;/li&gt;
         &lt;li&gt;{@link CreativeWrapper#header} or {@link CreativeWrapper#footer}&lt;/li&gt;
         &lt;/ul&gt;
-        
-        @param creativeWrappers the creative wrappers to create
-        @return the creative wrappers with their IDs filled in
-        @throws ApiException
       </wsdl:documentation>
       <wsdl:input message="tns:createCreativeWrappersRequest" name="createCreativeWrappersRequest"/>
       <wsdl:output message="tns:createCreativeWrappersResponse" name="createCreativeWrappersResponse"/>
@@ -2298,10 +2277,6 @@
         &lt;td&gt;{@link CreativeWrapper#ordering}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;/table&gt;
-        
-        @param filterStatement a Publisher Query Language statement used to filter
-        a set of creative wrappers.
-        @return the creative wrappers that match the given filter
       </wsdl:documentation>
       <wsdl:input message="tns:getCreativeWrappersByStatementRequest" name="getCreativeWrappersByStatementRequest"/>
       <wsdl:output message="tns:getCreativeWrappersByStatementResponse" name="getCreativeWrappersByStatementResponse"/>
@@ -2311,11 +2286,6 @@
       <wsdl:documentation>
         Performs actions on {@link CreativeWrapper} objects that match the
         given {@link Statement#query}.
-        
-        @param creativeWrapperAction the action to perform
-        @param filterStatement a Publisher Query Language statement used to filter
-        a set of labels
-        @return the result of the action performed
       </wsdl:documentation>
       <wsdl:input message="tns:performCreativeWrapperActionRequest" name="performCreativeWrapperActionRequest"/>
       <wsdl:output message="tns:performCreativeWrapperActionResponse" name="performCreativeWrapperActionResponse"/>
@@ -2324,10 +2294,6 @@
     <wsdl:operation name="updateCreativeWrappers">
       <wsdl:documentation>
         Updates the specified {@code CreativeWrapper} objects.
-        
-        @param creativeWrappers the creative wrappers to update
-        @return the updated creative wrapper objects
-        @throws ApiException
       </wsdl:documentation>
       <wsdl:input message="tns:updateCreativeWrappersRequest" name="updateCreativeWrappersRequest"/>
       <wsdl:output message="tns:updateCreativeWrappersResponse" name="updateCreativeWrappersResponse"/>

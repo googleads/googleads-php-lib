@@ -136,8 +136,6 @@ class PlacementService extends \Google\AdsApi\Common\AdsSoapClient
      * </tr>
      * </table>
      *
-     * a set of placements
-     *
      * @param \Google\AdsApi\AdManager\v202202\Statement $filterStatement
      * @return \Google\AdsApi\AdManager\v202202\PlacementPage
      * @throws \Google\AdsApi\AdManager\v202202\ApiException
@@ -150,8 +148,6 @@ class PlacementService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * Performs actions on {@link Placement} objects that match the given
      * {@link Statement#query}.
-     *
-     * a set of placements
      *
      * @param \Google\AdsApi\AdManager\v202202\PlacementAction $placementAction
      * @param \Google\AdsApi\AdManager\v202202\Statement $filterStatement

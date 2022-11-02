@@ -1591,9 +1591,6 @@
         <annotation>
           <documentation>
             Creates new {@link UserTeamAssociation} objects.
-            
-            @param userTeamAssociations the user team associations to create
-            @return the created user team associations with their IDs filled in
           </documentation>
         </annotation>
         <complexType>
@@ -1637,10 +1634,6 @@
             &lt;td&gt;{@link UserTeamAssociation#teamId}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;/table&gt;
-            
-            @param filterStatement a Publisher Query Language statement used to filter
-            a set of user team associations
-            @return the user team associations that match the given filter
           </documentation>
         </annotation>
         <complexType>
@@ -1661,11 +1654,6 @@
           <documentation>
             Performs actions on {@link UserTeamAssociation} objects that match the
             given {@link Statement#query}.
-            
-            @param userTeamAssociationAction the action to perform
-            @param filterStatement a Publisher Query Language statement used to filter
-            a set of user team associations
-            @return the result of the action performed
           </documentation>
         </annotation>
         <complexType>
@@ -1687,9 +1675,6 @@
         <annotation>
           <documentation>
             Updates the specified {@link UserTeamAssociation} objects.
-            
-            @param userTeamAssociations the user team associations to update
-            @return the updated user team associations
           </documentation>
         </annotation>
         <complexType>
@@ -1756,9 +1741,6 @@
     <wsdl:operation name="createUserTeamAssociations">
       <wsdl:documentation>
         Creates new {@link UserTeamAssociation} objects.
-        
-        @param userTeamAssociations the user team associations to create
-        @return the created user team associations with their IDs filled in
       </wsdl:documentation>
       <wsdl:input message="tns:createUserTeamAssociationsRequest" name="createUserTeamAssociationsRequest"/>
       <wsdl:output message="tns:createUserTeamAssociationsResponse" name="createUserTeamAssociationsResponse"/>
@@ -1783,10 +1765,6 @@
         &lt;td&gt;{@link UserTeamAssociation#teamId}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;/table&gt;
-        
-        @param filterStatement a Publisher Query Language statement used to filter
-        a set of user team associations
-        @return the user team associations that match the given filter
       </wsdl:documentation>
       <wsdl:input
         message="tns:getUserTeamAssociationsByStatementRequest" name="getUserTeamAssociationsByStatementRequest"/>
@@ -1798,11 +1776,6 @@
       <wsdl:documentation>
         Performs actions on {@link UserTeamAssociation} objects that match the
         given {@link Statement#query}.
-        
-        @param userTeamAssociationAction the action to perform
-        @param filterStatement a Publisher Query Language statement used to filter
-        a set of user team associations
-        @return the result of the action performed
       </wsdl:documentation>
       <wsdl:input message="tns:performUserTeamAssociationActionRequest" name="performUserTeamAssociationActionRequest"/>
       <wsdl:output
@@ -1812,9 +1785,6 @@
     <wsdl:operation name="updateUserTeamAssociations">
       <wsdl:documentation>
         Updates the specified {@link UserTeamAssociation} objects.
-        
-        @param userTeamAssociations the user team associations to update
-        @return the updated user team associations
       </wsdl:documentation>
       <wsdl:input message="tns:updateUserTeamAssociationsRequest" name="updateUserTeamAssociationsRequest"/>
       <wsdl:output message="tns:updateUserTeamAssociationsResponse" name="updateUserTeamAssociationsResponse"/>

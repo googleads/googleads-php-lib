@@ -3449,9 +3449,6 @@
         <annotation>
           <documentation>
             Returns a list of all age range criteria.
-            
-            @return A list of age ranges.
-            @throws ApiException when there is at least one error with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -3476,9 +3473,6 @@
         <annotation>
           <documentation>
             Returns a list of all carrier criteria.
-            
-            @return A list of carriers.
-            @throws ApiException when there is at least one error with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -3496,9 +3490,6 @@
         <annotation>
           <documentation>
             Returns a list of all gender criteria.
-            
-            @return A list of genders.
-            @throws ApiException when there is at least one error with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -3516,9 +3507,6 @@
         <annotation>
           <documentation>
             Returns a list of all language criteria.
-            
-            @return A list of languages.
-            @throws ApiException when there is at least one error with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -3536,9 +3524,6 @@
         <annotation>
           <documentation>
             Returns a list of all mobile app category criteria.
-            
-            @return A list of mobile app categories.
-            @throws ApiException when there is at least one error with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -3556,9 +3541,6 @@
         <annotation>
           <documentation>
             Returns a list of all mobile devices.
-            
-            @return A list of mobile devices.
-            @throws ApiException when there is at least one error with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -3576,9 +3558,6 @@
         <annotation>
           <documentation>
             Returns a list of all operating system version criteria.
-            
-            @return A list of operating system versions.
-            @throws ApiException when there is at least one error with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -3600,9 +3579,6 @@
             A country predicate must be included in the selector, only {@link Predicate.Operator#EQUALS}
             and {@link Predicate.Operator#IN} with a single value are supported in the country predicate.
             An empty parentDimensionType predicate will filter for root categories.
-            
-            @return A list of shopping bidding categories.
-            @throws ApiException when there is at least one error with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -3628,10 +3604,6 @@
         <annotation>
           <documentation>
             Returns a list of user interests.
-            
-            @param userInterestTaxonomyType The type of taxonomy to use when requesting user interests.
-            @return A list of user interests.
-            @throws ApiException when there is at least one error with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -3652,9 +3624,6 @@
         <annotation>
           <documentation>
             Returns a list of content verticals.
-            
-            @return A list of verticals.
-            @throws ApiException when there is at least one error with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -3748,9 +3717,6 @@
     <wsdl:operation name="getAgeRangeCriterion">
       <wsdl:documentation>
         Returns a list of all age range criteria.
-        
-        @return A list of age ranges.
-        @throws ApiException when there is at least one error with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:getAgeRangeCriterionRequest" name="getAgeRangeCriterionRequest"/>
       <wsdl:output message="tns:getAgeRangeCriterionResponse" name="getAgeRangeCriterionResponse"/>
@@ -3759,9 +3725,6 @@
     <wsdl:operation name="getCarrierCriterion">
       <wsdl:documentation>
         Returns a list of all carrier criteria.
-        
-        @return A list of carriers.
-        @throws ApiException when there is at least one error with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:getCarrierCriterionRequest" name="getCarrierCriterionRequest"/>
       <wsdl:output message="tns:getCarrierCriterionResponse" name="getCarrierCriterionResponse"/>
@@ -3770,9 +3733,6 @@
     <wsdl:operation name="getGenderCriterion">
       <wsdl:documentation>
         Returns a list of all gender criteria.
-        
-        @return A list of genders.
-        @throws ApiException when there is at least one error with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:getGenderCriterionRequest" name="getGenderCriterionRequest"/>
       <wsdl:output message="tns:getGenderCriterionResponse" name="getGenderCriterionResponse"/>
@@ -3781,9 +3741,6 @@
     <wsdl:operation name="getLanguageCriterion">
       <wsdl:documentation>
         Returns a list of all language criteria.
-        
-        @return A list of languages.
-        @throws ApiException when there is at least one error with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:getLanguageCriterionRequest" name="getLanguageCriterionRequest"/>
       <wsdl:output message="tns:getLanguageCriterionResponse" name="getLanguageCriterionResponse"/>
@@ -3792,9 +3749,6 @@
     <wsdl:operation name="getMobileAppCategoryCriterion">
       <wsdl:documentation>
         Returns a list of all mobile app category criteria.
-        
-        @return A list of mobile app categories.
-        @throws ApiException when there is at least one error with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:getMobileAppCategoryCriterionRequest" name="getMobileAppCategoryCriterionRequest"/>
       <wsdl:output message="tns:getMobileAppCategoryCriterionResponse" name="getMobileAppCategoryCriterionResponse"/>
@@ -3803,9 +3757,6 @@
     <wsdl:operation name="getMobileDeviceCriterion">
       <wsdl:documentation>
         Returns a list of all mobile devices.
-        
-        @return A list of mobile devices.
-        @throws ApiException when there is at least one error with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:getMobileDeviceCriterionRequest" name="getMobileDeviceCriterionRequest"/>
       <wsdl:output message="tns:getMobileDeviceCriterionResponse" name="getMobileDeviceCriterionResponse"/>
@@ -3814,9 +3765,6 @@
     <wsdl:operation name="getOperatingSystemVersionCriterion">
       <wsdl:documentation>
         Returns a list of all operating system version criteria.
-        
-        @return A list of operating system versions.
-        @throws ApiException when there is at least one error with the request.
       </wsdl:documentation>
       <wsdl:input
         message="tns:getOperatingSystemVersionCriterionRequest" name="getOperatingSystemVersionCriterionRequest"/>
@@ -3831,9 +3779,6 @@
         A country predicate must be included in the selector, only {@link Predicate.Operator#EQUALS}
         and {@link Predicate.Operator#IN} with a single value are supported in the country predicate.
         An empty parentDimensionType predicate will filter for root categories.
-        
-        @return A list of shopping bidding categories.
-        @throws ApiException when there is at least one error with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:getProductBiddingCategoryDataRequest" name="getProductBiddingCategoryDataRequest"/>
       <wsdl:output message="tns:getProductBiddingCategoryDataResponse" name="getProductBiddingCategoryDataResponse"/>
@@ -3842,10 +3787,6 @@
     <wsdl:operation name="getUserInterestCriterion">
       <wsdl:documentation>
         Returns a list of user interests.
-        
-        @param userInterestTaxonomyType The type of taxonomy to use when requesting user interests.
-        @return A list of user interests.
-        @throws ApiException when there is at least one error with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:getUserInterestCriterionRequest" name="getUserInterestCriterionRequest"/>
       <wsdl:output message="tns:getUserInterestCriterionResponse" name="getUserInterestCriterionResponse"/>
@@ -3854,9 +3795,6 @@
     <wsdl:operation name="getVerticalCriterion">
       <wsdl:documentation>
         Returns a list of content verticals.
-        
-        @return A list of verticals.
-        @throws ApiException when there is at least one error with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:getVerticalCriterionRequest" name="getVerticalCriterionRequest"/>
       <wsdl:output message="tns:getVerticalCriterionResponse" name="getVerticalCriterionResponse"/>

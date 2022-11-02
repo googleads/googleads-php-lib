@@ -117,9 +117,6 @@ class StreamActivityMonitorService extends \Google\AdsApi\Common\AdsSoapClient
      * </tbody>
      * </table>
      *
-     * Only '=' and 'IN' expressions are supported.
-     * no SAM session is associated with any of the {@code sessionIds}.
-     *
      * @param \Google\AdsApi\AdManager\v202202\Statement $statement
      * @return \Google\AdsApi\AdManager\v202202\SamSession[]
      * @throws \Google\AdsApi\AdManager\v202202\ApiException

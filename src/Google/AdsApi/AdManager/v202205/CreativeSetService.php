@@ -139,8 +139,6 @@ class CreativeSetService extends \Google\AdsApi\Common\AdsSoapClient
      * </tr>
      * </table>
      *
-     * a set of creative sets
-     *
      * @param \Google\AdsApi\AdManager\v202205\Statement $statement
      * @return \Google\AdsApi\AdManager\v202205\CreativeSetPage
      * @throws \Google\AdsApi\AdManager\v202205\ApiException

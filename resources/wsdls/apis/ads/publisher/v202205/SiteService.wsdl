@@ -138,6 +138,15 @@
           <element maxOccurs="1" minOccurs="0" name="details" type="xsd:string"/>
         </sequence>
       </complexType>
+      <complexType name="EntityLimitReachedError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:EntityLimitReachedError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
       <complexType name="FeatureError">
         <complexContent>
           <extension base="tns:ApiError">
@@ -443,6 +452,22 @@
           <enumeration value="UNKNOWN"/>
         </restriction>
       </simpleType>
+      <simpleType name="EntityLimitReachedError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="CUSTOM_TARGETING_VALUES_LIMIT_REACHED"/>
+          <enumeration value="AD_EXCLUSION_RULES_LIMIT_REACHED"/>
+          <enumeration value="FIRST_PARTY_AUDIENCE_SEGMENTS_LIMIT_REACHED"/>
+          <enumeration value="PLACEMENTS_LIMIT_REACHED"/>
+          <enumeration value="LINE_ITEMS_LIMIT_REACHED"/>
+          <enumeration value="ACTIVE_LINE_ITEMS_LIMIT_REACHED"/>
+          <enumeration value="DAI_ENCODING_PROFILES_LIMIT_REACHED"/>
+          <enumeration value="TRAFFIC_FORECAST_SEGMENTS_LIMIT_REACHED"/>
+          <enumeration value="FORECAST_ADJUSTMENTS_LIMIT_REACHED"/>
+          <enumeration value="ACTIVE_EXPERIMENTS_LIMIT_REACHED"/>
+          <enumeration value="SITES_LIMIT_REACHED"/>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
       <simpleType name="FeatureError.Reason">
         <restriction base="xsd:string">
           <enumeration value="MISSING_FEATURE"/>
@@ -562,9 +587,6 @@
         <annotation>
           <documentation>
             Creates new {@link Site} objects.
-            
-            @param sites the sites to create
-            @return the created sites with their IDs filled in
           </documentation>
         </annotation>
         <complexType>
@@ -627,9 +649,6 @@
             top-level expression scoping the {@code filterStatement} to {@link Site}s whose {@code
             approvalStatus} was modified on or after a specified date and time. (e.x. {@code "WHERE
             lastModifiedApprovalStatusDateTime &gt;= '2022-01-01T00:00:00'"}).
-            
-            @param filterStatement a Publisher Query Language statement used to filter a set of sites
-            @return the sites that match the given filter
           </documentation>
         </annotation>
         <complexType>
@@ -649,10 +668,6 @@
         <annotation>
           <documentation>
             Performs actions on {@link Site} objects that match the given {@link Statement#query}.
-            
-            @param siteAction the action to perform
-            @param filterStatement a Publisher Query Language statement used to filter a set of sites
-            @return the result of the action performed
           </documentation>
         </annotation>
         <complexType>
@@ -676,9 +691,6 @@
             
             &lt;p&gt;The {@link Site#childNetworkCode} can be updated in order to 1) change the child network, 2)
             move a site from O&amp;O to represented, or 3) move a site from represented to O&amp;O.
-            
-            @param sites the sites to update
-            @return the updated sites
           </documentation>
         </annotation>
         <complexType>
@@ -735,9 +747,6 @@
     <wsdl:operation name="createSites">
       <wsdl:documentation>
         Creates new {@link Site} objects.
-        
-        @param sites the sites to create
-        @return the created sites with their IDs filled in
       </wsdl:documentation>
       <wsdl:input message="tns:createSitesRequest" name="createSitesRequest"/>
       <wsdl:output message="tns:createSitesResponse" name="createSitesResponse"/>
@@ -782,9 +791,6 @@
         top-level expression scoping the {@code filterStatement} to {@link Site}s whose {@code
         approvalStatus} was modified on or after a specified date and time. (e.x. {@code "WHERE
         lastModifiedApprovalStatusDateTime &gt;= '2022-01-01T00:00:00'"}).
-        
-        @param filterStatement a Publisher Query Language statement used to filter a set of sites
-        @return the sites that match the given filter
       </wsdl:documentation>
       <wsdl:input message="tns:getSitesByStatementRequest" name="getSitesByStatementRequest"/>
       <wsdl:output message="tns:getSitesByStatementResponse" name="getSitesByStatementResponse"/>
@@ -793,10 +799,6 @@
     <wsdl:operation name="performSiteAction">
       <wsdl:documentation>
         Performs actions on {@link Site} objects that match the given {@link Statement#query}.
-        
-        @param siteAction the action to perform
-        @param filterStatement a Publisher Query Language statement used to filter a set of sites
-        @return the result of the action performed
       </wsdl:documentation>
       <wsdl:input message="tns:performSiteActionRequest" name="performSiteActionRequest"/>
       <wsdl:output message="tns:performSiteActionResponse" name="performSiteActionResponse"/>
@@ -808,9 +810,6 @@
         
         &lt;p&gt;The {@link Site#childNetworkCode} can be updated in order to 1) change the child network, 2)
         move a site from O&amp;O to represented, or 3) move a site from represented to O&amp;O.
-        
-        @param sites the sites to update
-        @return the updated sites
       </wsdl:documentation>
       <wsdl:input message="tns:updateSitesRequest" name="updateSitesRequest"/>
       <wsdl:output message="tns:updateSitesResponse" name="updateSitesResponse"/>

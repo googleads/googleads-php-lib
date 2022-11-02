@@ -51,6 +51,7 @@ class PublisherQueryLanguageService extends \Google\AdsApi\Common\AdsSoapClient
       'DateValue' => 'Google\\AdsApi\\AdManager\\v202205\\DateValue',
       'DayPart' => 'Google\\AdsApi\\AdManager\\v202205\\DayPart',
       'DayPartTargeting' => 'Google\\AdsApi\\AdManager\\v202205\\DayPartTargeting',
+      'DealError' => 'Google\\AdsApi\\AdManager\\v202205\\DealError',
       'DeviceCapability' => 'Google\\AdsApi\\AdManager\\v202205\\DeviceCapability',
       'DeviceCapabilityTargeting' => 'Google\\AdsApi\\AdManager\\v202205\\DeviceCapabilityTargeting',
       'DeviceCategory' => 'Google\\AdsApi\\AdManager\\v202205\\DeviceCategory',
@@ -151,8 +152,6 @@ class PublisherQueryLanguageService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * Retrieves rows of data that satisfy the given {@link Statement#query} from
      * the system.
-     *
-     * specify what data needs to returned
      *
      * @param \Google\AdsApi\AdManager\v202205\Statement $selectStatement
      * @return \Google\AdsApi\AdManager\v202205\ResultSet

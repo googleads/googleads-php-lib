@@ -174,8 +174,6 @@ class NativeStyleService extends \Google\AdsApi\Common\AdsSoapClient
      * </tr>
      * </table>
      *
-     * native styles.
-     *
      * @param \Google\AdsApi\AdManager\v202202\Statement $filterStatement
      * @return \Google\AdsApi\AdManager\v202202\NativeStylePage
      * @throws \Google\AdsApi\AdManager\v202202\ApiException

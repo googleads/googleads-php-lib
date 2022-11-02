@@ -4561,9 +4561,6 @@
         <annotation>
           <documentation>
             Creates new {@link NativeStyle} objects.
-            
-            @param nativeStyles the native styles to create
-            @return the created native styles with their IDs filled in
           </documentation>
         </annotation>
         <complexType>
@@ -4607,10 +4604,6 @@
             &lt;td&gt;{@link NativeStyle#name}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;/table&gt;
-            
-            @param filterStatement a Publisher Query Language statement used to filter a set of
-            native styles.
-            @return the native styles that match the given filter
           </documentation>
         </annotation>
         <complexType>
@@ -4630,10 +4623,6 @@
         <annotation>
           <documentation>
             Performs actions on {@link NativeStyle native styles} that match the given {@link Statement}.
-            
-            @param nativeStyleAction the action to perform
-            @param filterStatement a Publisher Query Language statement to filter a set of native styles
-            @return the result of the action performed
           </documentation>
         </annotation>
         <complexType>
@@ -4655,9 +4644,6 @@
         <annotation>
           <documentation>
             Updates the specified {@link NativeStyle} objects.
-            
-            @param nativeStyles the native styles to be updated
-            @return the updated native styles
           </documentation>
         </annotation>
         <complexType>
@@ -4718,9 +4704,6 @@
     <wsdl:operation name="createNativeStyles">
       <wsdl:documentation>
         Creates new {@link NativeStyle} objects.
-        
-        @param nativeStyles the native styles to create
-        @return the created native styles with their IDs filled in
       </wsdl:documentation>
       <wsdl:input message="tns:createNativeStylesRequest" name="createNativeStylesRequest"/>
       <wsdl:output message="tns:createNativeStylesResponse" name="createNativeStylesResponse"/>
@@ -4745,10 +4728,6 @@
         &lt;td&gt;{@link NativeStyle#name}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;/table&gt;
-        
-        @param filterStatement a Publisher Query Language statement used to filter a set of
-        native styles.
-        @return the native styles that match the given filter
       </wsdl:documentation>
       <wsdl:input message="tns:getNativeStylesByStatementRequest" name="getNativeStylesByStatementRequest"/>
       <wsdl:output message="tns:getNativeStylesByStatementResponse" name="getNativeStylesByStatementResponse"/>
@@ -4757,10 +4736,6 @@
     <wsdl:operation name="performNativeStyleAction">
       <wsdl:documentation>
         Performs actions on {@link NativeStyle native styles} that match the given {@link Statement}.
-        
-        @param nativeStyleAction the action to perform
-        @param filterStatement a Publisher Query Language statement to filter a set of native styles
-        @return the result of the action performed
       </wsdl:documentation>
       <wsdl:input message="tns:performNativeStyleActionRequest" name="performNativeStyleActionRequest"/>
       <wsdl:output message="tns:performNativeStyleActionResponse" name="performNativeStyleActionResponse"/>
@@ -4769,9 +4744,6 @@
     <wsdl:operation name="updateNativeStyles">
       <wsdl:documentation>
         Updates the specified {@link NativeStyle} objects.
-        
-        @param nativeStyles the native styles to be updated
-        @return the updated native styles
       </wsdl:documentation>
       <wsdl:input message="tns:updateNativeStylesRequest" name="updateNativeStylesRequest"/>
       <wsdl:output message="tns:updateNativeStylesResponse" name="updateNativeStylesResponse"/>

@@ -337,6 +337,26 @@
           </element>
         </sequence>
       </complexType>
+      <complexType name="AssetError">
+        <annotation>
+          <documentation>
+            Lists all errors associated with assets.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:AssetError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
       <complexType name="AudienceExtensionError">
         <annotation>
           <documentation>
@@ -1375,6 +1395,20 @@
             </annotation>
           </element>
         </sequence>
+      </complexType>
+      <complexType name="DateError">
+        <annotation>
+          <documentation>
+            A list of all errors associated with the dates.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:DateError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
       </complexType>
       <complexType name="DateRange">
         <annotation>
@@ -4253,19 +4287,14 @@
             <annotation>
               <documentation>
                 The amount of money to spend per impression or click in proposal currency. It supports
-                precision of 4 decimal places in terms of the fundamental currency unit, so the
-                {@link Money#getAmountInMicros} must be multiples of 100. It doesn't include agency
-                commission.
+                precision of 4 decimal places in terms of the fundamental currency unit, so the {@link
+                Money#getAmountInMicros} must be multiples of 100. It doesn't include agency commission.
                 
-                &lt;p&gt;For example, if {@link Proposal#currencyCode} is 'USD', then $123.4567 could be
-                represented as 123456700, but further precision is not supported.
+                &lt;p&gt;For example, if {@link Proposal#currencyCode} is 'USD', then $123.4567 could be represented
+                as 123456700, but further precision is not supported.
                 
-                &lt;p&gt;When using sales management, at least one of the four fields
-                {@link ProposalLineItem#netRate}, {@link ProposalLineItem#grossRate},
-                {@link ProposalLineItem#netCost} and {@link ProposalLineItem#grossCost} is required.
-                
-                &lt;p&gt;When not using sales management, at least one of the two fields
-                {@link ProposalLineItem#netRate} and {@link ProposalLineItem#netCost} is required.
+                &lt;p&gt;At least one of the two fields {@link ProposalLineItem#netRate},and {@link
+                ProposalLineItem#netCost} is required.
               </documentation>
             </annotation>
           </element>
@@ -5887,6 +5916,85 @@
           </enumeration>
         </restriction>
       </simpleType>
+      <simpleType name="AssetError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="NON_UNIQUE_NAME">
+            <annotation>
+              <documentation>
+                An asset name must be unique across advertiser.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FILE_NAME_TOO_LONG">
+            <annotation>
+              <documentation>
+                The file name is too long.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FILE_SIZE_TOO_LARGE">
+            <annotation>
+              <documentation>
+                The file size is too large.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_REQUIRED_DYNAMIC_ALLOCATION_CLIENT">
+            <annotation>
+              <documentation>
+                Required client code is not present in the code snippet.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_REQUIRED_DYNAMIC_ALLOCATION_HEIGHT">
+            <annotation>
+              <documentation>
+                Required height is not present in the code snippet.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_REQUIRED_DYNAMIC_ALLOCATION_WIDTH">
+            <annotation>
+              <documentation>
+                Required width is not present in the code snippet.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_REQUIRED_DYNAMIC_ALLOCATION_FORMAT">
+            <annotation>
+              <documentation>
+                Required format is not present in the mobile code snippet.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_CODE_SNIPPET_PARAMETER_VALUE">
+            <annotation>
+              <documentation>
+                The parameter value in the code snippet is invalid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_ASSET_ID">
+            <annotation>
+              <documentation>
+                Invalid asset Id.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
       <simpleType name="AudienceExtensionError.Reason">
         <annotation>
           <documentation>
@@ -7439,6 +7547,27 @@
         <restriction base="xsd:string">
           <enumeration value="IS"/>
           <enumeration value="IS_NOT"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="DateError.Reason">
+        <annotation>
+          <documentation>
+            Enumerates all possible date specific errors.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="DATE_IN_PAST"/>
+          <enumeration value="START_DATE_AFTER_END_DATE"/>
+          <enumeration value="END_DATE_BEFORE_START_DATE"/>
+          <enumeration value="NOT_CERTAIN_DAY_OF_MONTH"/>
+          <enumeration value="INVALID_DATES"/>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
         </restriction>
       </simpleType>
       <simpleType name="DateTimeRangeTargetingError.Reason">
@@ -12375,9 +12504,6 @@
             Gets the availability forecast for a {@link ProspectiveLineItem}. An availability forecast
             reports the maximum number of available units that the line item can book, and the total number
             of units matching the line item's targeting.
-            
-            @param lineItem the prospective line item (new or existing) to be forecasted for availability
-            @param forecastOptions options controlling the forecast
           </documentation>
         </annotation>
         <complexType>
@@ -12411,9 +12537,6 @@
             &lt;p&gt;Only line items having type {@link LineItemType#SPONSORSHIP} or {@link
             LineItemType#STANDARD} are valid. Other types will result in {@link
             ReservationDetailsError.Reason#LINE_ITEM_TYPE_NOT_ALLOWED}.
-            
-            @param lineItemId the ID of a {@link LineItem} to run the forecast on.
-            @param forecastOptions options controlling the forecast
           </documentation>
         </annotation>
         <complexType>
@@ -12437,9 +12560,6 @@
             delivery simulation with line items potentially contending with each other. A delivery forecast
             reports the number of units that will be delivered to each line item given the line item goals
             and contentions from other line items.
-            
-            @param lineItems line items to be forecasted for delivery
-            @param forecastOptions options controlling the forecast
           </documentation>
         </annotation>
         <complexType>
@@ -12463,9 +12583,6 @@
             Gets the delivery forecast for a list of existing {@link LineItem} objects in a single
             delivery simulation. A delivery forecast reports the number of units that will be delivered
             to each line item given the line item goals and contentions from other line items.
-            
-            @param lineItemIds the IDs of line items to be forecasted for delivery
-            @param forecastOptions options controlling the forecast
           </documentation>
         </annotation>
         <complexType>
@@ -12490,11 +12607,6 @@
             provided request.
             
             &lt;p&gt;Calling this endpoint programmatically is only available for Ad Manager 360 networks.
-            
-            @param trafficDataRequest the request specifying the segment of traffic for which data should
-            be returned
-            @return a dto containing forecasted and historical traffic data for the specified segment of
-            traffic
           </documentation>
         </annotation>
         <complexType>
@@ -12654,9 +12766,6 @@
         Gets the availability forecast for a {@link ProspectiveLineItem}. An availability forecast
         reports the maximum number of available units that the line item can book, and the total number
         of units matching the line item's targeting.
-        
-        @param lineItem the prospective line item (new or existing) to be forecasted for availability
-        @param forecastOptions options controlling the forecast
       </wsdl:documentation>
       <wsdl:input message="tns:getAvailabilityForecastRequest" name="getAvailabilityForecastRequest"/>
       <wsdl:output message="tns:getAvailabilityForecastResponse" name="getAvailabilityForecastResponse"/>
@@ -12671,9 +12780,6 @@
         &lt;p&gt;Only line items having type {@link LineItemType#SPONSORSHIP} or {@link
         LineItemType#STANDARD} are valid. Other types will result in {@link
         ReservationDetailsError.Reason#LINE_ITEM_TYPE_NOT_ALLOWED}.
-        
-        @param lineItemId the ID of a {@link LineItem} to run the forecast on.
-        @param forecastOptions options controlling the forecast
       </wsdl:documentation>
       <wsdl:input message="tns:getAvailabilityForecastByIdRequest" name="getAvailabilityForecastByIdRequest"/>
       <wsdl:output message="tns:getAvailabilityForecastByIdResponse" name="getAvailabilityForecastByIdResponse"/>
@@ -12685,9 +12791,6 @@
         delivery simulation with line items potentially contending with each other. A delivery forecast
         reports the number of units that will be delivered to each line item given the line item goals
         and contentions from other line items.
-        
-        @param lineItems line items to be forecasted for delivery
-        @param forecastOptions options controlling the forecast
       </wsdl:documentation>
       <wsdl:input message="tns:getDeliveryForecastRequest" name="getDeliveryForecastRequest"/>
       <wsdl:output message="tns:getDeliveryForecastResponse" name="getDeliveryForecastResponse"/>
@@ -12698,9 +12801,6 @@
         Gets the delivery forecast for a list of existing {@link LineItem} objects in a single
         delivery simulation. A delivery forecast reports the number of units that will be delivered
         to each line item given the line item goals and contentions from other line items.
-        
-        @param lineItemIds the IDs of line items to be forecasted for delivery
-        @param forecastOptions options controlling the forecast
       </wsdl:documentation>
       <wsdl:input message="tns:getDeliveryForecastByIdsRequest" name="getDeliveryForecastByIdsRequest"/>
       <wsdl:output message="tns:getDeliveryForecastByIdsResponse" name="getDeliveryForecastByIdsResponse"/>
@@ -12712,11 +12812,6 @@
         provided request.
         
         &lt;p&gt;Calling this endpoint programmatically is only available for Ad Manager 360 networks.
-        
-        @param trafficDataRequest the request specifying the segment of traffic for which data should
-        be returned
-        @return a dto containing forecasted and historical traffic data for the specified segment of
-        traffic
       </wsdl:documentation>
       <wsdl:input message="tns:getTrafficDataRequest" name="getTrafficDataRequest"/>
       <wsdl:output message="tns:getTrafficDataResponse" name="getTrafficDataResponse"/>

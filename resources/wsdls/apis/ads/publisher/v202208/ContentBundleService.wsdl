@@ -1611,9 +1611,6 @@
         <annotation>
           <documentation>
             Creates new {@link ContentBundle} objects.
-            
-            @param contentBundles the content bundles to create
-            @return the created content bundles with their IDs filled in
           </documentation>
         </annotation>
         <complexType>
@@ -1660,10 +1657,6 @@
             &lt;td&gt;{@link ContentBundle#status}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;/table&gt;
-            
-            @param filterStatement a Publisher Query Language statement used to filter
-            a set of content bundles
-            @return the content bundles that match the given filter
           </documentation>
         </annotation>
         <complexType>
@@ -1684,11 +1677,6 @@
           <documentation>
             Performs actions on {@link ContentBundle} objects that match the given
             {@link Statement#query}.
-            
-            @param contentBundleAction the action to perform
-            @param filterStatement a Publisher Query Language statement used to filter
-            a set of content bundles
-            @return the result of the action performed
           </documentation>
         </annotation>
         <complexType>
@@ -1710,9 +1698,6 @@
         <annotation>
           <documentation>
             Updates the specified {@link ContentBundle} objects.
-            
-            @param contentBundles the content bundles to update
-            @return the updated content bundles
           </documentation>
         </annotation>
         <complexType>
@@ -1776,9 +1761,6 @@
     <wsdl:operation name="createContentBundles">
       <wsdl:documentation>
         Creates new {@link ContentBundle} objects.
-        
-        @param contentBundles the content bundles to create
-        @return the created content bundles with their IDs filled in
       </wsdl:documentation>
       <wsdl:input message="tns:createContentBundlesRequest" name="createContentBundlesRequest"/>
       <wsdl:output message="tns:createContentBundlesResponse" name="createContentBundlesResponse"/>
@@ -1806,10 +1788,6 @@
         &lt;td&gt;{@link ContentBundle#status}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;/table&gt;
-        
-        @param filterStatement a Publisher Query Language statement used to filter
-        a set of content bundles
-        @return the content bundles that match the given filter
       </wsdl:documentation>
       <wsdl:input message="tns:getContentBundlesByStatementRequest" name="getContentBundlesByStatementRequest"/>
       <wsdl:output message="tns:getContentBundlesByStatementResponse" name="getContentBundlesByStatementResponse"/>
@@ -1819,11 +1797,6 @@
       <wsdl:documentation>
         Performs actions on {@link ContentBundle} objects that match the given
         {@link Statement#query}.
-        
-        @param contentBundleAction the action to perform
-        @param filterStatement a Publisher Query Language statement used to filter
-        a set of content bundles
-        @return the result of the action performed
       </wsdl:documentation>
       <wsdl:input message="tns:performContentBundleActionRequest" name="performContentBundleActionRequest"/>
       <wsdl:output message="tns:performContentBundleActionResponse" name="performContentBundleActionResponse"/>
@@ -1832,9 +1805,6 @@
     <wsdl:operation name="updateContentBundles">
       <wsdl:documentation>
         Updates the specified {@link ContentBundle} objects.
-        
-        @param contentBundles the content bundles to update
-        @return the updated content bundles
       </wsdl:documentation>
       <wsdl:input message="tns:updateContentBundlesRequest" name="updateContentBundlesRequest"/>
       <wsdl:output message="tns:updateContentBundlesResponse" name="updateContentBundlesResponse"/>

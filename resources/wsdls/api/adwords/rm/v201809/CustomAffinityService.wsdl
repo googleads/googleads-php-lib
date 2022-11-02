@@ -3362,10 +3362,6 @@
           <documentation>
             Provides the ability to get one or more custom affinity audience with the ability
             to filter based various criteria.
-            
-            @param serviceSelector a selector describing the subset of custom affinity audience
-            for this customer.
-            @return A page of custom affinity audience as described by the selector.
           </documentation>
         </annotation>
         <complexType>
@@ -3407,9 +3403,6 @@
             Notice that custom affinity tokens are not managed by this method. They are created/deleted by
             &lt;code&gt;mutateToken&lt;/code&gt; method. But when a new custom affinity audience is added, its tokens
             are also added.
-            
-            @param operations the operations to apply
-            @return a list of CustomAffinity objects
           </documentation>
         </annotation>
         <complexType>
@@ -3444,9 +3437,6 @@
             Add - creates a custom affinity token
             Set - set operation for custom affinity token is not supported
             Remove - deletes a custom affinity token
-            
-            @param operations the operations to apply
-            @return a list of CustomAffinityToken objects
           </documentation>
         </annotation>
         <complexType>
@@ -3476,10 +3466,6 @@
         <annotation>
           <documentation>
             Returns the list of CustomAffinity that match the query.
-            
-            @param query The SQL-like AWQL query string
-            @return A list of CustomAffinity
-            @throws ApiException when the query is invalid or there are errors processing the request.
           </documentation>
         </annotation>
         <complexType>
@@ -3546,10 +3532,6 @@
       <wsdl:documentation>
         Provides the ability to get one or more custom affinity audience with the ability
         to filter based various criteria.
-        
-        @param serviceSelector a selector describing the subset of custom affinity audience
-        for this customer.
-        @return A page of custom affinity audience as described by the selector.
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>
@@ -3567,9 +3549,6 @@
         Notice that custom affinity tokens are not managed by this method. They are created/deleted by
         &lt;code&gt;mutateToken&lt;/code&gt; method. But when a new custom affinity audience is added, its tokens
         are also added.
-        
-        @param operations the operations to apply
-        @return a list of CustomAffinity objects
       </wsdl:documentation>
       <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
       <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>
@@ -3583,9 +3562,6 @@
         Add - creates a custom affinity token
         Set - set operation for custom affinity token is not supported
         Remove - deletes a custom affinity token
-        
-        @param operations the operations to apply
-        @return a list of CustomAffinityToken objects
       </wsdl:documentation>
       <wsdl:input message="tns:mutateTokenRequest" name="mutateTokenRequest"/>
       <wsdl:output message="tns:mutateTokenResponse" name="mutateTokenResponse"/>
@@ -3594,10 +3570,6 @@
     <wsdl:operation name="query">
       <wsdl:documentation>
         Returns the list of CustomAffinity that match the query.
-        
-        @param query The SQL-like AWQL query string
-        @return A list of CustomAffinity
-        @throws ApiException when the query is invalid or there are errors processing the request.
       </wsdl:documentation>
       <wsdl:input message="tns:queryRequest" name="queryRequest"/>
       <wsdl:output message="tns:queryResponse" name="queryResponse"/>

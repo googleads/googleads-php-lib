@@ -4269,9 +4269,6 @@
             &lt;td&gt;{@link TargetingPreset#name}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;/table&gt;
-            
-            @param filterStatement a Publisher Query Language statement used to filter a set of labels.
-            @return the targeting presets that match the given filter
           </documentation>
         </annotation>
         <complexType>
@@ -4335,9 +4332,6 @@
         &lt;td&gt;{@link TargetingPreset#name}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;/table&gt;
-        
-        @param filterStatement a Publisher Query Language statement used to filter a set of labels.
-        @return the targeting presets that match the given filter
       </wsdl:documentation>
       <wsdl:input message="tns:getTargetingPresetsByStatementRequest" name="getTargetingPresetsByStatementRequest"/>
       <wsdl:output message="tns:getTargetingPresetsByStatementResponse" name="getTargetingPresetsByStatementResponse"/>

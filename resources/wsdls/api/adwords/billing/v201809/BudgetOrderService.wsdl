@@ -3037,11 +3037,6 @@
         <annotation>
           <documentation>
             Gets a list of {@link BudgetOrder}s using the generic selector.
-            
-            @param serviceSelector specifies which BudgetOrder to return.
-            @return A {@link BudgetOrderPage} of BudgetOrders of the client customer. All BudgetOrder
-            fields are returned. Stats are not yet supported.
-            @throws ApiException
           </documentation>
         </annotation>
         <complexType>
@@ -3074,9 +3069,6 @@
         <annotation>
           <documentation>
             Returns all the open/active BillingAccounts associated with the current manager.
-            
-            @return A list of {@link BillingAccount}s.
-            @throws ApiException
           </documentation>
         </annotation>
         <complexType>
@@ -3103,10 +3095,6 @@
             is limited to one operation per mutate request. Any attempt to make more
             than one operation will result in an &lt;code&gt;ApiException&lt;/code&gt;.&lt;/p&gt;
             &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; This action is available only on a whitelist basis.&lt;/p&gt;
-            @param operations A list of operations, &lt;b&gt;however currently we only
-            support one operation per mutate call&lt;/b&gt;.
-            @return BudgetOrders affected by the mutate operation.
-            @throws ApiException
           </documentation>
         </annotation>
         <complexType>
@@ -3175,11 +3163,6 @@
     <wsdl:operation name="get">
       <wsdl:documentation>
         Gets a list of {@link BudgetOrder}s using the generic selector.
-        
-        @param serviceSelector specifies which BudgetOrder to return.
-        @return A {@link BudgetOrderPage} of BudgetOrders of the client customer. All BudgetOrder
-        fields are returned. Stats are not yet supported.
-        @throws ApiException
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>
@@ -3188,9 +3171,6 @@
     <wsdl:operation name="getBillingAccounts">
       <wsdl:documentation>
         Returns all the open/active BillingAccounts associated with the current manager.
-        
-        @return A list of {@link BillingAccount}s.
-        @throws ApiException
       </wsdl:documentation>
       <wsdl:input message="tns:getBillingAccountsRequest" name="getBillingAccountsRequest"/>
       <wsdl:output message="tns:getBillingAccountsResponse" name="getBillingAccountsResponse"/>
@@ -3208,10 +3188,6 @@
         is limited to one operation per mutate request. Any attempt to make more
         than one operation will result in an &lt;code&gt;ApiException&lt;/code&gt;.&lt;/p&gt;
         &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; This action is available only on a whitelist basis.&lt;/p&gt;
-        @param operations A list of operations, &lt;b&gt;however currently we only
-        support one operation per mutate call&lt;/b&gt;.
-        @return BudgetOrders affected by the mutate operation.
-        @throws ApiException
       </wsdl:documentation>
       <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
       <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>

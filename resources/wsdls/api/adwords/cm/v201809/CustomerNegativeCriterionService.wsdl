@@ -3672,10 +3672,6 @@
         <annotation>
           <documentation>
             Returns a list of CustomerNegativeCriterion that meets the selector criteria
-            
-            @param selector filters the criteria returned
-            @return The list of CustomerNegativeCriterion
-            @throws ApiException
           </documentation>
         </annotation>
         <complexType>
@@ -3709,9 +3705,6 @@
           <documentation>
             Adds, removes negative criteria for a customer. These negative criteria apply to all
             campaigns of the customer.
-            
-            @param operations A list of operations to apply
-            @throws ApiException
           </documentation>
         </annotation>
         <complexType>
@@ -3742,10 +3735,6 @@
         <annotation>
           <documentation>
             Returns the list of CustomerNegativeCriterion that match the query.
-            
-            @param query The SQL-like AWQL query string.
-            @return A list of CustomerNegativeCriterion.
-            @throws ApiException
           </documentation>
         </annotation>
         <complexType>
@@ -3805,10 +3794,6 @@
     <wsdl:operation name="get">
       <wsdl:documentation>
         Returns a list of CustomerNegativeCriterion that meets the selector criteria
-        
-        @param selector filters the criteria returned
-        @return The list of CustomerNegativeCriterion
-        @throws ApiException
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>
@@ -3818,9 +3803,6 @@
       <wsdl:documentation>
         Adds, removes negative criteria for a customer. These negative criteria apply to all
         campaigns of the customer.
-        
-        @param operations A list of operations to apply
-        @throws ApiException
       </wsdl:documentation>
       <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
       <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>
@@ -3829,10 +3811,6 @@
     <wsdl:operation name="query">
       <wsdl:documentation>
         Returns the list of CustomerNegativeCriterion that match the query.
-        
-        @param query The SQL-like AWQL query string.
-        @return A list of CustomerNegativeCriterion.
-        @throws ApiException
       </wsdl:documentation>
       <wsdl:input message="tns:queryRequest" name="queryRequest"/>
       <wsdl:output message="tns:queryResponse" name="queryResponse"/>

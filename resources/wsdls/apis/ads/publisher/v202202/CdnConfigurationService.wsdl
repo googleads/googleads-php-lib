@@ -1898,11 +1898,6 @@
           <documentation>
             Performs actions on {@link CdnConfiguration} objects that match the given {@link
             Statement#query}.
-            
-            @param cdnConfigurationAction the action to perform
-            @param filterStatement a Publisher Query Language statement used to filter a set of live stream
-            events
-            @return the result of the action performed
           </documentation>
         </annotation>
         <complexType>
@@ -2018,11 +2013,6 @@
       <wsdl:documentation>
         Performs actions on {@link CdnConfiguration} objects that match the given {@link
         Statement#query}.
-        
-        @param cdnConfigurationAction the action to perform
-        @param filterStatement a Publisher Query Language statement used to filter a set of live stream
-        events
-        @return the result of the action performed
       </wsdl:documentation>
       <wsdl:input message="tns:performCdnConfigurationActionRequest" name="performCdnConfigurationActionRequest"/>
       <wsdl:output message="tns:performCdnConfigurationActionResponse" name="performCdnConfigurationActionResponse"/>
