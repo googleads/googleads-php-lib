@@ -5170,9 +5170,6 @@
         <annotation>
           <documentation>
             Creates new {@link AdRule} objects.
-            
-            @param adRules the ad rules to create
-            @return the created ad rules with their IDs filled in
           </documentation>
         </annotation>
         <complexType>
@@ -5199,9 +5196,6 @@
         <annotation>
           <documentation>
             Creates new {@link AdSpot} objects.
-            
-            @param adSpots the ad spots to create
-            @return the created ad spots with their IDs filled in
           </documentation>
         </annotation>
         <complexType>
@@ -5221,9 +5215,6 @@
         <annotation>
           <documentation>
             Creates new {@link breakTemplate} objects.
-            
-            @param breakTemplate the break template to create
-            @return the created break template with their IDs filled in
           </documentation>
         </annotation>
         <complexType>
@@ -5266,10 +5257,6 @@
             &lt;td&gt;{@code status}&lt;/td&gt;
             &lt;td&gt;{@link AdRule#status}&lt;/td&gt;
             &lt;/table&gt;
-            
-            @param filterStatement a Publisher Query Language statement used to filter a set of ad rules
-            @return the ad rules that match the given filter
-            @throws ApiException if the ID of the active network does not exist or there is a backend error
           </documentation>
         </annotation>
         <complexType>
@@ -5290,9 +5277,6 @@
           <documentation>
             Gets a {@link AdSpotPage} of {@link AdSpot} objects that satisfy the given {@link
             Statement#query}.
-            
-            @param filterStatement a Publisher Query Language statement to filter a list of ad spots
-            @return the ad spots that match the filter
           </documentation>
         </annotation>
         <complexType>
@@ -5313,9 +5297,6 @@
           <documentation>
             Gets a {@link BreakTemplatePage} of {@link BreakTemplate} objects that satisfy the given {@link
             Statement#query}.
-            
-            @param filterStatement a Publisher Query Language statement to filter a list of breakTemplate
-            @return the break template that match the filter
           </documentation>
         </annotation>
         <complexType>
@@ -5336,11 +5317,6 @@
           <documentation>
             Performs actions on {@link AdRule} objects that match the given
             {@link Statement#query}.
-            
-            @param adRuleAction the action to perform
-            @param filterStatement a Publisher Query Language statement used to filter
-            a set of ad rules
-            @return the result of the action performed
           </documentation>
         </annotation>
         <complexType>
@@ -5361,10 +5337,6 @@
         <annotation>
           <documentation>
             Updates the specified {@link AdRule} objects.
-            
-            @param adRules the ad rules to update
-            @return the updated ad rules
-            @throws ApiException if there is an error updating the ad rules
           </documentation>
         </annotation>
         <complexType>
@@ -5384,10 +5356,6 @@
         <annotation>
           <documentation>
             Updates the specified {@link AdSpot} objects.
-            
-            @param adSpots the ad spots to update
-            @return the updated ad spots
-            @throws ApiException if there is an error updating the ad spots
           </documentation>
         </annotation>
         <complexType>
@@ -5407,9 +5375,6 @@
         <annotation>
           <documentation>
             Updates the specified {@link breakTemplate} objects.
-            
-            @param breakTemplate the break template to update
-            @return the updated break template
           </documentation>
         </annotation>
         <complexType>
@@ -5508,9 +5473,6 @@
     <wsdl:operation name="createAdRules">
       <wsdl:documentation>
         Creates new {@link AdRule} objects.
-        
-        @param adRules the ad rules to create
-        @return the created ad rules with their IDs filled in
       </wsdl:documentation>
       <wsdl:input message="tns:createAdRulesRequest" name="createAdRulesRequest"/>
       <wsdl:output message="tns:createAdRulesResponse" name="createAdRulesResponse"/>
@@ -5519,9 +5481,6 @@
     <wsdl:operation name="createAdSpots">
       <wsdl:documentation>
         Creates new {@link AdSpot} objects.
-        
-        @param adSpots the ad spots to create
-        @return the created ad spots with their IDs filled in
       </wsdl:documentation>
       <wsdl:input message="tns:createAdSpotsRequest" name="createAdSpotsRequest"/>
       <wsdl:output message="tns:createAdSpotsResponse" name="createAdSpotsResponse"/>
@@ -5530,9 +5489,6 @@
     <wsdl:operation name="createBreakTemplates">
       <wsdl:documentation>
         Creates new {@link breakTemplate} objects.
-        
-        @param breakTemplate the break template to create
-        @return the created break template with their IDs filled in
       </wsdl:documentation>
       <wsdl:input message="tns:createBreakTemplatesRequest" name="createBreakTemplatesRequest"/>
       <wsdl:output message="tns:createBreakTemplatesResponse" name="createBreakTemplatesResponse"/>
@@ -5563,10 +5519,6 @@
         &lt;td&gt;{@code status}&lt;/td&gt;
         &lt;td&gt;{@link AdRule#status}&lt;/td&gt;
         &lt;/table&gt;
-        
-        @param filterStatement a Publisher Query Language statement used to filter a set of ad rules
-        @return the ad rules that match the given filter
-        @throws ApiException if the ID of the active network does not exist or there is a backend error
       </wsdl:documentation>
       <wsdl:input message="tns:getAdRulesByStatementRequest" name="getAdRulesByStatementRequest"/>
       <wsdl:output message="tns:getAdRulesByStatementResponse" name="getAdRulesByStatementResponse"/>
@@ -5576,9 +5528,6 @@
       <wsdl:documentation>
         Gets a {@link AdSpotPage} of {@link AdSpot} objects that satisfy the given {@link
         Statement#query}.
-        
-        @param filterStatement a Publisher Query Language statement to filter a list of ad spots
-        @return the ad spots that match the filter
       </wsdl:documentation>
       <wsdl:input message="tns:getAdSpotsByStatementRequest" name="getAdSpotsByStatementRequest"/>
       <wsdl:output message="tns:getAdSpotsByStatementResponse" name="getAdSpotsByStatementResponse"/>
@@ -5588,9 +5537,6 @@
       <wsdl:documentation>
         Gets a {@link BreakTemplatePage} of {@link BreakTemplate} objects that satisfy the given {@link
         Statement#query}.
-        
-        @param filterStatement a Publisher Query Language statement to filter a list of breakTemplate
-        @return the break template that match the filter
       </wsdl:documentation>
       <wsdl:input message="tns:getBreakTemplatesByStatementRequest" name="getBreakTemplatesByStatementRequest"/>
       <wsdl:output message="tns:getBreakTemplatesByStatementResponse" name="getBreakTemplatesByStatementResponse"/>
@@ -5600,11 +5546,6 @@
       <wsdl:documentation>
         Performs actions on {@link AdRule} objects that match the given
         {@link Statement#query}.
-        
-        @param adRuleAction the action to perform
-        @param filterStatement a Publisher Query Language statement used to filter
-        a set of ad rules
-        @return the result of the action performed
       </wsdl:documentation>
       <wsdl:input message="tns:performAdRuleActionRequest" name="performAdRuleActionRequest"/>
       <wsdl:output message="tns:performAdRuleActionResponse" name="performAdRuleActionResponse"/>
@@ -5613,10 +5554,6 @@
     <wsdl:operation name="updateAdRules">
       <wsdl:documentation>
         Updates the specified {@link AdRule} objects.
-        
-        @param adRules the ad rules to update
-        @return the updated ad rules
-        @throws ApiException if there is an error updating the ad rules
       </wsdl:documentation>
       <wsdl:input message="tns:updateAdRulesRequest" name="updateAdRulesRequest"/>
       <wsdl:output message="tns:updateAdRulesResponse" name="updateAdRulesResponse"/>
@@ -5625,10 +5562,6 @@
     <wsdl:operation name="updateAdSpots">
       <wsdl:documentation>
         Updates the specified {@link AdSpot} objects.
-        
-        @param adSpots the ad spots to update
-        @return the updated ad spots
-        @throws ApiException if there is an error updating the ad spots
       </wsdl:documentation>
       <wsdl:input message="tns:updateAdSpotsRequest" name="updateAdSpotsRequest"/>
       <wsdl:output message="tns:updateAdSpotsResponse" name="updateAdSpotsResponse"/>
@@ -5637,9 +5570,6 @@
     <wsdl:operation name="updateBreakTemplates">
       <wsdl:documentation>
         Updates the specified {@link breakTemplate} objects.
-        
-        @param breakTemplate the break template to update
-        @return the updated break template
       </wsdl:documentation>
       <wsdl:input message="tns:updateBreakTemplatesRequest" name="updateBreakTemplatesRequest"/>
       <wsdl:output message="tns:updateBreakTemplatesResponse" name="updateBreakTemplatesResponse"/>

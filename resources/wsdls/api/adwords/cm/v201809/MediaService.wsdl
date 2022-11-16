@@ -3480,9 +3480,6 @@
             Returns a list of media that meet the criteria specified by the selector.
             &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; {@code MediaService} will not return any
             {@link ImageAd} image files.&lt;/p&gt;
-            
-            @param serviceSelector Selects which media objects to return.
-            @return A list of {@code Media} objects.
           </documentation>
         </annotation>
         <complexType>
@@ -3515,10 +3512,6 @@
         <annotation>
           <documentation>
             Returns the list of {@link Media} objects that match the query.
-            
-            @param query The SQL-like AWQL query string
-            @returns A list of {@code Media} objects.
-            @throws ApiException when the query is invalid or there are errors processing the request.
           </documentation>
         </annotation>
         <complexType>
@@ -3544,10 +3537,6 @@
         <annotation>
           <documentation>
             Uploads new media. Currently, you can upload {@link Image} files and {@link MediaBundle}s.
-            
-            @param media A list of {@code Media} objects, each containing the data to
-            be uploaded.
-            @return A list of uploaded media in the same order as the argument list.
           </documentation>
         </annotation>
         <complexType>
@@ -3603,9 +3592,6 @@
         Returns a list of media that meet the criteria specified by the selector.
         &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; {@code MediaService} will not return any
         {@link ImageAd} image files.&lt;/p&gt;
-        
-        @param serviceSelector Selects which media objects to return.
-        @return A list of {@code Media} objects.
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>
@@ -3614,10 +3600,6 @@
     <wsdl:operation name="query">
       <wsdl:documentation>
         Returns the list of {@link Media} objects that match the query.
-        
-        @param query The SQL-like AWQL query string
-        @returns A list of {@code Media} objects.
-        @throws ApiException when the query is invalid or there are errors processing the request.
       </wsdl:documentation>
       <wsdl:input message="tns:queryRequest" name="queryRequest"/>
       <wsdl:output message="tns:queryResponse" name="queryResponse"/>
@@ -3626,10 +3608,6 @@
     <wsdl:operation name="upload">
       <wsdl:documentation>
         Uploads new media. Currently, you can upload {@link Image} files and {@link MediaBundle}s.
-        
-        @param media A list of {@code Media} objects, each containing the data to
-        be uploaded.
-        @return A list of uploaded media in the same order as the argument list.
       </wsdl:documentation>
       <wsdl:input message="tns:uploadRequest" name="uploadRequest"/>
       <wsdl:output message="tns:uploadResponse" name="uploadResponse"/>

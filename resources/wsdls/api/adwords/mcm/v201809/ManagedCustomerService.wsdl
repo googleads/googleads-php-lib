@@ -2772,10 +2772,6 @@
         <annotation>
           <documentation>
             Returns the list of customers that meet the selector criteria.
-            
-            @param selector The selector specifying the {@link ManagedCustomer}s to return.
-            @return List of customers identified by the selector.
-            @throws ApiException When there is at least one error with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -2808,8 +2804,6 @@
         <annotation>
           <documentation>
             Returns the pending invitations for the customer IDs in the selector.
-            @param selector the manager customer ids (inviters) or the client customer ids (invitees)
-            @throws ApiException when there is at least one error with the request
           </documentation>
         </annotation>
         <complexType>
@@ -2837,10 +2831,6 @@
             Modifies or creates new {@link ManagedCustomer}s.
             
             &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; See {@link ManagedCustomerOperation} for available operators.&lt;/p&gt;
-            
-            @param operations List of unique operations.
-            @return The list of updated managed customers, returned in the same order as the
-            &lt;code&gt;operations&lt;/code&gt; array.
           </documentation>
         </annotation>
         <complexType>
@@ -2927,10 +2917,6 @@
             &lt;li&gt; An ACTIVE link can be marked unhidden with SET + ACTIVE along with setting the
             isHidden bit to false. &lt;/li&gt;
             &lt;/ul&gt;
-            
-            @param operations the list of operations
-            @return results for the given operations
-            @throws ApiException with a {@link ManagedCustomerServiceError}
           </documentation>
         </annotation>
         <complexType>
@@ -2963,10 +2949,6 @@
             &lt;li&gt;SET + ACTIVE: manager moves client customers to new managers within the same manager
             account hierarchy&lt;/li&gt;
             &lt;/ul&gt;
-            
-            @param operations List of unique operations.
-            @return results for the given operations
-            @throws ApiException with a {@link ManagedCustomerServiceError}
           </documentation>
         </annotation>
         <complexType>
@@ -3048,10 +3030,6 @@
     <wsdl:operation name="get">
       <wsdl:documentation>
         Returns the list of customers that meet the selector criteria.
-        
-        @param selector The selector specifying the {@link ManagedCustomer}s to return.
-        @return List of customers identified by the selector.
-        @throws ApiException When there is at least one error with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>
@@ -3060,8 +3038,6 @@
     <wsdl:operation name="getPendingInvitations">
       <wsdl:documentation>
         Returns the pending invitations for the customer IDs in the selector.
-        @param selector the manager customer ids (inviters) or the client customer ids (invitees)
-        @throws ApiException when there is at least one error with the request
       </wsdl:documentation>
       <wsdl:input message="tns:getPendingInvitationsRequest" name="getPendingInvitationsRequest"/>
       <wsdl:output message="tns:getPendingInvitationsResponse" name="getPendingInvitationsResponse"/>
@@ -3072,10 +3048,6 @@
         Modifies or creates new {@link ManagedCustomer}s.
         
         &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; See {@link ManagedCustomerOperation} for available operators.&lt;/p&gt;
-        
-        @param operations List of unique operations.
-        @return The list of updated managed customers, returned in the same order as the
-        &lt;code&gt;operations&lt;/code&gt; array.
       </wsdl:documentation>
       <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
       <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>
@@ -3122,10 +3094,6 @@
         &lt;li&gt; An ACTIVE link can be marked unhidden with SET + ACTIVE along with setting the
         isHidden bit to false. &lt;/li&gt;
         &lt;/ul&gt;
-        
-        @param operations the list of operations
-        @return results for the given operations
-        @throws ApiException with a {@link ManagedCustomerServiceError}
       </wsdl:documentation>
       <wsdl:input message="tns:mutateLinkRequest" name="mutateLinkRequest"/>
       <wsdl:output message="tns:mutateLinkResponse" name="mutateLinkResponse"/>
@@ -3139,10 +3107,6 @@
         &lt;li&gt;SET + ACTIVE: manager moves client customers to new managers within the same manager
         account hierarchy&lt;/li&gt;
         &lt;/ul&gt;
-        
-        @param operations List of unique operations.
-        @return results for the given operations
-        @throws ApiException with a {@link ManagedCustomerServiceError}
       </wsdl:documentation>
       <wsdl:input message="tns:mutateManagerRequest" name="mutateManagerRequest"/>
       <wsdl:output message="tns:mutateManagerResponse" name="mutateManagerResponse"/>

@@ -7485,9 +7485,6 @@
         <annotation>
           <documentation>
             Returns a DraftAsyncErrorPage that contains a list of DraftAsyncErrors matching the selector.
-            
-            @throws {#link com.google.ads.api.services.common.error.ApiException} if problems occurred
-            while retrieving the results.
           </documentation>
         </annotation>
         <complexType>
@@ -7520,9 +7517,6 @@
         <annotation>
           <documentation>
             Returns a DraftAsyncErrorPage that contains a list of DraftAsyncErrors matching the query.
-            
-            @throws {#link com.google.ads.api.services.common.error.ApiException} if problems occurred
-            while retrieving the results.
           </documentation>
         </annotation>
         <complexType>
@@ -7576,9 +7570,6 @@
     <wsdl:operation name="get">
       <wsdl:documentation>
         Returns a DraftAsyncErrorPage that contains a list of DraftAsyncErrors matching the selector.
-        
-        @throws {#link com.google.ads.api.services.common.error.ApiException} if problems occurred
-        while retrieving the results.
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>
@@ -7587,9 +7578,6 @@
     <wsdl:operation name="query">
       <wsdl:documentation>
         Returns a DraftAsyncErrorPage that contains a list of DraftAsyncErrors matching the query.
-        
-        @throws {#link com.google.ads.api.services.common.error.ApiException} if problems occurred
-        while retrieving the results.
       </wsdl:documentation>
       <wsdl:input message="tns:queryRequest" name="queryRequest"/>
       <wsdl:output message="tns:queryResponse" name="queryResponse"/>

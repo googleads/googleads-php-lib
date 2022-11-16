@@ -2299,10 +2299,6 @@
             
             &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; {@link OfflineCallConversionFeedOperation} supports only the
             {@code ADD} operator. ({@code SET} and {@code REMOVE} are not supported.)
-            
-            @param operations A list of offline call conversion feed operations.
-            @return The list of offline call conversion feed results (in the same order as the operations).
-            @throws {@link ApiException} if problems occurred while applying offline call conversions.
           </documentation>
         </annotation>
         <complexType>
@@ -2367,10 +2363,6 @@
         
         &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; {@link OfflineCallConversionFeedOperation} supports only the
         {@code ADD} operator. ({@code SET} and {@code REMOVE} are not supported.)
-        
-        @param operations A list of offline call conversion feed operations.
-        @return The list of offline call conversion feed results (in the same order as the operations).
-        @throws {@link ApiException} if problems occurred while applying offline call conversions.
       </wsdl:documentation>
       <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
       <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>

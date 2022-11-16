@@ -133,8 +133,6 @@ class CreativeWrapperService extends \Google\AdsApi\Common\AdsSoapClient
      * </tr>
      * </table>
      *
-     * a set of creative wrappers.
-     *
      * @param \Google\AdsApi\AdManager\v202205\Statement $filterStatement
      * @return \Google\AdsApi\AdManager\v202205\CreativeWrapperPage
      * @throws \Google\AdsApi\AdManager\v202205\ApiException
@@ -147,8 +145,6 @@ class CreativeWrapperService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * Performs actions on {@link CreativeWrapper} objects that match the
      * given {@link Statement#query}.
-     *
-     * a set of labels
      *
      * @param \Google\AdsApi\AdManager\v202205\CreativeWrapperAction $creativeWrapperAction
      * @param \Google\AdsApi\AdManager\v202205\Statement $filterStatement

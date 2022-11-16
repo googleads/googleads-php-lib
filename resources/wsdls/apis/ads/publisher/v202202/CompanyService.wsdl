@@ -3088,9 +3088,6 @@
         <annotation>
           <documentation>
             Creates new {@link Company} objects.
-            
-            @param companies the companies to create
-            @return the created companies with their IDs filled in
           </documentation>
         </annotation>
         <complexType>
@@ -3142,10 +3139,6 @@
             &lt;td&gt;{@link Company#lastModifiedDateTime}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;/table&gt;
-            
-            @param filterStatement a Publisher Query Language statement used to filter
-            a set of companies
-            @return the companies that match the given filter
           </documentation>
         </annotation>
         <complexType>
@@ -3165,11 +3158,6 @@
         <annotation>
           <documentation>
             Performs actions on {@link Company} objects that match the given {@code Statement}.
-            
-            @param companyAction the action to perform
-            @param statement a PQL statement used to filter companies
-            @return the result of the action performed
-            @throws ApiException
           </documentation>
         </annotation>
         <complexType>
@@ -3190,9 +3178,6 @@
         <annotation>
           <documentation>
             Updates the specified {@link Company} objects.
-            
-            @param companies the companies to update
-            @return the updated companies
           </documentation>
         </annotation>
         <complexType>
@@ -3253,9 +3238,6 @@
     <wsdl:operation name="createCompanies">
       <wsdl:documentation>
         Creates new {@link Company} objects.
-        
-        @param companies the companies to create
-        @return the created companies with their IDs filled in
       </wsdl:documentation>
       <wsdl:input message="tns:createCompaniesRequest" name="createCompaniesRequest"/>
       <wsdl:output message="tns:createCompaniesResponse" name="createCompaniesResponse"/>
@@ -3288,10 +3270,6 @@
         &lt;td&gt;{@link Company#lastModifiedDateTime}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;/table&gt;
-        
-        @param filterStatement a Publisher Query Language statement used to filter
-        a set of companies
-        @return the companies that match the given filter
       </wsdl:documentation>
       <wsdl:input message="tns:getCompaniesByStatementRequest" name="getCompaniesByStatementRequest"/>
       <wsdl:output message="tns:getCompaniesByStatementResponse" name="getCompaniesByStatementResponse"/>
@@ -3300,11 +3278,6 @@
     <wsdl:operation name="performCompanyAction">
       <wsdl:documentation>
         Performs actions on {@link Company} objects that match the given {@code Statement}.
-        
-        @param companyAction the action to perform
-        @param statement a PQL statement used to filter companies
-        @return the result of the action performed
-        @throws ApiException
       </wsdl:documentation>
       <wsdl:input message="tns:performCompanyActionRequest" name="performCompanyActionRequest"/>
       <wsdl:output message="tns:performCompanyActionResponse" name="performCompanyActionResponse"/>
@@ -3313,9 +3286,6 @@
     <wsdl:operation name="updateCompanies">
       <wsdl:documentation>
         Updates the specified {@link Company} objects.
-        
-        @param companies the companies to update
-        @return the updated companies
       </wsdl:documentation>
       <wsdl:input message="tns:updateCompaniesRequest" name="updateCompaniesRequest"/>
       <wsdl:output message="tns:updateCompaniesResponse" name="updateCompaniesResponse"/>

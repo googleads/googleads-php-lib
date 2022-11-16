@@ -249,11 +249,10 @@
       <complexType name="AspectRatioImageCreative">
         <annotation>
           <documentation>
-            A {@code Creative} intended for mobile platforms that displays an image,
-            whose {@link LineItem#creativePlaceholders size} is defined as an
-            {@link CreativeSizeType#ASPECT_RATIO aspect ratio}, i.e.
-            {@link Size#isAspectRatio}. It can have multiple images whose dimensions
-            conform to that aspect ratio.
+            A {@code Creative} intended for mobile platforms that displays an image, whose {@link
+            LineItem#creativePlaceholders size} is defined as an {@link CreativeSizeType#ASPECT_RATIO aspect
+            ratio}, i.e. {@link Size#isAspectRatio}. It can have multiple images whose dimensions conform to
+            that aspect ratio.
           </documentation>
         </annotation>
         <complexContent>
@@ -263,20 +262,18 @@
                 name="imageAssets" type="tns:CreativeAsset">
                 <annotation>
                   <documentation>
-                    The images associated with this creative. The ad server will choose one
-                    based on the capabilities of the device. Each asset should have a size
-                    which is of the same aspect ratio as the {@link Creative#size}. This
-                    attribute is required and must have at least one asset.
+                    The images associated with this creative. The ad server will choose one based on the
+                    capabilities of the device. Each asset should have a size which is of the same aspect ratio as
+                    the {@link Creative#size}. This attribute is required and must have at least one asset.
                   </documentation>
                 </annotation>
               </element>
               <element maxOccurs="1" minOccurs="0" name="altText" type="xsd:string">
                 <annotation>
                   <documentation>
-                    The text that is served along with the image creative, primarily for
-                    accessibility. If no suitable image size is available for the device, this
-                    text replaces the image completely. This field is optional and has a
-                    maximum length of 500 characters.
+                    The text that is served along with the image creative, primarily for accessibility. If no
+                    suitable image size is available for the device, this text replaces the image completely. This
+                    field is optional and has a maximum length of 500 characters.
                   </documentation>
                 </annotation>
               </element>
@@ -292,8 +289,8 @@
               <element maxOccurs="1" minOccurs="0" name="overrideSize" type="xsd:boolean">
                 <annotation>
                   <documentation>
-                    Allows the actual image asset sizes to differ from the creative size.
-                    This attribute is optional.
+                    Allows the actual image asset sizes to differ from the creative size. This attribute is
+                    optional.
                   </documentation>
                 </annotation>
               </element>
@@ -1807,8 +1804,8 @@
               <element maxOccurs="1" minOccurs="0" name="altText" type="xsd:string">
                 <annotation>
                   <documentation>
-                    Alternative text to be rendered along with the creative used mainly for accessibility.
-                    This field is optional and has a maximum length of 500 characters.
+                    Alternative text to be rendered along with the creative used mainly for accessibility. This
+                    field is optional and has a maximum length of 500 characters.
                   </documentation>
                 </annotation>
               </element>
@@ -1827,8 +1824,8 @@
                   <documentation>
                     The list of secondary image assets associated with this creative. This attribute is optional.
                     
-                    &lt;p&gt;Secondary image assets can be used to store different resolution versions of the
-                    primary asset for use on non-standard density screens.
+                    &lt;p&gt;Secondary image assets can be used to store different resolution versions of the primary
+                    asset for use on non-standard density screens.
                   </documentation>
                 </annotation>
               </element>
@@ -1934,8 +1931,8 @@
               <element maxOccurs="1" minOccurs="0" name="altText" type="xsd:string">
                 <annotation>
                   <documentation>
-                    Alternative text to be rendered along with the creative used mainly for accessibility.
-                    This field is optional and has a maximum length of 500 characters.
+                    Alternative text to be rendered along with the creative used mainly for accessibility. This
+                    field is optional and has a maximum length of 500 characters.
                   </documentation>
                 </annotation>
               </element>
@@ -7028,9 +7025,6 @@
         <annotation>
           <documentation>
             Creates new {@link Creative} objects.
-            
-            @param creatives the creatives to create
-            @return the created creatives with their IDs filled in
           </documentation>
         </annotation>
         <complexType>
@@ -7090,10 +7084,6 @@
             &lt;td&gt;{@link Creative#lastModifiedDateTime}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;/table&gt;
-            
-            @param filterStatement a Publisher Query Language statement used to filter
-            a set of creatives
-            @return the creatives that match the given filter
           </documentation>
         </annotation>
         <complexType>
@@ -7113,10 +7103,6 @@
         <annotation>
           <documentation>
             Performs action on {@link Creative} objects that match the given {@link Statement#query}.
-            
-            @param creativeAction the action to perform
-            @param filterStatement a Publisher Query Language statement used to filter a set of creatives
-            @return the result of the action performed
           </documentation>
         </annotation>
         <complexType>
@@ -7137,9 +7123,6 @@
         <annotation>
           <documentation>
             Updates the specified {@link Creative} objects.
-            
-            @param creatives the creatives to update
-            @return the updated creatives
           </documentation>
         </annotation>
         <complexType>
@@ -7206,9 +7189,6 @@
     <wsdl:operation name="createCreatives">
       <wsdl:documentation>
         Creates new {@link Creative} objects.
-        
-        @param creatives the creatives to create
-        @return the created creatives with their IDs filled in
       </wsdl:documentation>
       <wsdl:input message="tns:createCreativesRequest" name="createCreativesRequest"/>
       <wsdl:output message="tns:createCreativesResponse" name="createCreativesResponse"/>
@@ -7249,10 +7229,6 @@
         &lt;td&gt;{@link Creative#lastModifiedDateTime}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;/table&gt;
-        
-        @param filterStatement a Publisher Query Language statement used to filter
-        a set of creatives
-        @return the creatives that match the given filter
       </wsdl:documentation>
       <wsdl:input message="tns:getCreativesByStatementRequest" name="getCreativesByStatementRequest"/>
       <wsdl:output message="tns:getCreativesByStatementResponse" name="getCreativesByStatementResponse"/>
@@ -7261,10 +7237,6 @@
     <wsdl:operation name="performCreativeAction">
       <wsdl:documentation>
         Performs action on {@link Creative} objects that match the given {@link Statement#query}.
-        
-        @param creativeAction the action to perform
-        @param filterStatement a Publisher Query Language statement used to filter a set of creatives
-        @return the result of the action performed
       </wsdl:documentation>
       <wsdl:input message="tns:performCreativeActionRequest" name="performCreativeActionRequest"/>
       <wsdl:output message="tns:performCreativeActionResponse" name="performCreativeActionResponse"/>
@@ -7273,9 +7245,6 @@
     <wsdl:operation name="updateCreatives">
       <wsdl:documentation>
         Updates the specified {@link Creative} objects.
-        
-        @param creatives the creatives to update
-        @return the updated creatives
       </wsdl:documentation>
       <wsdl:input message="tns:updateCreativesRequest" name="updateCreativesRequest"/>
       <wsdl:output message="tns:updateCreativesResponse" name="updateCreativesResponse"/>

@@ -129,8 +129,6 @@ class MobileApplicationService extends \Google\AdsApi\Common\AdsSoapClient
      * </tr>
      * </table>
      *
-     * mobile applications.
-     *
      * @param \Google\AdsApi\AdManager\v202205\Statement $filterStatement
      * @return \Google\AdsApi\AdManager\v202205\MobileApplicationPage
      * @throws \Google\AdsApi\AdManager\v202205\ApiException
@@ -142,8 +140,6 @@ class MobileApplicationService extends \Google\AdsApi\Common\AdsSoapClient
 
     /**
      * Performs an action on {@link MobileApplication mobile applications}.
-     *
-     * a set of mobile applications.
      *
      * @param \Google\AdsApi\AdManager\v202205\MobileApplicationAction $mobileApplicationAction
      * @param \Google\AdsApi\AdManager\v202205\Statement $filterStatement

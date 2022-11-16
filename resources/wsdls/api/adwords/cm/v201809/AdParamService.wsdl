@@ -2343,9 +2343,6 @@
           <documentation>
             Returns the ad parameters that match the criteria specified in the
             selector.
-            
-            @param serviceSelector Specifies which ad parameters to return.
-            @return A list of ad parameters.
           </documentation>
         </annotation>
         <complexType>
@@ -2387,13 +2384,6 @@
             &lt;li&gt;{@code REMOVE}: Removes an ad parameter. The &lt;code&gt;&lt;var&gt;default-value&lt;/var&gt;
             &lt;/code&gt; specified in the ad text will be used.&lt;/li&gt;
             &lt;/ul&gt;
-            
-            @param operations The operations to perform.
-            @return A list of ad parameters, where each entry in the list is the
-            result of applying the operation in the input list with the same index.
-            For a {@code SET} operation, the returned ad parameter will contain the
-            updated values. For a {@code REMOVE} operation, the returned ad parameter
-            will simply be the ad parameter that was removed.
           </documentation>
         </annotation>
         <complexType>
@@ -2470,9 +2460,6 @@
       <wsdl:documentation>
         Returns the ad parameters that match the criteria specified in the
         selector.
-        
-        @param serviceSelector Specifies which ad parameters to return.
-        @return A list of ad parameters.
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>
@@ -2490,13 +2477,6 @@
         &lt;li&gt;{@code REMOVE}: Removes an ad parameter. The &lt;code&gt;&lt;var&gt;default-value&lt;/var&gt;
         &lt;/code&gt; specified in the ad text will be used.&lt;/li&gt;
         &lt;/ul&gt;
-        
-        @param operations The operations to perform.
-        @return A list of ad parameters, where each entry in the list is the
-        result of applying the operation in the input list with the same index.
-        For a {@code SET} operation, the returned ad parameter will contain the
-        updated values. For a {@code REMOVE} operation, the returned ad parameter
-        will simply be the ad parameter that was removed.
       </wsdl:documentation>
       <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
       <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>

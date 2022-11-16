@@ -220,8 +220,6 @@ class ProposalService extends \Google\AdsApi\Common\AdsSoapClient
      * <code><condition> := <property> IN <list></code><br>
      * Only supports {@code ORDER BY} {@link MarketplaceComment#creationTime}.
      *
-     * comments
-     *
      * @param \Google\AdsApi\AdManager\v202202\Statement $filterStatement
      * @return \Google\AdsApi\AdManager\v202202\MarketplaceCommentPage
      * @throws \Google\AdsApi\AdManager\v202202\ApiException
@@ -283,8 +281,6 @@ class ProposalService extends \Google\AdsApi\Common\AdsSoapClient
      * <td>{@link ProposalMarketplaceInfo#negotiationStatus}</td>
      * </tr>
      * </table>
-     *
-     * a set of proposals
      *
      * @param \Google\AdsApi\AdManager\v202202\Statement $filterStatement
      * @return \Google\AdsApi\AdManager\v202202\ProposalPage

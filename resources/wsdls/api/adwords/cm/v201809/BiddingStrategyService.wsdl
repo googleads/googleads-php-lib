@@ -1657,8 +1657,8 @@
       <complexType name="TargetSpendBiddingScheme">
         <annotation>
           <documentation>
-            &lt;a href="https://support.google.com/adwords/answer/6268626"&gt;Target Spend&lt;/a&gt; is an automated
-            bid strategy that sets your bids to help get as many clicks as possible within your budget.
+            &lt;a href="https://support.google.com/adwords/answer/6268626"&gt;Target Spend&lt;/a&gt; is an automated bid
+            strategy that sets your bids to help get as many clicks as possible within your budget.
             &lt;span class="constraint AdxEnabled"&gt;This is disabled for AdX.&lt;/span&gt;
           </documentation>
         </annotation>
@@ -1677,10 +1677,11 @@
               <element maxOccurs="1" minOccurs="0" name="spendTarget" type="tns:Money">
                 <annotation>
                   <documentation>
-                    A spend target under which to maximize clicks. The TargetSpend bidder will
-                    attempt to spend the smaller of this value or the natural throttling spend
-                    amount. If not specified, the budget is used as the spend target.
+                    A spend target under which to maximize clicks. The TargetSpend bidder will attempt to spend the
+                    smaller of this value or the natural throttling spend amount. If not specified, the budget is
+                    used as the spend target.
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "TargetSpendSpendTarget".&lt;/span&gt;
+                    &lt;span class="constraint CampaignType"&gt;This field may only be set for campaign channel types: SEARCH, SHOPPING.&lt;/span&gt;
                     &lt;span class="constraint InRange"&gt;This field must be greater than or equal to 0.&lt;/span&gt;
                   </documentation>
                 </annotation>
@@ -3516,10 +3517,6 @@
         <annotation>
           <documentation>
             Returns a list of bidding strategies that match the selector.
-            
-            @return list of bidding strategies specified by the selector.
-            @throws com.google.ads.api.services.common.error.ApiException if problems
-            occurred while retrieving results.
           </documentation>
         </annotation>
         <complexType>
@@ -3552,10 +3549,6 @@
         <annotation>
           <documentation>
             Applies the list of mutate operations.
-            
-            @param operations the operations to apply
-            @return the modified list of BiddingStrategy
-            @throws ApiException
           </documentation>
         </annotation>
         <complexType>
@@ -3585,9 +3578,6 @@
         <annotation>
           <documentation>
             Returns a list of bidding strategies that match the query.
-            
-            @param query The SQL-like AWQL query string.
-            @throws ApiException when there are one or more errors with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -3648,10 +3638,6 @@
     <wsdl:operation name="get">
       <wsdl:documentation>
         Returns a list of bidding strategies that match the selector.
-        
-        @return list of bidding strategies specified by the selector.
-        @throws com.google.ads.api.services.common.error.ApiException if problems
-        occurred while retrieving results.
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>
@@ -3660,10 +3646,6 @@
     <wsdl:operation name="mutate">
       <wsdl:documentation>
         Applies the list of mutate operations.
-        
-        @param operations the operations to apply
-        @return the modified list of BiddingStrategy
-        @throws ApiException
       </wsdl:documentation>
       <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
       <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>
@@ -3672,9 +3654,6 @@
     <wsdl:operation name="query">
       <wsdl:documentation>
         Returns a list of bidding strategies that match the query.
-        
-        @param query The SQL-like AWQL query string.
-        @throws ApiException when there are one or more errors with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:queryRequest" name="queryRequest"/>
       <wsdl:output message="tns:queryResponse" name="queryResponse"/>

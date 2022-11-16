@@ -140,8 +140,6 @@ class CompanyService extends \Google\AdsApi\Common\AdsSoapClient
      * </tr>
      * </table>
      *
-     * a set of companies
-     *
      * @param \Google\AdsApi\AdManager\v202205\Statement $filterStatement
      * @return \Google\AdsApi\AdManager\v202205\CompanyPage
      * @throws \Google\AdsApi\AdManager\v202205\ApiException

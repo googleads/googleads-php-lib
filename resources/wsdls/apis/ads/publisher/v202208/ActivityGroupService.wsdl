@@ -1540,9 +1540,6 @@
         <annotation>
           <documentation>
             Creates a new {@link ActivityGroup} objects.
-            
-            @param activityGroups the activity groups to be created.
-            @return the created activity groups with their IDs filled in.
           </documentation>
         </annotation>
         <complexType>
@@ -1597,9 +1594,6 @@
             &lt;td&gt;{@link ActivityGroup#status}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;/table&gt;
-            
-            @param filterStatement a statement used to filter a set of activity groups
-            @return the activity groups that match the given filter
           </documentation>
         </annotation>
         <complexType>
@@ -1619,9 +1613,6 @@
         <annotation>
           <documentation>
             Updates the specified {@link ActivityGroup} objects.
-            
-            @param activityGroups the activity groups to update.
-            @return the updated activity groups.
           </documentation>
         </annotation>
         <complexType>
@@ -1681,9 +1672,6 @@
     <wsdl:operation name="createActivityGroups">
       <wsdl:documentation>
         Creates a new {@link ActivityGroup} objects.
-        
-        @param activityGroups the activity groups to be created.
-        @return the created activity groups with their IDs filled in.
       </wsdl:documentation>
       <wsdl:input message="tns:createActivityGroupsRequest" name="createActivityGroupsRequest"/>
       <wsdl:output message="tns:createActivityGroupsResponse" name="createActivityGroupsResponse"/>
@@ -1719,9 +1707,6 @@
         &lt;td&gt;{@link ActivityGroup#status}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;/table&gt;
-        
-        @param filterStatement a statement used to filter a set of activity groups
-        @return the activity groups that match the given filter
       </wsdl:documentation>
       <wsdl:input message="tns:getActivityGroupsByStatementRequest" name="getActivityGroupsByStatementRequest"/>
       <wsdl:output message="tns:getActivityGroupsByStatementResponse" name="getActivityGroupsByStatementResponse"/>
@@ -1730,9 +1715,6 @@
     <wsdl:operation name="updateActivityGroups">
       <wsdl:documentation>
         Updates the specified {@link ActivityGroup} objects.
-        
-        @param activityGroups the activity groups to update.
-        @return the updated activity groups.
       </wsdl:documentation>
       <wsdl:input message="tns:updateActivityGroupsRequest" name="updateActivityGroupsRequest"/>
       <wsdl:output message="tns:updateActivityGroupsResponse" name="updateActivityGroupsResponse"/>

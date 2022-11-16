@@ -28,6 +28,7 @@ class SiteService extends \Google\AdsApi\Common\AdsSoapClient
       'DateValue' => 'Google\\AdsApi\\AdManager\\v202205\\DateValue',
       'DeactivateSite' => 'Google\\AdsApi\\AdManager\\v202205\\DeactivateSite',
       'DisapprovalReason' => 'Google\\AdsApi\\AdManager\\v202205\\DisapprovalReason',
+      'EntityLimitReachedError' => 'Google\\AdsApi\\AdManager\\v202205\\EntityLimitReachedError',
       'FeatureError' => 'Google\\AdsApi\\AdManager\\v202205\\FeatureError',
       'FieldPathElement' => 'Google\\AdsApi\\AdManager\\v202205\\FieldPathElement',
       'InternalApiError' => 'Google\\AdsApi\\AdManager\\v202205\\InternalApiError',

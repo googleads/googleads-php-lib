@@ -121,8 +121,6 @@ class DaiAuthenticationKeyService extends \Google\AdsApi\Common\AdsSoapClient
      * </tr>
      * </table>
      *
-     * authentication keys
-     *
      * @param \Google\AdsApi\AdManager\v202208\Statement $filterStatement
      * @return \Google\AdsApi\AdManager\v202208\DaiAuthenticationKeyPage
      * @throws \Google\AdsApi\AdManager\v202208\ApiException
@@ -138,8 +136,6 @@ class DaiAuthenticationKeyService extends \Google\AdsApi\Common\AdsSoapClient
      *
      * <p>DAI authentication keys cannot be deactivated if there are active {@link LiveStreamEvent}s
      * or Content Sources that are using them.
-     *
-     * events
      *
      * @param \Google\AdsApi\AdManager\v202208\DaiAuthenticationKeyAction $daiAuthenticationKeyAction
      * @param \Google\AdsApi\AdManager\v202208\Statement $filterStatement

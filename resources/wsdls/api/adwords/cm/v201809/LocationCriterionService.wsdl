@@ -2946,10 +2946,6 @@
         <annotation>
           <documentation>
             Returns a list of {@link LocationCriterion}'s that match the specified selector.
-            
-            @param selector filters the LocationCriterion to be returned.
-            @return A list of location criterion.
-            @throws ApiException when there is at least one error with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -2982,10 +2978,6 @@
         <annotation>
           <documentation>
             Returns the list of {@link LocationCriterion}s that match the query.
-            
-            @param query The SQL-like AWQL query string
-            @returns The list of location criteria
-            @throws ApiException when the query is invalid or there are errors processing the request.
           </documentation>
         </annotation>
         <complexType>
@@ -3042,10 +3034,6 @@
     <wsdl:operation name="get">
       <wsdl:documentation>
         Returns a list of {@link LocationCriterion}'s that match the specified selector.
-        
-        @param selector filters the LocationCriterion to be returned.
-        @return A list of location criterion.
-        @throws ApiException when there is at least one error with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>
@@ -3054,10 +3042,6 @@
     <wsdl:operation name="query">
       <wsdl:documentation>
         Returns the list of {@link LocationCriterion}s that match the query.
-        
-        @param query The SQL-like AWQL query string
-        @returns The list of location criteria
-        @throws ApiException when the query is invalid or there are errors processing the request.
       </wsdl:documentation>
       <wsdl:input message="tns:queryRequest" name="queryRequest"/>
       <wsdl:output message="tns:queryResponse" name="queryResponse"/>

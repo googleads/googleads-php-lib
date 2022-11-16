@@ -4960,11 +4960,6 @@
         <annotation>
           <documentation>
             Returns a list of FeedItems that meet the selector criteria.
-            
-            @param selector Determines which FeedItems to return. If empty all
-            FeedItems are returned.
-            @return The list of FeedItems.
-            @throws ApiException Indicates a problem with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -4997,10 +4992,6 @@
         <annotation>
           <documentation>
             Add, remove, and set FeedItems.
-            
-            @param operations The operations to apply.
-            @return The resulting FeedItems.
-            @throws ApiException Indicates a problem with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -5030,10 +5021,6 @@
         <annotation>
           <documentation>
             Returns the list of FeedItems that match the query.
-            
-            @param query The SQL-like AWQL query string
-            @returns A list of FeedItems
-            @throws ApiException when the query is invalid or there are errors processing the request.
           </documentation>
         </annotation>
         <complexType>
@@ -5093,11 +5080,6 @@
     <wsdl:operation name="get">
       <wsdl:documentation>
         Returns a list of FeedItems that meet the selector criteria.
-        
-        @param selector Determines which FeedItems to return. If empty all
-        FeedItems are returned.
-        @return The list of FeedItems.
-        @throws ApiException Indicates a problem with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>
@@ -5106,10 +5088,6 @@
     <wsdl:operation name="mutate">
       <wsdl:documentation>
         Add, remove, and set FeedItems.
-        
-        @param operations The operations to apply.
-        @return The resulting FeedItems.
-        @throws ApiException Indicates a problem with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
       <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>
@@ -5118,10 +5096,6 @@
     <wsdl:operation name="query">
       <wsdl:documentation>
         Returns the list of FeedItems that match the query.
-        
-        @param query The SQL-like AWQL query string
-        @returns A list of FeedItems
-        @throws ApiException when the query is invalid or there are errors processing the request.
       </wsdl:documentation>
       <wsdl:input message="tns:queryRequest" name="queryRequest"/>
       <wsdl:output message="tns:queryResponse" name="queryResponse"/>

@@ -9983,10 +9983,6 @@
           <documentation>
             Returns a list of AdGroupAds.
             AdGroupAds that had been removed are not returned by default.
-            
-            @param serviceSelector The selector specifying the {@link AdGroupAd}s to return.
-            @return The page containing the AdGroupAds that meet the criteria specified by the selector.
-            @throws ApiException when there is at least one error with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -10032,13 +10028,6 @@
             make a new ad and then remove the old one.&lt;/p&gt;
             &lt;p&gt;Remove - Removes the link between the specified AdGroup and
             Ad.&lt;/p&gt;
-            @param operations The operations to apply.
-            @return A list of AdGroupAds where each entry in the list is the result of
-            applying the operation in the input list with the same index. For an
-            add/set operation, the return AdGroupAd will be what is saved to the db.
-            In the case of the remove operation, the return AdGroupAd will simply be
-            an AdGroupAd containing an Ad with the id set to the Ad being removed from
-            the AdGroup.
           </documentation>
         </annotation>
         <complexType>
@@ -10074,13 +10063,6 @@
             {@linkplain Label label}.
             &lt;p&gt;Remove - Removes the link between the specified {@linkplain AdGroupAd ad group ad} and
             {@linkplain Label label}.
-            @param operations The operations to apply.
-            @return A list of AdGroupAdLabel where each entry in the list is the result of
-            applying the operation in the input list with the same index. For an
-            add operation, the returned AdGroupAdLabel contains the AdGroupId, AdId and the LabelId.
-            In the case of a remove operation, the returned AdGroupAdLabel will only have AdGroupId and
-            AdId.
-            @throws ApiException when there are one or more errors with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -10111,10 +10093,6 @@
         <annotation>
           <documentation>
             Returns a list of AdGroupAds based on the query.
-            
-            @param query The SQL-like AWQL query string.
-            @return A list of AdGroupAds.
-            @throws ApiException if problems occur while parsing the query or fetching AdGroupAds.
           </documentation>
         </annotation>
         <complexType>
@@ -10194,10 +10172,6 @@
       <wsdl:documentation>
         Returns a list of AdGroupAds.
         AdGroupAds that had been removed are not returned by default.
-        
-        @param serviceSelector The selector specifying the {@link AdGroupAd}s to return.
-        @return The page containing the AdGroupAds that meet the criteria specified by the selector.
-        @throws ApiException when there is at least one error with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>
@@ -10219,13 +10193,6 @@
         make a new ad and then remove the old one.&lt;/p&gt;
         &lt;p&gt;Remove - Removes the link between the specified AdGroup and
         Ad.&lt;/p&gt;
-        @param operations The operations to apply.
-        @return A list of AdGroupAds where each entry in the list is the result of
-        applying the operation in the input list with the same index. For an
-        add/set operation, the return AdGroupAd will be what is saved to the db.
-        In the case of the remove operation, the return AdGroupAd will simply be
-        an AdGroupAd containing an Ad with the id set to the Ad being removed from
-        the AdGroup.
       </wsdl:documentation>
       <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
       <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>
@@ -10240,13 +10207,6 @@
         {@linkplain Label label}.
         &lt;p&gt;Remove - Removes the link between the specified {@linkplain AdGroupAd ad group ad} and
         {@linkplain Label label}.
-        @param operations The operations to apply.
-        @return A list of AdGroupAdLabel where each entry in the list is the result of
-        applying the operation in the input list with the same index. For an
-        add operation, the returned AdGroupAdLabel contains the AdGroupId, AdId and the LabelId.
-        In the case of a remove operation, the returned AdGroupAdLabel will only have AdGroupId and
-        AdId.
-        @throws ApiException when there are one or more errors with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:mutateLabelRequest" name="mutateLabelRequest"/>
       <wsdl:output message="tns:mutateLabelResponse" name="mutateLabelResponse"/>
@@ -10255,10 +10215,6 @@
     <wsdl:operation name="query">
       <wsdl:documentation>
         Returns a list of AdGroupAds based on the query.
-        
-        @param query The SQL-like AWQL query string.
-        @return A list of AdGroupAds.
-        @throws ApiException if problems occur while parsing the query or fetching AdGroupAds.
       </wsdl:documentation>
       <wsdl:input message="tns:queryRequest" name="queryRequest"/>
       <wsdl:output message="tns:queryResponse" name="queryResponse"/>

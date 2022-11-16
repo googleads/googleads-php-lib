@@ -224,6 +224,26 @@
           </extension>
         </complexContent>
       </complexType>
+      <complexType name="AssetError">
+        <annotation>
+          <documentation>
+            Lists all errors associated with assets.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:AssetError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
       <complexType name="AudienceExtensionError">
         <annotation>
           <documentation>
@@ -2283,6 +2303,85 @@
               <documentation>
                 Indicates that the operation is not allowed in the version the request
                 was made in.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="AssetError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="NON_UNIQUE_NAME">
+            <annotation>
+              <documentation>
+                An asset name must be unique across advertiser.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FILE_NAME_TOO_LONG">
+            <annotation>
+              <documentation>
+                The file name is too long.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FILE_SIZE_TOO_LARGE">
+            <annotation>
+              <documentation>
+                The file size is too large.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_REQUIRED_DYNAMIC_ALLOCATION_CLIENT">
+            <annotation>
+              <documentation>
+                Required client code is not present in the code snippet.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_REQUIRED_DYNAMIC_ALLOCATION_HEIGHT">
+            <annotation>
+              <documentation>
+                Required height is not present in the code snippet.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_REQUIRED_DYNAMIC_ALLOCATION_WIDTH">
+            <annotation>
+              <documentation>
+                Required width is not present in the code snippet.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_REQUIRED_DYNAMIC_ALLOCATION_FORMAT">
+            <annotation>
+              <documentation>
+                Required format is not present in the mobile code snippet.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_CODE_SNIPPET_PARAMETER_VALUE">
+            <annotation>
+              <documentation>
+                The parameter value in the code snippet is invalid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_ASSET_ID">
+            <annotation>
+              <documentation>
+                Invalid asset Id.
               </documentation>
             </annotation>
           </enumeration>
@@ -7051,9 +7150,6 @@
         <annotation>
           <documentation>
             Creates new {@link Order} objects.
-            
-            @param orders the orders to create
-            @return the created orders with their IDs filled in
           </documentation>
         </annotation>
         <complexType>
@@ -7123,10 +7219,6 @@
             &lt;td&gt;{@link Order#lastModifiedDateTime}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;/table&gt;
-            
-            @param filterStatement a Publisher Query Language statement used to filter
-            a set of orders
-            @return the orders that match the given filter
           </documentation>
         </annotation>
         <complexType>
@@ -7147,11 +7239,6 @@
           <documentation>
             Performs actions on {@link Order} objects that match the given
             {@link Statement#query}.
-            
-            @param orderAction the action to perform
-            @param filterStatement a Publisher Query Language statement used to filter
-            a set of orders
-            @return the result of the action performed
           </documentation>
         </annotation>
         <complexType>
@@ -7172,9 +7259,6 @@
         <annotation>
           <documentation>
             Updates the specified {@link Order} objects.
-            
-            @param orders the orders to update
-            @return the updated orders
           </documentation>
         </annotation>
         <complexType>
@@ -7240,9 +7324,6 @@
     <wsdl:operation name="createOrders">
       <wsdl:documentation>
         Creates new {@link Order} objects.
-        
-        @param orders the orders to create
-        @return the created orders with their IDs filled in
       </wsdl:documentation>
       <wsdl:input message="tns:createOrdersRequest" name="createOrdersRequest"/>
       <wsdl:output message="tns:createOrdersResponse" name="createOrdersResponse"/>
@@ -7294,10 +7375,6 @@
         &lt;td&gt;{@link Order#lastModifiedDateTime}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;/table&gt;
-        
-        @param filterStatement a Publisher Query Language statement used to filter
-        a set of orders
-        @return the orders that match the given filter
       </wsdl:documentation>
       <wsdl:input message="tns:getOrdersByStatementRequest" name="getOrdersByStatementRequest"/>
       <wsdl:output message="tns:getOrdersByStatementResponse" name="getOrdersByStatementResponse"/>
@@ -7307,11 +7384,6 @@
       <wsdl:documentation>
         Performs actions on {@link Order} objects that match the given
         {@link Statement#query}.
-        
-        @param orderAction the action to perform
-        @param filterStatement a Publisher Query Language statement used to filter
-        a set of orders
-        @return the result of the action performed
       </wsdl:documentation>
       <wsdl:input message="tns:performOrderActionRequest" name="performOrderActionRequest"/>
       <wsdl:output message="tns:performOrderActionResponse" name="performOrderActionResponse"/>
@@ -7320,9 +7392,6 @@
     <wsdl:operation name="updateOrders">
       <wsdl:documentation>
         Updates the specified {@link Order} objects.
-        
-        @param orders the orders to update
-        @return the updated orders
       </wsdl:documentation>
       <wsdl:input message="tns:updateOrdersRequest" name="updateOrdersRequest"/>
       <wsdl:output message="tns:updateOrdersResponse" name="updateOrdersResponse"/>

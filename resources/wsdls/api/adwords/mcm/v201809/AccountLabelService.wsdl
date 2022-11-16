@@ -2357,10 +2357,6 @@
         <annotation>
           <documentation>
             Returns a list of labels specified by the selector for the authenticated user.
-            
-            @param selector filters the list of labels to return
-            @return response containing lists of labels that meet all the criteria of the selector
-            @throws ApiException if a problem occurs fetching the information requested
           </documentation>
         </annotation>
         <complexType>
@@ -2387,17 +2383,13 @@
         <annotation>
           <documentation>
             Possible actions:
-            &lt;ul&gt;
-            &lt;li&gt; Create a new label - create a new {@link Label} and call mutate with ADD operator
-            &lt;li&gt; Edit the label name - set the appropriate fields in your {@linkplain Label} and call
-            mutate with the SET operator. Null fields will be interpreted to mean "no change"
-            &lt;li&gt; Delete the label - call mutate with REMOVE operator
-            &lt;/ul&gt;
             
-            @param operations list of unique operations to be executed in a single transaction, in the
-            order specified.
-            @return the mutated labels, in the same order that they were in as the parameter
-            @throws ApiException if problems occurs while modifying label information
+            &lt;ul&gt;
+            &lt;li&gt;Create a new label - create a new {@link Label} and call mutate with ADD operator
+            &lt;li&gt;Edit the label name - set the appropriate fields in your {@linkplain Label} and call
+            mutate with the SET operator. Null fields will be interpreted to mean "no change"
+            &lt;li&gt;Delete the label - call mutate with REMOVE operator
+            &lt;/ul&gt;
           </documentation>
         </annotation>
         <complexType>
@@ -2466,10 +2458,6 @@
     <wsdl:operation name="get">
       <wsdl:documentation>
         Returns a list of labels specified by the selector for the authenticated user.
-        
-        @param selector filters the list of labels to return
-        @return response containing lists of labels that meet all the criteria of the selector
-        @throws ApiException if a problem occurs fetching the information requested
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>
@@ -2478,17 +2466,13 @@
     <wsdl:operation name="mutate">
       <wsdl:documentation>
         Possible actions:
-        &lt;ul&gt;
-        &lt;li&gt; Create a new label - create a new {@link Label} and call mutate with ADD operator
-        &lt;li&gt; Edit the label name - set the appropriate fields in your {@linkplain Label} and call
-        mutate with the SET operator. Null fields will be interpreted to mean "no change"
-        &lt;li&gt; Delete the label - call mutate with REMOVE operator
-        &lt;/ul&gt;
         
-        @param operations list of unique operations to be executed in a single transaction, in the
-        order specified.
-        @return the mutated labels, in the same order that they were in as the parameter
-        @throws ApiException if problems occurs while modifying label information
+        &lt;ul&gt;
+        &lt;li&gt;Create a new label - create a new {@link Label} and call mutate with ADD operator
+        &lt;li&gt;Edit the label name - set the appropriate fields in your {@linkplain Label} and call
+        mutate with the SET operator. Null fields will be interpreted to mean "no change"
+        &lt;li&gt;Delete the label - call mutate with REMOVE operator
+        &lt;/ul&gt;
       </wsdl:documentation>
       <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
       <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>

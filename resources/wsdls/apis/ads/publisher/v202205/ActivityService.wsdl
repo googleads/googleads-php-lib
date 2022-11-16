@@ -1566,9 +1566,6 @@
         <annotation>
           <documentation>
             Creates a new {@link Activity} objects.
-            
-            @param activities to be created.
-            @return the created activities with its IDs filled in.
           </documentation>
         </annotation>
         <complexType>
@@ -1623,9 +1620,6 @@
             &lt;td&gt;{@link Activity#activityGroupId}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;/table&gt;
-            
-            @param filterStatement a statement used to filter a set of activities.
-            @return the activities that match the given filter.
           </documentation>
         </annotation>
         <complexType>
@@ -1645,9 +1639,6 @@
         <annotation>
           <documentation>
             Updates the specified {@link Activity} objects.
-            
-            @param activities to be updated.
-            @return the updated activities.
           </documentation>
         </annotation>
         <complexType>
@@ -1708,9 +1699,6 @@
     <wsdl:operation name="createActivities">
       <wsdl:documentation>
         Creates a new {@link Activity} objects.
-        
-        @param activities to be created.
-        @return the created activities with its IDs filled in.
       </wsdl:documentation>
       <wsdl:input message="tns:createActivitiesRequest" name="createActivitiesRequest"/>
       <wsdl:output message="tns:createActivitiesResponse" name="createActivitiesResponse"/>
@@ -1746,9 +1734,6 @@
         &lt;td&gt;{@link Activity#activityGroupId}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;/table&gt;
-        
-        @param filterStatement a statement used to filter a set of activities.
-        @return the activities that match the given filter.
       </wsdl:documentation>
       <wsdl:input message="tns:getActivitiesByStatementRequest" name="getActivitiesByStatementRequest"/>
       <wsdl:output message="tns:getActivitiesByStatementResponse" name="getActivitiesByStatementResponse"/>
@@ -1757,9 +1742,6 @@
     <wsdl:operation name="updateActivities">
       <wsdl:documentation>
         Updates the specified {@link Activity} objects.
-        
-        @param activities to be updated.
-        @return the updated activities.
       </wsdl:documentation>
       <wsdl:input message="tns:updateActivitiesRequest" name="updateActivitiesRequest"/>
       <wsdl:output message="tns:updateActivitiesResponse" name="updateActivitiesResponse"/>

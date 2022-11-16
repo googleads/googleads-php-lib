@@ -117,8 +117,6 @@ class ContentBundleService extends \Google\AdsApi\Common\AdsSoapClient
      * </tr>
      * </table>
      *
-     * a set of content bundles
-     *
      * @param \Google\AdsApi\AdManager\v202208\Statement $filterStatement
      * @return \Google\AdsApi\AdManager\v202208\ContentBundlePage
      * @throws \Google\AdsApi\AdManager\v202208\ApiException
@@ -131,8 +129,6 @@ class ContentBundleService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * Performs actions on {@link ContentBundle} objects that match the given
      * {@link Statement#query}.
-     *
-     * a set of content bundles
      *
      * @param \Google\AdsApi\AdManager\v202208\ContentBundleAction $contentBundleAction
      * @param \Google\AdsApi\AdManager\v202208\Statement $filterStatement

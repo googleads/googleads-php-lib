@@ -3071,9 +3071,6 @@
             &lt;li&gt;{@link LiveStreamEvent#contentUrls}&lt;/li&gt;
             &lt;li&gt;{@link LiveStreamEvent#adTags}&lt;/li&gt;
             &lt;/ul&gt;
-            
-            @param liveStreamEvents the live stream events to create
-            @return the created live stream events with their IDs filled in
           </documentation>
         </annotation>
         <complexType>
@@ -3104,9 +3101,6 @@
             
             &lt;p&gt;A slate creative is served as backup content in a live stream event when no other
             creatives are eligible to be served.
-            
-            @param slates list of slate objects to create.
-            @throws ApiException if there is an error while fetching the logging information
           </documentation>
         </annotation>
         <complexType>
@@ -3170,10 +3164,6 @@
             &lt;td&gt;{@link LiveStreamEvent#segmentUrlAuthenticationKeyIds}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;/table&gt;
-            
-            @param filterStatement a Publisher Query Language statement to filter a
-            list of live stream events
-            @return the live stream events that match the filter
           </documentation>
         </annotation>
         <complexType>
@@ -3213,9 +3203,6 @@
             &lt;td&gt;{@link Slate#lastModifiedDateTime}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;/table&gt;
-            
-            @param statement a Publisher Query Language statement used to filter slates
-            @return the slates that match the given filter
           </documentation>
         </annotation>
         <complexType>
@@ -3236,11 +3223,6 @@
           <documentation>
             Performs actions on {@link LiveStreamEvent} objects that match the given
             {@link Statement#query}.
-            
-            @param liveStreamEventAction the action to perform
-            @param filterStatement a Publisher Query Language statement used to filter
-            a set of live stream events
-            @return the result of the action performed
           </documentation>
         </annotation>
         <complexType>
@@ -3262,10 +3244,6 @@
         <annotation>
           <documentation>
             Performs actions on slates that match the given {@link Statement}.
-            
-            @param slateAction the action to perform
-            @param filterStatement a Publisher Query Language statement used to filter a set of slates
-            @return the result of the action performed
           </documentation>
         </annotation>
         <complexType>
@@ -3286,10 +3264,6 @@
         <annotation>
           <documentation>
             Updates the specified {@link LiveStreamEvent} objects.
-            
-            @param liveStreamEvents the live stream events to update
-            @return the updated live stream events
-            @throws ApiException if there is an error updating the live stream events
           </documentation>
         </annotation>
         <complexType>
@@ -3312,9 +3286,6 @@
             Update existing slates.
             
             &lt;p&gt;Only the slateName is editable.
-            
-            @param slates list of slate objects to update.
-            @throws ApiException if there is an error while fetching the logging information
           </documentation>
         </annotation>
         <complexType>
@@ -3411,9 +3382,6 @@
         &lt;li&gt;{@link LiveStreamEvent#contentUrls}&lt;/li&gt;
         &lt;li&gt;{@link LiveStreamEvent#adTags}&lt;/li&gt;
         &lt;/ul&gt;
-        
-        @param liveStreamEvents the live stream events to create
-        @return the created live stream events with their IDs filled in
       </wsdl:documentation>
       <wsdl:input message="tns:createLiveStreamEventsRequest" name="createLiveStreamEventsRequest"/>
       <wsdl:output message="tns:createLiveStreamEventsResponse" name="createLiveStreamEventsResponse"/>
@@ -3425,9 +3393,6 @@
         
         &lt;p&gt;A slate creative is served as backup content in a live stream event when no other
         creatives are eligible to be served.
-        
-        @param slates list of slate objects to create.
-        @throws ApiException if there is an error while fetching the logging information
       </wsdl:documentation>
       <wsdl:input message="tns:createSlatesRequest" name="createSlatesRequest"/>
       <wsdl:output message="tns:createSlatesResponse" name="createSlatesResponse"/>
@@ -3480,10 +3445,6 @@
         &lt;td&gt;{@link LiveStreamEvent#segmentUrlAuthenticationKeyIds}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;/table&gt;
-        
-        @param filterStatement a Publisher Query Language statement to filter a
-        list of live stream events
-        @return the live stream events that match the filter
       </wsdl:documentation>
       <wsdl:input message="tns:getLiveStreamEventsByStatementRequest" name="getLiveStreamEventsByStatementRequest"/>
       <wsdl:output message="tns:getLiveStreamEventsByStatementResponse" name="getLiveStreamEventsByStatementResponse"/>
@@ -3512,9 +3473,6 @@
         &lt;td&gt;{@link Slate#lastModifiedDateTime}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;/table&gt;
-        
-        @param statement a Publisher Query Language statement used to filter slates
-        @return the slates that match the given filter
       </wsdl:documentation>
       <wsdl:input message="tns:getSlatesByStatementRequest" name="getSlatesByStatementRequest"/>
       <wsdl:output message="tns:getSlatesByStatementResponse" name="getSlatesByStatementResponse"/>
@@ -3524,11 +3482,6 @@
       <wsdl:documentation>
         Performs actions on {@link LiveStreamEvent} objects that match the given
         {@link Statement#query}.
-        
-        @param liveStreamEventAction the action to perform
-        @param filterStatement a Publisher Query Language statement used to filter
-        a set of live stream events
-        @return the result of the action performed
       </wsdl:documentation>
       <wsdl:input message="tns:performLiveStreamEventActionRequest" name="performLiveStreamEventActionRequest"/>
       <wsdl:output message="tns:performLiveStreamEventActionResponse" name="performLiveStreamEventActionResponse"/>
@@ -3537,10 +3490,6 @@
     <wsdl:operation name="performSlateAction">
       <wsdl:documentation>
         Performs actions on slates that match the given {@link Statement}.
-        
-        @param slateAction the action to perform
-        @param filterStatement a Publisher Query Language statement used to filter a set of slates
-        @return the result of the action performed
       </wsdl:documentation>
       <wsdl:input message="tns:performSlateActionRequest" name="performSlateActionRequest"/>
       <wsdl:output message="tns:performSlateActionResponse" name="performSlateActionResponse"/>
@@ -3549,10 +3498,6 @@
     <wsdl:operation name="updateLiveStreamEvents">
       <wsdl:documentation>
         Updates the specified {@link LiveStreamEvent} objects.
-        
-        @param liveStreamEvents the live stream events to update
-        @return the updated live stream events
-        @throws ApiException if there is an error updating the live stream events
       </wsdl:documentation>
       <wsdl:input message="tns:updateLiveStreamEventsRequest" name="updateLiveStreamEventsRequest"/>
       <wsdl:output message="tns:updateLiveStreamEventsResponse" name="updateLiveStreamEventsResponse"/>
@@ -3563,9 +3508,6 @@
         Update existing slates.
         
         &lt;p&gt;Only the slateName is editable.
-        
-        @param slates list of slate objects to update.
-        @throws ApiException if there is an error while fetching the logging information
       </wsdl:documentation>
       <wsdl:input message="tns:updateSlatesRequest" name="updateSlatesRequest"/>
       <wsdl:output message="tns:updateSlatesResponse" name="updateSlatesResponse"/>

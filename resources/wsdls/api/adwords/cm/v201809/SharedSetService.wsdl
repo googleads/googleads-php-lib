@@ -2698,10 +2698,6 @@
         <annotation>
           <documentation>
             Returns a list of SharedSets based on the given selector.
-            @param selector the selector specifying the query
-            @return a list of SharedSet entities that meet the criterion specified
-            by the selector
-            @throws ApiException
           </documentation>
         </annotation>
         <complexType>
@@ -2734,10 +2730,6 @@
         <annotation>
           <documentation>
             Applies the list of mutate operations.
-            
-            @param operations the operations to apply
-            @return the modified CriterionList entities
-            @throws ApiException
           </documentation>
         </annotation>
         <complexType>
@@ -2767,10 +2759,6 @@
         <annotation>
           <documentation>
             Returns the list of SharedSet entities that match the query.
-            
-            @param query The SQL-like AWQL query string
-            @returns A list of SharedSet entities
-            @throws ApiException when the query is invalid or there are errors processing the request.
           </documentation>
         </annotation>
         <complexType>
@@ -2831,10 +2819,6 @@
     <wsdl:operation name="get">
       <wsdl:documentation>
         Returns a list of SharedSets based on the given selector.
-        @param selector the selector specifying the query
-        @return a list of SharedSet entities that meet the criterion specified
-        by the selector
-        @throws ApiException
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>
@@ -2843,10 +2827,6 @@
     <wsdl:operation name="mutate">
       <wsdl:documentation>
         Applies the list of mutate operations.
-        
-        @param operations the operations to apply
-        @return the modified CriterionList entities
-        @throws ApiException
       </wsdl:documentation>
       <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
       <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>
@@ -2855,10 +2835,6 @@
     <wsdl:operation name="query">
       <wsdl:documentation>
         Returns the list of SharedSet entities that match the query.
-        
-        @param query The SQL-like AWQL query string
-        @returns A list of SharedSet entities
-        @throws ApiException when the query is invalid or there are errors processing the request.
       </wsdl:documentation>
       <wsdl:input message="tns:queryRequest" name="queryRequest"/>
       <wsdl:output message="tns:queryResponse" name="queryResponse"/>

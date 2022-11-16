@@ -1680,9 +1680,6 @@
           <documentation>
             Creates and claims {@link MobileApplication mobile applications}
             to be used for targeting in the network.
-            
-            @param mobileApplications the mobileApplications to create
-            @return the created mobileApplications with their IDs filled in
           </documentation>
         </annotation>
         <complexType>
@@ -1740,10 +1737,6 @@
             &lt;td&gt;{@link MobileApplication#isArchived}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;/table&gt;
-            
-            @param filterStatement a Publisher Query Language statement used to filter a set of
-            mobile applications.
-            @return the mobile applications that match the given filter
           </documentation>
         </annotation>
         <complexType>
@@ -1763,11 +1756,6 @@
         <annotation>
           <documentation>
             Performs an action on {@link MobileApplication mobile applications}.
-            
-            @param mobileApplicationAction the action to perform
-            @param filterStatement a Publisher Query Language statement used to filter
-            a set of mobile applications.
-            @return the result of the action performed
           </documentation>
         </annotation>
         <complexType>
@@ -1789,9 +1777,6 @@
         <annotation>
           <documentation>
             Updates the specified {@link MobileApplication mobile applications}.
-            
-            @param mobileApplications the mobile applications to be updated
-            @return the updated mobileApplications
           </documentation>
         </annotation>
         <complexType>
@@ -1853,9 +1838,6 @@
       <wsdl:documentation>
         Creates and claims {@link MobileApplication mobile applications}
         to be used for targeting in the network.
-        
-        @param mobileApplications the mobileApplications to create
-        @return the created mobileApplications with their IDs filled in
       </wsdl:documentation>
       <wsdl:input message="tns:createMobileApplicationsRequest" name="createMobileApplicationsRequest"/>
       <wsdl:output message="tns:createMobileApplicationsResponse" name="createMobileApplicationsResponse"/>
@@ -1894,10 +1876,6 @@
         &lt;td&gt;{@link MobileApplication#isArchived}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;/table&gt;
-        
-        @param filterStatement a Publisher Query Language statement used to filter a set of
-        mobile applications.
-        @return the mobile applications that match the given filter
       </wsdl:documentation>
       <wsdl:input message="tns:getMobileApplicationsByStatementRequest" name="getMobileApplicationsByStatementRequest"/>
       <wsdl:output
@@ -1907,11 +1885,6 @@
     <wsdl:operation name="performMobileApplicationAction">
       <wsdl:documentation>
         Performs an action on {@link MobileApplication mobile applications}.
-        
-        @param mobileApplicationAction the action to perform
-        @param filterStatement a Publisher Query Language statement used to filter
-        a set of mobile applications.
-        @return the result of the action performed
       </wsdl:documentation>
       <wsdl:input message="tns:performMobileApplicationActionRequest" name="performMobileApplicationActionRequest"/>
       <wsdl:output message="tns:performMobileApplicationActionResponse" name="performMobileApplicationActionResponse"/>
@@ -1920,9 +1893,6 @@
     <wsdl:operation name="updateMobileApplications">
       <wsdl:documentation>
         Updates the specified {@link MobileApplication mobile applications}.
-        
-        @param mobileApplications the mobile applications to be updated
-        @return the updated mobileApplications
       </wsdl:documentation>
       <wsdl:input message="tns:updateMobileApplicationsRequest" name="updateMobileApplicationsRequest"/>
       <wsdl:output message="tns:updateMobileApplicationsResponse" name="updateMobileApplicationsResponse"/>

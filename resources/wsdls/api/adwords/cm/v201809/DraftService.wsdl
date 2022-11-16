@@ -2828,9 +2828,6 @@
         <annotation>
           <documentation>
             Returns a DraftPage that contains a list of Draft objects matching the selector.
-            
-            @throws {#link com.google.ads.api.services.common.error.ApiException} if problems occurred
-            while retrieving the results.
           </documentation>
         </annotation>
         <complexType>
@@ -2864,10 +2861,6 @@
           <documentation>
             The mutate action is used for creating new Drafts and controlling the life cycle of Drafts,
             such as abandoning or promoting Drafts.
-            
-            @return The list of updated Drafts, in the same order as the {@code operations} list.
-            @throws {#link com.google.ads.api.services.common.error.ApiException} if problems occurred
-            while processing the request.
           </documentation>
         </annotation>
         <complexType>
@@ -2898,9 +2891,6 @@
         <annotation>
           <documentation>
             Returns a DraftPage that contains a list of Draft objects matching the query.
-            
-            @throws {#link com.google.ads.api.services.common.error.ApiException} if problems occurred
-            while retrieving the results.
           </documentation>
         </annotation>
         <complexType>
@@ -2960,9 +2950,6 @@
     <wsdl:operation name="get">
       <wsdl:documentation>
         Returns a DraftPage that contains a list of Draft objects matching the selector.
-        
-        @throws {#link com.google.ads.api.services.common.error.ApiException} if problems occurred
-        while retrieving the results.
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>
@@ -2972,10 +2959,6 @@
       <wsdl:documentation>
         The mutate action is used for creating new Drafts and controlling the life cycle of Drafts,
         such as abandoning or promoting Drafts.
-        
-        @return The list of updated Drafts, in the same order as the {@code operations} list.
-        @throws {#link com.google.ads.api.services.common.error.ApiException} if problems occurred
-        while processing the request.
       </wsdl:documentation>
       <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
       <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>
@@ -2984,9 +2967,6 @@
     <wsdl:operation name="query">
       <wsdl:documentation>
         Returns a DraftPage that contains a list of Draft objects matching the query.
-        
-        @throws {#link com.google.ads.api.services.common.error.ApiException} if problems occurred
-        while retrieving the results.
       </wsdl:documentation>
       <wsdl:input message="tns:queryRequest" name="queryRequest"/>
       <wsdl:output message="tns:queryResponse" name="queryResponse"/>

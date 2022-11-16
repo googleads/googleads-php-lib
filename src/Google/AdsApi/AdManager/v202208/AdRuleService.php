@@ -262,8 +262,6 @@ class AdRuleService extends \Google\AdsApi\Common\AdsSoapClient
      * Performs actions on {@link AdRule} objects that match the given
      * {@link Statement#query}.
      *
-     * a set of ad rules
-     *
      * @param \Google\AdsApi\AdManager\v202208\AdRuleAction $adRuleAction
      * @param \Google\AdsApi\AdManager\v202208\Statement $filterStatement
      * @return \Google\AdsApi\AdManager\v202208\UpdateResult

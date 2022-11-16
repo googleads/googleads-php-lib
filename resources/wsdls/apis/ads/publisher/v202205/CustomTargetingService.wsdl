@@ -2279,7 +2279,13 @@
           </documentation>
         </annotation>
         <restriction base="xsd:string">
-          <enumeration value="UNKNOWN"/>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
           <enumeration value="ON">
             <annotation>
               <documentation>
@@ -2478,9 +2484,6 @@
             &lt;li&gt;{@link CustomTargetingKey#name}&lt;/li&gt;
             &lt;li&gt;{@link CustomTargetingKey#type}&lt;/li&gt;
             &lt;/ul&gt;
-            
-            @param keys the custom targeting keys to update
-            @return the updated custom targeting keys
           </documentation>
         </annotation>
         <complexType>
@@ -2513,9 +2516,6 @@
             &lt;li&gt;{@link CustomTargetingValue#customTargetingKeyId}&lt;/li&gt;
             &lt;li&gt;{@link CustomTargetingValue#name}&lt;/li&gt;
             &lt;/ul&gt;
-            
-            @param values the custom targeting values to update
-            @return the updated custom targeting keys
           </documentation>
         </annotation>
         <complexType>
@@ -2560,10 +2560,6 @@
             &lt;td&gt;{@link CustomTargetingKey#type}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;/table&gt;
-            
-            @param filterStatement a Publisher Query Language statement used to filter
-            a set of custom targeting keys
-            @return the custom targeting keys that match the given filter
           </documentation>
         </annotation>
         <complexType>
@@ -2631,10 +2627,6 @@
             &lt;td&gt;{@link CustomTargetingValue#matchType}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;/table&gt;
-            
-            @param filterStatement a Publisher Query Language statement used to filter
-            a set of custom targeting values
-            @return the custom targeting values that match the given filter
           </documentation>
         </annotation>
         <complexType>
@@ -2655,11 +2647,6 @@
           <documentation>
             Performs actions on {@link CustomTargetingKey} objects that match the given
             {@link Statement#query}.
-            
-            @param customTargetingKeyAction the action to perform
-            @param filterStatement a Publisher Query Language statement used to filter
-            a set of custom targeting keys
-            @return the result of the action performed
           </documentation>
         </annotation>
         <complexType>
@@ -2682,11 +2669,6 @@
           <documentation>
             Performs actions on {@link CustomTargetingValue} objects that match the
             given {@link Statement#query}.
-            
-            @param customTargetingValueAction the action to perform
-            @param filterStatement a Publisher Query Language statement used to filter
-            a set of ad units
-            @return the result of the action performed
           </documentation>
         </annotation>
         <complexType>
@@ -2708,9 +2690,6 @@
         <annotation>
           <documentation>
             Updates the specified {@link CustomTargetingKey} objects.
-            
-            @param keys the custom targeting keys to update
-            @return the updated custom targeting keys
           </documentation>
         </annotation>
         <complexType>
@@ -2730,9 +2709,6 @@
         <annotation>
           <documentation>
             Updates the specified {@link CustomTargetingValue} objects.
-            
-            @param values the custom targeting values to update
-            @return the updated custom targeting values
           </documentation>
         </annotation>
         <complexType>
@@ -2823,9 +2799,6 @@
         &lt;li&gt;{@link CustomTargetingKey#name}&lt;/li&gt;
         &lt;li&gt;{@link CustomTargetingKey#type}&lt;/li&gt;
         &lt;/ul&gt;
-        
-        @param keys the custom targeting keys to update
-        @return the updated custom targeting keys
       </wsdl:documentation>
       <wsdl:input message="tns:createCustomTargetingKeysRequest" name="createCustomTargetingKeysRequest"/>
       <wsdl:output message="tns:createCustomTargetingKeysResponse" name="createCustomTargetingKeysResponse"/>
@@ -2840,9 +2813,6 @@
         &lt;li&gt;{@link CustomTargetingValue#customTargetingKeyId}&lt;/li&gt;
         &lt;li&gt;{@link CustomTargetingValue#name}&lt;/li&gt;
         &lt;/ul&gt;
-        
-        @param values the custom targeting values to update
-        @return the updated custom targeting keys
       </wsdl:documentation>
       <wsdl:input message="tns:createCustomTargetingValuesRequest" name="createCustomTargetingValuesRequest"/>
       <wsdl:output message="tns:createCustomTargetingValuesResponse" name="createCustomTargetingValuesResponse"/>
@@ -2876,10 +2846,6 @@
         &lt;td&gt;{@link CustomTargetingKey#type}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;/table&gt;
-        
-        @param filterStatement a Publisher Query Language statement used to filter
-        a set of custom targeting keys
-        @return the custom targeting keys that match the given filter
       </wsdl:documentation>
       <wsdl:input message="tns:getCustomTargetingKeysByStatementRequest" name="getCustomTargetingKeysByStatementRequest"/>
       <wsdl:output
@@ -2937,10 +2903,6 @@
         &lt;td&gt;{@link CustomTargetingValue#matchType}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;/table&gt;
-        
-        @param filterStatement a Publisher Query Language statement used to filter
-        a set of custom targeting values
-        @return the custom targeting values that match the given filter
       </wsdl:documentation>
       <wsdl:input
         message="tns:getCustomTargetingValuesByStatementRequest" name="getCustomTargetingValuesByStatementRequest"/>
@@ -2952,11 +2914,6 @@
       <wsdl:documentation>
         Performs actions on {@link CustomTargetingKey} objects that match the given
         {@link Statement#query}.
-        
-        @param customTargetingKeyAction the action to perform
-        @param filterStatement a Publisher Query Language statement used to filter
-        a set of custom targeting keys
-        @return the result of the action performed
       </wsdl:documentation>
       <wsdl:input message="tns:performCustomTargetingKeyActionRequest" name="performCustomTargetingKeyActionRequest"/>
       <wsdl:output message="tns:performCustomTargetingKeyActionResponse" name="performCustomTargetingKeyActionResponse"/>
@@ -2966,11 +2923,6 @@
       <wsdl:documentation>
         Performs actions on {@link CustomTargetingValue} objects that match the
         given {@link Statement#query}.
-        
-        @param customTargetingValueAction the action to perform
-        @param filterStatement a Publisher Query Language statement used to filter
-        a set of ad units
-        @return the result of the action performed
       </wsdl:documentation>
       <wsdl:input message="tns:performCustomTargetingValueActionRequest" name="performCustomTargetingValueActionRequest"/>
       <wsdl:output
@@ -2980,9 +2932,6 @@
     <wsdl:operation name="updateCustomTargetingKeys">
       <wsdl:documentation>
         Updates the specified {@link CustomTargetingKey} objects.
-        
-        @param keys the custom targeting keys to update
-        @return the updated custom targeting keys
       </wsdl:documentation>
       <wsdl:input message="tns:updateCustomTargetingKeysRequest" name="updateCustomTargetingKeysRequest"/>
       <wsdl:output message="tns:updateCustomTargetingKeysResponse" name="updateCustomTargetingKeysResponse"/>
@@ -2991,9 +2940,6 @@
     <wsdl:operation name="updateCustomTargetingValues">
       <wsdl:documentation>
         Updates the specified {@link CustomTargetingValue} objects.
-        
-        @param values the custom targeting values to update
-        @return the updated custom targeting values
       </wsdl:documentation>
       <wsdl:input message="tns:updateCustomTargetingValuesRequest" name="updateCustomTargetingValuesRequest"/>
       <wsdl:output message="tns:updateCustomTargetingValuesResponse" name="updateCustomTargetingValuesResponse"/>

@@ -2333,10 +2333,6 @@
         <annotation>
           <documentation>
             Query the status of existing {@code BatchJob}s.
-            
-            @param selector The selector specifying the {@code BatchJob}s to return.
-            @return The list of selected jobs.
-            @throws ApiException
           </documentation>
         </annotation>
         <complexType>
@@ -2372,10 +2368,6 @@
             
             &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; {@link BatchJobOperation} does not support the
             {@code REMOVE} operator. It is not necessary to remove BatchJobs.
-            
-            @param operations A list of operations.
-            @return The list of created or updated jobs.
-            @throws ApiException
           </documentation>
         </annotation>
         <complexType>
@@ -2405,11 +2397,6 @@
         <annotation>
           <documentation>
             Returns the list of {@code BatchJob}s that match the query.
-            
-            @param query The SQL-like AWQL query string.
-            @return The list of selected jobs.
-            @throws ApiException if problems occur while parsing the query or fetching
-            batchjob information.
           </documentation>
         </annotation>
         <complexType>
@@ -2484,10 +2471,6 @@
     <wsdl:operation name="get">
       <wsdl:documentation>
         Query the status of existing {@code BatchJob}s.
-        
-        @param selector The selector specifying the {@code BatchJob}s to return.
-        @return The list of selected jobs.
-        @throws ApiException
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>
@@ -2499,10 +2482,6 @@
         
         &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; {@link BatchJobOperation} does not support the
         {@code REMOVE} operator. It is not necessary to remove BatchJobs.
-        
-        @param operations A list of operations.
-        @return The list of created or updated jobs.
-        @throws ApiException
       </wsdl:documentation>
       <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
       <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>
@@ -2511,11 +2490,6 @@
     <wsdl:operation name="query">
       <wsdl:documentation>
         Returns the list of {@code BatchJob}s that match the query.
-        
-        @param query The SQL-like AWQL query string.
-        @return The list of selected jobs.
-        @throws ApiException if problems occur while parsing the query or fetching
-        batchjob information.
       </wsdl:documentation>
       <wsdl:input message="tns:queryRequest" name="queryRequest"/>
       <wsdl:output message="tns:queryResponse" name="queryResponse"/>

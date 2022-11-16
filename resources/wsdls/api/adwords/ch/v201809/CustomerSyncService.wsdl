@@ -830,11 +830,6 @@
         <annotation>
           <documentation>
             Returns information about changed entities inside a customer's account.
-            
-            @param selector Specifies the filter for selecting changehistory events for a customer.
-            @return A Customer-&gt;Campaign-&gt;AdGroup hierarchy containing information about the objects
-            changed at each level. All Campaigns that are requested in the selector will be returned,
-            regardless of whether or not they have changed, but unchanged AdGroups will be ignored.
           </documentation>
         </annotation>
         <complexType>
@@ -897,11 +892,6 @@
     <wsdl:operation name="get">
       <wsdl:documentation>
         Returns information about changed entities inside a customer's account.
-        
-        @param selector Specifies the filter for selecting changehistory events for a customer.
-        @return A Customer-&gt;Campaign-&gt;AdGroup hierarchy containing information about the objects
-        changed at each level. All Campaigns that are requested in the selector will be returned,
-        regardless of whether or not they have changed, but unchanged AdGroups will be ignored.
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>

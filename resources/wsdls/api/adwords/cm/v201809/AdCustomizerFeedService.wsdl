@@ -2708,11 +2708,6 @@
         <annotation>
           <documentation>
             Returns a list of AdCustomizerFeeds that meet the selector criteria.
-            
-            @param selector Determines which AdCustomizerFeeds to return. If empty, all AdCustomizerFeeds
-            are returned.
-            @return The list of AdCustomizerFeeds.
-            @throws ApiException Indicates a problem with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -2745,10 +2740,6 @@
         <annotation>
           <documentation>
             Adds, removes, or modifies AdCustomizerFeeds.
-            
-            @param operations The operations to apply.
-            @return The resulting AdCustomizerFeeds.
-            @throws ApiException Indicates a problem with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -2808,11 +2799,6 @@
     <wsdl:operation name="get">
       <wsdl:documentation>
         Returns a list of AdCustomizerFeeds that meet the selector criteria.
-        
-        @param selector Determines which AdCustomizerFeeds to return. If empty, all AdCustomizerFeeds
-        are returned.
-        @return The list of AdCustomizerFeeds.
-        @throws ApiException Indicates a problem with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>
@@ -2821,10 +2807,6 @@
     <wsdl:operation name="mutate">
       <wsdl:documentation>
         Adds, removes, or modifies AdCustomizerFeeds.
-        
-        @param operations The operations to apply.
-        @return The resulting AdCustomizerFeeds.
-        @throws ApiException Indicates a problem with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
       <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>

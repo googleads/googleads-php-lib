@@ -127,9 +127,6 @@ class LineItemCreativeAssociationService extends \Google\AdsApi\Common\AdsSoapCl
     /**
      * Creates new {@link LineItemCreativeAssociation} objects
      *
-     * create
-     * in
-     *
      * @param \Google\AdsApi\AdManager\v202202\LineItemCreativeAssociation[] $lineItemCreativeAssociations
      * @return \Google\AdsApi\AdManager\v202202\LineItemCreativeAssociation[]
      * @throws \Google\AdsApi\AdManager\v202202\ApiException
@@ -174,8 +171,6 @@ class LineItemCreativeAssociationService extends \Google\AdsApi\Common\AdsSoapCl
      * </tr>
      * </table>
      *
-     * a set of line item creative associations
-     *
      * @param \Google\AdsApi\AdManager\v202202\Statement $filterStatement
      * @return \Google\AdsApi\AdManager\v202202\LineItemCreativeAssociationPage
      * @throws \Google\AdsApi\AdManager\v202202\ApiException
@@ -189,8 +184,6 @@ class LineItemCreativeAssociationService extends \Google\AdsApi\Common\AdsSoapCl
      * Returns an insite preview URL that references the specified site URL with
      * the specified creative from the association served to it. For Creative Set
      * previewing you may specify the master creative Id.
-     *
-     * creative served to it
      *
      * @param int $lineItemId
      * @param int $creativeId
@@ -208,9 +201,6 @@ class LineItemCreativeAssociationService extends \Google\AdsApi\Common\AdsSoapCl
      * the association served to it. For Creative Set previewing you may specify the master creative
      * Id. Each URL corresponds to one available native style for previewing the specified creative.
      *
-     * creative
-     * specified creative with the available native styles
-     *
      * @param int $lineItemId
      * @param int $creativeId
      * @param string $siteUrl
@@ -226,8 +216,6 @@ class LineItemCreativeAssociationService extends \Google\AdsApi\Common\AdsSoapCl
      * Performs actions on {@link LineItemCreativeAssociation} objects that match
      * the given {@link Statement#query}.
      *
-     * a set of line item creative associations
-     *
      * @param \Google\AdsApi\AdManager\v202202\LineItemCreativeAssociationAction $lineItemCreativeAssociationAction
      * @param \Google\AdsApi\AdManager\v202202\Statement $filterStatement
      * @return \Google\AdsApi\AdManager\v202202\UpdateResult
@@ -241,8 +229,6 @@ class LineItemCreativeAssociationService extends \Google\AdsApi\Common\AdsSoapCl
     /**
      * Pushes a creative to devices that that satisfy the given {@link Statement#query}. *
      *
-     * LinkedDeviceVisibility fields of the LinkedDevice table.
-     *
      * @param \Google\AdsApi\AdManager\v202202\Statement $filterStatement
      * @param \Google\AdsApi\AdManager\v202202\CreativePushOptions $options
      * @return \Google\AdsApi\AdManager\v202202\UpdateResult
@@ -255,8 +241,6 @@ class LineItemCreativeAssociationService extends \Google\AdsApi\Common\AdsSoapCl
 
     /**
      * Updates the specified {@link LineItemCreativeAssociation} objects
-     *
-     * update
      *
      * @param \Google\AdsApi\AdManager\v202202\LineItemCreativeAssociation[] $lineItemCreativeAssociations
      * @return \Google\AdsApi\AdManager\v202202\LineItemCreativeAssociation[]

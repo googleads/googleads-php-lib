@@ -2174,9 +2174,6 @@
             &lt;td&gt;{@link Content#daiIngestStatus}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;/table&gt;
-            
-            @param statement a Publisher Query Language statement used to filter a set of content
-            @return the content that matches the given filter
           </documentation>
         </annotation>
         <complexType>
@@ -2273,9 +2270,6 @@
         &lt;td&gt;{@link Content#daiIngestStatus}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;/table&gt;
-        
-        @param statement a Publisher Query Language statement used to filter a set of content
-        @return the content that matches the given filter
       </wsdl:documentation>
       <wsdl:input message="tns:getContentByStatementRequest" name="getContentByStatementRequest"/>
       <wsdl:output message="tns:getContentByStatementResponse" name="getContentByStatementResponse"/>

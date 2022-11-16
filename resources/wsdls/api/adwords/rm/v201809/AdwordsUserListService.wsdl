@@ -4069,10 +4069,6 @@
         <annotation>
           <documentation>
             Returns the list of user lists that meet the selector criteria.
-            
-            @param serviceSelector the selector specifying the {@link UserList}s to return.
-            @return a list of UserList entities which meet the selector criteria.
-            @throws ApiException if problems occurred while fetching UserList information.
           </documentation>
         </annotation>
         <complexType>
@@ -4109,9 +4105,6 @@
             Add - creates a set of user lists
             Set - updates a set of user lists
             Remove - not supported
-            
-            @param operations the operations to apply
-            @return a list of UserList objects
           </documentation>
         </annotation>
         <complexType>
@@ -4145,10 +4138,6 @@
             is not supported.
             
             &lt;p&gt;Note that operations cannot have same user list id but different operators.
-            
-            @param operations the mutate members operations to apply
-            @return a list of UserList objects
-            @throws ApiException when there are one or more errors with the request
           </documentation>
         </annotation>
         <complexType>
@@ -4178,10 +4167,6 @@
         <annotation>
           <documentation>
             Returns the list of user lists that match the query.
-            
-            @param query The SQL-like AWQL query string
-            @return A list of UserList
-            @throws ApiException when the query is invalid or there are errors processing the request.
           </documentation>
         </annotation>
         <complexType>
@@ -4247,10 +4232,6 @@
     <wsdl:operation name="get">
       <wsdl:documentation>
         Returns the list of user lists that meet the selector criteria.
-        
-        @param serviceSelector the selector specifying the {@link UserList}s to return.
-        @return a list of UserList entities which meet the selector criteria.
-        @throws ApiException if problems occurred while fetching UserList information.
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>
@@ -4263,9 +4244,6 @@
         Add - creates a set of user lists
         Set - updates a set of user lists
         Remove - not supported
-        
-        @param operations the operations to apply
-        @return a list of UserList objects
       </wsdl:documentation>
       <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
       <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>
@@ -4278,10 +4256,6 @@
         is not supported.
         
         &lt;p&gt;Note that operations cannot have same user list id but different operators.
-        
-        @param operations the mutate members operations to apply
-        @return a list of UserList objects
-        @throws ApiException when there are one or more errors with the request
       </wsdl:documentation>
       <wsdl:input message="tns:mutateMembersRequest" name="mutateMembersRequest"/>
       <wsdl:output message="tns:mutateMembersResponse" name="mutateMembersResponse"/>
@@ -4290,10 +4264,6 @@
     <wsdl:operation name="query">
       <wsdl:documentation>
         Returns the list of user lists that match the query.
-        
-        @param query The SQL-like AWQL query string
-        @return A list of UserList
-        @throws ApiException when the query is invalid or there are errors processing the request.
       </wsdl:documentation>
       <wsdl:input message="tns:queryRequest" name="queryRequest"/>
       <wsdl:output message="tns:queryResponse" name="queryResponse"/>

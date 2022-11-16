@@ -2062,10 +2062,6 @@
             &lt;td&gt;{@link CreativeTemplate#status}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;/table&gt;
-            
-            @param filterStatement a Publisher Query Language statement used to filter
-            a set of creative templates.
-            @return the creative templates that match the given filter
           </documentation>
         </annotation>
         <complexType>
@@ -2138,10 +2134,6 @@
         &lt;td&gt;{@link CreativeTemplate#status}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;/table&gt;
-        
-        @param filterStatement a Publisher Query Language statement used to filter
-        a set of creative templates.
-        @return the creative templates that match the given filter
       </wsdl:documentation>
       <wsdl:input message="tns:getCreativeTemplatesByStatementRequest" name="getCreativeTemplatesByStatementRequest"/>
       <wsdl:output message="tns:getCreativeTemplatesByStatementResponse" name="getCreativeTemplatesByStatementResponse"/>

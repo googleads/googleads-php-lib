@@ -300,7 +300,7 @@
                 &lt;span class="constraint Selectable"&gt;This field can be selected using the value "BiddingStrategyType".&lt;/span&gt;&lt;span class="constraint Filterable"&gt;This field can be filtered on.&lt;/span&gt;
                 &lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, TARGET_SPEND, TARGET_CPA, TARGET_ROAS, MAXIMIZE_CONVERSION_VALUE, MAXIMIZE_CONVERSIONS for campaign channel type SEARCH.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, TARGET_SPEND, TARGET_CPA, TARGET_ROAS, MAXIMIZE_CONVERSION_VALUE, MAXIMIZE_CONVERSIONS for campaign channel type SEARCH with campaign channel subtype SEARCH_EXPRESS.&lt;/span&gt;
-&lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, TARGET_ROAS, TARGET_SPEND for campaign channel type SHOPPING.&lt;/span&gt;
+&lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, TARGET_CPA, TARGET_ROAS, TARGET_SPEND for campaign channel type SHOPPING.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MAXIMIZE_CONVERSION_VALUE, TARGET_ROAS for campaign channel type SHOPPING with campaign channel subtype SHOPPING_GOAL_OPTIMIZED_ADS.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, MANUAL_CPM, TARGET_SPEND, TARGET_CPA, TARGET_ROAS, MAXIMIZE_CONVERSIONS, MAXIMIZE_CONVERSION_VALUE for campaign channel type DISPLAY.&lt;/span&gt;
 &lt;span class="constraint CampaignType"&gt;This field may only be set to the values: MANUAL_CPC, TARGET_CPA, MAXIMIZE_CONVERSION_VALUE for campaign channel type DISPLAY with campaign channel subtype DISPLAY_MOBILE_APP.&lt;/span&gt;
@@ -3403,8 +3403,8 @@
       <complexType name="TargetSpendBiddingScheme">
         <annotation>
           <documentation>
-            &lt;a href="https://support.google.com/adwords/answer/6268626"&gt;Target Spend&lt;/a&gt; is an automated
-            bid strategy that sets your bids to help get as many clicks as possible within your budget.
+            &lt;a href="https://support.google.com/adwords/answer/6268626"&gt;Target Spend&lt;/a&gt; is an automated bid
+            strategy that sets your bids to help get as many clicks as possible within your budget.
             &lt;span class="constraint AdxEnabled"&gt;This is disabled for AdX.&lt;/span&gt;
           </documentation>
         </annotation>
@@ -3416,6 +3416,7 @@
                   <documentation>
                     The largest max CPC bid that can be set by the TargetSpend bidder.
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "TargetSpendBidCeiling".&lt;/span&gt;
+                    &lt;span class="constraint CampaignType"&gt;This field may only be set for campaign channel types: SEARCH, DISPLAY, SHOPPING.&lt;/span&gt;
                     &lt;span class="constraint InRange"&gt;This field must be greater than or equal to 0.&lt;/span&gt;
                   </documentation>
                 </annotation>
@@ -3423,10 +3424,11 @@
               <element maxOccurs="1" minOccurs="0" name="spendTarget" type="tns:Money">
                 <annotation>
                   <documentation>
-                    A spend target under which to maximize clicks. The TargetSpend bidder will
-                    attempt to spend the smaller of this value or the natural throttling spend
-                    amount. If not specified, the budget is used as the spend target.
+                    A spend target under which to maximize clicks. The TargetSpend bidder will attempt to spend the
+                    smaller of this value or the natural throttling spend amount. If not specified, the budget is
+                    used as the spend target.
                     &lt;span class="constraint Selectable"&gt;This field can be selected using the value "TargetSpendSpendTarget".&lt;/span&gt;
+                    &lt;span class="constraint CampaignType"&gt;This field may only be set for campaign channel types: SEARCH, SHOPPING.&lt;/span&gt;
                     &lt;span class="constraint InRange"&gt;This field must be greater than or equal to 0.&lt;/span&gt;
                   </documentation>
                 </annotation>
@@ -7563,10 +7565,6 @@
         <annotation>
           <documentation>
             Returns the list of campaigns that meet the selector criteria.
-            
-            @param serviceSelector the selector specifying the {@link Campaign}s to return.
-            @return A list of campaigns.
-            @throws ApiException if problems occurred while fetching campaign information.
           </documentation>
         </annotation>
         <complexType>
@@ -7602,11 +7600,6 @@
             &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; {@link CampaignOperation} does not support the
             &lt;code&gt;REMOVE&lt;/code&gt; operator. To remove a campaign, set its
             {@link Campaign#status status} to {@code REMOVED}.&lt;/p&gt;
-            @param operations A list of unique operations.
-            The same campaign cannot be specified in more than one operation.
-            @return The list of updated campaigns, returned in the same order as the
-            &lt;code&gt;operations&lt;/code&gt; array.
-            @throws ApiException if problems occurred while updating campaign information.
           </documentation>
         </annotation>
         <complexType>
@@ -7643,13 +7636,6 @@
             reference an existing {@linkplain Label label}.
             &lt;p&gt;Remove - Removes the link between the specified {@linkplain Campaign campaign} and
             {@linkplain Label label}.
-            
-            @param operations the operations to apply.
-            @return a list of {@linkplain CampaignLabel}s where each entry in the list is the result of
-            applying the operation in the input list with the same index. For an
-            add operation, the returned CampaignLabel contains the CampaignId and the LabelId.
-            In the case of a remove operation, the returned CampaignLabel will only have CampaignId.
-            @throws ApiException when there are one or more errors with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -7680,11 +7666,6 @@
         <annotation>
           <documentation>
             Returns the list of campaigns that match the query.
-            
-            @param query The SQL-like AWQL query string.
-            @return A list of campaigns.
-            @throws ApiException if problems occur while parsing the query or fetching campaign
-            information.
           </documentation>
         </annotation>
         <complexType>
@@ -7756,10 +7737,6 @@
     <wsdl:operation name="get">
       <wsdl:documentation>
         Returns the list of campaigns that meet the selector criteria.
-        
-        @param serviceSelector the selector specifying the {@link Campaign}s to return.
-        @return A list of campaigns.
-        @throws ApiException if problems occurred while fetching campaign information.
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>
@@ -7771,11 +7748,6 @@
         &lt;p class="note"&gt;&lt;b&gt;Note:&lt;/b&gt; {@link CampaignOperation} does not support the
         &lt;code&gt;REMOVE&lt;/code&gt; operator. To remove a campaign, set its
         {@link Campaign#status status} to {@code REMOVED}.&lt;/p&gt;
-        @param operations A list of unique operations.
-        The same campaign cannot be specified in more than one operation.
-        @return The list of updated campaigns, returned in the same order as the
-        &lt;code&gt;operations&lt;/code&gt; array.
-        @throws ApiException if problems occurred while updating campaign information.
       </wsdl:documentation>
       <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
       <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>
@@ -7790,13 +7762,6 @@
         reference an existing {@linkplain Label label}.
         &lt;p&gt;Remove - Removes the link between the specified {@linkplain Campaign campaign} and
         {@linkplain Label label}.
-        
-        @param operations the operations to apply.
-        @return a list of {@linkplain CampaignLabel}s where each entry in the list is the result of
-        applying the operation in the input list with the same index. For an
-        add operation, the returned CampaignLabel contains the CampaignId and the LabelId.
-        In the case of a remove operation, the returned CampaignLabel will only have CampaignId.
-        @throws ApiException when there are one or more errors with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:mutateLabelRequest" name="mutateLabelRequest"/>
       <wsdl:output message="tns:mutateLabelResponse" name="mutateLabelResponse"/>
@@ -7805,11 +7770,6 @@
     <wsdl:operation name="query">
       <wsdl:documentation>
         Returns the list of campaigns that match the query.
-        
-        @param query The SQL-like AWQL query string.
-        @return A list of campaigns.
-        @throws ApiException if problems occur while parsing the query or fetching campaign
-        information.
       </wsdl:documentation>
       <wsdl:input message="tns:queryRequest" name="queryRequest"/>
       <wsdl:output message="tns:queryResponse" name="queryResponse"/>

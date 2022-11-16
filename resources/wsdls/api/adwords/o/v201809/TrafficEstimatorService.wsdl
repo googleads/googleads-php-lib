@@ -3223,11 +3223,6 @@
         <annotation>
           <documentation>
             Returns traffic estimates for specified criteria.
-            
-            @param selector Campaigns, ad groups and keywords for which traffic
-            should be estimated.
-            @return Traffic estimation results.
-            @throws ApiException if problems occurred while retrieving estimates
           </documentation>
         </annotation>
         <complexType>
@@ -3308,11 +3303,6 @@
     <wsdl:operation name="get">
       <wsdl:documentation>
         Returns traffic estimates for specified criteria.
-        
-        @param selector Campaigns, ad groups and keywords for which traffic
-        should be estimated.
-        @return Traffic estimation results.
-        @throws ApiException if problems occurred while retrieving estimates
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>

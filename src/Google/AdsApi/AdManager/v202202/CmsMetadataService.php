@@ -161,8 +161,6 @@ class CmsMetadataService extends \Google\AdsApi\Common\AdsSoapClient
      * Performs actions on {@link CmsMetadataKey} objects that match the given {@link
      * Statement#query}.
      *
-     * metadata keys.
-     *
      * @param \Google\AdsApi\AdManager\v202202\CmsMetadataKeyAction $keyAction
      * @param \Google\AdsApi\AdManager\v202202\Statement $filterStatement
      * @return \Google\AdsApi\AdManager\v202202\UpdateResult
@@ -176,8 +174,6 @@ class CmsMetadataService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * Performs actions on {@link CmsMetadataValue} objects that match the given {@link
      * Statement#query}.
-     *
-     * metadata values.
      *
      * @param \Google\AdsApi\AdManager\v202202\CmsMetadataValueAction $valueAction
      * @param \Google\AdsApi\AdManager\v202202\Statement $filterStatement

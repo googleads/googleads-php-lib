@@ -10127,8 +10127,8 @@
       <complexType name="TargetSpendBiddingScheme">
         <annotation>
           <documentation>
-            &lt;a href="https://support.google.com/adwords/answer/6268626"&gt;Target Spend&lt;/a&gt; is an automated
-            bid strategy that sets your bids to help get as many clicks as possible within your budget.
+            &lt;a href="https://support.google.com/adwords/answer/6268626"&gt;Target Spend&lt;/a&gt; is an automated bid
+            strategy that sets your bids to help get as many clicks as possible within your budget.
             &lt;span class="constraint AdxEnabled"&gt;This is disabled for AdX.&lt;/span&gt;
           </documentation>
         </annotation>
@@ -10146,9 +10146,10 @@
               <element maxOccurs="1" minOccurs="0" name="spendTarget" type="tns:Money">
                 <annotation>
                   <documentation>
-                    A spend target under which to maximize clicks. The TargetSpend bidder will
-                    attempt to spend the smaller of this value or the natural throttling spend
-                    amount. If not specified, the budget is used as the spend target.
+                    A spend target under which to maximize clicks. The TargetSpend bidder will attempt to spend the
+                    smaller of this value or the natural throttling spend amount. If not specified, the budget is
+                    used as the spend target.
+                    &lt;span class="constraint CampaignType"&gt;This field may only be set for campaign channel types: SEARCH, SHOPPING.&lt;/span&gt;
                     &lt;span class="constraint InRange"&gt;This field must be greater than or equal to 0.&lt;/span&gt;
                   </documentation>
                 </annotation>

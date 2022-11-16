@@ -3332,12 +3332,6 @@
             Returns a list of the conversion trackers that match the selector. The
             actual objects contained in the page's list of entries will be specific
             subclasses of the abstract {@link ConversionTracker} class.
-            
-            @param serviceSelector The selector specifying the
-            {@link ConversionTracker}s to return.
-            @return List of conversion trackers specified by the selector.
-            @throws com.google.ads.api.services.common.error.ApiException if problems
-            occurred while retrieving results.
           </documentation>
         </annotation>
         <complexType>
@@ -3382,12 +3376,6 @@
             an originalConversionTypeId matching a system-defined conversion tracker's ID. That new
             ADDed ConversionTracker will inherit the statistics and properties
             of the system-defined type, but will be editable as usual.&lt;/p&gt;
-            
-            @param operations A list of mutate operations to perform.
-            @return The list of the conversion trackers as they appear after mutation,
-            in the same order as they appeared in the list of operations.
-            @throws com.google.ads.api.services.common.error.ApiException if problems
-            occurred while updating the data.
           </documentation>
         </annotation>
         <complexType>
@@ -3418,10 +3406,6 @@
         <annotation>
           <documentation>
             Returns a list of conversion trackers that match the query.
-            
-            @param query The SQL-like AWQL query string.
-            @return A list of conversion trackers.
-            @throws ApiException if problems occur while parsing the query or fetching conversion trackers.
           </documentation>
         </annotation>
         <complexType>
@@ -3486,12 +3470,6 @@
         Returns a list of the conversion trackers that match the selector. The
         actual objects contained in the page's list of entries will be specific
         subclasses of the abstract {@link ConversionTracker} class.
-        
-        @param serviceSelector The selector specifying the
-        {@link ConversionTracker}s to return.
-        @return List of conversion trackers specified by the selector.
-        @throws com.google.ads.api.services.common.error.ApiException if problems
-        occurred while retrieving results.
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>
@@ -3512,12 +3490,6 @@
         an originalConversionTypeId matching a system-defined conversion tracker's ID. That new
         ADDed ConversionTracker will inherit the statistics and properties
         of the system-defined type, but will be editable as usual.&lt;/p&gt;
-        
-        @param operations A list of mutate operations to perform.
-        @return The list of the conversion trackers as they appear after mutation,
-        in the same order as they appeared in the list of operations.
-        @throws com.google.ads.api.services.common.error.ApiException if problems
-        occurred while updating the data.
       </wsdl:documentation>
       <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
       <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>
@@ -3526,10 +3498,6 @@
     <wsdl:operation name="query">
       <wsdl:documentation>
         Returns a list of conversion trackers that match the query.
-        
-        @param query The SQL-like AWQL query string.
-        @return A list of conversion trackers.
-        @throws ApiException if problems occur while parsing the query or fetching conversion trackers.
       </wsdl:documentation>
       <wsdl:input message="tns:queryRequest" name="queryRequest"/>
       <wsdl:output message="tns:queryResponse" name="queryResponse"/>

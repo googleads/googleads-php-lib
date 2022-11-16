@@ -1,3 +1,20 @@
+### 59.0.0
+
+##### AdWords
+
+* No changes.
+
+##### Ad Manager
+
+* Added support for v202211.
+* Removed support for v202111.
+* Removed examples for v202202.
+
+##### Common
+
+* No changes.
+
+
 ### 58.0.0
 
 ##### AdWords

@@ -3019,11 +3019,6 @@
         <annotation>
           <documentation>
             Returns a list of customer feeds that meet the selector criteria.
-            
-            @param selector Determines which customer feeds to return. If empty, all
-            customer feeds are returned.
-            @return The list of customer feeds.
-            @throws ApiException Indicates a problem with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -3056,10 +3051,6 @@
         <annotation>
           <documentation>
             Adds, sets, or removes customer feeds.
-            
-            @param operations The operations to apply.
-            @return The resulting feeds.
-            @throws ApiException Indicates a problem with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -3088,10 +3079,6 @@
         <annotation>
           <documentation>
             Returns the list of customer feeds that match the query.
-            
-            @param query The SQL-like AWQL query string.
-            @return A list of CustomerFeed.
-            @throws ApiException If problems occur while parsing the query or fetching CustomerFeed.
           </documentation>
         </annotation>
         <complexType>
@@ -3151,11 +3138,6 @@
     <wsdl:operation name="get">
       <wsdl:documentation>
         Returns a list of customer feeds that meet the selector criteria.
-        
-        @param selector Determines which customer feeds to return. If empty, all
-        customer feeds are returned.
-        @return The list of customer feeds.
-        @throws ApiException Indicates a problem with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>
@@ -3164,10 +3146,6 @@
     <wsdl:operation name="mutate">
       <wsdl:documentation>
         Adds, sets, or removes customer feeds.
-        
-        @param operations The operations to apply.
-        @return The resulting feeds.
-        @throws ApiException Indicates a problem with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
       <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>
@@ -3176,10 +3154,6 @@
     <wsdl:operation name="query">
       <wsdl:documentation>
         Returns the list of customer feeds that match the query.
-        
-        @param query The SQL-like AWQL query string.
-        @return A list of CustomerFeed.
-        @throws ApiException If problems occur while parsing the query or fetching CustomerFeed.
       </wsdl:documentation>
       <wsdl:input message="tns:queryRequest" name="queryRequest"/>
       <wsdl:output message="tns:queryResponse" name="queryResponse"/>

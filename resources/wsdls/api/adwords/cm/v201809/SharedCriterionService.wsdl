@@ -3805,10 +3805,6 @@
         <annotation>
           <documentation>
             Returns a list of SharedCriterion that meets the selector criteria.
-            
-            @param selector filters the criteria returned
-            @return The list of SharedCriterion
-            @throws ApiException
           </documentation>
         </annotation>
         <complexType>
@@ -3841,11 +3837,6 @@
         <annotation>
           <documentation>
             Adds, removes criteria in a shared set.
-            
-            @param operations A list of unique operations
-            @return The list of updated SharedCriterion, returned in the same order as the
-            {@code operations} array.
-            @throws ApiException
           </documentation>
         </annotation>
         <complexType>
@@ -3875,10 +3866,6 @@
         <annotation>
           <documentation>
             Returns the list of SharedCriterion that match the query.
-            
-            @param query The SQL-like AWQL query string.
-            @return A list of SharedCriterion.
-            @throws ApiException
           </documentation>
         </annotation>
         <complexType>
@@ -3938,10 +3925,6 @@
     <wsdl:operation name="get">
       <wsdl:documentation>
         Returns a list of SharedCriterion that meets the selector criteria.
-        
-        @param selector filters the criteria returned
-        @return The list of SharedCriterion
-        @throws ApiException
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>
@@ -3950,11 +3933,6 @@
     <wsdl:operation name="mutate">
       <wsdl:documentation>
         Adds, removes criteria in a shared set.
-        
-        @param operations A list of unique operations
-        @return The list of updated SharedCriterion, returned in the same order as the
-        {@code operations} array.
-        @throws ApiException
       </wsdl:documentation>
       <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
       <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>
@@ -3963,10 +3941,6 @@
     <wsdl:operation name="query">
       <wsdl:documentation>
         Returns the list of SharedCriterion that match the query.
-        
-        @param query The SQL-like AWQL query string.
-        @return A list of SharedCriterion.
-        @throws ApiException
       </wsdl:documentation>
       <wsdl:input message="tns:queryRequest" name="queryRequest"/>
       <wsdl:output message="tns:queryResponse" name="queryResponse"/>

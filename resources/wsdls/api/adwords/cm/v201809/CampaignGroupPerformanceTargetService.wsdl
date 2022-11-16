@@ -3157,11 +3157,6 @@
         <annotation>
           <documentation>
             Returns the list of campaign group performance targets that meet the selector criteria.
-            
-            @param selector specifying the {@link CampaignGroupPerformanceTarget}s to return.
-            @return A list of campaign group performance targets.
-            @throws ApiException if problems occurred while fetching campaign group performance target
-            information.
           </documentation>
         </annotation>
         <complexType>
@@ -3194,12 +3189,6 @@
         <annotation>
           <documentation>
             Adds, updates, or deletes campaign group performance targets.
-            
-            @param operations A list of unique operations.
-            @return The list of updated campaign groups performance targets, returned in the same order as
-            the &lt;code&gt;operations&lt;/code&gt; array.
-            @throws ApiException if problems occurred while updating campaign group performance target
-            information.
           </documentation>
         </annotation>
         <complexType>
@@ -3261,11 +3250,6 @@
     <wsdl:operation name="get">
       <wsdl:documentation>
         Returns the list of campaign group performance targets that meet the selector criteria.
-        
-        @param selector specifying the {@link CampaignGroupPerformanceTarget}s to return.
-        @return A list of campaign group performance targets.
-        @throws ApiException if problems occurred while fetching campaign group performance target
-        information.
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>
@@ -3274,12 +3258,6 @@
     <wsdl:operation name="mutate">
       <wsdl:documentation>
         Adds, updates, or deletes campaign group performance targets.
-        
-        @param operations A list of unique operations.
-        @return The list of updated campaign groups performance targets, returned in the same order as
-        the &lt;code&gt;operations&lt;/code&gt; array.
-        @throws ApiException if problems occurred while updating campaign group performance target
-        information.
       </wsdl:documentation>
       <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
       <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>

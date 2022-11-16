@@ -2957,9 +2957,6 @@
         <annotation>
           <documentation>
             Creates new {@link FirstPartyAudienceSegment} objects.
-            
-            @param segments first-party audience segments to create
-            @return created first-party audience segments
           </documentation>
         </annotation>
         <complexType>
@@ -3038,10 +3035,6 @@
             &lt;td&gt;{@link ThirdPartyAudienceSegment#endDateTime}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;/table&gt;
-            
-            @param filterStatement a Publisher Query Language statement used to filter a set of audience
-            segments (the only supported operator is AND)
-            @return the audience segments that match the given filter
           </documentation>
         </annotation>
         <complexType>
@@ -3062,11 +3055,6 @@
           <documentation>
             Performs the given {@link AudienceSegmentAction} on the set of segments identified by the given
             statement.
-            
-            @param action {@link AudienceSegmentAction} to perform
-            @param filterStatement a Publisher Query Language statement used to filter a set of audience
-            segments (the only supported operator is AND)
-            @return {@link UpdateResult} indicating the result
           </documentation>
         </annotation>
         <complexType>
@@ -3087,9 +3075,6 @@
         <annotation>
           <documentation>
             Updates the given {@link FirstPartyAudienceSegment} objects.
-            
-            @param segments first-party audience segments to update
-            @return updated first-party audience segments
           </documentation>
         </annotation>
         <complexType>
@@ -3149,9 +3134,6 @@
     <wsdl:operation name="createAudienceSegments">
       <wsdl:documentation>
         Creates new {@link FirstPartyAudienceSegment} objects.
-        
-        @param segments first-party audience segments to create
-        @return created first-party audience segments
       </wsdl:documentation>
       <wsdl:input message="tns:createAudienceSegmentsRequest" name="createAudienceSegmentsRequest"/>
       <wsdl:output message="tns:createAudienceSegmentsResponse" name="createAudienceSegmentsResponse"/>
@@ -3212,10 +3194,6 @@
         &lt;td&gt;{@link ThirdPartyAudienceSegment#endDateTime}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;/table&gt;
-        
-        @param filterStatement a Publisher Query Language statement used to filter a set of audience
-        segments (the only supported operator is AND)
-        @return the audience segments that match the given filter
       </wsdl:documentation>
       <wsdl:input message="tns:getAudienceSegmentsByStatementRequest" name="getAudienceSegmentsByStatementRequest"/>
       <wsdl:output message="tns:getAudienceSegmentsByStatementResponse" name="getAudienceSegmentsByStatementResponse"/>
@@ -3225,11 +3203,6 @@
       <wsdl:documentation>
         Performs the given {@link AudienceSegmentAction} on the set of segments identified by the given
         statement.
-        
-        @param action {@link AudienceSegmentAction} to perform
-        @param filterStatement a Publisher Query Language statement used to filter a set of audience
-        segments (the only supported operator is AND)
-        @return {@link UpdateResult} indicating the result
       </wsdl:documentation>
       <wsdl:input message="tns:performAudienceSegmentActionRequest" name="performAudienceSegmentActionRequest"/>
       <wsdl:output message="tns:performAudienceSegmentActionResponse" name="performAudienceSegmentActionResponse"/>
@@ -3238,9 +3211,6 @@
     <wsdl:operation name="updateAudienceSegments">
       <wsdl:documentation>
         Updates the given {@link FirstPartyAudienceSegment} objects.
-        
-        @param segments first-party audience segments to update
-        @return updated first-party audience segments
       </wsdl:documentation>
       <wsdl:input message="tns:updateAudienceSegmentsRequest" name="updateAudienceSegmentsRequest"/>
       <wsdl:output message="tns:updateAudienceSegmentsResponse" name="updateAudienceSegmentsResponse"/>

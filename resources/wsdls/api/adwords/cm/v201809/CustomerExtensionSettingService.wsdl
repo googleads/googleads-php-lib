@@ -7600,11 +7600,6 @@
         <annotation>
           <documentation>
             Returns a list of CustomerExtensionSettings that meet the selector criteria.
-            
-            @param selector Determines which CustomerExtensionSettings to return. If empty, all
-            CustomerExtensionSettings are returned.
-            @return The list of CustomerExtensionSettings specified by the selector.
-            @throws ApiException Indicates a problem with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -7642,11 +7637,6 @@
             operation when there is an existing ExtensionSetting will cause the operation to be
             treated like a set operation. Performing a set operation when there is no existing
             ExtensionSetting will cause the operation to be treated like an add operation.
-            
-            @param operations The operations to apply. The same {@link CustomerExtensionSetting} cannot be
-            specified in more than one operation.
-            @return The changed {@link CustomerExtensionSetting}s.
-            @throws ApiException Indicates a problem with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -7676,10 +7666,6 @@
         <annotation>
           <documentation>
             Returns a list of CustomerExtensionSettings that match the query.
-            
-            @param query The SQL-like AWQL query string.
-            @return The list of CustomerExtensionSettings specified by the query.
-            @throws ApiException Indicates a problem with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -7741,11 +7727,6 @@
     <wsdl:operation name="get">
       <wsdl:documentation>
         Returns a list of CustomerExtensionSettings that meet the selector criteria.
-        
-        @param selector Determines which CustomerExtensionSettings to return. If empty, all
-        CustomerExtensionSettings are returned.
-        @return The list of CustomerExtensionSettings specified by the selector.
-        @throws ApiException Indicates a problem with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>
@@ -7759,11 +7740,6 @@
         operation when there is an existing ExtensionSetting will cause the operation to be
         treated like a set operation. Performing a set operation when there is no existing
         ExtensionSetting will cause the operation to be treated like an add operation.
-        
-        @param operations The operations to apply. The same {@link CustomerExtensionSetting} cannot be
-        specified in more than one operation.
-        @return The changed {@link CustomerExtensionSetting}s.
-        @throws ApiException Indicates a problem with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
       <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>
@@ -7772,10 +7748,6 @@
     <wsdl:operation name="query">
       <wsdl:documentation>
         Returns a list of CustomerExtensionSettings that match the query.
-        
-        @param query The SQL-like AWQL query string.
-        @return The list of CustomerExtensionSettings specified by the query.
-        @throws ApiException Indicates a problem with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:queryRequest" name="queryRequest"/>
       <wsdl:output message="tns:queryResponse" name="queryResponse"/>

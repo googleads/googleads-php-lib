@@ -1868,9 +1868,6 @@
         <annotation>
           <documentation>
             Creates new {@link User} objects.
-            
-            @param users the users to create
-            @return the created users with their IDs filled in
           </documentation>
         </annotation>
         <complexType>
@@ -1898,8 +1895,6 @@
           <documentation>
             Returns the {@link Role} objects that are defined for the users of the
             network.
-            
-            @return the roles defined for the user's network
           </documentation>
         </annotation>
         <complexType>
@@ -1917,8 +1912,6 @@
         <annotation>
           <documentation>
             Returns the current {@link User}.
-            
-            @return the current user
           </documentation>
         </annotation>
         <complexType>
@@ -1968,10 +1961,6 @@
             otherwise&lt;/td&gt;
             &lt;/tr&gt;
             &lt;/table&gt;
-            
-            @param filterStatement a Publisher Query Language statement used to filter
-            a set of users
-            @return the users that match the given filter
           </documentation>
         </annotation>
         <complexType>
@@ -1992,11 +1981,6 @@
           <documentation>
             Performs actions on {@link User} objects that match the given
             {@link Statement#query}.
-            
-            @param userAction the action to perform
-            @param filterStatement a Publisher Query Language statement used to filter
-            a set of users
-            @return the result of the action performed
           </documentation>
         </annotation>
         <complexType>
@@ -2017,9 +2001,6 @@
         <annotation>
           <documentation>
             Updates the specified {@link User} objects.
-            
-            @param users the users to update
-            @return the updated users
           </documentation>
         </annotation>
         <complexType>
@@ -2097,9 +2078,6 @@
     <wsdl:operation name="createUsers">
       <wsdl:documentation>
         Creates new {@link User} objects.
-        
-        @param users the users to create
-        @return the created users with their IDs filled in
       </wsdl:documentation>
       <wsdl:input message="tns:createUsersRequest" name="createUsersRequest"/>
       <wsdl:output message="tns:createUsersResponse" name="createUsersResponse"/>
@@ -2109,8 +2087,6 @@
       <wsdl:documentation>
         Returns the {@link Role} objects that are defined for the users of the
         network.
-        
-        @return the roles defined for the user's network
       </wsdl:documentation>
       <wsdl:input message="tns:getAllRolesRequest" name="getAllRolesRequest"/>
       <wsdl:output message="tns:getAllRolesResponse" name="getAllRolesResponse"/>
@@ -2119,8 +2095,6 @@
     <wsdl:operation name="getCurrentUser">
       <wsdl:documentation>
         Returns the current {@link User}.
-        
-        @return the current user
       </wsdl:documentation>
       <wsdl:input message="tns:getCurrentUserRequest" name="getCurrentUserRequest"/>
       <wsdl:output message="tns:getCurrentUserResponse" name="getCurrentUserResponse"/>
@@ -2161,10 +2135,6 @@
         otherwise&lt;/td&gt;
         &lt;/tr&gt;
         &lt;/table&gt;
-        
-        @param filterStatement a Publisher Query Language statement used to filter
-        a set of users
-        @return the users that match the given filter
       </wsdl:documentation>
       <wsdl:input message="tns:getUsersByStatementRequest" name="getUsersByStatementRequest"/>
       <wsdl:output message="tns:getUsersByStatementResponse" name="getUsersByStatementResponse"/>
@@ -2174,11 +2144,6 @@
       <wsdl:documentation>
         Performs actions on {@link User} objects that match the given
         {@link Statement#query}.
-        
-        @param userAction the action to perform
-        @param filterStatement a Publisher Query Language statement used to filter
-        a set of users
-        @return the result of the action performed
       </wsdl:documentation>
       <wsdl:input message="tns:performUserActionRequest" name="performUserActionRequest"/>
       <wsdl:output message="tns:performUserActionResponse" name="performUserActionResponse"/>
@@ -2187,9 +2152,6 @@
     <wsdl:operation name="updateUsers">
       <wsdl:documentation>
         Updates the specified {@link User} objects.
-        
-        @param users the users to update
-        @return the updated users
       </wsdl:documentation>
       <wsdl:input message="tns:updateUsersRequest" name="updateUsersRequest"/>
       <wsdl:output message="tns:updateUsersResponse" name="updateUsersResponse"/>

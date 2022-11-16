@@ -85,8 +85,6 @@ class CreativeReviewService extends \Google\AdsApi\Common\AdsSoapClient
      * reviewing the most important creatives first, the {@link CreativeReview} objects are ranked
      * according to the number of impressions that they've received.
      *
-     * CreativeReview} to be fetch. Only {@code LIMIT} is supported.
-     *
      * @param \Google\AdsApi\AdManager\v202208\Statement $statement
      * @return \Google\AdsApi\AdManager\v202208\CreativeReviewPage
      * @throws \Google\AdsApi\AdManager\v202208\ApiException
@@ -102,8 +100,6 @@ class CreativeReviewService extends \Google\AdsApi\Common\AdsSoapClient
      * seen in the corresponding {@link CreativeReview} objects. You can also archive creatives to
      * allow you to retrieve new {@link CreativeReview} objects while previously retrieved {@link
      * CreativeReview} objects are in pending approval.
-     *
-     * reviews. Only {@code "WHERE id = <value>"} and {@code "WHERE id IN <list>"} are supported.
      *
      * @param \Google\AdsApi\AdManager\v202208\CreativeReviewAction $creativeReviewAction
      * @param \Google\AdsApi\AdManager\v202208\Statement $filterStatement

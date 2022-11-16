@@ -87,6 +87,7 @@ class ProposalLineItemService extends \Google\AdsApi\Common\AdsSoapClient
       'InventoryUrlTargeting' => 'Google\\AdsApi\\AdManager\\v202205\\InventoryUrlTargeting',
       'LabelEntityAssociationError' => 'Google\\AdsApi\\AdManager\\v202205\\LabelEntityAssociationError',
       'LineItemError' => 'Google\\AdsApi\\AdManager\\v202205\\LineItemError',
+      'LineItemFlightDateError' => 'Google\\AdsApi\\AdManager\\v202205\\LineItemFlightDateError',
       'LineItemOperationError' => 'Google\\AdsApi\\AdManager\\v202205\\LineItemOperationError',
       'Location' => 'Google\\AdsApi\\AdManager\\v202205\\Location',
       'MobileApplicationTargeting' => 'Google\\AdsApi\\AdManager\\v202205\\MobileApplicationTargeting',
@@ -254,8 +255,6 @@ class ProposalLineItemService extends \Google\AdsApi\Common\AdsSoapClient
      * </tr>
      * </table>
      *
-     * a set of proposal line items
-     *
      * @param \Google\AdsApi\AdManager\v202205\Statement $filterStatement
      * @return \Google\AdsApi\AdManager\v202205\ProposalLineItemPage
      * @throws \Google\AdsApi\AdManager\v202205\ApiException
@@ -268,8 +267,6 @@ class ProposalLineItemService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * Performs actions on {@link ProposalLineItem} objects that match
      * the given {@link Statement#query}.
-     *
-     * proposal line items
      *
      * @param \Google\AdsApi\AdManager\v202205\ProposalLineItemAction $proposalLineItemAction
      * @param \Google\AdsApi\AdManager\v202205\Statement $filterStatement

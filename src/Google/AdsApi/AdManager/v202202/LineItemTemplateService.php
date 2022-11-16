@@ -18,6 +18,7 @@ class LineItemTemplateService extends \Google\AdsApi\Common\AdsSoapClient
       'ApiException' => 'Google\\AdsApi\\AdManager\\v202202\\ApiException',
       'ApiVersionError' => 'Google\\AdsApi\\AdManager\\v202202\\ApiVersionError',
       'ApplicationException' => 'Google\\AdsApi\\AdManager\\v202202\\ApplicationException',
+      'AssetError' => 'Google\\AdsApi\\AdManager\\v202202\\AssetError',
       'AudienceExtensionError' => 'Google\\AdsApi\\AdManager\\v202202\\AudienceExtensionError',
       'AuthenticationError' => 'Google\\AdsApi\\AdManager\\v202202\\AuthenticationError',
       'BooleanValue' => 'Google\\AdsApi\\AdManager\\v202202\\BooleanValue',
@@ -131,8 +132,6 @@ class LineItemTemplateService extends \Google\AdsApi\Common\AdsSoapClient
      * <td>{@link LineItemTemplate#id}</td>
      * </tr>
      * </table>
-     *
-     * a set of line item templates
      *
      * @param \Google\AdsApi\AdManager\v202202\Statement $filterStatement
      * @return \Google\AdsApi\AdManager\v202202\LineItemTemplatePage

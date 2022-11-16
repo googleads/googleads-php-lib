@@ -1860,9 +1860,6 @@
             &lt;li&gt;{@link CustomFieldOption#displayName}&lt;/li&gt;
             &lt;li&gt;{@link CustomFieldOption#customFieldId}&lt;/li&gt;
             &lt;/ul&gt;
-            
-            @param customFieldOptions the custom fields to create
-            @return the created custom field options with their IDs filled in
           </documentation>
         </annotation>
         <complexType>
@@ -1898,9 +1895,6 @@
             &lt;li&gt;{@link CustomField#dataType}&lt;/li&gt;
             &lt;li&gt;{@link CustomField#visibility}&lt;/li&gt;
             &lt;/ul&gt;
-            
-            @param customFields the custom fields to create
-            @return the created custom fields with their IDs filled in
           </documentation>
         </annotation>
         <complexType>
@@ -1921,9 +1915,6 @@
         <annotation>
           <documentation>
             Returns the {@link CustomFieldOption} uniquely identified by the given ID.
-            
-            @param customFieldOptionId the ID of the custom field option, which must already exist
-            @return the {@code CustomFieldOption} uniquely identified by the given ID
           </documentation>
         </annotation>
         <complexType>
@@ -1972,11 +1963,6 @@
             &lt;td&gt;{@link CustomField#visibility}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;/table&gt;
-            
-            
-            @param filterStatement a Publisher Query Language statement used to filter
-            a set of custom fields.
-            @return the custom fields that match the given filter
           </documentation>
         </annotation>
         <complexType>
@@ -1997,11 +1983,6 @@
           <documentation>
             Performs actions on {@link CustomField} objects that match the given
             {@link Statement#query}.
-            
-            @param customFieldAction the action to perform
-            @param filterStatement a Publisher Query Language statement used to filter
-            a set of custom fields
-            @return the result of the action performed
           </documentation>
         </annotation>
         <complexType>
@@ -2023,9 +2004,6 @@
         <annotation>
           <documentation>
             Updates the specified {@link CustomFieldOption} objects.
-            
-            @param customFieldOptions the custom field options to update
-            @return the updated custom field options
           </documentation>
         </annotation>
         <complexType>
@@ -2046,9 +2024,6 @@
         <annotation>
           <documentation>
             Updates the specified {@link CustomField} objects.
-            
-            @param customFields the custom fields to update
-            @return the updated custom fields
           </documentation>
         </annotation>
         <complexType>
@@ -2133,9 +2108,6 @@
         &lt;li&gt;{@link CustomFieldOption#displayName}&lt;/li&gt;
         &lt;li&gt;{@link CustomFieldOption#customFieldId}&lt;/li&gt;
         &lt;/ul&gt;
-        
-        @param customFieldOptions the custom fields to create
-        @return the created custom field options with their IDs filled in
       </wsdl:documentation>
       <wsdl:input message="tns:createCustomFieldOptionsRequest" name="createCustomFieldOptionsRequest"/>
       <wsdl:output message="tns:createCustomFieldOptionsResponse" name="createCustomFieldOptionsResponse"/>
@@ -2152,9 +2124,6 @@
         &lt;li&gt;{@link CustomField#dataType}&lt;/li&gt;
         &lt;li&gt;{@link CustomField#visibility}&lt;/li&gt;
         &lt;/ul&gt;
-        
-        @param customFields the custom fields to create
-        @return the created custom fields with their IDs filled in
       </wsdl:documentation>
       <wsdl:input message="tns:createCustomFieldsRequest" name="createCustomFieldsRequest"/>
       <wsdl:output message="tns:createCustomFieldsResponse" name="createCustomFieldsResponse"/>
@@ -2163,9 +2132,6 @@
     <wsdl:operation name="getCustomFieldOption">
       <wsdl:documentation>
         Returns the {@link CustomFieldOption} uniquely identified by the given ID.
-        
-        @param customFieldOptionId the ID of the custom field option, which must already exist
-        @return the {@code CustomFieldOption} uniquely identified by the given ID
       </wsdl:documentation>
       <wsdl:input message="tns:getCustomFieldOptionRequest" name="getCustomFieldOptionRequest"/>
       <wsdl:output message="tns:getCustomFieldOptionResponse" name="getCustomFieldOptionResponse"/>
@@ -2202,11 +2168,6 @@
         &lt;td&gt;{@link CustomField#visibility}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;/table&gt;
-        
-        
-        @param filterStatement a Publisher Query Language statement used to filter
-        a set of custom fields.
-        @return the custom fields that match the given filter
       </wsdl:documentation>
       <wsdl:input message="tns:getCustomFieldsByStatementRequest" name="getCustomFieldsByStatementRequest"/>
       <wsdl:output message="tns:getCustomFieldsByStatementResponse" name="getCustomFieldsByStatementResponse"/>
@@ -2216,11 +2177,6 @@
       <wsdl:documentation>
         Performs actions on {@link CustomField} objects that match the given
         {@link Statement#query}.
-        
-        @param customFieldAction the action to perform
-        @param filterStatement a Publisher Query Language statement used to filter
-        a set of custom fields
-        @return the result of the action performed
       </wsdl:documentation>
       <wsdl:input message="tns:performCustomFieldActionRequest" name="performCustomFieldActionRequest"/>
       <wsdl:output message="tns:performCustomFieldActionResponse" name="performCustomFieldActionResponse"/>
@@ -2229,9 +2185,6 @@
     <wsdl:operation name="updateCustomFieldOptions">
       <wsdl:documentation>
         Updates the specified {@link CustomFieldOption} objects.
-        
-        @param customFieldOptions the custom field options to update
-        @return the updated custom field options
       </wsdl:documentation>
       <wsdl:input message="tns:updateCustomFieldOptionsRequest" name="updateCustomFieldOptionsRequest"/>
       <wsdl:output message="tns:updateCustomFieldOptionsResponse" name="updateCustomFieldOptionsResponse"/>
@@ -2240,9 +2193,6 @@
     <wsdl:operation name="updateCustomFields">
       <wsdl:documentation>
         Updates the specified {@link CustomField} objects.
-        
-        @param customFields the custom fields to update
-        @return the updated custom fields
       </wsdl:documentation>
       <wsdl:input message="tns:updateCustomFieldsRequest" name="updateCustomFieldsRequest"/>
       <wsdl:output message="tns:updateCustomFieldsResponse" name="updateCustomFieldsResponse"/>

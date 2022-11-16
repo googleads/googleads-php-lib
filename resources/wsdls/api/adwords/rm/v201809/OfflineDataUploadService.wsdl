@@ -3959,8 +3959,6 @@
             
             &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; If an upload fails after processing, reason will be reported in {@link
             OfflineDataUpload#failureReason}.
-            
-            @throws {@link ApiException} if problems occurred while retrieving results.
           </documentation>
         </annotation>
         <complexType>
@@ -4007,10 +4005,6 @@
             
             &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; Supports only the {@code ADD} operator. {@code SET} operator is internally used
             only.({@code REMOVE} is not supported).
-            
-            @param operations A list of offline data upload operations.
-            @return The list of offline data upload results in the same order as operations.
-            @throws {@link ApiException} if problems occur.
           </documentation>
         </annotation>
         <complexType>
@@ -4073,8 +4067,6 @@
         
         &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; If an upload fails after processing, reason will be reported in {@link
         OfflineDataUpload#failureReason}.
-        
-        @throws {@link ApiException} if problems occurred while retrieving results.
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>
@@ -4097,10 +4089,6 @@
         
         &lt;p&gt;&lt;b&gt;Note:&lt;/b&gt; Supports only the {@code ADD} operator. {@code SET} operator is internally used
         only.({@code REMOVE} is not supported).
-        
-        @param operations A list of offline data upload operations.
-        @return The list of offline data upload results in the same order as operations.
-        @throws {@link ApiException} if problems occur.
       </wsdl:documentation>
       <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
       <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>

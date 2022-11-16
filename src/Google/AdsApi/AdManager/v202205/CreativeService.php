@@ -205,8 +205,6 @@ class CreativeService extends \Google\AdsApi\Common\AdsSoapClient
      * </tr>
      * </table>
      *
-     * a set of creatives
-     *
      * @param \Google\AdsApi\AdManager\v202205\Statement $filterStatement
      * @return \Google\AdsApi\AdManager\v202205\CreativePage
      * @throws \Google\AdsApi\AdManager\v202205\ApiException

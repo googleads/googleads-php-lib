@@ -3260,9 +3260,6 @@
         <annotation>
           <documentation>
             Creates a new {@link CreativeSet}.
-            
-            @param creativeSet the creative set to create
-            @return the creative set with its ID filled in
           </documentation>
         </annotation>
         <complexType>
@@ -3313,10 +3310,6 @@
             &lt;td&gt;{@link CreativeSet#lastModifiedDateTime}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;/table&gt;
-            
-            @param statement a Publisher Query Language statement used to filter
-            a set of creative sets
-            @return the creative sets that match the given filter
           </documentation>
         </annotation>
         <complexType>
@@ -3336,9 +3329,6 @@
         <annotation>
           <documentation>
             Updates the specified {@link CreativeSet}.
-            
-            @param creativeSet the creative set to update
-            @return the updated creative set
           </documentation>
         </annotation>
         <complexType>
@@ -3393,9 +3383,6 @@
     <wsdl:operation name="createCreativeSet">
       <wsdl:documentation>
         Creates a new {@link CreativeSet}.
-        
-        @param creativeSet the creative set to create
-        @return the creative set with its ID filled in
       </wsdl:documentation>
       <wsdl:input message="tns:createCreativeSetRequest" name="createCreativeSetRequest"/>
       <wsdl:output message="tns:createCreativeSetResponse" name="createCreativeSetResponse"/>
@@ -3428,10 +3415,6 @@
         &lt;td&gt;{@link CreativeSet#lastModifiedDateTime}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;/table&gt;
-        
-        @param statement a Publisher Query Language statement used to filter
-        a set of creative sets
-        @return the creative sets that match the given filter
       </wsdl:documentation>
       <wsdl:input message="tns:getCreativeSetsByStatementRequest" name="getCreativeSetsByStatementRequest"/>
       <wsdl:output message="tns:getCreativeSetsByStatementResponse" name="getCreativeSetsByStatementResponse"/>
@@ -3440,9 +3423,6 @@
     <wsdl:operation name="updateCreativeSet">
       <wsdl:documentation>
         Updates the specified {@link CreativeSet}.
-        
-        @param creativeSet the creative set to update
-        @return the updated creative set
       </wsdl:documentation>
       <wsdl:input message="tns:updateCreativeSetRequest" name="updateCreativeSetRequest"/>
       <wsdl:output message="tns:updateCreativeSetResponse" name="updateCreativeSetResponse"/>

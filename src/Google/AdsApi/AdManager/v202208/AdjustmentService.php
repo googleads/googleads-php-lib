@@ -166,8 +166,6 @@ class AdjustmentService extends \Google\AdsApi\Common\AdsSoapClient
      * Takes a prospective forecast adjustment and calculates the daily ad opportunity counts
      * corresponding to its provided volume settings.
      *
-     * calculatedDailyAdOpportunityCounts} field populated
-     *
      * @param \Google\AdsApi\AdManager\v202208\ForecastAdjustment $forecastAdjustment
      * @return \Google\AdsApi\AdManager\v202208\ForecastAdjustment
      * @throws \Google\AdsApi\AdManager\v202208\ApiException
@@ -237,8 +235,6 @@ class AdjustmentService extends \Google\AdsApi\Common\AdsSoapClient
      * </tr>
      * </table>
      *
-     * forecast segments
-     *
      * @param \Google\AdsApi\AdManager\v202208\Statement $filterStatement
      * @return \Google\AdsApi\AdManager\v202208\ForecastAdjustmentPage
      * @throws \Google\AdsApi\AdManager\v202208\ApiException
@@ -272,8 +268,6 @@ class AdjustmentService extends \Google\AdsApi\Common\AdsSoapClient
      * </tr>
      * </table>
      *
-     * forecast segments
-     *
      * @param \Google\AdsApi\AdManager\v202208\Statement $filterStatement
      * @return \Google\AdsApi\AdManager\v202208\TrafficForecastSegmentPage
      * @throws \Google\AdsApi\AdManager\v202208\ApiException
@@ -286,8 +280,6 @@ class AdjustmentService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * Performs actions on {@link ForecastAdjustment} objects that match the given {@link
      * Statement#query}.
-     *
-     * adjustments
      *
      * @param \Google\AdsApi\AdManager\v202208\ForecastAdjustmentAction $forecastAdjustmentAction
      * @param \Google\AdsApi\AdManager\v202208\Statement $filterStatement

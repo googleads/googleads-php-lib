@@ -3051,11 +3051,6 @@
         <annotation>
           <documentation>
             Returns a list of Feeds that meet the selector criteria.
-            
-            @param selector Determines which Feeds to return. If empty all
-            Feeds are returned.
-            @return The list of Feeds.
-            @throws ApiException Indicates a problem with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -3088,10 +3083,6 @@
         <annotation>
           <documentation>
             Add, remove, and set Feeds.
-            
-            @param operations The operations to apply.
-            @return The resulting Feeds.
-            @throws ApiException Indicates a problem with the request.
           </documentation>
         </annotation>
         <complexType>
@@ -3121,10 +3112,6 @@
         <annotation>
           <documentation>
             Returns the list of Feed that match the query.
-            
-            @param query The SQL-like AWQL query string.
-            @returns A list of Feed.
-            @throws ApiException if problems occur while parsing the query or fetching Feed.
           </documentation>
         </annotation>
         <complexType>
@@ -3184,11 +3171,6 @@
     <wsdl:operation name="get">
       <wsdl:documentation>
         Returns a list of Feeds that meet the selector criteria.
-        
-        @param selector Determines which Feeds to return. If empty all
-        Feeds are returned.
-        @return The list of Feeds.
-        @throws ApiException Indicates a problem with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>
@@ -3197,10 +3179,6 @@
     <wsdl:operation name="mutate">
       <wsdl:documentation>
         Add, remove, and set Feeds.
-        
-        @param operations The operations to apply.
-        @return The resulting Feeds.
-        @throws ApiException Indicates a problem with the request.
       </wsdl:documentation>
       <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
       <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>
@@ -3209,10 +3187,6 @@
     <wsdl:operation name="query">
       <wsdl:documentation>
         Returns the list of Feed that match the query.
-        
-        @param query The SQL-like AWQL query string.
-        @returns A list of Feed.
-        @throws ApiException if problems occur while parsing the query or fetching Feed.
       </wsdl:documentation>
       <wsdl:input message="tns:queryRequest" name="queryRequest"/>
       <wsdl:output message="tns:queryResponse" name="queryResponse"/>

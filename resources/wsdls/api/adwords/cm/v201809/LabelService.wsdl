@@ -2764,11 +2764,6 @@
         <annotation>
           <documentation>
             Returns a list of {@link Label}s.
-            
-            @param serviceSelector The selector specifying the {@link Label}s to return.
-            @return The page containing the {@link Label}s which meet the criteria specified by the
-            selector.
-            @throws ApiException when there is at least one error with the request
           </documentation>
         </annotation>
         <complexType>
@@ -2801,11 +2796,6 @@
         <annotation>
           <documentation>
             Applies the list of mutate operations.
-            
-            @param operations The operations to apply. The same {@link Label} cannot be specified in
-            more than one operation.
-            @return The applied {@link Label}s.
-            @throws ApiException when there is at least one error with the request
           </documentation>
         </annotation>
         <complexType>
@@ -2836,10 +2826,6 @@
         <annotation>
           <documentation>
             Returns the list of {@link Label}s that match the query.
-            
-            @param query The SQL-like AWQL query string
-            @returns  The page containing the {@link Label}s which match the query.
-            @throws ApiException when the query is invalid or there are errors processing the request.
           </documentation>
         </annotation>
         <complexType>
@@ -2900,11 +2886,6 @@
     <wsdl:operation name="get">
       <wsdl:documentation>
         Returns a list of {@link Label}s.
-        
-        @param serviceSelector The selector specifying the {@link Label}s to return.
-        @return The page containing the {@link Label}s which meet the criteria specified by the
-        selector.
-        @throws ApiException when there is at least one error with the request
       </wsdl:documentation>
       <wsdl:input message="tns:getRequest" name="getRequest"/>
       <wsdl:output message="tns:getResponse" name="getResponse"/>
@@ -2913,11 +2894,6 @@
     <wsdl:operation name="mutate">
       <wsdl:documentation>
         Applies the list of mutate operations.
-        
-        @param operations The operations to apply. The same {@link Label} cannot be specified in
-        more than one operation.
-        @return The applied {@link Label}s.
-        @throws ApiException when there is at least one error with the request
       </wsdl:documentation>
       <wsdl:input message="tns:mutateRequest" name="mutateRequest"/>
       <wsdl:output message="tns:mutateResponse" name="mutateResponse"/>
@@ -2926,10 +2902,6 @@
     <wsdl:operation name="query">
       <wsdl:documentation>
         Returns the list of {@link Label}s that match the query.
-        
-        @param query The SQL-like AWQL query string
-        @returns  The page containing the {@link Label}s which match the query.
-        @throws ApiException when the query is invalid or there are errors processing the request.
       </wsdl:documentation>
       <wsdl:input message="tns:queryRequest" name="queryRequest"/>
       <wsdl:output message="tns:queryResponse" name="queryResponse"/>
