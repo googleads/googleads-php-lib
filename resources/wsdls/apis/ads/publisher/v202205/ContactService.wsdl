@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2022 Google Inc. All Rights Reserved -->
+<!-- Copyright 2023 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202205"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202205"
@@ -194,10 +194,9 @@
       <complexType name="Contact">
         <annotation>
           <documentation>
-            A {@code Contact} represents a person who is affiliated with a single
-            {@link Company}. A contact can have a variety of contact information
-            associated to it, and can be invited to view their company's orders, line
-            items, creatives, and reports.
+            A {@code Contact} represents a person who is affiliated with a single {@link Company}. A contact
+            can have a variety of contact information associated to it, and can be invited to view their
+            company's orders, line items, creatives, and reports.
           </documentation>
         </annotation>
         <complexContent>
@@ -206,24 +205,22 @@
               <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
                 <annotation>
                   <documentation>
-                    The unique ID of the {@code Contact}. This value is readonly and is assigned
-                    by Google.
+                    The unique ID of the {@code Contact}. This value is readonly and is assigned by Google.
                   </documentation>
                 </annotation>
               </element>
               <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
                 <annotation>
                   <documentation>
-                    The name of the contact. This attribute is required and has a maximum
-                    length of 127 characters.
+                    The name of the contact. This attribute is required and has a maximum length of 127 characters.
                   </documentation>
                 </annotation>
               </element>
               <element maxOccurs="1" minOccurs="0" name="companyId" type="xsd:long">
                 <annotation>
                   <documentation>
-                    The ID of the {@link Company} that this contact is associated with. This
-                    attribute is required and immutable.
+                    The ID of the {@link Company} that this contact is associated with. This attribute is required
+                    and immutable.
                   </documentation>
                 </annotation>
               </element>
@@ -245,16 +242,15 @@
               <element maxOccurs="1" minOccurs="0" name="cellPhone" type="xsd:string">
                 <annotation>
                   <documentation>
-                    The cell phone number where the contact can be reached. This attribute is
-                    optional.
+                    The cell phone number where the contact can be reached. This attribute is optional.
                   </documentation>
                 </annotation>
               </element>
               <element maxOccurs="1" minOccurs="0" name="comment" type="xsd:string">
                 <annotation>
                   <documentation>
-                    A free-form text comment for the contact. This attribute is optional and has a maximum
-                    length of 1024 characters.
+                    A free-form text comment for the contact. This attribute is optional and has a maximum length
+                    of 1024 characters.
                   </documentation>
                 </annotation>
               </element>
@@ -1141,24 +1137,21 @@
           <enumeration value="INVITE_PENDNG">
             <annotation>
               <documentation>
-                The contact has been invited to see their orders, but has not yet
-                accepted the invitation.
+                The contact has been invited to see their orders, but has not yet accepted the invitation.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="INVITE_EXPIRED">
             <annotation>
               <documentation>
-                The contact has been invited to see their orders, but the invitation
-                has already expired.
+                The contact has been invited to see their orders, but the invitation has already expired.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="INVITE_CANCELED">
             <annotation>
               <documentation>
-                The contact was invited to see their orders, but the invitation was
-                cancelled.
+                The contact was invited to see their orders, but the invitation was cancelled.
               </documentation>
             </annotation>
           </enumeration>
@@ -1172,8 +1165,7 @@
           <enumeration value="USER_DISABLED">
             <annotation>
               <documentation>
-                The contact accepted an invitation to see their orders, but their
-                access was later revoked.
+                The contact accepted an invitation to see their orders, but their access was later revoked.
               </documentation>
             </annotation>
           </enumeration>
@@ -1611,8 +1603,8 @@
       <element name="getContactsByStatement">
         <annotation>
           <documentation>
-            Gets a {@link ContactPage} of {@link Contact} objects that satisfy the given
-            {@link Statement#query}. The following fields are supported for filtering:
+            Gets a {@link ContactPage} of {@link Contact} objects that satisfy the given {@link
+            Statement#query}. The following fields are supported for filtering:
             
             &lt;table&gt;
             &lt;tr&gt;
@@ -1738,8 +1730,8 @@
     </wsdl:operation>
     <wsdl:operation name="getContactsByStatement">
       <wsdl:documentation>
-        Gets a {@link ContactPage} of {@link Contact} objects that satisfy the given
-        {@link Statement#query}. The following fields are supported for filtering:
+        Gets a {@link ContactPage} of {@link Contact} objects that satisfy the given {@link
+        Statement#query}. The following fields are supported for filtering:
         
         &lt;table&gt;
         &lt;tr&gt;

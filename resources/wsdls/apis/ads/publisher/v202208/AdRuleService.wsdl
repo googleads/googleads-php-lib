@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2022 Google Inc. All Rights Reserved -->
+<!-- Copyright 2023 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202208"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202208"
@@ -86,21 +86,20 @@
           <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
             <annotation>
               <documentation>
-                The unique name of the {@link AdRule}. This attribute is required to create an
-                ad rule and has a maximum length of 255 characters.
+                The unique name of the {@link AdRule}. This attribute is required to create an ad rule and has
+                a maximum length of 255 characters.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="priority" type="xsd:int">
             <annotation>
               <documentation>
-                The priority of the {@link AdRule}. This attribute is required and can range
-                from 1 to 1000, with 1 being the highest possible priority.
+                The priority of the {@link AdRule}. This attribute is required and can range from 1 to 1000,
+                with 1 being the highest possible priority.
                 
-                &lt;p&gt;Changing an ad rule's priority can affect the priorities of other ad
-                rules. For example, increasing an ad rule's priority from 5 to 1 will
-                shift the ad rules that were previously in priority positions 1 through 4
-                down one.
+                &lt;p&gt;Changing an ad rule's priority can affect the priorities of other ad rules. For example,
+                increasing an ad rule's priority from 5 to 1 will shift the ad rules that were previously in
+                priority positions 1 through 4 down one.
               </documentation>
             </annotation>
           </element>
@@ -114,25 +113,25 @@
           <element maxOccurs="1" minOccurs="0" name="startDateTime" type="tns:DateTime">
             <annotation>
               <documentation>
-                This {@link AdRule} object's start date and time. This attribute is required and must be
-                a date in the future for new ad rules.
+                This {@link AdRule} object's start date and time. This attribute is required and must be a date
+                in the future for new ad rules.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="startDateTimeType" type="tns:StartDateTimeType">
             <annotation>
               <documentation>
-                Specifies whether to start using the {@link AdRule} right away, in an hour, etc.
-                This attribute is optional and defaults to {@link StartDateTimeType#USE_START_DATE_TIME}.
+                Specifies whether to start using the {@link AdRule} right away, in an hour, etc. This attribute
+                is optional and defaults to {@link StartDateTimeType#USE_START_DATE_TIME}.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="endDateTime" type="tns:DateTime">
             <annotation>
               <documentation>
-                This {@link AdRule} object's end date and time. This attribute is required unless
-                {@code unlimitedEndDateTime} is set to {@code true}. If specified, it
-                must be after the {@code startDateTime}.
+                This {@link AdRule} object's end date and time. This attribute is required unless {@code
+                unlimitedEndDateTime} is set to {@code true}. If specified, it must be after the {@code
+                startDateTime}.
               </documentation>
             </annotation>
           </element>
@@ -140,16 +139,16 @@
             name="unlimitedEndDateTime" type="xsd:boolean">
             <annotation>
               <documentation>
-                Specifies whether the {@link AdRule} has an end time. This attribute is optional
-                and defaults to false.
+                Specifies whether the {@link AdRule} has an end time. This attribute is optional and defaults
+                to false.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="status" type="tns:AdRuleStatus">
             <annotation>
               <documentation>
-                The {@link AdRuleStatus} of the ad rule. This attribute is read-only and
-                defaults to {@link AdRuleStatus#INACTIVE}.
+                The {@link AdRuleStatus} of the ad rule. This attribute is read-only and defaults to {@link
+                AdRuleStatus#INACTIVE}.
               </documentation>
             </annotation>
           </element>
@@ -157,8 +156,8 @@
             name="frequencyCapBehavior" type="tns:FrequencyCapBehavior">
             <annotation>
               <documentation>
-                The {@link FrequencyCapBehavior} of the {@link AdRule}. This attribute is
-                optional and defaults to {@link FrequencyCapBehavior#DEFER}.
+                The {@link FrequencyCapBehavior} of the {@link AdRule}. This attribute is optional and defaults
+                to {@link FrequencyCapBehavior#DEFER}.
               </documentation>
             </annotation>
           </element>
@@ -166,8 +165,8 @@
             name="maxImpressionsPerLineItemPerStream" type="xsd:int">
             <annotation>
               <documentation>
-                This {@link AdRule} object's frequency cap for the maximum impressions per stream.
-                This attribute is optional and defaults to 0.
+                This {@link AdRule} object's frequency cap for the maximum impressions per stream. This
+                attribute is optional and defaults to 0.
               </documentation>
             </annotation>
           </element>
@@ -175,8 +174,8 @@
             name="maxImpressionsPerLineItemPerPod" type="xsd:int">
             <annotation>
               <documentation>
-                This {@link AdRule} object's frequency cap for the maximum impressions per pod. This
-                attribute is optional and defaults to 0.
+                This {@link AdRule} object's frequency cap for the maximum impressions per pod. This attribute
+                is optional and defaults to 0.
               </documentation>
             </annotation>
           </element>
@@ -246,9 +245,9 @@
       <complexType name="OptimizedPoddingAdRuleSlot">
         <annotation>
           <documentation>
-            Ad rule slot with optimized podding. Optimized pods are defined by a
-            {@link BaseAdRuleSlot#maxPodDuration} and a {@link BaseAdRuleSlot#maxAdsInPod}, and the ad
-            server chooses the best ads for the alloted duration.
+            Ad rule slot with optimized podding. Optimized pods are defined by a {@link
+            BaseAdRuleSlot#maxPodDuration} and a {@link BaseAdRuleSlot#maxAdsInPod}, and the ad server
+            chooses the best ads for the alloted duration.
           </documentation>
         </annotation>
         <complexContent>
@@ -304,28 +303,28 @@
       <complexType abstract="true" name="BaseAdRuleSlot">
         <annotation>
           <documentation>
-            Simple object representing an ad slot within an {@link AdRule}. Ad rule slots
-            contain information about the types/number of ads to display, as well
-            as additional information on how the ad server will generate playlists.
+            Simple object representing an ad slot within an {@link AdRule}. Ad rule slots contain information
+            about the types/number of ads to display, as well as additional information on how the ad server
+            will generate playlists.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="1" minOccurs="0" name="slotBehavior" type="tns:AdRuleSlotBehavior">
             <annotation>
               <documentation>
-                The {@link AdRuleSlotBehavior} for video ads for this slot. This
-                attribute is optional and defaults to {@link AdRuleSlotBehavior#DEFER}.
+                The {@link AdRuleSlotBehavior} for video ads for this slot. This attribute is optional and
+                defaults to {@link AdRuleSlotBehavior#DEFER}.
                 
-                &lt;p&gt;Indicates whether video ads are allowed for this slot, or if the
-                decision is deferred to a lower-priority ad rule.
+                &lt;p&gt;Indicates whether video ads are allowed for this slot, or if the decision is deferred to a
+                lower-priority ad rule.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="maxVideoAdDuration" type="xsd:long">
             <annotation>
               <documentation>
-                The maximum duration in milliseconds of video ads within this slot. This
-                attribute is optional and defaults to 0.
+                The maximum duration in milliseconds of video ads within this slot. This attribute is optional
+                and defaults to 0.
               </documentation>
             </annotation>
           </element>
@@ -333,9 +332,9 @@
             name="videoMidrollFrequencyType" type="tns:MidrollFrequencyType">
             <annotation>
               <documentation>
-                The frequency type for video ads in this ad rule slot. This attribute
-                is required for mid-rolls, but if this is not a mid-roll, the value is set to
-                {@link MidrollFrequencyType#NONE}.
+                The frequency type for video ads in this ad rule slot. This attribute is required for
+                mid-rolls, but if this is not a mid-roll, the value is set to {@link
+                MidrollFrequencyType#NONE}.
               </documentation>
             </annotation>
           </element>
@@ -343,44 +342,43 @@
             name="videoMidrollFrequency" type="xsd:string">
             <annotation>
               <documentation>
-                The mid-roll frequency of this ad rule slot for video ads. This attribute is
-                required for mid-rolls, but if {@link MidrollFrequencyType} is set to
-                {@link MidrollFrequencyType#NONE}, this value should be ignored. For example,
-                if this slot has a frequency type of {@link MidrollFrequencyType#EVERY_N_SECONDS}
-                and {@code #videoMidrollFrequency} = "60", this would mean " play a mid-roll every 60
-                seconds."
+                The mid-roll frequency of this ad rule slot for video ads. This attribute is required for
+                mid-rolls, but if {@link MidrollFrequencyType} is set to {@link MidrollFrequencyType#NONE},
+                this value should be ignored. For example, if this slot has a frequency type of {@link
+                MidrollFrequencyType#EVERY_N_SECONDS} and {@code #videoMidrollFrequency} = "60", this would
+                mean " play a mid-roll every 60 seconds."
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="bumper" type="tns:AdRuleSlotBumper">
             <annotation>
               <documentation>
-                The {@link AdRuleSlotBumper} for this slot. This attribute is optional and
-                defaults to {@link AdRuleSlotBumper#NONE}.
+                The {@link AdRuleSlotBumper} for this slot. This attribute is optional and defaults to {@link
+                AdRuleSlotBumper#NONE}.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="maxBumperDuration" type="xsd:long">
             <annotation>
               <documentation>
-                The maximum duration of bumper ads within this slot. This attribute is
-                optional and defaults to 0.
+                The maximum duration of bumper ads within this slot. This attribute is optional and defaults to
+                0.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="maxPodDuration" type="xsd:long">
             <annotation>
               <documentation>
-                The maximum pod duration in milliseconds for this slot. This attribute is
-                optional and defaults to 0.
+                The maximum pod duration in milliseconds for this slot. This attribute is optional and defaults
+                to 0.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="maxAdsInPod" type="xsd:int">
             <annotation>
               <documentation>
-                The maximum number of ads allowed in a pod in this slot. This attribute is
-                optional and defaults to 0.
+                The maximum number of ads allowed in a pod in this slot. This attribute is optional and
+                defaults to 0.
               </documentation>
             </annotation>
           </element>
@@ -412,9 +410,9 @@
       <complexType name="StandardPoddingAdRuleSlot">
         <annotation>
           <documentation>
-            An ad rule slot with standard podding. A standard pod is a series of video ads played
-            back to back. Standard pods are defined by a {@link BaseAdRuleSlot#maxAdsInPod} and a
-            {@link BaseAdRuleSlot#maxVideoAdDuration}.
+            An ad rule slot with standard podding. A standard pod is a series of video ads played back to
+            back. Standard pods are defined by a {@link BaseAdRuleSlot#maxAdsInPod} and a {@link
+            BaseAdRuleSlot#maxVideoAdDuration}.
           </documentation>
         </annotation>
         <complexContent>
@@ -494,8 +492,8 @@
           <element maxOccurs="1" minOccurs="0" name="maxDurationMillis" type="xsd:long">
             <annotation>
               <documentation>
-                The maximum total duration for this {@link AdSpot}. This field is optional, defaults to 0,
-                and supports precision to the nearest second.
+                The maximum total duration for this {@link AdSpot}. This field is optional, defaults to 0, and
+                supports precision to the nearest second.
               </documentation>
             </annotation>
           </element>
@@ -594,10 +592,9 @@
           <element maxOccurs="1" minOccurs="0" name="includeDescendants" type="xsd:boolean">
             <annotation>
               <documentation>
-                Whether or not all descendants are included (or excluded) as part of
-                including (or excluding) this ad unit. By default, the value is {@code
-                true} which means targeting this ad unit will target all of its
-                descendants.
+                Whether or not all descendants are included (or excluded) as part of including (or excluding)
+                this ad unit. By default, the value is {@code true} which means targeting this ad unit will
+                target all of its descendants.
               </documentation>
             </annotation>
           </element>
@@ -670,8 +667,7 @@
       <complexType name="TechnologyTargeting">
         <annotation>
           <documentation>
-            Provides {@link LineItem} objects the ability to target or exclude
-            technologies.
+            Provides {@link LineItem} objects the ability to target or exclude technologies.
           </documentation>
         </annotation>
         <sequence>
@@ -811,8 +807,8 @@
       <complexType name="BandwidthGroup">
         <annotation>
           <documentation>
-            Represents a group of bandwidths that are logically organized by some well
-            known generic names such as 'Cable' or 'DSL'.
+            Represents a group of bandwidths that are logically organized by some well known generic names
+            such as 'Cable' or 'DSL'.
           </documentation>
         </annotation>
         <complexContent>
@@ -824,16 +820,15 @@
       <complexType name="BandwidthGroupTargeting">
         <annotation>
           <documentation>
-            Represents bandwidth groups that are being targeted or excluded by the
-            {@link LineItem}.
+            Represents bandwidth groups that are being targeted or excluded by the {@link LineItem}.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="1" minOccurs="0" name="isTargeted" type="xsd:boolean">
             <annotation>
               <documentation>
-                Indicates whether bandwidth groups should be targeted or excluded. This
-                attribute is optional and defaults to {@code true}.
+                Indicates whether bandwidth groups should be targeted or excluded. This attribute is optional
+                and defaults to {@code true}.
               </documentation>
             </annotation>
           </element>
@@ -841,8 +836,7 @@
             name="bandwidthGroups" type="tns:Technology">
             <annotation>
               <documentation>
-                The bandwidth groups that are being targeted or excluded by the
-                {@link LineItem}.
+                The bandwidth groups that are being targeted or excluded by the {@link LineItem}.
               </documentation>
             </annotation>
           </element>
@@ -1024,16 +1018,15 @@
       <complexType name="BrowserLanguageTargeting">
         <annotation>
           <documentation>
-            Represents browser languages that are being targeted or excluded by the
-            {@link LineItem}.
+            Represents browser languages that are being targeted or excluded by the {@link LineItem}.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="1" minOccurs="0" name="isTargeted" type="xsd:boolean">
             <annotation>
               <documentation>
-                Indicates whether browsers languages should be targeted or excluded. This
-                attribute is optional and defaults to {@code true}.
+                Indicates whether browsers languages should be targeted or excluded. This attribute is optional
+                and defaults to {@code true}.
               </documentation>
             </annotation>
           </element>
@@ -1041,8 +1034,7 @@
             name="browserLanguages" type="tns:Technology">
             <annotation>
               <documentation>
-                Browser languages that are being targeted or excluded by the
-                {@link LineItem}.
+                Browser languages that are being targeted or excluded by the {@link LineItem}.
               </documentation>
             </annotation>
           </element>
@@ -1051,16 +1043,15 @@
       <complexType name="BrowserTargeting">
         <annotation>
           <documentation>
-            Represents browsers that are being targeted or excluded by the
-            {@link LineItem}.
+            Represents browsers that are being targeted or excluded by the {@link LineItem}.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="1" minOccurs="0" name="isTargeted" type="xsd:boolean">
             <annotation>
               <documentation>
-                Indicates whether browsers should be targeted or excluded. This attribute
-                is optional and defaults to {@code true}.
+                Indicates whether browsers should be targeted or excluded. This attribute is optional and
+                defaults to {@code true}.
               </documentation>
             </annotation>
           </element>
@@ -1076,8 +1067,8 @@
       <complexType name="BuyerUserListTargeting">
         <annotation>
           <documentation>
-            The {@code BuyerUserListTargeting} associated with a programmatic {@link LineItem}
-            or {@link ProposalLineItem} object.
+            The {@code BuyerUserListTargeting} associated with a programmatic {@link LineItem} or {@link
+            ProposalLineItem} object.
           </documentation>
         </annotation>
         <sequence>
@@ -1085,8 +1076,8 @@
             name="hasBuyerUserListTargeting" type="xsd:boolean">
             <annotation>
               <documentation>
-                Whether the programmatic {@code LineItem} or {@code ProposalLineItem} object
-                has buyer user list targeting.
+                Whether the programmatic {@code LineItem} or {@code ProposalLineItem} object has buyer user
+                list targeting.
               </documentation>
             </annotation>
           </element>
@@ -1166,9 +1157,9 @@
       <complexType name="CustomCriteria">
         <annotation>
           <documentation>
-            A {@link CustomCriteria} object is used to perform custom criteria targeting
-            on custom targeting keys of type {@link CustomTargetingKey.Type#PREDEFINED}
-            or {@link CustomTargetingKey.Type#FREEFORM}.
+            A {@link CustomCriteria} object is used to perform custom criteria targeting on custom targeting
+            keys of type {@link CustomTargetingKey.Type#PREDEFINED} or {@link
+            CustomTargetingKey.Type#FREEFORM}.
           </documentation>
         </annotation>
         <complexContent>
@@ -1177,9 +1168,8 @@
               <element maxOccurs="1" minOccurs="0" name="keyId" type="xsd:long">
                 <annotation>
                   <documentation>
-                    The {@link CustomTargetingKey#id} of the {@link CustomTargetingKey} object
-                    that was created using {@link CustomTargetingService}. This attribute is
-                    required.
+                    The {@link CustomTargetingKey#id} of the {@link CustomTargetingKey} object that was created
+                    using {@link CustomTargetingService}. This attribute is required.
                   </documentation>
                 </annotation>
               </element>
@@ -1187,9 +1177,8 @@
                 name="valueIds" type="xsd:long">
                 <annotation>
                   <documentation>
-                    The ids of {@link CustomTargetingValue} objects to target the custom
-                    targeting key with id {@link CustomCriteria#keyId}. This attribute is
-                    required.
+                    The ids of {@link CustomTargetingValue} objects to target the custom targeting key with id
+                    {@link CustomCriteria#keyId}. This attribute is required.
                   </documentation>
                 </annotation>
               </element>
@@ -1207,11 +1196,9 @@
       <complexType name="CustomCriteriaSet">
         <annotation>
           <documentation>
-            A {@link CustomCriteriaSet} comprises of a set of {@link CustomCriteriaNode}
-            objects combined by the
-            {@link CustomCriteriaSet.LogicalOperator#logicalOperator}. The custom
-            criteria targeting tree is subject to the rules defined on
-            {@link Targeting#customTargeting}.
+            A {@link CustomCriteriaSet} comprises of a set of {@link CustomCriteriaNode} objects combined by
+            the {@link CustomCriteriaSet.LogicalOperator#logicalOperator}. The custom criteria targeting tree
+            is subject to the rules defined on {@link Targeting#customTargeting}.
           </documentation>
         </annotation>
         <complexContent>
@@ -1299,10 +1286,10 @@
       <complexType abstract="true" name="CustomCriteriaNode">
         <annotation>
           <documentation>
-            A {@link CustomCriteriaNode} is a node in the custom targeting tree. A custom
-            criteria node can either be a {@link CustomCriteriaSet} (a non-leaf node) or
-            a {@link CustomCriteria} (a leaf node). The custom criteria targeting tree is
-            subject to the rules defined on {@link Targeting#customTargeting}.
+            A {@link CustomCriteriaNode} is a node in the custom targeting tree. A custom criteria node can
+            either be a {@link CustomCriteriaSet} (a non-leaf node) or a {@link CustomCriteria} (a leaf
+            node). The custom criteria targeting tree is subject to the rules defined on {@link
+            Targeting#customTargeting}.
           </documentation>
         </annotation>
         <sequence/>
@@ -1492,29 +1479,27 @@
       <complexType name="DayPartTargeting">
         <annotation>
           <documentation>
-            Modify the delivery times of line items for particular days of the week. By
-            default, line items are served at all days and times.
+            Modify the delivery times of line items for particular days of the week. By default, line items
+            are served at all days and times.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="unbounded" minOccurs="0" name="dayParts" type="tns:DayPart">
             <annotation>
               <documentation>
-                Specifies days of the week and times at which a {@code LineItem} will be
-                delivered.
-                &lt;p&gt;
-                If targeting all days and times, this value will be ignored.
+                Specifies days of the week and times at which a {@code LineItem} will be delivered.
+                
+                &lt;p&gt;If targeting all days and times, this value will be ignored.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="timeZone" type="tns:DeliveryTimeZone">
             <annotation>
               <documentation>
-                Specifies the time zone to be used for delivering {@link LineItem} objects.
-                This attribute is optional and defaults to
-                {@link DeliveryTimeZone#BROWSER}.
-                &lt;p&gt;
-                Setting this has no effect if targeting all days and times.
+                Specifies the time zone to be used for delivering {@link LineItem} objects. This attribute is
+                optional and defaults to {@link DeliveryTimeZone#BROWSER}.
+                
+                &lt;p&gt;Setting this has no effect if targeting all days and times.
               </documentation>
             </annotation>
           </element>
@@ -1633,16 +1618,15 @@
       <complexType name="DeviceManufacturerTargeting">
         <annotation>
           <documentation>
-            Represents device manufacturer that are being targeted or excluded by the
-            {@link LineItem}.
+            Represents device manufacturer that are being targeted or excluded by the {@link LineItem}.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="1" minOccurs="0" name="isTargeted" type="xsd:boolean">
             <annotation>
               <documentation>
-                Indicates whether device manufacturers should be targeted or excluded. This
-                attribute is optional and defaults to {@code true}.
+                Indicates whether device manufacturers should be targeted or excluded. This attribute is
+                optional and defaults to {@code true}.
               </documentation>
             </annotation>
           </element>
@@ -1650,8 +1634,7 @@
             name="deviceManufacturers" type="tns:Technology">
             <annotation>
               <documentation>
-                Device manufacturers that are being targeted or excluded by the
-                {@link LineItem}.
+                Device manufacturers that are being targeted or excluded by the {@link LineItem}.
               </documentation>
             </annotation>
           </element>
@@ -1698,24 +1681,23 @@
       <complexType name="GeoTargeting">
         <annotation>
           <documentation>
-            Provides line items the ability to target geographical locations. By default,
-            line items target all countries and their subdivisions. With geographical
-            targeting, you can target line items to specific countries, regions, metro
-            areas, and cities. You can also exclude the same.
-            &lt;p&gt;
-            The following rules apply for geographical targeting:
-            &lt;/p&gt;
+            Provides line items the ability to target geographical locations. By default, line items target
+            all countries and their subdivisions. With geographical targeting, you can target line items to
+            specific countries, regions, metro areas, and cities. You can also exclude the same.
+            
+            &lt;p&gt;The following rules apply for geographical targeting:
+            
             &lt;ul&gt;
-            &lt;li&gt;You cannot target and exclude the same location.&lt;/li&gt;
-            &lt;li&gt;You cannot target a child whose parent has been excluded. For example, if the state
-            of Illinois has been excluded, then you cannot target Chicago.&lt;/li&gt;
-            &lt;li&gt;You must not target a location if you are also targeting its parent.
-            For example, if you are targeting New York City, you must not have the state of New
-            York as one of the targeted locations.&lt;/li&gt;
-            &lt;li&gt;You cannot explicitly define inclusions or exclusions that are already implicit. For example,
-            if you explicitly include California, you implicitly exclude all other states. You therefore
-            cannot explicitly exclude Florida, because it is already implicitly excluded. Conversely if you
-            explicitly exclude Florida, you cannot explicitly include California.&lt;/li&gt;
+            &lt;li&gt;You cannot target and exclude the same location.
+            &lt;li&gt;You cannot target a child whose parent has been excluded. For example, if the state of
+            Illinois has been excluded, then you cannot target Chicago.
+            &lt;li&gt;You must not target a location if you are also targeting its parent. For example, if you
+            are targeting New York City, you must not have the state of New York as one of the targeted
+            locations.
+            &lt;li&gt;You cannot explicitly define inclusions or exclusions that are already implicit. For
+            example, if you explicitly include California, you implicitly exclude all other states. You
+            therefore cannot explicitly exclude Florida, because it is already implicitly excluded.
+            Conversely if you explicitly exclude Florida, you cannot explicitly include California.
             &lt;/ul&gt;
           </documentation>
         </annotation>
@@ -1886,10 +1868,9 @@
       <complexType name="Location">
         <annotation>
           <documentation>
-            A {@link Location} represents a geographical entity that can be targeted. If
-            a location type is not available because of the API version you are using,
-            the location will be represented as just the base class, otherwise it will be
-            sub-classed correctly.
+            A {@link Location} represents a geographical entity that can be targeted. If a location type is
+            not available because of the API version you are using, the location will be represented as just
+            the base class, otherwise it will be sub-classed correctly.
           </documentation>
         </annotation>
         <sequence>
@@ -1934,16 +1915,16 @@
             name="mobileApplicationIds" type="xsd:long">
             <annotation>
               <documentation>
-                The {@link MobileApplication#id IDs} that are being targeted or excluded by the
-                {@link LineItem}.
+                The {@link MobileApplication#id IDs} that are being targeted or excluded by the {@link
+                LineItem}.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="isTargeted" type="xsd:boolean">
             <annotation>
               <documentation>
-                Indicates whether mobile apps should be targeted or excluded. This attribute is optional
-                and defaults to {@code true}.
+                Indicates whether mobile apps should be targeted or excluded. This attribute is optional and
+                defaults to {@code true}.
               </documentation>
             </annotation>
           </element>
@@ -1952,10 +1933,9 @@
       <complexType name="MobileCarrier">
         <annotation>
           <documentation>
-            Represents a mobile carrier.
-            Carrier targeting is only available to Ad Manager mobile publishers.
-            For a list of current mobile carriers, you can use
-            {@link PublisherQueryLanguageService#mobile_carrier}.
+            Represents a mobile carrier. Carrier targeting is only available to Ad Manager mobile publishers.
+            For a list of current mobile carriers, you can use {@link
+            PublisherQueryLanguageService#mobile_carrier}.
           </documentation>
         </annotation>
         <complexContent>
@@ -1974,8 +1954,8 @@
           <element maxOccurs="1" minOccurs="0" name="isTargeted" type="xsd:boolean">
             <annotation>
               <documentation>
-                Indicates whether mobile carriers should be targeted or excluded. This
-                attribute is optional and defaults to {@code true}.
+                Indicates whether mobile carriers should be targeted or excluded. This attribute is optional
+                and defaults to {@code true}.
               </documentation>
             </annotation>
           </element>
@@ -1983,8 +1963,7 @@
             name="mobileCarriers" type="tns:Technology">
             <annotation>
               <documentation>
-                Mobile carriers that are being targeted or excluded by the
-                {@link LineItem}.
+                Mobile carriers that are being targeted or excluded by the {@link LineItem}.
               </documentation>
             </annotation>
           </element>
@@ -2145,16 +2124,15 @@
       <complexType name="OperatingSystemTargeting">
         <annotation>
           <documentation>
-            Represents operating systems that are being targeted or excluded by the
-            {@link LineItem}.
+            Represents operating systems that are being targeted or excluded by the {@link LineItem}.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="1" minOccurs="0" name="isTargeted" type="xsd:boolean">
             <annotation>
               <documentation>
-                Indicates whether operating systems should be targeted or excluded. This
-                attribute is optional and defaults to {@code true}.
+                Indicates whether operating systems should be targeted or excluded. This attribute is optional
+                and defaults to {@code true}.
               </documentation>
             </annotation>
           </element>
@@ -2162,8 +2140,7 @@
             name="operatingSystems" type="tns:Technology">
             <annotation>
               <documentation>
-                Operating systems that are being targeted or excluded by the
-                {@link LineItem}.
+                Operating systems that are being targeted or excluded by the {@link LineItem}.
               </documentation>
             </annotation>
           </element>
@@ -2214,8 +2191,7 @@
             name="targetedOperatingSystemVersions" type="tns:Technology">
             <annotation>
               <documentation>
-                Operating system versions that are being targeted by the
-                {@link LineItem}.
+                Operating system versions that are being targeted by the {@link LineItem}.
               </documentation>
             </annotation>
           </element>
@@ -2223,8 +2199,7 @@
             name="excludedOperatingSystemVersions" type="tns:Technology">
             <annotation>
               <documentation>
-                Operating system versions that are being excluded by the
-                {@link LineItem}.
+                Operating system versions that are being excluded by the {@link LineItem}.
               </documentation>
             </annotation>
           </element>
@@ -2343,7 +2318,7 @@
             &lt;p&gt;The following rules apply for {@link RequestPlatformTargeting}
             
             &lt;ul&gt;
-            &lt;li&gt;{@link RequestPlatformTargeting} must be specified for {@link ProposalLineItem}s.&lt;/li&gt;
+            &lt;li&gt;{@link RequestPlatformTargeting} must be specified for {@link ProposalLineItem}s.
             &lt;li&gt;{@link RequestPlatformTargeting} must be specified for video line items. Empty values for
             {@link RequestPlatformTargeting#targetedRequestPlatforms} mean that all request platforms
             will be targeted.
@@ -2650,16 +2625,15 @@
       <complexType name="Targeting">
         <annotation>
           <documentation>
-            Contains targeting criteria for {@link LineItem} objects. See
-            {@link LineItem#targeting}.
+            Contains targeting criteria for {@link LineItem} objects. See {@link LineItem#targeting}.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="1" minOccurs="0" name="geoTargeting" type="tns:GeoTargeting">
             <annotation>
               <documentation>
-                Specifies what geographical locations are targeted by the {@link LineItem}.
-                This attribute is optional.
+                Specifies what geographical locations are targeted by the {@link LineItem}. This attribute is
+                optional.
               </documentation>
             </annotation>
           </element>
@@ -2674,8 +2648,8 @@
           <element maxOccurs="1" minOccurs="0" name="dayPartTargeting" type="tns:DayPartTargeting">
             <annotation>
               <documentation>
-                Specifies the days of the week and times that are targeted by the
-                {@link LineItem}. This attribute is optional.
+                Specifies the days of the week and times that are targeted by the {@link LineItem}. This
+                attribute is optional.
               </documentation>
             </annotation>
           </element>
@@ -2692,43 +2666,33 @@
             name="technologyTargeting" type="tns:TechnologyTargeting">
             <annotation>
               <documentation>
-                Specifies the browsing technologies that are targeted by the
-                {@link LineItem}. This attribute is optional.
+                Specifies the browsing technologies that are targeted by the {@link LineItem}. This attribute
+                is optional.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="customTargeting" type="tns:CustomCriteriaSet">
             <annotation>
               <documentation>
-                Specifies the collection of custom criteria that is targeted by the
-                {@link LineItem}.
-                &lt;p&gt;
-                Once the {@link LineItem} is updated or modified with custom targeting, the
-                server may return a normalized, but equivalent representation of the custom
-                targeting expression.
-                &lt;p&gt;
-                {@code customTargeting} will have up to three levels of expressions
-                including itself.
-                &lt;/p&gt;
-                &lt;p&gt;
-                The top level {@code CustomCriteriaSet} i.e. the {@code customTargeting}
-                object can only contain a {@link CustomCriteriaSet.LogicalOperator#OR} of
-                all its children.
-                &lt;/p&gt;
-                &lt;p&gt;
-                The second level of {@code CustomCriteriaSet} objects can only contain
-                {@link CustomCriteriaSet.LogicalOperator#AND} of all their children. If
-                a {@link CustomCriteria} is placed on this level, the server will wrap it
-                in a {@link CustomCriteriaSet}.
-                &lt;/p&gt;
-                &lt;p&gt;
-                The third level can only comprise of {@link CustomCriteria} objects.
-                &lt;/p&gt;
-                &lt;p&gt;
-                The resulting custom targeting tree would be of the form:
-                &lt;/p&gt;
-                &lt;br/&gt;
-                &lt;img src="https://chart.apis.google.com/chart?cht=gv&amp;chl=digraph{customTargeting_LogicalOperator_OR-%3ECustomCriteriaSet_LogicalOperator_AND_1-%3ECustomCriteria_1;CustomCriteriaSet_LogicalOperator_AND_1-%3Eellipsis1;customTargeting_LogicalOperator_OR-%3Eellipsis2;ellipsis1[label=%22...%22,shape=none,fontsize=32];ellipsis2[label=%22...%22,shape=none,fontsize=32]}&amp;chs=450x200"/&gt;
+                Specifies the collection of custom criteria that is targeted by the {@link LineItem}.
+                
+                &lt;p&gt;Once the {@link LineItem} is updated or modified with custom targeting, the server may
+                return a normalized, but equivalent representation of the custom targeting expression.
+                
+                &lt;p&gt;{@code customTargeting} will have up to three levels of expressions including itself.
+                
+                &lt;p&gt;The top level {@code CustomCriteriaSet} i.e. the {@code customTargeting} object can only
+                contain a {@link CustomCriteriaSet.LogicalOperator#OR} of all its children.
+                
+                &lt;p&gt;The second level of {@code CustomCriteriaSet} objects can only contain {@link
+                CustomCriteriaSet.LogicalOperator#AND} of all their children. If a {@link CustomCriteria} is
+                placed on this level, the server will wrap it in a {@link CustomCriteriaSet}.
+                
+                &lt;p&gt;The third level can only comprise of {@link CustomCriteria} objects.
+                
+                &lt;p&gt;The resulting custom targeting tree would be of the form: &lt;br&gt;
+                &lt;img
+                src="https://chart.apis.google.com/chart?cht=gv&amp;chl=digraph{customTargeting_LogicalOperator_OR-%3ECustomCriteriaSet_LogicalOperator_AND_1-%3ECustomCriteria_1;CustomCriteriaSet_LogicalOperator_AND_1-%3Eellipsis1;customTargeting_LogicalOperator_OR-%3Eellipsis2;ellipsis1[label=%22...%22,shape=none,fontsize=32];ellipsis2[label=%22...%22,shape=none,fontsize=32]}&amp;chs=450x200"/&gt;
               </documentation>
             </annotation>
           </element>
@@ -2736,17 +2700,16 @@
             name="userDomainTargeting" type="tns:UserDomainTargeting">
             <annotation>
               <documentation>
-                Specifies the domains or subdomains that are targeted or excluded by the
-                {@link LineItem}. Users visiting from an IP address associated with
-                those domains will be targeted or excluded. This attribute is optional.
+                Specifies the domains or subdomains that are targeted or excluded by the {@link LineItem}.
+                Users visiting from an IP address associated with those domains will be targeted or excluded.
+                This attribute is optional.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="contentTargeting" type="tns:ContentTargeting">
             <annotation>
               <documentation>
-                Specifies the video categories and individual videos targeted by the
-                {@link LineItem}.
+                Specifies the video categories and individual videos targeted by the {@link LineItem}.
               </documentation>
             </annotation>
           </element>
@@ -2770,8 +2733,8 @@
             name="buyerUserListTargeting" type="tns:BuyerUserListTargeting">
             <annotation>
               <documentation>
-                Specifies whether buyer user lists are targeted on a programmatic {@link LineItem}
-                or {@link ProposalLineItem}. This attribute is readonly and is populated by Google.
+                Specifies whether buyer user lists are targeted on a programmatic {@link LineItem} or {@link
+                ProposalLineItem}. This attribute is readonly and is populated by Google.
               </documentation>
             </annotation>
           </element>
@@ -2818,16 +2781,15 @@
           <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
             <annotation>
               <documentation>
-                The unique ID of the {@code Technology}. This value is required for
-                all forms of {@code TechnologyTargeting}.
+                The unique ID of the {@code Technology}. This value is required for all forms of {@code
+                TechnologyTargeting}.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
             <annotation>
               <documentation>
-                The name of the technology being targeting. This value is read-only and is
-                assigned by Google.
+                The name of the technology being targeting. This value is read-only and is assigned by Google.
               </documentation>
             </annotation>
           </element>
@@ -2996,8 +2958,7 @@
             name="targetedPositions" type="tns:VideoPositionTarget">
             <annotation>
               <documentation>
-                The {@link VideoTargetingPosition} objects being targeted by the
-                video {@link LineItem}.
+                The {@link VideoTargetingPosition} objects being targeted by the video {@link LineItem}.
               </documentation>
             </annotation>
           </element>
@@ -5315,8 +5276,7 @@
       <element name="performAdRuleAction">
         <annotation>
           <documentation>
-            Performs actions on {@link AdRule} objects that match the given
-            {@link Statement#query}.
+            Performs actions on {@link AdRule} objects that match the given {@link Statement#query}.
           </documentation>
         </annotation>
         <complexType>
@@ -5544,8 +5504,7 @@
     </wsdl:operation>
     <wsdl:operation name="performAdRuleAction">
       <wsdl:documentation>
-        Performs actions on {@link AdRule} objects that match the given
-        {@link Statement#query}.
+        Performs actions on {@link AdRule} objects that match the given {@link Statement#query}.
       </wsdl:documentation>
       <wsdl:input message="tns:performAdRuleActionRequest" name="performAdRuleActionRequest"/>
       <wsdl:output message="tns:performAdRuleActionResponse" name="performAdRuleActionResponse"/>

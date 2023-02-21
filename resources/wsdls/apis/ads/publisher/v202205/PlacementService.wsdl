@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2022 Google Inc. All Rights Reserved -->
+<!-- Copyright 2023 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202205"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202205"
@@ -514,33 +514,32 @@
               <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
                 <annotation>
                   <documentation>
-                    Uniquely identifies the {@code Placement}. This attribute is read-only and
-                    is assigned by Google when a placement is created.
+                    Uniquely identifies the {@code Placement}. This attribute is read-only and is assigned by
+                    Google when a placement is created.
                   </documentation>
                 </annotation>
               </element>
               <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
                 <annotation>
                   <documentation>
-                    The name of the {@code Placement}. This value is required and has a maximum
-                    length of 255 characters.
+                    The name of the {@code Placement}. This value is required and has a maximum length of 255
+                    characters.
                   </documentation>
                 </annotation>
               </element>
               <element maxOccurs="1" minOccurs="0" name="description" type="xsd:string">
                 <annotation>
                   <documentation>
-                    A description of the {@code Placement}. This value is optional and its
-                    maximum length is 65,535 characters.
+                    A description of the {@code Placement}. This value is optional and its maximum length is 65,535
+                    characters.
                   </documentation>
                 </annotation>
               </element>
               <element maxOccurs="1" minOccurs="0" name="placementCode" type="xsd:string">
                 <annotation>
                   <documentation>
-                    A string used to uniquely identify the {@code Placement} for purposes of
-                    serving the ad. This attribute is read-only and is assigned by Google when
-                    a placement is created.
+                    A string used to uniquely identify the {@code Placement} for purposes of serving the ad. This
+                    attribute is read-only and is assigned by Google when a placement is created.
                   </documentation>
                 </annotation>
               </element>
@@ -555,8 +554,7 @@
                 name="targetedAdUnitIds" type="xsd:string">
                 <annotation>
                   <documentation>
-                    The collection of {@code AdUnit} object IDs that constitute the {@code
-                    Placement}.
+                    The collection of {@code AdUnit} object IDs that constitute the {@code Placement}.
                   </documentation>
                 </annotation>
               </element>
@@ -1995,9 +1993,8 @@
       <element name="getPlacementsByStatement">
         <annotation>
           <documentation>
-            Gets a {@link PlacementPage} of {@link Placement} objects that satisfy the
-            given {@link Statement#query}. The following fields are supported for
-            filtering:
+            Gets a {@link PlacementPage} of {@link Placement} objects that satisfy the given {@link
+            Statement#query}. The following fields are supported for filtering:
             
             &lt;table&gt;
             &lt;tr&gt;
@@ -2046,8 +2043,7 @@
       <element name="performPlacementAction">
         <annotation>
           <documentation>
-            Performs actions on {@link Placement} objects that match the given
-            {@link Statement#query}.
+            Performs actions on {@link Placement} objects that match the given {@link Statement#query}.
           </documentation>
         </annotation>
         <complexType>
@@ -2123,14 +2119,12 @@
   </wsdl:message>
   <wsdl:portType name="PlacementServiceInterface">
     <wsdl:documentation>
-      Provides methods for creating, updating and retrieving {@link Placement}
-      objects.
+      Provides methods for creating, updating and retrieving {@link Placement} objects.
       
-      &lt;p&gt;You can use a placement to group ad units. For example, you might have a
-      placement that focuses on sports sites, which may be spread across different
-      branches of your inventory. You might also have a "fire sale" placement that
-      includes ad units that have not been selling and are consequently priced very
-      attractively.
+      &lt;p&gt;You can use a placement to group ad units. For example, you might have a placement that
+      focuses on sports sites, which may be spread across different branches of your inventory. You
+      might also have a "fire sale" placement that includes ad units that have not been selling and are
+      consequently priced very attractively.
     </wsdl:documentation>
     <wsdl:operation name="createPlacements">
       <wsdl:documentation>
@@ -2142,9 +2136,8 @@
     </wsdl:operation>
     <wsdl:operation name="getPlacementsByStatement">
       <wsdl:documentation>
-        Gets a {@link PlacementPage} of {@link Placement} objects that satisfy the
-        given {@link Statement#query}. The following fields are supported for
-        filtering:
+        Gets a {@link PlacementPage} of {@link Placement} objects that satisfy the given {@link
+        Statement#query}. The following fields are supported for filtering:
         
         &lt;table&gt;
         &lt;tr&gt;
@@ -2182,8 +2175,7 @@
     </wsdl:operation>
     <wsdl:operation name="performPlacementAction">
       <wsdl:documentation>
-        Performs actions on {@link Placement} objects that match the given
-        {@link Statement#query}.
+        Performs actions on {@link Placement} objects that match the given {@link Statement#query}.
       </wsdl:documentation>
       <wsdl:input message="tns:performPlacementActionRequest" name="performPlacementActionRequest"/>
       <wsdl:output message="tns:performPlacementActionResponse" name="performPlacementActionResponse"/>

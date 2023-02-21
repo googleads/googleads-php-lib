@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2022 Google Inc. All Rights Reserved -->
+<!-- Copyright 2023 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202211"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202211"
@@ -569,8 +569,8 @@
           <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
             <annotation>
               <documentation>
-                The unique ID of the role. This value is readonly and is assigned by
-                Google. Roles that are created by Google will have negative IDs.
+                The unique ID of the role. This value is readonly and is assigned by Google. Roles that are
+                created by Google will have negative IDs.
               </documentation>
             </annotation>
           </element>
@@ -584,17 +584,16 @@
           <element maxOccurs="1" minOccurs="0" name="description" type="xsd:string">
             <annotation>
               <documentation>
-                The description of the role. This value is readonly and is assigned by
-                Google.
+                The description of the role. This value is readonly and is assigned by Google.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="status" type="tns:RoleStatus">
             <annotation>
               <documentation>
-                The status of the {@link Role}. This field is read-only and can have the values
-                {@link RoleStatus#ACTIVE} (default) or {@link RoleStatus#INACTIVE}, which determines the
-                visibility of the role in the UI.
+                The status of the {@link Role}. This field is read-only and can have the values {@link
+                RoleStatus#ACTIVE} (default) or {@link RoleStatus#INACTIVE}, which determines the visibility of
+                the role in the UI.
               </documentation>
             </annotation>
           </element>
@@ -918,11 +917,10 @@
         <annotation>
           <documentation>
             Represents a user of the system.
-            &lt;p&gt;
-            Users may be assigned at most one {@link Role} per network. Each role
-            provides a user with permissions to perform specific operations. Without a
-            role, they will not be able to perform any actions.
-            &lt;/p&gt;
+            
+            &lt;p&gt;Users may be assigned at most one {@link Role} per network. Each role provides a user with
+            permissions to perform specific operations. Without a role, they will not be able to perform any
+            actions.
           </documentation>
         </annotation>
         <complexContent>
@@ -931,9 +929,8 @@
               <element maxOccurs="1" minOccurs="0" name="isActive" type="xsd:boolean">
                 <annotation>
                   <documentation>
-                    Specifies whether or not the {@code User} is active. An inactive user
-                    cannot log in to the system or perform any operations. This attribute is
-                    read-only.
+                    Specifies whether or not the {@code User} is active. An inactive user cannot log in to the
+                    system or perform any operations. This attribute is read-only.
                   </documentation>
                 </annotation>
               </element>
@@ -969,11 +966,11 @@
                 <annotation>
                   <documentation>
                     The long format timezone id (e.g. "America/Los_Angeles") used in the orders and line items UI
-                    for this {@code User}. Set this to {@code null} to indicate that no such value is defined
-                    for the {@code User} - UI then defaults to using the Network's timezone.
+                    for this {@code User}. Set this to {@code null} to indicate that no such value is defined for
+                    the {@code User} - UI then defaults to using the Network's timezone.
                     
-                    This setting only affects the UI for this user and does not in
-                    particular affect the timezone of any dates and times returned in API responses.
+                    &lt;p&gt;This setting only affects the UI for this user and does not in particular affect the
+                    timezone of any dates and times returned in API responses.
                   </documentation>
                 </annotation>
               </element>
@@ -1014,16 +1011,14 @@
       <complexType name="UserRecord">
         <annotation>
           <documentation>
-            The {@code UserRecord} represents the base class from which a {@code User} is
-            derived.
+            The {@code UserRecord} represents the base class from which a {@code User} is derived.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
             <annotation>
               <documentation>
-                The unique ID of the {@code User}. This attribute is readonly and is
-                assigned by Google.
+                The unique ID of the {@code User}. This attribute is readonly and is assigned by Google.
               </documentation>
             </annotation>
           </element>
@@ -1037,25 +1032,23 @@
           <element maxOccurs="1" minOccurs="0" name="email" type="xsd:string">
             <annotation>
               <documentation>
-                The email or login of the {@code User}. In order to create a new user, you must
-                already have a &lt;a
-                href="https://www.google.com/accounts/ManageAccount"&gt;Google Account&lt;/a&gt;.
+                The email or login of the {@code User}. In order to create a new user, you must already have a
+                &lt;a href="https://www.google.com/accounts/ManageAccount"&gt;Google Account&lt;/a&gt;.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="roleId" type="xsd:long">
             <annotation>
               <documentation>
-                The unique role ID of the {@code User}. Roles that are created by Google
-                will have negative IDs.
+                The unique role ID of the {@code User}. Roles that are created by Google will have negative
+                IDs.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="roleName" type="xsd:string">
             <annotation>
               <documentation>
-                The name of the role assigned to the {@code User}. This attribute is
-                readonly.
+                The name of the role assigned to the {@code User}. This attribute is readonly.
               </documentation>
             </annotation>
           </element>
@@ -1893,8 +1886,7 @@
       <element name="getAllRoles">
         <annotation>
           <documentation>
-            Returns the {@link Role} objects that are defined for the users of the
-            network.
+            Returns the {@link Role} objects that are defined for the users of the network.
           </documentation>
         </annotation>
         <complexType>
@@ -1928,8 +1920,8 @@
       <element name="getUsersByStatement">
         <annotation>
           <documentation>
-            Gets a {@link UserPage} of {@link User} objects that satisfy the given
-            {@link Statement#query}. The following fields are supported for filtering:
+            Gets a {@link UserPage} of {@link User} objects that satisfy the given {@link Statement#query}.
+            The following fields are supported for filtering:
             
             &lt;table&gt;
             &lt;tr&gt;
@@ -1979,8 +1971,7 @@
       <element name="performUserAction">
         <annotation>
           <documentation>
-            Performs actions on {@link User} objects that match the given
-            {@link Statement#query}.
+            Performs actions on {@link User} objects that match the given {@link Statement#query}.
           </documentation>
         </annotation>
         <complexType>
@@ -2067,13 +2058,11 @@
   </wsdl:message>
   <wsdl:portType name="UserServiceInterface">
     <wsdl:documentation>
-      Provides operations for creating, updating and retrieving {@link User}
-      objects.
-      &lt;p&gt;
-      A user is assigned one of several different roles. Each {@link Role} type has
-      a unique ID that is used to identify that role in an organization. Role types
-      and their IDs can be retrieved by invoking {@link #getAllRoles}.
-      &lt;/p&gt;
+      Provides operations for creating, updating and retrieving {@link User} objects.
+      
+      &lt;p&gt;A user is assigned one of several different roles. Each {@link Role} type has a unique ID that
+      is used to identify that role in an organization. Role types and their IDs can be retrieved by
+      invoking {@link #getAllRoles}.
     </wsdl:documentation>
     <wsdl:operation name="createUsers">
       <wsdl:documentation>
@@ -2085,8 +2074,7 @@
     </wsdl:operation>
     <wsdl:operation name="getAllRoles">
       <wsdl:documentation>
-        Returns the {@link Role} objects that are defined for the users of the
-        network.
+        Returns the {@link Role} objects that are defined for the users of the network.
       </wsdl:documentation>
       <wsdl:input message="tns:getAllRolesRequest" name="getAllRolesRequest"/>
       <wsdl:output message="tns:getAllRolesResponse" name="getAllRolesResponse"/>
@@ -2102,8 +2090,8 @@
     </wsdl:operation>
     <wsdl:operation name="getUsersByStatement">
       <wsdl:documentation>
-        Gets a {@link UserPage} of {@link User} objects that satisfy the given
-        {@link Statement#query}. The following fields are supported for filtering:
+        Gets a {@link UserPage} of {@link User} objects that satisfy the given {@link Statement#query}.
+        The following fields are supported for filtering:
         
         &lt;table&gt;
         &lt;tr&gt;
@@ -2142,8 +2130,7 @@
     </wsdl:operation>
     <wsdl:operation name="performUserAction">
       <wsdl:documentation>
-        Performs actions on {@link User} objects that match the given
-        {@link Statement#query}.
+        Performs actions on {@link User} objects that match the given {@link Statement#query}.
       </wsdl:documentation>
       <wsdl:input message="tns:performUserActionRequest" name="performUserActionRequest"/>
       <wsdl:output message="tns:performUserActionResponse" name="performUserActionResponse"/>

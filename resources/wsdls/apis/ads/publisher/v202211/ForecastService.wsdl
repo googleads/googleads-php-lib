@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2022 Google Inc. All Rights Reserved -->
+<!-- Copyright 2023 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202211"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202211"
@@ -66,10 +66,9 @@
           <element maxOccurs="1" minOccurs="0" name="includeDescendants" type="xsd:boolean">
             <annotation>
               <documentation>
-                Whether or not all descendants are included (or excluded) as part of
-                including (or excluding) this ad unit. By default, the value is {@code
-                true} which means targeting this ad unit will target all of its
-                descendants.
+                Whether or not all descendants are included (or excluded) as part of including (or excluding)
+                this ad unit. By default, the value is {@code true} which means targeting this ad unit will
+                target all of its descendants.
               </documentation>
             </annotation>
           </element>
@@ -187,8 +186,7 @@
       <complexType name="TechnologyTargeting">
         <annotation>
           <documentation>
-            Provides {@link LineItem} objects the ability to target or exclude
-            technologies.
+            Provides {@link LineItem} objects the ability to target or exclude technologies.
           </documentation>
         </annotation>
         <sequence>
@@ -330,8 +328,7 @@
           <element maxOccurs="1" minOccurs="0" name="isNegated" type="xsd:boolean">
             <annotation>
               <documentation>
-                {@code isNegated} should be set to {@code true} to negate the effects of
-                {@code labelId}.
+                {@code isNegated} should be set to {@code true} to negate the effects of {@code labelId}.
               </documentation>
             </annotation>
           </element>
@@ -416,10 +413,10 @@
           <element maxOccurs="1" minOccurs="0" name="lineItemId" type="xsd:long">
             <annotation>
               <documentation>
-                Uniquely identifies this availability forecast. This value is read-only
-                and is assigned by Google when the forecast is created. The
-                attribute will be either the ID of the {@link LineItem} object it
-                represents, or {@code null} if the forecast represents a prospective line item.
+                Uniquely identifies this availability forecast. This value is read-only and is assigned by
+                Google when the forecast is created. The attribute will be either the ID of the {@link
+                LineItem} object it represents, or {@code null} if the forecast represents a prospective line
+                item.
               </documentation>
             </annotation>
           </element>
@@ -434,43 +431,42 @@
           <element maxOccurs="1" minOccurs="0" name="unitType" type="tns:UnitType">
             <annotation>
               <documentation>
-                The unit with which the goal or cap of the {@link LineItem} is defined.
-                Will be the same value as {@link Goal#unitType} for both a set line
-                item or a prospective one.
+                The unit with which the goal or cap of the {@link LineItem} is defined. Will be the same value
+                as {@link Goal#unitType} for both a set line item or a prospective one.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="availableUnits" type="xsd:long">
             <annotation>
               <documentation>
-                The number of units, defined by {@link Goal#unitType}, that can be
-                booked without affecting the delivery of any reserved line items. Exceeding
-                this value will not cause an overbook, but lower priority line items may
-                not run.
+                The number of units, defined by {@link Goal#unitType}, that can be booked without affecting the
+                delivery of any reserved line items. Exceeding this value will not cause an overbook, but lower
+                priority line items may not run.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="deliveredUnits" type="xsd:long">
             <annotation>
               <documentation>
-                The number of units, defined by {@link Goal#unitType}, that
-                have already been served if the reservation is already running.
+                The number of units, defined by {@link Goal#unitType}, that have already been served if the
+                reservation is already running.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="matchedUnits" type="xsd:long">
             <annotation>
               <documentation>
-                The number of units, defined by {@link Goal#unitType}, that match the
-                specified targeting and delivery settings.
+                The number of units, defined by {@link Goal#unitType}, that match the specified targeting and
+                delivery settings.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="possibleUnits" type="xsd:long">
             <annotation>
               <documentation>
-                The maximum number of units, defined by {@link Goal#unitType}, that could be booked by
-                taking inventory away from lower priority line items and some same priority line items.
+                The maximum number of units, defined by {@link Goal#unitType}, that could be booked by taking
+                inventory away from lower priority line items and some same priority line items.
+                
                 &lt;p&gt;Please note: booking this number may cause lower priority line items and some same priority
                 line items to underdeliver.
               </documentation>
@@ -479,8 +475,8 @@
           <element maxOccurs="1" minOccurs="0" name="reservedUnits" type="xsd:long">
             <annotation>
               <documentation>
-                The number of reserved units, defined by {@link Goal#unitType}, requested.
-                This can be an absolute or percentage value.
+                The number of reserved units, defined by {@link Goal#unitType}, requested. This can be an
+                absolute or percentage value.
               </documentation>
             </annotation>
           </element>
@@ -602,8 +598,8 @@
       <complexType name="BandwidthGroup">
         <annotation>
           <documentation>
-            Represents a group of bandwidths that are logically organized by some well
-            known generic names such as 'Cable' or 'DSL'.
+            Represents a group of bandwidths that are logically organized by some well known generic names
+            such as 'Cable' or 'DSL'.
           </documentation>
         </annotation>
         <complexContent>
@@ -615,16 +611,15 @@
       <complexType name="BandwidthGroupTargeting">
         <annotation>
           <documentation>
-            Represents bandwidth groups that are being targeted or excluded by the
-            {@link LineItem}.
+            Represents bandwidth groups that are being targeted or excluded by the {@link LineItem}.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="1" minOccurs="0" name="isTargeted" type="xsd:boolean">
             <annotation>
               <documentation>
-                Indicates whether bandwidth groups should be targeted or excluded. This
-                attribute is optional and defaults to {@code true}.
+                Indicates whether bandwidth groups should be targeted or excluded. This attribute is optional
+                and defaults to {@code true}.
               </documentation>
             </annotation>
           </element>
@@ -632,8 +627,7 @@
             name="bandwidthGroups" type="tns:Technology">
             <annotation>
               <documentation>
-                The bandwidth groups that are being targeted or excluded by the
-                {@link LineItem}.
+                The bandwidth groups that are being targeted or excluded by the {@link LineItem}.
               </documentation>
             </annotation>
           </element>
@@ -649,8 +643,7 @@
           <element maxOccurs="1" minOccurs="0" name="customFieldId" type="xsd:long">
             <annotation>
               <documentation>
-                Id of the {@code CustomField} to which this value belongs. This attribute
-                is required.
+                Id of the {@code CustomField} to which this value belongs. This attribute is required.
               </documentation>
             </annotation>
           </element>
@@ -718,16 +711,15 @@
       <complexType name="BrowserLanguageTargeting">
         <annotation>
           <documentation>
-            Represents browser languages that are being targeted or excluded by the
-            {@link LineItem}.
+            Represents browser languages that are being targeted or excluded by the {@link LineItem}.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="1" minOccurs="0" name="isTargeted" type="xsd:boolean">
             <annotation>
               <documentation>
-                Indicates whether browsers languages should be targeted or excluded. This
-                attribute is optional and defaults to {@code true}.
+                Indicates whether browsers languages should be targeted or excluded. This attribute is optional
+                and defaults to {@code true}.
               </documentation>
             </annotation>
           </element>
@@ -735,8 +727,7 @@
             name="browserLanguages" type="tns:Technology">
             <annotation>
               <documentation>
-                Browser languages that are being targeted or excluded by the
-                {@link LineItem}.
+                Browser languages that are being targeted or excluded by the {@link LineItem}.
               </documentation>
             </annotation>
           </element>
@@ -745,16 +736,15 @@
       <complexType name="BrowserTargeting">
         <annotation>
           <documentation>
-            Represents browsers that are being targeted or excluded by the
-            {@link LineItem}.
+            Represents browsers that are being targeted or excluded by the {@link LineItem}.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="1" minOccurs="0" name="isTargeted" type="xsd:boolean">
             <annotation>
               <documentation>
-                Indicates whether browsers should be targeted or excluded. This attribute
-                is optional and defaults to {@code true}.
+                Indicates whether browsers should be targeted or excluded. This attribute is optional and
+                defaults to {@code true}.
               </documentation>
             </annotation>
           </element>
@@ -770,8 +760,8 @@
       <complexType name="BuyerUserListTargeting">
         <annotation>
           <documentation>
-            The {@code BuyerUserListTargeting} associated with a programmatic {@link LineItem}
-            or {@link ProposalLineItem} object.
+            The {@code BuyerUserListTargeting} associated with a programmatic {@link LineItem} or {@link
+            ProposalLineItem} object.
           </documentation>
         </annotation>
         <sequence>
@@ -779,8 +769,8 @@
             name="hasBuyerUserListTargeting" type="xsd:boolean">
             <annotation>
               <documentation>
-                Whether the programmatic {@code LineItem} or {@code ProposalLineItem} object
-                has buyer user list targeting.
+                Whether the programmatic {@code LineItem} or {@code ProposalLineItem} object has buyer user
+                list targeting.
               </documentation>
             </annotation>
           </element>
@@ -946,20 +936,18 @@
       <complexType name="CreativePlaceholder">
         <annotation>
           <documentation>
-            A {@code CreativePlaceholder} describes a slot that a creative is expected to
-            fill. This is used primarily to help in forecasting, and also to validate
-            that the correct creatives are associated with the line item. A
-            {@code CreativePlaceholder} must contain a size, and it can optionally
-            contain companions. Companions are only valid if the line item's environment
-            type is {@link EnvironmentType#VIDEO_PLAYER}.
+            A {@code CreativePlaceholder} describes a slot that a creative is expected to fill. This is used
+            primarily to help in forecasting, and also to validate that the correct creatives are associated
+            with the line item. A {@code CreativePlaceholder} must contain a size, and it can optionally
+            contain companions. Companions are only valid if the line item's environment type is {@link
+            EnvironmentType#VIDEO_PLAYER}.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="1" minOccurs="0" name="size" type="tns:Size">
             <annotation>
               <documentation>
-                The dimensions that the creative is expected to have. This attribute is
-                required.
+                The dimensions that the creative is expected to have. This attribute is required.
               </documentation>
             </annotation>
           </element>
@@ -975,10 +963,10 @@
           <element maxOccurs="unbounded" minOccurs="0" name="companions" type="tns:CreativePlaceholder">
             <annotation>
               <documentation>
-                The companions that the creative is expected to have. This attribute can
-                only be set if the line item it belongs to has a
-                {@link LineItem#environmentType} of {@link EnvironmentType#VIDEO_PLAYER} or
-                {@link LineItem#roadblockingType} of {@link RoadblockingType#CREATIVE_SET}.
+                The companions that the creative is expected to have. This attribute can only be set if the
+                line item it belongs to has a {@link LineItem#environmentType} of {@link
+                EnvironmentType#VIDEO_PLAYER} or {@link LineItem#roadblockingType} of {@link
+                RoadblockingType#CREATIVE_SET}.
               </documentation>
             </annotation>
           </element>
@@ -986,8 +974,7 @@
             name="appliedLabels" type="tns:AppliedLabel">
             <annotation>
               <documentation>
-                The set of label frequency caps applied directly to this creative
-                placeholder.
+                The set of label frequency caps applied directly to this creative placeholder.
               </documentation>
             </annotation>
           </element>
@@ -995,10 +982,9 @@
             name="effectiveAppliedLabels" type="tns:AppliedLabel">
             <annotation>
               <documentation>
-                Contains the set of labels applied directly to this creative placeholder
-                as well as those inherited from the creative template from which this
-                creative placeholder was instantiated.  This field is readonly and is
-                assigned by Google.
+                Contains the set of labels applied directly to this creative placeholder as well as those
+                inherited from the creative template from which this creative placeholder was instantiated.
+                This field is readonly and is assigned by Google.
               </documentation>
             </annotation>
           </element>
@@ -1006,18 +992,17 @@
             name="expectedCreativeCount" type="xsd:int">
             <annotation>
               <documentation>
-                Expected number of creatives that will be uploaded corresponding to this
-                creative placeholder.  This estimate is used to improve the accuracy of
-                forecasting; for example, if label frequency capping limits the number of
-                times a creative may be served.
+                Expected number of creatives that will be uploaded corresponding to this creative placeholder.
+                This estimate is used to improve the accuracy of forecasting; for example, if label frequency
+                capping limits the number of times a creative may be served.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="creativeSizeType" type="tns:CreativeSizeType">
             <annotation>
               <documentation>
-                Describes the types of sizes a creative can be. By default, the creative's size
-                is {@link CreativeSizeType#PIXEL}, which is a dimension based size (width-height pair).
+                Describes the types of sizes a creative can be. By default, the creative's size is {@link
+                CreativeSizeType#PIXEL}, which is a dimension based size (width-height pair).
               </documentation>
             </annotation>
           </element>
@@ -1026,10 +1011,9 @@
               <documentation>
                 The name of the {@link CreativeTargeting} for creatives this placeholder represents.
                 
-                &lt;p&gt;This attribute is optional. Specifying creative targeting here is for forecasting
-                purposes only and has no effect on serving. The same creative targeting should be specified on
-                a {@link LineItemCreativeAssociation} when associating a {@link Creative} with the
-                {@link LineItem}.
+                &lt;p&gt;This attribute is optional. Specifying creative targeting here is for forecasting purposes
+                only and has no effect on serving. The same creative targeting should be specified on a {@link
+                LineItemCreativeAssociation} when associating a {@link Creative} with the {@link LineItem}.
               </documentation>
             </annotation>
           </element>
@@ -1105,9 +1089,9 @@
       <complexType name="CustomCriteria">
         <annotation>
           <documentation>
-            A {@link CustomCriteria} object is used to perform custom criteria targeting
-            on custom targeting keys of type {@link CustomTargetingKey.Type#PREDEFINED}
-            or {@link CustomTargetingKey.Type#FREEFORM}.
+            A {@link CustomCriteria} object is used to perform custom criteria targeting on custom targeting
+            keys of type {@link CustomTargetingKey.Type#PREDEFINED} or {@link
+            CustomTargetingKey.Type#FREEFORM}.
           </documentation>
         </annotation>
         <complexContent>
@@ -1116,9 +1100,8 @@
               <element maxOccurs="1" minOccurs="0" name="keyId" type="xsd:long">
                 <annotation>
                   <documentation>
-                    The {@link CustomTargetingKey#id} of the {@link CustomTargetingKey} object
-                    that was created using {@link CustomTargetingService}. This attribute is
-                    required.
+                    The {@link CustomTargetingKey#id} of the {@link CustomTargetingKey} object that was created
+                    using {@link CustomTargetingService}. This attribute is required.
                   </documentation>
                 </annotation>
               </element>
@@ -1126,9 +1109,8 @@
                 name="valueIds" type="xsd:long">
                 <annotation>
                   <documentation>
-                    The ids of {@link CustomTargetingValue} objects to target the custom
-                    targeting key with id {@link CustomCriteria#keyId}. This attribute is
-                    required.
+                    The ids of {@link CustomTargetingValue} objects to target the custom targeting key with id
+                    {@link CustomCriteria#keyId}. This attribute is required.
                   </documentation>
                 </annotation>
               </element>
@@ -1146,11 +1128,9 @@
       <complexType name="CustomCriteriaSet">
         <annotation>
           <documentation>
-            A {@link CustomCriteriaSet} comprises of a set of {@link CustomCriteriaNode}
-            objects combined by the
-            {@link CustomCriteriaSet.LogicalOperator#logicalOperator}. The custom
-            criteria targeting tree is subject to the rules defined on
-            {@link Targeting#customTargeting}.
+            A {@link CustomCriteriaSet} comprises of a set of {@link CustomCriteriaNode} objects combined by
+            the {@link CustomCriteriaSet.LogicalOperator#logicalOperator}. The custom criteria targeting tree
+            is subject to the rules defined on {@link Targeting#customTargeting}.
           </documentation>
         </annotation>
         <complexContent>
@@ -1181,8 +1161,8 @@
       <complexType name="CustomFieldValue">
         <annotation>
           <documentation>
-            The value of a {@link CustomField} that does not have a {@link CustomField#dataType}
-            of {@link CustomFieldDataType#DROP_DOWN}.
+            The value of a {@link CustomField} that does not have a {@link CustomField#dataType} of {@link
+            CustomFieldDataType#DROP_DOWN}.
           </documentation>
         </annotation>
         <complexContent>
@@ -1191,9 +1171,8 @@
               <element maxOccurs="1" minOccurs="0" name="value" type="tns:Value">
                 <annotation>
                   <documentation>
-                    The value for this field. The appropriate type of {@code Value} is
-                    determined by the {@link CustomField#dataType} of the {@code CustomField}
-                    that this conforms to.
+                    The value for this field. The appropriate type of {@code Value} is determined by the {@link
+                    CustomField#dataType} of the {@code CustomField} that this conforms to.
                     
                     &lt;table&gt;
                     &lt;tr&gt;&lt;th&gt;{@link CustomFieldDataType}&lt;/th&gt;&lt;th&gt;{@link Value} type&lt;/th&gt;&lt;/tr&gt;
@@ -1343,10 +1322,10 @@
       <complexType abstract="true" name="CustomCriteriaNode">
         <annotation>
           <documentation>
-            A {@link CustomCriteriaNode} is a node in the custom targeting tree. A custom
-            criteria node can either be a {@link CustomCriteriaSet} (a non-leaf node) or
-            a {@link CustomCriteria} (a leaf node). The custom criteria targeting tree is
-            subject to the rules defined on {@link Targeting#customTargeting}.
+            A {@link CustomCriteriaNode} is a node in the custom targeting tree. A custom criteria node can
+            either be a {@link CustomCriteriaSet} (a non-leaf node) or a {@link CustomCriteria} (a leaf
+            node). The custom criteria targeting tree is subject to the rules defined on {@link
+            Targeting#customTargeting}.
           </documentation>
         </annotation>
         <sequence/>
@@ -1599,29 +1578,27 @@
       <complexType name="DayPartTargeting">
         <annotation>
           <documentation>
-            Modify the delivery times of line items for particular days of the week. By
-            default, line items are served at all days and times.
+            Modify the delivery times of line items for particular days of the week. By default, line items
+            are served at all days and times.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="unbounded" minOccurs="0" name="dayParts" type="tns:DayPart">
             <annotation>
               <documentation>
-                Specifies days of the week and times at which a {@code LineItem} will be
-                delivered.
-                &lt;p&gt;
-                If targeting all days and times, this value will be ignored.
+                Specifies days of the week and times at which a {@code LineItem} will be delivered.
+                
+                &lt;p&gt;If targeting all days and times, this value will be ignored.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="timeZone" type="tns:DeliveryTimeZone">
             <annotation>
               <documentation>
-                Specifies the time zone to be used for delivering {@link LineItem} objects.
-                This attribute is optional and defaults to
-                {@link DeliveryTimeZone#BROWSER}.
-                &lt;p&gt;
-                Setting this has no effect if targeting all days and times.
+                Specifies the time zone to be used for delivering {@link LineItem} objects. This attribute is
+                optional and defaults to {@link DeliveryTimeZone#BROWSER}.
+                
+                &lt;p&gt;Setting this has no effect if targeting all days and times.
               </documentation>
             </annotation>
           </element>
@@ -1829,16 +1806,15 @@
       <complexType name="DeviceManufacturerTargeting">
         <annotation>
           <documentation>
-            Represents device manufacturer that are being targeted or excluded by the
-            {@link LineItem}.
+            Represents device manufacturer that are being targeted or excluded by the {@link LineItem}.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="1" minOccurs="0" name="isTargeted" type="xsd:boolean">
             <annotation>
               <documentation>
-                Indicates whether device manufacturers should be targeted or excluded. This
-                attribute is optional and defaults to {@code true}.
+                Indicates whether device manufacturers should be targeted or excluded. This attribute is
+                optional and defaults to {@code true}.
               </documentation>
             </annotation>
           </element>
@@ -1846,8 +1822,7 @@
             name="deviceManufacturers" type="tns:Technology">
             <annotation>
               <documentation>
-                Device manufacturers that are being targeted or excluded by the
-                {@link LineItem}.
+                Device manufacturers that are being targeted or excluded by the {@link LineItem}.
               </documentation>
             </annotation>
           </element>
@@ -1856,8 +1831,8 @@
       <complexType name="DropDownCustomFieldValue">
         <annotation>
           <documentation>
-            A {@link CustomFieldValue} for a {@link CustomField} that has a {@link CustomField#dataType}
-            of {@link CustomFieldDataType#DROP_DOWN}
+            A {@link CustomFieldValue} for a {@link CustomField} that has a {@link CustomField#dataType} of
+            {@link CustomFieldDataType#DROP_DOWN}
           </documentation>
         </annotation>
         <complexContent>
@@ -1867,8 +1842,7 @@
                 name="customFieldOptionId" type="xsd:long">
                 <annotation>
                   <documentation>
-                    The {@link CustomFieldOption#id ID} of the {@link CustomFieldOption} for
-                    this value.
+                    The {@link CustomFieldOption#id ID} of the {@link CustomFieldOption} for this value.
                   </documentation>
                 </annotation>
               </element>
@@ -1968,8 +1942,8 @@
             name="breakdownEntries" type="tns:ForecastBreakdownEntry">
             <annotation>
               <documentation>
-                The forecast breakdown entries in the same order as in the
-                {@link ForecastBreakdownOptions#targets} field.
+                The forecast breakdown entries in the same order as in the {@link
+                ForecastBreakdownOptions#targets} field.
               </documentation>
             </annotation>
           </element>
@@ -1985,8 +1959,8 @@
           <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
             <annotation>
               <documentation>
-                The optional name of this entry, as specified in the corresponding
-                {@link ForecastBreakdownTarget#name} field.
+                The optional name of this entry, as specified in the corresponding {@link
+                ForecastBreakdownTarget#name} field.
               </documentation>
             </annotation>
           </element>
@@ -2024,8 +1998,8 @@
           <element maxOccurs="unbounded" minOccurs="0" name="targets" type="tns:ForecastBreakdownTarget">
             <annotation>
               <documentation>
-                For each time window, these are the breakdown targets.
-                If none specified, the targeting of the forecasted {@link LineItem} is assumed.
+                For each time window, these are the breakdown targets. If none specified, the targeting of the
+                forecasted {@link LineItem} is assumed.
               </documentation>
             </annotation>
           </element>
@@ -2041,8 +2015,8 @@
           <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
             <annotation>
               <documentation>
-                An optional name for this breakdown target, to be populated in the corresponding
-                {@link ForecastBreakdownEntry#name} field.
+                An optional name for this breakdown target, to be populated in the corresponding {@link
+                ForecastBreakdownEntry#name} field.
               </documentation>
             </annotation>
           </element>
@@ -2085,24 +2059,22 @@
       <complexType name="FrequencyCap">
         <annotation>
           <documentation>
-            Represents a limit on the number of times a single viewer can be exposed to
-            the same {@link LineItem} in a specified time period.
+            Represents a limit on the number of times a single viewer can be exposed to the same {@link
+            LineItem} in a specified time period.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="1" minOccurs="0" name="maxImpressions" type="xsd:int">
             <annotation>
               <documentation>
-                The maximum number of impressions than can be served to a user within a
-                specified time period.
+                The maximum number of impressions than can be served to a user within a specified time period.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="numTimeUnits" type="xsd:int">
             <annotation>
               <documentation>
-                The number of {@code FrequencyCap#timeUnit} to represent the total time
-                period.
+                The number of {@code FrequencyCap#timeUnit} to represent the total time period.
               </documentation>
             </annotation>
           </element>
@@ -2152,24 +2124,23 @@
       <complexType name="GeoTargeting">
         <annotation>
           <documentation>
-            Provides line items the ability to target geographical locations. By default,
-            line items target all countries and their subdivisions. With geographical
-            targeting, you can target line items to specific countries, regions, metro
-            areas, and cities. You can also exclude the same.
-            &lt;p&gt;
-            The following rules apply for geographical targeting:
-            &lt;/p&gt;
+            Provides line items the ability to target geographical locations. By default, line items target
+            all countries and their subdivisions. With geographical targeting, you can target line items to
+            specific countries, regions, metro areas, and cities. You can also exclude the same.
+            
+            &lt;p&gt;The following rules apply for geographical targeting:
+            
             &lt;ul&gt;
-            &lt;li&gt;You cannot target and exclude the same location.&lt;/li&gt;
-            &lt;li&gt;You cannot target a child whose parent has been excluded. For example, if the state
-            of Illinois has been excluded, then you cannot target Chicago.&lt;/li&gt;
-            &lt;li&gt;You must not target a location if you are also targeting its parent.
-            For example, if you are targeting New York City, you must not have the state of New
-            York as one of the targeted locations.&lt;/li&gt;
-            &lt;li&gt;You cannot explicitly define inclusions or exclusions that are already implicit. For example,
-            if you explicitly include California, you implicitly exclude all other states. You therefore
-            cannot explicitly exclude Florida, because it is already implicitly excluded. Conversely if you
-            explicitly exclude Florida, you cannot explicitly include California.&lt;/li&gt;
+            &lt;li&gt;You cannot target and exclude the same location.
+            &lt;li&gt;You cannot target a child whose parent has been excluded. For example, if the state of
+            Illinois has been excluded, then you cannot target Chicago.
+            &lt;li&gt;You must not target a location if you are also targeting its parent. For example, if you
+            are targeting New York City, you must not have the state of New York as one of the targeted
+            locations.
+            &lt;li&gt;You cannot explicitly define inclusions or exclusions that are already implicit. For
+            example, if you explicitly include California, you implicitly exclude all other states. You
+            therefore cannot explicitly exclude Florida, because it is already implicitly excluded.
+            Conversely if you explicitly exclude Florida, you cannot explicitly include California.
             &lt;/ul&gt;
           </documentation>
         </annotation>
@@ -2223,8 +2194,8 @@
           <element maxOccurs="1" minOccurs="0" name="goalType" type="tns:GoalType">
             <annotation>
               <documentation>
-                The type of the goal for the {@code LineItem}. It defines the period over which the goal
-                for {@code LineItem} should be reached.
+                The type of the goal for the {@code LineItem}. It defines the period over which the goal for
+                {@code LineItem} should be reached.
               </documentation>
             </annotation>
           </element>
@@ -2238,18 +2209,17 @@
           <element maxOccurs="1" minOccurs="0" name="units" type="xsd:long">
             <annotation>
               <documentation>
-                If this is a primary goal, it represents the number or percentage of impressions or clicks
-                that will be reserved for the {@code LineItem}. If the line item is of type
-                {@link LineItemType#SPONSORSHIP}, it represents the percentage of available impressions
-                reserved. If the line item is of type {@link LineItemType#BULK} or
-                {@link LineItemType#PRICE_PRIORITY}, it represents the number of remaining impressions
-                reserved. If the line item is of type {@link LineItemType#NETWORK} or
-                {@link LineItemType#HOUSE}, it represents the percentage of remaining impressions
-                reserved.
+                If this is a primary goal, it represents the number or percentage of impressions or clicks that
+                will be reserved for the {@code LineItem}. If the line item is of type {@link
+                LineItemType#SPONSORSHIP}, it represents the percentage of available impressions reserved. If
+                the line item is of type {@link LineItemType#BULK} or {@link LineItemType#PRICE_PRIORITY}, it
+                represents the number of remaining impressions reserved. If the line item is of type {@link
+                LineItemType#NETWORK} or {@link LineItemType#HOUSE}, it represents the percentage of remaining
+                impressions reserved.
                 
-                &lt;p&gt;If this is a secondary goal, it represents the number of impressions or conversions that
-                the line item will stop serving at if reached. For valid line item types, see
-                {@link LineItem#secondaryGoals}.
+                &lt;p&gt;If this is a secondary goal, it represents the number of impressions or conversions that the
+                line item will stop serving at if reached. For valid line item types, see {@link
+                LineItem#secondaryGoals}.
               </documentation>
             </annotation>
           </element>
@@ -2265,16 +2235,16 @@
           <element maxOccurs="1" minOccurs="0" name="availableUnits" type="xsd:long">
             <annotation>
               <documentation>
-                The number of units matching the demographic breakdown that can be booked without affecting
-                the delivery of any reserved line items.
+                The number of units matching the demographic breakdown that can be booked without affecting the
+                delivery of any reserved line items.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="matchedUnits" type="xsd:long">
             <annotation>
               <documentation>
-                The number of units matching the demographic and matching specified targeting and
-                delivery settings.
+                The number of units matching the demographic and matching specified targeting and delivery
+                settings.
               </documentation>
             </annotation>
           </element>
@@ -2329,8 +2299,8 @@
           <element maxOccurs="1" minOccurs="0" name="targetGender" type="tns:GrpTargetGender">
             <annotation>
               <documentation>
-                Specifies the target gender of the {@link LineItem}. This field is only applicable if
-                {@link #provider} is not null.
+                Specifies the target gender of the {@link LineItem}. This field is only applicable if {@link
+                #provider} is not null.
               </documentation>
             </annotation>
           </element>
@@ -2627,8 +2597,8 @@
           <element maxOccurs="1" minOccurs="0" name="activityId" type="xsd:int">
             <annotation>
               <documentation>
-                The ID of the {@link Activity} to which the {@link LineItem} should be
-                associated. This attribute is required.
+                The ID of the {@link Activity} to which the {@link LineItem} should be associated. This
+                attribute is required.
               </documentation>
             </annotation>
           </element>
@@ -2636,9 +2606,9 @@
             name="clickThroughConversionCost" type="tns:Money">
             <annotation>
               <documentation>
-                The amount of money to attribute per click through conversion. This attribute is
-                required for creating a {@code LineItemActivityAssociation}. The currency code is readonly
-                and should match the {@link LineItem}.
+                The amount of money to attribute per click through conversion. This attribute is required for
+                creating a {@code LineItemActivityAssociation}. The currency code is readonly and should match
+                the {@link LineItem}.
               </documentation>
             </annotation>
           </element>
@@ -2646,9 +2616,9 @@
             name="viewThroughConversionCost" type="tns:Money">
             <annotation>
               <documentation>
-                The amount of money to attribute per view through conversion. This attribute is
-                required for creating a {@code LineItemActivityAssociation}. The currency code is readonly
-                and should match the {@link LineItem}.
+                The amount of money to attribute per view through conversion. This attribute is required for
+                creating a {@code LineItemActivityAssociation}. The currency code is readonly and should match
+                the {@link LineItem}.
               </documentation>
             </annotation>
           </element>
@@ -2701,27 +2671,25 @@
           <element maxOccurs="1" minOccurs="0" name="lineItemId" type="xsd:long">
             <annotation>
               <documentation>
-                Uniquely identifies this line item delivery forecast.
-                This value is read-only and will be either the ID of the {@link LineItem} object it represents,
-                or {@code null} if the forecast represents a prospective line item.
+                Uniquely identifies this line item delivery forecast. This value is read-only and will be
+                either the ID of the {@link LineItem} object it represents, or {@code null} if the forecast
+                represents a prospective line item.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="orderId" type="xsd:long">
             <annotation>
               <documentation>
-                The unique ID for the {@link Order} object that this line item belongs to, or
-                {@code null} if the forecast represents a prospective line item without an
-                {@link LineItem#orderId} set.
+                The unique ID for the {@link Order} object that this line item belongs to, or {@code null} if
+                the forecast represents a prospective line item without an {@link LineItem#orderId} set.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="unitType" type="tns:UnitType">
             <annotation>
               <documentation>
-                The unit with which the goal or cap of the {@link LineItem} is defined.
-                Will be the same value as {@link Goal#unitType} for both a set line item or
-                a prospective one.
+                The unit with which the goal or cap of the {@link LineItem} is defined. Will be the same value
+                as {@link Goal#unitType} for both a set line item or a prospective one.
               </documentation>
             </annotation>
           </element>
@@ -2729,8 +2697,8 @@
             name="predictedDeliveryUnits" type="xsd:long">
             <annotation>
               <documentation>
-                The number of units, defined by {@link Goal#unitType}, that will be delivered by the line
-                item. Delivery of existing line items that are of same or lower priorities may be impacted.
+                The number of units, defined by {@link Goal#unitType}, that will be delivered by the line item.
+                Delivery of existing line items that are of same or lower priorities may be impacted.
               </documentation>
             </annotation>
           </element>
@@ -2745,8 +2713,8 @@
           <element maxOccurs="1" minOccurs="0" name="matchedUnits" type="xsd:long">
             <annotation>
               <documentation>
-                The number of units, defined by {@link Goal#unitType}, that match the specified
-                {@link LineItem#targeting} and delivery settings.
+                The number of units, defined by {@link Goal#unitType}, that match the specified {@link
+                LineItem#targeting} and delivery settings.
               </documentation>
             </annotation>
           </element>
@@ -2849,40 +2817,38 @@
       <complexType name="LineItemSummary">
         <annotation>
           <documentation>
-            The {@code LineItemSummary} represents the base class from which a {@code
-            LineItem} is derived.
+            The {@code LineItemSummary} represents the base class from which a {@code LineItem} is derived.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="1" minOccurs="0" name="orderId" type="xsd:long">
             <annotation>
               <documentation>
-                The ID of the {@link Order} to which the {@code LineItem} belongs. This
-                attribute is required.
+                The ID of the {@link Order} to which the {@code LineItem} belongs. This attribute is required.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
             <annotation>
               <documentation>
-                Uniquely identifies the {@code LineItem}. This attribute is read-only and is
-                assigned by Google when a line item is created.
+                Uniquely identifies the {@code LineItem}. This attribute is read-only and is assigned by Google
+                when a line item is created.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
             <annotation>
               <documentation>
-                The name of the line item. This attribute is required and has a maximum
-                length of 255 characters.
+                The name of the line item. This attribute is required and has a maximum length of 255
+                characters.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="externalId" type="xsd:string">
             <annotation>
               <documentation>
-                An identifier for the {@code LineItem} that is meaningful to the publisher.
-                This attribute is optional and has a maximum length of 255 characters.
+                An identifier for the {@code LineItem} that is meaningful to the publisher. This attribute is
+                optional and has a maximum length of 255 characters.
               </documentation>
             </annotation>
           </element>
@@ -2896,35 +2862,34 @@
           <element maxOccurs="1" minOccurs="0" name="startDateTime" type="tns:DateTime">
             <annotation>
               <documentation>
-                The date and time on which the {@code LineItem} is enabled to begin
-                serving. This attribute is required and must be in the future.
+                The date and time on which the {@code LineItem} is enabled to begin serving. This attribute is
+                required and must be in the future.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="startDateTimeType" type="tns:StartDateTimeType">
             <annotation>
               <documentation>
-                Specifies whether to start serving to the {@code LineItem} right away, in
-                an hour, etc. This attribute is optional and defaults to
-                {@link StartDateTimeType#USE_START_DATE_TIME}.
+                Specifies whether to start serving to the {@code LineItem} right away, in an hour, etc. This
+                attribute is optional and defaults to {@link StartDateTimeType#USE_START_DATE_TIME}.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="endDateTime" type="tns:DateTime">
             <annotation>
               <documentation>
-                The date and time on which the {@code LineItem} will stop serving. This
-                attribute is required unless {@link LineItem#unlimitedEndDateTime} is set
-                to {@code true}. If specified, it must be after the
-                {@link LineItem#startDateTime}. This end date and time does not include auto extension days.
+                The date and time on which the {@code LineItem} will stop serving. This attribute is required
+                unless {@link LineItem#unlimitedEndDateTime} is set to {@code true}. If specified, it must be
+                after the {@link LineItem#startDateTime}. This end date and time does not include auto
+                extension days.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="autoExtensionDays" type="xsd:int">
             <annotation>
               <documentation>
-                The number of days to allow a line item to deliver past its {@link #endDateTime}. A maximum
-                of 7 days is allowed. This is feature is only available for Ad Manager 360 accounts.
+                The number of days to allow a line item to deliver past its {@link #endDateTime}. A maximum of
+                7 days is allowed. This is feature is only available for Ad Manager 360 accounts.
               </documentation>
             </annotation>
           </element>
@@ -2932,11 +2897,10 @@
             name="unlimitedEndDateTime" type="xsd:boolean">
             <annotation>
               <documentation>
-                Specifies whether or not the {@code LineItem} has an end time. This
-                attribute is optional and defaults to false. It can be be set to {@code
-                true} for only line items of type {@link LineItemType#SPONSORSHIP},
-                {@link LineItemType#NETWORK}, {@link LineItemType#PRICE_PRIORITY} and
-                {@link LineItemType#HOUSE}.
+                Specifies whether or not the {@code LineItem} has an end time. This attribute is optional and
+                defaults to false. It can be be set to {@code true} for only line items of type {@link
+                LineItemType#SPONSORSHIP}, {@link LineItemType#NETWORK}, {@link LineItemType#PRICE_PRIORITY}
+                and {@link LineItemType#HOUSE}.
               </documentation>
             </annotation>
           </element>
@@ -2944,8 +2908,8 @@
             name="creativeRotationType" type="tns:CreativeRotationType">
             <annotation>
               <documentation>
-                The strategy used for displaying multiple {@link Creative} objects that are
-                associated with the {@code LineItem}. This attribute is required.
+                The strategy used for displaying multiple {@link Creative} objects that are associated with the
+                {@code LineItem}. This attribute is required.
               </documentation>
             </annotation>
           </element>
@@ -2953,8 +2917,8 @@
             <annotation>
               <documentation>
                 The strategy for delivering ads over the course of the line item's duration. This attribute is
-                optional and defaults to {@link DeliveryRateType#EVENLY} or
-                {@link DeliveryRateType#FRONTLOADED} depending on the network's configuration.
+                optional and defaults to {@link DeliveryRateType#EVENLY} or {@link
+                DeliveryRateType#FRONTLOADED} depending on the network's configuration.
               </documentation>
             </annotation>
           </element>
@@ -2978,9 +2942,9 @@
           <element maxOccurs="1" minOccurs="0" name="roadblockingType" type="tns:RoadblockingType">
             <annotation>
               <documentation>
-                The strategy for serving roadblocked creatives, i.e. instances where
-                multiple creatives must be served together on a single web page. This
-                attribute is optional and defaults to {@link RoadblockingType#ONE_OR_MORE}.
+                The strategy for serving roadblocked creatives, i.e. instances where multiple creatives must be
+                served together on a single web page. This attribute is optional and defaults to {@link
+                RoadblockingType#ONE_OR_MORE}.
               </documentation>
             </annotation>
           </element>
@@ -2996,8 +2960,7 @@
             name="frequencyCaps" type="tns:FrequencyCap">
             <annotation>
               <documentation>
-                The set of frequency capping units for this {@code LineItem}. This
-                attribute is optional.
+                The set of frequency capping units for this {@code LineItem}. This attribute is optional.
               </documentation>
             </annotation>
           </element>
@@ -3006,21 +2969,20 @@
               <documentation>
                 Indicates the line item type of a {@code LineItem}. This attribute is required.
                 
-                The line item type determines the default priority of the line item. More information can be
-                found on the &lt;a href="https://support.google.com/dfp_premium/answer/177279"&gt;
-                Ad Manager Help Center&lt;/a&gt;.
+                &lt;p&gt;The line item type determines the default priority of the line item. More information can be
+                found on the &lt;a href="https://support.google.com/admanager/answer/177279"&gt;Ad Manager Help
+                Center&lt;/a&gt;.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="priority" type="xsd:int">
             <annotation>
               <documentation>
-                The priority for the line item. Valid values range from 1 to 16. This
-                field is optional and defaults to the default priority of the
-                {@link LineItemType}.
+                The priority for the line item. Valid values range from 1 to 16. This field is optional and
+                defaults to the default priority of the {@link LineItemType}.
                 
-                &lt;p&gt;The following table shows the default, minimum, and maximum priority
-                values are for each line item type:
+                &lt;p&gt;The following table shows the default, minimum, and maximum priority values are for each
+                line item type:
                 
                 &lt;table&gt;
                 &lt;tr&gt;
@@ -3068,55 +3030,50 @@
                 &lt;/tr&gt;
                 &lt;/table&gt;
                 
-                &lt;p&gt;This field can only be edited by certain networks, otherwise a
-                {@link PermissionError} will occur.
+                &lt;p&gt;This field can only be edited by certain networks, otherwise a {@link PermissionError} will
+                occur.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="costPerUnit" type="tns:Money">
             <annotation>
               <documentation>
-                The amount of money to spend per impression or click. This attribute is
-                required for creating a {@code LineItem}.
+                The amount of money to spend per impression or click. This attribute is required for creating a
+                {@code LineItem}.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="valueCostPerUnit" type="tns:Money">
             <annotation>
               <documentation>
-                An amount to help the adserver rank inventory. {@link
-                LineItem#valueCostPerUnit} artificially raises the value of
-                inventory over the {@link LineItem#costPerUnit} but avoids raising
-                the actual {@link LineItem#costPerUnit}. This attribute is optional
-                and defaults to a {@link Money} object in the local
-                currency with {@link Money#microAmount} 0.
+                An amount to help the adserver rank inventory. {@link LineItem#valueCostPerUnit} artificially
+                raises the value of inventory over the {@link LineItem#costPerUnit} but avoids raising the
+                actual {@link LineItem#costPerUnit}. This attribute is optional and defaults to a {@link Money}
+                object in the local currency with {@link Money#microAmount} 0.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="costType" type="tns:CostType">
             <annotation>
               <documentation>
-                The method used for billing this {@code LineItem}. This attribute is
-                required.
+                The method used for billing this {@code LineItem}. This attribute is required.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="discountType" type="tns:LineItemDiscountType">
             <annotation>
               <documentation>
-                The type of discount being applied to a {@code LineItem}, either percentage
-                based or absolute. This attribute is optional and defaults to
-                {@link LineItemDiscountType#PERCENTAGE}.
+                The type of discount being applied to a {@code LineItem}, either percentage based or absolute.
+                This attribute is optional and defaults to {@link LineItemDiscountType#PERCENTAGE}.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="discount" type="xsd:double">
             <annotation>
               <documentation>
-                The number here is either a percentage or an absolute value depending on
-                the {@code LineItemDiscountType}. If the {@code LineItemDiscountType} is
-                {@link LineItemDiscountType#PERCENTAGE}, then only non-fractional values
-                are supported.
+                The number here is either a percentage or an absolute value depending on the {@code
+                LineItemDiscountType}. If the {@code LineItemDiscountType} is {@link
+                LineItemDiscountType#PERCENTAGE}, then only non-fractional values are supported.
               </documentation>
             </annotation>
           </element>
@@ -3124,17 +3081,17 @@
             name="contractedUnitsBought" type="xsd:long">
             <annotation>
               <documentation>
-                This attribute is only applicable for certain {@link #lineItemType line item types}
-                and acts as an "FYI" or note, which does not impact adserving or other backend systems.
-                &lt;p&gt;
-                For {@link LineItemType#SPONSORSHIP} line items, this represents the minimum quantity,
-                which is a lifetime impression volume goal for reporting purposes only.
-                &lt;p&gt;
-                For {@link LineItemType#STANDARD} line items, this represent the contracted quantity,
-                which is the number of units specified in the contract the advertiser has bought for
-                this {@code LineItem}. This field is just a "FYI" for traffickers to manually intervene
-                with the {@code LineItem} when needed. This attribute is only available for
-                {@link LineItemType#STANDARD} line items if you have this feature enabled on your network.
+                This attribute is only applicable for certain {@link #lineItemType line item types} and acts as
+                an "FYI" or note, which does not impact adserving or other backend systems.
+                
+                &lt;p&gt;For {@link LineItemType#SPONSORSHIP} line items, this represents the minimum quantity, which
+                is a lifetime impression volume goal for reporting purposes only.
+                
+                &lt;p&gt;For {@link LineItemType#STANDARD} line items, this represent the contracted quantity, which
+                is the number of units specified in the contract the advertiser has bought for this {@code
+                LineItem}. This field is just a "FYI" for traffickers to manually intervene with the {@code
+                LineItem} when needed. This attribute is only available for {@link LineItemType#STANDARD} line
+                items if you have this feature enabled on your network.
               </documentation>
             </annotation>
           </element>
@@ -3142,9 +3099,8 @@
             name="creativePlaceholders" type="tns:CreativePlaceholder">
             <annotation>
               <documentation>
-                Details about the creatives that are expected to serve through this
-                {@code LineItem}. This attribute is required and replaces the
-                {@code creativeSizes} attribute.
+                Details about the creatives that are expected to serve through this {@code LineItem}. This
+                attribute is required and replaces the {@code creativeSizes} attribute.
               </documentation>
             </annotation>
           </element>
@@ -3160,11 +3116,10 @@
           <element maxOccurs="1" minOccurs="0" name="environmentType" type="tns:EnvironmentType">
             <annotation>
               <documentation>
-                The environment that the {@code LineItem} is targeting. The default value
-                is {@link EnvironmentType#BROWSER}. If this value is
-                {@link EnvironmentType#VIDEO_PLAYER}, then this line item can only target
-                {@code AdUnits} that have {@code AdUnitSizes} whose {@code environmentType}
-                is also {@code VIDEO_PLAYER}.
+                The environment that the {@code LineItem} is targeting. The default value is {@link
+                EnvironmentType#BROWSER}. If this value is {@link EnvironmentType#VIDEO_PLAYER}, then this line
+                item can only target {@code AdUnits} that have {@code AdUnitSizes} whose {@code
+                environmentType} is also {@code VIDEO_PLAYER}.
               </documentation>
             </annotation>
           </element>
@@ -3172,8 +3127,8 @@
             name="allowedFormats" type="tns:AllowedFormats">
             <annotation>
               <documentation>
-                The set of {@link allowedFormats} that this programmatic line item can have.
-                If the set is empty, this line item allows all formats.
+                The set of {@link allowedFormats} that this programmatic line item can have. If the set is
+                empty, this line item allows all formats.
               </documentation>
             </annotation>
           </element>
@@ -3181,29 +3136,20 @@
             name="companionDeliveryOption" type="tns:CompanionDeliveryOption">
             <annotation>
               <documentation>
-                The delivery option for companions. Setting this field is only meaningful
-                if the following conditions are met:
+                The delivery option for companions. Setting this field is only meaningful if the following
+                conditions are met:
+                
                 &lt;ol&gt;
-                &lt;li&gt;
-                The &lt;b&gt;Guaranteed roadblocks&lt;/b&gt; feature is enabled on your network.
-                &lt;/li&gt;
-                &lt;li&gt;
-                One of the following is true (both cannot be true, these are mutually
-                exclusive).
+                &lt;li&gt;The &lt;b&gt;Guaranteed roadblocks&lt;/b&gt; feature is enabled on your network.
+                &lt;li&gt;One of the following is true (both cannot be true, these are mutually exclusive).
                 &lt;ul&gt;
-                &lt;li&gt;
-                The {@link #environmentType} is {@link EnvironmentType#VIDEO_PLAYER}.
-                &lt;/li&gt;
-                &lt;li&gt;
-                The {@link #roadblockingType} is {@link RoadblockingType#CREATIVE_SET}.
-                &lt;/li&gt;
+                &lt;li&gt;The {@link #environmentType} is {@link EnvironmentType#VIDEO_PLAYER}.
+                &lt;li&gt;The {@link #roadblockingType} is {@link RoadblockingType#CREATIVE_SET}.
                 &lt;/ul&gt;
-                &lt;/li&gt;
                 &lt;/ol&gt;
-                &lt;p&gt;
-                This field is optional and defaults to
-                {@link CompanionDeliveryOption#OPTIONAL} if the above conditions are met.
-                In all other cases it defaults to {@link CompanionDeliveryOption#UNKNOWN}
+                
+                &lt;p&gt;This field is optional and defaults to {@link CompanionDeliveryOption#OPTIONAL} if the above
+                conditions are met. In all other cases it defaults to {@link CompanionDeliveryOption#UNKNOWN}
                 and is not meaningful.
               </documentation>
             </annotation>
@@ -3211,11 +3157,10 @@
           <element maxOccurs="1" minOccurs="0" name="allowOverbook" type="xsd:boolean">
             <annotation>
               <documentation>
-                The flag indicates whether overbooking should be allowed when creating or
-                updating reservations of line item types {@link LineItemType#SPONSORSHIP}
-                and {@link LineItemType#STANDARD}. When true, operations on this line
-                item will never trigger a {@link ForecastError}, which corresponds to an
-                overbook warning in the UI. The default value is false.
+                The flag indicates whether overbooking should be allowed when creating or updating reservations
+                of line item types {@link LineItemType#SPONSORSHIP} and {@link LineItemType#STANDARD}. When
+                true, operations on this line item will never trigger a {@link ForecastError}, which
+                corresponds to an overbook warning in the UI. The default value is false.
                 
                 &lt;p&gt;Note: this field will not persist on the line item itself, and the value will only affect
                 the current request.
@@ -3246,33 +3191,31 @@
           <element maxOccurs="1" minOccurs="0" name="reserveAtCreation" type="xsd:boolean">
             <annotation>
               <documentation>
-                The flag indicates whether inventory should be reserved when creating a
-                line item of types {@link LineItemType#SPONSORSHIP} and
-                {@link LineItemType#STANDARD} in an unapproved {@link Order}. The default
-                value is false.
+                The flag indicates whether inventory should be reserved when creating a line item of types
+                {@link LineItemType#SPONSORSHIP} and {@link LineItemType#STANDARD} in an unapproved {@link
+                Order}. The default value is false.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="stats" type="tns:Stats">
             <annotation>
               <documentation>
-                Contains trafficking statistics for the line item. This attribute is
-                readonly and is populated by Google. This will be {@code null} in case
-                there are no statistics for a line item yet.
+                Contains trafficking statistics for the line item. This attribute is readonly and is populated
+                by Google. This will be {@code null} in case there are no statistics for a line item yet.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="deliveryIndicator" type="tns:DeliveryIndicator">
             <annotation>
               <documentation>
-                Indicates how well the line item has been performing. This attribute is
-                readonly and is populated by Google. This will be {@code null} if the
-                delivery indicator information is not available due to one of the following
-                reasons:
+                Indicates how well the line item has been performing. This attribute is readonly and is
+                populated by Google. This will be {@code null} if the delivery indicator information is not
+                available due to one of the following reasons:
+                
                 &lt;ol&gt;
-                &lt;li&gt;The line item is not delivering.&lt;/li&gt;
-                &lt;li&gt;The line item has an unlimited goal or cap.&lt;/li&gt;
-                &lt;li&gt;The line item has a percentage based goal or cap.&lt;/li&gt;
+                &lt;li&gt;The line item is not delivering.
+                &lt;li&gt;The line item has an unlimited goal or cap.
+                &lt;li&gt;The line item has a percentage based goal or cap.
                 &lt;/ol&gt;
               </documentation>
             </annotation>
@@ -3280,27 +3223,23 @@
           <element maxOccurs="1" minOccurs="0" name="deliveryData" type="tns:DeliveryData">
             <annotation>
               <documentation>
-                Delivery data provides the number of clicks or impressions delivered for a
-                {@link LineItem} in the last 7 days. This attribute is readonly and is
-                populated by Google. This will be {@code null} if the delivery data cannot
-                be computed due to one of the following reasons:
+                Delivery data provides the number of clicks or impressions delivered for a {@link LineItem} in
+                the last 7 days. This attribute is readonly and is populated by Google. This will be {@code
+                null} if the delivery data cannot be computed due to one of the following reasons:
+                
                 &lt;ol&gt;
-                &lt;li&gt;
-                The line item is not deliverable.&lt;/li&gt;
-                &lt;li&gt;
-                The line item has completed delivering more than 7 days ago.&lt;/li&gt;
-                &lt;li&gt;
-                The line item has an absolute-based goal.
-                {@link LineItem#deliveryIndicator} should be used to track its
-                progress in this case.&lt;/li&gt;
+                &lt;li&gt;The line item is not deliverable.
+                &lt;li&gt;The line item has completed delivering more than 7 days ago.
+                &lt;li&gt;The line item has an absolute-based goal. {@link LineItem#deliveryIndicator} should be
+                used to track its progress in this case.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="budget" type="tns:Money">
             <annotation>
               <documentation>
-                The amount of money allocated to the {@code LineItem}. This attribute is
-                readonly and is populated by Google. The currency code is readonly.
+                The amount of money allocated to the {@code LineItem}. This attribute is readonly and is
+                populated by Google. The currency code is readonly.
               </documentation>
             </annotation>
           </element>
@@ -3314,8 +3253,8 @@
           <element maxOccurs="1" minOccurs="0" name="reservationStatus" type="tns:LineItemSummary.ReservationStatus">
             <annotation>
               <documentation>
-                Describes whether or not inventory has been reserved for the
-                {@code LineItem}. This attribute is readonly and is assigned by Google.
+                Describes whether or not inventory has been reserved for the {@code LineItem}. This attribute
+                is readonly and is assigned by Google.
               </documentation>
             </annotation>
           </element>
@@ -3329,9 +3268,9 @@
           <element maxOccurs="1" minOccurs="0" name="webPropertyCode" type="xsd:string">
             <annotation>
               <documentation>
-                The web property code used for dynamic allocation line items.  This web
-                property is only required with line item types
-                {@link LineItemType#AD_EXCHANGE} and {@link LineItemType#ADSENSE}.
+                The web property code used for dynamic allocation line items. This web property is only
+                required with line item types {@link LineItemType#AD_EXCHANGE} and {@link
+                LineItemType#ADSENSE}.
               </documentation>
             </annotation>
           </element>
@@ -3347,10 +3286,9 @@
             name="effectiveAppliedLabels" type="tns:AppliedLabel">
             <annotation>
               <documentation>
-                Contains the set of labels inherited from the order that contains this
-                line item and the advertiser that owns the order. If a label has been
-                negated, only the negated label is returned. This field is readonly
-                and is assigned by Google.
+                Contains the set of labels inherited from the order that contains this line item and the
+                advertiser that owns the order. If a label has been negated, only the negated label is
+                returned. This field is readonly and is assigned by Google.
               </documentation>
             </annotation>
           </element>
@@ -3358,26 +3296,26 @@
             name="disableSameAdvertiserCompetitiveExclusion" type="xsd:boolean">
             <annotation>
               <documentation>
-                If a line item has a series of competitive exclusions on it, it could be
-                blocked from serving with line items from the same advertiser. Setting this
-                to {@code true} will allow line items from the same advertiser to serve
-                regardless of the other competitive exclusion labels being applied.
+                If a line item has a series of competitive exclusions on it, it could be blocked from serving
+                with line items from the same advertiser. Setting this to {@code true} will allow line items
+                from the same advertiser to serve regardless of the other competitive exclusion labels being
+                applied.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="lastModifiedByApp" type="xsd:string">
             <annotation>
               <documentation>
-                The application that last modified this line item. This attribute is read only
-                and is assigned by Google.
+                The application that last modified this line item. This attribute is read only and is assigned
+                by Google.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="notes" type="xsd:string">
             <annotation>
               <documentation>
-                Provides any additional notes that may annotate the {@code LineItem}. This
-                attribute is optional and has a maximum length of 65,535 characters.
+                Provides any additional notes that may annotate the {@code LineItem}. This attribute is
+                optional and has a maximum length of 65,535 characters.
               </documentation>
             </annotation>
           </element>
@@ -3439,8 +3377,8 @@
             name="programmaticCreativeSource" type="tns:ProgrammaticCreativeSource">
             <annotation>
               <documentation>
-                Indicates the {@link ProgrammaticCreativeSource} of the programmatic line item.
-                This is a read-only field. Any changes must be made on the {@link ProposalLineItem}.
+                Indicates the {@link ProgrammaticCreativeSource} of the programmatic line item. This is a
+                read-only field. Any changes must be made on the {@link ProposalLineItem}.
               </documentation>
             </annotation>
           </element>
@@ -3450,10 +3388,10 @@
             name="youtubeKidsRestricted" type="xsd:boolean">
             <annotation>
               <documentation>
-                Designates this line item as intended for YT Kids app.
-                If true, all creatives associated with this line item must be reviewed and approved. See the
-                &lt;a href="https://support.google.com/yt-partner-sales/answer/10015534"&gt;Ad Manager Help Center
-                &lt;/a&gt; for more information.
+                Designates this line item as intended for YT Kids app. If true, all creatives associated with
+                this line item must be reviewed and approved. See the &lt;a
+                href="https://support.google.com/yt-partner-sales/answer/10015534"&gt;Ad Manager Help Center &lt;/a&gt;
+                for more information.
               </documentation>
             </annotation>
           </element>
@@ -3533,10 +3471,9 @@
       <complexType name="Location">
         <annotation>
           <documentation>
-            A {@link Location} represents a geographical entity that can be targeted. If
-            a location type is not available because of the API version you are using,
-            the location will be represented as just the base class, otherwise it will be
-            sub-classed correctly.
+            A {@link Location} represents a geographical entity that can be targeted. If a location type is
+            not available because of the API version you are using, the location will be represented as just
+            the base class, otherwise it will be sub-classed correctly.
           </documentation>
         </annotation>
         <sequence>
@@ -3581,16 +3518,16 @@
             name="mobileApplicationIds" type="xsd:long">
             <annotation>
               <documentation>
-                The {@link MobileApplication#id IDs} that are being targeted or excluded by the
-                {@link LineItem}.
+                The {@link MobileApplication#id IDs} that are being targeted or excluded by the {@link
+                LineItem}.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="isTargeted" type="xsd:boolean">
             <annotation>
               <documentation>
-                Indicates whether mobile apps should be targeted or excluded. This attribute is optional
-                and defaults to {@code true}.
+                Indicates whether mobile apps should be targeted or excluded. This attribute is optional and
+                defaults to {@code true}.
               </documentation>
             </annotation>
           </element>
@@ -3613,10 +3550,9 @@
       <complexType name="MobileCarrier">
         <annotation>
           <documentation>
-            Represents a mobile carrier.
-            Carrier targeting is only available to Ad Manager mobile publishers.
-            For a list of current mobile carriers, you can use
-            {@link PublisherQueryLanguageService#mobile_carrier}.
+            Represents a mobile carrier. Carrier targeting is only available to Ad Manager mobile publishers.
+            For a list of current mobile carriers, you can use {@link
+            PublisherQueryLanguageService#mobile_carrier}.
           </documentation>
         </annotation>
         <complexContent>
@@ -3635,8 +3571,8 @@
           <element maxOccurs="1" minOccurs="0" name="isTargeted" type="xsd:boolean">
             <annotation>
               <documentation>
-                Indicates whether mobile carriers should be targeted or excluded. This
-                attribute is optional and defaults to {@code true}.
+                Indicates whether mobile carriers should be targeted or excluded. This attribute is optional
+                and defaults to {@code true}.
               </documentation>
             </annotation>
           </element>
@@ -3644,8 +3580,7 @@
             name="mobileCarriers" type="tns:Technology">
             <annotation>
               <documentation>
-                Mobile carriers that are being targeted or excluded by the
-                {@link LineItem}.
+                Mobile carriers that are being targeted or excluded by the {@link LineItem}.
               </documentation>
             </annotation>
           </element>
@@ -3850,16 +3785,15 @@
       <complexType name="OperatingSystemTargeting">
         <annotation>
           <documentation>
-            Represents operating systems that are being targeted or excluded by the
-            {@link LineItem}.
+            Represents operating systems that are being targeted or excluded by the {@link LineItem}.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="1" minOccurs="0" name="isTargeted" type="xsd:boolean">
             <annotation>
               <documentation>
-                Indicates whether operating systems should be targeted or excluded. This
-                attribute is optional and defaults to {@code true}.
+                Indicates whether operating systems should be targeted or excluded. This attribute is optional
+                and defaults to {@code true}.
               </documentation>
             </annotation>
           </element>
@@ -3867,8 +3801,7 @@
             name="operatingSystems" type="tns:Technology">
             <annotation>
               <documentation>
-                Operating systems that are being targeted or excluded by the
-                {@link LineItem}.
+                Operating systems that are being targeted or excluded by the {@link LineItem}.
               </documentation>
             </annotation>
           </element>
@@ -3919,8 +3852,7 @@
             name="targetedOperatingSystemVersions" type="tns:Technology">
             <annotation>
               <documentation>
-                Operating system versions that are being targeted by the
-                {@link LineItem}.
+                Operating system versions that are being targeted by the {@link LineItem}.
               </documentation>
             </annotation>
           </element>
@@ -3928,8 +3860,7 @@
             name="excludedOperatingSystemVersions" type="tns:Technology">
             <annotation>
               <documentation>
-                Operating system versions that are being excluded by the
-                {@link LineItem}.
+                Operating system versions that are being excluded by the {@link LineItem}.
               </documentation>
             </annotation>
           </element>
@@ -4049,8 +3980,8 @@
           <element maxOccurs="1" minOccurs="0" name="proposalId" type="xsd:long">
             <annotation>
               <documentation>
-                The unique ID of the {@link Proposal}, to which the {@code ProposalLineItem}
-                belongs. This attribute is required for creation and then is readonly.
+                The unique ID of the {@link Proposal}, to which the {@code ProposalLineItem} belongs. This
+                attribute is required for creation and then is readonly.
                 &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
             </annotation>
@@ -4058,10 +3989,10 @@
           <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
             <annotation>
               <documentation>
-                The name of the {@code ProposalLineItem} which should be unique under the same
-                {@link Proposal}. This attribute has a maximum length of 255 characters.
-                This attribute can be configured as editable after the proposal has been submitted.
-                Please check with your network administrator for editable fields configuration.
+                The name of the {@code ProposalLineItem} which should be unique under the same {@link
+                Proposal}. This attribute has a maximum length of 255 characters. This attribute can be
+                configured as editable after the proposal has been submitted. Please check with your network
+                administrator for editable fields configuration.
                 &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
             </annotation>
@@ -4069,21 +4000,21 @@
           <element maxOccurs="1" minOccurs="0" name="startDateTime" type="tns:DateTime">
             <annotation>
               <documentation>
-                The date and time at which the line item associated with the
-                {@code ProposalLineItem} is enabled to begin serving. This attribute is optional
-                during creation, but required and must be in the future when it turns into a line item.
-                The {@link DateTime#timeZoneID} is required if start date time is not {@code null}.
-                This attribute becomes readonly once the {@code ProposalLineItem} has started delivering.
+                The date and time at which the line item associated with the {@code ProposalLineItem} is
+                enabled to begin serving. This attribute is optional during creation, but required and must be
+                in the future when it turns into a line item. The {@link DateTime#timeZoneID} is required if
+                start date time is not {@code null}. This attribute becomes readonly once the {@code
+                ProposalLineItem} has started delivering.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="endDateTime" type="tns:DateTime">
             <annotation>
               <documentation>
-                The date and time at which the line item associated with the
-                {@code ProposalLineItem} stops beening served. This attribute is optional during creation,
-                but required and must be after the {@link #startDateTime}. The {@link DateTime#timeZoneID} is
-                required if end date time is not {@code null}.
+                The date and time at which the line item associated with the {@code ProposalLineItem} stops
+                beening served. This attribute is optional during creation, but required and must be after the
+                {@link #startDateTime}. The {@link DateTime#timeZoneID} is required if end date time is not
+                {@code null}.
               </documentation>
             </annotation>
           </element>
@@ -4123,8 +4054,8 @@
                 The goal(i.e. contracted quantity, quantity or limit) that this {@code ProposalLineItem} is
                 associated with, which is used in its pacing and budgeting. {@link Goal#units} must be greater
                 than 0 when the proposal line item turns into a line item, {@link Goal#goalType} and {@link
-                Goal#unitType} are readonly.
-                For a Preferred deal {@code ProposalLineItem}, the goal type can only be {@link GoalType#NONE}.
+                Goal#unitType} are readonly. For a Preferred deal {@code ProposalLineItem}, the goal type can
+                only be {@link GoalType#NONE}.
                 &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
             </annotation>
@@ -4144,37 +4075,30 @@
             name="contractedUnitsBought" type="xsd:long">
             <annotation>
               <documentation>
-                The contracted number of impressions or clicks.
-                If this is a {@link LineItemType#SPONSORSHIP} {@code ProposalLineItem}, has
-                {@link RateType#CPD} as a rate type, and {@link #isProgrammatic} is false,
-                then this represents the lifetime minimum impression.
-                If this is a {@link LineItemType#SPONSORSHIP} {@code ProposalLineItem}, has
-                {@link RateType#CPD} as a rate type, and {@link #isProgrammatic} is true,
-                then this represents the daily minimum impression.
-                &lt;p&gt;This attribute is required for percentage-based-goal
-                {@link ProposalLineItem proposal line items}.  It does not impact ad-serving and is for
-                reporting purposes only.
+                The contracted number of daily minimum impressions used for {@link LineItemType#SPONSORSHIP}
+                {@code ProposalLineItem} deals with a rate type of {@link RateType#CPD}.
+                
+                &lt;p&gt;This attribute is required for percentage-based-goal {@link ProposalLineItem proposal line
+                items}. It does not impact ad-serving and is for reporting purposes only.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="deliveryRateType" type="tns:DeliveryRateType">
             <annotation>
               <documentation>
-                The strategy for delivering ads over the course of the {@code ProposalLineItem}'s
-                duration. This attribute is required.
-                For a Preferred deal {@code ProposalLineItem}, the value can only be
-                {@link DeliveryRateType#FRONTLOADED}.
+                The strategy for delivering ads over the course of the {@code ProposalLineItem}'s duration.
+                This attribute is required. For a Preferred deal {@code ProposalLineItem}, the value can only
+                be {@link DeliveryRateType#FRONTLOADED}.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="roadblockingType" type="tns:RoadblockingType">
             <annotation>
               <documentation>
-                The strategy for serving roadblocked creatives, i.e. instances where
-                multiple creatives must be served together on a single web page. This attribute
-                is optional during creation and defaults to the
-                {@link Product#roadblockingType product's roadblocking type},
-                or {@link RoadblockingType#ONE_OR_MORE} if not specified by the product.
+                The strategy for serving roadblocked creatives, i.e. instances where multiple creatives must be
+                served together on a single web page. This attribute is optional during creation and defaults
+                to the {@link Product#roadblockingType product's roadblocking type}, or {@link
+                RoadblockingType#ONE_OR_MORE} if not specified by the product.
               </documentation>
             </annotation>
           </element>
@@ -4182,21 +4106,21 @@
             name="companionDeliveryOption" type="tns:CompanionDeliveryOption">
             <annotation>
               <documentation>
-                The delivery option for companions. This is only valid if the roadblocking type is
-                {@link RoadblockingType#CREATIVE_SET}. The default value for roadblocking creatives is
-                {@link CompanionDeliveryOption#OPTIONAL}. The default value in other cases is
-                {@link CompanionDeliveryOption#UNKNOWN}. Providing something other than
-                {@link CompanionDeliveryOption#UNKNOWN} will cause an error.
+                The delivery option for companions. This is only valid if the roadblocking type is {@link
+                RoadblockingType#CREATIVE_SET}. The default value for roadblocking creatives is {@link
+                CompanionDeliveryOption#OPTIONAL}. The default value in other cases is {@link
+                CompanionDeliveryOption#UNKNOWN}. Providing something other than {@link
+                CompanionDeliveryOption#UNKNOWN} will cause an error.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="videoMaxDuration" type="xsd:long">
             <annotation>
               <documentation>
-                The max duration of a video creative associated with this {@code ProposalLineItem}
-                in milliseconds. This attribute is optional, defaults to the {@link Product#videoMaxDuration}
-                on the {@link Product} it was created with, and only meaningful if this is a
-                video proposal line item.
+                The max duration of a video creative associated with this {@code ProposalLineItem} in
+                milliseconds. This attribute is optional, defaults to the {@link Product#videoMaxDuration} on
+                the {@link Product} it was created with, and only meaningful if this is a video proposal line
+                item.
               </documentation>
             </annotation>
           </element>
@@ -4213,10 +4137,9 @@
             name="frequencyCaps" type="tns:FrequencyCap">
             <annotation>
               <documentation>
-                The set of frequency capping units for this {@code ProposalLineItem}. This
-                attribute is optional during creation and defaults to the
-                {@link Product#frequencyCaps product's frequency caps} if
-                {@link Product#allowFrequencyCapsCustomization} is {@code false}.
+                The set of frequency capping units for this {@code ProposalLineItem}. This attribute is
+                optional during creation and defaults to the {@link Product#frequencyCaps product's frequency
+                caps} if {@link Product#allowFrequencyCapsCustomization} is {@code false}.
               </documentation>
             </annotation>
           </element>
@@ -4232,12 +4155,13 @@
           <element maxOccurs="1" minOccurs="0" name="lineItemType" type="tns:LineItemType">
             <annotation>
               <documentation>
-                The corresponding {@link LineItemType} of the {@code ProposalLineItem}.
-                For a programmatic {@code ProposalLineItem}, the value can only be one of:
+                The corresponding {@link LineItemType} of the {@code ProposalLineItem}. For a programmatic
+                {@code ProposalLineItem}, the value can only be one of:
+                
                 &lt;ul&gt;
-                &lt;li&gt;{@link LineItemType#SPONSORSHIP}&lt;/li&gt;
-                &lt;li&gt;{@link LineItemType#STANDARD}&lt;/li&gt;
-                &lt;li&gt;{@link LineItemType#PREFERRED_DEAL}&lt;/li&gt;
+                &lt;li&gt;{@link LineItemType#SPONSORSHIP}
+                &lt;li&gt;{@link LineItemType#STANDARD}
+                &lt;li&gt;{@link LineItemType#PREFERRED_DEAL}
                 &lt;/ul&gt;
                 &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
@@ -4246,10 +4170,10 @@
           <element maxOccurs="1" minOccurs="0" name="lineItemPriority" type="xsd:int">
             <annotation>
               <documentation>
-                The priority for the corresponding {@link LineItem} of the {@code ProposalLineItem}.
-                This attribute is optional during creation and defaults to the default priority of the
-                {@link #lineItemType}. For forecasting, this attribute is optional and has a default value
-                assigned by Google. See {@link LineItem#priority} for more information.
+                The priority for the corresponding {@link LineItem} of the {@code ProposalLineItem}. This
+                attribute is optional during creation and defaults to the default priority of the {@link
+                #lineItemType}. For forecasting, this attribute is optional and has a default value assigned by
+                Google. See {@link LineItem#priority} for more information.
               </documentation>
             </annotation>
           </element>
@@ -4276,8 +4200,8 @@
           <element maxOccurs="1" minOccurs="0" name="targeting" type="tns:Targeting">
             <annotation>
               <documentation>
-                Contains the targeting criteria for the {@code ProposalLineItem}. This attribute is
-                optional during creation and defaults to the {@link Product#targeting product's targeting}.
+                Contains the targeting criteria for the {@code ProposalLineItem}. This attribute is optional
+                during creation and defaults to the {@link Product#targeting product's targeting}.
               </documentation>
             </annotation>
           </element>
@@ -4285,9 +4209,8 @@
             name="customFieldValues" type="tns:BaseCustomFieldValue">
             <annotation>
               <documentation>
-                The values of the custom fields associated with the {@code ProposalLineItem}.
-                This attribute is optional.
-                This attribute can be configured as editable after the proposal has been submitted.
+                The values of the custom fields associated with the {@code ProposalLineItem}. This attribute is
+                optional. This attribute can be configured as editable after the proposal has been submitted.
                 Please check with your network administrator for editable fields configuration.
               </documentation>
             </annotation>
@@ -4296,8 +4219,7 @@
             name="appliedLabels" type="tns:AppliedLabel">
             <annotation>
               <documentation>
-                The set of labels applied directly to the {@code ProposalLineItem}.
-                This attribute is optional.
+                The set of labels applied directly to the {@code ProposalLineItem}. This attribute is optional.
               </documentation>
             </annotation>
           </element>
@@ -4305,9 +4227,8 @@
             name="effectiveAppliedLabels" type="tns:AppliedLabel">
             <annotation>
               <documentation>
-                Contains the set of labels applied directly to the proposal as well as those
-                inherited ones. If a label has been negated, only the negated label
-                is returned.
+                Contains the set of labels applied directly to the proposal as well as those inherited ones. If
+                a label has been negated, only the negated label is returned.
                 This attribute is read-only.
               </documentation>
             </annotation>
@@ -4367,13 +4288,14 @@
             <annotation>
               <documentation>
                 Indicates how well the line item generated from this proposal line item has been performing.
-                This will be {@code null} if the delivery indicator information is not available due to one
-                of the following reasons:
+                This will be {@code null} if the delivery indicator information is not available due to one of
+                the following reasons:
+                
                 &lt;ol&gt;
-                &lt;li&gt;The proposal line item has not pushed to Ad Manager.&lt;/li&gt;
-                &lt;li&gt;The line item is not delivering.&lt;/li&gt;
-                &lt;li&gt;The line item has an unlimited goal or cap.&lt;/li&gt;
-                &lt;li&gt;The line item has a percentage based goal or cap.&lt;/li&gt;
+                &lt;li&gt;The proposal line item has not pushed to Ad Manager.
+                &lt;li&gt;The line item is not delivering.
+                &lt;li&gt;The line item has an unlimited goal or cap.
+                &lt;li&gt;The line item has a percentage based goal or cap.
                 &lt;/ol&gt;
                 This attribute is read-only.
               </documentation>
@@ -4385,12 +4307,13 @@
                 Delivery data provides the number of clicks or impressions delivered for the {@link LineItem}
                 generated from this proposal line item in the last 7 days. This will be {@code null} if the
                 delivery data cannot be computed due to one of the following reasons:
+                
                 &lt;ol&gt;
-                &lt;li&gt;The proposal line item has not pushed to Ad Manager.&lt;/li&gt;
-                &lt;li&gt;The line item is not deliverable.&lt;/li&gt;
-                &lt;li&gt;The line item has completed delivering more than 7 days ago.&lt;/li&gt;
-                &lt;li&gt;The line item has an absolute-based goal. {@link ProposalLineItem#deliveryIndicator} should
-                be used to track its progress in this case.&lt;/li&gt;
+                &lt;li&gt;The proposal line item has not pushed to Ad Manager.
+                &lt;li&gt;The line item is not deliverable.
+                &lt;li&gt;The line item has completed delivering more than 7 days ago.
+                &lt;li&gt;The line item has an absolute-based goal. {@link ProposalLineItem#deliveryIndicator}
+                should be used to track its progress in this case.
                 This attribute is read-only.
               </documentation>
             </annotation>
@@ -4398,8 +4321,8 @@
           <element maxOccurs="1" minOccurs="0" name="computedStatus" type="tns:ComputedStatus">
             <annotation>
               <documentation>
-                The status of the {@link LineItem} generated from this proposal line item.
-                This will be {@code null} if the proposal line item has not pushed to Ad Manager.
+                The status of the {@link LineItem} generated from this proposal line item. This will be {@code
+                null} if the proposal line item has not pushed to Ad Manager.
                 This attribute is read-only.
               </documentation>
             </annotation>
@@ -4435,14 +4358,13 @@
           <element maxOccurs="1" minOccurs="0" name="environmentType" type="tns:EnvironmentType">
             <annotation>
               <documentation>
-                The environment that the {@code ProposalLineItem} is targeting. The default value
-                is {@link EnvironmentType#BROWSER}. If this value is {@link EnvironmentType#VIDEO_PLAYER},
-                then this {@code ProposalLineItem} can only target {@link AdUnit ad units} that have
-                {@link AdUnitSize sizes} whose {@link AdUnitSize#environmentType} is also
-                {@link EnvironmentType#VIDEO_PLAYER}.
+                The environment that the {@code ProposalLineItem} is targeting. The default value is {@link
+                EnvironmentType#BROWSER}. If this value is {@link EnvironmentType#VIDEO_PLAYER}, then this
+                {@code ProposalLineItem} can only target {@link AdUnit ad units} that have {@link AdUnitSize
+                sizes} whose {@link AdUnitSize#environmentType} is also {@link EnvironmentType#VIDEO_PLAYER}.
                 
-                &lt;p&gt;This field is read-only and set to {@link Product#environmentType} of the product
-                this proposal line item was created from.
+                &lt;p&gt;This field is read-only and set to {@link Product#environmentType} of the product this
+                proposal line item was created from.
               </documentation>
             </annotation>
           </element>
@@ -4567,13 +4489,12 @@
           <element maxOccurs="1" minOccurs="0" name="reason" type="xsd:string">
             <annotation>
               <documentation>
-                The publisher-provided reason why this makegood was initiated.  This is free form text.
+                The publisher-provided reason why this makegood was initiated. This is free form text.
                 
-                The following predefined values can be used to render predefined options in the UI.
+                &lt;p&gt;The following predefined values can be used to render predefined options in the UI.
                 
-                UNDERDELIVERY: 'Impression underdelivery',
-                SECONDARY_DELIVERY_TERMS: 'Did not meet secondary delivery terms ',
-                PERFORMANCE: 'Performance issues',
+                &lt;p&gt;UNDERDELIVERY: 'Impression underdelivery', SECONDARY_DELIVERY_TERMS: 'Did not meet secondary
+                delivery terms ', PERFORMANCE: 'Performance issues',
               </documentation>
             </annotation>
           </element>
@@ -4590,10 +4511,10 @@
             <annotation>
               <documentation>
                 The target of the forecast. If {@link LineItem#id} is null or no line item exists with that ID,
-                then a forecast is computed for the subject, predicting what would happen if it were added
-                to the network. If a line item already exists with {@link LineItem#id}, the forecast is
-                computed for the subject, predicting what would happen if the existing line item's settings
-                were modified to match the subject.
+                then a forecast is computed for the subject, predicting what would happen if it were added to
+                the network. If a line item already exists with {@link LineItem#id}, the forecast is computed
+                for the subject, predicting what would happen if the existing line item's settings were
+                modified to match the subject.
               </documentation>
             </annotation>
           </element>
@@ -4602,11 +4523,11 @@
               <documentation>
                 The target of the forecast if this prospective line item is a proposal line item.
                 
-                &lt;p&gt;If {@link ProposalLineItem#id} is null or no proposal line item exists with that ID,
-                then a forecast is computed for the subject, predicting what would happen if it were added
-                to the network. If a proposal line item already exists with {@link ProposalLineItem#id},
-                the forecast is computed for the subject, predicting what would happen if the existing proposal
-                line item's settings were modified to match the subject.
+                &lt;p&gt;If {@link ProposalLineItem#id} is null or no proposal line item exists with that ID, then a
+                forecast is computed for the subject, predicting what would happen if it were added to the
+                network. If a proposal line item already exists with {@link ProposalLineItem#id}, the forecast
+                is computed for the subject, predicting what would happen if the existing proposal line item's
+                settings were modified to match the subject.
                 
                 &lt;p&gt;A proposal line item can optionally correspond to an order {@link LineItem}, in which case,
                 by forecasting a proposal line item, the corresponding line item is implicitly ignored in the
@@ -4727,7 +4648,7 @@
             &lt;p&gt;The following rules apply for {@link RequestPlatformTargeting}
             
             &lt;ul&gt;
-            &lt;li&gt;{@link RequestPlatformTargeting} must be specified for {@link ProposalLineItem}s.&lt;/li&gt;
+            &lt;li&gt;{@link RequestPlatformTargeting} must be specified for {@link ProposalLineItem}s.
             &lt;li&gt;{@link RequestPlatformTargeting} must be specified for video line items. Empty values for
             {@link RequestPlatformTargeting#targetedRequestPlatforms} mean that all request platforms
             will be targeted.
@@ -5003,8 +4924,8 @@
       <complexType name="Stats">
         <annotation>
           <documentation>
-            {@code Stats} contains trafficking statistics for {@link LineItem} and
-            {@link LineItemCreativeAssociation} objects
+            {@code Stats} contains trafficking statistics for {@link LineItem} and {@link
+            LineItemCreativeAssociation} objects
           </documentation>
         </annotation>
         <sequence>
@@ -5143,16 +5064,15 @@
       <complexType name="Targeting">
         <annotation>
           <documentation>
-            Contains targeting criteria for {@link LineItem} objects. See
-            {@link LineItem#targeting}.
+            Contains targeting criteria for {@link LineItem} objects. See {@link LineItem#targeting}.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="1" minOccurs="0" name="geoTargeting" type="tns:GeoTargeting">
             <annotation>
               <documentation>
-                Specifies what geographical locations are targeted by the {@link LineItem}.
-                This attribute is optional.
+                Specifies what geographical locations are targeted by the {@link LineItem}. This attribute is
+                optional.
               </documentation>
             </annotation>
           </element>
@@ -5167,8 +5087,8 @@
           <element maxOccurs="1" minOccurs="0" name="dayPartTargeting" type="tns:DayPartTargeting">
             <annotation>
               <documentation>
-                Specifies the days of the week and times that are targeted by the
-                {@link LineItem}. This attribute is optional.
+                Specifies the days of the week and times that are targeted by the {@link LineItem}. This
+                attribute is optional.
               </documentation>
             </annotation>
           </element>
@@ -5185,43 +5105,33 @@
             name="technologyTargeting" type="tns:TechnologyTargeting">
             <annotation>
               <documentation>
-                Specifies the browsing technologies that are targeted by the
-                {@link LineItem}. This attribute is optional.
+                Specifies the browsing technologies that are targeted by the {@link LineItem}. This attribute
+                is optional.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="customTargeting" type="tns:CustomCriteriaSet">
             <annotation>
               <documentation>
-                Specifies the collection of custom criteria that is targeted by the
-                {@link LineItem}.
-                &lt;p&gt;
-                Once the {@link LineItem} is updated or modified with custom targeting, the
-                server may return a normalized, but equivalent representation of the custom
-                targeting expression.
-                &lt;p&gt;
-                {@code customTargeting} will have up to three levels of expressions
-                including itself.
-                &lt;/p&gt;
-                &lt;p&gt;
-                The top level {@code CustomCriteriaSet} i.e. the {@code customTargeting}
-                object can only contain a {@link CustomCriteriaSet.LogicalOperator#OR} of
-                all its children.
-                &lt;/p&gt;
-                &lt;p&gt;
-                The second level of {@code CustomCriteriaSet} objects can only contain
-                {@link CustomCriteriaSet.LogicalOperator#AND} of all their children. If
-                a {@link CustomCriteria} is placed on this level, the server will wrap it
-                in a {@link CustomCriteriaSet}.
-                &lt;/p&gt;
-                &lt;p&gt;
-                The third level can only comprise of {@link CustomCriteria} objects.
-                &lt;/p&gt;
-                &lt;p&gt;
-                The resulting custom targeting tree would be of the form:
-                &lt;/p&gt;
-                &lt;br/&gt;
-                &lt;img src="https://chart.apis.google.com/chart?cht=gv&amp;chl=digraph{customTargeting_LogicalOperator_OR-%3ECustomCriteriaSet_LogicalOperator_AND_1-%3ECustomCriteria_1;CustomCriteriaSet_LogicalOperator_AND_1-%3Eellipsis1;customTargeting_LogicalOperator_OR-%3Eellipsis2;ellipsis1[label=%22...%22,shape=none,fontsize=32];ellipsis2[label=%22...%22,shape=none,fontsize=32]}&amp;chs=450x200"/&gt;
+                Specifies the collection of custom criteria that is targeted by the {@link LineItem}.
+                
+                &lt;p&gt;Once the {@link LineItem} is updated or modified with custom targeting, the server may
+                return a normalized, but equivalent representation of the custom targeting expression.
+                
+                &lt;p&gt;{@code customTargeting} will have up to three levels of expressions including itself.
+                
+                &lt;p&gt;The top level {@code CustomCriteriaSet} i.e. the {@code customTargeting} object can only
+                contain a {@link CustomCriteriaSet.LogicalOperator#OR} of all its children.
+                
+                &lt;p&gt;The second level of {@code CustomCriteriaSet} objects can only contain {@link
+                CustomCriteriaSet.LogicalOperator#AND} of all their children. If a {@link CustomCriteria} is
+                placed on this level, the server will wrap it in a {@link CustomCriteriaSet}.
+                
+                &lt;p&gt;The third level can only comprise of {@link CustomCriteria} objects.
+                
+                &lt;p&gt;The resulting custom targeting tree would be of the form: &lt;br&gt;
+                &lt;img
+                src="https://chart.apis.google.com/chart?cht=gv&amp;chl=digraph{customTargeting_LogicalOperator_OR-%3ECustomCriteriaSet_LogicalOperator_AND_1-%3ECustomCriteria_1;CustomCriteriaSet_LogicalOperator_AND_1-%3Eellipsis1;customTargeting_LogicalOperator_OR-%3Eellipsis2;ellipsis1[label=%22...%22,shape=none,fontsize=32];ellipsis2[label=%22...%22,shape=none,fontsize=32]}&amp;chs=450x200"/&gt;
               </documentation>
             </annotation>
           </element>
@@ -5229,17 +5139,16 @@
             name="userDomainTargeting" type="tns:UserDomainTargeting">
             <annotation>
               <documentation>
-                Specifies the domains or subdomains that are targeted or excluded by the
-                {@link LineItem}. Users visiting from an IP address associated with
-                those domains will be targeted or excluded. This attribute is optional.
+                Specifies the domains or subdomains that are targeted or excluded by the {@link LineItem}.
+                Users visiting from an IP address associated with those domains will be targeted or excluded.
+                This attribute is optional.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="contentTargeting" type="tns:ContentTargeting">
             <annotation>
               <documentation>
-                Specifies the video categories and individual videos targeted by the
-                {@link LineItem}.
+                Specifies the video categories and individual videos targeted by the {@link LineItem}.
               </documentation>
             </annotation>
           </element>
@@ -5263,8 +5172,8 @@
             name="buyerUserListTargeting" type="tns:BuyerUserListTargeting">
             <annotation>
               <documentation>
-                Specifies whether buyer user lists are targeted on a programmatic {@link LineItem}
-                or {@link ProposalLineItem}. This attribute is readonly and is populated by Google.
+                Specifies whether buyer user lists are targeted on a programmatic {@link LineItem} or {@link
+                ProposalLineItem}. This attribute is readonly and is populated by Google.
               </documentation>
             </annotation>
           </element>
@@ -5331,16 +5240,15 @@
           <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
             <annotation>
               <documentation>
-                The unique ID of the {@code Technology}. This value is required for
-                all forms of {@code TechnologyTargeting}.
+                The unique ID of the {@code Technology}. This value is required for all forms of {@code
+                TechnologyTargeting}.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
             <annotation>
               <documentation>
-                The name of the technology being targeting. This value is read-only and is
-                assigned by Google.
+                The name of the technology being targeting. This value is read-only and is assigned by Google.
               </documentation>
             </annotation>
           </element>
@@ -5796,8 +5704,7 @@
             name="targetedPositions" type="tns:VideoPositionTarget">
             <annotation>
               <documentation>
-                The {@link VideoTargetingPosition} objects being targeted by the
-                video {@link LineItem}.
+                The {@link VideoTargetingPosition} objects being targeted by the video {@link LineItem}.
               </documentation>
             </annotation>
           </element>
@@ -8613,7 +8520,7 @@
             <annotation>
               <documentation>
                 Age range for GRP audience is not valid. Please see the
-                &lt;a href="https://support.google.com/dfp_premium/answer/6135438"&gt;Ad Manager Help Center&lt;/a&gt;
+                &lt;a href="https://support.google.com/admanager/answer/6135438"&gt;Ad Manager Help Center&lt;/a&gt;
                 for more information.
               </documentation>
             </annotation>
@@ -12722,9 +12629,9 @@
       <element name="getDeliveryForecastByIds">
         <annotation>
           <documentation>
-            Gets the delivery forecast for a list of existing {@link LineItem} objects in a single
-            delivery simulation. A delivery forecast reports the number of units that will be delivered
-            to each line item given the line item goals and contentions from other line items.
+            Gets the delivery forecast for a list of existing {@link LineItem} objects in a single delivery
+            simulation. A delivery forecast reports the number of units that will be delivered to each line
+            item given the line item goals and contentions from other line items.
           </documentation>
         </annotation>
         <complexType>
@@ -12940,9 +12847,9 @@
     </wsdl:operation>
     <wsdl:operation name="getDeliveryForecastByIds">
       <wsdl:documentation>
-        Gets the delivery forecast for a list of existing {@link LineItem} objects in a single
-        delivery simulation. A delivery forecast reports the number of units that will be delivered
-        to each line item given the line item goals and contentions from other line items.
+        Gets the delivery forecast for a list of existing {@link LineItem} objects in a single delivery
+        simulation. A delivery forecast reports the number of units that will be delivered to each line
+        item given the line item goals and contentions from other line items.
       </wsdl:documentation>
       <wsdl:input message="tns:getDeliveryForecastByIdsRequest" name="getDeliveryForecastByIdsRequest"/>
       <wsdl:output message="tns:getDeliveryForecastByIdsResponse" name="getDeliveryForecastByIdsResponse"/>

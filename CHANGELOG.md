@@ -1,3 +1,35 @@
+### 60.0.0
+
+##### AdWords
+
+* Removed support because [the API was
+sunset](https://ads-developers.googleblog.com/2022/04/reminder-requests-to-adwords-api-will.html).
+Users should migrate to the new client library
+[google-ads-php](https://github.com/googleads/google-ads-php) to access the new
+[Google Ads API](https://developers.google.com/google-ads/api/docs/start)
+instead.
+* Removed all code examples including the `LaravelSampleApp`. Users should refer
+to the new set of
+[code examples](https://github.com/googleads/google-ads-php/tree/HEAD/examples)
+of the new client library to access the new Google Ads API instead which
+also includes a `LaravelSampleApp`.
+
+##### Ad Manager
+
+* Added support for v202302.
+* Removed support for v202202.
+* Removed examples for v202205.
+
+##### Common
+
+* Removed support for version 7.3 of the php dependency.
+* Added support for version 3 of the monolog/monolog dependency.
+* Added support for version 6 of the symfony/serializer dependency.
+* Upgraded the minimum version of the guzzlehttp/psr7 dependency to 1.7 and
+  added support for version 2.
+* Migrated the example Auth/GetRefreshToken from OOB. More details can be found
+[here](https://developers.google.com/identity/protocols/oauth2/resources/oob-migration).
+
 ### 59.0.0
 
 ##### AdWords

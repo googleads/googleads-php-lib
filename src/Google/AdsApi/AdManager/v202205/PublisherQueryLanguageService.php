@@ -150,8 +150,7 @@ class PublisherQueryLanguageService extends \Google\AdsApi\Common\AdsSoapClient
     }
 
     /**
-     * Retrieves rows of data that satisfy the given {@link Statement#query} from
-     * the system.
+     * Retrieves rows of data that satisfy the given {@link Statement#query} from the system.
      *
      * @param \Google\AdsApi\AdManager\v202205\Statement $selectStatement
      * @return \Google\AdsApi\AdManager\v202205\ResultSet

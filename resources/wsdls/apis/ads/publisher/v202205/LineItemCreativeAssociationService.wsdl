@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2022 Google Inc. All Rights Reserved -->
+<!-- Copyright 2023 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202205"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202205"
@@ -809,8 +809,8 @@
           <element maxOccurs="1" minOccurs="0" name="lineItemId" type="xsd:long">
             <annotation>
               <documentation>
-                The ID of the {@link LineItem} to which the {@link Creative} should be
-                associated. This attribute is required.
+                The ID of the {@link LineItem} to which the {@link Creative} should be associated. This
+                attribute is required.
               </documentation>
             </annotation>
           </element>
@@ -818,27 +818,26 @@
             <annotation>
               <documentation>
                 The ID of the {@link Creative} being associated with a {@link LineItem}.
-                &lt;p&gt;
-                This attribute is required if this is an association between a line item and a creative.
+                
+                &lt;p&gt;This attribute is required if this is an association between a line item and a creative.
                 &lt;br&gt;
                 This attribute is ignored if this is an association between a line item and a creative set.
-                &lt;p&gt;
-                If this is an association between a line item and a creative, when retrieving the
-                line item creative association, the {@link #creativeId} will be the creative's ID.
-                &lt;br&gt;
-                If this is an association between a line item and a creative set, when retrieving the
-                line item creative association, the {@link #creativeId} will be the ID of the
-                {@link CreativeSet#masterCreativeId master creative}.
+                
+                &lt;p&gt;If this is an association between a line item and a creative, when retrieving the line item
+                creative association, the {@link #creativeId} will be the creative's ID. &lt;br&gt;
+                If this is an association between a line item and a creative set, when retrieving the line item
+                creative association, the {@link #creativeId} will be the ID of the {@link
+                CreativeSet#masterCreativeId master creative}.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="creativeSetId" type="xsd:long">
             <annotation>
               <documentation>
-                The ID of the {@link CreativeSet} being associated with a {@link LineItem}.
-                This attribute is required if this is an association between a line item and a creative set.
-                &lt;p&gt;
-                This field will be {@code null} when retrieving associations between line items and
+                The ID of the {@link CreativeSet} being associated with a {@link LineItem}. This attribute is
+                required if this is an association between a line item and a creative set.
+                
+                &lt;p&gt;This field will be {@code null} when retrieving associations between line items and
                 creatives not belonging to a set.
               </documentation>
             </annotation>
@@ -847,10 +846,9 @@
             name="manualCreativeRotationWeight" type="xsd:double">
             <annotation>
               <documentation>
-                The weight of the {@link Creative}. This value is only used if the line
-                item's {@code creativeRotationType} is set to
-                {@link CreativeRotationType#MANUAL}. This attribute is optional and
-                defaults to 10.
+                The weight of the {@link Creative}. This value is only used if the line item's {@code
+                creativeRotationType} is set to {@link CreativeRotationType#MANUAL}. This attribute is optional
+                and defaults to 10.
               </documentation>
             </annotation>
           </element>
@@ -858,55 +856,50 @@
             name="sequentialCreativeRotationIndex" type="xsd:int">
             <annotation>
               <documentation>
-                The sequential rotation index of the {@link Creative}.
-                This value is used only if
-                the associated line item's {@link LineItem#creativeRotationType} is set to
-                {@link CreativeRotationType#SEQUENTIAL}. This attribute is optional and
-                defaults to 1.
+                The sequential rotation index of the {@link Creative}. This value is used only if the
+                associated line item's {@link LineItem#creativeRotationType} is set to {@link
+                CreativeRotationType#SEQUENTIAL}. This attribute is optional and defaults to 1.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="startDateTime" type="tns:DateTime">
             <annotation>
               <documentation>
-                Overrides the value set for {@link LineItem#startDateTime}. This value is
-                optional and is only valid for Ad Manager 360 networks.
+                Overrides the value set for {@link LineItem#startDateTime}. This value is optional and is only
+                valid for Ad Manager 360 networks.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="startDateTimeType" type="tns:StartDateTimeType">
             <annotation>
               <documentation>
-                Specifies whether to start serving to the
-                {@code LineItemCreativeAssociation} right away, in an hour, etc. This
-                attribute is optional and defaults to
-                {@link StartDateTimeType#USE_START_DATE_TIME}.
+                Specifies whether to start serving to the {@code LineItemCreativeAssociation} right away, in an
+                hour, etc. This attribute is optional and defaults to {@link
+                StartDateTimeType#USE_START_DATE_TIME}.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="endDateTime" type="tns:DateTime">
             <annotation>
               <documentation>
-                Overrides {@link LineItem#endDateTime}. This value is optional and is only
-                valid for Ad Manager 360 networks.
+                Overrides {@link LineItem#endDateTime}. This value is optional and is only valid for Ad Manager
+                360 networks.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="destinationUrl" type="xsd:string">
             <annotation>
               <documentation>
-                Overrides the value set for
-                {@link HasDestinationUrlCreative#destinationUrl}. This value is optional
-                and is only valid for Ad Manager 360 networks.
+                Overrides the value set for {@link HasDestinationUrlCreative#destinationUrl}. This value is
+                optional and is only valid for Ad Manager 360 networks.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="unbounded" minOccurs="0" name="sizes" type="tns:Size">
             <annotation>
               <documentation>
-                Overrides the value set for {@link Creative#size}, which allows the
-                creative to be served to ad units that would otherwise not be compatible
-                for its actual size. This value is optional.
+                Overrides the value set for {@link Creative#size}, which allows the creative to be served to ad
+                units that would otherwise not be compatible for its actual size. This value is optional.
               </documentation>
             </annotation>
           </element>
@@ -920,9 +913,9 @@
           <element maxOccurs="1" minOccurs="0" name="stats" type="tns:LineItemCreativeAssociationStats">
             <annotation>
               <documentation>
-                Contains trafficking statistics for the association. This attribute is
-                readonly and is populated by Google. This will be {@code null} in case
-                there are no statistics for the association yet.
+                Contains trafficking statistics for the association. This attribute is readonly and is
+                populated by Google. This will be {@code null} in case there are no statistics for the
+                association yet.
               </documentation>
             </annotation>
           </element>
@@ -940,8 +933,8 @@
                 Specifies {@link CreativeTargeting} for this line item creative association.
                 
                 &lt;p&gt;This attribute is optional. It should match the creative targeting specified on the
-                corresponding {@link CreativePlaceholder} in the {@link LineItem} that is being associated
-                with the {@link Creative}.
+                corresponding {@link CreativePlaceholder} in the {@link LineItem} that is being associated with
+                the {@link Creative}.
               </documentation>
             </annotation>
           </element>
@@ -1022,16 +1015,15 @@
       <complexType name="LineItemCreativeAssociationStats">
         <annotation>
           <documentation>
-            Contains statistics such as impressions, clicks delivered and cost
-            for {@link LineItemCreativeAssociation} objects.
+            Contains statistics such as impressions, clicks delivered and cost for {@link
+            LineItemCreativeAssociation} objects.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="1" minOccurs="0" name="stats" type="tns:Stats">
             <annotation>
               <documentation>
-                A {@link Stats} object that holds delivered impressions and clicks
-                statistics.
+                A {@link Stats} object that holds delivered impressions and clicks statistics.
               </documentation>
             </annotation>
           </element>
@@ -1039,8 +1031,8 @@
             name="creativeSetStats" type="tns:Long_StatsMapEntry">
             <annotation>
               <documentation>
-                A map containing {@link Stats} objects for each creative belonging to
-                a creative set, {@code null} for non creative set associations.
+                A map containing {@link Stats} objects for each creative belonging to a creative set, {@code
+                null} for non creative set associations.
               </documentation>
             </annotation>
           </element>
@@ -1048,8 +1040,8 @@
             name="costInOrderCurrency" type="tns:Money">
             <annotation>
               <documentation>
-                The revenue generated thus far by the creative from its association with
-                the particular line item in the publisher's currency.
+                The revenue generated thus far by the creative from its association with the particular line
+                item in the publisher's currency.
               </documentation>
             </annotation>
           </element>
@@ -1591,8 +1583,8 @@
       <complexType name="Stats">
         <annotation>
           <documentation>
-            {@code Stats} contains trafficking statistics for {@link LineItem} and
-            {@link LineItemCreativeAssociation} objects
+            {@code Stats} contains trafficking statistics for {@link LineItem} and {@link
+            LineItemCreativeAssociation} objects
           </documentation>
         </annotation>
         <sequence>
@@ -3690,32 +3682,30 @@
           <enumeration value="ACTIVE">
             <annotation>
               <documentation>
-                The association is active and the associated {@link Creative} can be
-                served.
+                The association is active and the associated {@link Creative} can be served.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="NOT_SERVING">
             <annotation>
               <documentation>
-                The association is active but the associated {@link Creative} may not be
-                served, because its size is not targeted by the line item.
+                The association is active but the associated {@link Creative} may not be served, because its
+                size is not targeted by the line item.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="INACTIVE">
             <annotation>
               <documentation>
-                The association is inactive and the associated {@link Creative} is
-                ineligible for being served.
+                The association is inactive and the associated {@link Creative} is ineligible for being
+                served.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="UNKNOWN">
             <annotation>
               <documentation>
-                The value returned if the actual value is not exposed by the requested API
-                version.
+                The value returned if the actual value is not exposed by the requested API version.
               </documentation>
             </annotation>
           </enumeration>
@@ -5274,9 +5264,9 @@
       <element name="getLineItemCreativeAssociationsByStatement">
         <annotation>
           <documentation>
-            Gets a {@link LineItemCreativeAssociationPage} of
-            {@link LineItemCreativeAssociation} objects that satisfy the given
-            {@link Statement#query}. The following fields are supported for filtering:
+            Gets a {@link LineItemCreativeAssociationPage} of {@link LineItemCreativeAssociation} objects
+            that satisfy the given {@link Statement#query}. The following fields are supported for
+            filtering:
             
             &lt;table&gt;
             &lt;tr&gt;
@@ -5325,9 +5315,9 @@
       <element name="getPreviewUrl">
         <annotation>
           <documentation>
-            Returns an insite preview URL that references the specified site URL with
-            the specified creative from the association served to it. For Creative Set
-            previewing you may specify the master creative Id.
+            Returns an insite preview URL that references the specified site URL with the specified
+            creative from the association served to it. For Creative Set previewing you may specify the
+            master creative Id.
           </documentation>
         </annotation>
         <complexType>
@@ -5371,8 +5361,8 @@
       <element name="performLineItemCreativeAssociationAction">
         <annotation>
           <documentation>
-            Performs actions on {@link LineItemCreativeAssociation} objects that match
-            the given {@link Statement#query}.
+            Performs actions on {@link LineItemCreativeAssociation} objects that match the given {@link
+            Statement#query}.
           </documentation>
         </annotation>
         <complexType>
@@ -5489,22 +5479,19 @@
   </wsdl:message>
   <wsdl:portType name="LineItemCreativeAssociationServiceInterface">
     <wsdl:documentation>
-      Provides operations for creating, updating and retrieving
-      {@link LineItemCreativeAssociation} objects.
-      &lt;p&gt;
-      A line item creative association (LICA) associates a {@link Creative} with a
-      {@link LineItem}. When a line item is selected to serve, the LICAs specify which
-      creatives can appear for the ad units that are targeted by the line item. In
-      order to be associated with a line item, the creative must have a size that
-      exists within the attribute {@link LineItem#creativePlaceholders}.
-      &lt;/p&gt;
-      &lt;p&gt;
-      Each LICA has a start and end date and time that defines when the creative
-      should be displayed.
-      &lt;/p&gt;
-      &lt;p&gt;
-      To read more about associating creatives with line items, see this
-      &lt;a href="https://support.google.com/dfp_premium/answer/3187916"&gt;DFP Help Center&lt;/a&gt; article.
+      Provides operations for creating, updating and retrieving {@link LineItemCreativeAssociation}
+      objects.
+      
+      &lt;p&gt;A line item creative association (LICA) associates a {@link Creative} with a {@link LineItem}.
+      When a line item is selected to serve, the LICAs specify which creatives can appear for the ad
+      units that are targeted by the line item. In order to be associated with a line item, the
+      creative must have a size that exists within the attribute {@link LineItem#creativePlaceholders}.
+      
+      &lt;p&gt;Each LICA has a start and end date and time that defines when the creative should be
+      displayed.
+      
+      &lt;p&gt;To read more about associating creatives with line items, see this &lt;a
+      href="https://support.google.com/admanager/answer/3187916"&gt;Ad Manager Help Center&lt;/a&gt; article.
     </wsdl:documentation>
     <wsdl:operation name="createLineItemCreativeAssociations">
       <wsdl:documentation>
@@ -5518,9 +5505,9 @@
     </wsdl:operation>
     <wsdl:operation name="getLineItemCreativeAssociationsByStatement">
       <wsdl:documentation>
-        Gets a {@link LineItemCreativeAssociationPage} of
-        {@link LineItemCreativeAssociation} objects that satisfy the given
-        {@link Statement#query}. The following fields are supported for filtering:
+        Gets a {@link LineItemCreativeAssociationPage} of {@link LineItemCreativeAssociation} objects
+        that satisfy the given {@link Statement#query}. The following fields are supported for
+        filtering:
         
         &lt;table&gt;
         &lt;tr&gt;
@@ -5560,9 +5547,9 @@
     </wsdl:operation>
     <wsdl:operation name="getPreviewUrl">
       <wsdl:documentation>
-        Returns an insite preview URL that references the specified site URL with
-        the specified creative from the association served to it. For Creative Set
-        previewing you may specify the master creative Id.
+        Returns an insite preview URL that references the specified site URL with the specified
+        creative from the association served to it. For Creative Set previewing you may specify the
+        master creative Id.
       </wsdl:documentation>
       <wsdl:input message="tns:getPreviewUrlRequest" name="getPreviewUrlRequest"/>
       <wsdl:output message="tns:getPreviewUrlResponse" name="getPreviewUrlResponse"/>
@@ -5580,8 +5567,8 @@
     </wsdl:operation>
     <wsdl:operation name="performLineItemCreativeAssociationAction">
       <wsdl:documentation>
-        Performs actions on {@link LineItemCreativeAssociation} objects that match
-        the given {@link Statement#query}.
+        Performs actions on {@link LineItemCreativeAssociation} objects that match the given {@link
+        Statement#query}.
       </wsdl:documentation>
       <wsdl:input
         message="tns:performLineItemCreativeAssociationActionRequest" name="performLineItemCreativeAssociationActionRequest"/>

@@ -26,11 +26,10 @@ patches.
 ## Submitting Patches
 
 *   Sign a Contributor License Agreement (see above).
-*   Join the appropriate product discussion forum.
-    *   AdWords API: https://developers.google.com/adwords/api/community/
-    *   Ad Manager API: https://developers.google.com/ad-manager/community
-    *   DFA API:
-        https://developers.google.com/doubleclick-advertisers/reporting/community
+*   Join the [Google Ad Manager API
+    forum](https://groups.google.com/g/google-doubleclick-for-publishers-api).
+*   Join the [Google Ad Manager product
+    community](https://support.google.com/admanager/community).
 *   Create an issue on the library issue tracker if there isn't one already. Use
     this issue to co-ordinate the changes with the library maintainer.
 *   Fork the library using `git clone https://github.com/googleads/googleads-php-lib.git`,

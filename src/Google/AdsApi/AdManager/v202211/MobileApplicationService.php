@@ -84,8 +84,8 @@ class MobileApplicationService extends \Google\AdsApi\Common\AdsSoapClient
     }
 
     /**
-     * Creates and claims {@link MobileApplication mobile applications}
-     * to be used for targeting in the network.
+     * Creates and claims {@link MobileApplication mobile applications} to be used for targeting in
+     * the network.
      *
      * @param \Google\AdsApi\AdManager\v202211\MobileApplication[] $mobileApplications
      * @return \Google\AdsApi\AdManager\v202211\MobileApplication[]
@@ -97,9 +97,8 @@ class MobileApplicationService extends \Google\AdsApi\Common\AdsSoapClient
     }
 
     /**
-     * Gets a {@link MobileApplicationPage mobileApplicationPage} of
-     * {@link MobileApplication mobile applications} that satisfy the given {@link Statement}.
-     * The following fields are supported for
+     * Gets a {@link MobileApplicationPage mobileApplicationPage} of {@link MobileApplication mobile
+     * applications} that satisfy the given {@link Statement}. The following fields are supported for
      * filtering:
      *
      * <table>

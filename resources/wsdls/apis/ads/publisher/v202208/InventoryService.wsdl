@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2022 Google Inc. All Rights Reserved -->
+<!-- Copyright 2023 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202208"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202208"
@@ -71,106 +71,97 @@
           <element maxOccurs="1" minOccurs="0" name="adSenseEnabled" type="xsd:boolean">
             <annotation>
               <documentation>
-                Specifies whether or not the {@link AdUnit} is enabled for serving ads from
-                the AdSense content network. This attribute is optional and defaults to the
-                ad unit's parent or ancestor's setting if one has been set. If no ancestor
-                of the ad unit has set {@code adSenseEnabled}, the attribute is
-                defaulted to {@code true}.
+                Specifies whether or not the {@link AdUnit} is enabled for serving ads from the AdSense content
+                network. This attribute is optional and defaults to the ad unit's parent or ancestor's setting
+                if one has been set. If no ancestor of the ad unit has set {@code adSenseEnabled}, the
+                attribute is defaulted to {@code true}.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="borderColor" type="xsd:string">
             <annotation>
               <documentation>
-                Specifies the Hexadecimal border color, from {@code 000000} to {@code
-                FFFFFF}. This attribute is optional and defaults to the ad unit's parent or
-                ancestor's setting if one has been set. If no ancestor of the ad unit has
-                set {@code borderColor}, the attribute is defaulted to {@code FFFFFF}.
+                Specifies the Hexadecimal border color, from {@code 000000} to {@code FFFFFF}. This attribute
+                is optional and defaults to the ad unit's parent or ancestor's setting if one has been set. If
+                no ancestor of the ad unit has set {@code borderColor}, the attribute is defaulted to {@code
+                FFFFFF}.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="titleColor" type="xsd:string">
             <annotation>
               <documentation>
-                Specifies the Hexadecimal title color of an ad, from {@code 000000} to
-                {@code FFFFFF}. This attribute is optional and defaults to the ad unit's
-                parent or ancestor's setting if one has been set. If no ancestor of the
-                ad unit has set {@code titleColor}, the attribute is defaulted to {@code
-                0000FF}.
+                Specifies the Hexadecimal title color of an ad, from {@code 000000} to {@code FFFFFF}. This
+                attribute is optional and defaults to the ad unit's parent or ancestor's setting if one has
+                been set. If no ancestor of the ad unit has set {@code titleColor}, the attribute is defaulted
+                to {@code 0000FF}.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="backgroundColor" type="xsd:string">
             <annotation>
               <documentation>
-                Specifies the Hexadecimal background color of an ad, from {@code 000000} to
-                {@code FFFFFF}. This attribute is optional and defaults to the ad unit's
-                parent or ancestor's setting if one has been set. If no ancestor of the ad
-                unit has set {@code backgroundColor}, the attribute is defaulted to {@code
-                FFFFFF}.
+                Specifies the Hexadecimal background color of an ad, from {@code 000000} to {@code FFFFFF}.
+                This attribute is optional and defaults to the ad unit's parent or ancestor's setting if one
+                has been set. If no ancestor of the ad unit has set {@code backgroundColor}, the attribute is
+                defaulted to {@code FFFFFF}.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="textColor" type="xsd:string">
             <annotation>
               <documentation>
-                Specifies the Hexadecimal color of the text of an ad, from {@code 000000}
-                to {@code FFFFFF}. This attribute is optional and defaults to the ad unit's
-                parent or ancestor's setting if one has been set. If no ancestor of the ad
-                unit has set {@code textColor}, the attribute is defaulted to {@code
-                000000}.
+                Specifies the Hexadecimal color of the text of an ad, from {@code 000000} to {@code FFFFFF}.
+                This attribute is optional and defaults to the ad unit's parent or ancestor's setting if one
+                has been set. If no ancestor of the ad unit has set {@code textColor}, the attribute is
+                defaulted to {@code 000000}.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="urlColor" type="xsd:string">
             <annotation>
               <documentation>
-                Specifies the Hexadecimal color of the URL of an ad, from {@code 000000} to
-                {@code FFFFFF}. This attribute is optional and defaults to the ad unit's
-                parent or ancestor's setting if one has been set. If no ancestor of the ad
-                unit has set {@code urlColor}, the attribute is defaulted to {@code 008000}
-                .
+                Specifies the Hexadecimal color of the URL of an ad, from {@code 000000} to {@code FFFFFF}.
+                This attribute is optional and defaults to the ad unit's parent or ancestor's setting if one
+                has been set. If no ancestor of the ad unit has set {@code urlColor}, the attribute is
+                defaulted to {@code 008000} .
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="adType" type="tns:AdSenseSettings.AdType">
             <annotation>
               <documentation>
-                Specifies what kind of ad can be served by this {@link AdUnit} from the
-                AdSense Content Network. This attribute is optional and defaults to the ad
-                unit's parent or ancestor's setting if one has been set. If no ancestor of
-                the ad unit has set {@code adType}, the attribute is defaulted to {@link
-                AdType#TEXT_AND_IMAGE}.
+                Specifies what kind of ad can be served by this {@link AdUnit} from the AdSense Content
+                Network. This attribute is optional and defaults to the ad unit's parent or ancestor's setting
+                if one has been set. If no ancestor of the ad unit has set {@code adType}, the attribute is
+                defaulted to {@link AdType#TEXT_AND_IMAGE}.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="borderStyle" type="tns:AdSenseSettings.BorderStyle">
             <annotation>
               <documentation>
-                Specifies the border-style of the {@link AdUnit}. This attribute is
-                optional and defaults to the ad unit's parent or ancestor's setting if one
-                has been set. If no ancestor of the ad unit has set {@code borderStyle},
-                the attribute is defaulted to {@link BorderStyle#DEFAULT}.
+                Specifies the border-style of the {@link AdUnit}. This attribute is optional and defaults to
+                the ad unit's parent or ancestor's setting if one has been set. If no ancestor of the ad unit
+                has set {@code borderStyle}, the attribute is defaulted to {@link BorderStyle#DEFAULT}.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="fontFamily" type="tns:AdSenseSettings.FontFamily">
             <annotation>
               <documentation>
-                Specifies the font family of the {@link AdUnit}. This attribute is optional
-                and defaults to the ad unit's parent or ancestor's setting if one has been
-                set. If no ancestor of the ad unit has set {@code fontFamily}, the
-                attribute is defaulted to {@link FontFamily#DEFAULT}.
+                Specifies the font family of the {@link AdUnit}. This attribute is optional and defaults to the
+                ad unit's parent or ancestor's setting if one has been set. If no ancestor of the ad unit has
+                set {@code fontFamily}, the attribute is defaulted to {@link FontFamily#DEFAULT}.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="fontSize" type="tns:AdSenseSettings.FontSize">
             <annotation>
               <documentation>
-                Specifies the font size of the {@link AdUnit}. This attribute is optional
-                and defaults to the ad unit's parent or ancestor's setting if one has been
-                set. If no ancestor of the ad unit has set {@code fontSize}, the
-                attribute is defaulted to {@link FontSize#DEFAULT}.
+                Specifies the font size of the {@link AdUnit}. This attribute is optional and defaults to the
+                ad unit's parent or ancestor's setting if one has been set. If no ancestor of the ad unit has
+                set {@code fontSize}, the attribute is defaulted to {@link FontSize#DEFAULT}.
               </documentation>
             </annotation>
           </element>
@@ -201,28 +192,26 @@
       <complexType name="AdUnit">
         <annotation>
           <documentation>
-            An {@code AdUnit} represents a chunk of identified inventory for the
-            publisher. It contains all the settings that need to be associated with
-            inventory in order to serve ads to it. An {@code AdUnit} can also be the
-            parent of other ad units in the inventory hierarchy.
+            An {@code AdUnit} represents a chunk of identified inventory for the publisher. It contains all
+            the settings that need to be associated with inventory in order to serve ads to it. An {@code
+            AdUnit} can also be the parent of other ad units in the inventory hierarchy.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="1" minOccurs="0" name="id" type="xsd:string">
             <annotation>
               <documentation>
-                Uniquely identifies the {@code AdUnit}. This value is read-only and is
-                assigned by Google when an ad unit is created. This attribute is required
-                for updates.
+                Uniquely identifies the {@code AdUnit}. This value is read-only and is assigned by Google when
+                an ad unit is created. This attribute is required for updates.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="parentId" type="xsd:string">
             <annotation>
               <documentation>
-                The ID of the ad unit's parent. Every ad unit has a parent except for the
-                root ad unit, which is created by Google. This attribute is required when
-                creating the ad unit. Once the ad unit is created this value will be read-only.
+                The ID of the ad unit's parent. Every ad unit has a parent except for the root ad unit, which
+                is created by Google. This attribute is required when creating the ad unit. Once the ad unit is
+                created this value will be read-only.
               </documentation>
             </annotation>
           </element>
@@ -254,27 +243,25 @@
           <element maxOccurs="1" minOccurs="0" name="description" type="xsd:string">
             <annotation>
               <documentation>
-                A description of the ad unit. This value is optional and its maximum length
-                is 65,535 characters.
+                A description of the ad unit. This value is optional and its maximum length is 65,535
+                characters.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="targetWindow" type="tns:AdUnit.TargetWindow">
             <annotation>
               <documentation>
-                The value to use for the HTML link's {@code target} attribute. This value
-                is optional and will be interpreted as {@link TargetWindow#TOP} if left
-                blank.
+                The value to use for the HTML link's {@code target} attribute. This value is optional and will
+                be interpreted as {@link TargetWindow#TOP} if left blank.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="status" type="tns:InventoryStatus">
             <annotation>
               <documentation>
-                The status of this ad unit.  It defaults to {@link InventoryStatus#ACTIVE}.
-                This value cannot be updated directly using {@link InventoryService#updateAdUnit}.
-                It can only be modified by performing actions via
-                {@link InventoryService#performAdUnitAction}.
+                The status of this ad unit. It defaults to {@link InventoryStatus#ACTIVE}. This value cannot be
+                updated directly using {@link InventoryService#updateAdUnit}. It can only be modified by
+                performing actions via {@link InventoryService#performAdUnitAction}.
               </documentation>
             </annotation>
           </element>
@@ -282,9 +269,9 @@
             <annotation>
               <documentation>
                 A string used to uniquely identify the ad unit for the purposes of serving the ad. This
-                attribute is optional and can be set during ad unit creation. If it is not
-                provided, it will be assigned by Google based off of the inventory unit ID. Once an ad
-                unit is created, its {@code adUnitCode} cannot be changed.
+                attribute is optional and can be set during ad unit creation. If it is not provided, it will be
+                assigned by Google based off of the inventory unit ID. Once an ad unit is created, its {@code
+                adUnitCode} cannot be changed.
               </documentation>
             </annotation>
           </element>
@@ -292,9 +279,8 @@
             name="adUnitSizes" type="tns:AdUnitSize">
             <annotation>
               <documentation>
-                The permissible creative sizes that can be served inside this ad unit. This
-                attribute is optional. This attribute replaces the {@code sizes}
-                attribute.
+                The permissible creative sizes that can be served inside this ad unit. This attribute is
+                optional. This attribute replaces the {@code sizes} attribute.
               </documentation>
             </annotation>
           </element>
@@ -322,18 +308,17 @@
           <element maxOccurs="1" minOccurs="0" name="explicitlyTargeted" type="xsd:boolean">
             <annotation>
               <documentation>
-                If this field is set to {@code true}, then the {@code AdUnit} will not be
-                implicitly targeted when its parent is. Traffickers must explicitly
-                target such an ad unit or else no line items will serve to it. This
-                feature is only available for Ad Manager 360 accounts.
+                If this field is set to {@code true}, then the {@code AdUnit} will not be implicitly targeted
+                when its parent is. Traffickers must explicitly target such an ad unit or else no line items
+                will serve to it. This feature is only available for Ad Manager 360 accounts.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="adSenseSettings" type="tns:AdSenseSettings">
             <annotation>
               <documentation>
-                AdSense specific settings. To overwrite this, set the {@link #adSenseSettingsSource} to
-                {@link PropertySourceType#DIRECTLY_SPECIFIED} when setting the value of this field.
+                AdSense specific settings. To overwrite this, set the {@link #adSenseSettingsSource} to {@link
+                PropertySourceType#DIRECTLY_SPECIFIED} when setting the value of this field.
               </documentation>
             </annotation>
           </element>
@@ -350,8 +335,8 @@
             name="appliedLabelFrequencyCaps" type="tns:LabelFrequencyCap">
             <annotation>
               <documentation>
-                The set of label frequency caps applied directly to this ad unit.  There
-                is a limit of 10 label frequency caps per ad unit.
+                The set of label frequency caps applied directly to this ad unit. There is a limit of 10 label
+                frequency caps per ad unit.
               </documentation>
             </annotation>
           </element>
@@ -359,9 +344,8 @@
             name="effectiveLabelFrequencyCaps" type="tns:LabelFrequencyCap">
             <annotation>
               <documentation>
-                Contains the set of labels applied directly to the ad unit as well as
-                those inherited from parent ad units.  This field is readonly and is
-                assigned by Google.
+                Contains the set of labels applied directly to the ad unit as well as those inherited from
+                parent ad units. This field is readonly and is assigned by Google.
               </documentation>
             </annotation>
           </element>
@@ -377,10 +361,9 @@
             name="effectiveAppliedLabels" type="tns:AppliedLabel">
             <annotation>
               <documentation>
-                Contains the set of labels applied directly to the ad unit as well as
-                those inherited from the parent ad units. If a label has been negated, only the
-                negated label is returned. This field is readonly and is assigned by
-                Google.
+                Contains the set of labels applied directly to the ad unit as well as those inherited from the
+                parent ad units. If a label has been negated, only the negated label is returned. This field is
+                readonly and is assigned by Google.
               </documentation>
             </annotation>
           </element>
@@ -388,8 +371,8 @@
             name="effectiveTeamIds" type="xsd:long">
             <annotation>
               <documentation>
-                The IDs of all teams that this ad unit is on as well as those inherited
-                from parent ad units. This value is read-only and is set by Google.
+                The IDs of all teams that this ad unit is on as well as those inherited from parent ad units.
+                This value is read-only and is set by Google.
               </documentation>
             </annotation>
           </element>
@@ -439,8 +422,8 @@
           <element maxOccurs="1" minOccurs="0" name="isSetTopBoxEnabled" type="xsd:boolean">
             <annotation>
               <documentation>
-                Flag that specifies whether this ad unit represents an external set-top box channel.
-                This attribute is read-only.
+                Flag that specifies whether this ad unit represents an external set-top box channel. This
+                attribute is read-only.
               </documentation>
             </annotation>
           </element>
@@ -642,8 +625,7 @@
           <element maxOccurs="1" minOccurs="0" name="isNegated" type="xsd:boolean">
             <annotation>
               <documentation>
-                {@code isNegated} should be set to {@code true} to negate the effects of
-                {@code labelId}.
+                {@code isNegated} should be set to {@code true} to negate the effects of {@code labelId}.
               </documentation>
             </annotation>
           </element>
@@ -943,24 +925,22 @@
       <complexType name="FrequencyCap">
         <annotation>
           <documentation>
-            Represents a limit on the number of times a single viewer can be exposed to
-            the same {@link LineItem} in a specified time period.
+            Represents a limit on the number of times a single viewer can be exposed to the same {@link
+            LineItem} in a specified time period.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="1" minOccurs="0" name="maxImpressions" type="xsd:int">
             <annotation>
               <documentation>
-                The maximum number of impressions than can be served to a user within a
-                specified time period.
+                The maximum number of impressions than can be served to a user within a specified time period.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="numTimeUnits" type="xsd:int">
             <annotation>
               <documentation>
-                The number of {@code FrequencyCap#timeUnit} to represent the total time
-                period.
+                The number of {@code FrequencyCap#timeUnit} to represent the total time period.
               </documentation>
             </annotation>
           </element>
@@ -1074,9 +1054,9 @@
       <complexType name="AdUnitSize">
         <annotation>
           <documentation>
-            An {@code AdUnitSize} represents the size of an ad in an ad unit. This also represents
-            the environment and companions of a particular ad in an ad unit. In most cases, it is
-            a simple size with just a width and a height (sometimes representing an aspect ratio).
+            An {@code AdUnitSize} represents the size of an ad in an ad unit. This also represents the
+            environment and companions of a particular ad in an ad unit. In most cases, it is a simple size
+            with just a width and a height (sometimes representing an aspect ratio).
           </documentation>
         </annotation>
         <sequence>
@@ -1090,26 +1070,24 @@
           <element maxOccurs="1" minOccurs="0" name="environmentType" type="tns:EnvironmentType">
             <annotation>
               <documentation>
-                The environment type of the ad unit size. The default value is
-                {@link EnvironmentType#BROWSER}.
+                The environment type of the ad unit size. The default value is {@link EnvironmentType#BROWSER}.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="unbounded" minOccurs="0" name="companions" type="tns:AdUnitSize">
             <annotation>
               <documentation>
-                The companions for this ad unit size.
-                Companions are only valid if the environment is {@link EnvironmentType#VIDEO_PLAYER}.
-                If the environment is {@link EnvironmentType#BROWSER} including companions
-                results in an error.
+                The companions for this ad unit size. Companions are only valid if the environment is {@link
+                EnvironmentType#VIDEO_PLAYER}. If the environment is {@link EnvironmentType#BROWSER} including
+                companions results in an error.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="fullDisplayString" type="xsd:string">
             <annotation>
               <documentation>
-                The full (including companion sizes, if applicable) display string of the size,
-                e.g. {@code "300x250"} or {@code "300x250v (180x150)"}
+                The full (including companion sizes, if applicable) display string of the size, e.g. {@code
+                "300x250"} or {@code "300x250v (180x150)"}
               </documentation>
             </annotation>
           </element>
@@ -1161,24 +1139,23 @@
       <complexType name="LabelFrequencyCap">
         <annotation>
           <documentation>
-            A {@code LabelFrequencyCap} assigns a frequency cap to a label.  The
-            frequency cap will limit the cumulative number of impressions of any ad
-            units with this label that may be shown to a particular user over a time
-            unit.
+            A {@code LabelFrequencyCap} assigns a frequency cap to a label. The frequency cap will limit the
+            cumulative number of impressions of any ad units with this label that may be shown to a
+            particular user over a time unit.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="1" minOccurs="0" name="frequencyCap" type="tns:FrequencyCap">
             <annotation>
               <documentation>
-                The frequency cap to be applied with this label.
+                The frequency cap to be applied with this label. *
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="labelId" type="xsd:long">
             <annotation>
               <documentation>
-                ID of the label being capped on the {@link AdUnit}.
+                ID of the label being capped on the {@link AdUnit}. *
               </documentation>
             </annotation>
           </element>
@@ -1828,8 +1805,8 @@
       <simpleType name="AdSenseSettings.BorderStyle">
         <annotation>
           <documentation>
-            Describes the border of the HTML elements used to surround an ad
-            displayed by the {@link AdUnit}.
+            Describes the border of the HTML elements used to surround an ad displayed by the {@link
+            AdUnit}.
           </documentation>
         </annotation>
         <restriction base="xsd:string">
@@ -3724,8 +3701,8 @@
       <element name="getAdUnitsByStatement">
         <annotation>
           <documentation>
-            Gets a {@link AdUnitPage} of {@link AdUnit} objects that satisfy the given
-            {@link Statement#query}. The following fields are supported for filtering:
+            Gets a {@link AdUnitPage} of {@link AdUnit} objects that satisfy the given {@link
+            Statement#query}. The following fields are supported for filtering:
             
             &lt;table&gt;
             &lt;tr&gt;
@@ -3774,8 +3751,7 @@
       <element name="performAdUnitAction">
         <annotation>
           <documentation>
-            Performs actions on {@link AdUnit} objects that match the given
-            {@link Statement#query}.
+            Performs actions on {@link AdUnit} objects that match the given {@link Statement#query}.
           </documentation>
         </annotation>
         <complexType>
@@ -3884,8 +3860,8 @@
     </wsdl:operation>
     <wsdl:operation name="getAdUnitsByStatement">
       <wsdl:documentation>
-        Gets a {@link AdUnitPage} of {@link AdUnit} objects that satisfy the given
-        {@link Statement#query}. The following fields are supported for filtering:
+        Gets a {@link AdUnitPage} of {@link AdUnit} objects that satisfy the given {@link
+        Statement#query}. The following fields are supported for filtering:
         
         &lt;table&gt;
         &lt;tr&gt;
@@ -3923,8 +3899,7 @@
     </wsdl:operation>
     <wsdl:operation name="performAdUnitAction">
       <wsdl:documentation>
-        Performs actions on {@link AdUnit} objects that match the given
-        {@link Statement#query}.
+        Performs actions on {@link AdUnit} objects that match the given {@link Statement#query}.
       </wsdl:documentation>
       <wsdl:input message="tns:performAdUnitActionRequest" name="performAdUnitActionRequest"/>
       <wsdl:output message="tns:performAdUnitActionResponse" name="performAdUnitActionResponse"/>

@@ -1,0 +1,1750 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated file, do not edit -->
+<!-- Copyright 2023 Google Inc. All Rights Reserved -->
+<wsdl:definitions
+  targetNamespace="https://www.google.com/apis/ads/publisher/v202302"
+  xmlns:tns="https://www.google.com/apis/ads/publisher/v202302"
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <schema elementFormDefault="qualified" jaxb:version="1.0"
+      targetNamespace="https://www.google.com/apis/ads/publisher/v202302"
+      xmlns="http://www.w3.org/2001/XMLSchema"
+      xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:tns="https://www.google.com/apis/ads/publisher/v202302">
+      <annotation>
+        <appinfo>
+          <jaxb:globalBindings typesafeEnumMaxMembers="999999"/>
+        </appinfo>
+      </annotation>
+      <complexType abstract="true" name="AbstractDisplaySettings">
+        <sequence/>
+      </complexType>
+      <complexType abstract="true" name="ObjectValue">
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="AdUnitTargeting">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="adUnitId" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="includeDescendants" type="xsd:boolean"/>
+        </sequence>
+      </complexType>
+      <complexType abstract="true" name="ApiError">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="fieldPath" type="xsd:string"/>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="fieldPathElements" type="tns:FieldPathElement"/>
+          <element maxOccurs="1" minOccurs="0" name="trigger" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="errorString" type="xsd:string"/>
+        </sequence>
+      </complexType>
+      <complexType name="ApiException">
+        <complexContent>
+          <extension base="tns:ApplicationException">
+            <sequence>
+              <element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:ApiError"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="TechnologyTargeting">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0"
+            name="bandwidthGroupTargeting" type="tns:BandwidthGroupTargeting"/>
+          <element maxOccurs="1" minOccurs="0" name="browserTargeting" type="tns:BrowserTargeting"/>
+          <element maxOccurs="1" minOccurs="0"
+            name="browserLanguageTargeting" type="tns:BrowserLanguageTargeting"/>
+          <element maxOccurs="1" minOccurs="0"
+            name="deviceCapabilityTargeting" type="tns:DeviceCapabilityTargeting"/>
+          <element maxOccurs="1" minOccurs="0"
+            name="deviceCategoryTargeting" type="tns:DeviceCategoryTargeting"/>
+          <element maxOccurs="1" minOccurs="0"
+            name="deviceManufacturerTargeting" type="tns:DeviceManufacturerTargeting"/>
+          <element maxOccurs="1" minOccurs="0"
+            name="mobileCarrierTargeting" type="tns:MobileCarrierTargeting"/>
+          <element maxOccurs="1" minOccurs="0"
+            name="mobileDeviceTargeting" type="tns:MobileDeviceTargeting"/>
+          <element maxOccurs="1" minOccurs="0"
+            name="mobileDeviceSubmodelTargeting" type="tns:MobileDeviceSubmodelTargeting"/>
+          <element maxOccurs="1" minOccurs="0"
+            name="operatingSystemTargeting" type="tns:OperatingSystemTargeting"/>
+          <element maxOccurs="1" minOccurs="0"
+            name="operatingSystemVersionTargeting" type="tns:OperatingSystemVersionTargeting"/>
+        </sequence>
+      </complexType>
+      <complexType name="ApiVersionError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ApiVersionError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ApplicationException">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="message" type="xsd:string"/>
+        </sequence>
+      </complexType>
+      <complexType name="AuthenticationError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:AuthenticationError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="BandwidthGroup">
+        <complexContent>
+          <extension base="tns:Technology">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="BandwidthGroupTargeting">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="isTargeted" type="xsd:boolean"/>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="bandwidthGroups" type="tns:Technology"/>
+        </sequence>
+      </complexType>
+      <complexType name="BooleanValue">
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="xsd:boolean"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="Browser">
+        <complexContent>
+          <extension base="tns:Technology">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="majorVersion" type="xsd:string"/>
+              <element maxOccurs="1" minOccurs="0" name="minorVersion" type="xsd:string"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="BrowserLanguage">
+        <complexContent>
+          <extension base="tns:Technology">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="BrowserLanguageTargeting">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="isTargeted" type="xsd:boolean"/>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="browserLanguages" type="tns:Technology"/>
+        </sequence>
+      </complexType>
+      <complexType name="BrowserTargeting">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="isTargeted" type="xsd:boolean"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="browsers" type="tns:Technology"/>
+        </sequence>
+      </complexType>
+      <complexType name="BuyerUserListTargeting">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0"
+            name="hasBuyerUserListTargeting" type="xsd:boolean"/>
+        </sequence>
+      </complexType>
+      <complexType name="CollectionSizeError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CollectionSizeError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="CommonError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CommonError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ContentTargeting">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="targetedContentIds" type="xsd:long"/>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="excludedContentIds" type="xsd:long"/>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="targetedVideoContentBundleIds" type="xsd:long"/>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="excludedVideoContentBundleIds" type="xsd:long"/>
+        </sequence>
+      </complexType>
+      <complexType name="CustomCriteria">
+        <complexContent>
+          <extension base="tns:CustomCriteriaLeaf">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="keyId" type="xsd:long"/>
+              <element maxOccurs="unbounded" minOccurs="0"
+                name="valueIds" type="xsd:long"/>
+              <element maxOccurs="1" minOccurs="0" name="operator" type="tns:CustomCriteria.ComparisonOperator"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="CustomCriteriaSet">
+        <complexContent>
+          <extension base="tns:CustomCriteriaNode">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0"
+                name="logicalOperator" type="tns:CustomCriteriaSet.LogicalOperator">
+                <annotation>
+                  <documentation>
+                    &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="unbounded" minOccurs="0"
+                name="children" type="tns:CustomCriteriaNode"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="CmsMetadataCriteria">
+        <complexContent>
+          <extension base="tns:CustomCriteriaLeaf">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="operator" type="tns:CmsMetadataCriteria.ComparisonOperator"/>
+              <element maxOccurs="unbounded" minOccurs="0"
+                name="cmsMetadataValueIds" type="xsd:long"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="CustomTargetingError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CustomTargetingError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType abstract="true" name="CustomCriteriaLeaf">
+        <complexContent>
+          <extension base="tns:CustomCriteriaNode">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType abstract="true" name="CustomCriteriaNode">
+        <sequence/>
+      </complexType>
+      <complexType name="AudienceSegmentCriteria">
+        <complexContent>
+          <extension base="tns:CustomCriteriaLeaf">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="operator" type="tns:AudienceSegmentCriteria.ComparisonOperator"/>
+              <element maxOccurs="unbounded" minOccurs="0"
+                name="audienceSegmentIds" type="xsd:long"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="Date">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="year" type="xsd:int"/>
+          <element maxOccurs="1" minOccurs="0" name="month" type="xsd:int"/>
+          <element maxOccurs="1" minOccurs="0" name="day" type="xsd:int"/>
+        </sequence>
+      </complexType>
+      <complexType name="DateTime">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="date" type="tns:Date"/>
+          <element maxOccurs="1" minOccurs="0" name="hour" type="xsd:int"/>
+          <element maxOccurs="1" minOccurs="0" name="minute" type="xsd:int"/>
+          <element maxOccurs="1" minOccurs="0" name="second" type="xsd:int"/>
+          <element maxOccurs="1" minOccurs="0" name="timeZoneId" type="xsd:string"/>
+        </sequence>
+      </complexType>
+      <complexType name="DateTimeRange">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="startDateTime" type="tns:DateTime"/>
+          <element maxOccurs="1" minOccurs="0" name="endDateTime" type="tns:DateTime"/>
+        </sequence>
+      </complexType>
+      <complexType name="DateTimeRangeTargeting">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="targetedDateTimeRanges" type="tns:DateTimeRange"/>
+        </sequence>
+      </complexType>
+      <complexType name="DateTimeRangeTargetingError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:DateTimeRangeTargetingError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DateTimeValue">
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="tns:DateTime"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DateValue">
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="tns:Date"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DayPart">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="dayOfWeek" type="tns:DayOfWeek"/>
+          <element maxOccurs="1" minOccurs="0" name="startTime" type="tns:TimeOfDay"/>
+          <element maxOccurs="1" minOccurs="0" name="endTime" type="tns:TimeOfDay"/>
+        </sequence>
+      </complexType>
+      <complexType name="DayPartTargeting">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="dayParts" type="tns:DayPart"/>
+          <element maxOccurs="1" minOccurs="0" name="timeZone" type="tns:DeliveryTimeZone"/>
+        </sequence>
+      </complexType>
+      <complexType name="DayPartTargetingError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:DayPartTargetingError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="OpenBiddingSetting">
+        <complexContent>
+          <extension base="tns:AbstractDisplaySettings">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0"
+                name="yieldIntegrationType" type="tns:YieldIntegrationType"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DeviceCapability">
+        <complexContent>
+          <extension base="tns:Technology">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DeviceCapabilityTargeting">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="targetedDeviceCapabilities" type="tns:Technology"/>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="excludedDeviceCapabilities" type="tns:Technology"/>
+        </sequence>
+      </complexType>
+      <complexType name="DeviceCategory">
+        <complexContent>
+          <extension base="tns:Technology">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DeviceCategoryTargeting">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="targetedDeviceCategories" type="tns:Technology"/>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="excludedDeviceCategories" type="tns:Technology"/>
+        </sequence>
+      </complexType>
+      <complexType name="DeviceManufacturer">
+        <complexContent>
+          <extension base="tns:Technology">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DeviceManufacturerTargeting">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="isTargeted" type="xsd:boolean"/>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="deviceManufacturers" type="tns:Technology"/>
+        </sequence>
+      </complexType>
+      <complexType name="DistinctError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:DistinctError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="EntityChildrenLimitReachedError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:EntityChildrenLimitReachedError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="EntityLimitReachedError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:EntityLimitReachedError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="FeatureError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:FeatureError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="FieldPathElement">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="field" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="index" type="xsd:int"/>
+        </sequence>
+      </complexType>
+      <complexType name="GenericTargetingError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:GenericTargetingError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="GeoTargeting">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="targetedLocations" type="tns:Location"/>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="excludedLocations" type="tns:Location"/>
+        </sequence>
+      </complexType>
+      <complexType name="GeoTargetingError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:GeoTargetingError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="IdError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:IdError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="InternalApiError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:InternalApiError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="InvalidUrlError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:InvalidUrlError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="InventorySizeTargeting">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="isTargeted" type="xsd:boolean"/>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="targetedSizes" type="tns:TargetedSize"/>
+        </sequence>
+      </complexType>
+      <complexType name="InventoryTargeting">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="targetedAdUnits" type="tns:AdUnitTargeting"/>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="excludedAdUnits" type="tns:AdUnitTargeting"/>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="targetedPlacementIds" type="xsd:long"/>
+        </sequence>
+      </complexType>
+      <complexType name="InventoryTargetingError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:InventoryTargetingError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="InventoryUrl">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long"/>
+        </sequence>
+      </complexType>
+      <complexType name="InventoryUrlTargeting">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="targetedUrls" type="tns:InventoryUrl"/>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="excludedUrls" type="tns:InventoryUrl"/>
+        </sequence>
+      </complexType>
+      <complexType name="Location">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long"/>
+          <element maxOccurs="1" minOccurs="0" name="type" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="canonicalParentId" type="xsd:int"/>
+          <element maxOccurs="1" minOccurs="0" name="displayName" type="xsd:string"/>
+        </sequence>
+      </complexType>
+      <complexType name="SdkMediationSettings">
+        <complexContent>
+          <extension base="tns:AbstractDisplaySettings">
+            <sequence>
+              <element maxOccurs="unbounded" minOccurs="0"
+                name="parameters" type="tns:YieldParameter_StringMapEntry"/>
+              <element maxOccurs="1" minOccurs="0"
+                name="yieldIntegrationType" type="tns:YieldIntegrationType"/>
+              <element maxOccurs="1" minOccurs="0" name="platform" type="tns:YieldPlatform"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="MobileApplicationTargeting">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="mobileApplicationIds" type="xsd:long"/>
+          <element maxOccurs="1" minOccurs="0" name="isTargeted" type="xsd:boolean"/>
+        </sequence>
+      </complexType>
+      <complexType name="MobileApplicationTargetingError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:MobileApplicationTargetingError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="MobileCarrier">
+        <complexContent>
+          <extension base="tns:Technology">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="MobileCarrierTargeting">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="isTargeted" type="xsd:boolean"/>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="mobileCarriers" type="tns:Technology"/>
+        </sequence>
+      </complexType>
+      <complexType name="MobileDevice">
+        <complexContent>
+          <extension base="tns:Technology">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0"
+                name="manufacturerCriterionId" type="xsd:long"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="MobileDeviceSubmodel">
+        <complexContent>
+          <extension base="tns:Technology">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0"
+                name="mobileDeviceCriterionId" type="xsd:long"/>
+              <element maxOccurs="1" minOccurs="0"
+                name="deviceManufacturerCriterionId" type="xsd:long"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="MobileDeviceSubmodelTargeting">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="targetedMobileDeviceSubmodels" type="tns:Technology"/>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="excludedMobileDeviceSubmodels" type="tns:Technology"/>
+        </sequence>
+      </complexType>
+      <complexType name="MobileDeviceTargeting">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="targetedMobileDevices" type="tns:Technology"/>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="excludedMobileDevices" type="tns:Technology"/>
+        </sequence>
+      </complexType>
+      <complexType name="Money">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="currencyCode" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="microAmount" type="xsd:long"/>
+        </sequence>
+      </complexType>
+      <complexType name="NotNullError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:NotNullError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="NumberValue">
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="xsd:string"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="OperatingSystem">
+        <complexContent>
+          <extension base="tns:Technology">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="OperatingSystemTargeting">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="isTargeted" type="xsd:boolean"/>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="operatingSystems" type="tns:Technology"/>
+        </sequence>
+      </complexType>
+      <complexType name="OperatingSystemVersion">
+        <complexContent>
+          <extension base="tns:Technology">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="majorVersion" type="xsd:int"/>
+              <element maxOccurs="1" minOccurs="0" name="minorVersion" type="xsd:int"/>
+              <element maxOccurs="1" minOccurs="0" name="microVersion" type="xsd:int"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="OperatingSystemVersionTargeting">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="targetedOperatingSystemVersions" type="tns:Technology"/>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="excludedOperatingSystemVersions" type="tns:Technology"/>
+        </sequence>
+      </complexType>
+      <complexType name="ParseError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ParseError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="PermissionError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:PermissionError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="PublisherQueryLanguageContextError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:PublisherQueryLanguageContextError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="PublisherQueryLanguageSyntaxError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:PublisherQueryLanguageSyntaxError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="QuotaError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:QuotaError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RequestPlatformTargeting">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="targetedRequestPlatforms" type="tns:RequestPlatform"/>
+        </sequence>
+      </complexType>
+      <complexType name="RequestPlatformTargetingError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RequestPlatformTargetingError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RequiredCollectionError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RequiredCollectionError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RequiredError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RequiredError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RequiredNumberError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RequiredNumberError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ServerError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ServerError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="SetValue">
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="unbounded" minOccurs="0" name="values" type="tns:Value"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="Size">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="width" type="xsd:int"/>
+          <element maxOccurs="1" minOccurs="0" name="height" type="xsd:int"/>
+          <element maxOccurs="1" minOccurs="0" name="isAspectRatio" type="xsd:boolean"/>
+        </sequence>
+      </complexType>
+      <complexType name="SoapRequestHeader">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="networkCode" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="applicationName" type="xsd:string"/>
+        </sequence>
+      </complexType>
+      <complexType name="SoapResponseHeader">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="requestId" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="responseTime" type="xsd:long"/>
+        </sequence>
+      </complexType>
+      <complexType name="Statement">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="query" type="xsd:string"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="values" type="tns:String_ValueMapEntry"/>
+        </sequence>
+      </complexType>
+      <complexType name="StatementError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:StatementError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="StringFormatError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:StringFormatError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="StringLengthError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:StringLengthError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="String_ValueMapEntry">
+        <annotation>
+          <documentation>
+            This represents an entry in a map with a key of type String
+            and value of type Value.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="key" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="value" type="tns:Value"/>
+        </sequence>
+      </complexType>
+      <complexType name="TargetedSize">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="size" type="tns:Size"/>
+        </sequence>
+      </complexType>
+      <complexType name="Targeting">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="geoTargeting" type="tns:GeoTargeting"/>
+          <element maxOccurs="1" minOccurs="0" name="inventoryTargeting" type="tns:InventoryTargeting"/>
+          <element maxOccurs="1" minOccurs="0" name="dayPartTargeting" type="tns:DayPartTargeting"/>
+          <element maxOccurs="1" minOccurs="0"
+            name="dateTimeRangeTargeting" type="tns:DateTimeRangeTargeting"/>
+          <element maxOccurs="1" minOccurs="0"
+            name="technologyTargeting" type="tns:TechnologyTargeting"/>
+          <element maxOccurs="1" minOccurs="0" name="customTargeting" type="tns:CustomCriteriaSet"/>
+          <element maxOccurs="1" minOccurs="0"
+            name="userDomainTargeting" type="tns:UserDomainTargeting"/>
+          <element maxOccurs="1" minOccurs="0" name="contentTargeting" type="tns:ContentTargeting"/>
+          <element maxOccurs="1" minOccurs="0"
+            name="videoPositionTargeting" type="tns:VideoPositionTargeting"/>
+          <element maxOccurs="1" minOccurs="0"
+            name="mobileApplicationTargeting" type="tns:MobileApplicationTargeting"/>
+          <element maxOccurs="1" minOccurs="0"
+            name="buyerUserListTargeting" type="tns:BuyerUserListTargeting"/>
+          <element maxOccurs="1" minOccurs="0"
+            name="inventoryUrlTargeting" type="tns:InventoryUrlTargeting"/>
+          <element maxOccurs="1" minOccurs="0"
+            name="requestPlatformTargeting" type="tns:RequestPlatformTargeting"/>
+          <element maxOccurs="1" minOccurs="0"
+            name="inventorySizeTargeting" type="tns:InventorySizeTargeting"/>
+        </sequence>
+      </complexType>
+      <complexType name="Technology">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long"/>
+          <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string"/>
+        </sequence>
+      </complexType>
+      <complexType name="TechnologyTargetingError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:TechnologyTargetingError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="TextValue">
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="xsd:string"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="TimeOfDay">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="hour" type="xsd:int"/>
+          <element maxOccurs="1" minOccurs="0" name="minute" type="tns:MinuteOfHour"/>
+        </sequence>
+      </complexType>
+      <complexType name="UniqueError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="UserDomainTargeting">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="domains" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="targeted" type="xsd:boolean"/>
+        </sequence>
+      </complexType>
+      <complexType name="UserDomainTargetingError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:UserDomainTargetingError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType abstract="true" name="Value">
+        <sequence/>
+      </complexType>
+      <complexType name="VideoPosition">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="positionType" type="tns:VideoPosition.Type"/>
+          <element maxOccurs="1" minOccurs="0" name="midrollIndex" type="xsd:int"/>
+        </sequence>
+      </complexType>
+      <complexType name="VideoPositionTargeting">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="targetedPositions" type="tns:VideoPositionTarget"/>
+        </sequence>
+      </complexType>
+      <complexType name="VideoPositionTargetingError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:VideoPositionTargetingError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="VideoPositionWithinPod">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="index" type="xsd:int"/>
+        </sequence>
+      </complexType>
+      <complexType name="VideoPositionTarget">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="videoPosition" type="tns:VideoPosition"/>
+          <element maxOccurs="1" minOccurs="0" name="videoBumperType" type="tns:VideoBumperType"/>
+          <element maxOccurs="1" minOccurs="0"
+            name="videoPositionWithinPod" type="tns:VideoPositionWithinPod"/>
+          <element maxOccurs="1" minOccurs="0" name="adSpotId" type="xsd:long"/>
+        </sequence>
+      </complexType>
+      <complexType name="YieldAdSource">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="adSourceId" type="xsd:long"/>
+          <element maxOccurs="1" minOccurs="0" name="companyId" type="xsd:long"/>
+          <element maxOccurs="1" minOccurs="0" name="displaySettings" type="tns:AbstractDisplaySettings"/>
+          <element maxOccurs="1" minOccurs="0" name="status" type="tns:YieldEntityStatus"/>
+          <element maxOccurs="1" minOccurs="0" name="manualCpm" type="tns:Money"/>
+          <element maxOccurs="1" minOccurs="0" name="overrideDynamicCpm" type="xsd:boolean"/>
+        </sequence>
+      </complexType>
+      <complexType name="YieldError">
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:YieldError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="YieldGroup">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="yieldGroupId" type="xsd:long"/>
+          <element maxOccurs="1" minOccurs="0" name="yieldGroupName" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="exchangeStatus" type="tns:YieldEntityStatus"/>
+          <element maxOccurs="1" minOccurs="0" name="format" type="tns:YieldFormat"/>
+          <element maxOccurs="1" minOccurs="0" name="environmentType" type="tns:YieldEnvironmentType"/>
+          <element maxOccurs="1" minOccurs="0" name="targeting" type="tns:Targeting"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="adSources" type="tns:YieldAdSource"/>
+        </sequence>
+      </complexType>
+      <complexType name="YieldGroupPage">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="totalResultSetSize" type="xsd:int"/>
+          <element maxOccurs="1" minOccurs="0" name="startIndex" type="xsd:int"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="results" type="tns:YieldGroup"/>
+        </sequence>
+      </complexType>
+      <complexType name="YieldParameter">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="isOptional" type="xsd:boolean"/>
+        </sequence>
+      </complexType>
+      <complexType name="YieldParameter_StringMapEntry">
+        <annotation>
+          <documentation>
+            This represents an entry in a map with a key of type YieldParameter
+            and value of type String.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="key" type="tns:YieldParameter"/>
+          <element maxOccurs="1" minOccurs="0" name="value" type="xsd:string"/>
+        </sequence>
+      </complexType>
+      <complexType name="YieldPartner">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="companyId" type="xsd:long"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="settings" type="tns:YieldPartnerSettings"/>
+        </sequence>
+      </complexType>
+      <complexType name="YieldPartnerSettings">
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="status" type="tns:PartnerSettingStatus"/>
+          <element maxOccurs="1" minOccurs="0" name="environment" type="tns:YieldEnvironmentType"/>
+          <element maxOccurs="1" minOccurs="0" name="format" type="tns:YieldFormat"/>
+          <element maxOccurs="1" minOccurs="0" name="integrationType" type="tns:YieldIntegrationType"/>
+          <element maxOccurs="1" minOccurs="0" name="platform" type="tns:YieldPlatform"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="parameters" type="tns:YieldParameter"/>
+        </sequence>
+      </complexType>
+      <simpleType name="ApiVersionError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="UPDATE_TO_NEWER_VERSION"/>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="AuthenticationError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="AMBIGUOUS_SOAP_REQUEST_HEADER"/>
+          <enumeration value="INVALID_EMAIL"/>
+          <enumeration value="AUTHENTICATION_FAILED"/>
+          <enumeration value="INVALID_OAUTH_SIGNATURE"/>
+          <enumeration value="INVALID_SERVICE"/>
+          <enumeration value="MISSING_SOAP_REQUEST_HEADER"/>
+          <enumeration value="MISSING_AUTHENTICATION_HTTP_HEADER"/>
+          <enumeration value="MISSING_AUTHENTICATION"/>
+          <enumeration value="NETWORK_API_ACCESS_DISABLED"/>
+          <enumeration value="NO_NETWORKS_TO_ACCESS"/>
+          <enumeration value="NETWORK_NOT_FOUND"/>
+          <enumeration value="NETWORK_CODE_REQUIRED"/>
+          <enumeration value="CONNECTION_ERROR"/>
+          <enumeration value="GOOGLE_ACCOUNT_ALREADY_ASSOCIATED_WITH_NETWORK"/>
+          <enumeration value="UNDER_INVESTIGATION"/>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="CollectionSizeError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="TOO_LARGE"/>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="CommonError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="NOT_FOUND"/>
+          <enumeration value="ALREADY_EXISTS"/>
+          <enumeration value="NOT_APPLICABLE"/>
+          <enumeration value="DUPLICATE_OBJECT"/>
+          <enumeration value="CANNOT_UPDATE"/>
+          <enumeration value="UNSUPPORTED_OPERATION"/>
+          <enumeration value="CONCURRENT_MODIFICATION"/>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="CustomCriteria.ComparisonOperator">
+        <restriction base="xsd:string">
+          <enumeration value="IS"/>
+          <enumeration value="IS_NOT"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="CustomCriteriaSet.LogicalOperator">
+        <restriction base="xsd:string">
+          <enumeration value="AND"/>
+          <enumeration value="OR"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="CmsMetadataCriteria.ComparisonOperator">
+        <restriction base="xsd:string">
+          <enumeration value="EQUALS"/>
+          <enumeration value="NOT_EQUALS"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="CustomTargetingError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="KEY_NOT_FOUND"/>
+          <enumeration value="KEY_COUNT_TOO_LARGE"/>
+          <enumeration value="KEY_NAME_DUPLICATE"/>
+          <enumeration value="KEY_NAME_EMPTY"/>
+          <enumeration value="KEY_NAME_INVALID_LENGTH"/>
+          <enumeration value="KEY_NAME_INVALID_CHARS"/>
+          <enumeration value="KEY_NAME_RESERVED"/>
+          <enumeration value="KEY_DISPLAY_NAME_INVALID_LENGTH"/>
+          <enumeration value="KEY_STATUS_NOT_ACTIVE"/>
+          <enumeration value="VALUE_NOT_FOUND"/>
+          <enumeration value="GET_VALUES_BY_STATEMENT_MUST_CONTAIN_KEY_ID"/>
+          <enumeration value="VALUE_COUNT_FOR_KEY_TOO_LARGE"/>
+          <enumeration value="VALUE_NAME_DUPLICATE"/>
+          <enumeration value="VALUE_NAME_EMPTY"/>
+          <enumeration value="VALUE_NAME_INVALID_LENGTH"/>
+          <enumeration value="VALUE_NAME_INVALID_CHARS"/>
+          <enumeration value="VALUE_DISPLAY_NAME_INVALID_LENGTH"/>
+          <enumeration value="VALUE_MATCH_TYPE_NOT_ALLOWED"/>
+          <enumeration value="VALUE_MATCH_TYPE_NOT_EXACT_FOR_PREDEFINED_KEY"/>
+          <enumeration value="SUFFIX_MATCH_TYPE_NOT_ALLOWED"/>
+          <enumeration value="CONTAINS_MATCH_TYPE_NOT_ALLOWED"/>
+          <enumeration value="VALUE_STATUS_NOT_ACTIVE"/>
+          <enumeration value="KEY_WITH_MISSING_VALUES"/>
+          <enumeration value="INVALID_VALUE_FOR_KEY"/>
+          <enumeration value="CANNOT_OR_DIFFERENT_KEYS"/>
+          <enumeration value="INVALID_TARGETING_EXPRESSION"/>
+          <enumeration value="DELETED_KEY_CANNOT_BE_USED_FOR_TARGETING"/>
+          <enumeration value="DELETED_VALUE_CANNOT_BE_USED_FOR_TARGETING"/>
+          <enumeration value="VIDEO_BROWSE_BY_KEY_CANNOT_BE_USED_FOR_CUSTOM_TARGETING"/>
+          <enumeration value="CANNOT_DELETE_CUSTOM_KEY_USED_IN_CONTENT_METADATA_MAPPING"/>
+          <enumeration value="CANNOT_DELETE_CUSTOM_VALUE_USED_IN_CONTENT_METADATA_MAPPING"/>
+          <enumeration value="CANNOT_DELETE_CUSTOM_KEY_USED_IN_PARTNER_ASSIGNMENT_TARGETING"/>
+          <enumeration value="CANNOT_DELETE_CUSTOM_VALUE_USED_IN_PARTNER_ASSIGNMENT_TARGETING"/>
+          <enumeration value="CANNOT_TARGET_AUDIENCE_SEGMENT"/>
+          <enumeration value="CANNOT_TARGET_THIRD_PARTY_AUDIENCE_SEGMENT"/>
+          <enumeration value="CANNOT_TARGET_INACTIVE_AUDIENCE_SEGMENT"/>
+          <enumeration value="INVALID_AUDIENCE_SEGMENTS"/>
+          <enumeration value="CANNOT_TARGET_MAPPED_METADATA"/>
+          <enumeration value="ONLY_APPROVED_AUDIENCE_SEGMENTS_CAN_BE_TARGETED"/>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="AudienceSegmentCriteria.ComparisonOperator">
+        <restriction base="xsd:string">
+          <enumeration value="IS"/>
+          <enumeration value="IS_NOT"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="DateTimeRangeTargetingError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="EMPTY_RANGES"/>
+          <enumeration value="NOT_SPONSORSHIP_LINEITEM"/>
+          <enumeration value="NOT_SPONSORSHIP_OR_STANDARD_LINEITEM"/>
+          <enumeration value="UNSUPPORTED_LINEITEM_RESERVATION_TYPE"/>
+          <enumeration value="PAST_RANGES_CHANGED"/>
+          <enumeration value="RANGES_OVERLAP"/>
+          <enumeration value="FIRST_DATE_TIME_DOES_NOT_MATCH_START_TIME"/>
+          <enumeration value="LAST_DATE_TIME_DOES_NOT_MATCH_END_TIME"/>
+          <enumeration value="RANGES_OUT_OF_LINEITEM_ACTIVE_PERIOD"/>
+          <enumeration value="START_TIME_IS_NOT_START_OF_DAY"/>
+          <enumeration value="END_TIME_IS_NOT_END_OF_DAY"/>
+          <enumeration value="START_DATE_TIME_IS_IN_PAST"/>
+          <enumeration value="MODIFY_START_DATE_TIME_TO_PAST"/>
+          <enumeration value="RANGE_END_TIME_BEFORE_START_TIME"/>
+          <enumeration value="END_DATE_TIME_IS_TOO_LATE"/>
+          <enumeration value="LIMITED_RANGES_IN_UNLIMITED_LINEITEM"/>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="DayOfWeek">
+        <restriction base="xsd:string">
+          <enumeration value="MONDAY"/>
+          <enumeration value="TUESDAY"/>
+          <enumeration value="WEDNESDAY"/>
+          <enumeration value="THURSDAY"/>
+          <enumeration value="FRIDAY"/>
+          <enumeration value="SATURDAY"/>
+          <enumeration value="SUNDAY"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="DayPartTargetingError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="INVALID_HOUR"/>
+          <enumeration value="INVALID_MINUTE"/>
+          <enumeration value="END_TIME_NOT_AFTER_START_TIME"/>
+          <enumeration value="TIME_PERIODS_OVERLAP"/>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="DeliveryTimeZone">
+        <restriction base="xsd:string">
+          <enumeration value="PUBLISHER"/>
+          <enumeration value="BROWSER"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="DistinctError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="DUPLICATE_ELEMENT"/>
+          <enumeration value="DUPLICATE_TYPE"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="EntityChildrenLimitReachedError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="LINE_ITEM_LIMIT_FOR_ORDER_REACHED"/>
+          <enumeration value="CREATIVE_ASSOCIATION_LIMIT_FOR_LINE_ITEM_REACHED"/>
+          <enumeration value="AD_UNIT_LIMIT_FOR_PLACEMENT_REACHED"/>
+          <enumeration value="TARGETING_EXPRESSION_LIMIT_FOR_LINE_ITEM_REACHED"/>
+          <enumeration value="TARGETING_EXPRESSION_SIZE_LIMIT_REACHED"/>
+          <enumeration value="CUSTOM_TARGETING_VALUES_FOR_KEY_LIMIT_REACHED"/>
+          <enumeration value="TARGETING_EXPRESSION_LIMIT_FOR_CREATIVES_ON_LINE_ITEM_REACHED"/>
+          <enumeration value="ATTACHMENT_LIMIT_FOR_PROPOSAL_REACHED"/>
+          <enumeration value="PROPOSAL_LINE_ITEM_LIMIT_FOR_PROPOSAL_REACHED"/>
+          <enumeration value="PRODUCT_LIMIT_FOR_PRODUCT_PACKAGE_REACHED"/>
+          <enumeration value="PRODUCT_TEMPLATE_AND_PRODUCT_BASE_RATE_LIMIT_FOR_RATE_CARD_REACHED"/>
+          <enumeration value="PRODUCT_PACKAGE_ITEM_BASE_RATE_LIMIT_FOR_RATE_CARD_REACHED"/>
+          <enumeration value="PREMIUM_LIMIT_FOR_RATE_CARD_REACHED"/>
+          <enumeration value="AD_UNIT_LIMIT_FOR_AD_EXCLUSION_RULE_TARGETING_REACHED"/>
+          <enumeration value="NATIVE_STYLE_LIMIT_FOR_NATIVE_AD_FORMAT_REACHED"/>
+          <enumeration value="TARGETING_EXPRESSION_LIMIT_FOR_PRESENTATION_ASSIGNMENT_REACHED"/>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="EntityLimitReachedError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="CUSTOM_TARGETING_VALUES_LIMIT_REACHED"/>
+          <enumeration value="AD_EXCLUSION_RULES_LIMIT_REACHED"/>
+          <enumeration value="FIRST_PARTY_AUDIENCE_SEGMENTS_LIMIT_REACHED"/>
+          <enumeration value="PLACEMENTS_LIMIT_REACHED"/>
+          <enumeration value="LINE_ITEMS_LIMIT_REACHED"/>
+          <enumeration value="ACTIVE_LINE_ITEMS_LIMIT_REACHED"/>
+          <enumeration value="DAI_ENCODING_PROFILES_LIMIT_REACHED"/>
+          <enumeration value="TRAFFIC_FORECAST_SEGMENTS_LIMIT_REACHED"/>
+          <enumeration value="FORECAST_ADJUSTMENTS_LIMIT_REACHED"/>
+          <enumeration value="ACTIVE_EXPERIMENTS_LIMIT_REACHED"/>
+          <enumeration value="SITES_LIMIT_REACHED"/>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="FeatureError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="MISSING_FEATURE"/>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="GenericTargetingError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="CONFLICTING_INCLUSION_OR_EXCLUSION_OF_SIBLINGS"/>
+          <enumeration value="INCLUDING_DESCENDANTS_OF_EXCLUDED_CRITERIA"/>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="GeoTargetingError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="TARGETED_LOCATIONS_NOT_EXCLUDABLE"/>
+          <enumeration value="EXCLUDED_LOCATIONS_CANNOT_HAVE_CHILDREN_TARGETED"/>
+          <enumeration value="POSTAL_CODES_CANNOT_BE_EXCLUDED"/>
+          <enumeration value="UNTARGETABLE_LOCATION"/>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="IdError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="NOT_FOUND"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="InternalApiError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="UNEXPECTED_INTERNAL_API_ERROR"/>
+          <enumeration value="TRANSIENT_ERROR"/>
+          <enumeration value="UNKNOWN"/>
+          <enumeration value="DOWNTIME"/>
+          <enumeration value="ERROR_GENERATING_RESPONSE"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="InvalidUrlError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="ILLEGAL_CHARACTERS"/>
+          <enumeration value="INVALID_FORMAT"/>
+          <enumeration value="INSECURE_SCHEME"/>
+          <enumeration value="NO_SCHEME"/>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="InventoryTargetingError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="AT_LEAST_ONE_PLACEMENT_OR_INVENTORY_UNIT_REQUIRED"/>
+          <enumeration value="INVENTORY_CANNOT_BE_TARGETED_AND_EXCLUDED"/>
+          <enumeration value="INVENTORY_UNIT_CANNOT_BE_TARGETED_IF_ANCESTOR_IS_TARGETED"/>
+          <enumeration value="INVENTORY_UNIT_CANNOT_BE_TARGETED_IF_ANCESTOR_IS_EXCLUDED"/>
+          <enumeration value="INVENTORY_UNIT_CANNOT_BE_EXCLUDED_IF_ANCESTOR_IS_EXCLUDED"/>
+          <enumeration value="EXPLICITLY_TARGETED_INVENTORY_UNIT_CANNOT_BE_TARGETED"/>
+          <enumeration value="EXPLICITLY_TARGETED_INVENTORY_UNIT_CANNOT_BE_EXCLUDED"/>
+          <enumeration value="SELF_ONLY_INVENTORY_UNIT_NOT_ALLOWED"/>
+          <enumeration value="SELF_ONLY_INVENTORY_UNIT_WITHOUT_DESCENDANTS"/>
+          <enumeration value="YOUTUBE_AUDIENCE_SEGMENTS_CAN_ONLY_BE_TARGETED_WITH_YOUTUBE_SHARED_INVENTORY"/>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="MinuteOfHour">
+        <restriction base="xsd:string">
+          <enumeration value="ZERO"/>
+          <enumeration value="FIFTEEN"/>
+          <enumeration value="THIRTY"/>
+          <enumeration value="FORTY_FIVE"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="MobileApplicationTargetingError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="CANNOT_TARGET_UNLINKED_APPLICATION"/>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="NotNullError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="ARG1_NULL"/>
+          <enumeration value="ARG2_NULL"/>
+          <enumeration value="ARG3_NULL"/>
+          <enumeration value="NULL"/>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="ParseError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="UNPARSABLE"/>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="PartnerSettingStatus">
+        <restriction base="xsd:string">
+          <enumeration value="UNKNOWN"/>
+          <enumeration value="PENDING"/>
+          <enumeration value="ACTIVE"/>
+          <enumeration value="DEPRECATED"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="PermissionError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="PERMISSION_DENIED"/>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="PublisherQueryLanguageContextError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="UNEXECUTABLE"/>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="PublisherQueryLanguageSyntaxError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="UNPARSABLE"/>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="QuotaError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="EXCEEDED_QUOTA"/>
+          <enumeration value="UNKNOWN"/>
+          <enumeration value="REPORT_JOB_LIMIT"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="RequestPlatform">
+        <restriction base="xsd:string">
+          <enumeration value="UNKNOWN"/>
+          <enumeration value="BROWSER"/>
+          <enumeration value="MOBILE_APP"/>
+          <enumeration value="VIDEO_PLAYER"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="RequestPlatformTargetingError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="REQUEST_PLATFORM_TYPE_NOT_SUPPORTED_BY_LINE_ITEM_TYPE"/>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="RequiredCollectionError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="REQUIRED"/>
+          <enumeration value="TOO_LARGE"/>
+          <enumeration value="TOO_SMALL"/>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="RequiredError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="REQUIRED"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="RequiredNumberError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="REQUIRED"/>
+          <enumeration value="TOO_LARGE"/>
+          <enumeration value="TOO_SMALL"/>
+          <enumeration value="TOO_LARGE_WITH_DETAILS"/>
+          <enumeration value="TOO_SMALL_WITH_DETAILS"/>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="ServerError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="SERVER_ERROR"/>
+          <enumeration value="SERVER_BUSY"/>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="StatementError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="VARIABLE_NOT_BOUND_TO_VALUE"/>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="StringFormatError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="UNKNOWN"/>
+          <enumeration value="ILLEGAL_CHARS"/>
+          <enumeration value="INVALID_FORMAT"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="StringLengthError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="TOO_LONG"/>
+          <enumeration value="TOO_SHORT"/>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="TechnologyTargetingError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="MOBILE_LINE_ITEM_CONTAINS_WEB_TECH_CRITERIA"/>
+          <enumeration value="WEB_LINE_ITEM_CONTAINS_MOBILE_TECH_CRITERIA"/>
+          <enumeration value="MOBILE_CARRIER_TARGETING_FEATURE_NOT_ENABLED"/>
+          <enumeration value="DEVICE_CAPABILITY_TARGETING_FEATURE_NOT_ENABLED"/>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="UserDomainTargetingError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="INVALID_DOMAIN_NAMES"/>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="VideoBumperType">
+        <restriction base="xsd:string">
+          <enumeration value="BEFORE"/>
+          <enumeration value="AFTER"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="VideoPosition.Type">
+        <restriction base="xsd:string">
+          <enumeration value="UNKNOWN"/>
+          <enumeration value="ALL"/>
+          <enumeration value="PREROLL"/>
+          <enumeration value="MIDROLL"/>
+          <enumeration value="POSTROLL"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="VideoPositionTargetingError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="CANNOT_MIX_BUMPER_AND_NON_BUMPER_TARGETING"/>
+          <enumeration value="INVALID_BUMPER_TARGETING"/>
+          <enumeration value="CAN_ONLY_TARGET_CUSTOM_AD_SPOTS"/>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="YieldEntityStatus">
+        <restriction base="xsd:string">
+          <enumeration value="UNKNOWN"/>
+          <enumeration value="EXPERIMENTING"/>
+          <enumeration value="ACTIVE"/>
+          <enumeration value="INACTIVE"/>
+          <enumeration value="DELETED"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="YieldEnvironmentType">
+        <restriction base="xsd:string">
+          <enumeration value="UNKNOWN"/>
+          <enumeration value="MOBILE"/>
+          <enumeration value="VIDEO_VAST"/>
+          <enumeration value="WEB"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="YieldError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="INVALID_BACKEND_DATA"/>
+          <enumeration value="INVALID_REQUEST_DATA"/>
+          <enumeration value="AD_SOURCE_COMPANY_CHANGE"/>
+          <enumeration value="UNSUPPORTED_COMPANY_INTEGRATION_TYPE"/>
+          <enumeration value="UNSUPPORTED_BUYER_SETTINGS"/>
+          <enumeration value="DEPRECATED_AD_NETWORK_ADAPTER"/>
+          <enumeration value="TOO_MANY_UPDATES"/>
+          <enumeration value="DUPLICATE_YIELD_PARTNER"/>
+          <enumeration value="DUPLICATE_HEADER_BIDDER"/>
+          <enumeration value="INTERNAL_ERROR"/>
+          <enumeration value="INVALID_EXCHANGE_STATUS"/>
+          <enumeration value="INVALID_AD_SOURCE_STATUS"/>
+          <enumeration value="INVALID_SDK_ADAPTER_KEY_NAME"/>
+          <enumeration value="INVENTORY_UNIT_MAPPING_NOT_FOUND"/>
+          <enumeration value="NO_COMPANIES_PERMISSION"/>
+          <enumeration value="UNKNOWN"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="YieldFormat">
+        <restriction base="xsd:string">
+          <enumeration value="UNKNOWN"/>
+          <enumeration value="BANNER"/>
+          <enumeration value="INTERSTITIAL"/>
+          <enumeration value="NATIVE"/>
+          <enumeration value="VIDEO_VAST"/>
+          <enumeration value="REWARDED"/>
+          <enumeration value="REWARDED_INTERSTITIAL"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="YieldIntegrationType">
+        <restriction base="xsd:string">
+          <enumeration value="UNKNOWN"/>
+          <enumeration value="CUSTOM_EVENT"/>
+          <enumeration value="SDK"/>
+          <enumeration value="OPEN_BIDDING"/>
+          <enumeration value="NETWORK_BIDDING"/>
+        </restriction>
+      </simpleType>
+      <simpleType name="YieldPlatform">
+        <restriction base="xsd:string">
+          <enumeration value="UNKNOWN"/>
+          <enumeration value="ANDROID"/>
+          <enumeration value="IOS"/>
+        </restriction>
+      </simpleType>
+      <element name="createYieldGroups">
+        <annotation>
+          <documentation>
+            Creates yield groups in bulk.
+          </documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" minOccurs="0"
+              name="yieldGroups" type="tns:YieldGroup"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="createYieldGroupsResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" minOccurs="0" name="rval" type="tns:YieldGroup"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ApiExceptionFault" type="tns:ApiException">
+        <annotation>
+          <documentation>
+            A fault element of type ApiException.
+          </documentation>
+        </annotation>
+      </element>
+      <element name="getYieldGroupsByStatement">
+        <annotation>
+          <documentation>
+            Gets a page of yield groups, with child tags, filtered by the given statement.
+          </documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="statement" type="tns:Statement"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="getYieldGroupsByStatementResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="rval" type="tns:YieldGroupPage"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="getYieldPartners">
+        <annotation>
+          <documentation>
+            Returns the available partners for yield groups, each one of them is backed by a company.
+          </documentation>
+        </annotation>
+        <complexType>
+          <sequence/>
+        </complexType>
+      </element>
+      <element name="getYieldPartnersResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" minOccurs="0" name="rval" type="tns:YieldPartner"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="updateYieldGroups">
+        <annotation>
+          <documentation>
+            Updates a list of yield groups.
+          </documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" minOccurs="0"
+              name="yieldGroups" type="tns:YieldGroup"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="updateYieldGroupsResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" minOccurs="0" name="rval" type="tns:YieldGroup"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="RequestHeader" type="tns:SoapRequestHeader"/>
+      <element name="ResponseHeader" type="tns:SoapResponseHeader"/>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="RequestHeader">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"/>
+  </wsdl:message>
+  <wsdl:message name="ResponseHeader">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"/>
+  </wsdl:message>
+  <wsdl:message name="createYieldGroupsRequest">
+    <wsdl:part element="tns:createYieldGroups" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="createYieldGroupsResponse">
+    <wsdl:part element="tns:createYieldGroupsResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ApiException">
+    <wsdl:part element="tns:ApiExceptionFault" name="ApiException"/>
+  </wsdl:message>
+  <wsdl:message name="getYieldGroupsByStatementRequest">
+    <wsdl:part element="tns:getYieldGroupsByStatement" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getYieldGroupsByStatementResponse">
+    <wsdl:part element="tns:getYieldGroupsByStatementResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getYieldPartnersRequest">
+    <wsdl:part element="tns:getYieldPartners" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getYieldPartnersResponse">
+    <wsdl:part element="tns:getYieldPartnersResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="updateYieldGroupsRequest">
+    <wsdl:part element="tns:updateYieldGroups" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="updateYieldGroupsResponse">
+    <wsdl:part element="tns:updateYieldGroupsResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="YieldGroupServiceInterface">
+    <wsdl:operation name="createYieldGroups">
+      <wsdl:documentation>
+        Creates yield groups in bulk.
+      </wsdl:documentation>
+      <wsdl:input message="tns:createYieldGroupsRequest" name="createYieldGroupsRequest"/>
+      <wsdl:output message="tns:createYieldGroupsResponse" name="createYieldGroupsResponse"/>
+      <wsdl:fault message="tns:ApiException" name="ApiException"/>
+    </wsdl:operation>
+    <wsdl:operation name="getYieldGroupsByStatement">
+      <wsdl:documentation>
+        Gets a page of yield groups, with child tags, filtered by the given statement.
+      </wsdl:documentation>
+      <wsdl:input message="tns:getYieldGroupsByStatementRequest" name="getYieldGroupsByStatementRequest"/>
+      <wsdl:output message="tns:getYieldGroupsByStatementResponse" name="getYieldGroupsByStatementResponse"/>
+      <wsdl:fault message="tns:ApiException" name="ApiException"/>
+    </wsdl:operation>
+    <wsdl:operation name="getYieldPartners">
+      <wsdl:documentation>
+        Returns the available partners for yield groups, each one of them is backed by a company.
+      </wsdl:documentation>
+      <wsdl:input message="tns:getYieldPartnersRequest" name="getYieldPartnersRequest"/>
+      <wsdl:output message="tns:getYieldPartnersResponse" name="getYieldPartnersResponse"/>
+      <wsdl:fault message="tns:ApiException" name="ApiException"/>
+    </wsdl:operation>
+    <wsdl:operation name="updateYieldGroups">
+      <wsdl:documentation>
+        Updates a list of yield groups.
+      </wsdl:documentation>
+      <wsdl:input message="tns:updateYieldGroupsRequest" name="updateYieldGroupsRequest"/>
+      <wsdl:output message="tns:updateYieldGroupsResponse" name="updateYieldGroupsResponse"/>
+      <wsdl:fault message="tns:ApiException" name="ApiException"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="YieldGroupServiceSoapBinding" type="tns:YieldGroupServiceInterface">
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="createYieldGroups">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="createYieldGroupsRequest">
+        <wsdlsoap:header message="tns:RequestHeader"
+          part="RequestHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createYieldGroupsResponse">
+        <wsdlsoap:header message="tns:ResponseHeader"
+          part="ResponseHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ApiException">
+        <wsdlsoap:fault name="ApiException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getYieldGroupsByStatement">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getYieldGroupsByStatementRequest">
+        <wsdlsoap:header message="tns:RequestHeader"
+          part="RequestHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getYieldGroupsByStatementResponse">
+        <wsdlsoap:header message="tns:ResponseHeader"
+          part="ResponseHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ApiException">
+        <wsdlsoap:fault name="ApiException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getYieldPartners">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getYieldPartnersRequest">
+        <wsdlsoap:header message="tns:RequestHeader"
+          part="RequestHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getYieldPartnersResponse">
+        <wsdlsoap:header message="tns:ResponseHeader"
+          part="ResponseHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ApiException">
+        <wsdlsoap:fault name="ApiException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateYieldGroups">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="updateYieldGroupsRequest">
+        <wsdlsoap:header message="tns:RequestHeader"
+          part="RequestHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateYieldGroupsResponse">
+        <wsdlsoap:header message="tns:ResponseHeader"
+          part="ResponseHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ApiException">
+        <wsdlsoap:fault name="ApiException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="YieldGroupService">
+    <wsdl:port binding="tns:YieldGroupServiceSoapBinding" name="YieldGroupServiceInterfacePort">
+      <wsdlsoap:address location="https://ads.google.com/apis/ads/publisher/v202302/YieldGroupService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

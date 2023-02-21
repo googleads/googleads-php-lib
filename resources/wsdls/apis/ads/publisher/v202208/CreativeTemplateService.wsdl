@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2022 Google Inc. All Rights Reserved -->
+<!-- Copyright 2023 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202208"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202208"
@@ -226,16 +226,16 @@
           <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
             <annotation>
               <documentation>
-                Uniquely identifies the {@code CreativeTemplate}. This attribute is
-                read-only and is assigned by Google when a creative template is created.
+                Uniquely identifies the {@code CreativeTemplate}. This attribute is read-only and is assigned
+                by Google when a creative template is created.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
             <annotation>
               <documentation>
-                The name of the creative template. This attribute is required and has a
-                maximum length of 255 characters.
+                The name of the creative template. This attribute is required and has a maximum length of 255
+                characters.
               </documentation>
             </annotation>
           </element>
@@ -264,16 +264,15 @@
           <element maxOccurs="1" minOccurs="0" name="status" type="tns:CreativeTemplateStatus">
             <annotation>
               <documentation>
-                The status of the {@code CreativeTemplate}. This attribute is read-only
-                and is assigned by Google.
+                The status of the {@code CreativeTemplate}. This attribute is read-only and is assigned by
+                Google.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="type" type="tns:CreativeTemplateType">
             <annotation>
               <documentation>
-                The type of the {@code CreativeTemplate}. Publisher can only create
-                user-defined template
+                The type of the {@code CreativeTemplate}. Publisher can only create user-defined template
               </documentation>
             </annotation>
           </element>
@@ -2037,9 +2036,8 @@
       <element name="getCreativeTemplatesByStatement">
         <annotation>
           <documentation>
-            Gets a {@link CreativeTemplatePage} of {@link CreativeTemplate} objects that satisfy the
-            given {@link Statement#query}.  The following fields are supported for
-            filtering:
+            Gets a {@link CreativeTemplatePage} of {@link CreativeTemplate} objects that satisfy the given
+            {@link Statement#query}. The following fields are supported for filtering:
             
             &lt;table&gt;
             &lt;tr&gt;
@@ -2109,9 +2107,8 @@
     </wsdl:documentation>
     <wsdl:operation name="getCreativeTemplatesByStatement">
       <wsdl:documentation>
-        Gets a {@link CreativeTemplatePage} of {@link CreativeTemplate} objects that satisfy the
-        given {@link Statement#query}.  The following fields are supported for
-        filtering:
+        Gets a {@link CreativeTemplatePage} of {@link CreativeTemplate} objects that satisfy the given
+        {@link Statement#query}. The following fields are supported for filtering:
         
         &lt;table&gt;
         &lt;tr&gt;

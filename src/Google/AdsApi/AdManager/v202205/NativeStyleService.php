@@ -156,8 +156,8 @@ class NativeStyleService extends \Google\AdsApi\Common\AdsSoapClient
     }
 
     /**
-     * Gets a {@link NativeStylePage NativeStylePage} of {@link NativeStyle} objects that satisfy
-     * the given {@link Statement}. The following fields are supported for filtering:
+     * Gets a {@link NativeStylePage NativeStylePage} of {@link NativeStyle} objects that satisfy the
+     * given {@link Statement}. The following fields are supported for filtering:
      *
      * <table>
      * <tr>

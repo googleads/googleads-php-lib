@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2022 Google Inc. All Rights Reserved -->
+<!-- Copyright 2023 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202205"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202205"
@@ -88,17 +88,16 @@
                 name="isNativeEligible" type="xsd:boolean">
                 <annotation>
                   <documentation>
-                    Whether this creative is eligible for native ad-serving. This value is
-                    optional and defaults to {@code false}.
+                    Whether this creative is eligible for native ad-serving. This value is optional and defaults to
+                    {@code false}.
                   </documentation>
                 </annotation>
               </element>
               <element maxOccurs="1" minOccurs="0" name="isInterstitial" type="xsd:boolean">
                 <annotation>
                   <documentation>
-                    {@code true} if this creative is interstitial. An interstitial
-                    creative will not consider an impression served until it is fully rendered
-                    in the browser.
+                    {@code true} if this creative is interstitial. An interstitial creative will not consider an
+                    impression served until it is fully rendered in the browser.
                   </documentation>
                 </annotation>
               </element>
@@ -239,8 +238,7 @@
           <element maxOccurs="1" minOccurs="0" name="isNegated" type="xsd:boolean">
             <annotation>
               <documentation>
-                {@code isNegated} should be set to {@code true} to negate the effects of
-                {@code labelId}.
+                {@code isNegated} should be set to {@code true} to negate the effects of {@code labelId}.
               </documentation>
             </annotation>
           </element>
@@ -430,8 +428,8 @@
                 name="allowDurationOverride" type="xsd:boolean">
                 <annotation>
                   <documentation>
-                    Allows the creative duration to differ from the actual asset durations. This
-                    attribute is optional.
+                    Allows the creative duration to differ from the actual asset durations. This attribute is
+                    optional.
                   </documentation>
                 </annotation>
               </element>
@@ -439,8 +437,8 @@
                 name="trackingUrls" type="tns:ConversionEvent_TrackingUrlsMapEntry">
                 <annotation>
                   <documentation>
-                    A map from {@code ConversionEvent} to a list of URLs that will be pinged
-                    when the event happens. This attribute is optional.
+                    A map from {@code ConversionEvent} to a list of URLs that will be pinged when the event
+                    happens. This attribute is optional.
                   </documentation>
                 </annotation>
               </element>
@@ -448,8 +446,8 @@
                 name="companionCreativeIds" type="xsd:long">
                 <annotation>
                   <documentation>
-                    The IDs of the companion creatives that are associated with this creative.
-                    This attribute is optional.
+                    The IDs of the companion creatives that are associated with this creative. This attribute is
+                    optional.
                   </documentation>
                 </annotation>
               </element>
@@ -489,8 +487,8 @@
               <element maxOccurs="1" minOccurs="0" name="vastPreviewUrl" type="xsd:string">
                 <annotation>
                   <documentation>
-                    An ad tag URL that will return a preview of the VAST XML response specific
-                    to this creative.  This attribute is read-only.
+                    An ad tag URL that will return a preview of the VAST XML response specific to this creative.
+                    This attribute is read-only.
                   </documentation>
                 </annotation>
               </element>
@@ -527,8 +525,7 @@
           <element maxOccurs="1" minOccurs="0" name="customFieldId" type="xsd:long">
             <annotation>
               <documentation>
-                Id of the {@code CustomField} to which this value belongs. This attribute
-                is required.
+                Id of the {@code CustomField} to which this value belongs. This attribute is required.
               </documentation>
             </annotation>
           </element>
@@ -546,8 +543,8 @@
               <element maxOccurs="1" minOccurs="0" name="overrideSize" type="xsd:boolean">
                 <annotation>
                   <documentation>
-                    Allows the creative size to differ from the actual image asset size. This
-                    attribute is optional.
+                    Allows the creative size to differ from the actual image asset size. This attribute is
+                    optional.
                   </documentation>
                 </annotation>
               </element>
@@ -575,8 +572,8 @@
               <element maxOccurs="1" minOccurs="0" name="imageUrl" type="xsd:string">
                 <annotation>
                   <documentation>
-                    The URL where the actual asset resides. This attribute is required and
-                    has a maximum length of 1024 characters.
+                    The URL where the actual asset resides. This attribute is required and has a maximum length of
+                    1024 characters.
                   </documentation>
                 </annotation>
               </element>
@@ -651,8 +648,8 @@
                   <documentation>
                     The tracking URL to be triggered when an ad starts to play, whether Rich Media or backup
                     content is displayed. Behaves like the {@code /imp} URL that DART used to track impressions.
-                    This URL can't exceed 1024 characters and must start with http:// or https://.
-                    This attribute is optional and updatable.
+                    This URL can't exceed 1024 characters and must start with http:// or https://. This attribute
+                    is optional and updatable.
                   </documentation>
                 </annotation>
               </element>
@@ -670,16 +667,16 @@
                 name="backupImageImpressionsUrl" type="xsd:string">
                 <annotation>
                   <documentation>
-                    The tracking URL to be triggered when the Rich Media backup image is served.
-                    This attribute is optional and updatable.
+                    The tracking URL to be triggered when the Rich Media backup image is served. This attribute is
+                    optional and updatable.
                   </documentation>
                 </annotation>
               </element>
               <element maxOccurs="1" minOccurs="0" name="overrideCss" type="xsd:string">
                 <annotation>
                   <documentation>
-                    The override CSS. You can put custom CSS code here to repair creative styling;
-                    e.g. {@code tr td { background-color:#FBB; }}. This attribute is optional and updatable.
+                    The override CSS. You can put custom CSS code here to repair creative styling; e.g. {@code tr
+                    td { background-color:#FBB; }}. This attribute is optional and updatable.
                   </documentation>
                 </annotation>
               </element>
@@ -687,8 +684,8 @@
                 name="requiredFlashPluginVersion" type="xsd:string">
                 <annotation>
                   <documentation>
-                    The Flash plugin version required to view this creative; e.g. {@code Flash 10.2/AS 3}.
-                    This attribute is read only.
+                    The Flash plugin version required to view this creative; e.g. {@code Flash 10.2/AS 3}. This
+                    attribute is read only.
                   </documentation>
                 </annotation>
               </element>
@@ -758,8 +755,8 @@
                 name="allowDurationOverride" type="xsd:boolean">
                 <annotation>
                   <documentation>
-                    Allows the creative duration to differ from the actual asset durations. This
-                    attribute is optional.
+                    Allows the creative duration to differ from the actual asset durations. This attribute is
+                    optional.
                   </documentation>
                 </annotation>
               </element>
@@ -767,8 +764,8 @@
                 name="trackingUrls" type="tns:ConversionEvent_TrackingUrlsMapEntry">
                 <annotation>
                   <documentation>
-                    A map from {@code ConversionEvent} to a list of URLs that will be pinged
-                    when the event happens. This attribute is optional.
+                    A map from {@code ConversionEvent} to a list of URLs that will be pinged when the event
+                    happens. This attribute is optional.
                   </documentation>
                 </annotation>
               </element>
@@ -776,8 +773,8 @@
                 name="companionCreativeIds" type="xsd:long">
                 <annotation>
                   <documentation>
-                    The IDs of the companion creatives that are associated with this creative.
-                    This attribute is optional.
+                    The IDs of the companion creatives that are associated with this creative. This attribute is
+                    optional.
                   </documentation>
                 </annotation>
               </element>
@@ -785,9 +782,8 @@
                 name="customParameters" type="xsd:string">
                 <annotation>
                   <documentation>
-                    A comma separated key=value list of parameters that will be supplied to
-                    the creative, written into the VAST {@code AdParameters} node.
-                    This attribute is optional.
+                    A comma separated key=value list of parameters that will be supplied to the creative, written
+                    into the VAST {@code AdParameters} node. This attribute is optional.
                   </documentation>
                 </annotation>
               </element>
@@ -818,8 +814,8 @@
               <element maxOccurs="1" minOccurs="0" name="vastPreviewUrl" type="xsd:string">
                 <annotation>
                   <documentation>
-                    An ad tag URL that will return a preview of the VAST XML response specific
-                    to this creative.  This attribute is read-only.
+                    An ad tag URL that will return a preview of the VAST XML response specific to this creative.
+                    This attribute is read-only.
                   </documentation>
                 </annotation>
               </element>
@@ -895,10 +891,9 @@
       <complexType name="ClickTrackingCreative">
         <annotation>
           <documentation>
-            A creative that is used for tracking clicks on ads that are served directly
-            from the customers' web servers or media servers.
-            NOTE: The size attribute is not used for click tracking creative and it will
-            not be persisted upon save.
+            A creative that is used for tracking clicks on ads that are served directly from the customers'
+            web servers or media servers. NOTE: The size attribute is not used for click tracking creative
+            and it will not be persisted upon save.
           </documentation>
         </annotation>
         <complexContent>
@@ -981,22 +976,21 @@
           <element maxOccurs="1" minOccurs="0" name="assetByteArray" type="xsd:base64Binary">
             <annotation>
               <documentation>
-                The content of the asset as a byte array. This attribute is required when
-                creating the creative that contains this asset if an {@code assetId} is not provided.
-                &lt;p/&gt;
-                When updating the content, pass a new byte array, and set {@code assetId} to null.
+                The content of the asset as a byte array. This attribute is required when creating the creative
+                that contains this asset if an {@code assetId} is not provided.
+                
+                &lt;p&gt;When updating the content, pass a new byte array, and set {@code assetId} to null.
                 Otherwise, this field can be null.
-                &lt;p/&gt;
-                The {@code assetByteArray} will be {@code null} when the creative is
-                retrieved.
+                
+                &lt;p&gt;The {@code assetByteArray} will be {@code null} when the creative is retrieved.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="fileName" type="xsd:string">
             <annotation>
               <documentation>
-                The file name of the asset. This attribute is required when
-                creating a new asset (e.g. when {@link #assetByteArray} is not null).
+                The file name of the asset. This attribute is required when creating a new asset (e.g. when
+                {@link #assetByteArray} is not null).
               </documentation>
             </annotation>
           </element>
@@ -1010,17 +1004,16 @@
           <element maxOccurs="1" minOccurs="0" name="assetUrl" type="xsd:string">
             <annotation>
               <documentation>
-                A URL where the asset can be previewed at. This field is read-only and
-                set by Google.
+                A URL where the asset can be previewed at. This field is read-only and set by Google.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="size" type="tns:Size">
             <annotation>
               <documentation>
-                The size of the asset. Note that this may not always reflect the actual physical
-                size of the asset, but may reflect the expected size. This attribute is read-only and is
-                populated by Google.
+                The size of the asset. Note that this may not always reflect the actual physical size of the
+                asset, but may reflect the expected size. This attribute is read-only and is populated by
+                Google.
               </documentation>
             </annotation>
           </element>
@@ -1034,9 +1027,9 @@
           <element maxOccurs="1" minOccurs="0" name="imageDensity" type="tns:ImageDensity">
             <annotation>
               <documentation>
-                The display density of the image. This is the ratio between a dimension in pixels
-                of the image and the dimension in pixels that it should occupy in device-independent pixels
-                when displayed. This attribute is optional and defaults to ONE_TO_ONE.
+                The display density of the image. This is the ratio between a dimension in pixels of the image
+                and the dimension in pixels that it should occupy in device-independent pixels when displayed.
+                This attribute is optional and defaults to ONE_TO_ONE.
               </documentation>
             </annotation>
           </element>
@@ -1045,18 +1038,16 @@
       <complexType name="CustomCreativeAsset">
         <annotation>
           <documentation>
-            A {@code CustomCreativeAsset} is an association between a
-            {@link CustomCreative} and an asset. Any assets that are associated with a
-            creative can be inserted into its HTML snippet.
+            A {@code CustomCreativeAsset} is an association between a {@link CustomCreative} and an asset.
+            Any assets that are associated with a creative can be inserted into its HTML snippet.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="1" minOccurs="0" name="macroName" type="xsd:string">
             <annotation>
               <documentation>
-                The name by which the associated asset will be referenced. For example,
-                if the value is "foo", then the asset can be inserted into an HTML snippet
-                using the macro: "%%FILE:foo%%".
+                The name by which the associated asset will be referenced. For example, if the value is "foo",
+                then the asset can be inserted into an HTML snippet using the macro: "%%FILE:foo%%".
               </documentation>
             </annotation>
           </element>
@@ -1094,49 +1085,47 @@
           <documentation>
             A {@code Creative} represents the media for the ad being served.
             
-            &lt;p&gt;Read more about creatives on the
-            &lt;a href="https://support.google.com/dfp_premium/answer/3185155"&gt;Ad Manager Help Center&lt;/a&gt;.&lt;/p&gt;
+            &lt;p&gt;Read more about creatives on the &lt;a
+            href="https://support.google.com/admanager/answer/3185155"&gt;Ad Manager Help Center&lt;/a&gt;.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="1" minOccurs="0" name="advertiserId" type="xsd:long">
             <annotation>
               <documentation>
-                The ID of the advertiser that owns the creative. This attribute is
-                required.
+                The ID of the advertiser that owns the creative. This attribute is required.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
             <annotation>
               <documentation>
-                Uniquely identifies the {@code Creative}. This value is read-only and is
-                assigned by Google when the creative is created. This attribute is required
-                for updates.
+                Uniquely identifies the {@code Creative}. This value is read-only and is assigned by Google
+                when the creative is created. This attribute is required for updates.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
             <annotation>
               <documentation>
-                The name of the creative. This attribute is required and has a maximum
-                length of 255 characters.
+                The name of the creative. This attribute is required and has a maximum length of 255
+                characters.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="size" type="tns:Size">
             <annotation>
               <documentation>
-                The {@link Size} of the creative. This attribute is required for creation
-                and then is read-only.
+                The {@link Size} of the creative. This attribute is required for creation and then is
+                read-only.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="previewUrl" type="xsd:string">
             <annotation>
               <documentation>
-                The URL of the creative for previewing the media. This attribute is
-                read-only and is assigned by Google when a creative is created.
+                The URL of the creative for previewing the media. This attribute is read-only and is assigned
+                by Google when a creative is created.
               </documentation>
             </annotation>
           </element>
@@ -1315,17 +1304,16 @@
                 name="customCreativeAssets" type="tns:CustomCreativeAsset">
                 <annotation>
                   <documentation>
-                    A list of file assets that are associated with this creative, and can be
-                    referenced in the snippet.
+                    A list of file assets that are associated with this creative, and can be referenced in the
+                    snippet.
                   </documentation>
                 </annotation>
               </element>
               <element maxOccurs="1" minOccurs="0" name="isInterstitial" type="xsd:boolean">
                 <annotation>
                   <documentation>
-                    {@code true} if this custom creative is interstitial. An interstitial
-                    creative will not consider an impression served until it is fully rendered
-                    in the browser.
+                    {@code true} if this custom creative is interstitial. An interstitial creative will not
+                    consider an impression served until it is fully rendered in the browser.
                   </documentation>
                 </annotation>
               </element>
@@ -1402,8 +1390,8 @@
       <complexType name="CustomFieldValue">
         <annotation>
           <documentation>
-            The value of a {@link CustomField} that does not have a {@link CustomField#dataType}
-            of {@link CustomFieldDataType#DROP_DOWN}.
+            The value of a {@link CustomField} that does not have a {@link CustomField#dataType} of {@link
+            CustomFieldDataType#DROP_DOWN}.
           </documentation>
         </annotation>
         <complexContent>
@@ -1412,9 +1400,8 @@
               <element maxOccurs="1" minOccurs="0" name="value" type="tns:Value">
                 <annotation>
                   <documentation>
-                    The value for this field. The appropriate type of {@code Value} is
-                    determined by the {@link CustomField#dataType} of the {@code CustomField}
-                    that this conforms to.
+                    The value for this field. The appropriate type of {@code Value} is determined by the {@link
+                    CustomField#dataType} of the {@code CustomField} that this conforms to.
                     
                     &lt;table&gt;
                     &lt;tr&gt;&lt;th&gt;{@link CustomFieldDataType}&lt;/th&gt;&lt;th&gt;{@link Value} type&lt;/th&gt;&lt;/tr&gt;
@@ -1548,8 +1535,8 @@
       <complexType name="DropDownCustomFieldValue">
         <annotation>
           <documentation>
-            A {@link CustomFieldValue} for a {@link CustomField} that has a {@link CustomField#dataType}
-            of {@link CustomFieldDataType#DROP_DOWN}
+            A {@link CustomFieldValue} for a {@link CustomField} that has a {@link CustomField#dataType} of
+            {@link CustomFieldDataType#DROP_DOWN}
           </documentation>
         </annotation>
         <complexContent>
@@ -1559,8 +1546,7 @@
                 name="customFieldOptionId" type="xsd:long">
                 <annotation>
                   <documentation>
-                    The {@link CustomFieldOption#id ID} of the {@link CustomFieldOption} for
-                    this value.
+                    The {@link CustomFieldOption#id ID} of the {@link CustomFieldOption} for this value.
                   </documentation>
                 </annotation>
               </element>
@@ -1647,9 +1633,9 @@
               <element maxOccurs="1" minOccurs="0" name="destinationUrl" type="xsd:string">
                 <annotation>
                   <documentation>
-                    The URL that the user is directed to if they click on the creative. This
-                    attribute is required unless the {@link destinationUrlType} is {@link DestinationUrlType#NONE},
-                    and has a maximum length of 1024 characters.
+                    The URL that the user is directed to if they click on the creative. This attribute is required
+                    unless the {@link destinationUrlType} is {@link DestinationUrlType#NONE}, and has a maximum
+                    length of 1024 characters.
                   </documentation>
                 </annotation>
               </element>
@@ -1657,8 +1643,8 @@
                 name="destinationUrlType" type="tns:DestinationUrlType">
                 <annotation>
                   <documentation>
-                    The action that should be performed if the user clicks on the creative.
-                    This attribute is optional and defaults to {@link DestinationUrlType#CLICK_TO_WEB}.
+                    The action that should be performed if the user clicks on the creative. This attribute is
+                    optional and defaults to {@link DestinationUrlType#CLICK_TO_WEB}.
                   </documentation>
                 </annotation>
               </element>
@@ -1701,8 +1687,8 @@
               <element maxOccurs="1" minOccurs="0" name="overrideSize" type="xsd:boolean">
                 <annotation>
                   <documentation>
-                    Allows the creative size to differ from the actual HTML5 asset size. This
-                    attribute is optional.
+                    Allows the creative size to differ from the actual HTML5 asset size. This attribute is
+                    optional.
                   </documentation>
                 </annotation>
               </element>
@@ -1762,9 +1748,9 @@
               <element maxOccurs="1" minOccurs="0" name="html5Asset" type="tns:CreativeAsset">
                 <annotation>
                   <documentation>
-                    The HTML5 asset. To preview the HTML5 asset, use the {@link CreativeAsset#assetUrl}.
-                    In this field, the {@link CreativeAsset#assetByteArray} must be a zip bundle and the
-                    {@link CreativeAsset#fileName} must have a zip extension. This attribute is required.
+                    The HTML5 asset. To preview the HTML5 asset, use the {@link CreativeAsset#assetUrl}. In this
+                    field, the {@link CreativeAsset#assetByteArray} must be a zip bundle and the {@link
+                    CreativeAsset#fileName} must have a zip extension. This attribute is required.
                   </documentation>
                 </annotation>
               </element>
@@ -1856,9 +1842,9 @@
       <complexType name="ImageOverlayCreative">
         <annotation>
           <documentation>
-            An overlay {@code Creative} that displays an image and is served via VAST
-            2.0 XML. Overlays cover part of the video content they are displayed on
-            top of. This creative is read only prior to v201705.
+            An overlay {@code Creative} that displays an image and is served via VAST 2.0 XML. Overlays cover
+            part of the video content they are displayed on top of. This creative is read only prior to
+            v201705.
           </documentation>
         </annotation>
         <complexContent>
@@ -1868,8 +1854,8 @@
                 name="companionCreativeIds" type="xsd:long">
                 <annotation>
                   <documentation>
-                    The IDs of the companion creatives that are associated with this creative.
-                    This attribute is optional. This attribute is read-only.
+                    The IDs of the companion creatives that are associated with this creative. This attribute is
+                    optional. This attribute is read-only.
                   </documentation>
                 </annotation>
               </element>
@@ -1877,8 +1863,8 @@
                 name="trackingUrls" type="tns:ConversionEvent_TrackingUrlsMapEntry">
                 <annotation>
                   <documentation>
-                    A map from {@code ConversionEvent} to a list of URLs that will be pinged
-                    when the event happens. This attribute is optional.
+                    A map from {@code ConversionEvent} to a list of URLs that will be pinged when the event
+                    happens. This attribute is optional.
                   </documentation>
                 </annotation>
               </element>
@@ -1894,9 +1880,8 @@
                 name="customParameters" type="xsd:string">
                 <annotation>
                   <documentation>
-                    A comma separated key=value list of parameters that will be supplied to
-                    the creative, written into the VAST {@code AdParameters} node.
-                    This attribute is optional.
+                    A comma separated key=value list of parameters that will be supplied to the creative, written
+                    into the VAST {@code AdParameters} node. This attribute is optional.
                   </documentation>
                 </annotation>
               </element>
@@ -1910,8 +1895,8 @@
               <element maxOccurs="1" minOccurs="0" name="vastPreviewUrl" type="xsd:string">
                 <annotation>
                   <documentation>
-                    An ad tag URL that will return a preview of the VAST XML response specific
-                    to this creative.  This attribute is read-only.
+                    An ad tag URL that will return a preview of the VAST XML response specific to this creative.
+                    This attribute is read-only.
                   </documentation>
                 </annotation>
               </element>
@@ -1952,9 +1937,9 @@
       <complexType name="ImageRedirectOverlayCreative">
         <annotation>
           <documentation>
-            An overlay {@code Creative} that loads an image asset from a specified URL
-            and is served via VAST XML. Overlays cover part of the video content
-            they are displayed on top of.  This creative is read only.
+            An overlay {@code Creative} that loads an image asset from a specified URL and is served via VAST
+            XML. Overlays cover part of the video content they are displayed on top of. This creative is read
+            only.
           </documentation>
         </annotation>
         <complexContent>
@@ -1963,9 +1948,8 @@
               <element maxOccurs="1" minOccurs="0" name="assetSize" type="tns:Size">
                 <annotation>
                   <documentation>
-                    The size of the image asset.  Note that this may differ from {@link #size}
-                    if the asset is not expected to fill the entire video player.  This attribute
-                    is optional.
+                    The size of the image asset. Note that this may differ from {@link #size} if the asset is not
+                    expected to fill the entire video player. This attribute is optional.
                   </documentation>
                 </annotation>
               </element>
@@ -1980,8 +1964,8 @@
                 name="companionCreativeIds" type="xsd:long">
                 <annotation>
                   <documentation>
-                    The IDs of the companion creatives that are associated with this creative.
-                    This attribute is optional.
+                    The IDs of the companion creatives that are associated with this creative. This attribute is
+                    optional.
                   </documentation>
                 </annotation>
               </element>
@@ -1989,8 +1973,8 @@
                 name="trackingUrls" type="tns:ConversionEvent_TrackingUrlsMapEntry">
                 <annotation>
                   <documentation>
-                    A map from {@code ConversionEvent} to a list of URLs that will be pinged
-                    when the event happens. This attribute is optional.
+                    A map from {@code ConversionEvent} to a list of URLs that will be pinged when the event
+                    happens. This attribute is optional.
                   </documentation>
                 </annotation>
               </element>
@@ -1998,17 +1982,16 @@
                 name="customParameters" type="xsd:string">
                 <annotation>
                   <documentation>
-                    A comma separated key=value list of parameters that will be supplied to
-                    the creative, written into the VAST {@code AdParameters} node.
-                    This attribute is optional.
+                    A comma separated key=value list of parameters that will be supplied to the creative, written
+                    into the VAST {@code AdParameters} node. This attribute is optional.
                   </documentation>
                 </annotation>
               </element>
               <element maxOccurs="1" minOccurs="0" name="vastPreviewUrl" type="xsd:string">
                 <annotation>
                   <documentation>
-                    An ad tag URL that will return a preview of the VAST XML response specific
-                    to this creative.  This attribute is read-only.
+                    An ad tag URL that will return a preview of the VAST XML response specific to this creative.
+                    This attribute is read-only.
                   </documentation>
                 </annotation>
               </element>
@@ -2062,9 +2045,8 @@
               <element maxOccurs="1" minOccurs="0" name="assetSize" type="tns:Size">
                 <annotation>
                   <documentation>
-                    The asset size of an internal redirect creative.
-                    Note that this may differ from {@code size} if users set {@code overrideSize} to true.
-                    This attribute is read-only and is populated  by Google.
+                    The asset size of an internal redirect creative. Note that this may differ from {@code size} if
+                    users set {@code overrideSize} to true. This attribute is read-only and is populated by Google.
                   </documentation>
                 </annotation>
               </element>
@@ -2072,16 +2054,16 @@
                 name="internalRedirectUrl" type="xsd:string">
                 <annotation>
                   <documentation>
-                    The internal redirect URL of the DFA or DART for Publishers hosted creative.
-                    This attribute is required and has a maximum length of 1024 characters.
+                    The internal redirect URL of the DFA or DART for Publishers hosted creative. This attribute is
+                    required and has a maximum length of 1024 characters.
                   </documentation>
                 </annotation>
               </element>
               <element maxOccurs="1" minOccurs="0" name="overrideSize" type="xsd:boolean">
                 <annotation>
                   <documentation>
-                    Allows the creative size to differ from the actual size specified in the
-                    internal redirect's url. This attribute is optional.
+                    Allows the creative size to differ from the actual size specified in the internal redirect's
+                    url. This attribute is optional.
                   </documentation>
                 </annotation>
               </element>
@@ -2175,8 +2157,8 @@
       <complexType name="LegacyDfpCreative">
         <annotation>
           <documentation>
-            A {@code Creative} that isn't supported by Google DFP, but was migrated
-            from DART. Creatives of this type cannot be created or modified.
+            A {@code Creative} that isn't supported by Google DFP, but was migrated from DART. Creatives of
+            this type cannot be created or modified.
           </documentation>
         </annotation>
         <complexContent>
@@ -2541,8 +2523,8 @@
       <complexType name="RichMediaStudioCreative">
         <annotation>
           <documentation>
-            A {@code Creative} that is created by a Rich Media Studio. You cannot create this creative,
-            but you can update some fields of this creative.
+            A {@code Creative} that is created by a Rich Media Studio. You cannot create this creative, but
+            you can update some fields of this creative.
           </documentation>
         </annotation>
         <complexContent>
@@ -2559,8 +2541,8 @@
               <element maxOccurs="1" minOccurs="0" name="isInterstitial" type="xsd:boolean">
                 <annotation>
                   <documentation>
-                    {@code true} if this is interstitial. An interstitial creative will not consider an
-                    impression served until it is fully rendered in the browser. This attribute is readonly.
+                    {@code true} if this is interstitial. An interstitial creative will not consider an impression
+                    served until it is fully rendered in the browser. This attribute is readonly.
                   </documentation>
                 </annotation>
               </element>
@@ -2949,9 +2931,8 @@
               <element maxOccurs="1" minOccurs="0" name="isInterstitial" type="xsd:boolean">
                 <annotation>
                   <documentation>
-                    {@code true} if this template instantiated creative is interstitial.
-                    This attribute is read-only and is assigned by Google based on
-                    the creative template.
+                    {@code true} if this template instantiated creative is interstitial. This attribute is
+                    read-only and is assigned by Google based on the creative template.
                   </documentation>
                 </annotation>
               </element>
@@ -2959,9 +2940,8 @@
                 name="isNativeEligible" type="xsd:boolean">
                 <annotation>
                   <documentation>
-                    {@code true} if this template instantiated creative is eligible for native
-                    adserving. This attribute is read-only and is assigned by Google based on
-                    the creative template.
+                    {@code true} if this template instantiated creative is eligible for native adserving. This
+                    attribute is read-only and is assigned by Google based on the creative template.
                   </documentation>
                 </annotation>
               </element>
@@ -2978,9 +2958,9 @@
               <element maxOccurs="1" minOccurs="0" name="destinationUrl" type="xsd:string">
                 <annotation>
                   <documentation>
-                    The URL the user is directed to if they click on the creative. This
-                    attribute is only required if the template snippet contains the {@code %u}
-                    or {@code %%DEST_URL%%} macro. It has a maximum length of 1024 characters.
+                    The URL the user is directed to if they click on the creative. This attribute is only required
+                    if the template snippet contains the {@code %u} or {@code %%DEST_URL%%} macro. It has a maximum
+                    length of 1024 characters.
                   </documentation>
                 </annotation>
               </element>
@@ -3083,8 +3063,8 @@
                 name="expandedSnippet" type="xsd:string">
                 <annotation>
                   <documentation>
-                    The HTML snippet that this creative delivers with macros expanded. This
-                    attribute is read-only and is set by Google.
+                    The HTML snippet that this creative delivers with macros expanded. This attribute is read-only
+                    and is set by Google.
                   </documentation>
                 </annotation>
               </element>
@@ -3141,8 +3121,8 @@
       <complexType name="ThirdPartyDataDeclaration">
         <annotation>
           <documentation>
-            Represents a set of declarations about what (if any) third party companies are
-            associated with a given creative.
+            Represents a set of declarations about what (if any) third party companies are associated with a
+            given creative.
             
             &lt;p&gt;This can be set at the network level, as a default for all creatives, or overridden for a
             particular creative.
@@ -3211,9 +3191,8 @@
       <complexType name="UnsupportedCreative">
         <annotation>
           <documentation>
-            A {@code Creative} that isn't supported by this version of the API.
-            This object is readonly and when encountered should be reported
-            on the Ad Manager API forum.
+            A {@code Creative} that isn't supported by this version of the API. This object is readonly and
+            when encountered should be reported on the Ad Manager API forum.
           </documentation>
         </annotation>
         <complexContent>
@@ -3279,8 +3258,8 @@
       <complexType name="VastRedirectCreative">
         <annotation>
           <documentation>
-            A {@code Creative} that points to an externally hosted VAST ad and is
-            served via VAST XML as a VAST Wrapper.
+            A {@code Creative} that points to an externally hosted VAST ad and is served via VAST XML as a
+            VAST Wrapper.
           </documentation>
         </annotation>
         <complexContent>
@@ -3312,8 +3291,8 @@
                 name="companionCreativeIds" type="xsd:long">
                 <annotation>
                   <documentation>
-                    The IDs of the companion creatives that are associated with this creative.
-                    This attribute is optional.
+                    The IDs of the companion creatives that are associated with this creative. This attribute is
+                    optional.
                   </documentation>
                 </annotation>
               </element>
@@ -3321,16 +3300,16 @@
                 name="trackingUrls" type="tns:ConversionEvent_TrackingUrlsMapEntry">
                 <annotation>
                   <documentation>
-                    A map from {@code ConversionEvent} to a list of URLs that will be pinged
-                    when the event happens. This attribute is optional.
+                    A map from {@code ConversionEvent} to a list of URLs that will be pinged when the event
+                    happens. This attribute is optional.
                   </documentation>
                 </annotation>
               </element>
               <element maxOccurs="1" minOccurs="0" name="vastPreviewUrl" type="xsd:string">
                 <annotation>
                   <documentation>
-                    An ad tag URL that will return a preview of the VAST XML response specific
-                    to this creative.  This attribute is read-only.
+                    An ad tag URL that will return a preview of the VAST XML response specific to this creative.
+                    This attribute is read-only.
                   </documentation>
                 </annotation>
               </element>
@@ -3368,8 +3347,7 @@
       <complexType name="VideoCreative">
         <annotation>
           <documentation>
-            A {@code Creative} that contains Ad Manager hosted video ads and is served
-            via VAST XML.
+            A {@code Creative} that contains Ad Manager hosted video ads and is served via VAST XML.
           </documentation>
         </annotation>
         <complexContent>
@@ -3410,25 +3388,25 @@
           <element maxOccurs="1" minOccurs="0" name="bitRate" type="xsd:int">
             <annotation>
               <documentation>
-                The bit rate of the asset in kbps. If the asset can play at a range of bit rates (such
-                as an Http Live Streaming video), then set the bit rate to zero and populate the minimum
-                and maximum bit rate instead.
+                The bit rate of the asset in kbps. If the asset can play at a range of bit rates (such as an
+                Http Live Streaming video), then set the bit rate to zero and populate the minimum and maximum
+                bit rate instead.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="minimumBitRate" type="xsd:int">
             <annotation>
               <documentation>
-                The minimum bitrate of the video in kbps.  Only set this if the asset can play at a
-                range of bit rates.
+                The minimum bitrate of the video in kbps. Only set this if the asset can play at a range of bit
+                rates.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="maximumBitRate" type="xsd:int">
             <annotation>
               <documentation>
-                The maximum bitrate of the video in kbps.  Only set this if the asset can play at a
-                range of bit rates.
+                The maximum bitrate of the video in kbps. Only set this if the asset can play at a range of bit
+                rates.
               </documentation>
             </annotation>
           </element>
@@ -3485,8 +3463,7 @@
       <complexType name="VideoRedirectCreative">
         <annotation>
           <documentation>
-            A {@code Creative} that contains externally hosted video ads and
-            is served via VAST XML.
+            A {@code Creative} that contains externally hosted video ads and is served via VAST XML.
           </documentation>
         </annotation>
         <complexContent>
@@ -7102,9 +7079,8 @@
       <element name="getCreativesByStatement">
         <annotation>
           <documentation>
-            Gets a {@link CreativePage} of {@link Creative} objects that satisfy the
-            given {@link Statement#query}. The following fields are supported for
-            filtering:
+            Gets a {@link CreativePage} of {@link Creative} objects that satisfy the given {@link
+            Statement#query}. The following fields are supported for filtering:
             
             &lt;table&gt;
             &lt;tr&gt;
@@ -7235,7 +7211,7 @@
       LineItemCreativeAssociationService}.
       
       &lt;p&gt;Read more about creatives on the &lt;a
-      href="https://support.google.com/dfp_premium/answer/3185155"&gt;DFP Help Center&lt;/a&gt;.
+      href="https://support.google.com/admanager/answer/3185155"&gt;Ad Manager Help Center&lt;/a&gt;.
     </wsdl:documentation>
     <wsdl:operation name="createCreatives">
       <wsdl:documentation>
@@ -7247,9 +7223,8 @@
     </wsdl:operation>
     <wsdl:operation name="getCreativesByStatement">
       <wsdl:documentation>
-        Gets a {@link CreativePage} of {@link Creative} objects that satisfy the
-        given {@link Statement#query}. The following fields are supported for
-        filtering:
+        Gets a {@link CreativePage} of {@link Creative} objects that satisfy the given {@link
+        Statement#query}. The following fields are supported for filtering:
         
         &lt;table&gt;
         &lt;tr&gt;

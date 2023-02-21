@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2022 Google Inc. All Rights Reserved -->
+<!-- Copyright 2023 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202205"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202205"
@@ -221,24 +221,22 @@
           <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
             <annotation>
               <documentation>
-                Unique ID of the {@code CustomField}. This value is readonly and is assigned by
-                Google.
+                Unique ID of the {@code CustomField}. This value is readonly and is assigned by Google.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
             <annotation>
               <documentation>
-                Name of the {@code CustomField}. This is value is required to create a custom field. The
-                max length is 127 characters.
+                Name of the {@code CustomField}. This is value is required to create a custom field. The max
+                length is 127 characters.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="description" type="xsd:string">
             <annotation>
               <documentation>
-                A description of the custom field. This value is optional. The maximum length is 511
-                characters
+                A description of the custom field. This value is optional. The maximum length is 511 characters
               </documentation>
             </annotation>
           </element>
@@ -252,16 +250,16 @@
           <element maxOccurs="1" minOccurs="0" name="entityType" type="tns:CustomFieldEntityType">
             <annotation>
               <documentation>
-                The type of entity that this custom field is associated with. This attribute is read-only
-                if there exists a {@link CustomFieldValue} for this field.
+                The type of entity that this custom field is associated with. This attribute is read-only if
+                there exists a {@link CustomFieldValue} for this field.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="dataType" type="tns:CustomFieldDataType">
             <annotation>
               <documentation>
-                The type of data this custom field contains. This attribute is read-only
-                if there exists a {@link CustomFieldValue} for this field.
+                The type of data this custom field contains. This attribute is read-only if there exists a
+                {@link CustomFieldValue} for this field.
               </documentation>
             </annotation>
           </element>
@@ -297,16 +295,15 @@
       <complexType name="CustomFieldOption">
         <annotation>
           <documentation>
-            An option represents a permitted value for a custom field that
-            has a {@link CustomField#dataType} of {@link CustomFieldDataType#DROP_DOWN}.
+            An option represents a permitted value for a custom field that has a {@link CustomField#dataType}
+            of {@link CustomFieldDataType#DROP_DOWN}.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
             <annotation>
               <documentation>
-                Unique ID of this option. This value is readonly and is assigned by
-                Google.
+                Unique ID of this option. This value is readonly and is assigned by Google.
               </documentation>
             </annotation>
           </element>
@@ -1855,10 +1852,11 @@
           <documentation>
             Creates new {@link CustomFieldOption} objects.
             
-            The following fields are required:
+            &lt;p&gt;The following fields are required:
+            
             &lt;ul&gt;
-            &lt;li&gt;{@link CustomFieldOption#displayName}&lt;/li&gt;
-            &lt;li&gt;{@link CustomFieldOption#customFieldId}&lt;/li&gt;
+            &lt;li&gt;{@link CustomFieldOption#displayName}
+            &lt;li&gt;{@link CustomFieldOption#customFieldId}
             &lt;/ul&gt;
           </documentation>
         </annotation>
@@ -1888,12 +1886,13 @@
           <documentation>
             Creates new {@link CustomField} objects.
             
-            The following fields are required:
+            &lt;p&gt;The following fields are required:
+            
             &lt;ul&gt;
-            &lt;li&gt;{@link CustomField#name}&lt;/li&gt;
-            &lt;li&gt;{@link CustomField#entityType}&lt;/li&gt;
-            &lt;li&gt;{@link CustomField#dataType}&lt;/li&gt;
-            &lt;li&gt;{@link CustomField#visibility}&lt;/li&gt;
+            &lt;li&gt;{@link CustomField#name}
+            &lt;li&gt;{@link CustomField#entityType}
+            &lt;li&gt;{@link CustomField#dataType}
+            &lt;li&gt;{@link CustomField#visibility}
             &lt;/ul&gt;
           </documentation>
         </annotation>
@@ -1934,9 +1933,8 @@
       <element name="getCustomFieldsByStatement">
         <annotation>
           <documentation>
-            Gets a {@link CustomFieldPage} of {@link CustomField} objects that satisfy the
-            given {@link Statement#query}.
-            The following fields are supported for filtering:
+            Gets a {@link CustomFieldPage} of {@link CustomField} objects that satisfy the given {@link
+            Statement#query}. The following fields are supported for filtering:
             
             &lt;table&gt;
             &lt;tr&gt;
@@ -1981,8 +1979,7 @@
       <element name="performCustomFieldAction">
         <annotation>
           <documentation>
-            Performs actions on {@link CustomField} objects that match the given
-            {@link Statement#query}.
+            Performs actions on {@link CustomField} objects that match the given {@link Statement#query}.
           </documentation>
         </annotation>
         <complexType>
@@ -2103,10 +2100,11 @@
       <wsdl:documentation>
         Creates new {@link CustomFieldOption} objects.
         
-        The following fields are required:
+        &lt;p&gt;The following fields are required:
+        
         &lt;ul&gt;
-        &lt;li&gt;{@link CustomFieldOption#displayName}&lt;/li&gt;
-        &lt;li&gt;{@link CustomFieldOption#customFieldId}&lt;/li&gt;
+        &lt;li&gt;{@link CustomFieldOption#displayName}
+        &lt;li&gt;{@link CustomFieldOption#customFieldId}
         &lt;/ul&gt;
       </wsdl:documentation>
       <wsdl:input message="tns:createCustomFieldOptionsRequest" name="createCustomFieldOptionsRequest"/>
@@ -2117,12 +2115,13 @@
       <wsdl:documentation>
         Creates new {@link CustomField} objects.
         
-        The following fields are required:
+        &lt;p&gt;The following fields are required:
+        
         &lt;ul&gt;
-        &lt;li&gt;{@link CustomField#name}&lt;/li&gt;
-        &lt;li&gt;{@link CustomField#entityType}&lt;/li&gt;
-        &lt;li&gt;{@link CustomField#dataType}&lt;/li&gt;
-        &lt;li&gt;{@link CustomField#visibility}&lt;/li&gt;
+        &lt;li&gt;{@link CustomField#name}
+        &lt;li&gt;{@link CustomField#entityType}
+        &lt;li&gt;{@link CustomField#dataType}
+        &lt;li&gt;{@link CustomField#visibility}
         &lt;/ul&gt;
       </wsdl:documentation>
       <wsdl:input message="tns:createCustomFieldsRequest" name="createCustomFieldsRequest"/>
@@ -2139,9 +2138,8 @@
     </wsdl:operation>
     <wsdl:operation name="getCustomFieldsByStatement">
       <wsdl:documentation>
-        Gets a {@link CustomFieldPage} of {@link CustomField} objects that satisfy the
-        given {@link Statement#query}.
-        The following fields are supported for filtering:
+        Gets a {@link CustomFieldPage} of {@link CustomField} objects that satisfy the given {@link
+        Statement#query}. The following fields are supported for filtering:
         
         &lt;table&gt;
         &lt;tr&gt;
@@ -2175,8 +2173,7 @@
     </wsdl:operation>
     <wsdl:operation name="performCustomFieldAction">
       <wsdl:documentation>
-        Performs actions on {@link CustomField} objects that match the given
-        {@link Statement#query}.
+        Performs actions on {@link CustomField} objects that match the given {@link Statement#query}.
       </wsdl:documentation>
       <wsdl:input message="tns:performCustomFieldActionRequest" name="performCustomFieldActionRequest"/>
       <wsdl:output message="tns:performCustomFieldActionResponse" name="performCustomFieldActionResponse"/>

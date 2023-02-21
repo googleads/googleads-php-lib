@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2022 Google Inc. All Rights Reserved -->
+<!-- Copyright 2023 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202205"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202205"
@@ -58,16 +58,16 @@
       <complexType name="ActivityGroup">
         <annotation>
           <documentation>
-            Activities are organized within activity groups, which are sets of activities that share the
-            same configuration. You create and manage activities from within activity groups.
+            Activities are organized within activity groups, which are sets of activities that share the same
+            configuration. You create and manage activities from within activity groups.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
             <annotation>
               <documentation>
-                The unique ID of the {@code ActivityGroup}. This attribute is readonly and is assigned
-                by Google.
+                The unique ID of the {@code ActivityGroup}. This attribute is readonly and is assigned by
+                Google.
               </documentation>
             </annotation>
           </element>
@@ -83,11 +83,11 @@
             <annotation>
               <documentation>
                 The company ids whose ads will be included for conversion tracking on the activities in this
-                group. Only clicks and impressions of ads from these companies will lead to conversions on
-                the containing activities. This attribute is required when creating an activity group.
+                group. Only clicks and impressions of ads from these companies will lead to conversions on the
+                containing activities. This attribute is required when creating an activity group.
                 
-                The company types allowed are: {@link Company.Type#ADVERTISER}, and
-                {@link Company.Type#AD_NETWORK}, and {@link Company.Type#HOUSE_ADVERTISER}
+                &lt;p&gt;The company types allowed are: {@link Company.Type#ADVERTISER}, and {@link
+                Company.Type#AD_NETWORK}, and {@link Company.Type#HOUSE_ADVERTISER}
               </documentation>
             </annotation>
           </element>
@@ -96,21 +96,21 @@
             <annotation>
               <documentation>
                 Ad Manager records view-through conversions for users who have previously viewed an Ad Manager
-                ad within the number of days that you set here (1 to 30 days), then visits a webpage
-                containing activity tags from this activity group. To be counted, the ad needs to belong to
-                one of the companies associated with the activity group. This attribute is required to create
-                an activity group.
+                ad within the number of days that you set here (1 to 30 days), then visits a webpage containing
+                activity tags from this activity group. To be counted, the ad needs to belong to one of the
+                companies associated with the activity group. This attribute is required to create an activity
+                group.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="clicksLookback" type="xsd:int">
             <annotation>
               <documentation>
-                Ad Manager records click-through conversions for users who have previously clicked on an
-                Ad Manager ad within the number of days that you set here (1 to 30 days), then visits a
-                webpage containing activity tags from this activity group. To be counted, the ad needs to
-                belong to one of the companies associated with the activity group. This attribute is required
-                to create an activity group.
+                Ad Manager records click-through conversions for users who have previously clicked on an Ad
+                Manager ad within the number of days that you set here (1 to 30 days), then visits a webpage
+                containing activity tags from this activity group. To be counted, the ad needs to belong to one
+                of the companies associated with the activity group. This attribute is required to create an
+                activity group.
               </documentation>
             </annotation>
           </element>

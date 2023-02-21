@@ -103,8 +103,7 @@ class UserService extends \Google\AdsApi\Common\AdsSoapClient
     }
 
     /**
-     * Returns the {@link Role} objects that are defined for the users of the
-     * network.
+     * Returns the {@link Role} objects that are defined for the users of the network.
      *
      * @return \Google\AdsApi\AdManager\v202211\Role[]
      * @throws \Google\AdsApi\AdManager\v202211\ApiException
@@ -126,8 +125,8 @@ class UserService extends \Google\AdsApi\Common\AdsSoapClient
     }
 
     /**
-     * Gets a {@link UserPage} of {@link User} objects that satisfy the given
-     * {@link Statement#query}. The following fields are supported for filtering:
+     * Gets a {@link UserPage} of {@link User} objects that satisfy the given {@link Statement#query}.
+     * The following fields are supported for filtering:
      *
      * <table>
      * <tr>
@@ -170,8 +169,7 @@ class UserService extends \Google\AdsApi\Common\AdsSoapClient
     }
 
     /**
-     * Performs actions on {@link User} objects that match the given
-     * {@link Statement#query}.
+     * Performs actions on {@link User} objects that match the given {@link Statement#query}.
      *
      * @param \Google\AdsApi\AdManager\v202211\UserAction $userAction
      * @param \Google\AdsApi\AdManager\v202211\Statement $filterStatement

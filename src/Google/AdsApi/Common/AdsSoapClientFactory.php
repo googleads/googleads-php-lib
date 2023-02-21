@@ -22,8 +22,7 @@ use RuntimeException;
 
 /**
  * Creates SOAP clients that interface with ads APIs. These SOAP clients extend
- * `AdsSoapClient`. For example, the Ad Manager `LineItemService` or the AdWords
- * `CampaignService`.
+ * `AdsSoapClient`. For example, the Ad Manager `LineItemService`.
  *
  * @see AdsSoapClient
  */

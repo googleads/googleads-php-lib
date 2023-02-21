@@ -91,7 +91,7 @@ class AdManagerSessionBuilderTest extends TestCase
             $adManagerSession->getSoapLogger()->getHandlers()[0]
         );
         $this->assertSame(
-            Logger::DEBUG,
+            Logger::API < 3 ? Logger::DEBUG : \Monolog\Level::Debug,
             $adManagerSession->getSoapLogger()->getHandlers()[0]->getLevel()
         );
     }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2022 Google Inc. All Rights Reserved -->
+<!-- Copyright 2023 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202205"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202205"
@@ -215,16 +215,16 @@
         <annotation>
           <documentation>
             A {@code ContentBundle} is a grouping of individual {@link Content}. A {@code ContentBundle} is
-            defined as including the {@code Content} that match certain filter rules, along with the
-            option to explicitly include or exclude certain {@code Content} IDs.
+            defined as including the {@code Content} that match certain filter rules, along with the option
+            to explicitly include or exclude certain {@code Content} IDs.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
             <annotation>
               <documentation>
-                ID that uniquely identifies the {@code ContentBundle}. This attribute is read-only and
-                is assigned by Google when a content bundle is created.
+                ID that uniquely identifies the {@code ContentBundle}. This attribute is read-only and is
+                assigned by Google when a content bundle is created.
               </documentation>
             </annotation>
           </element>
@@ -1637,8 +1637,8 @@
       <element name="getContentBundlesByStatement">
         <annotation>
           <documentation>
-            Gets a {@link ContentBundlePage} of {@link ContentBundle} objects that satisfy the
-            given {@link Statement#query}. The following fields are supported for filtering:
+            Gets a {@link ContentBundlePage} of {@link ContentBundle} objects that satisfy the given {@link
+            Statement#query}. The following fields are supported for filtering:
             
             &lt;table&gt;
             &lt;tr&gt;
@@ -1675,8 +1675,7 @@
       <element name="performContentBundleAction">
         <annotation>
           <documentation>
-            Performs actions on {@link ContentBundle} objects that match the given
-            {@link Statement#query}.
+            Performs actions on {@link ContentBundle} objects that match the given {@link Statement#query}.
           </documentation>
         </annotation>
         <complexType>
@@ -1768,8 +1767,8 @@
     </wsdl:operation>
     <wsdl:operation name="getContentBundlesByStatement">
       <wsdl:documentation>
-        Gets a {@link ContentBundlePage} of {@link ContentBundle} objects that satisfy the
-        given {@link Statement#query}. The following fields are supported for filtering:
+        Gets a {@link ContentBundlePage} of {@link ContentBundle} objects that satisfy the given {@link
+        Statement#query}. The following fields are supported for filtering:
         
         &lt;table&gt;
         &lt;tr&gt;
@@ -1795,8 +1794,7 @@
     </wsdl:operation>
     <wsdl:operation name="performContentBundleAction">
       <wsdl:documentation>
-        Performs actions on {@link ContentBundle} objects that match the given
-        {@link Statement#query}.
+        Performs actions on {@link ContentBundle} objects that match the given {@link Statement#query}.
       </wsdl:documentation>
       <wsdl:input message="tns:performContentBundleActionRequest" name="performContentBundleActionRequest"/>
       <wsdl:output message="tns:performContentBundleActionResponse" name="performContentBundleActionResponse"/>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2022 Google Inc. All Rights Reserved -->
+<!-- Copyright 2023 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202208"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202208"
@@ -817,9 +817,8 @@
           <element maxOccurs="1" minOccurs="0" name="reportQuery" type="tns:ReportQuery">
             <annotation>
               <documentation>
-                The {@link ReportQuery} representing the selection criteria for the saved query.
-                This will be non-null if and only if {@link SavedQuery#isCompatibleWithApiVersion} is
-                {@code true}.
+                The {@link ReportQuery} representing the selection criteria for the saved query. This will be
+                non-null if and only if {@link SavedQuery#isCompatibleWithApiVersion} is {@code true}.
               </documentation>
             </annotation>
           </element>
@@ -827,10 +826,10 @@
             name="isCompatibleWithApiVersion" type="xsd:boolean">
             <annotation>
               <documentation>
-                Whether or not the saved query is compatible with the current API version.
-                This will be {@code true} if and only if {@link SavedQuery#reportQuery} is non-null.
-                A saved query will be incompatible with the API if it uses columns, dimensions, or other
-                reporting features from the UI that are not available in the {@link ReportQuery} entity.
+                Whether or not the saved query is compatible with the current API version. This will be {@code
+                true} if and only if {@link SavedQuery#reportQuery} is non-null. A saved query will be
+                incompatible with the API if it uses columns, dimensions, or other reporting features from the
+                UI that are not available in the {@link ReportQuery} entity.
               </documentation>
             </annotation>
           </element>
@@ -2126,7 +2125,7 @@
             <annotation>
               <documentation>
                 The number of partner-sold impressions served to the YouTube partner ad inventory.
-                &lt;p&gt;Corresponds to "Partner-sold impressions" in the Ad Manager UI.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Partner-sold impressions" in the Ad Manager UI. Compatible with the "YouTube consolidated" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -2134,7 +2133,7 @@
             <annotation>
               <documentation>
                 The number of times the ad server responded to a request for the YouTube partner ad inventory.
-                &lt;p&gt;Corresponds to "Partner-sold code served count" in the Ad Manager UI.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Partner-sold code served count" in the Ad Manager UI. Compatible with the "YouTube consolidated" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -2142,7 +2141,7 @@
             <annotation>
               <documentation>
                 The number of Google-sold impressions served to the YouTube partner ad inventory.
-                &lt;p&gt;Corresponds to "Google-sold impressions" in the Ad Manager UI.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Google-sold impressions" in the Ad Manager UI. Compatible with the "YouTube consolidated" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -2150,7 +2149,7 @@
             <annotation>
               <documentation>
                 The number of Google-sold reservation impressions served to the YouTube partner ad inventory.
-                &lt;p&gt;Corresponds to "Google-sold reservation impressions" in the Ad Manager UI.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Google-sold reservation impressions" in the Ad Manager UI. Compatible with the "YouTube consolidated" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -2158,7 +2157,7 @@
             <annotation>
               <documentation>
                 The number of Google-sold auction impressions served to the YouTube partner ad inventory.
-                &lt;p&gt;Corresponds to "Google-sold auction impressions" in the Ad Manager UI.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Google-sold auction impressions" in the Ad Manager UI. Compatible with the "YouTube consolidated" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -2167,7 +2166,7 @@
               <documentation>
                 The total number of ad requests that were eligible to serve to the YouTube partner ad
                 inventory.
-                &lt;p&gt;Corresponds to "Total ad requests" in the Ad Manager UI.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Total ad requests" in the Ad Manager UI. Compatible with the "YouTube consolidated" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -2178,7 +2177,7 @@
                 ad. This includes both partner-sold and Google-sold requests.
                 
                 &lt;p&gt;Google-sold can fill at most 2 ads, while partner-sold can fill at most 1 ad.
-                &lt;p&gt;Corresponds to "Filled ad requests" in the Ad Manager UI.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Filled ad requests" in the Ad Manager UI. Compatible with the "YouTube consolidated" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -2186,7 +2185,7 @@
             <annotation>
               <documentation>
                 The fill rate percentage of filled requests to total ad requests.
-                &lt;p&gt;Corresponds to "Fill rate" in the Ad Manager UI.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Fill rate" in the Ad Manager UI. Compatible with the "YouTube consolidated" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -2365,7 +2364,7 @@
           <enumeration value="RICH_MEDIA_VIDEO_MIDPOINTS">
             <annotation>
               <documentation>
-                The number of times a rich media video was played upto midpoint.
+                The number of times a rich media video was played up to midpoint.
                 &lt;p&gt;Corresponds to "Midpoint" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
@@ -4659,7 +4658,7 @@
               <documentation>
                 Breaks down reporting data by month and year in the network time zone. Can be used to filter on
                 month using ISO 4601 format 'YYYY-MM'.
-                &lt;p&gt;Corresponds to "Month and year" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Partner finance.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Month and year" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Partner finance, YouTube consolidated.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4668,7 +4667,7 @@
               <documentation>
                 Breaks down reporting data by week of the year in the network time zone. Cannot be used for
                 filtering.
-                &lt;p&gt;Corresponds to "Week" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Week" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, YouTube consolidated.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4677,7 +4676,7 @@
               <documentation>
                 Breaks down reporting data by date in the network time zone. Can be used to filter by date
                 using ISO 8601's format 'YYYY-MM-DD'".
-                &lt;p&gt;Corresponds to "Date" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Date" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed, YouTube consolidated.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4687,7 +4686,7 @@
                 Breaks down reporting data by day of the week in the network time zone. Can
                 be used to filter by day of the week using the index of the day (from 1 for
                 Monday is 1 to 7 for Sunday).
-                &lt;p&gt;Corresponds to "Day of week" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Day of week" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, YouTube consolidated.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5000,7 +4999,7 @@
               <documentation>
                 Breaks down reporting data by country criteria ID. Can be used to filter by
                 country criteria ID.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed, YouTube consolidated.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5018,7 +5017,7 @@
                 Breaks down reporting data by country name. The country name and the
                 country criteria ID are automatically included as columns in the report.
                 Can be used to filter by country name using the US English name.
-                &lt;p&gt;Corresponds to "Country" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Country" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed, YouTube consolidated.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5183,7 +5182,7 @@
               <documentation>
                 Breaks down reporting data by {@link Content#id}. Can be used to filter by
                 {@link Content#id}.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, YouTube consolidated.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5193,7 +5192,7 @@
                 Breaks down reporting data by content. {@link Content#name} and
                 {@link Content#id} are automatically included as columns in the report. Can
                 be used to filter by {@link Content#name}.
-                &lt;p&gt;Corresponds to "Content" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Content" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, YouTube consolidated.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5202,7 +5201,7 @@
               <documentation>
                 Breaks down reporting data by {@link ContentBundle#id}. Can be used to filter
                 by {@link ContentBundle#id}.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, YouTube consolidated.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5212,7 +5211,7 @@
                 Breaks down reporting data by content bundle. {@link ContentBundle#name} and
                 {@link ContentBundle#id} are automatically included as columns in the
                 report. Can be used to filter by {@link ContentBundle#name}.
-                &lt;p&gt;Corresponds to "Content bundle" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Content bundle" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, YouTube consolidated.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6855,7 +6854,7 @@
               <documentation>
                 Represents the {@link CmsContent#displayName} within the first element of {@link
                 Content#cmsContent} for {@link Dimension#CONTENT_NAME}.
-                &lt;p&gt;Corresponds to "Content source name" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Content source name" in the Ad Manager UI. Compatible with any of the following report types: Historical, YouTube consolidated.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6864,7 +6863,7 @@
               <documentation>
                 Represents the {@link CmsContent#cmsContentId} within the first element of {@link
                 Content#cmsContent} for {@link Dimension#CONTENT_NAME}.
-                &lt;p&gt;Corresponds to "ID of the video in the content source" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "ID of the video in the content source" in the Ad Manager UI. Compatible with any of the following report types: Historical, YouTube consolidated.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7569,8 +7568,8 @@
         <annotation>
           <documentation>
             Returns the URL at which the report file can be downloaded.
-            &lt;p&gt;
-            The report will be generated as a gzip archive, containing the report file itself.
+            
+            &lt;p&gt;The report will be generated as a gzip archive, containing the report file itself.
           </documentation>
         </annotation>
         <complexType>
@@ -7597,11 +7596,12 @@
       <element name="getReportDownloadUrlWithOptions">
         <annotation>
           <documentation>
-            Returns the URL at which the report file can be downloaded, and allows for customization
-            of the downloaded report.
-            &lt;p&gt;
-            By default, the report will be generated as a gzip archive, containing the report file itself.
-            This can be changed by setting {@link ReportDownloadOptions#useGzipCompression} to false.
+            Returns the URL at which the report file can be downloaded, and allows for customization of the
+            downloaded report.
+            
+            &lt;p&gt;By default, the report will be generated as a gzip archive, containing the report file
+            itself. This can be changed by setting {@link ReportDownloadOptions#useGzipCompression} to
+            false.
           </documentation>
         </annotation>
         <complexType>
@@ -7642,10 +7642,10 @@
         <annotation>
           <documentation>
             Retrieves a page of the saved queries either created by or shared with the current user. Each
-            {@link SavedQuery} in the page, if it is compatible with the current API version, will
-            contain a {@link ReportQuery} object which can be optionally modified and used to create a
-            {@link ReportJob}. This can then be passed to {@link ReportService#runReportJob}.
-            The following fields are supported for filtering:
+            {@link SavedQuery} in the page, if it is compatible with the current API version, will contain
+            a {@link ReportQuery} object which can be optionally modified and used to create a {@link
+            ReportJob}. This can then be passed to {@link ReportService#runReportJob}. The following fields
+            are supported for filtering:
             
             &lt;table&gt;
             &lt;tr&gt;
@@ -7681,8 +7681,9 @@
             Initiates the execution of a {@link ReportQuery} on the server.
             
             &lt;p&gt;The following fields are required:
+            
             &lt;ul&gt;
-            &lt;li&gt;{@link ReportJob#reportQuery}&lt;/li&gt;
+            &lt;li&gt;{@link ReportJob#reportQuery}
             &lt;/ul&gt;
           </documentation>
         </annotation>
@@ -7744,37 +7745,33 @@
   </wsdl:message>
   <wsdl:portType name="ReportServiceInterface">
     <wsdl:documentation>
-      Provides methods for executing a {@link ReportJob} and retrieving performance
-      and statistics about ad campaigns, networks, inventory and sales.
-      &lt;p&gt;Follow the steps outlined below:&lt;/p&gt;
+      Provides methods for executing a {@link ReportJob} and retrieving performance and statistics
+      about ad campaigns, networks, inventory and sales.
+      
+      &lt;p&gt;Follow the steps outlined below:
+      
       &lt;p&gt;
+      
       &lt;ul&gt;
-      &lt;li&gt;Create the {@code ReportJob} object by invoking
-      {@link ReportService#runReportJob}.&lt;/li&gt;
-      &lt;li&gt;Poll the report job status using
-      {@link ReportService#getReportJobStatus}.&lt;/li&gt;
-      &lt;li&gt;Continue to poll until the
-      status is equal to
-      {@link ReportJobStatus#COMPLETED} or {@link ReportJobStatus#FAILED}.&lt;/li&gt;
-      &lt;li&gt;If successful, fetch the URL for downloading the report by invoking
-      {@link ReportService#getReportDownloadURL}.&lt;/li&gt;
+      &lt;li&gt;Create the {@code ReportJob} object by invoking {@link ReportService#runReportJob}.
+      &lt;li&gt;Poll the report job status using {@link ReportService#getReportJobStatus}.
+      &lt;li&gt;Continue to poll until the status is equal to {@link ReportJobStatus#COMPLETED} or {@link
+      ReportJobStatus#FAILED}.
+      &lt;li&gt;If successful, fetch the URL for downloading the report by invoking {@link
+      ReportService#getReportDownloadURL}.
       &lt;/ul&gt;
-      &lt;/p&gt;
       
       &lt;h4&gt;Test network behavior&lt;/h4&gt;
       
-      &lt;p&gt;
-      The networks created using {@link NetworkService#makeTestNetwork} are unable
-      to provide reports that would be comparable to the production environment
-      because reports require traffic history.
-      In the test networks, reports will consistently return no data for all reports.
-      &lt;/p&gt;
+      &lt;p&gt;The networks created using {@link NetworkService#makeTestNetwork} are unable to provide
+      reports that would be comparable to the production environment because reports require traffic
+      history. In the test networks, reports will consistently return no data for all reports.
     </wsdl:documentation>
     <wsdl:operation name="getReportDownloadURL">
       <wsdl:documentation>
         Returns the URL at which the report file can be downloaded.
-        &lt;p&gt;
-        The report will be generated as a gzip archive, containing the report file itself.
+        
+        &lt;p&gt;The report will be generated as a gzip archive, containing the report file itself.
       </wsdl:documentation>
       <wsdl:input message="tns:getReportDownloadURLRequest" name="getReportDownloadURLRequest"/>
       <wsdl:output message="tns:getReportDownloadURLResponse" name="getReportDownloadURLResponse"/>
@@ -7782,11 +7779,12 @@
     </wsdl:operation>
     <wsdl:operation name="getReportDownloadUrlWithOptions">
       <wsdl:documentation>
-        Returns the URL at which the report file can be downloaded, and allows for customization
-        of the downloaded report.
-        &lt;p&gt;
-        By default, the report will be generated as a gzip archive, containing the report file itself.
-        This can be changed by setting {@link ReportDownloadOptions#useGzipCompression} to false.
+        Returns the URL at which the report file can be downloaded, and allows for customization of the
+        downloaded report.
+        
+        &lt;p&gt;By default, the report will be generated as a gzip archive, containing the report file
+        itself. This can be changed by setting {@link ReportDownloadOptions#useGzipCompression} to
+        false.
       </wsdl:documentation>
       <wsdl:input message="tns:getReportDownloadUrlWithOptionsRequest" name="getReportDownloadUrlWithOptionsRequest"/>
       <wsdl:output message="tns:getReportDownloadUrlWithOptionsResponse" name="getReportDownloadUrlWithOptionsResponse"/>
@@ -7803,10 +7801,10 @@
     <wsdl:operation name="getSavedQueriesByStatement">
       <wsdl:documentation>
         Retrieves a page of the saved queries either created by or shared with the current user. Each
-        {@link SavedQuery} in the page, if it is compatible with the current API version, will
-        contain a {@link ReportQuery} object which can be optionally modified and used to create a
-        {@link ReportJob}. This can then be passed to {@link ReportService#runReportJob}.
-        The following fields are supported for filtering:
+        {@link SavedQuery} in the page, if it is compatible with the current API version, will contain
+        a {@link ReportQuery} object which can be optionally modified and used to create a {@link
+        ReportJob}. This can then be passed to {@link ReportService#runReportJob}. The following fields
+        are supported for filtering:
         
         &lt;table&gt;
         &lt;tr&gt;
@@ -7831,8 +7829,9 @@
         Initiates the execution of a {@link ReportQuery} on the server.
         
         &lt;p&gt;The following fields are required:
+        
         &lt;ul&gt;
-        &lt;li&gt;{@link ReportJob#reportQuery}&lt;/li&gt;
+        &lt;li&gt;{@link ReportJob#reportQuery}
         &lt;/ul&gt;
       </wsdl:documentation>
       <wsdl:input message="tns:runReportJobRequest" name="runReportJobRequest"/>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2022 Google Inc. All Rights Reserved -->
+<!-- Copyright 2023 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202205"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202205"
@@ -1813,8 +1813,8 @@
     <wsdl:documentation>
       Provides methods for querying CMS metadata keys and values.
       
-      &lt;p&gt;A CMS metadata value corresponds to one key value pair ingested from a publisher's CMS
-      and is used to target all the content with which it is associated in the CMS.
+      &lt;p&gt;A CMS metadata value corresponds to one key value pair ingested from a publisher's CMS and is
+      used to target all the content with which it is associated in the CMS.
     </wsdl:documentation>
     <wsdl:operation name="getCmsMetadataKeysByStatement">
       <wsdl:documentation>

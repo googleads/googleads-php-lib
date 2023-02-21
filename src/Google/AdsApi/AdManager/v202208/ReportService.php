@@ -83,8 +83,8 @@ class ReportService extends \Google\AdsApi\Common\AdsSoapClient
 
     /**
      * Returns the URL at which the report file can be downloaded.
-     * <p>
-     * The report will be generated as a gzip archive, containing the report file itself.
+     *
+     * <p>The report will be generated as a gzip archive, containing the report file itself.
      *
      * @param int $reportJobId
      * @param \Google\AdsApi\AdManager\v202208\ExportFormat $exportFormat Constant: string - Valid values: TSV, TSV_EXCEL, CSV_DUMP, XML, XLSX
@@ -97,11 +97,12 @@ class ReportService extends \Google\AdsApi\Common\AdsSoapClient
     }
 
     /**
-     * Returns the URL at which the report file can be downloaded, and allows for customization
-     * of the downloaded report.
-     * <p>
-     * By default, the report will be generated as a gzip archive, containing the report file itself.
-     * This can be changed by setting {@link ReportDownloadOptions#useGzipCompression} to false.
+     * Returns the URL at which the report file can be downloaded, and allows for customization of the
+     * downloaded report.
+     *
+     * <p>By default, the report will be generated as a gzip archive, containing the report file
+     * itself. This can be changed by setting {@link ReportDownloadOptions#useGzipCompression} to
+     * false.
      *
      * @param int $reportJobId
      * @param \Google\AdsApi\AdManager\v202208\ReportDownloadOptions $reportDownloadOptions
@@ -127,10 +128,10 @@ class ReportService extends \Google\AdsApi\Common\AdsSoapClient
 
     /**
      * Retrieves a page of the saved queries either created by or shared with the current user. Each
-     * {@link SavedQuery} in the page, if it is compatible with the current API version, will
-     * contain a {@link ReportQuery} object which can be optionally modified and used to create a
-     * {@link ReportJob}. This can then be passed to {@link ReportService#runReportJob}.
-     * The following fields are supported for filtering:
+     * {@link SavedQuery} in the page, if it is compatible with the current API version, will contain
+     * a {@link ReportQuery} object which can be optionally modified and used to create a {@link
+     * ReportJob}. This can then be passed to {@link ReportService#runReportJob}. The following fields
+     * are supported for filtering:
      *
      * <table>
      * <tr>
@@ -159,8 +160,9 @@ class ReportService extends \Google\AdsApi\Common\AdsSoapClient
      * Initiates the execution of a {@link ReportQuery} on the server.
      *
      * <p>The following fields are required:
+     *
      * <ul>
-     * <li>{@link ReportJob#reportQuery}</li>
+     * <li>{@link ReportJob#reportQuery}
      * </ul>
      *
      * @param \Google\AdsApi\AdManager\v202208\ReportJob $reportJob

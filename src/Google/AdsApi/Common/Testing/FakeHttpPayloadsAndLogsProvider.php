@@ -24,18 +24,6 @@ class FakeHttpPayloadsAndLogsProvider
 {
 
     /**
-     * Gets a fake HTTP report download log using AWQL.
-     *
-     * @return string
-     */
-    public static function getFakeReportDownloadLogOfAwql()
-    {
-        return file_get_contents(
-            dirname(__FILE__) . DIRECTORY_SEPARATOR . 'downloadReport-awql-log.txt'
-        );
-    }
-
-    /**
      * Gets a fake HTTP report download log using report definition.
      *
      * @return string

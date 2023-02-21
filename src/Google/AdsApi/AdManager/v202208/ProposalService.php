@@ -181,9 +181,10 @@ class ProposalService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * Creates new {@link Proposal} objects.
      *
-     * For each proposal, the following fields are required:
+     * <p>For each proposal, the following fields are required:
+     *
      * <ul>
-     * <li>{@link Proposal#name}</li>
+     * <li>{@link Proposal#name}
      * </ul>
      *
      * @param \Google\AdsApi\AdManager\v202208\Proposal[] $proposals
@@ -232,8 +233,8 @@ class ProposalService extends \Google\AdsApi\Common\AdsSoapClient
     }
 
     /**
-     * Gets a {@link ProposalPage} of {@link Proposal} objects that satisfy the given
-     * {@link Statement#query}. The following fields are supported for filtering:
+     * Gets a {@link ProposalPage} of {@link Proposal} objects that satisfy the given {@link
+     * Statement#query}. The following fields are supported for filtering:
      *
      * <table>
      * <tr>
@@ -296,11 +297,12 @@ class ProposalService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * Performs actions on {@link Proposal} objects that match the given {@link Statement#query}.
      *
-     * The following fields are also required when submitting proposals for approval:
+     * <p>The following fields are also required when submitting proposals for approval:
+     *
      * <ul>
-     * <li>{@link Proposal#advertiser}</li>
-     * <li>{@link Proposal#primarySalesperson}</li>
-     * <li>{@link Proposal#primaryTraffickerId}</li>
+     * <li>{@link Proposal#advertiser}
+     * <li>{@link Proposal#primarySalesperson}
+     * <li>{@link Proposal#primaryTraffickerId}
      * </ul>
      *
      * @param \Google\AdsApi\AdManager\v202208\ProposalAction $proposalAction

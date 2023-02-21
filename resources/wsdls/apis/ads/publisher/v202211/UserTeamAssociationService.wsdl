@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2022 Google Inc. All Rights Reserved -->
+<!-- Copyright 2023 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202211"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202211"
@@ -789,8 +789,8 @@
       <complexType abstract="true" name="UserRecordTeamAssociation">
         <annotation>
           <documentation>
-            {@code UserRecordTeamAssociation} represents the association between a
-            {@link UserRecord} and a {@link Team}.
+            {@code UserRecordTeamAssociation} represents the association between a {@link UserRecord} and a
+            {@link Team}.
           </documentation>
         </annotation>
         <sequence>
@@ -805,8 +805,8 @@
             name="overriddenTeamAccessType" type="tns:TeamAccessType">
             <annotation>
               <documentation>
-                The overridden team access type. This field is {@code null} if team access
-                type is not overridden.
+                The overridden team access type. This field is {@code null} if team access type is not
+                overridden.
               </documentation>
             </annotation>
           </element>
@@ -814,8 +814,8 @@
             name="defaultTeamAccessType" type="tns:TeamAccessType">
             <annotation>
               <documentation>
-                The default team access type {@link Team#teamAccessType}. This field is
-                read-only and is populated by Google.
+                The default team access type {@link Team#teamAccessType}. This field is read-only and is
+                populated by Google.
               </documentation>
             </annotation>
           </element>
@@ -833,8 +833,8 @@
       <complexType name="UserTeamAssociation">
         <annotation>
           <documentation>
-            {@code UserTeamAssociation} associates a {@link User} with a {@link Team}
-            to provide the user access to the entities that belong to the team.
+            {@code UserTeamAssociation} associates a {@link User} with a {@link Team} to provide the user
+            access to the entities that belong to the team.
           </documentation>
         </annotation>
         <complexContent>
@@ -1617,9 +1617,8 @@
       <element name="getUserTeamAssociationsByStatement">
         <annotation>
           <documentation>
-            Gets a {@link UserTeamAssociationPage} of {@link UserTeamAssociation}
-            objects that satisfy the given {@link Statement#query}. The following
-            fields are supported for filtering:
+            Gets a {@link UserTeamAssociationPage} of {@link UserTeamAssociation} objects that satisfy the
+            given {@link Statement#query}. The following fields are supported for filtering:
             
             &lt;table&gt;
             &lt;tr&gt;
@@ -1652,8 +1651,8 @@
       <element name="performUserTeamAssociationAction">
         <annotation>
           <documentation>
-            Performs actions on {@link UserTeamAssociation} objects that match the
-            given {@link Statement#query}.
+            Performs actions on {@link UserTeamAssociation} objects that match the given {@link
+            Statement#query}.
           </documentation>
         </annotation>
         <complexType>
@@ -1730,13 +1729,11 @@
   </wsdl:message>
   <wsdl:portType name="UserTeamAssociationServiceInterface">
     <wsdl:documentation>
-      Provides methods for creating, updating, and retrieving
-      {@link UserTeamAssociation} objects.
-      &lt;p&gt;
-      UserTeamAssociation objects are used to add users to teams in order to define
-      access to entities such as companies, inventory and orders and to override
-      the team's access type to orders for a user.
-      &lt;/p&gt;
+      Provides methods for creating, updating, and retrieving {@link UserTeamAssociation} objects.
+      
+      &lt;p&gt;UserTeamAssociation objects are used to add users to teams in order to define access to
+      entities such as companies, inventory and orders and to override the team's access type to orders
+      for a user.
     </wsdl:documentation>
     <wsdl:operation name="createUserTeamAssociations">
       <wsdl:documentation>
@@ -1748,9 +1745,8 @@
     </wsdl:operation>
     <wsdl:operation name="getUserTeamAssociationsByStatement">
       <wsdl:documentation>
-        Gets a {@link UserTeamAssociationPage} of {@link UserTeamAssociation}
-        objects that satisfy the given {@link Statement#query}. The following
-        fields are supported for filtering:
+        Gets a {@link UserTeamAssociationPage} of {@link UserTeamAssociation} objects that satisfy the
+        given {@link Statement#query}. The following fields are supported for filtering:
         
         &lt;table&gt;
         &lt;tr&gt;
@@ -1774,8 +1770,8 @@
     </wsdl:operation>
     <wsdl:operation name="performUserTeamAssociationAction">
       <wsdl:documentation>
-        Performs actions on {@link UserTeamAssociation} objects that match the
-        given {@link Statement#query}.
+        Performs actions on {@link UserTeamAssociation} objects that match the given {@link
+        Statement#query}.
       </wsdl:documentation>
       <wsdl:input message="tns:performUserTeamAssociationActionRequest" name="performUserTeamAssociationActionRequest"/>
       <wsdl:output

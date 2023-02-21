@@ -268,9 +268,9 @@ class ForecastService extends \Google\AdsApi\Common\AdsSoapClient
     }
 
     /**
-     * Gets the delivery forecast for a list of existing {@link LineItem} objects in a single
-     * delivery simulation. A delivery forecast reports the number of units that will be delivered
-     * to each line item given the line item goals and contentions from other line items.
+     * Gets the delivery forecast for a list of existing {@link LineItem} objects in a single delivery
+     * simulation. A delivery forecast reports the number of units that will be delivered to each line
+     * item given the line item goals and contentions from other line items.
      *
      * @param long[] $lineItemIds
      * @param \Google\AdsApi\AdManager\v202208\DeliveryForecastOptions $forecastOptions

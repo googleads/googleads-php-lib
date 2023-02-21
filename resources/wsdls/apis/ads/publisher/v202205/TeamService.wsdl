@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2022 Google Inc. All Rights Reserved -->
+<!-- Copyright 2023 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202205"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202205"
@@ -772,40 +772,40 @@
       <complexType name="Team">
         <annotation>
           <documentation>
-            A {@code Team} defines a grouping of users and what entities they have access
-            to. Users are added to teams with {@link UserTeamAssociation} objects.
+            A {@code Team} defines a grouping of users and what entities they have access to. Users are added
+            to teams with {@link UserTeamAssociation} objects.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
             <annotation>
               <documentation>
-                The unique ID of the {@code Team}. This value is readonly and is assigned
-                by Google. Teams that are created by Google will have negative IDs.
+                The unique ID of the {@code Team}. This value is readonly and is assigned by Google. Teams that
+                are created by Google will have negative IDs.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
             <annotation>
               <documentation>
-                The name of the {@code Team}. This value is required to create a team and
-                has a maximum length of 106 characters.
+                The name of the {@code Team}. This value is required to create a team and has a maximum length
+                of 106 characters.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="description" type="xsd:string">
             <annotation>
               <documentation>
-                The description of the {@code Team}. This value is optional and has a
-                maximum length of 255 characters.
+                The description of the {@code Team}. This value is optional and has a maximum length of 255
+                characters.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="status" type="tns:TeamStatus">
             <annotation>
               <documentation>
-                The status of the {@link Team}. This value can be {@link TeamStatus#ACTIVE} (default) or
-                {@link TeamStatus#INACTIVE} and determines the visibility of the team in the UI.
+                The status of the {@link Team}. This value can be {@link TeamStatus#ACTIVE} (default) or {@link
+                TeamStatus#INACTIVE} and determines the visibility of the team in the UI.
               </documentation>
             </annotation>
           </element>
@@ -1776,9 +1776,10 @@
           <documentation>
             Creates new {@link Team} objects.
             
-            The following fields are required:
+            &lt;p&gt;The following fields are required:
+            
             &lt;ul&gt;
-            &lt;li&gt;{@link Team#name}&lt;/li&gt;
+            &lt;li&gt;{@link Team#name}
             &lt;/ul&gt;
           </documentation>
         </annotation>
@@ -1805,9 +1806,8 @@
       <element name="getTeamsByStatement">
         <annotation>
           <documentation>
-            Gets a {@code TeamPage} of {@code Team} objects that satisfy the
-            given {@link Statement#query}. The following fields are supported for
-            filtering:
+            Gets a {@code TeamPage} of {@code Team} objects that satisfy the given {@link Statement#query}.
+            The following fields are supported for filtering:
             
             &lt;table&gt;
             &lt;tr&gt;
@@ -1920,18 +1920,18 @@
   <wsdl:portType name="TeamServiceInterface">
     <wsdl:documentation>
       Provides methods for creating, updating, and retrieving {@link Team} objects.
-      &lt;p&gt;
-      Teams are used to group users in order to define access to entities such as
-      companies, inventory and orders.
-      &lt;/p&gt;
+      
+      &lt;p&gt;Teams are used to group users in order to define access to entities such as companies,
+      inventory and orders.
     </wsdl:documentation>
     <wsdl:operation name="createTeams">
       <wsdl:documentation>
         Creates new {@link Team} objects.
         
-        The following fields are required:
+        &lt;p&gt;The following fields are required:
+        
         &lt;ul&gt;
-        &lt;li&gt;{@link Team#name}&lt;/li&gt;
+        &lt;li&gt;{@link Team#name}
         &lt;/ul&gt;
       </wsdl:documentation>
       <wsdl:input message="tns:createTeamsRequest" name="createTeamsRequest"/>
@@ -1940,9 +1940,8 @@
     </wsdl:operation>
     <wsdl:operation name="getTeamsByStatement">
       <wsdl:documentation>
-        Gets a {@code TeamPage} of {@code Team} objects that satisfy the
-        given {@link Statement#query}. The following fields are supported for
-        filtering:
+        Gets a {@code TeamPage} of {@code Team} objects that satisfy the given {@link Statement#query}.
+        The following fields are supported for filtering:
         
         &lt;table&gt;
         &lt;tr&gt;

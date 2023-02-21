@@ -110,13 +110,14 @@ class LiveStreamEventService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * Creates new {@link LiveStreamEvent} objects.
      *
-     * The following fields are required:
+     * <p>The following fields are required:
+     *
      * <ul>
-     * <li>{@link LiveStreamEvent#name}</li>
-     * <li>{@link LiveStreamEvent#startDateTime}</li>
-     * <li>{@link LiveStreamEvent#endDateTime}</li>
-     * <li>{@link LiveStreamEvent#contentUrls}</li>
-     * <li>{@link LiveStreamEvent#adTags}</li>
+     * <li>{@link LiveStreamEvent#name}
+     * <li>{@link LiveStreamEvent#startDateTime}
+     * <li>{@link LiveStreamEvent#endDateTime}
+     * <li>{@link LiveStreamEvent#contentUrls}
+     * <li>{@link LiveStreamEvent#adTags}
      * </ul>
      *
      * @param \Google\AdsApi\AdManager\v202208\LiveStreamEvent[] $liveStreamEvents
@@ -131,8 +132,8 @@ class LiveStreamEventService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * Create new slates.
      *
-     * <p>A slate creative is served as backup content in a live stream event when no other
-     * creatives are eligible to be served.
+     * <p>A slate creative is served as backup content in a live stream event when no other creatives
+     * are eligible to be served.
      *
      * @param \Google\AdsApi\AdManager\v202208\Slate[] $slates
      * @return \Google\AdsApi\AdManager\v202208\Slate[]
@@ -144,9 +145,8 @@ class LiveStreamEventService extends \Google\AdsApi\Common\AdsSoapClient
     }
 
     /**
-     * Gets a {@link LiveStreamEventPage} of {@link LiveStreamEvent} objects that
-     * satisfy the given {@link Statement#query}. The following fields are
-     * supported for filtering:
+     * Gets a {@link LiveStreamEventPage} of {@link LiveStreamEvent} objects that satisfy the given
+     * {@link Statement#query}. The following fields are supported for filtering:
      *
      * <table>
      * <tr>
@@ -200,9 +200,8 @@ class LiveStreamEventService extends \Google\AdsApi\Common\AdsSoapClient
     }
 
     /**
-     * Gets a {@link SlatePage} of {@link Slate} objects that satisfy the
-     * given {@link Statement#query}. The following fields are supported for
-     * filtering:
+     * Gets a {@link SlatePage} of {@link Slate} objects that satisfy the given {@link
+     * Statement#query}. The following fields are supported for filtering:
      *
      * <table>
      * <tr>
@@ -232,8 +231,8 @@ class LiveStreamEventService extends \Google\AdsApi\Common\AdsSoapClient
     }
 
     /**
-     * Performs actions on {@link LiveStreamEvent} objects that match the given
-     * {@link Statement#query}.
+     * Performs actions on {@link LiveStreamEvent} objects that match the given {@link
+     * Statement#query}.
      *
      * @param \Google\AdsApi\AdManager\v202208\LiveStreamEventAction $liveStreamEventAction
      * @param \Google\AdsApi\AdManager\v202208\Statement $filterStatement

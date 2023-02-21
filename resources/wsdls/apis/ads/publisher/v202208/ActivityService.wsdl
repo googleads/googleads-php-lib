@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2022 Google Inc. All Rights Reserved -->
+<!-- Copyright 2023 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202208"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202208"
@@ -38,21 +38,20 @@
       <complexType name="Activity">
         <annotation>
           <documentation>
-            &lt;p&gt;An activity is a specific user action that an advertiser wants to track, such as the
-            completion of a purchase or a visit to a webpage. You create and manage activities in Ad Manager.
-            When a user performs the action after seeing an advertiser's ad, that's a conversion.&lt;/p&gt;
+            An activity is a specific user action that an advertiser wants to track, such as the completion
+            of a purchase or a visit to a webpage. You create and manage activities in Ad Manager. When a
+            user performs the action after seeing an advertiser's ad, that's a conversion.
             
             &lt;p&gt;For example, you set up an activity in Ad Manager to track how many users visit an
             advertiser's promotional website after viewing or clicking on an ad. When a user views an ad,
-            then visits the page, that's one conversion.&lt;/p&gt;
+            then visits the page, that's one conversion.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
             <annotation>
               <documentation>
-                The unique ID of the {@code Activity}. This value is readonly and is assigned
-                by Google.
+                The unique ID of the {@code Activity}. This value is readonly and is assigned by Google.
               </documentation>
             </annotation>
           </element>
@@ -1592,8 +1591,8 @@
       <element name="getActivitiesByStatement">
         <annotation>
           <documentation>
-            Gets an {@link ActivityPage} of {@link Activity} objects that satisfy the given
-            {@link Statement#query}. The following fields are supported for filtering:
+            Gets an {@link ActivityPage} of {@link Activity} objects that satisfy the given {@link
+            Statement#query}. The following fields are supported for filtering:
             
             &lt;table&gt;
             &lt;tr&gt;
@@ -1689,12 +1688,11 @@
   <wsdl:portType name="ActivityServiceInterface">
     <wsdl:documentation>
       Provides methods for creating, updating and retrieving {@link Activity} objects.
-      &lt;p&gt;
-      An activity group contains {@link Activity} objects. Activities have a many-to-one relationship
-      with activity groups, meaning each activity can belong to only one activity group, but activity
-      groups can have multiple activities. An activity group can be used to manage the activities it
-      contains.
-      &lt;/p&gt;
+      
+      &lt;p&gt;An activity group contains {@link Activity} objects. Activities have a many-to-one
+      relationship with activity groups, meaning each activity can belong to only one activity group,
+      but activity groups can have multiple activities. An activity group can be used to manage the
+      activities it contains.
     </wsdl:documentation>
     <wsdl:operation name="createActivities">
       <wsdl:documentation>
@@ -1706,8 +1704,8 @@
     </wsdl:operation>
     <wsdl:operation name="getActivitiesByStatement">
       <wsdl:documentation>
-        Gets an {@link ActivityPage} of {@link Activity} objects that satisfy the given
-        {@link Statement#query}. The following fields are supported for filtering:
+        Gets an {@link ActivityPage} of {@link Activity} objects that satisfy the given {@link
+        Statement#query}. The following fields are supported for filtering:
         
         &lt;table&gt;
         &lt;tr&gt;

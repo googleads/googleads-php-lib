@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2022 Google Inc. All Rights Reserved -->
+<!-- Copyright 2023 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202205"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202205"
@@ -398,8 +398,8 @@
           <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
             <annotation>
               <documentation>
-                Uniquely identifies the mobile application. This attribute is read-only and is
-                assigned by Google when a mobile application is claimed.
+                Uniquely identifies the mobile application. This attribute is read-only and is assigned by
+                Google when a mobile application is claimed.
               </documentation>
             </annotation>
           </element>
@@ -415,16 +415,16 @@
           <element maxOccurs="1" minOccurs="0" name="displayName" type="xsd:string">
             <annotation>
               <documentation>
-                The display name of the mobile application. This attribute is required and
-                has a maximum length of 255 characters.
+                The display name of the mobile application. This attribute is required and has a maximum length
+                of 255 characters.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="appStoreId" type="xsd:string">
             <annotation>
               <documentation>
-                The app store ID of the app to claim. This attribute is required for creation and
-                then is read-only.
+                The app store ID of the app to claim. This attribute is required for creation and then is
+                read-only.
               </documentation>
             </annotation>
           </element>
@@ -446,8 +446,8 @@
           <element maxOccurs="1" minOccurs="0" name="appStoreName" type="xsd:string">
             <annotation>
               <documentation>
-                The name of the application on the app store. This attribute is read-only
-                and populated by Google.
+                The name of the application on the app store. This attribute is read-only and populated by
+                Google.
               </documentation>
             </annotation>
           </element>
@@ -464,32 +464,32 @@
           <element maxOccurs="1" minOccurs="0" name="developerName" type="xsd:string">
             <annotation>
               <documentation>
-                The name of the developer of the mobile application. This attribute is read-only
-                and populated by Google.
+                The name of the developer of the mobile application. This attribute is read-only and populated
+                by Google.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="platform" type="tns:MobileApplicationPlatform">
             <annotation>
               <documentation>
-                The platform the mobile application runs on. This attribute is read-only
-                and populated by Google.
+                The platform the mobile application runs on. This attribute is read-only and populated by
+                Google.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="isFree" type="xsd:boolean">
             <annotation>
               <documentation>
-                Whether the mobile application is free on the app store it belongs to.
-                This attribute is read-only and populated by Google.
+                Whether the mobile application is free on the app store it belongs to. This attribute is
+                read-only and populated by Google.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="downloadUrl" type="xsd:string">
             <annotation>
               <documentation>
-                The download URL of the mobile application on the app store it belongs to.
-                This attribute is read-only and populated by Google.
+                The download URL of the mobile application on the app store it belongs to. This attribute is
+                read-only and populated by Google.
               </documentation>
             </annotation>
           </element>
@@ -1678,8 +1678,8 @@
       <element name="createMobileApplications">
         <annotation>
           <documentation>
-            Creates and claims {@link MobileApplication mobile applications}
-            to be used for targeting in the network.
+            Creates and claims {@link MobileApplication mobile applications} to be used for targeting in
+            the network.
           </documentation>
         </annotation>
         <complexType>
@@ -1706,9 +1706,8 @@
       <element name="getMobileApplicationsByStatement">
         <annotation>
           <documentation>
-            Gets a {@link MobileApplicationPage mobileApplicationPage} of
-            {@link MobileApplication mobile applications} that satisfy the given {@link Statement}.
-            The following fields are supported for
+            Gets a {@link MobileApplicationPage mobileApplicationPage} of {@link MobileApplication mobile
+            applications} that satisfy the given {@link Statement}. The following fields are supported for
             filtering:
             
             &lt;table&gt;
@@ -1836,8 +1835,8 @@
     </wsdl:documentation>
     <wsdl:operation name="createMobileApplications">
       <wsdl:documentation>
-        Creates and claims {@link MobileApplication mobile applications}
-        to be used for targeting in the network.
+        Creates and claims {@link MobileApplication mobile applications} to be used for targeting in
+        the network.
       </wsdl:documentation>
       <wsdl:input message="tns:createMobileApplicationsRequest" name="createMobileApplicationsRequest"/>
       <wsdl:output message="tns:createMobileApplicationsResponse" name="createMobileApplicationsResponse"/>
@@ -1845,9 +1844,8 @@
     </wsdl:operation>
     <wsdl:operation name="getMobileApplicationsByStatement">
       <wsdl:documentation>
-        Gets a {@link MobileApplicationPage mobileApplicationPage} of
-        {@link MobileApplication mobile applications} that satisfy the given {@link Statement}.
-        The following fields are supported for
+        Gets a {@link MobileApplicationPage mobileApplicationPage} of {@link MobileApplication mobile
+        applications} that satisfy the given {@link Statement}. The following fields are supported for
         filtering:
         
         &lt;table&gt;
