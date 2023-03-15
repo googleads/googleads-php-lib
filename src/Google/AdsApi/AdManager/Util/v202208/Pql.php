@@ -155,7 +155,7 @@ class Pql
      */
     public static function getRowStringValues(Row $row)
     {
-        return array_map(['self', 'toString'], $row->getValues());
+        return array_map([self::class, 'toString'], $row->getValues());
     }
 
     /**
