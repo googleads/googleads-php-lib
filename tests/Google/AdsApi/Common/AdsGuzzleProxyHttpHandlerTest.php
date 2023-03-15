@@ -31,6 +31,9 @@ use Psr\Http\Message\ResponseInterface;
 class AdsGuzzleProxyHttpHandlerTest extends TestCase
 {
 
+    private $mockRequest;
+    private $mockClient;
+
   /**
    * @see \PHPUnit\Framework\TestCase::setUp
    */
