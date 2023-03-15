@@ -98,7 +98,6 @@ class AdsSoapClient extends SoapClient
     ) {
         $request = SoapRequests::replaceReferences($request);
         $response = parent::__doRequest($request, $location, $action, $version, $one_way);
-        $this->__last_request = $request;
 
         return $response;
     }
