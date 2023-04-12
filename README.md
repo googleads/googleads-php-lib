@@ -1,4 +1,4 @@
-## Google Ads API PHP Client Library
+## Google Ad Manager SOAP API Client Library for PHP
 
 This repository hosts the PHP client library for the Google Ad Manager SOAP API.
 
