@@ -1,6 +1,6 @@
 {
   "name": "googleads/googleads-php-lib",
-  "description": "Google Ads APIs Client Library for PHP (Ad Manager)",
+  "description": "Google Ad Manager SOAP API Client Library for PHP",
   "require": {
     "php": ">=7.4",
     "ext-mbstring": "*",
