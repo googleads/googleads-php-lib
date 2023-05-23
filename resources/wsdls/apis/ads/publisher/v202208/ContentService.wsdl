@@ -2117,14 +2117,14 @@
           <enumeration value="WARNING">
             <annotation>
               <documentation>
-                There was a non-fatal issue during the DAI ingestion proccess.
+                There was a non-fatal issue during the DAI ingestion process.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="FAILURE">
             <annotation>
               <documentation>
-                There was a non-fatal issue during the DAI ingestion proccess and the content is not available
+                There was a non-fatal issue during the DAI ingestion process and the content is not available
                 for dynamic ad insertion.
               </documentation>
             </annotation>

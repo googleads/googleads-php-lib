@@ -1220,6 +1220,21 @@
           </extension>
         </complexContent>
       </complexType>
+      <complexType name="RequiredNumberError">
+        <annotation>
+          <documentation>
+            A list of all errors to be used in conjunction with required number
+            validators.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RequiredNumberError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
       <complexType name="ServerError">
         <annotation>
           <documentation>
@@ -2788,6 +2803,27 @@
             <annotation>
               <documentation>
                 Missing required field.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="RequiredNumberError.Reason">
+        <annotation>
+          <documentation>
+            Describes reasons for a number to be invalid.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="REQUIRED"/>
+          <enumeration value="TOO_LARGE"/>
+          <enumeration value="TOO_SMALL"/>
+          <enumeration value="TOO_LARGE_WITH_DETAILS"/>
+          <enumeration value="TOO_SMALL_WITH_DETAILS"/>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
               </documentation>
             </annotation>
           </enumeration>

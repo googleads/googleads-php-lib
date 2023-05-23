@@ -503,7 +503,7 @@
                 For a targeting breakdown in the form of
                 {@code ForecastBreakdownOptions{targets=[IU=A, {IU=B, creative=1x1}]}}, the {@link #breakdowns}
                 field may look like:
-                [ForecastBreakdown{breakdownEntries=[availableUnits=10, availbleUnits=20]}]
+                {@code [ForecastBreakdown{breakdownEntries=[availableUnits=10, availableUnits=20]}]}
                 where the entries correspond to {@code {IU=A}} and {@code {IU=B, creative=1x1}} respectively.
                 
                 For a time breakdown in the form of
@@ -511,7 +511,7 @@
                 look like: &lt;pre&gt;{@code
                 [
                 ForecastBreakdown{startTime=1am, endTime=2am, breakdownEntries=[availableUnits=10]},
-                ForecastBreakdow{startTime=2am, endTime=3am, breakdownEntries=[availalbleUnits=20]}
+                ForecastBreakdown{startTime=2am, endTime=3am, breakdownEntries=[availableUnits=20]}
                 ]
                 }&lt;/pre&gt;
                 where the two {@link #ForecastBreakdown} correspond to the [1am, 2am) and [2am, 3am) time
@@ -524,7 +524,7 @@
                 ForecastBreakdown{startTime=1am, endTime=2am,
                 breakdownEntries=[availableUnits=10, availableUnits=100]},
                 ForecastBreakdown{startTime=2am, endTime=3am,
-                breakdownEntries=[availalbleUnits=20, availableUnits=200]}
+                breakdownEntries=[availableUnits=20, availableUnits=200]}
                 ]
                 }&lt;/pre&gt;
                 where the first ForecastBreakdown respresents the [1am, 2am) time window with two entries for
@@ -1631,8 +1631,7 @@
       <complexType name="BreakdownForecast">
         <annotation>
           <documentation>
-            Represents a single delivery data point, with both available
-            and forecast number.
+            Represents a single delivery data point, with both available and forecast number.
           </documentation>
         </annotation>
         <sequence>
@@ -10105,8 +10104,8 @@
           <enumeration value="SPONSORSHIP">
             <annotation>
               <documentation>
-                The type of {@link LineItem} for which a percentage of all the impressions
-                that are being sold are reserved.
+                The type of {@link LineItem} for which a percentage of all the impressions that are being sold
+                are reserved.
               </documentation>
             </annotation>
           </enumeration>
@@ -10921,8 +10920,7 @@
           <enumeration value="UNKNOWN">
             <annotation>
               <documentation>
-                The value returned if the actual value is not exposed by the requested API
-                version.
+                The value returned if the actual value is not exposed by the requested API version.
               </documentation>
             </annotation>
           </enumeration>

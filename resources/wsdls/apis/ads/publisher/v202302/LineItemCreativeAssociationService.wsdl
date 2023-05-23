@@ -866,7 +866,7 @@
             <annotation>
               <documentation>
                 Overrides the value set for {@link LineItem#startDateTime}. This value is optional and is only
-                valid for Ad Manager 360 networks.
+                valid for Ad Manager 360 networks. If unset, the {@link LineItem#startDateTime} will be used.
               </documentation>
             </annotation>
           </element>
@@ -883,7 +883,7 @@
             <annotation>
               <documentation>
                 Overrides {@link LineItem#endDateTime}. This value is optional and is only valid for Ad Manager
-                360 networks.
+                360 networks. If unset, the {@link LineItem#endDateTime} will be used.
               </documentation>
             </annotation>
           </element>

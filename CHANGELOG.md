@@ -1,3 +1,15 @@
+### 61.0.0
+
+##### Ad Manager
+
+* Added support for v202305.
+* Removed support for v202205.
+* Removed examples for v202208.
+
+##### Common
+
+* No changes.
+
 ### 60.0.0
 
 ##### AdWords

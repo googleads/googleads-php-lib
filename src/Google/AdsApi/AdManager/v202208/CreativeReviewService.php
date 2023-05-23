@@ -85,6 +85,9 @@ class CreativeReviewService extends \Google\AdsApi\Common\AdsSoapClient
      * reviewing the most important creatives first, the {@link CreativeReview} objects are ranked
      * according to the number of impressions that they've received.
      *
+     * <p>This feature is not yet openly available. Publishers will need to apply for access for this
+     * feature through their account managers.
+     *
      * @param \Google\AdsApi\AdManager\v202208\Statement $statement
      * @return \Google\AdsApi\AdManager\v202208\CreativeReviewPage
      * @throws \Google\AdsApi\AdManager\v202208\ApiException
