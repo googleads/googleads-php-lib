@@ -220,9 +220,8 @@ class LineItemService extends \Google\AdsApi\Common\AdsSoapClient
     }
 
     /**
-     * Gets a {@link LineItemPage} of {@link LineItem} objects that satisfy the
-     * given {@link Statement#query}. The following fields are supported for
-     * filtering:
+     * Gets a {@link LineItemPage} of {@link LineItem} objects that satisfy the given {@link
+     * Statement#query}. The following fields are supported for filtering:
      *
      * <table>
      * <tbody>
@@ -363,8 +362,7 @@ class LineItemService extends \Google\AdsApi\Common\AdsSoapClient
     }
 
     /**
-     * Performs actions on {@link LineItem} objects that match the given
-     * {@link Statement#query}.
+     * Performs actions on {@link LineItem} objects that match the given {@link Statement#query}.
      *
      * @param \Google\AdsApi\AdManager\v202208\LineItemAction $lineItemAction
      * @param \Google\AdsApi\AdManager\v202208\Statement $filterStatement

@@ -34,9 +34,6 @@ final class ApplicationNames
     {
         // Example: 'Google report runner (DfpApi-PHP,
         //     googleads-php-lib2/1.0.0-alpha, PHP/5.5.20)'
-        // Example:: 'Google report runner (AwApi-PHP,
-        //     googleads-php-lib2/1.0.0-alpha, PHP/5.5.20, BatchJobHelper,
-        //     ReportDownloader/file)
         $versionRegex = '\d{1,2}\.\d{1,2}\.\d{1,2}(-.+)?';
 
         return sprintf(

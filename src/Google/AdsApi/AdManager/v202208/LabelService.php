@@ -98,9 +98,8 @@ class LabelService extends \Google\AdsApi\Common\AdsSoapClient
     }
 
     /**
-     * Gets a {@link LabelPage} of {@link Label} objects that satisfy the
-     * given {@link Statement#query}. The following fields are supported for
-     * filtering:
+     * Gets a {@link LabelPage} of {@link Label} objects that satisfy the given {@link
+     * Statement#query}. The following fields are supported for filtering:
      *
      * <table>
      * <tr>
@@ -138,8 +137,7 @@ class LabelService extends \Google\AdsApi\Common\AdsSoapClient
     }
 
     /**
-     * Performs actions on {@link Label} objects that match the given
-     * {@link Statement#query}.
+     * Performs actions on {@link Label} objects that match the given {@link Statement#query}.
      *
      * @param \Google\AdsApi\AdManager\v202208\LabelAction $labelAction
      * @param \Google\AdsApi\AdManager\v202208\Statement $filterStatement

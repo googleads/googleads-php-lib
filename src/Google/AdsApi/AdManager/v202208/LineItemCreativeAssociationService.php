@@ -138,9 +138,9 @@ class LineItemCreativeAssociationService extends \Google\AdsApi\Common\AdsSoapCl
     }
 
     /**
-     * Gets a {@link LineItemCreativeAssociationPage} of
-     * {@link LineItemCreativeAssociation} objects that satisfy the given
-     * {@link Statement#query}. The following fields are supported for filtering:
+     * Gets a {@link LineItemCreativeAssociationPage} of {@link LineItemCreativeAssociation} objects
+     * that satisfy the given {@link Statement#query}. The following fields are supported for
+     * filtering:
      *
      * <table>
      * <tr>
@@ -182,9 +182,9 @@ class LineItemCreativeAssociationService extends \Google\AdsApi\Common\AdsSoapCl
     }
 
     /**
-     * Returns an insite preview URL that references the specified site URL with
-     * the specified creative from the association served to it. For Creative Set
-     * previewing you may specify the master creative Id.
+     * Returns an insite preview URL that references the specified site URL with the specified
+     * creative from the association served to it. For Creative Set previewing you may specify the
+     * master creative Id.
      *
      * @param int $lineItemId
      * @param int $creativeId
@@ -214,8 +214,8 @@ class LineItemCreativeAssociationService extends \Google\AdsApi\Common\AdsSoapCl
     }
 
     /**
-     * Performs actions on {@link LineItemCreativeAssociation} objects that match
-     * the given {@link Statement#query}.
+     * Performs actions on {@link LineItemCreativeAssociation} objects that match the given {@link
+     * Statement#query}.
      *
      * @param \Google\AdsApi\AdManager\v202208\LineItemCreativeAssociationAction $lineItemCreativeAssociationAction
      * @param \Google\AdsApi\AdManager\v202208\Statement $filterStatement

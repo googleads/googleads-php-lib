@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2022 Google Inc. All Rights Reserved -->
+<!-- Copyright 2023 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202208"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202208"
@@ -261,16 +261,16 @@
           <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
             <annotation>
               <documentation>
-                Uniquely identifies the {@code CreativeSet}. This attribute is
-                read-only and is assigned by Google when a creative set is created.
+                Uniquely identifies the {@code CreativeSet}. This attribute is read-only and is assigned by
+                Google when a creative set is created.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
             <annotation>
               <documentation>
-                The name of the creative set. This attribute is required and has a
-                maximum length of 255 characters.
+                The name of the creative set. This attribute is required and has a maximum length of 255
+                characters.
               </documentation>
             </annotation>
           </element>
@@ -3285,9 +3285,8 @@
       <element name="getCreativeSetsByStatement">
         <annotation>
           <documentation>
-            Gets a {@link CreativeSetPage} of {@link CreativeSet} objects that satisfy the
-            given {@link Statement#query}. The following fields are supported for
-            filtering:
+            Gets a {@link CreativeSetPage} of {@link CreativeSet} objects that satisfy the given {@link
+            Statement#query}. The following fields are supported for filtering:
             
             &lt;table&gt;
             &lt;tr&gt;
@@ -3377,8 +3376,7 @@
   </wsdl:message>
   <wsdl:portType name="CreativeSetServiceInterface">
     <wsdl:documentation>
-      Provides methods for adding, updating and retrieving {@link CreativeSet}
-      objects.
+      Provides methods for adding, updating and retrieving {@link CreativeSet} objects.
     </wsdl:documentation>
     <wsdl:operation name="createCreativeSet">
       <wsdl:documentation>
@@ -3390,9 +3388,8 @@
     </wsdl:operation>
     <wsdl:operation name="getCreativeSetsByStatement">
       <wsdl:documentation>
-        Gets a {@link CreativeSetPage} of {@link CreativeSet} objects that satisfy the
-        given {@link Statement#query}. The following fields are supported for
-        filtering:
+        Gets a {@link CreativeSetPage} of {@link CreativeSet} objects that satisfy the given {@link
+        Statement#query}. The following fields are supported for filtering:
         
         &lt;table&gt;
         &lt;tr&gt;

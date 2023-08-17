@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2022 Google Inc. All Rights Reserved -->
+<!-- Copyright 2023 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202208"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202208"
@@ -528,33 +528,31 @@
           <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
             <annotation>
               <documentation>
-                The unique ID of the {@code LiveStreamEvent}. This value is read-only and
-                is assigned by Google.
+                The unique ID of the {@code LiveStreamEvent}. This value is read-only and is assigned by
+                Google.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
             <annotation>
               <documentation>
-                The name of the {@code LiveStreamEvent}. This value is required to create
-                a live stream event and has a maximum length of 255 characters.
+                The name of the {@code LiveStreamEvent}. This value is required to create a live stream event
+                and has a maximum length of 255 characters.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="status" type="tns:LiveStreamEventStatus">
             <annotation>
               <documentation>
-                The status of this {@code LiveStreamEvent}. This attribute is read-only
-                and is assigned by Google. Live stream events are created in the
-                {@link LiveStreamEventStatus#PAUSED} state.
+                The status of this {@code LiveStreamEvent}. This attribute is read-only and is assigned by
+                Google. Live stream events are created in the {@link LiveStreamEventStatus#PAUSED} state.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="creationDateTime" type="tns:DateTime">
             <annotation>
               <documentation>
-                The date and time this {@code LiveStreamEvent} was created. This attribute
-                is read-only.
+                The date and time this {@code LiveStreamEvent} was created. This attribute is read-only.
               </documentation>
             </annotation>
           </element>
@@ -562,8 +560,7 @@
             name="lastModifiedDateTime" type="tns:DateTime">
             <annotation>
               <documentation>
-                The date and time this {@code LiveStreamEvent} was last modified. This
-                attribute is read-only.
+                The date and time this {@code LiveStreamEvent} was last modified. This attribute is read-only.
               </documentation>
             </annotation>
           </element>
@@ -580,8 +577,8 @@
           <element maxOccurs="1" minOccurs="0" name="startDateTimeType" type="tns:StartDateTimeType">
             <annotation>
               <documentation>
-                Specifies whether to start the {@link LiveStreamEvent} right away, in an hour, etc.
-                This attribute is optional and defaults to {@link StartDateTimeType#USE_START_DATE_TIME}.
+                Specifies whether to start the {@link LiveStreamEvent} right away, in an hour, etc. This
+                attribute is optional and defaults to {@link StartDateTimeType#USE_START_DATE_TIME}.
               </documentation>
             </annotation>
           </element>
@@ -598,8 +595,8 @@
             name="unlimitedEndDateTime" type="xsd:boolean">
             <annotation>
               <documentation>
-                Whether the {@link LiveStreamEvent} has an end time. This attribute is optional and defaults
-                to false. If this field is true, {@code endDateTime} is ignored.
+                Whether the {@link LiveStreamEvent} has an end time. This attribute is optional and defaults to
+                false. If this field is true, {@code endDateTime} is ignored.
               </documentation>
             </annotation>
           </element>
@@ -635,16 +632,16 @@
             <annotation>
               <documentation>
                 This code is used in constructing a live stream event master playlist URL. This attribute is
-                read-only and is assigned by Google. {@code liveStreamEventCode} was
-                renamed {@code assetKey} in v201911.
+                read-only and is assigned by Google. {@code liveStreamEventCode} was renamed {@code assetKey}
+                in v201911.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="slateCreativeId" type="xsd:long">
             <annotation>
               <documentation>
-                ID corresponding to the slate for this live event. If not set, network default value
-                will be used.
+                ID corresponding to the slate for this live event. If not set, network default value will be
+                used.
               </documentation>
             </annotation>
           </element>
@@ -689,8 +686,8 @@
             <annotation>
               <documentation>
                 The duration (in seconds), starting from the time the user enters the DAI stream, for which
-                mid-roll decisioning will be skipped. This field is only applicable when an ad holiday
-                is requested in the stream create request. This value is optional and defaults to 0.
+                mid-roll decisioning will be skipped. This field is only applicable when an ad holiday is
+                requested in the stream create request. This value is optional and defaults to 0.
               </documentation>
             </annotation>
           </element>
@@ -716,9 +713,8 @@
             name="enableDurationlessAdBreaks" type="xsd:boolean">
             <annotation>
               <documentation>
-                Whether there will be durationless ad breaks in this live stream. If true,
-                {@code defaultAdBreakDuration} should be specified. This field is optional and defaults to
-                false;
+                Whether there will be durationless ad breaks in this live stream. If true, {@code
+                defaultAdBreakDuration} should be specified. This field is optional and defaults to false;
               </documentation>
             </annotation>
           </element>
@@ -726,8 +722,8 @@
             name="defaultAdBreakDuration" type="xsd:long">
             <annotation>
               <documentation>
-                The default ad pod duration (in seconds) that will be requested when an ad break cue-out
-                does not specify a duration. This field is optional and defaults to 0;
+                The default ad pod duration (in seconds) that will be requested when an ad break cue-out does
+                not specify a duration. This field is optional and defaults to 0;
               </documentation>
             </annotation>
           </element>
@@ -868,8 +864,8 @@
             name="adBreakMarkups" type="tns:AdBreakMarkupType">
             <annotation>
               <documentation>
-                The formats that will be recognized as ad break start/end markers.
-                This field is ignored if {@code adBreakMarkupTypesEnabled} is false
+                The formats that will be recognized as ad break start/end markers. This field is ignored if
+                {@code adBreakMarkupTypesEnabled} is false
               </documentation>
             </annotation>
           </element>
@@ -877,9 +873,9 @@
             name="adBreakMarkupTypesEnabled" type="xsd:boolean">
             <annotation>
               <documentation>
-                Whether this {@link LiveStreamEvent} is specifying a subset of supported
-                {@code adBreakMarkups}. If this field is false, all supported formats will be treated as ad
-                break start/end markers.
+                Whether this {@link LiveStreamEvent} is specifying a subset of supported {@code
+                adBreakMarkups}. If this field is false, all supported formats will be treated as ad break
+                start/end markers.
               </documentation>
             </annotation>
           </element>
@@ -1220,6 +1216,21 @@
                   </documentation>
                 </annotation>
               </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RequiredNumberError">
+        <annotation>
+          <documentation>
+            A list of all errors to be used in conjunction with required number
+            validators.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RequiredNumberError.Reason"/>
             </sequence>
           </extension>
         </complexContent>
@@ -1661,55 +1672,55 @@
           <enumeration value="AD_BREAK_MARKUP_HLS_EXT_CUE">
             <annotation>
               <documentation>
-                The CUE-OUT/CUE-IN ad break marker type.
-                This mark up type is only applicable for HLS live streams.
+                The CUE-OUT/CUE-IN ad break marker type. This mark up type is only applicable for HLS live
+                streams.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="AD_BREAK_MARKUP_HLS_PRIMETIME_SPLICE">
             <annotation>
               <documentation>
-                The CUE (Adobe/Azure Prime Time) ad break marker type.
-                This mark up type is only applicable for HLS live streams.
+                The CUE (Adobe/Azure Prime Time) ad break marker type. This mark up type is only applicable for
+                HLS live streams.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="AD_BREAK_MARKUP_HLS_DATERANGE_SPLICE">
             <annotation>
               <documentation>
-                The DATERANGE (Anvato) ad break marker type.
-                This mark up type is only applicable for HLS live streams.
+                The DATERANGE (Anvato) ad break marker type. This mark up type is only applicable for HLS live
+                streams.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="AD_BREAK_MARKUP_SCTE35_XML_SPLICE_INSERT">
             <annotation>
               <documentation>
-                The SCTE35 XML Splice In/Out ad break marker type.
-                This markup type is only applicable for DASH live streams.
+                The SCTE35 XML Splice In/Out ad break marker type. This markup type is only applicable for DASH
+                live streams.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="AD_BREAK_MARKUP_SCTE35_BINARY_SPLICE_INSERT">
             <annotation>
               <documentation>
-                The SCTE35 Binary Splice Insert ad break marker type.
-                This mark up type is only applicable for HLS and DASH live streams.
+                The SCTE35 Binary Splice Insert ad break marker type. This mark up type is only applicable for
+                HLS and DASH live streams.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="AD_BREAK_MARKUP_SCTE35_BINARY_PROVIDER_AD_START_END">
             <annotation>
               <documentation>
-                The SCTE35 Binary Time Signal: Provider Ad Start/End ad break marker type.
-                This mark up type is only applicable for HLS and DASH live streams.
+                The SCTE35 Binary Time Signal: Provider Ad Start/End ad break marker type. This mark up type is
+                only applicable for HLS and DASH live streams.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="AD_BREAK_MARKUP_SCTE35_BINARY_PROVIDER_PLACEMENT_OP_START_END">
             <annotation>
               <documentation>
-                The SCTE35 Binary Time Signal: Provider Placement Opportunity  Start/End ad break marker type.
+                The SCTE35 Binary Time Signal: Provider Placement Opportunity Start/End ad break marker type.
                 This mark up type is only applicable for HLS and DASH live streams.
               </documentation>
             </annotation>
@@ -1717,8 +1728,7 @@
           <enumeration value="UNKNOWN">
             <annotation>
               <documentation>
-                The value returned if the actual value is not exposed by the requested API
-                version.
+                The value returned if the actual value is not exposed by the requested API version.
               </documentation>
             </annotation>
           </enumeration>
@@ -2798,6 +2808,27 @@
           </enumeration>
         </restriction>
       </simpleType>
+      <simpleType name="RequiredNumberError.Reason">
+        <annotation>
+          <documentation>
+            Describes reasons for a number to be invalid.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="REQUIRED"/>
+          <enumeration value="TOO_LARGE"/>
+          <enumeration value="TOO_SMALL"/>
+          <enumeration value="TOO_LARGE_WITH_DETAILS"/>
+          <enumeration value="TOO_SMALL_WITH_DETAILS"/>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
       <simpleType name="ServerError.Reason">
         <annotation>
           <documentation>
@@ -3063,13 +3094,14 @@
           <documentation>
             Creates new {@link LiveStreamEvent} objects.
             
-            The following fields are required:
+            &lt;p&gt;The following fields are required:
+            
             &lt;ul&gt;
-            &lt;li&gt;{@link LiveStreamEvent#name}&lt;/li&gt;
-            &lt;li&gt;{@link LiveStreamEvent#startDateTime}&lt;/li&gt;
-            &lt;li&gt;{@link LiveStreamEvent#endDateTime}&lt;/li&gt;
-            &lt;li&gt;{@link LiveStreamEvent#contentUrls}&lt;/li&gt;
-            &lt;li&gt;{@link LiveStreamEvent#adTags}&lt;/li&gt;
+            &lt;li&gt;{@link LiveStreamEvent#name}
+            &lt;li&gt;{@link LiveStreamEvent#startDateTime}
+            &lt;li&gt;{@link LiveStreamEvent#endDateTime}
+            &lt;li&gt;{@link LiveStreamEvent#contentUrls}
+            &lt;li&gt;{@link LiveStreamEvent#adTags}
             &lt;/ul&gt;
           </documentation>
         </annotation>
@@ -3099,8 +3131,8 @@
           <documentation>
             Create new slates.
             
-            &lt;p&gt;A slate creative is served as backup content in a live stream event when no other
-            creatives are eligible to be served.
+            &lt;p&gt;A slate creative is served as backup content in a live stream event when no other creatives
+            are eligible to be served.
           </documentation>
         </annotation>
         <complexType>
@@ -3119,9 +3151,8 @@
       <element name="getLiveStreamEventsByStatement">
         <annotation>
           <documentation>
-            Gets a {@link LiveStreamEventPage} of {@link LiveStreamEvent} objects that
-            satisfy the given {@link Statement#query}. The following fields are
-            supported for filtering:
+            Gets a {@link LiveStreamEventPage} of {@link LiveStreamEvent} objects that satisfy the given
+            {@link Statement#query}. The following fields are supported for filtering:
             
             &lt;table&gt;
             &lt;tr&gt;
@@ -3182,9 +3213,8 @@
       <element name="getSlatesByStatement">
         <annotation>
           <documentation>
-            Gets a {@link SlatePage} of {@link Slate} objects that satisfy the
-            given {@link Statement#query}. The following fields are supported for
-            filtering:
+            Gets a {@link SlatePage} of {@link Slate} objects that satisfy the given {@link
+            Statement#query}. The following fields are supported for filtering:
             
             &lt;table&gt;
             &lt;tr&gt;
@@ -3221,8 +3251,8 @@
       <element name="performLiveStreamEventAction">
         <annotation>
           <documentation>
-            Performs actions on {@link LiveStreamEvent} objects that match the given
-            {@link Statement#query}.
+            Performs actions on {@link LiveStreamEvent} objects that match the given {@link
+            Statement#query}.
           </documentation>
         </annotation>
         <complexType>
@@ -3366,21 +3396,22 @@
     <wsdl:documentation>
       Provides methods for creating, updating and retrieving {@link LiveStreamEvent} objects.
       
-      &lt;p&gt;This feature is only available for Ad Manager 360 networks.
-      Publishers will need to be activated through the &lt;b&gt;Video &gt; Live streams&lt;/b&gt;
-      tab in the Ad Manager UI. For access, apply through your account manager.
+      &lt;p&gt;This feature is only available for Ad Manager 360 networks. Publishers will need to be
+      activated through the &lt;b&gt;Video &gt; Live streams&lt;/b&gt; tab in the Ad Manager UI. For access, apply
+      through your account manager.
     </wsdl:documentation>
     <wsdl:operation name="createLiveStreamEvents">
       <wsdl:documentation>
         Creates new {@link LiveStreamEvent} objects.
         
-        The following fields are required:
+        &lt;p&gt;The following fields are required:
+        
         &lt;ul&gt;
-        &lt;li&gt;{@link LiveStreamEvent#name}&lt;/li&gt;
-        &lt;li&gt;{@link LiveStreamEvent#startDateTime}&lt;/li&gt;
-        &lt;li&gt;{@link LiveStreamEvent#endDateTime}&lt;/li&gt;
-        &lt;li&gt;{@link LiveStreamEvent#contentUrls}&lt;/li&gt;
-        &lt;li&gt;{@link LiveStreamEvent#adTags}&lt;/li&gt;
+        &lt;li&gt;{@link LiveStreamEvent#name}
+        &lt;li&gt;{@link LiveStreamEvent#startDateTime}
+        &lt;li&gt;{@link LiveStreamEvent#endDateTime}
+        &lt;li&gt;{@link LiveStreamEvent#contentUrls}
+        &lt;li&gt;{@link LiveStreamEvent#adTags}
         &lt;/ul&gt;
       </wsdl:documentation>
       <wsdl:input message="tns:createLiveStreamEventsRequest" name="createLiveStreamEventsRequest"/>
@@ -3391,8 +3422,8 @@
       <wsdl:documentation>
         Create new slates.
         
-        &lt;p&gt;A slate creative is served as backup content in a live stream event when no other
-        creatives are eligible to be served.
+        &lt;p&gt;A slate creative is served as backup content in a live stream event when no other creatives
+        are eligible to be served.
       </wsdl:documentation>
       <wsdl:input message="tns:createSlatesRequest" name="createSlatesRequest"/>
       <wsdl:output message="tns:createSlatesResponse" name="createSlatesResponse"/>
@@ -3400,9 +3431,8 @@
     </wsdl:operation>
     <wsdl:operation name="getLiveStreamEventsByStatement">
       <wsdl:documentation>
-        Gets a {@link LiveStreamEventPage} of {@link LiveStreamEvent} objects that
-        satisfy the given {@link Statement#query}. The following fields are
-        supported for filtering:
+        Gets a {@link LiveStreamEventPage} of {@link LiveStreamEvent} objects that satisfy the given
+        {@link Statement#query}. The following fields are supported for filtering:
         
         &lt;table&gt;
         &lt;tr&gt;
@@ -3452,9 +3482,8 @@
     </wsdl:operation>
     <wsdl:operation name="getSlatesByStatement">
       <wsdl:documentation>
-        Gets a {@link SlatePage} of {@link Slate} objects that satisfy the
-        given {@link Statement#query}. The following fields are supported for
-        filtering:
+        Gets a {@link SlatePage} of {@link Slate} objects that satisfy the given {@link
+        Statement#query}. The following fields are supported for filtering:
         
         &lt;table&gt;
         &lt;tr&gt;
@@ -3480,8 +3509,8 @@
     </wsdl:operation>
     <wsdl:operation name="performLiveStreamEventAction">
       <wsdl:documentation>
-        Performs actions on {@link LiveStreamEvent} objects that match the given
-        {@link Statement#query}.
+        Performs actions on {@link LiveStreamEvent} objects that match the given {@link
+        Statement#query}.
       </wsdl:documentation>
       <wsdl:input message="tns:performLiveStreamEventActionRequest" name="performLiveStreamEventActionRequest"/>
       <wsdl:output message="tns:performLiveStreamEventActionResponse" name="performLiveStreamEventActionResponse"/>

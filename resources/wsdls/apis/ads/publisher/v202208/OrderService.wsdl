@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2022 Google Inc. All Rights Reserved -->
+<!-- Copyright 2023 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202208"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202208"
@@ -148,8 +148,7 @@
           <element maxOccurs="1" minOccurs="0" name="isNegated" type="xsd:boolean">
             <annotation>
               <documentation>
-                {@code isNegated} should be set to {@code true} to negate the effects of
-                {@code labelId}.
+                {@code isNegated} should be set to {@code true} to negate the effects of {@code labelId}.
               </documentation>
             </annotation>
           </element>
@@ -161,7 +160,7 @@
             The action used for approving and overbooking {@link Order} objects. All {@link LineItem} objects
             within the order will be approved as well. For more information on what happens to an order and
             its line items when it is approved and overbooked, see the
-            &lt;a href="https://support.google.com/dfp_premium/answer/177334"&gt;Ad Manager Help Center&lt;/a&gt;.
+            &lt;a href="https://support.google.com/admanager/answer/177334"&gt;Ad Manager Help Center&lt;/a&gt;.
           </documentation>
         </annotation>
         <complexContent>
@@ -176,7 +175,7 @@
             The action used for approving {@link Order} objects. All {@link LineItem}
             objects within the order will be approved as well. For more information on what happens to an
             order and its line items when it is approved, see the
-            &lt;a href="https://support.google.com/dfp_premium/answer/177334"&gt;Ad Manager Help Center&lt;/a&gt;.
+            &lt;a href="https://support.google.com/admanager/answer/177334"&gt;Ad Manager Help Center&lt;/a&gt;.
             &lt;/p&gt;
           </documentation>
         </annotation>
@@ -288,8 +287,7 @@
           <element maxOccurs="1" minOccurs="0" name="customFieldId" type="xsd:long">
             <annotation>
               <documentation>
-                Id of the {@code CustomField} to which this value belongs. This attribute
-                is required.
+                Id of the {@code CustomField} to which this value belongs. This attribute is required.
               </documentation>
             </annotation>
           </element>
@@ -427,8 +425,8 @@
       <complexType name="CustomFieldValue">
         <annotation>
           <documentation>
-            The value of a {@link CustomField} that does not have a {@link CustomField#dataType}
-            of {@link CustomFieldDataType#DROP_DOWN}.
+            The value of a {@link CustomField} that does not have a {@link CustomField#dataType} of {@link
+            CustomFieldDataType#DROP_DOWN}.
           </documentation>
         </annotation>
         <complexContent>
@@ -437,9 +435,8 @@
               <element maxOccurs="1" minOccurs="0" name="value" type="tns:Value">
                 <annotation>
                   <documentation>
-                    The value for this field. The appropriate type of {@code Value} is
-                    determined by the {@link CustomField#dataType} of the {@code CustomField}
-                    that this conforms to.
+                    The value for this field. The appropriate type of {@code Value} is determined by the {@link
+                    CustomField#dataType} of the {@code CustomField} that this conforms to.
                     
                     &lt;table&gt;
                     &lt;tr&gt;&lt;th&gt;{@link CustomFieldDataType}&lt;/th&gt;&lt;th&gt;{@link Value} type&lt;/th&gt;&lt;/tr&gt;
@@ -660,8 +657,8 @@
       <complexType name="DropDownCustomFieldValue">
         <annotation>
           <documentation>
-            A {@link CustomFieldValue} for a {@link CustomField} that has a {@link CustomField#dataType}
-            of {@link CustomFieldDataType#DROP_DOWN}
+            A {@link CustomFieldValue} for a {@link CustomField} that has a {@link CustomField#dataType} of
+            {@link CustomFieldDataType#DROP_DOWN}
           </documentation>
         </annotation>
         <complexContent>
@@ -671,8 +668,7 @@
                 name="customFieldOptionId" type="xsd:long">
                 <annotation>
                   <documentation>
-                    The {@link CustomFieldOption#id ID} of the {@link CustomFieldOption} for
-                    this value.
+                    The {@link CustomFieldOption#id ID} of the {@link CustomFieldOption} for this value.
                   </documentation>
                 </annotation>
               </element>
@@ -1183,43 +1179,41 @@
       <complexType name="Order">
         <annotation>
           <documentation>
-            An {@code Order} represents a grouping of individual {@link LineItem}
-            objects, each of which fulfill an ad request from a particular advertiser.
+            An {@code Order} represents a grouping of individual {@link LineItem} objects, each of which
+            fulfill an ad request from a particular advertiser.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
             <annotation>
               <documentation>
-                The unique ID of the {@code Order}. This value is readonly and is assigned
-                by Google.
+                The unique ID of the {@code Order}. This value is readonly and is assigned by Google.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
             <annotation>
               <documentation>
-                The name of the {@code Order}. This value is required to create an order
-                and has a maximum length of 255 characters.
+                The name of the {@code Order}. This value is required to create an order and has a maximum
+                length of 255 characters.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="startDateTime" type="tns:DateTime">
             <annotation>
               <documentation>
-                The date and time at which the {@code Order} and its associated line items
-                are eligible to begin serving. This attribute is readonly and is derived
-                from the line item of the order which has the earliest
-                {@link LineItem#startDateTime}.
+                The date and time at which the {@code Order} and its associated line items are eligible to
+                begin serving. This attribute is readonly and is derived from the line item of the order which
+                has the earliest {@link LineItem#startDateTime}.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="endDateTime" type="tns:DateTime">
             <annotation>
               <documentation>
-                The date and time at which the {@code Order} and its associated line items
-                stop being served. This attribute is readonly and is derived from the line
-                item of the order which has the latest {@link LineItem#endDateTime}.
+                The date and time at which the {@code Order} and its associated line items stop being served.
+                This attribute is readonly and is derived from the line item of the order which has the latest
+                {@link LineItem#endDateTime}.
               </documentation>
             </annotation>
           </element>
@@ -1227,9 +1221,9 @@
             name="unlimitedEndDateTime" type="xsd:boolean">
             <annotation>
               <documentation>
-                Specifies whether or not the {@code Order} has an unlimited end date. This
-                attribute is readonly and is {@code true} if any of the order's line items
-                has {@link LineItem#unlimitedEndDateTime} set to {@code true}.
+                Specifies whether or not the {@code Order} has an unlimited end date. This attribute is
+                readonly and is {@code true} if any of the order's line items has {@link
+                LineItem#unlimitedEndDateTime} set to {@code true}.
               </documentation>
             </annotation>
           </element>
@@ -1250,41 +1244,40 @@
           <element maxOccurs="1" minOccurs="0" name="notes" type="xsd:string">
             <annotation>
               <documentation>
-                Provides any additional notes that may annotate the {@code Order}. This
-                attribute is optional and has a maximum length of 65,535 characters.
+                Provides any additional notes that may annotate the {@code Order}. This attribute is optional
+                and has a maximum length of 65,535 characters.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="externalOrderId" type="xsd:int">
             <annotation>
               <documentation>
-                An arbitrary ID to associate to the {@code Order}, which can be used as a
-                key to an external system. This value is optional.
+                An arbitrary ID to associate to the {@code Order}, which can be used as a key to an external
+                system. This value is optional.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="poNumber" type="xsd:string">
             <annotation>
               <documentation>
-                The purchase order number for the {@code Order}. This value is optional
-                and has a maximum length of 63 characters.
+                The purchase order number for the {@code Order}. This value is optional and has a maximum
+                length of 63 characters.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="currencyCode" type="xsd:string">
             <annotation>
               <documentation>
-                The ISO currency code for the currency used by the {@code Order}. This
-                value is read-only and is the network's currency code.
+                The ISO currency code for the currency used by the {@code Order}. This value is read-only and
+                is the network's currency code.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="advertiserId" type="xsd:long">
             <annotation>
               <documentation>
-                The unique ID of the {@link Company}, which is of type
-                {@link Company.Type#ADVERTISER}, to which this order belongs. This
-                attribute is required.
+                The unique ID of the {@link Company}, which is of type {@link Company.Type#ADVERTISER}, to
+                which this order belongs. This attribute is required.
               </documentation>
             </annotation>
           </element>
@@ -1299,9 +1292,8 @@
           <element maxOccurs="1" minOccurs="0" name="agencyId" type="xsd:long">
             <annotation>
               <documentation>
-                The unique ID of the {@link Company}, which is of type
-                {@link Company.Type#AGENCY}, with which this order is associated. This
-                attribute is optional.
+                The unique ID of the {@link Company}, which is of type {@link Company.Type#AGENCY}, with which
+                this order is associated. This attribute is optional.
               </documentation>
             </annotation>
           </element>
@@ -1316,16 +1308,16 @@
           <element maxOccurs="1" minOccurs="0" name="creatorId" type="xsd:long">
             <annotation>
               <documentation>
-                The unique ID of the {@link User} who created the {@code Order} on behalf
-                of the advertiser. This value is readonly and is assigned by Google.
+                The unique ID of the {@link User} who created the {@code Order} on behalf of the advertiser.
+                This value is readonly and is assigned by Google.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="traffickerId" type="xsd:long">
             <annotation>
               <documentation>
-                The unique ID of the {@link User} responsible for trafficking the {@code
-                Order}. This value is required for creating an order.
+                The unique ID of the {@link User} responsible for trafficking the {@code Order}. This value is
+                required for creating an order.
               </documentation>
             </annotation>
           </element>
@@ -1333,16 +1325,15 @@
             name="secondaryTraffickerIds" type="xsd:long">
             <annotation>
               <documentation>
-                The IDs of the secondary traffickers associated with the order. This value
-                is optional.
+                The IDs of the secondary traffickers associated with the order. This value is optional.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="salespersonId" type="xsd:long">
             <annotation>
               <documentation>
-                The unique ID of the {@link User} responsible for the sales of the {@code
-                Order}. This value is optional.
+                The unique ID of the {@link User} responsible for the sales of the {@code Order}. This value is
+                optional.
               </documentation>
             </annotation>
           </element>
@@ -1350,8 +1341,7 @@
             name="secondarySalespersonIds" type="xsd:long">
             <annotation>
               <documentation>
-                The IDs of the secondary salespeople associated with the order. This value
-                is optional.
+                The IDs of the secondary salespeople associated with the order. This value is optional.
               </documentation>
             </annotation>
           </element>
@@ -1359,8 +1349,8 @@
             name="totalImpressionsDelivered" type="xsd:long">
             <annotation>
               <documentation>
-                Total impressions delivered for all line items of this {@code Order}. This
-                value is read-only and is assigned by Google.
+                Total impressions delivered for all line items of this {@code Order}. This value is read-only
+                and is assigned by Google.
               </documentation>
             </annotation>
           </element>
@@ -1368,8 +1358,8 @@
             name="totalClicksDelivered" type="xsd:long">
             <annotation>
               <documentation>
-                Total clicks delivered for all line items of this {@code Order}. This value
-                is read-only and is assigned by Google.
+                Total clicks delivered for all line items of this {@code Order}. This value is read-only and is
+                assigned by Google.
               </documentation>
             </annotation>
           </element>
@@ -1377,19 +1367,17 @@
             name="totalViewableImpressionsDelivered" type="xsd:long">
             <annotation>
               <documentation>
-                Total viewable impressions delivered for all line items of this {@code Order}.
-                This value is read-only and is assigned by Google.
-                Starting in v201705, this will be {@code null} when the order does not have line items
-                trafficked against a viewable impressions goal.
+                Total viewable impressions delivered for all line items of this {@code Order}. This value is
+                read-only and is assigned by Google. Starting in v201705, this will be {@code null} when the
+                order does not have line items trafficked against a viewable impressions goal.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="totalBudget" type="tns:Money">
             <annotation>
               <documentation>
-                Total budget for all line items of this {@code Order}. This value is a
-                readonly field assigned by Google and is calculated from the associated
-                {@link LineItem#costPerUnit} values.
+                Total budget for all line items of this {@code Order}. This value is a readonly field assigned
+                by Google and is calculated from the associated {@link LineItem#costPerUnit} values.
               </documentation>
             </annotation>
           </element>
@@ -1414,16 +1402,16 @@
           <element maxOccurs="1" minOccurs="0" name="lastModifiedByApp" type="xsd:string">
             <annotation>
               <documentation>
-                The application which modified this order. This attribute is read only and
-                is assigned by Google.
+                The application which modified this order. This attribute is read only and is assigned by
+                Google.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="isProgrammatic" type="xsd:boolean">
             <annotation>
               <documentation>
-                Specifies whether or not the {@code Order} is a programmatic order. This
-                value is optional and defaults to false.
+                Specifies whether or not the {@code Order} is a programmatic order. This value is optional and
+                defaults to false.
               </documentation>
             </annotation>
           </element>
@@ -4098,7 +4086,7 @@
             <annotation>
               <documentation>
                 Age range for GRP audience is not valid. Please see the
-                &lt;a href="https://support.google.com/dfp_premium/answer/6135438"&gt;Ad Manager Help Center&lt;/a&gt;
+                &lt;a href="https://support.google.com/admanager/answer/6135438"&gt;Ad Manager Help Center&lt;/a&gt;
                 for more information.
               </documentation>
             </annotation>
@@ -7175,8 +7163,8 @@
       <element name="getOrdersByStatement">
         <annotation>
           <documentation>
-            Gets an {@link OrderPage} of {@link Order} objects that satisfy the given
-            {@link Statement#query}. The following fields are supported for filtering:
+            Gets an {@link OrderPage} of {@link Order} objects that satisfy the given {@link
+            Statement#query}. The following fields are supported for filtering:
             
             &lt;table&gt;
             &lt;tr&gt;
@@ -7237,8 +7225,7 @@
       <element name="performOrderAction">
         <annotation>
           <documentation>
-            Performs actions on {@link Order} objects that match the given
-            {@link Statement#query}.
+            Performs actions on {@link Order} objects that match the given {@link Statement#query}.
           </documentation>
         </annotation>
         <complexType>
@@ -7314,12 +7301,10 @@
   <wsdl:portType name="OrderServiceInterface">
     <wsdl:documentation>
       Provides methods for creating, updating and retrieving {@link Order} objects.
-      &lt;p&gt;
-      An order is a grouping of {@link LineItem} objects. Line items have a
-      many-to-one relationship with orders, meaning each line item can belong to only one
-      order, but orders can have multiple line items. An order can be used to
-      manage the line items it contains.
-      &lt;/p&gt;
+      
+      &lt;p&gt;An order is a grouping of {@link LineItem} objects. Line items have a many-to-one relationship
+      with orders, meaning each line item can belong to only one order, but orders can have multiple
+      line items. An order can be used to manage the line items it contains.
     </wsdl:documentation>
     <wsdl:operation name="createOrders">
       <wsdl:documentation>
@@ -7331,8 +7316,8 @@
     </wsdl:operation>
     <wsdl:operation name="getOrdersByStatement">
       <wsdl:documentation>
-        Gets an {@link OrderPage} of {@link Order} objects that satisfy the given
-        {@link Statement#query}. The following fields are supported for filtering:
+        Gets an {@link OrderPage} of {@link Order} objects that satisfy the given {@link
+        Statement#query}. The following fields are supported for filtering:
         
         &lt;table&gt;
         &lt;tr&gt;
@@ -7382,8 +7367,7 @@
     </wsdl:operation>
     <wsdl:operation name="performOrderAction">
       <wsdl:documentation>
-        Performs actions on {@link Order} objects that match the given
-        {@link Statement#query}.
+        Performs actions on {@link Order} objects that match the given {@link Statement#query}.
       </wsdl:documentation>
       <wsdl:input message="tns:performOrderActionRequest" name="performOrderActionRequest"/>
       <wsdl:output message="tns:performOrderActionResponse" name="performOrderActionResponse"/>

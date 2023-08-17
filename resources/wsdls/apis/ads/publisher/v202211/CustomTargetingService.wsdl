@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2022 Google Inc. All Rights Reserved -->
+<!-- Copyright 2023 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202211"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202211"
@@ -248,21 +248,18 @@
           <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
             <annotation>
               <documentation>
-                The ID of the {@code CustomTargetingKey}. This value is readonly and is
-                populated by Google.
+                The ID of the {@code CustomTargetingKey}. This value is readonly and is populated by Google.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
             <annotation>
               <documentation>
-                Name of the key. This can be used for encoding . If you don't want users to
-                be able to see potentially sensitive targeting information in the ad tags
-                of your site, you can encode your key/values. For example, you can create
-                key/value g1=abc to represent gender=female. Keys can contain up to 10
-                characters each. You can use alphanumeric characters and symbols other than
-                the following: ", ', =, !, +, #, *, ~, ;, ^, (, ), &lt;, &gt;, [, ], the white
-                space character.
+                Name of the key. This can be used for encoding . If you don't want users to be able to see
+                potentially sensitive targeting information in the ad tags of your site, you can encode your
+                key/values. For example, you can create key/value g1=abc to represent gender=female. Keys can
+                contain up to 10 characters each. You can use alphanumeric characters and symbols other than
+                the following: ", ', =, !, +, #, *, ~, ;, ^, (, ), &lt;, &gt;, [, ], the white space character.
               </documentation>
             </annotation>
           </element>
@@ -276,8 +273,8 @@
           <element maxOccurs="1" minOccurs="0" name="type" type="tns:CustomTargetingKey.Type">
             <annotation>
               <documentation>
-                Indicates whether users will select from predefined values or create new
-                targeting values, while specifying targeting criteria for a line item.
+                Indicates whether users will select from predefined values or create new targeting values,
+                while specifying targeting criteria for a line item.
               </documentation>
             </annotation>
           </element>
@@ -355,22 +352,19 @@
           <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
             <annotation>
               <documentation>
-                The ID of the {@code CustomTargetingValue}. This value is readonly and is
-                populated by Google.
+                The ID of the {@code CustomTargetingValue}. This value is readonly and is populated by Google.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
             <annotation>
               <documentation>
-                Name of the value. This can be used for encoding . If you don't want users
-                to be able to see potentially sensitive targeting information in the ad
-                tags of your site, you can encode your key/values. For example, you can
-                create key/value g1=abc to represent gender=female. Values can contain up
-                to 40 characters each. You can use alphanumeric characters and symbols
-                other than the following: ", ', =, !, +, #, *, ~, ;, ^, (, ), &lt;, &gt;, [, ].
-                Values are not data-specific; all values are treated as string. For
-                example, instead of using "age&gt;=18 AND &lt;=34", try "18-34"
+                Name of the value. This can be used for encoding . If you don't want users to be able to see
+                potentially sensitive targeting information in the ad tags of your site, you can encode your
+                key/values. For example, you can create key/value g1=abc to represent gender=female. Values can
+                contain up to 40 characters each. You can use alphanumeric characters and symbols other than
+                the following: ", ', =, !, +, #, *, ~, ;, ^, (, ), &lt;, &gt;, [, ]. Values are not data-specific;
+                all values are treated as string. For example, instead of using "age&gt;=18 AND &lt;=34", try "18-34"
               </documentation>
             </annotation>
           </element>
@@ -384,8 +378,7 @@
           <element maxOccurs="1" minOccurs="0" name="matchType" type="tns:CustomTargetingValue.MatchType">
             <annotation>
               <documentation>
-                The way in which the {@link CustomTargetingValue#name} strings will be
-                matched.
+                The way in which the {@link CustomTargetingValue#name} strings will be matched.
               </documentation>
             </annotation>
           </element>
@@ -1641,8 +1634,7 @@
           <enumeration value="UNKNOWN">
             <annotation>
               <documentation>
-                The value returned if the actual value is not exposed by the requested
-                API version.
+                The value returned if the actual value is not exposed by the requested API version.
               </documentation>
             </annotation>
           </enumeration>
@@ -1674,52 +1666,50 @@
       <simpleType name="CustomTargetingValue.MatchType">
         <annotation>
           <documentation>
-            Represents the ways in which {@link CustomTargetingValue#name} strings will
-            be matched with ad requests.
+            Represents the ways in which {@link CustomTargetingValue#name} strings will be matched with ad
+            requests.
           </documentation>
         </annotation>
         <restriction base="xsd:string">
           <enumeration value="EXACT">
             <annotation>
               <documentation>
-                Used for exact matching. For example, the targeting value {@code
-                car=honda} will only match to the ad request {@code car=honda}.
+                Used for exact matching. For example, the targeting value {@code car=honda} will only match
+                to the ad request {@code car=honda}.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="BROAD">
             <annotation>
               <documentation>
-                Used for lenient matching when at least one of the words in the ad
-                request matches the targeted value. The targeting value {@code car=honda}
-                will match to ad requests containing the word {@code honda}. So ad
-                requests {@code car=honda} or {@code car=honda civic} or {@code car=buy
-                honda} or {@code car=how much does a honda cost} will all have the line
-                item delivered.
+                Used for lenient matching when at least one of the words in the ad request matches the
+                targeted value. The targeting value {@code car=honda} will match to ad requests containing
+                the word {@code honda}. So ad requests {@code car=honda} or {@code car=honda civic} or {@code
+                car=buy honda} or {@code car=how much does a honda cost} will all have the line item
+                delivered.
                 
-                &lt;p&gt;This match type can not be used within an audience segment rule.&lt;/p&gt;
+                &lt;p&gt;This match type can not be used within an audience segment rule.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="PREFIX">
             <annotation>
               <documentation>
-                Used for 'starts with' matching when the first few characters in the ad
-                request match all of the characters in the targeted value. The targeting
-                value {@code car=honda} will match to ad requests {@code car=honda} or
-                {@code car=hondas for sale} but not to {@code car=I want a honda}.
+                Used for 'starts with' matching when the first few characters in the ad request match all of
+                the characters in the targeted value. The targeting value {@code car=honda} will match to ad
+                requests {@code car=honda} or {@code car=hondas for sale} but not to {@code car=I want a
+                honda}.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="BROAD_PREFIX">
             <annotation>
               <documentation>
-                This is a combination of {@code MatchType#BROAD} and {@code
-                MatchType#PREFIX} matching. The targeting value {@code car=honda} will
-                match to ad requests that contain words that start with the characters in
-                the targeted value, for example with {@code car=civic hondas}.
+                This is a combination of {@code MatchType#BROAD} and {@code MatchType#PREFIX} matching. The
+                targeting value {@code car=honda} will match to ad requests that contain words that start
+                with the characters in the targeted value, for example with {@code car=civic hondas}.
                 
-                &lt;p&gt;This match type can not be used within an audience segment rule.&lt;/p&gt;
+                &lt;p&gt;This match type can not be used within an audience segment rule.
               </documentation>
             </annotation>
           </enumeration>
@@ -1780,8 +1770,7 @@
           <enumeration value="UNKNOWN">
             <annotation>
               <documentation>
-                The value returned if the actual value is not exposed by the requested
-                API version.
+                The value returned if the actual value is not exposed by the requested API version.
               </documentation>
             </annotation>
           </enumeration>
@@ -2439,10 +2428,11 @@
           <documentation>
             Creates new {@link CustomTargetingKey} objects.
             
-            The following fields are required:
+            &lt;p&gt;The following fields are required:
+            
             &lt;ul&gt;
-            &lt;li&gt;{@link CustomTargetingKey#name}&lt;/li&gt;
-            &lt;li&gt;{@link CustomTargetingKey#type}&lt;/li&gt;
+            &lt;li&gt;{@link CustomTargetingKey#name}
+            &lt;li&gt;{@link CustomTargetingKey#type}
             &lt;/ul&gt;
           </documentation>
         </annotation>
@@ -2471,10 +2461,11 @@
           <documentation>
             Creates new {@link CustomTargetingValue} objects.
             
-            The following fields are required:
+            &lt;p&gt;The following fields are required:
+            
             &lt;ul&gt;
-            &lt;li&gt;{@link CustomTargetingValue#customTargetingKeyId}&lt;/li&gt;
-            &lt;li&gt;{@link CustomTargetingValue#name}&lt;/li&gt;
+            &lt;li&gt;{@link CustomTargetingValue#customTargetingKeyId}
+            &lt;li&gt;{@link CustomTargetingValue#name}
             &lt;/ul&gt;
           </documentation>
         </annotation>
@@ -2494,9 +2485,8 @@
       <element name="getCustomTargetingKeysByStatement">
         <annotation>
           <documentation>
-            Gets a {@link CustomTargetingKeyPage} of {@link CustomTargetingKey} objects
-            that satisfy the given {@link Statement#query}. The following fields are
-            supported for filtering:
+            Gets a {@link CustomTargetingKeyPage} of {@link CustomTargetingKey} objects that satisfy the
+            given {@link Statement#query}. The following fields are supported for filtering:
             
             &lt;table&gt;
             &lt;tr&gt;
@@ -2538,29 +2528,23 @@
       <element name="getCustomTargetingValuesByStatement">
         <annotation>
           <documentation>
-            Gets a {@link CustomTargetingValuePage} of {@link CustomTargetingValue}
-            objects that satisfy the given {@link Statement#query}.
-            &lt;p&gt;
-            The {@code WHERE} clause in the {@link Statement#query} must always contain
-            {@link CustomTargetingValue#customTargetingKeyId} as one of its columns in
-            a way that it is AND'ed with the rest of the query. So, if you want to
-            retrieve values for a known set of key ids, valid {@link Statement#query}
-            would look like:
-            &lt;/p&gt;
+            Gets a {@link CustomTargetingValuePage} of {@link CustomTargetingValue} objects that satisfy
+            the given {@link Statement#query}.
+            
+            &lt;p&gt;The {@code WHERE} clause in the {@link Statement#query} must always contain {@link
+            CustomTargetingValue#customTargetingKeyId} as one of its columns in a way that it is AND'ed
+            with the rest of the query. So, if you want to retrieve values for a known set of key ids,
+            valid {@link Statement#query} would look like:
+            
             &lt;ol&gt;
-            &lt;li&gt;
-            "WHERE customTargetingKeyId IN ('17','18','19')" retrieves all values that
-            are associated with keys having ids 17, 18, 19.
-            &lt;/li&gt;
-            &lt;li&gt;
-            "WHERE customTargetingKeyId = '17' AND name = 'red'" retrieves values that
-            are associated with keys having id 17 and value name is 'red'.
-            &lt;/li&gt;
+            &lt;li&gt;"WHERE customTargetingKeyId IN ('17','18','19')" retrieves all values that are associated
+            with keys having ids 17, 18, 19.
+            &lt;li&gt;"WHERE customTargetingKeyId = '17' AND name = 'red'" retrieves values that are associated
+            with keys having id 17 and value name is 'red'.
             &lt;/ol&gt;
-            &lt;/p&gt;
-            &lt;p&gt;
-            The following fields are supported for filtering:
-            &lt;/p&gt;
+            
+            &lt;p&gt;The following fields are supported for filtering:
+            
             &lt;table&gt;
             &lt;tr&gt;
             &lt;th scope="col"&gt;PQL Property&lt;/th&gt;
@@ -2605,8 +2589,8 @@
       <element name="performCustomTargetingKeyAction">
         <annotation>
           <documentation>
-            Performs actions on {@link CustomTargetingKey} objects that match the given
-            {@link Statement#query}.
+            Performs actions on {@link CustomTargetingKey} objects that match the given {@link
+            Statement#query}.
           </documentation>
         </annotation>
         <complexType>
@@ -2627,8 +2611,8 @@
       <element name="performCustomTargetingValueAction">
         <annotation>
           <documentation>
-            Performs actions on {@link CustomTargetingValue} objects that match the
-            given {@link Statement#query}.
+            Performs actions on {@link CustomTargetingValue} objects that match the given {@link
+            Statement#query}.
           </documentation>
         </annotation>
         <complexType>
@@ -2754,10 +2738,11 @@
       <wsdl:documentation>
         Creates new {@link CustomTargetingKey} objects.
         
-        The following fields are required:
+        &lt;p&gt;The following fields are required:
+        
         &lt;ul&gt;
-        &lt;li&gt;{@link CustomTargetingKey#name}&lt;/li&gt;
-        &lt;li&gt;{@link CustomTargetingKey#type}&lt;/li&gt;
+        &lt;li&gt;{@link CustomTargetingKey#name}
+        &lt;li&gt;{@link CustomTargetingKey#type}
         &lt;/ul&gt;
       </wsdl:documentation>
       <wsdl:input message="tns:createCustomTargetingKeysRequest" name="createCustomTargetingKeysRequest"/>
@@ -2768,10 +2753,11 @@
       <wsdl:documentation>
         Creates new {@link CustomTargetingValue} objects.
         
-        The following fields are required:
+        &lt;p&gt;The following fields are required:
+        
         &lt;ul&gt;
-        &lt;li&gt;{@link CustomTargetingValue#customTargetingKeyId}&lt;/li&gt;
-        &lt;li&gt;{@link CustomTargetingValue#name}&lt;/li&gt;
+        &lt;li&gt;{@link CustomTargetingValue#customTargetingKeyId}
+        &lt;li&gt;{@link CustomTargetingValue#name}
         &lt;/ul&gt;
       </wsdl:documentation>
       <wsdl:input message="tns:createCustomTargetingValuesRequest" name="createCustomTargetingValuesRequest"/>
@@ -2780,9 +2766,8 @@
     </wsdl:operation>
     <wsdl:operation name="getCustomTargetingKeysByStatement">
       <wsdl:documentation>
-        Gets a {@link CustomTargetingKeyPage} of {@link CustomTargetingKey} objects
-        that satisfy the given {@link Statement#query}. The following fields are
-        supported for filtering:
+        Gets a {@link CustomTargetingKeyPage} of {@link CustomTargetingKey} objects that satisfy the
+        given {@link Statement#query}. The following fields are supported for filtering:
         
         &lt;table&gt;
         &lt;tr&gt;
@@ -2814,29 +2799,23 @@
     </wsdl:operation>
     <wsdl:operation name="getCustomTargetingValuesByStatement">
       <wsdl:documentation>
-        Gets a {@link CustomTargetingValuePage} of {@link CustomTargetingValue}
-        objects that satisfy the given {@link Statement#query}.
-        &lt;p&gt;
-        The {@code WHERE} clause in the {@link Statement#query} must always contain
-        {@link CustomTargetingValue#customTargetingKeyId} as one of its columns in
-        a way that it is AND'ed with the rest of the query. So, if you want to
-        retrieve values for a known set of key ids, valid {@link Statement#query}
-        would look like:
-        &lt;/p&gt;
+        Gets a {@link CustomTargetingValuePage} of {@link CustomTargetingValue} objects that satisfy
+        the given {@link Statement#query}.
+        
+        &lt;p&gt;The {@code WHERE} clause in the {@link Statement#query} must always contain {@link
+        CustomTargetingValue#customTargetingKeyId} as one of its columns in a way that it is AND'ed
+        with the rest of the query. So, if you want to retrieve values for a known set of key ids,
+        valid {@link Statement#query} would look like:
+        
         &lt;ol&gt;
-        &lt;li&gt;
-        "WHERE customTargetingKeyId IN ('17','18','19')" retrieves all values that
-        are associated with keys having ids 17, 18, 19.
-        &lt;/li&gt;
-        &lt;li&gt;
-        "WHERE customTargetingKeyId = '17' AND name = 'red'" retrieves values that
-        are associated with keys having id 17 and value name is 'red'.
-        &lt;/li&gt;
+        &lt;li&gt;"WHERE customTargetingKeyId IN ('17','18','19')" retrieves all values that are associated
+        with keys having ids 17, 18, 19.
+        &lt;li&gt;"WHERE customTargetingKeyId = '17' AND name = 'red'" retrieves values that are associated
+        with keys having id 17 and value name is 'red'.
         &lt;/ol&gt;
-        &lt;/p&gt;
-        &lt;p&gt;
-        The following fields are supported for filtering:
-        &lt;/p&gt;
+        
+        &lt;p&gt;The following fields are supported for filtering:
+        
         &lt;table&gt;
         &lt;tr&gt;
         &lt;th scope="col"&gt;PQL Property&lt;/th&gt;
@@ -2872,8 +2851,8 @@
     </wsdl:operation>
     <wsdl:operation name="performCustomTargetingKeyAction">
       <wsdl:documentation>
-        Performs actions on {@link CustomTargetingKey} objects that match the given
-        {@link Statement#query}.
+        Performs actions on {@link CustomTargetingKey} objects that match the given {@link
+        Statement#query}.
       </wsdl:documentation>
       <wsdl:input message="tns:performCustomTargetingKeyActionRequest" name="performCustomTargetingKeyActionRequest"/>
       <wsdl:output message="tns:performCustomTargetingKeyActionResponse" name="performCustomTargetingKeyActionResponse"/>
@@ -2881,8 +2860,8 @@
     </wsdl:operation>
     <wsdl:operation name="performCustomTargetingValueAction">
       <wsdl:documentation>
-        Performs actions on {@link CustomTargetingValue} objects that match the
-        given {@link Statement#query}.
+        Performs actions on {@link CustomTargetingValue} objects that match the given {@link
+        Statement#query}.
       </wsdl:documentation>
       <wsdl:input message="tns:performCustomTargetingValueActionRequest" name="performCustomTargetingValueActionRequest"/>
       <wsdl:output

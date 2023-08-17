@@ -92,10 +92,11 @@ class CustomFieldService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * Creates new {@link CustomFieldOption} objects.
      *
-     * The following fields are required:
+     * <p>The following fields are required:
+     *
      * <ul>
-     * <li>{@link CustomFieldOption#displayName}</li>
-     * <li>{@link CustomFieldOption#customFieldId}</li>
+     * <li>{@link CustomFieldOption#displayName}
+     * <li>{@link CustomFieldOption#customFieldId}
      * </ul>
      *
      * @param \Google\AdsApi\AdManager\v202211\CustomFieldOption[] $customFieldOptions
@@ -110,12 +111,13 @@ class CustomFieldService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * Creates new {@link CustomField} objects.
      *
-     * The following fields are required:
+     * <p>The following fields are required:
+     *
      * <ul>
-     * <li>{@link CustomField#name}</li>
-     * <li>{@link CustomField#entityType}</li>
-     * <li>{@link CustomField#dataType}</li>
-     * <li>{@link CustomField#visibility}</li>
+     * <li>{@link CustomField#name}
+     * <li>{@link CustomField#entityType}
+     * <li>{@link CustomField#dataType}
+     * <li>{@link CustomField#visibility}
      * </ul>
      *
      * @param \Google\AdsApi\AdManager\v202211\CustomField[] $customFields
@@ -140,9 +142,8 @@ class CustomFieldService extends \Google\AdsApi\Common\AdsSoapClient
     }
 
     /**
-     * Gets a {@link CustomFieldPage} of {@link CustomField} objects that satisfy the
-     * given {@link Statement#query}.
-     * The following fields are supported for filtering:
+     * Gets a {@link CustomFieldPage} of {@link CustomField} objects that satisfy the given {@link
+     * Statement#query}. The following fields are supported for filtering:
      *
      * <table>
      * <tr>
@@ -180,8 +181,7 @@ class CustomFieldService extends \Google\AdsApi\Common\AdsSoapClient
     }
 
     /**
-     * Performs actions on {@link CustomField} objects that match the given
-     * {@link Statement#query}.
+     * Performs actions on {@link CustomField} objects that match the given {@link Statement#query}.
      *
      * @param \Google\AdsApi\AdManager\v202211\CustomFieldAction $customFieldAction
      * @param \Google\AdsApi\AdManager\v202211\Statement $filterStatement

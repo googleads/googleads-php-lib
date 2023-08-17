@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2022 Google Inc. All Rights Reserved -->
+<!-- Copyright 2023 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202208"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202208"
@@ -64,10 +64,9 @@
           <element maxOccurs="1" minOccurs="0" name="includeDescendants" type="xsd:boolean">
             <annotation>
               <documentation>
-                Whether or not all descendants are included (or excluded) as part of
-                including (or excluding) this ad unit. By default, the value is {@code
-                true} which means targeting this ad unit will target all of its
-                descendants.
+                Whether or not all descendants are included (or excluded) as part of including (or excluding)
+                this ad unit. By default, the value is {@code true} which means targeting this ad unit will
+                target all of its descendants.
               </documentation>
             </annotation>
           </element>
@@ -304,9 +303,9 @@
       <complexType name="CustomCriteria">
         <annotation>
           <documentation>
-            A {@link CustomCriteria} object is used to perform custom criteria targeting
-            on custom targeting keys of type {@link CustomTargetingKey.Type#PREDEFINED}
-            or {@link CustomTargetingKey.Type#FREEFORM}.
+            A {@link CustomCriteria} object is used to perform custom criteria targeting on custom targeting
+            keys of type {@link CustomTargetingKey.Type#PREDEFINED} or {@link
+            CustomTargetingKey.Type#FREEFORM}.
           </documentation>
         </annotation>
         <complexContent>
@@ -315,9 +314,8 @@
               <element maxOccurs="1" minOccurs="0" name="keyId" type="xsd:long">
                 <annotation>
                   <documentation>
-                    The {@link CustomTargetingKey#id} of the {@link CustomTargetingKey} object
-                    that was created using {@link CustomTargetingService}. This attribute is
-                    required.
+                    The {@link CustomTargetingKey#id} of the {@link CustomTargetingKey} object that was created
+                    using {@link CustomTargetingService}. This attribute is required.
                   </documentation>
                 </annotation>
               </element>
@@ -325,9 +323,8 @@
                 name="valueIds" type="xsd:long">
                 <annotation>
                   <documentation>
-                    The ids of {@link CustomTargetingValue} objects to target the custom
-                    targeting key with id {@link CustomCriteria#keyId}. This attribute is
-                    required.
+                    The ids of {@link CustomTargetingValue} objects to target the custom targeting key with id
+                    {@link CustomCriteria#keyId}. This attribute is required.
                   </documentation>
                 </annotation>
               </element>
@@ -345,11 +342,9 @@
       <complexType name="CustomCriteriaSet">
         <annotation>
           <documentation>
-            A {@link CustomCriteriaSet} comprises of a set of {@link CustomCriteriaNode}
-            objects combined by the
-            {@link CustomCriteriaSet.LogicalOperator#logicalOperator}. The custom
-            criteria targeting tree is subject to the rules defined on
-            {@link Targeting#customTargeting}.
+            A {@link CustomCriteriaSet} comprises of a set of {@link CustomCriteriaNode} objects combined by
+            the {@link CustomCriteriaSet.LogicalOperator#logicalOperator}. The custom criteria targeting tree
+            is subject to the rules defined on {@link Targeting#customTargeting}.
           </documentation>
         </annotation>
         <complexContent>
@@ -437,10 +432,10 @@
       <complexType abstract="true" name="CustomCriteriaNode">
         <annotation>
           <documentation>
-            A {@link CustomCriteriaNode} is a node in the custom targeting tree. A custom
-            criteria node can either be a {@link CustomCriteriaSet} (a non-leaf node) or
-            a {@link CustomCriteria} (a leaf node). The custom criteria targeting tree is
-            subject to the rules defined on {@link Targeting#customTargeting}.
+            A {@link CustomCriteriaNode} is a node in the custom targeting tree. A custom criteria node can
+            either be a {@link CustomCriteriaSet} (a non-leaf node) or a {@link CustomCriteria} (a leaf
+            node). The custom criteria targeting tree is subject to the rules defined on {@link
+            Targeting#customTargeting}.
           </documentation>
         </annotation>
         <sequence/>
@@ -622,8 +617,8 @@
                     Specifies CPM cost for the given segment. This attribute is readonly and is assigned by the
                     data provider.
                     
-                    &lt;p&gt; The CPM cost comes from the active pricing, if there is one;
-                    otherwise it comes from the latest pricing.
+                    &lt;p&gt;The CPM cost comes from the active pricing, if there is one; otherwise it comes from the
+                    latest pricing.
                   </documentation>
                 </annotation>
               </element>
@@ -935,41 +930,33 @@
           <element maxOccurs="1" minOccurs="0" name="inventoryRule" type="tns:InventoryTargeting">
             <annotation>
               <documentation>
-                Specifies the inventory (i.e. ad units and placements) that are part of the rule of a
-                {@link FirstPartyAudienceSegment}. This attribute is required.
+                Specifies the inventory (i.e. ad units and placements) that are part of the rule of a {@link
+                FirstPartyAudienceSegment}. This attribute is required.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="customCriteriaRule" type="tns:CustomCriteriaSet">
             <annotation>
               <documentation>
-                Specifies the collection of custom criteria that are part of the rule of a
-                {@link FirstPartyAudienceSegment}.
+                Specifies the collection of custom criteria that are part of the rule of a {@link
+                FirstPartyAudienceSegment}.
                 
-                &lt;p&gt;
-                Once the {@link FirstPartyAudienceSegment} is updated or modified with custom criteria, the
+                &lt;p&gt;Once the {@link FirstPartyAudienceSegment} is updated or modified with custom criteria, the
                 server may return a normalized, but equivalent representation of the custom criteria rule.
-                &lt;/p&gt;
                 
                 &lt;ul&gt;
                 {@code customCriteriaRule} will have up to three levels including itself.
-                &lt;li&gt;
-                The top level {@link CustomCriteriaSet} i.e. the {@code customTargeting} object can only
+                &lt;li&gt;The top level {@link CustomCriteriaSet} i.e. the {@code customTargeting} object can only
                 contain a {@link CustomCriteriaSet.LogicalOperator#OR} of all its children.
-                &lt;li&gt;
-                The second level of {@link CustomCriteriaSet} objects can only contain
-                {@link CustomCriteriaSet.LogicalOperator#AND} of all their children. If a
-                {@link CustomCriteria} is placed on this level, the server will wrap it in a
-                {@link CustomCriteriaSet}.
-                &lt;li&gt;
-                The third level can only comprise of {@link CustomCriteria} objects.
+                &lt;li&gt;The second level of {@link CustomCriteriaSet} objects can only contain {@link
+                CustomCriteriaSet.LogicalOperator#AND} of all their children. If a {@link CustomCriteria}
+                is placed on this level, the server will wrap it in a {@link CustomCriteriaSet}.
+                &lt;li&gt;The third level can only comprise of {@link CustomCriteria} objects.
                 &lt;/ul&gt;
                 
-                &lt;p&gt;
-                The resulting custom criteria rule would be of the form: &lt;br&gt;
+                &lt;p&gt;The resulting custom criteria rule would be of the form: &lt;br&gt;
                 &lt;img
                 src="https://chart.apis.google.com/chart?cht=gv&amp;chl=digraph{customTargeting_LogicalOperator_OR-%3ECustomCriteriaSet_LogicalOperator_AND_1-%3ECustomCriteria_1;CustomCriteriaSet_LogicalOperator_AND_1-%3Eellipsis1;customTargeting_LogicalOperator_OR-%3Eellipsis2;ellipsis1[label=%22...%22,shape=none,fontsize=32];ellipsis2[label=%22...%22,shape=none,fontsize=32]}&amp;chs=450x200"/&gt;
-                &lt;/p&gt;
               </documentation>
             </annotation>
           </element>
@@ -1072,8 +1059,8 @@
                 <annotation>
                   <documentation>
                     Specifies the number of times a user's cookie must match the segment rule before it's
-                    associated with the audience segment. This is used in combination with
-                    {@link FirstPartyAudienceSegment#recencyDays} to determine eligibility of the association. This
+                    associated with the audience segment. This is used in combination with {@link
+                    FirstPartyAudienceSegment#recencyDays} to determine eligibility of the association. This
                     attribute is required and can be between 1 and 12.
                   </documentation>
                 </annotation>
@@ -1082,8 +1069,8 @@
                 <annotation>
                   <documentation>
                     Specifies the number of days within which a user's cookie must match the segment rule before
-                    it's associated with the audience segment. This is used in combination with
-                    {@link FirstPartyAudienceSegment#pageViews} to determine eligibility of the association. This
+                    it's associated with the audience segment. This is used in combination with {@link
+                    FirstPartyAudienceSegment#pageViews} to determine eligibility of the association. This
                     attribute is required only if {@link FirstPartyAudienceSegment#pageViews} is greater than 1.
                     When required, it can be between 1 and 90.
                   </documentation>

@@ -90,8 +90,8 @@ class ActivityService extends \Google\AdsApi\Common\AdsSoapClient
     }
 
     /**
-     * Gets an {@link ActivityPage} of {@link Activity} objects that satisfy the given
-     * {@link Statement#query}. The following fields are supported for filtering:
+     * Gets an {@link ActivityPage} of {@link Activity} objects that satisfy the given {@link
+     * Statement#query}. The following fields are supported for filtering:
      *
      * <table>
      * <tr>

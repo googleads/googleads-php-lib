@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2022 Google Inc. All Rights Reserved -->
+<!-- Copyright 2023 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202208"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202208"
@@ -235,8 +235,7 @@
           <element maxOccurs="1" minOccurs="0" name="isNegated" type="xsd:boolean">
             <annotation>
               <documentation>
-                {@code isNegated} should be set to {@code true} to negate the effects of
-                {@code labelId}.
+                {@code isNegated} should be set to {@code true} to negate the effects of {@code labelId}.
               </documentation>
             </annotation>
           </element>
@@ -342,17 +341,16 @@
           <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
             <annotation>
               <documentation>
-                Uniquely identifies the {@code Company}. This value is read-only and is
-                assigned by Google when the company is created. This attribute is required
-                for updates.
+                Uniquely identifies the {@code Company}. This value is read-only and is assigned by Google when
+                the company is created. This attribute is required for updates.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
             <annotation>
               <documentation>
-                The full name of the company. This attribute is required and has a maximum
-                length of 127 characters.
+                The full name of the company. This attribute is required and has a maximum length of 127
+                characters.
               </documentation>
             </annotation>
           </element>
@@ -366,58 +364,57 @@
           <element maxOccurs="1" minOccurs="0" name="address" type="xsd:string">
             <annotation>
               <documentation>
-                Specifies the address of the company. This attribute is optional and has a
-                maximum length of 65,535 characters.
+                Specifies the address of the company. This attribute is optional and has a maximum length of
+                65,535 characters.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="email" type="xsd:string">
             <annotation>
               <documentation>
-                Specifies the email of the company. This attribute is optional and has a
-                maximum length of 128 characters.
+                Specifies the email of the company. This attribute is optional and has a maximum length of 128
+                characters.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="faxPhone" type="xsd:string">
             <annotation>
               <documentation>
-                Specifies the fax phone number of the company. This attribute is optional
-                and has a maximum length of 63 characters.
+                Specifies the fax phone number of the company. This attribute is optional and has a maximum
+                length of 63 characters.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="primaryPhone" type="xsd:string">
             <annotation>
               <documentation>
-                Specifies the primary phone number of the company. This attribute is
-                optional and has a maximum length of 63 characters.
+                Specifies the primary phone number of the company. This attribute is optional and has a maximum
+                length of 63 characters.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="externalId" type="xsd:string">
             <annotation>
               <documentation>
-                Specifies the external ID of the company. This attribute is optional and
-                has a maximum length of 255 characters.
+                Specifies the external ID of the company. This attribute is optional and has a maximum length
+                of 255 characters.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="comment" type="xsd:string">
             <annotation>
               <documentation>
-                Specifies the comment of the company. This attribute is optional and has a
-                maximum length of 1024 characters.
+                Specifies the comment of the company. This attribute is optional and has a maximum length of
+                1024 characters.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="creditStatus" type="tns:Company.CreditStatus">
             <annotation>
               <documentation>
-                Specifies the company's credit status. This attribute is optional and
-                defaults to {@link CreditStatus#ACTIVE} when basic credit status settings
-                are enabled, and {@link CreditStatus#ON_HOLD} when advanced credit status
-                settings are enabled.
+                Specifies the company's credit status. This attribute is optional and defaults to {@link
+                CreditStatus#ACTIVE} when basic credit status settings are enabled, and {@link
+                CreditStatus#ON_HOLD} when advanced credit status settings are enabled.
               </documentation>
             </annotation>
           </element>
@@ -439,8 +436,8 @@
           <element maxOccurs="1" minOccurs="0" name="primaryContactId" type="xsd:long">
             <annotation>
               <documentation>
-                The ID of the {@link Contact} who is acting as the primary contact for this
-                company. This attribute is optional.
+                The ID of the {@link Contact} who is acting as the primary contact for this company. This
+                attribute is optional.
               </documentation>
             </annotation>
           </element>
@@ -456,8 +453,8 @@
             name="thirdPartyCompanyId" type="xsd:int">
             <annotation>
               <documentation>
-                Specifies the ID of the Google-recognized canonicalized form of this
-                company. This attribute is optional.
+                Specifies the ID of the Google-recognized canonicalized form of this company. This attribute is
+                optional.
               </documentation>
             </annotation>
           </element>
@@ -1925,70 +1922,63 @@
       <simpleType name="Company.CreditStatus">
         <annotation>
           <documentation>
-            Specifies the credit-worthiness of the company for which the publisher runs
-            an order. By doing so, the publisher can control the running of campaigns
-            for the company. A publisher can choose between Basic and Advanced Credit
-            Status settings. This feature needs to be enabled in the Ad Manager
-            web site. Also the kind of setting you need - Basic or Advanced
-            must be configured. If Basic is enabled then, the values allowed are
-            {@code ACTIVE} and {@code INACTIVE}. If Advanced is chosen, then all values
-            are allowed. Choosing an Advanced setting when only the Basic feature has
-            been enabled, or using the Basic setting without turning the feature on
-            will result in an error.
+            Specifies the credit-worthiness of the company for which the publisher runs an order. By doing
+            so, the publisher can control the running of campaigns for the company. A publisher can choose
+            between Basic and Advanced Credit Status settings. This feature needs to be enabled in the Ad
+            Manager web site. Also the kind of setting you need - Basic or Advanced must be configured. If
+            Basic is enabled then, the values allowed are {@code ACTIVE} and {@code INACTIVE}. If Advanced
+            is chosen, then all values are allowed. Choosing an Advanced setting when only the Basic
+            feature has been enabled, or using the Basic setting without turning the feature on will result
+            in an error.
           </documentation>
         </annotation>
         <restriction base="xsd:string">
           <enumeration value="ACTIVE">
             <annotation>
               <documentation>
-                When the credit status is active, all line items in all orders
-                belonging to the company will be served. This is a Basic as well as an
-                Advanced Credit Status setting.
+                When the credit status is active, all line items in all orders belonging to the company will
+                be served. This is a Basic as well as an Advanced Credit Status setting.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="ON_HOLD">
             <annotation>
               <documentation>
-                When the credit status is on hold, the publisher cannot activate new line
-                items of the company. However, line items that were activated before the
-                credit status change will remain active. You can still create orders and
-                line items for the company. This is an Advanced Credit Status setting.
+                When the credit status is on hold, the publisher cannot activate new line items of the
+                company. However, line items that were activated before the credit status change will remain
+                active. You can still create orders and line items for the company. This is an Advanced
+                Credit Status setting.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="CREDIT_STOP">
             <annotation>
               <documentation>
-                When the credit status is credit stop, the publisher cannot activate new
-                line items of the company. However, line items that were activated before
-                the credit status change will remain active. You cannot create any new
-                orders or line items for the company. This is an Advanced Credit Status
-                setting.
+                When the credit status is credit stop, the publisher cannot activate new line items of the
+                company. However, line items that were activated before the credit status change will remain
+                active. You cannot create any new orders or line items for the company. This is an Advanced
+                Credit Status setting.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="INACTIVE">
             <annotation>
               <documentation>
-                When the credit status is inactive, the publisher cannot activate new
-                line items of the company. However, line items that were activated before
-                the credit status change will remain active. You cannot create any new
-                orders or line items for the company. It is used to mark companies with
-                which business is to be discontinued. Such companies are not listed in
-                Ad Manager web site. This is a Basic as well as an
-                Advanced Credit Status setting.
+                When the credit status is inactive, the publisher cannot activate new line items of the
+                company. However, line items that were activated before the credit status change will remain
+                active. You cannot create any new orders or line items for the company. It is used to mark
+                companies with which business is to be discontinued. Such companies are not listed in Ad
+                Manager web site. This is a Basic as well as an Advanced Credit Status setting.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="BLOCKED">
             <annotation>
               <documentation>
-                When the credit status of a company is marked blocked, then all active
-                line items belonging to the company will stop serving with immediate
-                effect. You cannot active new line items of the company nor can you
-                create any new orders or line items belonging to the company. This is an
-                Advanced Credit Status setting.
+                When the credit status of a company is marked blocked, then all active line items belonging
+                to the company will stop serving with immediate effect. You cannot active new line items of
+                the company nor can you create any new orders or line items belonging to the company. This is
+                an Advanced Credit Status setting.
               </documentation>
             </annotation>
           </enumeration>
@@ -1997,16 +1987,15 @@
       <simpleType name="Company.Type">
         <annotation>
           <documentation>
-            The type of the company. Once a company is created, it is not possible to
-            change its type.
+            The type of the company. Once a company is created, it is not possible to change its type.
           </documentation>
         </annotation>
         <restriction base="xsd:string">
           <enumeration value="HOUSE_ADVERTISER">
             <annotation>
               <documentation>
-                The publisher's own advertiser. When no outside advertiser buys its
-                inventory, the publisher may run its own advertising campaigns.
+                The publisher's own advertiser. When no outside advertiser buys its inventory, the publisher
+                may run its own advertising campaigns.
               </documentation>
             </annotation>
           </enumeration>
@@ -2020,17 +2009,16 @@
           <enumeration value="ADVERTISER">
             <annotation>
               <documentation>
-                A business entity that buys publisher inventory to run advertising
-                campaigns. An advertiser is optionally associated with one or more
-                agencies.
+                A business entity that buys publisher inventory to run advertising campaigns. An advertiser
+                is optionally associated with one or more agencies.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="AGENCY">
             <annotation>
               <documentation>
-                A business entity that offers services, such as advertising creation,
-                placement, and management, to advertisers.
+                A business entity that offers services, such as advertising creation, placement, and
+                management, to advertisers.
               </documentation>
             </annotation>
           </enumeration>
@@ -2065,8 +2053,7 @@
           <enumeration value="UNKNOWN">
             <annotation>
               <documentation>
-                The value returned if the actual value is not exposed by the requested API
-                version.
+                The value returned if the actual value is not exposed by the requested API version.
               </documentation>
             </annotation>
           </enumeration>
@@ -3193,9 +3180,8 @@
       <element name="getCompaniesByStatement">
         <annotation>
           <documentation>
-            Gets a {@link CompanyPage} of {@link Company} objects that satisfy the
-            given {@link Statement#query}. The following fields are supported for
-            filtering:
+            Gets a {@link CompanyPage} of {@link Company} objects that satisfy the given {@link
+            Statement#query}. The following fields are supported for filtering:
             
             &lt;table&gt;
             &lt;tr&gt;
@@ -3324,9 +3310,8 @@
     </wsdl:operation>
     <wsdl:operation name="getCompaniesByStatement">
       <wsdl:documentation>
-        Gets a {@link CompanyPage} of {@link Company} objects that satisfy the
-        given {@link Statement#query}. The following fields are supported for
-        filtering:
+        Gets a {@link CompanyPage} of {@link Company} objects that satisfy the given {@link
+        Statement#query}. The following fields are supported for filtering:
         
         &lt;table&gt;
         &lt;tr&gt;

@@ -64,6 +64,9 @@ class AdsLoggerFactoryTest extends TestCase
     public function testCreateLoggerWithLevel()
     {
         $logger = $this->adsLoggerFactory->createLogger('', null, 'NOTICE');
-        $this->assertSame(Logger::NOTICE, $logger->getHandlers()[0]->getLevel());
+        $this->assertSame(
+            Logger::API < 3 ? Logger::NOTICE : \Monolog\Level::Notice,
+            $logger->getHandlers()[0]->getLevel()
+        );
     }
 }

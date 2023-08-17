@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2022 Google Inc. All Rights Reserved -->
+<!-- Copyright 2023 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202208"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202208"
@@ -227,19 +227,19 @@
       <complexType name="Content">
         <annotation>
           <documentation>
-            A {@code Content} represents video metadata from a publisher's
-            Content Management System (CMS) that has been synced to Ad Manager.
-            &lt;p&gt;
-            Video line items can be targeted to {@code Content}
-            to indicate what ads should match when the {@code Content} is being played.
+            A {@code Content} represents video metadata from a publisher's Content Management System (CMS)
+            that has been synced to Ad Manager.
+            
+            &lt;p&gt;Video line items can be targeted to {@code Content} to indicate what ads should match when the
+            {@code Content} is being played.
           </documentation>
         </annotation>
         <sequence>
           <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
             <annotation>
               <documentation>
-                Uniquely identifies the {@code Content}. This attribute is read-only and
-                is assigned by Google when the content is created.
+                Uniquely identifies the {@code Content}. This attribute is read-only and is assigned by Google
+                when the content is created.
               </documentation>
             </annotation>
           </element>
@@ -260,8 +260,8 @@
           <element maxOccurs="1" minOccurs="0" name="statusDefinedBy" type="tns:ContentStatusDefinedBy">
             <annotation>
               <documentation>
-                Whether the content status was defined by the user, or by the source CMS
-                from which the content was ingested. This attribute is read-only.
+                Whether the content status was defined by the user, or by the source CMS from which the content
+                was ingested. This attribute is read-only.
               </documentation>
             </annotation>
           </element>
@@ -346,8 +346,7 @@
           <element maxOccurs="unbounded" minOccurs="0" name="cmsSources" type="tns:CmsContent">
             <annotation>
               <documentation>
-                Information about the content from the CMS it was ingested from.
-                This attribute is read-only.
+                Information about the content from the CMS it was ingested from. This attribute is read-only.
               </documentation>
             </annotation>
           </element>
@@ -2118,14 +2117,14 @@
           <enumeration value="WARNING">
             <annotation>
               <documentation>
-                There was a non-fatal issue during the DAI ingestion proccess.
+                There was a non-fatal issue during the DAI ingestion process.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="FAILURE">
             <annotation>
               <documentation>
-                There was a non-fatal issue during the DAI ingestion proccess and the content is not available
+                There was a non-fatal issue during the DAI ingestion process and the content is not available
                 for dynamic ad insertion.
               </documentation>
             </annotation>
@@ -2232,8 +2231,8 @@
       &lt;li&gt;Using the {@link CustomTargetingService#getCustomTargetingValuesByStatement} method and a
       filter like "WHERE customTargetingKeyId = :genreKeyId and name = 'comedy'", retrieve the ID
       for the "comedy" custom targeting value.
-      &lt;li&gt;Call {@link #getContentByStatementAndCustomTargetingValue} with a filter like "WHERE status =
-      'ACTIVE'" and the ID of the custom targeting value from step 2.
+      &lt;li&gt;Call {@link #getContentByStatementAndCustomTargetingValue} with a filter like "WHERE status
+      = 'ACTIVE'" and the ID of the custom targeting value from step 2.
       &lt;/ul&gt;
     </wsdl:documentation>
     <wsdl:operation name="getContentByStatement">

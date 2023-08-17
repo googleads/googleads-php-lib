@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2022 Google Inc. All Rights Reserved -->
+<!-- Copyright 2023 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202211"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202211"
@@ -768,8 +768,8 @@
       <complexType name="ThirdPartyDataDeclaration">
         <annotation>
           <documentation>
-            Represents a set of declarations about what (if any) third party companies are
-            associated with a given creative.
+            Represents a set of declarations about what (if any) third party companies are associated with a
+            given creative.
             
             &lt;p&gt;This can be set at the network level, as a default for all creatives, or overridden for a
             particular creative.
@@ -2019,12 +2019,10 @@
       <element name="getAllNetworks">
         <annotation>
           <documentation>
-            Returns the list of {@link Network} objects to which the current login has
-            access.
-            &lt;p&gt;
-            Intended to be used without a network code in the SOAP header when the
-            login may have more than one network associated with it.
-            &lt;/p&gt;
+            Returns the list of {@link Network} objects to which the current login has access.
+            
+            &lt;p&gt;Intended to be used without a network code in the SOAP header when the login may have more
+            than one network associated with it.
           </documentation>
         </annotation>
         <complexType>
@@ -2084,26 +2082,23 @@
         <annotation>
           <documentation>
             Creates a new blank network for testing purposes using the current login.
-            &lt;p&gt;
-            Each login(i.e. email address) can only have one test network. Data from
-            any of your existing networks will not be transferred to the new test network.
-            Once the test network is created, the test network can be used in the API
-            by supplying the {@link Network#networkCode} in the SOAP header or by
-            logging into the Ad Manager UI.
-            &lt;p&gt;
-            Test networks are limited in the following ways:
+            
+            &lt;p&gt;Each login(i.e. email address) can only have one test network. Data from any of your
+            existing networks will not be transferred to the new test network. Once the test network is
+            created, the test network can be used in the API by supplying the {@link Network#networkCode}
+            in the SOAP header or by logging into the Ad Manager UI.
+            
+            &lt;p&gt;Test networks are limited in the following ways:
+            
             &lt;ul&gt;
-            &lt;li&gt;Test networks cannot serve ads.&lt;/li&gt;
-            &lt;li&gt;Because test networks cannot serve ads, reports will always come
-            back without data.&lt;/li&gt;
-            &lt;li&gt;Since forecasting requires serving history, forecast service results
-            will be faked. See {@link ForecastService} for more info.&lt;/li&gt;
-            &lt;li&gt;Test networks are, by default, Ad Manager networks and don't have any features
-            from Ad Manager 360. To have additional features turned on, please contact your
-            account manager. &lt;/li&gt;
-            &lt;li&gt;Test networks are limited to 10,000 objects per entity type.&lt;/li&gt;
+            &lt;li&gt;Test networks cannot serve ads.
+            &lt;li&gt;Because test networks cannot serve ads, reports will always come back without data.
+            &lt;li&gt;Since forecasting requires serving history, forecast service results will be faked. See
+            {@link ForecastService} for more info.
+            &lt;li&gt;Test networks are, by default, Ad Manager networks and don't have any features from Ad
+            Manager 360. To have additional features turned on, please contact your account manager.
+            &lt;li&gt;Test networks are limited to 10,000 objects per entity type.
             &lt;/ul&gt;
-            &lt;/p&gt;
           </documentation>
         </annotation>
         <complexType>
@@ -2120,8 +2115,7 @@
       <element name="updateNetwork">
         <annotation>
           <documentation>
-            Updates the specified network. Currently, only the network display name can
-            be updated.
+            Updates the specified network. Currently, only the network display name can be updated.
           </documentation>
         </annotation>
         <complexType>
@@ -2188,12 +2182,10 @@
     </wsdl:documentation>
     <wsdl:operation name="getAllNetworks">
       <wsdl:documentation>
-        Returns the list of {@link Network} objects to which the current login has
-        access.
-        &lt;p&gt;
-        Intended to be used without a network code in the SOAP header when the
-        login may have more than one network associated with it.
-        &lt;/p&gt;
+        Returns the list of {@link Network} objects to which the current login has access.
+        
+        &lt;p&gt;Intended to be used without a network code in the SOAP header when the login may have more
+        than one network associated with it.
       </wsdl:documentation>
       <wsdl:input message="tns:getAllNetworksRequest" name="getAllNetworksRequest"/>
       <wsdl:output message="tns:getAllNetworksResponse" name="getAllNetworksResponse"/>
@@ -2221,26 +2213,23 @@
     <wsdl:operation name="makeTestNetwork">
       <wsdl:documentation>
         Creates a new blank network for testing purposes using the current login.
-        &lt;p&gt;
-        Each login(i.e. email address) can only have one test network. Data from
-        any of your existing networks will not be transferred to the new test network.
-        Once the test network is created, the test network can be used in the API
-        by supplying the {@link Network#networkCode} in the SOAP header or by
-        logging into the Ad Manager UI.
-        &lt;p&gt;
-        Test networks are limited in the following ways:
+        
+        &lt;p&gt;Each login(i.e. email address) can only have one test network. Data from any of your
+        existing networks will not be transferred to the new test network. Once the test network is
+        created, the test network can be used in the API by supplying the {@link Network#networkCode}
+        in the SOAP header or by logging into the Ad Manager UI.
+        
+        &lt;p&gt;Test networks are limited in the following ways:
+        
         &lt;ul&gt;
-        &lt;li&gt;Test networks cannot serve ads.&lt;/li&gt;
-        &lt;li&gt;Because test networks cannot serve ads, reports will always come
-        back without data.&lt;/li&gt;
-        &lt;li&gt;Since forecasting requires serving history, forecast service results
-        will be faked. See {@link ForecastService} for more info.&lt;/li&gt;
-        &lt;li&gt;Test networks are, by default, Ad Manager networks and don't have any features
-        from Ad Manager 360. To have additional features turned on, please contact your
-        account manager. &lt;/li&gt;
-        &lt;li&gt;Test networks are limited to 10,000 objects per entity type.&lt;/li&gt;
+        &lt;li&gt;Test networks cannot serve ads.
+        &lt;li&gt;Because test networks cannot serve ads, reports will always come back without data.
+        &lt;li&gt;Since forecasting requires serving history, forecast service results will be faked. See
+        {@link ForecastService} for more info.
+        &lt;li&gt;Test networks are, by default, Ad Manager networks and don't have any features from Ad
+        Manager 360. To have additional features turned on, please contact your account manager.
+        &lt;li&gt;Test networks are limited to 10,000 objects per entity type.
         &lt;/ul&gt;
-        &lt;/p&gt;
       </wsdl:documentation>
       <wsdl:input message="tns:makeTestNetworkRequest" name="makeTestNetworkRequest"/>
       <wsdl:output message="tns:makeTestNetworkResponse" name="makeTestNetworkResponse"/>
@@ -2248,8 +2237,7 @@
     </wsdl:operation>
     <wsdl:operation name="updateNetwork">
       <wsdl:documentation>
-        Updates the specified network. Currently, only the network display name can
-        be updated.
+        Updates the specified network. Currently, only the network display name can be updated.
       </wsdl:documentation>
       <wsdl:input message="tns:updateNetworkRequest" name="updateNetworkRequest"/>
       <wsdl:output message="tns:updateNetworkResponse" name="updateNetworkResponse"/>

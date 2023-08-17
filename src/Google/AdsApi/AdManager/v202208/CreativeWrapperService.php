@@ -90,11 +90,12 @@ class CreativeWrapperService extends \Google\AdsApi\Common\AdsSoapClient
     /**
      * Creates a new {@code CreativeWrapper} objects.
      *
-     * The following fields are required:
+     * <p>The following fields are required:
+     *
      * <ul>
-     * <li>{@link CreativeWrapper#labelId}</li>
-     * <li>{@link CreativeWrapper#ordering}</li>
-     * <li>{@link CreativeWrapper#header} or {@link CreativeWrapper#footer}</li>
+     * <li>{@link CreativeWrapper#labelId}
+     * <li>{@link CreativeWrapper#ordering}
+     * <li>{@link CreativeWrapper#header} or {@link CreativeWrapper#footer}
      * </ul>
      *
      * @param \Google\AdsApi\AdManager\v202208\CreativeWrapper[] $creativeWrappers
@@ -107,9 +108,8 @@ class CreativeWrapperService extends \Google\AdsApi\Common\AdsSoapClient
     }
 
     /**
-     * Gets a {@link CreativeWrapperPage} of {@link CreativeWrapper}
-     * objects that satisfy the given {@link Statement#query}. The following
-     * fields are supported for filtering:
+     * Gets a {@link CreativeWrapperPage} of {@link CreativeWrapper} objects that satisfy the given
+     * {@link Statement#query}. The following fields are supported for filtering:
      *
      * <table>
      * <tr>
@@ -143,8 +143,8 @@ class CreativeWrapperService extends \Google\AdsApi\Common\AdsSoapClient
     }
 
     /**
-     * Performs actions on {@link CreativeWrapper} objects that match the
-     * given {@link Statement#query}.
+     * Performs actions on {@link CreativeWrapper} objects that match the given {@link
+     * Statement#query}.
      *
      * @param \Google\AdsApi\AdManager\v202208\CreativeWrapperAction $creativeWrapperAction
      * @param \Google\AdsApi\AdManager\v202208\Statement $filterStatement

@@ -23,7 +23,7 @@ use Psr\Log\LoggerInterface;
 
 /**
  * Creates a Guzzle HTTP client for making non-SOAP HTTP calls, e.g., report
- * download for AdWords and Dfp by pushing the logging middleware to the handler
+ * download for Dfp by pushing the logging middleware to the handler
  * stacks of all generated clients.
  *
  * @see Client

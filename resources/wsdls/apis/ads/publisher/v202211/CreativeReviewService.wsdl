@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2022 Google Inc. All Rights Reserved -->
+<!-- Copyright 2023 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202211"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202211"
@@ -525,6 +525,9 @@
             have displayed) on your pages or apps in the last 30 days. To ensure that you are always
             reviewing the most important creatives first, the {@link CreativeReview} objects are ranked
             according to the number of impressions that they've received.
+            
+            &lt;p&gt;This feature is not yet openly available. Publishers will need to apply for access for this
+            feature through their account managers.
           </documentation>
         </annotation>
         <complexType>
@@ -605,6 +608,9 @@
         have displayed) on your pages or apps in the last 30 days. To ensure that you are always
         reviewing the most important creatives first, the {@link CreativeReview} objects are ranked
         according to the number of impressions that they've received.
+        
+        &lt;p&gt;This feature is not yet openly available. Publishers will need to apply for access for this
+        feature through their account managers.
       </wsdl:documentation>
       <wsdl:input message="tns:getCreativeReviewsByStatementRequest" name="getCreativeReviewsByStatementRequest"/>
       <wsdl:output message="tns:getCreativeReviewsByStatementResponse" name="getCreativeReviewsByStatementResponse"/>
