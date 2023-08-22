@@ -704,6 +704,10 @@
                 Shared security key used to generate the Akamai HMAC token for authenticating requests. This
                 field is only applicable when the value of {@link #securityPolicyType} is equal to {@link
                 SecurityPolicyType#AKAMAI} and will be set to null otherwise.
+                
+                &lt;p&gt;This field is required when the {@link CdnConfiguration#cdnConfigurationType} is equal to
+                {@link CdnConfigurationType#LIVE_STREAM_SOURCE_CONTENT} and this {@link SecurityPolicyDto} is
+                being configured for {@link SourceContentConfiguration#ingestSettings}.
               </documentation>
             </annotation>
           </element>

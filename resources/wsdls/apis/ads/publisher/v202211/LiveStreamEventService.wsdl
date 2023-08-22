@@ -1611,7 +1611,7 @@
       <simpleType name="AdBreakFillType">
         <annotation>
           <documentation>
-            Describes what should be used to fill an empty ad break during a live stream.
+            Describes what should be used to fill an empty or underfilled ad break during a live stream.
           </documentation>
         </annotation>
         <restriction base="xsd:string">

@@ -1955,8 +1955,8 @@
             name="mobileApplicationIds" type="xsd:long">
             <annotation>
               <documentation>
-                The {@link MobileApplication#id IDs} that are being targeted or excluded by the {@link
-                LineItem}.
+                The {@link MobileApplication#applicationId IDs} that are being targeted or excluded by the
+                {@link LineItem}.
               </documentation>
             </annotation>
           </element>
@@ -8482,8 +8482,7 @@
           <enumeration value="INVALID_NUM_UNITS">
             <annotation>
               <documentation>
-                The {@link Goal#units} value is invalid. For {@link RateType#CPD}
-                {@link ProposalLineItem proposal line items}, only 100% is allowed
+                The {@link Goal#units} value is invalid.
               </documentation>
             </annotation>
           </enumeration>

@@ -2219,21 +2219,6 @@
       Service for retrieving {@link Content}.
       
       &lt;p&gt;{@code Content} entities can be targeted in video {@link LineItem}s.
-      
-      &lt;p&gt;You can query for content that belongs to a particular category or has assigned metadata.
-      Categories and metadata for {@code Content} are stored in DFP as {@link CustomCriteria}.
-      
-      &lt;p&gt;For example, to find all {@code Content} that is "genre=comedy", you would:
-      
-      &lt;ul&gt;
-      &lt;li&gt;Retrieve the custom targeting key corresponding to "genre" using {@link
-      CustomTargetingService#getCustomTargetingKeysByStatement}
-      &lt;li&gt;Using the {@link CustomTargetingService#getCustomTargetingValuesByStatement} method and a
-      filter like "WHERE customTargetingKeyId = :genreKeyId and name = 'comedy'", retrieve the ID
-      for the "comedy" custom targeting value.
-      &lt;li&gt;Call {@link #getContentByStatementAndCustomTargetingValue} with a filter like "WHERE status
-      = 'ACTIVE'" and the ID of the custom targeting value from step 2.
-      &lt;/ul&gt;
     </wsdl:documentation>
     <wsdl:operation name="getContentByStatement">
       <wsdl:documentation>

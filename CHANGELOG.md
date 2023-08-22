@@ -1,3 +1,11 @@
+### 62.0.0
+
+* Added support for v202308.
+* Removed support for v202208.
+* Removed examples for v202211.
+* Added support for PHP 8.2.
+* Removed support for PHP 7.4.
+
 ### 61.0.0
 
 ##### Ad Manager

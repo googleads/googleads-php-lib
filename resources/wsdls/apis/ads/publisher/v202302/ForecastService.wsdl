@@ -863,8 +863,8 @@
             name="contendingImpressions" type="xsd:long">
             <annotation>
               <documentation>
-                Number of impressions contended for by both the forecasted line item and this line item,
-                but served to this line item in the forecast simulation.
+                Number of impressions contended for by both the forecasted line item and this line item, but
+                served to this line item in the forecast simulation.
               </documentation>
             </annotation>
           </element>
@@ -3517,8 +3517,8 @@
             name="mobileApplicationIds" type="xsd:long">
             <annotation>
               <documentation>
-                The {@link MobileApplication#id IDs} that are being targeted or excluded by the {@link
-                LineItem}.
+                The {@link MobileApplication#applicationId IDs} that are being targeted or excluded by the
+                {@link LineItem}.
               </documentation>
             </annotation>
           </element>

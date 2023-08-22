@@ -3517,6 +3517,8 @@
             <annotation>
               <documentation>
                 Active View AdSense revenue.
+                
+                &lt;p&gt;This field is deprecated and will be removed in v202308.
                 &lt;p&gt;Corresponds to "AdSense Active View revenue" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
@@ -3577,6 +3579,8 @@
             <annotation>
               <documentation>
                 Active View AdExchange revenue.
+                
+                &lt;p&gt;This field is deprecated and will be removed in v202308.
                 &lt;p&gt;Corresponds to "Ad Exchange Active View revenue" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
