@@ -3058,304 +3058,305 @@
           <enumeration value="VIDEO_IMPRESSIONS_REAL_TIME">
             <annotation>
               <documentation>
-                The number of impressions for video realtime reporting.
-                &lt;p&gt;Corresponds to "Total impressions" in the Ad Manager UI.&lt;/p&gt;
+                Total impressions from the Google Ad Manager server, AdSense, Ad Exchange, and yield group
+                partners.
+                &lt;p&gt;Corresponds to "Total impressions" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_MATCHED_QUERIES_REAL_TIME">
             <annotation>
               <documentation>
-                The number of matched queries for video realtime reporting.
-                &lt;p&gt;Corresponds to "Total responses served" in the Ad Manager UI.&lt;/p&gt;
+                Total number of matched queries.
+                &lt;p&gt;Corresponds to "Total responses served" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_UNMATCHED_QUERIES_REAL_TIME">
             <annotation>
               <documentation>
-                The number of unmatched queries for video realtime reporting.
-                &lt;p&gt;Corresponds to "Total unmatched ad requests" in the Ad Manager UI.&lt;/p&gt;
+                Total number of unmatched queries.
+                &lt;p&gt;Corresponds to "Total unmatched ad requests" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_TOTAL_QUERIES_REAL_TIME">
             <annotation>
               <documentation>
-                The number of total queries for video realtime reporting.
-                &lt;p&gt;Corresponds to "Total ad requests" in the Ad Manager UI.&lt;/p&gt;
+                Total number of ad requests.
+                &lt;p&gt;Corresponds to "Total ad requests" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_CREATIVE_SERVE_REAL_TIME">
             <annotation>
               <documentation>
-                The number of queries on creative level for video realtime reporting.
-                &lt;p&gt;Corresponds to "Total creative serves" in the Ad Manager UI.&lt;/p&gt;
+                Total number of creatives served.
+                &lt;p&gt;Corresponds to "Total creative serves" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_VAST3_ERROR_100_COUNT_REAL_TIME">
             <annotation>
               <documentation>
-                Number of VAST video errors of type 100 for video realtime reporting.
-                &lt;p&gt;Corresponds to "VAST error 100 count" in the Ad Manager UI.&lt;/p&gt;
+                Number of VAST video errors of type 100.
+                &lt;p&gt;Corresponds to "VAST error 100 count" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_VAST3_ERROR_101_COUNT_REAL_TIME">
             <annotation>
               <documentation>
-                Number of VAST video errors of type 101 for video realtime reporting.
-                &lt;p&gt;Corresponds to "VAST error 101 count" in the Ad Manager UI.&lt;/p&gt;
+                Number of VAST video errors of type 101.
+                &lt;p&gt;Corresponds to "VAST error 101 count" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_VAST3_ERROR_102_COUNT_REAL_TIME">
             <annotation>
               <documentation>
-                Number of VAST video errors of type 102 for video realtime reporting.
-                &lt;p&gt;Corresponds to "VAST error 102 count" in the Ad Manager UI.&lt;/p&gt;
+                Number of VAST video errors of type 102.
+                &lt;p&gt;Corresponds to "VAST error 102 count" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_VAST3_ERROR_200_COUNT_REAL_TIME">
             <annotation>
               <documentation>
-                Number of VAST video errors of type 200 for video realtime reporting.
-                &lt;p&gt;Corresponds to "VAST error 200 count" in the Ad Manager UI.&lt;/p&gt;
+                Number of VAST video errors of type 200.
+                &lt;p&gt;Corresponds to "VAST error 200 count" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_VAST3_ERROR_201_COUNT_REAL_TIME">
             <annotation>
               <documentation>
-                Number of VAST video errors of type 201 for video realtime reporting.
-                &lt;p&gt;Corresponds to "VAST error 201 count" in the Ad Manager UI.&lt;/p&gt;
+                Number of VAST video errors of type 201.
+                &lt;p&gt;Corresponds to "VAST error 201 count" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_VAST3_ERROR_202_COUNT_REAL_TIME">
             <annotation>
               <documentation>
-                Number of VAST video errors of type 202 for video realtime reporting.
-                &lt;p&gt;Corresponds to "VAST error 202 count" in the Ad Manager UI.&lt;/p&gt;
+                Number of VAST video errors of type 202.
+                &lt;p&gt;Corresponds to "VAST error 202 count" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_VAST3_ERROR_203_COUNT_REAL_TIME">
             <annotation>
               <documentation>
-                Number of VAST video errors of type 203 for video realtime reporting.
-                &lt;p&gt;Corresponds to "VAST error 203 count" in the Ad Manager UI.&lt;/p&gt;
+                Number of VAST video errors of type 203.
+                &lt;p&gt;Corresponds to "VAST error 203 count" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_VAST3_ERROR_300_COUNT_REAL_TIME">
             <annotation>
               <documentation>
-                Number of VAST video errors of type 300 for video realtime reporting.
-                &lt;p&gt;Corresponds to "VAST error 300 count" in the Ad Manager UI.&lt;/p&gt;
+                Number of VAST video errors of type 300.
+                &lt;p&gt;Corresponds to "VAST error 300 count" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_VAST3_ERROR_301_COUNT_REAL_TIME">
             <annotation>
               <documentation>
-                Number of VAST video errors of type 301 for video realtime reporting.
-                &lt;p&gt;Corresponds to "VAST error 301 count" in the Ad Manager UI.&lt;/p&gt;
+                Number of VAST video errors of type 301.
+                &lt;p&gt;Corresponds to "VAST error 301 count" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_VAST3_ERROR_302_COUNT_REAL_TIME">
             <annotation>
               <documentation>
-                Number of VAST video errors of type 302 for video realtime reporting.
-                &lt;p&gt;Corresponds to "VAST error 302 count" in the Ad Manager UI.&lt;/p&gt;
+                Number of VAST video errors of type 302.
+                &lt;p&gt;Corresponds to "VAST error 302 count" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_VAST3_ERROR_303_COUNT_REAL_TIME">
             <annotation>
               <documentation>
-                Number of VAST video errors of type 303 for video realtime reporting.
-                &lt;p&gt;Corresponds to "VAST error 303 count" in the Ad Manager UI.&lt;/p&gt;
+                Number of VAST video errors of type 303.
+                &lt;p&gt;Corresponds to "VAST error 303 count" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_VAST3_ERROR_400_COUNT_REAL_TIME">
             <annotation>
               <documentation>
-                Number of VAST video errors of type 400 for video realtime reporting.
-                &lt;p&gt;Corresponds to "VAST error 400 count" in the Ad Manager UI.&lt;/p&gt;
+                Number of VAST video errors of type 400.
+                &lt;p&gt;Corresponds to "VAST error 400 count" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_VAST3_ERROR_401_COUNT_REAL_TIME">
             <annotation>
               <documentation>
-                Number of VAST video errors of type 401 for video realtime reporting.
-                &lt;p&gt;Corresponds to "VAST error 401 count" in the Ad Manager UI.&lt;/p&gt;
+                Number of VAST video errors of type 401.
+                &lt;p&gt;Corresponds to "VAST error 401 count" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_VAST3_ERROR_402_COUNT_REAL_TIME">
             <annotation>
               <documentation>
-                Number of VAST video errors of type 402 for video realtime reporting.
-                &lt;p&gt;Corresponds to "VAST error 402 count" in the Ad Manager UI.&lt;/p&gt;
+                Number of VAST video errors of type 402.
+                &lt;p&gt;Corresponds to "VAST error 402 count" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_VAST3_ERROR_403_COUNT_REAL_TIME">
             <annotation>
               <documentation>
-                Number of VAST video errors of type 403 for video realtime reporting.
-                &lt;p&gt;Corresponds to "VAST error 403 count" in the Ad Manager UI.&lt;/p&gt;
+                Number of VAST video errors of type 403.
+                &lt;p&gt;Corresponds to "VAST error 403 count" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_VAST3_ERROR_405_COUNT_REAL_TIME">
             <annotation>
               <documentation>
-                Number of VAST video errors of type 405 for video realtime reporting.
-                &lt;p&gt;Corresponds to "VAST error 405 count" in the Ad Manager UI.&lt;/p&gt;
+                Number of VAST video errors of type 405.
+                &lt;p&gt;Corresponds to "VAST error 405 count" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_VAST3_ERROR_500_COUNT_REAL_TIME">
             <annotation>
               <documentation>
-                Number of VAST video errors of type 500 for video realtime reporting.
-                &lt;p&gt;Corresponds to "VAST error 500 count" in the Ad Manager UI.&lt;/p&gt;
+                Number of VAST video errors of type 500.
+                &lt;p&gt;Corresponds to "VAST error 500 count" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_VAST3_ERROR_501_COUNT_REAL_TIME">
             <annotation>
               <documentation>
-                Number of VAST video errors of type 501 for video realtime reporting.
-                &lt;p&gt;Corresponds to "VAST error 501 count" in the Ad Manager UI.&lt;/p&gt;
+                Number of VAST video errors of type 501.
+                &lt;p&gt;Corresponds to "VAST error 501 count" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_VAST3_ERROR_502_COUNT_REAL_TIME">
             <annotation>
               <documentation>
-                Number of VAST video errors of type 502 for video realtime reporting.
-                &lt;p&gt;Corresponds to "VAST error 502 count" in the Ad Manager UI.&lt;/p&gt;
+                Number of VAST video errors of type 502.
+                &lt;p&gt;Corresponds to "VAST error 502 count" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_VAST3_ERROR_503_COUNT_REAL_TIME">
             <annotation>
               <documentation>
-                Number of VAST video errors of type 503 for video realtime reporting.
-                &lt;p&gt;Corresponds to "VAST error 503 count" in the Ad Manager UI.&lt;/p&gt;
+                Number of VAST video errors of type 503.
+                &lt;p&gt;Corresponds to "VAST error 503 count" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_VAST3_ERROR_600_COUNT_REAL_TIME">
             <annotation>
               <documentation>
-                Number of VAST video errors of type 600 for video realtime reporting.
-                &lt;p&gt;Corresponds to "VAST error 600 count" in the Ad Manager UI.&lt;/p&gt;
+                Number of VAST video errors of type 600.
+                &lt;p&gt;Corresponds to "VAST error 600 count" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_VAST3_ERROR_601_COUNT_REAL_TIME">
             <annotation>
               <documentation>
-                Number of VAST video errors of type 601 for video realtime reporting.
-                &lt;p&gt;Corresponds to "VAST error 601 count" in the Ad Manager UI.&lt;/p&gt;
+                Number of VAST video errors of type 601.
+                &lt;p&gt;Corresponds to "VAST error 601 count" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_VAST3_ERROR_602_COUNT_REAL_TIME">
             <annotation>
               <documentation>
-                Number of VAST video errors of type 602 for video realtime reporting.
-                &lt;p&gt;Corresponds to "VAST error 602 count" in the Ad Manager UI.&lt;/p&gt;
+                Number of VAST video errors of type 602.
+                &lt;p&gt;Corresponds to "VAST error 602 count" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_VAST3_ERROR_603_COUNT_REAL_TIME">
             <annotation>
               <documentation>
-                Number of VAST video errors of type 603 for video realtime reporting.
-                &lt;p&gt;Corresponds to "VAST error 603 count" in the Ad Manager UI.&lt;/p&gt;
+                Number of VAST video errors of type 603.
+                &lt;p&gt;Corresponds to "VAST error 603 count" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_VAST3_ERROR_604_COUNT_REAL_TIME">
             <annotation>
               <documentation>
-                Number of VAST video errors of type 604 for video realtime reporting.
-                &lt;p&gt;Corresponds to "VAST error 604 count" in the Ad Manager UI.&lt;/p&gt;
+                Number of VAST video errors of type 604.
+                &lt;p&gt;Corresponds to "VAST error 604 count" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_VAST3_ERROR_900_COUNT_REAL_TIME">
             <annotation>
               <documentation>
-                Number of VAST video errors of type 900 for video realtime reporting.
-                &lt;p&gt;Corresponds to "VAST error 900 count" in the Ad Manager UI.&lt;/p&gt;
+                Number of VAST video errors of type 900.
+                &lt;p&gt;Corresponds to "VAST error 900 count" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_VAST3_ERROR_901_COUNT_REAL_TIME">
             <annotation>
               <documentation>
-                Number of VAST video errors of type 901 for video realtime reporting.
-                &lt;p&gt;Corresponds to "VAST error 901 count" in the Ad Manager UI.&lt;/p&gt;
+                Number of VAST video errors of type 901.
+                &lt;p&gt;Corresponds to "VAST error 901 count" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_VAST4_ERROR_406_COUNT_REAL_TIME">
             <annotation>
               <documentation>
-                Number of VAST video errors of type 406 for video realtime reporting.
-                &lt;p&gt;Corresponds to "VAST error 406 count" in the Ad Manager UI.&lt;/p&gt;
+                Number of VAST video errors of type 406.
+                &lt;p&gt;Corresponds to "VAST error 406 count" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_VAST4_ERROR_407_COUNT_REAL_TIME">
             <annotation>
               <documentation>
-                Number of VAST video errors of type 407 for video realtime reporting.
-                &lt;p&gt;Corresponds to "VAST error 407 count" in the Ad Manager UI.&lt;/p&gt;
+                Number of VAST video errors of type 407.
+                &lt;p&gt;Corresponds to "VAST error 407 count" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_VAST4_ERROR_408_COUNT_REAL_TIME">
             <annotation>
               <documentation>
-                Number of VAST video errors of type 408 for video realtime reporting.
-                &lt;p&gt;Corresponds to "VAST error 408 count" in the Ad Manager UI.&lt;/p&gt;
+                Number of VAST video errors of type 408.
+                &lt;p&gt;Corresponds to "VAST error 408 count" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_VAST4_ERROR_409_COUNT_REAL_TIME">
             <annotation>
               <documentation>
-                Number of VAST video errors of type 409 for video realtime reporting.
-                &lt;p&gt;Corresponds to "VAST error 409 count" in the Ad Manager UI.&lt;/p&gt;
+                Number of VAST video errors of type 409.
+                &lt;p&gt;Corresponds to "VAST error 409 count" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_VAST4_ERROR_410_COUNT_REAL_TIME">
             <annotation>
               <documentation>
-                Number of VAST video errors of type 410 for video realtime reporting.
-                &lt;p&gt;Corresponds to "VAST error 410 count" in the Ad Manager UI.&lt;/p&gt;
+                Number of VAST video errors of type 410.
+                &lt;p&gt;Corresponds to "VAST error 410 count" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_VAST_TOTAL_ERROR_COUNT_REAL_TIME">
             <annotation>
               <documentation>
-                Number of total VAST video errors for video realtime reporting.
-                &lt;p&gt;Corresponds to "Total error count" in the Ad Manager UI.&lt;/p&gt;
+                Number of total VAST video errors.
+                &lt;p&gt;Corresponds to "Total error count" in the Ad Manager UI. Compatible with the "Real-time video" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3519,7 +3520,7 @@
                 Active View AdSense revenue.
                 
                 &lt;p&gt;This field is deprecated and will be removed in v202308.
-                &lt;p&gt;Corresponds to "AdSense Active View revenue" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -3581,7 +3582,7 @@
                 Active View AdExchange revenue.
                 
                 &lt;p&gt;This field is deprecated and will be removed in v202308.
-                &lt;p&gt;Corresponds to "Ad Exchange Active View revenue" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
+                &lt;p&gt;Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4738,7 +4739,7 @@
               <documentation>
                 Breaks down reporting data by date in the network time zone. Can be used to filter by date
                 using ISO 8601's format 'YYYY-MM-DD'".
-                &lt;p&gt;Corresponds to "Date" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed, YouTube consolidated.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Date" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed, Real-time video, YouTube consolidated.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4757,7 +4758,7 @@
               <documentation>
                 Breaks down reporting data by hour of the day in the network time zone. Can
                 be used to filter by hour of the day (from 0 to 23).
-                &lt;p&gt;Corresponds to "Hour" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Hour" in the Ad Manager UI. Compatible with any of the following report types: Historical, Real-time video.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4766,7 +4767,7 @@
               <documentation>
                 Breaks down reporting data by {@link LineItem#id}. Can be used to
                 filter by {@link LineItem#id}.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed, Real-time video.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4776,7 +4777,7 @@
                 Breaks down reporting data by line item. {@link LineItem#name} and
                 {@link LineItem#id} are automatically included as columns in the report.
                 Can be used to filter by {@link LineItem#name}.
-                &lt;p&gt;Corresponds to "Line item" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Line item" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed, Real-time video.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4785,7 +4786,7 @@
               <documentation>
                 Breaks down reporting data by {@link LineItem#lineItemType}. Can be used
                 to filter by line item type using {@link LineItemType} enumeration names.
-                &lt;p&gt;Corresponds to "Line item type" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Line item type" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed, Real-time video.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4887,7 +4888,7 @@
                 Breaks down reporting data by {@link Creative#id} or creative set id
                 (master's {@link Creative#id}) if the creative is part of a creative set.
                 Can be used to filter by {@link Creative#id}.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: Historical, Ad speed, Real-time video.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4897,7 +4898,7 @@
                 Breaks down reporting data by creative. {@link Creative#name} and
                 {@link Creative#id} are automatically included as columns in the report.
                 Can be used to filter by {@link Creative#name}.
-                &lt;p&gt;Corresponds to "Creative" in the Ad Manager UI. Compatible with any of the following report types: Historical, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Creative" in the Ad Manager UI. Compatible with any of the following report types: Historical, Ad speed, Real-time video.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4956,7 +4957,7 @@
                 Breaks down reporting data by {@link AdUnit#id}. Can be used to filter by
                 {@link AdUnit#id}. {@link #AD_UNIT_NAME}, i.e. {@link AdUnit#name}, is
                 automatically included as a dimension in the report.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, Ad speed, Real-time video.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4966,7 +4967,7 @@
                 Breaks down reporting data by ad unit. {@link AdUnit#name} and
                 {@link AdUnit#id} are automatically included as columns in the report. Can
                 be used to filter by {@link AdUnit#name}.
-                &lt;p&gt;Corresponds to "Ad unit" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Ad unit" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Ad speed, Real-time video.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4975,7 +4976,7 @@
               <documentation>
                 Used to filter on all the descendants of an ad unit by {@link AdUnit#id}. Not available as a
                 dimension to report on.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed, Real-time video.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4984,7 +4985,7 @@
               <documentation>
                 Used to filter on all the descendants of an ad unit by {@link AdUnit#name}. Not available as a
                 dimension to report on.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed, Real-time video.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5041,7 +5042,7 @@
                 The ID of the device category to which an ad is being targeted.
                 
                 Can be used to filter by device category ID.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: Historical, Ad speed, Real-time video.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5052,7 +5053,7 @@
                 targeted.
                 
                 Can be used to filter by device category name.
-                &lt;p&gt;Corresponds to "Device category" in the Ad Manager UI. Compatible with any of the following report types: Historical, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Device category" in the Ad Manager UI. Compatible with any of the following report types: Historical, Ad speed, Real-time video.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5327,7 +5328,7 @@
                 {@code UNKNOWN_POSITION}, {@code PREROLL}, {@code POSTROLL}, {@code UNKNOWN_MIDROLL},
                 {@code MIDROLL_1}, {@code MIDROLL_2}, etc. {@code UNKNOWN_MIDROLL} represents a midroll, but
                 which specific midroll is unknown. Can be used for filtering.
-                &lt;p&gt;Corresponds to "Position of pod" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Position of pod" in the Ad Manager UI. Compatible with any of the following report types: Historical, Real-time video.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5750,7 +5751,7 @@
                 Status of the ad unit. Not available as a dimension to report on,
                 but exists as a dimension in order to filter on it using PQL.
                 Valid values correspond to {@link InventoryStatus}.
-                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, Ad speed, Real-time video.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6551,7 +6552,7 @@
                 insufficient information about the {@link LineItem}.&lt;/td&gt;
                 &lt;/tr&gt;
                 &lt;/table&gt;
-                &lt;p&gt;Corresponds to "Delivery Indicator" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Delivery Indicator" in the Ad Manager UI. Compatible with any of the following report types: Historical, Reach, Real-time video.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6559,7 +6560,7 @@
             <annotation>
               <documentation>
                 Represents {@link LineItem#deliveryRateType} for {@link Dimension#LINE_ITEM_NAME}.
-                &lt;p&gt;Corresponds to "Delivery pacing" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Delivery pacing" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed, Real-time video.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6786,7 +6787,7 @@
               <documentation>
                 Represents the start date (in YYYY-MM-DD format) for {@link Dimension#LINE_ITEM_NAME}. Can be
                 used for filtering.
-                &lt;p&gt;Corresponds to "Line item start date" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Line item start date" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed, Real-time video.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6795,7 +6796,7 @@
               <documentation>
                 Represents the end date (in YYYY-MM-DD format) for {@link Dimension#LINE_ITEM_NAME}. Can be
                 used for filtering.
-                &lt;p&gt;Corresponds to "Line item end date" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Line item end date" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed, Real-time video.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6813,7 +6814,7 @@
               <documentation>
                 Represents {@link LineItem#costType} for {@link Dimension#LINE_ITEM_NAME}. Can be used for
                 filtering.
-                &lt;p&gt;Corresponds to "Cost type" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Cost type" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed, Real-time video.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6821,7 +6822,7 @@
             <annotation>
               <documentation>
                 Represents {@link LineItem#costPerUnit} for {@link Dimension#LINE_ITEM_NAME}.
-                &lt;p&gt;Corresponds to "Rate" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Rate" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed, Real-time video.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6829,7 +6830,7 @@
             <annotation>
               <documentation>
                 Represents the 3 letter currency code for {@link Dimension#LINE_ITEM_NAME}.
-                &lt;p&gt;Corresponds to "Currency code" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Currency code" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed, Real-time video.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6838,7 +6839,7 @@
               <documentation>
                 The total number of impressions, clicks or days that is reserved for {@link
                 Dimension#LINE_ITEM_NAME}.
-                &lt;p&gt;Corresponds to "Goal quantity" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Goal quantity" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed, Real-time video.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6864,7 +6865,7 @@
               <documentation>
                 The total number of impressions delivered over the lifetime of a {@link
                 Dimension#LINE_ITEM_NAME}.
-                &lt;p&gt;Corresponds to "Line item lifetime impressions" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Line item lifetime impressions" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed, Real-time video.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6872,7 +6873,7 @@
             <annotation>
               <documentation>
                 The total number of clicks delivered over the lifetime of a {@link Dimension#LINE_ITEM_NAME}.
-                &lt;p&gt;Corresponds to "Line item lifetime clicks" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Line item lifetime clicks" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed, Real-time video.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6881,7 +6882,7 @@
               <documentation>
                 Represents {@link LineItem#priority} for {@link Dimension#LINE_ITEM_NAME} as a value between 1
                 and 16. Can be used for filtering.
-                &lt;p&gt;Corresponds to "Line item priority" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Line item priority" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed, Real-time video.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -7023,7 +7024,7 @@
             <annotation>
               <documentation>
                 Represents {@link AdUnit#adUnitCode} for {@link Dimension#AD_UNIT_NAME}.
-                &lt;p&gt;Corresponds to "Ad unit code" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Ad speed.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Ad unit code" in the Ad Manager UI. Compatible with any of the following report types: Historical, Future sell-through, Ad speed, Real-time video.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>

@@ -458,6 +458,12 @@
         </sequence>
       </complexType>
       <complexType name="ChangeHistoryValue">
+        <annotation>
+          <documentation>
+            This class is unused. It exists only to provide reference documentation of the possible values
+            for {@link ChangeHistoryEntityType type} and {@link ChangeHistoryOperation}.
+          </documentation>
+        </annotation>
         <complexContent>
           <extension base="tns:ObjectValue">
             <sequence>

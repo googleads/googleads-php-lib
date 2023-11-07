@@ -4145,8 +4145,8 @@
           <element maxOccurs="1" minOccurs="0" name="targeting" type="tns:Targeting">
             <annotation>
               <documentation>
-                Contains the targeting criteria for the {@code ProposalLineItem}. This attribute is optional
-                during creation and defaults to the {@link Product#targeting product's targeting}.
+                Contains the targeting criteria for the {@code ProposalLineItem}.
+                &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>
