@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2023 Google Inc. All Rights Reserved -->
+<!-- Copyright 2024 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202305"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202305"
@@ -5507,12 +5507,17 @@
           <enumeration value="CPA">
             <annotation>
               <documentation>
-                Cost per action. The {@link LineItem#lineItemType} must be one of:
+                Starting February 22, 2024 the CPA {@link CostType} will be read only as part of Spotlight
+                deprecation, &lt;a href="https://support.google.com/admanager/answer/7519021#spotlight"&gt;learn
+                more&lt;/a&gt;.
+                
+                &lt;p&gt;Cost per action. The {@link LineItem#lineItemType} must be one of:
+                
                 &lt;ul&gt;
-                &lt;li&gt;{@link LineItemType#SPONSORSHIP}&lt;/li&gt;
-                &lt;li&gt;{@link LineItemType#STANDARD}&lt;/li&gt;
-                &lt;li&gt;{@link LineItemType#BULK}&lt;/li&gt;
-                &lt;li&gt;{@link LineItemType#NETWORK}&lt;/li&gt;
+                &lt;li&gt;{@link LineItemType#SPONSORSHIP}
+                &lt;li&gt;{@link LineItemType#STANDARD}
+                &lt;li&gt;{@link LineItemType#BULK}
+                &lt;li&gt;{@link LineItemType#NETWORK}
                 &lt;/ul&gt;
               </documentation>
             </annotation>

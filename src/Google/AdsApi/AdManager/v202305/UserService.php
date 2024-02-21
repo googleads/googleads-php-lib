@@ -29,6 +29,7 @@ class UserService extends \Google\AdsApi\Common\AdsSoapClient
       'DateTimeValue' => 'Google\\AdsApi\\AdManager\\v202305\\DateTimeValue',
       'DateValue' => 'Google\\AdsApi\\AdManager\\v202305\\DateValue',
       'DeactivateUsers' => 'Google\\AdsApi\\AdManager\\v202305\\DeactivateUsers',
+      'EntityLimitReachedError' => 'Google\\AdsApi\\AdManager\\v202305\\EntityLimitReachedError',
       'FeatureError' => 'Google\\AdsApi\\AdManager\\v202305\\FeatureError',
       'FieldPathElement' => 'Google\\AdsApi\\AdManager\\v202305\\FieldPathElement',
       'InternalApiError' => 'Google\\AdsApi\\AdManager\\v202305\\InternalApiError',

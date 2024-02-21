@@ -18,20 +18,16 @@ class CreativeReviewService extends \Google\AdsApi\Common\AdsSoapClient
       'ApiException' => 'Google\\AdsApi\\AdManager\\v202305\\ApiException',
       'ApiVersionError' => 'Google\\AdsApi\\AdManager\\v202305\\ApiVersionError',
       'ApplicationException' => 'Google\\AdsApi\\AdManager\\v202305\\ApplicationException',
-      'ApproveCreativeReviews' => 'Google\\AdsApi\\AdManager\\v202305\\ApproveCreativeReviews',
-      'ArchiveCreativeReviews' => 'Google\\AdsApi\\AdManager\\v202305\\ArchiveCreativeReviews',
       'AuthenticationError' => 'Google\\AdsApi\\AdManager\\v202305\\AuthenticationError',
       'BooleanValue' => 'Google\\AdsApi\\AdManager\\v202305\\BooleanValue',
       'CollectionSizeError' => 'Google\\AdsApi\\AdManager\\v202305\\CollectionSizeError',
       'CommonError' => 'Google\\AdsApi\\AdManager\\v202305\\CommonError',
-      'CreativeReviewAction' => 'Google\\AdsApi\\AdManager\\v202305\\CreativeReviewAction',
       'CreativeReview' => 'Google\\AdsApi\\AdManager\\v202305\\CreativeReview',
       'CreativeReviewPage' => 'Google\\AdsApi\\AdManager\\v202305\\CreativeReviewPage',
       'Date' => 'Google\\AdsApi\\AdManager\\v202305\\Date',
       'DateTime' => 'Google\\AdsApi\\AdManager\\v202305\\DateTime',
       'DateTimeValue' => 'Google\\AdsApi\\AdManager\\v202305\\DateTimeValue',
       'DateValue' => 'Google\\AdsApi\\AdManager\\v202305\\DateValue',
-      'DisapproveCreativeReviews' => 'Google\\AdsApi\\AdManager\\v202305\\DisapproveCreativeReviews',
       'FeatureError' => 'Google\\AdsApi\\AdManager\\v202305\\FeatureError',
       'FieldPathElement' => 'Google\\AdsApi\\AdManager\\v202305\\FieldPathElement',
       'InternalApiError' => 'Google\\AdsApi\\AdManager\\v202305\\InternalApiError',
@@ -54,10 +50,8 @@ class CreativeReviewService extends \Google\AdsApi\Common\AdsSoapClient
       'StringLengthError' => 'Google\\AdsApi\\AdManager\\v202305\\StringLengthError',
       'String_ValueMapEntry' => 'Google\\AdsApi\\AdManager\\v202305\\String_ValueMapEntry',
       'TextValue' => 'Google\\AdsApi\\AdManager\\v202305\\TextValue',
-      'UpdateResult' => 'Google\\AdsApi\\AdManager\\v202305\\UpdateResult',
       'Value' => 'Google\\AdsApi\\AdManager\\v202305\\Value',
       'getCreativeReviewsByStatementResponse' => 'Google\\AdsApi\\AdManager\\v202305\\getCreativeReviewsByStatementResponse',
-      'performCreativeReviewActionResponse' => 'Google\\AdsApi\\AdManager\\v202305\\performCreativeReviewActionResponse',
     );
 
     /**
@@ -95,23 +89,6 @@ class CreativeReviewService extends \Google\AdsApi\Common\AdsSoapClient
     public function getCreativeReviewsByStatement(\Google\AdsApi\AdManager\v202305\Statement $statement)
     {
       return $this->__soapCall('getCreativeReviewsByStatement', array(array('statement' => $statement)))->getRval();
-    }
-
-    /**
-     * Performs actions on {@link CreativeReview} objects that match the given {@link
-     * Statement#query}. You can use actions to approve (allow) or disapprove (block) creatives, as
-     * seen in the corresponding {@link CreativeReview} objects. You can also archive creatives to
-     * allow you to retrieve new {@link CreativeReview} objects while previously retrieved {@link
-     * CreativeReview} objects are in pending approval.
-     *
-     * @param \Google\AdsApi\AdManager\v202305\CreativeReviewAction $creativeReviewAction
-     * @param \Google\AdsApi\AdManager\v202305\Statement $filterStatement
-     * @return \Google\AdsApi\AdManager\v202305\UpdateResult
-     * @throws \Google\AdsApi\AdManager\v202305\ApiException
-     */
-    public function performCreativeReviewAction(\Google\AdsApi\AdManager\v202305\CreativeReviewAction $creativeReviewAction, \Google\AdsApi\AdManager\v202305\Statement $filterStatement)
-    {
-      return $this->__soapCall('performCreativeReviewAction', array(array('creativeReviewAction' => $creativeReviewAction, 'filterStatement' => $filterStatement)))->getRval();
     }
 
 }

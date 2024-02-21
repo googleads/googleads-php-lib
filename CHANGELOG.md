@@ -1,3 +1,10 @@
+### 64.0.0
+
+* Added support for v202402.
+* Removed support for v202302.
+* Removed examples for v202305.
+* Removed CreativeReviewService in v202402.
+
 ### 63.0.0
 * Added support for v202311.
 * Removed support for v202211.

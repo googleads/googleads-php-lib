@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2023 Google Inc. All Rights Reserved -->
+<!-- Copyright 2024 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202305"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202305"
@@ -705,7 +705,7 @@
           <element maxOccurs="1" minOccurs="0" name="endDate" type="tns:Date">
             <annotation>
               <documentation>
-                The end date upto which the reporting information is gathered. The
+                The end date up to which the reporting information is gathered. The
                 {@code ReportQuery#dateRangeType} field must be set to
                 {@link DateRangeType#CUSTOM_DATE} in order to use this.
               </documentation>
@@ -5454,7 +5454,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by video placement.
-                &lt;p&gt;Corresponds to "Video Placement" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Video placement" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5727,9 +5727,9 @@
           <enumeration value="MOBILE_APP_RESOLVED_ID">
             <annotation>
               <documentation>
-                Breaks down reporting data by mobile app 'resolved' id - either the app store id or '(Not
-                applicable)' if the app is not registered in the app store. Note: app ids are not guaranteed to
-                be unique across different app stores. Can be used for filtering.
+                Breaks down reporting data by mobile app ID received in the ad request (which may be made up).
+                If app ID is not available, '(Not applicable)' will be returned. Special values like 'null' and
+                'unidentified' will be reported as '(Not applicable)'. Can be used for filtering.
                 &lt;p&gt;Corresponds to "App ID" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2023 Google Inc. All Rights Reserved -->
+<!-- Copyright 2024 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202308"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202308"
@@ -1687,7 +1687,10 @@
   </wsdl:message>
   <wsdl:portType name="ActivityServiceInterface">
     <wsdl:documentation>
-      Provides methods for creating, updating and retrieving {@link Activity} objects.
+      As of February 22, 2024 this service will become read only as part of Spotlight deprecation, &lt;a
+      href="https://support.google.com/admanager/answer/7519021#spotlight"&gt;learn more&lt;/a&gt;.
+      
+      &lt;p&gt;Provides methods for creating, updating and retrieving {@link Activity} objects.
       
       &lt;p&gt;An activity group contains {@link Activity} objects. Activities have a many-to-one
       relationship with activity groups, meaning each activity can belong to only one activity group,

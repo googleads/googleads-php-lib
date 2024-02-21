@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2023 Google Inc. All Rights Reserved -->
+<!-- Copyright 2024 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202305"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202305"
@@ -2723,8 +2723,8 @@
                 &lt;p&gt;For example, if {@link Proposal#currencyCode} is 'USD', then $123.4567 could be represented
                 as 123456700, but further precision is not supported.
                 
-                &lt;p&gt;At least one of the two fields {@link ProposalLineItem#netRate},and {@link
-                ProposalLineItem#netCost} is required.
+                &lt;p&gt;The field {@link ProposalLineItem#netRate} is required, and used to calculate {@link
+                ProposalLineItem#netCost} if unspecified.
               </documentation>
             </annotation>
           </element>
@@ -2738,8 +2738,8 @@
                 &lt;p&gt;For example, if {@link Proposal#currencyCode} is 'USD', then $123.45 could be represented as
                 123450000, but further precision is not supported.
                 
-                &lt;p&gt;At least one of the two fields {@link ProposalLineItem#netRate} and {@link
-                ProposalLineItem#netCost} is required.
+                &lt;p&gt;The field {@link ProposalLineItem#netRate} is required, and used to calculate {@link
+                ProposalLineItem#netCost} if unspecified.
               </documentation>
             </annotation>
           </element>
