@@ -1915,8 +1915,8 @@
             name="mobileApplicationIds" type="xsd:long">
             <annotation>
               <documentation>
-                The {@link MobileApplication#id IDs} that are being targeted or excluded by the {@link
-                LineItem}.
+                The {@link MobileApplication#applicationId IDs} that are being targeted or excluded by the
+                {@link LineItem}.
               </documentation>
             </annotation>
           </element>

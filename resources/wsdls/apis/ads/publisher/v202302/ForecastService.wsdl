@@ -863,8 +863,8 @@
             name="contendingImpressions" type="xsd:long">
             <annotation>
               <documentation>
-                Number of impressions contended for by both the forecasted line item and this line item,
-                but served to this line item in the forecast simulation.
+                Number of impressions contended for by both the forecasted line item and this line item, but
+                served to this line item in the forecast simulation.
               </documentation>
             </annotation>
           </element>
@@ -3517,8 +3517,8 @@
             name="mobileApplicationIds" type="xsd:long">
             <annotation>
               <documentation>
-                The {@link MobileApplication#id IDs} that are being targeted or excluded by the {@link
-                LineItem}.
+                The {@link MobileApplication#applicationId IDs} that are being targeted or excluded by the
+                {@link LineItem}.
               </documentation>
             </annotation>
           </element>
@@ -4199,8 +4199,8 @@
           <element maxOccurs="1" minOccurs="0" name="targeting" type="tns:Targeting">
             <annotation>
               <documentation>
-                Contains the targeting criteria for the {@code ProposalLineItem}. This attribute is optional
-                during creation and defaults to the {@link Product#targeting product's targeting}.
+                Contains the targeting criteria for the {@code ProposalLineItem}.
+                &lt;span class="constraint Required"&gt;This attribute is required.&lt;/span&gt;
               </documentation>
             </annotation>
           </element>

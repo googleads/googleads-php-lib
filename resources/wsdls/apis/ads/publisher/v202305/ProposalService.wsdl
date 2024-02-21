@@ -1858,8 +1858,8 @@
             name="mobileApplicationIds" type="xsd:long">
             <annotation>
               <documentation>
-                The {@link MobileApplication#id IDs} that are being targeted or excluded by the {@link
-                LineItem}.
+                The {@link MobileApplication#applicationId IDs} that are being targeted or excluded by the
+                {@link LineItem}.
               </documentation>
             </annotation>
           </element>
@@ -5489,7 +5489,8 @@
           <enumeration value="START_DATE_TIME_TOO_LATE_IN_MONTH">
             <annotation>
               <documentation>
-                The proposal line item's start date time is too late in the month.
+                The proposal line item's start date time is too late in the month. This error applies to
+                Programmatic Guaranteed deals sold on Nielsen audience measurement.
               </documentation>
             </annotation>
           </enumeration>
@@ -5980,8 +5981,7 @@
           <enumeration value="INVALID_NUM_UNITS">
             <annotation>
               <documentation>
-                The {@link Goal#units} value is invalid. For {@link RateType#CPD}
-                {@link ProposalLineItem proposal line items}, only 100% is allowed
+                The {@link Goal#units} value is invalid.
               </documentation>
             </annotation>
           </enumeration>

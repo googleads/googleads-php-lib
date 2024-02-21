@@ -33,6 +33,7 @@ class SiteService extends \Google\AdsApi\Common\AdsSoapClient
       'FieldPathElement' => 'Google\\AdsApi\\AdManager\\v202302\\FieldPathElement',
       'InternalApiError' => 'Google\\AdsApi\\AdManager\\v202302\\InternalApiError',
       'NotNullError' => 'Google\\AdsApi\\AdManager\\v202302\\NotNullError',
+      'NullError' => 'Google\\AdsApi\\AdManager\\v202302\\NullError',
       'NumberValue' => 'Google\\AdsApi\\AdManager\\v202302\\NumberValue',
       'ParseError' => 'Google\\AdsApi\\AdManager\\v202302\\ParseError',
       'PermissionError' => 'Google\\AdsApi\\AdManager\\v202302\\PermissionError',

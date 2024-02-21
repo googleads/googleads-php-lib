@@ -365,7 +365,7 @@
             <annotation>
               <documentation>
                 Specifies the address of the company. This attribute is optional and has a maximum length of
-                65,535 characters.
+                1024 characters.
               </documentation>
             </annotation>
           </element>

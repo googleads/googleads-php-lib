@@ -458,6 +458,12 @@
         </sequence>
       </complexType>
       <complexType name="ChangeHistoryValue">
+        <annotation>
+          <documentation>
+            This class is unused. It exists only to provide reference documentation of the possible values
+            for {@link ChangeHistoryEntityType type} and {@link ChangeHistoryOperation}.
+          </documentation>
+        </annotation>
         <complexContent>
           <extension base="tns:ObjectValue">
             <sequence>
@@ -1412,8 +1418,8 @@
             name="mobileApplicationIds" type="xsd:long">
             <annotation>
               <documentation>
-                The {@link MobileApplication#id IDs} that are being targeted or excluded by the {@link
-                LineItem}.
+                The {@link MobileApplication#applicationId IDs} that are being targeted or excluded by the
+                {@link LineItem}.
               </documentation>
             </annotation>
           </element>

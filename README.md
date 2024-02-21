@@ -5,15 +5,24 @@ This repository hosts the PHP client library for the Google Ad Manager SOAP API.
 > **The AdWords API is [sunset](https://ads-developers.googleblog.com/2022/04/reminder-requests-to-adwords-api-will.html).
 > You can use the new client library [google-ads-php](https://github.com/googleads/google-ads-php) to access the new [Google Ads API](https://developers.google.com/google-ads/api/docs/start) instead.**
 
-[![PHP version](https://badge.fury.io/ph/googleads%2Fgoogleads-php-lib.svg)](https://badge.fury.io/ph/googleads%2Fgoogleads-php-lib) [![Build Status](https://travis-ci.org/googleads/googleads-php-lib.svg?branch=main)](https://travis-ci.org/googleads/googleads-php-lib)
+[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%208.0-8892BF.svg)](https://www.php.net/supported-versions.php)
+[![Latest Stable
+Version](https://img.shields.io/packagist/v/googleads/googleads-php-lib.svg)](https://packagist.org/packages/googleads/googleads-php-lib)
+[![Total Downloads](https://poser.pugx.org/googleads/googleads-php-lib/downloads.svg)](https://packagist.org/packages/googleads/googleads-php-lib)
+[![License](https://poser.pugx.org/googleads/googleads-php-lib/license.svg)](https://packagist.org/packages/googleads/googleads-php-lib)
+
+**IMPORTANT** This client library has been updated to require PHP version 8.0 as the minimum version, as announced in [#777](https://github.com/googleads/googleads-php-lib/issues/777).
+This means that the final version of the library that supports PHP 7 is [v61.0.0](https://github.com/googleads/googleads-php-lib/releases/tag/v61.0.0), which supports Google Ad Manager API v202208, v202211, v202302, and v202305.
+
+Google Ad Manager API v202305 is [scheduled to be sunset in May 2024](https://developers.google.com/ad-manager/api/deprecation). Therefore, PHP 7 users have about a year to migrate to the version 8.0 or higher of PHP to avoid disruption.
 
 ### Requirements and Preparation
 
 *   System requirements and dependencies can be found in `composer.json` of this
     library. See [this page](https://getcomposer.org/doc/01-basic-usage.md) for
     more details.
-*   From version 60.0.0, this library requires the minimum PHP version to be
-    7.4. If you have an older version of PHP, `composer` command will
+*   From version 62.0.0, this library requires the minimum PHP version to be
+    8.0. If you have an older version of PHP, `composer` command will
     download an older version of the `googleads/googleads-php-lib` library.
 *   This library depends on [Composer](https://getcomposer.org/). If you don't
     have it installed on your computer yet, follow the
@@ -259,7 +268,7 @@ $reportDownloader = new ReportDownloader($session, $requestOptionsFactory);
 
 ### SSL CA files
 
-PHP >= v5.6 automatically sets
+PHP automatically sets
 [`verify_peer`](http://php.net/manual/en/context.ssl.php) to `true` and will do
 its best to find the most appropriate CA bundle on your system by default.
 However, not all systems have a known CA bundle on disk (e.g. Windows). This
