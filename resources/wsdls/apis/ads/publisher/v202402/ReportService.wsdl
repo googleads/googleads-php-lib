@@ -5319,17 +5319,14 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by {@link CustomTargetingKey#id}.
-                &lt;p&gt;Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="VIDEO_METADATA_KEY_NAME">
             <annotation>
               <documentation>
-                Breaks down reporting data by custom targeting key. {@link CustomTargetingKey#name} and
-                {@link CustomTargetingKey#id} are automatically included as columns in the
-                report.
-                &lt;p&gt;Corresponds to "Metadata key" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
+                Breaks down reporting data by custom targeting key. {@link CustomTargetingKey#name} and {@link
+                CustomTargetingKey#id} are automatically included as columns in the report.
               </documentation>
             </annotation>
           </enumeration>

@@ -7115,6 +7115,11 @@
         </restriction>
       </simpleType>
       <simpleType name="FrequencyCapError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the frequency cap error.
+          </documentation>
+        </annotation>
         <restriction base="xsd:string">
           <enumeration value="IMPRESSION_LIMIT_EXCEEDED"/>
           <enumeration value="IMPRESSIONS_TOO_LOW"/>

@@ -1,3 +1,11 @@
+### 65.0.0
+
+* Added support for v202405.
+* Removed support for v202305.
+* Removed examples for v202308.
+* Removed ActivityService and ActivityGroupService in v202405.
+* Added McmError to all versions.
+
 ### 64.0.0
 
 * Added support for v202402.

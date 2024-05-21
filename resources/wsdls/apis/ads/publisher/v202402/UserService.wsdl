@@ -954,8 +954,8 @@
                 <annotation>
                   <documentation>
                     Specifies whether or not the {@code User} wants to permit the Publisher Display Ads system to
-                    send email notifications to their email address. This attribute is optional and defaults to
-                    {@code true}.
+                    send email notifications to their email address.
+                    This attribute is read-only.
                   </documentation>
                 </annotation>
               </element>

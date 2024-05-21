@@ -852,6 +852,20 @@
           </extension>
         </complexContent>
       </complexType>
+      <complexType name="McmError">
+        <annotation>
+          <documentation>
+            An error for multiple customer management.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:McmError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
       <complexType name="NetworkError">
         <annotation>
           <documentation>
@@ -2509,6 +2523,36 @@
             <annotation>
               <documentation>
                 The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="McmError.Reason">
+        <annotation>
+          <documentation>
+            Possible reasons for {@link McmError}
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DUPLICATE_CHILD_PUBLISHER_NETWORK_CODE">
+            <annotation>
+              <documentation>
+                The network code is used by another child publisher.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DUPLICATE_CHILD_PUBLISHER_ACTIVE_EMAIL">
+            <annotation>
+              <documentation>
+                The email is used by another active child publisher.
               </documentation>
             </annotation>
           </enumeration>
