@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2023 Google Inc. All Rights Reserved -->
+<!-- Copyright 2024 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202308"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202308"
@@ -5887,8 +5887,8 @@
           <enumeration value="UPDATE_VIDEO_CREATIVE_SKIPPABILITY_NOT_ALLOWED">
             <annotation>
               <documentation>
-                Cannot update video creative skippability on a YouTube-targeted proposal line item once it's
-                pushed to an order line item.
+                Cannot update video creative skippability on a YouTube-targeted proposal line item once it
+                has been sold (pushed to an order line item).
               </documentation>
             </annotation>
           </enumeration>

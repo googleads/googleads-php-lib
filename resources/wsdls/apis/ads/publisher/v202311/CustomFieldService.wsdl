@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2023 Google Inc. All Rights Reserved -->
+<!-- Copyright 2024 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202311"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202311"
@@ -1358,6 +1358,13 @@
           </documentation>
         </annotation>
         <restriction base="xsd:string">
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
           <enumeration value="API_ONLY">
             <annotation>
               <documentation>

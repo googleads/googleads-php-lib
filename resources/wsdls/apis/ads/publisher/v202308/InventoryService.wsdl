@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2023 Google Inc. All Rights Reserved -->
+<!-- Copyright 2024 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202308"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202308"
@@ -1148,14 +1148,14 @@
           <element maxOccurs="1" minOccurs="0" name="frequencyCap" type="tns:FrequencyCap">
             <annotation>
               <documentation>
-                The frequency cap to be applied with this label. *
+                The frequency cap to be applied with this label.
               </documentation>
             </annotation>
           </element>
           <element maxOccurs="1" minOccurs="0" name="labelId" type="xsd:long">
             <annotation>
               <documentation>
-                ID of the label being capped on the {@link AdUnit}. *
+                ID of the label being capped on the {@link AdUnit}.
               </documentation>
             </annotation>
           </element>
@@ -2753,6 +2753,11 @@
         </restriction>
       </simpleType>
       <simpleType name="FrequencyCapError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the frequency cap error.
+          </documentation>
+        </annotation>
         <restriction base="xsd:string">
           <enumeration value="IMPRESSION_LIMIT_EXCEEDED"/>
           <enumeration value="IMPRESSIONS_TOO_LOW"/>

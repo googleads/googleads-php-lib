@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2023 Google Inc. All Rights Reserved -->
+<!-- Copyright 2024 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202308"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202308"
@@ -255,11 +255,9 @@
           <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
             <annotation>
               <documentation>
-                Name of the key. This can be used for encoding . If you don't want users to be able to see
-                potentially sensitive targeting information in the ad tags of your site, you can encode your
-                key/values. For example, you can create key/value g1=abc to represent gender=female. Keys can
-                contain up to 10 characters each. You can use alphanumeric characters and symbols other than
-                the following: ", ', =, !, +, #, *, ~, ;, ^, (, ), &lt;, &gt;, [, ], the white space character.
+                Name of the key. Keys can contain up to 10 characters each. You can use alphanumeric characters
+                and symbols other than the following: ", ', =, !, +, #, *, ~, ;, ^, (, ), &lt;, &gt;, [, ], the white
+                space character.
               </documentation>
             </annotation>
           </element>
@@ -359,12 +357,10 @@
           <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
             <annotation>
               <documentation>
-                Name of the value. This can be used for encoding . If you don't want users to be able to see
-                potentially sensitive targeting information in the ad tags of your site, you can encode your
-                key/values. For example, you can create key/value g1=abc to represent gender=female. Values can
-                contain up to 40 characters each. You can use alphanumeric characters and symbols other than
-                the following: ", ', =, !, +, #, *, ~, ;, ^, (, ), &lt;, &gt;, [, ]. Values are not data-specific;
-                all values are treated as string. For example, instead of using "age&gt;=18 AND &lt;=34", try "18-34"
+                Name of the value. Values can contain up to 40 characters each. You can use alphanumeric
+                characters and symbols other than the following: ", ', =, !, +, #, *, ~, ;, ^, (, ), &lt;, &gt;, [,
+                ]. Values are not data-specific; all values are treated as string. For example, instead of
+                using "age&gt;=18 AND &lt;=34", try "18-34"
               </documentation>
             </annotation>
           </element>

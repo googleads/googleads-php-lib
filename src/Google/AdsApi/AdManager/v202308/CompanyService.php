@@ -46,6 +46,7 @@ class CompanyService extends \Google\AdsApi\Common\AdsSoapClient
       'InvalidUrlError' => 'Google\\AdsApi\\AdManager\\v202308\\InvalidUrlError',
       'InventoryClientApiError' => 'Google\\AdsApi\\AdManager\\v202308\\InventoryClientApiError',
       'LabelEntityAssociationError' => 'Google\\AdsApi\\AdManager\\v202308\\LabelEntityAssociationError',
+      'McmError' => 'Google\\AdsApi\\AdManager\\v202308\\McmError',
       'NetworkError' => 'Google\\AdsApi\\AdManager\\v202308\\NetworkError',
       'NotNullError' => 'Google\\AdsApi\\AdManager\\v202308\\NotNullError',
       'NullError' => 'Google\\AdsApi\\AdManager\\v202308\\NullError',

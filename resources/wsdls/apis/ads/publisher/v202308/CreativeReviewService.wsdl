@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2023 Google Inc. All Rights Reserved -->
+<!-- Copyright 2024 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202308"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202308"
@@ -55,20 +55,6 @@
           <element maxOccurs="1" minOccurs="0" name="message" type="xsd:string"/>
         </sequence>
       </complexType>
-      <complexType name="ApproveCreativeReviews">
-        <complexContent>
-          <extension base="tns:CreativeReviewAction">
-            <sequence/>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="ArchiveCreativeReviews">
-        <complexContent>
-          <extension base="tns:CreativeReviewAction">
-            <sequence/>
-          </extension>
-        </complexContent>
-      </complexType>
       <complexType name="AuthenticationError">
         <complexContent>
           <extension base="tns:ApiError">
@@ -104,9 +90,6 @@
             </sequence>
           </extension>
         </complexContent>
-      </complexType>
-      <complexType abstract="true" name="CreativeReviewAction">
-        <sequence/>
       </complexType>
       <complexType name="CreativeReview">
         <sequence>
@@ -171,13 +154,6 @@
             <sequence>
               <element maxOccurs="1" minOccurs="0" name="value" type="tns:Date"/>
             </sequence>
-          </extension>
-        </complexContent>
-      </complexType>
-      <complexType name="DisapproveCreativeReviews">
-        <complexContent>
-          <extension base="tns:CreativeReviewAction">
-            <sequence/>
           </extension>
         </complexContent>
       </complexType>
@@ -370,11 +346,6 @@
           </extension>
         </complexContent>
       </complexType>
-      <complexType name="UpdateResult">
-        <sequence>
-          <element maxOccurs="1" minOccurs="0" name="numChanges" type="xsd:int"/>
-        </sequence>
-      </complexType>
       <complexType abstract="true" name="Value">
         <sequence/>
       </complexType>
@@ -550,31 +521,6 @@
           </documentation>
         </annotation>
       </element>
-      <element name="performCreativeReviewAction">
-        <annotation>
-          <documentation>
-            Performs actions on {@link CreativeReview} objects that match the given {@link
-            Statement#query}. You can use actions to approve (allow) or disapprove (block) creatives, as
-            seen in the corresponding {@link CreativeReview} objects. You can also archive creatives to
-            allow you to retrieve new {@link CreativeReview} objects while previously retrieved {@link
-            CreativeReview} objects are in pending approval.
-          </documentation>
-        </annotation>
-        <complexType>
-          <sequence>
-            <element maxOccurs="1" minOccurs="0"
-              name="creativeReviewAction" type="tns:CreativeReviewAction"/>
-            <element maxOccurs="1" minOccurs="0" name="filterStatement" type="tns:Statement"/>
-          </sequence>
-        </complexType>
-      </element>
-      <element name="performCreativeReviewActionResponse">
-        <complexType>
-          <sequence>
-            <element maxOccurs="1" minOccurs="0" name="rval" type="tns:UpdateResult"/>
-          </sequence>
-        </complexType>
-      </element>
       <element name="RequestHeader" type="tns:SoapRequestHeader"/>
       <element name="ResponseHeader" type="tns:SoapResponseHeader"/>
     </schema>
@@ -594,12 +540,6 @@
   <wsdl:message name="ApiException">
     <wsdl:part element="tns:ApiExceptionFault" name="ApiException"/>
   </wsdl:message>
-  <wsdl:message name="performCreativeReviewActionRequest">
-    <wsdl:part element="tns:performCreativeReviewAction" name="parameters"/>
-  </wsdl:message>
-  <wsdl:message name="performCreativeReviewActionResponse">
-    <wsdl:part element="tns:performCreativeReviewActionResponse" name="parameters"/>
-  </wsdl:message>
   <wsdl:portType name="CreativeReviewServiceInterface">
     <wsdl:operation name="getCreativeReviewsByStatement">
       <wsdl:documentation>
@@ -616,18 +556,6 @@
       <wsdl:output message="tns:getCreativeReviewsByStatementResponse" name="getCreativeReviewsByStatementResponse"/>
       <wsdl:fault message="tns:ApiException" name="ApiException"/>
     </wsdl:operation>
-    <wsdl:operation name="performCreativeReviewAction">
-      <wsdl:documentation>
-        Performs actions on {@link CreativeReview} objects that match the given {@link
-        Statement#query}. You can use actions to approve (allow) or disapprove (block) creatives, as
-        seen in the corresponding {@link CreativeReview} objects. You can also archive creatives to
-        allow you to retrieve new {@link CreativeReview} objects while previously retrieved {@link
-        CreativeReview} objects are in pending approval.
-      </wsdl:documentation>
-      <wsdl:input message="tns:performCreativeReviewActionRequest" name="performCreativeReviewActionRequest"/>
-      <wsdl:output message="tns:performCreativeReviewActionResponse" name="performCreativeReviewActionResponse"/>
-      <wsdl:fault message="tns:ApiException" name="ApiException"/>
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="CreativeReviewServiceSoapBinding" type="tns:CreativeReviewServiceInterface">
     <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
@@ -639,22 +567,6 @@
         <wsdlsoap:body use="literal"/>
       </wsdl:input>
       <wsdl:output name="getCreativeReviewsByStatementResponse">
-        <wsdlsoap:header message="tns:ResponseHeader"
-          part="ResponseHeader" use="literal"/>
-        <wsdlsoap:body use="literal"/>
-      </wsdl:output>
-      <wsdl:fault name="ApiException">
-        <wsdlsoap:fault name="ApiException" use="literal"/>
-      </wsdl:fault>
-    </wsdl:operation>
-    <wsdl:operation name="performCreativeReviewAction">
-      <wsdlsoap:operation soapAction=""/>
-      <wsdl:input name="performCreativeReviewActionRequest">
-        <wsdlsoap:header message="tns:RequestHeader"
-          part="RequestHeader" use="literal"/>
-        <wsdlsoap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="performCreativeReviewActionResponse">
         <wsdlsoap:header message="tns:ResponseHeader"
           part="ResponseHeader" use="literal"/>
         <wsdlsoap:body use="literal"/>
