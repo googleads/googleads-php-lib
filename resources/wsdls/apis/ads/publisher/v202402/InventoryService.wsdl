@@ -1727,7 +1727,7 @@
           <enumeration value="GET_AD_SLOT_API_ERROR">
             <annotation>
               <documentation>
-                An error occured while trying to get an associated web property's ad slots. Unable to
+                An error occurred while trying to get an associated web property's ad slots. Unable to
                 retrieve ad slot information from AdSense or Ad Exchange account.
               </documentation>
             </annotation>
@@ -1742,7 +1742,7 @@
           <enumeration value="GET_BULK_ACCOUNT_STATUSES_API_ERROR">
             <annotation>
               <documentation>
-                An error occured while trying to retrieve account statues from AdSense API. Unable to
+                An error occurred while trying to retrieve account statues from AdSense API. Unable to
                 retrieve account status information. Please try again later.
               </documentation>
             </annotation>
@@ -1750,7 +1750,7 @@
           <enumeration value="RESEND_VERIFICATION_EMAIL_ERROR">
             <annotation>
               <documentation>
-                An error occured while trying to resend the account association verification email. Error
+                An error occurred while trying to resend the account association verification email. Error
                 resending verification email. Please try again.
               </documentation>
             </annotation>
@@ -1758,7 +1758,7 @@
           <enumeration value="UNEXPECTED_API_RESPONSE_ERROR">
             <annotation>
               <documentation>
-                An error occured while trying to retrieve a response from the AdSense API. There was a
+                An error occurred while trying to retrieve a response from the AdSense API. There was a
                 problem processing your request. Please try again later.
               </documentation>
             </annotation>

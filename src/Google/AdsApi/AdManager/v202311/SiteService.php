@@ -14,6 +14,7 @@ class SiteService extends \Google\AdsApi\Common\AdsSoapClient
      */
     private static $classmap = array (
       'ObjectValue' => 'Google\\AdsApi\\AdManager\\v202311\\ObjectValue',
+      'AdSenseAccountError' => 'Google\\AdsApi\\AdManager\\v202311\\AdSenseAccountError',
       'ApiError' => 'Google\\AdsApi\\AdManager\\v202311\\ApiError',
       'ApiException' => 'Google\\AdsApi\\AdManager\\v202311\\ApiException',
       'ApiVersionError' => 'Google\\AdsApi\\AdManager\\v202311\\ApiVersionError',
