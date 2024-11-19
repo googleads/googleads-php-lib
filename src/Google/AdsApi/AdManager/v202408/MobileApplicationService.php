@@ -119,7 +119,7 @@ class MobileApplicationService extends \Google\AdsApi\Common\AdsSoapClient
      * <td>{@link MobileApplication#appStore}</td>
      * </tr>
      * <tr>
-     * <td>{@code appStoreId}</td>
+     * <td>{@code mobileApplicationExternalId}</td>
      * <td>{@link MobileApplication#appStoreId}</td>
      * <tr/>
      * <tr>

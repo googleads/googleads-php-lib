@@ -1,3 +1,9 @@
+### 67.0.0
+
+* Added support for v202411.
+* Removed support for v202311.
+* Removed examples for v202402.
+
 ### 66.0.0
 
 * Added support for v202408.

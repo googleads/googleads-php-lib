@@ -52,6 +52,7 @@ class ContactService extends \Google\AdsApi\Common\AdsSoapClient
       'StringFormatError' => 'Google\\AdsApi\\AdManager\\v202408\\StringFormatError',
       'StringLengthError' => 'Google\\AdsApi\\AdManager\\v202408\\StringLengthError',
       'String_ValueMapEntry' => 'Google\\AdsApi\\AdManager\\v202408\\String_ValueMapEntry',
+      'TeamError' => 'Google\\AdsApi\\AdManager\\v202408\\TeamError',
       'TextValue' => 'Google\\AdsApi\\AdManager\\v202408\\TextValue',
       'UniqueError' => 'Google\\AdsApi\\AdManager\\v202408\\UniqueError',
       'Value' => 'Google\\AdsApi\\AdManager\\v202408\\Value',

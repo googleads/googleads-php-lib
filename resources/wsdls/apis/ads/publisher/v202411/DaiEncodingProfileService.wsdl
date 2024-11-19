@@ -1,0 +1,2363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated file, do not edit -->
+<!-- Copyright 2024 Google Inc. All Rights Reserved -->
+<wsdl:definitions
+  targetNamespace="https://www.google.com/apis/ads/publisher/v202411"
+  xmlns:tns="https://www.google.com/apis/ads/publisher/v202411"
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <schema elementFormDefault="qualified" jaxb:version="1.0"
+      targetNamespace="https://www.google.com/apis/ads/publisher/v202411"
+      xmlns="http://www.w3.org/2001/XMLSchema"
+      xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:tns="https://www.google.com/apis/ads/publisher/v202411">
+      <annotation>
+        <appinfo>
+          <jaxb:globalBindings typesafeEnumMaxMembers="999999"/>
+        </appinfo>
+      </annotation>
+      <complexType abstract="true" name="ObjectValue">
+        <annotation>
+          <documentation>
+            Contains an object value.
+            &lt;p&gt;
+            &lt;b&gt;This object is experimental!
+            &lt;code&gt;ObjectValue&lt;/code&gt; is an experimental, innovative, and rapidly
+            changing new feature for Ad Manager. Unfortunately, being on the bleeding edge means that
+            we may make backwards-incompatible changes to
+            &lt;code&gt;ObjectValue&lt;/code&gt;. We will inform the community when this feature
+            is no longer experimental.&lt;/b&gt;
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ActivateDaiEncodingProfiles">
+        <annotation>
+          <documentation>
+            The action used for activating {@link DaiEncodingProfile} objects.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:DaiEncodingProfileAction">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType abstract="true" name="ApiError">
+        <annotation>
+          <documentation>
+            The API error base class that provides details about an error that occurred
+            while processing a service request.
+            
+            &lt;p&gt;The OGNL field path is provided for parsers to identify the request data
+            element that may have caused the error.&lt;/p&gt;
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="fieldPath" type="xsd:string">
+            <annotation>
+              <documentation>
+                The OGNL field path to identify cause of error.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0"
+            name="fieldPathElements" type="tns:FieldPathElement">
+            <annotation>
+              <documentation>
+                A parsed copy of the field path. For example, the field path "operations[1].operand"
+                corresponds to this list: {FieldPathElement(field = "operations", index = 1),
+                FieldPathElement(field = "operand", index = null)}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="trigger" type="xsd:string">
+            <annotation>
+              <documentation>
+                The data that caused the error.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="errorString" type="xsd:string">
+            <annotation>
+              <documentation>
+                A simple string representation of the error and reason.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="ApiException">
+        <annotation>
+          <documentation>
+            Exception class for holding a list of service errors.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApplicationException">
+            <sequence>
+              <element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:ApiError">
+                <annotation>
+                  <documentation>
+                    List of errors.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ApiVersionError">
+        <annotation>
+          <documentation>
+            Errors related to the usage of API versions.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ApiVersionError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ApplicationException">
+        <annotation>
+          <documentation>
+            Base class for exceptions.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="message" type="xsd:string">
+            <annotation>
+              <documentation>
+                Error message.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="ArchiveDaiEncodingProfiles">
+        <annotation>
+          <documentation>
+            The action used for archiving {@link DaiEncodingProfile} objects.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:DaiEncodingProfileAction">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="AudioSettings">
+        <annotation>
+          <documentation>
+            Information about the audio settings of an encoding profile.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="codec" type="xsd:string">
+            <annotation>
+              <documentation>
+                The RFC6381 codec string of the audio.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="bitrate" type="xsd:long">
+            <annotation>
+              <documentation>
+                The bitrate of the audio, in bits per second. Required. This value must be between 8kbps and
+                250 Mbps.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="channels" type="xsd:long">
+            <annotation>
+              <documentation>
+                The number of audio channels, including low frequency channels. This value has a maximum of 8.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="sampleRateHertz" type="xsd:long">
+            <annotation>
+              <documentation>
+                The audio sample rate in hertz. Must be between 44kHz and 100kHz.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="AuthenticationError">
+        <annotation>
+          <documentation>
+            An error for an exception that occurred when authenticating.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:AuthenticationError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="BooleanValue">
+        <annotation>
+          <documentation>
+            Contains a boolean value.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="xsd:boolean">
+                <annotation>
+                  <documentation>
+                    The boolean value.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="CollectionSizeError">
+        <annotation>
+          <documentation>
+            Error for the size of the collection being too large
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CollectionSizeError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="CommonError">
+        <annotation>
+          <documentation>
+            A place for common errors that can be used across services.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:CommonError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType abstract="true" name="DaiEncodingProfileAction">
+        <annotation>
+          <documentation>
+            Represents the actions that can be performed on {@link DaiEncodingProfile} objects.
+          </documentation>
+        </annotation>
+        <sequence/>
+      </complexType>
+      <complexType name="DaiEncodingProfileAdMatchingError">
+        <annotation>
+          <documentation>
+            Lists all warnings associated with validating encoding profiles.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:DaiEncodingProfileAdMatchingError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DaiEncodingProfileContainerSettingsError">
+        <annotation>
+          <documentation>
+            Lists all errors associated with encoding profile container settings.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:DaiEncodingProfileContainerSettingsError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DaiEncodingProfile">
+        <annotation>
+          <documentation>
+            A {@link DaiEncodingProfile} contains data about a publisher's encoding profiles. Ad Manager
+            Dynamic Ad Insertion (DAI) uses the profile information about the content to select an
+            appropriate ad transcode to play for the particular video.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
+            <annotation>
+              <documentation>
+                The unique ID of the {@link DaiEncodingProfile}. This value is read-only and is assigned by
+                Google.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
+            <annotation>
+              <documentation>
+                The name of the {@link DaiEncodingProfile}. This value is required to create an encoding
+                profile and may be at most 64 characters. The name field can contain alphanumeric characters
+                and symbols other than the following: ", ', =, !, +, #, *, ~, ;, ^, (, ), &lt;, &gt;, [, ], the white
+                space character.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="status" type="tns:DaiEncodingProfileStatus">
+            <annotation>
+              <documentation>
+                The status of this {@link DaiEncodingProfile}.
+                
+                &lt;p&gt;DAI encoding profiles are created in the {@link DaiEncodingProfileStatus#ACTIVE} state. The
+                status can only be modified through the {@link
+                DaiEncodingProfileService#performDaiEncodingProfileAction} method.
+                
+                &lt;p&gt;Only active profiles will be allowed to be associated with live streams.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="variantType" type="tns:VariantType">
+            <annotation>
+              <documentation>
+                The variant playlist type that this {@link DaiEncodingProfile} represents.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="containerType" type="tns:ContainerType">
+            <annotation>
+              <documentation>
+                The digital container type of the underlying media. This is required for {@code MEDIA} and
+                {@code IFRAME} variant types.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="videoSettings" type="tns:VideoSettings">
+            <annotation>
+              <documentation>
+                Information about the video media, if present. This field will only be set if the media
+                contains video, or is an {@code IFRAME} variant type.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="audioSettings" type="tns:AudioSettings">
+            <annotation>
+              <documentation>
+                Information about the audio media, if present. This field will only be set if the media
+                contains audio. Only {@code MEDIA} and {@code IFRAME} variant types can set audio.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="DaiEncodingProfileNameError">
+        <annotation>
+          <documentation>
+            Lists all errors associated with encoding profile names.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:DaiEncodingProfileNameError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DaiEncodingProfilePage">
+        <annotation>
+          <documentation>
+            Captures a page of {@link DaiEncodingProfile} objects.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="totalResultSetSize" type="xsd:int">
+            <annotation>
+              <documentation>
+                The size of the total result set to which this page belongs.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="startIndex" type="xsd:int">
+            <annotation>
+              <documentation>
+                The absolute index in the total result set on which this page begins.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="results" type="tns:DaiEncodingProfile">
+            <annotation>
+              <documentation>
+                The collection of profiles contained within this page.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="DaiEncodingProfileUpdateError">
+        <annotation>
+          <documentation>
+            Lists all errors associated with encoding profile updates.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:DaiEncodingProfileUpdateError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DaiEncodingProfileVariantSettingsError">
+        <annotation>
+          <documentation>
+            Lists all errors associated with encoding profile variant settings.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:DaiEncodingProfileVariantSettingsError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="Date">
+        <annotation>
+          <documentation>
+            Represents a date.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="year" type="xsd:int">
+            <annotation>
+              <documentation>
+                Year (e.g., 2009)
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="month" type="xsd:int">
+            <annotation>
+              <documentation>
+                Month (1..12)
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="day" type="xsd:int">
+            <annotation>
+              <documentation>
+                Day (1..31)
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="DateTime">
+        <annotation>
+          <documentation>
+            Represents a date combined with the time of day.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="date" type="tns:Date"/>
+          <element maxOccurs="1" minOccurs="0" name="hour" type="xsd:int"/>
+          <element maxOccurs="1" minOccurs="0" name="minute" type="xsd:int"/>
+          <element maxOccurs="1" minOccurs="0" name="second" type="xsd:int"/>
+          <element maxOccurs="1" minOccurs="0" name="timeZoneId" type="xsd:string"/>
+        </sequence>
+      </complexType>
+      <complexType name="DateTimeValue">
+        <annotation>
+          <documentation>
+            Contains a date-time value.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="tns:DateTime">
+                <annotation>
+                  <documentation>
+                    The {@code DateTime} value.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="DateValue">
+        <annotation>
+          <documentation>
+            Contains a date value.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="tns:Date">
+                <annotation>
+                  <documentation>
+                    The {@code Date} value.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="EntityLimitReachedError">
+        <annotation>
+          <documentation>
+            An error that occurs when creating an entity if the limit on the number of allowed entities for
+            a network has already been reached.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:EntityLimitReachedError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="FeatureError">
+        <annotation>
+          <documentation>
+            Errors related to feature management.  If you attempt using a feature that is not available to
+            the current network you'll receive a FeatureError with the missing feature as the trigger.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:FeatureError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="FieldPathElement">
+        <annotation>
+          <documentation>
+            A segment of a field path. Each dot in a field path defines a new segment.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="field" type="xsd:string">
+            <annotation>
+              <documentation>
+                The name of a field in lower camelcase. (e.g. "biddingStrategy")
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="index" type="xsd:int">
+            <annotation>
+              <documentation>
+                For list fields, this is a 0-indexed position in the list. Null for non-list fields.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="InternalApiError">
+        <annotation>
+          <documentation>
+            Indicates that a server-side error has occured. {@code InternalApiError}s
+            are generally not the result of an invalid request or message sent by the
+            client.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:InternalApiError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="NotNullError">
+        <annotation>
+          <documentation>
+            Caused by supplying a null value for an attribute that cannot be null.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:NotNullError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="NullError">
+        <annotation>
+          <documentation>
+            Caused by supplying a non-null value for an attribute that should be null.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:NullError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="NumberValue">
+        <annotation>
+          <documentation>
+            Contains a numeric value.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="xsd:string">
+                <annotation>
+                  <documentation>
+                    The numeric value represented as a string.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ParseError">
+        <annotation>
+          <documentation>
+            Lists errors related to parsing.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ParseError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="PermissionError">
+        <annotation>
+          <documentation>
+            Errors related to incorrect permission.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:PermissionError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="PublisherQueryLanguageContextError">
+        <annotation>
+          <documentation>
+            An error that occurs while executing a PQL query contained in
+            a {@link Statement} object.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:PublisherQueryLanguageContextError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="PublisherQueryLanguageSyntaxError">
+        <annotation>
+          <documentation>
+            An error that occurs while parsing a PQL query contained in a
+            {@link Statement} object.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:PublisherQueryLanguageSyntaxError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="QuotaError">
+        <annotation>
+          <documentation>
+            Describes a client-side error on which a user is attempting
+            to perform an action to which they have no quota remaining.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:QuotaError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RangeError">
+        <annotation>
+          <documentation>
+            A list of all errors associated with the Range constraint.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RangeError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RequiredCollectionError">
+        <annotation>
+          <documentation>
+            A list of all errors to be used for validating sizes of collections.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RequiredCollectionError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="RequiredError">
+        <annotation>
+          <documentation>
+            Errors due to missing required field.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RequiredError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="ServerError">
+        <annotation>
+          <documentation>
+            Errors related to the server.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:ServerError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="SetValue">
+        <annotation>
+          <documentation>
+            Contains a set of {@link Value Values}. May not contain duplicates.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="unbounded" minOccurs="0" name="values" type="tns:Value">
+                <annotation>
+                  <documentation>
+                    The values. They must all be the same type of {@code Value} and not contain duplicates.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="Size">
+        <annotation>
+          <documentation>
+            Represents the dimensions of an {@link AdUnit}, {@link LineItem} or {@link Creative}.
+            
+            &lt;p&gt;For interstitial size (out-of-page), native, ignored and fluid size, {@link Size} must be 1x1.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="width" type="xsd:int">
+            <annotation>
+              <documentation>
+                The width of the {@link AdUnit}, {@link LineItem} or {@link Creative}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="height" type="xsd:int">
+            <annotation>
+              <documentation>
+                The height of the {@link AdUnit}, {@link LineItem} or {@link Creative}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="isAspectRatio" type="xsd:boolean">
+            <annotation>
+              <documentation>
+                Whether this size represents an aspect ratio.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="SoapRequestHeader">
+        <annotation>
+          <documentation>
+            Represents the SOAP request header used by API requests.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="networkCode" type="xsd:string">
+            <annotation>
+              <documentation>
+                The network code to use in the context of a request.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="applicationName" type="xsd:string">
+            <annotation>
+              <documentation>
+                The name of client library application.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="SoapResponseHeader">
+        <annotation>
+          <documentation>
+            Represents the SOAP request header used by API responses.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="requestId" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="responseTime" type="xsd:long"/>
+        </sequence>
+      </complexType>
+      <complexType name="Statement">
+        <annotation>
+          <documentation>
+            Captures the {@code WHERE}, {@code ORDER BY} and {@code LIMIT} clauses of a
+            PQL query. Statements are typically used to retrieve objects of a predefined
+            domain type, which makes SELECT clause unnecessary.
+            &lt;p&gt;
+            An example query text might be {@code "WHERE status = 'ACTIVE' ORDER BY id
+            LIMIT 30"}.
+            &lt;/p&gt;
+            &lt;p&gt;
+            Statements support bind variables. These are substitutes for literals
+            and can be thought of as input parameters to a PQL query.
+            &lt;/p&gt;
+            &lt;p&gt;
+            An example of such a query might be {@code "WHERE id = :idValue"}.
+            &lt;/p&gt;
+            &lt;p&gt;
+            Statements also support use of the LIKE keyword. This provides wildcard string matching.
+            &lt;/p&gt;
+            &lt;p&gt;
+            An example of such a query might be {@code "WHERE name LIKE '%searchString%'"}.
+            &lt;/p&gt;
+            The value for the variable idValue must then be set with an object of type
+            {@link Value}, e.g., {@link NumberValue}, {@link TextValue} or
+            {@link BooleanValue}.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="query" type="xsd:string">
+            <annotation>
+              <documentation>
+                Holds the query in PQL syntax. The syntax is:&lt;br&gt;
+                &lt;code&gt;[WHERE &lt;condition&gt; {[AND | OR] &lt;condition&gt; ...}]&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;[ORDER BY &lt;property&gt; [ASC | DESC]]&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;[LIMIT {[&lt;offset&gt;,] &lt;count&gt;} | {&lt;count&gt; OFFSET &lt;offset&gt;}]&lt;/code&gt;&lt;br&gt;
+                &lt;p&gt;
+                &lt;code&gt;&lt;condition&gt;&lt;/code&gt;&lt;br&gt;
+                &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                &lt;code&gt;:= &lt;property&gt; {&lt; | &lt;= | &gt; | &gt;= | = | != } &lt;value&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;&lt;condition&gt;&lt;/code&gt;&lt;br&gt;
+                &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+                &lt;code&gt;:= &lt;property&gt; {&lt; | &lt;= | &gt; | &gt;= | = | != } &lt;bind variable&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;&lt;condition&gt; := &lt;property&gt; IN &lt;list&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;&lt;condition&gt; := &lt;property&gt; IS NULL&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;&lt;condition&gt; := &lt;property&gt; LIKE &lt;wildcard%match&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;code&gt;&lt;bind variable&gt; := :&lt;name&gt;&lt;/code&gt;&lt;br&gt;
+                &lt;/p&gt;
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="values" type="tns:String_ValueMapEntry">
+            <annotation>
+              <documentation>
+                Holds keys and values for bind variables and their values. The key is the
+                name of the bind variable. The value is the literal value of the variable.
+                &lt;p&gt;
+                In the example {@code "WHERE status = :bindStatus ORDER BY id LIMIT 30"},
+                the bind variable, represented by {@code :bindStatus} is named {@code
+                bindStatus}, which would also be the parameter map key. The bind variable's
+                value would be represented by a parameter map value of type
+                {@link TextValue}. The final result, for example, would be an entry of
+                {@code "bindStatus" =&gt; StringParam("ACTIVE")}.
+                &lt;/p&gt;
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType name="StatementError">
+        <annotation>
+          <documentation>
+            An error that occurs while parsing {@link Statement} objects.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:StatementError.Reason">
+                <annotation>
+                  <documentation>
+                    The error reason represented by an enum.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="StringFormatError">
+        <annotation>
+          <documentation>
+            A list of error code for reporting invalid content of input strings.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:StringFormatError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="StringLengthError">
+        <annotation>
+          <documentation>
+            Errors for Strings which do not meet given length constraints.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:StringLengthError.Reason"/>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="String_ValueMapEntry">
+        <annotation>
+          <documentation>
+            This represents an entry in a map with a key of type String
+            and value of type Value.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="key" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="value" type="tns:Value"/>
+        </sequence>
+      </complexType>
+      <complexType name="TextValue">
+        <annotation>
+          <documentation>
+            Contains a string value.
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:Value">
+            <sequence>
+              <element maxOccurs="1" minOccurs="0" name="value" type="xsd:string">
+                <annotation>
+                  <documentation>
+                    The string value.
+                  </documentation>
+                </annotation>
+              </element>
+            </sequence>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="UniqueError">
+        <annotation>
+          <documentation>
+            An error for a field which must satisfy a uniqueness constraint
+          </documentation>
+        </annotation>
+        <complexContent>
+          <extension base="tns:ApiError">
+            <sequence/>
+          </extension>
+        </complexContent>
+      </complexType>
+      <complexType name="UpdateResult">
+        <annotation>
+          <documentation>
+            Represents the result of performing an action on objects.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="numChanges" type="xsd:int">
+            <annotation>
+              <documentation>
+                The number of objects that were changed as a result of performing the
+                action.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <complexType abstract="true" name="Value">
+        <annotation>
+          <documentation>
+            {@code Value} represents a value.
+          </documentation>
+        </annotation>
+        <sequence/>
+      </complexType>
+      <complexType name="VideoSettings">
+        <annotation>
+          <documentation>
+            Information about the video settings of an encoding profile.
+          </documentation>
+        </annotation>
+        <sequence>
+          <element maxOccurs="1" minOccurs="0" name="codec" type="xsd:string">
+            <annotation>
+              <documentation>
+                The RFC6381 codec string of the audio.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="bitrate" type="xsd:long">
+            <annotation>
+              <documentation>
+                The bitrate of the video, in bits per second. This value must be between 32kbps and 250 Mbps.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="framesPerSecond" type="xsd:double">
+            <annotation>
+              <documentation>
+                The frames per second of the video. This value will be truncated to three decimal places.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="resolution" type="tns:Size">
+            <annotation>
+              <documentation>
+                The resolution of the video, in pixels.
+              </documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </complexType>
+      <simpleType name="ApiVersionError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="UPDATE_TO_NEWER_VERSION">
+            <annotation>
+              <documentation>
+                Indicates that the operation is not allowed in the version the request
+                was made in.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="AuthenticationError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="AMBIGUOUS_SOAP_REQUEST_HEADER">
+            <annotation>
+              <documentation>
+                The SOAP message contains a request header with an ambiguous definition of the authentication
+                header fields. This means either the {@code authToken} and {@code oAuthToken} fields were
+                both null or both were specified. Exactly one value should be specified with each request.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_EMAIL">
+            <annotation>
+              <documentation>
+                The login provided is invalid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="AUTHENTICATION_FAILED">
+            <annotation>
+              <documentation>
+                Tried to authenticate with provided information, but failed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_OAUTH_SIGNATURE">
+            <annotation>
+              <documentation>
+                The OAuth provided is invalid.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_SERVICE">
+            <annotation>
+              <documentation>
+                The specified service to use was not recognized.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_SOAP_REQUEST_HEADER">
+            <annotation>
+              <documentation>
+                The SOAP message is missing a request header with an {@code authToken} and optional {@code
+                networkCode}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_AUTHENTICATION_HTTP_HEADER">
+            <annotation>
+              <documentation>
+                The HTTP request is missing a request header with an {@code authToken}
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="MISSING_AUTHENTICATION">
+            <annotation>
+              <documentation>
+                The request is missing an {@code authToken}
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NETWORK_API_ACCESS_DISABLED">
+            <annotation>
+              <documentation>
+                The network does not have API access enabled.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NO_NETWORKS_TO_ACCESS">
+            <annotation>
+              <documentation>
+                The user is not associated with any network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NETWORK_NOT_FOUND">
+            <annotation>
+              <documentation>
+                No network for the given {@code networkCode} was found.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NETWORK_CODE_REQUIRED">
+            <annotation>
+              <documentation>
+                The user has access to more than one network, but did not provide a {@code networkCode}.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CONNECTION_ERROR">
+            <annotation>
+              <documentation>
+                An error happened on the server side during connection to authentication service.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="GOOGLE_ACCOUNT_ALREADY_ASSOCIATED_WITH_NETWORK">
+            <annotation>
+              <documentation>
+                The user tried to create a test network using an account that already is associated with a
+                network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNDER_INVESTIGATION">
+            <annotation>
+              <documentation>
+                The account is blocked and under investigation by the collections team. Please contact Google
+                for more information.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="CollectionSizeError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="TOO_LARGE"/>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="CommonError.Reason">
+        <annotation>
+          <documentation>
+            Describes reasons for common errors
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="NOT_FOUND">
+            <annotation>
+              <documentation>
+                Indicates that an attempt was made to retrieve an entity that does not
+                exist.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ALREADY_EXISTS">
+            <annotation>
+              <documentation>
+                Indicates that an attempt was made to create an entity that already
+                exists.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="NOT_APPLICABLE">
+            <annotation>
+              <documentation>
+                Indicates that a value is not applicable for given use case.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DUPLICATE_OBJECT">
+            <annotation>
+              <documentation>
+                Indicates that two elements in the collection were identical.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CANNOT_UPDATE">
+            <annotation>
+              <documentation>
+                Indicates that an attempt was made to change an immutable field.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNSUPPORTED_OPERATION">
+            <annotation>
+              <documentation>
+                Indicates that the requested operation is not supported.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="CONCURRENT_MODIFICATION">
+            <annotation>
+              <documentation>
+                Indicates that another request attempted to update the same data in the same network
+                at about the same time. Please wait and try the request again.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="ContainerType">
+        <annotation>
+          <documentation>
+            Describes the digital media container type of the underlying media.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="TS">
+            <annotation>
+              <documentation>
+                Transport stream (TS) container.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FMP4">
+            <annotation>
+              <documentation>
+                Fragmented MPEG-4 (fMP4) output container.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="HLS_AUDIO">
+            <annotation>
+              <documentation>
+                HTTP live streaming (HLS) packed audio container.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="DaiEncodingProfileAdMatchingError.Reason">
+        <annotation>
+          <documentation>
+            Describes reasons for {@code DaiEncodingProfileNameError}.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="NO_CREATIVE_PROFILES_MATCHED">
+            <annotation>
+              <documentation>
+                Encoding profile does not match any existing creative profiles.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="DaiEncodingProfileContainerSettingsError.Reason">
+        <annotation>
+          <documentation>
+            Describes reasons for {@code DaiEncodingProfileContainerSettingsError}.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="TS_MUST_HAVE_AUDIO_OR_VIDEO_SETTINGS">
+            <annotation>
+              <documentation>
+                Profiles with {@code TS} container type must have at least one of audio or video settings
+                present.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FMP4_MUST_HAVE_EITHER_AUDIO_OR_VIDEO_SETTINGS">
+            <annotation>
+              <documentation>
+                Profiles with {@code FMP4} container type must have at exactly one of audio or video settings
+                present.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="HLS_AUDIO_MUST_HAVE_ONLY_AUDIO_SETTINGS">
+            <annotation>
+              <documentation>
+                Profiles with {@code HLS_AUDIO} container type must only have audio settings present.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="DaiEncodingProfileNameError.Reason">
+        <annotation>
+          <documentation>
+            Describes reasons for {@code DaiEncodingProfileNameError}.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="CONTAINS_INVALID_CHARACTERS">
+            <annotation>
+              <documentation>
+                Name contains invalid characters.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="DaiEncodingProfileStatus">
+        <annotation>
+          <documentation>
+            Describes the status of a {@link DaiEncodingProfile} object.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="ACTIVE">
+            <annotation>
+              <documentation>
+                Indicates the {@link DaiEncodingProfile} has been created and is eligible for streaming.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ARCHIVED">
+            <annotation>
+              <documentation>
+                Indicates the {@link DaiEncodingProfile} has been archived.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="DaiEncodingProfileUpdateError.Reason">
+        <annotation>
+          <documentation>
+            Describes reasons for {@code DaiEncodingProfileNameError}.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="CANNOT_UPDATE_IF_USED_BY_RUNNING_LIVE_STREAMS">
+            <annotation>
+              <documentation>
+                Profiles cannot be updated if they are associated with running live stream events.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="DaiEncodingProfileVariantSettingsError.Reason">
+        <annotation>
+          <documentation>
+            Describes reasons for {@code DaiEncodingProfileVariantSettingsError}.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="CONTAINER_TYPE_REQUIRED">
+            <annotation>
+              <documentation>
+                Container type is required for a {@code MEDIA} or {@code IFRAME} variant.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="VIDEO_SETTINGS_NOT_ALLOWED">
+            <annotation>
+              <documentation>
+                Video settings are only allowed for {@code MEDIA} or {@code IFRAME} variant types.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="AUDIO_SETTINGS_NOT_ALLOWED">
+            <annotation>
+              <documentation>
+                Audio settings are only allowed for {@code MEDIA} or {@code IFRAME} variant types.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="EntityLimitReachedError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the entity limit reached error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="CUSTOM_TARGETING_VALUES_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of custom targeting values exceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="AD_EXCLUSION_RULES_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of ad exclusion rules exceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FIRST_PARTY_AUDIENCE_SEGMENTS_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of first party audience segments exceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="PLACEMENTS_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of active placements exceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="LINE_ITEMS_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of line items excceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ACTIVE_LINE_ITEMS_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of active line items exceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DAI_ENCODING_PROFILES_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of not-archived encoding profiles exceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TRAFFIC_FORECAST_SEGMENTS_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of traffic forecast segments exceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="FORECAST_ADJUSTMENTS_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of forecast adjustments exceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ACTIVE_EXPERIMENTS_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of active experiments exceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="SITES_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of sites exceeds the max number allowed in the network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="USER_TEAMS_LIMIT_REACHED">
+            <annotation>
+              <documentation>
+                The number of teams on the user exceeds the max number allowed.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="FeatureError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="MISSING_FEATURE">
+            <annotation>
+              <documentation>
+                A feature is being used that is not enabled on the current network.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="InternalApiError.Reason">
+        <annotation>
+          <documentation>
+            The single reason for the internal API error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNEXPECTED_INTERNAL_API_ERROR">
+            <annotation>
+              <documentation>
+                API encountered an unexpected internal error.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TRANSIENT_ERROR">
+            <annotation>
+              <documentation>
+                A temporary error occurred during the request. Please retry.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The cause of the error is not known or only defined in newer versions.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="DOWNTIME">
+            <annotation>
+              <documentation>
+                The API is currently unavailable for a planned downtime.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ERROR_GENERATING_RESPONSE">
+            <annotation>
+              <documentation>
+                Mutate succeeded but server was unable to build response. Client should not retry mutate.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="NotNullError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="ARG1_NULL">
+            <annotation>
+              <documentation>
+                Assuming that a method will not have more than 3 arguments, if it does,
+                return NULL
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="ARG2_NULL"/>
+          <enumeration value="ARG3_NULL"/>
+          <enumeration value="NULL"/>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="NullError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="NOT_NULL"/>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="ParseError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNPARSABLE">
+            <annotation>
+              <documentation>
+                Indicates an error in parsing an attribute.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="PermissionError.Reason">
+        <annotation>
+          <documentation>
+            Describes reasons for permission errors.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="PERMISSION_DENIED">
+            <annotation>
+              <documentation>
+                User does not have the required permission for the request.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="PublisherQueryLanguageContextError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNEXECUTABLE">
+            <annotation>
+              <documentation>
+                Indicates that there was an error executing the PQL.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="PublisherQueryLanguageSyntaxError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNPARSABLE">
+            <annotation>
+              <documentation>
+                Indicates that there was a PQL syntax error.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="QuotaError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="EXCEEDED_QUOTA">
+            <annotation>
+              <documentation>
+                The number of requests made per second is too high and has exceeded the
+                allowable limit. The recommended approach to handle this error is to wait
+                about 5 seconds and then retry the request. Note that this does not
+                guarantee the request will succeed. If it fails again, try increasing the
+                wait time.
+                &lt;p&gt;Another way to mitigate this error is to limit requests to 8 per second for Ad Manager
+                360 accounts, or 2 per second for Ad Manager accounts. Once again
+                this does not guarantee that every request will succeed, but may help
+                reduce the number of times you receive this error.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="REPORT_JOB_LIMIT">
+            <annotation>
+              <documentation>
+                This user has exceeded the allowed number of new report requests per hour
+                (this includes both reports run via the UI and reports
+                run via {@link ReportService#runReportJob}).
+                The recommended approach to handle this error is to wait about 10 minutes
+                and then retry the request. Note that this does not guarantee the request
+                will succeed. If it fails again, try increasing the wait time.
+                &lt;p&gt;Another way to mitigate this error is to limit the number of new report
+                requests to 250 per hour per user. Once again, this does not guarantee that
+                every request will succeed, but may help reduce the number of times you
+                receive this error.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="SEGMENT_POPULATION_LIMIT">
+            <annotation>
+              <documentation>
+                This network has exceeded the allowed number of identifiers uploaded within a 24 hour period.
+                The recommended approach to handle this error is to wait 30 minutes and then retry the
+                request. Note that this does not guarantee the request will succeed. If it fails again, try
+                increasing the wait time.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="RangeError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="TOO_HIGH"/>
+          <enumeration value="TOO_LOW"/>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="RequiredCollectionError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="REQUIRED">
+            <annotation>
+              <documentation>
+                A required collection is missing.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TOO_LARGE">
+            <annotation>
+              <documentation>
+                Collection size is too large.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="TOO_SMALL">
+            <annotation>
+              <documentation>
+                Collection size is too small.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="RequiredError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="REQUIRED">
+            <annotation>
+              <documentation>
+                Missing required field.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="ServerError.Reason">
+        <annotation>
+          <documentation>
+            Describes reasons for server errors
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="SERVER_ERROR">
+            <annotation>
+              <documentation>
+                Indicates that an unexpected error occured.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="SERVER_BUSY">
+            <annotation>
+              <documentation>
+                Indicates that the server is currently experiencing a high load. Please
+                wait and try your request again.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="StatementError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="VARIABLE_NOT_BOUND_TO_VALUE">
+            <annotation>
+              <documentation>
+                A bind variable has not been bound to a value.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="StringFormatError.Reason">
+        <annotation>
+          <documentation>
+            The reasons for the target error.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="UNKNOWN"/>
+          <enumeration value="ILLEGAL_CHARS">
+            <annotation>
+              <documentation>
+                The input string value contains disallowed characters.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="INVALID_FORMAT">
+            <annotation>
+              <documentation>
+                The input string value is invalid for the associated field.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="StringLengthError.Reason">
+        <restriction base="xsd:string">
+          <enumeration value="TOO_LONG"/>
+          <enumeration value="TOO_SHORT"/>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <simpleType name="VariantType">
+        <annotation>
+          <documentation>
+            Describes the variant playlist type that the profile represents.
+          </documentation>
+        </annotation>
+        <restriction base="xsd:string">
+          <enumeration value="MEDIA">
+            <annotation>
+              <documentation>
+                Media variant playlist type. Media playlists may: contain audio only, video only, or audio and
+                video.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="IFRAME">
+            <annotation>
+              <documentation>
+                iFrame variant playlist type. iFrame playlists may: contain video or contain audio and video
+                (i.e. video must be present).
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="SUBTITLES">
+            <annotation>
+              <documentation>
+                Subtitles variant playlist type.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
+        </restriction>
+      </simpleType>
+      <element name="createDaiEncodingProfiles">
+        <annotation>
+          <documentation>
+            Creates new {@link DaiEncodingProfile} objects.
+          </documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" minOccurs="0"
+              name="daiEncodingProfiles" type="tns:DaiEncodingProfile"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="createDaiEncodingProfilesResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" minOccurs="0" name="rval" type="tns:DaiEncodingProfile"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ApiExceptionFault" type="tns:ApiException">
+        <annotation>
+          <documentation>
+            A fault element of type ApiException.
+          </documentation>
+        </annotation>
+      </element>
+      <element name="getDaiEncodingProfilesByStatement">
+        <annotation>
+          <documentation>
+            Gets a {@link DaiEncodingProfilePage} of {@link DaiEncodingProfile} objects that satisfy the
+            given {@link Statement#query}. The following fields are supported for filtering:
+            
+            &lt;table&gt;
+            &lt;tr&gt;
+            &lt;th scope="col"&gt;PQL Property&lt;/th&gt; &lt;th scope="col"&gt;Object Property&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code id}&lt;/td&gt;
+            &lt;td&gt;{@link DaiEncodingProfile#id}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code status}&lt;/td&gt;
+            &lt;td&gt;{@link DaiEncodingProfile#status}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+            &lt;td&gt;{@code name}&lt;/td&gt;
+            &lt;td&gt;{@link DaiEncodingProfile#name}&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;/table&gt;
+          </documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="filterStatement" type="tns:Statement"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="getDaiEncodingProfilesByStatementResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="rval" type="tns:DaiEncodingProfilePage"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="performDaiEncodingProfileAction">
+        <annotation>
+          <documentation>
+            Performs actions on {@link DaiEncodingProfile} objects that match the given {@link
+            Statement#query}.
+          </documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0"
+              name="daiEncodingProfileAction" type="tns:DaiEncodingProfileAction"/>
+            <element maxOccurs="1" minOccurs="0" name="filterStatement" type="tns:Statement"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="performDaiEncodingProfileActionResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="1" minOccurs="0" name="rval" type="tns:UpdateResult"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="updateDaiEncodingProfiles">
+        <annotation>
+          <documentation>
+            Updates the specified {@link DaiEncodingProfile} objects.
+          </documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" minOccurs="0"
+              name="daiEncodingProfiles" type="tns:DaiEncodingProfile"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="updateDaiEncodingProfilesResponse">
+        <complexType>
+          <sequence>
+            <element maxOccurs="unbounded" minOccurs="0" name="rval" type="tns:DaiEncodingProfile"/>
+          </sequence>
+        </complexType>
+      </element>
+      <element name="RequestHeader" type="tns:SoapRequestHeader"/>
+      <element name="ResponseHeader" type="tns:SoapResponseHeader"/>
+    </schema>
+  </wsdl:types>
+  <wsdl:message name="RequestHeader">
+    <wsdl:part element="tns:RequestHeader" name="RequestHeader"/>
+  </wsdl:message>
+  <wsdl:message name="ResponseHeader">
+    <wsdl:part element="tns:ResponseHeader" name="ResponseHeader"/>
+  </wsdl:message>
+  <wsdl:message name="createDaiEncodingProfilesRequest">
+    <wsdl:part element="tns:createDaiEncodingProfiles" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="createDaiEncodingProfilesResponse">
+    <wsdl:part element="tns:createDaiEncodingProfilesResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ApiException">
+    <wsdl:part element="tns:ApiExceptionFault" name="ApiException"/>
+  </wsdl:message>
+  <wsdl:message name="getDaiEncodingProfilesByStatementRequest">
+    <wsdl:part element="tns:getDaiEncodingProfilesByStatement" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getDaiEncodingProfilesByStatementResponse">
+    <wsdl:part element="tns:getDaiEncodingProfilesByStatementResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="performDaiEncodingProfileActionRequest">
+    <wsdl:part element="tns:performDaiEncodingProfileAction" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="performDaiEncodingProfileActionResponse">
+    <wsdl:part element="tns:performDaiEncodingProfileActionResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="updateDaiEncodingProfilesRequest">
+    <wsdl:part element="tns:updateDaiEncodingProfiles" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="updateDaiEncodingProfilesResponse">
+    <wsdl:part element="tns:updateDaiEncodingProfilesResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="DaiEncodingProfileServiceInterface">
+    <wsdl:documentation>
+      Provides methods for creating, updating and retrieving {@link DaiEncodingProfile} objects.
+      
+      &lt;p&gt;This feature is not yet openly available for GAM Video publishers. Publishers will need to
+      apply for access for this feature through their account managers.
+    </wsdl:documentation>
+    <wsdl:operation name="createDaiEncodingProfiles">
+      <wsdl:documentation>
+        Creates new {@link DaiEncodingProfile} objects.
+      </wsdl:documentation>
+      <wsdl:input message="tns:createDaiEncodingProfilesRequest" name="createDaiEncodingProfilesRequest"/>
+      <wsdl:output message="tns:createDaiEncodingProfilesResponse" name="createDaiEncodingProfilesResponse"/>
+      <wsdl:fault message="tns:ApiException" name="ApiException"/>
+    </wsdl:operation>
+    <wsdl:operation name="getDaiEncodingProfilesByStatement">
+      <wsdl:documentation>
+        Gets a {@link DaiEncodingProfilePage} of {@link DaiEncodingProfile} objects that satisfy the
+        given {@link Statement#query}. The following fields are supported for filtering:
+        
+        &lt;table&gt;
+        &lt;tr&gt;
+        &lt;th scope="col"&gt;PQL Property&lt;/th&gt; &lt;th scope="col"&gt;Object Property&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code id}&lt;/td&gt;
+        &lt;td&gt;{@link DaiEncodingProfile#id}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code status}&lt;/td&gt;
+        &lt;td&gt;{@link DaiEncodingProfile#status}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+        &lt;td&gt;{@code name}&lt;/td&gt;
+        &lt;td&gt;{@link DaiEncodingProfile#name}&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;/table&gt;
+      </wsdl:documentation>
+      <wsdl:input message="tns:getDaiEncodingProfilesByStatementRequest" name="getDaiEncodingProfilesByStatementRequest"/>
+      <wsdl:output
+        message="tns:getDaiEncodingProfilesByStatementResponse" name="getDaiEncodingProfilesByStatementResponse"/>
+      <wsdl:fault message="tns:ApiException" name="ApiException"/>
+    </wsdl:operation>
+    <wsdl:operation name="performDaiEncodingProfileAction">
+      <wsdl:documentation>
+        Performs actions on {@link DaiEncodingProfile} objects that match the given {@link
+        Statement#query}.
+      </wsdl:documentation>
+      <wsdl:input message="tns:performDaiEncodingProfileActionRequest" name="performDaiEncodingProfileActionRequest"/>
+      <wsdl:output message="tns:performDaiEncodingProfileActionResponse" name="performDaiEncodingProfileActionResponse"/>
+      <wsdl:fault message="tns:ApiException" name="ApiException"/>
+    </wsdl:operation>
+    <wsdl:operation name="updateDaiEncodingProfiles">
+      <wsdl:documentation>
+        Updates the specified {@link DaiEncodingProfile} objects.
+      </wsdl:documentation>
+      <wsdl:input message="tns:updateDaiEncodingProfilesRequest" name="updateDaiEncodingProfilesRequest"/>
+      <wsdl:output message="tns:updateDaiEncodingProfilesResponse" name="updateDaiEncodingProfilesResponse"/>
+      <wsdl:fault message="tns:ApiException" name="ApiException"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DaiEncodingProfileServiceSoapBinding" type="tns:DaiEncodingProfileServiceInterface">
+    <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="createDaiEncodingProfiles">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="createDaiEncodingProfilesRequest">
+        <wsdlsoap:header message="tns:RequestHeader"
+          part="RequestHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createDaiEncodingProfilesResponse">
+        <wsdlsoap:header message="tns:ResponseHeader"
+          part="ResponseHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ApiException">
+        <wsdlsoap:fault name="ApiException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDaiEncodingProfilesByStatement">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="getDaiEncodingProfilesByStatementRequest">
+        <wsdlsoap:header message="tns:RequestHeader"
+          part="RequestHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getDaiEncodingProfilesByStatementResponse">
+        <wsdlsoap:header message="tns:ResponseHeader"
+          part="ResponseHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ApiException">
+        <wsdlsoap:fault name="ApiException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="performDaiEncodingProfileAction">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="performDaiEncodingProfileActionRequest">
+        <wsdlsoap:header message="tns:RequestHeader"
+          part="RequestHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="performDaiEncodingProfileActionResponse">
+        <wsdlsoap:header message="tns:ResponseHeader"
+          part="ResponseHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ApiException">
+        <wsdlsoap:fault name="ApiException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateDaiEncodingProfiles">
+      <wsdlsoap:operation soapAction=""/>
+      <wsdl:input name="updateDaiEncodingProfilesRequest">
+        <wsdlsoap:header message="tns:RequestHeader"
+          part="RequestHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateDaiEncodingProfilesResponse">
+        <wsdlsoap:header message="tns:ResponseHeader"
+          part="ResponseHeader" use="literal"/>
+        <wsdlsoap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ApiException">
+        <wsdlsoap:fault name="ApiException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DaiEncodingProfileService">
+    <wsdl:port binding="tns:DaiEncodingProfileServiceSoapBinding" name="DaiEncodingProfileServiceInterfacePort">
+      <wsdlsoap:address location="https://ads.google.com/apis/ads/publisher/v202411/DaiEncodingProfileService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

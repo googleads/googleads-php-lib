@@ -5097,8 +5097,8 @@
           <enumeration value="COUNTRY_CRITERIA_ID">
             <annotation>
               <documentation>
-                Breaks down reporting data by country criteria ID. Can be used to filter by
-                country criteria ID.
+                Breaks down reporting data by country criteria ID. Can be used to filter by country criteria
+                ID.
                 &lt;p&gt;Compatible with any of the following report types: Historical, Future sell-through, Reach, Ad speed, YouTube consolidated.&lt;/p&gt;
               </documentation>
             </annotation>
@@ -5743,7 +5743,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by device name. Can be used for filtering.
-                &lt;p&gt;Corresponds to "Devices" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
+                &lt;p&gt;Can correspond to any of the following in the Ad Manager UI: Mobile OS, Devices. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>

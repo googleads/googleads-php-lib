@@ -673,10 +673,6 @@
             &lt;td&gt;{@link Site#approvalStatus}&lt;/td&gt;
             &lt;/tr&gt;
             &lt;tr&gt;
-            &lt;td&gt;{@code active}&lt;/td&gt;
-            &lt;td&gt;{@link Site#active}&lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
             &lt;td&gt;{@code lastModifiedApprovalStatusDateTime}&lt;/td&gt;
             &lt;td&gt;&lt;/td&gt;
             &lt;/tr&gt;
@@ -813,10 +809,6 @@
         &lt;tr&gt;
         &lt;td&gt;{@code approvalStatus}&lt;/td&gt;
         &lt;td&gt;{@link Site#approvalStatus}&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-        &lt;td&gt;{@code active}&lt;/td&gt;
-        &lt;td&gt;{@link Site#active}&lt;/td&gt;
         &lt;/tr&gt;
         &lt;tr&gt;
         &lt;td&gt;{@code lastModifiedApprovalStatusDateTime}&lt;/td&gt;

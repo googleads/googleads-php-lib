@@ -1126,7 +1126,7 @@
       <complexType name="NullError">
         <annotation>
           <documentation>
-            Errors associated with violation of a NOT NULL check.
+            Caused by supplying a non-null value for an attribute that should be null.
           </documentation>
         </annotation>
         <complexContent>
@@ -2336,21 +2336,6 @@
               </documentation>
             </annotation>
           </enumeration>
-          <enumeration value="INVALID_INTERNAL_REDIRECT_URL">
-            <annotation>
-              <documentation>
-                The internal redirect URL was invalid. The URL must have the following
-                syntax http://ad.doubleclick.net/ad/sitename/;sz=size.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="DESTINATION_URL_REQUIRED">
-            <annotation>
-              <documentation>
-                {@link HasDestinationUrlCreative#destinationUrl} is required.
-              </documentation>
-            </annotation>
-          </enumeration>
           <enumeration value="DESTINATION_URL_NOT_EMPTY">
             <annotation>
               <documentation>
@@ -2378,13 +2363,6 @@
             <annotation>
               <documentation>
                 Cannot create or update legacy mobile creative.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="MISSING_FEATURE">
-            <annotation>
-              <documentation>
-                The user is missing a necessary feature.
               </documentation>
             </annotation>
           </enumeration>
@@ -2458,13 +2436,6 @@
             <annotation>
               <documentation>
                 Ad Manager hosted video creatives must contain a video asset.
-              </documentation>
-            </annotation>
-          </enumeration>
-          <enumeration value="CANNOT_SET_MULTIPLE_IMPRESSION_TRACKING_URLS">
-            <annotation>
-              <documentation>
-                {@link ImageCreative#thirdPartyImpressionTrackingUrls} should not contain more than one url.
               </documentation>
             </annotation>
           </enumeration>
@@ -4564,14 +4535,15 @@
       <simpleType name="NullError.Reason">
         <annotation>
           <documentation>
-            The reasons for the validation error.
+            The reasons for the target error.
           </documentation>
         </annotation>
         <restriction base="xsd:string">
-          <enumeration value="NULL_CONTENT">
+          <enumeration value="NOT_NULL"/>
+          <enumeration value="UNKNOWN">
             <annotation>
               <documentation>
-                Specified list/container must not contain any null elements
+                The value returned if the actual value is not exposed by the requested API version.
               </documentation>
             </annotation>
           </enumeration>
