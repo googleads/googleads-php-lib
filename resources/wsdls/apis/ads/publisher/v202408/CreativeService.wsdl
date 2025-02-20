@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2024 Google Inc. All Rights Reserved -->
+<!-- Copyright 2025 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202408"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202408"
@@ -2940,7 +2940,8 @@
                 name="creativeTemplateId" type="xsd:long">
                 <annotation>
                   <documentation>
-                    Creative template ID that this creative is created from.
+                    Creative template ID that this creative is created from. This field is required for creation
+                    and immutable.
                   </documentation>
                 </annotation>
               </element>

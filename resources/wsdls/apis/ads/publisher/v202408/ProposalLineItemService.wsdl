@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated file, do not edit -->
-<!-- Copyright 2024 Google Inc. All Rights Reserved -->
+<!-- Copyright 2025 Google Inc. All Rights Reserved -->
 <wsdl:definitions
   targetNamespace="https://www.google.com/apis/ads/publisher/v202408"
   xmlns:tns="https://www.google.com/apis/ads/publisher/v202408"
@@ -1947,7 +1947,7 @@
       <complexType name="MobileApplicationTargeting">
         <annotation>
           <documentation>
-            Provides line items the ability to target or exclude users' mobile applications.
+            Provides the ability to target or exclude users' mobile applications.
           </documentation>
         </annotation>
         <sequence>
@@ -1955,8 +1955,7 @@
             name="mobileApplicationIds" type="xsd:long">
             <annotation>
               <documentation>
-                The {@link MobileApplication#applicationId IDs} that are being targeted or excluded by the
-                {@link LineItem}.
+                The {@link MobileApplication#id IDs} that are being targeted or excluded.
               </documentation>
             </annotation>
           </element>

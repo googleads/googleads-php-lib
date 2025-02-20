@@ -58,6 +58,7 @@ class TargetingPresetService extends \Google\AdsApi\Common\AdsSoapClient
       'DeviceManufacturer' => 'Google\\AdsApi\\AdManager\\v202408\\DeviceManufacturer',
       'DeviceManufacturerTargeting' => 'Google\\AdsApi\\AdManager\\v202408\\DeviceManufacturerTargeting',
       'EntityChildrenLimitReachedError' => 'Google\\AdsApi\\AdManager\\v202408\\EntityChildrenLimitReachedError',
+      'EntityLimitReachedError' => 'Google\\AdsApi\\AdManager\\v202408\\EntityLimitReachedError',
       'FeatureError' => 'Google\\AdsApi\\AdManager\\v202408\\FeatureError',
       'FieldPathElement' => 'Google\\AdsApi\\AdManager\\v202408\\FieldPathElement',
       'GenericTargetingError' => 'Google\\AdsApi\\AdManager\\v202408\\GenericTargetingError',
