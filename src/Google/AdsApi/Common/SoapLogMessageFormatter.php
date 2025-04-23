@@ -55,11 +55,11 @@ final class SoapLogMessageFormatter
      *     fault messages to in the info log
      */
     public function __construct(
-        array $requestHttpHeadersToScrub = null,
-        array $requestSoapHeadersToScrub = null,
-        array $requestSoapBodyTagsToScrub = null,
-        array $additionalRequestSummaryHeaders = null,
-        array $additionalResponseSummaryHeaders = null,
+        ?array $requestHttpHeadersToScrub = null,
+        ?array $requestSoapHeadersToScrub = null,
+        ?array $requestSoapBodyTagsToScrub = null,
+        ?array $additionalRequestSummaryHeaders = null,
+        ?array $additionalResponseSummaryHeaders = null,
         $faultMsgMaxLength = null
     ) {
         $this->requestHttpHeadersToScrub =
