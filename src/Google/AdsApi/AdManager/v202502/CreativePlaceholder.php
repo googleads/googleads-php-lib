@@ -65,7 +65,7 @@ class CreativePlaceholder
      * @param string $targetingName
      * @param boolean $isAmpOnly
      */
-    public function __construct($size = null, $creativeTemplateId = null, array $companions = null, array $appliedLabels = null, array $effectiveAppliedLabels = null, $expectedCreativeCount = null, $creativeSizeType = null, $targetingName = null, $isAmpOnly = null)
+    public function __construct($size = null, $creativeTemplateId = null, ?array $companions = null, ?array $appliedLabels = null, ?array $effectiveAppliedLabels = null, $expectedCreativeCount = null, $creativeSizeType = null, $targetingName = null, $isAmpOnly = null)
     {
       $this->size = $size;
       $this->creativeTemplateId = $creativeTemplateId;
@@ -127,7 +127,7 @@ class CreativePlaceholder
      * @param \Google\AdsApi\AdManager\v202502\CreativePlaceholder[]|null $companions
      * @return \Google\AdsApi\AdManager\v202502\CreativePlaceholder
      */
-    public function setCompanions(array $companions = null)
+    public function setCompanions(?array $companions = null)
     {
       $this->companions = $companions;
       return $this;
@@ -145,7 +145,7 @@ class CreativePlaceholder
      * @param \Google\AdsApi\AdManager\v202502\AppliedLabel[]|null $appliedLabels
      * @return \Google\AdsApi\AdManager\v202502\CreativePlaceholder
      */
-    public function setAppliedLabels(array $appliedLabels = null)
+    public function setAppliedLabels(?array $appliedLabels = null)
     {
       $this->appliedLabels = $appliedLabels;
       return $this;
@@ -163,7 +163,7 @@ class CreativePlaceholder
      * @param \Google\AdsApi\AdManager\v202502\AppliedLabel[]|null $effectiveAppliedLabels
      * @return \Google\AdsApi\AdManager\v202502\CreativePlaceholder
      */
-    public function setEffectiveAppliedLabels(array $effectiveAppliedLabels = null)
+    public function setEffectiveAppliedLabels(?array $effectiveAppliedLabels = null)
     {
       $this->effectiveAppliedLabels = $effectiveAppliedLabels;
       return $this;

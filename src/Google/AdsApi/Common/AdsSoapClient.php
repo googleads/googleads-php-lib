@@ -64,7 +64,7 @@ class AdsSoapClient extends SoapClient
      *     mode
      * @param array|null $options the SOAP client options
      */
-    public function __construct($wsdl, array $options = null)
+    public function __construct($wsdl, ?array $options = null)
     {
         $this->wsdlUri = $wsdl;
         if (array_key_exists('classmap', $options)) {
@@ -133,7 +133,7 @@ class AdsSoapClient extends SoapClient
                 $httpHeaders
             )
         );
-        stream_context_set_option(
+        stream_context_set_options(
             $this->streamContext,
             $existingStreamContextOptions
         );
@@ -241,7 +241,7 @@ class AdsSoapClient extends SoapClient
         $this->logSoapCall($methodName, $soapFault);
     }
 
-    private function logSoapCall($methodName, SoapFault $soapFault = null)
+    private function logSoapCall($methodName, ?SoapFault $soapFault = null)
     {
         $summary = $this->soapLogMessageFormatter->formatSummary(
             $this->serviceDescriptor->getServiceName(),
