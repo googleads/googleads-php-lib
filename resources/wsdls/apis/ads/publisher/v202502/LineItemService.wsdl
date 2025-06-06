@@ -1844,7 +1844,14 @@
               </documentation>
             </annotation>
           </element>
-          <element maxOccurs="1" minOccurs="0" name="applyTrueCoview" type="xsd:boolean"/>
+          <element maxOccurs="1" minOccurs="0" name="applyTrueCoview" type="xsd:boolean">
+            <annotation>
+              <documentation>
+                Specifies whether to apply true coviewing in Nielsen Line Item auto pacing. This field can only
+                be true if NielsenCtvPacingType is not NONE.
+              </documentation>
+            </annotation>
+          </element>
         </sequence>
       </complexType>
       <complexType name="GrpSettingsError">
@@ -5689,16 +5696,15 @@
           <enumeration value="INVALID_ADSENSE_CREATIVE_SIZE">
             <annotation>
               <documentation>
-                Invalid size for AdSense dynamic allocation creative.
-                Only valid AFC sizes are allowed.
+                Invalid size for AdSense dynamic allocation creative. Only valid AFC sizes are allowed.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="INVALID_AD_EXCHANGE_CREATIVE_SIZE">
             <annotation>
               <documentation>
-                Invalid size for Ad Exchange dynamic allocation creative.
-                Only valid Ad Exchange sizes are allowed.
+                Invalid size for Ad Exchange dynamic allocation creative. Only valid Ad Exchange sizes are
+                allowed.
               </documentation>
             </annotation>
           </enumeration>
@@ -9219,8 +9225,8 @@
           <enumeration value="CANNOT_UPDATE_ORDER_OVER_LINE_ITEM_LIMIT">
             <annotation>
               <documentation>
-                Cannot update (archive, pause, resume) an {@link Order} because it has more than the allowed
-                number of {@link LineItem}s.
+                Cannot update an {@link Order} because it has more than the allowed number of {@link
+                LineItem}s.
               </documentation>
             </annotation>
           </enumeration>

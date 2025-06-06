@@ -1637,16 +1637,15 @@
           <enumeration value="INVALID_ADSENSE_CREATIVE_SIZE">
             <annotation>
               <documentation>
-                Invalid size for AdSense dynamic allocation creative.
-                Only valid AFC sizes are allowed.
+                Invalid size for AdSense dynamic allocation creative. Only valid AFC sizes are allowed.
               </documentation>
             </annotation>
           </enumeration>
           <enumeration value="INVALID_AD_EXCHANGE_CREATIVE_SIZE">
             <annotation>
               <documentation>
-                Invalid size for Ad Exchange dynamic allocation creative.
-                Only valid Ad Exchange sizes are allowed.
+                Invalid size for Ad Exchange dynamic allocation creative. Only valid Ad Exchange sizes are
+                allowed.
               </documentation>
             </annotation>
           </enumeration>
