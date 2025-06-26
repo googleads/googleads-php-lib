@@ -133,10 +133,18 @@ class AdsSoapClient extends SoapClient
                 $httpHeaders
             )
         );
-        stream_context_set_options(
-            $this->streamContext,
-            $existingStreamContextOptions
-        );
+
+        if (PHP_VERSION_ID >= 803000) {
+            stream_context_set_options(
+                $this->streamContext,
+                $existingStreamContextOptions
+            );
+        } else {
+            stream_context_set_option(
+                $this->streamContext,
+                $existingStreamContextOptions
+            );
+        }
 
         // Generate the SOAP headers for this API request.
         $input_headers[] = $this->headerHandler->generateSoapHeaders(
