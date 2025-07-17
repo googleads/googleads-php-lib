@@ -16,7 +16,7 @@ final class ServiceFactory
 {
     private $services;
 
-    public function __construct(AdManagerServices $services = null)
+    public function __construct(?AdManagerServices $services = null)
     {
         $this->services = is_null($services) ? new AdManagerServices() : $services;
     }

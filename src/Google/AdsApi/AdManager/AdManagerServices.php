@@ -35,8 +35,8 @@ final class AdManagerServices implements AdsServices
      * @param AdManagerHeaderHandler|null $adManagerHeaderHandler
      */
     public function __construct(
-        AdsSoapClientFactory $adsSoapClientFactory = null,
-        AdManagerHeaderHandler $adManagerHeaderHandler = null
+        ?AdsSoapClientFactory $adsSoapClientFactory = null,
+        ?AdManagerHeaderHandler $adManagerHeaderHandler = null
     ) {
         $this->adsSoapClientFactory = ($adsSoapClientFactory === null)
             ? new AdsSoapClientFactory(

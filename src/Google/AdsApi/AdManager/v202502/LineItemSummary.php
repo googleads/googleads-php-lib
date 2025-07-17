@@ -389,7 +389,7 @@ class LineItemSummary
      * @param string $childContentEligibility
      * @param string $customVastExtension
      */
-    public function __construct($orderId = null, $id = null, $name = null, $externalId = null, $orderName = null, $startDateTime = null, $startDateTimeType = null, $endDateTime = null, $autoExtensionDays = null, $unlimitedEndDateTime = null, $creativeRotationType = null, $deliveryRateType = null, $deliveryForecastSource = null, $customPacingCurve = null, $roadblockingType = null, $skippableAdType = null, array $frequencyCaps = null, $lineItemType = null, $priority = null, $costPerUnit = null, $valueCostPerUnit = null, $costType = null, $discountType = null, $discount = null, $contractedUnitsBought = null, array $creativePlaceholders = null, array $activityAssociations = null, $environmentType = null, array $allowedFormats = null, $companionDeliveryOption = null, $allowOverbook = null, $skipInventoryCheck = null, $skipCrossSellingRuleWarningChecks = null, $reserveAtCreation = null, $stats = null, $deliveryIndicator = null, $deliveryData = null, $budget = null, $status = null, $reservationStatus = null, $isArchived = null, $webPropertyCode = null, array $appliedLabels = null, array $effectiveAppliedLabels = null, $disableSameAdvertiserCompetitiveExclusion = null, $lastModifiedByApp = null, $notes = null, $competitiveConstraintScope = null, $lastModifiedDateTime = null, $creationDateTime = null, array $customFieldValues = null, $isMissingCreatives = null, $programmaticCreativeSource = null, $thirdPartyMeasurementSettings = null, $youtubeKidsRestricted = null, $videoMaxDuration = null, $primaryGoal = null, array $secondaryGoals = null, $grpSettings = null, $dealInfo = null, array $viewabilityProviderCompanyIds = null, $childContentEligibility = null, $customVastExtension = null)
+    public function __construct($orderId = null, $id = null, $name = null, $externalId = null, $orderName = null, $startDateTime = null, $startDateTimeType = null, $endDateTime = null, $autoExtensionDays = null, $unlimitedEndDateTime = null, $creativeRotationType = null, $deliveryRateType = null, $deliveryForecastSource = null, $customPacingCurve = null, $roadblockingType = null, $skippableAdType = null, ?array $frequencyCaps = null, $lineItemType = null, $priority = null, $costPerUnit = null, $valueCostPerUnit = null, $costType = null, $discountType = null, $discount = null, $contractedUnitsBought = null, ?array $creativePlaceholders = null, ?array $activityAssociations = null, $environmentType = null, ?array $allowedFormats = null, $companionDeliveryOption = null, $allowOverbook = null, $skipInventoryCheck = null, $skipCrossSellingRuleWarningChecks = null, $reserveAtCreation = null, $stats = null, $deliveryIndicator = null, $deliveryData = null, $budget = null, $status = null, $reservationStatus = null, $isArchived = null, $webPropertyCode = null, ?array $appliedLabels = null, ?array $effectiveAppliedLabels = null, $disableSameAdvertiserCompetitiveExclusion = null, $lastModifiedByApp = null, $notes = null, $competitiveConstraintScope = null, $lastModifiedDateTime = null, $creationDateTime = null, ?array $customFieldValues = null, $isMissingCreatives = null, $programmaticCreativeSource = null, $thirdPartyMeasurementSettings = null, $youtubeKidsRestricted = null, $videoMaxDuration = null, $primaryGoal = null, ?array $secondaryGoals = null, $grpSettings = null, $dealInfo = null, ?array $viewabilityProviderCompanyIds = null, $childContentEligibility = null, $customVastExtension = null)
     {
       $this->orderId = $orderId;
       $this->id = $id;
@@ -758,7 +758,7 @@ class LineItemSummary
      * @param \Google\AdsApi\AdManager\v202502\FrequencyCap[]|null $frequencyCaps
      * @return \Google\AdsApi\AdManager\v202502\LineItemSummary
      */
-    public function setFrequencyCaps(array $frequencyCaps = null)
+    public function setFrequencyCaps(?array $frequencyCaps = null)
     {
       $this->frequencyCaps = $frequencyCaps;
       return $this;
@@ -921,7 +921,7 @@ class LineItemSummary
      * @param \Google\AdsApi\AdManager\v202502\CreativePlaceholder[]|null $creativePlaceholders
      * @return \Google\AdsApi\AdManager\v202502\LineItemSummary
      */
-    public function setCreativePlaceholders(array $creativePlaceholders = null)
+    public function setCreativePlaceholders(?array $creativePlaceholders = null)
     {
       $this->creativePlaceholders = $creativePlaceholders;
       return $this;
@@ -939,7 +939,7 @@ class LineItemSummary
      * @param \Google\AdsApi\AdManager\v202502\LineItemActivityAssociation[]|null $activityAssociations
      * @return \Google\AdsApi\AdManager\v202502\LineItemSummary
      */
-    public function setActivityAssociations(array $activityAssociations = null)
+    public function setActivityAssociations(?array $activityAssociations = null)
     {
       $this->activityAssociations = $activityAssociations;
       return $this;
@@ -975,7 +975,7 @@ class LineItemSummary
      * @param string[]|null $allowedFormats
      * @return \Google\AdsApi\AdManager\v202502\LineItemSummary
      */
-    public function setAllowedFormats(array $allowedFormats = null)
+    public function setAllowedFormats(?array $allowedFormats = null)
     {
       $this->allowedFormats = $allowedFormats;
       return $this;
@@ -1227,7 +1227,7 @@ class LineItemSummary
      * @param \Google\AdsApi\AdManager\v202502\AppliedLabel[]|null $appliedLabels
      * @return \Google\AdsApi\AdManager\v202502\LineItemSummary
      */
-    public function setAppliedLabels(array $appliedLabels = null)
+    public function setAppliedLabels(?array $appliedLabels = null)
     {
       $this->appliedLabels = $appliedLabels;
       return $this;
@@ -1245,7 +1245,7 @@ class LineItemSummary
      * @param \Google\AdsApi\AdManager\v202502\AppliedLabel[]|null $effectiveAppliedLabels
      * @return \Google\AdsApi\AdManager\v202502\LineItemSummary
      */
-    public function setEffectiveAppliedLabels(array $effectiveAppliedLabels = null)
+    public function setEffectiveAppliedLabels(?array $effectiveAppliedLabels = null)
     {
       $this->effectiveAppliedLabels = $effectiveAppliedLabels;
       return $this;
@@ -1371,7 +1371,7 @@ class LineItemSummary
      * @param \Google\AdsApi\AdManager\v202502\BaseCustomFieldValue[]|null $customFieldValues
      * @return \Google\AdsApi\AdManager\v202502\LineItemSummary
      */
-    public function setCustomFieldValues(array $customFieldValues = null)
+    public function setCustomFieldValues(?array $customFieldValues = null)
     {
       $this->customFieldValues = $customFieldValues;
       return $this;
@@ -1498,7 +1498,7 @@ class LineItemSummary
      * @param \Google\AdsApi\AdManager\v202502\Goal[]|null $secondaryGoals
      * @return \Google\AdsApi\AdManager\v202502\LineItemSummary
      */
-    public function setSecondaryGoals(array $secondaryGoals = null)
+    public function setSecondaryGoals(?array $secondaryGoals = null)
     {
       $this->secondaryGoals = $secondaryGoals;
       return $this;
@@ -1552,7 +1552,7 @@ class LineItemSummary
      * @param int[]|null $viewabilityProviderCompanyIds
      * @return \Google\AdsApi\AdManager\v202502\LineItemSummary
      */
-    public function setViewabilityProviderCompanyIds(array $viewabilityProviderCompanyIds = null)
+    public function setViewabilityProviderCompanyIds(?array $viewabilityProviderCompanyIds = null)
     {
       $this->viewabilityProviderCompanyIds = $viewabilityProviderCompanyIds;
       return $this;

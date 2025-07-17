@@ -64,7 +64,7 @@ class AdsSoapClient extends SoapClient
      *     mode
      * @param array|null $options the SOAP client options
      */
-    public function __construct($wsdl, array $options = null)
+    public function __construct($wsdl, ?array $options = null)
     {
         $this->wsdlUri = $wsdl;
         if (array_key_exists('classmap', $options)) {
@@ -133,10 +133,18 @@ class AdsSoapClient extends SoapClient
                 $httpHeaders
             )
         );
-        stream_context_set_option(
-            $this->streamContext,
-            $existingStreamContextOptions
-        );
+
+        if (PHP_VERSION_ID >= 80300) {
+            stream_context_set_options(
+                $this->streamContext,
+                $existingStreamContextOptions
+            );
+        } else {
+            stream_context_set_option(
+                $this->streamContext,
+                $existingStreamContextOptions
+            );
+        }
 
         // Generate the SOAP headers for this API request.
         $input_headers[] = $this->headerHandler->generateSoapHeaders(
@@ -241,7 +249,7 @@ class AdsSoapClient extends SoapClient
         $this->logSoapCall($methodName, $soapFault);
     }
 
-    private function logSoapCall($methodName, SoapFault $soapFault = null)
+    private function logSoapCall($methodName, ?SoapFault $soapFault = null)
     {
         $summary = $this->soapLogMessageFormatter->formatSummary(
             $this->serviceDescriptor->getServiceName(),
