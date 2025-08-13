@@ -207,8 +207,8 @@
                 name="mimeTypes" type="tns:AssetCreativeTemplateVariable.MimeType">
                 <annotation>
                   <documentation>
-                    A set of supported mime types. This set can be empty or null if there's no
-                    constraint, meaning files of any mime types are allowed.
+                    A set of supported mime types. This set can be empty if there's no constraint, meaning files of
+                    any mime types are allowed.
                   </documentation>
                 </annotation>
               </element>

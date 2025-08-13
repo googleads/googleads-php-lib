@@ -197,29 +197,124 @@
         </complexContent>
       </complexType>
       <complexType name="SegmentPopulationRequest">
+        <annotation>
+          <documentation>
+            A request to upload identifiers to an AudienceSegment.
+          </documentation>
+        </annotation>
         <sequence>
-          <element maxOccurs="1" minOccurs="0" name="batchUploadId" type="xsd:long"/>
-          <element maxOccurs="1" minOccurs="0" name="segmentId" type="xsd:long"/>
-          <element maxOccurs="1" minOccurs="0" name="isDeletion" type="xsd:boolean"/>
-          <element maxOccurs="1" minOccurs="0" name="identifierType" type="tns:IdentifierType"/>
-          <element maxOccurs="unbounded" minOccurs="0" name="ids" type="xsd:string"/>
-          <element maxOccurs="1" minOccurs="0" name="consentType" type="tns:ConsentType"/>
+          <element maxOccurs="1" minOccurs="0" name="batchUploadId" type="xsd:long">
+            <annotation>
+              <documentation>
+                The ID of the batch that will process {@link identifiers}. If not specified, it will be
+                provided by Google. The same ID can be used in subsequent requests to group them together as
+                part of the same batch.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="segmentId" type="xsd:long">
+            <annotation>
+              <documentation>
+                The ID of the segment to populate. This segment must be active.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="isDeletion" type="xsd:boolean">
+            <annotation>
+              <documentation>
+                Whether the identifiers should be added or removed.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="identifierType" type="tns:IdentifierType">
+            <annotation>
+              <documentation>
+                The type of identifier being operated upon.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="ids" type="xsd:string">
+            <annotation>
+              <documentation>
+                The identifiers to upload. This field may have a maximum size of 100,000 elements.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="consentType" type="tns:ConsentType">
+            <annotation>
+              <documentation>
+                Consent type gathered for all identifiers in this request.
+              </documentation>
+            </annotation>
+          </element>
         </sequence>
       </complexType>
       <complexType name="SegmentPopulationResponse">
+        <annotation>
+          <documentation>
+            Response returned by {@link SegmentPopulationService}
+          </documentation>
+        </annotation>
         <sequence>
-          <element maxOccurs="1" minOccurs="0" name="batchUploadId" type="xsd:long"/>
-          <element maxOccurs="unbounded" minOccurs="0" name="idErrors" type="tns:IdError"/>
+          <element maxOccurs="1" minOccurs="0" name="batchUploadId" type="xsd:long">
+            <annotation>
+              <documentation>
+                The batch ID used to look up the results.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="idErrors" type="tns:IdError">
+            <annotation>
+              <documentation>
+                Individual identifier errors.
+              </documentation>
+            </annotation>
+          </element>
         </sequence>
       </complexType>
       <complexType name="SegmentPopulationResults">
+        <annotation>
+          <documentation>
+            The results of a SegmentPopulationRequest.
+          </documentation>
+        </annotation>
         <sequence>
-          <element maxOccurs="1" minOccurs="0" name="batchUploadId" type="xsd:long"/>
-          <element maxOccurs="1" minOccurs="0" name="segmentId" type="xsd:long"/>
-          <element maxOccurs="1" minOccurs="0" name="status" type="tns:SegmentPopulationStatus"/>
+          <element maxOccurs="1" minOccurs="0" name="batchUploadId" type="xsd:long">
+            <annotation>
+              <documentation>
+                The batch ID to look up the results.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="segmentId" type="xsd:long">
+            <annotation>
+              <documentation>
+                The segment ID associated with the segment population job.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="status" type="tns:SegmentPopulationStatus">
+            <annotation>
+              <documentation>
+                The current status of the upload request.
+              </documentation>
+            </annotation>
+          </element>
           <element maxOccurs="1" minOccurs="0"
-            name="numSuccessfulIdsProcessed" type="xsd:long"/>
-          <element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:IdError"/>
+            name="numSuccessfulIdsProcessed" type="xsd:long">
+            <annotation>
+              <documentation>
+                The number of IDs that were processed successfully.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="errors" type="tns:IdError">
+            <annotation>
+              <documentation>
+                Identifiers with errors.
+              </documentation>
+            </annotation>
+          </element>
         </sequence>
       </complexType>
       <complexType name="ServerError">
@@ -544,6 +639,12 @@
     <wsdl:part element="tns:updateSegmentMembershipsResponse" name="parameters"/>
   </wsdl:message>
   <wsdl:portType name="SegmentPopulationServiceInterface">
+    <wsdl:documentation>
+      Provides methods for populating {@link AudienceSegment} with identifiers.
+      
+      &lt;p&gt;&lt;b&gt;This service is currently unimplemented and will throw an {@link ApiException} when
+      invoked. It is scheduled to be fully implemented in the v202311 release.&lt;/b&gt;
+    </wsdl:documentation>
     <wsdl:operation name="getSegmentPopulationResultsByIds">
       <wsdl:documentation>
         Returns a list of {@link SegmentPopulationResults} for the given {@code batchUploadIds}.

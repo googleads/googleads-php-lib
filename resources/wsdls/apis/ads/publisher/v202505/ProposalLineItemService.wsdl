@@ -4473,7 +4473,7 @@
       <simpleType name="BuyerPermissionType">
         <annotation>
           <documentation>
-            Describes the buyer permission type. go/bid-any-seat-fe
+            Describes the buyer permission type.
           </documentation>
         </annotation>
         <restriction base="xsd:string">
