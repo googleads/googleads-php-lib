@@ -1828,8 +1828,7 @@
           <enumeration value="AD_BREAK_MARKUP_HLS_DATERANGE_SPLICE">
             <annotation>
               <documentation>
-                The DATERANGE (Anvato) ad break marker type. This mark up type is only applicable for HLS live
-                streams.
+                The DATERANGE ad break marker type. This mark up type is only applicable for HLS live streams.
               </documentation>
             </annotation>
           </enumeration>

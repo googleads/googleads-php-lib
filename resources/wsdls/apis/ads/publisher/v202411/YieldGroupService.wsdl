@@ -17,6 +17,11 @@
         </appinfo>
       </annotation>
       <complexType abstract="true" name="AbstractDisplaySettings">
+        <annotation>
+          <documentation>
+            Base class for information necessary to call an ad network as part of mediation or open bidding.
+          </documentation>
+        </annotation>
         <sequence/>
       </complexType>
       <complexType abstract="true" name="ObjectValue">
@@ -342,11 +347,23 @@
         </complexContent>
       </complexType>
       <complexType name="OpenBiddingSetting">
+        <annotation>
+          <documentation>
+            Configuration for Open Bidding in a {@link YieldAdSource}.
+          </documentation>
+        </annotation>
         <complexContent>
           <extension base="tns:AbstractDisplaySettings">
             <sequence>
               <element maxOccurs="1" minOccurs="0"
-                name="yieldIntegrationType" type="tns:YieldIntegrationType"/>
+                name="yieldIntegrationType" type="tns:YieldIntegrationType">
+                <annotation>
+                  <documentation>
+                    Integration type of the demand syndication setting. This must be either {@code
+                    EXCHANGE_BIDDING} or {@code NETWORK_BIDDING}.
+                  </documentation>
+                </annotation>
+              </element>
             </sequence>
           </extension>
         </complexContent>
@@ -538,14 +555,37 @@
         </sequence>
       </complexType>
       <complexType name="SdkMediationSettings">
+        <annotation>
+          <documentation>
+            Display settings for mobile SDK adapters.
+          </documentation>
+        </annotation>
         <complexContent>
           <extension base="tns:AbstractDisplaySettings">
             <sequence>
               <element maxOccurs="unbounded" minOccurs="0"
-                name="parameters" type="tns:YieldParameter_StringMapEntry"/>
+                name="parameters" type="tns:YieldParameter_StringMapEntry">
+                <annotation>
+                  <documentation>
+                    A map of key-value pairs to be used by this mobile adapter.
+                  </documentation>
+                </annotation>
+              </element>
               <element maxOccurs="1" minOccurs="0"
-                name="yieldIntegrationType" type="tns:YieldIntegrationType"/>
-              <element maxOccurs="1" minOccurs="0" name="platform" type="tns:YieldPlatform"/>
+                name="yieldIntegrationType" type="tns:YieldIntegrationType">
+                <annotation>
+                  <documentation>
+                    The integration type of the adapter. This may be {@code CUSTOM_EVENT} or {@code SDK}.
+                  </documentation>
+                </annotation>
+              </element>
+              <element maxOccurs="1" minOccurs="0" name="platform" type="tns:YieldPlatform">
+                <annotation>
+                  <documentation>
+                    The platform of the adapter.
+                  </documentation>
+                </annotation>
+              </element>
             </sequence>
           </extension>
         </complexContent>
@@ -978,13 +1018,62 @@
         </sequence>
       </complexType>
       <complexType name="YieldAdSource">
+        <annotation>
+          <documentation>
+            A yield ad source represents an opportunity for a third party network to be mediated on a segment
+            of inventory described in a {@link YieldGroupDto}.
+          </documentation>
+        </annotation>
         <sequence>
-          <element maxOccurs="1" minOccurs="0" name="adSourceId" type="xsd:long"/>
-          <element maxOccurs="1" minOccurs="0" name="companyId" type="xsd:long"/>
-          <element maxOccurs="1" minOccurs="0" name="displaySettings" type="tns:AbstractDisplaySettings"/>
-          <element maxOccurs="1" minOccurs="0" name="status" type="tns:YieldEntityStatus"/>
-          <element maxOccurs="1" minOccurs="0" name="manualCpm" type="tns:Money"/>
-          <element maxOccurs="1" minOccurs="0" name="overrideDynamicCpm" type="xsd:boolean"/>
+          <element maxOccurs="1" minOccurs="0" name="adSourceId" type="xsd:long">
+            <annotation>
+              <documentation>
+                The unique ID of the ad source. This attribute is read-only and is assigned by Google when the
+                ad source is created.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="companyId" type="xsd:long">
+            <annotation>
+              <documentation>
+                The id of the partner owning the ad source. This should be the ID of the {@link Company}
+                representing the yield partner.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="displaySettings" type="tns:AbstractDisplaySettings">
+            <annotation>
+              <documentation>
+                Data that describe how to call an ad network.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="status" type="tns:YieldEntityStatus">
+            <annotation>
+              <documentation>
+                User-assigned status of the ad source. Note that this can be different than the status on the
+                {@link YieldGroup} this ad source belongs to. Set this to {@code DELETED} to remove it from the
+                {@link YieldGroup}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="manualCpm" type="tns:Money">
+            <annotation>
+              <documentation>
+                CPM manually assigned to this source. This will be used as a default CPM until automatic data
+                collection is available for the ad source, or always if {@code overrideDynamicCpm} is set to
+                true.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="overrideDynamicCpm" type="xsd:boolean">
+            <annotation>
+              <documentation>
+                If true, then the automatically collected CPM, if available, is ignored in favor of {@code
+                manualCpm}.
+              </documentation>
+            </annotation>
+          </element>
         </sequence>
       </complexType>
       <complexType name="YieldError">
@@ -997,27 +1086,117 @@
         </complexContent>
       </complexType>
       <complexType name="YieldGroup">
+        <annotation>
+          <documentation>
+            A Yield Group represents a segment of inventory and a set of networks to which the inventory is
+            made available for yield.
+          </documentation>
+        </annotation>
         <sequence>
-          <element maxOccurs="1" minOccurs="0" name="yieldGroupId" type="xsd:long"/>
-          <element maxOccurs="1" minOccurs="0" name="yieldGroupName" type="xsd:string"/>
-          <element maxOccurs="1" minOccurs="0" name="exchangeStatus" type="tns:YieldEntityStatus"/>
-          <element maxOccurs="1" minOccurs="0" name="format" type="tns:YieldFormat"/>
-          <element maxOccurs="1" minOccurs="0" name="environmentType" type="tns:YieldEnvironmentType"/>
-          <element maxOccurs="1" minOccurs="0" name="targeting" type="tns:Targeting"/>
-          <element maxOccurs="unbounded" minOccurs="0" name="adSources" type="tns:YieldAdSource"/>
+          <element maxOccurs="1" minOccurs="0" name="yieldGroupId" type="xsd:long">
+            <annotation>
+              <documentation>
+                The unique ID of the {@code YieldGroup}. This attribute is read-only and is assigned by Google.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="yieldGroupName" type="xsd:string">
+            <annotation>
+              <documentation>
+                The display name of the yield group.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="exchangeStatus" type="tns:YieldEntityStatus">
+            <annotation>
+              <documentation>
+                Status of the Ad Exchange on for this yield group. This can be used to create a yield group
+                with only the Ad Exchange enabled. If there are any active {@code adSources}, this must be
+                {@code ACTIVE}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="format" type="tns:YieldFormat">
+            <annotation>
+              <documentation>
+                The format for the group.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="environmentType" type="tns:YieldEnvironmentType">
+            <annotation>
+              <documentation>
+                The environment type of the group.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="targeting" type="tns:Targeting">
+            <annotation>
+              <documentation>
+                This yield's group targeting. Only the following targeting types are available: TODO: List them
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="adSources" type="tns:YieldAdSource">
+            <annotation>
+              <documentation>
+                The ad sources belonging to this yield group.
+              </documentation>
+            </annotation>
+          </element>
         </sequence>
       </complexType>
       <complexType name="YieldGroupPage">
+        <annotation>
+          <documentation>
+            Captures a page of {@link YieldGroup} objects.
+          </documentation>
+        </annotation>
         <sequence>
-          <element maxOccurs="1" minOccurs="0" name="totalResultSetSize" type="xsd:int"/>
-          <element maxOccurs="1" minOccurs="0" name="startIndex" type="xsd:int"/>
-          <element maxOccurs="unbounded" minOccurs="0" name="results" type="tns:YieldGroup"/>
+          <element maxOccurs="1" minOccurs="0" name="totalResultSetSize" type="xsd:int">
+            <annotation>
+              <documentation>
+                The size of the total result set to which this page belongs.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="startIndex" type="xsd:int">
+            <annotation>
+              <documentation>
+                The absolute index in the total result set on which this page begins.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="results" type="tns:YieldGroup">
+            <annotation>
+              <documentation>
+                The collection of yield groups contained within this page.
+              </documentation>
+            </annotation>
+          </element>
         </sequence>
       </complexType>
       <complexType name="YieldParameter">
+        <annotation>
+          <documentation>
+            Class that describes a field used by a mobile adapter to call an ad network, e.g. pubid.
+          </documentation>
+        </annotation>
         <sequence>
-          <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string"/>
-          <element maxOccurs="1" minOccurs="0" name="isOptional" type="xsd:boolean"/>
+          <element maxOccurs="1" minOccurs="0" name="name" type="xsd:string">
+            <annotation>
+              <documentation>
+                Identifier of the parameter.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="isOptional" type="xsd:boolean">
+            <annotation>
+              <documentation>
+                Whether or not this parameter is optional.
+              </documentation>
+            </annotation>
+          </element>
         </sequence>
       </complexType>
       <complexType name="YieldParameter_StringMapEntry">
@@ -1033,12 +1212,35 @@
         </sequence>
       </complexType>
       <complexType name="YieldPartner">
+        <annotation>
+          <documentation>
+            A Partner that can be added to a yield group.
+          </documentation>
+        </annotation>
         <sequence>
-          <element maxOccurs="1" minOccurs="0" name="companyId" type="xsd:long"/>
-          <element maxOccurs="unbounded" minOccurs="0" name="settings" type="tns:YieldPartnerSettings"/>
+          <element maxOccurs="1" minOccurs="0" name="companyId" type="xsd:long">
+            <annotation>
+              <documentation>
+                The company id of the partner, uniquely identifying it in the publisher network. If this id is
+                null, then this represents a canonical third party company ad network.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="settings" type="tns:YieldPartnerSettings">
+            <annotation>
+              <documentation>
+                The settings of the partner, representing its capabilities.
+              </documentation>
+            </annotation>
+          </element>
         </sequence>
       </complexType>
       <complexType name="YieldPartnerSettings">
+        <annotation>
+          <documentation>
+            Settings for a yield partner.
+          </documentation>
+        </annotation>
         <sequence>
           <element maxOccurs="1" minOccurs="0" name="status" type="tns:PartnerSettingStatus"/>
           <element maxOccurs="1" minOccurs="0" name="environment" type="tns:YieldEnvironmentType"/>
@@ -1662,6 +1864,11 @@
     <wsdl:part element="tns:updateYieldGroupsResponse" name="parameters"/>
   </wsdl:message>
   <wsdl:portType name="YieldGroupServiceInterface">
+    <wsdl:documentation>
+      Provides methods for the management of {@link YieldGroup} objects.
+      
+      &lt;p&gt;Yield Groups are used to configure mediation and open bidding.
+    </wsdl:documentation>
     <wsdl:operation name="createYieldGroups">
       <wsdl:documentation>
         Creates yield groups in bulk.

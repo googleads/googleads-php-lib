@@ -135,6 +135,11 @@
         </complexContent>
       </complexType>
       <complexType name="DeactivateSite">
+        <annotation>
+          <documentation>
+            The action used for deactivating {@link Site} objects.
+          </documentation>
+        </annotation>
         <complexContent>
           <extension base="tns:SiteAction">
             <sequence/>
@@ -142,9 +147,26 @@
         </complexContent>
       </complexType>
       <complexType name="DisapprovalReason">
+        <annotation>
+          <documentation>
+            Represents the reason for which Google disapproved the site.
+          </documentation>
+        </annotation>
         <sequence>
-          <element maxOccurs="1" minOccurs="0" name="type" type="tns:DisapprovalReason.Type"/>
-          <element maxOccurs="1" minOccurs="0" name="details" type="xsd:string"/>
+          <element maxOccurs="1" minOccurs="0" name="type" type="tns:DisapprovalReason.Type">
+            <annotation>
+              <documentation>
+                The type of policy violation found for the {@code Site}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="details" type="xsd:string">
+            <annotation>
+              <documentation>
+                Additional details for the disapproval of the {@code Site}.
+              </documentation>
+            </annotation>
+          </element>
         </sequence>
       </complexType>
       <complexType name="EntityLimitReachedError">
@@ -289,18 +311,70 @@
         </complexContent>
       </complexType>
       <complexType abstract="true" name="SiteAction">
+        <annotation>
+          <documentation>
+            Represents the actions that can be performed on {@code Site} objects.
+          </documentation>
+        </annotation>
         <sequence/>
       </complexType>
       <complexType name="Site">
+        <annotation>
+          <documentation>
+            A {@code Site} represents a domain owned or represented by a network. For a parent network
+            managing other networks as part of Multiple Customer Management "Manage Inventory" model, it
+            could be the child's site.
+          </documentation>
+        </annotation>
         <sequence>
-          <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long"/>
-          <element maxOccurs="1" minOccurs="0" name="url" type="xsd:string"/>
-          <element maxOccurs="1" minOccurs="0" name="childNetworkCode" type="xsd:string"/>
-          <element maxOccurs="1" minOccurs="0" name="approvalStatus" type="tns:ApprovalStatus"/>
+          <element maxOccurs="1" minOccurs="0" name="id" type="xsd:long">
+            <annotation>
+              <documentation>
+                Uniquely identifies the {@code Site}. This value is read-only and is assigned by Google when
+                the site is created.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="url" type="xsd:string">
+            <annotation>
+              <documentation>
+                The URL of the {@code Site}.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="childNetworkCode" type="xsd:string">
+            <annotation>
+              <documentation>
+                The {@link Network#networkCode} of the child if the {@code Site} is being managed for an MCM
+                child network, or null if owned by this network.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="approvalStatus" type="tns:ApprovalStatus">
+            <annotation>
+              <documentation>
+                Status of the review performed on the {@code Site} by Google. This field is read-only and is
+                assigned by Google.
+              </documentation>
+            </annotation>
+          </element>
           <element maxOccurs="1" minOccurs="0"
-            name="approvalStatusUpdateTime" type="tns:DateTime"/>
+            name="approvalStatusUpdateTime" type="tns:DateTime">
+            <annotation>
+              <documentation>
+                The latest site approval status change time.
+              </documentation>
+            </annotation>
+          </element>
           <element maxOccurs="unbounded" minOccurs="0"
-            name="disapprovalReasons" type="tns:DisapprovalReason"/>
+            name="disapprovalReasons" type="tns:DisapprovalReason">
+            <annotation>
+              <documentation>
+                Provides reasons for disapproving the site. It is {@code null} when the {@code Site} is not
+                disapproved. This is field is read-only and is assigned by Google.
+              </documentation>
+            </annotation>
+          </element>
         </sequence>
       </complexType>
       <complexType name="SiteError">
@@ -313,10 +387,33 @@
         </complexContent>
       </complexType>
       <complexType name="SitePage">
+        <annotation>
+          <documentation>
+            Captures a page of {@link Site} objects.
+          </documentation>
+        </annotation>
         <sequence>
-          <element maxOccurs="1" minOccurs="0" name="totalResultSetSize" type="xsd:int"/>
-          <element maxOccurs="1" minOccurs="0" name="startIndex" type="xsd:int"/>
-          <element maxOccurs="unbounded" minOccurs="0" name="results" type="tns:Site"/>
+          <element maxOccurs="1" minOccurs="0" name="totalResultSetSize" type="xsd:int">
+            <annotation>
+              <documentation>
+                The size of the total result set to which this page belongs.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="1" minOccurs="0" name="startIndex" type="xsd:int">
+            <annotation>
+              <documentation>
+                The absolute index in the total result set on which this page begins.
+              </documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="results" type="tns:Site">
+            <annotation>
+              <documentation>
+                The collection of sites contained within this page.
+              </documentation>
+            </annotation>
+          </element>
         </sequence>
       </complexType>
       <complexType name="SoapRequestHeader">
@@ -377,6 +474,12 @@
         </sequence>
       </complexType>
       <complexType name="SubmitSiteForApproval">
+        <annotation>
+          <documentation>
+            The action used for submitting {@link Site} objects for approval. All newly created sites must be
+            approved before they can be served ads.
+          </documentation>
+        </annotation>
         <complexContent>
           <extension base="tns:SiteAction">
             <sequence/>
@@ -477,11 +580,40 @@
         </restriction>
       </simpleType>
       <simpleType name="DisapprovalReason.Type">
+        <annotation>
+          <documentation>
+            The list of possible policy violation types for a {@code Site}.
+          </documentation>
+        </annotation>
         <restriction base="xsd:string">
-          <enumeration value="CONTENT"/>
-          <enumeration value="OWNERSHIP"/>
-          <enumeration value="OTHER"/>
-          <enumeration value="UNKNOWN"/>
+          <enumeration value="CONTENT">
+            <annotation>
+              <documentation>
+                The site has content that violates policy.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="OWNERSHIP">
+            <annotation>
+              <documentation>
+                The parent must be an authorized seller of the child network's inventory.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="OTHER">
+            <annotation>
+              <documentation>
+                Generic error type.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="UNKNOWN">
+            <annotation>
+              <documentation>
+                The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+            </annotation>
+          </enumeration>
         </restriction>
       </simpleType>
       <simpleType name="EntityLimitReachedError.Reason">
@@ -780,6 +912,9 @@
     <wsdl:part element="tns:updateSitesResponse" name="parameters"/>
   </wsdl:message>
   <wsdl:portType name="SiteServiceInterface">
+    <wsdl:documentation>
+      Provides operations for creating, updating, and retrieving {@link Site} objects.
+    </wsdl:documentation>
     <wsdl:operation name="createSites">
       <wsdl:documentation>
         Creates new {@link Site} objects.

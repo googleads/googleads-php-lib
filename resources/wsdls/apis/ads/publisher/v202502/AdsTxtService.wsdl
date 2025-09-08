@@ -405,6 +405,9 @@
     <wsdl:part element="tns:ApiExceptionFault" name="ApiException"/>
   </wsdl:message>
   <wsdl:portType name="AdsTxtServiceInterface">
+    <wsdl:documentation>
+      Provides methods for retrieving {@link AdsTxt} objects.
+    </wsdl:documentation>
     <wsdl:operation name="getMcmSupplyChainDiagnosticsDownloadUrl">
       <wsdl:documentation>
         Returns the download URL String for the MCM Manage Inventory SupplyChain diagnostics report.
