@@ -17,7 +17,7 @@ class createTeamsResponse
     /**
      * @param \Google\AdsApi\AdManager\v202411\Team[] $rval
      */
-    public function __construct(array $rval = null)
+    public function __construct(?array $rval = null)
     {
       $this->rval = $rval;
     }
@@ -34,7 +34,7 @@ class createTeamsResponse
      * @param \Google\AdsApi\AdManager\v202411\Team[]|null $rval
      * @return \Google\AdsApi\AdManager\v202411\createTeamsResponse
      */
-    public function setRval(array $rval = null)
+    public function setRval(?array $rval = null)
     {
       $this->rval = $rval;
       return $this;

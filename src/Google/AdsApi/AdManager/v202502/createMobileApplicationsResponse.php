@@ -17,7 +17,7 @@ class createMobileApplicationsResponse
     /**
      * @param \Google\AdsApi\AdManager\v202502\MobileApplication[] $rval
      */
-    public function __construct(array $rval = null)
+    public function __construct(?array $rval = null)
     {
       $this->rval = $rval;
     }
@@ -34,7 +34,7 @@ class createMobileApplicationsResponse
      * @param \Google\AdsApi\AdManager\v202502\MobileApplication[]|null $rval
      * @return \Google\AdsApi\AdManager\v202502\createMobileApplicationsResponse
      */
-    public function setRval(array $rval = null)
+    public function setRval(?array $rval = null)
     {
       $this->rval = $rval;
       return $this;

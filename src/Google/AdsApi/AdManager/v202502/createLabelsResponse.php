@@ -17,7 +17,7 @@ class createLabelsResponse
     /**
      * @param \Google\AdsApi\AdManager\v202502\Label[] $rval
      */
-    public function __construct(array $rval = null)
+    public function __construct(?array $rval = null)
     {
       $this->rval = $rval;
     }
@@ -34,7 +34,7 @@ class createLabelsResponse
      * @param \Google\AdsApi\AdManager\v202502\Label[]|null $rval
      * @return \Google\AdsApi\AdManager\v202502\createLabelsResponse
      */
-    public function setRval(array $rval = null)
+    public function setRval(?array $rval = null)
     {
       $this->rval = $rval;
       return $this;

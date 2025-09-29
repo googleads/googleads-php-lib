@@ -77,7 +77,7 @@ class VastRedirectCreative extends \Google\AdsApi\AdManager\v202508\Creative
      * @param string $sslManualOverride
      * @param boolean $isAudio
      */
-    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, array $policyLabels = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null, $thirdPartyDataDeclaration = null, $adBadgingEnabled = null, $selfDeclaredEuropeanUnionPoliticalContent = null, $vastXmlUrl = null, $vastRedirectType = null, $duration = null, array $companionCreativeIds = null, array $trackingUrls = null, $vastPreviewUrl = null, $sslScanResult = null, $sslManualOverride = null, $isAudio = null)
+    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, ?array $policyLabels = null, ?array $appliedLabels = null, $lastModifiedDateTime = null, ?array $customFieldValues = null, $thirdPartyDataDeclaration = null, $adBadgingEnabled = null, $selfDeclaredEuropeanUnionPoliticalContent = null, $vastXmlUrl = null, $vastRedirectType = null, $duration = null, ?array $companionCreativeIds = null, ?array $trackingUrls = null, $vastPreviewUrl = null, $sslScanResult = null, $sslManualOverride = null, $isAudio = null)
     {
       parent::__construct($advertiserId, $id, $name, $size, $previewUrl, $policyLabels, $appliedLabels, $lastModifiedDateTime, $customFieldValues, $thirdPartyDataDeclaration, $adBadgingEnabled, $selfDeclaredEuropeanUnionPoliticalContent);
       $this->vastXmlUrl = $vastXmlUrl;
@@ -157,7 +157,7 @@ class VastRedirectCreative extends \Google\AdsApi\AdManager\v202508\Creative
      * @param int[]|null $companionCreativeIds
      * @return \Google\AdsApi\AdManager\v202508\VastRedirectCreative
      */
-    public function setCompanionCreativeIds(array $companionCreativeIds = null)
+    public function setCompanionCreativeIds(?array $companionCreativeIds = null)
     {
       $this->companionCreativeIds = $companionCreativeIds;
       return $this;
@@ -175,7 +175,7 @@ class VastRedirectCreative extends \Google\AdsApi\AdManager\v202508\Creative
      * @param \Google\AdsApi\AdManager\v202508\ConversionEvent_TrackingUrlsMapEntry[]|null $trackingUrls
      * @return \Google\AdsApi\AdManager\v202508\VastRedirectCreative
      */
-    public function setTrackingUrls(array $trackingUrls = null)
+    public function setTrackingUrls(?array $trackingUrls = null)
     {
       $this->trackingUrls = $trackingUrls;
       return $this;

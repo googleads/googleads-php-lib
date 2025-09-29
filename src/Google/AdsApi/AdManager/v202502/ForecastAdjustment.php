@@ -77,7 +77,7 @@ class ForecastAdjustment
      * @param \Google\AdsApi\AdManager\v202502\HistoricalBasisVolumeSettings $historicalBasisVolumeSettings
      * @param int[] $calculatedDailyAdOpportunityCounts
      */
-    public function __construct($id = null, $trafficForecastSegmentId = null, $name = null, $dateRange = null, $status = null, $volumeType = null, $allowAdjustingForecastAboveRecommendedLimit = null, $dailyVolumeSettings = null, $totalVolumeSettings = null, $historicalBasisVolumeSettings = null, array $calculatedDailyAdOpportunityCounts = null)
+    public function __construct($id = null, $trafficForecastSegmentId = null, $name = null, $dateRange = null, $status = null, $volumeType = null, $allowAdjustingForecastAboveRecommendedLimit = null, $dailyVolumeSettings = null, $totalVolumeSettings = null, $historicalBasisVolumeSettings = null, ?array $calculatedDailyAdOpportunityCounts = null)
     {
       $this->id = $id;
       $this->trafficForecastSegmentId = $trafficForecastSegmentId;
@@ -286,7 +286,7 @@ class ForecastAdjustment
      * @param int[]|null $calculatedDailyAdOpportunityCounts
      * @return \Google\AdsApi\AdManager\v202502\ForecastAdjustment
      */
-    public function setCalculatedDailyAdOpportunityCounts(array $calculatedDailyAdOpportunityCounts = null)
+    public function setCalculatedDailyAdOpportunityCounts(?array $calculatedDailyAdOpportunityCounts = null)
     {
       $this->calculatedDailyAdOpportunityCounts = $calculatedDailyAdOpportunityCounts;
       return $this;

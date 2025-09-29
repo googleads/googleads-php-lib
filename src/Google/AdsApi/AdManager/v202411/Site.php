@@ -47,7 +47,7 @@ class Site
      * @param \Google\AdsApi\AdManager\v202411\DateTime $approvalStatusUpdateTime
      * @param \Google\AdsApi\AdManager\v202411\DisapprovalReason[] $disapprovalReasons
      */
-    public function __construct($id = null, $url = null, $childNetworkCode = null, $approvalStatus = null, $approvalStatusUpdateTime = null, array $disapprovalReasons = null)
+    public function __construct($id = null, $url = null, $childNetworkCode = null, $approvalStatus = null, $approvalStatusUpdateTime = null, ?array $disapprovalReasons = null)
     {
       $this->id = $id;
       $this->url = $url;
@@ -160,7 +160,7 @@ class Site
      * @param \Google\AdsApi\AdManager\v202411\DisapprovalReason[]|null $disapprovalReasons
      * @return \Google\AdsApi\AdManager\v202411\Site
      */
-    public function setDisapprovalReasons(array $disapprovalReasons = null)
+    public function setDisapprovalReasons(?array $disapprovalReasons = null)
     {
       $this->disapprovalReasons = $disapprovalReasons;
       return $this;

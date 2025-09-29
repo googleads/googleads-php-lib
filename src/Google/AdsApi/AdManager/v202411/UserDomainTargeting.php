@@ -23,7 +23,7 @@ class UserDomainTargeting
      * @param string[] $domains
      * @param boolean $targeted
      */
-    public function __construct(array $domains = null, $targeted = null)
+    public function __construct(?array $domains = null, $targeted = null)
     {
       $this->domains = $domains;
       $this->targeted = $targeted;
@@ -41,7 +41,7 @@ class UserDomainTargeting
      * @param string[]|null $domains
      * @return \Google\AdsApi\AdManager\v202411\UserDomainTargeting
      */
-    public function setDomains(array $domains = null)
+    public function setDomains(?array $domains = null)
     {
       $this->domains = $domains;
       return $this;

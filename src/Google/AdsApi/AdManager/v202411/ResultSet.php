@@ -23,7 +23,7 @@ class ResultSet
      * @param \Google\AdsApi\AdManager\v202411\ColumnType[] $columnTypes
      * @param \Google\AdsApi\AdManager\v202411\Row[] $rows
      */
-    public function __construct(array $columnTypes = null, array $rows = null)
+    public function __construct(?array $columnTypes = null, ?array $rows = null)
     {
       $this->columnTypes = $columnTypes;
       $this->rows = $rows;
@@ -41,7 +41,7 @@ class ResultSet
      * @param \Google\AdsApi\AdManager\v202411\ColumnType[]|null $columnTypes
      * @return \Google\AdsApi\AdManager\v202411\ResultSet
      */
-    public function setColumnTypes(array $columnTypes = null)
+    public function setColumnTypes(?array $columnTypes = null)
     {
       $this->columnTypes = $columnTypes;
       return $this;
@@ -59,7 +59,7 @@ class ResultSet
      * @param \Google\AdsApi\AdManager\v202411\Row[]|null $rows
      * @return \Google\AdsApi\AdManager\v202411\ResultSet
      */
-    public function setRows(array $rows = null)
+    public function setRows(?array $rows = null)
     {
       $this->rows = $rows;
       return $this;

@@ -23,7 +23,7 @@ class ForecastBreakdownOptions
      * @param \Google\AdsApi\AdManager\v202502\DateTime[] $timeWindows
      * @param \Google\AdsApi\AdManager\v202502\ForecastBreakdownTarget[] $targets
      */
-    public function __construct(array $timeWindows = null, array $targets = null)
+    public function __construct(?array $timeWindows = null, ?array $targets = null)
     {
       $this->timeWindows = $timeWindows;
       $this->targets = $targets;
@@ -41,7 +41,7 @@ class ForecastBreakdownOptions
      * @param \Google\AdsApi\AdManager\v202502\DateTime[]|null $timeWindows
      * @return \Google\AdsApi\AdManager\v202502\ForecastBreakdownOptions
      */
-    public function setTimeWindows(array $timeWindows = null)
+    public function setTimeWindows(?array $timeWindows = null)
     {
       $this->timeWindows = $timeWindows;
       return $this;
@@ -59,7 +59,7 @@ class ForecastBreakdownOptions
      * @param \Google\AdsApi\AdManager\v202502\ForecastBreakdownTarget[]|null $targets
      * @return \Google\AdsApi\AdManager\v202502\ForecastBreakdownOptions
      */
-    public function setTargets(array $targets = null)
+    public function setTargets(?array $targets = null)
     {
       $this->targets = $targets;
       return $this;

@@ -53,7 +53,7 @@ class ThirdPartyAudienceSegment extends \Google\AdsApi\AdManager\v202508\Audienc
      * @param \Google\AdsApi\AdManager\v202508\DateTime $startDateTime
      * @param \Google\AdsApi\AdManager\v202508\DateTime $endDateTime
      */
-    public function __construct($id = null, $name = null, array $categoryIds = null, $description = null, $status = null, $size = null, $mobileWebSize = null, $idfaSize = null, $adIdSize = null, $ppidSize = null, $dataProvider = null, $type = null, $approvalStatus = null, $cost = null, $licenseType = null, $startDateTime = null, $endDateTime = null)
+    public function __construct($id = null, $name = null, ?array $categoryIds = null, $description = null, $status = null, $size = null, $mobileWebSize = null, $idfaSize = null, $adIdSize = null, $ppidSize = null, $dataProvider = null, $type = null, $approvalStatus = null, $cost = null, $licenseType = null, $startDateTime = null, $endDateTime = null)
     {
       parent::__construct($id, $name, $categoryIds, $description, $status, $size, $mobileWebSize, $idfaSize, $adIdSize, $ppidSize, $dataProvider, $type);
       $this->approvalStatus = $approvalStatus;

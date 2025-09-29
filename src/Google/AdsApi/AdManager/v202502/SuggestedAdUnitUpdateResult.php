@@ -23,7 +23,7 @@ class SuggestedAdUnitUpdateResult
      * @param string[] $newAdUnitIds
      * @param int $numChanges
      */
-    public function __construct(array $newAdUnitIds = null, $numChanges = null)
+    public function __construct(?array $newAdUnitIds = null, $numChanges = null)
     {
       $this->newAdUnitIds = $newAdUnitIds;
       $this->numChanges = $numChanges;
@@ -41,7 +41,7 @@ class SuggestedAdUnitUpdateResult
      * @param string[]|null $newAdUnitIds
      * @return \Google\AdsApi\AdManager\v202502\SuggestedAdUnitUpdateResult
      */
-    public function setNewAdUnitIds(array $newAdUnitIds = null)
+    public function setNewAdUnitIds(?array $newAdUnitIds = null)
     {
       $this->newAdUnitIds = $newAdUnitIds;
       return $this;

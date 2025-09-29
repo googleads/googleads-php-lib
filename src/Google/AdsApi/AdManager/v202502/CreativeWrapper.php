@@ -77,7 +77,7 @@ class CreativeWrapper
      * @param string $ordering
      * @param string $status
      */
-    public function __construct($id = null, $labelId = null, $creativeWrapperType = null, $htmlHeader = null, $htmlFooter = null, $ampHead = null, $ampBody = null, array $videoTrackingUrls = null, $thirdPartyDataDeclaration = null, $ordering = null, $status = null)
+    public function __construct($id = null, $labelId = null, $creativeWrapperType = null, $htmlHeader = null, $htmlFooter = null, $ampHead = null, $ampBody = null, ?array $videoTrackingUrls = null, $thirdPartyDataDeclaration = null, $ordering = null, $status = null)
     {
       $this->id = $id;
       $this->labelId = $labelId;
@@ -232,7 +232,7 @@ class CreativeWrapper
      * @param \Google\AdsApi\AdManager\v202502\ConversionEvent_TrackingUrlsMapEntry[]|null $videoTrackingUrls
      * @return \Google\AdsApi\AdManager\v202502\CreativeWrapper
      */
-    public function setVideoTrackingUrls(array $videoTrackingUrls = null)
+    public function setVideoTrackingUrls(?array $videoTrackingUrls = null)
     {
       $this->videoTrackingUrls = $videoTrackingUrls;
       return $this;

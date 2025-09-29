@@ -17,7 +17,7 @@ class RequestPlatformTargeting
     /**
      * @param string[] $targetedRequestPlatforms
      */
-    public function __construct(array $targetedRequestPlatforms = null)
+    public function __construct(?array $targetedRequestPlatforms = null)
     {
       $this->targetedRequestPlatforms = $targetedRequestPlatforms;
     }
@@ -34,7 +34,7 @@ class RequestPlatformTargeting
      * @param string[]|null $targetedRequestPlatforms
      * @return \Google\AdsApi\AdManager\v202411\RequestPlatformTargeting
      */
-    public function setTargetedRequestPlatforms(array $targetedRequestPlatforms = null)
+    public function setTargetedRequestPlatforms(?array $targetedRequestPlatforms = null)
     {
       $this->targetedRequestPlatforms = $targetedRequestPlatforms;
       return $this;

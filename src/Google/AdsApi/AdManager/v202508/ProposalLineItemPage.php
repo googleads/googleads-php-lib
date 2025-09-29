@@ -29,7 +29,7 @@ class ProposalLineItemPage
      * @param int $startIndex
      * @param int $totalResultSetSize
      */
-    public function __construct(array $results = null, $startIndex = null, $totalResultSetSize = null)
+    public function __construct(?array $results = null, $startIndex = null, $totalResultSetSize = null)
     {
       $this->results = $results;
       $this->startIndex = $startIndex;
@@ -48,7 +48,7 @@ class ProposalLineItemPage
      * @param \Google\AdsApi\AdManager\v202508\ProposalLineItem[]|null $results
      * @return \Google\AdsApi\AdManager\v202508\ProposalLineItemPage
      */
-    public function setResults(array $results = null)
+    public function setResults(?array $results = null)
     {
       $this->results = $results;
       return $this;

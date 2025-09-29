@@ -28,7 +28,7 @@ class ListStringCreativeTemplateVariable extends \Google\AdsApi\AdManager\v20241
      * @param \Google\AdsApi\AdManager\v202411\ListStringCreativeTemplateVariableVariableChoice[] $choices
      * @param boolean $allowOtherChoice
      */
-    public function __construct($label = null, $uniqueName = null, $description = null, $isRequired = null, $defaultValue = null, array $choices = null, $allowOtherChoice = null)
+    public function __construct($label = null, $uniqueName = null, $description = null, $isRequired = null, $defaultValue = null, ?array $choices = null, $allowOtherChoice = null)
     {
       parent::__construct($label, $uniqueName, $description, $isRequired, $defaultValue);
       $this->choices = $choices;
@@ -47,7 +47,7 @@ class ListStringCreativeTemplateVariable extends \Google\AdsApi\AdManager\v20241
      * @param \Google\AdsApi\AdManager\v202411\ListStringCreativeTemplateVariableVariableChoice[]|null $choices
      * @return \Google\AdsApi\AdManager\v202411\ListStringCreativeTemplateVariable
      */
-    public function setChoices(array $choices = null)
+    public function setChoices(?array $choices = null)
     {
       $this->choices = $choices;
       return $this;

@@ -29,7 +29,7 @@ class NonRuleBasedFirstPartyAudienceSegment extends \Google\AdsApi\AdManager\v20
      * @param string $type
      * @param int $membershipExpirationDays
      */
-    public function __construct($id = null, $name = null, array $categoryIds = null, $description = null, $status = null, $size = null, $mobileWebSize = null, $idfaSize = null, $adIdSize = null, $ppidSize = null, $dataProvider = null, $type = null, $membershipExpirationDays = null)
+    public function __construct($id = null, $name = null, ?array $categoryIds = null, $description = null, $status = null, $size = null, $mobileWebSize = null, $idfaSize = null, $adIdSize = null, $ppidSize = null, $dataProvider = null, $type = null, $membershipExpirationDays = null)
     {
       parent::__construct($id, $name, $categoryIds, $description, $status, $size, $mobileWebSize, $idfaSize, $adIdSize, $ppidSize, $dataProvider, $type);
       $this->membershipExpirationDays = $membershipExpirationDays;

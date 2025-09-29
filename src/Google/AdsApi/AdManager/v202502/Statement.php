@@ -23,7 +23,7 @@ class Statement
      * @param string $query
      * @param \Google\AdsApi\AdManager\v202502\String_ValueMapEntry[] $values
      */
-    public function __construct($query = null, array $values = null)
+    public function __construct($query = null, ?array $values = null)
     {
       $this->query = $query;
       $this->values = $values;
@@ -59,7 +59,7 @@ class Statement
      * @param \Google\AdsApi\AdManager\v202502\String_ValueMapEntry[]|null $values
      * @return \Google\AdsApi\AdManager\v202502\Statement
      */
-    public function setValues(array $values = null)
+    public function setValues(?array $values = null)
     {
       $this->values = $values;
       return $this;

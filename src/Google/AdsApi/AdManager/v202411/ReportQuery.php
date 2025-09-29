@@ -89,7 +89,7 @@ class ReportQuery
      * @param string $reportCurrency
      * @param string $timeZoneType
      */
-    public function __construct(array $dimensions = null, $adUnitView = null, array $columns = null, array $dimensionAttributes = null, array $customFieldIds = null, array $cmsMetadataKeyIds = null, array $customDimensionKeyIds = null, $startDate = null, $endDate = null, $dateRangeType = null, $statement = null, $reportCurrency = null, $timeZoneType = null)
+    public function __construct(?array $dimensions = null, $adUnitView = null, ?array $columns = null, ?array $dimensionAttributes = null, ?array $customFieldIds = null, ?array $cmsMetadataKeyIds = null, ?array $customDimensionKeyIds = null, $startDate = null, $endDate = null, $dateRangeType = null, $statement = null, $reportCurrency = null, $timeZoneType = null)
     {
       $this->dimensions = $dimensions;
       $this->adUnitView = $adUnitView;
@@ -118,7 +118,7 @@ class ReportQuery
      * @param string[]|null $dimensions
      * @return \Google\AdsApi\AdManager\v202411\ReportQuery
      */
-    public function setDimensions(array $dimensions = null)
+    public function setDimensions(?array $dimensions = null)
     {
       $this->dimensions = $dimensions;
       return $this;
@@ -154,7 +154,7 @@ class ReportQuery
      * @param string[]|null $columns
      * @return \Google\AdsApi\AdManager\v202411\ReportQuery
      */
-    public function setColumns(array $columns = null)
+    public function setColumns(?array $columns = null)
     {
       $this->columns = $columns;
       return $this;
@@ -172,7 +172,7 @@ class ReportQuery
      * @param string[]|null $dimensionAttributes
      * @return \Google\AdsApi\AdManager\v202411\ReportQuery
      */
-    public function setDimensionAttributes(array $dimensionAttributes = null)
+    public function setDimensionAttributes(?array $dimensionAttributes = null)
     {
       $this->dimensionAttributes = $dimensionAttributes;
       return $this;
@@ -190,7 +190,7 @@ class ReportQuery
      * @param int[]|null $customFieldIds
      * @return \Google\AdsApi\AdManager\v202411\ReportQuery
      */
-    public function setCustomFieldIds(array $customFieldIds = null)
+    public function setCustomFieldIds(?array $customFieldIds = null)
     {
       $this->customFieldIds = $customFieldIds;
       return $this;
@@ -208,7 +208,7 @@ class ReportQuery
      * @param int[]|null $cmsMetadataKeyIds
      * @return \Google\AdsApi\AdManager\v202411\ReportQuery
      */
-    public function setCmsMetadataKeyIds(array $cmsMetadataKeyIds = null)
+    public function setCmsMetadataKeyIds(?array $cmsMetadataKeyIds = null)
     {
       $this->cmsMetadataKeyIds = $cmsMetadataKeyIds;
       return $this;
@@ -226,7 +226,7 @@ class ReportQuery
      * @param int[]|null $customDimensionKeyIds
      * @return \Google\AdsApi\AdManager\v202411\ReportQuery
      */
-    public function setCustomDimensionKeyIds(array $customDimensionKeyIds = null)
+    public function setCustomDimensionKeyIds(?array $customDimensionKeyIds = null)
     {
       $this->customDimensionKeyIds = $customDimensionKeyIds;
       return $this;

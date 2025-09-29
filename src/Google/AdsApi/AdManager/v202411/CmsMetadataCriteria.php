@@ -23,7 +23,7 @@ class CmsMetadataCriteria extends \Google\AdsApi\AdManager\v202411\CustomCriteri
      * @param string $operator
      * @param int[] $cmsMetadataValueIds
      */
-    public function __construct($operator = null, array $cmsMetadataValueIds = null)
+    public function __construct($operator = null, ?array $cmsMetadataValueIds = null)
     {
       $this->operator = $operator;
       $this->cmsMetadataValueIds = $cmsMetadataValueIds;
@@ -59,7 +59,7 @@ class CmsMetadataCriteria extends \Google\AdsApi\AdManager\v202411\CustomCriteri
      * @param int[]|null $cmsMetadataValueIds
      * @return \Google\AdsApi\AdManager\v202411\CmsMetadataCriteria
      */
-    public function setCmsMetadataValueIds(array $cmsMetadataValueIds = null)
+    public function setCmsMetadataValueIds(?array $cmsMetadataValueIds = null)
     {
       $this->cmsMetadataValueIds = $cmsMetadataValueIds;
       return $this;

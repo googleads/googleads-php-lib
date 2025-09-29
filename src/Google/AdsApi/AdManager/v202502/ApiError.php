@@ -35,7 +35,7 @@ abstract class ApiError
      * @param string $trigger
      * @param string $errorString
      */
-    public function __construct($fieldPath = null, ?array $fieldPathElements = null, $trigger = null, $errorString = null)
+    public function __construct($fieldPath = null, ??array $fieldPathElements = null, $trigger = null, $errorString = null)
     {
       $this->fieldPath = $fieldPath;
       $this->fieldPathElements = $fieldPathElements;
@@ -73,7 +73,7 @@ abstract class ApiError
      * @param \Google\AdsApi\AdManager\v202502\FieldPathElement[]|null $fieldPathElements
      * @return \Google\AdsApi\AdManager\v202502\ApiError
      */
-    public function setFieldPathElements(?array $fieldPathElements = null)
+    public function setFieldPathElements(??array $fieldPathElements = null)
     {
       $this->fieldPathElements = $fieldPathElements;
       return $this;

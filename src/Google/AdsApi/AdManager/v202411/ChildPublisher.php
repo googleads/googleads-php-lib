@@ -59,7 +59,7 @@ class ChildPublisher
      * @param int $proposedRevenueShareMillipercent
      * @param string[] $onboardingTasks
      */
-    public function __construct($approvedDelegationType = null, $proposedDelegationType = null, $status = null, $accountStatus = null, $childNetworkCode = null, $sellerId = null, $proposedRevenueShareMillipercent = null, array $onboardingTasks = null)
+    public function __construct($approvedDelegationType = null, $proposedDelegationType = null, $status = null, $accountStatus = null, $childNetworkCode = null, $sellerId = null, $proposedRevenueShareMillipercent = null, ?array $onboardingTasks = null)
     {
       $this->approvedDelegationType = $approvedDelegationType;
       $this->proposedDelegationType = $proposedDelegationType;
@@ -210,7 +210,7 @@ class ChildPublisher
      * @param string[]|null $onboardingTasks
      * @return \Google\AdsApi\AdManager\v202411\ChildPublisher
      */
-    public function setOnboardingTasks(array $onboardingTasks = null)
+    public function setOnboardingTasks(?array $onboardingTasks = null)
     {
       $this->onboardingTasks = $onboardingTasks;
       return $this;

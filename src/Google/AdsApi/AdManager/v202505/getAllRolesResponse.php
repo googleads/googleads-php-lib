@@ -17,7 +17,7 @@ class getAllRolesResponse
     /**
      * @param \Google\AdsApi\AdManager\v202505\Role[] $rval
      */
-    public function __construct(array $rval = null)
+    public function __construct(?array $rval = null)
     {
       $this->rval = $rval;
     }
@@ -34,7 +34,7 @@ class getAllRolesResponse
      * @param \Google\AdsApi\AdManager\v202505\Role[]|null $rval
      * @return \Google\AdsApi\AdManager\v202505\getAllRolesResponse
      */
-    public function setRval(array $rval = null)
+    public function setRval(?array $rval = null)
     {
       $this->rval = $rval;
       return $this;

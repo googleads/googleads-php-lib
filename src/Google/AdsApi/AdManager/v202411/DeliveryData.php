@@ -17,7 +17,7 @@ class DeliveryData
     /**
      * @param int[] $units
      */
-    public function __construct(array $units = null)
+    public function __construct(?array $units = null)
     {
       $this->units = $units;
     }
@@ -34,7 +34,7 @@ class DeliveryData
      * @param int[]|null $units
      * @return \Google\AdsApi\AdManager\v202411\DeliveryData
      */
-    public function setUnits(array $units = null)
+    public function setUnits(?array $units = null)
     {
       $this->units = $units;
       return $this;

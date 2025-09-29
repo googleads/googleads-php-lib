@@ -17,7 +17,7 @@ class Row
     /**
      * @param \Google\AdsApi\AdManager\v202502\Value[] $values
      */
-    public function __construct(array $values = null)
+    public function __construct(?array $values = null)
     {
       $this->values = $values;
     }
@@ -34,7 +34,7 @@ class Row
      * @param \Google\AdsApi\AdManager\v202502\Value[]|null $values
      * @return \Google\AdsApi\AdManager\v202502\Row
      */
-    public function setValues(array $values = null)
+    public function setValues(?array $values = null)
     {
       $this->values = $values;
       return $this;

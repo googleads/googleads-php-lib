@@ -29,7 +29,7 @@ class CustomCriteria extends \Google\AdsApi\AdManager\v202411\CustomCriteriaLeaf
      * @param int[] $valueIds
      * @param string $operator
      */
-    public function __construct($keyId = null, array $valueIds = null, $operator = null)
+    public function __construct($keyId = null, ?array $valueIds = null, $operator = null)
     {
       $this->keyId = $keyId;
       $this->valueIds = $valueIds;
@@ -67,7 +67,7 @@ class CustomCriteria extends \Google\AdsApi\AdManager\v202411\CustomCriteriaLeaf
      * @param int[]|null $valueIds
      * @return \Google\AdsApi\AdManager\v202411\CustomCriteria
      */
-    public function setValueIds(array $valueIds = null)
+    public function setValueIds(?array $valueIds = null)
     {
       $this->valueIds = $valueIds;
       return $this;

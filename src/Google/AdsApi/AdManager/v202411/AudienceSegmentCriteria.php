@@ -23,7 +23,7 @@ class AudienceSegmentCriteria extends \Google\AdsApi\AdManager\v202411\CustomCri
      * @param string $operator
      * @param int[] $audienceSegmentIds
      */
-    public function __construct($operator = null, array $audienceSegmentIds = null)
+    public function __construct($operator = null, ?array $audienceSegmentIds = null)
     {
       $this->operator = $operator;
       $this->audienceSegmentIds = $audienceSegmentIds;
@@ -59,7 +59,7 @@ class AudienceSegmentCriteria extends \Google\AdsApi\AdManager\v202411\CustomCri
      * @param int[]|null $audienceSegmentIds
      * @return \Google\AdsApi\AdManager\v202411\AudienceSegmentCriteria
      */
-    public function setAudienceSegmentIds(array $audienceSegmentIds = null)
+    public function setAudienceSegmentIds(?array $audienceSegmentIds = null)
     {
       $this->audienceSegmentIds = $audienceSegmentIds;
       return $this;

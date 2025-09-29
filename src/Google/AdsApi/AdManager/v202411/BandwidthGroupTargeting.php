@@ -23,7 +23,7 @@ class BandwidthGroupTargeting
      * @param boolean $isTargeted
      * @param \Google\AdsApi\AdManager\v202411\Technology[] $bandwidthGroups
      */
-    public function __construct($isTargeted = null, array $bandwidthGroups = null)
+    public function __construct($isTargeted = null, ?array $bandwidthGroups = null)
     {
       $this->isTargeted = $isTargeted;
       $this->bandwidthGroups = $bandwidthGroups;
@@ -59,7 +59,7 @@ class BandwidthGroupTargeting
      * @param \Google\AdsApi\AdManager\v202411\Technology[]|null $bandwidthGroups
      * @return \Google\AdsApi\AdManager\v202411\BandwidthGroupTargeting
      */
-    public function setBandwidthGroups(array $bandwidthGroups = null)
+    public function setBandwidthGroups(?array $bandwidthGroups = null)
     {
       $this->bandwidthGroups = $bandwidthGroups;
       return $this;

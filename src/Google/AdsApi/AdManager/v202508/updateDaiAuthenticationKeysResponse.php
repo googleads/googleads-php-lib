@@ -17,7 +17,7 @@ class updateDaiAuthenticationKeysResponse
     /**
      * @param \Google\AdsApi\AdManager\v202508\DaiAuthenticationKey[] $rval
      */
-    public function __construct(array $rval = null)
+    public function __construct(?array $rval = null)
     {
       $this->rval = $rval;
     }
@@ -34,7 +34,7 @@ class updateDaiAuthenticationKeysResponse
      * @param \Google\AdsApi\AdManager\v202508\DaiAuthenticationKey[]|null $rval
      * @return \Google\AdsApi\AdManager\v202508\updateDaiAuthenticationKeysResponse
      */
-    public function setRval(array $rval = null)
+    public function setRval(?array $rval = null)
     {
       $this->rval = $rval;
       return $this;

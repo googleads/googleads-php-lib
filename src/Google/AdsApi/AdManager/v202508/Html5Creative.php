@@ -71,7 +71,7 @@ class Html5Creative extends \Google\AdsApi\AdManager\v202508\Creative
      * @param boolean $isSafeFrameCompatible
      * @param \Google\AdsApi\AdManager\v202508\CreativeAsset $html5Asset
      */
-    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, array $policyLabels = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null, $thirdPartyDataDeclaration = null, $adBadgingEnabled = null, $selfDeclaredEuropeanUnionPoliticalContent = null, $overrideSize = null, array $thirdPartyImpressionTrackingUrls = null, $thirdPartyClickTrackingUrl = null, $lockedOrientation = null, $sslScanResult = null, $sslManualOverride = null, $isSafeFrameCompatible = null, $html5Asset = null)
+    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, ?array $policyLabels = null, ?array $appliedLabels = null, $lastModifiedDateTime = null, ?array $customFieldValues = null, $thirdPartyDataDeclaration = null, $adBadgingEnabled = null, $selfDeclaredEuropeanUnionPoliticalContent = null, $overrideSize = null, ?array $thirdPartyImpressionTrackingUrls = null, $thirdPartyClickTrackingUrl = null, $lockedOrientation = null, $sslScanResult = null, $sslManualOverride = null, $isSafeFrameCompatible = null, $html5Asset = null)
     {
       parent::__construct($advertiserId, $id, $name, $size, $previewUrl, $policyLabels, $appliedLabels, $lastModifiedDateTime, $customFieldValues, $thirdPartyDataDeclaration, $adBadgingEnabled, $selfDeclaredEuropeanUnionPoliticalContent);
       $this->overrideSize = $overrideSize;
@@ -114,7 +114,7 @@ class Html5Creative extends \Google\AdsApi\AdManager\v202508\Creative
      * @param string[]|null $thirdPartyImpressionTrackingUrls
      * @return \Google\AdsApi\AdManager\v202508\Html5Creative
      */
-    public function setThirdPartyImpressionTrackingUrls(array $thirdPartyImpressionTrackingUrls = null)
+    public function setThirdPartyImpressionTrackingUrls(?array $thirdPartyImpressionTrackingUrls = null)
     {
       $this->thirdPartyImpressionTrackingUrls = $thirdPartyImpressionTrackingUrls;
       return $this;

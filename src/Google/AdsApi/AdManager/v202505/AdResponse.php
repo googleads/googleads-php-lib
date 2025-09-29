@@ -47,7 +47,7 @@ class AdResponse
      * @param \Google\AdsApi\AdManager\v202505\SamError $samError
      * @param \Google\AdsApi\AdManager\v202505\SamError[] $adErrors
      */
-    public function __construct($requestUrl = null, $isVmapRequest = null, $responseBody = null, array $redirectResponses = null, $samError = null, array $adErrors = null)
+    public function __construct($requestUrl = null, $isVmapRequest = null, $responseBody = null, ?array $redirectResponses = null, $samError = null, ?array $adErrors = null)
     {
       $this->requestUrl = $requestUrl;
       $this->isVmapRequest = $isVmapRequest;
@@ -123,7 +123,7 @@ class AdResponse
      * @param \Google\AdsApi\AdManager\v202505\AdResponse[]|null $redirectResponses
      * @return \Google\AdsApi\AdManager\v202505\AdResponse
      */
-    public function setRedirectResponses(array $redirectResponses = null)
+    public function setRedirectResponses(?array $redirectResponses = null)
     {
       $this->redirectResponses = $redirectResponses;
       return $this;
@@ -159,7 +159,7 @@ class AdResponse
      * @param \Google\AdsApi\AdManager\v202505\SamError[]|null $adErrors
      * @return \Google\AdsApi\AdManager\v202505\AdResponse
      */
-    public function setAdErrors(array $adErrors = null)
+    public function setAdErrors(?array $adErrors = null)
     {
       $this->adErrors = $adErrors;
       return $this;

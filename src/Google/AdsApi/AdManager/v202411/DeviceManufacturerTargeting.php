@@ -23,7 +23,7 @@ class DeviceManufacturerTargeting
      * @param boolean $isTargeted
      * @param \Google\AdsApi\AdManager\v202411\Technology[] $deviceManufacturers
      */
-    public function __construct($isTargeted = null, array $deviceManufacturers = null)
+    public function __construct($isTargeted = null, ?array $deviceManufacturers = null)
     {
       $this->isTargeted = $isTargeted;
       $this->deviceManufacturers = $deviceManufacturers;
@@ -59,7 +59,7 @@ class DeviceManufacturerTargeting
      * @param \Google\AdsApi\AdManager\v202411\Technology[]|null $deviceManufacturers
      * @return \Google\AdsApi\AdManager\v202411\DeviceManufacturerTargeting
      */
-    public function setDeviceManufacturers(array $deviceManufacturers = null)
+    public function setDeviceManufacturers(?array $deviceManufacturers = null)
     {
       $this->deviceManufacturers = $deviceManufacturers;
       return $this;

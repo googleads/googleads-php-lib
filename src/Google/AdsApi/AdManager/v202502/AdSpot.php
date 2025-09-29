@@ -77,7 +77,7 @@ class AdSpot
      * @param string[] $allowedLineItemTypes
      * @param boolean $inventorySharingBlocked
      */
-    public function __construct($id = null, $name = null, $displayName = null, $customSpot = null, $flexible = null, $maxDurationMillis = null, $maxNumberOfAds = null, $targetingType = null, $backfillBlocked = null, array $allowedLineItemTypes = null, $inventorySharingBlocked = null)
+    public function __construct($id = null, $name = null, $displayName = null, $customSpot = null, $flexible = null, $maxDurationMillis = null, $maxNumberOfAds = null, $targetingType = null, $backfillBlocked = null, ?array $allowedLineItemTypes = null, $inventorySharingBlocked = null)
     {
       $this->id = $id;
       $this->name = $name;
@@ -268,7 +268,7 @@ class AdSpot
      * @param string[]|null $allowedLineItemTypes
      * @return \Google\AdsApi\AdManager\v202502\AdSpot
      */
-    public function setAllowedLineItemTypes(array $allowedLineItemTypes = null)
+    public function setAllowedLineItemTypes(?array $allowedLineItemTypes = null)
     {
       $this->allowedLineItemTypes = $allowedLineItemTypes;
       return $this;

@@ -29,7 +29,7 @@ class PlacementPage
      * @param int $startIndex
      * @param \Google\AdsApi\AdManager\v202502\Placement[] $results
      */
-    public function __construct($totalResultSetSize = null, $startIndex = null, array $results = null)
+    public function __construct($totalResultSetSize = null, $startIndex = null, ?array $results = null)
     {
       $this->totalResultSetSize = $totalResultSetSize;
       $this->startIndex = $startIndex;
@@ -84,7 +84,7 @@ class PlacementPage
      * @param \Google\AdsApi\AdManager\v202502\Placement[]|null $results
      * @return \Google\AdsApi\AdManager\v202502\PlacementPage
      */
-    public function setResults(array $results = null)
+    public function setResults(?array $results = null)
     {
       $this->results = $results;
       return $this;

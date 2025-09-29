@@ -65,7 +65,7 @@ class SetTopBoxCreative extends \Google\AdsApi\AdManager\v202411\BaseVideoCreati
      * @param \Google\AdsApi\AdManager\v202411\DateTime $licenseWindowStartDateTime
      * @param \Google\AdsApi\AdManager\v202411\DateTime $licenseWindowEndDateTime
      */
-    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, array $policyLabels = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null, $thirdPartyDataDeclaration = null, $adBadgingEnabled = null, $destinationUrl = null, $destinationUrlType = null, $duration = null, $allowDurationOverride = null, array $trackingUrls = null, array $companionCreativeIds = null, $customParameters = null, $adId = null, $adIdType = null, $skippableAdType = null, $vastPreviewUrl = null, $sslScanResult = null, $sslManualOverride = null, $externalAssetId = null, $providerId = null, array $availabilityRegionIds = null, $licenseWindowStartDateTime = null, $licenseWindowEndDateTime = null)
+    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, ?array $policyLabels = null, ?array $appliedLabels = null, $lastModifiedDateTime = null, ?array $customFieldValues = null, $thirdPartyDataDeclaration = null, $adBadgingEnabled = null, $destinationUrl = null, $destinationUrlType = null, $duration = null, $allowDurationOverride = null, ?array $trackingUrls = null, ?array $companionCreativeIds = null, $customParameters = null, $adId = null, $adIdType = null, $skippableAdType = null, $vastPreviewUrl = null, $sslScanResult = null, $sslManualOverride = null, $externalAssetId = null, $providerId = null, ?array $availabilityRegionIds = null, $licenseWindowStartDateTime = null, $licenseWindowEndDateTime = null)
     {
       parent::__construct($advertiserId, $id, $name, $size, $previewUrl, $policyLabels, $appliedLabels, $lastModifiedDateTime, $customFieldValues, $thirdPartyDataDeclaration, $adBadgingEnabled, $destinationUrl, $destinationUrlType, $duration, $allowDurationOverride, $trackingUrls, $companionCreativeIds, $customParameters, $adId, $adIdType, $skippableAdType, $vastPreviewUrl, $sslScanResult, $sslManualOverride);
       $this->externalAssetId = $externalAssetId;
@@ -123,7 +123,7 @@ class SetTopBoxCreative extends \Google\AdsApi\AdManager\v202411\BaseVideoCreati
      * @param string[]|null $availabilityRegionIds
      * @return \Google\AdsApi\AdManager\v202411\SetTopBoxCreative
      */
-    public function setAvailabilityRegionIds(array $availabilityRegionIds = null)
+    public function setAvailabilityRegionIds(?array $availabilityRegionIds = null)
     {
       $this->availabilityRegionIds = $availabilityRegionIds;
       return $this;

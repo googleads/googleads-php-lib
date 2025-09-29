@@ -47,7 +47,7 @@ class VideoRedirectCreative extends \Google\AdsApi\AdManager\v202411\BaseVideoCr
      * @param \Google\AdsApi\AdManager\v202411\VideoRedirectAsset[] $videoAssets
      * @param \Google\AdsApi\AdManager\v202411\VideoRedirectAsset $mezzanineFile
      */
-    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, array $policyLabels = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null, $thirdPartyDataDeclaration = null, $adBadgingEnabled = null, $destinationUrl = null, $destinationUrlType = null, $duration = null, $allowDurationOverride = null, array $trackingUrls = null, array $companionCreativeIds = null, $customParameters = null, $adId = null, $adIdType = null, $skippableAdType = null, $vastPreviewUrl = null, $sslScanResult = null, $sslManualOverride = null, array $videoAssets = null, $mezzanineFile = null)
+    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, ?array $policyLabels = null, ?array $appliedLabels = null, $lastModifiedDateTime = null, ?array $customFieldValues = null, $thirdPartyDataDeclaration = null, $adBadgingEnabled = null, $destinationUrl = null, $destinationUrlType = null, $duration = null, $allowDurationOverride = null, ?array $trackingUrls = null, ?array $companionCreativeIds = null, $customParameters = null, $adId = null, $adIdType = null, $skippableAdType = null, $vastPreviewUrl = null, $sslScanResult = null, $sslManualOverride = null, ?array $videoAssets = null, $mezzanineFile = null)
     {
       parent::__construct($advertiserId, $id, $name, $size, $previewUrl, $policyLabels, $appliedLabels, $lastModifiedDateTime, $customFieldValues, $thirdPartyDataDeclaration, $adBadgingEnabled, $destinationUrl, $destinationUrlType, $duration, $allowDurationOverride, $trackingUrls, $companionCreativeIds, $customParameters, $adId, $adIdType, $skippableAdType, $vastPreviewUrl, $sslScanResult, $sslManualOverride);
       $this->videoAssets = $videoAssets;
@@ -66,7 +66,7 @@ class VideoRedirectCreative extends \Google\AdsApi\AdManager\v202411\BaseVideoCr
      * @param \Google\AdsApi\AdManager\v202411\VideoRedirectAsset[]|null $videoAssets
      * @return \Google\AdsApi\AdManager\v202411\VideoRedirectCreative
      */
-    public function setVideoAssets(array $videoAssets = null)
+    public function setVideoAssets(?array $videoAssets = null)
     {
       $this->videoAssets = $videoAssets;
       return $this;

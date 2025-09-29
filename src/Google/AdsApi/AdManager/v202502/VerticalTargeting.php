@@ -23,7 +23,7 @@ class VerticalTargeting
      * @param int[] $targetedVerticalIds
      * @param int[] $excludedVerticalIds
      */
-    public function __construct(array $targetedVerticalIds = null, array $excludedVerticalIds = null)
+    public function __construct(?array $targetedVerticalIds = null, ?array $excludedVerticalIds = null)
     {
       $this->targetedVerticalIds = $targetedVerticalIds;
       $this->excludedVerticalIds = $excludedVerticalIds;
@@ -41,7 +41,7 @@ class VerticalTargeting
      * @param int[]|null $targetedVerticalIds
      * @return \Google\AdsApi\AdManager\v202502\VerticalTargeting
      */
-    public function setTargetedVerticalIds(array $targetedVerticalIds = null)
+    public function setTargetedVerticalIds(?array $targetedVerticalIds = null)
     {
       $this->targetedVerticalIds = $targetedVerticalIds;
       return $this;
@@ -59,7 +59,7 @@ class VerticalTargeting
      * @param int[]|null $excludedVerticalIds
      * @return \Google\AdsApi\AdManager\v202502\VerticalTargeting
      */
-    public function setExcludedVerticalIds(array $excludedVerticalIds = null)
+    public function setExcludedVerticalIds(?array $excludedVerticalIds = null)
     {
       $this->excludedVerticalIds = $excludedVerticalIds;
       return $this;

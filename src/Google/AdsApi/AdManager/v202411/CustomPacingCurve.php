@@ -23,7 +23,7 @@ class CustomPacingCurve
      * @param string $customPacingGoalUnit
      * @param \Google\AdsApi\AdManager\v202411\CustomPacingGoal[] $customPacingGoals
      */
-    public function __construct($customPacingGoalUnit = null, array $customPacingGoals = null)
+    public function __construct($customPacingGoalUnit = null, ?array $customPacingGoals = null)
     {
       $this->customPacingGoalUnit = $customPacingGoalUnit;
       $this->customPacingGoals = $customPacingGoals;
@@ -59,7 +59,7 @@ class CustomPacingCurve
      * @param \Google\AdsApi\AdManager\v202411\CustomPacingGoal[]|null $customPacingGoals
      * @return \Google\AdsApi\AdManager\v202411\CustomPacingCurve
      */
-    public function setCustomPacingGoals(array $customPacingGoals = null)
+    public function setCustomPacingGoals(?array $customPacingGoals = null)
     {
       $this->customPacingGoals = $customPacingGoals;
       return $this;

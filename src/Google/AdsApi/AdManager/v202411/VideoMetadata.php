@@ -65,7 +65,7 @@ class VideoMetadata
      * @param string $deliveryType
      * @param string[] $codecs
      */
-    public function __construct($scalableType = null, $duration = null, $bitRate = null, $minimumBitRate = null, $maximumBitRate = null, $size = null, $mimeType = null, $deliveryType = null, array $codecs = null)
+    public function __construct($scalableType = null, $duration = null, $bitRate = null, $minimumBitRate = null, $maximumBitRate = null, $size = null, $mimeType = null, $deliveryType = null, ?array $codecs = null)
     {
       $this->scalableType = $scalableType;
       $this->duration = $duration;
@@ -234,7 +234,7 @@ class VideoMetadata
      * @param string[]|null $codecs
      * @return \Google\AdsApi\AdManager\v202411\VideoMetadata
      */
-    public function setCodecs(array $codecs = null)
+    public function setCodecs(?array $codecs = null)
     {
       $this->codecs = $codecs;
       return $this;

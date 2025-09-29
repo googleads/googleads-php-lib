@@ -41,7 +41,7 @@ class BreakTemplate
      * @param string $displayName
      * @param \Google\AdsApi\AdManager\v202505\BreakTemplateBreakTemplateMember[] $breakTemplateMembers
      */
-    public function __construct($id = null, $customTemplate = null, $name = null, $displayName = null, array $breakTemplateMembers = null)
+    public function __construct($id = null, $customTemplate = null, $name = null, $displayName = null, ?array $breakTemplateMembers = null)
     {
       $this->id = $id;
       $this->customTemplate = $customTemplate;
@@ -135,7 +135,7 @@ class BreakTemplate
      * @param \Google\AdsApi\AdManager\v202505\BreakTemplateBreakTemplateMember[]|null $breakTemplateMembers
      * @return \Google\AdsApi\AdManager\v202505\BreakTemplate
      */
-    public function setBreakTemplateMembers(array $breakTemplateMembers = null)
+    public function setBreakTemplateMembers(?array $breakTemplateMembers = null)
     {
       $this->breakTemplateMembers = $breakTemplateMembers;
       return $this;

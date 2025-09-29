@@ -29,7 +29,7 @@ class SdkMediationSettings extends \Google\AdsApi\AdManager\v202508\AbstractDisp
      * @param string $yieldIntegrationType
      * @param string $platform
      */
-    public function __construct(array $parameters = null, $yieldIntegrationType = null, $platform = null)
+    public function __construct(?array $parameters = null, $yieldIntegrationType = null, $platform = null)
     {
       $this->parameters = $parameters;
       $this->yieldIntegrationType = $yieldIntegrationType;
@@ -48,7 +48,7 @@ class SdkMediationSettings extends \Google\AdsApi\AdManager\v202508\AbstractDisp
      * @param \Google\AdsApi\AdManager\v202508\YieldParameter_StringMapEntry[]|null $parameters
      * @return \Google\AdsApi\AdManager\v202508\SdkMediationSettings
      */
-    public function setParameters(array $parameters = null)
+    public function setParameters(?array $parameters = null)
     {
       $this->parameters = $parameters;
       return $this;

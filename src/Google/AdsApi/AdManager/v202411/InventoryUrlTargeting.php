@@ -23,7 +23,7 @@ class InventoryUrlTargeting
      * @param \Google\AdsApi\AdManager\v202411\InventoryUrl[] $targetedUrls
      * @param \Google\AdsApi\AdManager\v202411\InventoryUrl[] $excludedUrls
      */
-    public function __construct(array $targetedUrls = null, array $excludedUrls = null)
+    public function __construct(?array $targetedUrls = null, ?array $excludedUrls = null)
     {
       $this->targetedUrls = $targetedUrls;
       $this->excludedUrls = $excludedUrls;
@@ -41,7 +41,7 @@ class InventoryUrlTargeting
      * @param \Google\AdsApi\AdManager\v202411\InventoryUrl[]|null $targetedUrls
      * @return \Google\AdsApi\AdManager\v202411\InventoryUrlTargeting
      */
-    public function setTargetedUrls(array $targetedUrls = null)
+    public function setTargetedUrls(?array $targetedUrls = null)
     {
       $this->targetedUrls = $targetedUrls;
       return $this;
@@ -59,7 +59,7 @@ class InventoryUrlTargeting
      * @param \Google\AdsApi\AdManager\v202411\InventoryUrl[]|null $excludedUrls
      * @return \Google\AdsApi\AdManager\v202411\InventoryUrlTargeting
      */
-    public function setExcludedUrls(array $excludedUrls = null)
+    public function setExcludedUrls(?array $excludedUrls = null)
     {
       $this->excludedUrls = $excludedUrls;
       return $this;

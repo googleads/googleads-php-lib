@@ -17,7 +17,7 @@ class TrackingUrls
     /**
      * @param string[] $urls
      */
-    public function __construct(array $urls = null)
+    public function __construct(?array $urls = null)
     {
       $this->urls = $urls;
     }
@@ -34,7 +34,7 @@ class TrackingUrls
      * @param string[]|null $urls
      * @return \Google\AdsApi\AdManager\v202502\TrackingUrls
      */
-    public function setUrls(array $urls = null)
+    public function setUrls(?array $urls = null)
     {
       $this->urls = $urls;
       return $this;

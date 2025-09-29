@@ -17,7 +17,7 @@ class updateContentBundlesResponse
     /**
      * @param \Google\AdsApi\AdManager\v202502\ContentBundle[] $rval
      */
-    public function __construct(array $rval = null)
+    public function __construct(?array $rval = null)
     {
       $this->rval = $rval;
     }
@@ -34,7 +34,7 @@ class updateContentBundlesResponse
      * @param \Google\AdsApi\AdManager\v202502\ContentBundle[]|null $rval
      * @return \Google\AdsApi\AdManager\v202502\updateContentBundlesResponse
      */
-    public function setRval(array $rval = null)
+    public function setRval(?array $rval = null)
     {
       $this->rval = $rval;
       return $this;
