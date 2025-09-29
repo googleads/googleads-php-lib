@@ -23,7 +23,7 @@ class BrowserTargeting
      * @param boolean $isTargeted
      * @param \Google\AdsApi\AdManager\v202411\Technology[] $browsers
      */
-    public function __construct($isTargeted = null, array $browsers = null)
+    public function __construct($isTargeted = null, ?array $browsers = null)
     {
       $this->isTargeted = $isTargeted;
       $this->browsers = $browsers;
@@ -59,7 +59,7 @@ class BrowserTargeting
      * @param \Google\AdsApi\AdManager\v202411\Technology[]|null $browsers
      * @return \Google\AdsApi\AdManager\v202411\BrowserTargeting
      */
-    public function setBrowsers(array $browsers = null)
+    public function setBrowsers(?array $browsers = null)
     {
       $this->browsers = $browsers;
       return $this;

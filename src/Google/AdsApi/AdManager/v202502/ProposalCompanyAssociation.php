@@ -29,7 +29,7 @@ class ProposalCompanyAssociation
      * @param string $type
      * @param int[] $contactIds
      */
-    public function __construct($companyId = null, $type = null, array $contactIds = null)
+    public function __construct($companyId = null, $type = null, ?array $contactIds = null)
     {
       $this->companyId = $companyId;
       $this->type = $type;
@@ -85,7 +85,7 @@ class ProposalCompanyAssociation
      * @param int[]|null $contactIds
      * @return \Google\AdsApi\AdManager\v202502\ProposalCompanyAssociation
      */
-    public function setContactIds(array $contactIds = null)
+    public function setContactIds(?array $contactIds = null)
     {
       $this->contactIds = $contactIds;
       return $this;

@@ -21,7 +21,7 @@ class RequestError extends \Google\AdsApi\AdManager\v202505\ApiError
      * @param string $errorString
      * @param string $reason
      */
-    public function __construct($fieldPath = null, array $fieldPathElements = null, $trigger = null, $errorString = null, $reason = null)
+    public function __construct($fieldPath = null, ?array $fieldPathElements = null, $trigger = null, $errorString = null, $reason = null)
     {
       parent::__construct($fieldPath, $fieldPathElements, $trigger, $errorString);
       $this->reason = $reason;

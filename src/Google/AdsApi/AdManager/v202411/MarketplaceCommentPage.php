@@ -23,7 +23,7 @@ class MarketplaceCommentPage
      * @param int $startIndex
      * @param \Google\AdsApi\AdManager\v202411\MarketplaceComment[] $results
      */
-    public function __construct($startIndex = null, array $results = null)
+    public function __construct($startIndex = null, ?array $results = null)
     {
       $this->startIndex = $startIndex;
       $this->results = $results;
@@ -59,7 +59,7 @@ class MarketplaceCommentPage
      * @param \Google\AdsApi\AdManager\v202411\MarketplaceComment[]|null $results
      * @return \Google\AdsApi\AdManager\v202411\MarketplaceCommentPage
      */
-    public function setResults(array $results = null)
+    public function setResults(?array $results = null)
     {
       $this->results = $results;
       return $this;

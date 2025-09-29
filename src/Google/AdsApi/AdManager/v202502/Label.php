@@ -47,7 +47,7 @@ class Label
      * @param \Google\AdsApi\AdManager\v202502\AdCategoryDto $adCategory
      * @param string[] $types
      */
-    public function __construct($id = null, $name = null, $description = null, $isActive = null, $adCategory = null, array $types = null)
+    public function __construct($id = null, $name = null, $description = null, $isActive = null, $adCategory = null, ?array $types = null)
     {
       $this->id = $id;
       $this->name = $name;
@@ -160,7 +160,7 @@ class Label
      * @param string[]|null $types
      * @return \Google\AdsApi\AdManager\v202502\Label
      */
-    public function setTypes(array $types = null)
+    public function setTypes(?array $types = null)
     {
       $this->types = $types;
       return $this;

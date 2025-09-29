@@ -23,7 +23,7 @@ class MobileCarrierTargeting
      * @param boolean $isTargeted
      * @param \Google\AdsApi\AdManager\v202411\Technology[] $mobileCarriers
      */
-    public function __construct($isTargeted = null, array $mobileCarriers = null)
+    public function __construct($isTargeted = null, ?array $mobileCarriers = null)
     {
       $this->isTargeted = $isTargeted;
       $this->mobileCarriers = $mobileCarriers;
@@ -59,7 +59,7 @@ class MobileCarrierTargeting
      * @param \Google\AdsApi\AdManager\v202411\Technology[]|null $mobileCarriers
      * @return \Google\AdsApi\AdManager\v202411\MobileCarrierTargeting
      */
-    public function setMobileCarriers(array $mobileCarriers = null)
+    public function setMobileCarriers(?array $mobileCarriers = null)
     {
       $this->mobileCarriers = $mobileCarriers;
       return $this;

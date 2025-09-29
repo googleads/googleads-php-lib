@@ -23,7 +23,7 @@ class InventorySizeTargeting
      * @param boolean $isTargeted
      * @param \Google\AdsApi\AdManager\v202502\TargetedSize[] $targetedSizes
      */
-    public function __construct($isTargeted = null, array $targetedSizes = null)
+    public function __construct($isTargeted = null, ?array $targetedSizes = null)
     {
       $this->isTargeted = $isTargeted;
       $this->targetedSizes = $targetedSizes;
@@ -59,7 +59,7 @@ class InventorySizeTargeting
      * @param \Google\AdsApi\AdManager\v202502\TargetedSize[]|null $targetedSizes
      * @return \Google\AdsApi\AdManager\v202502\InventorySizeTargeting
      */
-    public function setTargetedSizes(array $targetedSizes = null)
+    public function setTargetedSizes(?array $targetedSizes = null)
     {
       $this->targetedSizes = $targetedSizes;
       return $this;

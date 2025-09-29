@@ -71,7 +71,7 @@ class CreativeTemplate
      * @param boolean $isNativeEligible
      * @param boolean $isSafeFrameCompatible
      */
-    public function __construct($id = null, $name = null, $description = null, array $variables = null, $snippet = null, $status = null, $type = null, $isInterstitial = null, $isNativeEligible = null, $isSafeFrameCompatible = null)
+    public function __construct($id = null, $name = null, $description = null, ?array $variables = null, $snippet = null, $status = null, $type = null, $isInterstitial = null, $isNativeEligible = null, $isSafeFrameCompatible = null)
     {
       $this->id = $id;
       $this->name = $name;
@@ -152,7 +152,7 @@ class CreativeTemplate
      * @param \Google\AdsApi\AdManager\v202502\CreativeTemplateVariable[]|null $variables
      * @return \Google\AdsApi\AdManager\v202502\CreativeTemplate
      */
-    public function setVariables(array $variables = null)
+    public function setVariables(?array $variables = null)
     {
       $this->variables = $variables;
       return $this;

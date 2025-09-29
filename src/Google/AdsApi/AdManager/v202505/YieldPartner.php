@@ -23,7 +23,7 @@ class YieldPartner
      * @param int $companyId
      * @param \Google\AdsApi\AdManager\v202505\YieldPartnerSettings[] $settings
      */
-    public function __construct($companyId = null, array $settings = null)
+    public function __construct($companyId = null, ?array $settings = null)
     {
       $this->companyId = $companyId;
       $this->settings = $settings;
@@ -60,7 +60,7 @@ class YieldPartner
      * @param \Google\AdsApi\AdManager\v202505\YieldPartnerSettings[]|null $settings
      * @return \Google\AdsApi\AdManager\v202505\YieldPartner
      */
-    public function setSettings(array $settings = null)
+    public function setSettings(?array $settings = null)
     {
       $this->settings = $settings;
       return $this;

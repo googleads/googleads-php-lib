@@ -53,7 +53,7 @@ class YieldGroup
      * @param \Google\AdsApi\AdManager\v202411\Targeting $targeting
      * @param \Google\AdsApi\AdManager\v202411\YieldAdSource[] $adSources
      */
-    public function __construct($yieldGroupId = null, $yieldGroupName = null, $exchangeStatus = null, $format = null, $environmentType = null, $targeting = null, array $adSources = null)
+    public function __construct($yieldGroupId = null, $yieldGroupName = null, $exchangeStatus = null, $format = null, $environmentType = null, $targeting = null, ?array $adSources = null)
     {
       $this->yieldGroupId = $yieldGroupId;
       $this->yieldGroupName = $yieldGroupName;
@@ -185,7 +185,7 @@ class YieldGroup
      * @param \Google\AdsApi\AdManager\v202411\YieldAdSource[]|null $adSources
      * @return \Google\AdsApi\AdManager\v202411\YieldGroup
      */
-    public function setAdSources(array $adSources = null)
+    public function setAdSources(?array $adSources = null)
     {
       $this->adSources = $adSources;
       return $this;

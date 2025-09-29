@@ -23,7 +23,7 @@ class TimeSeries
      * @param \Google\AdsApi\AdManager\v202411\DateRange $timeSeriesDateRange
      * @param int[] $values
      */
-    public function __construct($timeSeriesDateRange = null, array $values = null)
+    public function __construct($timeSeriesDateRange = null, ?array $values = null)
     {
       $this->timeSeriesDateRange = $timeSeriesDateRange;
       $this->values = $values;
@@ -59,7 +59,7 @@ class TimeSeries
      * @param int[]|null $values
      * @return \Google\AdsApi\AdManager\v202411\TimeSeries
      */
-    public function setValues(array $values = null)
+    public function setValues(?array $values = null)
     {
       $this->values = $values;
       return $this;

@@ -53,7 +53,7 @@ class Placement extends \Google\AdsApi\AdManager\v202502\SiteTargetingInfo
      * @param string[] $targetedAdUnitIds
      * @param \Google\AdsApi\AdManager\v202502\DateTime $lastModifiedDateTime
      */
-    public function __construct($id = null, $name = null, $description = null, $placementCode = null, $status = null, array $targetedAdUnitIds = null, $lastModifiedDateTime = null)
+    public function __construct($id = null, $name = null, $description = null, $placementCode = null, $status = null, ?array $targetedAdUnitIds = null, $lastModifiedDateTime = null)
     {
       $this->id = $id;
       $this->name = $name;
@@ -167,7 +167,7 @@ class Placement extends \Google\AdsApi\AdManager\v202502\SiteTargetingInfo
      * @param string[]|null $targetedAdUnitIds
      * @return \Google\AdsApi\AdManager\v202502\Placement
      */
-    public function setTargetedAdUnitIds(array $targetedAdUnitIds = null)
+    public function setTargetedAdUnitIds(?array $targetedAdUnitIds = null)
     {
       $this->targetedAdUnitIds = $targetedAdUnitIds;
       return $this;

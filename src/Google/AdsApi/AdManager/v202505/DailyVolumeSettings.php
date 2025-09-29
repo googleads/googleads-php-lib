@@ -17,7 +17,7 @@ class DailyVolumeSettings
     /**
      * @param int[] $adOpportunityCounts
      */
-    public function __construct(array $adOpportunityCounts = null)
+    public function __construct(?array $adOpportunityCounts = null)
     {
       $this->adOpportunityCounts = $adOpportunityCounts;
     }
@@ -34,7 +34,7 @@ class DailyVolumeSettings
      * @param int[]|null $adOpportunityCounts
      * @return \Google\AdsApi\AdManager\v202505\DailyVolumeSettings
      */
-    public function setAdOpportunityCounts(array $adOpportunityCounts = null)
+    public function setAdOpportunityCounts(?array $adOpportunityCounts = null)
     {
       $this->adOpportunityCounts = $adOpportunityCounts;
       return $this;

@@ -89,7 +89,7 @@ class AdBreak
      * @param boolean $decisionedAds
      * @param \Google\AdsApi\AdManager\v202411\TrackingEvent[] $trackingEvents
      */
-    public function __construct(array $rootAdResponses = null, array $adDecisionCreatives = null, $podNum = null, $linearAbsolutePodNum = null, $adBreakDurationMillis = null, $filledDurationMillis = null, $servedDurationMillis = null, $startDateTime = null, $startTimeOffsetMillis = null, $samError = null, $midrollIndex = null, $decisionedAds = null, array $trackingEvents = null)
+    public function __construct(?array $rootAdResponses = null, ?array $adDecisionCreatives = null, $podNum = null, $linearAbsolutePodNum = null, $adBreakDurationMillis = null, $filledDurationMillis = null, $servedDurationMillis = null, $startDateTime = null, $startTimeOffsetMillis = null, $samError = null, $midrollIndex = null, $decisionedAds = null, ?array $trackingEvents = null)
     {
       $this->rootAdResponses = $rootAdResponses;
       $this->adDecisionCreatives = $adDecisionCreatives;
@@ -118,7 +118,7 @@ class AdBreak
      * @param \Google\AdsApi\AdManager\v202411\AdResponse[]|null $rootAdResponses
      * @return \Google\AdsApi\AdManager\v202411\AdBreak
      */
-    public function setRootAdResponses(array $rootAdResponses = null)
+    public function setRootAdResponses(?array $rootAdResponses = null)
     {
       $this->rootAdResponses = $rootAdResponses;
       return $this;
@@ -136,7 +136,7 @@ class AdBreak
      * @param \Google\AdsApi\AdManager\v202411\AdDecisionCreative[]|null $adDecisionCreatives
      * @return \Google\AdsApi\AdManager\v202411\AdBreak
      */
-    public function setAdDecisionCreatives(array $adDecisionCreatives = null)
+    public function setAdDecisionCreatives(?array $adDecisionCreatives = null)
     {
       $this->adDecisionCreatives = $adDecisionCreatives;
       return $this;
@@ -338,7 +338,7 @@ class AdBreak
      * @param \Google\AdsApi\AdManager\v202411\TrackingEvent[]|null $trackingEvents
      * @return \Google\AdsApi\AdManager\v202411\AdBreak
      */
-    public function setTrackingEvents(array $trackingEvents = null)
+    public function setTrackingEvents(?array $trackingEvents = null)
     {
       $this->trackingEvents = $trackingEvents;
       return $this;

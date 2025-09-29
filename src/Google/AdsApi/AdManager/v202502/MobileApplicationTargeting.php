@@ -23,7 +23,7 @@ class MobileApplicationTargeting
      * @param int[] $mobileApplicationIds
      * @param boolean $isTargeted
      */
-    public function __construct(array $mobileApplicationIds = null, $isTargeted = null)
+    public function __construct(?array $mobileApplicationIds = null, $isTargeted = null)
     {
       $this->mobileApplicationIds = $mobileApplicationIds;
       $this->isTargeted = $isTargeted;
@@ -41,7 +41,7 @@ class MobileApplicationTargeting
      * @param int[]|null $mobileApplicationIds
      * @return \Google\AdsApi\AdManager\v202502\MobileApplicationTargeting
      */
-    public function setMobileApplicationIds(array $mobileApplicationIds = null)
+    public function setMobileApplicationIds(?array $mobileApplicationIds = null)
     {
       $this->mobileApplicationIds = $mobileApplicationIds;
       return $this;

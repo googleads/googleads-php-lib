@@ -65,7 +65,7 @@ class Network
      * @param string $effectiveRootAdUnitId
      * @param boolean $isTest
      */
-    public function __construct($id = null, $displayName = null, $networkCode = null, $propertyCode = null, $timeZone = null, $currencyCode = null, array $secondaryCurrencyCodes = null, $effectiveRootAdUnitId = null, $isTest = null)
+    public function __construct($id = null, $displayName = null, $networkCode = null, $propertyCode = null, $timeZone = null, $currencyCode = null, ?array $secondaryCurrencyCodes = null, $effectiveRootAdUnitId = null, $isTest = null)
     {
       $this->id = $id;
       $this->displayName = $displayName;
@@ -199,7 +199,7 @@ class Network
      * @param string[]|null $secondaryCurrencyCodes
      * @return \Google\AdsApi\AdManager\v202505\Network
      */
-    public function setSecondaryCurrencyCodes(array $secondaryCurrencyCodes = null)
+    public function setSecondaryCurrencyCodes(?array $secondaryCurrencyCodes = null)
     {
       $this->secondaryCurrencyCodes = $secondaryCurrencyCodes;
       return $this;

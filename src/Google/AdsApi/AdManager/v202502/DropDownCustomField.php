@@ -24,7 +24,7 @@ class DropDownCustomField extends \Google\AdsApi\AdManager\v202502\CustomField
      * @param string $visibility
      * @param \Google\AdsApi\AdManager\v202502\CustomFieldOption[] $options
      */
-    public function __construct($id = null, $name = null, $description = null, $isActive = null, $entityType = null, $dataType = null, $visibility = null, array $options = null)
+    public function __construct($id = null, $name = null, $description = null, $isActive = null, $entityType = null, $dataType = null, $visibility = null, ?array $options = null)
     {
       parent::__construct($id, $name, $description, $isActive, $entityType, $dataType, $visibility);
       $this->options = $options;
@@ -42,7 +42,7 @@ class DropDownCustomField extends \Google\AdsApi\AdManager\v202502\CustomField
      * @param \Google\AdsApi\AdManager\v202502\CustomFieldOption[]|null $options
      * @return \Google\AdsApi\AdManager\v202502\DropDownCustomField
      */
-    public function setOptions(array $options = null)
+    public function setOptions(?array $options = null)
     {
       $this->options = $options;
       return $this;

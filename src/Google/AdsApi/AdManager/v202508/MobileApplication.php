@@ -89,7 +89,7 @@ class MobileApplication
      * @param string $downloadUrl
      * @param string $approvalStatus
      */
-    public function __construct($id = null, $applicationId = null, $displayName = null, $appStoreId = null, array $appStores = null, $isArchived = null, $appStoreName = null, $applicationCode = null, $developerName = null, $platform = null, $isFree = null, $downloadUrl = null, $approvalStatus = null)
+    public function __construct($id = null, $applicationId = null, $displayName = null, $appStoreId = null, ?array $appStores = null, $isArchived = null, $appStoreName = null, $applicationCode = null, $developerName = null, $platform = null, $isFree = null, $downloadUrl = null, $approvalStatus = null)
     {
       $this->id = $id;
       $this->applicationId = $applicationId;
@@ -192,7 +192,7 @@ class MobileApplication
      * @param string[]|null $appStores
      * @return \Google\AdsApi\AdManager\v202508\MobileApplication
      */
-    public function setAppStores(array $appStores = null)
+    public function setAppStores(?array $appStores = null)
     {
       $this->appStores = $appStores;
       return $this;

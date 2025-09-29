@@ -23,7 +23,7 @@ class MobileDeviceTargeting
      * @param \Google\AdsApi\AdManager\v202411\Technology[] $targetedMobileDevices
      * @param \Google\AdsApi\AdManager\v202411\Technology[] $excludedMobileDevices
      */
-    public function __construct(array $targetedMobileDevices = null, array $excludedMobileDevices = null)
+    public function __construct(?array $targetedMobileDevices = null, ?array $excludedMobileDevices = null)
     {
       $this->targetedMobileDevices = $targetedMobileDevices;
       $this->excludedMobileDevices = $excludedMobileDevices;
@@ -41,7 +41,7 @@ class MobileDeviceTargeting
      * @param \Google\AdsApi\AdManager\v202411\Technology[]|null $targetedMobileDevices
      * @return \Google\AdsApi\AdManager\v202411\MobileDeviceTargeting
      */
-    public function setTargetedMobileDevices(array $targetedMobileDevices = null)
+    public function setTargetedMobileDevices(?array $targetedMobileDevices = null)
     {
       $this->targetedMobileDevices = $targetedMobileDevices;
       return $this;
@@ -59,7 +59,7 @@ class MobileDeviceTargeting
      * @param \Google\AdsApi\AdManager\v202411\Technology[]|null $excludedMobileDevices
      * @return \Google\AdsApi\AdManager\v202411\MobileDeviceTargeting
      */
-    public function setExcludedMobileDevices(array $excludedMobileDevices = null)
+    public function setExcludedMobileDevices(?array $excludedMobileDevices = null)
     {
       $this->excludedMobileDevices = $excludedMobileDevices;
       return $this;

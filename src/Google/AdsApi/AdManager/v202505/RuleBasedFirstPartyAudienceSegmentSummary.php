@@ -41,7 +41,7 @@ class RuleBasedFirstPartyAudienceSegmentSummary extends \Google\AdsApi\AdManager
      * @param int $recencyDays
      * @param int $membershipExpirationDays
      */
-    public function __construct($id = null, $name = null, array $categoryIds = null, $description = null, $status = null, $size = null, $mobileWebSize = null, $idfaSize = null, $adIdSize = null, $ppidSize = null, $dataProvider = null, $type = null, $pageViews = null, $recencyDays = null, $membershipExpirationDays = null)
+    public function __construct($id = null, $name = null, ?array $categoryIds = null, $description = null, $status = null, $size = null, $mobileWebSize = null, $idfaSize = null, $adIdSize = null, $ppidSize = null, $dataProvider = null, $type = null, $pageViews = null, $recencyDays = null, $membershipExpirationDays = null)
     {
       parent::__construct($id, $name, $categoryIds, $description, $status, $size, $mobileWebSize, $idfaSize, $adIdSize, $ppidSize, $dataProvider, $type);
       $this->pageViews = $pageViews;

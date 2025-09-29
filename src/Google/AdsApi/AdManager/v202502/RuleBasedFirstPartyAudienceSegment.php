@@ -32,7 +32,7 @@ class RuleBasedFirstPartyAudienceSegment extends \Google\AdsApi\AdManager\v20250
      * @param int $membershipExpirationDays
      * @param \Google\AdsApi\AdManager\v202502\FirstPartyAudienceSegmentRule $rule
      */
-    public function __construct($id = null, $name = null, array $categoryIds = null, $description = null, $status = null, $size = null, $mobileWebSize = null, $idfaSize = null, $adIdSize = null, $ppidSize = null, $dataProvider = null, $type = null, $pageViews = null, $recencyDays = null, $membershipExpirationDays = null, $rule = null)
+    public function __construct($id = null, $name = null, ?array $categoryIds = null, $description = null, $status = null, $size = null, $mobileWebSize = null, $idfaSize = null, $adIdSize = null, $ppidSize = null, $dataProvider = null, $type = null, $pageViews = null, $recencyDays = null, $membershipExpirationDays = null, $rule = null)
     {
       parent::__construct($id, $name, $categoryIds, $description, $status, $size, $mobileWebSize, $idfaSize, $adIdSize, $ppidSize, $dataProvider, $type, $pageViews, $recencyDays, $membershipExpirationDays);
       $this->rule = $rule;

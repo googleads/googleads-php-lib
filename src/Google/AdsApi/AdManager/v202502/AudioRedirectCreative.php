@@ -47,7 +47,7 @@ class AudioRedirectCreative extends \Google\AdsApi\AdManager\v202502\BaseAudioCr
      * @param \Google\AdsApi\AdManager\v202502\VideoRedirectAsset[] $audioAssets
      * @param \Google\AdsApi\AdManager\v202502\VideoRedirectAsset $mezzanineFile
      */
-    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, array $policyLabels = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null, $thirdPartyDataDeclaration = null, $adBadgingEnabled = null, $destinationUrl = null, $destinationUrlType = null, $duration = null, $allowDurationOverride = null, array $trackingUrls = null, array $companionCreativeIds = null, $customParameters = null, $adId = null, $adIdType = null, $skippableAdType = null, $vastPreviewUrl = null, $sslScanResult = null, $sslManualOverride = null, array $audioAssets = null, $mezzanineFile = null)
+    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, ?array $policyLabels = null, ?array $appliedLabels = null, $lastModifiedDateTime = null, ?array $customFieldValues = null, $thirdPartyDataDeclaration = null, $adBadgingEnabled = null, $destinationUrl = null, $destinationUrlType = null, $duration = null, $allowDurationOverride = null, ?array $trackingUrls = null, ?array $companionCreativeIds = null, $customParameters = null, $adId = null, $adIdType = null, $skippableAdType = null, $vastPreviewUrl = null, $sslScanResult = null, $sslManualOverride = null, ?array $audioAssets = null, $mezzanineFile = null)
     {
       parent::__construct($advertiserId, $id, $name, $size, $previewUrl, $policyLabels, $appliedLabels, $lastModifiedDateTime, $customFieldValues, $thirdPartyDataDeclaration, $adBadgingEnabled, $destinationUrl, $destinationUrlType, $duration, $allowDurationOverride, $trackingUrls, $companionCreativeIds, $customParameters, $adId, $adIdType, $skippableAdType, $vastPreviewUrl, $sslScanResult, $sslManualOverride);
       $this->audioAssets = $audioAssets;
@@ -66,7 +66,7 @@ class AudioRedirectCreative extends \Google\AdsApi\AdManager\v202502\BaseAudioCr
      * @param \Google\AdsApi\AdManager\v202502\VideoRedirectAsset[]|null $audioAssets
      * @return \Google\AdsApi\AdManager\v202502\AudioRedirectCreative
      */
-    public function setAudioAssets(array $audioAssets = null)
+    public function setAudioAssets(?array $audioAssets = null)
     {
       $this->audioAssets = $audioAssets;
       return $this;

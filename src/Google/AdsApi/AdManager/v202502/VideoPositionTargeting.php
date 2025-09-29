@@ -17,7 +17,7 @@ class VideoPositionTargeting
     /**
      * @param \Google\AdsApi\AdManager\v202502\VideoPositionTarget[] $targetedPositions
      */
-    public function __construct(array $targetedPositions = null)
+    public function __construct(?array $targetedPositions = null)
     {
       $this->targetedPositions = $targetedPositions;
     }
@@ -34,7 +34,7 @@ class VideoPositionTargeting
      * @param \Google\AdsApi\AdManager\v202502\VideoPositionTarget[]|null $targetedPositions
      * @return \Google\AdsApi\AdManager\v202502\VideoPositionTargeting
      */
-    public function setTargetedPositions(array $targetedPositions = null)
+    public function setTargetedPositions(?array $targetedPositions = null)
     {
       $this->targetedPositions = $targetedPositions;
       return $this;

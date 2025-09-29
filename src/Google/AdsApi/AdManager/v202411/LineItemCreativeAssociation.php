@@ -95,7 +95,7 @@ class LineItemCreativeAssociation
      * @param \Google\AdsApi\AdManager\v202411\DateTime $lastModifiedDateTime
      * @param string $targetingName
      */
-    public function __construct($lineItemId = null, $creativeId = null, $creativeSetId = null, $manualCreativeRotationWeight = null, $sequentialCreativeRotationIndex = null, $startDateTime = null, $startDateTimeType = null, $endDateTime = null, $destinationUrl = null, array $sizes = null, $status = null, $stats = null, $lastModifiedDateTime = null, $targetingName = null)
+    public function __construct($lineItemId = null, $creativeId = null, $creativeSetId = null, $manualCreativeRotationWeight = null, $sequentialCreativeRotationIndex = null, $startDateTime = null, $startDateTimeType = null, $endDateTime = null, $destinationUrl = null, ?array $sizes = null, $status = null, $stats = null, $lastModifiedDateTime = null, $targetingName = null)
     {
       $this->lineItemId = $lineItemId;
       $this->creativeId = $creativeId;
@@ -290,7 +290,7 @@ class LineItemCreativeAssociation
      * @param \Google\AdsApi\AdManager\v202411\Size[]|null $sizes
      * @return \Google\AdsApi\AdManager\v202411\LineItemCreativeAssociation
      */
-    public function setSizes(array $sizes = null)
+    public function setSizes(?array $sizes = null)
     {
       $this->sizes = $sizes;
       return $this;

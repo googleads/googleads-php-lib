@@ -60,7 +60,7 @@ final class OAuth2TokenRefresher
      */
     public function getOrFetchAccessToken(
         FetchAuthTokenInterface $fetchAuthTokenInterface,
-        callable $httpHandler = null
+        ?callable $httpHandler = null
     ) {
         if ($this->shouldFetchAccessToken($fetchAuthTokenInterface)) {
             $authToken = $fetchAuthTokenInterface->fetchAuthToken($httpHandler);

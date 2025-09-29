@@ -17,7 +17,7 @@ class DeliveryForecastOptions
     /**
      * @param int[] $ignoredLineItemIds
      */
-    public function __construct(array $ignoredLineItemIds = null)
+    public function __construct(?array $ignoredLineItemIds = null)
     {
       $this->ignoredLineItemIds = $ignoredLineItemIds;
     }
@@ -34,7 +34,7 @@ class DeliveryForecastOptions
      * @param int[]|null $ignoredLineItemIds
      * @return \Google\AdsApi\AdManager\v202411\DeliveryForecastOptions
      */
-    public function setIgnoredLineItemIds(array $ignoredLineItemIds = null)
+    public function setIgnoredLineItemIds(?array $ignoredLineItemIds = null)
     {
       $this->ignoredLineItemIds = $ignoredLineItemIds;
       return $this;

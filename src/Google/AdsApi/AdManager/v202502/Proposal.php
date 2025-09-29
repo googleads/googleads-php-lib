@@ -167,7 +167,7 @@ class Proposal
      * @param boolean $hasBuyerRfp
      * @param boolean $deliveryPausingEnabled
      */
-    public function __construct($id = null, $isProgrammatic = null, $dfpOrderId = null, $name = null, $startDateTime = null, $endDateTime = null, $status = null, $isArchived = null, $advertiser = null, array $agencies = null, $internalNotes = null, $primarySalesperson = null, array $salesPlannerIds = null, $primaryTraffickerId = null, array $sellerContactIds = null, array $appliedTeamIds = null, array $customFieldValues = null, array $appliedLabels = null, array $effectiveAppliedLabels = null, $currencyCode = null, $isSold = null, $lastModifiedDateTime = null, $marketplaceInfo = null, $buyerRfp = null, $hasBuyerRfp = null, $deliveryPausingEnabled = null)
+    public function __construct($id = null, $isProgrammatic = null, $dfpOrderId = null, $name = null, $startDateTime = null, $endDateTime = null, $status = null, $isArchived = null, $advertiser = null, ?array $agencies = null, $internalNotes = null, $primarySalesperson = null, ?array $salesPlannerIds = null, $primaryTraffickerId = null, ?array $sellerContactIds = null, ?array $appliedTeamIds = null, ?array $customFieldValues = null, ?array $appliedLabels = null, ?array $effectiveAppliedLabels = null, $currencyCode = null, $isSold = null, $lastModifiedDateTime = null, $marketplaceInfo = null, $buyerRfp = null, $hasBuyerRfp = null, $deliveryPausingEnabled = null)
     {
       $this->id = $id;
       $this->isProgrammatic = $isProgrammatic;
@@ -373,7 +373,7 @@ class Proposal
      * @param \Google\AdsApi\AdManager\v202502\ProposalCompanyAssociation[]|null $agencies
      * @return \Google\AdsApi\AdManager\v202502\Proposal
      */
-    public function setAgencies(array $agencies = null)
+    public function setAgencies(?array $agencies = null)
     {
       $this->agencies = $agencies;
       return $this;
@@ -427,7 +427,7 @@ class Proposal
      * @param int[]|null $salesPlannerIds
      * @return \Google\AdsApi\AdManager\v202502\Proposal
      */
-    public function setSalesPlannerIds(array $salesPlannerIds = null)
+    public function setSalesPlannerIds(?array $salesPlannerIds = null)
     {
       $this->salesPlannerIds = $salesPlannerIds;
       return $this;
@@ -464,7 +464,7 @@ class Proposal
      * @param int[]|null $sellerContactIds
      * @return \Google\AdsApi\AdManager\v202502\Proposal
      */
-    public function setSellerContactIds(array $sellerContactIds = null)
+    public function setSellerContactIds(?array $sellerContactIds = null)
     {
       $this->sellerContactIds = $sellerContactIds;
       return $this;
@@ -482,7 +482,7 @@ class Proposal
      * @param int[]|null $appliedTeamIds
      * @return \Google\AdsApi\AdManager\v202502\Proposal
      */
-    public function setAppliedTeamIds(array $appliedTeamIds = null)
+    public function setAppliedTeamIds(?array $appliedTeamIds = null)
     {
       $this->appliedTeamIds = $appliedTeamIds;
       return $this;
@@ -500,7 +500,7 @@ class Proposal
      * @param \Google\AdsApi\AdManager\v202502\BaseCustomFieldValue[]|null $customFieldValues
      * @return \Google\AdsApi\AdManager\v202502\Proposal
      */
-    public function setCustomFieldValues(array $customFieldValues = null)
+    public function setCustomFieldValues(?array $customFieldValues = null)
     {
       $this->customFieldValues = $customFieldValues;
       return $this;
@@ -518,7 +518,7 @@ class Proposal
      * @param \Google\AdsApi\AdManager\v202502\AppliedLabel[]|null $appliedLabels
      * @return \Google\AdsApi\AdManager\v202502\Proposal
      */
-    public function setAppliedLabels(array $appliedLabels = null)
+    public function setAppliedLabels(?array $appliedLabels = null)
     {
       $this->appliedLabels = $appliedLabels;
       return $this;
@@ -536,7 +536,7 @@ class Proposal
      * @param \Google\AdsApi\AdManager\v202502\AppliedLabel[]|null $effectiveAppliedLabels
      * @return \Google\AdsApi\AdManager\v202502\Proposal
      */
-    public function setEffectiveAppliedLabels(array $effectiveAppliedLabels = null)
+    public function setEffectiveAppliedLabels(?array $effectiveAppliedLabels = null)
     {
       $this->effectiveAppliedLabels = $effectiveAppliedLabels;
       return $this;

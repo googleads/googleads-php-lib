@@ -29,7 +29,7 @@ class TeamPage
      * @param int $startIndex
      * @param \Google\AdsApi\AdManager\v202411\Team[] $results
      */
-    public function __construct($totalResultSetSize = null, $startIndex = null, array $results = null)
+    public function __construct($totalResultSetSize = null, $startIndex = null, ?array $results = null)
     {
       $this->totalResultSetSize = $totalResultSetSize;
       $this->startIndex = $startIndex;
@@ -84,7 +84,7 @@ class TeamPage
      * @param \Google\AdsApi\AdManager\v202411\Team[]|null $results
      * @return \Google\AdsApi\AdManager\v202411\TeamPage
      */
-    public function setResults(array $results = null)
+    public function setResults(?array $results = null)
     {
       $this->results = $results;
       return $this;

@@ -41,7 +41,7 @@ class AdUnitSize
      * @param string $fullDisplayString
      * @param boolean $isAudio
      */
-    public function __construct($size = null, $environmentType = null, array $companions = null, $fullDisplayString = null, $isAudio = null)
+    public function __construct($size = null, $environmentType = null, ?array $companions = null, $fullDisplayString = null, $isAudio = null)
     {
       $this->size = $size;
       $this->environmentType = $environmentType;
@@ -98,7 +98,7 @@ class AdUnitSize
      * @param \Google\AdsApi\AdManager\v202411\AdUnitSize[]|null $companions
      * @return \Google\AdsApi\AdManager\v202411\AdUnitSize
      */
-    public function setCompanions(array $companions = null)
+    public function setCompanions(?array $companions = null)
     {
       $this->companions = $companions;
       return $this;

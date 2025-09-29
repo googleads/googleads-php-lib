@@ -29,7 +29,7 @@ class LabelPage
      * @param int $startIndex
      * @param \Google\AdsApi\AdManager\v202508\Label[] $results
      */
-    public function __construct($totalResultSetSize = null, $startIndex = null, array $results = null)
+    public function __construct($totalResultSetSize = null, $startIndex = null, ?array $results = null)
     {
       $this->totalResultSetSize = $totalResultSetSize;
       $this->startIndex = $startIndex;
@@ -84,7 +84,7 @@ class LabelPage
      * @param \Google\AdsApi\AdManager\v202508\Label[]|null $results
      * @return \Google\AdsApi\AdManager\v202508\LabelPage
      */
-    public function setResults(array $results = null)
+    public function setResults(?array $results = null)
     {
       $this->results = $results;
       return $this;

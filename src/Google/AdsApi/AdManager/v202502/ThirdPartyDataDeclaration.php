@@ -23,7 +23,7 @@ class ThirdPartyDataDeclaration
      * @param string $declarationType
      * @param int[] $thirdPartyCompanyIds
      */
-    public function __construct($declarationType = null, array $thirdPartyCompanyIds = null)
+    public function __construct($declarationType = null, ?array $thirdPartyCompanyIds = null)
     {
       $this->declarationType = $declarationType;
       $this->thirdPartyCompanyIds = $thirdPartyCompanyIds;
@@ -59,7 +59,7 @@ class ThirdPartyDataDeclaration
      * @param int[]|null $thirdPartyCompanyIds
      * @return \Google\AdsApi\AdManager\v202502\ThirdPartyDataDeclaration
      */
-    public function setThirdPartyCompanyIds(array $thirdPartyCompanyIds = null)
+    public function setThirdPartyCompanyIds(?array $thirdPartyCompanyIds = null)
     {
       $this->thirdPartyCompanyIds = $thirdPartyCompanyIds;
       return $this;

@@ -23,7 +23,7 @@ class DeviceCategoryTargeting
      * @param \Google\AdsApi\AdManager\v202411\Technology[] $targetedDeviceCategories
      * @param \Google\AdsApi\AdManager\v202411\Technology[] $excludedDeviceCategories
      */
-    public function __construct(array $targetedDeviceCategories = null, array $excludedDeviceCategories = null)
+    public function __construct(?array $targetedDeviceCategories = null, ?array $excludedDeviceCategories = null)
     {
       $this->targetedDeviceCategories = $targetedDeviceCategories;
       $this->excludedDeviceCategories = $excludedDeviceCategories;
@@ -41,7 +41,7 @@ class DeviceCategoryTargeting
      * @param \Google\AdsApi\AdManager\v202411\Technology[]|null $targetedDeviceCategories
      * @return \Google\AdsApi\AdManager\v202411\DeviceCategoryTargeting
      */
-    public function setTargetedDeviceCategories(array $targetedDeviceCategories = null)
+    public function setTargetedDeviceCategories(?array $targetedDeviceCategories = null)
     {
       $this->targetedDeviceCategories = $targetedDeviceCategories;
       return $this;
@@ -59,7 +59,7 @@ class DeviceCategoryTargeting
      * @param \Google\AdsApi\AdManager\v202411\Technology[]|null $excludedDeviceCategories
      * @return \Google\AdsApi\AdManager\v202411\DeviceCategoryTargeting
      */
-    public function setExcludedDeviceCategories(array $excludedDeviceCategories = null)
+    public function setExcludedDeviceCategories(?array $excludedDeviceCategories = null)
     {
       $this->excludedDeviceCategories = $excludedDeviceCategories;
       return $this;

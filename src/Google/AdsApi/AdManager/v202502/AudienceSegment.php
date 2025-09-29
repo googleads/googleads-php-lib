@@ -83,7 +83,7 @@ class AudienceSegment
      * @param \Google\AdsApi\AdManager\v202502\AudienceSegmentDataProvider $dataProvider
      * @param string $type
      */
-    public function __construct($id = null, $name = null, array $categoryIds = null, $description = null, $status = null, $size = null, $mobileWebSize = null, $idfaSize = null, $adIdSize = null, $ppidSize = null, $dataProvider = null, $type = null)
+    public function __construct($id = null, $name = null, ?array $categoryIds = null, $description = null, $status = null, $size = null, $mobileWebSize = null, $idfaSize = null, $adIdSize = null, $ppidSize = null, $dataProvider = null, $type = null)
     {
       $this->id = $id;
       $this->name = $name;
@@ -148,7 +148,7 @@ class AudienceSegment
      * @param int[]|null $categoryIds
      * @return \Google\AdsApi\AdManager\v202502\AudienceSegment
      */
-    public function setCategoryIds(array $categoryIds = null)
+    public function setCategoryIds(?array $categoryIds = null)
     {
       $this->categoryIds = $categoryIds;
       return $this;

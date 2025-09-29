@@ -72,7 +72,7 @@ class CustomCreative extends \Google\AdsApi\AdManager\v202502\HasDestinationUrlC
      * @param boolean $isSafeFrameCompatible
      * @param string[] $thirdPartyImpressionTrackingUrls
      */
-    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, array $policyLabels = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null, $thirdPartyDataDeclaration = null, $adBadgingEnabled = null, $destinationUrl = null, $destinationUrlType = null, $htmlSnippet = null, array $customCreativeAssets = null, $isInterstitial = null, $lockedOrientation = null, $sslScanResult = null, $sslManualOverride = null, $isSafeFrameCompatible = null, array $thirdPartyImpressionTrackingUrls = null)
+    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, ?array $policyLabels = null, ?array $appliedLabels = null, $lastModifiedDateTime = null, ?array $customFieldValues = null, $thirdPartyDataDeclaration = null, $adBadgingEnabled = null, $destinationUrl = null, $destinationUrlType = null, $htmlSnippet = null, ?array $customCreativeAssets = null, $isInterstitial = null, $lockedOrientation = null, $sslScanResult = null, $sslManualOverride = null, $isSafeFrameCompatible = null, ?array $thirdPartyImpressionTrackingUrls = null)
     {
       parent::__construct($advertiserId, $id, $name, $size, $previewUrl, $policyLabels, $appliedLabels, $lastModifiedDateTime, $customFieldValues, $thirdPartyDataDeclaration, $adBadgingEnabled, $destinationUrl, $destinationUrlType);
       $this->htmlSnippet = $htmlSnippet;
@@ -115,7 +115,7 @@ class CustomCreative extends \Google\AdsApi\AdManager\v202502\HasDestinationUrlC
      * @param \Google\AdsApi\AdManager\v202502\CustomCreativeAsset[]|null $customCreativeAssets
      * @return \Google\AdsApi\AdManager\v202502\CustomCreative
      */
-    public function setCustomCreativeAssets(array $customCreativeAssets = null)
+    public function setCustomCreativeAssets(?array $customCreativeAssets = null)
     {
       $this->customCreativeAssets = $customCreativeAssets;
       return $this;
@@ -223,7 +223,7 @@ class CustomCreative extends \Google\AdsApi\AdManager\v202502\HasDestinationUrlC
      * @param string[]|null $thirdPartyImpressionTrackingUrls
      * @return \Google\AdsApi\AdManager\v202502\CustomCreative
      */
-    public function setThirdPartyImpressionTrackingUrls(array $thirdPartyImpressionTrackingUrls = null)
+    public function setThirdPartyImpressionTrackingUrls(?array $thirdPartyImpressionTrackingUrls = null)
     {
       $this->thirdPartyImpressionTrackingUrls = $thirdPartyImpressionTrackingUrls;
       return $this;

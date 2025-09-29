@@ -107,7 +107,7 @@ class Content
      * @param int[] $cmsMetadataValueIds
      * @param int $duration
      */
-    public function __construct($id = null, $name = null, $status = null, $statusDefinedBy = null, $hlsIngestStatus = null, array $hlsIngestErrors = null, $lastHlsIngestDateTime = null, $dashIngestStatus = null, array $dashIngestErrors = null, $lastDashIngestDateTime = null, $importDateTime = null, $lastModifiedDateTime = null, array $cmsSources = null, array $contentBundleIds = null, array $cmsMetadataValueIds = null, $duration = null)
+    public function __construct($id = null, $name = null, $status = null, $statusDefinedBy = null, $hlsIngestStatus = null, ?array $hlsIngestErrors = null, $lastHlsIngestDateTime = null, $dashIngestStatus = null, ?array $dashIngestErrors = null, $lastDashIngestDateTime = null, $importDateTime = null, $lastModifiedDateTime = null, ?array $cmsSources = null, ?array $contentBundleIds = null, ?array $cmsMetadataValueIds = null, $duration = null)
     {
       $this->id = $id;
       $this->name = $name;
@@ -230,7 +230,7 @@ class Content
      * @param \Google\AdsApi\AdManager\v202411\DaiIngestError[]|null $hlsIngestErrors
      * @return \Google\AdsApi\AdManager\v202411\Content
      */
-    public function setHlsIngestErrors(array $hlsIngestErrors = null)
+    public function setHlsIngestErrors(?array $hlsIngestErrors = null)
     {
       $this->hlsIngestErrors = $hlsIngestErrors;
       return $this;
@@ -284,7 +284,7 @@ class Content
      * @param \Google\AdsApi\AdManager\v202411\DaiIngestError[]|null $dashIngestErrors
      * @return \Google\AdsApi\AdManager\v202411\Content
      */
-    public function setDashIngestErrors(array $dashIngestErrors = null)
+    public function setDashIngestErrors(?array $dashIngestErrors = null)
     {
       $this->dashIngestErrors = $dashIngestErrors;
       return $this;
@@ -356,7 +356,7 @@ class Content
      * @param \Google\AdsApi\AdManager\v202411\CmsContent[]|null $cmsSources
      * @return \Google\AdsApi\AdManager\v202411\Content
      */
-    public function setCmsSources(array $cmsSources = null)
+    public function setCmsSources(?array $cmsSources = null)
     {
       $this->cmsSources = $cmsSources;
       return $this;
@@ -374,7 +374,7 @@ class Content
      * @param int[]|null $contentBundleIds
      * @return \Google\AdsApi\AdManager\v202411\Content
      */
-    public function setContentBundleIds(array $contentBundleIds = null)
+    public function setContentBundleIds(?array $contentBundleIds = null)
     {
       $this->contentBundleIds = $contentBundleIds;
       return $this;
@@ -392,7 +392,7 @@ class Content
      * @param int[]|null $cmsMetadataValueIds
      * @return \Google\AdsApi\AdManager\v202411\Content
      */
-    public function setCmsMetadataValueIds(array $cmsMetadataValueIds = null)
+    public function setCmsMetadataValueIds(?array $cmsMetadataValueIds = null)
     {
       $this->cmsMetadataValueIds = $cmsMetadataValueIds;
       return $this;

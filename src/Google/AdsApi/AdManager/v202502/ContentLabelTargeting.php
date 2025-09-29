@@ -17,7 +17,7 @@ class ContentLabelTargeting
     /**
      * @param int[] $excludedContentLabelIds
      */
-    public function __construct(array $excludedContentLabelIds = null)
+    public function __construct(?array $excludedContentLabelIds = null)
     {
       $this->excludedContentLabelIds = $excludedContentLabelIds;
     }
@@ -34,7 +34,7 @@ class ContentLabelTargeting
      * @param int[]|null $excludedContentLabelIds
      * @return \Google\AdsApi\AdManager\v202502\ContentLabelTargeting
      */
-    public function setExcludedContentLabelIds(array $excludedContentLabelIds = null)
+    public function setExcludedContentLabelIds(?array $excludedContentLabelIds = null)
     {
       $this->excludedContentLabelIds = $excludedContentLabelIds;
       return $this;

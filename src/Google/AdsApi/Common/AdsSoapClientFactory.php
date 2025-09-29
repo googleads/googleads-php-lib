@@ -46,7 +46,7 @@ final class AdsSoapClientFactory
      */
     public function __construct(
         SoapLogMessageFormatter $soapLogMessageFormatter,
-        Reflection $reflection = null,
+        ?Reflection $reflection = null,
         $soapCallTimeout = null
     ) {
         $this->soapLogMessageFormatter = $soapLogMessageFormatter;
@@ -111,7 +111,7 @@ final class AdsSoapClientFactory
     private function populateOptions(
         AdsSession $session,
         array $options,
-        SoapSettings $soapSettings = null
+        ?SoapSettings $soapSettings = null
     ) {
         $contextOptions = [];
         if ($soapSettings !== null) {
