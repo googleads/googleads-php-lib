@@ -83,7 +83,7 @@ class CreateSites
         self::runExample(
             new ServiceFactory(),
             $session,
-            intval(self::URL),
+            self::URL,
             intval(self::CHILD_NETWORK_CODE)
         );
     }
