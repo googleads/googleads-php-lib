@@ -1729,6 +1729,17 @@
               </documentation>
             </annotation>
           </enumeration>
+          <enumeration value="REQUEST_TOO_LARGE">
+            <annotation>
+              <documentation>
+                Indicates that the request is too large to be processed.
+                
+                &lt;p&gt;This error is thrown when internal system limits are exceeded due to the number of
+                affected entities implied by the input parameters. Clients should reduce the number of
+                affected entities and try again.
+              </documentation>
+            </annotation>
+          </enumeration>
           <enumeration value="UNKNOWN">
             <annotation>
               <documentation>
