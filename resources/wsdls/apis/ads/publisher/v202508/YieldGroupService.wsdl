@@ -1291,6 +1291,7 @@
           <enumeration value="CANNOT_UPDATE"/>
           <enumeration value="UNSUPPORTED_OPERATION"/>
           <enumeration value="CONCURRENT_MODIFICATION"/>
+          <enumeration value="REQUEST_TOO_LARGE"/>
           <enumeration value="UNKNOWN"/>
         </restriction>
       </simpleType>

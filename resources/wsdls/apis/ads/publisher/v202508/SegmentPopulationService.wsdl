@@ -402,6 +402,7 @@
           <enumeration value="CANNOT_UPDATE"/>
           <enumeration value="UNSUPPORTED_OPERATION"/>
           <enumeration value="CONCURRENT_MODIFICATION"/>
+          <enumeration value="REQUEST_TOO_LARGE"/>
           <enumeration value="UNKNOWN"/>
         </restriction>
       </simpleType>
@@ -641,9 +642,6 @@
   <wsdl:portType name="SegmentPopulationServiceInterface">
     <wsdl:documentation>
       Provides methods for populating {@link AudienceSegment} with identifiers.
-      
-      &lt;p&gt;&lt;b&gt;This service is currently unimplemented and will throw an {@link ApiException} when
-      invoked. It is scheduled to be fully implemented in the v202311 release.&lt;/b&gt;
     </wsdl:documentation>
     <wsdl:operation name="getSegmentPopulationResultsByIds">
       <wsdl:documentation>

@@ -4036,7 +4036,7 @@
             <annotation>
               <documentation>
                 The host impressions in the partner management.
-                &lt;p&gt;Corresponds to "Host impressions" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Partner management host impressions" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4044,7 +4044,7 @@
             <annotation>
               <documentation>
                 The host clicks in the partner management.
-                &lt;p&gt;Corresponds to "Host clicks" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Partner management host clicks" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4052,7 +4052,7 @@
             <annotation>
               <documentation>
                 The host CTR in the partner management.
-                &lt;p&gt;Corresponds to "Host CTR" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Partner management host CTR" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4060,7 +4060,7 @@
             <annotation>
               <documentation>
                 The unfilled impressions in the partner management.
-                &lt;p&gt;Corresponds to "Unfilled impressions" in the Ad Manager UI. Compatible with any of the following report types: Historical, Partner finance.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Partner management unfilled impressions" in the Ad Manager UI. Compatible with any of the following report types: Historical, Partner finance.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4068,7 +4068,7 @@
             <annotation>
               <documentation>
                 The partner impressions in the partner management.
-                &lt;p&gt;Corresponds to "Partner impressions" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Partner management partner impressions" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4076,7 +4076,7 @@
             <annotation>
               <documentation>
                 The partner clicks in the partner management.
-                &lt;p&gt;Corresponds to "Partner clicks" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Partner management partner clicks" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4084,7 +4084,7 @@
             <annotation>
               <documentation>
                 The partner CTR in the partner management.
-                &lt;p&gt;Corresponds to "Partner CTR" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Partner management partner CTR" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4092,7 +4092,7 @@
             <annotation>
               <documentation>
                 The gross revenue in the partner management.
-                &lt;p&gt;Corresponds to "Gross revenue" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Partner management gross revenue" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -4491,6 +4491,17 @@
               <documentation>
                 Indicates that another request attempted to update the same data in the same network
                 at about the same time. Please wait and try the request again.
+              </documentation>
+            </annotation>
+          </enumeration>
+          <enumeration value="REQUEST_TOO_LARGE">
+            <annotation>
+              <documentation>
+                Indicates that the request is too large to be processed.
+                
+                &lt;p&gt;This error is thrown when internal system limits are exceeded due to the number of
+                affected entities implied by the input parameters. Clients should reduce the number of
+                affected entities and try again.
               </documentation>
             </annotation>
           </enumeration>
@@ -5390,7 +5401,7 @@
               <documentation>
                 Breaks down reporting data by partner {@link Company#name} and {@link Company#id} are
                 automatically included as columns in the report.
-                &lt;p&gt;Corresponds to "Partner" in the Ad Manager UI. Compatible with any of the following report types: Historical, Partner finance.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Partner management partner" in the Ad Manager UI. Compatible with any of the following report types: Historical, Partner finance.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5424,7 +5435,7 @@
               <documentation>
                 Breaks down reporting data by partner assignment name. PartnerAssignment name and id are
                 automatically included as columns in the report.
-                &lt;p&gt;Corresponds to "Assignment" in the Ad Manager UI. Compatible with any of the following report types: Historical, Partner finance.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Partner management assignment" in the Ad Manager UI. Compatible with any of the following report types: Historical, Partner finance.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5665,7 +5676,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by device name. Can be used for filtering.
-                &lt;p&gt;Can correspond to any of the following in the Ad Manager UI: Mobile OS, Devices. Compatible with the "Historical" report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Devices" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -5886,7 +5897,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by programmatic buyer name.
-                &lt;p&gt;Corresponds to "Programmatic buyer" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Deal buyer" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6178,7 +6189,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by programmatic deal ID.
-                &lt;p&gt;Corresponds to "Programmatic deal ID" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Deal ID" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
@@ -6186,7 +6197,7 @@
             <annotation>
               <documentation>
                 Breaks down reporting data by programmatic deal name.
-                &lt;p&gt;Corresponds to "Programmatic deal name" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Deal name" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
             </annotation>
           </enumeration>
