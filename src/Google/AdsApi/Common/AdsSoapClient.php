@@ -94,10 +94,11 @@ class AdsSoapClient extends SoapClient
         $location,
         $action,
         $version,
-        $one_way = 0
+        $one_way = 0,
+        ?string $uriParserClass = null
     ) {
         $request = SoapRequests::replaceReferences($request);
-        $response = parent::__doRequest($request, $location, $action, $version, $one_way);
+        $response = parent::__doRequest($request, $location, $action, $version, $one_way, $uriParserClass);
 
         return $response;
     }
