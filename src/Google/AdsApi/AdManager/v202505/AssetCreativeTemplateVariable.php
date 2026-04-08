@@ -21,7 +21,7 @@ class AssetCreativeTemplateVariable extends \Google\AdsApi\AdManager\v202505\Cre
      * @param boolean $isRequired
      * @param string[] $mimeTypes
      */
-    public function __construct($label = null, $uniqueName = null, $description = null, $isRequired = null, array $mimeTypes = null)
+    public function __construct($label = null, $uniqueName = null, $description = null, $isRequired = null, ?array $mimeTypes = null)
     {
       parent::__construct($label, $uniqueName, $description, $isRequired);
       $this->mimeTypes = $mimeTypes;
@@ -39,7 +39,7 @@ class AssetCreativeTemplateVariable extends \Google\AdsApi\AdManager\v202505\Cre
      * @param string[]|null $mimeTypes
      * @return \Google\AdsApi\AdManager\v202505\AssetCreativeTemplateVariable
      */
-    public function setMimeTypes(array $mimeTypes = null)
+    public function setMimeTypes(?array $mimeTypes = null)
     {
       $this->mimeTypes = $mimeTypes;
       return $this;

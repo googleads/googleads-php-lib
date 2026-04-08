@@ -17,7 +17,7 @@ class TrackingEvent
     /**
      * @param \Google\AdsApi\AdManager\v202505\TrackingEventPing[] $pings
      */
-    public function __construct(array $pings = null)
+    public function __construct(?array $pings = null)
     {
       $this->pings = $pings;
     }
@@ -34,7 +34,7 @@ class TrackingEvent
      * @param \Google\AdsApi\AdManager\v202505\TrackingEventPing[]|null $pings
      * @return \Google\AdsApi\AdManager\v202505\TrackingEvent
      */
-    public function setPings(array $pings = null)
+    public function setPings(?array $pings = null)
     {
       $this->pings = $pings;
       return $this;

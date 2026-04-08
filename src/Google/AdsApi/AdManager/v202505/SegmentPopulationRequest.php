@@ -47,7 +47,7 @@ class SegmentPopulationRequest
      * @param string[] $ids
      * @param string $consentType
      */
-    public function __construct($batchUploadId = null, $segmentId = null, $isDeletion = null, $identifierType = null, array $ids = null, $consentType = null)
+    public function __construct($batchUploadId = null, $segmentId = null, $isDeletion = null, $identifierType = null, ?array $ids = null, $consentType = null)
     {
       $this->batchUploadId = $batchUploadId;
       $this->segmentId = $segmentId;
@@ -143,7 +143,7 @@ class SegmentPopulationRequest
      * @param string[]|null $ids
      * @return \Google\AdsApi\AdManager\v202505\SegmentPopulationRequest
      */
-    public function setIds(array $ids = null)
+    public function setIds(?array $ids = null)
     {
       $this->ids = $ids;
       return $this;

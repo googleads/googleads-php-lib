@@ -41,7 +41,7 @@ class CreativeSet
      * @param int[] $companionCreativeIds
      * @param \Google\AdsApi\AdManager\v202505\DateTime $lastModifiedDateTime
      */
-    public function __construct($id = null, $name = null, $masterCreativeId = null, array $companionCreativeIds = null, $lastModifiedDateTime = null)
+    public function __construct($id = null, $name = null, $masterCreativeId = null, ?array $companionCreativeIds = null, $lastModifiedDateTime = null)
     {
       $this->id = $id;
       $this->name = $name;
@@ -118,7 +118,7 @@ class CreativeSet
      * @param int[]|null $companionCreativeIds
      * @return \Google\AdsApi\AdManager\v202505\CreativeSet
      */
-    public function setCompanionCreativeIds(array $companionCreativeIds = null)
+    public function setCompanionCreativeIds(?array $companionCreativeIds = null)
     {
       $this->companionCreativeIds = $companionCreativeIds;
       return $this;

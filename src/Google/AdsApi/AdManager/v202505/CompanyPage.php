@@ -29,7 +29,7 @@ class CompanyPage
      * @param int $startIndex
      * @param \Google\AdsApi\AdManager\v202505\Company[] $results
      */
-    public function __construct($totalResultSetSize = null, $startIndex = null, array $results = null)
+    public function __construct($totalResultSetSize = null, $startIndex = null, ?array $results = null)
     {
       $this->totalResultSetSize = $totalResultSetSize;
       $this->startIndex = $startIndex;
@@ -84,7 +84,7 @@ class CompanyPage
      * @param \Google\AdsApi\AdManager\v202505\Company[]|null $results
      * @return \Google\AdsApi\AdManager\v202505\CompanyPage
      */
-    public function setResults(array $results = null)
+    public function setResults(?array $results = null)
     {
       $this->results = $results;
       return $this;

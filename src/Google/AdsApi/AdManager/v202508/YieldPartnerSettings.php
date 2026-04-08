@@ -47,7 +47,7 @@ class YieldPartnerSettings
      * @param string $platform
      * @param \Google\AdsApi\AdManager\v202508\YieldParameter[] $parameters
      */
-    public function __construct($status = null, $environment = null, $format = null, $integrationType = null, $platform = null, array $parameters = null)
+    public function __construct($status = null, $environment = null, $format = null, $integrationType = null, $platform = null, ?array $parameters = null)
     {
       $this->status = $status;
       $this->environment = $environment;
@@ -159,7 +159,7 @@ class YieldPartnerSettings
      * @param \Google\AdsApi\AdManager\v202508\YieldParameter[]|null $parameters
      * @return \Google\AdsApi\AdManager\v202508\YieldPartnerSettings
      */
-    public function setParameters(array $parameters = null)
+    public function setParameters(?array $parameters = null)
     {
       $this->parameters = $parameters;
       return $this;

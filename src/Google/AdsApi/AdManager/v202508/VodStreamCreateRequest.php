@@ -50,7 +50,7 @@ class VodStreamCreateRequest extends \Google\AdsApi\AdManager\v202508\StreamCrea
      * @param string $podServingSessionTitle
      * @param int[] $cuePoints
      */
-    public function __construct($url = null, $userAgent = null, $reportingType = null, $contentSourceId = null, $videoId = null, $contentId = null, $contentName = null, $podServingSessionTitle = null, array $cuePoints = null)
+    public function __construct($url = null, $userAgent = null, $reportingType = null, $contentSourceId = null, $videoId = null, $contentId = null, $contentName = null, $podServingSessionTitle = null, ?array $cuePoints = null)
     {
       parent::__construct($url, $userAgent, $reportingType);
       $this->contentSourceId = $contentSourceId;
@@ -165,7 +165,7 @@ class VodStreamCreateRequest extends \Google\AdsApi\AdManager\v202508\StreamCrea
      * @param int[]|null $cuePoints
      * @return \Google\AdsApi\AdManager\v202508\VodStreamCreateRequest
      */
-    public function setCuePoints(array $cuePoints = null)
+    public function setCuePoints(?array $cuePoints = null)
     {
       $this->cuePoints = $cuePoints;
       return $this;

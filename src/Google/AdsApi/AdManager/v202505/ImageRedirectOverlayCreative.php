@@ -61,7 +61,7 @@ class ImageRedirectOverlayCreative extends \Google\AdsApi\AdManager\v202505\Base
      * @param string $customParameters
      * @param string $vastPreviewUrl
      */
-    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, array $policyLabels = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null, $thirdPartyDataDeclaration = null, $adBadgingEnabled = null, $destinationUrl = null, $destinationUrlType = null, $imageUrl = null, $assetSize = null, $duration = null, array $companionCreativeIds = null, array $trackingUrls = null, $customParameters = null, $vastPreviewUrl = null)
+    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, ?array $policyLabels = null, ?array $appliedLabels = null, $lastModifiedDateTime = null, ?array $customFieldValues = null, $thirdPartyDataDeclaration = null, $adBadgingEnabled = null, $destinationUrl = null, $destinationUrlType = null, $imageUrl = null, $assetSize = null, $duration = null, ?array $companionCreativeIds = null, ?array $trackingUrls = null, $customParameters = null, $vastPreviewUrl = null)
     {
       parent::__construct($advertiserId, $id, $name, $size, $previewUrl, $policyLabels, $appliedLabels, $lastModifiedDateTime, $customFieldValues, $thirdPartyDataDeclaration, $adBadgingEnabled, $destinationUrl, $destinationUrlType, $imageUrl);
       $this->assetSize = $assetSize;
@@ -120,7 +120,7 @@ class ImageRedirectOverlayCreative extends \Google\AdsApi\AdManager\v202505\Base
      * @param int[]|null $companionCreativeIds
      * @return \Google\AdsApi\AdManager\v202505\ImageRedirectOverlayCreative
      */
-    public function setCompanionCreativeIds(array $companionCreativeIds = null)
+    public function setCompanionCreativeIds(?array $companionCreativeIds = null)
     {
       $this->companionCreativeIds = $companionCreativeIds;
       return $this;
@@ -138,7 +138,7 @@ class ImageRedirectOverlayCreative extends \Google\AdsApi\AdManager\v202505\Base
      * @param \Google\AdsApi\AdManager\v202505\ConversionEvent_TrackingUrlsMapEntry[]|null $trackingUrls
      * @return \Google\AdsApi\AdManager\v202505\ImageRedirectOverlayCreative
      */
-    public function setTrackingUrls(array $trackingUrls = null)
+    public function setTrackingUrls(?array $trackingUrls = null)
     {
       $this->trackingUrls = $trackingUrls;
       return $this;

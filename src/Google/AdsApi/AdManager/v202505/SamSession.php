@@ -53,7 +53,7 @@ class SamSession
      * @param int $sessionDurationMillis
      * @param int $contentDurationMillis
      */
-    public function __construct($sessionId = null, $isVodSession = null, $streamCreateRequest = null, array $adBreaks = null, $startDateTime = null, $sessionDurationMillis = null, $contentDurationMillis = null)
+    public function __construct($sessionId = null, $isVodSession = null, $streamCreateRequest = null, ?array $adBreaks = null, $startDateTime = null, $sessionDurationMillis = null, $contentDurationMillis = null)
     {
       $this->sessionId = $sessionId;
       $this->isVodSession = $isVodSession;
@@ -130,7 +130,7 @@ class SamSession
      * @param \Google\AdsApi\AdManager\v202505\AdBreak[]|null $adBreaks
      * @return \Google\AdsApi\AdManager\v202505\SamSession
      */
-    public function setAdBreaks(array $adBreaks = null)
+    public function setAdBreaks(?array $adBreaks = null)
     {
       $this->adBreaks = $adBreaks;
       return $this;

@@ -23,7 +23,7 @@ class LineItemCreativeAssociationStats
      * @param \Google\AdsApi\AdManager\v202505\Stats $stats
      * @param \Google\AdsApi\AdManager\v202505\Long_StatsMapEntry[] $creativeSetStats
      */
-    public function __construct($stats = null, array $creativeSetStats = null)
+    public function __construct($stats = null, ?array $creativeSetStats = null)
     {
       $this->stats = $stats;
       $this->creativeSetStats = $creativeSetStats;
@@ -59,7 +59,7 @@ class LineItemCreativeAssociationStats
      * @param \Google\AdsApi\AdManager\v202505\Long_StatsMapEntry[]|null $creativeSetStats
      * @return \Google\AdsApi\AdManager\v202505\LineItemCreativeAssociationStats
      */
-    public function setCreativeSetStats(array $creativeSetStats = null)
+    public function setCreativeSetStats(?array $creativeSetStats = null)
     {
       $this->creativeSetStats = $creativeSetStats;
       return $this;

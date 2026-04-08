@@ -23,7 +23,7 @@ class BrowserLanguageTargeting
      * @param boolean $isTargeted
      * @param \Google\AdsApi\AdManager\v202508\Technology[] $browserLanguages
      */
-    public function __construct($isTargeted = null, array $browserLanguages = null)
+    public function __construct($isTargeted = null, ?array $browserLanguages = null)
     {
       $this->isTargeted = $isTargeted;
       $this->browserLanguages = $browserLanguages;
@@ -59,7 +59,7 @@ class BrowserLanguageTargeting
      * @param \Google\AdsApi\AdManager\v202508\Technology[]|null $browserLanguages
      * @return \Google\AdsApi\AdManager\v202508\BrowserLanguageTargeting
      */
-    public function setBrowserLanguages(array $browserLanguages = null)
+    public function setBrowserLanguages(?array $browserLanguages = null)
     {
       $this->browserLanguages = $browserLanguages;
       return $this;

@@ -17,7 +17,7 @@ class createDaiEncodingProfilesResponse
     /**
      * @param \Google\AdsApi\AdManager\v202505\DaiEncodingProfile[] $rval
      */
-    public function __construct(array $rval = null)
+    public function __construct(?array $rval = null)
     {
       $this->rval = $rval;
     }
@@ -34,7 +34,7 @@ class createDaiEncodingProfilesResponse
      * @param \Google\AdsApi\AdManager\v202505\DaiEncodingProfile[]|null $rval
      * @return \Google\AdsApi\AdManager\v202505\createDaiEncodingProfilesResponse
      */
-    public function setRval(array $rval = null)
+    public function setRval(?array $rval = null)
     {
       $this->rval = $rval;
       return $this;

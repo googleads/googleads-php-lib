@@ -17,7 +17,7 @@ class updateTargetingPresetsResponse
     /**
      * @param \Google\AdsApi\AdManager\v202602\TargetingPreset[] $rval
      */
-    public function __construct(array $rval = null)
+    public function __construct(?array $rval = null)
     {
       $this->rval = $rval;
     }
@@ -34,7 +34,7 @@ class updateTargetingPresetsResponse
      * @param \Google\AdsApi\AdManager\v202602\TargetingPreset[]|null $rval
      * @return \Google\AdsApi\AdManager\v202602\updateTargetingPresetsResponse
      */
-    public function setRval(array $rval = null)
+    public function setRval(?array $rval = null)
     {
       $this->rval = $rval;
       return $this;

@@ -23,7 +23,7 @@ class SharedAudienceSegment extends \Google\AdsApi\AdManager\v202508\AudienceSeg
      * @param \Google\AdsApi\AdManager\v202508\AudienceSegmentDataProvider $dataProvider
      * @param string $type
      */
-    public function __construct($id = null, $name = null, array $categoryIds = null, $description = null, $status = null, $size = null, $mobileWebSize = null, $idfaSize = null, $adIdSize = null, $ppidSize = null, $dataProvider = null, $type = null)
+    public function __construct($id = null, $name = null, ?array $categoryIds = null, $description = null, $status = null, $size = null, $mobileWebSize = null, $idfaSize = null, $adIdSize = null, $ppidSize = null, $dataProvider = null, $type = null)
     {
       parent::__construct($id, $name, $categoryIds, $description, $status, $size, $mobileWebSize, $idfaSize, $adIdSize, $ppidSize, $dataProvider, $type);
     }

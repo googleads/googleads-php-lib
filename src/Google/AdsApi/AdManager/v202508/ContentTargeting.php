@@ -35,7 +35,7 @@ class ContentTargeting
      * @param int[] $targetedVideoContentBundleIds
      * @param int[] $excludedVideoContentBundleIds
      */
-    public function __construct(array $targetedContentIds = null, array $excludedContentIds = null, array $targetedVideoContentBundleIds = null, array $excludedVideoContentBundleIds = null)
+    public function __construct(?array $targetedContentIds = null, ?array $excludedContentIds = null, ?array $targetedVideoContentBundleIds = null, ?array $excludedVideoContentBundleIds = null)
     {
       $this->targetedContentIds = $targetedContentIds;
       $this->excludedContentIds = $excludedContentIds;
@@ -55,7 +55,7 @@ class ContentTargeting
      * @param int[]|null $targetedContentIds
      * @return \Google\AdsApi\AdManager\v202508\ContentTargeting
      */
-    public function setTargetedContentIds(array $targetedContentIds = null)
+    public function setTargetedContentIds(?array $targetedContentIds = null)
     {
       $this->targetedContentIds = $targetedContentIds;
       return $this;
@@ -73,7 +73,7 @@ class ContentTargeting
      * @param int[]|null $excludedContentIds
      * @return \Google\AdsApi\AdManager\v202508\ContentTargeting
      */
-    public function setExcludedContentIds(array $excludedContentIds = null)
+    public function setExcludedContentIds(?array $excludedContentIds = null)
     {
       $this->excludedContentIds = $excludedContentIds;
       return $this;
@@ -91,7 +91,7 @@ class ContentTargeting
      * @param int[]|null $targetedVideoContentBundleIds
      * @return \Google\AdsApi\AdManager\v202508\ContentTargeting
      */
-    public function setTargetedVideoContentBundleIds(array $targetedVideoContentBundleIds = null)
+    public function setTargetedVideoContentBundleIds(?array $targetedVideoContentBundleIds = null)
     {
       $this->targetedVideoContentBundleIds = $targetedVideoContentBundleIds;
       return $this;
@@ -109,7 +109,7 @@ class ContentTargeting
      * @param int[]|null $excludedVideoContentBundleIds
      * @return \Google\AdsApi\AdManager\v202508\ContentTargeting
      */
-    public function setExcludedVideoContentBundleIds(array $excludedVideoContentBundleIds = null)
+    public function setExcludedVideoContentBundleIds(?array $excludedVideoContentBundleIds = null)
     {
       $this->excludedVideoContentBundleIds = $excludedVideoContentBundleIds;
       return $this;

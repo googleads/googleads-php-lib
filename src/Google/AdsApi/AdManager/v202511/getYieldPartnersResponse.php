@@ -17,7 +17,7 @@ class getYieldPartnersResponse
     /**
      * @param \Google\AdsApi\AdManager\v202511\YieldPartner[] $rval
      */
-    public function __construct(array $rval = null)
+    public function __construct(?array $rval = null)
     {
       $this->rval = $rval;
     }
@@ -34,7 +34,7 @@ class getYieldPartnersResponse
      * @param \Google\AdsApi\AdManager\v202511\YieldPartner[]|null $rval
      * @return \Google\AdsApi\AdManager\v202511\getYieldPartnersResponse
      */
-    public function setRval(array $rval = null)
+    public function setRval(?array $rval = null)
     {
       $this->rval = $rval;
       return $this;

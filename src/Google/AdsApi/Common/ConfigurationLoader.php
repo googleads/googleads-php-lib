@@ -35,7 +35,7 @@ final class ConfigurationLoader
      * @param EnvironmentalVariables $environmentalVariables
      */
     public function __construct(
-        EnvironmentalVariables $environmentalVariables = null
+        ?EnvironmentalVariables $environmentalVariables = null
     ) {
         $this->environmentalVariables =
             $environmentalVariables === null ? new EnvironmentalVariables()

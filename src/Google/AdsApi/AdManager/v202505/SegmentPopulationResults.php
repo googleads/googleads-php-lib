@@ -41,7 +41,7 @@ class SegmentPopulationResults
      * @param int $numSuccessfulIdsProcessed
      * @param \Google\AdsApi\AdManager\v202505\IdError[] $errors
      */
-    public function __construct($batchUploadId = null, $segmentId = null, $status = null, $numSuccessfulIdsProcessed = null, array $errors = null)
+    public function __construct($batchUploadId = null, $segmentId = null, $status = null, $numSuccessfulIdsProcessed = null, ?array $errors = null)
     {
       $this->batchUploadId = $batchUploadId;
       $this->segmentId = $segmentId;
@@ -137,7 +137,7 @@ class SegmentPopulationResults
      * @param \Google\AdsApi\AdManager\v202505\IdError[]|null $errors
      * @return \Google\AdsApi\AdManager\v202505\SegmentPopulationResults
      */
-    public function setErrors(array $errors = null)
+    public function setErrors(?array $errors = null)
     {
       $this->errors = $errors;
       return $this;

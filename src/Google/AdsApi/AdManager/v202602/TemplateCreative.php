@@ -78,7 +78,7 @@ class TemplateCreative extends \Google\AdsApi\AdManager\v202602\Creative
      * @param string $sslManualOverride
      * @param string $lockedOrientation
      */
-    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, array $policyLabels = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null, $thirdPartyDataDeclaration = null, $thirdPartyDataDeclarationStatus = null, $adBadgingEnabled = null, $selfDeclaredEuropeanUnionPoliticalContent = null, $creativeTemplateId = null, $isInterstitial = null, $isNativeEligible = null, $isSafeFrameCompatible = null, $destinationUrl = null, array $creativeTemplateVariableValues = null, $sslScanResult = null, $sslManualOverride = null, $lockedOrientation = null)
+    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, ?array $policyLabels = null, ?array $appliedLabels = null, $lastModifiedDateTime = null, ?array $customFieldValues = null, $thirdPartyDataDeclaration = null, $thirdPartyDataDeclarationStatus = null, $adBadgingEnabled = null, $selfDeclaredEuropeanUnionPoliticalContent = null, $creativeTemplateId = null, $isInterstitial = null, $isNativeEligible = null, $isSafeFrameCompatible = null, $destinationUrl = null, ?array $creativeTemplateVariableValues = null, $sslScanResult = null, $sslManualOverride = null, $lockedOrientation = null)
     {
       parent::__construct($advertiserId, $id, $name, $size, $previewUrl, $policyLabels, $appliedLabels, $lastModifiedDateTime, $customFieldValues, $thirdPartyDataDeclaration, $thirdPartyDataDeclarationStatus, $adBadgingEnabled, $selfDeclaredEuropeanUnionPoliticalContent);
       $this->creativeTemplateId = $creativeTemplateId;
@@ -195,7 +195,7 @@ class TemplateCreative extends \Google\AdsApi\AdManager\v202602\Creative
      * @param \Google\AdsApi\AdManager\v202602\BaseCreativeTemplateVariableValue[]|null $creativeTemplateVariableValues
      * @return \Google\AdsApi\AdManager\v202602\TemplateCreative
      */
-    public function setCreativeTemplateVariableValues(array $creativeTemplateVariableValues = null)
+    public function setCreativeTemplateVariableValues(?array $creativeTemplateVariableValues = null)
     {
       $this->creativeTemplateVariableValues = $creativeTemplateVariableValues;
       return $this;

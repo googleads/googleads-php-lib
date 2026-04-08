@@ -34,8 +34,8 @@ final class AdsHeaderFormatter
      *     metadata provider
      */
     public function __construct(
-        AdsUtilityRegistry $adsUtilityRegistry = null,
-        LibraryMetadataProvider $libraryMetadataProvider = null
+        ?AdsUtilityRegistry $adsUtilityRegistry = null,
+        ?LibraryMetadataProvider $libraryMetadataProvider = null
     ) {
         $this->adsUtilityRegistry =
             ($adsUtilityRegistry === null) ? AdsUtilityRegistry::getInstance()

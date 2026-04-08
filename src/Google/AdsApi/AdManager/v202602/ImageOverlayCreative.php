@@ -64,7 +64,7 @@ class ImageOverlayCreative extends \Google\AdsApi\AdManager\v202602\BaseImageCre
      * @param int $duration
      * @param string $vastPreviewUrl
      */
-    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, array $policyLabels = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null, $thirdPartyDataDeclaration = null, $thirdPartyDataDeclarationStatus = null, $adBadgingEnabled = null, $selfDeclaredEuropeanUnionPoliticalContent = null, $destinationUrl = null, $destinationUrlType = null, $overrideSize = null, $primaryImageAsset = null, array $companionCreativeIds = null, array $trackingUrls = null, $lockedOrientation = null, $customParameters = null, $duration = null, $vastPreviewUrl = null)
+    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, ?array $policyLabels = null, ?array $appliedLabels = null, $lastModifiedDateTime = null, ?array $customFieldValues = null, $thirdPartyDataDeclaration = null, $thirdPartyDataDeclarationStatus = null, $adBadgingEnabled = null, $selfDeclaredEuropeanUnionPoliticalContent = null, $destinationUrl = null, $destinationUrlType = null, $overrideSize = null, $primaryImageAsset = null, ?array $companionCreativeIds = null, ?array $trackingUrls = null, $lockedOrientation = null, $customParameters = null, $duration = null, $vastPreviewUrl = null)
     {
       parent::__construct($advertiserId, $id, $name, $size, $previewUrl, $policyLabels, $appliedLabels, $lastModifiedDateTime, $customFieldValues, $thirdPartyDataDeclaration, $thirdPartyDataDeclarationStatus, $adBadgingEnabled, $selfDeclaredEuropeanUnionPoliticalContent, $destinationUrl, $destinationUrlType, $overrideSize, $primaryImageAsset);
       $this->companionCreativeIds = $companionCreativeIds;
@@ -87,7 +87,7 @@ class ImageOverlayCreative extends \Google\AdsApi\AdManager\v202602\BaseImageCre
      * @param int[]|null $companionCreativeIds
      * @return \Google\AdsApi\AdManager\v202602\ImageOverlayCreative
      */
-    public function setCompanionCreativeIds(array $companionCreativeIds = null)
+    public function setCompanionCreativeIds(?array $companionCreativeIds = null)
     {
       $this->companionCreativeIds = $companionCreativeIds;
       return $this;
@@ -105,7 +105,7 @@ class ImageOverlayCreative extends \Google\AdsApi\AdManager\v202602\BaseImageCre
      * @param \Google\AdsApi\AdManager\v202602\ConversionEvent_TrackingUrlsMapEntry[]|null $trackingUrls
      * @return \Google\AdsApi\AdManager\v202602\ImageOverlayCreative
      */
-    public function setTrackingUrls(array $trackingUrls = null)
+    public function setTrackingUrls(?array $trackingUrls = null)
     {
       $this->trackingUrls = $trackingUrls;
       return $this;

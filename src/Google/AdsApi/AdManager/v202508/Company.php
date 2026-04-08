@@ -113,7 +113,7 @@ class Company
      * @param \Google\AdsApi\AdManager\v202508\ChildPublisher $childPublisher
      * @param \Google\AdsApi\AdManager\v202508\ViewabilityProvider $viewabilityProvider
      */
-    public function __construct($id = null, $name = null, $type = null, $address = null, $email = null, $faxPhone = null, $primaryPhone = null, $externalId = null, $comment = null, $creditStatus = null, array $appliedLabels = null, $primaryContactId = null, array $appliedTeamIds = null, $thirdPartyCompanyId = null, $lastModifiedDateTime = null, $childPublisher = null, $viewabilityProvider = null)
+    public function __construct($id = null, $name = null, $type = null, $address = null, $email = null, $faxPhone = null, $primaryPhone = null, $externalId = null, $comment = null, $creditStatus = null, ?array $appliedLabels = null, $primaryContactId = null, ?array $appliedTeamIds = null, $thirdPartyCompanyId = null, $lastModifiedDateTime = null, $childPublisher = null, $viewabilityProvider = null)
     {
       $this->id = $id;
       $this->name = $name;
@@ -327,7 +327,7 @@ class Company
      * @param \Google\AdsApi\AdManager\v202508\AppliedLabel[]|null $appliedLabels
      * @return \Google\AdsApi\AdManager\v202508\Company
      */
-    public function setAppliedLabels(array $appliedLabels = null)
+    public function setAppliedLabels(?array $appliedLabels = null)
     {
       $this->appliedLabels = $appliedLabels;
       return $this;
@@ -364,7 +364,7 @@ class Company
      * @param int[]|null $appliedTeamIds
      * @return \Google\AdsApi\AdManager\v202508\Company
      */
-    public function setAppliedTeamIds(array $appliedTeamIds = null)
+    public function setAppliedTeamIds(?array $appliedTeamIds = null)
     {
       $this->appliedTeamIds = $appliedTeamIds;
       return $this;

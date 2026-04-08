@@ -59,7 +59,7 @@ class CreativeAsset
      * @param \Google\AdsApi\AdManager\v202508\ClickTag[] $clickTags
      * @param string $imageDensity
      */
-    public function __construct($assetId = null, $assetByteArray = null, $fileName = null, $fileSize = null, $assetUrl = null, $size = null, array $clickTags = null, $imageDensity = null)
+    public function __construct($assetId = null, $assetByteArray = null, $fileName = null, $fileSize = null, $assetUrl = null, $size = null, ?array $clickTags = null, $imageDensity = null)
     {
       $this->assetId = $assetId;
       $this->assetByteArray = $assetByteArray;
@@ -193,7 +193,7 @@ class CreativeAsset
      * @param \Google\AdsApi\AdManager\v202508\ClickTag[]|null $clickTags
      * @return \Google\AdsApi\AdManager\v202508\CreativeAsset
      */
-    public function setClickTags(array $clickTags = null)
+    public function setClickTags(?array $clickTags = null)
     {
       $this->clickTags = $clickTags;
       return $this;

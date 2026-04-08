@@ -17,7 +17,7 @@ class updateLineItemCreativeAssociationsResponse
     /**
      * @param \Google\AdsApi\AdManager\v202511\LineItemCreativeAssociation[] $rval
      */
-    public function __construct(array $rval = null)
+    public function __construct(?array $rval = null)
     {
       $this->rval = $rval;
     }
@@ -34,7 +34,7 @@ class updateLineItemCreativeAssociationsResponse
      * @param \Google\AdsApi\AdManager\v202511\LineItemCreativeAssociation[]|null $rval
      * @return \Google\AdsApi\AdManager\v202511\updateLineItemCreativeAssociationsResponse
      */
-    public function setRval(array $rval = null)
+    public function setRval(?array $rval = null)
     {
       $this->rval = $rval;
       return $this;

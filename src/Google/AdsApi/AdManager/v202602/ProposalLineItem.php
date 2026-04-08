@@ -311,7 +311,7 @@ class ProposalLineItem
      * @param string $pauseReason
      * @param int $deliveryAllocationProfileId
      */
-    public function __construct($id = null, $proposalId = null, $name = null, $startDateTime = null, $endDateTime = null, $supplyPath = null, $internalNotes = null, $isArchived = null, $goal = null, array $secondaryGoals = null, $contractedUnitsBought = null, $deliveryRateType = null, $roadblockingType = null, $buyerPermissionType = null, $companionDeliveryOption = null, $videoMaxDuration = null, $videoCreativeSkippableAdType = null, array $frequencyCaps = null, $dfpLineItemId = null, $lineItemType = null, $lineItemPriority = null, $rateType = null, array $creativePlaceholders = null, $targeting = null, array $customFieldValues = null, array $appliedLabels = null, array $effectiveAppliedLabels = null, $disableSameAdvertiserCompetitiveExclusion = null, $isSold = null, $netRate = null, $netCost = null, $deliveryIndicator = null, $deliveryData = null, $computedStatus = null, $lastModifiedDateTime = null, $reservationStatus = null, $lastReservationDateTime = null, $environmentType = null, array $allowedFormats = null, $additionalTerms = null, $programmaticCreativeSource = null, $grpSettings = null, $estimatedMinimumImpressions = null, $thirdPartyMeasurementSettings = null, $makegoodInfo = null, $hasMakegood = null, $canCreateMakegood = null, $pauseRole = null, $pauseReason = null, $deliveryAllocationProfileId = null)
+    public function __construct($id = null, $proposalId = null, $name = null, $startDateTime = null, $endDateTime = null, $supplyPath = null, $internalNotes = null, $isArchived = null, $goal = null, ?array $secondaryGoals = null, $contractedUnitsBought = null, $deliveryRateType = null, $roadblockingType = null, $buyerPermissionType = null, $companionDeliveryOption = null, $videoMaxDuration = null, $videoCreativeSkippableAdType = null, ?array $frequencyCaps = null, $dfpLineItemId = null, $lineItemType = null, $lineItemPriority = null, $rateType = null, ?array $creativePlaceholders = null, $targeting = null, ?array $customFieldValues = null, ?array $appliedLabels = null, ?array $effectiveAppliedLabels = null, $disableSameAdvertiserCompetitiveExclusion = null, $isSold = null, $netRate = null, $netCost = null, $deliveryIndicator = null, $deliveryData = null, $computedStatus = null, $lastModifiedDateTime = null, $reservationStatus = null, $lastReservationDateTime = null, $environmentType = null, ?array $allowedFormats = null, $additionalTerms = null, $programmaticCreativeSource = null, $grpSettings = null, $estimatedMinimumImpressions = null, $thirdPartyMeasurementSettings = null, $makegoodInfo = null, $hasMakegood = null, $canCreateMakegood = null, $pauseRole = null, $pauseReason = null, $deliveryAllocationProfileId = null)
     {
       $this->id = $id;
       $this->proposalId = $proposalId;
@@ -541,7 +541,7 @@ class ProposalLineItem
      * @param \Google\AdsApi\AdManager\v202602\Goal[]|null $secondaryGoals
      * @return \Google\AdsApi\AdManager\v202602\ProposalLineItem
      */
-    public function setSecondaryGoals(array $secondaryGoals = null)
+    public function setSecondaryGoals(?array $secondaryGoals = null)
     {
       $this->secondaryGoals = $secondaryGoals;
       return $this;
@@ -687,7 +687,7 @@ class ProposalLineItem
      * @param \Google\AdsApi\AdManager\v202602\FrequencyCap[]|null $frequencyCaps
      * @return \Google\AdsApi\AdManager\v202602\ProposalLineItem
      */
-    public function setFrequencyCaps(array $frequencyCaps = null)
+    public function setFrequencyCaps(?array $frequencyCaps = null)
     {
       $this->frequencyCaps = $frequencyCaps;
       return $this;
@@ -778,7 +778,7 @@ class ProposalLineItem
      * @param \Google\AdsApi\AdManager\v202602\CreativePlaceholder[]|null $creativePlaceholders
      * @return \Google\AdsApi\AdManager\v202602\ProposalLineItem
      */
-    public function setCreativePlaceholders(array $creativePlaceholders = null)
+    public function setCreativePlaceholders(?array $creativePlaceholders = null)
     {
       $this->creativePlaceholders = $creativePlaceholders;
       return $this;
@@ -814,7 +814,7 @@ class ProposalLineItem
      * @param \Google\AdsApi\AdManager\v202602\BaseCustomFieldValue[]|null $customFieldValues
      * @return \Google\AdsApi\AdManager\v202602\ProposalLineItem
      */
-    public function setCustomFieldValues(array $customFieldValues = null)
+    public function setCustomFieldValues(?array $customFieldValues = null)
     {
       $this->customFieldValues = $customFieldValues;
       return $this;
@@ -832,7 +832,7 @@ class ProposalLineItem
      * @param \Google\AdsApi\AdManager\v202602\AppliedLabel[]|null $appliedLabels
      * @return \Google\AdsApi\AdManager\v202602\ProposalLineItem
      */
-    public function setAppliedLabels(array $appliedLabels = null)
+    public function setAppliedLabels(?array $appliedLabels = null)
     {
       $this->appliedLabels = $appliedLabels;
       return $this;
@@ -850,7 +850,7 @@ class ProposalLineItem
      * @param \Google\AdsApi\AdManager\v202602\AppliedLabel[]|null $effectiveAppliedLabels
      * @return \Google\AdsApi\AdManager\v202602\ProposalLineItem
      */
-    public function setEffectiveAppliedLabels(array $effectiveAppliedLabels = null)
+    public function setEffectiveAppliedLabels(?array $effectiveAppliedLabels = null)
     {
       $this->effectiveAppliedLabels = $effectiveAppliedLabels;
       return $this;
@@ -1066,7 +1066,7 @@ class ProposalLineItem
      * @param string[]|null $allowedFormats
      * @return \Google\AdsApi\AdManager\v202602\ProposalLineItem
      */
-    public function setAllowedFormats(array $allowedFormats = null)
+    public function setAllowedFormats(?array $allowedFormats = null)
     {
       $this->allowedFormats = $allowedFormats;
       return $this;

@@ -29,7 +29,7 @@ class NativeStylePage
      * @param int $startIndex
      * @param \Google\AdsApi\AdManager\v202505\NativeStyle[] $results
      */
-    public function __construct($totalResultSetSize = null, $startIndex = null, array $results = null)
+    public function __construct($totalResultSetSize = null, $startIndex = null, ?array $results = null)
     {
       $this->totalResultSetSize = $totalResultSetSize;
       $this->startIndex = $startIndex;
@@ -84,7 +84,7 @@ class NativeStylePage
      * @param \Google\AdsApi\AdManager\v202505\NativeStyle[]|null $results
      * @return \Google\AdsApi\AdManager\v202505\NativeStylePage
      */
-    public function setResults(array $results = null)
+    public function setResults(?array $results = null)
     {
       $this->results = $results;
       return $this;

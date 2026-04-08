@@ -83,7 +83,7 @@ class BuyerRfp
      * @param string $adExchangeEnvironment
      * @param string $rfpType
      */
-    public function __construct($costPerUnit = null, $units = null, $budget = null, $currencyCode = null, $startDateTime = null, $endDateTime = null, $description = null, array $creativePlaceholders = null, $targeting = null, $additionalTerms = null, $adExchangeEnvironment = null, $rfpType = null)
+    public function __construct($costPerUnit = null, $units = null, $budget = null, $currencyCode = null, $startDateTime = null, $endDateTime = null, $description = null, ?array $creativePlaceholders = null, $targeting = null, $additionalTerms = null, $adExchangeEnvironment = null, $rfpType = null)
     {
       $this->costPerUnit = $costPerUnit;
       $this->units = $units;
@@ -238,7 +238,7 @@ class BuyerRfp
      * @param \Google\AdsApi\AdManager\v202505\CreativePlaceholder[]|null $creativePlaceholders
      * @return \Google\AdsApi\AdManager\v202505\BuyerRfp
      */
-    public function setCreativePlaceholders(array $creativePlaceholders = null)
+    public function setCreativePlaceholders(?array $creativePlaceholders = null)
     {
       $this->creativePlaceholders = $creativePlaceholders;
       return $this;

@@ -23,7 +23,7 @@ class OperatingSystemTargeting
      * @param boolean $isTargeted
      * @param \Google\AdsApi\AdManager\v202508\Technology[] $operatingSystems
      */
-    public function __construct($isTargeted = null, array $operatingSystems = null)
+    public function __construct($isTargeted = null, ?array $operatingSystems = null)
     {
       $this->isTargeted = $isTargeted;
       $this->operatingSystems = $operatingSystems;
@@ -59,7 +59,7 @@ class OperatingSystemTargeting
      * @param \Google\AdsApi\AdManager\v202508\Technology[]|null $operatingSystems
      * @return \Google\AdsApi\AdManager\v202508\OperatingSystemTargeting
      */
-    public function setOperatingSystems(array $operatingSystems = null)
+    public function setOperatingSystems(?array $operatingSystems = null)
     {
       $this->operatingSystems = $operatingSystems;
       return $this;

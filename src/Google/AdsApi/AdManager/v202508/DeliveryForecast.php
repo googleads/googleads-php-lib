@@ -17,7 +17,7 @@ class DeliveryForecast
     /**
      * @param \Google\AdsApi\AdManager\v202508\LineItemDeliveryForecast[] $lineItemDeliveryForecasts
      */
-    public function __construct(array $lineItemDeliveryForecasts = null)
+    public function __construct(?array $lineItemDeliveryForecasts = null)
     {
       $this->lineItemDeliveryForecasts = $lineItemDeliveryForecasts;
     }
@@ -34,7 +34,7 @@ class DeliveryForecast
      * @param \Google\AdsApi\AdManager\v202508\LineItemDeliveryForecast[]|null $lineItemDeliveryForecasts
      * @return \Google\AdsApi\AdManager\v202508\DeliveryForecast
      */
-    public function setLineItemDeliveryForecasts(array $lineItemDeliveryForecasts = null)
+    public function setLineItemDeliveryForecasts(?array $lineItemDeliveryForecasts = null)
     {
       $this->lineItemDeliveryForecasts = $lineItemDeliveryForecasts;
       return $this;

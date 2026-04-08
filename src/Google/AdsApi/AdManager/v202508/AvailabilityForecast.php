@@ -83,7 +83,7 @@ class AvailabilityForecast
      * @param \Google\AdsApi\AdManager\v202508\ContendingLineItem[] $contendingLineItems
      * @param \Google\AdsApi\AdManager\v202508\AlternativeUnitTypeForecast[] $alternativeUnitTypeForecasts
      */
-    public function __construct($lineItemId = null, $orderId = null, $unitType = null, $availableUnits = null, $deliveredUnits = null, $matchedUnits = null, $possibleUnits = null, $reservedUnits = null, array $breakdowns = null, array $targetingCriteriaBreakdowns = null, array $contendingLineItems = null, array $alternativeUnitTypeForecasts = null)
+    public function __construct($lineItemId = null, $orderId = null, $unitType = null, $availableUnits = null, $deliveredUnits = null, $matchedUnits = null, $possibleUnits = null, $reservedUnits = null, ?array $breakdowns = null, ?array $targetingCriteriaBreakdowns = null, ?array $contendingLineItems = null, ?array $alternativeUnitTypeForecasts = null)
     {
       $this->lineItemId = $lineItemId;
       $this->orderId = $orderId;
@@ -262,7 +262,7 @@ class AvailabilityForecast
      * @param \Google\AdsApi\AdManager\v202508\ForecastBreakdown[]|null $breakdowns
      * @return \Google\AdsApi\AdManager\v202508\AvailabilityForecast
      */
-    public function setBreakdowns(array $breakdowns = null)
+    public function setBreakdowns(?array $breakdowns = null)
     {
       $this->breakdowns = $breakdowns;
       return $this;
@@ -280,7 +280,7 @@ class AvailabilityForecast
      * @param \Google\AdsApi\AdManager\v202508\TargetingCriteriaBreakdown[]|null $targetingCriteriaBreakdowns
      * @return \Google\AdsApi\AdManager\v202508\AvailabilityForecast
      */
-    public function setTargetingCriteriaBreakdowns(array $targetingCriteriaBreakdowns = null)
+    public function setTargetingCriteriaBreakdowns(?array $targetingCriteriaBreakdowns = null)
     {
       $this->targetingCriteriaBreakdowns = $targetingCriteriaBreakdowns;
       return $this;
@@ -298,7 +298,7 @@ class AvailabilityForecast
      * @param \Google\AdsApi\AdManager\v202508\ContendingLineItem[]|null $contendingLineItems
      * @return \Google\AdsApi\AdManager\v202508\AvailabilityForecast
      */
-    public function setContendingLineItems(array $contendingLineItems = null)
+    public function setContendingLineItems(?array $contendingLineItems = null)
     {
       $this->contendingLineItems = $contendingLineItems;
       return $this;
@@ -316,7 +316,7 @@ class AvailabilityForecast
      * @param \Google\AdsApi\AdManager\v202508\AlternativeUnitTypeForecast[]|null $alternativeUnitTypeForecasts
      * @return \Google\AdsApi\AdManager\v202508\AvailabilityForecast
      */
-    public function setAlternativeUnitTypeForecasts(array $alternativeUnitTypeForecasts = null)
+    public function setAlternativeUnitTypeForecasts(?array $alternativeUnitTypeForecasts = null)
     {
       $this->alternativeUnitTypeForecasts = $alternativeUnitTypeForecasts;
       return $this;

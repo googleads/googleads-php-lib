@@ -89,7 +89,7 @@ abstract class Creative
      * @param boolean $adBadgingEnabled
      * @param boolean $selfDeclaredEuropeanUnionPoliticalContent
      */
-    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, array $policyLabels = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null, $thirdPartyDataDeclaration = null, $thirdPartyDataDeclarationStatus = null, $adBadgingEnabled = null, $selfDeclaredEuropeanUnionPoliticalContent = null)
+    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, ?array $policyLabels = null, ?array $appliedLabels = null, $lastModifiedDateTime = null, ?array $customFieldValues = null, $thirdPartyDataDeclaration = null, $thirdPartyDataDeclarationStatus = null, $adBadgingEnabled = null, $selfDeclaredEuropeanUnionPoliticalContent = null)
     {
       $this->advertiserId = $advertiserId;
       $this->id = $id;
@@ -210,7 +210,7 @@ abstract class Creative
      * @param string[]|null $policyLabels
      * @return \Google\AdsApi\AdManager\v202511\Creative
      */
-    public function setPolicyLabels(array $policyLabels = null)
+    public function setPolicyLabels(?array $policyLabels = null)
     {
       $this->policyLabels = $policyLabels;
       return $this;
@@ -228,7 +228,7 @@ abstract class Creative
      * @param \Google\AdsApi\AdManager\v202511\AppliedLabel[]|null $appliedLabels
      * @return \Google\AdsApi\AdManager\v202511\Creative
      */
-    public function setAppliedLabels(array $appliedLabels = null)
+    public function setAppliedLabels(?array $appliedLabels = null)
     {
       $this->appliedLabels = $appliedLabels;
       return $this;
@@ -264,7 +264,7 @@ abstract class Creative
      * @param \Google\AdsApi\AdManager\v202511\BaseCustomFieldValue[]|null $customFieldValues
      * @return \Google\AdsApi\AdManager\v202511\Creative
      */
-    public function setCustomFieldValues(array $customFieldValues = null)
+    public function setCustomFieldValues(?array $customFieldValues = null)
     {
       $this->customFieldValues = $customFieldValues;
       return $this;

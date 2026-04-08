@@ -126,7 +126,7 @@ abstract class BaseRichMediaStudioCreative extends \Google\AdsApi\AdManager\v202
      * @param string $sslScanResult
      * @param string $sslManualOverride
      */
-    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, array $policyLabels = null, array $appliedLabels = null, $lastModifiedDateTime = null, array $customFieldValues = null, $thirdPartyDataDeclaration = null, $thirdPartyDataDeclarationStatus = null, $adBadgingEnabled = null, $selfDeclaredEuropeanUnionPoliticalContent = null, $studioCreativeId = null, $creativeFormat = null, $artworkType = null, $totalFileSize = null, array $adTagKeys = null, array $customKeyValues = null, $surveyUrl = null, $allImpressionsUrl = null, $richMediaImpressionsUrl = null, $backupImageImpressionsUrl = null, $overrideCss = null, $requiredFlashPluginVersion = null, $duration = null, $billingAttribute = null, array $richMediaStudioChildAssetProperties = null, $sslScanResult = null, $sslManualOverride = null)
+    public function __construct($advertiserId = null, $id = null, $name = null, $size = null, $previewUrl = null, ?array $policyLabels = null, ?array $appliedLabels = null, $lastModifiedDateTime = null, ?array $customFieldValues = null, $thirdPartyDataDeclaration = null, $thirdPartyDataDeclarationStatus = null, $adBadgingEnabled = null, $selfDeclaredEuropeanUnionPoliticalContent = null, $studioCreativeId = null, $creativeFormat = null, $artworkType = null, $totalFileSize = null, ?array $adTagKeys = null, ?array $customKeyValues = null, $surveyUrl = null, $allImpressionsUrl = null, $richMediaImpressionsUrl = null, $backupImageImpressionsUrl = null, $overrideCss = null, $requiredFlashPluginVersion = null, $duration = null, $billingAttribute = null, ?array $richMediaStudioChildAssetProperties = null, $sslScanResult = null, $sslManualOverride = null)
     {
       parent::__construct($advertiserId, $id, $name, $size, $previewUrl, $policyLabels, $appliedLabels, $lastModifiedDateTime, $customFieldValues, $thirdPartyDataDeclaration, $thirdPartyDataDeclarationStatus, $adBadgingEnabled, $selfDeclaredEuropeanUnionPoliticalContent);
       $this->studioCreativeId = $studioCreativeId;
@@ -234,7 +234,7 @@ abstract class BaseRichMediaStudioCreative extends \Google\AdsApi\AdManager\v202
      * @param string[]|null $adTagKeys
      * @return \Google\AdsApi\AdManager\v202511\BaseRichMediaStudioCreative
      */
-    public function setAdTagKeys(array $adTagKeys = null)
+    public function setAdTagKeys(?array $adTagKeys = null)
     {
       $this->adTagKeys = $adTagKeys;
       return $this;
@@ -252,7 +252,7 @@ abstract class BaseRichMediaStudioCreative extends \Google\AdsApi\AdManager\v202
      * @param string[]|null $customKeyValues
      * @return \Google\AdsApi\AdManager\v202511\BaseRichMediaStudioCreative
      */
-    public function setCustomKeyValues(array $customKeyValues = null)
+    public function setCustomKeyValues(?array $customKeyValues = null)
     {
       $this->customKeyValues = $customKeyValues;
       return $this;
@@ -414,7 +414,7 @@ abstract class BaseRichMediaStudioCreative extends \Google\AdsApi\AdManager\v202
      * @param \Google\AdsApi\AdManager\v202511\RichMediaStudioChildAssetProperty[]|null $richMediaStudioChildAssetProperties
      * @return \Google\AdsApi\AdManager\v202511\BaseRichMediaStudioCreative
      */
-    public function setRichMediaStudioChildAssetProperties(array $richMediaStudioChildAssetProperties = null)
+    public function setRichMediaStudioChildAssetProperties(?array $richMediaStudioChildAssetProperties = null)
     {
       $this->richMediaStudioChildAssetProperties = $richMediaStudioChildAssetProperties;
       return $this;

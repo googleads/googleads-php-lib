@@ -42,7 +42,7 @@ final class AdsGuzzleProxyHttpHandler
      */
     public function __construct(
         AdsSession $session,
-        ClientInterface $httpClient = null
+        ?ClientInterface $httpClient = null
     ) {
         $this->proxyUrl = $session->getConnectionSettings()
             ->getProxyUrl();

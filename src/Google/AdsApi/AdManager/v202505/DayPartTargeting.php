@@ -23,7 +23,7 @@ class DayPartTargeting
      * @param \Google\AdsApi\AdManager\v202505\DayPart[] $dayParts
      * @param string $timeZone
      */
-    public function __construct(array $dayParts = null, $timeZone = null)
+    public function __construct(?array $dayParts = null, $timeZone = null)
     {
       $this->dayParts = $dayParts;
       $this->timeZone = $timeZone;
@@ -41,7 +41,7 @@ class DayPartTargeting
      * @param \Google\AdsApi\AdManager\v202505\DayPart[]|null $dayParts
      * @return \Google\AdsApi\AdManager\v202505\DayPartTargeting
      */
-    public function setDayParts(array $dayParts = null)
+    public function setDayParts(?array $dayParts = null)
     {
       $this->dayParts = $dayParts;
       return $this;
