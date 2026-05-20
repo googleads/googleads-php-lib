@@ -1960,18 +1960,6 @@
                     
           <enumeration value="ADSENSE_RPC_ERROR"/>
                     
-          <enumeration value="DOMAIN_NO_SCHEME"/>
-                    
-          <enumeration value="DOMAIN_INVALID_HOST"/>
-                    
-          <enumeration value="DOMAIN_INVALID_TLD"/>
-                    
-          <enumeration value="DOMAIN_ONE_STRING_AND_PUBLIC_SUFFIX"/>
-                    
-          <enumeration value="DOMAIN_INVALID_INPUT"/>
-                    
-          <enumeration value="DOMAIN_NO_PUBLIC_SUFFIX"/>
-                    
           <enumeration value="UNKNOWN_ERROR"/>
                   
         </restriction>

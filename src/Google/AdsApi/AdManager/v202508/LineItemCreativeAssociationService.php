@@ -21,7 +21,6 @@ class LineItemCreativeAssociationService extends \Google\AdsApi\Common\AdsSoapCl
       'ApiVersionError' => 'Google\\AdsApi\\AdManager\\v202508\\ApiVersionError',
       'ApplicationException' => 'Google\\AdsApi\\AdManager\\v202508\\ApplicationException',
       'AssetError' => 'Google\\AdsApi\\AdManager\\v202508\\AssetError',
-      'AudienceExtensionError' => 'Google\\AdsApi\\AdManager\\v202508\\AudienceExtensionError',
       'AuthenticationError' => 'Google\\AdsApi\\AdManager\\v202508\\AuthenticationError',
       'BooleanValue' => 'Google\\AdsApi\\AdManager\\v202508\\BooleanValue',
       'CollectionSizeError' => 'Google\\AdsApi\\AdManager\\v202508\\CollectionSizeError',

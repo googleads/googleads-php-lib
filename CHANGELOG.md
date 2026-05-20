@@ -1,3 +1,10 @@
+### 73.0.0
+
+* Added support for v202605.
+* Removed support for v202505.
+* Removed examples for v202508.
+* Removed AudienceExtensionError.
+
 ### 72.0.0
 
 * Added support for v202602.

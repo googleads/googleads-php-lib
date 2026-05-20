@@ -8530,7 +8530,7 @@
                 inputted URL parameters. The values of "interstitial" and "no content" are populated
                 automatically based on the declared inventory type. The video placement dimension only applies
                 to backfill traffic.
-                &lt;p&gt;Corresponds to "Video placement (new)" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
+                &lt;p&gt;Corresponds to "Video placement" in the Ad Manager UI. Compatible with the "Historical" report type.&lt;/p&gt;
               </documentation>
                           
             </annotation>

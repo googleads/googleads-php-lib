@@ -240,42 +240,6 @@
               
       </complexType>
             
-      <complexType name="AudienceExtensionError">
-                
-        <annotation>
-                    
-          <documentation>
-            Errors associated with audience extension enabled line items
-          </documentation>
-                  
-        </annotation>
-                
-        <complexContent>
-                    
-          <extension base="tns:ApiError">
-                        
-            <sequence>
-                            
-              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:AudienceExtensionError.Reason">
-                                
-                <annotation>
-                                    
-                  <documentation>
-                    The error reason represented by an enum.
-                  </documentation>
-                                  
-                </annotation>
-                              
-              </element>
-                          
-            </sequence>
-                      
-          </extension>
-                  
-        </complexContent>
-              
-      </complexType>
-            
       <complexType name="AuthenticationError">
                 
         <annotation>
@@ -2183,6 +2147,33 @@
               
       </complexType>
             
+      <complexType name="RequestError">
+                
+        <annotation>
+                    
+          <documentation>
+            Encapsulates the generic errors thrown when there's an error with user
+            request.
+          </documentation>
+                  
+        </annotation>
+                
+        <complexContent>
+                    
+          <extension base="tns:ApiError">
+                        
+            <sequence>
+                            
+              <element maxOccurs="1" minOccurs="0" name="reason" type="tns:RequestError.Reason"/>
+                          
+            </sequence>
+                      
+          </extension>
+                  
+        </complexContent>
+              
+      </complexType>
+            
       <complexType name="RequestPlatformTargetingError">
                 
         <annotation>
@@ -3159,265 +3150,6 @@
                             
               <documentation>
                 Invalid asset Id.
-              </documentation>
-                          
-            </annotation>
-                      
-          </enumeration>
-                    
-          <enumeration value="UNKNOWN">
-                        
-            <annotation>
-                            
-              <documentation>
-                The value returned if the actual value is not exposed by the requested API version.
-              </documentation>
-                          
-            </annotation>
-                      
-          </enumeration>
-                  
-        </restriction>
-              
-      </simpleType>
-            
-      <simpleType name="AudienceExtensionError.Reason">
-                
-        <annotation>
-                    
-          <documentation>
-            Specific audience extension error reasons.
-          </documentation>
-                  
-        </annotation>
-                
-        <restriction base="xsd:string">
-                    
-          <enumeration value="FREQUENCY_CAPS_NOT_SUPPORTED">
-                        
-            <annotation>
-                            
-              <documentation>
-                Frequency caps are not supported by audience extension line items
-              </documentation>
-                          
-            </annotation>
-                      
-          </enumeration>
-                    
-          <enumeration value="INVALID_TARGETING">
-                        
-            <annotation>
-                            
-              <documentation>
-                Audience extension line items can only target geography
-              </documentation>
-                          
-            </annotation>
-                      
-          </enumeration>
-                    
-          <enumeration value="INVENTORY_UNIT_TARGETING_INVALID">
-                        
-            <annotation>
-                            
-              <documentation>
-                Audience extension line items can only target audience extension inventory units
-              </documentation>
-                          
-            </annotation>
-                      
-          </enumeration>
-                    
-          <enumeration value="INVALID_CREATIVE_ROTATION">
-                        
-            <annotation>
-                            
-              <documentation>
-                Audience extension line items do not support {@link CreativeRotationType#SEQUENTIAL}.
-              </documentation>
-                          
-            </annotation>
-                      
-          </enumeration>
-                    
-          <enumeration value="INVALID_EXTERNAL_ENTITY_ID">
-                        
-            <annotation>
-                            
-              <documentation>
-                The given ID of the external entity is not valid
-              </documentation>
-                          
-            </annotation>
-                      
-          </enumeration>
-                    
-          <enumeration value="INVALID_LINE_ITEM_TYPE">
-                        
-            <annotation>
-                            
-              <documentation>
-                Audience extension line items only support {@link LineItemType#STANDARD}.
-              </documentation>
-                          
-            </annotation>
-                      
-          </enumeration>
-                    
-          <enumeration value="INVALID_MAX_BID">
-                        
-            <annotation>
-                            
-              <documentation>
-                Audience extension max bid is invalid when it is greater then the max budget.
-              </documentation>
-                          
-            </annotation>
-                      
-          </enumeration>
-                    
-          <enumeration value="AUDIENCE_EXTENSION_BULK_UPDATE_NOT_ALLOWED">
-                        
-            <annotation>
-                            
-              <documentation>
-                Bulk update for audience extension line items is not allowed.
-              </documentation>
-                          
-            </annotation>
-                      
-          </enumeration>
-                    
-          <enumeration value="UNEXPECTED_AUDIENCE_EXTENSION_ERROR">
-                        
-            <annotation>
-                            
-              <documentation>
-                An unexpected error occurred.
-              </documentation>
-                          
-            </annotation>
-                      
-          </enumeration>
-                    
-          <enumeration value="MAX_DAILY_BUDGET_AMOUNT_EXCEEDED">
-                        
-            <annotation>
-                            
-              <documentation>
-                The value entered for the maximum daily budget on an audience extension line item exceeds
-                the maximum allowed.
-              </documentation>
-                          
-            </annotation>
-                      
-          </enumeration>
-                    
-          <enumeration value="EXTERNAL_CAMPAIGN_ALREADY_EXISTS">
-                        
-            <annotation>
-                            
-              <documentation>
-                Creating a campaign for a line item that already has an associated campaign is not allowed.
-              </documentation>
-                          
-            </annotation>
-                      
-          </enumeration>
-                    
-          <enumeration value="AUDIENCE_EXTENSION_WITHOUT_FEATURE">
-                        
-            <annotation>
-                            
-              <documentation>
-                Audience extension was specified on a line item but the feature was not
-                enabled.
-              </documentation>
-                          
-            </annotation>
-                      
-          </enumeration>
-                    
-          <enumeration value="AUDIENCE_EXTENSION_WITHOUT_LINKED_ACCOUNT">
-                        
-            <annotation>
-                            
-              <documentation>
-                Audience extension was specified on a line item but no audience extension account has
-                been linked.
-              </documentation>
-                          
-            </annotation>
-                      
-          </enumeration>
-                    
-          <enumeration value="CANNOT_OVERRIDE_CREATIVE_SIZE_WITH_AUDIENCE_EXTENSION">
-                        
-            <annotation>
-                            
-              <documentation>
-                Assocation creative size overrides are not allowed with audience extension.
-              </documentation>
-                          
-            </annotation>
-                      
-          </enumeration>
-                    
-          <enumeration value="CANNOT_OVERRIDE_FIELD_WITH_AUDIENCE_EXTENSION">
-                        
-            <annotation>
-                            
-              <documentation>
-                Some association overrides are not allowed with audience extension.
-              </documentation>
-                          
-            </annotation>
-                      
-          </enumeration>
-                    
-          <enumeration value="ONLY_ONE_CREATIVE_PLACEHOLDER_ALLOWED">
-                        
-            <annotation>
-                            
-              <documentation>
-                Only one creative placeholder is allowed for an audience extension line item.
-              </documentation>
-                          
-            </annotation>
-                      
-          </enumeration>
-                    
-          <enumeration value="MULTIPLE_AUDIENCE_EXTENSION_LINE_ITEMS_ON_ORDER">
-                        
-            <annotation>
-                            
-              <documentation>
-                Only one audience extension line item can be associated with a given order.
-              </documentation>
-                          
-            </annotation>
-                      
-          </enumeration>
-                    
-          <enumeration value="CANNOT_COPY_AUDIENCE_EXTENSION_LINE_ITEMS_AND_CREATIVES_TOGETHER">
-                        
-            <annotation>
-                            
-              <documentation>
-                Audience extension line items must be copied separately from their associated creatives.
-              </documentation>
-                          
-            </annotation>
-                      
-          </enumeration>
-                    
-          <enumeration value="FEATURE_DEPRECATED">
-                        
-            <annotation>
-                            
-              <documentation>
-                Audience extension is no longer supported and cannot be used.
               </documentation>
                           
             </annotation>
@@ -8945,8 +8677,7 @@
             <annotation>
                             
               <documentation>
-                The value returned if the actual value is not exposed by the requested API
-                version.
+                The value returned if the actual value is not exposed by the requested API version.
               </documentation>
                           
             </annotation>
@@ -9896,6 +9627,51 @@
                             
               <documentation>
                 The value returned if the actual value is not exposed by the requested API version.
+              </documentation>
+                          
+            </annotation>
+                      
+          </enumeration>
+                  
+        </restriction>
+              
+      </simpleType>
+            
+      <simpleType name="RequestError.Reason">
+                
+        <restriction base="xsd:string">
+                    
+          <enumeration value="UNKNOWN">
+                        
+            <annotation>
+                            
+              <documentation>
+                Error reason is unknown.
+              </documentation>
+                          
+            </annotation>
+                      
+          </enumeration>
+                    
+          <enumeration value="INVALID_INPUT">
+                        
+            <annotation>
+                            
+              <documentation>
+                Invalid input.
+              </documentation>
+                          
+            </annotation>
+                      
+          </enumeration>
+                    
+          <enumeration value="UNSUPPORTED_VERSION">
+                        
+            <annotation>
+                            
+              <documentation>
+                The api version in the request has been discontinued. Please update
+                to the new AdWords API version.
               </documentation>
                           
             </annotation>
