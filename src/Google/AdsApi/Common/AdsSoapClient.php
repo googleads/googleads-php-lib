@@ -86,6 +86,9 @@ class AdsSoapClient extends SoapClient
     }
 
     /**
+     * The $uriParserClass parameter only exists on the parent method as of
+     * PHP 8.5, so it must not be forwarded on earlier versions.
+     *
      * @see SoapClient::__doRequest
      */
     #[\ReturnTypeWillChange]
@@ -98,9 +101,24 @@ class AdsSoapClient extends SoapClient
         ?string $uriParserClass = null
     ) {
         $request = SoapRequests::replaceReferences($request);
-        $response = parent::__doRequest($request, $location, $action, $version, $one_way, $uriParserClass);
+        if (PHP_VERSION_ID >= 80500) {
+            return parent::__doRequest(
+                $request,
+                $location,
+                $action,
+                $version,
+                $one_way,
+                $uriParserClass
+            );
+        }
 
-        return $response;
+        return parent::__doRequest(
+            $request,
+            $location,
+            $action,
+            $version,
+            $one_way
+        );
     }
 
     /**
