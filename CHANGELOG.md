@@ -1,3 +1,13 @@
+### 74.0.0
+
+* Added support for v202608.
+* Removed support for v202508.
+* Removed examples for v202511.
+
+### 73.0.1
+
+* Fixed missing field bug in LiveStreamEvent generated stub.
+
 ### 73.0.0
 
 * Added support for v202605.

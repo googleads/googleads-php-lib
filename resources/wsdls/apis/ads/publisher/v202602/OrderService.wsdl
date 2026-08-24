@@ -5264,8 +5264,8 @@
             <annotation>
                             
               <documentation>
-                An attempt was made to modify or create a {@link CustomFieldValue} with an
-                association to an entity of the wrong type for its field.
+                An attempt was made to modify or create a {@link CustomFieldValue} with an association to an
+                entity of the wrong type for its field.
               </documentation>
                           
             </annotation>
@@ -10623,8 +10623,7 @@
             <annotation>
                             
               <documentation>
-                The api version in the request has been discontinued. Please update
-                to the new AdWords API version.
+                The api version in the request has been discontinued. Please update to a newer API version.
               </documentation>
                           
             </annotation>

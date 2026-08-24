@@ -1495,6 +1495,19 @@
                       
           </element>
                     
+          <element maxOccurs="1" minOccurs="0" name="ebnMultiBreakSchedulingEnabled" type="xsd:boolean">
+                        
+            <annotation>
+                            
+              <documentation>
+                Whether multi-break scheduling for live stream events via Early Break Notification (EBN) is
+                enabled.
+              </documentation>
+                          
+            </annotation>
+                      
+          </element>
+                    
           <element maxOccurs="1" minOccurs="0" name="customAssetKey" type="xsd:string">
                         
             <annotation>

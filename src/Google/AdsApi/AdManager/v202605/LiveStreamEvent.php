@@ -190,6 +190,11 @@ class LiveStreamEvent
     protected $enableShortSegmentDropping = null;
 
     /**
+     * @var boolean $ebnMultiBreakSchedulingEnabled
+     */
+    protected $ebnMultiBreakSchedulingEnabled = null;
+
+    /**
      * @var string $customAssetKey
      */
     protected $customAssetKey = null;
@@ -261,6 +266,7 @@ class LiveStreamEvent
      * @param \Google\AdsApi\AdManager\v202605\PrefetchSettings $prefetchSettings
      * @param boolean $enableForceCloseAdBreaks
      * @param boolean $enableShortSegmentDropping
+     * @param boolean $ebnMultiBreakSchedulingEnabled
      * @param string $customAssetKey
      * @param int[] $daiEncodingProfileIds
      * @param int[] $segmentUrlAuthenticationKeyIds
@@ -269,7 +275,7 @@ class LiveStreamEvent
      * @param string $adServingFormat
      * @param \Google\AdsApi\AdManager\v202605\LiveStreamConditioning $liveStreamConditioning
      */
-    public function __construct($id = null, $name = null, $status = null, $creationDateTime = null, $lastModifiedDateTime = null, $startDateTime = null, $startDateTimeType = null, $endDateTime = null, $unlimitedEndDateTime = null, $totalEstimatedConcurrentUsers = null, array $contentUrls = null, array $adTags = null, $assetKey = null, $slateCreativeId = null, $dvrWindowSeconds = null, $enableDaiAuthenticationKeys = null, $adBreakFillType = null, $underfillAdBreakFillType = null, $adHolidayDuration = null, $enableMaxFillerDuration = null, $maxFillerDuration = null, $podServingSegmentDuration = null, $enableDurationlessAdBreaks = null, $defaultAdBreakDuration = null, array $streamCreateDaiAuthenticationKeyIds = null, array $sourceContentConfigurationIds = null, $prerollSettings = null, $hlsSettings = null, $enableAllowlistedIps = null, $dynamicAdInsertionType = null, $enableRelativePlaylistDelivery = null, $streamingFormat = null, $prefetchEnabled = null, $prefetchSettings = null, $enableForceCloseAdBreaks = null, $enableShortSegmentDropping = null, $customAssetKey = null, array $daiEncodingProfileIds = null, array $segmentUrlAuthenticationKeyIds = null, array $adBreakMarkups = null, $adBreakMarkupTypesEnabled = null, $adServingFormat = null, $liveStreamConditioning = null)
+    public function __construct($id = null, $name = null, $status = null, $creationDateTime = null, $lastModifiedDateTime = null, $startDateTime = null, $startDateTimeType = null, $endDateTime = null, $unlimitedEndDateTime = null, $totalEstimatedConcurrentUsers = null, array $contentUrls = null, array $adTags = null, $assetKey = null, $slateCreativeId = null, $dvrWindowSeconds = null, $enableDaiAuthenticationKeys = null, $adBreakFillType = null, $underfillAdBreakFillType = null, $adHolidayDuration = null, $enableMaxFillerDuration = null, $maxFillerDuration = null, $podServingSegmentDuration = null, $enableDurationlessAdBreaks = null, $defaultAdBreakDuration = null, array $streamCreateDaiAuthenticationKeyIds = null, array $sourceContentConfigurationIds = null, $prerollSettings = null, $hlsSettings = null, $enableAllowlistedIps = null, $dynamicAdInsertionType = null, $enableRelativePlaylistDelivery = null, $streamingFormat = null, $prefetchEnabled = null, $prefetchSettings = null, $enableForceCloseAdBreaks = null, $enableShortSegmentDropping = null, $ebnMultiBreakSchedulingEnabled = null, $customAssetKey = null, array $daiEncodingProfileIds = null, array $segmentUrlAuthenticationKeyIds = null, array $adBreakMarkups = null, $adBreakMarkupTypesEnabled = null, $adServingFormat = null, $liveStreamConditioning = null)
     {
       $this->id = $id;
       $this->name = $name;
@@ -307,6 +313,7 @@ class LiveStreamEvent
       $this->prefetchSettings = $prefetchSettings;
       $this->enableForceCloseAdBreaks = $enableForceCloseAdBreaks;
       $this->enableShortSegmentDropping = $enableShortSegmentDropping;
+      $this->ebnMultiBreakSchedulingEnabled = $ebnMultiBreakSchedulingEnabled;
       $this->customAssetKey = $customAssetKey;
       $this->daiEncodingProfileIds = $daiEncodingProfileIds;
       $this->segmentUrlAuthenticationKeyIds = $segmentUrlAuthenticationKeyIds;
@@ -968,6 +975,24 @@ class LiveStreamEvent
     public function setEnableShortSegmentDropping($enableShortSegmentDropping)
     {
       $this->enableShortSegmentDropping = $enableShortSegmentDropping;
+      return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getEbnMultiBreakSchedulingEnabled()
+    {
+      return $this->ebnMultiBreakSchedulingEnabled;
+    }
+
+    /**
+     * @param boolean $ebnMultiBreakSchedulingEnabled
+     * @return \Google\AdsApi\AdManager\v202605\LiveStreamEvent
+     */
+    public function setEbnMultiBreakSchedulingEnabled($ebnMultiBreakSchedulingEnabled)
+    {
+      $this->ebnMultiBreakSchedulingEnabled = $ebnMultiBreakSchedulingEnabled;
       return $this;
     }
 

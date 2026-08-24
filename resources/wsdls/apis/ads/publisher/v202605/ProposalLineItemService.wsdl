@@ -8137,8 +8137,8 @@
             <annotation>
                             
               <documentation>
-                An attempt was made to modify or create a {@link CustomFieldValue} with an
-                association to an entity of the wrong type for its field.
+                An attempt was made to modify or create a {@link CustomFieldValue} with an association to an
+                entity of the wrong type for its field.
               </documentation>
                           
             </annotation>
@@ -14877,8 +14877,8 @@
             <annotation>
                             
               <documentation>
-                Deals with agencies are limited to preferred deals, private auctions, and public
-                marketplace packages.
+                Deals with agencies are limited to preferred deals, private auctions, and public marketplace
+                packages.
               </documentation>
                           
             </annotation>
@@ -14902,8 +14902,8 @@
             <annotation>
                             
               <documentation>
-                Cannot create/update {@link ProposalLineItem proposal line items} with an invalid
-                environment and request platform pair.
+                Cannot create/update {@link ProposalLineItem proposal line items} with an invalid environment
+                and request platform pair.
               </documentation>
                           
             </annotation>
