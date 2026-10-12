@@ -91,11 +91,11 @@ class GuzzleLogMessageFormatterTest extends TestCase
             'Authorization' => 'Bearer 123.abc.456.xyz',
             'developerToken' => 'ABcdeFGH93KL-NOPQ_STUv',
             'clientCustomerId' => '111-222-3333',
-            'skipReportHeader' => false,
-            'skipColumnHeader' => false,
-            'skipReportSummary' => false,
-            'useRawEnumValues' => true,
-            'includeZeroImpressions' => false
+            'skipReportHeader' => 'false',
+            'skipColumnHeader' => 'false',
+            'skipReportSummary' => 'false',
+            'useRawEnumValues' => 'true',
+            'includeZeroImpressions' => 'false'
         ];
         $body = http_build_query([
             '__rdquery' => $this->awql,
@@ -136,11 +136,11 @@ class GuzzleLogMessageFormatterTest extends TestCase
             'Authorization' => 'Bearer 123.abc.456.xyz',
             'developerToken' => 'ABcdeFGH93KL-NOPQ_STUv',
             'clientCustomerId' => '111-222-3333',
-            'skipReportHeader' => false,
-            'skipColumnHeader' => false,
-            'skipReportSummary' => false,
-            'useRawEnumValues' => true,
-            'includeZeroImpressions' => false
+            'skipReportHeader' => 'false',
+            'skipColumnHeader' => 'false',
+            'skipReportSummary' => 'false',
+            'useRawEnumValues' => 'true',
+            'includeZeroImpressions' => 'false'
         ];
         $body = http_build_query([
             '__rdquery' => $this->awql,
@@ -437,7 +437,16 @@ class GuzzleLogMessageFormatterTest extends TestCase
                 Utils::streamFor($this->reportDownloadError)
             )
         );
-        $error = new ClientException('Client error: 400', $request, $response);
+        // The message Guzzle generates for this response, which Guzzle 8 keeps as is.
+        $error = new ClientException(
+            'Client error: `POST /api/adwords/reportdownload/v201809` resulted'
+            . " in a `400 Bad Request` response:\n"
+            . '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+            . '<reportDownloadError><ApiError><type>ReportDefinitionError.INVALI'
+            . ' (truncated...)',
+            $request,
+            $response
+        );
         $guzzleLogMessageFormatter = new GuzzleLogMessageFormatter(
             ['Authorization', 'developerToken'],
             [],

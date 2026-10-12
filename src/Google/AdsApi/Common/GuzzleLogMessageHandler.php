@@ -17,6 +17,8 @@
 
 namespace Google\AdsApi\Common;
 
+use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Promise\RejectedPromise;
 use Monolog\Logger;
 use Psr\Log\LoggerInterface;
 
@@ -62,10 +64,10 @@ final class GuzzleLogMessageHandler
                     },
                     function ($reason) use ($request, $logger, $messageFormatter) {
                         // Logs messages in case of failing HTTP calls.
-                        $response = is_subclass_of(
-                            $reason,
-                            'GuzzleHttp\Exception\RequestException'
-                        ) ? $reason->getResponse() : null;
+                        // Guzzle 8 only exposes responses on ResponseException.
+                        $response = $reason instanceof RequestException
+                            && method_exists($reason, 'getResponse')
+                            ? $reason->getResponse() : null;
 
                         $logger->warning(
                             $messageFormatter->formatSummary($request, $response)
@@ -83,7 +85,7 @@ final class GuzzleLogMessageHandler
                             ));
                         }
 
-                        return \GuzzleHttp\Promise\rejection_for($reason);
+                        return new RejectedPromise($reason);
                     }
                 );
             };

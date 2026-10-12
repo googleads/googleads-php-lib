@@ -24,6 +24,9 @@ Google Ad Manager API v202305 is [scheduled to be sunset in May 2024](https://de
 *   From version 62.0.0, this library requires the minimum PHP version to be
     8.0. If you have an older version of PHP, `composer` command will
     download an older version of the `googleads/googleads-php-lib` library.
+*   Guzzle 6, 7, and 8 are supported. Guzzle 8 can only be installed on PHP 8.1
+    or later, because the `google/auth` releases that allow it require PHP
+    8.1. On PHP 8.0, Composer will select Guzzle 7.
 *   This library depends on [Composer](https://getcomposer.org/). If you don't
     have it installed on your computer yet, follow the
     [installation guide for Linux/Unix/OS X](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx)
@@ -62,6 +65,10 @@ There are three ways of downloading this library as described below.
 *   **Our examples are meant to be run from the command line and not as a
     webpage.** If you run them as a webpage, results may not be shown
     properly.
+*   The `examples/Auth/GetRefreshToken.php` example requires `react/http`,
+    which is not compatible with Guzzle 8. To run it, install it with
+    `composer require --dev --with-all-dependencies react/http:^1.2` and
+    Composer will select a compatible Guzzle 7 release.
 
 ### Using composer require
 

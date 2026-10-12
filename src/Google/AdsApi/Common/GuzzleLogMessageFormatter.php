@@ -20,6 +20,7 @@ namespace Google\AdsApi\Common;
 use Exception;
 use Google\AdsApi\Common\Util\LogMessageScrubbers;
 use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\ResponseException;
 use GuzzleHttp\MessageFormatter;
 use GuzzleHttp\Psr7\CachingStream;
 use GuzzleHttp\Psr7\Message;
@@ -142,13 +143,10 @@ final class GuzzleLogMessageFormatter
                 $response->withBody(new CachingStream($response->getBody()));
 
             if (!is_null($error)) {
-                // Creates a new RequestException with the response whose stream
-                // can be rewound.
-                $error = RequestException::create(
-                    $request,
-                    $response,
-                    $error
-                );
+                // Preserve Guzzle 8 response exception types and error details.
+                $error = $error instanceof ResponseException
+                    ? $error->withResponse($response)
+                    : RequestException::create($request, $response, $error);
             }
         }
 
